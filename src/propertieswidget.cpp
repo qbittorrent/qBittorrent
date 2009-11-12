@@ -140,16 +140,20 @@ void PropertiesWidget::slide() {
 
 void PropertiesWidget::clear() {
   save_path->clear();
-  creator->clear();
+  lbl_creationDate->clear();
   hash_lbl->clear();
   comment_lbl->clear();
   incrementalDownload->setChecked(false);
   trackersURLS->clear();
   trackerURL->clear();
   progressBar->setProgress(QRealArray());
-  failed->clear();
+  wasted->clear();
   upTotal->clear();
   dlTotal->clear();
+  lbl_uplimit->clear();
+  lbl_dllimit->clear();
+  lbl_elapsed->clear();
+  lbl_connections->clear();
   shareRatio->clear();
   listWebSeeds->clear();
   PropListModel->clear();
@@ -171,11 +175,8 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   try {
     // Save path
     save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
-    // Author
-    QString author = h.creator().trimmed();
-    if(author.isEmpty())
-      author = tr("Unknown");
-    creator->setText(author);
+    // Creation date
+    lbl_creationDate->setText(h.creation_date());
     // Hash
     hash_lbl->setText(h.hash());
     // Comment
@@ -225,7 +226,7 @@ void PropertiesWidget::readSettings() {
     reduce();
   } else {
     main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
-    setEnabled(false);
+    //setEnabled(false);
   }
 }
 
@@ -254,10 +255,18 @@ void PropertiesWidget::saveSettings() {
 void PropertiesWidget::loadDynamicData() {
   if(!h.is_valid()) return;
   try {
-    // Session infos
-    failed->setText(misc::friendlyUnit(h.total_failed_bytes()));
-    upTotal->setText(misc::friendlyUnit(h.total_payload_upload()));
-    dlTotal->setText(misc::friendlyUnit(h.total_payload_download()));
+    // Transfer infos
+    wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
+    upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
+    dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
+    lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit()));
+    lbl_dllimit->setText(misc::friendlyUnit(h.download_limit()));
+    QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
+    if(h.is_seed()) {
+      elapsed_txt += " ("+tr("Seeding for %1", "e.g. Seeding for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
+    }
+    lbl_elapsed->setText(elapsed_txt);
+    lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
     // Update ratio info
     float ratio;
     if(h.total_payload_download() == 0){

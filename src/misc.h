@@ -41,6 +41,10 @@
 #include <QList>
 #include <QPair>
 #include <QThread>
+#include <ctime>
+#include <QDateTime>
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/date_time/posix_time/conversion.hpp>
 
 #ifndef Q_WS_WIN
 #ifdef Q_WS_MAC
@@ -306,6 +310,12 @@ public:
     }
     qDebug("magnetUriToHash: hash: %s", hash.toLocal8Bit().data());
     return hash;
+  }
+
+  static QString boostTimeToQString(boost::optional<boost::posix_time::ptime> boostDate) {
+    if(!boostDate) return tr("Unknown");
+    struct std::tm tm = boost::posix_time::to_tm(*boostDate);
+    return QDateTime::fromTime_t(mktime(&tm)).toString(Qt::DefaultLocaleLongDate);
   }
 
   // Take a number of seconds and return an user-friendly

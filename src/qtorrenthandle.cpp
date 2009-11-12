@@ -63,6 +63,12 @@ QString QTorrentHandle::name() const {
   return misc::toQString(h.name());
 }
 
+QString QTorrentHandle::creation_date() const {
+  Q_ASSERT(h.is_valid());
+  boost::optional<boost::posix_time::ptime> boostDate = h.get_torrent_info().creation_date();
+  return misc::boostTimeToQString(boostDate);
+}
+
 float QTorrentHandle::progress() const {
   Q_ASSERT(h.is_valid());
   if(!h.status().total_wanted)
@@ -264,6 +270,11 @@ size_type QTorrentHandle::total_failed_bytes() const {
   return h.status().total_failed_bytes;
 }
 
+size_type QTorrentHandle::total_redundant_bytes() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().total_redundant_bytes;
+}
+
 void QTorrentHandle::file_progress(std::vector<size_type>& fp) {
   Q_ASSERT(h.is_valid());
   return h.file_progress(fp);
@@ -328,9 +339,24 @@ bool QTorrentHandle::is_auto_managed() const {
   return h.is_auto_managed();
 }
 
-int QTorrentHandle::active_time() const {
+qlonglong QTorrentHandle::active_time() const {
   Q_ASSERT(h.is_valid());
   return h.status().active_time;
+}
+
+qlonglong QTorrentHandle::seeding_time() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().seeding_time;
+}
+
+int QTorrentHandle::num_connections() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().num_connections;
+}
+
+int QTorrentHandle::connections_limit() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().connections_limit;
 }
 
 bool QTorrentHandle::is_sequential_download() const {

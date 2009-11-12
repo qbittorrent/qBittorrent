@@ -35,13 +35,13 @@
 #include <libtorrent/torrent_info.hpp>
 
 using namespace libtorrent;
-
-class QString;
+#include <QString>
 class QStringList;
 
 // A wrapper for torrent_handle in libtorrent
 // to interact well with Qt types
 class QTorrentHandle {
+
   private:
     torrent_handle h;
 
@@ -75,6 +75,8 @@ class QTorrentHandle {
     size_type total_wanted_done() const;
     float download_payload_rate() const;
     float upload_payload_rate() const;
+    int num_connections() const;
+    int connections_limit() const;
     int num_peers() const;
     int num_seeds() const;
     int num_complete() const;
@@ -97,6 +99,7 @@ class QTorrentHandle {
     QString creator() const;
     QString comment() const;
     size_type total_failed_bytes() const;
+    size_type total_redundant_bytes() const;
     void file_progress(std::vector<size_type>& fp);
     size_type total_payload_download();
     size_type total_payload_upload();
@@ -106,10 +109,12 @@ class QTorrentHandle {
     int num_uploads() const;
     bool is_seed() const;
     bool is_auto_managed() const;
-    int active_time() const;
+    qlonglong active_time() const;
+    qlonglong seeding_time() const;
     std::vector<int> file_priorities() const;
     bool is_sequential_download() const;
     bool super_seeding() const;
+    QString creation_date() const;
 
     //
     // Setters
