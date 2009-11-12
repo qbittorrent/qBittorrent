@@ -64,6 +64,7 @@ class QTorrentHandle {
     QString name() const;
     float progress() const;
     bitfield pieces() const;
+    void piece_availability(std::vector<int>& avail) const;
     void get_download_queue(std::vector<partial_piece_info>& queue) const;
     QString current_tracker() const;
     bool is_valid() const;

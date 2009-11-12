@@ -85,6 +85,11 @@ bitfield QTorrentHandle::pieces() const {
   return h.status().pieces;
 }
 
+void QTorrentHandle::piece_availability(std::vector<int>& avail) const {
+  Q_ASSERT(h.is_valid());
+  h.piece_availability(avail);
+}
+
 void QTorrentHandle::get_download_queue(std::vector<partial_piece_info>& queue) const {
   Q_ASSERT(h.is_valid());
   h.get_download_queue(queue);
