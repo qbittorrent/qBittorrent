@@ -252,6 +252,10 @@ void PropertiesWidget::saveSettings() {
   settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
 }
 
+void PropertiesWidget::loadPeers() {
+  // TODO
+}
+
 void PropertiesWidget::loadDynamicData() {
   if(!h.is_valid()) return;
   try {
@@ -360,6 +364,8 @@ QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
   switch(index) {
   case TRACKERS_TAB:
     return trackers_button;
+  case PEERS_TAB:
+    return peers_button;
   case URLSEEDS_TAB:
     return url_seeds_button;
   case FILES_TAB:
@@ -388,6 +394,17 @@ void PropertiesWidget::on_trackers_button_clicked() {
     getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
     stackedProperties->setCurrentIndex(TRACKERS_TAB);
     trackers_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
+}
+
+void PropertiesWidget::on_peers_button_clicked() {
+  if(state == VISIBLE && stackedProperties->currentIndex() == PEERS_TAB) {
+    reduce();
+  } else {
+    slide();
+    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
+    stackedProperties->setCurrentIndex(PEERS_TAB);
+    peers_button->setStyleSheet(SELECTED_BUTTON_CSS);
   }
 }
 

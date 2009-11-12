@@ -46,7 +46,7 @@ class PropListDelegate;
 class QAction;
 class torrent_file;
 
-enum Tab {MAIN_TAB, TRACKERS_TAB, URLSEEDS_TAB, FILES_TAB};
+enum Tab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
 enum SlideState {REDUCED, VISIBLE};
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
@@ -79,8 +79,10 @@ protected slots:
   void setIncrementalDownload(int checkboxState);
   void loadTrackers();
   void loadUrlSeeds();
+  void loadPeers();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();
+  void on_peers_button_clicked();
   void on_url_seeds_button_clicked();
   void on_files_button_clicked();
   void ignoreSelection();

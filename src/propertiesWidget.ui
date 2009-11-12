@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>PropertiesWidget</class>
  <widget class="QWidget" name="PropertiesWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>540</width>
+    <height>305</height>
+   </rect>
+  </property>
   <property name="font">
    <font>
     <pointsize>8</pointsize>
@@ -42,9 +50,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-39</y>
-            <width>714</width>
-            <height>285</height>
+            <y>0</y>
+            <width>536</width>
+            <height>268</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -278,7 +286,7 @@
                 <item>
                  <widget class="QLabel" name="label_10">
                   <property name="text">
-                   <string notr="true"> </string>
+                   <string notr="true"/>
                   </property>
                  </widget>
                 </item>
@@ -303,7 +311,7 @@
                 <item>
                  <widget class="QLabel" name="label_11">
                   <property name="text">
-                   <string notr="true"> </string>
+                   <string notr="true"/>
                   </property>
                  </widget>
                 </item>
@@ -721,6 +729,61 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="page_5">
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <widget class="QTreeWidget" name="peersList">
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="itemsExpandable">
+          <bool>false</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <property name="expandsOnDoubleClick">
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>IP</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Client</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Progress</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Down speed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Up speed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Downloaded</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Uploaded</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="page_3">
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
@@ -926,6 +989,37 @@ margin-left: 3px; margin-right: 3px;
        <property name="icon">
         <iconset resource="icons.qrc">
          <normaloff>:/Icons/oxygen/network-server.png</normaloff>:/Icons/oxygen/network-server.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="peers_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string>QPushButton { 
+border: 1px solid rgb(85, 81, 91);
+border-radius: 3px;
+padding: 2px;
+margin-left: 3px; margin-right: 3px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Peers</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/Icons/oxygen/peer.png</normaloff>:/Icons/oxygen/peer.png</iconset>
        </property>
        <property name="iconSize">
         <size>
