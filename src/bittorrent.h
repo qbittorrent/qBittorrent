@@ -44,8 +44,7 @@ using namespace libtorrent;
 
 class downloadThread;
 class QTimer;
-class QFileSystemWatcher;
-class QMutex;
+class FileSystemWatcher;
 class FilterParserThread;
 
 class bittorrent : public QObject {
@@ -53,8 +52,7 @@ class bittorrent : public QObject {
 
   private:
     session *s;
-    QPointer<QFileSystemWatcher> FSWatcher;
-    QMutex* FSMutex;
+    QPointer<FileSystemWatcher> FSWatcher;
     QPointer<QTimer> timerAlerts;
     QPointer<QTimer> BigRatioTimer;
     bool DHTEnabled;
@@ -172,7 +170,7 @@ class bittorrent : public QObject {
     void downloadFromURLList(const QStringList& urls);
 
   protected slots:
-    void scanDirectory(QString);
+    void addTorrentsFromScanFolder(QStringList&);
     void readAlerts();
     void loadTrackerFile(QString hash);
     void deleteBigRatios();

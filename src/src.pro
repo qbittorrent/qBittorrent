@@ -184,7 +184,8 @@ HEADERS += GUI.h \
     TransferListDelegate.h \
     TransferListFiltersWidget.h \
     propertieswidget.h \
-    TorrentFilesModel.h
+    TorrentFilesModel.h \
+    filesystemwatcher.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \

@@ -16,6 +16,7 @@
     - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is required)
     - FEATURE: Display more information regarding the torrent in its properties
     - FEATURE: Various optimizations to save CPU and memory
+    - FEATURE: Folder scanning now works with CIFS and NFS mounted folders
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window
