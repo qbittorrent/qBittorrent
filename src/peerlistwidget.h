@@ -34,28 +34,33 @@
 #include <QTreeView>
 #include <QHash>
 #include "qtorrenthandle.h"
+#include "misc.h"
 
 class QStandardItemModel;
 class QStandardItem;
 class QSortFilterProxyModel;
 class PeerListDelegate;
+class ReverseResolution;
 
 class PeerListWidget : public QTreeView {
+  Q_OBJECT
 
 private:
   QStandardItemModel *listModel;
   PeerListDelegate *listDelegate;
   QSortFilterProxyModel * proxyModel;
   QHash<QString, QStandardItem*> peerItems;
+  ReverseResolution *resolver;
 
 public:
-    PeerListWidget();
-    ~PeerListWidget();
+  PeerListWidget();
+  ~PeerListWidget();
 
- public slots:
-    void loadPeers(QTorrentHandle &h);
-    QStandardItem*  addPeer(QString ip, peer_info peer);
-    void updatePeer(QString ip, peer_info peer);
+public slots:
+  void loadPeers(QTorrentHandle &h);
+  QStandardItem*  addPeer(QString ip, peer_info peer);
+  void updatePeer(QString ip, peer_info peer);
+  void handleResolved(QString ip, QString hostname);
 };
 
 #endif // PEERLISTWIDGET_H

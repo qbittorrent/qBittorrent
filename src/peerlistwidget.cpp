@@ -30,7 +30,7 @@
 
 #include "peerlistwidget.h"
 #include "peerlistdelegate.h"
-#include "misc.h"
+#include "reverseresolution.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -60,12 +60,17 @@ PeerListWidget::PeerListWidget() {
   setItemDelegate(listDelegate);
   // Enable sorting
   setSortingEnabled(true);
+  // IP to Hostname resolver
+  resolver = new ReverseResolution(this);
+  connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
+  resolver->start();
 }
 
 PeerListWidget::~PeerListWidget() {
   delete proxyModel;
   delete listModel;
   delete listDelegate;
+  delete resolver;
 }
 
 void PeerListWidget::loadPeers(QTorrentHandle &h) {
@@ -98,23 +103,33 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   // Adding Peer to peer list
   listModel->insertRow(row);
   listModel->setData(listModel->index(row, IP), ip);
+  resolver->resolve(peer.ip);
   listModel->setData(listModel->index(row, CLIENT), misc::toQString(peer.client));
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
   listModel->setData(listModel->index(row, UP_SPEED), peer.payload_up_speed);
   listModel->setData(listModel->index(row, TOT_DOWN), peer.total_download);
   listModel->setData(listModel->index(row, TOT_UP), peer.total_upload);
-  return listModel->item(row, 0);
+  return listModel->item(row, IP);
 }
 
 void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   QStandardItem *item = peerItems.value(ip);
   int row = item->row();
-  listModel->setData(listModel->index(row, IP), ip);
   listModel->setData(listModel->index(row, CLIENT), misc::toQString(peer.client));
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
   listModel->setData(listModel->index(row, UP_SPEED), peer.payload_up_speed);
   listModel->setData(listModel->index(row, TOT_DOWN), peer.total_download);
   listModel->setData(listModel->index(row, TOT_UP), peer.total_upload);
+}
+
+void PeerListWidget::handleResolved(QString ip, QString hostname) {
+  qDebug("%s was resolved to %s", ip.toLocal8Bit().data(), hostname.toLocal8Bit().data());
+  QStandardItem *item = peerItems.value(ip, 0);
+  if(item) {
+    qDebug("item was updated");
+    //item->setData(hostname);
+    listModel->setData(listModel->indexFromItem(item), hostname);
+  }
 }

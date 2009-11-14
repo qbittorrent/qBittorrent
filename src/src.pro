@@ -187,7 +187,8 @@ HEADERS += GUI.h \
     TorrentFilesModel.h \
     filesystemwatcher.h \
     peerlistwidget.h \
-    peerlistdelegate.h
+    peerlistdelegate.h \
+    reverseresolution.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
