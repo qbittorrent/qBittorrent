@@ -57,7 +57,6 @@ SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, b
   setupUi(this);
   // new qCompleter to the search pattern
   startSearchHistory();
-  searchCompleter = 0;
   createCompleter();
   // Add close tab button
   closeTab_button = new QPushButton();
@@ -142,8 +141,7 @@ void SearchEngine::displayPatternContextMenu(QPoint) {
   QAction *act = myMenu.exec(QCursor::pos());
   if(act != 0) {
     if(act == &clearHistoryAct) {
-      searchHistory.clear();
-      createCompleter();
+      searchHistory.setStringList(QStringList());
     } else if (act == &pasteAct) {
     } else if (act == &pasteAct) {
       search_pattern->paste();
@@ -181,18 +179,13 @@ void SearchEngine::on_enginesButton_clicked() {
 // get the last searchs from a QSettings to a QStringList
 void SearchEngine::startSearchHistory(){
   QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("Search");
-  searchHistory = settings.value("searchHistory",-1).toStringList();
-  settings.endGroup();
+  searchHistory.setStringList(settings.value("Search/searchHistory",QStringList()).toStringList());
 }
 
 // Save the history list into the QSettings for the next session
-void SearchEngine::saveSearchHistory()
-{
+void SearchEngine::saveSearchHistory() {
   QSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("Search");
-  settings.setValue("searchHistory",searchHistory);
-  settings.endGroup();
+  settings.setValue("Search/searchHistory",searchHistory.stringList());
 }
 
 // Function called when we click on search button
@@ -220,13 +213,14 @@ void SearchEngine::on_search_button_clicked(){
   tabWidget->setCurrentWidget(currentSearchTab);
   closeTab_button->setEnabled(true);
   // if the pattern is not in the pattern
-  if(searchHistory.indexOf(pattern) == -1){
+  QStringList wordList = searchHistory.stringList();
+  if(wordList.indexOf(pattern) == -1){
     //update the searchHistory list
-    searchHistory.append(pattern);
+    wordList.append(pattern);
     // verify the max size of the history
-    if(searchHistory.size() > SEARCHHISTORY_MAXSIZE)
-      searchHistory = searchHistory.mid(searchHistory.size()/2,searchHistory.size()/2);
-    createCompleter();
+    if(wordList.size() > SEARCHHISTORY_MAXSIZE)
+      wordList = wordList.mid(wordList.size()/2);
+    searchHistory.setStringList(wordList);
   }
 
   // Getting checked search engines
@@ -252,7 +246,7 @@ void SearchEngine::on_search_button_clicked(){
 void SearchEngine::createCompleter() {
   if(searchCompleter)
     delete searchCompleter;
-  searchCompleter = new QCompleter(searchHistory, this);
+  searchCompleter = new QCompleter(&searchHistory);
   searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
   search_pattern->setCompleter(searchCompleter);
 }
