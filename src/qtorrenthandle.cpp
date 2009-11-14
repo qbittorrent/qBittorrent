@@ -129,6 +129,11 @@ int QTorrentHandle::num_pieces() const {
   return h.get_torrent_info().num_pieces();
 }
 
+void QTorrentHandle::get_peer_info(std::vector<peer_info>& v) const {
+  Q_ASSERT(h.is_valid());
+  h.get_peer_info(v);
+}
+
 size_type QTorrentHandle::total_wanted_done() const {
   Q_ASSERT(h.is_valid());
   return h.status().total_wanted_done;

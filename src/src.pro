@@ -185,7 +185,9 @@ HEADERS += GUI.h \
     TransferListFiltersWidget.h \
     propertieswidget.h \
     TorrentFilesModel.h \
-    filesystemwatcher.h
+    filesystemwatcher.h \
+    peerlistwidget.h \
+    peerlistdelegate.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
@@ -225,5 +227,6 @@ SOURCES += GUI.cpp \
     ico.cpp \
     rss.cpp \
     TransferListWidget.cpp \
-    propertieswidget.cpp
+    propertieswidget.cpp \
+    peerlistwidget.cpp
 DESTDIR = .

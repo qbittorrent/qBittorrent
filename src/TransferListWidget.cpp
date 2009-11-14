@@ -59,9 +59,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   listModel = new QStandardItemModel(0,11);
   listModel->setHeaderData(NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
   listModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-  listModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
-  listModel->setHeaderData(DLSPEED, Qt::Horizontal, tr("DL Speed", "i.e: Download speed"));
-  listModel->setHeaderData(UPSPEED, Qt::Horizontal, tr("UP Speed", "i.e: Upload speed"));
+  listModel->setHeaderData(PROGRESS, Qt::Horizontal, "%");
+  listModel->setHeaderData(DLSPEED, Qt::Horizontal, tr("Down Speed", "i.e: Download speed"));
+  listModel->setHeaderData(UPSPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));
   listModel->setHeaderData(SEEDSLEECH, Qt::Horizontal, tr("Seeds/Leechers", "i.e: full/partial sources"));
   listModel->setHeaderData(RATIO, Qt::Horizontal, tr("Ratio"));
   listModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));

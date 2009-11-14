@@ -116,6 +116,7 @@ class QTorrentHandle {
     bool is_sequential_download() const;
     bool super_seeding() const;
     QString creation_date() const;
+    void get_peer_info(std::vector<peer_info>&) const;
 
     //
     // Setters

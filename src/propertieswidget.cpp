@@ -47,6 +47,7 @@
 #include "PropListDelegate.h"
 #include "TrackersAdditionDlg.h"
 #include "TorrentFilesModel.h"
+#include "peerlistwidget.h"
 
 #define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 3px; margin-right: 3px;}"
 #define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105);margin-left: 3px; margin-right: 3px;}"
@@ -90,7 +91,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   progressBar = new RealProgressBar(this);
   progressBar->setForegroundColor(Qt::blue);
   ProgressHLayout->insertWidget(1, progressBar);
-  //progressBar->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+  // Peers list
+  peersList = new PeerListWidget();
+  peerpage_layout->addWidget(peersList);
   // Pointers init
   progressBarUpdater = 0;
   // Dynamic data refresher
@@ -104,6 +107,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete refreshTimer;
   if(progressBarUpdater)
     delete progressBarUpdater;
+  delete peersList;
   delete progressBar;
   delete PropListModel;
   // Delete QActions
@@ -271,6 +275,8 @@ void PropertiesWidget::loadDynamicData() {
     }
     lbl_elapsed->setText(elapsed_txt);
     lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
+    // Load peers
+    peersList->loadPeers(h);
     // Update ratio info
     float ratio;
     if(h.total_payload_download() == 0){

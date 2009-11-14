@@ -730,59 +730,7 @@
       </layout>
      </widget>
      <widget class="QWidget" name="page_5">
-      <layout class="QVBoxLayout" name="verticalLayout_13">
-       <item>
-        <widget class="QTreeWidget" name="peersList">
-         <property name="rootIsDecorated">
-          <bool>false</bool>
-         </property>
-         <property name="itemsExpandable">
-          <bool>false</bool>
-         </property>
-         <property name="allColumnsShowFocus">
-          <bool>true</bool>
-         </property>
-         <property name="expandsOnDoubleClick">
-          <bool>false</bool>
-         </property>
-         <column>
-          <property name="text">
-           <string>IP</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Client</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Progress</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Down speed</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Up speed</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Downloaded</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Uploaded</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QVBoxLayout" name="peerpage_layout"/>
      </widget>
      <widget class="QWidget" name="page_3">
       <layout class="QVBoxLayout" name="verticalLayout_9">

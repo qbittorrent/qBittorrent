@@ -28,77 +28,41 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TRANSFERLISTDELEGATE_H
-#define TRANSFERLISTDELEGATE_H
+#ifndef PEERLISTDELEGATE_H
+#define PEERLISTDELEGATE_H
 
 #include <QItemDelegate>
-#include <QModelIndex>
-#include <QByteArray>
-#include <QStyleOptionViewItem>
-#include <QStyleOptionViewItemV2>
-#include <QApplication>
 #include "misc.h"
 
-// Defines for download list list columns
-enum Column {NAME, SIZE, PROGRESS, DLSPEED, UPSPEED, SEEDSLEECH, RATIO, ETA, PRIORITY, HASH, STATUS};
+enum PeerListColumns {IP, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED, TOT_DOWN, TOT_UP};
 
-class TransferListDelegate: public QItemDelegate {
+class PeerListDelegate: public QItemDelegate {
   Q_OBJECT
 
 public:
-  TransferListDelegate(QObject *parent) : QItemDelegate(parent){}
+  PeerListDelegate(QObject *parent) : QItemDelegate(parent){}
 
-  ~TransferListDelegate(){}
+  ~PeerListDelegate(){}
 
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()){
-        case SIZE:
+        case TOT_DOWN:
+        case TOT_UP:
       QItemDelegate::drawBackground(painter, opt, index);
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
       break;
-        case ETA:
-      QItemDelegate::drawBackground(painter, opt, index);
-      QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
-      break;
-        case UPSPEED:
-        case DLSPEED:{
+        case DOWN_SPEED:
+        case UP_SPEED:{
             QItemDelegate::drawBackground(painter, opt, index);
             double speed = index.data().toDouble();
             QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(speed/1024., 'f', 1)+" "+tr("KiB/s"));
             break;
           }
-        case RATIO:{
-            QItemDelegate::drawBackground(painter, opt, index);
-            double ratio = index.data().toDouble();
-            if(ratio > 100.)
-              QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
-            else
-              QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 1));
-            break;
-          }
-        case PRIORITY: {
-            int priority = index.data().toInt();
-            if(priority >= 0) {
-              QItemDelegate::paint(painter, option, index);
-            } else {
-              QItemDelegate::drawBackground(painter, opt, index);
-              QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
-            }
-            break;
-          }
         case PROGRESS:{
-            QStyleOptionProgressBarV2 newopt;
-            double progress = index.data().toDouble()*100.;
-            newopt.rect = opt.rect;
-            newopt.text = QString::number(progress, 'f', 1)+"%";
-            newopt.progress = (int)progress;
-            newopt.maximum = 100;
-            newopt.minimum = 0;
-            newopt.state |= QStyle::State_Enabled;
-            newopt.textVisible = true;
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt,
-                                               painter);
+            QItemDelegate::drawBackground(painter, opt, index);
+            double progress = index.data().toDouble();
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(progress*100., 'f', 1)+"%");
             break;
           }
         default:
@@ -106,11 +70,6 @@ public:
         }
   }
 
-  QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
-    // No editor here
-    return 0;
-  }
-
 };
 
-#endif // TRANSFERLISTDELEGATE_H
+#endif // PEERLISTDELEGATE_H

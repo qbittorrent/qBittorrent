@@ -45,6 +45,7 @@ class TorrentFilesModel;
 class PropListDelegate;
 class QAction;
 class torrent_file;
+class PeerListWidget;
 
 enum Tab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
 enum SlideState {REDUCED, VISIBLE};
@@ -62,6 +63,7 @@ private:
   SlideState state;
   TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
+  PeerListWidget *peersList;
   QAction *actionIgnored;
   QAction *actionNormal;
   QAction *actionMaximum;
