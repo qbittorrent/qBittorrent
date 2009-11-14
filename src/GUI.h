@@ -104,7 +104,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Search
     SearchEngine *searchEngine;
     // RSS
-    RSSImp *rssWidget;
+    QPointer<RSSImp> rssWidget;
     // Web UI
     QPointer<HttpServer> httpServer;
     // Misc

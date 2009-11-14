@@ -169,9 +169,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
   tabs->addTab(searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
 
-  // RSS Tab
-  rssWidget = 0;
-
   // Configure BT session according to options
   loadPreferences(false);
   // Resume unfinished torrents
@@ -275,7 +272,7 @@ GUI::~GUI() {
   delete statusSep2;
   delete statusSep3;
   delete statusSep4;
-  if(rssWidget != 0)
+  if(rssWidget)
     delete rssWidget;
   delete searchEngine;
   delete transferListFilters;
@@ -315,15 +312,14 @@ GUI::~GUI() {
 void GUI::displayRSSTab(bool enable) {
   if(enable) {
     // RSS tab
-    if(rssWidget == 0) {
+    if(!rssWidget) {
       rssWidget = new RSSImp(BTSession);
       int index_tab = tabs->addTab(rssWidget, tr("RSS"));
       tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
     }
   } else {
-    if(rssWidget != 0) {
+    if(rssWidget) {
       delete rssWidget;
-      rssWidget = 0;
     }
   }
 }
