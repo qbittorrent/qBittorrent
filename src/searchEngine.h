@@ -37,6 +37,7 @@
 #include <QList>
 #include <QPair>
 #include <QPointer>
+#include <QStringListModel>
 #include "ui_search.h"
 #include "engineSelectDlg.h"
 #include "SearchTab.h"
@@ -60,7 +61,7 @@ private:
   QByteArray search_result_line_truncated;
   unsigned long nb_search_results;
   QPointer<QCompleter> searchCompleter;
-  QStringList searchHistory;
+  QStringListModel searchHistory;
   bittorrent *BTSession;
   QSystemTrayIcon *myTrayIcon;
   bool systrayIntegration;
