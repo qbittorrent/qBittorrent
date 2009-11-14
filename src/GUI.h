@@ -144,7 +144,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionDocumentation_triggered() const;
     void on_actionOpen_triggered();
     void checkConnectionStatus();
-    void configureSession(bool deleteOptions);
+    void loadPreferences(bool configure_session=true);
     void processParams(const QStringList& params);
     void addTorrent(QString path);
     void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
@@ -156,7 +156,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void scrapeTrackers();
     // Options slots
     void on_actionOptions_triggered();
-    void OptionsSaved(bool deleteOptions);
     // HTTP slots
     void on_actionDownload_from_URL_triggered();
 

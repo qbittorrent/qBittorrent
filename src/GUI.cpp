@@ -59,6 +59,7 @@
 #include "trackerLogin.h"
 #include "options_imp.h"
 #include "allocationDlg.h"
+#include "preferences.h"
 #include <stdlib.h>
 #include "console_imp.h"
 #include "httpserver.h"
@@ -126,9 +127,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(7);
-  // creating options
-  options = new options_imp(this);
-  connect(options, SIGNAL(status_changed(bool)), this, SLOT(OptionsSaved(bool)));
+  // Creating Bittorrent session
   BTSession = new bittorrent();
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&, QString)), this, SLOT(fullDiskError(QTorrentHandle&, QString)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
@@ -174,7 +173,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   rssWidget = 0;
 
   // Configure BT session according to options
-  configureSession(true);
+  loadPreferences(false);
   // Resume unfinished torrents
   BTSession->startUpTorrents();
   // FIXME: Sorting
@@ -765,95 +764,49 @@ void GUI::processDownloadedFiles(QString path, QString url) {
   }
 }
 
-// Set BT session configuration
-void GUI::configureSession(bool deleteOptions) {
-  qDebug("Configuring session");
+// Load program preferences
+void GUI::loadPreferences(bool configure_session) {
+  BTSession->addConsoleMessage(tr("Options were saved successfully."));
+  bool newSystrayIntegration = Preferences::systrayIntegration();
+  if(newSystrayIntegration != systrayIntegration) {
+    if(newSystrayIntegration) {
+      // create the trayicon
+      createTrayIcon();
+    } else {
+      // Destroy trayicon
+      delete myTrayIcon;
+      delete myTrayIconMenu;
+    }
+    systrayIntegration = newSystrayIntegration;
+  }
+  // XXX: Should probably be done in bittorrent, not here
+  // Update Web UI
+  if (Preferences::isWebUiEnabled()) {
+    quint16 port = Preferences::getWebUiPort();
+    QString username = Preferences::getWebUiUsername();
+    QString password = Preferences::getWebUiPassword();
+    initWebUi(username, password, port);
+  } else if(httpServer) {
+    delete httpServer;
+  }
   // General
-  bool new_displaySpeedInTitle = options->speedInTitleBar();
+  bool new_displaySpeedInTitle = Preferences::speedInTitleBar();
   if(!new_displaySpeedInTitle && new_displaySpeedInTitle != displaySpeedInTitle) {
     // Reset title
     setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   }
   displaySpeedInTitle = new_displaySpeedInTitle;
-  if(options->isToolbarDisplayed()) {
+  if(Preferences::isToolbarDisplayed()) {
     toolBar->setVisible(true);
     toolBar->layout()->setSpacing(7);
   } else {
     toolBar->setVisible(false);
   }
-  unsigned int new_refreshInterval = options->getRefreshInterval();
+  unsigned int new_refreshInterval = Preferences::getRefreshInterval();
   transferList->setRefreshInterval(new_refreshInterval);
-  // Downloads
-  // * Save path
-  BTSession->setDefaultSavePath(options->getSavePath());
-  if(options->isTempPathEnabled()) {
-    BTSession->setDefaultTempPath(options->getTempPath());
-  } else {
-    BTSession->setDefaultTempPath(QString::null);
-  }
-  BTSession->preAllocateAllFiles(options->preAllocateAllFiles());
-  BTSession->startTorrentsInPause(options->addTorrentsInPause());
-  // * Scan dir
-  if(options->getScanDir().isNull()) {
-    BTSession->disableDirectoryScanning();
-  }else{
-    //Interval first
-    BTSession->enableDirectoryScanning(options->getScanDir());
-  }
-  // Connection
-  // * Ports binding
-  unsigned short old_listenPort = BTSession->getListenPort();
-  BTSession->setListeningPort(options->getPort());
-  unsigned short new_listenPort = BTSession->getListenPort();
-  if(new_listenPort != old_listenPort) {
-    BTSession->addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg( misc::toQString(new_listenPort)));
-  }
-  // * Global download limit
-  QPair<int, int> limits = options->getGlobalBandwidthLimits();
-  if(limits.first <= 0) {
-    // Download limit disabled
-    BTSession->setDownloadRateLimit(-1);
-  } else {
-    // Enabled
-    BTSession->setDownloadRateLimit(limits.first*1024);
-  }
-  // * Global Upload limit
-  if(limits.second <= 0) {
-    // Upload limit disabled
-    BTSession->setUploadRateLimit(-1);
-  } else {
-    // Enabled
-    BTSession->setUploadRateLimit(limits.second*1024);
-  }
-  // * UPnP
-  if(options->isUPnPEnabled()) {
-    BTSession->enableUPnP(true);
-    BTSession->addConsoleMessage(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
-  } else {
-    BTSession->enableUPnP(false);
-    BTSession->addConsoleMessage(tr("UPnP support [OFF]"), QString::fromUtf8("blue"));
-  }
-  // * NAT-PMP
-  if(options->isNATPMPEnabled()) {
-    BTSession->enableNATPMP(true);
-    BTSession->addConsoleMessage(tr("NAT-PMP support [ON]"), QString::fromUtf8("blue"));
-  } else {
-    BTSession->enableNATPMP(false);
-    BTSession->addConsoleMessage(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
-  }
-  // * Session settings
-  session_settings sessionSettings;
-  if(options->shouldSpoofAzureus()) {
-    sessionSettings.user_agent = "Azureus 3.0.5.2";
-  } else {
-    sessionSettings.user_agent = "qBittorrent "VERSION;
-  }
-  sessionSettings.upnp_ignore_nonrouters = true;
-  sessionSettings.use_dht_as_fallback = false;
-  // To keep same behavior as in qbittorrent v1.2.0
-  sessionSettings.rate_limit_ip_overhead = false;
+
   // Queueing System
-  if(options->isQueueingSystemEnabled()) {
+  if(Preferences::isQueueingSystemEnabled()) {
     if(!BTSession->isQueueingEnabled()) {
       transferList->hidePriorityColumn(false);
       actionDecreasePriority->setVisible(true);
@@ -862,20 +815,8 @@ void GUI::configureSession(bool deleteOptions) {
       prioSeparator2->setVisible(true);
       toolBar->layout()->setSpacing(7);
     }
-    int max_torrents = options->getMaxActiveTorrents();
-    int max_uploads = options->getMaxActiveUploads();
-    int max_downloads = options->getMaxActiveDownloads();
-    sessionSettings.active_downloads = max_downloads;
-    sessionSettings.active_seeds = max_uploads;
-    sessionSettings.active_limit = max_torrents;
-    sessionSettings.dont_count_slow_torrents = false;
-    BTSession->setQueueingEnabled(true);
   } else {
     if(BTSession->isQueueingEnabled()) {
-      sessionSettings.active_downloads = -1;
-      sessionSettings.active_seeds = -1;
-      sessionSettings.active_limit = -1;
-      BTSession->setQueueingEnabled(false);
       transferList->hidePriorityColumn(true);
       actionDecreasePriority->setVisible(false);
       actionIncreasePriority->setVisible(false);
@@ -884,153 +825,18 @@ void GUI::configureSession(bool deleteOptions) {
       toolBar->layout()->setSpacing(7);
     }
   }
-  BTSession->setSessionSettings(sessionSettings);
-  // Bittorrent
-  // * Max connections limit
-  BTSession->setMaxConnections(options->getMaxConnecs());
-  // * Max connections per torrent limit
-  BTSession->setMaxConnectionsPerTorrent(options->getMaxConnecsPerTorrent());
-  // * Max uploads per torrent limit
-  BTSession->setMaxUploadsPerTorrent(options->getMaxUploadsPerTorrent());
-  // * DHT
-  if(options->isDHTEnabled()) {
-    // Set DHT Port
-    BTSession->setDHTPort(options->getDHTPort());
-    if(BTSession->enableDHT(true)) {
-      int dht_port = new_listenPort;
-      if(options->getDHTPort())
-        dht_port = options->getDHTPort();
-      BTSession->addConsoleMessage(tr("DHT support [ON], port: UDP/%1").arg(dht_port), QString::fromUtf8("blue"));
-    } else {
-      BTSession->addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("red"));
-    }
-  } else {
-    BTSession->enableDHT(false);
-    BTSession->addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
-  }
-  // * PeX
-  BTSession->addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
-  // * LSD
-  if(options->isLSDEnabled()) {
-    BTSession->enableLSD(true);
-    BTSession->addConsoleMessage(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
-  } else {
-    BTSession->enableLSD(false);
-    BTSession->addConsoleMessage(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
-  }
-  // * Encryption
-  int encryptionState = options->getEncryptionSetting();
-  // The most secure, rc4 only so that all streams and encrypted
-  pe_settings encryptionSettings;
-  encryptionSettings.allowed_enc_level = pe_settings::rc4;
-  encryptionSettings.prefer_rc4 = true;
-  switch(encryptionState) {
-  case 0: //Enabled
-    encryptionSettings.out_enc_policy = pe_settings::enabled;
-    encryptionSettings.in_enc_policy = pe_settings::enabled;
-    BTSession->addConsoleMessage(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
-    break;
-  case 1: // Forced
-    encryptionSettings.out_enc_policy = pe_settings::forced;
-    encryptionSettings.in_enc_policy = pe_settings::forced;
-    BTSession->addConsoleMessage(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
-    break;
-  default: // Disabled
-    encryptionSettings.out_enc_policy = pe_settings::disabled;
-    encryptionSettings.in_enc_policy = pe_settings::disabled;
-    BTSession->addConsoleMessage(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
-  }
-  BTSession->applyEncryptionSettings(encryptionSettings);
-  // * Desired ratio
-  BTSession->setGlobalRatio(options->getDesiredRatio());
-  // * Maximum ratio
-  BTSession->setDeleteRatio(options->getDeleteRatio());
-  // Ip Filter
-  if(options->isFilteringEnabled()) {
-    BTSession->enableIPFilter(options->getFilter());
-  }else{
-    BTSession->disableIPFilter();
-  }
+
   // RSS
-  if(options->isRSSEnabled()) {
+  if(Preferences::isRSSEnabled()) {
     displayRSSTab(true);
   } else {
     displayRSSTab(false);
   }
-  // * Proxy settings
-  proxy_settings proxySettings;
-  if(options->isProxyEnabled()) {
-    qDebug("Enabling P2P proxy");
-    proxySettings.hostname = options->getProxyIp().toStdString();
-    qDebug("hostname is %s", proxySettings.hostname.c_str());
-    proxySettings.port = options->getProxyPort();
-    qDebug("port is %d", proxySettings.port);
-    if(options->isProxyAuthEnabled()) {
 
-      proxySettings.username = options->getProxyUsername().toStdString();
-      proxySettings.password = options->getProxyPassword().toStdString();
-      qDebug("username is %s", proxySettings.username.c_str());
-      qDebug("password is %s", proxySettings.password.c_str());
-    }
-    switch(options->getProxyType()) {
-    case HTTP:
-      qDebug("type: http");
-      proxySettings.type = proxy_settings::http;
-      break;
-    case HTTP_PW:
-      qDebug("type: http_pw");
-      proxySettings.type = proxy_settings::http_pw;
-      break;
-    case SOCKS5:
-      qDebug("type: socks5");
-      proxySettings.type = proxy_settings::socks5;
-      break;
-    default:
-      qDebug("type: socks5_pw");
-      proxySettings.type = proxy_settings::socks5_pw;
-      break;
-    }
-    qDebug("booleans: %d %d %d %d", options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
-    BTSession->setProxySettings(proxySettings, options->useProxyForTrackers(), options->useProxyForPeers(), options->useProxyForWebseeds(), options->useProxyForDHT());
-  } else {
-    qDebug("Disabling P2P proxy");
-    BTSession->setProxySettings(proxySettings, false, false, false, false);
-  }
-  if(options->isHTTPProxyEnabled()) {
-    qDebug("Enabling Search HTTP proxy");
-    // HTTP Proxy
-    QString proxy_str;
-    switch(options->getHTTPProxyType()) {
-    case HTTP_PW:
-      proxy_str = misc::toQString("http://")+options->getHTTPProxyUsername()+":"+options->getHTTPProxyPassword()+"@"+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
-      break;
-    default:
-      proxy_str = misc::toQString("http://")+options->getHTTPProxyIp()+":"+misc::toQString(options->getHTTPProxyPort());
-    }
-    // We need this for urllib in search engine plugins
-#ifdef Q_WS_WIN
-    char proxystr[512];
-    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().data());
-    putenv(proxystr);
-#else
-    qDebug("HTTP: proxy string: %s", proxy_str.toLocal8Bit().data());
-    setenv("http_proxy", proxy_str.toLocal8Bit().data(), 1);
-#endif
-  } else {
-    qDebug("Disabling search proxy");
-#ifdef Q_WS_WIN
-    putenv("http_proxy=");
-#else
-    unsetenv("http_proxy");
-#endif
-  }
-  // Clean up
-  if(deleteOptions && options) {
-    qDebug("Deleting options");
-    //delete options;
-    options->deleteLater();
-  }
-  qDebug("Session configured");
+  if(configure_session)
+    BTSession->configureSession();
+
+  qDebug("GUI settings loaded");
 }
 
 void GUI::addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker) {
@@ -1198,36 +1004,7 @@ void GUI::createTrayIcon() {
 // Display Program Options
 void GUI::on_actionOptions_triggered() {
   options = new options_imp(this);
-  connect(options, SIGNAL(status_changed(bool)), this, SLOT(OptionsSaved(bool)));
-  options->show();
-}
-
-// Is executed each time options are saved
-void GUI::OptionsSaved(bool deleteOptions) {
-  BTSession->addConsoleMessage(tr("Options were saved successfully."));
-  bool newSystrayIntegration = options->systrayIntegration();
-  if(newSystrayIntegration != systrayIntegration) {
-    if(newSystrayIntegration) {
-      // create the trayicon
-      createTrayIcon();
-    } else {
-      // Destroy trayicon
-      delete myTrayIcon;
-      delete myTrayIconMenu;
-    }
-    systrayIntegration = newSystrayIntegration;
-  }
-  // Update Web UI
-  if (options->isWebUiEnabled()) {
-    quint16 port = options->webUiPort();
-    QString username = options->webUiUsername();
-    QString password = options->webUiPassword();
-    initWebUi(username, password, port);
-  } else if(httpServer) {
-    delete httpServer;
-  }
-  // Update session
-  configureSession(deleteOptions);
+  connect(options, SIGNAL(status_changed()), this, SLOT(loadPreferences(bool)));
 }
 
 bool GUI::initWebUi(QString username, QString password, int port) {

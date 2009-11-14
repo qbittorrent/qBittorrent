@@ -188,7 +188,8 @@ HEADERS += GUI.h \
     filesystemwatcher.h \
     peerlistwidget.h \
     peerlistdelegate.h \
-    reverseresolution.h
+    reverseresolution.h \
+    preferences.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \

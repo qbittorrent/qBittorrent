@@ -209,7 +209,7 @@
      <item>
       <widget class="QStackedWidget" name="tabOption">
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tabOptionPage1">
         <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -382,7 +382,7 @@
                   <item>
                    <widget class="QLabel" name="label_5">
                     <property name="text">
-                     <string>transfer lists refresh interval:</string>
+                     <string>Transfer list refresh interval:</string>
                     </property>
                    </widget>
                   </item>
@@ -1081,9 +1081,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>0</y>
-              <width>620</width>
-              <height>480</height>
+              <y>-4</y>
+              <width>602</width>
+              <height>513</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -1439,6 +1439,29 @@
                    </spacer>
                   </item>
                  </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_2">
+               <property name="title">
+                <string>Peer connections</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_25">
+                <item>
+                 <widget class="QCheckBox" name="checkResolveCountries">
+                  <property name="text">
+                   <string>Resolve peer countries</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkResolveHosts">
+                  <property name="text">
+                   <string>Resolve peer host names</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>

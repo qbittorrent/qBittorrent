@@ -39,6 +39,7 @@
 #include "misc.h"
 #include "downloadThread.h"
 #include "filterParserThread.h"
+#include "preferences.h"
 #include "torrentPersistentData.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/extensions/lt_trackers.hpp>
@@ -54,6 +55,7 @@
 
 #define MAX_TRACKER_ERRORS 2
 #define MAX_RATIO 100.
+enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
 
 // Main constructor
 bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false) {
@@ -61,8 +63,7 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
   fs::path::default_name_check(fs::no_check);
   // Creating bittorrent session
   // Check if we should spoof utorrent
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(settings.value(QString::fromUtf8("Preferences/Bittorrent/AzureusSpoof"), false).toBool()) {
+  if(Preferences::isUtorrentSpoofingEnabled()) {
     s = new session(fingerprint("UT", 1, 8, 5, 0), 0);
     qDebug("Peer ID: %s", fingerprint("UT", 1, 8, 5, 0).to_string().c_str());
   } else {
@@ -88,6 +89,8 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
+  // Apply user settings to Bittorrent session
+  configureSession();
   qDebug("* BTSession constructed");
 }
 
@@ -210,6 +213,228 @@ int bittorrent::getUpTorrentPriority(QString hash) const {
   Q_ASSERT(queueingEnabled);
   QTorrentHandle h = getTorrentHandle(hash);
   return h.queue_position();
+}
+
+// Set BT session configuration
+void bittorrent::configureSession() {
+  qDebug("Configuring session");
+  // Downloads
+  // * Save path
+  setDefaultSavePath(Preferences::getSavePath());
+  if(Preferences::isTempPathEnabled()) {
+    setDefaultTempPath(Preferences::getTempPath());
+  } else {
+    setDefaultTempPath(QString::null);
+  }
+  preAllocateAllFiles(Preferences::preAllocateAllFiles());
+  startTorrentsInPause(Preferences::addTorrentsInPause());
+  // * Scan dir
+  QString scan_dir = Preferences::getScanDir();
+  if(scan_dir.isEmpty()) {
+    disableDirectoryScanning();
+  }else{
+    //Interval first
+    enableDirectoryScanning(scan_dir);
+  }
+  // Connection
+  // * Ports binding
+  unsigned short old_listenPort = getListenPort();
+  setListeningPort(Preferences::getSessionPort());
+  unsigned short new_listenPort = getListenPort();
+  if(new_listenPort != old_listenPort) {
+    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg( misc::toQString(new_listenPort)));
+  }
+  // * Global download limit
+  int down_limit = Preferences::getGlobalDownloadLimit();
+  if(down_limit <= 0) {
+    // Download limit disabled
+    setDownloadRateLimit(-1);
+  } else {
+    // Enabled
+    setDownloadRateLimit(down_limit*1024);
+  }
+  int up_limit = Preferences::getGlobalUploadLimit();
+  // * Global Upload limit
+  if(up_limit <= 0) {
+    // Upload limit disabled
+    setUploadRateLimit(-1);
+  } else {
+    // Enabled
+    setUploadRateLimit(up_limit*1024);
+  }
+  // * UPnP
+  if(Preferences::isUPnPEnabled()) {
+    enableUPnP(true);
+    addConsoleMessage(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
+  } else {
+    enableUPnP(false);
+    addConsoleMessage(tr("UPnP support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * NAT-PMP
+  if(Preferences::isNATPMPEnabled()) {
+    enableNATPMP(true);
+    addConsoleMessage(tr("NAT-PMP support [ON]"), QString::fromUtf8("blue"));
+  } else {
+    enableNATPMP(false);
+    addConsoleMessage(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * Session settings
+  session_settings sessionSettings;
+  if(Preferences::isUtorrentSpoofingEnabled()) {
+    sessionSettings.user_agent = "uTorrent/1850";
+  } else {
+    sessionSettings.user_agent = "qBittorrent "VERSION;
+  }
+  sessionSettings.upnp_ignore_nonrouters = true;
+  sessionSettings.use_dht_as_fallback = false;
+  // To keep same behavior as in qbittorrent v1.2.0
+  sessionSettings.rate_limit_ip_overhead = false;
+  // Queueing System
+  if(Preferences::isQueueingSystemEnabled()) {
+    sessionSettings.active_downloads = Preferences::getMaxActiveDownloads();
+    sessionSettings.active_seeds = Preferences::getMaxActiveUploads();
+    sessionSettings.active_limit = Preferences::getMaxActiveTorrents();
+    sessionSettings.dont_count_slow_torrents = false;
+    setQueueingEnabled(true);
+  } else {
+    sessionSettings.active_downloads = -1;
+    sessionSettings.active_seeds = -1;
+    sessionSettings.active_limit = -1;
+    setQueueingEnabled(false);
+  }
+  setSessionSettings(sessionSettings);
+  // Bittorrent
+  // * Max connections limit
+  setMaxConnections(Preferences::getMaxConnecs());
+  // * Max connections per torrent limit
+  setMaxConnectionsPerTorrent(Preferences::getMaxConnecsPerTorrent());
+  // * Max uploads per torrent limit
+  setMaxUploadsPerTorrent(Preferences::getMaxUploadsPerTorrent());
+  // * DHT
+  if(Preferences::isDHTEnabled()) {
+    // Set DHT Port
+    if(enableDHT(true)) {
+      int dht_port = new_listenPort;
+      if(!Preferences::isDHTPortSameAsBT())
+        dht_port = Preferences::getDHTPort();
+      setDHTPort(dht_port);
+      addConsoleMessage(tr("DHT support [ON], port: UDP/%1").arg(dht_port), QString::fromUtf8("blue"));
+    } else {
+      addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("red"));
+    }
+  } else {
+    enableDHT(false);
+    addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * PeX
+  addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
+  // * LSD
+  if(Preferences::isLSDEnabled()) {
+    enableLSD(true);
+    addConsoleMessage(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
+  } else {
+    enableLSD(false);
+    addConsoleMessage(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
+  }
+  // * Encryption
+  int encryptionState = Preferences::getEncryptionSetting();
+  // The most secure, rc4 only so that all streams and encrypted
+  pe_settings encryptionSettings;
+  encryptionSettings.allowed_enc_level = pe_settings::rc4;
+  encryptionSettings.prefer_rc4 = true;
+  switch(encryptionState) {
+  case 0: //Enabled
+    encryptionSettings.out_enc_policy = pe_settings::enabled;
+    encryptionSettings.in_enc_policy = pe_settings::enabled;
+    addConsoleMessage(tr("Encryption support [ON]"), QString::fromUtf8("blue"));
+    break;
+  case 1: // Forced
+    encryptionSettings.out_enc_policy = pe_settings::forced;
+    encryptionSettings.in_enc_policy = pe_settings::forced;
+    addConsoleMessage(tr("Encryption support [FORCED]"), QString::fromUtf8("blue"));
+    break;
+  default: // Disabled
+    encryptionSettings.out_enc_policy = pe_settings::disabled;
+    encryptionSettings.in_enc_policy = pe_settings::disabled;
+    addConsoleMessage(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
+  }
+  applyEncryptionSettings(encryptionSettings);
+  // * Desired ratio
+  setGlobalRatio(Preferences::getDesiredRatio());
+  // * Maximum ratio
+  setDeleteRatio(Preferences::getDeleteRatio());
+  // Ip Filter
+  if(Preferences::isFilteringEnabled()) {
+    enableIPFilter(Preferences::getFilter());
+  }else{
+    disableIPFilter();
+  }
+  // * Proxy settings
+  proxy_settings proxySettings;
+  if(Preferences::isProxyEnabled()) {
+    qDebug("Enabling P2P proxy");
+    proxySettings.hostname = Preferences::getProxyIp().toStdString();
+    qDebug("hostname is %s", proxySettings.hostname.c_str());
+    proxySettings.port = Preferences::getProxyPort();
+    qDebug("port is %d", proxySettings.port);
+    if(Preferences::isProxyAuthEnabled()) {
+      proxySettings.username = Preferences::getProxyUsername().toStdString();
+      proxySettings.password = Preferences::getProxyPassword().toStdString();
+      qDebug("username is %s", proxySettings.username.c_str());
+      qDebug("password is %s", proxySettings.password.c_str());
+    }
+    switch(Preferences::getProxyType()) {
+    case HTTP:
+      qDebug("type: http");
+      proxySettings.type = proxy_settings::http;
+      break;
+    case HTTP_PW:
+      qDebug("type: http_pw");
+      proxySettings.type = proxy_settings::http_pw;
+      break;
+    case SOCKS5:
+      qDebug("type: socks5");
+      proxySettings.type = proxy_settings::socks5;
+      break;
+    default:
+      qDebug("type: socks5_pw");
+      proxySettings.type = proxy_settings::socks5_pw;
+      break;
+    }
+    setProxySettings(proxySettings, Preferences::useProxyForTrackers(), Preferences::useProxyForPeers(), Preferences::useProxyForWebseeds(), Preferences::useProxyForDHT());
+  } else {
+    qDebug("Disabling P2P proxy");
+    setProxySettings(proxySettings, false, false, false, false);
+  }
+  if(Preferences::isHTTPProxyEnabled()) {
+    qDebug("Enabling Search HTTP proxy");
+    // HTTP Proxy
+    QString proxy_str;
+    switch(Preferences::getHTTPProxyType()) {
+    case HTTP_PW:
+      proxy_str = "http://"+Preferences::getHTTPProxyUsername()+":"+Preferences::getHTTPProxyPassword()+"@"+Preferences::getHTTPProxyIp()+":"+QString::number(Preferences::getHTTPProxyPort());
+      break;
+    default:
+      proxy_str = "http://"+Preferences::getHTTPProxyIp()+":"+QString::number(Preferences::getHTTPProxyPort());
+    }
+    // We need this for urllib in search engine plugins
+#ifdef Q_WS_WIN
+    char proxystr[512];
+    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().data());
+    putenv(proxystr);
+#else
+    qDebug("HTTP: proxy string: %s", proxy_str.toLocal8Bit().data());
+    setenv("http_proxy", proxy_str.toLocal8Bit().data(), 1);
+#endif
+  } else {
+    qDebug("Disabling search proxy");
+#ifdef Q_WS_WIN
+    putenv("http_proxy=");
+#else
+    unsetenv("http_proxy");
+#endif
+  }
+  qDebug("Session configured");
 }
 
 // Calculate the ETA using GASA

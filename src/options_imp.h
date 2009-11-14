@@ -34,15 +34,10 @@
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
 
-#define HTTP 1
-#define SOCKS5 2
-#define HTTP_PW 3
-#define SOCKS5_PW 4
+enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
 
 // actions on double-click on torrents
-#define TOGGLE_PAUSE 0
-#define OPEN_DEST 1
-#define SHOW_PROPERTIES 2
+enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST};
 
 using namespace libtorrent;
 
@@ -100,23 +95,22 @@ class options_imp : public QDialog, private Ui::Dialog {
     bool isDHTEnabled() const;
     bool isDHTPortSameAsBT() const;
     int getDHTPort() const;
-    bool isPeXEnabled() const;
     bool isLSDEnabled() const;
     bool isRSSEnabled() const;
-    bool shouldSpoofAzureus() const;
+    bool isUtorrentSpoofingEnabled() const;
     int getEncryptionSetting() const;
     float getDesiredRatio() const;
     float getDeleteRatio() const;
     // Proxy options
-    bool isHTTPProxyEnabled() const;
-    bool isHTTPProxyAuthEnabled() const;
     QString getHTTPProxyIp() const;
     unsigned short getHTTPProxyPort() const;
     QString getHTTPProxyUsername() const;
     QString getHTTPProxyPassword() const;
     int getHTTPProxyType() const;
     bool isProxyEnabled() const;
+    bool isHTTPProxyEnabled() const;
     bool isProxyAuthEnabled() const;
+    bool isHTTPProxyAuthEnabled() const;
     QString getProxyIp() const;
     unsigned short getProxyPort() const;
     QString getProxyUsername() const;
@@ -140,23 +134,23 @@ class options_imp : public QDialog, private Ui::Dialog {
     QString webUiPassword() const;
 
   protected slots:
-    void enableUploadLimit(int checkBoxValue);
-    void enableDownloadLimit(int checkBoxValue);
-    void enableTempPathInput(int checkBoxValue);
-    void enableDirScan(int checkBoxValue);
+    void enableUploadLimit(bool checked);
+    void enableDownloadLimit(bool checked);
+    void enableTempPathInput(bool checked);
+    void enableDirScan(bool checked);
     void enableProxy(int comboIndex);
-    void enableProxyAuth(int checkBoxValue);
+    void enableProxyAuth(bool checked);
     void enableProxyHTTP(int comboIndex);
-    void enableProxyAuthHTTP(int checkBoxValue);
-    void enableMaxConnecsLimit(int);
-    void enableMaxConnecsLimitPerTorrent(int checkBoxValue);
-    void enableMaxUploadsLimitPerTorrent(int checkBoxValue);
-    void enableShareRatio(int checkBoxValue);
-    void enableDeleteRatio(int checkBoxValue);
-    void enableFilter(int checkBoxValue);
-    void enableRSS(int checkBoxValue);
-    void enableDHTPortSettings(int checkBoxValue);
-    void enableQueueingSystem(int checkBoxValue);
+    void enableProxyAuthHTTP(bool checked);
+    void enableMaxConnecsLimit(bool checked);
+    void enableMaxConnecsLimitPerTorrent(bool checked);
+    void enableMaxUploadsLimitPerTorrent(bool checked);
+    void enableShareRatio(bool checked);
+    void enableDeleteRatio(bool checked);
+    void enableFilter(bool checked);
+    void enableRSS(bool checked);
+    void enableDHTPortSettings(bool checked);
+    void enableQueueingSystem(bool checked);
     void setStyle(int style);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e);
@@ -168,7 +162,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void enableApplyButton();
     void enableSystrayOptions();
     void disableSystrayOptions();
-    void setSystrayOptionsState(int checkBoxValue);
+    void setSystrayOptionsState(bool checked);
     void enableWebUi(bool checkBoxValue);
     void changePage(QListWidgetItem*, QListWidgetItem*);
     void adaptToScreenSize();
@@ -179,7 +173,7 @@ class options_imp : public QDialog, private Ui::Dialog {
     void useStyle();
 
   signals:
-    void status_changed(bool) const;
+    void status_changed() const;
     void exitWithCancel();
 };
 
