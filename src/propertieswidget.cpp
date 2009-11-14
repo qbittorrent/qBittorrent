@@ -110,6 +110,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete peersList;
   delete progressBar;
   delete PropListModel;
+  delete PropDelegate;
   // Delete QActions
   delete actionIgnored;
   delete actionNormal;
