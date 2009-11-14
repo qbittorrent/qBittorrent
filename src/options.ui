@@ -484,7 +484,7 @@
                        </sizepolicy>
                       </property>
                       <property name="title">
-                       <string comment="Action executed when doucle-clicking on an item in transfer (download/upload) list">Action for double click</string>
+                       <string comment="Action executed when doucle-clicking on an item in transfer (download/upload) list">Action on double click</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_4">
                        <item>
@@ -492,7 +492,7 @@
                          <item>
                           <widget class="QLabel" name="lblDlList_2">
                            <property name="text">
-                            <string>Download list:</string>
+                            <string>Downloading:</string>
                            </property>
                           </widget>
                          </item>
@@ -517,11 +517,6 @@
                              <string>Open folder</string>
                             </property>
                            </item>
-                           <item>
-                            <property name="text">
-                             <string>Show properties</string>
-                            </property>
-                           </item>
                           </widget>
                          </item>
                          <item>
@@ -544,7 +539,7 @@
                          <item>
                           <widget class="QLabel" name="lblUploadList">
                            <property name="text">
-                            <string>Seeding list:</string>
+                            <string>Completed:</string>
                            </property>
                           </widget>
                          </item>
@@ -558,11 +553,6 @@
                            <item>
                             <property name="text">
                              <string>Open folder</string>
-                            </property>
-                           </item>
-                           <item>
-                            <property name="text">
-                             <string>Show properties</string>
                             </property>
                            </item>
                           </widget>

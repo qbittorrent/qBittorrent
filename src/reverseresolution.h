@@ -115,7 +115,8 @@ protected slots:
     if(!ips.empty())
       cond.wakeOne();
     mut.unlock();
-    sender()->deleteLater();
+    delete sender();
+    //sender()->deleteLater();
   }
 
 protected:

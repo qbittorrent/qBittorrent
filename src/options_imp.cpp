@@ -573,9 +573,14 @@ void options_imp::loadOptions(){
     textScanDir->setText(strValue);
     enableDirScan(2);
   }
-  actionTorrentDlOnDblClBox->setCurrentIndex(settings.value(QString::fromUtf8("DblClOnTorDl"), 0).toInt());
-  actionTorrentFnOnDblClBox->setCurrentIndex(settings.value(QString::fromUtf8("DblClOnTorFn"), 0).toInt());
+  intValue = settings.value(QString::fromUtf8("DblClOnTorDl"), 0).toInt();
+  if(intValue >= actionTorrentDlOnDblClBox->count())
+    intValue = 0;
+  actionTorrentDlOnDblClBox->setCurrentIndex(intValue);
   intValue = settings.value(QString::fromUtf8("DblClOnTorFn"), 1).toInt();
+  if(intValue >= actionTorrentFnOnDblClBox->count())
+    intValue = 1;
+  actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
   // End Downloads preferences
   settings.endGroup();
   // Connection preferences
