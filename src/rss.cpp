@@ -562,9 +562,13 @@ short RssStream::readDoc(const QDomDocument& doc) {
         else if(property.tagName() == "item") {
           RssItem * item = new RssItem(this, property);
           if(item->isValid()) {
-            bool already_exists = itemAlreadyExists(item->getTitle());
+            QString title = item->getTitle();
+            bool already_exists = itemAlreadyExists(title);
             if(!already_exists) {
-              (*this)[item->getTitle()] = item;
+              (*this)[title] = item;
+            } else {
+              delete item;
+              item = this->value(title);
             }
             if(item->has_attachment()) {
               has_attachments = true;
