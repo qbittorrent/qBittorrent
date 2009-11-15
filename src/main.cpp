@@ -72,6 +72,13 @@ void sigsegvHandler(int) {
   std::raise(SIGINT);
   std::abort();
 }
+void sigabrtHandler(int) {
+  std::cerr << "\n\n*************************************************************\n";
+  std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
+  print_stacktrace();
+  std::raise(SIGINT);
+  std::abort();
+}
 #endif
 
 void useStyle(QApplication *app, int style){
@@ -189,6 +196,7 @@ int main(int argc, char *argv[]){
   app->setApplicationName(QString::fromUtf8("qBittorrent"));
   app->setQuitOnLastWindowClosed(false);
 #ifndef Q_WS_WIN
+  signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
   signal(SIGSEGV, sigsegvHandler);
 #endif
