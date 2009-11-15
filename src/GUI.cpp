@@ -162,8 +162,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
 
-  //connect(downloadingTorrentTab, SIGNAL(unfinishedTorrentsNumberChanged(unsigned int)), this, SLOT(updateUnfinishedTorrentNumber(unsigned int)));
-  //connect(downloadingTorrentTab, SIGNAL(torrentDoubleClicked(QString, bool)), this, SLOT(torrentDoubleClicked(QString, bool)));
   // Search engine tab
   searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
   tabs->addTab(searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
