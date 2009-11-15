@@ -9,6 +9,7 @@
 #include "TransferListWidget.h"
 
 class TransferListFiltersWidget: public QListWidget {
+  Q_OBJECT
 
 private:
   TransferListWidget *transferList;

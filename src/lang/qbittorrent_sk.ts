@@ -674,11 +674,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download list:</source>
-        <translation>Zoznam sťahovaní:</translation>
+        <translation type="obsolete">Zoznam sťahovaní:</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation>Zoznam seedovaní:</translation>
+        <translation type="obsolete">Zoznam seedovaní:</translation>
     </message>
     <message>
         <source>Download folder:</source>
@@ -799,7 +799,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>interval obnovovania zoznamu prenosov:</translation>
+        <translation type="obsolete">interval obnovovania zoznamu prenosov:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -933,7 +933,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Operácia sa vykoná po dvojitom kliknutí na položku v zozname prenosov (sťahovaní/nahrávaní)</translation>
+        <translation type="obsolete">Operácia sa vykoná po dvojitom kliknutí na položku v zozname prenosov (sťahovaní/nahrávaní)</translation>
     </message>
     <message>
         <source>Start/Stop</source>
@@ -945,7 +945,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show properties</source>
-        <translation>Zobraziť vlastnosti</translation>
+        <translation type="obsolete">Zobraziť vlastnosti</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -961,6 +961,35 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2014,15 +2043,15 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Podpora DHT [vypnutá]</translation>
+        <translation type="obsolete">Podpora DHT [vypnutá]</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Podpora UPnP [zapnutá]</translation>
+        <translation type="obsolete">Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Podpora PeX [zapnutá]</translation>
+        <translation type="obsolete">Podpora PeX [zapnutá]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -2034,15 +2063,15 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Podpora šifrovania [zapnuté]</translation>
+        <translation type="obsolete">Podpora šifrovania [zapnuté]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Podpora šifrovania [vynútené]</translation>
+        <translation type="obsolete">Podpora šifrovania [vynútené]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Podpora šifrovania [vypnuté]</translation>
+        <translation type="obsolete">Podpora šifrovania [vypnuté]</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
@@ -2115,31 +2144,31 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent sa viaže na port: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent sa viaže na port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>Podpora UPnP [vypnutá]</translation>
+        <translation type="obsolete">Podpora UPnP [vypnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Podpora NAT-PMP [zapnutá]</translation>
+        <translation type="obsolete">Podpora NAT-PMP [zapnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Podpora NAT-PMP [vypnutá]</translation>
+        <translation type="obsolete">Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Podpora DHT [ZAP], port: UDP/%1</translation>
+        <translation type="obsolete">Podpora DHT [ZAP], port: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Local Peer Discovery [zapnutá]</translation>
+        <translation type="obsolete">Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
+        <translation type="obsolete">Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -2437,6 +2466,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Priebeh</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
@@ -2474,7 +2547,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished">Info o torrente</translation>
+        <translation type="obsolete">Info o torrente</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -2482,7 +2555,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">Tvorca:</translation>
+        <translation type="obsolete">Tvorca:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -2494,15 +2567,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">Súčasná relácia</translation>
+        <translation type="obsolete">Súčasná relácia</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">Celkovo nahrané:</translation>
+        <translation type="obsolete">Celkovo nahrané:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">Celkovo stiahnuté:</translation>
+        <translation type="obsolete">Celkovo stiahnuté:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -2510,11 +2583,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">Celkovo zlyhalo:</translation>
+        <translation type="obsolete">Celkovo zlyhalo:</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation type="unfinished">Stiahnuté časti</translation>
+        <translation type="obsolete">Stiahnuté časti</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -2559,23 +2632,15 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">Názov súboru</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Názov súboru</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <source>Priority</source>
         <translation type="unfinished">Priorita</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2612,6 +2677,80 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normálna</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Maximálna</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Vysoká</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3157,17 +3296,7 @@ Záznam zmien:</translation>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Priebeh</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -3258,6 +3387,16 @@ Záznam zmien:</translation>
     <message>
         <source>Copy magnet link</source>
         <translation type="unfinished">Kopírovať magnet URI</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3580,6 +3719,59 @@ Záznam zmien:</translation>
     <message>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nepodarilo sa dekódovať torrent súbor %1.</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent sa viaže na port: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">Podpora UPnP [zapnutá]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">Podpora UPnP [vypnutá]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">Podpora NAT-PMP [zapnutá]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">Podpora NAT-PMP [vypnutá]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">Podpora DHT [ZAP], port: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">Podpora DHT [vypnutá]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">Podpora PeX [zapnutá]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Local Peer Discovery [zapnutá]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Podpora Local Peer Discovery support [vypnutá]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Podpora šifrovania [zapnuté]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Podpora šifrovania [vynútené]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Podpora šifrovania [vypnuté]</translation>
     </message>
 </context>
 <context>
@@ -4306,7 +4498,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="obsolete">Neznámy</translation>
+        <translation type="unfinished">Neznámy</translation>
     </message>
     <message>
         <source>h</source>
@@ -5199,15 +5391,15 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Názov súboru</translation>
+        <translation type="obsolete">Názov súboru</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <source>Priority</source>

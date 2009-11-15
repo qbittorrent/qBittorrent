@@ -753,11 +753,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Dubbelklik actie</translation>
+        <translation type="obsolete">Dubbelklik actie</translation>
     </message>
     <message>
         <source>Download list:</source>
-        <translation>Downloadlijst:</translation>
+        <translation type="obsolete">Downloadlijst:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
@@ -769,11 +769,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show properties</source>
-        <translation>Toon eigenschappen</translation>
+        <translation type="obsolete">Toon eigenschappen</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation>Seed lijst:</translation>
+        <translation type="obsolete">Seed lijst:</translation>
     </message>
     <message>
         <source>Download folder:</source>
@@ -898,7 +898,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>Overdrachtlijsten vernieuwingsinterval:</translation>
+        <translation type="obsolete">Overdrachtlijsten vernieuwingsinterval:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1035,6 +1035,35 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2077,11 +2106,11 @@ Stop het eerste proccess eerst.
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>DHT ondersteuning [UIT]</translation>
+        <translation type="obsolete">DHT ondersteuning [UIT]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>PeX ondersteuning [AAN]</translation>
+        <translation type="obsolete">PeX ondersteuning [AAN]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -2103,19 +2132,19 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP ondersteuning [AAN]</translation>
+        <translation type="obsolete">UPnP ondersteuning [AAN]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Encryptie ondersteuning [AAN]</translation>
+        <translation type="obsolete">Encryptie ondersteuning [AAN]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Encryptie ondersteuning [GEFORCEERD]</translation>
+        <translation type="obsolete">Encryptie ondersteuning [GEFORCEERD]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Encryptie ondersteuning [UIT]</translation>
+        <translation type="obsolete">Encryptie ondersteuning [UIT]</translation>
     </message>
     <message>
         <source>Alt+1</source>
@@ -2173,31 +2202,31 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent is verbonden met poort: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent is verbonden met poort: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP ondersteuning [UIT]</translation>
+        <translation type="obsolete">UPnP ondersteuning [UIT]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP ondersteuning [AAN]</translation>
+        <translation type="obsolete">NAT-PMP ondersteuning [AAN]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP ondersteuning [UIT]</translation>
+        <translation type="obsolete">NAT-PMP ondersteuning [UIT]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT ondersteuning [AAN], poort: UDP/%1</translation>
+        <translation type="obsolete">DHT ondersteuning [AAN], poort: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Local Peer Discovery [AAN]</translation>
+        <translation type="obsolete">Local Peer Discovery [AAN]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Local Peer Discovery ondersteuning [UIT]</translation>
+        <translation type="obsolete">Local Peer Discovery ondersteuning [UIT]</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -2503,6 +2532,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Voortgang</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
@@ -2540,7 +2613,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished">Torrentinformatie</translation>
+        <translation type="obsolete">Torrentinformatie</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -2548,7 +2621,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">Maker:</translation>
+        <translation type="obsolete">Maker:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -2560,15 +2633,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">Huidige sessie</translation>
+        <translation type="obsolete">Huidige sessie</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">Totaal geüpload:</translation>
+        <translation type="obsolete">Totaal geüpload:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">Totaal gedownload:</translation>
+        <translation type="obsolete">Totaal gedownload:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -2576,11 +2649,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">Totaal gefaald:</translation>
+        <translation type="obsolete">Totaal gefaald:</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation type="unfinished">Gedownloade stukjes</translation>
+        <translation type="obsolete">Gedownloade stukjes</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -2625,15 +2698,15 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">Bestandsnaam</translation>
+        <translation type="obsolete">Bestandsnaam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2641,7 +2714,7 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Onbekend</translation>
+        <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2678,6 +2751,80 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished">Genegeerd</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normaal</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Maximum</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Hoog</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3222,17 +3369,17 @@ Changelog:
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">DL snelheid</translation>
+        <translation type="obsolete">DL snelheid</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">UP snelheid</translation>
+        <translation type="obsolete">UP snelheid</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -3323,6 +3470,16 @@ Changelog:
     <message>
         <source>Copy magnet link</source>
         <translation type="unfinished">Kopieer magnet link</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3637,6 +3794,59 @@ Changelog:
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Bezig met downloaden van &apos;%1&apos;, even geduld alstublieft...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent is verbonden met poort: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">UPnP ondersteuning [AAN]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">UPnP ondersteuning [UIT]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">NAT-PMP ondersteuning [AAN]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">NAT-PMP ondersteuning [UIT]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">DHT ondersteuning [AAN], poort: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT ondersteuning [UIT]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">PeX ondersteuning [AAN]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Local Peer Discovery [AAN]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Local Peer Discovery ondersteuning [UIT]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Encryptie ondersteuning [AAN]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Encryptie ondersteuning [GEFORCEERD]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Encryptie ondersteuning [UIT]</translation>
     </message>
 </context>
 <context>
@@ -4364,7 +4574,7 @@ De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="obsolete">Onbekend</translation>
+        <translation type="unfinished">Onbekend</translation>
     </message>
     <message>
         <source>h</source>
@@ -5217,15 +5427,15 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Bestandsnaam</translation>
+        <translation type="obsolete">Bestandsnaam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
     <message>
         <source>Priority</source>

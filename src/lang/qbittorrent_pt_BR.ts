@@ -663,11 +663,11 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Download list:</source>
-        <translation>Lista de downloads:</translation>
+        <translation type="obsolete">Lista de downloads:</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation>Lista de compartilhamento:</translation>
+        <translation type="obsolete">Lista de compartilhamento:</translation>
     </message>
     <message>
         <source>Download folder:</source>
@@ -788,7 +788,7 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>Intervalo de atualização da lista de transferência:</translation>
+        <translation type="obsolete">Intervalo de atualização da lista de transferência:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -923,7 +923,7 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
         <translatorcomment>Ação executada quando der duplo clique num item de transferência (baixando/subindo)</translatorcomment>
-        <translation>Ação no duplo clique</translation>
+        <translation type="obsolete">Ação no duplo clique</translation>
     </message>
     <message>
         <source>Start/Stop</source>
@@ -935,7 +935,7 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Show properties</source>
-        <translation>Mostra propriedades</translation>
+        <translation type="obsolete">Mostra propriedades</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -951,6 +951,35 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1987,11 +2016,11 @@ Motivo: %2</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Suporte DHT [Desligado]</translation>
+        <translation type="obsolete">Suporte DHT [Desligado]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Suporte PeX [Ligado]</translation>
+        <translation type="obsolete">Suporte PeX [Ligado]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -2013,7 +2042,7 @@ Deseja mesmo sair do qBittorrent?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Suporte UPnP [Ligado]</translation>
+        <translation type="obsolete">Suporte UPnP [Ligado]</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
@@ -2021,15 +2050,15 @@ Deseja mesmo sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Suporte a encriptação [Ligado]</translation>
+        <translation type="obsolete">Suporte a encriptação [Ligado]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Suporte a encriptação [FORÇADO]</translation>
+        <translation type="obsolete">Suporte a encriptação [FORÇADO]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Suporte a encriptação [Desligado]</translation>
+        <translation type="obsolete">Suporte a encriptação [Desligado]</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
@@ -2102,31 +2131,31 @@ Deseja mesmo sair do qBittorrent?</translation>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent está limitado a porta: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent está limitado a porta: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>Suporte UPnP [desligado]</translation>
+        <translation type="obsolete">Suporte UPnP [desligado]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Suporte NAT-PMP [ligado]</translation>
+        <translation type="obsolete">Suporte NAT-PMP [ligado]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Suporte NAT-PMP [desligado]</translation>
+        <translation type="obsolete">Suporte NAT-PMP [desligado]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Suporte DHT [ON], porta: UDP/%1</translation>
+        <translation type="obsolete">Suporte DHT [ON], porta: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Peer discovery [ligado]</translation>
+        <translation type="obsolete">Peer discovery [ligado]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Peer discovery [desligado]</translation>
+        <translation type="obsolete">Peer discovery [desligado]</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -2428,6 +2457,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Progresso</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
@@ -2465,7 +2538,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished">Informação do Torrent</translation>
+        <translation type="obsolete">Informação do Torrent</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -2473,7 +2546,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">Criador:</translation>
+        <translation type="obsolete">Criador:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -2485,15 +2558,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">Sessão atual</translation>
+        <translation type="obsolete">Sessão atual</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">Total de Upload:</translation>
+        <translation type="obsolete">Total de Upload:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">Total baixado:</translation>
+        <translation type="obsolete">Total baixado:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -2501,11 +2574,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">Total falhado:</translation>
+        <translation type="obsolete">Total falhado:</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation type="unfinished">Partes baixadas</translation>
+        <translation type="obsolete">Partes baixadas</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -2550,15 +2623,15 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">Nome do arquivo</translation>
+        <translation type="obsolete">Nome do arquivo</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation type="obsolete">Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Progresso</translation>
+        <translation type="obsolete">Progresso</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2566,7 +2639,7 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Desconhecido</translation>
+        <translation type="obsolete">Desconhecido</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2604,6 +2677,80 @@ margin-left: 3px; margin-right: 3px;
     <message>
         <source>Could not create the save path</source>
         <translation type="unfinished">Não foi possível criar caminho de salvamento</translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished">Ignorado</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3229,17 +3376,17 @@ Log de mudanças:</translation>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Progresso</translation>
+        <translation type="obsolete">Progresso</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Velocidade de download</translation>
+        <translation type="obsolete">Velocidade de download</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Velocidade de Upload</translation>
+        <translation type="obsolete">Velocidade de Upload</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -3330,6 +3477,16 @@ Log de mudanças:</translation>
     <message>
         <source>Copy magnet link</source>
         <translation type="unfinished">Copiar link magnético</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3644,6 +3801,59 @@ Log de mudanças:</translation>
     <message>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossível decodificar %1 do arquivo torrent.</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent está limitado a porta: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">Suporte UPnP [Ligado]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">Suporte UPnP [desligado]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">Suporte NAT-PMP [ligado]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">Suporte NAT-PMP [desligado]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">Suporte DHT [ON], porta: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">Suporte DHT [Desligado]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">Suporte PeX [Ligado]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Peer discovery [ligado]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Peer discovery [desligado]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Suporte a encriptação [Ligado]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Suporte a encriptação [FORÇADO]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Suporte a encriptação [Desligado]</translation>
     </message>
 </context>
 <context>
@@ -4349,7 +4559,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="obsolete">Desconhecido</translation>
+        <translation type="unfinished">Desconhecido</translation>
     </message>
     <message>
         <source>h</source>
@@ -5183,15 +5393,15 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Nome do arquivo</translation>
+        <translation type="obsolete">Nome do arquivo</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Tamanho</translation>
+        <translation type="obsolete">Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Progresso</translation>
+        <translation type="obsolete">Progresso</translation>
     </message>
     <message>
         <source>Priority</source>

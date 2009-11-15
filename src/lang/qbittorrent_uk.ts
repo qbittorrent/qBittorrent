@@ -694,14 +694,6 @@ p, li { white-space: pre-wrap; }
         <translation>Спостерігати за папкою</translation>
     </message>
     <message>
-        <source>Download list:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Seeding list:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Download folder:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -820,7 +812,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>інтервал оновлення списків передачі:</translation>
+        <translation type="obsolete">інтервал оновлення списків передачі:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -915,20 +907,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Action for double click</source>
-        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Start/Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -945,6 +928,35 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1988,11 +2000,11 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Підтримка DHT (Вимкнена)</translation>
+        <translation type="obsolete">Підтримка DHT (Вимкнена)</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Підтримка PeX (Увімкнена)</translation>
+        <translation type="obsolete">Підтримка PeX (Увімкнена)</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -2014,7 +2026,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Підтримка UNnP (Увімкнена)</translation>
+        <translation type="obsolete">Підтримка UNnP (Увімкнена)</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
@@ -2022,15 +2034,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Підтримка шифрування (Увімкнена)</translation>
+        <translation type="obsolete">Підтримка шифрування (Увімкнена)</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Підтримка шифрування (Примусова)</translation>
+        <translation type="obsolete">Підтримка шифрування (Примусова)</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Підтримка шифрування (Вимкнена)</translation>
+        <translation type="obsolete">Підтримка шифрування (Вимкнена)</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
@@ -2101,33 +2113,24 @@ Are you sure you want to quit qBittorrent?</source>
         <translation></translation>
     </message>
     <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UPnP support [OFF]</source>
-        <translation>Підтримка UPnP [Вимкнено]</translation>
+        <translation type="obsolete">Підтримка UPnP [Вимкнено]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Підтримка NAT-PMP [Увімкнено]</translation>
+        <translation type="obsolete">Підтримка NAT-PMP [Увімкнено]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Підтримка NAT-PMP [Вимкнено]</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Підтримка NAT-PMP [Вимкнено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Пошук Локальних Пірів [Увімкнено]</translation>
+        <translation type="obsolete">Пошук Локальних Пірів [Увімкнено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Пошук Локальних Пірів [Вимкнено]</translation>
+        <translation type="obsolete">Пошук Локальних Пірів [Вимкнено]</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -2429,6 +2432,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">КіБ/с</translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Прогрес</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
@@ -2465,16 +2512,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Torrent information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Save path:</source>
         <translation type="unfinished">Шлях збереження:</translation>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">Автор:</translation>
+        <translation type="obsolete">Автор:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -2486,15 +2529,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">Поточна сесія</translation>
+        <translation type="obsolete">Поточна сесія</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">Загалом закачано:</translation>
+        <translation type="obsolete">Загалом закачано:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">Загалом зкачано:</translation>
+        <translation type="obsolete">Загалом зкачано:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -2502,11 +2545,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">Загалом невдало:</translation>
-    </message>
-    <message>
-        <source>Downloaded pieces</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Загалом невдало:</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -2551,15 +2590,15 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">Ім&apos;я файлу</translation>
+        <translation type="obsolete">Ім&apos;я файлу</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Розмір</translation>
+        <translation type="obsolete">Розмір</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Прогрес</translation>
+        <translation type="obsolete">Прогрес</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2567,7 +2606,7 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Невідомо</translation>
+        <translation type="obsolete">Невідомо</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2605,6 +2644,80 @@ margin-left: 3px; margin-right: 3px;
     <message>
         <source>Could not create the save path</source>
         <translation type="unfinished">Неможливо створити шлях збереження</translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Максимальний</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Високий</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3144,17 +3257,7 @@ Changelog:
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Прогрес</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Прогрес</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -3244,6 +3347,16 @@ Changelog:
     </message>
     <message>
         <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3563,6 +3676,59 @@ Changelog:
     <message>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">Підтримка UNnP (Увімкнена)</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">Підтримка UPnP [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">Підтримка NAT-PMP [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">Підтримка NAT-PMP [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">Підтримка DHT (Вимкнена)</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">Підтримка PeX (Увімкнена)</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Пошук Локальних Пірів [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Пошук Локальних Пірів [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Підтримка шифрування (Увімкнена)</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Підтримка шифрування (Примусова)</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Підтримка шифрування (Вимкнена)</translation>
     </message>
 </context>
 <context>
@@ -4247,7 +4413,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="obsolete">Невідомо</translation>
+        <translation type="unfinished">Невідомо</translation>
     </message>
     <message>
         <source>h</source>
@@ -5017,15 +5183,15 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>File name</source>
-        <translation>Ім&apos;я файлу</translation>
+        <translation type="obsolete">Ім&apos;я файлу</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Розмір</translation>
+        <translation type="obsolete">Розмір</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Прогрес</translation>
+        <translation type="obsolete">Прогрес</translation>
     </message>
     <message>
         <source>Priority</source>

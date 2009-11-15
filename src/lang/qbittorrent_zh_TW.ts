@@ -346,11 +346,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download list:</source>
-        <translation>下載清單:</translation>
+        <translation type="obsolete">下載清單:</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation>做種清單:</translation>
+        <translation type="obsolete">做種清單:</translation>
     </message>
     <message>
         <source>Download folder:</source>
@@ -475,7 +475,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>傳輸清單更新間隔:</translation>
+        <translation type="obsolete">傳輸清單更新間隔:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -617,7 +617,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>雙擊時的行動</translation>
+        <translation type="obsolete">雙擊時的行動</translation>
     </message>
     <message>
         <source>Start/Stop</source>
@@ -629,7 +629,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show properties</source>
-        <translation>顯示屬性</translation>
+        <translation type="obsolete">顯示屬性</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -645,6 +645,35 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1162,11 +1191,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>DHT 支援 [關閉]</translation>
+        <translation type="obsolete">DHT 支援 [關閉]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>PeX 支援 [開啟]</translation>
+        <translation type="obsolete">PeX 支援 [開啟]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -1192,19 +1221,19 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP 支援 [開啟]</translation>
+        <translation type="obsolete">UPnP 支援 [開啟]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>加密支援 [開啟]</translation>
+        <translation type="obsolete">加密支援 [開啟]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>加密支援 [強迫]</translation>
+        <translation type="obsolete">加密支援 [強迫]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>加密支援 [關閉]</translation>
+        <translation type="obsolete">加密支援 [關閉]</translation>
     </message>
     <message>
         <source>Alt+1</source>
@@ -1255,31 +1284,31 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent 綁定埠: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent 綁定埠: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP 支援 [關閉]</translation>
+        <translation type="obsolete">UPnP 支援 [關閉]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP 支援 [開啟]</translation>
+        <translation type="obsolete">NAT-PMP 支援 [開啟]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP 支援 [關閉]</translation>
+        <translation type="obsolete">NAT-PMP 支援 [關閉]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT 支援 [開啟], 埠: UDP/%1</translation>
+        <translation type="obsolete">DHT 支援 [開啟], 埠: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>本地下載者搜尋 [開啟]</translation>
+        <translation type="obsolete">本地下載者搜尋 [開啟]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>本地下載者搜尋支援 [關閉]</translation>
+        <translation type="obsolete">本地下載者搜尋支援 [關閉]</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -1453,6 +1482,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">進度</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Ignored</source>
@@ -1482,7 +1555,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished">Torrent 資訊</translation>
+        <translation type="obsolete">Torrent 資訊</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -1490,7 +1563,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">建立者:</translation>
+        <translation type="obsolete">建立者:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -1502,15 +1575,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">目前作業階段</translation>
+        <translation type="obsolete">目前作業階段</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">全部上傳:</translation>
+        <translation type="obsolete">全部上傳:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">全部下載:</translation>
+        <translation type="obsolete">全部下載:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -1518,11 +1591,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">全部失敗:</translation>
+        <translation type="obsolete">全部失敗:</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation type="unfinished">已下載的分塊</translation>
+        <translation type="obsolete">已下載的分塊</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -1567,15 +1640,15 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">檔案名稱</translation>
+        <translation type="obsolete">檔案名稱</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">進度</translation>
+        <translation type="obsolete">進度</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -1583,7 +1656,7 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">未知</translation>
+        <translation type="obsolete">未知</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -1621,6 +1694,80 @@ margin-left: 3px; margin-right: 3px;
     <message>
         <source>Could not create the save path</source>
         <translation type="unfinished">無法建立儲存路徑</translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished">忽略</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">一般</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">最高</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">高</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2075,17 +2222,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">進度</translation>
+        <translation type="obsolete">進度</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">下載速度</translation>
+        <translation type="obsolete">下載速度</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">上傳速度</translation>
+        <translation type="obsolete">上傳速度</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -2176,6 +2323,16 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Copy magnet link</source>
         <translation type="unfinished">複製 magnet link</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2415,6 +2572,59 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Unable to decode %1 torrent file.</source>
         <translation>無法解碼 torrent 檔案 %1 。</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent 綁定埠: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">UPnP 支援 [開啟]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">UPnP 支援 [關閉]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">NAT-PMP 支援 [開啟]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">NAT-PMP 支援 [關閉]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">DHT 支援 [開啟], 埠: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT 支援 [關閉]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">PeX 支援 [開啟]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">本地下載者搜尋 [開啟]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">本地下載者搜尋支援 [關閉]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">加密支援 [開啟]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">加密支援 [強迫]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">加密支援 [關閉]</translation>
     </message>
 </context>
 <context>
@@ -3033,6 +3243,10 @@ However, those plugins were disabled.</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1 天 %2 小時 %3 分鐘</translation>
     </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished">未知</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>
@@ -3551,15 +3765,15 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>File name</source>
-        <translation>檔案名稱</translation>
+        <translation type="obsolete">檔案名稱</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>進度</translation>
+        <translation type="obsolete">進度</translation>
     </message>
     <message>
         <source>Priority</source>

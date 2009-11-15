@@ -699,11 +699,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download list:</source>
-        <translation>İndirme listesi:</translation>
+        <translation type="obsolete">İndirme listesi:</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation>Gönderme listesi:</translation>
+        <translation type="obsolete">Gönderme listesi:</translation>
     </message>
     <message>
         <source>Download folder:</source>
@@ -824,7 +824,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>aktarım listeleri yenileme süresi:</translation>
+        <translation type="obsolete">aktarım listeleri yenileme süresi:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -958,7 +958,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Çift tıklama eylemi</translation>
+        <translation type="obsolete">Çift tıklama eylemi</translation>
     </message>
     <message>
         <source>Start/Stop</source>
@@ -970,7 +970,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show properties</source>
-        <translation>Özellikleri göster</translation>
+        <translation type="obsolete">Özellikleri göster</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -986,6 +986,35 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2100,11 +2129,11 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>DHT desteği [KAPALI]</translation>
+        <translation type="obsolete">DHT desteği [KAPALI]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>EşD desteği [AÇIK]</translation>
+        <translation type="obsolete">EşD desteği [AÇIK]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -2112,19 +2141,19 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP desteği [AÇIK]</translation>
+        <translation type="obsolete">UPnP desteği [AÇIK]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Şifreleme desteği [AÇIK]</translation>
+        <translation type="obsolete">Şifreleme desteği [AÇIK]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Şifreleme desteği [ZORLANDI]</translation>
+        <translation type="obsolete">Şifreleme desteği [ZORLANDI]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Şifreleme desteği [KAPALI]</translation>
+        <translation type="obsolete">Şifreleme desteği [KAPALI]</translation>
     </message>
     <message>
         <source>Alt+1</source>
@@ -2175,31 +2204,31 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent&apos;in bağlı olduğu port: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent&apos;in bağlı olduğu port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP desteği [KAPALI]</translation>
+        <translation type="obsolete">UPnP desteği [KAPALI]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP desteği [AÇIK]</translation>
+        <translation type="obsolete">NAT-PMP desteği [AÇIK]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP desteği [KAPALI]</translation>
+        <translation type="obsolete">NAT-PMP desteği [KAPALI]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT desteği [Açık], port: UDP/%1</translation>
+        <translation type="obsolete">DHT desteği [Açık], port: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Yerel Eş Keşfi [AÇIK]</translation>
+        <translation type="obsolete">Yerel Eş Keşfi [AÇIK]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Yerel Eş Keşfi desteği [KAPALI]</translation>
+        <translation type="obsolete">Yerel Eş Keşfi desteği [KAPALI]</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -2505,6 +2534,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">İlerleme</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
@@ -2542,7 +2615,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished">Torrent bilgisi</translation>
+        <translation type="obsolete">Torrent bilgisi</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -2550,7 +2623,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">Oluşturan:</translation>
+        <translation type="obsolete">Oluşturan:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -2562,15 +2635,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">Şimdiki oturum</translation>
+        <translation type="obsolete">Şimdiki oturum</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">Toplam gönderilen:</translation>
+        <translation type="obsolete">Toplam gönderilen:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">Toplam indirilen:</translation>
+        <translation type="obsolete">Toplam indirilen:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -2578,11 +2651,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">Toplam başarısız:</translation>
+        <translation type="obsolete">Toplam başarısız:</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation type="unfinished">İndirilmiş parçalar</translation>
+        <translation type="obsolete">İndirilmiş parçalar</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -2627,15 +2700,15 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">Dosya adı</translation>
+        <translation type="obsolete">Dosya adı</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Boyut</translation>
+        <translation type="obsolete">Boyut</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">İlerleme</translation>
+        <translation type="obsolete">İlerleme</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2643,7 +2716,7 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Bilinmeyen</translation>
+        <translation type="obsolete">Bilinmeyen</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2680,6 +2753,80 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Yüksek</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3216,17 +3363,7 @@ Changelog:
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">İlerleme</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">İlerleme</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -3317,6 +3454,16 @@ Changelog:
     <message>
         <source>Copy magnet link</source>
         <translation type="unfinished">Çeken bağlantıyı kopyala</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3643,6 +3790,59 @@ Changelog:
     <message>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 torent dosyası çözümlenemiyor.</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent&apos;in bağlı olduğu port: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">UPnP desteği [AÇIK]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">UPnP desteği [KAPALI]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">NAT-PMP desteği [AÇIK]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">NAT-PMP desteği [KAPALI]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">DHT desteği [Açık], port: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT desteği [KAPALI]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">EşD desteği [AÇIK]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Yerel Eş Keşfi [AÇIK]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Yerel Eş Keşfi desteği [KAPALI]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Şifreleme desteği [AÇIK]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Şifreleme desteği [ZORLANDI]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Şifreleme desteği [KAPALI]</translation>
     </message>
 </context>
 <context>
@@ -4341,7 +4541,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="obsolete">Bilinmeyen</translation>
+        <translation type="unfinished">Bilinmeyen</translation>
     </message>
     <message>
         <source>h</source>
@@ -5183,15 +5383,15 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Dosya adı</translation>
+        <translation type="obsolete">Dosya adı</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Boyut</translation>
+        <translation type="obsolete">Boyut</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>İlerleme</translation>
+        <translation type="obsolete">İlerleme</translation>
     </message>
     <message>
         <source>Priority</source>

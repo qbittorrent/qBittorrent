@@ -343,11 +343,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download list:</source>
-        <translation>Hämtningslista:</translation>
+        <translation type="obsolete">Hämtningslista:</translation>
     </message>
     <message>
         <source>Seeding list:</source>
-        <translation>Distributionslista:</translation>
+        <translation type="obsolete">Distributionslista:</translation>
     </message>
     <message>
         <source>Download folder:</source>
@@ -467,7 +467,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>Uppdateringsintervall för överföringslistor:</translation>
+        <translation type="obsolete">Uppdateringsintervall för överföringslistor:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -610,7 +610,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Action for double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Åtgärd för dubbelklick</translation>
+        <translation type="obsolete">Åtgärd för dubbelklick</translation>
     </message>
     <message>
         <source>Start/Stop</source>
@@ -622,7 +622,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show properties</source>
-        <translation>Visa egenskaper</translation>
+        <translation type="obsolete">Visa egenskaper</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -638,6 +638,35 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1069,11 +1098,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>DHT-stöd [AV]</translation>
+        <translation type="obsolete">DHT-stöd [AV]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>PeX-stöd [PÅ]</translation>
+        <translation type="obsolete">PeX-stöd [PÅ]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -1099,19 +1128,19 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP-stöd [PÅ]</translation>
+        <translation type="obsolete">UPnP-stöd [PÅ]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Krypteringsstöd [PÅ]</translation>
+        <translation type="obsolete">Krypteringsstöd [PÅ]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Krypteringsstöd [TVINGAD]</translation>
+        <translation type="obsolete">Krypteringsstöd [TVINGAD]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Krypteringsstöd [AV]</translation>
+        <translation type="obsolete">Krypteringsstöd [AV]</translation>
     </message>
     <message>
         <source>Alt+1</source>
@@ -1165,31 +1194,31 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent är bunden till port: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent är bunden till port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP-stöd [AV]</translation>
+        <translation type="obsolete">UPnP-stöd [AV]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP-stöd [PÅ]</translation>
+        <translation type="obsolete">NAT-PMP-stöd [PÅ]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP-stöd [AV]</translation>
+        <translation type="obsolete">NAT-PMP-stöd [AV]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT-stöd [PÅ], port: UDP/%1</translation>
+        <translation type="obsolete">DHT-stöd [PÅ], port: UDP/%1</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Identifiering av lokala klienter [PÅ]</translation>
+        <translation type="obsolete">Identifiering av lokala klienter [PÅ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Stöd för identifiering av lokala klienter [AV]</translation>
+        <translation type="obsolete">Stöd för identifiering av lokala klienter [AV]</translation>
     </message>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
@@ -1358,6 +1387,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Förlopp</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Ignored</source>
@@ -1387,7 +1460,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished">Torrentinformation</translation>
+        <translation type="obsolete">Torrentinformation</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -1395,7 +1468,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">Skapare:</translation>
+        <translation type="obsolete">Skapare:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -1407,15 +1480,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">Aktuell session</translation>
+        <translation type="obsolete">Aktuell session</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">Totalt skickat:</translation>
+        <translation type="obsolete">Totalt skickat:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">Totalt hämtat:</translation>
+        <translation type="obsolete">Totalt hämtat:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -1423,11 +1496,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">Totalt misslyckade:</translation>
+        <translation type="obsolete">Totalt misslyckade:</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation type="unfinished">Hämtade delar</translation>
+        <translation type="obsolete">Hämtade delar</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -1472,23 +1545,19 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">Filnamn</translation>
+        <translation type="obsolete">Filnamn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Storlek</translation>
+        <translation type="obsolete">Storlek</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Förlopp</translation>
+        <translation type="obsolete">Förlopp</translation>
     </message>
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioritet</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -1526,6 +1595,80 @@ margin-left: 3px; margin-right: 3px;
     <message>
         <source>Could not create the save path</source>
         <translation type="unfinished">Kunde inte skapa sökväg att spara i</translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished">Ignoreras</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Maximal</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Hög</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1980,17 +2123,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Förlopp</translation>
+        <translation type="obsolete">Förlopp</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Hämtningshastighet</translation>
+        <translation type="obsolete">Hämtningshastighet</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Sändningshastighet</translation>
+        <translation type="obsolete">Sändningshastighet</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -2081,6 +2224,16 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Copy magnet link</source>
         <translation type="unfinished">Kopiera magnetlänk</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2320,6 +2473,59 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Kunde inte avkoda torrentfilen %1.</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent är bunden till port: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">UPnP-stöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">UPnP-stöd [AV]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">NAT-PMP-stöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">NAT-PMP-stöd [AV]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">DHT-stöd [PÅ], port: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT-stöd [AV]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">PeX-stöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Identifiering av lokala klienter [PÅ]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Stöd för identifiering av lokala klienter [AV]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Krypteringsstöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Krypteringsstöd [TVINGAD]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Krypteringsstöd [AV]</translation>
     </message>
 </context>
 <context>
@@ -2926,6 +3132,10 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d %2h %3min</translation>
     </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>
@@ -3436,15 +3646,15 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Filnamn</translation>
+        <translation type="obsolete">Filnamn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Storlek</translation>
+        <translation type="obsolete">Storlek</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Förlopp</translation>
+        <translation type="obsolete">Förlopp</translation>
     </message>
     <message>
         <source>Priority</source>

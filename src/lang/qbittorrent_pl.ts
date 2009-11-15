@@ -745,28 +745,11 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Action for double click</source>
-        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download list:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Start/Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show properties</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Seeding list:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -892,7 +875,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
-        <translation>okres odświeżania listy transferu:</translation>
+        <translation type="obsolete">okres odświeżania listy transferu:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1029,6 +1012,35 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2106,11 +2118,11 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Wsparcie DHT [WYŁ]</translation>
+        <translation type="obsolete">Wsparcie DHT [WYŁ]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Wsparcie PeX [WŁ]</translation>
+        <translation type="obsolete">Wsparcie PeX [WŁ]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
@@ -2136,7 +2148,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Wsparcie UPnP [WŁ]</translation>
+        <translation type="obsolete">Wsparcie UPnP [WŁ]</translation>
     </message>
     <message>
         <source>Be careful, sharing copyrighted material without permission is against the law.</source>
@@ -2144,15 +2156,15 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Wsparcie szyfrowania [WŁ]</translation>
+        <translation type="obsolete">Wsparcie szyfrowania [WŁ]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Wsparcie szyfrowania [WYMUSZONE]</translation>
+        <translation type="obsolete">Wsparcie szyfrowania [WYMUSZONE]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Wsparcie szyfrowania [WYŁ]</translation>
+        <translation type="obsolete">Wsparcie szyfrowania [WYŁ]</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
@@ -2223,33 +2235,24 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UPnP support [OFF]</source>
-        <translation>Obsługa UPnP [WYŁ]</translation>
+        <translation type="obsolete">Obsługa UPnP [WYŁ]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Obsługa NAT-PMP [WŁ]</translation>
+        <translation type="obsolete">Obsługa NAT-PMP [WŁ]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Obsługa NAT-PMP [WYŁ]</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Obsługa NAT-PMP [WYŁ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Local Peer Discovery [WŁ]</translation>
+        <translation type="obsolete">Local Peer Discovery [WŁ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Obsługa Local Peer Discovery [WYŁ]</translation>
+        <translation type="obsolete">Obsługa Local Peer Discovery [WYŁ]</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
@@ -2563,6 +2566,50 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerListDelegate</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>PeerListWidget</name>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client</source>
+        <comment>i.e.: Client application</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <comment>i.e: % downloaded</comment>
+        <translation type="unfinished">Postęp</translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>i.e: total data downloaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded</source>
+        <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>False</source>
@@ -2599,16 +2646,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Torrent information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Save path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Creator:</source>
-        <translation type="unfinished">Kreator:</translation>
+        <translation type="obsolete">Kreator:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
@@ -2620,15 +2663,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Current session</source>
-        <translation type="unfinished">Bieżąca sesja</translation>
+        <translation type="obsolete">Bieżąca sesja</translation>
     </message>
     <message>
         <source>Total uploaded:</source>
-        <translation type="unfinished">Ogółem wysłanych:</translation>
+        <translation type="obsolete">Ogółem wysłanych:</translation>
     </message>
     <message>
         <source>Total downloaded:</source>
-        <translation type="unfinished">Ogółem pobranych:</translation>
+        <translation type="obsolete">Ogółem pobranych:</translation>
     </message>
     <message>
         <source>Share ratio:</source>
@@ -2636,11 +2679,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Total failed:</source>
-        <translation type="unfinished">Ogółem błędnych:</translation>
+        <translation type="obsolete">Ogółem błędnych:</translation>
     </message>
     <message>
         <source>Downloaded pieces</source>
-        <translation type="unfinished">Pobrane części</translation>
+        <translation type="obsolete">Pobrane części</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -2685,15 +2728,15 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>File name</source>
-        <translation type="unfinished">Nazwa pliku</translation>
+        <translation type="obsolete">Nazwa pliku</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2701,7 +2744,7 @@ margin-left: 3px; margin-right: 3px;
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Nieznany</translation>
+        <translation type="obsolete">Nieznany</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2739,6 +2782,80 @@ margin-left: 3px; margin-right: 3px;
     <message>
         <source>Could not create the save path</source>
         <translation type="unfinished">Nie można założyć katalogu docelowego</translation>
+    </message>
+    <message>
+        <source>Downloaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wasted:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UP limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time elapsed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created on:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished">Ignorowany</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normalny</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Maksymalny</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Wysoki</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding for %1</source>
+        <comment>e.g. Seeding for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3287,17 +3404,17 @@ Zmiany:
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
     <message>
         <source>DL Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Prędkość DL</translation>
+        <translation type="obsolete">Prędkość DL</translation>
     </message>
     <message>
         <source>UP Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Prędkość UP</translation>
+        <translation type="obsolete">Prędkość UP</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -3387,6 +3504,16 @@ Zmiany:
     </message>
     <message>
         <source>Copy magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3714,6 +3841,59 @@ Zmiany:
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Pobieranie &apos;%1&apos;, proszę czekać...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">Wsparcie UPnP [WŁ]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">Obsługa UPnP [WYŁ]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">Obsługa NAT-PMP [WŁ]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">Obsługa NAT-PMP [WYŁ]</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">Wsparcie DHT [WYŁ]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">Wsparcie PeX [WŁ]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Local Peer Discovery [WŁ]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Obsługa Local Peer Discovery [WYŁ]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Wsparcie szyfrowania [WŁ]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Wsparcie szyfrowania [WYMUSZONE]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Wsparcie szyfrowania [WYŁ]</translation>
     </message>
 </context>
 <context>
@@ -4440,7 +4620,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="obsolete">Nieznany</translation>
+        <translation type="unfinished">Nieznany</translation>
     </message>
     <message>
         <source>h</source>
@@ -5268,15 +5448,15 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>File name</source>
-        <translation>Nazwa pliku</translation>
+        <translation type="obsolete">Nazwa pliku</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
     <message>
         <source>Priority</source>
