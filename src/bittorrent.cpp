@@ -40,6 +40,7 @@
 #include "downloadThread.h"
 #include "filterParserThread.h"
 #include "preferences.h"
+#include "geoip.h"
 #include "torrentPersistentData.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/extensions/lt_trackers.hpp>
@@ -58,7 +59,7 @@
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
 
 // Main constructor
-bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false) {
+bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false), geoipDBLoaded(false) {
   resolve_countries = false;
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
@@ -264,9 +265,16 @@ void bittorrent::configureSession() {
     setUploadRateLimit(up_limit*1024);
   }
   // Resolve countries
+  qDebug("Loading country resolution settings");
   bool new_resolv_countries = Preferences::resolvePeerCountries();
   if(resolve_countries != new_resolv_countries) {
+    qDebug("in country reoslution settings");
     resolve_countries = new_resolv_countries;
+    if(resolve_countries && !geoipDBLoaded) {
+      qDebug("Loading geoip database");
+      GeoIP::loadDatabase(s);
+      geoipDBLoaded = true;
+    }
     // Update torrent handles
     std::vector<torrent_handle> torrents = getTorrents();
     std::vector<torrent_handle>::iterator torrentIT;

@@ -190,7 +190,8 @@ HEADERS += GUI.h \
     peerlistwidget.h \
     peerlistdelegate.h \
     reverseresolution.h \
-    preferences.h
+    preferences.h \
+    geoip.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \

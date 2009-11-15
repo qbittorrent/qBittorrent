@@ -76,6 +76,7 @@ class bittorrent : public QObject {
     QStringList url_skippingDlg;
     QHash<QString, QString> savepath_fromurl;
     bool resolve_countries;
+    bool geoipDBLoaded;
 
   protected:
     QString getSavePath(QString hash);
