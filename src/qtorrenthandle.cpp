@@ -374,6 +374,11 @@ bool QTorrentHandle::is_sequential_download() const {
   return h.is_sequential_download();
 }
 
+bool QTorrentHandle::resolve_countries() const {
+  Q_ASSERT(h.is_valid());
+  return h.resolve_countries();
+}
+
 //
 // Setters
 //
@@ -485,6 +490,11 @@ void QTorrentHandle::file_priority(int index, int priority) const {
 void QTorrentHandle::super_seeding(bool on) const {
   Q_ASSERT(h.is_valid());
   h.super_seeding(on);
+}
+
+void QTorrentHandle::resolve_countries(bool r) {
+  Q_ASSERT(h.is_valid());
+  h.resolve_countries(r);
 }
 
 //

@@ -117,6 +117,7 @@ class QTorrentHandle {
     bool super_seeding() const;
     QString creation_date() const;
     void get_peer_info(std::vector<peer_info>&) const;
+    bool resolve_countries() const;
 
     //
     // Setters
@@ -143,6 +144,7 @@ class QTorrentHandle {
     void force_recheck() const;
     void move_storage(QString path) const;
     void super_seeding(bool on) const;
+    void resolve_countries(bool r);
 
     //
     // Operators
