@@ -79,8 +79,7 @@ using namespace libtorrent;
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false) {
   setupUi(this);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  systrayIntegration = settings.value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
+  systrayIntegration = Preferences::systrayIntegration();
   systrayCreator = 0;
   // Create tray icon
   if (QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -179,13 +178,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   // Add torrent given on command line
   processParams(torrentCmdLine);
   // Initialize Web UI
-  httpServer = 0;
-  if(settings.value("Preferences/WebUI/Enabled", false).toBool())
-  {
-    quint16 port = settings.value("Preferences/WebUI/Port", 8080).toUInt();
-    QString username = settings.value("Preferences/WebUI/Username", "").toString();
-    QString password = settings.value("Preferences/WebUI/Password", "").toString();
-    initWebUi(username, password, port);
+  if(Preferences::isWebUiEnabled()) {
+    initWebUi(Preferences::getWebUiUsername(), Preferences::getWebUiPassword(), Preferences::getWebUiPort());
   }
   // Use a tcp server to allow only one instance of qBittorrent
   localServer = new QLocalServer();
@@ -244,8 +238,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   readSettings();
   properties->readSettings();
 
-  if(settings.value(QString::fromUtf8("Preferences/General/StartMinimized"), false).toBool()) {
-    this->setWindowState(Qt::WindowMinimized);
+  if(Preferences::startMinimized()) {
+    setWindowState(Qt::WindowMinimized);
   }
 
   scrapeTimer = new QTimer(this);

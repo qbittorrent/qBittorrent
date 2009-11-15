@@ -261,7 +261,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
   // Adapt size
-  adaptToScreenSize();
+  loadWindowState();
   show();
 }
 
@@ -304,7 +304,21 @@ void options_imp::useStyle(){
   }
 }
 
-void options_imp::adaptToScreenSize() {
+void options_imp::loadWindowState() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  resize(settings.value(QString::fromUtf8("Preferences/State/size"), sizeFittingScreen()).toSize());
+  QPoint p = settings.value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
+  if(!p.isNull())
+    move(p);
+}
+
+void options_imp::saveWindowState() const {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue(QString::fromUtf8("Preferences/State/size"), size());
+  settings.setValue(QString::fromUtf8("Preferences/State/pos"), pos());
+}
+
+QSize options_imp::sizeFittingScreen() {
   int scrn = 0;
   QWidget *w = this->topLevelWidget();
 
@@ -318,8 +332,9 @@ void options_imp::adaptToScreenSize() {
   QRect desk(QApplication::desktop()->availableGeometry(scrn));
   if(width() > desk.width() || height() > desk.height()) {
     if(desk.width() > 0 && desk.height() > 0)
-      resize(desk.width(), desk.height());
+      return QSize(desk.width(), desk.height());
   }
+  return size();
 }
 
 void options_imp::saveOptions(){
@@ -925,6 +940,7 @@ void options_imp::on_buttonBox_accepted(){
     this->hide();
     emit status_changed();
   }
+  saveWindowState();
   accept();
 }
 
