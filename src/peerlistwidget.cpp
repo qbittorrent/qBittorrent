@@ -39,7 +39,7 @@
 #include <QSettings>
 #include <vector>
 
-PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent) {
+PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), display_flags(false) {
   // Visual settings
   setRootIsDecorated(false);
   setItemsExpandable(false);
@@ -84,8 +84,7 @@ void PeerListWidget::updatePeerHostNameResolutionState() {
       resolver = new ReverseResolution(this);
       connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
       resolver->start();
-      clear();
-      loadPeers(properties->getCurrentTorrent());
+      loadPeers(properties->getCurrentTorrent(), true);
     }
   } else {
     if(resolver)
@@ -93,9 +92,21 @@ void PeerListWidget::updatePeerHostNameResolutionState() {
   }
 }
 
+void PeerListWidget::updatePeerCountryResolutionState() {
+  if(Preferences::resolvePeerCountries() != display_flags) {
+    display_flags = !display_flags;
+    if(display_flags) {
+      const QTorrentHandle &h = properties->getCurrentTorrent();
+      if(!h.is_valid()) return;
+      loadPeers(h);
+    }
+  }
+}
+
 void PeerListWidget::clear() {
   qDebug("clearing peer list");
   peerItems.clear();
+  missingFlags.clear();
   int nbrows = listModel->rowCount();
   if(nbrows > 0) {
     qDebug("Cleared %d peers", nbrows);
@@ -122,7 +133,7 @@ void PeerListWidget::saveSettings() const {
   settings.setValue(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), contentColsWidths);
 }
 
-void PeerListWidget::loadPeers(const QTorrentHandle &h) {
+void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {
   if(!h.is_valid()) return;
   std::vector<peer_info> peers;
   h.get_peer_info(peers);
@@ -135,6 +146,10 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h) {
       // Update existing peer
       updatePeer(peer_ip, peer);
       old_peers_set.remove(peer_ip);
+      if(force_hostname_resolution) {
+        if(resolver)
+          resolver->resolve(peer.ip);
+      }
     } else {
       // Add new peer
       peerItems[peer_ip] = addPeer(peer_ip, peer);
@@ -143,7 +158,9 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h) {
   // Delete peers that are gone
   QSetIterator<QString> it(old_peers_set);
   while(it.hasNext()) {
-    QStandardItem *item = peerItems.take(it.next());
+    QString ip = it.next();
+    missingFlags.remove(ip);
+    QStandardItem *item = peerItems.take(ip);
     listModel->removeRow(item->row());
   }
 }
@@ -156,6 +173,14 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   // Resolve peer host name is asked
   if(resolver)
     resolver->resolve(peer.ip);
+  if(display_flags) {
+    QIcon ico = misc::CountryISOCodeToIcon(peer.country);
+    if(!ico.isNull()) {
+      listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
+    } else {
+      missingFlags.insert(ip);
+    }
+  }
   listModel->setData(listModel->index(row, CLIENT), misc::toQString(peer.client));
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
@@ -168,6 +193,13 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
 void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   QStandardItem *item = peerItems.value(ip);
   int row = item->row();
+  if(display_flags) {
+    QIcon ico = misc::CountryISOCodeToIcon(peer.country);
+    if(!ico.isNull()) {
+      listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
+      missingFlags.remove(ip);
+    }
+  }
   listModel->setData(listModel->index(row, CLIENT), misc::toQString(peer.client));
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
@@ -177,11 +209,8 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
 }
 
 void PeerListWidget::handleResolved(QString ip, QString hostname) {
-  qDebug("%s was resolved to %s", ip.toLocal8Bit().data(), hostname.toLocal8Bit().data());
   QStandardItem *item = peerItems.value(ip, 0);
   if(item) {
-    qDebug("item was updated");
-    //item->setData(hostname);
     listModel->setData(listModel->indexFromItem(item), hostname);
   }
 }

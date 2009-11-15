@@ -48,12 +48,14 @@
   <file>Icons/flags/taiwan.png</file>
   <file>Icons/flags/sweden.png</file>
   <file>Icons/flags/spain_catalunya.png</file>
+  <file>Icons/flags/usa.png</file>
   <file>Icons/flags/romania.png</file>
   <file>Icons/flags/denmark.png</file>
   <file>Icons/flags/hungary.png</file>
   <file>Icons/flags/ukraine.png</file>
   <file>Icons/flags/turkey.png</file>
   <file>Icons/flags/greece.png</file>
+  <file>Icons/flags/argentina.png</file>
   <file>Icons/flags/spain.png</file>
   <file>Icons/flags/portugal.png</file>
   <file>Icons/flags/russia.png</file>
@@ -61,6 +63,7 @@
   <file>Icons/flags/poland.png</file>
   <file>Icons/flags/germany.png</file>
   <file>Icons/flags/bulgaria.png</file>
+  <file>Icons/flags/canada.png</file>
   <file>Icons/flags/brazil.png</file>
   <file>Icons/flags/france.png</file>
   <file>Icons/flags/slovakia.png</file>

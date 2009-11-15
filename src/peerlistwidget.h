@@ -34,6 +34,7 @@
 #include <QTreeView>
 #include <QHash>
 #include <QPointer>
+#include <QSet>
 #include "qtorrenthandle.h"
 #include "misc.h"
 
@@ -52,19 +53,22 @@ private:
   PeerListDelegate *listDelegate;
   QSortFilterProxyModel * proxyModel;
   QHash<QString, QStandardItem*> peerItems;
+  QSet<QString> missingFlags;
   QPointer<ReverseResolution> resolver;
   PropertiesWidget* properties;
+  bool display_flags;
 
 public:
   PeerListWidget(PropertiesWidget *parent);
   ~PeerListWidget();
 
 public slots:
-  void loadPeers(const QTorrentHandle &h);
+  void loadPeers(const QTorrentHandle &h, bool force_hostname_resolution=false);
   QStandardItem*  addPeer(QString ip, peer_info peer);
   void updatePeer(QString ip, peer_info peer);
   void handleResolved(QString ip, QString hostname);
   void updatePeerHostNameResolutionState();
+  void updatePeerCountryResolutionState();
   void clear();
 
 protected slots:

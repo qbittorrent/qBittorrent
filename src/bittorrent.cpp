@@ -842,6 +842,7 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   // Uploads limit per torrent
   h.set_max_uploads(maxUploadsPerTorrent);
   // Resolve countries
+  qDebug("AddTorrent: Resolve_countries: %d", (int)resolve_countries);
   h.resolve_countries(resolve_countries);
   // Load filtered files
   loadFilesPriorities(h);

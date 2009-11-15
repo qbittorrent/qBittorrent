@@ -41,6 +41,7 @@
 #include <QList>
 #include <QPair>
 #include <QThread>
+#include <QIcon>
 #include <ctime>
 #include <QDateTime>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
@@ -48,13 +49,13 @@
 
 #ifndef Q_WS_WIN
 #ifdef Q_WS_MAC
-  #include <sys/param.h>
-  #include <sys/mount.h>
+#include <sys/param.h>
+#include <sys/mount.h>
 #else
-  #include <sys/vfs.h>
+#include <sys/vfs.h>
 #endif
 #else
-  #include <winbase.h>
+#include <winbase.h>
 #endif
 
 #include <libtorrent/torrent_info.hpp>
@@ -143,7 +144,7 @@ public:
       unsigned long long *ret;
       if (pGetDiskFreeSpaceEx((LPCTSTR)path.ucs2(), &bytesFree, &bytesTotal, NULL)) {
         tmp = (unsigned long long*)&bytesFree
-        return ret;
+              return ret;
       } else {
         return -1;
       }
@@ -316,6 +317,86 @@ public:
     if(!boostDate) return tr("Unknown");
     struct std::tm tm = boost::posix_time::to_tm(*boostDate);
     return QDateTime::fromTime_t(mktime(&tm)).toString(Qt::DefaultLocaleLongDate);
+  }
+
+  // TODO: Support more countries
+  // http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
+  static QIcon CountryISOCodeToIcon(char* iso) {
+    switch(iso[0]) {
+    case 0:
+    case '-':
+    case '!':
+      //qDebug("Not returning any icon because iso is invalid: %s", iso);
+      return QIcon();
+    case 'A':
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/argentina.png");
+      break;
+    case 'B':
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/brazil.png");
+      if(iso[1] == 'G') return QIcon(":/Icons/flags/bulgaria.png");
+      break;
+    case 'C':
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/canada.png");
+      if(iso[1] == 'Z') return QIcon(":/Icons/flags/czech.png");
+      if(iso[1] == 'C') return QIcon(":/Icons/flags/china.png");
+      break;
+    case 'D':
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/germany.png");
+      if(iso[1] == 'K') return QIcon(":/Icons/flags/denmark.png");
+      break;
+    case 'E':
+      if(iso[1] == 'S') return QIcon(":/Icons/flags/spain.png");
+      break;
+    case 'F':
+      if(iso[1] == 'I') return QIcon(":/Icons/flags/finland.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/france.png");
+      break;
+    case 'G':
+      if(iso[1] == 'B') return QIcon(":/Icons/flags/united_kingdom.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/greece.png");
+      break;
+    case 'H':
+      if(iso[1] == 'U') return QIcon(":/Icons/flags/hungary.png");
+      if(iso[1] == 'K') return QIcon(":/Icons/flags/china.png");
+      break;
+    case 'I':
+      if(iso[1] == 'T') return QIcon(":/Icons/flags/italy.png");
+      break;
+    case 'J':
+      if(iso[1] == 'P') return QIcon(":/Icons/flags/japan.png");
+      break;
+    case 'K':
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/south_korea.png");
+      break;
+    case 'N':
+      if(iso[1] == 'L') return QIcon(":/Icons/flags/netherlands.png");
+      if(iso[1] == 'O') return QIcon(":/Icons/flags/norway.png");
+      break;
+    case 'P':
+      if(iso[1] == 'T') return QIcon(":/Icons/flags/portugal.png");
+      if(iso[1] == 'L') return QIcon(":/Icons/flags/poland.png");
+      break;
+    case 'R':
+      if(iso[1] == 'U') return QIcon(":/Icons/flags/russia.png");
+      if(iso[1] == 'O') return QIcon(":/Icons/flags/romania.png");
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/france.png");
+      break;
+    case 'S':
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/sweden.png");
+      if(iso[1] == 'K') return QIcon(":/Icons/flags/slovakia.png");
+      break;
+    case 'T':
+      if(iso[1] == 'W') return QIcon(":/Icons/flags/china.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/turkey.png");
+      break;
+    case 'U':
+      if(iso[1] == 'S') return QIcon(":/Icons/flags/usa.png");
+      if(iso[1] == 'M') return QIcon(":/Icons/flags/usa.png");
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/ukraine.png");
+      break;
+    }
+    qDebug("Unrecognized country code: %s", iso);
+    return QIcon();
   }
 
   // Take a number of seconds and return an user-friendly
