@@ -172,9 +172,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   loadPreferences(false);
   // Resume unfinished torrents
   BTSession->startUpTorrents();
-  // FIXME: Sorting
-  //downloadingTorrentTab->loadLastSortedColumn();
-  //finishedTorrentTab->loadLastSortedColumn();
   // Add torrent given on command line
   processParams(torrentCmdLine);
   // Initialize Web UI
