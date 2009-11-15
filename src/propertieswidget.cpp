@@ -304,7 +304,7 @@ void PropertiesWidget::loadDynamicData() {
     if(progressBarUpdater)
       progressBarUpdater->refresh();
     // Progress
-    progress_lbl->setText(QString::number(h.progress(), 'f', 1)+"%");
+    progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
     // Files progress
     std::vector<size_type> fp;
     h.file_progress(fp);
