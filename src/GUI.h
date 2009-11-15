@@ -156,6 +156,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void scrapeTrackers();
     // Options slots
     void on_actionOptions_triggered();
+    void optionsSaved();
     // HTTP slots
     void on_actionDownload_from_URL_triggered();
 

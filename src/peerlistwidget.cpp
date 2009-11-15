@@ -31,13 +31,15 @@
 #include "peerlistwidget.h"
 #include "peerlistdelegate.h"
 #include "reverseresolution.h"
+#include "preferences.h"
+#include "propertieswidget.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
 #include <QSettings>
 #include <vector>
 
-PeerListWidget::PeerListWidget() {
+PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent) {
   // Visual settings
   setRootIsDecorated(false);
   setItemsExpandable(false);
@@ -64,9 +66,7 @@ PeerListWidget::PeerListWidget() {
   // Load settings
   loadSettings();
   // IP to Hostname resolver
-  resolver = new ReverseResolution(this);
-  connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
-  resolver->start();
+  updatePeerHostNameResolutionState();
 }
 
 PeerListWidget::~PeerListWidget() {
@@ -74,7 +74,33 @@ PeerListWidget::~PeerListWidget() {
   delete proxyModel;
   delete listModel;
   delete listDelegate;
-  delete resolver;
+  if(resolver)
+    delete resolver;
+}
+
+void PeerListWidget::updatePeerHostNameResolutionState() {
+  if(Preferences::resolvePeerHostNames()) {
+    if(!resolver) {
+      resolver = new ReverseResolution(this);
+      connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
+      resolver->start();
+      clear();
+      loadPeers(properties->getCurrentTorrent());
+    }
+  } else {
+    if(resolver)
+      delete resolver;
+  }
+}
+
+void PeerListWidget::clear() {
+  qDebug("clearing peer list");
+  peerItems.clear();
+  int nbrows = listModel->rowCount();
+  if(nbrows > 0) {
+    qDebug("Cleared %d peers", nbrows);
+    listModel->removeRows(0,  nbrows);
+  }
 }
 
 void PeerListWidget::loadSettings() {
@@ -96,7 +122,8 @@ void PeerListWidget::saveSettings() const {
   settings.setValue(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), contentColsWidths);
 }
 
-void PeerListWidget::loadPeers(QTorrentHandle &h) {
+void PeerListWidget::loadPeers(const QTorrentHandle &h) {
+  if(!h.is_valid()) return;
   std::vector<peer_info> peers;
   h.get_peer_info(peers);
   std::vector<peer_info>::iterator itr;
@@ -126,7 +153,9 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   // Adding Peer to peer list
   listModel->insertRow(row);
   listModel->setData(listModel->index(row, IP), ip);
-  resolver->resolve(peer.ip);
+  // Resolve peer host name is asked
+  if(resolver)
+    resolver->resolve(peer.ip);
   listModel->setData(listModel->index(row, CLIENT), misc::toQString(peer.client));
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);

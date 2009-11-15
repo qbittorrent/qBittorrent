@@ -760,6 +760,10 @@ void GUI::processDownloadedFiles(QString path, QString url) {
   }
 }
 
+void GUI::optionsSaved() {
+  loadPreferences();
+}
+
 // Load program preferences
 void GUI::loadPreferences(bool configure_session) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
@@ -829,6 +833,9 @@ void GUI::loadPreferences(bool configure_session) {
   } else {
     displayRSSTab(false);
   }
+
+  // Torrent properties
+  properties->reloadPreferences();
 
   if(configure_session)
     BTSession->configureSession();
@@ -1001,7 +1008,7 @@ void GUI::createTrayIcon() {
 // Display Program Options
 void GUI::on_actionOptions_triggered() {
   options = new options_imp(this);
-  connect(options, SIGNAL(status_changed()), this, SLOT(loadPreferences(bool)));
+  connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
 }
 
 bool GUI::initWebUi(QString username, QString password, int port) {

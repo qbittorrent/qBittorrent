@@ -187,6 +187,16 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Connection/GlobalUPLimit"), -1).toInt();
   }
 
+  static bool resolvePeerCountries() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerCountries"), false).toBool();
+  }
+
+  static bool resolvePeerHostNames() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerHostNames"), false).toBool();
+  }
+
   // Proxy options
   static bool isHTTPProxyEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");

@@ -81,7 +81,6 @@ protected slots:
   void setIncrementalDownload(int checkboxState);
   void loadTrackers();
   void loadUrlSeeds();
-  void loadPeers();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();
   void on_peers_button_clicked();
@@ -108,10 +107,12 @@ public slots:
   void clear();
   void readSettings();
   void saveSettings();
+  void reloadPreferences();
 
 public:
   PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);
   ~PropertiesWidget();
+  const QTorrentHandle& getCurrentTorrent() const;
 };
 
 #endif // PROPERTIESWIDGET_H

@@ -364,6 +364,8 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("NAT-PMP"), isNATPMPEnabled());
   settings.setValue(QString::fromUtf8("GlobalDLLimit"), getGlobalBandwidthLimits().first);
   settings.setValue(QString::fromUtf8("GlobalUPLimit"), getGlobalBandwidthLimits().second);
+  settings.setValue("ResolvePeerCountries", checkResolveCountries->isChecked());
+  settings.setValue("ResolvePeerHostNames", checkResolveHosts->isChecked());
   settings.setValue(QString::fromUtf8("ProxyType"), getProxyType());
   //if(isProxyEnabled()) {
   settings.beginGroup("Proxy");
@@ -604,6 +606,10 @@ void options_imp::loadOptions(){
     checkUploadLimit->setChecked(false);
     spinUploadLimit->setEnabled(false);
   }
+  // Peer connections
+  checkResolveCountries->setChecked(Preferences::resolvePeerCountries());
+  checkResolveHosts->setChecked(Preferences::resolvePeerHostNames());
+
   intValue = Preferences::getProxyType();
   if(intValue <= 0) {
     intValue = 0;

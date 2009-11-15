@@ -92,7 +92,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   progressBar->setForegroundColor(Qt::blue);
   ProgressHLayout->insertWidget(1, progressBar);
   // Peers list
-  peersList = new PeerListWidget();
+  peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
   // Pointers init
   progressBarUpdater = 0;
@@ -144,6 +144,7 @@ void PropertiesWidget::slide() {
 }
 
 void PropertiesWidget::clear() {
+  qDebug("Clearing torrent properties");
   save_path->clear();
   lbl_creationDate->clear();
   hash_lbl->clear();
@@ -155,6 +156,7 @@ void PropertiesWidget::clear() {
   wasted->clear();
   upTotal->clear();
   dlTotal->clear();
+  peersList->clear();
   lbl_uplimit->clear();
   lbl_dllimit->clear();
   lbl_elapsed->clear();
@@ -163,6 +165,10 @@ void PropertiesWidget::clear() {
   listWebSeeds->clear();
   PropListModel->clear();
   setEnabled(false);
+}
+
+const QTorrentHandle& PropertiesWidget::getCurrentTorrent() const {
+  return h;
 }
 
 void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
@@ -258,8 +264,9 @@ void PropertiesWidget::saveSettings() {
   }
 }
 
-void PropertiesWidget::loadPeers() {
-  // TODO
+void PropertiesWidget::reloadPreferences() {
+  // Take program preferences into consideration
+  peersList->updatePeerHostNameResolutionState();
 }
 
 void PropertiesWidget::loadDynamicData() {
