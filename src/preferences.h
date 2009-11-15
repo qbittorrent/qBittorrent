@@ -351,9 +351,9 @@ public:
     return settings.value(QString::fromUtf8("Preferences/RSS/RSSEnabled"), false).toBool();
   }
 
-  static int getRSSRefreshInterval() {
+  static unsigned int getRSSRefreshInterval() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
+    return settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toUInt();
   }
 
   static int getRSSMaxArticlesPerFeed() {

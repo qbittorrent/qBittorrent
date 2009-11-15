@@ -561,6 +561,10 @@ void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnr
   }
 }
 
+void RSSImp::updateRefreshInterval(unsigned int val) {
+  rssmanager->updateRefreshInterval(val);
+}
+
 RSSImp::RSSImp(bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   setupUi(this);
 

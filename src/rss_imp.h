@@ -52,6 +52,7 @@ private:
 
 public slots:
   void deleteSelectedItems();
+  void updateRefreshInterval(unsigned int val);
 
 protected slots:
   void on_newFeedButton_clicked();

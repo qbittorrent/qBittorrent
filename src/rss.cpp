@@ -291,6 +291,13 @@ RssManager::~RssManager(){
   qDebug("RSSManager deleted");
 }
 
+void RssManager::updateRefreshInterval(unsigned int val){
+  if(refreshInterval != val) {
+    refreshInterval = val;
+    newsRefresher.start(refreshInterval*60000);
+  }
+}
+
 void RssManager::loadStreamList(){
   QSettings settings("qBittorrent", "qBittorrent");
   QStringList streamsUrl = settings.value("Rss/streamList").toStringList();
@@ -611,7 +618,7 @@ short RssStream::readDoc(const QDomDocument& doc) {
 
 void RssStream::resizeList() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 100).toInt();
+  unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
   unsigned int nb_articles = this->size();
   if(nb_articles > max_articles) {
     QList<RssItem*> listItem = RssManager::sortNewsList(this->values());

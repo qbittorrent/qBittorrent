@@ -488,6 +488,7 @@ public slots:
   void forwardFeedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
   void forwardFeedIconChanged(QString url, QString icon_path);
   void moveFile(RssFile* file, RssFolder* dest_folder);
+  void updateRefreshInterval(unsigned int val);
 
 public:
   RssManager(bittorrent *BTSession);
