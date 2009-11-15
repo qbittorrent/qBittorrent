@@ -89,7 +89,7 @@ void PeerListWidget::updatePeerHostNameResolutionState() {
     }
   } else {
     if(resolver)
-      delete resolver;
+      resolver->asyncDelete();
   }
 }
 

@@ -47,13 +47,17 @@ class ReverseResolutionST: public QThread {
 private:
   boost::asio::ip::tcp::endpoint ip;
   boost::asio::ip::tcp::resolver resolver;
+  bool stopped;
 
 public:
-  ReverseResolutionST(boost::asio::io_service &ios, QObject *parent=0): QThread(parent), resolver(ios) {
+  ReverseResolutionST(boost::asio::io_service &ios, QObject *parent=0): QThread(parent), resolver(ios), stopped(false) {
 
   }
 
   ~ReverseResolutionST() {
+    stopped = true;
+    if(isRunning())
+      resolver.cancel();
     wait();
   }
 
@@ -67,6 +71,7 @@ signals:
 protected:
   void run() {
     boost::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip);
+    if(stopped) return;
     qDebug("IP was resolved");
     boost::asio::ip::tcp::endpoint endpoint = *it;
     emit ip_resolved(misc::toQString(endpoint.address().to_string()), misc::toQString((*it).host_name()));
@@ -90,10 +95,20 @@ public:
   }
 
   ~ReverseResolution() {
+    qDebug("Deleting host name resolver...");
+    if(!stopped) {
+      stopped = true;
+      cond.wakeOne();
+    }
+    wait();
+    qDebug("Host name resolver was deleted");
+  }
+
+  void asyncDelete() {
+    connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+    qDebug("Deleting async host name resolver...");
     stopped = true;
     cond.wakeOne();
-    qDeleteAll(subThreads);
-    wait();
   }
 
   void resolve(boost::asio::ip::tcp::endpoint ip) {
@@ -124,7 +139,10 @@ protected:
     do {
       mut.lock();
       cond.wait(&mut);
-      if(stopped) return;
+      if(stopped) {
+        mut.unlock();
+        break;
+      }
       boost::asio::ip::tcp::endpoint ip = ips.dequeue();
       ReverseResolutionST *st = new ReverseResolutionST(ios);
       subThreads.append(st);
@@ -133,6 +151,9 @@ protected:
       st->setIP(ip);
       st->start();
     }while(!stopped);
+    mut.lock();
+    qDeleteAll(subThreads);
+    mut.unlock();
   }
 };
 
