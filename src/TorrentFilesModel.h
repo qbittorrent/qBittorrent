@@ -200,7 +200,13 @@ public:
     Q_ASSERT(item);
     //Q_ASSERT(!childWithName(item->getName()));
     Q_ASSERT(type != TFILE);
-    childItems.append(item);
+    int i=0;
+    for(i=0; i<childItems.size(); ++i) {
+      QString newchild_name = item->getName();
+      if(QString::localeAwareCompare(newchild_name, childItems.at(i)->getName()) < 0) break;
+    }
+    childItems.insert(i, item);
+    //childItems.append(item);
     //Q_ASSERT(type != ROOT || childItems.size() == 1);
   }
 

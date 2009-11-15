@@ -19,6 +19,7 @@
     - FEATURE: Folder scanning now works with CIFS and NFS mounted folders
     - FEATURE: Speed up qBittorrent startup
     - FEATURE: Display per-torrent peer list
+    - FEATURE: Make sure torrent files are always sorted by name
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window
