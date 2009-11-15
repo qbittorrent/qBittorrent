@@ -33,6 +33,7 @@
 #include "reverseresolution.h"
 #include "preferences.h"
 #include "propertieswidget.h"
+#include "geoip.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -174,7 +175,7 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   if(resolver)
     resolver->resolve(peer.ip);
   if(display_flags) {
-    QIcon ico = misc::CountryISOCodeToIcon(peer.country);
+    QIcon ico = GeoIP::CountryISOCodeToIcon(peer.country);
     if(!ico.isNull()) {
       listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
     } else {
@@ -194,7 +195,7 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   QStandardItem *item = peerItems.value(ip);
   int row = item->row();
   if(display_flags) {
-    QIcon ico = misc::CountryISOCodeToIcon(peer.country);
+    QIcon ico = GeoIP::CountryISOCodeToIcon(peer.country);
     if(!ico.isNull()) {
       listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
       missingFlags.remove(ip);

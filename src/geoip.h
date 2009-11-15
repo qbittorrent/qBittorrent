@@ -34,6 +34,7 @@
 #include <libtorrent/session.hpp>
 #include <QString>
 #include <QDir>
+#include <QIcon>
 #include <QFile>
 #include "misc.h"
 
@@ -105,6 +106,97 @@ public:
     } else {
       qDebug("ERROR: Impossible to find local Geoip Database");
     }
+  }
+
+  // TODO: Support more countries
+  // http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
+  static QIcon CountryISOCodeToIcon(char* iso) {
+    switch(iso[0]) {
+    case 0:
+    case '-':
+    case '!':
+      //qDebug("Not returning any icon because iso is invalid: %s", iso);
+      return QIcon();
+    case 'A':
+      if(iso[1] == 'U') return QIcon(":/Icons/flags/australia.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/argentina.png");
+      break;
+    case 'B':
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/brazil.png");
+      if(iso[1] == 'G') return QIcon(":/Icons/flags/bulgaria.png");
+      break;
+    case 'C':
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/canada.png");
+      if(iso[1] == 'Z') return QIcon(":/Icons/flags/czech.png");
+      if(iso[1] == 'C') return QIcon(":/Icons/flags/china.png");
+      break;
+    case 'D':
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/germany.png");
+      if(iso[1] == 'K') return QIcon(":/Icons/flags/denmark.png");
+      break;
+    case 'E':
+      if(iso[1] == 'S') return QIcon(":/Icons/flags/spain.png");
+      break;
+    case 'F':
+      if(iso[1] == 'I') return QIcon(":/Icons/flags/finland.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/france.png");
+      break;
+    case 'G':
+      if(iso[1] == 'B') return QIcon(":/Icons/flags/united_kingdom.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/greece.png");
+      break;
+    case 'H':
+      if(iso[1] == 'U') return QIcon(":/Icons/flags/hungary.png");
+      if(iso[1] == 'K') return QIcon(":/Icons/flags/china.png");
+      break;
+    case 'I':
+      if(iso[1] == 'T') return QIcon(":/Icons/flags/italy.png");
+      if(iso[1] == 'N') return QIcon(":/Icons/flags/india.png");
+      break;
+    case 'J':
+      if(iso[1] == 'P') return QIcon(":/Icons/flags/japan.png");
+      break;
+    case 'K':
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/south_korea.png");
+      break;
+    case 'M':
+      if(iso[1] == 'Y') return QIcon(":/Icons/flags/malaysia.png");
+      break;
+    case 'N':
+      if(iso[1] == 'L') return QIcon(":/Icons/flags/netherlands.png");
+      if(iso[1] == 'O') return QIcon(":/Icons/flags/norway.png");
+      break;
+    case 'P':
+      if(iso[1] == 'T') return QIcon(":/Icons/flags/portugal.png");
+      if(iso[1] == 'L') return QIcon(":/Icons/flags/poland.png");
+      if(iso[1] == 'K') return QIcon(":/Icons/flags/pakistan.png");
+      if(iso[1] == 'H') return QIcon(":/Icons/flags/philippines.png");
+      break;
+    case 'R':
+      if(iso[1] == 'U') return QIcon(":/Icons/flags/russia.png");
+      if(iso[1] == 'O') return QIcon(":/Icons/flags/romania.png");
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/france.png");
+      break;
+    case 'S':
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/sweden.png");
+      if(iso[1] == 'K') return QIcon(":/Icons/flags/slovakia.png");
+      break;
+    case 'T':
+      if(iso[1] == 'W') return QIcon(":/Icons/flags/china.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/turkey.png");
+      if(iso[1] == 'H') return QIcon(":/Icons/flags/thailand.png");
+      break;
+    case 'U':
+      if(iso[1] == 'S') return QIcon(":/Icons/flags/usa.png");
+      if(iso[1] == 'M') return QIcon(":/Icons/flags/usa.png");
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/ukraine.png");
+      break;
+    case 'Z':
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/south_africa.png");
+      break;
+    }
+    qDebug("Unrecognized country code: %s", iso);
+    return QIcon();
   }
 };
 

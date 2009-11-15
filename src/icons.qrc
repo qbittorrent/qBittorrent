@@ -43,8 +43,11 @@
   <file>Icons/flags/czech.png</file>
   <file>Icons/flags/china.png</file>
   <file>Icons/flags/norway.png</file>
+  <file>Icons/flags/india.png</file>
   <file>Icons/flags/finland.png</file>
+  <file>Icons/flags/australia.png</file>
   <file>Icons/flags/netherlands.png</file>
+  <file>Icons/flags/south_africa.png</file>
   <file>Icons/flags/taiwan.png</file>
   <file>Icons/flags/sweden.png</file>
   <file>Icons/flags/spain_catalunya.png</file>
@@ -60,6 +63,7 @@
   <file>Icons/flags/portugal.png</file>
   <file>Icons/flags/russia.png</file>
   <file>Icons/flags/united_kingdom.png</file>
+  <file>Icons/flags/thailand.png</file>
   <file>Icons/flags/poland.png</file>
   <file>Icons/flags/germany.png</file>
   <file>Icons/flags/bulgaria.png</file>
@@ -67,9 +71,12 @@
   <file>Icons/flags/brazil.png</file>
   <file>Icons/flags/france.png</file>
   <file>Icons/flags/slovakia.png</file>
+  <file>Icons/flags/pakistan.png</file>
   <file>Icons/flags/italy.png</file>
   <file>Icons/flags/south_korea.png</file>
   <file>Icons/flags/japan.png</file>
+  <file>Icons/flags/malaysia.png</file>
+  <file>Icons/flags/philippines.png</file>
   <file>Icons/oxygen/mail-queue.png</file>
   <file>Icons/oxygen/view-refresh.png</file>
   <file>Icons/oxygen/file.png</file>
