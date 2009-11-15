@@ -107,7 +107,8 @@ win32:LIBS += -lssl32 \
 RESOURCES = icons.qrc \
     lang.qrc \
     search.qrc \
-    webui.qrc
+    webui.qrc \
+    geoip.qrc
 
 # Translations
 TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
