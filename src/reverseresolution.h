@@ -72,7 +72,6 @@ protected:
   void run() {
     boost::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip);
     if(stopped) return;
-    qDebug("IP was resolved");
     boost::asio::ip::tcp::endpoint endpoint = *it;
     emit ip_resolved(misc::toQString(endpoint.address().to_string()), misc::toQString((*it).host_name()));
   }
