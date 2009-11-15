@@ -86,6 +86,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
   connect(incrementalDownload, SIGNAL(stateChanged(int)), this, SLOT(setIncrementalDownload(int)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
+  connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
 
   // Downloaded pieces progress bar
   progressBar = new RealProgressBar(this);
@@ -274,42 +275,50 @@ void PropertiesWidget::loadDynamicData() {
   if(!h.is_valid()) return;
   try {
     // Transfer infos
-    wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
-    upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
-    dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
-    lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit()));
-    lbl_dllimit->setText(misc::friendlyUnit(h.download_limit()));
-    QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
-    if(h.is_seed()) {
-      elapsed_txt += " ("+tr("Seeding for %1", "e.g. Seeding for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
-    }
-    lbl_elapsed->setText(elapsed_txt);
-    lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
-    // Load peers
-    peersList->loadPeers(h);
-    // Update ratio info
-    float ratio;
-    if(h.total_payload_download() == 0){
-      if(h.total_payload_upload() == 0)
-        ratio = 1.;
-      else
-        ratio = 10.; // Max ratio
-    }else{
-      ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
-      if(ratio > 10.){
-        ratio = 10.;
+    if(stackedProperties->currentIndex() == MAIN_TAB) {
+      wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
+      upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
+      dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
+      lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit()));
+      lbl_dllimit->setText(misc::friendlyUnit(h.download_limit()));
+      QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
+      if(h.is_seed()) {
+        elapsed_txt += " ("+tr("Seeding for %1", "e.g. Seeding for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
       }
+      lbl_elapsed->setText(elapsed_txt);
+      lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
+      // Update ratio info
+      float ratio;
+      if(h.total_payload_download() == 0){
+        if(h.total_payload_upload() == 0)
+          ratio = 1.;
+        else
+          ratio = 10.; // Max ratio
+      }else{
+        ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
+        if(ratio > 10.){
+          ratio = 10.;
+        }
+      }
+      shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
+      // Downloaded pieces
+      if(progressBarUpdater)
+        progressBarUpdater->refresh();
+      // Progress
+      progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
+      return;
     }
-    shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
-    // Downloaded pieces
-    if(progressBarUpdater)
-      progressBarUpdater->refresh();
-    // Progress
-    progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
-    // Files progress
-    std::vector<size_type> fp;
-    h.file_progress(fp);
-    PropListModel->updateFilesProgress(fp);
+    if(stackedProperties->currentIndex() == PEERS_TAB) {
+      // Load peers
+      peersList->loadPeers(h);
+      return;
+    }
+    if(stackedProperties->currentIndex() == FILES_TAB) {
+      // Files progress
+      std::vector<size_type> fp;
+      h.file_progress(fp);
+      PropListModel->updateFilesProgress(fp);
+    }
   } catch(invalid_handle e) {}
 }
 
