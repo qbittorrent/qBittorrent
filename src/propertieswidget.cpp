@@ -242,6 +242,8 @@ void PropertiesWidget::saveSettings() {
   for(int i=0; i<PropListModel->columnCount(); ++i) {
     contentColsWidths.append(filesList->columnWidth(i));
   }
+  settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
+  // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
   QList<int> sizes;
   if(state == VISIBLE)
@@ -254,7 +256,6 @@ void PropertiesWidget::saveSettings() {
   if(sizes.size() == 2) {
     settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString::number(sizes.first())+','+QString::number(sizes.last()));
   }
-  settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
 }
 
 void PropertiesWidget::loadPeers() {

@@ -61,6 +61,10 @@ public slots:
   QStandardItem*  addPeer(QString ip, peer_info peer);
   void updatePeer(QString ip, peer_info peer);
   void handleResolved(QString ip, QString hostname);
+
+protected slots:
+  void loadSettings();
+  void saveSettings() const;
 };
 
 #endif // PEERLISTWIDGET_H

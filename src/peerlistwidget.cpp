@@ -34,6 +34,7 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
+#include <QSettings>
 #include <vector>
 
 PeerListWidget::PeerListWidget() {
@@ -60,6 +61,8 @@ PeerListWidget::PeerListWidget() {
   setItemDelegate(listDelegate);
   // Enable sorting
   setSortingEnabled(true);
+  // Load settings
+  loadSettings();
   // IP to Hostname resolver
   resolver = new ReverseResolution(this);
   connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
@@ -67,10 +70,30 @@ PeerListWidget::PeerListWidget() {
 }
 
 PeerListWidget::~PeerListWidget() {
+  saveSettings();
   delete proxyModel;
   delete listModel;
   delete listDelegate;
   delete resolver;
+}
+
+void PeerListWidget::loadSettings() {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), QVariantList()).toList();
+  if(!contentColsWidths.empty()) {
+    for(int i=0; i<contentColsWidths.size(); ++i) {
+      setColumnWidth(i, contentColsWidths.at(i).toInt());
+    }
+  }
+}
+
+void PeerListWidget::saveSettings() const {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QVariantList contentColsWidths;
+  for(int i=0; i<listModel->columnCount(); ++i) {
+    contentColsWidths.append(columnWidth(i));
+  }
+  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), contentColsWidths);
 }
 
 void PeerListWidget::loadPeers(QTorrentHandle &h) {
