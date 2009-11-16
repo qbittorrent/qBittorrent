@@ -605,10 +605,10 @@ bool DownloadingTorrents::updateTorrent(QTorrentHandle h) {
     }
     if(!downloadList->isColumnHidden(SEEDSLEECH)) {
       QString tmp = misc::toQString(h.num_seeds(), true);
-      if(h.num_complete() >= 0)
+      if(h.num_complete() >= h.num_seeds())
         tmp.append(QString("(")+misc::toQString(h.num_complete())+QString(")"));
       tmp.append(QString("/")+misc::toQString(h.num_peers() - h.num_seeds(), true));
-      if(h.num_incomplete() >= 0)
+      if(h.num_incomplete() >= (h.num_peers()-h.num_seeds()))
         tmp.append(QString("(")+misc::toQString(h.num_incomplete())+QString(")"));
       DLListModel->setData(DLListModel->index(row, SEEDSLEECH), QVariant(tmp));
     }
