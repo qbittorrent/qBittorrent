@@ -42,6 +42,8 @@
 
 using namespace libtorrent;
 
+#define MAX_SAMPLES 20
+
 class downloadThread;
 class QTimer;
 class FileSystemWatcher;
@@ -77,6 +79,8 @@ class bittorrent : public QObject {
     QHash<QString, QString> savepath_fromurl;
     bool resolve_countries;
     bool geoipDBLoaded;
+    QPointer<QTimer> timerETA;
+    QHash<QString, QList<int> > ETA_samples;
 
   protected:
     QString getSavePath(QString hash);
@@ -106,7 +110,7 @@ class bittorrent : public QObject {
     int loadTorrentPriority(QString hash);
     QStringList getConsoleMessages() const;
     QStringList getPeerBanMessages() const;
-    qlonglong getETA(QString hash) const;
+    qlonglong getETA(QString hash);
     bool useTemporaryFolder() const;
     QString getDefaultSavePath() const;
 
@@ -177,6 +181,7 @@ class bittorrent : public QObject {
     void readAlerts();
     void loadTrackerFile(QString hash);
     void deleteBigRatios();
+    void takeETASamples();
 
   signals:
     void addedTorrent(QTorrentHandle& h);
