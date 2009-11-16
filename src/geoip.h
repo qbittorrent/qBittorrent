@@ -130,7 +130,7 @@ public:
     case 'C':
       if(iso[1] == 'A') return QIcon(":/Icons/flags/canada.png");
       if(iso[1] == 'Z') return QIcon(":/Icons/flags/czech.png");
-      if(iso[1] == 'C') return QIcon(":/Icons/flags/china.png");
+      if(iso[1] == 'N') return QIcon(":/Icons/flags/china.png");
       if(iso[1] == 'R') return QIcon(":/Icons/flags/costa_rica.png");
       break;
     case 'D':
