@@ -12,6 +12,11 @@ Code from other projects:
   copyright: Malte Starostik <malte@kde.org>
   license: LGPL
 
+GeoIP database author:
+* files: src/geoip/GeoIP.dat
+  copyright: MaxMind, Inc (http://maxmind.com/)
+  license: Open Data License (see src/geoip/LICENSE.txt)
+
 Images Authors:
 * files: src/Icons/*.png
   copyright: Gnome Icon Theme
