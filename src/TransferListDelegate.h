@@ -40,7 +40,9 @@
 #include "misc.h"
 
 // Defines for download list list columns
-enum Column {NAME, SIZE, PROGRESS, DLSPEED, UPSPEED, SEEDSLEECH, RATIO, ETA, PRIORITY, HASH, STATUS};
+enum TorrentState {STATE_STALLED, STATE_DOWNLOADING, STATE_SEEDING, STATE_PAUSED, STATE_QUEUED, STATE_CHECKING};
+enum Column {NAME, SIZE, PROGRESS, STATUS, SEEDS, PEERS, DLSPEED, UPSPEED, ETA, RATIO, PRIORITY, HASH};
+//enum Column {NAME, SIZE, PROGRESS, DLSPEED, UPSPEED, SEEDSLEECH, RATIO, ETA, PRIORITY, HASH, STATUS};
 
 class TransferListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -53,14 +55,54 @@ public:
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()){
-        case SIZE:
-      QItemDelegate::drawBackground(painter, opt, index);
-      QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
-      break;
-        case ETA:
-      QItemDelegate::drawBackground(painter, opt, index);
-      QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
-      break;
+    case SIZE:{
+        QItemDelegate::drawBackground(painter, opt, index);
+        QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
+        break;
+      }
+    case ETA:{
+        QItemDelegate::drawBackground(painter, opt, index);
+        QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
+        break;
+      }
+    case SEEDS:
+    case PEERS: {
+        qulonglong tot_val = index.data().toULongLong();
+        QString display = QString::number((qulonglong)tot_val/100000);
+        if(tot_val%2 == 0) {
+          // Scrape was sucessful, we have total values
+          display += " ("+QString::number((qulonglong)(tot_val%100000)/10)+")";
+        }
+        QItemDelegate::drawBackground(painter, opt, index);
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
+        break;
+      }
+    case STATUS: {
+        int state = index.data().toInt();
+        QString display = "";
+        switch(state) {
+            case STATE_DOWNLOADING:
+          display = tr("Downloading");
+          break;
+            case STATE_PAUSED:
+          display = tr("Paused");
+          break;
+            case STATE_QUEUED:
+          display = tr("Queued", "i.e. torrent is queued");
+          break;
+            case STATE_SEEDING:
+          display = tr("Seeding", "Torrent is complete and in upload-only mode");
+          break;
+            case STATE_STALLED:
+          display = tr("Stalled", "Torrent is waiting for download to begin");
+          break;
+          case STATE_CHECKING:
+          display = tr("Checking", "Torrent local data is being checked");
+        }
+        QItemDelegate::drawBackground(painter, opt, index);
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
+        break;
+      }
         case UPSPEED:
         case DLSPEED:{
             QItemDelegate::drawBackground(painter, opt, index);

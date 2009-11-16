@@ -20,10 +20,13 @@
     - FEATURE: Speed up qBittorrent startup
     - FEATURE: Display per-torrent peer list
     - FEATURE: Make sure torrent files are always sorted by name
+    - FEATURE: Seeds and Peers columns are now sortable
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window
     - COSMETIC: Made program preferences scrollable for usability on small screens (e.g. netbooks)
+    - COSMETIC: Added a "torrent status" column to transfer list
+    - COSMETIC: Display Seeds and Peers in two separate columns
 
 * Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support

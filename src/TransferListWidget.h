@@ -40,7 +40,7 @@ class QSortFilterProxyModel;
 class bittorrent;
 class QTimer;
 
-enum TorrentFilter {ALL, DOWNLOADING, COMPLETED, ACTIVE, INACTIVE };
+enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_ACTIVE, FILTER_INACTIVE };
 
 class TransferListWidget: public QTreeView {
   Q_OBJECT
