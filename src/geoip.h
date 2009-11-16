@@ -126,6 +126,7 @@ public:
     case 'B':
       if(iso[1] == 'R') return QIcon(":/Icons/flags/brazil.png");
       if(iso[1] == 'G') return QIcon(":/Icons/flags/bulgaria.png");
+      if(iso[1] == 'Y') return QIcon(":/Icons/flags/belarus.png");
       break;
     case 'C':
       if(iso[1] == 'A') return QIcon(":/Icons/flags/canada.png");
@@ -136,9 +137,11 @@ public:
     case 'D':
       if(iso[1] == 'E') return QIcon(":/Icons/flags/germany.png");
       if(iso[1] == 'K') return QIcon(":/Icons/flags/denmark.png");
+      if(iso[1] == 'Z') return QIcon(":/Icons/flags/algeria.png");
       break;
     case 'E':
       if(iso[1] == 'S') return QIcon(":/Icons/flags/spain.png");
+      if(iso[1] == 'G') return QIcon(":/Icons/flags/egypt.png");
       break;
     case 'F':
       if(iso[1] == 'I') return QIcon(":/Icons/flags/finland.png");
@@ -151,6 +154,7 @@ public:
     case 'H':
       if(iso[1] == 'U') return QIcon(":/Icons/flags/hungary.png");
       if(iso[1] == 'K') return QIcon(":/Icons/flags/china.png");
+      if(iso[1] == 'R') return QIcon(":/Icons/flags/croatia.png");
       break;
     case 'I':
       if(iso[1] == 'T') return QIcon(":/Icons/flags/italy.png");
@@ -170,10 +174,12 @@ public:
       if(iso[1] == 'Y') return QIcon(":/Icons/flags/malaysia.png");
       if(iso[1] == 'X') return QIcon(":/Icons/flags/mexico.png");
       if(iso[1] == 'E') return QIcon(":/Icons/flags/serbia.png");
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/morocco.png");
       break;
     case 'N':
       if(iso[1] == 'L') return QIcon(":/Icons/flags/netherlands.png");
       if(iso[1] == 'O') return QIcon(":/Icons/flags/norway.png");
+      if(iso[1] == 'Z') return QIcon(":/Icons/flags/newzealand.png");
       break;
     case 'P':
       if(iso[1] == 'T') return QIcon(":/Icons/flags/portugal.png");
@@ -191,6 +197,7 @@ public:
       if(iso[1] == 'E') return QIcon(":/Icons/flags/sweden.png");
       if(iso[1] == 'K') return QIcon(":/Icons/flags/slovakia.png");
       if(iso[1] == 'G') return QIcon(":/Icons/flags/singapore.png");
+      if(iso[1] == 'I') return QIcon(":/Icons/flags/slovenia.png");
       break;
     case 'T':
       if(iso[1] == 'W') return QIcon(":/Icons/flags/china.png");
