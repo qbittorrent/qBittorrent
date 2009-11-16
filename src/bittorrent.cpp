@@ -114,6 +114,8 @@ bittorrent::~bittorrent() {
     delete FSWatcher;
     delete FSMutex;
   }
+  if(timerETA)
+    delete timerETA;
   // Delete BT session
   qDebug("Deleting session");
   delete s;
@@ -215,21 +217,64 @@ int bittorrent::getUpTorrentPriority(QString hash) const {
   return h.queue_position();
 }
 
-// Calculate the ETA using GASA
-// GASA: global Average Speed Algorithm
-qlonglong bittorrent::getETA(QString hash) const {
-  QTorrentHandle h = getTorrentHandle(hash);
-  if(!h.is_valid()) return -1;
-  switch(h.state()) {
-  case torrent_status::downloading: {
-      if(h.active_time() == 0)
-        return -1;
-      double avg_speed = (double)h.all_time_download() / h.active_time();
-      return (qlonglong) floor((double) (h.actual_size() - h.total_wanted_done()) / avg_speed);
+void bittorrent::takeETASamples() {
+  bool change = false;;
+  foreach(const QString &hash, ETA_samples.keys()) {
+    QTorrentHandle h = getTorrentHandle(hash);
+    if(h.is_valid() && !h.is_paused() && !h.is_seed()) {
+      QList<int> samples = ETA_samples.value(h.hash(), QList<int>());
+      if(samples.size() >= MAX_SAMPLES)
+        samples.removeFirst();
+      samples.append(h.download_payload_rate());
+      ETA_samples[h.hash()] = samples;
+      change = true;
+    } else {
+      ETA_samples.remove(hash);
     }
-  default:
-    return -1;
   }
+  if(!change && timerETA) {
+    delete timerETA;
+  }
+}
+
+// This algorithm was inspired from KTorrent - http://www.ktorrent.org
+// Calculate the ETA using a combination of several algorithms:
+// GASA: Global Average Speed Algorithm
+// CSA: Current Speed Algorithm
+// WINX: Window of X Algorithm
+qlonglong bittorrent::getETA(QString hash) {
+  QTorrentHandle h = getTorrentHandle(hash);
+  if(!h.is_valid() || h.state() != torrent_status::downloading || !h.active_time())
+    return -1;
+  // See if the torrent is going to be completed soon
+  qulonglong bytes_left = h.actual_size() - h.total_wanted_done();
+  if(h.actual_size() > 10485760L) { // Size > 10MiB
+    if(h.progress() >= (float)0.99 && bytes_left < 10485760L) { // Progress>99% but less than 10MB left.
+      // Compute by taking samples
+      if(!ETA_samples.contains(h.hash())) {
+        ETA_samples[h.hash()] = QList<int>();
+      }
+      if(!timerETA) {
+        timerETA = new QTimer(this);
+        connect(timerETA, SIGNAL(timeout()), this, SLOT(takeETASamples()));
+        timerETA->start();
+      } else {
+        QList<int> samples = ETA_samples.value(h.hash(), QList<int>());
+        int nb_samples = samples.size();
+        if(nb_samples > 3) {
+          long sum_samples = 0;
+          foreach(int val, samples) {
+            sum_samples += val;
+          }
+          // Use WINX
+          return (qlonglong)(((double)bytes_left) / (((double)sum_samples) / ((double)nb_samples)));
+        }
+      }
+    }
+  }
+  // Normal case: Use GASA
+  double avg_speed = (double)h.all_time_download() / h.active_time();
+  return (qlonglong) floor((double) (bytes_left) / avg_speed);
 }
 
 std::vector<torrent_handle> bittorrent::getTorrents() const {
