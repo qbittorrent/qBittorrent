@@ -70,6 +70,11 @@ public:
         }
   }
 
+  QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
+    // No editor here
+    return 0;
+  }
+
 };
 
 #endif // PEERLISTDELEGATE_H
