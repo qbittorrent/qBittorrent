@@ -141,6 +141,8 @@ void PropertiesWidget::slide() {
     hSplitter->handle(1)->setVisible(true);
     hSplitter->setSizes(slideSizes);
     state = VISIBLE;
+    // Force refresh
+    loadDynamicData();
   }
 }
 
@@ -273,6 +275,7 @@ void PropertiesWidget::reloadPreferences() {
 
 void PropertiesWidget::loadDynamicData() {
   if(!h.is_valid()) return;
+  if(state != VISIBLE) return;
   try {
     // Transfer infos
     if(stackedProperties->currentIndex() == MAIN_TAB) {
