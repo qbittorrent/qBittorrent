@@ -41,9 +41,11 @@
   <file>Icons/skin/splash.png</file>
   <file>Icons/skin/decrease.png</file>
   <file>Icons/flags/czech.png</file>
+  <file>Icons/flags/serbia.png</file>
   <file>Icons/flags/iceland.png</file>
   <file>Icons/flags/china.png</file>
   <file>Icons/flags/austria.png</file>
+  <file>Icons/flags/indonesia.png</file>
   <file>Icons/flags/united_arab_emirates.png</file>
   <file>Icons/flags/norway.png</file>
   <file>Icons/flags/india.png</file>
@@ -58,7 +60,9 @@
   <file>Icons/flags/singapore.png</file>
   <file>Icons/flags/israel.png</file>
   <file>Icons/flags/usa.png</file>
+  <file>Icons/flags/costa_rica.png</file>
   <file>Icons/flags/romania.png</file>
+  <file>Icons/flags/mexico.png</file>
   <file>Icons/flags/denmark.png</file>
   <file>Icons/flags/hungary.png</file>
   <file>Icons/flags/ukraine.png</file>
