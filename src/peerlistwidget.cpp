@@ -121,8 +121,12 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   if(act == addPeerAct) {
     boost::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
     if(ep != boost::asio::ip::tcp::endpoint()) {
-      h.connect_peer(ep);
-      QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
+      try {
+        h.connect_peer(ep);
+        QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
+      } catch(std::exception) {
+        QMessageBox::critical(0, tr("Peer addition"), tr("The peer could not be added to this torrent."));
+      }
     } else {
       qDebug("No peer was added");
     }
