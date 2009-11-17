@@ -156,7 +156,6 @@ void bittorrent::setDownloadLimit(QString hash, long val) {
   QTorrentHandle h = getTorrentHandle(hash);
   if(h.is_valid()) {
     h.set_download_limit(val);
-    TorrentPersistentData::saveSpeedLimits(h);
   }
 }
 
@@ -169,7 +168,6 @@ void bittorrent::setUploadLimit(QString hash, long val) {
   QTorrentHandle h = getTorrentHandle(hash);
   if(h.is_valid()) {
     h.set_upload_limit(val);
-    TorrentPersistentData::saveSpeedLimits(h);
   }
 }
 
@@ -701,19 +699,12 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
   h.set_max_uploads(Preferences::getMaxUploadsPerTorrent());
-  // Speed limits
-  if(TorrentPersistentData::isKnownTorrent(h.hash())) {
-    h.set_download_limit(TorrentPersistentData::getDownloadLimit(h.hash()));
-    h.set_upload_limit(TorrentPersistentData::getUploadLimit(h.hash()));
-  }
   // Resolve countries
   h.resolve_countries(resolve_countries);
   // Load filtered files
   if(resumed) {
     // Load custom url seeds
     loadWebSeeds(hash);
-    // Load speed limit from hard drive
-    loadTorrentSpeedLimits(hash);
     // Load trackers
     loadTrackerFile(hash);
     // XXX: only when resuming because torrentAddition dialog is not supported yet
@@ -880,11 +871,6 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
   h.set_max_uploads(Preferences::getMaxUploadsPerTorrent());
-  // Speed limits
-  if(TorrentPersistentData::isKnownTorrent(h.hash())) {
-    h.set_download_limit(TorrentPersistentData::getDownloadLimit(h.hash()));
-    h.set_upload_limit(TorrentPersistentData::getUploadLimit(h.hash()));
-  }
   // Resolve countries
   qDebug("AddTorrent: Resolve_countries: %d", (int)resolve_countries);
   h.resolve_countries(resolve_countries);
@@ -893,8 +879,6 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   if(resumed) {
     // Load custom url seeds
     loadWebSeeds(hash);
-    // Load speed limit from hard drive
-    loadTorrentSpeedLimits(hash);
     // Load trackers
     loadTrackerFile(hash);
   } else {
@@ -977,7 +961,6 @@ void bittorrent::setMaxConnectionsPerTorrent(int max) {
       continue;
     }
     h.set_max_connections(max);
-    TorrentPersistentData::saveSpeedLimits(h);
   }
 }
 
@@ -992,7 +975,6 @@ void bittorrent::setMaxUploadsPerTorrent(int max) {
       continue;
     }
     h.set_max_uploads(max);
-    TorrentPersistentData::saveSpeedLimits(h);
   }
 }
 
@@ -1100,13 +1082,6 @@ bool bittorrent::enableDHT(bool b) {
     }
   }
   return true;
-}
-
-void bittorrent::loadTorrentSpeedLimits(QString hash) {
-  QTorrentHandle h = getTorrentHandle(hash);
-  qDebug("Loading speedLimits file for %s", hash.toLocal8Bit().data());
-  h.set_download_limit(TorrentPersistentData::getDownloadLimit(hash));
-  h.set_upload_limit(TorrentPersistentData::getUploadLimit(hash));
 }
 
 // Read pieces priorities from hard disk
