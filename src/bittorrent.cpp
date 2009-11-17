@@ -493,6 +493,10 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   h.set_max_connections(maxConnecsPerTorrent);
   // Uploads limit per torrent
   h.set_max_uploads(maxUploadsPerTorrent);
+  if(TorrentPersistentData::isKnownTorrent(h.hash())) {
+    h.set_download_limit(TorrentPersistentData::getDownloadLimit(h.hash()));
+    h.set_upload_limit(TorrentPersistentData::getUploadLimit(h.hash()));
+  }
   // Load filtered files
   if(resumed) {
     // Load custom url seeds
@@ -657,6 +661,10 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   h.set_max_connections(maxConnecsPerTorrent);
   // Uploads limit per torrent
   h.set_max_uploads(maxUploadsPerTorrent);
+  if(TorrentPersistentData::isKnownTorrent(h.hash())) {
+    h.set_download_limit(TorrentPersistentData::getDownloadLimit(h.hash()));
+    h.set_upload_limit(TorrentPersistentData::getUploadLimit(h.hash()));
+  }
   // Load filtered files
   loadFilesPriorities(h);
   if(resumed) {
