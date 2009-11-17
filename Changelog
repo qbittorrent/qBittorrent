@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v1.5.6
+* Tue Nov 17 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.6
   - BUGFIX: RSS feed articles can now be displayed using keyboard arrows
   - BUGFIX: RSS feed downloader can only process unread articles now
   - BUGFIX: Fixed memory leak in RSS parser
