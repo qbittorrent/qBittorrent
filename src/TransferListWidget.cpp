@@ -113,6 +113,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   // Listen for list events
   connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
+  header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
 
   // Refresh timer
