@@ -35,6 +35,7 @@
 #include "propertieswidget.h"
 #include "geoip.h"
 #include "peeraddition.h"
+#include "speedlimitdlg.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -113,9 +114,23 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   QMenu menu;
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) return;
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  QStringList selectedPeerIPs;
+  foreach(const QModelIndex &index, selectedIndexes) {
+    QString IP = proxyModel->data(index).toString();
+    selectedPeerIPs << IP;
+  }
+  // Add Peer Action
   QAction *addPeerAct = 0;
   if(!h.is_queued() && !h.is_checking()) {
-    addPeerAct = menu.addAction(QIcon(":/Icons/oxygen/add_peer.png"), "Add a new peer");
+    addPeerAct = menu.addAction(QIcon(":/Icons/oxygen/add_peer.png"), tr("Add a new peer"));
+  }
+  // Per Peer Speed limiting actions
+  QAction *upLimitAct = 0;
+  QAction *dlLimitAct = 0;
+  if(!selectedPeerIPs.isEmpty()) {
+    upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate"));
+    dlLimitAct = menu.addAction(QIcon(":/Icons/skin/downloading.png"), tr("Limit download rate"));
   }
   QAction *act = menu.exec(QCursor::pos());
   if(act == addPeerAct) {
@@ -132,11 +147,63 @@ void PeerListWidget::showPeerListMenu(QPoint) {
     }
     return;
   }
+  if(act == upLimitAct) {
+    limitUpRateSelectedPeers(selectedPeerIPs);
+    return;
+  }
+  if(act == dlLimitAct) {
+    limitDlRateSelectedPeers(selectedPeerIPs);
+    return;
+  }
 }
+
+void PeerListWidget::limitUpRateSelectedPeers(QStringList peer_ips) {
+  QTorrentHandle h = properties->getCurrentTorrent();
+  if(!h.is_valid()) return;
+  bool ok=false;
+  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Upload rate limiting"), -1);
+  if(!ok) return;
+  foreach(const QString &ip, peer_ips) {
+    boost::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, boost::asio::ip::tcp::endpoint());
+    if(ep != boost::asio::ip::tcp::endpoint()) {
+      qDebug("Settings Upload limit of %.1f Kb/s to peer %s", limit/1024., ip.toLocal8Bit().data());
+      try {
+        h.set_peer_upload_limit(ep, limit);
+      }catch(std::exception) {
+        std::cerr << "Impossible to apply upload limit to peer" << std::endl;
+      }
+    } else {
+      qDebug("The selected peer no longer exists...");
+    }
+  }
+}
+
+void PeerListWidget::limitDlRateSelectedPeers(QStringList peer_ips) {
+  QTorrentHandle h = properties->getCurrentTorrent();
+  if(!h.is_valid()) return;
+  bool ok=false;
+  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), -1);
+  if(!ok) return;
+  foreach(const QString &ip, peer_ips) {
+    boost::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, boost::asio::ip::tcp::endpoint());
+    if(ep != boost::asio::ip::tcp::endpoint()) {
+      qDebug("Settings Download limit of %.1f Kb/s to peer %s", limit/1024., ip.toLocal8Bit().data());
+      try {
+        h.set_peer_download_limit(ep, limit);
+      }catch(std::exception) {
+        std::cerr << "Impossible to apply download limit to peer" << std::endl;
+      }
+    } else {
+      qDebug("The selected peer no longer exists...");
+    }
+  }
+}
+
 
 void PeerListWidget::clear() {
   qDebug("clearing peer list");
   peerItems.clear();
+  peerEndpoints.clear();
   missingFlags.clear();
   int nbrows = listModel->rowCount();
   if(nbrows > 0) {
@@ -184,6 +251,7 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
     } else {
       // Add new peer
       peerItems[peer_ip] = addPeer(peer_ip, peer);
+      peerEndpoints[peer_ip] = peer.ip;
     }
   }
   // Delete peers that are gone
@@ -191,6 +259,7 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
   while(it.hasNext()) {
     QString ip = it.next();
     missingFlags.remove(ip);
+    peerEndpoints.remove(ip);
     QStandardItem *item = peerItems.take(ip);
     listModel->removeRow(item->row());
   }

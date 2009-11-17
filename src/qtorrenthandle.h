@@ -147,6 +147,8 @@ class QTorrentHandle {
     void super_seeding(bool on) const;
     void resolve_countries(bool r);
     void connect_peer(asio::ip::tcp::endpoint const& adr, int source = 0) const;
+    void set_peer_upload_limit(asio::ip::tcp::endpoint ip, int limit) const;
+    void set_peer_download_limit(asio::ip::tcp::endpoint ip, int limit) const;
 
     //
     // Operators

@@ -23,6 +23,7 @@
     - FEATURE: Seeds and Peers columns are now sortable
     - FEATURE: Torrents can be rechecked from Web UI (Stephanos Antaris)
     - FEATURE: New peers can manually be added to the torrents
+    - FEATURE: Support per-peer rate limiting
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window

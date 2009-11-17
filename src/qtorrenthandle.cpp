@@ -508,6 +508,16 @@ void QTorrentHandle::connect_peer(asio::ip::tcp::endpoint const& adr, int source
   h.connect_peer(adr, source);
 }
 
+void QTorrentHandle::set_peer_upload_limit(asio::ip::tcp::endpoint ip, int limit) const {
+  Q_ASSERT(h.is_valid());
+  h.set_peer_upload_limit(ip, limit);
+}
+
+void QTorrentHandle::set_peer_download_limit(asio::ip::tcp::endpoint ip, int limit) const {
+  Q_ASSERT(h.is_valid());
+  h.set_peer_download_limit(ip, limit);
+}
+
 //
 // Operators
 //

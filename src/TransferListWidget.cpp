@@ -709,9 +709,9 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedTorrents()));
   QAction actionPreview_file(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")), tr("Preview file"), 0);
   connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
-  QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")), tr("Set upload limit"), 0);
+  QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")), tr("Limit upload rate"), 0);
   connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
-  QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")), tr("Set download limit"), 0);
+  QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")), tr("Limit download rate"), 0);
   connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
   QAction actionDelete_Permanently(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")), tr("Delete Permanently"), 0);
   connect(&actionDelete_Permanently, SIGNAL(triggered()), this, SLOT(deletePermSelectedTorrents()));

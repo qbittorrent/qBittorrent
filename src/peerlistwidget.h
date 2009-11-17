@@ -53,6 +53,7 @@ private:
   PeerListDelegate *listDelegate;
   QSortFilterProxyModel * proxyModel;
   QHash<QString, QStandardItem*> peerItems;
+  QHash<QString, boost::asio::ip::tcp::endpoint> peerEndpoints;
   QSet<QString> missingFlags;
   QPointer<ReverseResolution> resolver;
   PropertiesWidget* properties;
@@ -75,6 +76,8 @@ protected slots:
   void loadSettings();
   void saveSettings() const;
   void showPeerListMenu(QPoint);
+  void limitUpRateSelectedPeers(QStringList peer_ips);
+  void limitDlRateSelectedPeers(QStringList peer_ips);
 };
 
 #endif // PEERLISTWIDGET_H
