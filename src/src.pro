@@ -191,7 +191,8 @@ HEADERS += GUI.h \
     peerlistdelegate.h \
     reverseresolution.h \
     preferences.h \
-    geoip.h
+    geoip.h \
+    peeraddition.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
@@ -208,7 +209,8 @@ FORMS += MainWindow.ui \
     trackersAdd.ui \
     console.ui \
     FeedDownloader.ui \
-    propertiesWidget.ui
+    propertiesWidget.ui \
+    peer.ui
 SOURCES += GUI.cpp \
     main.cpp \
     options_imp.cpp \

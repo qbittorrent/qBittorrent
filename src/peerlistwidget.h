@@ -74,6 +74,7 @@ public slots:
 protected slots:
   void loadSettings();
   void saveSettings() const;
+  void showPeerListMenu(QPoint);
 };
 
 #endif // PEERLISTWIDGET_H

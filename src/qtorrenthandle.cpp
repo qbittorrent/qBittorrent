@@ -290,6 +290,11 @@ void QTorrentHandle::file_progress(std::vector<size_type>& fp) {
   return h.file_progress(fp);
 }
 
+bool QTorrentHandle::is_checking() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().state == torrent_status::checking_files || h.status().state == torrent_status::checking_resume_data;
+}
+
 size_type QTorrentHandle::all_time_download() {
   Q_ASSERT(h.is_valid());
   return h.status().all_time_download;
@@ -496,6 +501,11 @@ void QTorrentHandle::super_seeding(bool on) const {
 void QTorrentHandle::resolve_countries(bool r) {
   Q_ASSERT(h.is_valid());
   h.resolve_countries(r);
+}
+
+void QTorrentHandle::connect_peer(asio::ip::tcp::endpoint const& adr, int source) const {
+  Q_ASSERT(h.is_valid());
+  h.connect_peer(adr, source);
 }
 
 //

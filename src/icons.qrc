@@ -142,5 +142,6 @@
   <file>Icons/oxygen/unsubscribe.png</file>
   <file>Icons/oxygen/draw-rectangle.png</file>
   <file>Icons/oxygen/subscribe16.png</file>
+  <file>Icons/oxygen/add_peer.png</file>
 </qresource>
 </RCC>

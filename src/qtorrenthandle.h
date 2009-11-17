@@ -109,6 +109,7 @@ class QTorrentHandle {
     QStringList files_path() const;
     int num_uploads() const;
     bool is_seed() const;
+    bool is_checking() const;
     bool is_auto_managed() const;
     qlonglong active_time() const;
     qlonglong seeding_time() const;
@@ -145,6 +146,7 @@ class QTorrentHandle {
     void move_storage(QString path) const;
     void super_seeding(bool on) const;
     void resolve_countries(bool r);
+    void connect_peer(asio::ip::tcp::endpoint const& adr, int source = 0) const;
 
     //
     // Operators

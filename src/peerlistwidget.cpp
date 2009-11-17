@@ -34,10 +34,12 @@
 #include "preferences.h"
 #include "propertieswidget.h"
 #include "geoip.h"
+#include "peeraddition.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
 #include <QSettings>
+#include <QMenu>
 #include <vector>
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), display_flags(false) {
@@ -59,6 +61,9 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), di
   proxyModel->setDynamicSortFilter(true);
   proxyModel->setSourceModel(listModel);
   setModel(proxyModel);
+  // Context menu
+  setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showPeerListMenu(QPoint)));
   // List delegate
   listDelegate = new PeerListDelegate(this);
   setItemDelegate(listDelegate);
@@ -101,6 +106,27 @@ void PeerListWidget::updatePeerCountryResolutionState() {
       if(!h.is_valid()) return;
       loadPeers(h);
     }
+  }
+}
+
+void PeerListWidget::showPeerListMenu(QPoint) {
+  QMenu menu;
+  QTorrentHandle h = properties->getCurrentTorrent();
+  if(!h.is_valid()) return;
+  QAction *addPeerAct = 0;
+  if(!h.is_queued() && !h.is_checking()) {
+    addPeerAct = menu.addAction(QIcon(":/Icons/oxygen/add_peer.png"), "Add a new peer");
+  }
+  QAction *act = menu.exec(QCursor::pos());
+  if(act == addPeerAct) {
+    boost::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
+    if(ep != boost::asio::ip::tcp::endpoint()) {
+      h.connect_peer(ep);
+      QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
+    } else {
+      qDebug("No peer was added");
+    }
+    return;
   }
 }
 
