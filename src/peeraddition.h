@@ -40,11 +40,8 @@
 class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog {
   Q_OBJECT
 
-private:
-  bool valid;
-
 public:
-  PeerAdditionDlg(QWidget *parent=0): QDialog(parent), valid(false) {
+  PeerAdditionDlg(QWidget *parent=0): QDialog(parent) {
     setupUi(this);
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
@@ -60,15 +57,10 @@ public:
     return spinPort->value();
   }
 
-  bool isValid() const {
-    return valid;
-  }
-
   static boost::asio::ip::tcp::endpoint askForPeerEndpoint() {
     boost::asio::ip::tcp::endpoint ep;
     PeerAdditionDlg dlg;
-    dlg.exec();
-    if(dlg.isValid()) {
+    if(dlg.exec() == QDialog::Accepted) {
       const QRegExp is_ipv6(QString::fromUtf8("[0-9a-f]{4}(:[0-9a-f]{4}){7}"), Qt::CaseInsensitive, QRegExp::RegExp);
       const QRegExp is_ipv4(QString::fromUtf8("(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}"), Qt::CaseInsensitive, QRegExp::RegExp);
       QString IP = dlg.getIP();
@@ -91,18 +83,15 @@ protected slots:
     QString IP = getIP();
     if(is_ipv4.exactMatch(IP)) {
       qDebug("Detected IPv4 address: %s", IP.toLocal8Bit().data());
-      valid = true;
       accept();
     } else {
       if(is_ipv6.exactMatch(IP)) {
         qDebug("Detected IPv6 address: %s", IP.toLocal8Bit().data());
-        valid = true;
         accept();
       } else {
         QMessageBox::warning(this, tr("Invalid IP"),
                              tr("The IP you provided is invalid."),
                              QMessageBox::Ok);
-
       }
     }
   }

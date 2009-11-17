@@ -1,95 +1,77 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>bandwidth_dlg</class>
- <widget class="QDialog" name="bandwidth_dlg" >
-  <property name="geometry" >
+ <widget class="QDialog" name="bandwidth_dlg">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>222</width>
-    <height>129</height>
+    <width>338</width>
+    <height>83</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>Bandwidth allocation</string>
+  <property name="windowTitle">
+   <string notr="true">Bandwidth allocation</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
-   <property name="spacing" >
-    <number>6</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
-     <property name="spacing" >
-      <number>6</number>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="lblTitle" >
-       <property name="text" >
-        <string/>
+      <widget class="QSlider" name="bandwidthSlider">
+       <property name="minimum">
+        <number>0</number>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="limit_lbl" >
-       <property name="text" >
-        <string/>
+       <property name="maximum">
+        <number>1000</number>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="kb_lbl" >
-       <property name="text" >
-        <string>KiB/s</string>
+       <property name="sliderPosition">
+        <number>0</number>
        </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout">
+       <property name="spacing">
+        <number>6</number>
        </property>
-      </spacer>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="limit_lbl">
+         <property name="text">
+          <string notr="true">∞</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="kb_lbl">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QSlider" name="bandwidthSlider" >
-     <property name="minimum" >
-      <number>0</number>
-     </property>
-     <property name="maximum" >
-      <number>1000</number>
-     </property>
-     <property name="sliderPosition" >
-      <number>0</number>
-     </property>
-     <property name="orientation" >
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons" >
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
   </layout>
+  <zorder>bandwidthSlider</zorder>
+  <zorder>buttonBox</zorder>
+  <zorder>kb_lbl</zorder>
  </widget>
  <resources/>
  <connections>
@@ -99,13 +81,29 @@
    <receiver>bandwidth_dlg</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
-     <x>212</x>
-     <y>83</y>
-    </hint>
-    <hint type="destinationlabel" >
+    <hint type="sourcelabel">
      <x>221</x>
-     <y>98</y>
+     <y>73</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>221</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>bandwidth_dlg</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>277</x>
+     <y>59</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>343</x>
+     <y>80</y>
     </hint>
    </hints>
   </connection>

@@ -157,7 +157,7 @@ HEADERS += GUI.h \
     searchEngine.h \
     rss.h \
     rss_imp.h \
-    allocationDlg.h \
+    speedlimitdlg.h \
     qtorrenthandle.h \
     engineSelectDlg.h \
     pluginSource.h \

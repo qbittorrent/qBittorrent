@@ -59,7 +59,7 @@
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
 
 // Main constructor
-bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), maxConnecsPerTorrent(500), maxUploadsPerTorrent(4), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false), geoipDBLoaded(false) {
+bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false), geoipDBLoaded(false) {
   resolve_countries = false;
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
@@ -692,9 +692,14 @@ QTorrentHandle bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   }
   Q_ASSERT(h.hash() == hash);
   // Connections limit per torrent
-  h.set_max_connections(maxConnecsPerTorrent);
+  h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
-  h.set_max_uploads(maxUploadsPerTorrent);
+  h.set_max_uploads(Preferences::getMaxUploadsPerTorrent());
+  // Speed limits
+  if(TorrentPersistentData::isKnownTorrent(h.hash())) {
+    h.set_download_limit(TorrentPersistentData::getDownloadLimit(h.hash()));
+    h.set_upload_limit(TorrentPersistentData::getUploadLimit(h.hash()));
+  }
   // Resolve countries
   h.resolve_countries(resolve_countries);
   // Load filtered files
@@ -866,9 +871,14 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     return h;
   }
   // Connections limit per torrent
-  h.set_max_connections(maxConnecsPerTorrent);
+  h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
-  h.set_max_uploads(maxUploadsPerTorrent);
+  h.set_max_uploads(Preferences::getMaxUploadsPerTorrent());
+  // Speed limits
+  if(TorrentPersistentData::isKnownTorrent(h.hash())) {
+    h.set_download_limit(TorrentPersistentData::getDownloadLimit(h.hash()));
+    h.set_upload_limit(TorrentPersistentData::getUploadLimit(h.hash()));
+  }
   // Resolve countries
   qDebug("AddTorrent: Resolve_countries: %d", (int)resolve_countries);
   h.resolve_countries(resolve_countries);
@@ -951,7 +961,6 @@ void bittorrent::setMaxConnections(int maxConnec) {
 }
 
 void bittorrent::setMaxConnectionsPerTorrent(int max) {
-  maxConnecsPerTorrent = max;
   // Apply this to all session torrents
   std::vector<torrent_handle> handles = s->get_torrents();
   unsigned int nbHandles = handles.size();
@@ -962,11 +971,11 @@ void bittorrent::setMaxConnectionsPerTorrent(int max) {
       continue;
     }
     h.set_max_connections(max);
+    TorrentPersistentData::saveSpeedLimits(h);
   }
 }
 
 void bittorrent::setMaxUploadsPerTorrent(int max) {
-  maxUploadsPerTorrent = max;
   // Apply this to all session torrents
   std::vector<torrent_handle> handles = s->get_torrents();
   unsigned int nbHandles = handles.size();
@@ -977,6 +986,7 @@ void bittorrent::setMaxUploadsPerTorrent(int max) {
       continue;
     }
     h.set_max_uploads(max);
+    TorrentPersistentData::saveSpeedLimits(h);
   }
 }
 

@@ -33,7 +33,7 @@
 #include "bittorrent.h"
 #include "torrentPersistentData.h"
 #include "previewSelect.h"
-#include "allocationDlg.h"
+#include "speedlimitdlg.h"
 #include "options_imp.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -559,26 +559,75 @@ void TransferListWidget::previewSelectedTorrents() {
 void TransferListWidget::setDlLimitSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList hashes;
+  QList<QTorrentHandle> selected_torrents;
+  bool first = true;
+  bool all_same_limit = true;
   foreach(const QModelIndex &index, selectedIndexes) {
     // Get the file hash
     QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_seed())
-      hashes << hash;
+    if(h.is_valid() && !h.is_seed()) {
+      selected_torrents << h;
+      // Determine current limit for selected torrents
+      if(first) {
+        first = false;
+      } else {
+        if(all_same_limit && h.download_limit() != selected_torrents.first().download_limit())
+          all_same_limit = false;
+      }
+    }
   }
-  Q_ASSERT(hashes.size() > 0);
-  new BandwidthAllocationDialog(this, false, BTSession, hashes);
+  if(selected_torrents.empty()) return;
+
+  bool ok=false;
+  int default_limit = -1;
+  if(all_same_limit)
+    default_limit = selected_torrents.first().download_limit();
+  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit);
+  if(ok) {
+    foreach(QTorrentHandle h, selected_torrents) {
+      qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().data());
+      h.set_download_limit(new_limit);
+      TorrentPersistentData::saveSpeedLimits(h);
+    }
+  }
 }
 
 void TransferListWidget::setUpLimitSelectedTorrents() {
-  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+ QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList hashes;
+  QList<QTorrentHandle> selected_torrents;
+  bool first = true;
+  bool all_same_limit = true;
   foreach(const QModelIndex &index, selectedIndexes) {
     // Get the file hash
-    hashes << getHashFromRow(proxyModel->mapToSource(index).row());
+    QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid() && !h.is_seed()) {
+      selected_torrents << h;
+      // Determine current limit for selected torrents
+      if(first) {
+        first = false;
+      } else {
+        if(all_same_limit && h.upload_limit() != selected_torrents.first().upload_limit())
+          all_same_limit = false;
+      }
+    }
   }
-  Q_ASSERT(hashes.size() > 0);
-  new BandwidthAllocationDialog(this, true, BTSession, hashes);
+  if(selected_torrents.empty()) return;
+
+  bool ok=false;
+  int default_limit = -1;
+  if(all_same_limit)
+    default_limit = selected_torrents.first().upload_limit();
+  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit);
+  if(ok) {
+    foreach(QTorrentHandle h, selected_torrents) {
+      qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().data());
+      h.set_upload_limit(new_limit);
+      TorrentPersistentData::saveSpeedLimits(h);
+    }
+  }
 }
 
 void TransferListWidget::recheckSelectedTorrents() {

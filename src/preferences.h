@@ -182,9 +182,21 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Connection/GlobalDLLimit"), -1).toInt();
   }
 
+  static void setGlobalDownloadLimit(int limit) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    if(limit == 0) limit = -1;
+    settings.setValue("Preferences/Connection/GlobalDLLimit", limit);
+  }
+
   static int getGlobalUploadLimit() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/GlobalUPLimit"), -1).toInt();
+  }
+
+  static void setGlobalUploadLimit(int limit) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    if(limit == 0) limit = -1;
+    settings.setValue("Preferences/Connection/GlobalUPLimit", limit);
   }
 
   static bool resolvePeerCountries() {

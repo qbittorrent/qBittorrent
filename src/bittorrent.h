@@ -66,8 +66,6 @@ class bittorrent : public QObject {
     QStringList peerBanMessages;
     bool preAllocateAll;
     bool addInPause;
-    int maxConnecsPerTorrent;
-    int maxUploadsPerTorrent;
     float ratio_limit;
     bool UPnPEnabled;
     bool NATPMPEnabled;

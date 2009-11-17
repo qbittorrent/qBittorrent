@@ -58,7 +58,7 @@
 #include "about_imp.h"
 #include "trackerLogin.h"
 #include "options_imp.h"
-#include "allocationDlg.h"
+#include "speedlimitdlg.h"
 #include "preferences.h"
 #include <stdlib.h>
 #include "console_imp.h"
@@ -482,7 +482,16 @@ void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
 
 void GUI::on_actionSet_global_upload_limit_triggered() {
   qDebug("actionSet_global_upload_limit_triggered");
-  new BandwidthAllocationDialog(this, true, BTSession, QStringList());
+  bool ok;
+  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), BTSession->getSession()->upload_rate_limit());
+  if(ok) {
+    qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
+    BTSession->getSession()->set_upload_rate_limit(new_limit);
+    if(new_limit <= 0)
+      Preferences::setGlobalUploadLimit(-1);
+    else
+      Preferences::setGlobalUploadLimit(new_limit/1024.);
+  }
 }
 
 void GUI::on_actionShow_console_triggered() {
@@ -491,7 +500,16 @@ void GUI::on_actionShow_console_triggered() {
 
 void GUI::on_actionSet_global_download_limit_triggered() {
   qDebug("actionSet_global_download_limit_triggered");
-  new BandwidthAllocationDialog(this, false, BTSession, QStringList());
+  bool ok;
+  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), BTSession->getSession()->download_rate_limit());
+  if(ok) {
+    qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
+    BTSession->getSession()->set_download_rate_limit(new_limit);
+    if(new_limit <= 0)
+      Preferences::setGlobalDownloadLimit(-1);
+    else
+      Preferences::setGlobalDownloadLimit(new_limit/1024.);
+  }
 }
 
 // Necessary if we want to close the window
