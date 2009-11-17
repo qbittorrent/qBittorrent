@@ -34,7 +34,7 @@
 #include <QItemDelegate>
 #include "misc.h"
 
-enum PeerListColumns {IP, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED, TOT_DOWN, TOT_UP};
+enum PeerListColumns {IP, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED, TOT_DOWN, TOT_UP, IP_HIDDEN};
 
 class PeerListDelegate: public QItemDelegate {
   Q_OBJECT

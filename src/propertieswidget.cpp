@@ -186,6 +186,10 @@ const QTorrentHandle& PropertiesWidget::getCurrentTorrent() const {
   return h;
 }
 
+bittorrent* PropertiesWidget::getBTSession() const {
+  return BTSession;
+}
+
 void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   h = _h;
   if(!h.is_valid()) {

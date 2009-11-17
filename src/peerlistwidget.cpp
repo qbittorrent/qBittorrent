@@ -48,8 +48,9 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), di
   setRootIsDecorated(false);
   setItemsExpandable(false);
   setAllColumnsShowFocus(true);
+  setSelectionMode(QAbstractItemView::ExtendedSelection);
   // List Model
-  listModel = new QStandardItemModel(0, 7);
+  listModel = new QStandardItemModel(0, 8);
   listModel->setHeaderData(IP, Qt::Horizontal, tr("IP"));
   listModel->setHeaderData(CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
   listModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
@@ -62,6 +63,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), di
   proxyModel->setDynamicSortFilter(true);
   proxyModel->setSourceModel(listModel);
   setModel(proxyModel);
+  hideColumn(IP_HIDDEN);
   // Context menu
   setContextMenuPolicy(Qt::CustomContextMenu);
   connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showPeerListMenu(QPoint)));
@@ -112,26 +114,33 @@ void PeerListWidget::updatePeerCountryResolutionState() {
 
 void PeerListWidget::showPeerListMenu(QPoint) {
   QMenu menu;
+  bool empty_menu = true;
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) return;
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList selectedPeerIPs;
   foreach(const QModelIndex &index, selectedIndexes) {
-    QString IP = proxyModel->data(index).toString();
+    int row = proxyModel->mapToSource(index).row();
+    QString IP = listModel->data(listModel->index(row, IP_HIDDEN)).toString();
     selectedPeerIPs << IP;
   }
   // Add Peer Action
   QAction *addPeerAct = 0;
   if(!h.is_queued() && !h.is_checking()) {
-    addPeerAct = menu.addAction(QIcon(":/Icons/oxygen/add_peer.png"), tr("Add a new peer"));
+    addPeerAct = menu.addAction(QIcon(":/Icons/oxygen/user-group-new.png"), tr("Add a new peer"));
+    empty_menu = false;
   }
   // Per Peer Speed limiting actions
   QAction *upLimitAct = 0;
   QAction *dlLimitAct = 0;
+  QAction *banAct = 0;
   if(!selectedPeerIPs.isEmpty()) {
     upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate"));
     dlLimitAct = menu.addAction(QIcon(":/Icons/skin/downloading.png"), tr("Limit download rate"));
+    banAct = menu.addAction(QIcon(":/Icons/oxygen/user-group-delete.png"), tr("Ban peer permanently"));
+    empty_menu = false;
   }
+  if(empty_menu) return;
   QAction *act = menu.exec(QCursor::pos());
   if(act == addPeerAct) {
     boost::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
@@ -155,6 +164,25 @@ void PeerListWidget::showPeerListMenu(QPoint) {
     limitDlRateSelectedPeers(selectedPeerIPs);
     return;
   }
+  if(act == banAct) {
+    banSelectedPeers(selectedPeerIPs);
+    return;
+  }
+}
+
+void PeerListWidget::banSelectedPeers(QStringList peer_ips) {
+  // Confirm first
+  int ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to ban permanently the selected peers?"),
+                              tr("&Yes"), tr("&No"),
+                              QString(), 0, 1);
+  if(ret) return;
+  foreach(const QString &ip, peer_ips) {
+    qDebug("Banning peer %s...", ip.toLocal8Bit().data());
+    properties->getBTSession()->addConsoleMessage(tr("Manually banning peer %1...").arg(ip));
+    properties->getBTSession()->banIP(ip);
+  }
+  // Refresh list
+  loadPeers(properties->getCurrentTorrent());
 }
 
 void PeerListWidget::limitUpRateSelectedPeers(QStringList peer_ips) {
@@ -270,6 +298,7 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   // Adding Peer to peer list
   listModel->insertRow(row);
   listModel->setData(listModel->index(row, IP), ip);
+  listModel->setData(listModel->index(row, IP_HIDDEN), ip);
   // Resolve peer host name is asked
   if(resolver)
     resolver->resolve(peer.ip);

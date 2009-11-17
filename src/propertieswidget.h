@@ -113,6 +113,7 @@ public:
   PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);
   ~PropertiesWidget();
   const QTorrentHandle& getCurrentTorrent() const;
+  bittorrent* getBTSession() const;
 };
 
 #endif // PROPERTIESWIDGET_H

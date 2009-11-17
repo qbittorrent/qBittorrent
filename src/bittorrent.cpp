@@ -363,6 +363,7 @@ void bittorrent::configureSession() {
   // * Maximum ratio
   setDeleteRatio(Preferences::getDeleteRatio());
   // Ip Filter
+  FilterParserThread::processFilterList(s, Preferences::bannedIPs());
   if(Preferences::isFilteringEnabled()) {
     enableIPFilter(Preferences::getFilter());
   }else{
@@ -514,6 +515,11 @@ bool bittorrent::hasActiveTorrents() const {
       return true;
   }
   return false;
+}
+
+void bittorrent::banIP(QString ip) {
+  FilterParserThread::processFilterList(s, QStringList(ip));
+  Preferences::banIP(ip);
 }
 
 // Delete a torrent from the session, given its hash

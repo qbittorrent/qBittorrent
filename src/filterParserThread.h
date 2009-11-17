@@ -389,6 +389,8 @@ class FilterParserThread : public QThread  {
     //  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
     //  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
     void processFilterFile(QString _filePath){
+      // First, import current filter
+      filter = s->get_ip_filter();
       if(isRunning()) {
         // Already parsing a filter, abort first
         abort = true;
@@ -398,6 +400,17 @@ class FilterParserThread : public QThread  {
       filePath = _filePath;
       // Run it
       start();
+    }
+
+    static void processFilterList(session *s, QStringList IPs) {
+      // First, import current filter
+      ip_filter filter = s->get_ip_filter();
+      foreach(const QString &ip, IPs) {
+        qDebug("Manual ban of peer %s", ip.toLocal8Bit().data());
+        address_v4 addr = address_v4::from_string(ip.toLocal8Bit().data());
+        filter.add_rule(addr, addr, ip_filter::blocked);
+      }
+      s->set_ip_filter(filter);
     }
 
 };

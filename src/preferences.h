@@ -367,6 +367,20 @@ public:
     return settings.value(QString::fromUtf8("Preferences/IPFilter/File"), QString()).toString();
   }
 
+  static void banIP(QString ip) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    QStringList banned_ips = settings.value(QString::fromUtf8("Preferences/IPFilter/BannedIPs"), QStringList()).toStringList();
+    if(!banned_ips.contains(ip)) {
+      banned_ips << ip;
+      settings.setValue("Preferences/IPFilter/BannedIPs", banned_ips);
+    }
+  }
+
+  static QStringList bannedIPs() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/IPFilter/BannedIPs"), QStringList()).toStringList();
+  }
+
   // RSS
   static bool isRSSEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
@@ -423,6 +437,7 @@ public:
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value("Preferences/WebUI/Password", "").toString();
   }
+
 };
 
 #endif // PREFERENCES_H

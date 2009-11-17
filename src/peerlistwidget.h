@@ -78,6 +78,7 @@ protected slots:
   void showPeerListMenu(QPoint);
   void limitUpRateSelectedPeers(QStringList peer_ips);
   void limitDlRateSelectedPeers(QStringList peer_ips);
+  void banSelectedPeers(QStringList peer_ips);
 };
 
 #endif // PEERLISTWIDGET_H

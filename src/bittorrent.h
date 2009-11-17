@@ -169,6 +169,7 @@ class bittorrent : public QObject {
     void addMagnetSkipAddDlg(QString uri);
     void downloadFromURLList(const QStringList& urls);
     void configureSession();
+    void banIP(QString ip);
 
   protected slots:
     void addTorrentsFromScanFolder(QStringList&);

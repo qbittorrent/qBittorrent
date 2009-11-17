@@ -24,6 +24,7 @@
     - FEATURE: Torrents can be rechecked from Web UI (Stephanos Antaris)
     - FEATURE: New peers can manually be added to the torrents
     - FEATURE: Support per-peer rate limiting
+    - FEATURE: Support peer manual ban
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window
