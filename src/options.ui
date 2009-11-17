@@ -627,7 +627,7 @@
               <x>0</x>
               <y>0</y>
               <width>620</width>
-              <height>208</height>
+              <height>149</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1081,7 +1081,7 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-4</y>
+              <y>0</y>
               <width>602</width>
               <height>513</height>
              </rect>
@@ -1453,6 +1453,9 @@
                  <widget class="QCheckBox" name="checkResolveCountries">
                   <property name="text">
                    <string>Resolve peer countries</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -2301,8 +2304,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>226</width>
+              <height>123</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2369,6 +2372,9 @@
              </item>
              <item>
               <spacer name="mynornamespacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
                <property name="sizeHint" stdset="0">
                 <size>
                  <width>20</width>
@@ -2395,8 +2401,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>218</width>
+              <height>220</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">

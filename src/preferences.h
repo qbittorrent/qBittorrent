@@ -201,7 +201,7 @@ public:
 
   static bool resolvePeerCountries() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerCountries"), false).toBool();
+    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerCountries"), true).toBool();
   }
 
   static bool resolvePeerHostNames() {
