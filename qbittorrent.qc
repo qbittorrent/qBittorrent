@@ -12,5 +12,4 @@
   <dep type='libboost'>
     <required/>
   </dep>
-  <dep type='libzzip'/>
 </qconf>

@@ -19,9 +19,6 @@ Main options:
 
 Dependency options:
   --with-libboost-inc=[path]     Path to libboost include files
-  --disable-libzzip             Disable use of libzzip
-  --with-libzzip-inc=[path]      Path to libzzip++ include files
-  --with-libzzip-lib=[path]      Path to libzzip++ library files
 
 EOT
 }
@@ -143,21 +140,6 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--disable-libzzip)
-			QC_DISABLE_libzzip="Y"
-			shift
-			;;
-
-		--with-libzzip-inc=*)
-			QC_WITH_LIBZZIP_INC=$optarg
-			shift
-			;;
-
-		--with-libzzip-lib=*)
-			QC_WITH_LIBZZIP_LIB=$optarg
-			shift
-			;;
-
 		--verbose)
 			QC_VERBOSE="Y"
 			shift
@@ -180,9 +162,6 @@ echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
-echo QC_DISABLE_libzzip=$QC_DISABLE_libzzip
-echo QC_WITH_LIBZZIP_INC=$QC_WITH_LIBZZIP_INC
-echo QC_WITH_LIBZZIP_LIB=$QC_WITH_LIBZZIP_LIB
 echo
 fi
 
@@ -386,78 +365,6 @@ public:
 		return true;
 	}
 };
-#line 1 "libzzip.qcm"
-/*
------BEGIN QCMOD-----
-name: libzzip
-arg: with-libzzip-inc=[path], Path to libzzip++ include files
-arg: with-libzzip-lib=[path], Path to libzzip++ library files
------END QCMOD-----
-*/
-#include <QProcess>
-class qc_libzzip : public ConfObj
-{
-public:
-	qc_libzzip(Conf *c) : ConfObj(c) {}
-	QString name() const { return "Zzip library (libzzip)"; }
-	QString shortname() const { return "libzzip"; }
-	QString checkString() const {
-		if(!conf->getenv("QC_DISABLE_LIBZZIP").isEmpty())
-			return "";
-		return ConfObj::checkString();
-	}
-	bool exec(){
-		if(!conf->getenv("QC_DISABLE_LIBZZIP").isEmpty())
-			return false;
-		QString s;
-		s = conf->getenv("QC_WITH_LIBZZIP_INC");
-		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "zzip/zzip.h")) {
-				return false;
-    			}
-		}else{
-			QStringList sl;
-			sl << "/usr/include";
-			sl << "/usr/local/include";
-			bool found = false;
-			foreach(s, sl){
-				if(conf->checkHeader(s, "zzip/zzip.h")){
-					found = true;
-					break;
-				}
-			}
-			if(!found)
-				return false;
-		}
-		conf->addIncludePath(s);
-
-		s = conf->getenv("QC_WITH_LIBZZIP_LIB");
-		if(!s.isEmpty()) {
-			if(!QFile::exists(s+QString("/libzzip.so"))){
-                          return false;
-                        }
-		}else{
-			QStringList sl;
-			sl << "/usr/lib/";
-			sl << "/usr/lib64/";
-			sl << "/usr/local/lib/";
-			sl << "/usr/local/lib64/";
-			bool found = false;
-			foreach(s, sl){
-				if(QFile::exists(s+QString("libzzip.so"))){
-					found = true;
-					break;
-				}
-			}
-			if(!found)
-                         	return false;
-		}
-		conf->addLib(QString("-L") + s);
-		conf->addLib("-lzzip");
-		conf->addDefine("HAVE_ZZIP");
-		return true;
-	}
-};
 
 EOT
 cat >$1/modules_new.cpp <<EOT
@@ -469,9 +376,6 @@ cat >$1/modules_new.cpp <<EOT
     o->disabled = false;
     o = new qc_libboost(conf);
     o->required = true;
-    o->disabled = false;
-    o = new qc_libzzip(conf);
-    o->required = false;
     o->disabled = false;
 
 EOT
@@ -1419,9 +1323,6 @@ export BINDIR
 export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBBOOST_INC
-export QC_DISABLE_libzzip
-export QC_WITH_LIBZZIP_INC
-export QC_WITH_LIBZZIP_LIB
 export QC_VERBOSE
 rm -rf .qconftemp
 (
