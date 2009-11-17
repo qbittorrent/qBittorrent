@@ -794,7 +794,7 @@ void GUI::loadPreferences(bool configure_session) {
 
   // Queueing System
   if(Preferences::isQueueingSystemEnabled()) {
-    if(!BTSession->isQueueingEnabled()) {
+    if(!configure_session || !BTSession->isQueueingEnabled()) {
       transferList->hidePriorityColumn(false);
       actionDecreasePriority->setVisible(true);
       actionIncreasePriority->setVisible(true);
