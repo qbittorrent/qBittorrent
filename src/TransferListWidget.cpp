@@ -587,8 +587,7 @@ void TransferListWidget::setDlLimitSelectedTorrents() {
   if(ok) {
     foreach(QTorrentHandle h, selected_torrents) {
       qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().data());
-      h.set_download_limit(new_limit);
-      TorrentPersistentData::saveSpeedLimits(h);
+      BTSession->setDownloadLimit(h.hash(), new_limit);
     }
   }
 }
@@ -603,7 +602,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
     // Get the file hash
     QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_seed()) {
+    if(h.is_valid()) {
       selected_torrents << h;
       // Determine current limit for selected torrents
       if(first) {
@@ -624,8 +623,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   if(ok) {
     foreach(QTorrentHandle h, selected_torrents) {
       qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().data());
-      h.set_upload_limit(new_limit);
-      TorrentPersistentData::saveSpeedLimits(h);
+      BTSession->setUploadLimit(h.hash(), new_limit);
     }
   }
 }
