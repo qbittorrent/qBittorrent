@@ -884,6 +884,9 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>9</number>
+     </property>
      <property name="leftMargin">
       <number>5</number>
      </property>
@@ -903,7 +906,6 @@
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
-margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
@@ -928,7 +930,6 @@ margin-left: 3px; margin-right: 3px;
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
-margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
@@ -959,7 +960,6 @@ margin-left: 3px; margin-right: 3px;
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
-margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
@@ -984,7 +984,6 @@ margin-left: 3px; margin-right: 3px;
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
-margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
@@ -1009,7 +1008,6 @@ margin-left: 3px; margin-right: 3px;
 border: 1px solid rgb(85, 81, 91);
 border-radius: 3px;
 padding: 2px;
-margin-left: 3px; margin-right: 3px;
 }</string>
        </property>
        <property name="text">
