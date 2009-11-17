@@ -33,6 +33,7 @@
 #include "httpserver.h"
 #include "eventmanager.h"
 #include "json.h"
+#include "bittorrent.h"
 #include <QTcpSocket>
 #include <QDateTime>
 #include <QStringList>
@@ -42,8 +43,8 @@
 #include <QDebug>
 #include <QTemporaryFile>
 
-HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
-    : QObject(parent), socket(socket), parent(parent)
+HttpConnection::HttpConnection(QTcpSocket *socket, bittorrent *BTSession, HttpServer *parent)
+    : QObject(parent), socket(socket), parent(parent), BTSession(BTSession)
 {
   socket->setParent(this);
   connect(socket, SIGNAL(readyRead()), this, SLOT(read()));
@@ -246,11 +247,38 @@ void HttpConnection::respondCommand(QString command)
     return;
   }
   if(command == "increasePrio") {
-    emit increasePrioTorrent(parser.post("hash"));
+    QTorrentHandle h = BTSession->getTorrentHandle(parser.post("hash"));
+    if(h.is_valid()) h.queue_position_up();
     return;
   }
   if(command == "decreasePrio") {
-    emit decreasePrioTorrent(parser.post("hash"));
+    QTorrentHandle h = BTSession->getTorrentHandle(parser.post("hash"));
+    if(h.is_valid()) h.queue_position_down();
     return;
+  }
+  if(command == "recheck"){
+    recheckTorrent(parser.post("hash"));
+    return;
+  }
+  if(command == "recheckall"){
+    recheckAllTorrents();
+    return;
+  }
+}
+
+void HttpConnection::recheckTorrent(QString hash) {
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  if(h.is_valid() && !h.is_paused()){
+    h.force_recheck();
+  }
+}
+
+void HttpConnection::recheckAllTorrents() {
+  std::vector<torrent_handle> torrents = BTSession->getTorrents();
+  std::vector<torrent_handle>::iterator torrentIT;
+  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+    QTorrentHandle h = QTorrentHandle(*torrentIT);
+    if(h.is_valid() && !h.is_paused())
+      h.force_recheck();
   }
 }

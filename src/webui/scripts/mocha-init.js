@@ -53,6 +53,13 @@ initializeWindows = function(){
 			height: 120
 		});
 	});
+	
+	
+	
+	
+
+	
+
 
 	addClickEvent('delete', function(e){
 		new Event(e).stop();
@@ -67,6 +74,8 @@ initializeWindows = function(){
 			});
 		}
 	});
+	
+	
 
 	addClickEvent('deletePerm', function(e){
                 new Event(e).stop();
@@ -82,7 +91,7 @@ initializeWindows = function(){
                 }
         });
 
-	['pause','resume','decreasePrio','increasePrio'].each(function(item) {
+	['pause','resume','decreasePrio','increasePrio','recheck'].each(function(item) {
 		addClickEvent(item, function(e){
 			new Event(e).stop();
 			if($("Tab1").hasClass('active')) {
@@ -104,6 +113,8 @@ initializeWindows = function(){
 			new Request({url: '/command/'+item+'all'}).send();
 		});
 	});
+	
+	
 	
 	addClickEvent('bug', function(e){
 		new Event(e).stop();

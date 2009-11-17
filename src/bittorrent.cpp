@@ -164,19 +164,6 @@ bool bittorrent::isQueueingEnabled() const {
   return queueingEnabled;
 }
 
-void bittorrent::increaseDlTorrentPriority(QString hash) {
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  if(h.queue_position() > 0)
-    h.queue_position_up();
-}
-
-void bittorrent::decreaseDlTorrentPriority(QString hash) {
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  h.queue_position_down();
-}
-
 void bittorrent::setUploadLimit(QString hash, long val) {
   qDebug("Set upload limit rate to %ld", val);
   QTorrentHandle h = getTorrentHandle(hash);
@@ -205,18 +192,6 @@ void bittorrent::setQueueingEnabled(bool enable) {
     qDebug("Queueing system is changing state...");
     queueingEnabled = enable;
   }
-}
-
-int bittorrent::getDlTorrentPriority(QString hash) const {
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  return h.queue_position();
-}
-
-int bittorrent::getUpTorrentPriority(QString hash) const {
-  Q_ASSERT(queueingEnabled);
-  QTorrentHandle h = getTorrentHandle(hash);
-  return h.queue_position();
 }
 
 // Set BT session configuration
@@ -1575,8 +1550,11 @@ void bittorrent::readAlerts() {
       if(h.is_valid()) {
         h.auto_managed(false);
         std::cerr << "File Error: " << p->message().c_str() << std::endl;
-        if(h.is_valid())
+        if(h.is_valid()) {
           emit fullDiskError(h, misc::toQString(p->message()));
+          h.pause();
+          emit torrentPaused(h);
+        }
       }
     }
     else if (dynamic_cast<listen_failed_alert*>(a.get())) {

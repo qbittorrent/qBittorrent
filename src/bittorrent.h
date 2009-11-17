@@ -103,8 +103,6 @@ class bittorrent : public QObject {
     bool has_filtered_files(QString hash) const;
     bool hasActiveTorrents() const;
     bool isQueueingEnabled() const;
-    int getDlTorrentPriority(QString hash) const;
-    int getUpTorrentPriority(QString hash) const;
     int getMaximumActiveDownloads() const;
     int getMaximumActiveTorrents() const;
     int loadTorrentPriority(QString hash);
@@ -142,8 +140,6 @@ class bittorrent : public QObject {
     void loadTorrentSpeedLimits(QString hash);
     void handleDownloadFailure(QString url, QString reason);
     void loadWebSeeds(QString fileHash);
-    void increaseDlTorrentPriority(QString hash);
-    void decreaseDlTorrentPriority(QString hash);
     void downloadUrlAndSkipDialog(QString url, QString save_path=QString::null);
     // Session configuration - Setters
     void setListeningPort(int port);

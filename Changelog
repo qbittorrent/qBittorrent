@@ -21,6 +21,7 @@
     - FEATURE: Display per-torrent peer list
     - FEATURE: Make sure torrent files are always sorted by name
     - FEATURE: Seeds and Peers columns are now sortable
+    - FEATURE: Torrents can be rechecked from Web UI (Stephanos Antaris)
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window

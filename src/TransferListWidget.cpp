@@ -99,6 +99,8 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), this, SLOT(addTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(setFinished(QTorrentHandle&)));
   connect(BTSession, SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateMetadata(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(pausedTorrent(QTorrentHandle&)), this, SLOT(pauseTorrent(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(resumedTorrent(QTorrentHandle&)), this, SLOT(resumeTorrent(QTorrentHandle&)));
 
   // Listen for list events
   connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
@@ -135,7 +137,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     listModel->setData(listModel->index(row, SEEDS), QVariant((double)0.0));
     listModel->setData(listModel->index(row, PEERS), QVariant((double)0.0));
     if(BTSession->isQueueingEnabled())
-      listModel->setData(listModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(h.hash())));
+      listModel->setData(listModel->index(row, PRIORITY), QVariant((int)h.queue_position()));
     listModel->setData(listModel->index(row, HASH), QVariant(h.hash()));
     // Pause torrent if it is
     if(h.is_paused()) {
@@ -167,8 +169,9 @@ void TransferListWidget::deleteTorrent(int row) {
   listModel->removeRow(row);
 }
 
-void TransferListWidget::pauseTorrent(QString hash) {
-  pauseTorrent(getRowFromHash(hash));
+// Wrapper slot for bittorrent signal
+void TransferListWidget::pauseTorrent(QTorrentHandle &h) {
+  pauseTorrent(getRowFromHash(h.hash()));
 }
 
 void TransferListWidget::pauseTorrent(int row) {
@@ -180,6 +183,11 @@ void TransferListWidget::pauseTorrent(int row) {
   listModel->setData(listModel->index(row, SEEDS), QVariant(0.0));
   listModel->setData(listModel->index(row, PEERS), QVariant(0.0));
   //setRowColor(row, QString::fromUtf8("red"));
+}
+
+// Wrapper slot for bittorrent signal
+void TransferListWidget::resumeTorrent(QTorrentHandle &h) {
+  resumeTorrent(getRowFromHash(h.hash()));
 }
 
 void TransferListWidget::resumeTorrent(int row) {
@@ -217,7 +225,7 @@ void TransferListWidget::updateTorrent(int row) {
     if(!h.is_seed()) {
       // Queueing code
       if(BTSession->isQueueingEnabled()) {
-        listModel->setData(listModel->index(row, PRIORITY), QVariant((int)BTSession->getDlTorrentPriority(hash)));
+        listModel->setData(listModel->index(row, PRIORITY), QVariant((int)h.queue_position()));
         if(h.is_queued()) {
           if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
             listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
@@ -471,7 +479,7 @@ void TransferListWidget::increasePrioSelectedTorrents() {
   foreach(const QModelIndex &index, selectedIndexes) {
     QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid() && !h.is_seed()) {
-      BTSession->increaseDlTorrentPriority(h.hash());
+      h.queue_position_up();
     }
   }
   refreshList();
@@ -483,7 +491,7 @@ void TransferListWidget::decreasePrioSelectedTorrents() {
   foreach(const QModelIndex &index, selectedIndexes) {
     QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
     if(h.is_valid() && !h.is_seed()) {
-      BTSession->decreaseDlTorrentPriority(h.hash());
+      h.queue_position_down();
     }
   }
   refreshList();

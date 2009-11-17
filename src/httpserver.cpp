@@ -69,7 +69,7 @@ void HttpServer::newHttpConnection()
 	QTcpSocket *socket;
 	while((socket = nextPendingConnection()))
 	{
-		HttpConnection *connection = new HttpConnection(socket, this);
+                HttpConnection *connection = new HttpConnection(socket, BTSession, this);
 		//connect connection to BTSession
 		connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), BTSession, SLOT(downloadUrlAndSkipDialog(QString)));
                 connect(connection, SIGNAL(MagnetReadyToBeDownloaded(QString)), BTSession, SLOT(addMagnetSkipAddDlg(QString)));
@@ -79,8 +79,6 @@ void HttpServer::newHttpConnection()
 		connect(connection, SIGNAL(resumeTorrent(QString)), BTSession, SLOT(resumeTorrent(QString)));
 		connect(connection, SIGNAL(pauseAllTorrents()), BTSession, SLOT(pauseAllTorrents()));
 		connect(connection, SIGNAL(resumeAllTorrents()), BTSession, SLOT(resumeAllTorrents()));
-                connect(connection, SIGNAL(increasePrioTorrent(QString)), BTSession, SLOT(increaseDlTorrentPriority(QString)));
-                connect(connection, SIGNAL(decreasePrioTorrent(QString)), BTSession, SLOT(decreaseDlTorrentPriority(QString)));
 	}
 }
 

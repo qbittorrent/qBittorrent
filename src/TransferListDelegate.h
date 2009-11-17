@@ -37,6 +37,7 @@
 #include <QStyleOptionViewItem>
 #include <QStyleOptionViewItemV2>
 #include <QApplication>
+#include <QPainter>
 #include "misc.h"
 
 // Defines for download list list columns
@@ -57,6 +58,7 @@ public:
     switch(index.column()){
     case SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignHCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
         break;
       }

@@ -453,7 +453,8 @@ void QTorrentHandle::queue_position_down() const {
 
 void QTorrentHandle::queue_position_up() const {
   Q_ASSERT(h.is_valid());
-  h.queue_position_up();
+  if(h.queue_position() > 0)
+    h.queue_position_up();
 
 }
 

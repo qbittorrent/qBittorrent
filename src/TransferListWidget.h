@@ -75,6 +75,8 @@ protected slots:
   void displayListMenu(const QPoint&);
   void updateMetadata(QTorrentHandle &h);
   void currentChanged(const QModelIndex& current, const QModelIndex&);
+  void pauseTorrent(QTorrentHandle &h);
+  void resumeTorrent(QTorrentHandle &h);
   //void setRowColor(int row, QColor color);
 
 public slots:
@@ -86,7 +88,6 @@ public slots:
   void startAllTorrents();
   void pauseSelectedTorrents();
   void pauseAllTorrents();
-  void pauseTorrent(QString hash);
   void deleteSelectedTorrents();
   void deletePermSelectedTorrents();
   void increasePrioSelectedTorrents();
