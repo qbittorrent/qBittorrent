@@ -59,15 +59,23 @@ TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession):
   listModel = new QStandardItemModel(0,12);
   listModel->setHeaderData(NAME, Qt::Horizontal, tr("Name", "i.e: torrent name"));
   listModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size", "i.e: torrent size"));
+  listModel->horizontalHeaderItem(SIZE)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Done", "% Done"));
+  listModel->horizontalHeaderItem(PROGRESS)->setTextAlignment(Qt::AlignHCenter);
   listModel->setHeaderData(STATUS, Qt::Horizontal, tr("Status", "Torrent status (e.g. downloading, seeding, paused)"));
   listModel->setHeaderData(SEEDS, Qt::Horizontal, tr("Seeds", "i.e. full sources (often untranslated)"));
+  listModel->horizontalHeaderItem(SEEDS)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(PEERS, Qt::Horizontal, tr("Peers", "i.e. partial sources (often untranslated)"));
+  listModel->horizontalHeaderItem(PEERS)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(DLSPEED, Qt::Horizontal, tr("Down Speed", "i.e: Download speed"));
+  listModel->horizontalHeaderItem(DLSPEED)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(UPSPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));;
+  listModel->horizontalHeaderItem(UPSPEED)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(RATIO, Qt::Horizontal, tr("Ratio", "Share ratio"));
+  listModel->horizontalHeaderItem(RATIO)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
   listModel->setHeaderData(PRIORITY, Qt::Horizontal, "#");
+  listModel->horizontalHeaderItem(PRIORITY)->setTextAlignment(Qt::AlignRight);
 
   // Set Sort/Filter proxy
   proxyModel = new QSortFilterProxyModel();

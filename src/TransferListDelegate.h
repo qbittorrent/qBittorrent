@@ -58,7 +58,7 @@ public:
     switch(index.column()){
     case SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
-        opt.displayAlignment = Qt::AlignHCenter;
+        opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
         break;
       }
@@ -76,6 +76,7 @@ public:
           display += " ("+QString::number((qulonglong)(tot_val%100000)/10)+")";
         }
         QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
       }
@@ -109,11 +110,13 @@ public:
         case DLSPEED:{
             QItemDelegate::drawBackground(painter, opt, index);
             double speed = index.data().toDouble();
+            opt.displayAlignment = Qt::AlignRight;
             QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(speed/1024., 'f', 1)+" "+tr("KiB/s"));
             break;
           }
         case RATIO:{
             QItemDelegate::drawBackground(painter, opt, index);
+            opt.displayAlignment = Qt::AlignRight;
             double ratio = index.data().toDouble();
             if(ratio > 100.)
               QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
@@ -124,9 +127,11 @@ public:
         case PRIORITY: {
             int priority = index.data().toInt();
             if(priority >= 0) {
-              QItemDelegate::paint(painter, option, index);
+              opt.displayAlignment = Qt::AlignRight;
+              QItemDelegate::paint(painter, opt, index);
             } else {
               QItemDelegate::drawBackground(painter, opt, index);
+              opt.displayAlignment = Qt::AlignRight;
               QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
             }
             break;
