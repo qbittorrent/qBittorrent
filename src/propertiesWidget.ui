@@ -52,7 +52,7 @@
             <x>0</x>
             <y>0</y>
             <width>536</width>
-            <height>268</height>
+            <height>265</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -884,9 +884,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>9</number>
-     </property>
      <property name="leftMargin">
       <number>5</number>
      </property>
@@ -901,13 +898,6 @@
      </property>
      <item>
       <widget class="QPushButton" name="main_infos_button">
-       <property name="styleSheet">
-        <string>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-}</string>
-       </property>
        <property name="text">
         <string>General</string>
        </property>
@@ -925,13 +915,6 @@ padding: 2px;
      </item>
      <item>
       <widget class="QPushButton" name="trackers_button">
-       <property name="styleSheet">
-        <string>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-}</string>
-       </property>
        <property name="text">
         <string>Trackers</string>
        </property>
@@ -955,13 +938,6 @@ padding: 2px;
          <height>24</height>
         </size>
        </property>
-       <property name="styleSheet">
-        <string>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-}</string>
-       </property>
        <property name="text">
         <string>Peers</string>
        </property>
@@ -979,13 +955,6 @@ padding: 2px;
      </item>
      <item>
       <widget class="QPushButton" name="url_seeds_button">
-       <property name="styleSheet">
-        <string>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-}</string>
-       </property>
        <property name="text">
         <string>URL seeds</string>
        </property>
@@ -1003,13 +972,6 @@ padding: 2px;
      </item>
      <item>
       <widget class="QPushButton" name="files_button">
-       <property name="styleSheet">
-        <string>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-}</string>
-       </property>
        <property name="text">
         <string>Files</string>
        </property>

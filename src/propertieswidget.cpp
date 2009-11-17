@@ -49,12 +49,24 @@
 #include "TorrentFilesModel.h"
 #include "peerlistwidget.h"
 
+#ifdef Q_WS_MAC
+#define DEFAULT_BUTTON_CSS ""
+#define SELECTED_BUTTON_CSS "background-color: rgb(255, 208, 105);}"
+#else
 #define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;}"
 #define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105);}"
+#endif
 
 PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
   state = VISIBLE;
+
+  // Buttons stylesheet
+  trackers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
+  peers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
+  url_seeds_button->setStyleSheet(DEFAULT_BUTTON_CSS);
+  files_button->setStyleSheet(DEFAULT_BUTTON_CSS);
+  main_infos_button->setStyleSheet(DEFAULT_BUTTON_CSS);
 
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
