@@ -42,9 +42,10 @@
 #include "preferences.h"
 #include "geoip.h"
 #include "torrentPersistentData.h"
+#include "httpserver.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
 #ifdef LIBTORRENT_0_15
-  #include <libtorrent/extensions/lt_trackers.hpp>
+#include <libtorrent/extensions/lt_trackers.hpp>
 #endif
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
@@ -119,6 +120,9 @@ bittorrent::~bittorrent() {
   if(FSWatcher) {
     delete FSWatcher;
   }
+  // HTTP Server
+  if(httpServer)
+    delete httpServer;
   if(timerETA)
     delete timerETA;
   // Delete BT session
@@ -370,6 +374,15 @@ void bittorrent::configureSession() {
   }else{
     disableIPFilter();
   }
+  // Update Web UI
+  if (Preferences::isWebUiEnabled()) {
+    quint16 port = Preferences::getWebUiPort();
+    QString username = Preferences::getWebUiUsername();
+    QString password = Preferences::getWebUiPassword();
+    initWebUi(username, password, port);
+  } else if(httpServer) {
+    delete httpServer;
+  }
   // * Proxy settings
   proxy_settings proxySettings;
   if(Preferences::isProxyEnabled()) {
@@ -436,6 +449,20 @@ void bittorrent::configureSession() {
 #endif
   }
   qDebug("Session configured");
+}
+
+bool bittorrent::initWebUi(QString username, QString password, int port) {
+  if(httpServer)
+    httpServer->close();
+  else
+    httpServer = new HttpServer(this, 3000, this);
+  httpServer->setAuthorization(username, password);
+  bool success = httpServer->listen(QHostAddress::Any, port);
+  if (success)
+    qDebug("Web UI listening on port %d", port);
+  else
+    addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), QColor("red"));
+  return success;
 }
 
 void bittorrent::takeETASamples() {

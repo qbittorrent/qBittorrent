@@ -53,7 +53,6 @@ class options_imp;
 class QTabWidget;
 class QLabel;
 class QModelIndex;
-class HttpServer;
 class QFrame;
 class TransferListWidget;
 class TransferListFiltersWidget;
@@ -97,8 +96,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     SearchEngine *searchEngine;
     // RSS
     QPointer<RSSImp> rssWidget;
-    // Web UI
-    QPointer<HttpServer> httpServer;
     // Misc
     QLocalServer *localServer;
     QLocalSocket *clientConnection;
@@ -142,8 +139,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void processDownloadedFiles(QString path, QString url);
     void downloadFromURLList(const QStringList& urls);
     void finishedTorrent(QTorrentHandle& h) const;
-    //void updateLists(bool force=false);
-    bool initWebUi(QString username, QString password, int port);
     // Options slots
     void on_actionOptions_triggered();
     void optionsSaved();

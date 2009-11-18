@@ -62,7 +62,6 @@
 #include "preferences.h"
 #include <stdlib.h>
 #include "console_imp.h"
-#include "httpserver.h"
 #include "torrentPersistentData.h"
 #include "TransferListFiltersWidget.h"
 #include "propertieswidget.h"
@@ -171,10 +170,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   BTSession->startUpTorrents();
   // Add torrent given on command line
   processParams(torrentCmdLine);
-  // Initialize Web UI
-  if(Preferences::isWebUiEnabled()) {
-    initWebUi(Preferences::getWebUiUsername(), Preferences::getWebUiPassword(), Preferences::getWebUiPort());
-  }
   // Use a tcp server to allow only one instance of qBittorrent
   localServer = new QLocalServer();
   QString uid = QString::number(getuid());
@@ -238,9 +233,6 @@ GUI::~GUI() {
   localServer->close();
   delete localServer;
   delete tabs;
-  // HTTP Server
-  if(httpServer)
-    delete httpServer;
   qDebug("3");
   // Keyboard shortcuts
   delete switchSearchShortcut;
@@ -702,16 +694,6 @@ void GUI::loadPreferences(bool configure_session) {
     }
     systrayIntegration = newSystrayIntegration;
   }
-  // XXX: Should probably be done in bittorrent, not here
-  // Update Web UI
-  if (Preferences::isWebUiEnabled()) {
-    quint16 port = Preferences::getWebUiPort();
-    QString username = Preferences::getWebUiUsername();
-    QString password = Preferences::getWebUiPassword();
-    initWebUi(username, password, port);
-  } else if(httpServer) {
-    delete httpServer;
-  }
   // General
   bool new_displaySpeedInTitle = Preferences::speedInTitleBar();
   if(!new_displaySpeedInTitle && new_displaySpeedInTitle != displaySpeedInTitle) {
@@ -891,20 +873,6 @@ void GUI::createTrayIcon() {
 void GUI::on_actionOptions_triggered() {
   options = new options_imp(this);
   connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
-}
-
-bool GUI::initWebUi(QString username, QString password, int port) {
-  if(httpServer)
-    httpServer->close();
-  else
-    httpServer = new HttpServer(BTSession, 3000, this);
-  httpServer->setAuthorization(username, password);
-  bool success = httpServer->listen(QHostAddress::Any, port);
-  if (success)
-    qDebug("Web UI listening on port %d", port);
-  else
-    QMessageBox::critical(this, "Web User Interface Error", "Unable to initialize HTTP Server on port " + misc::toQString(port));
-  return success;
 }
 
 /*****************************************************

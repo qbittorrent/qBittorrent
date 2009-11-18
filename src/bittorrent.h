@@ -48,6 +48,7 @@ class downloadThread;
 class QTimer;
 class FileSystemWatcher;
 class FilterParserThread;
+class HttpServer;
 
 class bittorrent : public QObject {
   Q_OBJECT
@@ -79,9 +80,12 @@ class bittorrent : public QObject {
     bool geoipDBLoaded;
     QPointer<QTimer> timerETA;
     QHash<QString, QList<int> > ETA_samples;
+    // Web UI
+    QPointer<HttpServer> httpServer;
 
   protected:
     QString getSavePath(QString hash);
+    bool initWebUi(QString username, QString password, int port);
 
   public:
     // Constructor / Destructor
