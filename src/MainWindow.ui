@@ -111,10 +111,10 @@
    <addaction name="separator"/>
    <addaction name="actionStart_All"/>
    <addaction name="actionPause_All"/>
-   <addaction name="separator"/>
-   <addaction name="actionOptions"/>
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionIncreasePriority"/>
+   <addaction name="separator"/>
+   <addaction name="actionOptions"/>
    <addaction name="separator"/>
    <addaction name="actionExit"/>
   </widget>
