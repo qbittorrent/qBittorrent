@@ -106,9 +106,12 @@ SearchEngine::~SearchEngine(){
   searchProcess->kill();
   searchProcess->waitForFinished();
   foreach(QProcess *downloader, downloaders) {
+    // Make sure we disconnect the SIGNAL/SLOT first
+    // To avoid double free
+    downloader->disconnect();
     downloader->kill();
     downloader->waitForFinished();
-    //delete downloader;
+    delete downloader;
   }
   delete searchTimeout;
   delete searchProcess;
