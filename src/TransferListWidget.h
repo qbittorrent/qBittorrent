@@ -34,13 +34,13 @@
 #include<QTreeView>
 #include "qtorrenthandle.h"
 
-class TransferListDelegate;
 class QStandardItemModel;
 class QSortFilterProxyModel;
 class bittorrent;
 class QTimer;
+class TransferListDelegate;
 
-enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_ACTIVE, FILTER_INACTIVE };
+enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_ACTIVE, FILTER_INACTIVE};
 
 class TransferListWidget: public QTreeView {
   Q_OBJECT
@@ -65,10 +65,10 @@ protected:
   void loadLastSortedColumn();
 
 protected slots:
-  void updateTorrent(int row);
-  void deleteTorrent(int row);
-  void pauseTorrent(int row);
-  void resumeTorrent(int row);
+  int updateTorrent(int row);
+  void deleteTorrent(int row, bool refresh_list=true);
+  void pauseTorrent(int row, bool refresh_list=true);
+  void resumeTorrent(int row, bool refresh_list=true);
   void torrentDoubleClicked(QModelIndex index);
   bool loadHiddenColumns();
   void saveHiddenColumns();
@@ -106,6 +106,7 @@ public slots:
 
 signals:
   void currentTorrentChanged(QTorrentHandle &h);
+  void torrentStatusUpdate(unsigned int, unsigned int, unsigned int);
 
 };
 
