@@ -99,6 +99,7 @@ public:
 
   }
 
+#ifdef LIBTORRENT_0_15
   static void setSeedingMode(QString hash,bool seed){
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
@@ -116,7 +117,7 @@ public:
       return data["seeding"].toBool();
     return false;
   }
-
+#endif
 
   static QString getSavePath(QString hash) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));

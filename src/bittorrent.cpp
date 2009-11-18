@@ -43,7 +43,9 @@
 #include "geoip.h"
 #include "torrentPersistentData.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
-#include <libtorrent/extensions/lt_trackers.hpp>
+#ifdef LIBTORRENT_0_15
+  #include <libtorrent/extensions/lt_trackers.hpp>
+#endif
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
 //#include <libtorrent/extensions/metadata_transfer.hpp>
@@ -81,7 +83,9 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
   // Enabling plugins
   //s->add_extension(&create_metadata_plugin);
   s->add_extension(&create_ut_metadata_plugin);
+#ifdef LIBTORRENT_0_15
   s->add_extension(create_lt_trackers_plugin);
+#endif
   s->add_extension(&create_ut_pex_plugin);
   s->add_extension(&create_smart_ban_plugin);
   timerAlerts = new QTimer();
@@ -831,13 +835,14 @@ QTorrentHandle bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     p.save_path = defaultTempPath.toLocal8Bit().data();
   }
 
+#ifdef LIBTORRENT_0_15
   // Skip checking and directly start seeding (new in libtorrent v0.15)
   if(TorrentTempData::isSeedingMode(hash)){
     p.seed_mode=true;
   } else {
     p.seed_mode=false;
   }
-
+#endif
   // TODO: Remove in v1.6.0: For backward compatibility only
   if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
     p.save_path = savePath.toLocal8Bit().data();

@@ -179,10 +179,12 @@ QString QTorrentHandle::save_path() const {
   return misc::toQString(h.save_path().string());
 }
 
+#ifdef LIBTORRENT_0_15
 bool QTorrentHandle::super_seeding() const {
   Q_ASSERT(h.is_valid());
   return h.super_seeding();
 }
+#endif
 
 QStringList QTorrentHandle::url_seeds() const {
   Q_ASSERT(h.is_valid());
@@ -493,10 +495,12 @@ void QTorrentHandle::file_priority(int index, int priority) const {
   h.file_priority(index, priority);
 }
 
+#ifdef LIBTORRENT_0_15
 void QTorrentHandle::super_seeding(bool on) const {
   Q_ASSERT(h.is_valid());
   h.super_seeding(on);
 }
+#endif
 
 void QTorrentHandle::resolve_countries(bool r) {
   Q_ASSERT(h.is_valid());

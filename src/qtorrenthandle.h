@@ -115,7 +115,9 @@ class QTorrentHandle {
     qlonglong seeding_time() const;
     std::vector<int> file_priorities() const;
     bool is_sequential_download() const;
+ #ifdef LIBTORRENT_0_15
     bool super_seeding() const;
+#endif
     QString creation_date() const;
     void get_peer_info(std::vector<peer_info>&) const;
     bool resolve_countries() const;
@@ -144,7 +146,9 @@ class QTorrentHandle {
     void auto_managed(bool) const;
     void force_recheck() const;
     void move_storage(QString path) const;
+ #ifdef LIBTORRENT_0_15
     void super_seeding(bool on) const;
+#endif
     void resolve_countries(bool r);
     void connect_peer(asio::ip::tcp::endpoint const& adr, int source = 0) const;
     void set_peer_upload_limit(asio::ip::tcp::endpoint ip, int limit) const;

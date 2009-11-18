@@ -108,7 +108,7 @@ SearchEngine::~SearchEngine(){
   foreach(QProcess *downloader, downloaders) {
     downloader->kill();
     downloader->waitForFinished();
-    delete downloader;
+    //delete downloader;
   }
   delete searchTimeout;
   delete searchProcess;
@@ -336,7 +336,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
     }
   }
   qDebug("Deleting downloadProcess");
-  downloaders.removeAll(downloadProcess);
+  downloaders.removeOne(downloadProcess);
   delete downloadProcess;
 }
 

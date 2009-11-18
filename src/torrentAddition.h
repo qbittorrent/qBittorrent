@@ -97,6 +97,9 @@ public:
       addInPause->setChecked(true);
       addInPause->setEnabled(false);
     }
+#ifndef LIBTORRENT_0_15
+    addInSeed->setEnabled(false);
+#endif
   }
 
   ~torrentAdditionDialog() {
@@ -297,6 +300,7 @@ public slots:
     settings.setValue(QString::fromUtf8("LastDirTorrentAdd"), savePathTxt->text());
     // Create .incremental file if necessary
     TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
+#ifdef LIBTORRENT_0_15
     // Skip file checking and directly start seeding
     if(addInSeed->isChecked()) {
       // Check if local file(s) actually exist
@@ -307,6 +311,7 @@ public slots:
         return;
       }
     }
+#endif
     // Check if there is at least one selected file
     if(allFiltered()){
       QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));

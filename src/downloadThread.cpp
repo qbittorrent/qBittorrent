@@ -43,7 +43,9 @@ downloadThread::downloadThread(QObject* parent) : QObject(parent) {
 }
 
 downloadThread::~downloadThread(){
+  qDebug("Deleting network manager");
   delete networkManager;
+  qDebug("Deleted network manager");
 }
 
 void downloadThread::processDlFinished(QNetworkReply* reply) {

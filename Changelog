@@ -1,19 +1,6 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
-    - FEATURE: Added per-torrent super seeding mode
     - FEATURE: Added program option to disable splash screen
-    - FEATURE: Support for storing symbolic links in .torrent files
-    - FEATURE: Support for uTorrent interpretation of multi-tracker torrents
-    - FEATURE: Handle torrents with duplicate filenames
-    - FEATURE: Support for merkle hash tree torrents (.merkle.torrent)
-    - FEATURE: Metadata download from swarm is now compatible with µtorrent
-    - FEATURE: Support tracker exchange between peers
-    - FEATURE: Better http seed support
-    - FEATURE: Tracker connections are now also subject to IP filtering
-    - FEATURE: Include DHT traffic in the rate limiter
-    - FEATURE: Support for bitcomet padding files
-    - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris)
     - FEATURE: Dropped dependency on libcurl and libzzip
-    - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is required)
     - FEATURE: Display more information regarding the torrent in its properties
     - FEATURE: Various optimizations to save CPU and memory
     - FEATURE: Folder scanning now works with CIFS and NFS mounted folders
@@ -25,6 +12,19 @@
     - FEATURE: New peers can manually be added to the torrents
     - FEATURE: Support per-peer rate limiting
     - FEATURE: Support peer manual ban
+    - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is now required)
+    - FEATURE: Added per-torrent super seeding mode (libtorrent >= v0.15 only)
+    - FEATURE: Support for storing symbolic links in .torrent files (libtorrent >= v0.15 only)
+    - FEATURE: Support for uTorrent interpretation of multi-tracker torrents (libtorrent >= v0.15 only)
+    - FEATURE: Handle torrents with duplicate filenames (libtorrent >= v0.15 only)
+    - FEATURE: Support for merkle hash tree torrents (.merkle.torrent) (libtorrent >= v0.15 only)
+    - FEATURE: Metadata download from swarm is now compatible with µtorrent (libtorrent >= v0.15 only)
+    - FEATURE: Support tracker exchange between peers (libtorrent >= v0.15 only)
+    - FEATURE: Better http seed support (libtorrent >= v0.15 only)
+    - FEATURE: Tracker connections are now also subject to IP filtering (libtorrent >= v0.15 only)
+    - FEATURE: Include DHT traffic in the rate limiter (libtorrent >= v0.15 only)
+    - FEATURE: Support for bitcomet padding files (libtorrent >= v0.15 only)
+    - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris) (libtorrent >= v0.15 only)
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window
