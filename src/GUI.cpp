@@ -196,14 +196,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   // Accept drag 'n drops
   setAcceptDrops(true);
   createKeyboardShortcuts();
-  // Create status bar
-  status_bar = new StatusBar(QMainWindow::statusBar(), BTSession);
 
   show();
 
   // Load Window state and sizes
   readSettings();
   properties->readSettings();
+  // Create status bar
+  status_bar = new StatusBar(QMainWindow::statusBar(), BTSession);
 
   if(Preferences::startMinimized()) {
     setWindowState(Qt::WindowMinimized);

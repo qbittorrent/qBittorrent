@@ -33,6 +33,7 @@
     - COSMETIC: Added a "torrent status" column to transfer list
     - COSMETIC: Display Seeds and Peers in two separate columns
     - COSMETIC: New deletion confirmation dialog (Merged delete/delete permanently actions)
+    - COSMETIC: Improved status bar layout spacing
 
 * Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support

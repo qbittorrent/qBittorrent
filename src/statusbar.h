@@ -35,6 +35,8 @@
 #include <QFrame>
 #include <QLabel>
 #include <QTimer>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include "bittorrent.h"
 #include "misc.h"
 
@@ -52,17 +54,29 @@ private:
   QFrame *statusSep4;  
   QLabel *connecStatusLblIcon;
   QTimer *refreshTimer;
+  QWidget *container;
+  QGridLayout *layout;
   bittorrent *BTSession;
 
 public:
   StatusBar(QStatusBar *bar, bittorrent *BTSession): bar(bar), BTSession(BTSession) {
+    container = new QWidget();
+    layout = new QGridLayout(bar);
+    layout->setVerticalSpacing(0);
+    layout->setContentsMargins(0,0,0,0);
+
+    container->setLayout(layout);
     connecStatusLblIcon = new QLabel();
+    connecStatusLblIcon->setFixedWidth(22);
     connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
     connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
     dlSpeedLbl = new QLabel(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     upSpeedLbl = new QLabel(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
+    DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     statusSep1 = new QFrame();
     statusSep1->setFixedWidth(1);
     statusSep1->setFrameStyle(QFrame::Box);
@@ -73,14 +87,31 @@ public:
     statusSep3->setFixedWidth(1);
     statusSep3->setFrameStyle(QFrame::Box);
     statusSep4 = new QFrame();
-    bar->addPermanentWidget(DHTLbl);
-    bar->addPermanentWidget(statusSep1);
-    bar->addPermanentWidget(connecStatusLblIcon);
-    bar->addPermanentWidget(statusSep2);
-    bar->addPermanentWidget(dlSpeedLbl);
-    bar->addPermanentWidget(statusSep3);
-    bar->addPermanentWidget(upSpeedLbl);
+    layout->addWidget(DHTLbl, 0, 0);
+    layout->setColumnStretch(0, 1);
+    layout->addWidget(statusSep1, 0, 1);
+    layout->setColumnStretch(1, 0);
+    layout->addWidget(connecStatusLblIcon, 0, 2);
+    layout->setColumnStretch(2, 0);
+    layout->addWidget(statusSep2, 0, 3);
+    layout->setColumnStretch(3, 0);
+    layout->addWidget(dlSpeedLbl, 0, 4);
+    layout->setColumnStretch(4, 1);
+    layout->addWidget(statusSep3, 0, 5);
+    layout->setColumnStretch(5, 0);
+    layout->addWidget(upSpeedLbl, 0, 6);
+    layout->setColumnStretch(6, 1);
 
+    bar->addPermanentWidget(container);
+    container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    //container->setBaseSize(bar->width()-24, 24);
+    //container->setFixedWidth(bar->width()-24);
+    bar->setStyleSheet("QWidget {padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;};");
+    container->setContentsMargins(0, 0, 0, 1);
+    bar->setContentsMargins(0, 0, 0, 0);
+    container->setFixedHeight(24);
+    bar->setContentsMargins(12, 0, 12, 0);
+    bar->setFixedHeight(26);
     refreshTimer = new QTimer(bar);
     connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
     refreshTimer->start(1500);
@@ -95,6 +126,8 @@ public:
     delete statusSep2;
     delete statusSep3;
     delete connecStatusLblIcon;
+    delete layout;
+    delete container;
   }
 
 public slots:

@@ -17,7 +17,11 @@
    <string/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout"/>
+   <layout class="QVBoxLayout">
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
