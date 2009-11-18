@@ -213,7 +213,7 @@ public:
       if(iso[1] == 'A') return QIcon(":/Icons/flags/south_africa.png");
       break;
     }
-    qDebug("Unrecognized country code: %s", iso);
+    qDebug("Unrecognized country code: %c%c", iso[0], iso[1]);
     return QIcon();
   }
 };
