@@ -51,7 +51,6 @@ private:
   QFrame *statusSep1;
   QFrame *statusSep2;
   QFrame *statusSep3;
-  QFrame *statusSep4;  
   QLabel *connecStatusLblIcon;
   QTimer *refreshTimer;
   QWidget *container;
@@ -78,15 +77,17 @@ public:
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
     DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     statusSep1 = new QFrame();
-    statusSep1->setFixedWidth(1);
-    statusSep1->setFrameStyle(QFrame::Box);
+    statusSep1->setFixedSize(1, 18);
+    statusSep1->setFrameStyle(QFrame::VLine);
+    statusSep1->setFrameShadow(QFrame::Raised);
     statusSep2 = new QFrame();
-    statusSep2->setFixedWidth(1);
-    statusSep2->setFrameStyle(QFrame::Box);
+    statusSep2->setFixedSize(1, 18);
+    statusSep2->setFrameStyle(QFrame::VLine);
+    statusSep2->setFrameShadow(QFrame::Raised);
     statusSep3 = new QFrame();
-    statusSep3->setFixedWidth(1);
-    statusSep3->setFrameStyle(QFrame::Box);
-    statusSep4 = new QFrame();
+    statusSep3->setFixedSize(1, 18);
+    statusSep3->setFrameStyle(QFrame::VLine);
+    statusSep3->setFrameShadow(QFrame::Raised);
     layout->addWidget(DHTLbl, 0, 0);
     layout->setColumnStretch(0, 1);
     layout->addWidget(statusSep1, 0, 1);
@@ -104,8 +105,6 @@ public:
 
     bar->addPermanentWidget(container);
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    //container->setBaseSize(bar->width()-24, 24);
-    //container->setFixedWidth(bar->width()-24);
     bar->setStyleSheet("QWidget {padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;};");
     container->setContentsMargins(0, 0, 0, 1);
     bar->setContentsMargins(0, 0, 0, 0);
