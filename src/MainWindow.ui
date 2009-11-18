@@ -25,7 +25,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>23</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -38,10 +38,8 @@
     <addaction name="actionStart"/>
     <addaction name="actionPause"/>
     <addaction name="separator"/>
-    <addaction name="actionTorrent_Properties"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
-    <addaction name="actionDelete_Permanently"/>
     <addaction name="actionDecreasePriority"/>
     <addaction name="actionIncreasePriority"/>
    </widget>
@@ -107,9 +105,6 @@
    <addaction name="actionDownload_from_URL"/>
    <addaction name="separator"/>
    <addaction name="actionDelete"/>
-   <addaction name="actionDelete_Permanently"/>
-   <addaction name="separator"/>
-   <addaction name="actionTorrent_Properties"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
@@ -172,16 +167,6 @@
   <action name="actionWebsite">
    <property name="text">
     <string>Visit website</string>
-   </property>
-  </action>
-  <action name="actionDelete_Permanently">
-   <property name="text">
-    <string>Delete Permanently</string>
-   </property>
-  </action>
-  <action name="actionTorrent_Properties">
-   <property name="text">
-    <string>Torrent Properties</string>
    </property>
   </action>
   <action name="actionDownload_from_URL">

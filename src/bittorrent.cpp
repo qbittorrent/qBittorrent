@@ -526,7 +526,7 @@ void bittorrent::banIP(QString ip) {
 
 // Delete a torrent from the session, given its hash
 // permanent = true means that the torrent will be removed from the hard-drive too
-void bittorrent::deleteTorrent(QString hash, bool permanent) {
+void bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
   qDebug("Deleting torrent with hash: %s", hash.toLocal8Bit().data());
   QTorrentHandle h = getTorrentHandle(hash);
   if(!h.is_valid()) {
@@ -536,7 +536,7 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   QString savePath = h.save_path();
   QString fileName = h.name();
   // Remove it from session
-  if(permanent)
+  if(delete_local_files)
     s->remove_torrent(h.get_torrent_handle(), session::delete_files);
   else
     s->remove_torrent(h.get_torrent_handle());
@@ -551,10 +551,10 @@ void bittorrent::deleteTorrent(QString hash, bool permanent) {
   TorrentPersistentData::deletePersistentData(hash);
   // Remove tracker errors
   trackersErrors.remove(hash);
-  if(permanent)
-    addConsoleMessage(tr("'%1' was removed permanently.", "'xxx.avi' was removed permanently.").arg(fileName));
+  if(delete_local_files)
+    addConsoleMessage(tr("'%1' was removed from transfer list and hard disk.", "'xxx.avi' was removed...").arg(fileName));
   else
-    addConsoleMessage(tr("'%1' was removed.", "'xxx.avi' was removed.").arg(fileName));
+    addConsoleMessage(tr("'%1' was removed from transfer list.", "'xxx.avi' was removed...").arg(fileName));
   emit deletedTorrent(hash);
 }
 

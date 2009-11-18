@@ -18,7 +18,8 @@ DEFINES += VERSION=\\\"v2.0.0beta2\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
-#!mac:QMAKE_LFLAGS += -Wl,--as-needed
+
+# !mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
     CONFIG += debug
     CONFIG -= release
@@ -192,7 +193,8 @@ HEADERS += GUI.h \
     reverseresolution.h \
     preferences.h \
     geoip.h \
-    peeraddition.h
+    peeraddition.h \
+    deletionconfirmationdlg.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \
@@ -210,7 +212,8 @@ FORMS += MainWindow.ui \
     console.ui \
     FeedDownloader.ui \
     propertiesWidget.ui \
-    peer.ui
+    peer.ui \
+    confirmdeletiondlg.ui
 SOURCES += GUI.cpp \
     main.cpp \
     options_imp.cpp \

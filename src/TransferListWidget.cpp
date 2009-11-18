@@ -35,6 +35,7 @@
 #include "previewSelect.h"
 #include "speedlimitdlg.h"
 #include "options_imp.h"
+#include "deletionconfirmationdlg.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QDesktopServices>
@@ -477,46 +478,19 @@ void TransferListWidget::pauseAllTorrents() {
 void TransferListWidget::deleteSelectedTorrents() {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   if(!selectedIndexes.empty()) {
-    int ret = QMessageBox::question(
-        this,
-        tr("Deletion confirmation"),
-        tr("Are you sure you want to delete the selected torrents from transfer list?"),
-        tr("&Yes"), tr("&No"),
-        QString(), 0, 1);
-    if(ret) return;
-    QStringList hashes;
-    foreach(const QModelIndex &index, selectedIndexes) {
-      // Get the file hash
-      hashes << getHashFromRow(proxyModel->mapToSource(index).row());
+    bool delete_local_files = false;
+    if(DeletionConfirmationDlg::askForDeletionConfirmation(&delete_local_files)) {
+      QStringList hashes;
+      foreach(const QModelIndex &index, selectedIndexes) {
+        // Get the file hash
+        hashes << getHashFromRow(proxyModel->mapToSource(index).row());
+      }
+      foreach(const QString &hash, hashes) {
+        deleteTorrent(getRowFromHash(hash), false);
+        BTSession->deleteTorrent(hash, delete_local_files);
+      }
+      refreshList();
     }
-    foreach(const QString &hash, hashes) {
-      deleteTorrent(getRowFromHash(hash), false);
-      BTSession->deleteTorrent(hash, false);
-    }
-    refreshList();
-  }
-}
-
-void TransferListWidget::deletePermSelectedTorrents() {
-  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-  if(!selectedIndexes.empty()) {
-    int ret = QMessageBox::question(
-        this,
-        tr("Deletion confirmation"),
-        tr("Are you sure you want to delete the selected torrents from transfe list and hard disk?"),
-        tr("&Yes"), tr("&No"),
-        QString(), 0, 1);
-    if(ret) return;
-    QStringList hashes;
-    foreach(const QModelIndex &index, selectedIndexes) {
-      // Get the file hash
-      hashes << getHashFromRow(proxyModel->mapToSource(index).row());
-    }
-    foreach(const QString &hash, hashes) {
-      deleteTorrent(getRowFromHash(hash), false);
-      BTSession->deleteTorrent(hash, true);
-    }
-    refreshList();
   }
 }
 
@@ -765,8 +739,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
   QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png")), tr("Limit download rate"), 0);
   connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
-  QAction actionDelete_Permanently(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")), tr("Delete Permanently"), 0);
-  connect(&actionDelete_Permanently, SIGNAL(triggered()), this, SLOT(deletePermSelectedTorrents()));
   QAction actionOpen_destination_folder(QIcon(QString::fromUtf8(":/Icons/oxygen/folder.png")), tr("Open destination folder"), 0);
   connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
   QAction actionBuy_it(QIcon(QString::fromUtf8(":/Icons/oxygen/wallet.png")), tr("Buy it"), 0);
@@ -833,7 +805,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   }
   listMenu.addSeparator();
   listMenu.addAction(&actionDelete);
-  listMenu.addAction(&actionDelete_Permanently);
   listMenu.addSeparator();
   if(one_not_seed)
     listMenu.addAction(&actionSet_download_limit);

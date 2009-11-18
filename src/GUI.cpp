@@ -121,8 +121,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   prioSeparator2 = menu_Edit->insertSeparator(actionDecreasePriority);
   prioSeparator->setVisible(false);
   prioSeparator2->setVisible(false);
-  actionDelete_Permanently->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete_perm.png")));
-  actionTorrent_Properties->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/properties.png")));
   actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(7);
@@ -158,7 +156,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(actionPause, SIGNAL(triggered()), transferList, SLOT(pauseSelectedTorrents()));
   connect(actionPause_All, SIGNAL(triggered()), transferList, SLOT(pauseAllTorrents()));
   connect(actionDelete, SIGNAL(triggered()), transferList, SLOT(deleteSelectedTorrents()));
-  connect(actionDelete_Permanently, SIGNAL(triggered()), transferList, SLOT(deletePermSelectedTorrents()));
   connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
 
@@ -397,10 +394,8 @@ void GUI::createKeyboardShortcuts() {
   connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
-  actionTorrent_Properties->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
   actionOptions->setShortcut(QKeySequence(QString::fromUtf8("Alt+O")));
   actionDelete->setShortcut(QKeySequence(QString::fromUtf8("Del")));
-  actionDelete_Permanently->setShortcut(QKeySequence(QString::fromUtf8("Shift+Del")));
   actionStart->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+S")));
   actionStart_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+S")));
   actionPause->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+P")));

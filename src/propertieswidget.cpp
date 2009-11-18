@@ -67,6 +67,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   url_seeds_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   files_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   main_infos_button->setStyleSheet(DEFAULT_BUTTON_CSS);
+  main_infos_button->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
 
   // Set Properties list model
   PropListModel = new TorrentFilesModel();

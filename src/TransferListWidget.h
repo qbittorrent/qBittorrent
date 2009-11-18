@@ -92,7 +92,6 @@ public slots:
   void pauseSelectedTorrents();
   void pauseAllTorrents();
   void deleteSelectedTorrents();
-  void deletePermSelectedTorrents();
   void increasePrioSelectedTorrents();
   void decreasePrioSelectedTorrents();
   void buySelectedTorrents() const;

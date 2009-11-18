@@ -119,7 +119,7 @@ class bittorrent : public QObject {
     void loadSessionState();
     void saveSessionState();
     void downloadFromUrl(QString url);
-    void deleteTorrent(QString hash, bool permanent = false);
+    void deleteTorrent(QString hash, bool delete_local_files = false);
     void startUpTorrents();
     /* Needed by Web UI */
     void pauseAllTorrents();
