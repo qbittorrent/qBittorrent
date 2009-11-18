@@ -18,7 +18,7 @@ DEFINES += VERSION=\\\"v2.0.0beta2\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
-!mac:QMAKE_LFLAGS += -Wl,--as-needed
+#!mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
     CONFIG += debug
     CONFIG -= release
