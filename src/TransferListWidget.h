@@ -77,6 +77,9 @@ protected slots:
   void currentChanged(const QModelIndex& current, const QModelIndex&);
   void pauseTorrent(QTorrentHandle &h);
   void resumeTorrent(QTorrentHandle &h);
+#ifdef LIBTORRENT_0_15
+  void toggleSelectedTorrentsSuperSeeding();
+#endif
   //void setRowColor(int row, QColor color);
 
 public slots:

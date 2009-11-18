@@ -737,6 +737,20 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   setColumnHidden(col, !isColumnHidden(col));
 }
 
+#ifdef LIBTORRENT_0_15
+void TransferListWidget::toggleSelectedTorrentsSuperSeeding() {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  foreach(const QModelIndex &index, selectedIndexes) {
+    // Get the file hash
+    QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid()) {
+      h.super_seeding(!h.super_seeding());
+    }
+  }
+}
+#endif
+
 void TransferListWidget::displayListMenu(const QPoint&) {
   // Create actions
   QAction actionStart(QIcon(QString::fromUtf8(":/Icons/skin/play.png")), tr("Start"), 0);
@@ -765,12 +779,17 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
   QAction actionCopy_magnet_link(QIcon(QString::fromUtf8(":/Icons/magnet.png")), tr("Copy magnet link"), 0);
   connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
+  QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
+  connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
   // End of actions
   QMenu listMenu(this);
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
+  bool all_same_super_seeding = true;
+  bool super_seeding_mode = false;
   bool one_has_metadata = false, one_not_seed = false;
+  bool first = true;
   QTorrentHandle h;
   qDebug("Displaying menu");
   foreach(const QModelIndex &index, selectedIndexes) {
@@ -781,8 +800,19 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     if(!h.is_valid()) continue;
     if(h.has_metadata())
       one_has_metadata = true;
-    if(!h.is_seed())
+    if(!h.is_seed()) {
       one_not_seed = true;
+    } else {
+      if(!one_not_seed && all_same_super_seeding) {
+        if(first) {
+          super_seeding_mode = h.super_seeding();
+        } else {
+          if(super_seeding_mode != h.super_seeding()) {
+            all_same_super_seeding = false;
+          }
+        }
+      }
+    }
     if(h.is_paused()) {
       if(!has_start) {
         listMenu.addAction(&actionStart);
@@ -798,6 +828,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
       listMenu.addAction(&actionPreview_file);
       has_preview = true;
     }
+    first = false;
     if(has_pause && has_start && has_preview && one_not_seed) break;
   }
   listMenu.addSeparator();
@@ -807,6 +838,16 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   if(one_not_seed)
     listMenu.addAction(&actionSet_download_limit);
   listMenu.addAction(&actionSet_upload_limit);
+  if(!one_not_seed && all_same_super_seeding) {
+    QIcon ico;
+    if(super_seeding_mode) {
+      ico = QIcon(":/Icons/oxygen/button_ok.png");
+    } else {
+      ico = QIcon(":/Icons/oxygen/button_cancel.png");
+    }
+    actionSuper_seeding_mode.setIcon(ico);
+    listMenu.addAction(&actionSuper_seeding_mode);
+  }
   listMenu.addSeparator();
   if(one_has_metadata) {
     listMenu.addAction(&actionForce_recheck);
