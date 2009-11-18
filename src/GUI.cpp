@@ -237,8 +237,7 @@ GUI::~GUI() {
   // Keyboard shortcuts
   delete switchSearchShortcut;
   delete switchSearchShortcut2;
-  delete switchDownShortcut;
-  delete switchUpShortcut;
+  delete switchTransferShortcut;
   delete switchRSSShortcut;
   qDebug("4");
   delete BTSession;
@@ -305,8 +304,8 @@ void GUI::createKeyboardShortcuts() {
   actionCreate_torrent->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+N")));
   actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
   actionExit->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Q")));
-  switchDownShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
-  connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
+  switchTransferShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
+  connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
   switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to third tab")), this);
   connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchSearchShortcut2 = new QShortcut(QKeySequence(tr("Ctrl+F", "shortcut to switch to search tab")), this);

@@ -87,8 +87,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
     QShortcut *switchSearchShortcut2;
-    QShortcut *switchDownShortcut;
-    QShortcut *switchUpShortcut;
+    QShortcut *switchTransferShortcut;
     QShortcut *switchRSSShortcut;
     QAction *prioSeparator;
     QAction *prioSeparator2;
