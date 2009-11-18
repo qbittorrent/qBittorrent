@@ -66,13 +66,13 @@ class GUI : public QMainWindow, private Ui::MainWindow{
   private:
     // Bittorrent
     bittorrent *BTSession;
-    QTimer *guiUpdater;
-    QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers;
+    QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?
     // GUI related
+    QTimer *guiUpdater;
     QTabWidget *tabs;
     StatusBar *status_bar;
     QPointer<options_imp> options;
-    QSystemTrayIcon *myTrayIcon;
+    QPointer<QSystemTrayIcon> systrayIcon;
     QPointer<QTimer> systrayCreator;
     QMenu *myTrayIconMenu;
     TransferListWidget *transferList;
@@ -80,7 +80,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     PropertiesWidget *properties;
     QSplitter *hSplitter;
     QSplitter *vSplitter;
-    bool systrayIntegration;
     bool displaySpeedInTitle;
     bool force_exit;
     //unsigned int refreshInterval;

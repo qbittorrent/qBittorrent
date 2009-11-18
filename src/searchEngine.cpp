@@ -53,7 +53,7 @@
 #define SEARCHHISTORY_MAXSIZE 50
 
 /*SEARCH ENGINE START*/
-SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration) : QWidget(), BTSession(BTSession), myTrayIcon(myTrayIcon), systrayIntegration(systrayIntegration){
+SearchEngine::SearchEngine(bittorrent *BTSession, QSystemTrayIcon *systrayIcon) : QWidget(), BTSession(BTSession), systrayIcon(systrayIcon) {
   setupUi(this);
   // new qCompleter to the search pattern
   startSearchHistory();
@@ -428,8 +428,8 @@ void SearchEngine::updateNova() {
 void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   QSettings settings("qBittorrent", "qBittorrent");
   bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
-  if(systrayIntegration && useNotificationBalloons) {
-    myTrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+  if(systrayIcon && useNotificationBalloons) {
+    systrayIcon->showMessage(tr("Search Engine"), tr("Search has finished"), QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
   if(exitcode){
     search_status->setText(tr("An error occured during search..."));

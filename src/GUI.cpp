@@ -80,23 +80,6 @@ enum TabIndex{TAB_TRANSFER, TAB_SEARCH, TAB_RSS};
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false) {
   setupUi(this);
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
-  systrayIntegration = Preferences::systrayIntegration();
-  systrayCreator = 0;
-  // Create tray icon
-  if (QSystemTrayIcon::isSystemTrayAvailable()) {
-    if(systrayIntegration) {
-      createTrayIcon();
-    }
-  }else{
-    if(systrayIntegration) {
-      // May be system startup, check again later
-      systrayCreator = new QTimer(this);
-      connect(systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
-      systrayCreator->start(1000);
-    }
-    systrayIntegration = false;
-    qDebug("Info: System tray unavailable");
-  }
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -161,7 +144,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
 
   // Search engine tab
-  searchEngine = new SearchEngine(BTSession, myTrayIcon, systrayIntegration);
+  searchEngine = new SearchEngine(BTSession, systrayIcon);
   tabs->addTab(searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
 
   // Configure BT session according to options
@@ -225,8 +208,8 @@ GUI::~GUI() {
   if(systrayCreator) {
     delete systrayCreator;
   }
-  if(systrayIntegration) {
-    delete myTrayIcon;
+  if(systrayIcon) {
+    delete systrayIcon;
     delete myTrayIconMenu;
   }
   qDebug("2");
@@ -495,7 +478,7 @@ void GUI::closeEvent(QCloseEvent *e) {
 
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
-  if(!force_exit && systrayIntegration && goToSystrayOnExit && !this->isHidden()) {
+  if(!force_exit && systrayIcon && goToSystrayOnExit && !this->isHidden()) {
     hide();
     //e->ignore();
     e->accept();
@@ -518,9 +501,9 @@ void GUI::closeEvent(QCloseEvent *e) {
     }
   }
   hide();
-  if(systrayIntegration) {
+  if(systrayIcon) {
     // Hide tray icon
-    myTrayIcon->hide();
+    systrayIcon->hide();
   }
   // Save window size, columns size
   writeSettings();
@@ -542,7 +525,7 @@ bool GUI::event(QEvent * e) {
     if(isMinimized()) {
       qDebug("minimisation");
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-      if(systrayIntegration && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
+      if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
         hide();
       }
     }
@@ -682,16 +665,27 @@ void GUI::optionsSaved() {
 void GUI::loadPreferences(bool configure_session) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
   bool newSystrayIntegration = Preferences::systrayIntegration();
-  if(newSystrayIntegration != systrayIntegration) {
+  if(newSystrayIntegration != (systrayIcon!=0)) {
     if(newSystrayIntegration) {
       // create the trayicon
-      createTrayIcon();
+      if(!QSystemTrayIcon::isSystemTrayAvailable()) {
+        if(!configure_session) { // Program startup
+          systrayCreator = new QTimer(this);
+          connect(systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
+          systrayCreator->setSingleShot(true);
+          systrayCreator->start(2000);
+          qDebug("Info: System tray is unavailable, trying again later.");
+        }  else {
+          qDebug("Warning: System tray is unavailable.");
+        }
+      } else {
+        createTrayIcon();
+      }
     } else {
       // Destroy trayicon
-      delete myTrayIcon;
+      delete systrayIcon;
       delete myTrayIconMenu;
     }
-    systrayIntegration = newSystrayIntegration;
   }
   // General
   bool new_displaySpeedInTitle = Preferences::speedInTitleBar();
@@ -765,7 +759,7 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 // Check connection status and display right icon
 void GUI::updateGUI() {
   // update global informations
-  if(systrayIntegration) {
+  if(systrayIcon) {
 #ifdef Q_WS_WIN
     // Windows does not support html here
     QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)));
@@ -782,7 +776,7 @@ void GUI::updateGUI() {
     html += "<img src=':/Icons/skin/seeding.png'/>&nbsp;"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)));
     html += "</div>";
 #endif
-    myTrayIcon->setToolTip(html); // tray icon
+    systrayIcon->setToolTip(html); // tray icon
   }
   if(displaySpeedInTitle) {
     QString dl_rate = QByteArray::number(BTSession->getSessionStatus().payload_download_rate/1024, 'f', 1);
@@ -793,8 +787,8 @@ void GUI::updateGUI() {
 
 void GUI::showNotificationBaloon(QString title, QString msg) const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(systrayIntegration && settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool()) {
-    myTrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+  if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool()) {
+    systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
   }
 }
 
@@ -821,22 +815,24 @@ void GUI::downloadFromURLList(const QStringList& url_list) {
  *****************************************************/
 
 void GUI::createSystrayDelayed() {
-  static int timeout = 10;
+  static int timeout = 20;
   if(QSystemTrayIcon::isSystemTrayAvailable()) {
     // Ok, systray integration is now supported
     // Create systray icon
     createTrayIcon();
-    systrayIntegration = true;
     delete systrayCreator;
   } else {
     if(timeout) {
       // Retry a bit later
-      systrayCreator->start(1000);
+      systrayCreator->start(2000);
       --timeout;
     } else {
       // Timed out, apparently system really does not
       // support systray icon
       delete systrayCreator;
+      // Disable it in program preferences to
+      // avoid trying at earch startup
+      Preferences::setSystrayIntegration(false);
     }
   }
 }
@@ -844,10 +840,10 @@ void GUI::createSystrayDelayed() {
 void GUI::createTrayIcon() {
   // Tray icon
 #ifdef Q_WS_WIN
-  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent16.png")), this);
+  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent16.png")), this);
 #endif
 #ifndef Q_WS_WIN
-  myTrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")), this);
+  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")), this);
 #endif
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
@@ -861,11 +857,11 @@ void GUI::createTrayIcon() {
   myTrayIconMenu->addAction(actionPause_All);
   myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionExit);
-  myTrayIcon->setContextMenu(myTrayIconMenu);
-  connect(myTrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
+  systrayIcon->setContextMenu(myTrayIconMenu);
+  connect(systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
   // End of Icon Menu
-  connect(myTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
-  myTrayIcon->show();
+  connect(systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
+  systrayIcon->show();
 }
 
 // Display Program Options

@@ -63,8 +63,7 @@ private:
   QPointer<QCompleter> searchCompleter;
   QStringListModel searchHistory;
   bittorrent *BTSession;
-  QSystemTrayIcon *myTrayIcon;
-  bool systrayIntegration;
+  QSystemTrayIcon *systrayIcon;
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
   SearchTab *currentSearchTab;
@@ -72,7 +71,7 @@ private:
   QList<SearchTab*> all_tab; // To store all tabs
   const SearchCategories full_cat_names;
 public:
-  SearchEngine(bittorrent *BTSession, QSystemTrayIcon *myTrayIcon, bool systrayIntegration);
+  SearchEngine(bittorrent *BTSession, QSystemTrayIcon *systrayIcon);
   ~SearchEngine();
   float getPluginVersion(QString filePath) const;
   QString selectedCategory() const;

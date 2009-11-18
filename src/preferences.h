@@ -67,6 +67,11 @@ public:
     return settings.value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
   }
 
+  static void setSystrayIntegration(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/SystrayEnabled"), enabled);
+  }
+
   static bool isToolbarDisplayed() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/General/ToolbarDisplayed"), true).toBool();
