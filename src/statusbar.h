@@ -88,7 +88,7 @@ public:
     statusSep3->setFixedSize(3, 18);
     statusSep3->setFrameStyle(QFrame::VLine);
     statusSep3->setFrameShadow(QFrame::Raised);
-    layout->addWidget(DHTLbl, 0, 0, Qt::AlignRight);
+    layout->addWidget(DHTLbl, 0, 0, Qt::AlignLeft);
     //layout->setColumnStretch(0, 10);
     layout->addWidget(statusSep1, 0, 1, Qt::AlignRight);
     //layout->setColumnStretch(1, 1);
@@ -96,7 +96,7 @@ public:
     //layout->setColumnStretch(2, 1);
     layout->addWidget(statusSep2, 0, 3, Qt::AlignLeft);
     //layout->setColumnStretch(3, 1);
-    layout->addWidget(dlSpeedLbl, 0, 4);
+    layout->addWidget(dlSpeedLbl, 0, 4, Qt::AlignLeft);
     //layout->setColumnStretch(4, 10);
     layout->addWidget(statusSep3, 0, 5, Qt::AlignLeft);
     //layout->setColumnStretch(5, 10);

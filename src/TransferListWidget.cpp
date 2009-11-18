@@ -239,69 +239,66 @@ int TransferListWidget::updateTorrent(int row) {
     return s;
   }
   try {
-    if(!h.is_seed()) {
-      // Queueing code
-      if(BTSession->isQueueingEnabled()) {
-        listModel->setData(listModel->index(row, PRIORITY), QVariant((int)h.queue_position()));
-        if(h.is_queued()) {
-          if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
-            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
-            listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
-          }else {
-            listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/mail-queue.png"))), Qt::DecorationRole);
-            listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
-          }
-          s = STATE_QUEUED;
-          listModel->setData(listModel->index(row, STATUS), STATE_QUEUED);
-          // Reset speeds and seeds/leech
-          listModel->setData(listModel->index(row, DLSPEED), QVariant((double)0.));
-          listModel->setData(listModel->index(row, UPSPEED), QVariant((double)0.));
-          listModel->setData(listModel->index(row, SEEDS), QVariant(0.0));
-          listModel->setData(listModel->index(row, PEERS), QVariant(0.0));
-          //setRowColor(row, QString::fromUtf8("grey"));
-          return s;
-        }
-      }
-      if(h.is_paused()) return STATE_PAUSED;
-
-      // Parse download state
-      switch(h.state()) {
-      case torrent_status::allocating:
-      case torrent_status::checking_files:
-      case torrent_status::queued_for_checking:
-      case torrent_status::checking_resume_data:
-        listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
-        listModel->setData(listModel->index(row, STATUS), STATE_CHECKING);
-        s = STATE_CHECKING;
-        listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
-        //setRowColor(row, QString::fromUtf8("grey"));
-        break;
-      case torrent_status::downloading:
-      case torrent_status::downloading_metadata:
-        if(h.download_payload_rate() > 0) {
-          listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
-          listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
-          listModel->setData(listModel->index(row, STATUS), STATE_DOWNLOADING);
-          s = STATE_DOWNLOADING;
-          //setRowColor(row, QString::fromUtf8("green"));
-        }else{
-          listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
+    // Queueing code
+    if(!h.is_seed() && BTSession->isQueueingEnabled()) {
+      listModel->setData(listModel->index(row, PRIORITY), QVariant((int)h.queue_position()));
+      if(h.is_queued()) {
+        if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
+          listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
+          listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
+        }else {
+          listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/mail-queue.png"))), Qt::DecorationRole);
           listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
-          listModel->setData(listModel->index(row, STATUS), STATE_STALLED);
-          s = STATE_STALLED;
-          //setRowColor(row, QApplication::palette().color(QPalette::WindowText));
         }
-        listModel->setData(listModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
-        break;
-      case torrent_status::finished:
-      case torrent_status::seeding:
-        listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
-        listModel->setData(listModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
-        listModel->setData(listModel->index(row, STATUS), STATE_SEEDING);
-        s = STATE_SEEDING;
+        s = STATE_QUEUED;
+        listModel->setData(listModel->index(row, STATUS), STATE_QUEUED);
+        // Reset speeds and seeds/leech
+        listModel->setData(listModel->index(row, DLSPEED), QVariant((double)0.));
+        listModel->setData(listModel->index(row, UPSPEED), QVariant((double)0.));
+        listModel->setData(listModel->index(row, SEEDS), QVariant(0.0));
+        listModel->setData(listModel->index(row, PEERS), QVariant(0.0));
+        //setRowColor(row, QString::fromUtf8("grey"));
+        return s;
       }
     }
+    if(h.is_paused()) return STATE_PAUSED;
 
+    // Parse download state
+    switch(h.state()) {
+    case torrent_status::allocating:
+    case torrent_status::checking_files:
+    case torrent_status::queued_for_checking:
+    case torrent_status::checking_resume_data:
+      listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
+      listModel->setData(listModel->index(row, STATUS), STATE_CHECKING);
+      s = STATE_CHECKING;
+      listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
+      //setRowColor(row, QString::fromUtf8("grey"));
+      break;
+    case torrent_status::downloading:
+    case torrent_status::downloading_metadata:
+      if(h.download_payload_rate() > 0) {
+        listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/downloading.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)BTSession->getETA(hash)));
+        listModel->setData(listModel->index(row, STATUS), STATE_DOWNLOADING);
+        s = STATE_DOWNLOADING;
+        //setRowColor(row, QString::fromUtf8("green"));
+      }else{
+        listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
+        listModel->setData(listModel->index(row, STATUS), STATE_STALLED);
+        s = STATE_STALLED;
+        //setRowColor(row, QApplication::palette().color(QPalette::WindowText));
+      }
+      listModel->setData(listModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
+      break;
+    case torrent_status::finished:
+    case torrent_status::seeding:
+      listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
+      listModel->setData(listModel->index(row, UPSPEED), QVariant((double)h.upload_payload_rate()));
+      listModel->setData(listModel->index(row, STATUS), STATE_SEEDING);
+      s = STATE_SEEDING;
+    }
     // Common to both downloads and uploads
     listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
     listModel->setData(listModel->index(row, DLSPEED), QVariant((double)h.download_payload_rate()));
