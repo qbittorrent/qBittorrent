@@ -194,7 +194,8 @@ HEADERS += GUI.h \
     preferences.h \
     geoip.h \
     peeraddition.h \
-    deletionconfirmationdlg.h
+    deletionconfirmationdlg.h \
+    statusbar.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \

@@ -59,6 +59,7 @@ class TransferListWidget;
 class TransferListFiltersWidget;
 class QSplitter;
 class PropertiesWidget;
+class StatusBar;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -66,10 +67,11 @@ class GUI : public QMainWindow, private Ui::MainWindow{
   private:
     // Bittorrent
     bittorrent *BTSession;
-    QTimer *checkConnect;
+    QTimer *guiUpdater;
     QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers;
     // GUI related
     QTabWidget *tabs;
+    StatusBar *status_bar;
     QPointer<options_imp> options;
     QSystemTrayIcon *myTrayIcon;
     QPointer<QTimer> systrayCreator;
@@ -79,19 +81,10 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     PropertiesWidget *properties;
     QSplitter *hSplitter;
     QSplitter *vSplitter;
-    QLabel *connecStatusLblIcon;
     bool systrayIntegration;
     bool displaySpeedInTitle;
     bool force_exit;
     //unsigned int refreshInterval;
-    QLabel *dlSpeedLbl;
-    QLabel *upSpeedLbl;
-    QLabel *ratioLbl;
-    QLabel *DHTLbl;
-    QFrame *statusSep1;
-    QFrame *statusSep2;
-    QFrame *statusSep3;
-    QFrame *statusSep4;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
     QShortcut *switchSearchShortcut2;
@@ -141,7 +134,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionSet_global_download_limit_triggered();
     void on_actionDocumentation_triggered() const;
     void on_actionOpen_triggered();
-    void checkConnectionStatus();
+    void updateGUI();
     void loadPreferences(bool configure_session=true);
     void processParams(const QStringList& params);
     void addTorrent(QString path);
@@ -161,7 +154,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
   public slots:
     void trackerAuthenticationRequired(QTorrentHandle& h);
     void setTabText(int index, QString text) const;
-    void updateRatio();
     void showNotificationBaloon(QString title, QString msg) const;
 
   protected:

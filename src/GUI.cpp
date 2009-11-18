@@ -66,6 +66,7 @@
 #include "torrentPersistentData.h"
 #include "TransferListFiltersWidget.h"
 #include "propertieswidget.h"
+#include "statusbar.h"
 
 using namespace libtorrent;
 enum TabIndex{TAB_TRANSFER, TAB_SEARCH, TAB_RSS};
@@ -189,41 +190,14 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   }
   connect(localServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
   // Start connection checking timer
-  checkConnect = new QTimer(this);
-  connect(checkConnect, SIGNAL(timeout()), this, SLOT(checkConnectionStatus()));
-  checkConnect->start(5000);
+  guiUpdater = new QTimer(this);
+  connect(guiUpdater, SIGNAL(timeout()), this, SLOT(updateGUI()));
+  guiUpdater->start(2000);
   // Accept drag 'n drops
   setAcceptDrops(true);
   createKeyboardShortcuts();
-  connecStatusLblIcon = new QLabel();
-  connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
-  connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
-  connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
-  dlSpeedLbl = new QLabel(tr("DL: %1 KiB/s").arg("0.0"));
-  upSpeedLbl = new QLabel(tr("UP: %1 KiB/s").arg("0.0"));
-  ratioLbl = new QLabel(tr("Ratio: %1").arg("1.0"));
-  DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
-  statusSep1 = new QFrame();
-  statusSep1->setFixedWidth(1);
-  statusSep1->setFrameStyle(QFrame::Box);
-  statusSep2 = new QFrame();
-  statusSep2->setFixedWidth(1);
-  statusSep2->setFrameStyle(QFrame::Box);
-  statusSep3 = new QFrame();
-  statusSep3->setFixedWidth(1);
-  statusSep3->setFrameStyle(QFrame::Box);
-  statusSep4 = new QFrame();
-  statusSep4->setFixedWidth(1);
-  statusSep4->setFrameStyle(QFrame::Box);
-  QMainWindow::statusBar()->addPermanentWidget(DHTLbl);
-  QMainWindow::statusBar()->addPermanentWidget(statusSep1);
-  QMainWindow::statusBar()->addPermanentWidget(connecStatusLblIcon);
-  QMainWindow::statusBar()->addPermanentWidget(statusSep2);
-  QMainWindow::statusBar()->addPermanentWidget(dlSpeedLbl);
-  QMainWindow::statusBar()->addPermanentWidget(statusSep3);
-  QMainWindow::statusBar()->addPermanentWidget(upSpeedLbl);
-  QMainWindow::statusBar()->addPermanentWidget(statusSep4);
-  QMainWindow::statusBar()->addPermanentWidget(ratioLbl);
+  // Create status bar
+  status_bar = new StatusBar(QMainWindow::statusBar(), BTSession);
 
   show();
 
@@ -242,14 +216,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 GUI::~GUI() {
   qDebug("GUI destruction");
   hide();
-  delete dlSpeedLbl;
-  delete upSpeedLbl;
-  delete ratioLbl;
-  delete DHTLbl;
-  delete statusSep1;
-  delete statusSep2;
-  delete statusSep3;
-  delete statusSep4;
+  delete status_bar;
   if(rssWidget)
     delete rssWidget;
   delete searchEngine;
@@ -258,7 +225,7 @@ GUI::~GUI() {
   delete transferList;
   delete hSplitter;
   delete vSplitter;
-  delete checkConnect;
+  delete guiUpdater;
   qDebug("1");
   if(systrayCreator) {
     delete systrayCreator;
@@ -270,7 +237,6 @@ GUI::~GUI() {
   qDebug("2");
   localServer->close();
   delete localServer;
-  delete connecStatusLblIcon;
   delete tabs;
   // HTTP Server
   if(httpServer)
@@ -300,25 +266,6 @@ void GUI::displayRSSTab(bool enable) {
       delete rssWidget;
     }
   }
-}
-
-void GUI::updateRatio() {
-  // Update ratio info
-  float ratio = 1.;
-  session_status sessionStatus = BTSession->getSessionStatus();
-  if(sessionStatus.total_payload_download == 0) {
-    if(sessionStatus.total_payload_upload == 0)
-      ratio = 1.;
-    else
-      ratio = 10.;
-  }else{
-    ratio = (double)sessionStatus.total_payload_upload / (double)sessionStatus.total_payload_download;
-    if(ratio > 10.)
-      ratio = 10.;
-  }
-  ratioLbl->setText(tr("Ratio: %1").arg(QString(QByteArray::number(ratio, 'f', 1))));
-  // Update DHT nodes
-  DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dht_nodes)));
 }
 
 void GUI::on_actionWebsite_triggered() const {
@@ -769,7 +716,7 @@ void GUI::loadPreferences(bool configure_session) {
   bool new_displaySpeedInTitle = Preferences::speedInTitleBar();
   if(!new_displaySpeedInTitle && new_displaySpeedInTitle != displaySpeedInTitle) {
     // Reset title
-    setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
+    setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent vx.x").arg(QString::fromUtf8(VERSION)));
   }
   displaySpeedInTitle = new_displaySpeedInTitle;
   if(Preferences::isToolbarDisplayed()) {
@@ -826,40 +773,6 @@ void GUI::addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker) {
   }
 }
 
-/*void GUI::updateLists(bool force) {
-  if(isVisible() || force) {
-    // update global informations
-    dlSpeedLbl->setText(tr("DL: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1))));
-    upSpeedLbl->setText(tr("UP: %1 KiB/s").arg(QString(QByteArray::number(BTSession->getPayloadUploadRate()/1024., 'f', 1))));
-    std::vector<torrent_handle> torrents = BTSession->getTorrents();
-    std::vector<torrent_handle>::iterator torrentIT;
-    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-      QTorrentHandle h = QTorrentHandle(*torrentIT);
-      if(!h.is_valid()) continue;
-      try {
-        if(h.is_seed()) {
-          // Update in finished list
-          finishedTorrentTab->updateTorrent(h);
-        } else {
-          // Update in download list
-          if(downloadingTorrentTab->updateTorrent(h)) {
-            // Torrent was added, we may need to remove it from finished tab
-            finishedTorrentTab->deleteTorrent(h.hash());
-            TorrentPersistentData::saveSeedStatus(h);
-          }
-        }
-      } catch(invalid_handle e) {
-        qDebug("Caught Invalid handle exception, lucky us.");
-      }
-    }
-  }
-  if(displaySpeedInTitle) {
-    QString dl_rate = QByteArray::number(BTSession->getSessionStatus().payload_download_rate/1024, 'f', 1);
-    QString up_rate = QByteArray::number(BTSession->getSessionStatus().payload_upload_rate/1024, 'f', 1);
-    setWindowTitle(tr("qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(dl_rate).arg(up_rate));
-  }
-}*/
-
 // Called when a tracker requires authentication
 void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
   if(unauthenticated_trackers.indexOf(QPair<QTorrentHandle,QString>(h, h.current_tracker())) < 0) {
@@ -869,10 +782,7 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 }
 
 // Check connection status and display right icon
-void GUI::checkConnectionStatus() {
-  //   qDebug("Checking connection status");
-  // Update Ratio
-  updateRatio();
+void GUI::updateGUI() {
   // update global informations
   if(systrayIntegration) {
 #ifdef Q_WS_WIN
@@ -893,14 +803,10 @@ void GUI::checkConnectionStatus() {
 #endif
     myTrayIcon->setToolTip(html); // tray icon
   }
-  session_status sessionStatus = BTSession->getSessionStatus();
-  if(sessionStatus.has_incoming_connections) {
-    // Connection OK
-    connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/connected.png")));
-    connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Online"));
-  }else{
-    connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
-    connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
+  if(displaySpeedInTitle) {
+    QString dl_rate = QByteArray::number(BTSession->getSessionStatus().payload_download_rate/1024, 'f', 1);
+    QString up_rate = QByteArray::number(BTSession->getSessionStatus().payload_upload_rate/1024, 'f', 1);
+    setWindowTitle(tr("qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(dl_rate).arg(up_rate));
   }
 }
 
