@@ -161,6 +161,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     // Select first torrent to be added
     if(listModel->rowCount() == 1)
       selectionModel()->setCurrentIndex(proxyModel->index(row, NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
+    refreshList();
   } catch(invalid_handle e) {
     // Remove added torrent
     listModel->removeRow(row);

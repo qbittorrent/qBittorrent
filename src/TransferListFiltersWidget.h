@@ -48,19 +48,19 @@ public:
   TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList): QListWidget(parent), transferList(transferList) {
     // Add filters
     QListWidgetItem *all = new QListWidgetItem(this);
-    all->setData(Qt::DisplayRole, tr("All"));
+    all->setData(Qt::DisplayRole, tr("All") + " (0)");
     all->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder-remote16.png"));
     QListWidgetItem *downloading = new QListWidgetItem(this);
-    downloading->setData(Qt::DisplayRole, tr("Downloading"));
+    downloading->setData(Qt::DisplayRole, tr("Downloading") + " (0)");
     downloading->setData(Qt::DecorationRole, QIcon(":/Icons/skin/downloading.png"));
     QListWidgetItem *completed = new QListWidgetItem(this);
-    completed->setData(Qt::DisplayRole, tr("Completed"));
+    completed->setData(Qt::DisplayRole, tr("Completed") + " (0)");
     completed->setData(Qt::DecorationRole, QIcon(":/Icons/skin/seeding.png"));
     QListWidgetItem *active = new QListWidgetItem(this);
-    active->setData(Qt::DisplayRole, tr("Active"));
+    active->setData(Qt::DisplayRole, tr("Active") + " (0)");
     active->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/draw-triangle2.png"));
     QListWidgetItem *inactive = new QListWidgetItem(this);
-    inactive->setData(Qt::DisplayRole, tr("Inactive"));
+    inactive->setData(Qt::DisplayRole, tr("Inactive") + " (0)");
     inactive->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/draw-rectangle.png"));
 
     // SIGNAL/SLOT
