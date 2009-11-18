@@ -60,8 +60,8 @@ public:
     connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
     connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
-    dlSpeedLbl = new QLabel(tr("Down: %1 KiB/s", "Download speed: x KiB/s").arg("0.0"));
-    upSpeedLbl = new QLabel(tr("Up: %1 KiB/s", "Upload speed: x KiB/s").arg("0.0"));
+    dlSpeedLbl = new QLabel(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    upSpeedLbl = new QLabel(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
     statusSep1 = new QFrame();
     statusSep1->setFixedWidth(1);
@@ -119,8 +119,8 @@ public slots:
       statusSep1->setVisible(false);
     }
     // Update speed labels
-    dlSpeedLbl->setText(tr("Down: %1 KiB/s", "i.e. Download speed:").arg(QString::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1)));
-    upSpeedLbl->setText(tr("Up: %1 KiB/s", "i.e. Upload speed:").arg(QString::number(BTSession->getPayloadUploadRate()/1024., 'f', 1)));
+    dlSpeedLbl->setText(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg(QString::number(sessionStatus.payload_download_rate/1024., 'f', 1)).arg(misc::friendlyUnit(sessionStatus.total_payload_download)));
+    upSpeedLbl->setText(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg(QString::number(sessionStatus.payload_upload_rate/1024., 'f', 1)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload)));
   }
 
 };

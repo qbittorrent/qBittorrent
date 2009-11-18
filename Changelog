@@ -12,6 +12,7 @@
     - FEATURE: New peers can manually be added to the torrents
     - FEATURE: Support per-peer rate limiting
     - FEATURE: Support peer manual ban
+    - FEATURE: Display total amounts transferred in status bar
     - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is now required)
     - FEATURE: Added per-torrent super seeding mode (libtorrent >= v0.15 only)
     - FEATURE: Support for storing symbolic links in .torrent files (libtorrent >= v0.15 only)
