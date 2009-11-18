@@ -127,20 +127,16 @@ p, li { white-space: pre-wrap; }
     <name>BandwidthAllocationDialog</name>
     <message>
         <source>Upload limit:</source>
-        <translation>上传限制:</translation>
+        <translation type="obsolete">上传限制:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>下载限制:</translation>
+        <translation type="obsolete">下载限制:</translation>
     </message>
     <message>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
-        <translation>无限制</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation></translation>
+        <translation type="obsolete">无限制</translation>
     </message>
 </context>
 <context>
@@ -1937,7 +1933,7 @@ download list and in hard drive?</source>
     </message>
     <message>
         <source>Connection status:</source>
-        <translation>连接状态:</translation>
+        <translation type="obsolete">连接状态:</translation>
     </message>
     <message>
         <source>Offline</source>
@@ -2113,11 +2109,11 @@ The disk is probably full, download has been paused</comment>
     </message>
     <message>
         <source>Connection Status:</source>
-        <translation>连接状态:</translation>
+        <translation type="obsolete">连接状态:</translation>
     </message>
     <message>
         <source>Online</source>
-        <translation>联机</translation>
+        <translation type="obsolete">联机</translation>
     </message>
     <message>
         <source>Firewalled?</source>
@@ -2251,7 +2247,7 @@ color=&apos;red&apos;&gt;%1&lt;/font&gt;
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+3, Ctrl+F</source>
@@ -2261,7 +2257,7 @@ color=&apos;red&apos;&gt;%1&lt;/font&gt;
     <message>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+4</translation>
+        <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
         <source>Url download error</source>
@@ -2300,7 +2296,7 @@ finished list and from hard drive?</source>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
@@ -2345,7 +2341,7 @@ maximum value you set.</source>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (下载: %2KiB/s, 上传: 
+        <translation type="unfinished">qBittorrent %1 (下载: %2KiB/s, 上传: 
 %3KiB/s)</translation>
     </message>
     <message>
@@ -2381,23 +2377,23 @@ maximum value you set.</source>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
-        <translation>下载: %1 KiB/s</translation>
+        <translation type="obsolete">下载: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP: %1 KiB/s</source>
-        <translation>上传: %1 KiB/s</translation>
+        <translation type="obsolete">上传: %1 KiB/s</translation>
     </message>
     <message>
         <source>Ratio: %1</source>
-        <translation>比率:%1</translation>
+        <translation type="obsolete">比率:%1</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 结点</translation>
+        <translation type="obsolete">DHT: %1 结点</translation>
     </message>
     <message>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>无直接连接.这也许指示网络设置问题.</translation>
+        <translation type="obsolete">无直接连接.这也许指示网络设置问题.</translation>
     </message>
     <message>
         <source>Uploads</source>
@@ -2415,6 +2411,29 @@ maximum value you set.</source>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent vx.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
     </message>
 </context>
 <context>
@@ -2521,7 +2540,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent所有权</translation>
+        <translation type="obsolete">Torrent所有权</translation>
     </message>
     <message>
         <source>Connection Status</source>
@@ -2613,7 +2632,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>永久删除</translation>
+        <translation type="obsolete">永久删除</translation>
     </message>
     <message>
         <source>Visit website</source>
@@ -2669,6 +2688,17 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerAdditionDlg</name>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished">无效IP</translation>
+    </message>
+    <message>
+        <source>The IP you provided is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
@@ -2709,6 +2739,62 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a new peer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ban peer permanently</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer was added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer could not be added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure? -- qBittorrent</source>
+        <translation type="unfinished">确定? -- qBittorrent</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to ban permanently the selected peers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;是</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;否</translation>
+    </message>
+    <message>
+        <source>Manually banning peer %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload rate limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rate limiting</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2807,15 +2893,6 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Expand all</source>
         <translation type="unfinished">展开所有</translation>
-    </message>
-    <message>
-        <source>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-margin-left: 3px; margin-right: 3px;
-}</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
@@ -3460,6 +3537,46 @@ reason: %2.</source>
     </message>
 </context>
 <context>
+    <name>SpeedLimitDialog</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>Connection status:</source>
+        <translation type="unfinished">连接状态:</translation>
+    </message>
+    <message>
+        <source>No direct connections. This may indicate network configuration problems.</source>
+        <translation type="unfinished">无直接连接.这也许指示网络设置问题.</translation>
+    </message>
+    <message>
+        <source>D: %1 KiB/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1 KiB/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT: %1 nodes</source>
+        <translation type="unfinished">DHT: %1 结点</translation>
+    </message>
+    <message>
+        <source>Connection Status:</source>
+        <translation type="unfinished">连接状态:</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation type="unfinished">联机</translation>
+    </message>
+</context>
+<context>
     <name>TrackersAdditionDlg</name>
     <message>
         <source>Trackers addition dialog</source>
@@ -3475,6 +3592,34 @@ reason: %2.</source>
     <message>
         <source>KiB/s</source>
         <translation type="unfinished">KiB/s</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">下载中</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished">暂停中</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>i.e. torrent is queued</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <comment>Torrent is complete and in upload-only mode</comment>
+        <translation type="unfinished">正在做种</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <comment>Torrent is waiting for download to begin</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <comment>Torrent local data is being checked</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3505,12 +3650,12 @@ reason: %2.</source>
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">名称</translation>
+        <translation type="obsolete">名称</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -3530,11 +3675,11 @@ reason: %2.</source>
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">完整种子/不完整种子</translation>
+        <translation type="obsolete">完整种子/不完整种子</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation type="unfinished"> 比率</translation>
+        <translation type="obsolete"> 比率</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -3542,24 +3687,12 @@ reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;是</translation>
+        <translation type="obsolete">&amp;是</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;否</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;否</translation>
     </message>
     <message>
         <source>Column visibility</source>
@@ -3583,15 +3716,15 @@ reason: %2.</source>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation type="unfinished">设定上传限制</translation>
+        <translation type="obsolete">设定上传限制</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation type="unfinished">设定下载限制</translation>
+        <translation type="obsolete">设定下载限制</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished">永久删除</translation>
+        <translation type="obsolete">永久删除</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -3625,6 +3758,61 @@ reason: %2.</source>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <comment>i.e: torrent name</comment>
+        <translation type="unfinished">名称</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: torrent size</comment>
+        <translation type="unfinished">大小</translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <comment>% Done</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
+        <translation type="unfinished">状态</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <comment>i.e. full sources (often untranslated)</comment>
+        <translation type="unfinished">完整种子</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <comment>i.e. partial sources (often untranslated)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <comment>Share ratio</comment>
+        <translation type="unfinished"> 比率</translation>
+    </message>
+    <message>
+        <source>Torrent Download Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Upload Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3725,6 +3913,21 @@ into your own language.</source>
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>如果你想为qBittorrent提供翻译请与我联系.</translation>
+    </message>
+</context>
+<context>
+    <name>addPeerDialog</name>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3874,11 +4077,11 @@ previewing)</source>
     <name>bandwidth_dlg</name>
     <message>
         <source>Bandwidth allocation</source>
-        <translation>宽带分配</translation>
+        <translation type="obsolete">宽带分配</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -3890,12 +4093,12 @@ previewing)</source>
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation>&apos;%1&apos;已永久移除.</translation>
+        <translation type="obsolete">&apos;%1&apos;已永久移除.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation>&apos;%1&apos;已移除.</translation>
+        <translation type="obsolete">&apos;%1&apos;已移除.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; paused.</source>
@@ -4031,6 +4234,31 @@ previewing)</source>
     <message>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">加密支持［关］</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>confirmDeletionDlg</name>
+    <message>
+        <source>Deletion confirmation - qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the files on the hard disk as well</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4680,7 +4908,7 @@ version.</source>
     </message>
     <message>
         <source>Search engine plugin archive could not be read.</source>
-        <translation>搜索引擎插件压缩文件不能被读取.</translation>
+        <translation type="obsolete">搜索引擎插件压缩文件不能被读取.</translation>
     </message>
     <message>
         <source>Sorry, %1 search plugin install failed.</source>

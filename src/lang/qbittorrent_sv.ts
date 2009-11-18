@@ -105,20 +105,20 @@ p, li { white-space: pre-wrap; }
     <name>BandwidthAllocationDialog</name>
     <message>
         <source>Upload limit:</source>
-        <translation>Sändningsgräns:</translation>
+        <translation type="obsolete">Sändningsgräns:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>Hämtningsgräns:</translation>
+        <translation type="obsolete">Hämtningsgräns:</translation>
     </message>
     <message>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
-        <translation>Obegränsat</translation>
+        <translation type="obsolete">Obegränsat</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1031,7 +1031,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection status:</source>
-        <translation>Anslutningsstatus:</translation>
+        <translation type="obsolete">Anslutningsstatus:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
@@ -1068,11 +1068,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection Status:</source>
-        <translation>Anslutningsstatus:</translation>
+        <translation type="obsolete">Anslutningsstatus:</translation>
     </message>
     <message>
         <source>Online</source>
-        <translation>Ansluten</translation>
+        <translation type="obsolete">Ansluten</translation>
     </message>
     <message>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
@@ -1150,12 +1150,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+4</translation>
+        <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
         <source>Url download error</source>
@@ -1176,7 +1176,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
@@ -1223,27 +1223,27 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Ned: %2 KiB/s, Upp: %3 KiB/s)</translation>
+        <translation type="unfinished">qBittorrent %1 (Ned: %2 KiB/s, Upp: %3 KiB/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
-        <translation>Ned: %1 KiB/s</translation>
+        <translation type="obsolete">Ned: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP: %1 KiB/s</source>
-        <translation>Upp: %1 KiB/s</translation>
+        <translation type="obsolete">Upp: %1 KiB/s</translation>
     </message>
     <message>
         <source>Ratio: %1</source>
-        <translation>Förhållande: %1</translation>
+        <translation type="obsolete">Förhållande: %1</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 noder</translation>
+        <translation type="obsolete">DHT: %1 noder</translation>
     </message>
     <message>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>Inga direktanslutningar. Detta kan betyda problem med nätverkskonfigurationen.</translation>
+        <translation type="obsolete">Inga direktanslutningar. Detta kan betyda problem med nätverkskonfigurationen.</translation>
     </message>
     <message>
         <source>Uploads</source>
@@ -1265,6 +1265,29 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent vx.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
     </message>
 </context>
 <context>
@@ -1319,7 +1342,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Egenskaper för torrent</translation>
+        <translation type="obsolete">Egenskaper för torrent</translation>
     </message>
     <message>
         <source>Download from URL</source>
@@ -1339,7 +1362,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Ta bort permanent</translation>
+        <translation type="obsolete">Ta bort permanent</translation>
     </message>
     <message>
         <source>Visit website</source>
@@ -1387,6 +1410,17 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerAdditionDlg</name>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The IP you provided is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
@@ -1427,6 +1461,62 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a new peer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ban peer permanently</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer was added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer could not be added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure? -- qBittorrent</source>
+        <translation type="unfinished">Är du säker? -- qBittorrent</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to ban permanently the selected peers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Ja</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Nej</translation>
+    </message>
+    <message>
+        <source>Manually banning peer %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload rate limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rate limiting</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1516,15 +1606,6 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-margin-left: 3px; margin-right: 3px;
-}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2068,6 +2149,46 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SpeedLimitDialog</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>Connection status:</source>
+        <translation type="unfinished">Anslutningsstatus:</translation>
+    </message>
+    <message>
+        <source>No direct connections. This may indicate network configuration problems.</source>
+        <translation type="unfinished">Inga direktanslutningar. Detta kan betyda problem med nätverkskonfigurationen.</translation>
+    </message>
+    <message>
+        <source>D: %1 KiB/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1 KiB/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT: %1 nodes</source>
+        <translation type="unfinished">DHT: %1 noder</translation>
+    </message>
+    <message>
+        <source>Connection Status:</source>
+        <translation type="unfinished">Anslutningsstatus:</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation type="unfinished">Ansluten</translation>
+    </message>
+</context>
+<context>
     <name>TrackersAdditionDlg</name>
     <message>
         <source>Trackers addition dialog</source>
@@ -2083,6 +2204,34 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>KiB/s</source>
         <translation type="unfinished">KiB/s</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>i.e. torrent is queued</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <comment>Torrent is complete and in upload-only mode</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <comment>Torrent is waiting for download to begin</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <comment>Torrent local data is being checked</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2113,12 +2262,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Namn</translation>
+        <translation type="obsolete">Namn</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Storlek</translation>
+        <translation type="obsolete">Storlek</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2138,11 +2287,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Distributörer/Reciprokörer</translation>
+        <translation type="obsolete">Distributörer/Reciprokörer</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation type="unfinished">Förhållande</translation>
+        <translation type="obsolete">Förhållande</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -2150,24 +2299,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Färdig om</translation>
     </message>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Ja</translation>
+        <translation type="obsolete">&amp;Ja</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Nej</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Nej</translation>
     </message>
     <message>
         <source>Column visibility</source>
@@ -2191,15 +2328,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation type="unfinished">Ställ in sändningsgräns</translation>
+        <translation type="obsolete">Ställ in sändningsgräns</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation type="unfinished">Ställ in hämtningsgräns</translation>
+        <translation type="obsolete">Ställ in hämtningsgräns</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Ta bort permanent</translation>
+        <translation type="obsolete">Ta bort permanent</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2235,6 +2372,61 @@ p, li { white-space: pre-wrap; }
         <comment>i.e: Upload speed</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Name</source>
+        <comment>i.e: torrent name</comment>
+        <translation type="unfinished">Namn</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: torrent size</comment>
+        <translation type="unfinished">Storlek</translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <comment>% Done</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <comment>i.e. full sources (often untranslated)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <comment>i.e. partial sources (often untranslated)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <comment>Share ratio</comment>
+        <translation type="unfinished">Förhållande</translation>
+    </message>
+    <message>
+        <source>Torrent Download Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Upload Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>about</name>
@@ -2249,6 +2441,21 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Kontakta mig om du vill översätta qBittorrent till ditt språk.</translation>
+    </message>
+</context>
+<context>
+    <name>addPeerDialog</name>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2369,11 +2576,11 @@ p, li { white-space: pre-wrap; }
     <name>bandwidth_dlg</name>
     <message>
         <source>Bandwidth allocation</source>
-        <translation>Bandbreddsallokering</translation>
+        <translation type="obsolete">Bandbreddsallokering</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -2385,12 +2592,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation>&quot;%1&quot; togs bort permanent.</translation>
+        <translation type="obsolete">&quot;%1&quot; togs bort permanent.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation>&quot;%1&quot; togs bort.</translation>
+        <translation type="obsolete">&quot;%1&quot; togs bort.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; paused.</source>
@@ -2526,6 +2733,31 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Krypteringsstöd [AV]</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>confirmDeletionDlg</name>
+    <message>
+        <source>Deletion confirmation - qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the files on the hard disk as well</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3056,7 +3288,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Search engine plugin archive could not be read.</source>
-        <translation>Insticksmodularkivet för sökmotorn kunde inte läsas.</translation>
+        <translation type="obsolete">Insticksmodularkivet för sökmotorn kunde inte läsas.</translation>
     </message>
     <message>
         <source>Sorry, %1 search plugin install failed.</source>

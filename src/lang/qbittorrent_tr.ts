@@ -169,20 +169,20 @@ p, li { white-space: pre-wrap; }
     <name>BandwidthAllocationDialog</name>
     <message>
         <source>Upload limit:</source>
-        <translation>Gönderme Sınırı:</translation>
+        <translation type="obsolete">Gönderme Sınırı:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>İndirme Sınırı:</translation>
+        <translation type="obsolete">İndirme Sınırı:</translation>
     </message>
     <message>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
-        <translation>Sınırsız</translation>
+        <translation type="obsolete">Sınırsız</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KB/s</translation>
+        <translation type="obsolete">KB/s</translation>
     </message>
 </context>
 <context>
@@ -1881,7 +1881,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Connection status:</source>
-        <translation>Bağlantı durumu:</translation>
+        <translation type="obsolete">Bağlantı durumu:</translation>
     </message>
     <message>
         <source>Offline</source>
@@ -2045,11 +2045,11 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Connection Status:</source>
-        <translation>Bağlantı Durumu:</translation>
+        <translation type="obsolete">Bağlantı Durumu:</translation>
     </message>
     <message>
         <source>Online</source>
-        <translation>Çevrimiçi</translation>
+        <translation type="obsolete">Çevrimiçi</translation>
     </message>
     <message>
         <source>Firewalled?</source>
@@ -2163,12 +2163,12 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+4</translation>
+        <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
         <source>Url download error</source>
@@ -2194,7 +2194,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
@@ -2238,27 +2238,27 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
+        <translation type="unfinished">qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
-        <translation>İND: %1 KB/s</translation>
+        <translation type="obsolete">İND: %1 KB/s</translation>
     </message>
     <message>
         <source>UP: %1 KiB/s</source>
-        <translation>GÖN: %1 KB/s</translation>
+        <translation type="obsolete">GÖN: %1 KB/s</translation>
     </message>
     <message>
         <source>Ratio: %1</source>
-        <translation>Oran: %1</translation>
+        <translation type="obsolete">Oran: %1</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 düğüm</translation>
+        <translation type="obsolete">DHT: %1 düğüm</translation>
     </message>
     <message>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>Doğrudan bağlantı yok. Bu, ağ yapılandırma problemi olduğunu gösteriyor.</translation>
+        <translation type="obsolete">Doğrudan bağlantı yok. Bu, ağ yapılandırma problemi olduğunu gösteriyor.</translation>
     </message>
     <message>
         <source>Uploads</source>
@@ -2276,6 +2276,29 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent vx.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
     </message>
 </context>
 <context>
@@ -2394,7 +2417,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Torrent Özellikleri</translation>
+        <translation type="obsolete">Torrent Özellikleri</translation>
     </message>
     <message>
         <source>Connection Status</source>
@@ -2490,7 +2513,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Tamamen Sil</translation>
+        <translation type="obsolete">Tamamen Sil</translation>
     </message>
     <message>
         <source>Visit website</source>
@@ -2534,6 +2557,17 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerAdditionDlg</name>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished">Geçersiz IP</translation>
+    </message>
+    <message>
+        <source>The IP you provided is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
@@ -2574,6 +2608,62 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a new peer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ban peer permanently</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer was added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer could not be added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure? -- qBittorrent</source>
+        <translation type="unfinished">Emin misiniz? -- qBittorrent</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to ban permanently the selected peers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Evet</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Hayır</translation>
+    </message>
+    <message>
+        <source>Manually banning peer %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload rate limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rate limiting</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2672,15 +2762,6 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Expand all</source>
         <translation type="unfinished">Tümünü genişlet</translation>
-    </message>
-    <message>
-        <source>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-margin-left: 3px; margin-right: 3px;
-}</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
@@ -3308,6 +3389,46 @@ Changelog:
     </message>
 </context>
 <context>
+    <name>SpeedLimitDialog</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>Connection status:</source>
+        <translation type="unfinished">Bağlantı durumu:</translation>
+    </message>
+    <message>
+        <source>No direct connections. This may indicate network configuration problems.</source>
+        <translation type="unfinished">Doğrudan bağlantı yok. Bu, ağ yapılandırma problemi olduğunu gösteriyor.</translation>
+    </message>
+    <message>
+        <source>D: %1 KiB/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1 KiB/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT: %1 nodes</source>
+        <translation type="unfinished">DHT: %1 düğüm</translation>
+    </message>
+    <message>
+        <source>Connection Status:</source>
+        <translation type="unfinished">Bağlantı Durumu:</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation type="unfinished">Çevrimiçi</translation>
+    </message>
+</context>
+<context>
     <name>TrackersAdditionDlg</name>
     <message>
         <source>Trackers addition dialog</source>
@@ -3322,6 +3443,34 @@ Changelog:
     <name>TransferListDelegate</name>
     <message>
         <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">Download ediliyor</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished">Duraklatıldı</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>i.e. torrent is queued</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <comment>Torrent is complete and in upload-only mode</comment>
+        <translation type="unfinished">Oluşturuluyor</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <comment>Torrent is waiting for download to begin</comment>
+        <translation type="unfinished">Hız kaybetti</translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <comment>Torrent local data is being checked</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3351,14 +3500,9 @@ Changelog:
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Boyut</translation>
+        <translation type="obsolete">Boyut</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -3368,11 +3512,11 @@ Changelog:
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Gönderen/Çeken</translation>
+        <translation type="obsolete">Gönderen/Çeken</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation type="unfinished">Oran</translation>
+        <translation type="obsolete">Oran</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -3380,24 +3524,12 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Evet</translation>
+        <translation type="obsolete">&amp;Evet</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Hayır</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Hayır</translation>
     </message>
     <message>
         <source>Column visibility</source>
@@ -3421,15 +3553,11 @@ Changelog:
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation type="unfinished">Gönderme sınırını ayarla</translation>
+        <translation type="obsolete">Gönderme sınırını ayarla</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation type="unfinished">İndirme sınırını ayarla</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">İndirme sınırını ayarla</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -3463,6 +3591,61 @@ Changelog:
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <comment>i.e: torrent name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: torrent size</comment>
+        <translation type="unfinished">Boyut</translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <comment>% Done</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
+        <translation type="unfinished">Durum</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <comment>i.e. full sources (often untranslated)</comment>
+        <translation type="unfinished">Seeds</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <comment>i.e. partial sources (often untranslated)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <comment>Share ratio</comment>
+        <translation type="unfinished">Oran</translation>
+    </message>
+    <message>
+        <source>Torrent Download Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Upload Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3546,6 +3729,21 @@ Changelog:
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Eğer qBittorrent&apos;i kendi dilinize çevirmek isterseniz benimle iletişim kurun.</translation>
+    </message>
+</context>
+<context>
+    <name>addPeerDialog</name>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3686,11 +3884,11 @@ Changelog:
     <name>bandwidth_dlg</name>
     <message>
         <source>Bandwidth allocation</source>
-        <translation>Bant genişliği tahsisi</translation>
+        <translation type="obsolete">Bant genişliği tahsisi</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KB/s</translation>
+        <translation type="obsolete">KB/s</translation>
     </message>
 </context>
 <context>
@@ -3702,12 +3900,12 @@ Changelog:
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation>&apos;%1&apos; tamamen kaldırıldı.</translation>
+        <translation type="obsolete">&apos;%1&apos; tamamen kaldırıldı.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation>&apos;%1&apos; kaldırıldı.</translation>
+        <translation type="obsolete">&apos;%1&apos; kaldırıldı.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; paused.</source>
@@ -3843,6 +4041,31 @@ Changelog:
     <message>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Şifreleme desteği [KAPALI]</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>confirmDeletionDlg</name>
+    <message>
+        <source>Deletion confirmation - qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the files on the hard disk as well</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4473,7 +4696,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Search engine plugin archive could not be read.</source>
-        <translation>Arama motoru eklenti arşivi okunamadı.</translation>
+        <translation type="obsolete">Arama motoru eklenti arşivi okunamadı.</translation>
     </message>
     <message>
         <source>Sorry, %1 search plugin install failed.</source>

@@ -112,21 +112,21 @@ p, li { white-space: pre-wrap; }
     <name>BandwidthAllocationDialog</name>
     <message>
         <source>Upload limit:</source>
-        <translation>Limite de upload:</translation>
+        <translation type="obsolete">Limite de upload:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>Limite de download:</translation>
+        <translation type="obsolete">Limite de download:</translation>
     </message>
     <message>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
         <translatorcomment>Ilimitado (banda)</translatorcomment>
-        <translation>Ilimitado</translation>
+        <translation type="obsolete">Ilimitado</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1778,7 +1778,7 @@ Por favor feche o outro primeiro.</translation>
     </message>
     <message>
         <source>Connection status:</source>
-        <translation>Estado da conexão:</translation>
+        <translation type="obsolete">Estado da conexão:</translation>
     </message>
     <message>
         <source>Offline</source>
@@ -1947,11 +1947,11 @@ Por favor feche o outro primeiro.</translation>
     </message>
     <message>
         <source>Connection Status:</source>
-        <translation>Estado da conexão:</translation>
+        <translation type="obsolete">Estado da conexão:</translation>
     </message>
     <message>
         <source>Online</source>
-        <translation>Online</translation>
+        <translation type="obsolete">Online</translation>
     </message>
     <message>
         <source>Firewalled?</source>
@@ -2077,7 +2077,7 @@ Deseja mesmo sair do qBittorrent?</translation>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+3, Ctrl+F</source>
@@ -2087,7 +2087,7 @@ Deseja mesmo sair do qBittorrent?</translation>
     <message>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+4</translation>
+        <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
         <source>Url download error</source>
@@ -2121,7 +2121,7 @@ Deseja mesmo sair do qBittorrent?</translation>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
@@ -2165,27 +2165,27 @@ Deseja mesmo sair do qBittorrent?</translation>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Down: %2Kb/s, Up: %3kb/s)</translation>
+        <translation type="unfinished">qBittorrent %1 (Down: %2Kb/s, Up: %3kb/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
-        <translation>DL: %1 Kbps</translation>
+        <translation type="obsolete">DL: %1 Kbps</translation>
     </message>
     <message>
         <source>UP: %1 KiB/s</source>
-        <translation>UP: %1 Kpbs</translation>
+        <translation type="obsolete">UP: %1 Kpbs</translation>
     </message>
     <message>
         <source>Ratio: %1</source>
-        <translation>Taxa: %1</translation>
+        <translation type="obsolete">Taxa: %1</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 nos</translation>
+        <translation type="obsolete">DHT: %1 nos</translation>
     </message>
     <message>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>Sem conexões diretas. Talvez tenha algo errado em sua configuração.</translation>
+        <translation type="obsolete">Sem conexões diretas. Talvez tenha algo errado em sua configuração.</translation>
     </message>
     <message>
         <source>Uploads</source>
@@ -2203,6 +2203,29 @@ Deseja mesmo sair do qBittorrent?</translation>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent vx.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
     </message>
 </context>
 <context>
@@ -2309,7 +2332,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Propriedades do Torrent</translation>
+        <translation type="obsolete">Propriedades do Torrent</translation>
     </message>
     <message>
         <source>Connection Status</source>
@@ -2405,7 +2428,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Apagar permanentemente</translation>
+        <translation type="obsolete">Apagar permanentemente</translation>
     </message>
     <message>
         <source>Visit website</source>
@@ -2457,6 +2480,17 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerAdditionDlg</name>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished">IP inválido</translation>
+    </message>
+    <message>
+        <source>The IP you provided is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
@@ -2497,6 +2531,62 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a new peer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ban peer permanently</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer was added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer could not be added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure? -- qBittorrent</source>
+        <translation type="unfinished">Tem certeza? -- qBittorrent</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to ban permanently the selected peers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Sim</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Não</translation>
+    </message>
+    <message>
+        <source>Manually banning peer %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload rate limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rate limiting</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2595,15 +2685,6 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Expand all</source>
         <translation type="unfinished">Expandir todos</translation>
-    </message>
-    <message>
-        <source>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-margin-left: 3px; margin-right: 3px;
-}</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
@@ -3321,6 +3402,46 @@ Log de mudanças:</translation>
     </message>
 </context>
 <context>
+    <name>SpeedLimitDialog</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>Connection status:</source>
+        <translation type="unfinished">Estado da conexão:</translation>
+    </message>
+    <message>
+        <source>No direct connections. This may indicate network configuration problems.</source>
+        <translation type="unfinished">Sem conexões diretas. Talvez tenha algo errado em sua configuração.</translation>
+    </message>
+    <message>
+        <source>D: %1 KiB/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1 KiB/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT: %1 nodes</source>
+        <translation type="unfinished">DHT: %1 nos</translation>
+    </message>
+    <message>
+        <source>Connection Status:</source>
+        <translation type="unfinished">Estado da conexão:</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation type="unfinished">Online</translation>
+    </message>
+</context>
+<context>
     <name>TrackersAdditionDlg</name>
     <message>
         <source>Trackers addition dialog</source>
@@ -3335,6 +3456,34 @@ Log de mudanças:</translation>
     <name>TransferListDelegate</name>
     <message>
         <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">Baixando</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished">Pausado</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>i.e. torrent is queued</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <comment>Torrent is complete and in upload-only mode</comment>
+        <translation type="unfinished">Enviando</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <comment>Torrent is waiting for download to begin</comment>
+        <translation type="unfinished">Parado</translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <comment>Torrent local data is being checked</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3366,12 +3515,12 @@ Log de mudanças:</translation>
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Nome</translation>
+        <translation type="obsolete">Nome</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Tamanho</translation>
+        <translation type="obsolete">Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -3391,11 +3540,11 @@ Log de mudanças:</translation>
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Seeds/Leechers</translation>
+        <translation type="obsolete">Seeds/Leechers</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation type="unfinished">Taxa</translation>
+        <translation type="obsolete">Taxa</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -3403,24 +3552,12 @@ Log de mudanças:</translation>
         <translation type="unfinished">ETA</translation>
     </message>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Sim</translation>
+        <translation type="obsolete">&amp;Sim</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Não</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Não</translation>
     </message>
     <message>
         <source>Column visibility</source>
@@ -3444,15 +3581,15 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation type="unfinished">Setar limite de upload</translation>
+        <translation type="obsolete">Setar limite de upload</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation type="unfinished">Setar limite de download</translation>
+        <translation type="obsolete">Setar limite de download</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Apagar permanentemente</translation>
+        <translation type="obsolete">Apagar permanentemente</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -3486,6 +3623,61 @@ Log de mudanças:</translation>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <comment>i.e: torrent name</comment>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: torrent size</comment>
+        <translation type="unfinished">Tamanho</translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <comment>% Done</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
+        <translation type="unfinished">Estado</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <comment>i.e. full sources (often untranslated)</comment>
+        <translation type="unfinished">Seeds</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <comment>i.e. partial sources (often untranslated)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <comment>Share ratio</comment>
+        <translation type="unfinished">Taxa</translation>
+    </message>
+    <message>
+        <source>Torrent Download Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Upload Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3561,6 +3753,21 @@ Log de mudanças:</translation>
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Por favor contate-me se você deseja traduzir o qBittorrent no seu idioma.</translation>
+    </message>
+</context>
+<context>
+    <name>addPeerDialog</name>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3697,11 +3904,11 @@ Log de mudanças:</translation>
     <name>bandwidth_dlg</name>
     <message>
         <source>Bandwidth allocation</source>
-        <translation>Alocação de banda</translation>
+        <translation type="obsolete">Alocação de banda</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -3713,12 +3920,12 @@ Log de mudanças:</translation>
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation>&apos;%1&apos; foi removido permanentemente.</translation>
+        <translation type="obsolete">&apos;%1&apos; foi removido permanentemente.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation>&apos;%1&apos; foi deletado.</translation>
+        <translation type="obsolete">&apos;%1&apos; foi deletado.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; paused.</source>
@@ -3854,6 +4061,31 @@ Log de mudanças:</translation>
     <message>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Suporte a encriptação [Desligado]</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>confirmDeletionDlg</name>
+    <message>
+        <source>Deletion confirmation - qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the files on the hard disk as well</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4496,7 +4728,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Search engine plugin archive could not be read.</source>
-        <translation>Arquivo de plugin de busca não pode ser lido.</translation>
+        <translation type="obsolete">Arquivo de plugin de busca não pode ser lido.</translation>
     </message>
     <message>
         <source>Sorry, %1 search plugin install failed.</source>

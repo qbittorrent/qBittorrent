@@ -112,20 +112,20 @@ p, li { white-space: pre-wrap; }
     <name>BandwidthAllocationDialog</name>
     <message>
         <source>Upload limit:</source>
-        <translation>Limit nahrávania:</translation>
+        <translation type="obsolete">Limit nahrávania:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>Limit sťahovania:</translation>
+        <translation type="obsolete">Limit sťahovania:</translation>
     </message>
     <message>
         <source>Unlimited</source>
         <comment>Unlimited (bandwidth)</comment>
-        <translation>neobmedzené (pásmo)</translation>
+        <translation type="obsolete">neobmedzené (pásmo)</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1791,7 +1791,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Connection status:</source>
-        <translation>Stav spojenia:</translation>
+        <translation type="obsolete">Stav spojenia:</translation>
     </message>
     <message>
         <source>Offline</source>
@@ -1960,11 +1960,11 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Connection Status:</source>
-        <translation>Stav spojenia:</translation>
+        <translation type="obsolete">Stav spojenia:</translation>
     </message>
     <message>
         <source>Online</source>
-        <translation>Online</translation>
+        <translation type="obsolete">Online</translation>
     </message>
     <message>
         <source>Firewalled?</source>
@@ -2090,7 +2090,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to second tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+3, Ctrl+F</source>
@@ -2100,7 +2100,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <source>Alt+4</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+4</translation>
+        <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
         <source>Url download error</source>
@@ -2134,7 +2134,7 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
@@ -2178,27 +2178,27 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
+        <translation type="unfinished">qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
-        <translation>Sťah: %1 KiB/s</translation>
+        <translation type="obsolete">Sťah: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP: %1 KiB/s</source>
-        <translation>Nahr: %1 KiB/s</translation>
+        <translation type="obsolete">Nahr: %1 KiB/s</translation>
     </message>
     <message>
         <source>Ratio: %1</source>
-        <translation>Pomer: %1</translation>
+        <translation type="obsolete">Pomer: %1</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 uzlov</translation>
+        <translation type="obsolete">DHT: %1 uzlov</translation>
     </message>
     <message>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>Žiadne priame spojenia. To môže znamenať problém s pripojením.</translation>
+        <translation type="obsolete">Žiadne priame spojenia. To môže znamenať problém s pripojením.</translation>
     </message>
     <message>
         <source>Uploads</source>
@@ -2216,6 +2216,29 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent vx.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
     </message>
 </context>
 <context>
@@ -2322,7 +2345,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent Properties</source>
-        <translation>Vlastnosti torrentu</translation>
+        <translation type="obsolete">Vlastnosti torrentu</translation>
     </message>
     <message>
         <source>Connection Status</source>
@@ -2414,7 +2437,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation>Trvalo zmazať</translation>
+        <translation type="obsolete">Trvalo zmazať</translation>
     </message>
     <message>
         <source>Visit website</source>
@@ -2466,6 +2489,17 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>PeerAdditionDlg</name>
+    <message>
+        <source>Invalid IP</source>
+        <translation type="unfinished">Neplatná IP</translation>
+    </message>
+    <message>
+        <source>The IP you provided is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
@@ -2506,6 +2540,62 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a new peer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ban peer permanently</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer was added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peer could not be added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure? -- qBittorrent</source>
+        <translation type="unfinished">Ste si istý? -- qBittorrent</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to ban permanently the selected peers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Áno</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Nie</translation>
+    </message>
+    <message>
+        <source>Manually banning peer %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload rate limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rate limiting</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2604,15 +2694,6 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Expand all</source>
         <translation type="unfinished">Rozbaliť všetko</translation>
-    </message>
-    <message>
-        <source>QPushButton { 
-border: 1px solid rgb(85, 81, 91);
-border-radius: 3px;
-padding: 2px;
-margin-left: 3px; margin-right: 3px;
-}</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
@@ -3241,6 +3322,46 @@ Záznam zmien:</translation>
     </message>
 </context>
 <context>
+    <name>SpeedLimitDialog</name>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>Connection status:</source>
+        <translation type="unfinished">Stav spojenia:</translation>
+    </message>
+    <message>
+        <source>No direct connections. This may indicate network configuration problems.</source>
+        <translation type="unfinished">Žiadne priame spojenia. To môže znamenať problém s pripojením.</translation>
+    </message>
+    <message>
+        <source>D: %1 KiB/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1 KiB/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT: %1 nodes</source>
+        <translation type="unfinished">DHT: %1 uzlov</translation>
+    </message>
+    <message>
+        <source>Connection Status:</source>
+        <translation type="unfinished">Stav spojenia:</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation type="unfinished">Online</translation>
+    </message>
+</context>
+<context>
     <name>TrackersAdditionDlg</name>
     <message>
         <source>Trackers addition dialog</source>
@@ -3256,6 +3377,34 @@ Záznam zmien:</translation>
     <message>
         <source>KiB/s</source>
         <translation type="unfinished">KiB/s</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished">Sťahujem</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished">Pozastavený</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>i.e. torrent is queued</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <comment>Torrent is complete and in upload-only mode</comment>
+        <translation type="unfinished">Seedujem</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <comment>Torrent is waiting for download to begin</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <comment>Torrent local data is being checked</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3284,16 +3433,6 @@ Záznam zmien:</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation type="obsolete">Priebeh</translation>
@@ -3301,11 +3440,11 @@ Záznam zmien:</translation>
     <message>
         <source>Seeds/Leechers</source>
         <comment>i.e: full/partial sources</comment>
-        <translation type="unfinished">Seederi/Leecheri</translation>
+        <translation type="obsolete">Seederi/Leecheri</translation>
     </message>
     <message>
         <source>Ratio</source>
-        <translation type="unfinished">Pomer</translation>
+        <translation type="obsolete">Pomer</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -3313,24 +3452,12 @@ Záznam zmien:</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfer list?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Áno</translation>
+        <translation type="obsolete">&amp;Áno</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Nie</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from transfe list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Nie</translation>
     </message>
     <message>
         <source>Column visibility</source>
@@ -3354,15 +3481,15 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation type="unfinished">Nastaviť limit nahrávania</translation>
+        <translation type="obsolete">Nastaviť limit nahrávania</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation type="unfinished">Nastaviť limit sťahovania</translation>
+        <translation type="obsolete">Nastaviť limit sťahovania</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
-        <translation type="unfinished">Trvalo zmazať</translation>
+        <translation type="obsolete">Trvalo zmazať</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -3396,6 +3523,61 @@ Záznam zmien:</translation>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <comment>i.e: torrent name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: torrent size</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <comment>% Done</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <comment>i.e. full sources (often untranslated)</comment>
+        <translation type="unfinished">Seedy</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <comment>i.e. partial sources (often untranslated)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <comment>Share ratio</comment>
+        <translation type="unfinished">Pomer</translation>
+    </message>
+    <message>
+        <source>Torrent Download Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Upload Speed Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3471,6 +3653,21 @@ Záznam zmien:</translation>
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Prosím, kontaktujte ma ak chcete preložiť qBittorrent do vášho jazyka.</translation>
+    </message>
+</context>
+<context>
+    <name>addPeerDialog</name>
+    <message>
+        <source>Peer addition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3615,11 +3812,11 @@ Záznam zmien:</translation>
     <name>bandwidth_dlg</name>
     <message>
         <source>Bandwidth allocation</source>
-        <translation>Vyhradenie pásma</translation>
+        <translation type="obsolete">Vyhradenie pásma</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -3631,12 +3828,12 @@ Záznam zmien:</translation>
     <message>
         <source>&apos;%1&apos; was removed permanently.</source>
         <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation>„%1“ bol permanentne odstránený.</translation>
+        <translation type="obsolete">„%1“ bol permanentne odstránený.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
         <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation>„%1“ bol odstránený.</translation>
+        <translation type="obsolete">„%1“ bol odstránený.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; paused.</source>
@@ -3772,6 +3969,31 @@ Záznam zmien:</translation>
     <message>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Podpora šifrovania [vypnuté]</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>confirmDeletionDlg</name>
+    <message>
+        <source>Deletion confirmation - qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the files on the hard disk as well</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4442,7 +4664,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Search engine plugin archive could not be read.</source>
-        <translation>Nebolo možné prečítať archív zásuvného modulu vyhľadávača.</translation>
+        <translation type="obsolete">Nebolo možné prečítať archív zásuvného modulu vyhľadávača.</translation>
     </message>
     <message>
         <source>Sorry, %1 search plugin install failed.</source>
