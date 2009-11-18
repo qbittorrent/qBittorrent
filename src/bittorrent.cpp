@@ -1135,7 +1135,7 @@ void bittorrent::loadFilesPriorities(QTorrentHandle &h) {
     if( priority < 0 || priority > 7) {
       priority = 1;
     }
-    qDebug("Setting file piority to %d", priority);
+    //qDebug("Setting file piority to %d", priority);
     v.push_back(priority);
   }
   if(v.size() == (unsigned int)h.num_files())
@@ -1887,7 +1887,7 @@ void bittorrent::importOldTempData(QString torrent_path) {
           if( priority < 0 || priority > 7) {
             priority = 1;
           }
-          qDebug("Setting piece piority to %d", priority);
+          //qDebug("Setting piece piority to %d", priority);
           pp.push_back(priority);
         }
         TorrentTempData::setFilesPriority(hash, pp);

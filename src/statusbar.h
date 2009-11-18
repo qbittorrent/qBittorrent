@@ -60,7 +60,7 @@ private:
 public:
   StatusBar(QStatusBar *bar, bittorrent *BTSession): bar(bar), BTSession(BTSession) {
     container = new QWidget();
-    layout = new QGridLayout(bar);
+    layout = new QGridLayout(container);
     layout->setVerticalSpacing(0);
     layout->setContentsMargins(0,0,0,0);
 
