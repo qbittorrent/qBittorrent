@@ -104,10 +104,9 @@ bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(
 bittorrent::~bittorrent() {
   qDebug("BTSession deletion");
   // Do some BT related saving
-  // XXX: Done in GUI now (earlier = safer)
-  /*saveDHTEntry();
+  saveDHTEntry();
   saveSessionState();
-  tResumeData();*/
+  saveFastResumeData();
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects

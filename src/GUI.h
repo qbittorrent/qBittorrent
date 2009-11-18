@@ -67,7 +67,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Bittorrent
     bittorrent *BTSession;
     QTimer *checkConnect;
-    QTimer *scrapeTimer;
     QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers;
     // GUI related
     QTabWidget *tabs;
@@ -153,7 +152,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void finishedTorrent(QTorrentHandle& h) const;
     //void updateLists(bool force=false);
     bool initWebUi(QString username, QString password, int port);
-    void scrapeTrackers();
     // Options slots
     void on_actionOptions_triggered();
     void optionsSaved();
