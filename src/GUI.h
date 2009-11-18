@@ -133,8 +133,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void createSystrayDelayed();
     // Keyboard shortcuts
     void createKeyboardShortcuts();
-    void displayDownTab() const;
-    void displayUpTab() const;
+    void displayTransferTab() const;
     void displaySearchTab() const;
     void displayRSSTab() const;
     // Torrent actions

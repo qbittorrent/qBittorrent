@@ -68,6 +68,7 @@
 #include "propertieswidget.h"
 
 using namespace libtorrent;
+enum TabIndex{TAB_TRANSFER, TAB_SEARCH, TAB_RSS};
 
 /*****************************************************
  *                                                   *
@@ -366,14 +367,12 @@ void GUI::createKeyboardShortcuts() {
   actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
   actionExit->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Q")));
   switchDownShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
-  connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayDownTab()));
-  switchUpShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to second tab")), this);
-  connect(switchUpShortcut, SIGNAL(activated()), this, SLOT(displayUpTab()));
-  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+3", "shortcut to switch to third tab")), this);
+  connect(switchDownShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
+  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to third tab")), this);
   connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchSearchShortcut2 = new QShortcut(QKeySequence(tr("Ctrl+F", "shortcut to switch to search tab")), this);
   connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-  switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+4", "shortcut to switch to fourth tab")), this);
+  switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+3", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
   actionOptions->setShortcut(QKeySequence(QString::fromUtf8("Alt+O")));
   actionDelete->setShortcut(QKeySequence(QString::fromUtf8("Del")));
@@ -386,20 +385,16 @@ void GUI::createKeyboardShortcuts() {
 }
 
 // Keyboard shortcuts slots
-void GUI::displayDownTab() const {
-  tabs->setCurrentIndex(0);
-}
-
-void GUI::displayUpTab() const {
-  tabs->setCurrentIndex(1);
+void GUI::displayTransferTab() const {
+  tabs->setCurrentIndex(TAB_TRANSFER);
 }
 
 void GUI::displaySearchTab() const {
-  tabs->setCurrentIndex(2);
+  tabs->setCurrentIndex(TAB_SEARCH);
 }
 
 void GUI::displayRSSTab() const {
-  tabs->setCurrentIndex(3);
+  tabs->setCurrentIndex(TAB_RSS);
 }
 
 // End of keyboard shortcuts slots
