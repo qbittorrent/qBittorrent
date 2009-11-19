@@ -62,7 +62,7 @@
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
 
 // Main constructor
-bittorrent::bittorrent() : DHTEnabled(false), preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), queueingEnabled(false), geoipDBLoaded(false) {
+bittorrent::bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), queueingEnabled(false), geoipDBLoaded(false) {
   resolve_countries = false;
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
@@ -204,7 +204,7 @@ void bittorrent::configureSession() {
   qDebug("Configuring session");
   // Downloads
   // * Save path
-  setDefaultSavePath(Preferences::getSavePath());
+  defaultSavePath = Preferences::getSavePath();
   if(Preferences::isTempPathEnabled()) {
     setDefaultTempPath(Preferences::getTempPath());
   } else {
@@ -1271,10 +1271,6 @@ void bittorrent::addTorrentsFromScanFolder(QStringList &pathList) {
   }
 }
 
-void bittorrent::setDefaultSavePath(QString savepath) {
-  defaultSavePath = savepath;
-}
-
 QString bittorrent::getDefaultSavePath() const {
   return defaultSavePath;
 }
@@ -1297,6 +1293,7 @@ void bittorrent::setDefaultTempPath(QString temppath) {
       h.move_storage(getSavePath(h.hash()));
     }
   } else {
+    // Moving all downloading torrents to temporary save path
     std::vector<torrent_handle> torrents = getTorrents();
     std::vector<torrent_handle>::iterator torrentIT;
     for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
@@ -1597,12 +1594,8 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         // Authentication
         if(p->status_code != 401) {
-          QString hash = h.hash();
-          qDebug("Received a tracker error for %s", p->url.c_str());
-          QHash<QString, QString> errors = trackersErrors.value(hash, QHash<QString, QString>());
-          // p->url requires at least libtorrent v0.13.1
-          errors[misc::toQString(p->url)] = QString::fromUtf8(a->message().c_str());
-          trackersErrors[hash] = errors;
+          qDebug("Received a tracker error for %s: %s", p->url.c_str(), p->msg.c_str());
+          trackersErrors[h.hash()][misc::toQString(p->url)] = misc::toQString(p->message());
         } else {
           emit trackerAuthenticationRequired(h);
         }
@@ -1611,12 +1604,21 @@ void bittorrent::readAlerts() {
     else if (tracker_reply_alert* p = dynamic_cast<tracker_reply_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
-        qDebug("Received a tracker reply from %s", (const char*)h.current_tracker().toLocal8Bit());
-        QString hash = h.hash();
-        QHash<QString, QString> errors = trackersErrors.value(hash, QHash<QString, QString>());
-        // p->url requires at least libtorrent v0.13.1
+        qDebug("Received a tracker reply from %s", h.current_tracker().toLocal8Bit().data());
+        // Connection was successful now. Remove possible old errors
+        QHash<QString, QString> errors = trackersErrors.value(h.hash(), QHash<QString, QString>());
         errors.remove(h.current_tracker());
-        trackersErrors[hash] = errors;
+        trackersErrors[h.hash()] = errors;
+      }
+    } else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a.get())) {
+      QTorrentHandle h(p->handle);
+      if(h.is_valid()){
+        // Connection was successful now. Remove possible old errors
+        QHash<QString, QString> errors = trackersErrors.value(h.hash(), QHash<QString, QString>());
+        errors.remove(h.current_tracker());
+        trackersErrors[h.hash()] = errors;
+        qDebug("Received a tracker warning from %s: %s", h.current_tracker().toLocal8Bit().data(), p->msg.c_str());
+        // XXX: The tracker warning is silently ignored... do something with it.
       }
     }
     else if (portmap_error_alert* p = dynamic_cast<portmap_error_alert*>(a.get())) {
