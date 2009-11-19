@@ -70,10 +70,10 @@ public:
     case SEEDS:
     case PEERS: {
         qulonglong tot_val = index.data().toULongLong();
-        QString display = QString::number((qulonglong)tot_val/100000);
+        QString display = QString::number((qulonglong)tot_val/1000000);
         if(tot_val%2 == 0) {
           // Scrape was sucessful, we have total values
-          display += " ("+QString::number((qulonglong)(tot_val%100000)/10)+")";
+          display += " ("+QString::number((qulonglong)(tot_val%1000000)/10)+")";
         }
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
