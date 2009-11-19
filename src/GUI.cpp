@@ -365,6 +365,7 @@ void GUI::readParamsOnSocket() {
       processParams(QString::fromUtf8(params.data()).split(QString::fromUtf8("\n")));
       qDebug("Received parameters from another instance");
     }
+    clientConnection->deleteLater();
   }
 }
 
