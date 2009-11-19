@@ -291,7 +291,7 @@ void bittorrent::configureSession() {
   }
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
-  sessionSettings.announce_to_all_trackers = true;
+  //sessionSettings.announce_to_all_trackers = true;
   sessionSettings.announce_to_all_tiers = true; //uTorrent behavior
   // To keep same behavior as in qbittorrent v1.2.0
   sessionSettings.rate_limit_ip_overhead = false;
