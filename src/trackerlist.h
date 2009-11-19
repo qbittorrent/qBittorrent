@@ -77,6 +77,11 @@ public:
 
 public slots:
 
+  void clear() {
+    qDeleteAll(tracker_items.values());
+    tracker_items.clear();
+  }
+
   void loadTrackers() {
     QStringList old_trackers_urls = tracker_items.keys();
     // Load trackers from torrent handle
