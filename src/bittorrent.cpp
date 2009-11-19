@@ -1604,10 +1604,10 @@ void bittorrent::readAlerts() {
     else if (tracker_reply_alert* p = dynamic_cast<tracker_reply_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
-        qDebug("Received a tracker reply from %s", h.current_tracker().toLocal8Bit().data());
+        qDebug("Received a tracker reply from %s", p->url.c_str());
         // Connection was successful now. Remove possible old errors
         QHash<QString, QString> errors = trackersErrors.value(h.hash(), QHash<QString, QString>());
-        errors.remove(h.current_tracker());
+        errors.remove(misc::toQString(p->url));
         trackersErrors[h.hash()] = errors;
       }
     } else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a.get())) {
@@ -1615,10 +1615,9 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         // Connection was successful now. Remove possible old errors
         QHash<QString, QString> errors = trackersErrors.value(h.hash(), QHash<QString, QString>());
-        errors.remove(h.current_tracker());
+        errors[misc::toQString(p->url)] = misc::toQString(p->msg);
         trackersErrors[h.hash()] = errors;
-        qDebug("Received a tracker warning from %s: %s", h.current_tracker().toLocal8Bit().data(), p->msg.c_str());
-        // XXX: The tracker warning is silently ignored... do something with it.
+        qDebug("Received a tracker warning from %s: %s", p->url.c_str(), p->msg.c_str());
       }
     }
     else if (portmap_error_alert* p = dynamic_cast<portmap_error_alert*>(a.get())) {
