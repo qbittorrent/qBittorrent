@@ -50,6 +50,25 @@ class FileSystemWatcher;
 class FilterParserThread;
 class HttpServer;
 
+class TrackerInfos {
+public:
+  QString name_or_url;
+  QString last_message;
+  unsigned long num_peers;
+
+  //TrackerInfos() {}
+  TrackerInfos(const TrackerInfos &b) {
+    qDebug("TrackerInfos copy contructor called");
+    name_or_url = b.name_or_url;
+    Q_ASSERT(!name_or_url.isEmpty());
+    last_message = b.last_message;
+    qDebug("Copied message: %s", last_message.toLocal8Bit().data());
+    num_peers = b.num_peers;
+  }
+  TrackerInfos(QString name_or_url): name_or_url(name_or_url), last_message(""), num_peers(0) {
+  }
+};
+
 class bittorrent : public QObject {
   Q_OBJECT
 
@@ -58,7 +77,7 @@ private:
   session *s;
   QPointer<QTimer> timerAlerts;
   QHash<QString, QString> savepath_fromurl;
-  QHash<QString, QHash<QString, QString> > trackersErrors;
+  QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
   // Ratio
   QPointer<QTimer> BigRatioTimer;
   // HTTP
@@ -110,7 +129,7 @@ public:
   int getListenPort() const;
   float getRealRatio(QString hash) const;
   session* getSession() const;
-  QHash<QString, QString> getTrackersErrors(QString hash) const;
+  QHash<QString, TrackerInfos> getTrackersInfo(QString hash) const;
   bool has_filtered_files(QString hash) const;
   bool hasActiveTorrents() const;
   bool isQueueingEnabled() const;

@@ -43,7 +43,7 @@
 #include "misc.h"
 #include "bittorrent.h"
 
-enum TrackerListColumn {COL_URL, COL_STATUS, COL_MSG};
+enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
 
 class TrackerList: public QTreeWidget {
   Q_OBJECT
@@ -66,6 +66,7 @@ public:
     QStringList header;
     header << tr("URL");
     header << tr("Status");
+    header << tr("Peers");
     header << tr("Message");
     setHeaderItem(new QTreeWidgetItem(header));
     loadSettings();
@@ -87,7 +88,7 @@ public slots:
     // Load trackers from torrent handle
     QTorrentHandle h = properties->getCurrentTorrent();
     if(!h.is_valid()) return;
-    QHash<QString, QString> errors = properties->getBTSession()->getTrackersErrors(h.hash());
+    QHash<QString, TrackerInfos> trackers_data = properties->getBTSession()->getTrackersInfo(h.hash());
     std::vector<announce_entry> trackers = h.trackers();
     std::vector<announce_entry>::iterator it;
     for(it = trackers.begin(); it != trackers.end(); it++) {
@@ -105,7 +106,7 @@ public slots:
       if((*it).verified) {
         item->setText(COL_STATUS, tr("Working"));
       } else {
-        if((*it).updating) {
+        if((*it).updating && (*it).fails == 0) {
           item->setText(COL_STATUS, tr("Updating..."));
         } else {
           if((*it).fails > 0) {
@@ -115,7 +116,8 @@ public slots:
           }
         }
       }
-      item->setText(COL_MSG, errors.value(tracker_url, ""));
+      item->setText(COL_PEERS, QString::number(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers));
+      item->setText(COL_MSG, trackers_data.value(tracker_url, TrackerInfos(tracker_url)).last_message);
     }
     // Remove old trackers
     foreach(const QString &tracker, old_trackers_urls) {

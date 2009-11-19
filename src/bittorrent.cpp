@@ -578,7 +578,7 @@ void bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
   }
   TorrentPersistentData::deletePersistentData(hash);
   // Remove tracker errors
-  trackersErrors.remove(hash);
+  trackersInfos.remove(hash);
   if(delete_local_files)
     addConsoleMessage(tr("'%1' was removed from transfer list and hard disk.", "'xxx.avi' was removed...").arg(fileName));
   else
@@ -1597,7 +1597,12 @@ void bittorrent::readAlerts() {
         // Authentication
         if(p->status_code != 401) {
           qDebug("Received a tracker error for %s: %s", p->url.c_str(), p->msg.c_str());
-          trackersErrors[h.hash()][misc::toQString(p->url)] = misc::toQString(p->message());
+          QString tracker_url = misc::toQString(p->url);
+          QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
+          TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
+          data.last_message = misc::toQString(p->msg);
+          trackers_data.insert(tracker_url, data);
+          trackersInfos[h.hash()] = trackers_data;
         } else {
           emit trackerAuthenticationRequired(h);
         }
@@ -1608,17 +1613,24 @@ void bittorrent::readAlerts() {
       if(h.is_valid()){
         qDebug("Received a tracker reply from %s", p->url.c_str());
         // Connection was successful now. Remove possible old errors
-        QHash<QString, QString> errors = trackersErrors.value(h.hash(), QHash<QString, QString>());
-        errors.remove(misc::toQString(p->url));
-        trackersErrors[h.hash()] = errors;
+        QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
+        QString tracker_url = misc::toQString(p->url);
+        TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
+        data.last_message = ""; // Reset error/warning message
+        data.num_peers = p->num_peers;
+        trackers_data.insert(tracker_url, data);
+        trackersInfos[h.hash()] = trackers_data;
       }
     } else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       if(h.is_valid()){
-        // Connection was successful now. Remove possible old errors
-        QHash<QString, QString> errors = trackersErrors.value(h.hash(), QHash<QString, QString>());
-        errors[misc::toQString(p->url)] = misc::toQString(p->msg);
-        trackersErrors[h.hash()] = errors;
+        // Connection was successful now but there is a warning message
+        QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
+        QString tracker_url = misc::toQString(p->url);
+        TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
+        data.last_message = misc::toQString(p->msg); // Store warning message
+        trackers_data.insert(tracker_url, data);
+        trackersInfos[h.hash()] = trackers_data;
         qDebug("Received a tracker warning from %s: %s", p->url.c_str(), p->msg.c_str());
       }
     }
@@ -1673,8 +1685,8 @@ void bittorrent::readAlerts() {
   }
 }
 
-QHash<QString, QString> bittorrent::getTrackersErrors(QString hash) const{
-  return trackersErrors.value(hash, QHash<QString, QString>());
+QHash<QString, TrackerInfos> bittorrent::getTrackersInfo(QString hash) const{
+  return trackersInfos.value(hash, QHash<QString, TrackerInfos>());
 }
 
 int bittorrent::getListenPort() const{
