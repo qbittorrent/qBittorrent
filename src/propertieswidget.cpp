@@ -164,7 +164,7 @@ void PropertiesWidget::clear() {
   save_path->clear();
   lbl_creationDate->clear();
   hash_lbl->clear();
-  comment_lbl->clear();
+  comment_text->clear();
   incrementalDownload->setChecked(false);
   trackerList->clear();
   progressBar->setProgress(QRealArray());
@@ -210,7 +210,7 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     // Hash
     hash_lbl->setText(h.hash());
     // Comment
-    comment_lbl->setText(h.comment());
+    comment_text->setHtml(h.comment());
     // Sequential download
     incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(h.hash()));
     // URL seeds

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>540</width>
-    <height>305</height>
+    <height>329</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,11 @@
        </property>
        <item>
         <widget class="QScrollArea" name="scrollArea">
-         <property name="verticalScrollBarPolicy">
-          <enum>Qt::ScrollBarAsNeeded</enum>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
          <property name="widgetResizable">
           <bool>true</bool>
@@ -50,23 +53,17 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>536</width>
-            <height>265</height>
+            <y>-85</y>
+            <width>518</width>
+            <height>374</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_10">
-           <property name="spacing">
-            <number>3</number>
-           </property>
-           <property name="topMargin">
-            <number>3</number>
-           </property>
-           <property name="bottomMargin">
-            <number>1</number>
-           </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <layout class="QHBoxLayout" name="ProgressHLayout">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
              <item>
               <widget class="QLabel" name="downloaded_pieces_lbl">
                <property name="sizePolicy">
@@ -121,248 +118,237 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="groupBox">
-             <property name="title">
-              <string>Transfer</string>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
-              <property name="leftMargin">
-               <number>3</number>
-              </property>
-              <property name="rightMargin">
-               <number>3</number>
-              </property>
-              <property name="bottomMargin">
-               <number>3</number>
-              </property>
-              <item>
-               <layout class="QVBoxLayout" name="_4">
-                <property name="spacing">
-                 <number>6</number>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QGroupBox" name="groupBox">
+               <property name="title">
+                <string>Transfer</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <property name="leftMargin">
+                 <number>3</number>
                 </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="rightMargin">
+                 <number>3</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>3</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_5">
-                  <property name="text">
-                   <string>Uploaded:</string>
+                 <layout class="QVBoxLayout" name="_4">
+                  <property name="spacing">
+                   <number>6</number>
                   </property>
-                 </widget>
+                  <property name="margin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="label_5">
+                    <property name="text">
+                     <string>Uploaded:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_6">
+                    <property name="text">
+                     <string>Downloaded:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_8">
+                    <property name="text">
+                     <string>Wasted:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_6">
-                  <property name="text">
-                   <string>Downloaded:</string>
-                  </property>
-                 </widget>
+                 <layout class="QVBoxLayout" name="_5">
+                  <item>
+                   <widget class="QLabel" name="upTotal">
+                    <property name="text">
+                     <string notr="true">0 Kb</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="dlTotal">
+                    <property name="text">
+                     <string notr="true">0 Kb</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="wasted">
+                    <property name="text">
+                     <string notr="true">0 kb</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_8">
-                  <property name="text">
-                   <string>Wasted:</string>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
                   </property>
-                 </widget>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>97</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <item>
+                   <widget class="QLabel" name="label">
+                    <property name="text">
+                     <string>UP limit:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_2">
+                    <property name="text">
+                     <string>DL limit:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_7">
+                    <property name="text">
+                     <string>Time elapsed:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <item>
+                   <widget class="QLabel" name="lbl_uplimit">
+                    <property name="text">
+                     <string notr="true">∞</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="lbl_dllimit">
+                    <property name="text">
+                     <string notr="true">∞</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="lbl_elapsed">
+                    <property name="text">
+                     <string notr="true">∞</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_5">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>98</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                  <item>
+                   <widget class="QLabel" name="lbl_ratio">
+                    <property name="text">
+                     <string>Share ratio:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_4">
+                    <property name="text">
+                     <string>Connections:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_10">
+                    <property name="text">
+                     <string notr="true"/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <item>
+                   <widget class="QLabel" name="shareRatio">
+                    <property name="text">
+                     <string notr="true">1.0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="lbl_connections">
+                    <property name="text">
+                     <string notr="true">0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_11">
+                    <property name="text">
+                     <string notr="true"/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="_5">
-                <item>
-                 <widget class="QLabel" name="upTotal">
-                  <property name="text">
-                   <string notr="true">0 Kb</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="dlTotal">
-                  <property name="text">
-                   <string notr="true">0 Kb</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="wasted">
-                  <property name="text">
-                   <string notr="true">0 kb</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>97</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_4">
-                <item>
-                 <widget class="QLabel" name="label">
-                  <property name="text">
-                   <string>UP limit:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_2">
-                  <property name="text">
-                   <string>DL limit:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_7">
-                  <property name="text">
-                   <string>Time elapsed:</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_6">
-                <item>
-                 <widget class="QLabel" name="lbl_uplimit">
-                  <property name="text">
-                   <string notr="true">∞</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="lbl_dllimit">
-                  <property name="text">
-                   <string notr="true">∞</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="lbl_elapsed">
-                  <property name="text">
-                   <string notr="true">∞</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_5">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>98</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_12">
-                <item>
-                 <widget class="QLabel" name="lbl_ratio">
-                  <property name="text">
-                   <string>Share ratio:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_4">
-                  <property name="text">
-                   <string>Connections:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_10">
-                  <property name="text">
-                   <string notr="true"/>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_11">
-                <item>
-                 <widget class="QLabel" name="shareRatio">
-                  <property name="text">
-                   <string notr="true">1.0</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="lbl_connections">
-                  <property name="text">
-                   <string notr="true">0</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_11">
-                  <property name="text">
-                   <string notr="true"/>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>97</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
            <item>
             <widget class="QGroupBox" name="groupTorrentInfos">
              <property name="title">
               <string>Information</string>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <property name="spacing">
-               <number>6</number>
-              </property>
-              <property name="leftMargin">
-               <number>3</number>
-              </property>
-              <property name="topMargin">
-               <number>9</number>
-              </property>
-              <property name="rightMargin">
-               <number>3</number>
-              </property>
-              <property name="bottomMargin">
-               <number>3</number>
-              </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
                  <widget class="QLabel" name="savePath_lbl">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>19</height>
-                   </size>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
                   </property>
                   <property name="text">
                    <string>Save path:</string>
@@ -371,6 +357,12 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="label_9">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="text">
                    <string>Created on:</string>
                   </property>
@@ -378,6 +370,12 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="hash_lbl2">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="text">
                    <string>Torrent hash:</string>
                   </property>
@@ -388,6 +386,9 @@
                   <property name="text">
                    <string>Comment:</string>
                   </property>
+                  <property name="alignment">
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                  </property>
                  </widget>
                 </item>
                </layout>
@@ -396,11 +397,14 @@
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_2">
-                  <property name="spacing">
-                   <number>6</number>
-                  </property>
                   <item>
                    <widget class="QLabel" name="save_path">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
                     <property name="text">
                      <string notr="true">path</string>
                     </property>
@@ -411,7 +415,7 @@
                     <property name="maximumSize">
                      <size>
                       <width>22</width>
-                      <height>19</height>
+                      <height>15</height>
                      </size>
                     </property>
                     <property name="text">
@@ -422,46 +426,106 @@
                     </property>
                    </widget>
                   </item>
+                  <item>
+                   <spacer name="horizontalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>14</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="lbl_creationDate">
-                  <property name="text">
-                   <string notr="true">date</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <item>
+                   <widget class="QLabel" name="lbl_creationDate">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string notr="true">date</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_6">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>14</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="hash_lbl">
-                  <property name="text">
-                   <string notr="true">hash</string>
-                  </property>
-                  <property name="textInteractionFlags">
-                   <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <item>
+                   <widget class="QLabel" name="hash_lbl">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string notr="true">hash</string>
+                    </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_7">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>14</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="comment_lbl">
-                  <property name="text">
-                   <string notr="true">comment</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <item>
+                   <widget class="QTextBrowser" name="comment_text">
+                    <property name="html">
+                     <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="openExternalLinks">
+                     <bool>true</bool>
+                    </property>
+                    <property name="openLinks">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_4">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>517</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
              </layout>
             </widget>
