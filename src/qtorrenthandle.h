@@ -121,6 +121,7 @@ class QTorrentHandle {
     QString creation_date() const;
     void get_peer_info(std::vector<peer_info>&) const;
     bool resolve_countries() const;
+    bool priv() const;
 
     //
     // Setters

@@ -38,12 +38,14 @@
 #include <QSettings>
 #include <QHash>
 #include <QAction>
+#include <QColor>
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
 #include "misc.h"
 #include "bittorrent.h"
 
 enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
+#define NB_STICKY_ITEM 1
 
 class TrackerList: public QTreeWidget {
   Q_OBJECT
@@ -51,6 +53,7 @@ class TrackerList: public QTreeWidget {
 private:
   PropertiesWidget *properties;
   QHash<QString, QTreeWidgetItem*> tracker_items;
+  QTreeWidgetItem* dht_item;
 
 public:
   TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
@@ -69,6 +72,9 @@ public:
     header << tr("Peers");
     header << tr("Message");
     setHeaderItem(new QTreeWidgetItem(header));
+    dht_item = new QTreeWidgetItem(QStringList(tr("[DHT]")));
+    insertTopLevelItem(0, dht_item);
+    setRowColor(0, QColor("grey"));
     loadSettings();
   }
 
@@ -76,19 +82,57 @@ public:
     saveSettings();
   }
 
+protected:
+  QList<QTreeWidgetItem*> getSelectedTrackerItems() const {
+    QList<QTreeWidgetItem*> selected_items = selectedItems();
+    QList<QTreeWidgetItem*> selected_trackers;
+    foreach(QTreeWidgetItem *item, selectedItems()) {
+      if(indexOfTopLevelItem(item) >= NB_STICKY_ITEM) { // Ignore STICKY ITEMS
+        selected_trackers << item;
+      }
+    }
+    return selected_trackers;
+  }
+
 public slots:
+
+  void setRowColor(int row, QColor color) {
+    unsigned int nbColumns = columnCount();
+    QTreeWidgetItem *item = topLevelItem(row);
+    for(unsigned int i=0; i<nbColumns; ++i) {
+      item->setData(i, Qt::ForegroundRole, color);
+    }
+  }
 
   void clear() {
     qDeleteAll(tracker_items.values());
     tracker_items.clear();
+    dht_item->setText(COL_PEERS, "");
+    dht_item->setText(COL_STATUS, "");
+    dht_item->setText(COL_MSG, "");
+  }
+
+  void loadStickyItems(const QTorrentHandle &h, QHash<QString, TrackerInfos> trackers_data) {
+    // load DHT information
+    if(properties->getBTSession()->isDHTEnabled() && !h.priv()) {
+      dht_item->setText(COL_STATUS, tr("Working"));
+    } else {
+      dht_item->setText(COL_STATUS, tr("Disabled"));
+    }
+    dht_item->setText(COL_PEERS, QString::number(trackers_data.value("dht", TrackerInfos("dht")).num_peers));
+    if(h.priv()) {
+      dht_item->setText(COL_MSG, tr("This torrent is private"));
+    }
   }
 
   void loadTrackers() {
-    QStringList old_trackers_urls = tracker_items.keys();
     // Load trackers from torrent handle
     QTorrentHandle h = properties->getCurrentTorrent();
     if(!h.is_valid()) return;
     QHash<QString, TrackerInfos> trackers_data = properties->getBTSession()->getTrackersInfo(h.hash());
+    loadStickyItems(h, trackers_data);
+    // Load actual trackers information
+    QStringList old_trackers_urls = tracker_items.keys();
     std::vector<announce_entry> trackers = h.trackers();
     std::vector<announce_entry>::iterator it;
     for(it = trackers.begin(); it != trackers.end(); it++) {
@@ -151,7 +195,7 @@ public slots:
       clear();
       return;
     }
-    QList<QTreeWidgetItem *> selected_items = selectedItems();
+    QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
     if(selected_items.isEmpty()) return;
     QStringList urls_to_remove;
     foreach(QTreeWidgetItem *item, selected_items){
@@ -181,12 +225,12 @@ public slots:
   }
 
   void showTrackerListMenu(QPoint) {
-    QList<QTreeWidgetItem*> selected_items = selectedItems();
+    QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
     QMenu menu;
     // Add actions
     QAction *addAct = menu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add a new tracker"));
     QAction *delAct = 0;
-    if(!selectedItems().isEmpty()) {
+    if(!getSelectedTrackerItems().isEmpty()) {
       delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), "Remove tracker");
     }
     QAction *act = menu.exec(QCursor::pos());

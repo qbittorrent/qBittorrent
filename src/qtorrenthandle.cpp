@@ -386,6 +386,11 @@ bool QTorrentHandle::resolve_countries() const {
   return h.resolve_countries();
 }
 
+bool QTorrentHandle::priv() const {
+  Q_ASSERT(h.is_valid());
+  return h.get_torrent_info().priv();
+}
+
 //
 // Setters
 //

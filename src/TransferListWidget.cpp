@@ -170,7 +170,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
 }
 
 /*void TransferListWidget::setRowColor(int row, QColor color) {
-  unsigned int nbColumns = listModel->columnCount()-2;
+  unsigned int nbColumns = listModel->columnCount()-1;
   for(unsigned int i=0; i<nbColumns; ++i) {
     listModel->setData(listModel->index(row, i), QVariant(color), Qt::ForegroundRole);
   }

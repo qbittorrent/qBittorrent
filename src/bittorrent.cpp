@@ -1633,6 +1633,16 @@ void bittorrent::readAlerts() {
         trackersInfos[h.hash()] = trackers_data;
         qDebug("Received a tracker warning from %s: %s", p->url.c_str(), p->msg.c_str());
       }
+    } else if (dht_reply_alert* p = dynamic_cast<dht_reply_alert*>(a.get())) {
+      QTorrentHandle h(p->handle);
+      if(h.is_valid()){
+        // Connection was successful now but there is a warning message
+        QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
+        TrackerInfos data = trackers_data.value("dht", TrackerInfos("dht"));
+        data.num_peers = p->num_peers;
+        trackers_data.insert("dht", data);
+        trackersInfos[h.hash()] = trackers_data;
+      }
     }
     else if (portmap_error_alert* p = dynamic_cast<portmap_error_alert*>(a.get())) {
       addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString(p->message().c_str())), QColor("red"));
