@@ -38,7 +38,6 @@
 #include "qtorrenthandle.h"
 
 class bittorrent;
-class createtorrent;
 class QTimer;
 class downloadFromURL;
 class SearchEngine;
@@ -47,12 +46,8 @@ class QCloseEvent;
 class RSSImp;
 class QShortcut;
 class about;
-class previewSelect;
 class options_imp;
 class QTabWidget;
-class QLabel;
-class QModelIndex;
-class QFrame;
 class TransferListWidget;
 class TransferListFiltersWidget;
 class QSplitter;

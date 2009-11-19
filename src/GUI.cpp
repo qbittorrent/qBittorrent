@@ -31,20 +31,13 @@
 #include <QMessageBox>
 #include <QDesktopWidget>
 #include <QTimer>
-#include <QVBoxLayout>
 #include <QDesktopServices>
 #include <QStatusBar>
-#include <QFrame>
 #include <QClipboard>
 #include <QLocalServer>
 #include <QLocalSocket>
-#include <unistd.h>
-#include <sys/types.h>
-#include <stdlib.h>
 #include <QCloseEvent>
 #include <QShortcut>
-#include <QLabel>
-#include <QModelIndex>
 
 #include "GUI.h"
 #include "TransferListWidget.h"
@@ -60,7 +53,6 @@
 #include "options_imp.h"
 #include "speedlimitdlg.h"
 #include "preferences.h"
-#include <stdlib.h>
 #include "console_imp.h"
 #include "torrentPersistentData.h"
 #include "TransferListFiltersWidget.h"
