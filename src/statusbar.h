@@ -36,8 +36,11 @@
 #include <QLabel>
 #include <QTimer>
 #include <QGridLayout>
+#include <QPushButton>
 #include <QHBoxLayout>
 #include "bittorrent.h"
+#include "speedlimitdlg.h"
+#include "preferences.h"
 #include "misc.h"
 
 class StatusBar: public QObject {
@@ -45,8 +48,8 @@ class StatusBar: public QObject {
 
 private:
   QStatusBar *bar;
-  QLabel *dlSpeedLbl;
-  QLabel *upSpeedLbl;
+  QPushButton *dlSpeedLbl;
+  QPushButton *upSpeedLbl;
   QLabel *DHTLbl;
   QFrame *statusSep1;
   QFrame *statusSep2;
@@ -70,10 +73,14 @@ public:
     connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
     connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
-    dlSpeedLbl = new QLabel(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
-    dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
-    upSpeedLbl = new QLabel(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
-    upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    dlSpeedLbl = new QPushButton(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
+    dlSpeedLbl->setFlat(true);
+    upSpeedLbl = new QPushButton(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
+    upSpeedLbl->setFlat(true);
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
     DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     statusSep1 = new QFrame();
@@ -105,7 +112,7 @@ public:
 
     bar->addPermanentWidget(container);
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    bar->setStyleSheet("QWidget {padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;}\n");
+    //bar->setStyleSheet("QWidget {padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;}\n");
     container->setContentsMargins(0, 0, 0, 1);
     bar->setContentsMargins(0, 0, 0, 0);
     container->setFixedHeight(24);
@@ -155,6 +162,31 @@ public slots:
     upSpeedLbl->setText(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg(QString::number(sessionStatus.payload_upload_rate/1024., 'f', 1)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload)));
   }
 
+  void capDownloadSpeed() {
+    bool ok = false;
+    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), BTSession->getSession()->download_rate_limit());
+    if(ok) {
+      qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
+      BTSession->getSession()->set_download_rate_limit(new_limit);
+      if(new_limit <= 0)
+        Preferences::setGlobalDownloadLimit(-1);
+      else
+        Preferences::setGlobalDownloadLimit(new_limit/1024.);
+    }
+  }
+
+  void capUploadSpeed() {
+    bool ok = false;
+    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), BTSession->getSession()->upload_rate_limit());
+    if(ok) {
+      qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
+      BTSession->getSession()->set_upload_rate_limit(new_limit);
+      if(new_limit <= 0)
+        Preferences::setGlobalUploadLimit(-1);
+      else
+        Preferences::setGlobalUploadLimit(new_limit/1024.);
+    }
+  }
 };
 
 #endif // STATUSBAR_H
