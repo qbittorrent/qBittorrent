@@ -35,6 +35,7 @@
 #include <QTreeWidgetItem>
 #include <QStringList>
 #include <QMenu>
+#include <QSettings>
 #include <QHash>
 #include <QAction>
 #include "propertieswidget.h"
@@ -67,10 +68,11 @@ public:
     header << tr("Status");
     header << tr("Message");
     setHeaderItem(new QTreeWidgetItem(header));
+    loadSettings();
   }
 
   ~TrackerList() {
-
+    saveSettings();
   }
 
 public slots:
@@ -189,6 +191,27 @@ public slots:
       deleteSelectedTrackers();
       return;
     }
+  }
+
+  void loadSettings() {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth"), QVariantList()).toList();
+    if(!contentColsWidths.empty()) {
+      for(int i=0; i<contentColsWidths.size(); ++i) {
+        setColumnWidth(i, contentColsWidths.at(i).toInt());
+      }
+    } else {
+      setColumnWidth(0, 300);
+    }
+  }
+
+  void saveSettings() const {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QVariantList contentColsWidths;
+    for(int i=0; i<columnCount(); ++i) {
+      contentColsWidths.append(columnWidth(i));
+    }
+    settings.setValue(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth"), contentColsWidths);
   }
 
 };
