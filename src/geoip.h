@@ -127,12 +127,15 @@ public:
       if(iso[1] == 'R') return QIcon(":/Icons/flags/brazil.png");
       if(iso[1] == 'G') return QIcon(":/Icons/flags/bulgaria.png");
       if(iso[1] == 'Y') return QIcon(":/Icons/flags/belarus.png");
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/belgium.png");
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/bosnia.png");
       break;
     case 'C':
       if(iso[1] == 'A') return QIcon(":/Icons/flags/canada.png");
       if(iso[1] == 'Z') return QIcon(":/Icons/flags/czech.png");
       if(iso[1] == 'N') return QIcon(":/Icons/flags/china.png");
       if(iso[1] == 'R') return QIcon(":/Icons/flags/costa_rica.png");
+      if(iso[1] == 'H') return QIcon(":/Icons/flags/suisse.png");
       break;
     case 'D':
       if(iso[1] == 'E') return QIcon(":/Icons/flags/germany.png");
@@ -150,6 +153,7 @@ public:
     case 'G':
       if(iso[1] == 'B') return QIcon(":/Icons/flags/united_kingdom.png");
       if(iso[1] == 'R') return QIcon(":/Icons/flags/greece.png");
+      if(iso[1] == 'E') return QIcon(":/Icons/flags/georgia.png");
       break;
     case 'H':
       if(iso[1] == 'U') return QIcon(":/Icons/flags/hungary.png");
@@ -169,6 +173,9 @@ public:
       break;
     case 'K':
       if(iso[1] == 'R') return QIcon(":/Icons/flags/south_korea.png");
+      break;
+    case 'L':
+      if(iso[1] == 'U') return QIcon(":/Icons/flags/luxembourg.png");
       break;
     case 'M':
       if(iso[1] == 'Y') return QIcon(":/Icons/flags/malaysia.png");

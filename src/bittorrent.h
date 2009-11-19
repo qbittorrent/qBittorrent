@@ -58,11 +58,9 @@ public:
 
   //TrackerInfos() {}
   TrackerInfos(const TrackerInfos &b) {
-    qDebug("TrackerInfos copy contructor called");
     name_or_url = b.name_or_url;
     Q_ASSERT(!name_or_url.isEmpty());
     last_message = b.last_message;
-    qDebug("Copied message: %s", last_message.toLocal8Bit().data());
     num_peers = b.num_peers;
   }
   TrackerInfos(QString name_or_url): name_or_url(name_or_url), last_message(""), num_peers(0) {
