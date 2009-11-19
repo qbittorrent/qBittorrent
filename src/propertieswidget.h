@@ -80,7 +80,6 @@ protected:
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
   void loadDynamicData();
-  void setIncrementalDownload(int checkboxState);
   void loadUrlSeeds();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();

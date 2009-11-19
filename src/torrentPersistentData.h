@@ -203,8 +203,6 @@ public:
       }
       data["url_seeds"] = url_seeds;
     }
-    // Sequential download
-    data["sequential"] = h.is_sequential_download();
     // Save data
     all_data[h.hash()] = data;
     settings.setValue("torrents", all_data);
@@ -288,15 +286,6 @@ public:
     settings.setValue("torrents", all_data);
   }
 
-  static void saveSequentialStatus(QTorrentHandle h) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    data["sequential"] = h.is_sequential_download();
-    all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
-  }
-
   // Getters
   static QHash<QString, QVariant> getTrackers(QString hash) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
@@ -357,13 +346,6 @@ public:
     QHash<QString, QVariant> data = all_data[hash].toHash();
     Q_ASSERT(data["is_magnet"].toBool());
     return data["magnet_uri"].toString();
-  }
-
-  static bool isSequentialDownload(QString hash) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[hash].toHash();
-    return data["sequential"].toBool();
   }
 
 };

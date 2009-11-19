@@ -80,6 +80,7 @@ protected slots:
 #ifdef LIBTORRENT_0_15
   void toggleSelectedTorrentsSuperSeeding();
 #endif
+  void toggleSelectedTorrentsSequentialDownload();
   //void setRowColor(int row, QColor color);
 
 public slots:

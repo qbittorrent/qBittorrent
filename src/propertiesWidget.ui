@@ -53,9 +53,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-85</y>
+            <y>-59</y>
             <width>518</width>
-            <height>374</height>
+            <height>348</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -528,13 +528,6 @@ p, li { white-space: pre-wrap; }
                </layout>
               </item>
              </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="incrementalDownload">
-             <property name="text">
-              <string>Download in correct order (slower but good for previewing)</string>
-             </property>
             </widget>
            </item>
           </layout>

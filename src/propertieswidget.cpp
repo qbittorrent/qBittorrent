@@ -93,7 +93,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
   connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
-  connect(incrementalDownload, SIGNAL(stateChanged(int)), this, SLOT(setIncrementalDownload(int)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
 
@@ -165,7 +164,6 @@ void PropertiesWidget::clear() {
   lbl_creationDate->clear();
   hash_lbl->clear();
   comment_text->clear();
-  incrementalDownload->setChecked(false);
   trackerList->clear();
   progressBar->setProgress(QRealArray());
   wasted->clear();
@@ -211,8 +209,6 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     hash_lbl->setText(h.hash());
     // Comment
     comment_text->setHtml(h.comment());
-    // Sequential download
-    incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(h.hash()));
     // URL seeds
     loadUrlSeeds();
     // downloaded pieces updater
@@ -342,12 +338,6 @@ void PropertiesWidget::loadDynamicData() {
       PropListModel->updateFilesProgress(fp);
     }
   } catch(invalid_handle e) {}
-}
-
-void PropertiesWidget::setIncrementalDownload(int checkboxState) {
-  if(!h.is_valid()) return;
-  h.set_sequential_download(checkboxState == Qt::Checked);
-  TorrentPersistentData::saveSequentialStatus(h);
 }
 
 void PropertiesWidget::loadUrlSeeds(){
