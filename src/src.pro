@@ -173,7 +173,7 @@ HEADERS += GUI.h \
     json.h \
     eventmanager.h \
     filterParserThread.h \
-    TrackersAdditionDlg.h \
+    trackersadditiondlg.h \
     searchTab.h \
     console_imp.h \
     ico.h \
@@ -195,7 +195,8 @@ HEADERS += GUI.h \
     geoip.h \
     peeraddition.h \
     deletionconfirmationdlg.h \
-    statusbar.h
+    statusbar.h \
+    trackerlist.h
 FORMS += MainWindow.ui \
     options.ui \
     about.ui \

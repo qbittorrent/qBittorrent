@@ -153,6 +153,7 @@ class QTorrentHandle {
     void connect_peer(asio::ip::tcp::endpoint const& adr, int source = 0) const;
     void set_peer_upload_limit(asio::ip::tcp::endpoint ip, int limit) const;
     void set_peer_download_limit(asio::ip::tcp::endpoint ip, int limit) const;
+    void add_tracker(announce_entry const& url);
 
     //
     // Operators

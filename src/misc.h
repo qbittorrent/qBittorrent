@@ -223,13 +223,6 @@ public:
     return qBtPath;
   }
 
-  static void fixTrackersTiers(std::vector<announce_entry> trackers) {
-    unsigned int nbTrackers = trackers.size();
-    for(unsigned int i=0; i<nbTrackers; ++i) {
-      trackers[i].tier = i;
-    }
-  }
-
   // Insertion sort, used instead of bubble sort because it is
   // approx. 5 times faster.
   template <class T> static void insertSort(QList<QPair<int, T> > &list, const QPair<int, T>& value, Qt::SortOrder sortOrder) {

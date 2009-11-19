@@ -46,6 +46,7 @@ class PropListDelegate;
 class QAction;
 class torrent_file;
 class PeerListWidget;
+class TrackerList;
 
 enum Tab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
 enum SlideState {REDUCED, VISIBLE};
@@ -64,6 +65,7 @@ private:
   TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
   PeerListWidget *peersList;
+  TrackerList *trackerList;
   QAction *actionIgnored;
   QAction *actionNormal;
   QAction *actionMaximum;
@@ -79,7 +81,6 @@ protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
   void loadDynamicData();
   void setIncrementalDownload(int checkboxState);
-  void loadTrackers();
   void loadUrlSeeds();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();
@@ -92,13 +93,8 @@ protected slots:
   void maximumSelection();
   void askWebSeed();
   void deleteSelectedUrlSeeds();
-  void askForTracker();
-  void deleteSelectedTrackers();
-  void lowerSelectedTracker();
-  void riseSelectedTracker();
   void displayFilesListMenu(const QPoint& pos);
   void on_changeSavePathButton_clicked();
-  void addTrackerList(QStringList myTrackers);
   void filteredFilesChanged();
 
 public slots:

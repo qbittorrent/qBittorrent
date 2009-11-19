@@ -35,27 +35,27 @@
 #include <QStringList>
 #include "ui_trackersAdd.h"
 
-class TrackersAddDlg : public QDialog, private Ui::TrackersAdditionDlg{
+class TrackersAdditionDlg : public QDialog, private Ui::TrackersAdditionDlg{
   Q_OBJECT
 
   public:
-    TrackersAddDlg(QWidget *parent): QDialog(parent){
+    TrackersAdditionDlg(QWidget *parent=0): QDialog(parent){
       setupUi(this);
-      setAttribute(Qt::WA_DeleteOnClose);
-      show();
     }
     
-    ~TrackersAddDlg(){}
+    ~TrackersAdditionDlg(){}
+
+    QStringList newTrackers() const {
+      return trackers_list->toPlainText().trimmed().split("\n");
+    }
     
-  signals:
-    void TrackersToAdd(QStringList trackers);
-    
-  public slots:
-    void on_buttonBox_accepted() {
-      QStringList trackers = trackers_list->toPlainText().trimmed().split("\n");
-      if(trackers.size()) {
-        emit TrackersToAdd(trackers);
+    static QStringList asForTrackers() {
+      QStringList trackers;
+      TrackersAdditionDlg dlg;
+      if(dlg.exec() == QDialog::Accepted) {
+        return dlg.newTrackers();
       }
+      return trackers;
     }
 };
 

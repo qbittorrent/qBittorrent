@@ -45,9 +45,9 @@
 #include "realprogressbarthread.h"
 #include "bittorrent.h"
 #include "PropListDelegate.h"
-#include "TrackersAdditionDlg.h"
 #include "TorrentFilesModel.h"
 #include "peerlistwidget.h"
+#include "trackerlist.h"
 
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS ""
@@ -86,10 +86,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   connect(collapseAllButton, SIGNAL(clicked()), filesList, SLOT(collapseAll()));
   connect(expandAllButton, SIGNAL(clicked()), filesList, SLOT(expandAll()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
-  connect(addTracker_button, SIGNAL(clicked()), this, SLOT(askForTracker()));
-  connect(removeTracker_button, SIGNAL(clicked()), this, SLOT(deleteSelectedTrackers()));
-  connect(riseTracker_button, SIGNAL(clicked()), this, SLOT(riseSelectedTracker()));
-  connect(lowerTracker_button, SIGNAL(clicked()), this, SLOT(lowerSelectedTracker()));
   connect(actionIgnored, SIGNAL(triggered()), this, SLOT(ignoreSelection()));
   connect(actionNormal, SIGNAL(triggered()), this, SLOT(normalSelection()));
   connect(actionHigh, SIGNAL(triggered()), this, SLOT(highSelection()));
@@ -105,6 +101,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   progressBar = new RealProgressBar(this);
   progressBar->setForegroundColor(Qt::blue);
   ProgressHLayout->insertWidget(1, progressBar);
+  // Tracker list
+  trackerList = new TrackerList(this);
+  verticalLayout_trackers->addWidget(trackerList);
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
@@ -113,7 +112,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transfer
   // Dynamic data refresher
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
-  refreshTimer->start(10000); // 10sec
+  refreshTimer->start(3000); // 3sec
 }
 
 PropertiesWidget::~PropertiesWidget() {
@@ -121,6 +120,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete refreshTimer;
   if(progressBarUpdater)
     delete progressBarUpdater;
+  delete trackerList;
   delete peersList;
   delete progressBar;
   delete PropListModel;
@@ -166,8 +166,7 @@ void PropertiesWidget::clear() {
   hash_lbl->clear();
   comment_lbl->clear();
   incrementalDownload->setChecked(false);
-  trackersURLS->clear();
-  trackerURL->clear();
+  trackerList->clear();
   progressBar->setProgress(QRealArray());
   wasted->clear();
   upTotal->clear();
@@ -214,8 +213,6 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     comment_lbl->setText(h.comment());
     // Sequential download
     incrementalDownload->setChecked(TorrentPersistentData::isSequentialDownload(h.hash()));
-    // Trackers
-    loadTrackers();
     // URL seeds
     loadUrlSeeds();
     // downloaded pieces updater
@@ -328,6 +325,11 @@ void PropertiesWidget::loadDynamicData() {
       progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
       return;
     }
+    if(stackedProperties->currentIndex() == TRACKERS_TAB) {
+      // Trackers
+      trackerList->loadTrackers();
+      return;
+    }
     if(stackedProperties->currentIndex() == PEERS_TAB) {
       // Load peers
       peersList->loadPeers(h);
@@ -346,41 +348,6 @@ void PropertiesWidget::setIncrementalDownload(int checkboxState) {
   if(!h.is_valid()) return;
   h.set_sequential_download(checkboxState == Qt::Checked);
   TorrentPersistentData::saveSequentialStatus(h);
-}
-
-void PropertiesWidget::loadTrackers() {
-  if(!h.is_valid()) return;
-  //Trackers
-  std::vector<announce_entry> trackers = h.trackers();
-  trackersURLS->clear();
-  QHash<QString, QString> errors = BTSession->getTrackersErrors(h.hash());
-  unsigned int nbTrackers = trackers.size();
-  for(unsigned int i=0; i<nbTrackers; ++i){
-    QString current_tracker = misc::toQString(trackers[i].url);
-    QListWidgetItem *item = new QListWidgetItem(current_tracker, trackersURLS);
-    // IsThere any errors ?
-    if(errors.contains(current_tracker)) {
-      item->setForeground(QBrush(QColor("red")));
-      // Set tooltip
-      QString msg="";
-      unsigned int i=0;
-      foreach(QString word, errors[current_tracker].split(" ")) {
-        if(i > 0 && i%5!=1) msg += " ";
-        msg += word;
-        if(i> 0 && i%5==0) msg += "\n";
-        ++i;
-      }
-      item->setToolTip(msg);
-    } else {
-      item->setForeground(QBrush(QColor("green")));
-    }
-  }
-  QString tracker = h.current_tracker().trimmed();
-  if(!tracker.isEmpty()){
-    trackerURL->setText(tracker);
-  }else{
-    trackerURL->setText(tr("None - Unreachable?"));
-  }
 }
 
 void PropertiesWidget::loadUrlSeeds(){
@@ -578,30 +545,6 @@ void PropertiesWidget::askWebSeed(){
   loadUrlSeeds();
 }
 
-// Ask the user for a new tracker
-// and add it to the download list
-// if it is not already in it
-void PropertiesWidget::askForTracker(){
-  TrackersAddDlg *dlg = new TrackersAddDlg(this);
-  connect(dlg, SIGNAL(TrackersToAdd(QStringList)), this, SLOT(addTrackerList(QStringList)));
-}
-
-void PropertiesWidget::addTrackerList(QStringList myTrackers) {
-  // Add the trackers to the list
-  std::vector<announce_entry> trackers = h.trackers();
-  foreach(const QString& tracker, myTrackers) {
-    announce_entry new_tracker(misc::toString(tracker.trimmed().toLocal8Bit().data()));
-    new_tracker.tier = 0; // Will be fixed a bit later
-    trackers.push_back(new_tracker);
-    misc::fixTrackersTiers(trackers);
-  }
-  h.replace_trackers(trackers);
-  h.force_reannounce();
-  // Reload Trackers
-  loadTrackers();
-  BTSession->saveTrackerFile(h.hash());
-}
-
 void PropertiesWidget::deleteSelectedUrlSeeds(){
   QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
   bool change = false;
@@ -615,99 +558,6 @@ void PropertiesWidget::deleteSelectedUrlSeeds(){
     TorrentPersistentData::saveUrlSeeds(h);
     // Refresh list
     loadUrlSeeds();
-  }
-}
-
-void PropertiesWidget::deleteSelectedTrackers(){
-  QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
-  if(!selectedItems.size()) return;
-  std::vector<announce_entry> trackers = h.trackers();
-  unsigned int nbTrackers = trackers.size();
-  if(nbTrackers == (unsigned int) selectedItems.size()){
-    QMessageBox::warning(this, tr("qBittorrent"),
-                         tr("Trackers list can't be empty."),
-                         QMessageBox::Ok);
-    return;
-  }
-  foreach(QListWidgetItem *item, selectedItems){
-    QString url = item->text();
-    for(unsigned int i=0; i<nbTrackers; ++i){
-      if(misc::toQString(trackers.at(i).url) == url){
-        trackers.erase(trackers.begin()+i);
-        break;
-      }
-    }
-  }
-  h.replace_trackers(trackers);
-  h.force_reannounce();
-  // Reload Trackers
-  loadTrackers();
-  BTSession->saveTrackerFile(h.hash());
-}
-
-void PropertiesWidget::riseSelectedTracker(){
-  unsigned int i = 0;
-  std::vector<announce_entry> trackers = h.trackers();
-  QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
-  bool change = false;
-  unsigned int nbTrackers = trackers.size();
-  foreach(QListWidgetItem *item, selectedItems){
-    QString url = item->text();
-    for(i=0; i<nbTrackers; ++i){
-      if(misc::toQString(trackers.at(i).url) == url){
-        qDebug("Asked to rise %s", trackers.at(i).url.c_str());
-        qDebug("its tier was %d and will become %d", trackers[i].tier, trackers[i].tier-1);
-        if(i > 0){
-          announce_entry tmp = trackers[i];
-          trackers[i] = trackers[i-1];
-          trackers[i-1] = tmp;
-          change = true;
-        }
-        break;
-      }
-    }
-  }
-  if(change){
-    misc::fixTrackersTiers(trackers);
-    h.replace_trackers(trackers);
-    h.force_reannounce();
-    // Reload Trackers
-    loadTrackers();
-    trackersURLS->item(i-1)->setSelected(true);
-    BTSession->saveTrackerFile(h.hash());
-  }
-}
-
-void PropertiesWidget::lowerSelectedTracker(){
-  unsigned int i = 0;
-  std::vector<announce_entry> trackers = h.trackers();
-  QList<QListWidgetItem *> selectedItems = trackersURLS->selectedItems();
-  bool change = false;
-  unsigned int nbTrackers = trackers.size();
-  foreach(QListWidgetItem *item, selectedItems){
-    QString url = item->text();
-    for(i=0; i<nbTrackers; ++i){
-      if(misc::toQString(trackers.at(i).url) == url){
-        qDebug("Asked to lower %s", trackers.at(i).url.c_str());
-        qDebug("its tier was %d and will become %d", trackers[i].tier, trackers[i].tier+1);
-        if(i < nbTrackers-1){
-          announce_entry tmp = trackers[i];
-          trackers[i] = trackers[i+1];
-          trackers[i+1] = tmp;
-          change = true;
-        }
-        break;
-      }
-    }
-  }
-  if(change){
-    misc::fixTrackersTiers(trackers);
-    h.replace_trackers(trackers);
-    h.force_reannounce();
-    // Reload Trackers
-    loadTrackers();
-    trackersURLS->item(i+1)->setSelected(true);
-    BTSession->saveTrackerFile(h.hash());
   }
 }
 

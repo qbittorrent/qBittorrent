@@ -522,6 +522,11 @@ void QTorrentHandle::set_peer_download_limit(asio::ip::tcp::endpoint ip, int lim
   h.set_peer_download_limit(ip, limit);
 }
 
+void QTorrentHandle::add_tracker(announce_entry const& url) {
+  Q_ASSERT(h.is_valid());
+  h.add_tracker(url);
+}
+
 //
 // Operators
 //
