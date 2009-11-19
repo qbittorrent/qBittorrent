@@ -352,12 +352,13 @@ void GUI::balloonClicked() {
 }
 
 void GUI::acceptConnection() {
-  clientConnection = localServer->nextPendingConnection();
+  QLocalSocket *clientConnection = localServer->nextPendingConnection();
   connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsOnSocket()));
   qDebug("accepted connection from another instance");
 }
 
 void GUI::readParamsOnSocket() {
+  QLocalSocket *clientConnection = static_cast<QLocalSocket*>(sender());
   if(clientConnection) {
     QByteArray params = clientConnection->readAll();
     if(!params.isEmpty()) {

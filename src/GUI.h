@@ -43,7 +43,6 @@ class QTimer;
 class downloadFromURL;
 class SearchEngine;
 class QLocalServer;
-class QLocalSocket;
 class QCloseEvent;
 class RSSImp;
 class QShortcut;
@@ -78,25 +77,24 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     TransferListWidget *transferList;
     TransferListFiltersWidget *transferListFilters;
     PropertiesWidget *properties;
-    QSplitter *hSplitter;
-    QSplitter *vSplitter;
     bool displaySpeedInTitle;
     bool force_exit;
-    //unsigned int refreshInterval;
     // Keyboard shortcuts
     QShortcut *switchSearchShortcut;
     QShortcut *switchSearchShortcut2;
     QShortcut *switchTransferShortcut;
     QShortcut *switchRSSShortcut;
+    // Widgets
     QAction *prioSeparator;
     QAction *prioSeparator2;
+    QSplitter *hSplitter;
+    QSplitter *vSplitter;
     // Search
     SearchEngine *searchEngine;
     // RSS
     QPointer<RSSImp> rssWidget;
     // Misc
     QLocalServer *localServer;
-    QLocalSocket *clientConnection;
 
   protected slots:
     // GUI related slots
