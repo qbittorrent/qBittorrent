@@ -55,7 +55,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
   Q_OBJECT
 
 private:
-  bittorrent *BTSession;
+  Bittorrent *BTSession;
   QString fileName;
   QString hash;
   QString filePath;
@@ -66,7 +66,7 @@ private:
   boost::intrusive_ptr<torrent_info> t;
 
 public:
-  torrentAdditionDialog(QWidget *parent, bittorrent* _BTSession) : QDialog(parent) {
+  torrentAdditionDialog(QWidget *parent, Bittorrent* _BTSession) : QDialog(parent) {
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     BTSession = _BTSession;

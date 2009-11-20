@@ -57,7 +57,7 @@
 #define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105); margin-left: 3px; margin-right: 3px;}"
 #endif
 
-PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
+PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, Bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
   setupUi(this);
   state = VISIBLE;
 
@@ -184,7 +184,7 @@ const QTorrentHandle& PropertiesWidget::getCurrentTorrent() const {
   return h;
 }
 
-bittorrent* PropertiesWidget::getBTSession() const {
+Bittorrent* PropertiesWidget::getBTSession() const {
   return BTSession;
 }
 

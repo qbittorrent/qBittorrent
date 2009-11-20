@@ -67,7 +67,7 @@ public:
   }
 };
 
-class bittorrent : public QObject {
+class Bittorrent : public QObject {
   Q_OBJECT
 
 private:
@@ -115,8 +115,8 @@ protected:
 
 public:
   // Constructor / Destructor
-  bittorrent();
-  ~bittorrent();
+  Bittorrent();
+  ~Bittorrent();
   QTorrentHandle getTorrentHandle(QString hash) const;
   std::vector<torrent_handle> getTorrents() const;
   bool isFilePreviewPossible(QString fileHash) const;

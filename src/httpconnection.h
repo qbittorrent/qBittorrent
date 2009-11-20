@@ -38,7 +38,7 @@
 
 class QTcpSocket;
 class HttpServer;
-class bittorrent;
+class Bittorrent;
 
 class HttpConnection : public QObject
 {
@@ -46,7 +46,7 @@ class HttpConnection : public QObject
 	private:
 		QTcpSocket *socket;
 		HttpServer *parent;
-                bittorrent *BTSession;
+                Bittorrent *BTSession;
 
 	protected:
 		HttpRequestParser parser;
@@ -64,7 +64,7 @@ class HttpConnection : public QObject
                 void recheckAllTorrents();
 
 	public:
-                HttpConnection(QTcpSocket *socket, bittorrent* BTSession, HttpServer *parent);
+                HttpConnection(QTcpSocket *socket, Bittorrent* BTSession, HttpServer *parent);
 		~HttpConnection();
 
 	private slots:

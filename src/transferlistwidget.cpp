@@ -48,7 +48,7 @@
 #include <QRegExp>
 #include <vector>
 
-TransferListWidget::TransferListWidget(QWidget *parent, bittorrent *_BTSession): QTreeView(parent) {
+TransferListWidget::TransferListWidget(QWidget *parent, Bittorrent *_BTSession): QTreeView(parent) {
   QSettings settings("qBittorrent", "qBittorrent");
   BTSession = _BTSession;
 

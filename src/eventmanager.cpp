@@ -33,7 +33,7 @@
 #include "bittorrent.h"
 #include <QDebug>
 
-EventManager::EventManager(QObject *parent, bittorrent *BTSession)
+EventManager::EventManager(QObject *parent, Bittorrent *BTSession)
     : QObject(parent), BTSession(BTSession)
 {
 }

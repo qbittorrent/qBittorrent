@@ -228,11 +228,11 @@ private:
   QString feed_url;
   QString feed_name;
   FeedFilters filters;
-  bittorrent *BTSession;
+  Bittorrent *BTSession;
   QString selected_filter; // name
 
 public:
-  FeedDownloaderDlg(QWidget *parent, QString feed_url, QString feed_name, bittorrent* BTSession): QDialog(parent), feed_url(feed_url), feed_name(feed_name), BTSession(BTSession), selected_filter(QString::null){
+  FeedDownloaderDlg(QWidget *parent, QString feed_url, QString feed_name, Bittorrent* BTSession): QDialog(parent), feed_url(feed_url), feed_name(feed_name), BTSession(BTSession), selected_filter(QString::null){
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     Q_ASSERT(!feed_name.isEmpty());

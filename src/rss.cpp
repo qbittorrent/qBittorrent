@@ -34,7 +34,7 @@
 
 /** RssFolder **/
 
-RssFolder::RssFolder(RssFolder *parent, RssManager *rssmanager, bittorrent *BTSession, QString name): parent(parent), rssmanager(rssmanager), BTSession(BTSession), name(name) {
+RssFolder::RssFolder(RssFolder *parent, RssManager *rssmanager, Bittorrent *BTSession, QString name): parent(parent), rssmanager(rssmanager), BTSession(BTSession), name(name) {
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processFinishedDownload(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
@@ -277,7 +277,7 @@ void RssFolder::addFile(RssFile * item) {
 
 /** RssManager **/
 
-RssManager::RssManager(bittorrent *BTSession): RssFolder(0, this, BTSession, QString::null) {
+RssManager::RssManager(Bittorrent *BTSession): RssFolder(0, this, BTSession, QString::null) {
   loadStreamList();
   connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshAll()));
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -368,7 +368,7 @@ void RssManager::saveStreamList(){
 
 /** RssStream **/
 
-RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url): parent(parent), rssmanager(rssmanager), BTSession(BTSession), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
+RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, Bittorrent *BTSession, QString _url): parent(parent), rssmanager(rssmanager), BTSession(BTSession), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
   has_attachments = false;
   qDebug("RSSStream constructed");
   QSettings qBTRSS("qBittorrent", "qBittorrent-rss");

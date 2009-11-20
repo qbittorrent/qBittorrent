@@ -37,7 +37,7 @@
 #include "ui_MainWindow.h"
 #include "qtorrenthandle.h"
 
-class bittorrent;
+class Bittorrent;
 class QTimer;
 class downloadFromURL;
 class SearchEngine;
@@ -59,7 +59,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
 
   private:
     // Bittorrent
-    bittorrent *BTSession;
+    Bittorrent *BTSession;
     QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?
     // GUI related
     QTimer *guiUpdater;

@@ -372,7 +372,7 @@ class RssStream: public RssFile, public QHash<QString, RssItem*> {
 private:
   RssFolder *parent;
   RssManager *rssmanager;
-  bittorrent *BTSession;
+  Bittorrent *BTSession;
   QString title;
   QString link;
   QString description;
@@ -392,7 +392,7 @@ public slots:
   void setDownloadFailed();
 
 public:
-  RssStream(RssFolder* parent, RssManager *rssmanager, bittorrent *BTSession, QString _url);
+  RssStream(RssFolder* parent, RssManager *rssmanager, Bittorrent *BTSession, QString _url);
   ~RssStream();
   RssFolder* getParent() const { return parent; }
   void setParent(RssFolder* _parent) { parent = _parent; }
@@ -436,11 +436,11 @@ private:
   RssFolder *parent;
   RssManager *rssmanager;
   downloadThread *downloader;
-  bittorrent *BTSession;
+  Bittorrent *BTSession;
   QString name;
 
 public:
-  RssFolder(RssFolder *parent, RssManager *rssmanager, bittorrent *BTSession, QString name);
+  RssFolder(RssFolder *parent, RssManager *rssmanager, Bittorrent *BTSession, QString name);
   ~RssFolder();
   RssFolder* getParent() const { return parent; }
   void setParent(RssFolder* _parent) { parent = _parent; }
@@ -476,7 +476,7 @@ class RssManager: public RssFolder{
 private:
   QTimer newsRefresher;
   unsigned int refreshInterval;
-  bittorrent *BTSession;
+  Bittorrent *BTSession;
 
 signals:
   void feedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
@@ -491,7 +491,7 @@ public slots:
   void updateRefreshInterval(unsigned int val);
 
 public:
-  RssManager(bittorrent *BTSession);
+  RssManager(Bittorrent *BTSession);
   ~RssManager();
   static void insertSortElem(QList<RssItem*> &list, RssItem *item) {
     int i = 0;

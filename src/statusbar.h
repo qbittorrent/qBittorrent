@@ -58,10 +58,10 @@ private:
   QTimer *refreshTimer;
   QWidget *container;
   QGridLayout *layout;
-  bittorrent *BTSession;
+  Bittorrent *BTSession;
 
 public:
-  StatusBar(QStatusBar *bar, bittorrent *BTSession): bar(bar), BTSession(BTSession) {
+  StatusBar(QStatusBar *bar, Bittorrent *BTSession): bar(bar), BTSession(BTSession) {
     container = new QWidget();
     layout = new QGridLayout(container);
     layout->setVerticalSpacing(0);

@@ -43,7 +43,7 @@
 #include "searchtab.h"
 #include "supportedengines.h"
 
-class bittorrent;
+class Bittorrent;
 class QSystemTrayIcon;
 class downloadThread;
 class QTimer;
@@ -62,7 +62,7 @@ private:
   unsigned long nb_search_results;
   QPointer<QCompleter> searchCompleter;
   QStringListModel searchHistory;
-  bittorrent *BTSession;
+  Bittorrent *BTSession;
   QSystemTrayIcon *systrayIcon;
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
@@ -71,7 +71,7 @@ private:
   QList<SearchTab*> all_tab; // To store all tabs
   const SearchCategories full_cat_names;
 public:
-  SearchEngine(bittorrent *BTSession, QSystemTrayIcon *systrayIcon);
+  SearchEngine(Bittorrent *BTSession, QSystemTrayIcon *systrayIcon);
   ~SearchEngine();
   float getPluginVersion(QString filePath) const;
   QString selectedCategory() const;

@@ -43,7 +43,7 @@
 #include <QDebug>
 #include <QTemporaryFile>
 
-HttpConnection::HttpConnection(QTcpSocket *socket, bittorrent *BTSession, HttpServer *parent)
+HttpConnection::HttpConnection(QTcpSocket *socket, Bittorrent *BTSession, HttpServer *parent)
     : QObject(parent), socket(socket), parent(parent), BTSession(BTSession)
 {
   socket->setParent(this);

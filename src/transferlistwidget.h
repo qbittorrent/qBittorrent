@@ -36,7 +36,7 @@
 
 class QStandardItemModel;
 class QSortFilterProxyModel;
-class bittorrent;
+class Bittorrent;
 class QTimer;
 class TransferListDelegate;
 
@@ -49,11 +49,11 @@ private:
   TransferListDelegate *listDelegate;
   QStandardItemModel *listModel;
   QSortFilterProxyModel *proxyModel;
-  bittorrent* BTSession;
+  Bittorrent* BTSession;
   QTimer *refreshTimer;
 
 public:
-  TransferListWidget(QWidget *parent, bittorrent* BTSession);
+  TransferListWidget(QWidget *parent, Bittorrent* BTSession);
   ~TransferListWidget();
 
 protected:

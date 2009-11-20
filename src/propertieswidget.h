@@ -40,7 +40,7 @@ class TransferListWidget;
 class QTimer;
 class RealProgressBar;
 class RealProgressBarThread;
-class bittorrent;
+class Bittorrent;
 class TorrentFilesModel;
 class PropListDelegate;
 class QAction;
@@ -60,7 +60,7 @@ private:
   QTimer *refreshTimer;
   RealProgressBar *progressBar;
   RealProgressBarThread *progressBarUpdater;
-  bittorrent* BTSession;
+  Bittorrent* BTSession;
   SlideState state;
   TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
@@ -105,10 +105,10 @@ public slots:
   void reloadPreferences();
 
 public:
-  PropertiesWidget(QWidget *parent, TransferListWidget *transferList, bittorrent* BTSession);
+  PropertiesWidget(QWidget *parent, TransferListWidget *transferList, Bittorrent* BTSession);
   ~PropertiesWidget();
   const QTorrentHandle& getCurrentTorrent() const;
-  bittorrent* getBTSession() const;
+  Bittorrent* getBTSession() const;
 };
 
 #endif // PROPERTIESWIDGET_H

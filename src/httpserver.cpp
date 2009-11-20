@@ -35,7 +35,7 @@
 #include "bittorrent.h"
 #include <QTimer>
 
-HttpServer::HttpServer(bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent)
+HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent)
 {
 	base64 = QByteArray(":").toBase64();
 	connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));

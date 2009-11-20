@@ -36,20 +36,20 @@
 #include <QHash>
 #include <QVariant>
 
-struct bittorrent;
+class Bittorrent;
 
 class EventManager : public QObject
 {
 	Q_OBJECT
 	private:
 		QHash<QString, QVariantMap> event_list;
-		bittorrent* BTSession;
+                Bittorrent* BTSession;
 
 	protected:
 		void update(QVariantMap event);
 
 	public:
-		EventManager(QObject *parent, bittorrent* BTSession);
+                EventManager(QObject *parent, Bittorrent* BTSession);
                 QList<QVariantMap> getEventList() const;
 
 	public slots:
