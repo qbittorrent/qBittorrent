@@ -246,12 +246,14 @@ int TransferListWidget::updateTorrent(int row) {
         if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
           listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
           listModel->setData(listModel->index(row, PROGRESS), QVariant((double)h.progress()));
+          s = STATE_CHECKING;
+          listModel->setData(listModel->index(row, STATUS), s);
         }else {
           listModel->setData(listModel->index(row, NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/mail-queue.png"))), Qt::DecorationRole);
           listModel->setData(listModel->index(row, ETA), QVariant((qlonglong)-1));
+          s = STATE_QUEUED;
+          listModel->setData(listModel->index(row, STATUS), s);
         }
-        s = STATE_QUEUED;
-        listModel->setData(listModel->index(row, STATUS), STATE_QUEUED);
         // Reset speeds and seeds/leech
         listModel->setData(listModel->index(row, DLSPEED), QVariant((double)0.));
         listModel->setData(listModel->index(row, UPSPEED), QVariant((double)0.));
