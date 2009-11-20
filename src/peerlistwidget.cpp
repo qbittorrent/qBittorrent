@@ -314,8 +314,8 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
   listModel->setData(listModel->index(row, UP_SPEED), peer.payload_up_speed);
-  listModel->setData(listModel->index(row, TOT_DOWN), peer.total_download);
-  listModel->setData(listModel->index(row, TOT_UP), peer.total_upload);
+  listModel->setData(listModel->index(row, TOT_DOWN), (qulonglong)peer.total_download);
+  listModel->setData(listModel->index(row, TOT_UP), (qulonglong)peer.total_upload);
   return listModel->item(row, IP);
 }
 
@@ -333,8 +333,8 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
   listModel->setData(listModel->index(row, UP_SPEED), peer.payload_up_speed);
-  listModel->setData(listModel->index(row, TOT_DOWN), peer.total_download);
-  listModel->setData(listModel->index(row, TOT_UP), peer.total_upload);
+  listModel->setData(listModel->index(row, TOT_DOWN), (qulonglong)peer.total_download);
+  listModel->setData(listModel->index(row, TOT_UP), (qulonglong)peer.total_upload);
 }
 
 void PeerListWidget::handleResolved(QString ip, QString hostname) {

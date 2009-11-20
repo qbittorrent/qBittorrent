@@ -56,7 +56,7 @@ public:
     itemData << misc::toQString(f.path.string()).split("/").last();
     qDebug("Created a TreeItem file with name %s", getName().toLocal8Bit().data());
     qDebug("parent is %s", parent->getName().toLocal8Bit().data());
-    itemData << f.size;
+    itemData << QVariant((qulonglong)f.size);
     itemData << 0.; // Progress;
     itemData << 1; // Priority
     if(parent) {
