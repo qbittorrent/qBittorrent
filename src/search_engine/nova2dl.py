@@ -25,7 +25,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.00
+#VERSION: 1.10
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -33,6 +33,7 @@
 import sys
 import os
 import glob
+from helpers import download_file
 
 supported_engines = dict()
 
@@ -56,5 +57,8 @@ if __name__ == '__main__':
 	if engine_url not in supported_engines.keys():
 		raise SystemExit('./nova2dl.py: this engine_url was not recognized')
 	exec "engine = %s()"%supported_engines[engine_url]
-	engine.download_torrent(download_param)
+	if hasattr(engine, 'download_torrent'):
+		engine.download_torrent(download_param)
+	else:
+		print download_file(download_param)
 	sys.exit(0)
