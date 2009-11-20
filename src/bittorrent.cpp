@@ -867,6 +867,12 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     if(!from_url.isNull()) QFile::remove(file);
     return h;
   }
+  // FIXME: Remove this debug
+  std::vector<announce_entry> trackers = h.trackers();
+  std::vector<announce_entry>::iterator it;
+  for(it=trackers.begin(); it!=trackers.end(); it++) {
+    qDebug("* Tracker: %s", it->url.c_str());
+  }
   // Connections limit per torrent
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
@@ -1092,7 +1098,8 @@ void Bittorrent::saveFastResumeData() {
     if(!h.is_valid() || !h.has_metadata()) continue;
     if(isQueueingEnabled())
       TorrentPersistentData::savePriority(h);
-    if(h.is_paused()) continue;
+    // Actually with should save fast resume data for paused files too
+    //if(h.is_paused()) continue;
     if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
     h.save_resume_data();
     ++num_resume_data;
