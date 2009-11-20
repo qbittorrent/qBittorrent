@@ -50,6 +50,7 @@ private:
 public:
   // File Construction
   TreeItem(file_entry const& f, TreeItem *parent) {
+    Q_ASSERT(parent);
     parentItem = parent;
     type = TFILE;
     itemData << misc::toQString(f.path.string()).split("/").last();
@@ -58,8 +59,10 @@ public:
     itemData << f.size;
     itemData << 0.; // Progress;
     itemData << 1; // Priority
-    if(parent)
+    if(parent) {
+      parent->appendChild(this);
       parent->updateSize();
+    }
   }
 
   // Folder constructor
@@ -70,6 +73,9 @@ public:
     itemData << 0.; // Size
     itemData << 0.; // Progress;
     itemData << 1; // Priority
+    if(parent) {
+      parent->appendChild(this);
+    }
   }
 
   TreeItem(QList<QVariant> data) {
@@ -411,14 +417,14 @@ public:
     TreeItem *parent = this->rootItem;
     if(t.num_files() ==1) {
       TreeItem *f = new TreeItem(t.file_at(0), parent);
-      parent->appendChild(f);
+      //parent->appendChild(f);
       files_index[0] = f;
       emit layoutChanged();
       return;
     }
     // Create parent folder
     TreeItem *current_parent = new TreeItem(misc::toQString(t.name()), parent);
-    parent->appendChild(current_parent);
+    //parent->appendChild(current_parent);
     TreeItem *root_folder = current_parent;
 
     // Iterate over files
@@ -437,13 +443,13 @@ public:
         TreeItem *new_parent = current_parent->childWithName(pathPart);
         if(!new_parent) {
           new_parent = new TreeItem(pathPart, current_parent);
-          current_parent->appendChild(new_parent);
+          //current_parent->appendChild(new_parent);
         }
         current_parent = new_parent;
       }
       // Actually create the file
       TreeItem *f = new TreeItem(*fi, current_parent);
-      current_parent->appendChild(f);
+      //current_parent->appendChild(f);
       files_index[i] = f;
       fi++;
       ++i;
