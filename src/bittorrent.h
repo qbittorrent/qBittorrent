@@ -128,7 +128,6 @@ public:
   float getRealRatio(QString hash) const;
   session* getSession() const;
   QHash<QString, TrackerInfos> getTrackersInfo(QString hash) const;
-  bool has_filtered_files(QString hash) const;
   bool hasActiveTorrents() const;
   bool isQueueingEnabled() const;
   int getMaximumActiveDownloads() const;
@@ -166,7 +165,6 @@ public slots:
   void disableIPFilter();
   void setQueueingEnabled(bool enable);
   void handleDownloadFailure(QString url, QString reason);
-  void loadWebSeeds(QString fileHash);
   void downloadUrlAndSkipDialog(QString url, QString save_path=QString::null);
   // Session configuration - Setters
   void setListeningPort(int port);
@@ -183,7 +181,6 @@ public slots:
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);
   void applyEncryptionSettings(pe_settings se);
-  void loadFilesPriorities(QTorrentHandle& h);
   void setDownloadLimit(QString hash, long val);
   void setUploadLimit(QString hash, long val);
   void enableUPnP(bool b);
@@ -193,7 +190,6 @@ public slots:
   void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
   void addPeerBanMessage(QString msg, bool from_ipfilter);
   void processDownloadedFile(QString, QString);
-  void saveTrackerFile(QString hash);
   void addMagnetSkipAddDlg(QString uri);
   void downloadFromURLList(const QStringList& urls);
   void configureSession();
@@ -202,7 +198,6 @@ public slots:
 protected slots:
   void addTorrentsFromScanFolder(QStringList&);
   void readAlerts();
-  void loadTrackerFile(QString hash);
   void deleteBigRatios();
   void takeETASamples();
 

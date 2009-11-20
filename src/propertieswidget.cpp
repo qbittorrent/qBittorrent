@@ -217,8 +217,7 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     // List files in torrent
     PropListModel->clear();
     PropListModel->setupModelData(h.get_torrent_info());
-    std::vector<int> files_priority = loadFilesPriorities();
-    PropListModel->updateFilesPriorities(files_priority);
+    PropListModel->updateFilesPriorities(h.file_priorities());
     // Expand first item if possible
     filesList->expand(PropListModel->index(0, 0));
   } catch(invalid_handle e) {
@@ -343,9 +342,8 @@ void PropertiesWidget::loadDynamicData() {
 void PropertiesWidget::loadUrlSeeds(){
   QStringList already_added;
   listWebSeeds->clear();
-  QVariantList url_seeds = TorrentPersistentData::getUrlSeeds(h.hash());
-  foreach(const QVariant &var_url_seed, url_seeds){
-    QString url_seed = var_url_seed.toString();
+  QStringList url_seeds = h.url_seeds();
+  foreach(const QString &url_seed, url_seeds){
     if(!url_seed.isEmpty()) {
       new QListWidgetItem(url_seed, listWebSeeds);
       already_added << url_seed;
@@ -432,26 +430,6 @@ void PropertiesWidget::on_files_button_clicked() {
   }
 }
 
-std::vector<int> PropertiesWidget::loadFilesPriorities(){
-  std::vector<int> fp;
-  QVariantList files_priority = TorrentPersistentData::getFilesPriority(h.hash());
-  if(files_priority.empty()) {
-    for(int i=0; i<h.num_files(); ++i) {
-      fp.push_back(1);
-    }
-  } else {
-    foreach(const QVariant &var_prio, files_priority) {
-      int priority = var_prio.toInt();
-      if( priority < 0 || priority > 7){
-        // Normal priority as default
-        priority = 1;
-      }
-      fp.push_back(priority);
-    }
-  }
-  return fp;
-}
-
 void PropertiesWidget::displayFilesListMenu(const QPoint&){
   //if(h.get_torrent_info().num_files() == 1) return;
   QMenu myFilesLlistMenu(this);
@@ -530,7 +508,6 @@ void PropertiesWidget::askWebSeed(){
     return;
   }
   h.add_url_seed(url_seed);
-  TorrentPersistentData::saveUrlSeeds(h);
   // Refresh the seeds list
   loadUrlSeeds();
 }
@@ -544,8 +521,6 @@ void PropertiesWidget::deleteSelectedUrlSeeds(){
     change = true;
   }
   if(change){
-    // Save them to disk
-    TorrentPersistentData::saveUrlSeeds(h);
     // Refresh list
     loadUrlSeeds();
   }
@@ -555,7 +530,6 @@ bool PropertiesWidget::savePiecesPriorities() {
   qDebug("Saving pieces priorities");
   std::vector<int> priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
   h.prioritize_files(priorities);
-  TorrentPersistentData::saveFilesPriority(h);
   return true;
 }
 

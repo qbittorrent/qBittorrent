@@ -74,7 +74,6 @@ private:
 
 protected:
   QPushButton* getButtonFromIndex(int index);
-  std::vector<int> loadFilesPriorities();
   bool savePiecesPriorities();
 
 protected slots:

@@ -628,32 +628,6 @@ void Bittorrent::resumeTorrent(QString hash) {
   }
 }
 
-void Bittorrent::loadWebSeeds(QString hash) {
-  QVariantList url_seeds = TorrentPersistentData::getUrlSeeds(hash);
-  QTorrentHandle h = getTorrentHandle(hash);
-  // First remove from the torrent the url seeds that were deleted
-  // in a previous session
-  QStringList seeds_to_delete;
-  QStringList existing_seeds = h.url_seeds();
-  foreach(const QString &existing_seed, existing_seeds) {
-    if(!url_seeds.contains(existing_seed.toLocal8Bit())) {
-      seeds_to_delete << existing_seed;
-    }
-  }
-  foreach(const QString &existing_seed, seeds_to_delete) {
-    h.remove_url_seed(existing_seed);
-  }
-  // Add the ones that were added in a previous session
-  foreach(const QVariant &var_url_seed, url_seeds) {
-    QString url_seed = var_url_seed.toString();
-    if(!url_seed.isEmpty()) {
-      // XXX: Should we check if it is already in the list before adding it
-      // or is libtorrent clever enough to know
-      h.add_url_seed(url_seed);
-    }
-  }
-}
-
 QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   QTorrentHandle h;
   QString hash = misc::magnetUriToHash(magnet_uri);
@@ -734,14 +708,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   // Resolve countries
   h.resolve_countries(resolve_countries);
   // Load filtered files
-  if(resumed) {
-    // Load custom url seeds
-    loadWebSeeds(hash);
-    // Load trackers
-    loadTrackerFile(hash);
-    // XXX: only when resuming because torrentAddition dialog is not supported yet
-    loadFilesPriorities(h);
-  } else {
+  if(!resumed) {
     // Sequential download
     if(TorrentTempData::hasTempData(hash)) {
       qDebug("addMagnetUri: Setting download as sequential (from tmp data)");
@@ -907,14 +874,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   // Resolve countries
   qDebug("AddTorrent: Resolve_countries: %d", (int)resolve_countries);
   h.resolve_countries(resolve_countries);
-  // Load filtered files
-  loadFilesPriorities(h);
-  if(resumed) {
-    // Load custom url seeds
-    loadWebSeeds(hash);
-    // Load trackers
-    loadTrackerFile(hash);
-  } else {
+  if(!resumed) {
     // Sequential download
     if(TorrentTempData::hasTempData(hash)) {
       qDebug("addTorrent: Setting download as sequential (from tmp data)");
@@ -960,22 +920,6 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   }
   emit addedTorrent(h);
   return h;
-}
-
-
-
-// Check if the user filtered files in this torrent.
-bool Bittorrent::has_filtered_files(QString hash) const{
-  QVariantList files_priority = TorrentPersistentData::getFilesPriority(hash);
-  foreach(QVariant var_prio, files_priority) {
-    int priority = var_prio.toInt();
-    if( priority < 0 || priority > 7) {
-      priority = 1;
-    }
-    if(!priority)
-      return true;
-  }
-  return false;
 }
 
 // Set the maximum number of opened connections
@@ -1115,33 +1059,6 @@ bool Bittorrent::enableDHT(bool b) {
     }
   }
   return true;
-}
-
-// Read pieces priorities from hard disk
-// and ask QTorrentHandle to consider them
-void Bittorrent::loadFilesPriorities(QTorrentHandle &h) {
-  qDebug("Applying files priority");
-  if(!h.is_valid()) {
-    qDebug("/!\\ Error: Invalid handle");
-    return;
-  }
-  std::vector<int> v;
-  QVariantList files_priority;
-  if(TorrentTempData::hasTempData(h.hash())) {
-    files_priority = TorrentTempData::getFilesPriority(h.hash());
-  } else {
-    files_priority = TorrentPersistentData::getFilesPriority(h.hash());
-  }
-  foreach(const QVariant &var_prio, files_priority) {
-    int priority = var_prio.toInt();
-    if( priority < 0 || priority > 7) {
-      priority = 1;
-    }
-    //qDebug("Setting file piority to %d", priority);
-    v.push_back(priority);
-  }
-  if(v.size() == (unsigned int)h.num_files())
-    h.prioritize_files(v);
 }
 
 float Bittorrent::getRealRatio(QString hash) const{
@@ -1308,11 +1225,6 @@ void Bittorrent::setDefaultTempPath(QString temppath) {
   defaultTempPath = temppath;
 }
 
-void Bittorrent::saveTrackerFile(QString hash) {
-  QTorrentHandle h = getTorrentHandle(hash);
-  TorrentPersistentData::saveTrackers(h);
-}
-
 // Enable directory scanning
 void Bittorrent::enableDirectoryScanning(QString scan_dir) {
   if(!scan_dir.isEmpty()) {
@@ -1408,21 +1320,6 @@ void Bittorrent::setDeleteRatio(float ratio) {
     ratio_limit = ratio;
     qDebug("* Set deleteRatio to %.1f", ratio_limit);
     deleteBigRatios();
-  }
-}
-
-void Bittorrent::loadTrackerFile(QString hash) {
-  QHash<QString, QVariant> tiers = TorrentPersistentData::getTrackers(hash);
-  std::vector<announce_entry> trackers;
-  foreach(const QString tracker_url, tiers.keys()) {
-    announce_entry t(tracker_url.toStdString());
-    t.tier = tiers[tracker_url].toInt();
-    trackers.push_back(t);
-  }
-  if(!trackers.empty()) {
-    QTorrentHandle h = getTorrentHandle(hash);
-    h.replace_trackers(trackers);
-    h.force_reannounce();
   }
 }
 

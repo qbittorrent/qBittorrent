@@ -179,70 +179,14 @@ public:
     }
     data["seed"] = h.is_seed();
     data["priority"] = h.queue_position();
-    QVariantList files_priority;
-    std::vector<int> fp = h.file_priorities();
-    std::vector<int>::iterator fp_it = fp.begin();
-    while(fp_it != fp.end()) {
-      files_priority << *fp_it;
-      fp_it++;
-    }
-    data["files_priority"] = files_priority;
     data["save_path"] = h.save_path();
-    QHash<QString, QVariant> trackers;
-    std::vector<announce_entry> tr = h.trackers();
-    std::vector<announce_entry>::iterator tr_it = tr.begin();
-    while(tr_it != tr.end()) {
-      trackers[misc::toQString((*tr_it).url)] = (*tr_it).tier;
-      tr_it++;
-    }
-    data["trackers"] = trackers;
-    if(!is_magnet) {
-      QVariantList url_seeds;
-      foreach(QString url_seed, h.url_seeds()) {
-        url_seeds << url_seed;
-      }
-      data["url_seeds"] = url_seeds;
-    }
     // Save data
     all_data[h.hash()] = data;
     settings.setValue("torrents", all_data);
     qDebug("TorrentPersistentData: Saving save_path %s, hash: %s", h.save_path().toLocal8Bit().data(), h.hash().toLocal8Bit().data());
   }
 
-  static void saveTrackers(QTorrentHandle h) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    QVariantList trackers;
-    std::vector<announce_entry> tr = h.trackers();
-    std::vector<announce_entry>::iterator tr_it = tr.begin();
-    while(tr_it != tr.end()) {
-      trackers << misc::toQString((*tr_it).url);
-      tr_it++;
-    }
-    data["trackers"] = trackers;
-    // Save data
-    all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
-  }
-
   // Setters
-
-  static void saveFilesPriority(QTorrentHandle h) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    std::vector<int> fp = h.file_priorities();
-    std::vector<int>::iterator fp_it = fp.begin();
-    QVariantList files_priority;
-    while(fp_it != fp.end()) {
-      files_priority << *fp_it;
-      fp_it++;
-    }
-    data["files_priority"] = files_priority;
-    all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
-  }
 
   static void saveSavePath(QString hash, QString save_path) {
     Q_ASSERT(!hash.isEmpty());
@@ -253,19 +197,6 @@ public:
     all_data[hash] = data;
     settings.setValue("torrents", all_data);
     qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", save_path.toLocal8Bit().data(), hash.toLocal8Bit().data());
-  }
-
-  static void saveUrlSeeds(QTorrentHandle h) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    QVariantList url_seeds;
-    foreach(QString url_seed, h.url_seeds()) {
-      url_seeds << url_seed;
-    }
-    data["url_seeds"] = url_seeds;
-    all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
   }
 
   static void savePriority(QTorrentHandle h) {
@@ -287,20 +218,6 @@ public:
   }
 
   // Getters
-  static QHash<QString, QVariant> getTrackers(QString hash) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[hash].toHash();
-    return data["trackers"].toHash();
-  }
-
-  static QVariantList getFilesPriority(QString hash) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[hash].toHash();
-    return data["files_priority"].toList();
-  }
-
   static QString getSavePath(QString hash) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
@@ -314,16 +231,6 @@ public:
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
     return data["priority"].toInt();
-  }
-
-  static QVariantList getUrlSeeds(QString hash) {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data = all_data[hash].toHash();
-    if(data.contains("url_seeds")) {
-      return data["url_seeds"].toList();
-    }
-    return QVariantList();
   }
 
   static bool isSeed(QString hash) {
