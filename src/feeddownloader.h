@@ -45,7 +45,7 @@
 #include <QFileDialog>
 
 #include "bittorrent.h"
-#include "ui_FeedDownloader.h"
+#include "ui_feeddownloader.h"
 
 class FeedFilter: public QHash<QString, QVariant> {
 private:

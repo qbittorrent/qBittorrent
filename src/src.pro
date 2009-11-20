@@ -161,7 +161,7 @@ HEADERS += GUI.h \
     speedlimitdlg.h \
     qtorrenthandle.h \
     engineselectdlg.h \
-    pluginSource.h \
+    pluginsource.h \
     qgnomelook.h \
     realprogressbar.h \
     realprogressbarthread.h \
@@ -197,25 +197,25 @@ HEADERS += GUI.h \
     deletionconfirmationdlg.h \
     statusbar.h \
     trackerlist.h
-FORMS += MainWindow.ui \
-    options.ui \
-    about.ui \
-    createtorrent.ui \
-    preview.ui \
-    login.ui \
-    downloadFromURL.ui \
-    addTorrentDialog.ui \
-    search.ui \
-    rss.ui \
-    bandwidth_limit.ui \
-    engineSelect.ui \
-    pluginSource.ui \
-    trackersAdd.ui \
-    console.ui \
-    FeedDownloader.ui \
-    propertiesWidget.ui \
-    peer.ui \
-    confirmdeletiondlg.ui
+FORMS += ui/mainwindow.ui \
+    ui/options.ui \
+    ui/about.ui \
+    ui/createtorrent.ui \
+    ui/preview.ui \
+    ui/login.ui \
+    ui/downloadfromurldlg.ui \
+    ui/torrentadditiondlg.ui \
+    ui/search.ui \
+    ui/rss.ui \
+    ui/bandwidth_limit.ui \
+    ui/engineselect.ui \
+    ui/pluginsource.ui \
+    ui/trackersadditiondlg.ui \
+    ui/console.ui \
+    ui/feeddownloader.ui \
+    ui/propertieswidget.ui \
+    ui/peer.ui \
+    ui/confirmdeletiondlg.ui
 SOURCES += GUI.cpp \
     main.cpp \
     options_imp.cpp \

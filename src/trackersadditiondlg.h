@@ -33,7 +33,7 @@
 
 #include <QDialog>
 #include <QStringList>
-#include "ui_trackersAdd.h"
+#include "ui_trackersadditiondlg.h"
 
 class TrackersAdditionDlg : public QDialog, private Ui::TrackersAdditionDlg{
   Q_OBJECT

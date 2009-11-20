@@ -32,7 +32,7 @@
 #include "downloadthread.h"
 #include "misc.h"
 #include "ico.h"
-#include "pluginSource.h"
+#include "pluginsource.h"
 #include <QProcess>
 #include <QHeaderView>
 #include <QSettings>

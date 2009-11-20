@@ -32,7 +32,7 @@
 #define PROPERTIESWIDGET_H
 
 #include <QWidget>
-#include "ui_propertiesWidget.h"
+#include "ui_propertieswidget.h"
 #include "qtorrenthandle.h"
 
 

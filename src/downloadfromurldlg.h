@@ -37,7 +37,7 @@
 #include <QRegExp>
 #include <QStringList>
 #include <QClipboard>
-#include "ui_downloadFromURL.h"
+#include "ui_downloadfromurldlg.h"
 
 class downloadFromURL : public QDialog, private Ui::downloadFromURL{
   Q_OBJECT

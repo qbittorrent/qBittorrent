@@ -34,7 +34,7 @@
 #include <QProcess>
 #include <QSystemTrayIcon>
 #include <QPointer>
-#include "ui_MainWindow.h"
+#include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
 
 class Bittorrent;

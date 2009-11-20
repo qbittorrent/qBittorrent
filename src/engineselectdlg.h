@@ -31,7 +31,7 @@
 #ifndef ENGINE_SELECT_DLG_H
 #define ENGINE_SELECT_DLG_H
 
-#include "ui_engineSelect.h"
+#include "ui_engineselect.h"
 #include "supportedengines.h"
 
 class downloadThread;

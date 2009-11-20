@@ -32,7 +32,7 @@
 #define PLUGIN_SOURCE_H
 
 #include <QDialog>
-#include "ui_pluginSource.h"
+#include "ui_pluginsource.h"
 
 class pluginSourceDlg: public QDialog, private Ui::pluginSourceDlg {
   Q_OBJECT

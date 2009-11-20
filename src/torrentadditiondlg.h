@@ -45,7 +45,7 @@
 #include "bittorrent.h"
 #include "misc.h"
 #include "proplistdelegate.h"
-#include "ui_addTorrentDialog.h"
+#include "ui_torrentadditiondlg.h"
 #include "torrentpersistentdata.h"
 #include "torrentfilesmodel.h"
 
