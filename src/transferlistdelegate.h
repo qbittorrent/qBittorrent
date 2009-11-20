@@ -42,8 +42,7 @@
 
 // Defines for download list list columns
 enum TorrentState {STATE_STALLED, STATE_DOWNLOADING, STATE_SEEDING, STATE_PAUSED, STATE_QUEUED, STATE_CHECKING, STATE_INVALID};
-enum Column {NAME, SIZE, PROGRESS, STATUS, SEEDS, PEERS, DLSPEED, UPSPEED, ETA, RATIO, PRIORITY, HASH};
-//enum Column {NAME, SIZE, PROGRESS, DLSPEED, UPSPEED, SEEDSLEECH, RATIO, ETA, PRIORITY, HASH, STATUS};
+enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_HASH};
 
 class TransferListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -56,19 +55,19 @@ public:
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()){
-    case SIZE:{
+    case TR_SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
         break;
       }
-    case ETA:{
+    case TR_ETA:{
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
         break;
       }
-    case SEEDS:
-    case PEERS: {
+    case TR_SEEDS:
+    case TR_PEERS: {
         qulonglong tot_val = index.data().toULongLong();
         QString display = QString::number((qulonglong)tot_val/1000000);
         if(tot_val%2 == 0) {
@@ -80,7 +79,7 @@ public:
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
       }
-    case STATUS: {
+    case TR_STATUS: {
         int state = index.data().toInt();
         QString display = "";
         switch(state) {
@@ -106,15 +105,15 @@ public:
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
       }
-        case UPSPEED:
-        case DLSPEED:{
+        case TR_UPSPEED:
+        case TR_DLSPEED:{
             QItemDelegate::drawBackground(painter, opt, index);
             double speed = index.data().toDouble();
             opt.displayAlignment = Qt::AlignRight;
             QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(speed/1024., 'f', 1)+" "+tr("KiB/s"));
             break;
           }
-        case RATIO:{
+        case TR_RATIO:{
             QItemDelegate::drawBackground(painter, opt, index);
             opt.displayAlignment = Qt::AlignRight;
             double ratio = index.data().toDouble();
@@ -124,7 +123,7 @@ public:
               QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 1));
             break;
           }
-        case PRIORITY: {
+        case TR_PRIORITY: {
             int priority = index.data().toInt();
             if(priority >= 0) {
               opt.displayAlignment = Qt::AlignRight;
@@ -136,7 +135,7 @@ public:
             }
             break;
           }
-        case PROGRESS:{
+        case TR_PROGRESS:{
             QStyleOptionProgressBarV2 newopt;
             double progress = index.data().toDouble()*100.;
             newopt.rect = opt.rect;
