@@ -39,9 +39,9 @@
 #include <QPointer>
 #include <QStringListModel>
 #include "ui_search.h"
-#include "engineSelectDlg.h"
-#include "SearchTab.h"
-#include "supportedEngines.h"
+#include "engineselectdlg.h"
+#include "searchtab.h"
+#include "supportedengines.h"
 
 class bittorrent;
 class QSystemTrayIcon;

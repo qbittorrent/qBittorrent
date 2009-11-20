@@ -28,7 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "downloadThread.h"
+#include "downloadthread.h"
 #include <QTemporaryFile>
 #include <QSettings>
 #include <QNetworkAccessManager>

@@ -44,10 +44,10 @@
 #include <libtorrent/bencode.hpp>
 #include "bittorrent.h"
 #include "misc.h"
-#include "PropListDelegate.h"
+#include "proplistdelegate.h"
 #include "ui_addTorrentDialog.h"
-#include "torrentPersistentData.h"
-#include "TorrentFilesModel.h"
+#include "torrentpersistentdata.h"
+#include "torrentfilesmodel.h"
 
 using namespace libtorrent;
 

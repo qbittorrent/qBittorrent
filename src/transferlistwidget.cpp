@@ -28,11 +28,11 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "TransferListWidget.h"
+#include "transferlistwidget.h"
 #include "bittorrent.h"
-#include "torrentPersistentData.h"
-#include "TransferListDelegate.h"
-#include "previewSelect.h"
+#include "torrentpersistentdata.h"
+#include "transferlistdelegate.h"
+#include "previewselect.h"
 #include "speedlimitdlg.h"
 #include "options_imp.h"
 #include "deletionconfirmationdlg.h"

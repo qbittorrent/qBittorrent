@@ -38,7 +38,7 @@
 #include <QDragMoveEvent>
 
 #include "rss_imp.h"
-#include "FeedDownloader.h"
+#include "feeddownloader.h"
 #include "feedList.h"
 #include "bittorrent.h"
 

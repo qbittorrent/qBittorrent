@@ -44,11 +44,11 @@
 #include <QMimeData>
 #include <QSortFilterProxyModel>
 
-#include "searchEngine.h"
+#include "searchengine.h"
 #include "bittorrent.h"
-#include "downloadThread.h"
+#include "downloadthread.h"
 #include "misc.h"
-#include "SearchListDelegate.h"
+#include "searchlistdelegate.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
 

@@ -37,7 +37,7 @@
 #include <QMessageBox>
 #include <libtorrent/session.hpp>
 #include "ui_preview.h"
-#include "PreviewListDelegate.h"
+#include "previewlistdelegate.h"
 #include "misc.h"
 #include "qtorrenthandle.h"
 

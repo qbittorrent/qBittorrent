@@ -35,10 +35,10 @@
 #include <QSettings>
 #include <QSortFilterProxyModel>
 
-#include "SearchTab.h"
-#include "SearchListDelegate.h"
+#include "searchtab.h"
+#include "searchlistdelegate.h"
 #include "misc.h"
-#include "searchEngine.h"
+#include "searchengine.h"
 
 #define SEARCH_NAME 0
 #define SEARCH_SIZE 1

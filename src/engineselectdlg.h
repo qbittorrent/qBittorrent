@@ -32,7 +32,7 @@
 #define ENGINE_SELECT_DLG_H
 
 #include "ui_engineSelect.h"
-#include "supportedEngines.h"
+#include "supportedengines.h"
 
 class downloadThread;
 class QDropEvent;

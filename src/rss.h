@@ -44,9 +44,9 @@
 #include <QDateTime>
 
 #include "misc.h"
-#include "FeedDownloader.h"
+#include "feeddownloader.h"
 #include "bittorrent.h"
-#include "downloadThread.h"
+#include "downloadthread.h"
 
 class RssManager;
 class RssFile; // Folder or Stream

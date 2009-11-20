@@ -37,11 +37,11 @@
 #include "filesystemwatcher.h"
 #include "bittorrent.h"
 #include "misc.h"
-#include "downloadThread.h"
-#include "filterParserThread.h"
+#include "downloadthread.h"
+#include "filterparserthread.h"
 #include "preferences.h"
 #include "geoip.h"
-#include "torrentPersistentData.h"
+#include "torrentpersistentdata.h"
 #include "httpserver.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
 #ifdef LIBTORRENT_0_15

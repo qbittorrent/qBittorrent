@@ -14,7 +14,7 @@ CONFIG += qt \
     network
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v2.0.0beta3\\\"
+DEFINES += VERSION=\\\"v2.0.0beta4\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
@@ -146,21 +146,21 @@ HEADERS += GUI.h \
     options_imp.h \
     about_imp.h \
     createtorrent_imp.h \
-    SearchListDelegate.h \
-    PropListDelegate.h \
-    previewSelect.h \
-    PreviewListDelegate.h \
-    trackerLogin.h \
-    downloadThread.h \
-    downloadFromURLImp.h \
-    torrentAddition.h \
+    searchlistdelegate.h \
+    proplistdelegate.h \
+    previewselect.h \
+    previewlistdelegate.h \
+    trackerlogin.h \
+    downloadthread.h \
+    downloadfromurldlg.h \
+    torrentadditiondlg.h \
     bittorrent.h \
     searchEngine.h \
     rss.h \
     rss_imp.h \
     speedlimitdlg.h \
     qtorrenthandle.h \
-    engineSelectDlg.h \
+    engineselectdlg.h \
     pluginSource.h \
     qgnomelook.h \
     realprogressbar.h \
@@ -172,21 +172,21 @@ HEADERS += GUI.h \
     httpresponsegenerator.h \
     json.h \
     eventmanager.h \
-    filterParserThread.h \
+    filterparserthread.h \
     trackersadditiondlg.h \
-    searchTab.h \
+    searchtab.h \
     console_imp.h \
     ico.h \
     stacktrace.h \
-    torrentPersistentData.h \
-    FeedDownloader.h \
+    torrentpersistentdata.h \
+    feeddownloader.h \
     feedList.h \
-    supportedEngines.h \
-    TransferListWidget.h \
-    TransferListDelegate.h \
-    TransferListFiltersWidget.h \
+    supportedengines.h \
+    transferlistwidget.h \
+    transferlistdelegate.h \
+    transferlistfilterswidget.h \
     propertieswidget.h \
-    TorrentFilesModel.h \
+    torrentfilesmodel.h \
     filesystemwatcher.h \
     peerlistwidget.h \
     peerlistdelegate.h \
@@ -221,11 +221,11 @@ SOURCES += GUI.cpp \
     options_imp.cpp \
     createtorrent_imp.cpp \
     bittorrent.cpp \
-    searchEngine.cpp \
+    searchengine.cpp \
     rss_imp.cpp \
     qtorrenthandle.cpp \
-    engineSelectDlg.cpp \
-    downloadThread.cpp \
+    engineselectdlg.cpp \
+    downloadthread.cpp \
     realprogressbar.cpp \
     realprogressbarthread.cpp \
     qrealarray.cpp \
@@ -234,10 +234,10 @@ SOURCES += GUI.cpp \
     httprequestparser.cpp \
     httpresponsegenerator.cpp \
     eventmanager.cpp \
-    SearchTab.cpp \
+    searchtab.cpp \
     ico.cpp \
     rss.cpp \
-    TransferListWidget.cpp \
+    transferlistwidget.cpp \
     propertieswidget.cpp \
     peerlistwidget.cpp
 DESTDIR = .

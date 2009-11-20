@@ -36,7 +36,7 @@
 #include <QIcon>
 #include <QSettings>
 
-#include "TransferListWidget.h"
+#include "transferlistwidget.h"
 
 class TransferListFiltersWidget: public QListWidget {
   Q_OBJECT

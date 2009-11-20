@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "engineSelectDlg.h"
-#include "downloadThread.h"
+#include "engineselectdlg.h"
+#include "downloadthread.h"
 #include "misc.h"
 #include "ico.h"
 #include "pluginSource.h"

@@ -39,13 +39,13 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include "propertieswidget.h"
-#include "TransferListWidget.h"
-#include "torrentPersistentData.h"
+#include "transferlistwidget.h"
+#include "torrentpersistentdata.h"
 #include "realprogressbar.h"
 #include "realprogressbarthread.h"
 #include "bittorrent.h"
-#include "PropListDelegate.h"
-#include "TorrentFilesModel.h"
+#include "proplistdelegate.h"
+#include "torrentfilesmodel.h"
 #include "peerlistwidget.h"
 #include "trackerlist.h"
 
