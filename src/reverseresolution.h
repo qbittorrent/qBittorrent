@@ -70,10 +70,14 @@ signals:
 
 protected:
   void run() {
-    boost::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip);
-    if(stopped) return;
-    boost::asio::ip::tcp::endpoint endpoint = *it;
-    emit ip_resolved(misc::toQString(endpoint.address().to_string()), misc::toQString((*it).host_name()));
+    try {
+      boost::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip);
+      if(stopped) return;
+      boost::asio::ip::tcp::endpoint endpoint = *it;
+      emit ip_resolved(misc::toQString(endpoint.address().to_string()), misc::toQString((*it).host_name()));
+    } catch(std::exception &e) {
+      std::cerr << "Hostname resolution failed, reason: " << e.what() << std::endl;
+    }
   }
 };
 
