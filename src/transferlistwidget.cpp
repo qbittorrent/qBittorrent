@@ -389,7 +389,6 @@ void TransferListWidget::setRefreshInterval(int t) {
 void TransferListWidget::refreshList() {
   // Refresh only if displayed
   if(main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
-  qDebug("Refreshing transfer list");
   unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0;
   for(int i=0; i<listModel->rowCount(); ++i) {
     int s = updateTorrent(i);

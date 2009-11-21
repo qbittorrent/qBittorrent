@@ -1466,7 +1466,7 @@ void Bittorrent::readAlerts() {
         if(h.is_paused()) {
           // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
           // and the torrent can be paused when metadata is received
-          emit torrentPaused(h);
+          emit pausedTorrent(h);
         }
       }
     }
@@ -1478,7 +1478,7 @@ void Bittorrent::readAlerts() {
         if(h.is_valid()) {
           emit fullDiskError(h, misc::toQString(p->message()));
           h.pause();
-          emit torrentPaused(h);
+          emit pausedTorrent(h);
         }
       }
     }
