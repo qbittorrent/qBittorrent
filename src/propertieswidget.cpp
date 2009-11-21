@@ -41,14 +41,13 @@
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
 #include "torrentpersistentdata.h"
-#include "realprogressbar.h"
-#include "realprogressbarthread.h"
 #include "bittorrent.h"
 #include "proplistdelegate.h"
 #include "torrentfilesmodel.h"
 #include "peerlistwidget.h"
 #include "trackerlist.h"
 #include "GUI.h"
+#include "downloadedpiecesbar.h"
 
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS ""
@@ -99,17 +98,16 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
 
   // Downloaded pieces progress bar
-  progressBar = new RealProgressBar(this);
-  progressBar->setForegroundColor(Qt::blue);
-  ProgressHLayout->insertWidget(1, progressBar);
+  downloaded_pieces = new DownloadedPiecesBar(this);
+  //progressBar = new RealProgressBar(this);
+  //progressBar->setForegroundColor(Qt::blue);
+  ProgressHLayout->insertWidget(1, downloaded_pieces);
   // Tracker list
   trackerList = new TrackerList(this);
   verticalLayout_trackers->addWidget(trackerList);
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
-  // Pointers init
-  progressBarUpdater = 0;
   // Dynamic data refresher
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
@@ -119,11 +117,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
 PropertiesWidget::~PropertiesWidget() {
   saveSettings();
   delete refreshTimer;
-  if(progressBarUpdater)
-    delete progressBarUpdater;
   delete trackerList;
   delete peersList;
-  delete progressBar;
+  delete downloaded_pieces;
   delete PropListModel;
   delete PropDelegate;
   // Delete QActions
@@ -166,8 +162,9 @@ void PropertiesWidget::clear() {
   lbl_creationDate->clear();
   hash_lbl->clear();
   comment_text->clear();
+  progress_lbl->clear();
   trackerList->clear();
-  progressBar->setProgress(QRealArray());
+  downloaded_pieces->clear();
   wasted->clear();
   upTotal->clear();
   dlTotal->clear();
@@ -197,10 +194,6 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     return;
   }
   setEnabled(true);
-  if(progressBarUpdater) {
-    delete progressBarUpdater;
-    progressBarUpdater = 0;
-  }
 
   try {
     // Save path
@@ -213,9 +206,6 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     comment_text->setHtml(h.comment());
     // URL seeds
     loadUrlSeeds();
-    // downloaded pieces updater
-    progressBarUpdater = new RealProgressBarThread(progressBar, h);
-    progressBarUpdater->start();
     // List files in torrent
     PropListModel->clear();
     PropListModel->setupModelData(h.get_torrent_info());
@@ -316,8 +306,7 @@ void PropertiesWidget::loadDynamicData() {
       }
       shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
       // Downloaded pieces
-      if(progressBarUpdater)
-        progressBarUpdater->refresh();
+      downloaded_pieces->setProgress(h.pieces());
       // Progress
       progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
       return;

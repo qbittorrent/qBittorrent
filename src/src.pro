@@ -163,9 +163,6 @@ HEADERS += GUI.h \
     engineselectdlg.h \
     pluginsource.h \
     qgnomelook.h \
-    realprogressbar.h \
-    realprogressbarthread.h \
-    qrealarray.h \
     httpserver.h \
     httpconnection.h \
     httprequestparser.h \
@@ -196,7 +193,8 @@ HEADERS += GUI.h \
     peeraddition.h \
     deletionconfirmationdlg.h \
     statusbar.h \
-    trackerlist.h
+    trackerlist.h \
+    downloadedpiecesbar.h
 FORMS += ui/mainwindow.ui \
     ui/options.ui \
     ui/about.ui \
@@ -226,9 +224,6 @@ SOURCES += GUI.cpp \
     qtorrenthandle.cpp \
     engineselectdlg.cpp \
     downloadthread.cpp \
-    realprogressbar.cpp \
-    realprogressbarthread.cpp \
-    qrealarray.cpp \
     httpserver.cpp \
     httpconnection.cpp \
     httprequestparser.cpp \

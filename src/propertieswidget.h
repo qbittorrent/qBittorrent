@@ -38,8 +38,6 @@
 
 class TransferListWidget;
 class QTimer;
-class RealProgressBar;
-class RealProgressBarThread;
 class Bittorrent;
 class TorrentFilesModel;
 class PropListDelegate;
@@ -48,6 +46,7 @@ class torrent_file;
 class PeerListWidget;
 class TrackerList;
 class GUI;
+class DownloadedPiecesBar;
 
 enum Tab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
 enum SlideState {REDUCED, VISIBLE};
@@ -60,8 +59,6 @@ private:
   GUI *main_window;
   QTorrentHandle h;
   QTimer *refreshTimer;
-  RealProgressBar *progressBar;
-  RealProgressBarThread *progressBarUpdater;
   Bittorrent* BTSession;
   SlideState state;
   TorrentFilesModel *PropListModel;
@@ -73,6 +70,7 @@ private:
   QAction *actionMaximum;
   QAction *actionHigh;
   QList<int> slideSizes;
+  DownloadedPiecesBar *downloaded_pieces;
 
 protected:
   QPushButton* getButtonFromIndex(int index);

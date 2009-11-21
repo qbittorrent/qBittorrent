@@ -53,7 +53,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-59</y>
+            <y>0</y>
             <width>518</width>
             <height>348</height>
            </rect>
@@ -93,7 +93,7 @@
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>44</width>
+                 <width>50</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -580,7 +580,7 @@ p, li { white-space: pre-wrap; }
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="icons.qrc">
+            <iconset>
              <normaloff>:/Icons/oxygen/list-remove.png</normaloff>:/Icons/oxygen/list-remove.png</iconset>
            </property>
           </widget>
@@ -597,7 +597,7 @@ p, li { white-space: pre-wrap; }
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="icons.qrc">
+            <iconset>
              <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
            </property>
           </widget>
@@ -712,7 +712,7 @@ p, li { white-space: pre-wrap; }
         <string>General</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/Icons/oxygen/help-about.png</normaloff>:/Icons/oxygen/help-about.png</iconset>
        </property>
        <property name="iconSize">
@@ -729,7 +729,7 @@ p, li { white-space: pre-wrap; }
         <string>Trackers</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/Icons/oxygen/network-server.png</normaloff>:/Icons/oxygen/network-server.png</iconset>
        </property>
        <property name="iconSize">
@@ -752,7 +752,7 @@ p, li { white-space: pre-wrap; }
         <string>Peers</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/Icons/oxygen/peer.png</normaloff>:/Icons/oxygen/peer.png</iconset>
        </property>
        <property name="iconSize">
@@ -769,7 +769,7 @@ p, li { white-space: pre-wrap; }
         <string>URL seeds</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/Icons/oxygen/urlseed.png</normaloff>:/Icons/oxygen/urlseed.png</iconset>
        </property>
        <property name="iconSize">
@@ -786,7 +786,7 @@ p, li { white-space: pre-wrap; }
         <string>Files</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/Icons/oxygen/folder.png</normaloff>:/Icons/oxygen/folder.png</iconset>
        </property>
        <property name="iconSize">
