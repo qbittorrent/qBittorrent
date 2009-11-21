@@ -782,7 +782,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   bool has_pause = false, has_start = false, has_preview = false;
   bool all_same_super_seeding = true, all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
   bool super_seeding_mode = false, sequential_download_mode = false, prioritize_first_last = false;
-  bool one_has_metadata = false, one_not_seed = false, one_has_single_file = false;;
+  bool one_has_metadata = false, one_not_seed = false;
   bool first = true;
   QTorrentHandle h;
   qDebug("Displaying menu");
@@ -807,7 +807,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
           all_same_prio_firstlast = false;
         }
       }
-      if(h.num_files() == 1) one_has_single_file = true;
     } else {
       if(!one_not_seed && all_same_super_seeding) {
         if(first) {
@@ -870,7 +869,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
       listMenu.addAction(&actionSequential_download);
       added_preview_action = true;
     }
-    if(all_same_prio_firstlast && one_has_single_file) {
+    if(all_same_prio_firstlast) {
       QIcon ico;
       if(prioritize_first_last) {
         ico = QIcon(":/Icons/oxygen/button_ok.png");

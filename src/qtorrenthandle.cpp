@@ -33,9 +33,11 @@
 #include <QFile>
 #include <QDir>
 #include <QByteArray>
+#include <math.h>
 #include "misc.h"
 #include "qtorrenthandle.h"
 #include <libtorrent/magnet_uri.hpp>
+#include <libtorrent/torrent_info.hpp>
 
 QTorrentHandle::QTorrentHandle(torrent_handle h): h(h) {}
 
@@ -136,7 +138,31 @@ void QTorrentHandle::get_peer_info(std::vector<peer_info>& v) const {
 
 bool QTorrentHandle::first_last_piece_first() const {
   Q_ASSERT(h.is_valid());
-  return (h.piece_priority(0) == 7) && (h.piece_priority(h.get_torrent_info().num_pieces()-1) == 7);
+    // Detect main file
+  int rank=0;
+  int main_file_index = 0;
+  file_entry main_file = h.get_torrent_info().file_at(0);
+  torrent_info::file_iterator it = h.get_torrent_info().begin_files();
+  it++; ++rank;
+  while(it != h.get_torrent_info().end_files()) {
+    if(it->size > main_file.size) {
+      main_file = *it;
+      main_file_index = rank;
+    }
+    it++;
+    ++rank;
+  }
+  qDebug("Main file in the torrent is %s", main_file.path.string().c_str());
+  int piece_size = h.get_torrent_info().piece_length();
+  Q_ASSERT(piece_size>0);
+  int first_piece = floor((main_file.offset+1)/(double)piece_size);
+  Q_ASSERT(first_piece >= 0 && first_piece < h.get_torrent_info().num_pieces());
+  qDebug("First piece of the file is %d/%d", first_piece, h.get_torrent_info().num_pieces()-1);
+  int num_pieces_in_file = ceil(main_file.size/(double)piece_size);
+  int last_piece = first_piece+num_pieces_in_file-1;
+  Q_ASSERT(last_piece >= 0 && last_piece < h.get_torrent_info().num_pieces());
+  qDebug("last piece of the file is %d/%d", last_piece, h.get_torrent_info().num_pieces()-1);
+  return (h.piece_priority(first_piece) == 7) && (h.piece_priority(last_piece) == 7);
 }
 
 size_type QTorrentHandle::total_wanted_done() const {
@@ -539,10 +565,36 @@ void QTorrentHandle::add_tracker(announce_entry const& url) {
 
 void QTorrentHandle::prioritize_first_last_piece(bool b) {
   Q_ASSERT(h.is_valid());
-  int prio = 1;
-  if(b) prio = 7;
-  h.piece_priority(0, prio);
-  h.piece_priority(h.get_torrent_info().num_pieces()-1, prio);
+  // Detect main file
+  int rank=0;
+  int main_file_index = 0;
+  file_entry main_file = h.get_torrent_info().file_at(0);
+  torrent_info::file_iterator it = h.get_torrent_info().begin_files();
+  it++; ++rank;
+  while(it != h.get_torrent_info().end_files()) {
+    if(it->size > main_file.size) {
+      main_file = *it;
+      main_file_index = rank;
+    }
+    it++;
+    ++rank;
+  }
+  qDebug("Main file in the torrent is %s", main_file.path.string().c_str());
+  // Determine the priority to set
+  int prio = 7; // MAX
+  if(!b) prio = h.file_priority(main_file_index);
+  // Determine the first and last piece of the main file
+  int piece_size = h.get_torrent_info().piece_length();
+  Q_ASSERT(piece_size>0);
+  int first_piece = floor((main_file.offset+1)/(double)piece_size);
+  Q_ASSERT(first_piece >= 0 && first_piece < h.get_torrent_info().num_pieces());
+  qDebug("First piece of the file is %d/%d", first_piece, h.get_torrent_info().num_pieces()-1);
+  int num_pieces_in_file = ceil(main_file.size/(double)piece_size);
+  int last_piece = first_piece+num_pieces_in_file-1;
+  Q_ASSERT(last_piece >= 0 && last_piece < h.get_torrent_info().num_pieces());
+  qDebug("last piece of the file is %d/%d", last_piece, h.get_torrent_info().num_pieces()-1);
+  h.piece_priority(first_piece, prio);
+  h.piece_priority(last_piece, prio);
 }
 
 //
