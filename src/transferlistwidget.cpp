@@ -300,7 +300,7 @@ int TransferListWidget::updateTorrent(int row) {
         s = STATE_CHECKING_UP;
       else
         s = STATE_CHECKING_DL;
-      listModel->setData(listModel->index(row, TR_STATUS), s);
+      listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
       listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
       //setRowColor(row, QString::fromUtf8("grey"));
       break;
@@ -317,23 +317,20 @@ int TransferListWidget::updateTorrent(int row) {
         s = STATE_STALLED_DL;
         //setRowColor(row, QApplication::palette().color(QPalette::WindowText));
       }
-      listModel->setData(listModel->index(row, TR_STATUS), s);
-      listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)h.upload_payload_rate()));
+      listModel->setData(listModel->index(row, TR_DLSPEED), QVariant((double)h.download_payload_rate()));
+      listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
       break;
     case torrent_status::finished:
     case torrent_status::seeding:
-      listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
-      listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)h.upload_payload_rate()));
       if(h.upload_payload_rate() > 0) {
         s = STATE_SEEDING;
       } else {
         s = STATE_STALLED_UP;
       }
-      listModel->setData(listModel->index(row, TR_STATUS), s);
     }
     // Common to both downloads and uploads
-    listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
-    listModel->setData(listModel->index(row, TR_DLSPEED), QVariant((double)h.download_payload_rate()));
+    listModel->setData(listModel->index(row, TR_STATUS), s);
+    listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)h.upload_payload_rate()));
     // Connected_seeds*100000+total_seeds*10 (if total_seeds is available)
     // Connected_seeds*100000+1 (if total_seeds is unavailable)
     qulonglong seeds = h.num_seeds()*1000000;
