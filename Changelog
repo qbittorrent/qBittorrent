@@ -15,7 +15,7 @@
     - FEATURE: Display total amounts transferred in status bar
     - FEATURE: Announce to all trackers specified for a torrent (µTorrent behavior)
     - FEATURE: Display trackers status as well as error/warning messages
-    - FEATURE: Display the number of peers returned by each tracker & DHT
+    - FEATURE: Display the number of peers returned by each tracker & DHT/PeX/LSD
     - FEATURE: Global upload/download speeds can be capped from status bar (µTorrent behavior)
     - FEATURE: Added option to download first and last piece of a torrent main file first (for preview)
     - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is now required)

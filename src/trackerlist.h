@@ -45,7 +45,7 @@
 #include "bittorrent.h"
 
 enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
-#define NB_STICKY_ITEM 1
+#define NB_STICKY_ITEM 3
 
 class TrackerList: public QTreeWidget {
   Q_OBJECT
@@ -54,6 +54,8 @@ private:
   PropertiesWidget *properties;
   QHash<QString, QTreeWidgetItem*> tracker_items;
   QTreeWidgetItem* dht_item;
+  QTreeWidgetItem* pex_item;
+  QTreeWidgetItem* lsd_item;
 
 public:
   TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
@@ -75,6 +77,12 @@ public:
     dht_item = new QTreeWidgetItem(QStringList(tr("[DHT]")));
     insertTopLevelItem(0, dht_item);
     setRowColor(0, QColor("grey"));
+    pex_item = new QTreeWidgetItem(QStringList(tr("[PeX]")));
+    insertTopLevelItem(1, pex_item);
+    setRowColor(1, QColor("grey"));
+    lsd_item = new QTreeWidgetItem(QStringList(tr("[LSD]")));
+    insertTopLevelItem(2, lsd_item);
+    setRowColor(2, QColor("grey"));
     loadSettings();
   }
 
@@ -110,28 +118,57 @@ public slots:
     dht_item->setText(COL_PEERS, "");
     dht_item->setText(COL_STATUS, "");
     dht_item->setText(COL_MSG, "");
+    pex_item->setText(COL_PEERS, "");
+    pex_item->setText(COL_STATUS, "");
+    pex_item->setText(COL_MSG, "");
+    lsd_item->setText(COL_PEERS, "");
+    lsd_item->setText(COL_STATUS, "");
+    lsd_item->setText(COL_MSG, "");
   }
 
-  void loadStickyItems(const QTorrentHandle &h, QHash<QString, TrackerInfos> trackers_data) {
+  void loadStickyItems(const QTorrentHandle &h) {
+    // XXX: libtorrent should provide this info...
+    // Count peers from DHT, LSD, PeX
+    uint nb_dht=0, nb_lsd=0, nb_pex=0;
+    std::vector<peer_info> peers;
+    h.get_peer_info(peers);
+    std::vector<peer_info>::iterator it;
+    for(it=peers.begin(); it!=peers.end(); it++) {
+     if(it->source & peer_info::dht)
+       ++nb_dht;
+     if(it->source & peer_info::lsd)
+       ++nb_lsd;
+     if(it->source & peer_info::pex)
+       ++nb_pex;
+    }
     // load DHT information
     if(properties->getBTSession()->isDHTEnabled() && !h.priv()) {
       dht_item->setText(COL_STATUS, tr("Working"));
     } else {
       dht_item->setText(COL_STATUS, tr("Disabled"));
     }
-    dht_item->setText(COL_PEERS, QString::number(trackers_data.value("dht", TrackerInfos("dht")).num_peers));
+    dht_item->setText(COL_PEERS, QString::number(nb_dht));
     if(h.priv()) {
       dht_item->setText(COL_MSG, tr("This torrent is private"));
     }
+    // Load PeX Information
+    pex_item->setText(COL_STATUS, tr("Working"));
+    pex_item->setText(COL_PEERS, QString::number(nb_pex));
+    // Load LSD Information
+    if(properties->getBTSession()->isLSDEnabled())
+      lsd_item->setText(COL_STATUS, tr("Working"));
+    else
+      lsd_item->setText(COL_STATUS, tr("Disabled"));
+    lsd_item->setText(COL_PEERS, QString::number(nb_lsd));
   }
 
   void loadTrackers() {
     // Load trackers from torrent handle
     QTorrentHandle h = properties->getCurrentTorrent();
     if(!h.is_valid()) return;
-    QHash<QString, TrackerInfos> trackers_data = properties->getBTSession()->getTrackersInfo(h.hash());
-    loadStickyItems(h, trackers_data);
+    loadStickyItems(h);
     // Load actual trackers information
+    QHash<QString, TrackerInfos> trackers_data = properties->getBTSession()->getTrackersInfo(h.hash());
     QStringList old_trackers_urls = tracker_items.keys();
     std::vector<announce_entry> trackers = h.trackers();
     std::vector<announce_entry>::iterator it;

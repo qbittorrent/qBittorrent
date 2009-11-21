@@ -121,6 +121,7 @@ public:
   std::vector<torrent_handle> getTorrents() const;
   bool isFilePreviewPossible(QString fileHash) const;
   bool isDHTEnabled() const;
+  bool isLSDEnabled() const;
   float getPayloadDownloadRate() const;
   float getPayloadUploadRate() const;
   session_status getSessionStatus() const;
