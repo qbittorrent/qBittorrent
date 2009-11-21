@@ -139,6 +139,7 @@ void PropertiesWidget::showPieceBars(bool show) {
   downloaded_pieces->setVisible(show);
   progress_lbl->setVisible(show);
   line_2->setVisible(show);
+  avail_average_lbl->setVisible(show);
 }
 
 void PropertiesWidget::reduce() {
@@ -178,6 +179,7 @@ void PropertiesWidget::clear() {
   trackerList->clear();
   downloaded_pieces->clear();
   pieces_availability->clear();
+  avail_average_lbl->clear();
   wasted->clear();
   upTotal->clear();
   dlTotal->clear();
@@ -329,7 +331,8 @@ void PropertiesWidget::loadDynamicData() {
         // Pieces availability
         std::vector<int> avail;
         h.piece_availability(avail);
-        pieces_availability->setAvailability(avail);
+        double avail_average =  pieces_availability->setAvailability(avail);
+        avail_average_lbl->setText(QString::number(avail_average, 'f', 1));
         // Progress
         progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
       }

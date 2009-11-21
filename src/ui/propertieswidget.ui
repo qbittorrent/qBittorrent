@@ -135,7 +135,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="avail_average_lbl">
                <property name="maximumSize">
                 <size>
                  <width>50</width>
@@ -143,7 +143,10 @@
                 </size>
                </property>
                <property name="text">
-                <string notr="true"/>
+                <string notr="true">0.0</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>

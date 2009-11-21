@@ -50,7 +50,8 @@ public:
     setFixedHeight(BAR_HEIGHT);
   }
 
-  void setAvailability(std::vector<int>& avail) {
+  double setAvailability(std::vector<int>& avail) {
+    double average = 0;
     if(avail.empty()) {
       // Empty bar
       pixmap = QPixmap(1, 1);
@@ -59,7 +60,7 @@ public:
       painter.drawPoint(0,0);
     } else {
       // Look for maximum value
-      double average = std::accumulate(avail.begin(), avail.end(), 0)/(double)avail.size();
+      average = std::accumulate(avail.begin(), avail.end(), 0)/(double)avail.size();
       uint nb_pieces = avail.size();
       pixmap = QPixmap(nb_pieces, 1);
       QPainter painter(&pixmap);
@@ -70,6 +71,7 @@ public:
       }
     }
     update();
+    return average;
   }
 
   void clear() {
