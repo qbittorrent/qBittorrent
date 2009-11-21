@@ -48,6 +48,7 @@
 #include "trackerlist.h"
 #include "GUI.h"
 #include "downloadedpiecesbar.h"
+#include "pieceavailabilitybar.h"
 
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS ""
@@ -99,9 +100,10 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
 
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
-  //progressBar = new RealProgressBar(this);
-  //progressBar->setForegroundColor(Qt::blue);
   ProgressHLayout->insertWidget(1, downloaded_pieces);
+  // Pieces availability bar
+  pieces_availability = new PieceAvailabilityBar(this);
+  ProgressHLayout_2->insertWidget(1, pieces_availability);
   // Tracker list
   trackerList = new TrackerList(this);
   verticalLayout_trackers->addWidget(trackerList);
@@ -120,6 +122,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete trackerList;
   delete peersList;
   delete downloaded_pieces;
+  delete pieces_availability;
   delete PropListModel;
   delete PropDelegate;
   // Delete QActions
@@ -165,6 +168,7 @@ void PropertiesWidget::clear() {
   progress_lbl->clear();
   trackerList->clear();
   downloaded_pieces->clear();
+  pieces_availability->clear();
   wasted->clear();
   upTotal->clear();
   dlTotal->clear();
@@ -307,6 +311,10 @@ void PropertiesWidget::loadDynamicData() {
       shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
       // Downloaded pieces
       downloaded_pieces->setProgress(h.pieces());
+      // Pieces availability
+      std::vector<int> avail;
+      h.piece_availability(avail);
+      pieces_availability->setAvailability(avail);
       // Progress
       progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
       return;

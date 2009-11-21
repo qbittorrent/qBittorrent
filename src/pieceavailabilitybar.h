@@ -28,45 +28,44 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef DOWNLOADEDPIECESBAR_H
-#define DOWNLOADEDPIECESBAR_H
+#ifndef PIECEAVAILABILITYBAR_H
+#define PIECEAVAILABILITYBAR_H
 
 #include <QWidget>
 #include <QPainter>
-#include <QList>
 #include <QPixmap>
-#include <libtorrent/bitfield.hpp>
+#include <QColor>
+#include <numeric>
 
-using namespace libtorrent;
 #define BAR_HEIGHT 18
 
-class DownloadedPiecesBar: public QWidget {
+class PieceAvailabilityBar: public QWidget {
   Q_OBJECT
 
 private:
   QPixmap pixmap;
 
-
 public:
-  DownloadedPiecesBar(QWidget *parent): QWidget(parent) {
+  PieceAvailabilityBar(QWidget *parent): QWidget(parent) {
     setFixedHeight(BAR_HEIGHT);
   }
 
-  void setProgress(bitfield pieces) {
-    if(pieces.empty()) {
+  void setAvailability(std::vector<int>& avail) {
+    if(avail.empty()) {
       // Empty bar
       pixmap = QPixmap(1, 1);
       QPainter painter(&pixmap);
       painter.setPen(Qt::white);
       painter.drawPoint(0,0);
     } else {
-      pixmap = QPixmap(pieces.size(), 1);
+      // Look for maximum value
+      double average = std::accumulate(avail.begin(), avail.end(), 0)/(double)avail.size();
+      uint nb_pieces = avail.size();
+      pixmap = QPixmap(nb_pieces, 1);
       QPainter painter(&pixmap);
-      for(uint i=0; i<pieces.size(); ++i) {
-        if(pieces[i])
-          painter.setPen(Qt::blue);
-        else
-          painter.setPen(Qt::white);
+      std::vector<int>::iterator it;
+      for(uint i=0; i < nb_pieces; ++i) {
+        painter.setPen(getPieceColor(avail[i], average));
         painter.drawPoint(i,0);
       }
     }
@@ -85,6 +84,13 @@ protected:
     painter.drawPixmap(rect(), pixmap);
   }
 
+  QColor getPieceColor(int avail, double average) {
+    if(!avail) return Qt::white;
+    //qDebug("avail: %d/%d", avail, max_avail);
+    QColor color = Qt::blue; // average avail
+    double fraction = 100.*average/avail;
+    return color.lighter(fraction);
+  }
 };
 
-#endif // DOWNLOADEDPIECESBAR_H
+#endif // PIECEAVAILABILITYBAR_H

@@ -194,7 +194,8 @@ HEADERS += GUI.h \
     deletionconfirmationdlg.h \
     statusbar.h \
     trackerlist.h \
-    downloadedpiecesbar.h
+    downloadedpiecesbar.h \
+    pieceavailabilitybar.h
 FORMS += ui/mainwindow.ui \
     ui/options.ui \
     ui/about.ui \

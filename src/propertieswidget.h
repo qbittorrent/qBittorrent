@@ -47,6 +47,7 @@ class PeerListWidget;
 class TrackerList;
 class GUI;
 class DownloadedPiecesBar;
+class PieceAvailabilityBar;
 
 enum Tab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
 enum SlideState {REDUCED, VISIBLE};
@@ -71,6 +72,7 @@ private:
   QAction *actionHigh;
   QList<int> slideSizes;
   DownloadedPiecesBar *downloaded_pieces;
+  PieceAvailabilityBar *pieces_availability;
 
 protected:
   QPushButton* getButtonFromIndex(int index);
