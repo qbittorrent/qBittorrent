@@ -1,4 +1,4 @@
-#VERSION: 1.31
+#VERSION: 1.32
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 
 # Redistribution and use in source and binary forms, with or without
@@ -65,7 +65,7 @@ class mininova(object):
 					name += node.firstChild.toxml()
 				else:
 					name += node.toxml()
-			return name
+			return re.sub('<[a-zA-Z\/][^>]*>', '', name)
 
 		def get_text(txt):
 			if txt.nodeType == txt.TEXT_NODE:
