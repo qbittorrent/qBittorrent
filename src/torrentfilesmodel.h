@@ -269,12 +269,14 @@ public:
       TreeItem *item = files_index[i];
       item->setProgress((float)fp[i]/(float)item->getSize());
     }
+    emit layoutChanged();
   }
 
   void updateFilesPriorities(std::vector<int> fprio) {
     for(unsigned int i=0; i<fprio.size(); ++i) {
       files_index[i]->setPriority(fprio[i]);
     }
+    emit layoutChanged();
   }
 
   std::vector<int> getFilesPriorities(unsigned int nbFiles) const {
