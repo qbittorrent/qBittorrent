@@ -60,7 +60,6 @@
 #include "statusbar.h"
 
 using namespace libtorrent;
-enum TabIndex{TAB_TRANSFER, TAB_SEARCH, TAB_RSS};
 
 /*****************************************************
  *                                                   *
@@ -110,14 +109,15 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 
   qDebug("create tabWidget");
   tabs = new QTabWidget();
+  connect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   vSplitter = new QSplitter(Qt::Horizontal);
   vSplitter->setChildrenCollapsible(false);
   hSplitter = new QSplitter(Qt::Vertical);
   hSplitter->setChildrenCollapsible(false);
 
   // Transfer List tab
-  transferList = new TransferListWidget(hSplitter, BTSession);
-  properties = new PropertiesWidget(hSplitter, transferList, BTSession);
+  transferList = new TransferListWidget(hSplitter, this, BTSession);
+  properties = new PropertiesWidget(hSplitter, this, transferList, BTSession);
   transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
   hSplitter->addWidget(transferList);
   hSplitter->addWidget(properties);
@@ -244,6 +244,14 @@ void GUI::on_actionDocumentation_triggered() const {
 
 void GUI::on_actionBugReport_triggered() const {
   QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://bugs.qbittorrent.org")));
+}
+
+void GUI::tab_changed(int new_tab) {
+  if(new_tab == TAB_TRANSFER) {
+    qDebug("Changed tab to transfer list, refreshing the list");
+    transferList->refreshList();
+    properties->loadDynamicData();
+  }
 }
 
 void GUI::writeSettings() {
@@ -410,7 +418,7 @@ void GUI::previewFile(QString filePath) {
 }
 
 int GUI::getCurrentTabIndex() const{
-  if(isMinimized() || isHidden())
+  if(isMinimized() || !isVisible())
     return -1;
   return tabs->currentIndex();
 }
@@ -463,7 +471,11 @@ void GUI::on_actionAbout_triggered() {
 
 void GUI::showEvent(QShowEvent *e) {
   qDebug("** Show Event **");
-  //updateLists(true);
+  if(getCurrentTabIndex() == TAB_TRANSFER) {
+    qDebug("-> Refreshing transfer list");
+    transferList->refreshList();
+    properties->loadDynamicData();
+  }
   e->accept();
 }
 

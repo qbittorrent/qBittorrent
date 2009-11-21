@@ -47,6 +47,7 @@ class QAction;
 class torrent_file;
 class PeerListWidget;
 class TrackerList;
+class GUI;
 
 enum Tab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
 enum SlideState {REDUCED, VISIBLE};
@@ -56,6 +57,7 @@ class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
 
 private:
   TransferListWidget *transferList;
+  GUI *main_window;
   QTorrentHandle h;
   QTimer *refreshTimer;
   RealProgressBar *progressBar;
@@ -78,7 +80,6 @@ protected:
 
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
-  void loadDynamicData();
   void loadUrlSeeds();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();
@@ -96,6 +97,7 @@ protected slots:
   void filteredFilesChanged();
 
 public slots:
+  void loadDynamicData();
   void reduce();
   void slide();
   void clear();
@@ -104,7 +106,7 @@ public slots:
   void reloadPreferences();
 
 public:
-  PropertiesWidget(QWidget *parent, TransferListWidget *transferList, Bittorrent* BTSession);
+  PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, Bittorrent* BTSession);
   ~PropertiesWidget();
   const QTorrentHandle& getCurrentTorrent() const;
   Bittorrent* getBTSession() const;

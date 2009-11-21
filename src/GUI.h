@@ -37,6 +37,8 @@
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
 
+enum TabIndex{TAB_TRANSFER, TAB_SEARCH, TAB_RSS};
+
 class Bittorrent;
 class QTimer;
 class downloadFromURL;
@@ -112,6 +114,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void fullDiskError(QTorrentHandle& h, QString msg) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
     void createSystrayDelayed();
+    void tab_changed(int);
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayTransferTab() const;

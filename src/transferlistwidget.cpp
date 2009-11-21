@@ -35,6 +35,7 @@
 #include "previewselect.h"
 #include "speedlimitdlg.h"
 #include "options_imp.h"
+#include "GUI.h"
 #include "deletionconfirmationdlg.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -48,10 +49,10 @@
 #include <QRegExp>
 #include <vector>
 
-TransferListWidget::TransferListWidget(QWidget *parent, Bittorrent *_BTSession): QTreeView(parent) {
-  QSettings settings("qBittorrent", "qBittorrent");
-  BTSession = _BTSession;
+TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent *_BTSession):
+    QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
 
+  QSettings settings("qBittorrent", "qBittorrent");
   // Create and apply delegate
   listDelegate = new TransferListDelegate(this);
   setItemDelegate(listDelegate);
@@ -386,6 +387,9 @@ void TransferListWidget::setRefreshInterval(int t) {
 }
 
 void TransferListWidget::refreshList() {
+  // Refresh only if displayed
+  if(main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
+  qDebug("Refreshing transfer list");
   unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0;
   for(int i=0; i<listModel->rowCount(); ++i) {
     int s = updateTorrent(i);

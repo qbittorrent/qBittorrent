@@ -39,6 +39,7 @@ class QSortFilterProxyModel;
 class Bittorrent;
 class QTimer;
 class TransferListDelegate;
+class GUI;
 
 enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_ACTIVE, FILTER_INACTIVE};
 
@@ -51,9 +52,10 @@ private:
   QSortFilterProxyModel *proxyModel;
   Bittorrent* BTSession;
   QTimer *refreshTimer;
+  GUI *main_window;
 
 public:
-  TransferListWidget(QWidget *parent, Bittorrent* BTSession);
+  TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent* BTSession);
   ~TransferListWidget();
 
 protected:

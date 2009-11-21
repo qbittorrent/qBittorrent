@@ -48,6 +48,7 @@
 #include "torrentfilesmodel.h"
 #include "peerlistwidget.h"
 #include "trackerlist.h"
+#include "GUI.h"
 
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS ""
@@ -57,7 +58,8 @@
 #define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105); margin-left: 3px; margin-right: 3px;}"
 #endif
 
-PropertiesWidget::PropertiesWidget(QWidget *parent, TransferListWidget *transferList, Bittorrent* BTSession): QWidget(parent), transferList(transferList), BTSession(BTSession) {
+PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, Bittorrent* BTSession):
+    QWidget(parent), transferList(transferList), main_window(main_window), BTSession(BTSession) {
   setupUi(this);
   state = VISIBLE;
 
@@ -283,8 +285,9 @@ void PropertiesWidget::reloadPreferences() {
 }
 
 void PropertiesWidget::loadDynamicData() {
-  if(!h.is_valid()) return;
-  if(state != VISIBLE) return;
+  // Refresh only if the torrent handle is valid and if visible
+  if(!h.is_valid() || main_window->getCurrentTabIndex() != TAB_TRANSFER || state != VISIBLE) return;
+  qDebug("Refreshing torrent properties");
   try {
     // Transfer infos
     if(stackedProperties->currentIndex() == MAIN_TAB) {
