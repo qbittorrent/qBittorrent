@@ -134,6 +134,11 @@ void QTorrentHandle::get_peer_info(std::vector<peer_info>& v) const {
   h.get_peer_info(v);
 }
 
+bool QTorrentHandle::first_last_piece_first() const {
+  Q_ASSERT(h.is_valid());
+  return (h.piece_priority(0) == 7) && (h.piece_priority(h.get_torrent_info().num_pieces()-1) == 7);
+}
+
 size_type QTorrentHandle::total_wanted_done() const {
   Q_ASSERT(h.is_valid());
   return h.status().total_wanted_done;
@@ -530,6 +535,14 @@ void QTorrentHandle::set_peer_download_limit(asio::ip::tcp::endpoint ip, int lim
 void QTorrentHandle::add_tracker(announce_entry const& url) {
   Q_ASSERT(h.is_valid());
   h.add_tracker(url);
+}
+
+void QTorrentHandle::prioritize_first_last_piece(bool b) {
+  Q_ASSERT(h.is_valid());
+  int prio = 1;
+  if(b) prio = 7;
+  h.piece_priority(0, prio);
+  h.piece_priority(h.get_torrent_info().num_pieces()-1, prio);
 }
 
 //

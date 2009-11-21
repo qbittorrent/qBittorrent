@@ -731,6 +731,18 @@ void TransferListWidget::toggleSelectedTorrentsSequentialDownload() {
   }
 }
 
+void TransferListWidget::toggleSelectedFirstLastPiecePrio() {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  foreach(const QModelIndex &index, selectedIndexes) {
+    // Get the file hash
+    QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid() && h.num_files() == 1) {
+      h.prioritize_first_last_piece(!h.first_last_piece_first());
+    }
+  }
+}
+
 void TransferListWidget::displayListMenu(const QPoint&) {
   // Create actions
   QAction actionStart(QIcon(QString::fromUtf8(":/Icons/skin/play.png")), tr("Start"), 0);
@@ -761,14 +773,16 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
   QAction actionSequential_download(tr("Download in sequential order"), 0);
   connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
+  QAction actionFirstLastPiece_prio(tr("Download first and last piece first"), 0);
+  connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
   // End of actions
   QMenu listMenu(this);
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
-  bool all_same_super_seeding = true, all_same_sequential_download_mode = true;
-  bool super_seeding_mode = false, sequential_download_mode = false;
-  bool one_has_metadata = false, one_not_seed = false;
+  bool all_same_super_seeding = true, all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
+  bool super_seeding_mode = false, sequential_download_mode = false, prioritize_first_last = false;
+  bool one_has_metadata = false, one_not_seed = false, one_has_single_file = false;;
   bool first = true;
   QTorrentHandle h;
   qDebug("Displaying menu");
@@ -784,11 +798,16 @@ void TransferListWidget::displayListMenu(const QPoint&) {
       one_not_seed = true;
       if(first) {
         sequential_download_mode = h.is_sequential_download();
+        prioritize_first_last = h.first_last_piece_first();
       } else {
         if(sequential_download_mode != h.is_sequential_download()) {
           all_same_sequential_download_mode = false;
         }
+        if(prioritize_first_last != h.first_last_piece_first()) {
+          all_same_prio_firstlast = false;
+        }
       }
+      if(h.num_files() == 1) one_has_single_file = true;
     } else {
       if(!one_not_seed && all_same_super_seeding) {
         if(first) {
@@ -812,7 +831,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
       }
     }
     if(h.has_metadata() && BTSession->isFilePreviewPossible(hash) && !has_preview) {
-      listMenu.addAction(&actionPreview_file);
       has_preview = true;
     }
     first = false;
@@ -834,16 +852,37 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     actionSuper_seeding_mode.setIcon(ico);
     listMenu.addAction(&actionSuper_seeding_mode);
   }
-  if(one_not_seed && all_same_sequential_download_mode) {
-    QIcon ico;
-    if(sequential_download_mode) {
-      ico = QIcon(":/Icons/oxygen/button_ok.png");
-    } else {
-      ico = QIcon(":/Icons/oxygen/button_cancel.png");
-    }
-    actionSequential_download.setIcon(ico);
-    listMenu.addAction(&actionSequential_download);
+  listMenu.addSeparator();
+  bool added_preview_action = false;
+  if(has_preview) {
+    listMenu.addAction(&actionPreview_file);
+    added_preview_action = true;
   }
+  if(one_not_seed) {
+    if(all_same_sequential_download_mode) {
+      QIcon ico;
+      if(sequential_download_mode) {
+        ico = QIcon(":/Icons/oxygen/button_ok.png");
+      } else {
+        ico = QIcon(":/Icons/oxygen/button_cancel.png");
+      }
+      actionSequential_download.setIcon(ico);
+      listMenu.addAction(&actionSequential_download);
+      added_preview_action = true;
+    }
+    if(all_same_prio_firstlast && one_has_single_file) {
+      QIcon ico;
+      if(prioritize_first_last) {
+        ico = QIcon(":/Icons/oxygen/button_ok.png");
+      } else {
+        ico = QIcon(":/Icons/oxygen/button_cancel.png");
+      }
+      actionFirstLastPiece_prio.setIcon(ico);
+      listMenu.addAction(&actionFirstLastPiece_prio);
+      added_preview_action = true;
+    }
+  }
+    if(added_preview_action)
   listMenu.addSeparator();
   if(one_has_metadata) {
     listMenu.addAction(&actionForce_recheck);

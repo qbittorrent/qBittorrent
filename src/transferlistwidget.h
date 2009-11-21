@@ -81,6 +81,7 @@ protected slots:
   void toggleSelectedTorrentsSuperSeeding();
 #endif
   void toggleSelectedTorrentsSequentialDownload();
+  void toggleSelectedFirstLastPiecePrio();
   //void setRowColor(int row, QColor color);
 
 public slots:
