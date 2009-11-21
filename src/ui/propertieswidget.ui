@@ -116,7 +116,7 @@
               <enum>QLayout::SetDefaultConstraint</enum>
              </property>
              <item>
-              <widget class="QLabel" name="downloaded_pieces_lbl_2">
+              <widget class="QLabel" name="avail_pieces_lbl">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                  <horstretch>0</horstretch>

@@ -95,6 +95,7 @@ protected slots:
   void displayFilesListMenu(const QPoint& pos);
   void on_changeSavePathButton_clicked();
   void filteredFilesChanged();
+  void showPieceBars(bool show);
 
 public slots:
   void loadDynamicData();

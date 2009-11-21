@@ -132,6 +132,15 @@ PropertiesWidget::~PropertiesWidget() {
   delete actionHigh;
 }
 
+void PropertiesWidget::showPieceBars(bool show) {
+  avail_pieces_lbl->setVisible(show);
+  pieces_availability->setVisible(show);
+  downloaded_pieces_lbl->setVisible(show);
+  downloaded_pieces->setVisible(show);
+  progress_lbl->setVisible(show);
+  line_2->setVisible(show);
+}
+
 void PropertiesWidget::reduce() {
   if(state == VISIBLE) {
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
@@ -180,6 +189,7 @@ void PropertiesWidget::clear() {
   shareRatio->clear();
   listWebSeeds->clear();
   PropListModel->clear();
+  showPieceBars(false);
   setEnabled(false);
 }
 
@@ -200,6 +210,10 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   setEnabled(true);
 
   try {
+    if(!h.is_seed())
+      showPieceBars(true);
+    else
+      showPieceBars(false);
     // Save path
     save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
     // Creation date
@@ -309,14 +323,16 @@ void PropertiesWidget::loadDynamicData() {
         }
       }
       shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
-      // Downloaded pieces
-      downloaded_pieces->setProgress(h.pieces());
-      // Pieces availability
-      std::vector<int> avail;
-      h.piece_availability(avail);
-      pieces_availability->setAvailability(avail);
-      // Progress
-      progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
+      if(!h.is_seed()) {
+        // Downloaded pieces
+        downloaded_pieces->setProgress(h.pieces());
+        // Pieces availability
+        std::vector<int> avail;
+        h.piece_availability(avail);
+        pieces_availability->setAvailability(avail);
+        // Progress
+        progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
+      }
       return;
     }
     if(stackedProperties->currentIndex() == TRACKERS_TAB) {
