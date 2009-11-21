@@ -65,7 +65,7 @@ public:
 
     // SIGNAL/SLOT
     connect(this, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyFilter(int)));
-    connect(transferList, SIGNAL(torrentStatusUpdate(uint,uint,uint)), this, SLOT(updateTorrentNumbers(uint, uint, uint)));
+    connect(transferList, SIGNAL(torrentStatusUpdate(uint,uint,uint,uint)), this, SLOT(updateTorrentNumbers(uint, uint, uint, uint)));
 
     // Load settings
     loadSettings();
@@ -88,8 +88,7 @@ public:
   }
 
 protected slots:
-  void updateTorrentNumbers(uint nb_downloading, uint nb_seeding, uint nb_inactive) {
-    uint nb_active = nb_downloading+nb_seeding;
+  void updateTorrentNumbers(uint nb_downloading, uint nb_seeding, uint nb_active, uint nb_inactive) {
     item(FILTER_ALL)->setData(Qt::DisplayRole, tr("All")+" ("+QString::number(nb_active+nb_inactive)+")");
     item(FILTER_DOWNLOADING)->setData(Qt::DisplayRole, tr("Downloading")+" ("+QString::number(nb_downloading)+")");
     item(FILTER_COMPLETED)->setData(Qt::DisplayRole, tr("Completed")+" ("+QString::number(nb_seeding)+")");

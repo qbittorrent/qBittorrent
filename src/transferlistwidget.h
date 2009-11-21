@@ -110,7 +110,7 @@ public slots:
 
 signals:
   void currentTorrentChanged(QTorrentHandle &h);
-  void torrentStatusUpdate(unsigned int, unsigned int, unsigned int);
+  void torrentStatusUpdate(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive);
 
 };
 

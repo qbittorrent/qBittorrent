@@ -41,7 +41,7 @@
 #include "misc.h"
 
 // Defines for download list list columns
-enum TorrentState {STATE_STALLED, STATE_DOWNLOADING, STATE_SEEDING, STATE_PAUSED, STATE_QUEUED, STATE_CHECKING, STATE_INVALID};
+enum TorrentState {STATE_DOWNLOADING, STATE_STALLED_DL, STATE_STALLED_UP, STATE_SEEDING, STATE_PAUSED_DL, STATE_PAUSED_UP, STATE_QUEUED_DL, STATE_QUEUED_UP, STATE_CHECKING_UP, STATE_CHECKING_DL, STATE_INVALID};
 enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_HASH};
 
 class TransferListDelegate: public QItemDelegate {
@@ -86,19 +86,23 @@ public:
             case STATE_DOWNLOADING:
           display = tr("Downloading");
           break;
-            case STATE_PAUSED:
+            case STATE_PAUSED_DL:
+            case STATE_PAUSED_UP:
           display = tr("Paused");
           break;
-            case STATE_QUEUED:
+            case STATE_QUEUED_DL:
+            case STATE_QUEUED_UP:
           display = tr("Queued", "i.e. torrent is queued");
           break;
             case STATE_SEEDING:
+            case STATE_STALLED_UP:
           display = tr("Seeding", "Torrent is complete and in upload-only mode");
           break;
-            case STATE_STALLED:
+            case STATE_STALLED_DL:
           display = tr("Stalled", "Torrent is waiting for download to begin");
           break;
-          case STATE_CHECKING:
+            case STATE_CHECKING_DL:
+            case STATE_CHECKING_UP:
           display = tr("Checking", "Torrent local data is being checked");
         }
         QItemDelegate::drawBackground(painter, opt, index);
