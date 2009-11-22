@@ -626,8 +626,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>216</width>
-              <height>147</height>
+              <width>620</width>
+              <height>149</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1082,7 +1082,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>451</width>
+              <width>602</width>
               <height>513</height>
              </rect>
             </property>
@@ -1503,8 +1503,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>468</width>
-              <height>347</height>
+              <width>620</width>
+              <height>488</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1525,9 +1525,9 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkSameDHTPort">
+                 <widget class="QCheckBox" name="checkDifferentDHTPort">
                   <property name="text">
-                   <string>Use the same port for DHT and Bittorrent</string>
+                   <string>Use a different port for DHT and Bittorrent</string>
                   </property>
                   <property name="checked">
                    <bool>true</bool>
@@ -2401,8 +2401,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>218</width>
-              <height>220</height>
+              <width>620</width>
+              <height>488</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2415,14 +2415,14 @@
                 <string>Enable Web User Interface</string>
                </property>
                <property name="checked">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QGroupBox" name="groupWebUiServer">
                <property name="enabled">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
                <property name="title">
                 <string>HTTP Server</string>
@@ -2431,7 +2431,7 @@
                 <item>
                  <widget class="QLabel" name="lblWebUiPort">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>Port:</string>
@@ -2441,7 +2441,7 @@
                 <item>
                  <widget class="QSpinBox" name="spinWebUiPort">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="maximum">
                    <number>65535</number>
@@ -2470,7 +2470,7 @@
              <item>
               <widget class="QGroupBox" name="groupWebUiAuth">
                <property name="enabled">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
                <property name="title">
                 <string>Authentication</string>
@@ -2481,7 +2481,7 @@
                   <item>
                    <widget class="QLabel" name="lblWebUiUsername">
                     <property name="enabled">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="text">
                      <string>Username:</string>
@@ -2491,7 +2491,7 @@
                   <item>
                    <widget class="QLabel" name="lblWebUiPassword">
                     <property name="enabled">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="text">
                      <string>Password:</string>
@@ -2505,7 +2505,7 @@
                   <item>
                    <widget class="QLineEdit" name="textWebUiUsername">
                     <property name="enabled">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="text">
                      <string/>
@@ -2521,7 +2521,7 @@
                   <item>
                    <widget class="QLineEdit" name="textWebUiPassword">
                     <property name="enabled">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="text">
                      <string/>
@@ -2583,8 +2583,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>451</width>
-              <height>195</height>
+              <width>620</width>
+              <height>488</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">

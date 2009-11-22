@@ -118,6 +118,8 @@ public:
     container->setFixedHeight(24);
     bar->setContentsMargins(12, 0, 12, 0);
     bar->setFixedHeight(26);
+    // Is DHT enabled
+    DHTLbl->setVisible(Preferences::isDHTEnabled());
     refreshTimer = new QTimer(bar);
     connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
     refreshTimer->start(1500);

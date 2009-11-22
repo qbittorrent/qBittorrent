@@ -158,7 +158,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkMaxUploadsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxUploadsLimitPerTorrent(bool)));
   connect(checkRatioLimit,  SIGNAL(toggled(bool)), this, SLOT(enableShareRatio(bool)));
   connect(checkRatioRemove,  SIGNAL(toggled(bool)), this, SLOT(enableDeleteRatio(bool)));
-  connect(checkSameDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableDHTPortSettings(bool)));
+  connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableDHTSettings(bool)));
+  connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableDHTPortSettings(bool)));
   // Proxy tab
   connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxyHTTP(int)));
   connect(checkProxyAuth_http,  SIGNAL(toggled(bool)), this, SLOT(enableProxyAuthHTTP(bool)));
@@ -210,7 +211,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkSameDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAzureusSpoof, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -702,8 +703,9 @@ void options_imp::loadOptions(){
     spinMaxUploadsPerTorrent->setEnabled(false);
   }
   checkDHT->setChecked(Preferences::isDHTEnabled());
-  checkSameDHTPort->setChecked(Preferences::isDHTPortSameAsBT());
-  enableDHTPortSettings(checkSameDHTPort->isChecked());
+  enableDHTSettings(checkDHT->isChecked());
+  checkDifferentDHTPort->setChecked(!Preferences::isDHTPortSameAsBT());
+  enableDHTPortSettings(checkDifferentDHTPort->isChecked());
   spinDHTPort->setValue(Preferences::getDHTPort());
   checkLSD->setChecked(Preferences::isLSDEnabled());
   checkAzureusSpoof->setChecked(Preferences::isUtorrentSpoofingEnabled());
@@ -1097,6 +1099,17 @@ void options_imp::enableDHTPortSettings(bool checked) {
   }
 }
 
+void options_imp::enableDHTSettings(bool checked) {
+  if(checked){
+    checkDifferentDHTPort->setEnabled(true);
+    enableDHTPortSettings(checkDifferentDHTPort->isChecked());
+  }else{
+    checkDifferentDHTPort->setEnabled(false);
+    enableDHTPortSettings(false);
+  }
+}
+
+
 void options_imp::enableDeleteRatio(bool checked){
   if(checked){
     spinMaxRatio->setEnabled(true);
@@ -1200,7 +1213,7 @@ bool options_imp::addTorrentsInPause() const {
 }
 
 bool options_imp::isDHTPortSameAsBT() const {
-  return checkSameDHTPort->isChecked();
+  return !checkDifferentDHTPort->isChecked();
 }
 
 // Proxy settings

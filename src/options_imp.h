@@ -151,6 +151,7 @@ protected slots:
   void enableDeleteRatio(bool checked);
   void enableFilter(bool checked);
   void enableRSS(bool checked);
+  void enableDHTSettings(bool checked);
   void enableDHTPortSettings(bool checked);
   void enableQueueingSystem(bool checked);
   void setStyle(int style);
