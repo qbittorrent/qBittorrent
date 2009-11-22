@@ -248,6 +248,18 @@ void PeerListWidget::loadSettings() {
       setColumnWidth(i, contentColsWidths.at(i).toInt());
     }
   }
+  // Load sorted column
+  QString sortedCol = settings.value(QString::fromUtf8("TorrentProperties/Peers/PeerListSortedCol"), QString()).toString();
+  if(!sortedCol.isEmpty()) {
+    Qt::SortOrder sortOrder;
+    if(sortedCol.endsWith(QString::fromUtf8("d")))
+      sortOrder = Qt::DescendingOrder;
+    else
+      sortOrder = Qt::AscendingOrder;
+    sortedCol.chop(1);
+    int index = sortedCol.toInt();
+    sortByColumn(index, sortOrder);
+  }
 }
 
 void PeerListWidget::saveSettings() const {
@@ -257,6 +269,15 @@ void PeerListWidget::saveSettings() const {
     contentColsWidths.append(columnWidth(i));
   }
   settings.setValue(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), contentColsWidths);
+  // Save sorted column
+  Qt::SortOrder sortOrder = header()->sortIndicatorOrder();
+  QString sortOrderLetter;
+  if(sortOrder == Qt::AscendingOrder)
+    sortOrderLetter = QString::fromUtf8("a");
+  else
+    sortOrderLetter = QString::fromUtf8("d");
+  int index = header()->sortIndicatorSection();
+  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/PeerListSortedCol"), misc::toQString(index)+sortOrderLetter);
 }
 
 void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {

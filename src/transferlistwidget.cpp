@@ -1041,7 +1041,7 @@ void TransferListWidget::loadLastSortedColumn() {
       sortOrder = Qt::DescendingOrder;
     else
       sortOrder = Qt::AscendingOrder;
-    sortedCol = sortedCol.left(sortedCol.size()-1);
+    sortedCol.chop(1);
     int index = sortedCol.toInt();
     sortByColumn(index, sortOrder);
   }
