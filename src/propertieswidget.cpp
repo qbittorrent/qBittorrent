@@ -303,11 +303,17 @@ void PropertiesWidget::loadDynamicData() {
       wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
       upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
-      lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit()));
-      lbl_dllimit->setText(misc::friendlyUnit(h.download_limit()));
+      if(h.upload_limit() <= 0)
+        lbl_uplimit->setText(tr("Unlimited"));
+      else
+        lbl_uplimit->setText(QString::number(h.upload_limit(), 'f', 1)+" "+tr("KiB/s"));
+      if(h.download_limit() <= 0)
+        lbl_dllimit->setText(tr("Unlimited"));
+      else
+        lbl_dllimit->setText(QString::number(h.download_limit(), 'f', 1)+" "+tr("KiB/s"));
       QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
       if(h.is_seed()) {
-        elapsed_txt += " ("+tr("Seeding for %1", "e.g. Seeding for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
+        elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
       }
       lbl_elapsed->setText(elapsed_txt);
       lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
