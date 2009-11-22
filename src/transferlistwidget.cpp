@@ -418,6 +418,7 @@ void TransferListWidget::refreshList() {
     }
   }
   emit torrentStatusUpdate(nb_downloading, nb_seeding, nb_active, nb_inactive);
+  repaint();
 }
 
 int TransferListWidget::getRowFromHash(QString hash) const{
