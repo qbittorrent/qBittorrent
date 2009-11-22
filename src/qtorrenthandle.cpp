@@ -560,7 +560,24 @@ void QTorrentHandle::set_peer_download_limit(asio::ip::tcp::endpoint ip, int lim
 
 void QTorrentHandle::add_tracker(announce_entry const& url) {
   Q_ASSERT(h.is_valid());
+#ifdef LIBTORRENT_0_15
   h.add_tracker(url);
+#else
+  std::vector<announce_entry> trackers = h.trackers();
+  bool exists = false;
+  std::vector<announce_entry>::iterator it = trackers.begin();
+  while(it != trackers.end()) {
+    if(it->url == url.url) {
+      exists = true;
+      break;
+    }
+    it++;
+  }
+  if(!exists) {
+    trackers.push_back(url);
+    h.replace_trackers(trackers);
+  }
+#endif
 }
 
 void QTorrentHandle::prioritize_first_last_piece(bool b) {
