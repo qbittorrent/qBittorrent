@@ -575,7 +575,7 @@ void options_imp::loadOptions(){
   checkPreallocateAll->setChecked(Preferences::preAllocateAllFiles());
   checkAdditionDialog->setChecked(Preferences::useAdditionDialog());
   checkStartPaused->setChecked(Preferences::addTorrentsInPause());
-  strValue = Preferences::getSavePath();
+  strValue = Preferences::getScanDir();
   if(strValue.isEmpty()) {
     // Disable
     checkScanDir->setChecked(false);
@@ -1275,9 +1275,7 @@ void options_imp::setLocale(QString locale){
 // Return scan dir set in options
 QString options_imp::getScanDir() const {
   if(checkScanDir->isChecked()){
-    QString scanDir = textScanDir->text();
-    scanDir = scanDir.trimmed();
-    return scanDir;
+    return textScanDir->text().trimmed();
   }else{
     return QString();
   }

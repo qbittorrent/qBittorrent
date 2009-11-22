@@ -148,7 +148,7 @@ public:
 
   static bool isDirScanEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Downloads/ScanDir"), QString()).toString().isEmpty();
+    return !settings.value(QString::fromUtf8("Preferences/Downloads/ScanDir"), QString()).toString().isEmpty();
   }
 
   static QString getScanDir() {
