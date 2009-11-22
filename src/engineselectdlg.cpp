@@ -32,6 +32,7 @@
 #include "downloadthread.h"
 #include "misc.h"
 #include "ico.h"
+#include "searchengine.h"
 #include "pluginsource.h"
 #include <QProcess>
 #include <QHeaderView>
@@ -44,6 +45,7 @@
 #include <QTemporaryFile>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
+#define UPDATE_URL "http://qbittorrent.svn.sourceforge.net/viewvc/qbittorrent/trunk/src/search_engine/engines/"
 
 engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines) : QDialog(parent), supported_engines(supported_engines) {
   setupUi(this);
@@ -105,8 +107,8 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void engineSelectDlg::on_updateButton_clicked() {
-  // Download version file from primary server
-  downloader->downloadUrl("http://www.dchris.eu/search_engine2/versions.txt");
+  // Download version file from update server on sourceforge
+  downloader->downloadUrl(QString(UPDATE_URL)+"versions.txt");
 }
 
 void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
@@ -243,17 +245,17 @@ QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id){
 }
 
 bool engineSelectDlg::isUpdateNeeded(QString plugin_name, float new_version) const {
-  float old_version = misc::getPluginVersion(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py");
+  float old_version = SearchEngine::getPluginVersion(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py");
   qDebug("IsUpdate needed? tobeinstalled: %.2f, alreadyinstalled: %.2f", new_version, old_version);
   return (new_version > old_version);
 }
 
 void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Asked to install plugin at %s", path.toLocal8Bit().data());
-  float new_version = misc::getPluginVersion(path);
+  float new_version = SearchEngine::getPluginVersion(path);
   qDebug("Version to be installed: %.2f", new_version);
   if(!isUpdateNeeded(plugin_name, new_version)) {
-    qDebug("Apparently update it not needed, we have a more recent version");
+    qDebug("Apparently update is not needed, we have a more recent version");
     QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
     return;
   }
@@ -337,150 +339,134 @@ void engineSelectDlg::addNewEngine(QString engine_name) {
   }
 }
 
-  void engineSelectDlg::on_installButton_clicked() {
-    pluginSourceDlg *dlg = new pluginSourceDlg(this);
-    connect(dlg, SIGNAL(askForLocalFile()), this, SLOT(askForLocalPlugin()));
-    connect(dlg, SIGNAL(askForUrl()), this, SLOT(askForPluginUrl()));
-  }
+void engineSelectDlg::on_installButton_clicked() {
+  pluginSourceDlg *dlg = new pluginSourceDlg(this);
+  connect(dlg, SIGNAL(askForLocalFile()), this, SLOT(askForLocalPlugin()));
+  connect(dlg, SIGNAL(askForUrl()), this, SLOT(askForPluginUrl()));
+}
 
-  void engineSelectDlg::askForPluginUrl() {
-    bool ok;
-    QString url = QInputDialog::getText(this, tr("New search engine plugin URL"),
-                                        tr("URL:"), QLineEdit::Normal,
-                                        "http://", &ok);
-    if (ok && !url.isEmpty())
-      downloader->downloadUrl(url);
-  }
+void engineSelectDlg::askForPluginUrl() {
+  bool ok;
+  QString url = QInputDialog::getText(this, tr("New search engine plugin URL"),
+                                      tr("URL:"), QLineEdit::Normal,
+                                      "http://", &ok);
+  if (ok && !url.isEmpty())
+    downloader->downloadUrl(url);
+}
 
-  void engineSelectDlg::askForLocalPlugin() {
-    QStringList pathsList = QFileDialog::getOpenFileNames(0,
-                                                          tr("Select search plugins"), QDir::homePath(),
-    tr("qBittorrent search plugins")+QString::fromUtf8(" (*.py)"));
-    QString path;
-    foreach(path, pathsList) {
-      if(path.endsWith(".py", Qt::CaseInsensitive)) {
-        QString plugin_name = path.split(QDir::separator()).last();
-        plugin_name.replace(".py", "", Qt::CaseInsensitive);
-        installPlugin(path, plugin_name);
-      }
-    }
-  }
-
-  bool engineSelectDlg::parseVersionsFile(QString versions_file, QString updateServer) {
-    qDebug("Checking if update is needed");
-    bool file_correct = false;
-    QFile versions(versions_file);
-    if(!versions.open(QIODevice::ReadOnly | QIODevice::Text)){
-      qDebug("* Error: Could not read versions.txt file");
-      return false;
-    }
-    bool updated = false;
-    while(!versions.atEnd()) {
-      QByteArray line = versions.readLine();
-      line.replace("\n", "");
-      line = line.trimmed();
-      if(line.isEmpty()) continue;
-      if(line.startsWith("#")) continue;
-      QList<QByteArray> list = line.split(' ');
-      if(list.size() != 2) continue;
-      QString plugin_name = QString(list.first());
-      if(!plugin_name.endsWith(":")) continue;
-      plugin_name.chop(1); // remove trailing ':'
-      bool ok;
-      float version = list.last().toFloat(&ok);
-      qDebug("read line %s: %.2f", plugin_name.toLocal8Bit().data(), version);
-      if(!ok) continue;
-      file_correct = true;
-      if(isUpdateNeeded(plugin_name, version)) {
-        qDebug("Plugin: %s is outdated", plugin_name.toLocal8Bit().data());
-        // Downloading update
-        downloader->downloadUrl(updateServer+plugin_name+".pyqBT"); // Actually this is really a .py
-        downloader->downloadUrl(updateServer+plugin_name+".png");
-        updated = true;
-      }else {
-        qDebug("Plugin: %s is up to date", plugin_name.toLocal8Bit().data());
-      }
-    }
-    // Close file
-    versions.close();
-    // Clean up tmp file
-    QFile::remove(versions_file);
-    if(file_correct && !updated) {
-      QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("All your plugins are already up to date."));
-    }
-    return file_correct;
-  }
-
-  void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
-    qDebug("engineSelectDlg received %s", url.toLocal8Bit().data());
-    if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
-      // Icon downloaded
-      QImage fileIcon;
-      if(fileIcon.load(filePath)) {
-        QList<QTreeWidgetItem*> items = findItemsWithUrl(url);
-        QTreeWidgetItem *item;
-        foreach(item, items){
-          QString id = item->text(ENGINE_ID);
-          QString iconPath;
-          QFile icon(filePath);
-          icon.open(QIODevice::ReadOnly);
-          if(ICOHandler::canRead(&icon))
-            iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".ico";
-          else
-            iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".png";
-          QFile::copy(filePath, iconPath);
-          item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
-        }
-      }
-      // Delete tmp file
-      QFile::remove(filePath);
-      return;
-    }
-    if(url == "http://www.dchris.eu/search_engine2/versions.txt") {
-      if(!parseVersionsFile(filePath, "http://www.dchris.eu/search_engine2/")) {
-        qDebug("Primary update server failed, try secondary");
-        downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine2/versions.txt");
-      }
-      QFile::remove(filePath);
-      return;
-    }
-    if(url == "http://hydr0g3n.free.fr/search_engine2/versions.txt") {
-      if(!parseVersionsFile(filePath, "http://hydr0g3n.free.fr/search_engine2/")) {
-        QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
-      }
-      QFile::remove(filePath);
-      return;
-    }
-    if(url.endsWith(".pyqBT", Qt::CaseInsensitive) || url.endsWith(".py", Qt::CaseInsensitive)) {
-      QString plugin_name = url.split('/').last();
-      plugin_name.replace(".pyqBT", "");
-      plugin_name.replace(".py", "");
-      installPlugin(filePath, plugin_name);
-      QFile::remove(filePath);
-      return;
-    }
-  }
-
-  void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
-    if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
-      qDebug("Could not download favicon: %s, reason: %s", url.toLocal8Bit().data(), reason.toLocal8Bit().data());
-      return;
-    }
-    if(url == "http://www.dchris.eu/search_engine2/versions.txt") {
-      // Primary update server failed, try secondary
-      qDebug("Primary update server failed, try secondary");
-      downloader->downloadUrl("http://hydr0g3n.free.fr/search_engine2/versions.txt");
-      return;
-    }
-    if(url == "http://hydr0g3n.free.fr/search_engine2/versions.txt") {
-      QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
-      return;
-    }
-    if(url.endsWith(".pyqBT", Qt::CaseInsensitive) || url.endsWith(".py", Qt::CaseInsensitive)) {
-      // a plugin update download has been failed
-      QString plugin_name = url.split('/').last();
-      plugin_name.replace(".pyqBT", "", Qt::CaseInsensitive);
+void engineSelectDlg::askForLocalPlugin() {
+  QStringList pathsList = QFileDialog::getOpenFileNames(0,
+                                                        tr("Select search plugins"), QDir::homePath(),
+                                                        tr("qBittorrent search plugins")+QString::fromUtf8(" (*.py)"));
+  QString path;
+  foreach(path, pathsList) {
+    if(path.endsWith(".py", Qt::CaseInsensitive)) {
+      QString plugin_name = path.split(QDir::separator()).last();
       plugin_name.replace(".py", "", Qt::CaseInsensitive);
-      QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+      installPlugin(path, plugin_name);
     }
   }
+}
+
+bool engineSelectDlg::parseVersionsFile(QString versions_file) {
+  qDebug("Checking if update is needed");
+  bool file_correct = false;
+  QFile versions(versions_file);
+  if(!versions.open(QIODevice::ReadOnly | QIODevice::Text)){
+    qDebug("* Error: Could not read versions.txt file");
+    return false;
+  }
+  bool updated = false;
+  while(!versions.atEnd()) {
+    QByteArray line = versions.readLine();
+    line.replace("\n", "");
+    line = line.trimmed();
+    if(line.isEmpty()) continue;
+    if(line.startsWith("#")) continue;
+    QList<QByteArray> list = line.split(' ');
+    if(list.size() != 2) continue;
+    QString plugin_name = QString(list.first());
+    if(!plugin_name.endsWith(":")) continue;
+    plugin_name.chop(1); // remove trailing ':'
+    bool ok;
+    float version = list.last().toFloat(&ok);
+    qDebug("read line %s: %.2f", plugin_name.toLocal8Bit().data(), version);
+    if(!ok) continue;
+    file_correct = true;
+    if(isUpdateNeeded(plugin_name, version)) {
+      qDebug("Plugin: %s is outdated", plugin_name.toLocal8Bit().data());
+      // Downloading update
+      downloader->downloadUrl(UPDATE_URL+plugin_name+".py");
+      //downloader->downloadUrl(UPDATE_URL+plugin_name+".png");
+      updated = true;
+    }else {
+      qDebug("Plugin: %s is up to date", plugin_name.toLocal8Bit().data());
+    }
+  }
+  // Close file
+  versions.close();
+  // Clean up tmp file
+  QFile::remove(versions_file);
+  if(file_correct && !updated) {
+    QMessageBox::information(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("All your plugins are already up to date."));
+  }
+  return file_correct;
+}
+
+void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
+  qDebug("engineSelectDlg received %s", url.toLocal8Bit().data());
+  if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
+    // Icon downloaded
+    QImage fileIcon;
+    if(fileIcon.load(filePath)) {
+      QList<QTreeWidgetItem*> items = findItemsWithUrl(url);
+      QTreeWidgetItem *item;
+      foreach(item, items){
+        QString id = item->text(ENGINE_ID);
+        QString iconPath;
+        QFile icon(filePath);
+        icon.open(QIODevice::ReadOnly);
+        if(ICOHandler::canRead(&icon))
+          iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".ico";
+        else
+          iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".png";
+        QFile::copy(filePath, iconPath);
+        item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
+      }
+    }
+    // Delete tmp file
+    QFile::remove(filePath);
+    return;
+  }
+  if(url.endsWith("versions.txt")) {
+    if(!parseVersionsFile(filePath)) {
+      QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
+    }
+    QFile::remove(filePath);
+    return;
+  }
+  if(url.endsWith(".py", Qt::CaseInsensitive)) {
+    QString plugin_name = url.split('/').last();
+    plugin_name.replace(".py", "");
+    installPlugin(filePath, plugin_name);
+    QFile::remove(filePath);
+    return;
+  }
+}
+
+void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
+  if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
+    qDebug("Could not download favicon: %s, reason: %s", url.toLocal8Bit().data(), reason.toLocal8Bit().data());
+    return;
+  }
+  if(url.endsWith("versions.txt")) {
+    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, update server is temporarily unavailable."));
+    return;
+  }
+  if(url.endsWith(".py", Qt::CaseInsensitive)) {
+    // a plugin update download has been failed
+    QString plugin_name = url.split('/').last();
+    plugin_name.replace(".py", "", Qt::CaseInsensitive);
+    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+  }
+}

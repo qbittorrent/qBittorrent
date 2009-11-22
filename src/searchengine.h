@@ -73,8 +73,29 @@ private:
 public:
   SearchEngine(Bittorrent *BTSession, QSystemTrayIcon *systrayIcon);
   ~SearchEngine();
-  float getPluginVersion(QString filePath) const;
   QString selectedCategory() const;
+
+  static float getPluginVersion(QString filePath) {
+    QFile plugin(filePath);
+    if(!plugin.exists()){
+      qDebug("%s plugin does not exist, returning 0.0", filePath.toLocal8Bit().data());
+      return 0.0;
+    }
+    if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
+      return 0.0;
+    }
+    float version = 0.0;
+    while (!plugin.atEnd()){
+      QByteArray line = plugin.readLine();
+      if(line.startsWith("#VERSION: ")){
+        line = line.split(' ').last().trimmed();
+        version = line.toFloat();
+        qDebug("plugin %s version: %.2f", filePath.toLocal8Bit().data(), version);
+        break;
+      }
+    }
+    return version;
+  }
 
 public slots:
   void on_download_button_clicked();

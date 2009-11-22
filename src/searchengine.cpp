@@ -362,7 +362,7 @@ void SearchEngine::updateNova() {
   package_file2.close();
   // Copy search plugin files (if necessary)
   QString filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
-  if(misc::getPluginVersion(":/search_engine/nova2.py") > misc::getPluginVersion(filePath)) {
+  if(getPluginVersion(":/search_engine/nova2.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath))
       QFile::remove(filePath);
     QFile::copy(":/search_engine/nova2.py", filePath);
@@ -372,7 +372,7 @@ void SearchEngine::updateNova() {
   QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py").setPermissions(perm);
 
   filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py";
-  if(misc::getPluginVersion(":/search_engine/nova2dl.py") > misc::getPluginVersion(filePath)) {
+  if(getPluginVersion(":/search_engine/nova2dl.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       QFile::remove(filePath);
     }
@@ -380,7 +380,7 @@ void SearchEngine::updateNova() {
   }
   QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2dl.py").setPermissions(perm);
   filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py";
-  if(misc::getPluginVersion(":/search_engine/novaprinter.py") > misc::getPluginVersion(filePath)) {
+  if(getPluginVersion(":/search_engine/novaprinter.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       QFile::remove(filePath);
     }
@@ -388,7 +388,7 @@ void SearchEngine::updateNova() {
   }
   QFile(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"novaprinter.py").setPermissions(perm);
   filePath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"helpers.py";
-  if(misc::getPluginVersion(":/search_engine/helpers.py") > misc::getPluginVersion(filePath)) {
+  if(getPluginVersion(":/search_engine/helpers.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       QFile::remove(filePath);
     }
@@ -402,7 +402,7 @@ void SearchEngine::updateNova() {
     QString shipped_file = shipped_subDir.path()+"/"+file;
     // Copy python classes
     if(file.endsWith(".py")) {
-      if(misc::getPluginVersion(shipped_file) > misc::getPluginVersion(destDir+file) ) {
+      if(getPluginVersion(shipped_file) > getPluginVersion(destDir+file) ) {
         qDebug("shippped %s is more recent then local plugin, updating", file.toLocal8Bit().data());
         if(QFile::exists(destDir+file)) {
           qDebug("Removing old %s", (destDir+file).toLocal8Bit().data());

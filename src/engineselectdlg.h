@@ -51,7 +51,7 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     QTreeWidgetItem* findItemWithID(QString id);
 
   protected:
-    bool parseVersionsFile(QString versions_file, QString updateServer);
+    bool parseVersionsFile(QString versions_file);
     bool isUpdateNeeded(QString plugin_name, float new_version) const;
 
   signals:
@@ -76,9 +76,6 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     void installPlugin(QString plugin_path, QString plugin_name);
     void askForLocalPlugin();
     void askForPluginUrl();
-#ifdef HAVE_ZZIP
-    void installZipPlugin(QString path);
-#endif
 };
 
 #endif
