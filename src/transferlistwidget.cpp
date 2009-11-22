@@ -380,6 +380,7 @@ void TransferListWidget::setFinished(QTorrentHandle &h) {
 }
 
 void TransferListWidget::setRefreshInterval(int t) {
+  qDebug("Settings transfer list refresh interval to %dms", t);
   refreshTimer->start(t);
 }
 

@@ -98,7 +98,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/oxygen/preferences-desktop.png</normaloff>:/Icons/oxygen/preferences-desktop.png</iconset>
         </property>
         <property name="flags">
@@ -113,7 +113,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
         </property>
         <property name="flags">
@@ -128,7 +128,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/oxygen/connection.png</normaloff>:/Icons/oxygen/connection.png</iconset>
         </property>
         <property name="flags">
@@ -143,7 +143,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/oxygen/bt_settings.png</normaloff>:/Icons/oxygen/bt_settings.png</iconset>
         </property>
         <property name="flags">
@@ -155,7 +155,7 @@
          <string>Proxy</string>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/oxygen/proxy.png</normaloff>:/Icons/oxygen/proxy.png</iconset>
         </property>
        </item>
@@ -167,7 +167,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/oxygen/filter.png</normaloff>:/Icons/oxygen/filter.png</iconset>
         </property>
         <property name="flags">
@@ -182,7 +182,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/oxygen/webui.png</normaloff>:/Icons/oxygen/webui.png</iconset>
         </property>
         <property name="flags">
@@ -197,7 +197,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset resource="icons.qrc">
+         <iconset>
           <normaloff>:/Icons/rss32.png</normaloff>:/Icons/rss32.png</iconset>
         </property>
         <property name="flags">
@@ -389,7 +389,7 @@
                   <item>
                    <widget class="QSpinBox" name="spinRefreshInterval">
                     <property name="minimum">
-                     <number>10</number>
+                     <number>30</number>
                     </property>
                     <property name="maximum">
                      <number>99999</number>
@@ -626,8 +626,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>149</height>
+              <width>216</width>
+              <height>147</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -691,7 +691,7 @@
                        </size>
                       </property>
                       <property name="icon">
-                       <iconset resource="icons.qrc">
+                       <iconset>
                         <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
                       </property>
                      </widget>
@@ -740,7 +740,7 @@
                      </size>
                     </property>
                     <property name="icon">
-                     <iconset resource="icons.qrc">
+                     <iconset>
                       <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
                     </property>
                    </widget>
@@ -813,7 +813,7 @@
                  </size>
                 </property>
                 <property name="icon">
-                 <iconset resource="icons.qrc">
+                 <iconset>
                   <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
                 </property>
                </widget>
@@ -1082,7 +1082,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>602</width>
+              <width>451</width>
               <height>513</height>
              </rect>
             </property>
@@ -1503,8 +1503,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>468</width>
+              <height>347</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1804,8 +1804,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>363</width>
+              <height>424</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2360,7 +2360,7 @@
                      </size>
                     </property>
                     <property name="icon">
-                     <iconset resource="icons.qrc">
+                     <iconset>
                       <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
                     </property>
                    </widget>
@@ -2583,8 +2583,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>451</width>
+              <height>195</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -2630,7 +2630,7 @@
                         <string/>
                        </property>
                        <property name="pixmap">
-                        <pixmap resource="icons.qrc">:/Icons/rss32.png</pixmap>
+                        <pixmap>:/Icons/rss32.png</pixmap>
                        </property>
                        <property name="scaledContents">
                         <bool>true</bool>
