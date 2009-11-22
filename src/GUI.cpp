@@ -239,7 +239,10 @@ void GUI::on_actionWebsite_triggered() const {
 }
 
 void GUI::on_actionDocumentation_triggered() const {
-  QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://wiki.qbittorrent.org")));
+  if(Preferences::getLocale().startsWith("fr"))
+    QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://60gp.ovh.net/~dchris/wiki/wikka.php?wakka=FrenchDocumentation")));
+  else
+    QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://60gp.ovh.net/~dchris/wiki/wikka.php?wakka=EnglishDocumentation")));
 }
 
 void GUI::on_actionBugReport_triggered() const {
