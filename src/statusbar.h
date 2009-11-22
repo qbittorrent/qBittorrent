@@ -151,11 +151,11 @@ public slots:
     // Update Number of DHT nodes
     if(BTSession->isDHTEnabled()) {
       DHTLbl->setVisible(true);
-      statusSep1->setVisible(true);
+      //statusSep1->setVisible(true);
       DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dht_nodes)));
     } else {
       DHTLbl->setVisible(false);
-      statusSep1->setVisible(false);
+      //statusSep1->setVisible(false);
     }
     // Update speed labels
     dlSpeedLbl->setText(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg(QString::number(sessionStatus.payload_download_rate/1024., 'f', 1)).arg(misc::friendlyUnit(sessionStatus.total_payload_download)));
