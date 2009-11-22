@@ -20,6 +20,7 @@
     - FEATURE: Added option to download first and last piece of a torrent main file first (for preview)
     - FEATURE: Graphically display piece availability in torrent properties
     - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is now required)
+    - FEATURE: Show official documentation when pressing F1 key
     - FEATURE: Added per-torrent super seeding mode (libtorrent >= v0.15 only)
     - FEATURE: Support for storing symbolic links in .torrent files (libtorrent >= v0.15 only)
     - FEATURE: Support for uTorrent interpretation of multi-tracker torrents (libtorrent >= v0.15 only)

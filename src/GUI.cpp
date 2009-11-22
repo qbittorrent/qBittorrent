@@ -298,6 +298,7 @@ void GUI::createKeyboardShortcuts() {
   connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
   switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+3", "shortcut to switch to fourth tab")), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
+  actionDocumentation->setShortcut(QKeySequence("F1"));
   actionOptions->setShortcut(QKeySequence(QString::fromUtf8("Alt+O")));
   actionDelete->setShortcut(QKeySequence(QString::fromUtf8("Del")));
   actionStart->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+S")));
