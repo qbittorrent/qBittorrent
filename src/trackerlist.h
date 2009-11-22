@@ -134,12 +134,12 @@ public slots:
     h.get_peer_info(peers);
     std::vector<peer_info>::iterator it;
     for(it=peers.begin(); it!=peers.end(); it++) {
-     if(it->source & peer_info::dht)
-       ++nb_dht;
-     if(it->source & peer_info::lsd)
-       ++nb_lsd;
-     if(it->source & peer_info::pex)
-       ++nb_pex;
+      if(it->source & peer_info::dht)
+        ++nb_dht;
+      if(it->source & peer_info::lsd)
+        ++nb_lsd;
+      if(it->source & peer_info::pex)
+        ++nb_pex;
     }
     // load DHT information
     if(properties->getBTSession()->isDHTEnabled() && !h.priv()) {
@@ -184,6 +184,9 @@ public slots:
       } else {
         old_trackers_urls.removeOne(tracker_url);
       }
+      TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
+      QString error_message = data.last_message.trimmed();
+#ifdef LIBTORRENT_0_15
       if((*it).verified) {
         item->setText(COL_STATUS, tr("Working"));
       } else {
@@ -197,8 +200,15 @@ public slots:
           }
         }
       }
+#else
+      if(error_message.isEmpty() || data.simply_warning) {
+        item->setText(COL_STATUS, tr("Working"));
+      } else {
+        item->setText(COL_STATUS, tr("Not working"));
+      }
+#endif
       item->setText(COL_PEERS, QString::number(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers));
-      item->setText(COL_MSG, trackers_data.value(tracker_url, TrackerInfos(tracker_url)).last_message);
+      item->setText(COL_MSG, error_message);
     }
     // Remove old trackers
     foreach(const QString &tracker, old_trackers_urls) {

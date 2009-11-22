@@ -1511,6 +1511,9 @@ void Bittorrent::readAlerts() {
           QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
           TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
           data.last_message = misc::toQString(p->msg);
+ #ifndef LIBTORRENT_0_15
+          data.simply_warning = false;
+#endif
           trackers_data.insert(tracker_url, data);
           trackersInfos[h.hash()] = trackers_data;
         } else {
@@ -1539,6 +1542,9 @@ void Bittorrent::readAlerts() {
         QString tracker_url = misc::toQString(p->url);
         TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
         data.last_message = misc::toQString(p->msg); // Store warning message
+#ifndef LIBTORRENT_0_15
+        data.simply_warning = true;
+#endif
         trackers_data.insert(tracker_url, data);
         trackersInfos[h.hash()] = trackers_data;
         qDebug("Received a tracker warning from %s: %s", p->url.c_str(), p->msg.c_str());

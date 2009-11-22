@@ -819,8 +819,12 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
-  bool all_same_super_seeding = true, all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
-  bool super_seeding_mode = false, sequential_download_mode = false, prioritize_first_last = false;
+#ifdef LIBTORRENT_0_15
+  bool all_same_super_seeding = true;
+  bool super_seeding_mode = false;
+#endif
+  bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
+  bool sequential_download_mode = false, prioritize_first_last = false;
   bool one_has_metadata = false, one_not_seed = false;
   bool first = true;
   QTorrentHandle h;
@@ -846,7 +850,9 @@ void TransferListWidget::displayListMenu(const QPoint&) {
           all_same_prio_firstlast = false;
         }
       }
-    } else {
+    }
+#ifdef LIBTORRENT_0_15
+    else {
       if(!one_not_seed && all_same_super_seeding) {
         if(first) {
           super_seeding_mode = h.super_seeding();
@@ -857,6 +863,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
         }
       }
     }
+#endif
     if(h.is_paused()) {
       if(!has_start) {
         listMenu.addAction(&actionStart);
@@ -880,6 +887,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   if(one_not_seed)
     listMenu.addAction(&actionSet_download_limit);
   listMenu.addAction(&actionSet_upload_limit);
+#ifdef LIBTORRENT_0_15
   if(!one_not_seed && all_same_super_seeding) {
     QIcon ico;
     if(super_seeding_mode) {
@@ -890,6 +898,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     actionSuper_seeding_mode.setIcon(ico);
     listMenu.addAction(&actionSuper_seeding_mode);
   }
+#endif
   listMenu.addSeparator();
   bool added_preview_action = false;
   if(has_preview) {

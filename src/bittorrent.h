@@ -55,6 +55,9 @@ public:
   QString name_or_url;
   QString last_message;
   unsigned long num_peers;
+#ifndef LIBTORRENT_0_15
+  bool simply_warning;
+#endif
 
   //TrackerInfos() {}
   TrackerInfos(const TrackerInfos &b) {
@@ -62,8 +65,14 @@ public:
     Q_ASSERT(!name_or_url.isEmpty());
     last_message = b.last_message;
     num_peers = b.num_peers;
+#ifndef LIBTORRENT_0_15
+    simply_warning = b.simply_warning;
+#endif
   }
   TrackerInfos(QString name_or_url): name_or_url(name_or_url), last_message(""), num_peers(0) {
+#ifndef LIBTORRENT_0_15
+    simply_warning = false;
+#endif
   }
 };
 
