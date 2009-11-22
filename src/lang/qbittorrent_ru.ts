@@ -229,12 +229,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&apos;%1&apos; был удален из списка передач и с жесткого диска.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&apos;%1&apos; был удален из списка передач.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
@@ -1146,36 +1146,36 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Отключить заставку при загрузке</translation>
     </message>
     <message>
         <source>Transfer list refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>интервал обновления списков передачи:</translation>
     </message>
     <message>
         <source>Action on double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Действие по двойному щелчку</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачивание:</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation type="unfinished"></translation>
+        <translation> Завершено:</translation>
     </message>
     <message>
         <source>Peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Соединения с пирами</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Определить страну пира</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Определить имя хоста пира</translation>
     </message>
 </context>
 <context>
@@ -1982,7 +1982,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Передачи</translation>
+        <translation>Передачи</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -2399,7 +2399,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (Скач: %2КиБ/с, Отд: %3КиБ/с)</translation>
+        <translation>qBittorrent %1 (Скач: %2КиБ/с, Отд: %3КиБ/с)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2431,35 +2431,35 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоторые файлы еще переносятся. Вы уверены что хотите выйти из qBittorrent?</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Глобальное ограничение  скорость раздачи</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Глобальное ограничение скорости закачки</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translation>qBittorrent %1</translation>
     </message>
 </context>
 <context>
@@ -2721,111 +2721,111 @@ Are you sure you want to quit qBittorrent?</source>
     <name>PeerAdditionDlg</name>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished">Неверный IP</translation>
+        <translation>Неверный IP</translation>
     </message>
     <message>
         <source>The IP you provided is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP который вы указали неправилен.</translation>
     </message>
 </context>
 <context>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">КиБ/с</translation>
+        <translation>КиБ/с</translation>
     </message>
 </context>
 <context>
     <name>PeerListWidget</name>
     <message>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP</translation>
     </message>
     <message>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation type="unfinished"></translation>
+        <translation>Клиент</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скорость скачивания</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скорость отдачи</translation>
     </message>
     <message>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скачано</translation>
     </message>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Отдано</translation>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить новый пир</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничить отношение отдачи</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничить отношение скачивания</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокировать пир навсегда</translation>
     </message>
     <message>
         <source>Peer addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавление пира</translation>
     </message>
     <message>
         <source>The peer was added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пир был добавлен к этому torrent.</translation>
     </message>
     <message>
         <source>The peer could not be added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пир не может быть добавлен к этому torrent.</translation>
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation type="unfinished">Вы уверены? -- qBittorrent</translation>
+        <translation>Вы уверены? -- qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены что хотите навсегда заблокировать выделенные пиры?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Да</translation>
+        <translation>&amp;Да</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Нет</translation>
+        <translation>&amp;Нет</translation>
     </message>
     <message>
         <source>Manually banning peer %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокировать пир %1 вручную...</translation>
     </message>
     <message>
         <source>Upload rate limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение соотношения отдачи</translation>
     </message>
     <message>
         <source>Download rate limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение соотношения скачивания</translation>
     </message>
 </context>
 <context>
@@ -2862,7 +2862,7 @@ Are you sure you want to quit qBittorrent?</source>
     <name>PropertiesWidget</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <source>Torrent information</source>
@@ -2870,7 +2870,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished">Путь сохранения:</translation>
+        <translation>Путь сохранения:</translation>
     </message>
     <message>
         <source>Creator:</source>
@@ -2878,11 +2878,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation type="unfinished">Хэш torrentа:</translation>
+        <translation>Хэш torrentа:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Комментарий:</translation>
+        <translation type="obsolete">Комментарий:</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -2898,7 +2898,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Соотношение раздачи:</translation>
     </message>
     <message>
         <source>Total failed:</source>
@@ -2909,32 +2909,36 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Закаченые кусочки</translation>
     </message>
     <message>
+        <source>Download in correct order (slower but good for previewing)</source>
+        <translation type="obsolete">Загрузить в правильном порядке (медленнее, но удобнее для предпросмотра)</translation>
+    </message>
+    <message>
         <source>Current tracker:</source>
         <translation type="obsolete">Текущий трэкер:</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation type="unfinished">Свернуть все</translation>
+        <translation>Свернуть все</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation type="unfinished">Развернуть все</translation>
+        <translation>Развернуть все</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished">Общие</translation>
+        <translation>Общие</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished">Трэкеры</translation>
+        <translation>Трэкеры</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>URL раздающих</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлы</translation>
     </message>
     <message>
         <source>File name</source>
@@ -2946,7 +2950,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2959,19 +2963,19 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation type="unfinished">Новый URL раздачи</translation>
+        <translation>Новый URL раздачи</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation type="unfinished">URL нового раздающего:</translation>
+        <translation>URL нового раздающего:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation type="unfinished">Этот URL раздающего уже в списке.</translation>
+        <translation>Этот URL раздающего уже в списке.</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
@@ -2979,27 +2983,27 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Выберите путь сохранения</translation>
+        <translation>Выберите путь сохранения</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Ошибка создания пути сохранения</translation>
+        <translation>Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Невозможно создать путь сохранения</translation>
+        <translation>Невозможно создать путь сохранения</translation>
     </message>
     <message>
         <source>Downloaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачано:</translation>
     </message>
     <message>
         <source>Transfer</source>
-        <translation type="unfinished"></translation>
+        <translation>Передано</translation>
     </message>
     <message>
         <source>Uploaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Отдано:</translation>
     </message>
     <message>
         <source>Wasted:</source>
@@ -3007,60 +3011,69 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>UP limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Отд. огр:</translation>
     </message>
     <message>
         <source>DL limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Загр. огр:</translation>
     </message>
     <message>
         <source>Time elapsed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Времени прошло:</translation>
     </message>
     <message>
         <source>Connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Соединения:</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация</translation>
     </message>
     <message>
         <source>Created on:</source>
-        <translation type="unfinished"></translation>
+        <translation>Создан на:</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Пиры</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Игнорировано</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Обычный</translation>
+        <translation>Обычный</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальный</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Высокий</translation>
+        <translation>Высокий</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished"></translation>
+        <translation>эта сессия</translation>
     </message>
     <message>
         <source>Seeding for %1</source>
         <comment>e.g. Seeding for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Раздача для %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
+        <translation>%1 макс</translation>
+    </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+Comment:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3553,48 +3566,48 @@ Changelog:
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">КиБ/с</translation>
+        <translation>КиБ/с</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
         <source>Connection status:</source>
-        <translation type="unfinished">Состояние связи:</translation>
+        <translation>Состояние связи:</translation>
     </message>
     <message>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished">Нет прямых соединений. Причиной этого могут быть проблемы в настройке сети.</translation>
+        <translation>Нет прямых соединений. Причиной этого могут быть проблемы в настройке сети.</translation>
     </message>
     <message>
         <source>D: %1 KiB/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скач: %1 КиБ/с - Перед: %2</translation>
     </message>
     <message>
         <source>U: %1 KiB/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Отдача: %1 КиБ/с - Перед: %2</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished">DHT: %1 узлов</translation>
+        <translation>DHT: %1 узлов</translation>
     </message>
     <message>
         <source>Connection Status:</source>
-        <translation type="unfinished">Состояние связи:</translation>
+        <translation>Состояние связи:</translation>
     </message>
     <message>
         <source>Online</source>
-        <translation type="unfinished">В сети</translation>
+        <translation>В сети</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Глобальное ограничение скорости закачки</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Глобальное ограничение  скорость раздачи</translation>
     </message>
 </context>
 <context>
@@ -3609,7 +3622,7 @@ Changelog:
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пиры</translation>
     </message>
     <message>
         <source>Message</source>
@@ -3617,6 +3630,14 @@ Changelog:
     </message>
     <message>
         <source>[DHT]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[PeX]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[LSD]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3663,58 +3684,58 @@ Changelog:
     <name>TransferListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">КиБ/с</translation>
+        <translation>КиБ/с</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished">Скачивание</translation>
+        <translation>Скачивание</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Пауза</translation>
+        <translation>Пауза</translation>
     </message>
     <message>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation type="unfinished"></translation>
+        <translation>В очереди</translation>
     </message>
     <message>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation type="unfinished">Рассеивание</translation>
+        <translation>Раздача</translation>
     </message>
     <message>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation type="unfinished"></translation>
+        <translation>Простаивает</translation>
     </message>
     <message>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation type="unfinished"></translation>
+        <translation>Проверка</translation>
     </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Все</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished">Скачивание</translation>
+        <translation>Скачивание</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation> Завершено</translation>
     </message>
     <message>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Активные</translation>
     </message>
     <message>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>Не активные</translation>
     </message>
 </context>
 <context>
@@ -3746,7 +3767,7 @@ Changelog:
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ост. времени</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -3762,19 +3783,19 @@ Changelog:
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Начать</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Приостановить</translation>
+        <translation>Приостановить</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр фаила </translation>
     </message>
     <message>
         <source>Delete Permanently</source>
@@ -3782,92 +3803,92 @@ Changelog:
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation type="unfinished">Открыть папку назначения</translation>
+        <translation>Открыть папку назначения</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation type="unfinished">Купить</translation>
+        <translation>Купить</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation type="unfinished">Повысить приоритет</translation>
+        <translation>Повысить приоритет</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation type="unfinished">Понизить приоритет</translation>
+        <translation>Понизить приоритет</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation type="unfinished">Проверить принудительно</translation>
+        <translation>Проверить принудительно</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished">Скопировать ссылку magnet</translation>
+        <translation>Скопировать ссылку magnet</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скорость скач</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скорость загр</translation>
     </message>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished"></translation>
+        <translation>Завершено</translation>
     </message>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">Статус</translation>
+        <translation>Статус</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Источники</translation>
+        <translation>Источники</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Пиры</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Соотношение</translation>
+        <translation>Соотношение</translation>
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение скорости скачивания торрента</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение скорости раздачи торрента</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничить соотношение отдачи</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничить соотношение скачивания</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим супер раздачи</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -3960,15 +3981,15 @@ Changelog:
     <name>addPeerDialog</name>
     <message>
         <source>Peer addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавление пира</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт</translation>
     </message>
 </context>
 <context>
@@ -4071,7 +4092,7 @@ Changelog:
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Пропустить проверку файла и начать раздачу немедленно</translation>
     </message>
 </context>
 <context>
@@ -4267,20 +4288,30 @@ Changelog:
         <source>Encryption support [OFF]</source>
         <translation type="obsolete">Поддержка шифрования [Выкл]</translation>
     </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="obsolete">&apos;%1&apos; был удален из списка передач и с жесткого диска.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="obsolete">&apos;%1&apos; был удален из списка передач.</translation>
+    </message>
 </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтверждение удаления - qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены что хотите удалить выделенные торренты из списка передач?</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить файлы и с жесткого диска</translation>
     </message>
 </context>
 <context>
@@ -4561,95 +4592,95 @@ Changelog:
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">Ошибка ввода/вывода</translation>
+        <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаленный хост не был найден (неправильное имя хоста)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Операция была отменена</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаленный сервер закрыл соединение навсегда, прежде чем весь ответ был принят и обработан</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>Время соединения с  удаленным сервером вышло</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Соединение SSL/TLS не удалось</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаленный сервер отклонил соединение</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокси-сервер отклонил соединение</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокси-сервер закрыл соединение навсегда</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished"></translation>
+        <translation>имя прокси-сервера не найдено</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished"></translation>
+        <translation>Подключение к прокси-серверу истекло или прокси-сервер не ответил на запрос</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокси-сервер требует аутентификации но не принял указанные учетные данные</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished"></translation>
+        <translation>В доступе к данным было отказано (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished"></translation>
+        <translation>В данной операции над данными отказано</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Данные не были найдены на сервере (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished"></translation>
+        <translation>API сетевого доступа не может выполнить запрос потому что протокол не известен</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>Запрошенная операция не поддерживается данным протоколом</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестная сетевая ошибка</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестная ошибка прокси-сервера</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестная ошибка данных</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка в протоколе</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Неизвестная ошибка</translation>
+        <translation>Неизвестная ошибка</translation>
     </message>
 </context>
 <context>
@@ -5007,7 +5038,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Неизвестно</translation>
+        <translation>Неизвестно</translation>
     </message>
     <message>
         <source>h</source>
@@ -5879,11 +5910,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка режима раздачи</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы выбрали пропустить проверку файла. Однако локальные файлы судя по всему не существует в указанной директории. Пожалуйста, отключите это возможность или измените путь сохранения.</translation>
     </message>
 </context>
 </TS>

@@ -2790,7 +2790,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Comentário:</translation>
+        <translation type="obsolete">Comentário:</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -2973,6 +2973,15 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+Comment:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3639,6 +3648,14 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[PeX]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[LSD]</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
