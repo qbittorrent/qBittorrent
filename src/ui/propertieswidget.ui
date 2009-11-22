@@ -189,6 +189,9 @@
                     <property name="text">
                      <string>Uploaded:</string>
                     </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -196,12 +199,18 @@
                     <property name="text">
                      <string>Downloaded:</string>
                     </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QLabel" name="label_8">
                     <property name="text">
                      <string>Wasted:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -252,6 +261,9 @@
                     <property name="text">
                      <string>UP limit:</string>
                     </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -259,12 +271,18 @@
                     <property name="text">
                      <string>DL limit:</string>
                     </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QLabel" name="label_7">
                     <property name="text">
                      <string>Time elapsed:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -315,12 +333,18 @@
                     <property name="text">
                      <string>Share ratio:</string>
                     </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QLabel" name="label_4">
                     <property name="text">
                      <string>Connections:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -395,6 +419,9 @@
                   <property name="text">
                    <string>Save path:</string>
                   </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -407,6 +434,9 @@
                   </property>
                   <property name="text">
                    <string>Created on:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -421,15 +451,19 @@
                   <property name="text">
                    <string>Torrent hash:</string>
                   </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QLabel" name="comment_lbl2">
                   <property name="text">
-                   <string>Comment:</string>
+                   <string>
+Comment:</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                   <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
                   </property>
                  </widget>
                 </item>
