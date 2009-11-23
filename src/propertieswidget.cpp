@@ -306,11 +306,11 @@ void PropertiesWidget::loadDynamicData() {
       if(h.upload_limit() <= 0)
         lbl_uplimit->setText(tr("Unlimited"));
       else
-        lbl_uplimit->setText(QString::number(h.upload_limit(), 'f', 1)+" "+tr("KiB/s"));
+        lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
       if(h.download_limit() <= 0)
         lbl_dllimit->setText(tr("Unlimited"));
       else
-        lbl_dllimit->setText(QString::number(h.download_limit(), 'f', 1)+" "+tr("KiB/s"));
+        lbl_dllimit->setText(misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
       QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
       if(h.is_seed()) {
         elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";

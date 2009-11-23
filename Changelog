@@ -41,6 +41,7 @@
     - COSMETIC: Display Seeds and Peers in two separate columns
     - COSMETIC: New deletion confirmation dialog (Merged delete/delete permanently actions)
     - COSMETIC: Improved status bar layout spacing
+    - COSMETIC: Display speeds with more user friendly units instead of always using KiB/s
 
 * Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
     - FEATURE: Added Magnet URI support

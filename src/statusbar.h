@@ -160,8 +160,8 @@ public slots:
       //statusSep1->setVisible(false);
     }
     // Update speed labels
-    dlSpeedLbl->setText(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg(QString::number(sessionStatus.payload_download_rate/1024., 'f', 1)).arg(misc::friendlyUnit(sessionStatus.total_payload_download)));
-    upSpeedLbl->setText(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg(QString::number(sessionStatus.payload_upload_rate/1024., 'f', 1)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload)));
+    dlSpeedLbl->setText(tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_download)));
+    upSpeedLbl->setText(tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload)));
   }
 
   void capDownloadSpeed() {

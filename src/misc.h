@@ -157,14 +157,14 @@ public:
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte
   // value must be given in bytes
-  static QString friendlyUnit(float val) {
+  static QString friendlyUnit(double val) {
     if(val < 0)
       return tr("Unknown", "Unknown (size)");
     const QString units[5] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)"), tr("TiB", "tebibytes (1024 gibibytes)")};
     char i = 0;
     while(val > 1024. && i++<6)
       val /= 1024.;
-    return QString(QByteArray::number(val, 'f', 1)) + units[(int)i];
+    return QString(QByteArray::number(val, 'f', 1)) + " " + units[(int)i];
   }
 
   static bool isPreviewable(QString extension){

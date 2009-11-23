@@ -112,9 +112,9 @@ public:
         case TR_UPSPEED:
         case TR_DLSPEED:{
             QItemDelegate::drawBackground(painter, opt, index);
-            double speed = index.data().toDouble();
+            qulonglong speed = index.data().toULongLong();
             opt.displayAlignment = Qt::AlignRight;
-            QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(speed/1024., 'f', 1)+" "+tr("KiB/s"));
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
             break;
           }
         case TR_RATIO:{
