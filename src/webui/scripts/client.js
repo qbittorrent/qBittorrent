@@ -81,7 +81,7 @@ window.addEvent('domready', function(){
             events.each(function(event){
               events_hashes[events_hashes.length] = event.hash;
                 var row = new Array();
-                row.length = 9;
+                row.length = 10;
                 row[0] = stateToImg(event.state);
                 row[1] = event.name;
 		row[2] = event.priority
@@ -92,6 +92,7 @@ window.addEvent('domready', function(){
                 row[7] = event.dlspeed;
                 row[8] = event.upspeed;
 		row[9] = event.eta;
+		row[10] = event.ratio;
 		if(row[2] != -1)
 			queueing_enabled = true;
                if(!torrent_hashes.contains(event.hash)) {
