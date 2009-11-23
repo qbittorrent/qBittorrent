@@ -64,7 +64,7 @@ initializeWindows = function(){
 	addClickEvent('delete', function(e){
 		new Event(e).stop();
 		var h = myTable.selectedIds();
-		if(h.length && confirm('Are you sure you want to delete the selected item in download list?')) {
+		if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
 			h.each(function(item, index){
 				new Request({url: '/command/delete', method: 'post', data: {hash: item}}).send();
 			});
@@ -76,7 +76,7 @@ initializeWindows = function(){
 	addClickEvent('deletePerm', function(e){
                 new Event(e).stop();
                 var h = myTable.selectedIds();
-                if(h.length && confirm('Are you sure you want to delete from hard drive the selected item in download list?')) {
+                if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list and hard disk?)')) {
                         h.each(function(item, index){
                                 new Request({url: '/command/deletePerm', method: 'post', data: {hash: item}}).send();
                         });

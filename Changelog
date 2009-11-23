@@ -34,6 +34,7 @@
     - FEATURE: Support for bitcomet padding files (libtorrent >= v0.15 only)
     - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris) (libtorrent >= v0.15 only)
     - WEB UI: Removed Web UI to match new qBittorrent UI
+    - WEB UI: Added internationalization support
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window

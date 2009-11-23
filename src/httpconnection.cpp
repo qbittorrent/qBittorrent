@@ -102,12 +102,12 @@ void HttpConnection::write()
 }
 
 QString HttpConnection::translateDocument(QString data) {
-  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer"};
+  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer", "confirmDeletionDlg"};
   int i=0;
   bool found = false;
   do {
     found = false;
-    QRegExp regex("_\\(([\\w\\s]+)\\)");
+    QRegExp regex("_\\(([\\w\\s?!]+)\\)");
     i = regex.indexIn(data, i);
     if(i >= 0) {
       qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
@@ -117,7 +117,7 @@ QString HttpConnection::translateDocument(QString data) {
       do {
         translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().data(), 0, QCoreApplication::UnicodeUTF8, 1);
         ++context_index;
-      }while(translation == word && context_index < 6);
+      }while(translation == word && context_index < 7);
       qDebug("Translation is %s", translation.toUtf8().data());
       data = data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
@@ -185,7 +185,7 @@ void HttpConnection::respond()
     ext.clear();
   QByteArray data = file.readAll();
   // Translate the page
-  if(ext == "html") {
+  if(ext == "html" || ext == "js") {
     data = translateDocument(QString::fromUtf8(data.data())).toUtf8();
   }
   generator.setStatusLine(200, "OK");

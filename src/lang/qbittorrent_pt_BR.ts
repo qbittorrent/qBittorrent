@@ -2433,6 +2433,10 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Point to torrent file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

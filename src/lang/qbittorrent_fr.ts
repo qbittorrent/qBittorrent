@@ -2984,6 +2984,11 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <source>Download</source>
         <translation>Télécharger</translation>
     </message>
+    <message>
+        <location filename="../httpserver.cpp" line="70"/>
+        <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
+        <translation>Etes-vous certain de vouloir supprimer les torrents sélectionnés de la liste et du disque dur ?</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

@@ -67,6 +67,7 @@ HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcp
         a = tr("Torrent files were correctly added to download list.");
         a = tr("Point to torrent file");
         a = tr("Download");
+        a = tr("Are you sure you want to delete the selected torrents from the transfer list and hard disk?");
 }
 
 HttpServer::~HttpServer()

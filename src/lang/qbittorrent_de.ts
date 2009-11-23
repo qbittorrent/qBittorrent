@@ -2806,6 +2806,11 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Download</source>
         <translation type="unfinished">Lade</translation>
     </message>
+    <message>
+        <location filename="../httpserver.cpp" line="70"/>
+        <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
