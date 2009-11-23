@@ -42,6 +42,7 @@ var dynamicTable = new Class	({
 		this.cur = new Array();
 		this.priority_hidden = false;
 		this.progressIndex = progressIndex;
+		this.filter = 'all';
 	},
 
 	altRow: function()
@@ -66,6 +67,10 @@ var dynamicTable = new Class	({
                         }.bind(this));
 		this.priority_hidden = true;
 	},
+	
+	setFilter: function(f) {
+		this.filter = f;
+	},
 
 	showPriority: function(){
                 if(!this.priority_hidden) return;
@@ -77,14 +82,52 @@ var dynamicTable = new Class	({
                         }.bind(this));
                 this.priority_hidden = false;
         },
+	
+	applyFilterOnRow: function(tr, status) {
+		switch(this.filter) {
+			case 'all':
+				tr.removeClass("invisible");
+				return;
+			case 'downloading':
+				if(status == "downloading" || status == "stalledDL" || status == "checkingDL" || status == "pausedDL" || status == "queuedDL") {
+					tr.removeClass("invisible");
+				} else {
+					tr.addClass("invisible");
+				}
+				return;
+			case 'completed':
+				if(status == "seeding" || status == "stalledUP" || status == "checkingUP" || status == "pausedUP" || status == "queuedUP") {
+					tr.removeClass("invisible");
+				} else {
+					tr.addClass("invisible");
+				}
+				return;
+			case 'active':
+				if(status == "downloading" || status == "seeding") {
+					tr.removeClass("invisible");
+				} else {
+					tr.addClass("invisible");
+				}
+				return;
+			case 'inactive':
+				if(status != "downloading" && status != "seeding") {
+					tr.removeClass("invisible");
+				} else {
+					tr.addClass("invisible");
+				}
+				return;
+		}
+	},
 
-	insertRow: function(id, row){
+	insertRow: function(id, row, status){
 		var tr = this.rows[id];
 		if($defined(tr))
 		  return;
 		//this.removeRow(id);
 		var tr = new Element('tr');
 		this.rows[id] = tr;
+		// Apply filter
+		this.applyFilterOnRow(tr, status);
 		for(var i=0; i<row.length; i++)
 		{
 			var td = new Element('td');
@@ -181,10 +224,12 @@ var dynamicTable = new Class	({
 		}
 	},
 
-	updateRow: function(id, row){
+	updateRow: function(id, row, status){
 		var tr = this.rows[id];
 		if($defined(tr))
 		{
+			// Apply filter
+			this.applyFilterOnRow(tr, status);
 			var tds = tr.getElements('td');
 			for(var i=0; i<row.length; i++) {
         	                if(i==this.progressIndex) {

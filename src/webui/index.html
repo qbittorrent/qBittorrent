@@ -6,13 +6,11 @@
 	<link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
-	<link rel="stylesheet" href="css/mootabs1.2.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
 	<!--[if IE]>
 		<script type="text/javascript" src="scripts/excanvas-compressed.js"></script>
 	<![endif]-->
-	<script type="text/javascript" src="scripts/mootabs1.2.js" charset="utf-8"></script>
 	<script type="text/javascript" src="scripts/mocha.js"></script>
 	<script type="text/javascript" src="scripts/mocha-init.js"></script>
 	<script type="text/javascript" src="scripts/progressbar.js"></script>
@@ -23,7 +21,7 @@
 	<div id="desktop">
 		<div id="desktopHeader">
 			<div id="desktopTitlebar">
-				<h1 class="applicationTitle">qBittorrent Web User Interface <span class="version">version 1.3.2</span></h1>
+				<h1 class="applicationTitle">qBittorrent Web User Interface <span class="version">version 2.0.0</span></h1>
 			</div>
 			<div id="desktopNavbar">
 				<ul>
@@ -73,13 +71,18 @@
 				</span>
 			</div>
 		</div>
-		<div id="pageWrapper">						<span id="error_div"></span>	
-		<div id="myTabs" class="toolbarTabs">
-			<ul class="mootabs_title">
-				<li title="Tab1"><a>Downloads</a></li>
-				<li title="Tab2"><a>Uploads</a></li>
-			</ul>
-			<div id="Tab1" class="mootabs_panel">
+		<div id="pageWrapper">						<span id="error_div"></span>
+			<table>
+				<tr><td id="Filters">
+				<ul>
+					<li><a href="#" onclick="setFilter('all');"><img src="images/oxygen/folder.png"/>All</li>
+					<li><a href="#" onclick="setFilter('downloading');"><img src="images/skin/downloading.png"/>Downloading</li>
+					<li><a href="#" onclick="setFilter('completed');"><img src="images/skin/seeding.png"/>Completed</li>
+					<li><a href="#" onclick="setFilter('active');"><img src="images/oxygen/draw-triangle2.png"/>Active</li>
+					<li><a href="#" onclick="setFilter('inactive');"><img src="images/oxygen/draw-rectangle.png"/>Inactive</li>
+				</ul>
+				</td>
+			<td id="Transfers">
 								<table class="torrentTable" cellpadding="0" cellspacing="0">
 									<thead>
 										<tr>
@@ -94,21 +97,8 @@
 									</thead>
 									<tbody id="myTable"></tbody>
 								</table>
+			</td><tr>
 			</div><!-- tab1 -->
-			<div id="Tab2" class="mootabs_panel">
-								<table class="torrentTable" cellpadding="0" cellspacing="0">
-									<thead>
-										<tr>
-											<th></th>
-											<th>Name</th>
-											<th>Size</th>
-											<th>UP Speed</th>
-										</tr>
-									</thead>
-									<tbody id="myTableUP"></tbody>
-								</table>
-			</div>
-		</div><!-- tabs -->
 	</div>
 	</div>
 </body>

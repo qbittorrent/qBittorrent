@@ -63,11 +63,7 @@ initializeWindows = function(){
 
 	addClickEvent('delete', function(e){
 		new Event(e).stop();
-		if($("Tab1").hasClass('active')) {
-			var h = myTable.selectedIds();
-		} else {
-			var h = myTableUP.selectedIds();
-		}
+		var h = myTable.selectedIds();
 		if(h.length && confirm('Are you sure you want to delete the selected item in download list?')) {
 			h.each(function(item, index){
 				new Request({url: '/command/delete', method: 'post', data: {hash: item}}).send();
@@ -79,11 +75,7 @@ initializeWindows = function(){
 
 	addClickEvent('deletePerm', function(e){
                 new Event(e).stop();
-                if($("Tab1").hasClass('active')) {
-                        var h = myTable.selectedIds();
-                } else {
-                        var h = myTableUP.selectedIds();
-                }
+                var h = myTable.selectedIds();
                 if(h.length && confirm('Are you sure you want to delete from hard drive the selected item in download list?')) {
                         h.each(function(item, index){
                                 new Request({url: '/command/deletePerm', method: 'post', data: {hash: item}}).send();
@@ -94,13 +86,7 @@ initializeWindows = function(){
 	['pause','resume','decreasePrio','increasePrio','recheck'].each(function(item) {
 		addClickEvent(item, function(e){
 			new Event(e).stop();
-			if($("Tab1").hasClass('active')) {
-			  var h = myTable.selectedIds();
-			} else {
-				if(item=='decreasePrio' || item=='increasePrio')
-					return;
-				var h = myTableUP.selectedIds();
-			}
+			var h = myTable.selectedIds();
 			if(h.length){
 				h.each(function(hash, index){
 				  new Request({url: '/command/'+item, method: 'post', data: {hash: hash}}).send();

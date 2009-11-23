@@ -23,7 +23,7 @@
  */
 
 myTable = new dynamicTable();
-myTableUP = new dynamicTable();
+ajaxfn = function(){};
 
 window.addEvent('domready', function(){
   MochaUI.Desktop = new MochaUI.Desktop();
@@ -32,29 +32,27 @@ window.addEvent('domready', function(){
 	'visibility': 'visible'
   });
   initializeWindows();
-  // Tabs
-  myTabs1 = new mootabs('myTabs', {
-      width: '100%',
-      height: '100%'
-  });
   myTable.setup('myTable', 3);
-  myTableUP.setup('myTableUP', -1);
   var r=0;
   var waiting=false;
   var stateToImg = function(state){
     switch (state)
     {
-      case 'paused':
+      case 'pausedUP':
+      case 'pausedDL':
           return '<img src="images/skin/paused.png"/>';
       case 'seeding':
+      case 'stalledUP':
           return '<img src="images/skin/seeding.png"/>';
-      case 'checking':
+      case 'checkingUP':
+      case 'checkingDL':
           return '<img src="images/oxygen/run-build.png"/>';
       case 'downloading':
           return '<img src="images/skin/downloading.png"/>';
-      case 'stalled':
+      case 'stalledDL':
           return '<img src="images/skin/stalled.png"/>';
-      case 'queued':
+      case 'queuedUP':
+      case 'queuedDL':
           return '<img src="images/oxygen/mail-queue.png"/>';
       default:
 	  return '<img src="images/skin/stalled.png"/>';
@@ -90,33 +88,10 @@ window.addEvent('domready', function(){
 					 $('error_div').set('html', '');
 					if(events){
             // Add new torrents or update them
-            unfinished_hashes = myTable.getRowIds();
-            finished_hashes = myTableUP.getRowIds();
+            torrent_hashes = myTable.getRowIds();
             events_hashes = new Array();
             events.each(function(event){
               events_hashes[events_hashes.length] = event.hash;
-              if(event.seed) {
-                var row = new Array();
-                row.length = 4;
-                row[0] = stateToImg(event.state);
-                row[1] = event.name;
-                row[2] = fsize(event.size);
-                row[3] = fspeed(event.upspeed);
-                if(!finished_hashes.contains(event.hash)) {
-                  // New finished torrent
-                  finished_hashes[finished_hashes.length] = event.hash;
-                  myTableUP.insertRow(event.hash, row);
-                  if(unfinished_hashes.contains(event.hash)) {
-                    // Torrent used to be in unfinished list
-                    // Remove it
-                    myTable.removeRow(event.hash);
-                    unfinished_hashes.erase(event.hash);
-                  }
-                } else {
-                  // Update torrent data
-                  myTableUP.updateRow(event.hash, row);
-                }
-              } else {
                 var row = new Array();
                 row.length = 6;
                 row[0] = stateToImg(event.state);
@@ -128,31 +103,19 @@ window.addEvent('domready', function(){
 		row[6] = event.priority
 		if(row[6] != -1)
 			queueing_enabled = true;
-               if(!unfinished_hashes.contains(event.hash)) {
+               if(!torrent_hashes.contains(event.hash)) {
                   // New unfinished torrent
-                  unfinished_hashes[unfinished_hashes.length] = event.hash;
+                  torrent_hashes[torrent_hashes.length] = event.hash;
                   myTable.insertRow(event.hash, row);
-                  if(finished_hashes.contains(event.hash)) {
-                    // Torrent used to be in unfinished list
-                    // Remove it
-                    myTableUP.removeRow(event.hash);
-                    finished_hashes.erase(event.hash);
-                  }
                 } else {
                   // Update torrent data
-                  myTable.updateRow(event.hash, row);
+                  myTable.updateRow(event.hash, row, event.state);
                 }
-              }
             });
             // Remove deleted torrents
-            unfinished_hashes.each(function(hash){
+            torrent_hashes.each(function(hash){
               if(!events_hashes.contains(hash)) {
                 myTable.removeRow(hash);
-              }
-            });
-            finished_hashes.each(function(hash){
-              if(!events_hashes.contains(hash)) {
-                myTableUP.removeRow(hash);
               }
             });
 	    if(queueing_enabled) {
@@ -171,6 +134,11 @@ window.addEvent('domready', function(){
 	};
 	ajaxfn();
 // 	ajaxfn.periodical(5000);
+setFilter = function(f) {
+  myTable.setFilter(f);
+  ajaxfn();
+}
+
 });
 
 // This runs when a person leaves your page.

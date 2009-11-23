@@ -120,3 +120,22 @@ hr {
 	height:100%;
 }
 
+#Filters {
+	width: 120px;
+	border-right: 1px solid #ccc;
+	color: #000;
+}
+
+#Filters ul {
+	list-style-type: none;
+}
+
+#Filters ul img {
+	padding-right: 2px;
+	margin-top: 2px;
+}
+
+#Transfers {
+	vertical-align: top;
+}
+
