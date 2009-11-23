@@ -11,6 +11,7 @@
   <file>Icons/uparrow.png</file>
   <file>Icons/rss16.png</file>
   <file>Icons/skin/checkingUP.png</file>
+  <file>Icons/skin/bg-handle-horizontal.gif</file>
   <file>Icons/skin/play.png</file>
   <file>Icons/skin/qbittorrent22.png</file>
   <file>Icons/skin/queuedDL.png</file>
@@ -19,6 +20,8 @@
   <file>Icons/skin/preview.png</file>
   <file>Icons/skin/stalled.png</file>
   <file>Icons/skin/delete.png</file>
+  <file>Icons/skin/handle-icon-horizontal.gif</file>
+  <file>Icons/skin/handle-icon.gif</file>
   <file>Icons/skin/url.png</file>
   <file>Icons/skin/stalledUP.png</file>
   <file>Icons/skin/filteractive.png</file>

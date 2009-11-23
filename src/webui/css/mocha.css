@@ -372,7 +372,7 @@ li.divider {
 	top: 0;
 	left: 0;
 	right: 0;
-	padding: 8px;
+	padding: 0;
 	overflow: hidden;
 }
 
@@ -394,7 +394,7 @@ li.divider {
 }	
 
 .panel-headerContent.tabs {
-	background: url(../images/tabs.gif) repeat-x;
+	background: url(../images/skin/tabs.gif) repeat-x;
 	background-position: left -68px;	
 }
 
@@ -454,7 +454,7 @@ li.divider {
 	line-height: 1px;
 	font-size: 1px;
 	overflow: hidden;
-	background: #d1d1d1 url(../images/bg-handle-horizontal.gif) repeat-x;
+	background: #d1d1d1 url(../images/skin/bg-handle-horizontal.gif) repeat-x;
 }
 
 .horizontalHandle.detached .handleIcon {
@@ -467,7 +467,7 @@ li.divider {
 	line-height: 1px;
 	font-size: 1px;
 	overflow: hidden;
-	background: url(../images/handle-icon-horizontal.gif) center center no-repeat;
+	background: url(../images/skin/handle-icon-horizontal.gif) center center no-repeat;
 }
 
 .columnHandle {
@@ -475,7 +475,7 @@ li.divider {
 	float: left;
 	width: 4px;
 	overflow: hidden;
-	background: #bbb url(../images/handle-icon.gif) center center no-repeat;
+	background: #bbb url(../images/skin/handle-icon.gif) center center no-repeat;
 	border: 1px solid #9a9a9a;
 	border-top: 0;
 }
@@ -764,7 +764,7 @@ div.mochaToolbarWrapper.bottom {
 
 .toolbarTabs {	
 	padding: 0 5px 2px 2px;
-	background: url(../images/tabs.gif) repeat-x;
+	background: url(../images/skin/tabs.gif) repeat-x;
 	background-position: left -70px;
 	overflow: visible;
 }
@@ -783,12 +783,12 @@ div.mochaToolbarWrapper.bottom {
 	float: left;
 	margin:	0 0 5px 0;
 	cursor: pointer;	
-	background: url(../images/tabs.gif) repeat-x;
+	background: url(../images/skin/tabs.gif) repeat-x;
 	background-position: left -35px;
 }
 
 .tab-menu li.selected {
-	background: url(../images/tabs.gif) repeat-x;
+	background: url(../images/skin/tabs.gif) repeat-x;
 	background-position: left 0;
 }
 
@@ -799,14 +799,14 @@ div.mochaToolbarWrapper.bottom {
 	text-align: center;
 	font-weight: normal;
 	color: #141414;
-	background: url(../images/tabs.gif) repeat-x;
+	background: url(../images/skin/tabs.gif) repeat-x;
 	background-position: right -35px;	
 }
 
 .tab-menu li.selected a {
 	color: #141414;
 	font-weight: bold;	
-	background: url(../images/tabs.gif) repeat-x;
+	background: url(../images/skin/tabs.gif) repeat-x;
 	background-position: right 0;
 }
 

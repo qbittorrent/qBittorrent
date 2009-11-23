@@ -3420,7 +3420,7 @@ MochaUI.Panel = new Class({
 		height:           125,
 		addClass:         '',
 		scrollbars:       true,
-		padding:   		  { top: 8, right: 8, bottom: 8, left: 8 },
+		padding:   		  { top: 0, right: 0, bottom: 0, left: 0 },
 
 		// Color options:		
 		panelBackground:   '#f8f8f8',
