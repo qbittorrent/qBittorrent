@@ -39,23 +39,27 @@ window.addEvent('domready', function(){
     switch (state)
     {
       case 'pausedUP':
+	return '<img src="images/skin/pausedUP.png"/>';
       case 'pausedDL':
-          return '<img src="images/skin/paused.png"/>';
+        return '<img src="images/skin/pausedDL.png"/>';
       case 'seeding':
+	return '<img src="images/skin/uploading.png"/>';
       case 'stalledUP':
-          return '<img src="images/skin/seeding.png"/>';
+          return '<img src="images/skin/stalledUP.png"/>';
       case 'checkingUP':
+	return '<img src="images/skin/checkingUP.png"/>';
       case 'checkingDL':
-          return '<img src="images/oxygen/run-build.png"/>';
+          return '<img src="images/skin/checkingDL.png"/>';
       case 'downloading':
           return '<img src="images/skin/downloading.png"/>';
       case 'stalledDL':
-          return '<img src="images/skin/stalled.png"/>';
+          return '<img src="images/skin/stalledDL.png"/>';
       case 'queuedUP':
+	return '<img src="images/skin/queuedUP.png"/>';
       case 'queuedDL':
-          return '<img src="images/oxygen/mail-queue.png"/>';
+          return '<img src="images/skin/queuedDL.png"/>';
       default:
-	  return '<img src="images/skin/stalled.png"/>';
+	  return '';
     }
     return '';
   };

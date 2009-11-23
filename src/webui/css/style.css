@@ -124,6 +124,7 @@ hr {
 	width: 120px;
 	border-right: 1px solid #ccc;
 	color: #000;
+	vertical-align: top;
 }
 
 #Filters ul {
@@ -142,9 +143,37 @@ hr {
 
 #Transfers {
 	vertical-align: top;
+	height: 100%;
+}
+
+#transferListContainer {
+	height: 50%;
+	border-bottom: 1px solid #ccc;
+	overflow: auto;
 }
 
 .selectedFilter {
 	background-color: #354158;
 	color: #000;
+}
+
+div #PropDiv {
+	height: 50%;
+}
+
+div.PropPanel {
+	background-color: #e5e5e5;
+	overflow: auto;
+}
+
+a.propButton {
+	border: 1px solid rgb(85, 81, 91);
+	/*border-radius: 3px;*/
+	padding: 2px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+a.propButton img {
+	margin-bottom: -4px;
 }
