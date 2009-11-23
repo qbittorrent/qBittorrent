@@ -35,6 +35,7 @@
     - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris) (libtorrent >= v0.15 only)
     - WEB UI: Removed Web UI to match new qBittorrent UI
     - WEB UI: Added internationalization support
+    - WEB UI: Reduced computation in Javascript (do this one server side instead)
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status
     - COSMETIC: Torrent properties are now displayed in main window
