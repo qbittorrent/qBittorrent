@@ -201,10 +201,13 @@ public slots:
         }
       }
 #else
-      if(error_message.isEmpty() || data.simply_warning) {
+      if(data.verified) {
         item->setText(COL_STATUS, tr("Working"));
       } else {
-        item->setText(COL_STATUS, tr("Not working"));
+        if(data.fail_count > 0)
+          item->setText(COL_STATUS, tr("Not working"));
+        else
+          item->setText(COL_STATUS, tr("Not contacted yet"));
       }
 #endif
       item->setText(COL_PEERS, QString::number(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers));

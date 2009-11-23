@@ -1512,7 +1512,8 @@ void Bittorrent::readAlerts() {
           TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
           data.last_message = misc::toQString(p->msg);
  #ifndef LIBTORRENT_0_15
-          data.simply_warning = false;
+          data.verified = false;
+          ++data.fail_count;
 #endif
           trackers_data.insert(tracker_url, data);
           trackersInfos[h.hash()] = trackers_data;
@@ -1531,6 +1532,10 @@ void Bittorrent::readAlerts() {
         TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
         data.last_message = ""; // Reset error/warning message
         data.num_peers = p->num_peers;
+#ifndef LIBTORRENT_0_15
+        data.fail_count = 0;
+        data.verified = true;
+#endif
         trackers_data.insert(tracker_url, data);
         trackersInfos[h.hash()] = trackers_data;
       }
@@ -1543,7 +1548,8 @@ void Bittorrent::readAlerts() {
         TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
         data.last_message = misc::toQString(p->msg); // Store warning message
 #ifndef LIBTORRENT_0_15
-        data.simply_warning = true;
+        data.verified = true;
+        data.fail_count = 0;
 #endif
         trackers_data.insert(tracker_url, data);
         trackersInfos[h.hash()] = trackers_data;

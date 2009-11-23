@@ -56,7 +56,8 @@ public:
   QString last_message;
   unsigned long num_peers;
 #ifndef LIBTORRENT_0_15
-  bool simply_warning;
+  bool verified;
+  uint fail_count;
 #endif
 
   //TrackerInfos() {}
@@ -66,12 +67,14 @@ public:
     last_message = b.last_message;
     num_peers = b.num_peers;
 #ifndef LIBTORRENT_0_15
-    simply_warning = b.simply_warning;
+    verified = b.verified;
+    fail_count = b.fail_count;
 #endif
   }
   TrackerInfos(QString name_or_url): name_or_url(name_or_url), last_message(""), num_peers(0) {
 #ifndef LIBTORRENT_0_15
-    simply_warning = false;
+    fail_count = 0;
+    verified = false;
 #endif
   }
 };
