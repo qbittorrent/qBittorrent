@@ -32,7 +32,7 @@ window.addEvent('domready', function(){
 	'visibility': 'visible'
   });
   initializeWindows();
-  myTable.setup('myTable', 3);
+  myTable.setup('myTable', 4);
   var r=0;
   var waiting=false;
   var stateToImg = function(state){
@@ -59,18 +59,6 @@ window.addEvent('domready', function(){
     }
     return '';
   };
-	var round1 = function(val){return Math.round(val*10)/10};
-	var fspeed = function(val){return round1(val/1024) + ' KiB/s';};
-	var fsize = function(val){
-		var units = ['B', 'KiB', 'MiB', 'GiB'];
-		for(var i=0; i<5; i++){
-			if (val < 1024) {
-				return round1(val) + ' ' + units[i];
-			}
-			val /= 1024;
-		}
-		return round1(val) + ' TiB';
-	};
 	var ajaxfn = function(){
 		var queueing_enabled = false;
 		var url = 'json/events';
@@ -93,19 +81,22 @@ window.addEvent('domready', function(){
             events.each(function(event){
               events_hashes[events_hashes.length] = event.hash;
                 var row = new Array();
-                row.length = 6;
+                row.length = 9;
                 row[0] = stateToImg(event.state);
                 row[1] = event.name;
-                row[2] = fsize(event.size);
-                row[3] = round1(event.progress*100);
-                row[4] = fspeed(event.dlspeed);
-                row[5] = fspeed(event.upspeed);
-		row[6] = event.priority
-		if(row[6] != -1)
+		row[2] = event.priority
+                row[3] = event.size;
+                row[4] = event.progress*100;
+		row[5] = event.num_seeds;
+		row[6] = event.num_leechs;
+                row[7] = event.dlspeed;
+                row[8] = event.upspeed;
+		row[9] = event.eta;
+		if(row[2] != -1)
 			queueing_enabled = true;
                if(!torrent_hashes.contains(event.hash)) {
                   // New unfinished torrent
-                  torrent_hashes[torrent_hashes.length] = event.hash;
+                  //torrent_hashes[torrent_hashes.length] = event.hash;
                   myTable.insertRow(event.hash, row);
                 } else {
                   // Update torrent data
@@ -134,10 +125,11 @@ window.addEvent('domready', function(){
 	};
 	ajaxfn();
 // 	ajaxfn.periodical(5000);
-setFilter = function(f) {
-  myTable.setFilter(f);
-  ajaxfn();
-}
+
+	setFilter = function(f) {
+	  myTable.setFilter(f);
+	  ajaxfn();
+	}
 
 });
 
@@ -150,10 +142,6 @@ window.addEvent('unload', function(){
 window.addEvent('keydown', function(event){
   if (event.key == 'a' && event.control) {
     event.stop();
-    if($("Tab1").hasClass('active')) {
-      myTable.selectAll();
-    } else {
-      myTableUP.selectAll();
-    }
+    myTable.selectAll();
   }
 });

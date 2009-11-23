@@ -63,7 +63,7 @@ var dynamicTable = new Class	({
 		 var trs = this.table.getElements('tr');
                         trs.each(function(tr,i){
 				var tds = tr.getElements('td');
-				tds.getLast().addClass('invisible');
+				tds[2].addClass('invisible');
                         }.bind(this));
 		this.priority_hidden = true;
 	},

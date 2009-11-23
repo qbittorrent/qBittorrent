@@ -31,6 +31,7 @@
 
 #include "eventmanager.h"
 #include "bittorrent.h"
+#include "misc.h"
 #include <QDebug>
 
 EventManager::EventManager(QObject *parent, Bittorrent *BTSession)
@@ -56,7 +57,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
 {
   QString hash = h.hash();
   QVariantMap event;
-
+  event["eta"] = QVariant(QString::fromUtf8("∞"));
   if(h.is_paused()) {
     if(h.is_seed())
       event["state"] = QVariant("pausedUP");
@@ -73,19 +74,21 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
       {
       case torrent_status::finished:
       case torrent_status::seeding:
-        if(h.upload_payload_rate() > 0)
+        if(h.upload_payload_rate() > 0) {
           event["state"] = QVariant("seeding");
-        else
+        } else {
           event["state"] = QVariant("stalledUP");
+        }
         break;
       case torrent_status::allocating:
       case torrent_status::checking_files:
       case torrent_status::queued_for_checking:
       case torrent_status::checking_resume_data:
-        if(h.is_seed())
+        if(h.is_seed()) {
           event["state"] = QVariant("checkingUP");
-        else
+        } else {
           event["state"] = QVariant("checkingDL");
+        }
         break;
       case torrent_status::downloading:
       case torrent_status::downloading_metadata:
@@ -93,6 +96,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
           event["state"] = QVariant("downloading");
         else
           event["state"] = QVariant("stalledDL");
+        event["eta"] = misc::userFriendlyDuration(BTSession->getETA(hash));
         break;
                         default:
         qDebug("No status, should not happen!!! status is %d", h.state());
@@ -101,15 +105,23 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
     }
   }
   event["name"] = QVariant(h.name());
-  event["size"] = QVariant((qlonglong)h.actual_size());
+  event["size"] = QVariant(misc::friendlyUnit(h.actual_size()));
   event["progress"] = QVariant(h.progress());
-  event["dlspeed"] = QVariant(h.download_payload_rate());
+  event["dlspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.download_payload_rate())));
   if(BTSession->isQueueingEnabled()) {
     event["priority"] = QVariant(h.queue_position());
   } else {
     event["priority"] = -1;
   }
-  event["upspeed"] = QVariant(h.upload_payload_rate());
+  event["upspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.upload_payload_rate())));
+  QString seeds = QString::number(h.num_seeds());
+  if(h.num_complete() > 0)
+    seeds += " ("+QString::number(h.num_complete())+")";
+  event["num_seeds"] = QVariant(seeds);
+  QString leechs = QString::number(h.num_peers()-h.num_seeds());
+  if(h.num_incomplete() > 0)
+    leechs += " ("+QString::number(h.num_incomplete())+")";
+  event["num_leechs"] = QVariant(leechs);
   event["seed"] = QVariant(h.is_seed());
   event["hash"] = QVariant(hash);
   event_list[hash] = event;
