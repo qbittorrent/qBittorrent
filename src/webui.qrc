@@ -7,6 +7,9 @@
   <file>webui/about.html</file>
   <file>webui/filters.html</file>
   <file>webui/transferlist.html</file>
+  <file>webui/prop-general.html</file>
+  <file>webui/prop-trackers.html</file>
+  <file>webui/prop-files.html</file>
   <file>webui/properties.html</file>
   <file>webui/css/mocha.css</file>
   <file>webui/css/dynamicTable.css</file>

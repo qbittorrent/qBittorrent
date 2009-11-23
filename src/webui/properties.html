@@ -1,36 +1,44 @@
-<div>
+<div class="toolbarTabs">
 	<!-- <div style="float:right;padding-top:3px;"><img src="images/icons/help.gif" width="16" height="16" alt="Help" /></div> -->
 	<ul id="propertiesTabs" class="tab-menu">
-		<li id="PropGeneralLink" class="selected"><a>General</a></li>
-		<li id="PropTrackersLink"><a>Trackers</a></li>
-		<li id="PropFilesLink"><a>Files</a></li>
+		<li id="PropGeneralLink" class="selected"><a>_(General)</a></li>
+		<li id="PropTrackersLink"><a>_(Trackers)</a></li>
+		<li id="PropFilesLink"><a>_(Files)</a></li>
 	</ul>
 	<div class="clear"></div>
-	<!--<div id="propertyTab"></div>-->
+	<div id="propertyTab"></div>
 </div>
 
 <script type="text/javascript">
 
 	MochaUI.initializeTabs('propertiesTabs');
+	MochaUI.updateContent({
+			'element':  $('properties'),
+		        'childElement': $('propertyTab'),
+			'url':       'prop-general.html'
+		});
 
 	$('PropGeneralLink').addEvent('click', function(e){
 		MochaUI.updateContent({
-			'element':  $('propertyTab'),
-			'url':       'pages/features-layout.html'
+			'element':  $('properties'),
+		        'childElement': $('propertyTab'),
+			'url':       'prop-general.html'
 		});
 	});
 
 	$('PropTrackersLink').addEvent('click', function(e){
 		MochaUI.updateContent({
-			'element':  $('propertyTab'),
-			'url':       'pages/features-windows.html'
+			'element':  $('properties'),
+			'childElement': $('propertyTab'),
+			'url':       'prop-trackers.html'
 		});
 	});
 
 	$('PropFilesLink').addEvent('click', function(e){
 		MochaUI.updateContent({
-			'element':  $('propertyTab'),
-			'url':       'pages/features-general.html'
+			'element':  $('properties'),
+			'childElement': $('propertyTab'),
+			'url':       'prop-files.html'
 		});
 	});
 
