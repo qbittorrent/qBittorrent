@@ -1565,7 +1565,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <name>EventManager</name>
     <message>
         <location filename="../eventmanager.cpp" line="110"/>
-        <location filename="../eventmanager.cpp" line="116"/>
+        <location filename="../eventmanager.cpp" line="119"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -3485,8 +3485,9 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Hash du torrent :</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="475"/>
         <source>Comment:</source>
-        <translation type="obsolete">Commentaire :</translation>
+        <translation type="unfinished">Commentaire :</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -3570,47 +3571,46 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation>Créé le :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="462"/>
         <source>
 Comment:</source>
-        <translation>Commentaire :</translation>
+        <translation type="obsolete">Commentaire :</translation>
     </message>
     <message>
         <source>Current tracker:</source>
         <translation type="obsolete">Tracker actuel :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="734"/>
+        <location filename="../ui/propertieswidget.ui" line="746"/>
         <source>Collapse all</source>
         <translation>Tout réduire</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="741"/>
+        <location filename="../ui/propertieswidget.ui" line="753"/>
         <source>Expand all</source>
         <translation>Tout développer</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="788"/>
+        <location filename="../ui/propertieswidget.ui" line="800"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="805"/>
+        <location filename="../ui/propertieswidget.ui" line="817"/>
         <source>Trackers</source>
         <translation>Trackers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="828"/>
+        <location filename="../ui/propertieswidget.ui" line="840"/>
         <source>Peers</source>
         <translation>Peers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="845"/>
+        <location filename="../ui/propertieswidget.ui" line="857"/>
         <source>URL seeds</source>
         <translation>Sources HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="862"/>
+        <location filename="../ui/propertieswidget.ui" line="874"/>
         <source>Files</source>
         <translation>Fichiers</translation>
     </message>
@@ -4617,27 +4617,27 @@ Changements:
         <translation type="obsolete">&amp;Non</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="733"/>
+        <location filename="../transferlistwidget.cpp" line="747"/>
         <source>Column visibility</source>
         <translation>Visibilité des colonnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="790"/>
+        <location filename="../transferlistwidget.cpp" line="804"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="792"/>
+        <location filename="../transferlistwidget.cpp" line="806"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="794"/>
+        <location filename="../transferlistwidget.cpp" line="808"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="796"/>
+        <location filename="../transferlistwidget.cpp" line="810"/>
         <source>Preview file</source>
         <translation>Prévisualiser fichier</translation>
     </message>
@@ -4696,67 +4696,67 @@ Changements:
         <translation>Ratio</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="639"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limitation de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="675"/>
+        <location filename="../transferlistwidget.cpp" line="689"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limitation de la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="798"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Limit upload rate</source>
         <translation>Limiter la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="800"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Limit download rate</source>
         <translation>Limiter la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="802"/>
+        <location filename="../transferlistwidget.cpp" line="816"/>
         <source>Open destination folder</source>
         <translation>Ouvrir le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="804"/>
+        <location filename="../transferlistwidget.cpp" line="818"/>
         <source>Buy it</source>
         <translation>Acheter</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="806"/>
+        <location filename="../transferlistwidget.cpp" line="820"/>
         <source>Increase priority</source>
         <translation>Augmenter la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="808"/>
+        <location filename="../transferlistwidget.cpp" line="822"/>
         <source>Decrease priority</source>
         <translation>Diminuer la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="824"/>
         <source>Force recheck</source>
         <translation>Forcer revérification</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="812"/>
+        <location filename="../transferlistwidget.cpp" line="826"/>
         <source>Copy magnet link</source>
         <translation>Copier le lien magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="814"/>
+        <location filename="../transferlistwidget.cpp" line="828"/>
         <source>Super seeding mode</source>
         <translation>Mode de super partage</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="816"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Download in sequential order</source>
         <translation>Téléchargement séquentiel</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="818"/>
+        <location filename="../transferlistwidget.cpp" line="832"/>
         <source>Download first and last piece first</source>
         <translation>Téléchargement prioritaire du début et de la fin</translation>
     </message>

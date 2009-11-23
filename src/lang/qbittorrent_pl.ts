@@ -2963,7 +2963,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="obsolete">Komentarz:</translation>
+        <translation type="unfinished">Komentarz:</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -3149,11 +3149,6 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>
-Comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -1545,7 +1545,7 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     <name>EventManager</name>
     <message>
         <location filename="../eventmanager.cpp" line="110"/>
-        <location filename="../eventmanager.cpp" line="116"/>
+        <location filename="../eventmanager.cpp" line="119"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
@@ -3494,9 +3494,8 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="462"/>
-        <source>
-Comment:</source>
+        <location filename="../ui/propertieswidget.ui" line="475"/>
+        <source>Comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3508,37 +3507,37 @@ Comment:</source>
         <translation type="obsolete">Τρέχων ιχνηλάτης:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="734"/>
+        <location filename="../ui/propertieswidget.ui" line="746"/>
         <source>Collapse all</source>
         <translation type="unfinished">Κατάρρευση όλων</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="741"/>
+        <location filename="../ui/propertieswidget.ui" line="753"/>
         <source>Expand all</source>
         <translation type="unfinished">Επέκταση όλων</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="788"/>
+        <location filename="../ui/propertieswidget.ui" line="800"/>
         <source>General</source>
         <translation type="unfinished">Γενικά</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="805"/>
+        <location filename="../ui/propertieswidget.ui" line="817"/>
         <source>Trackers</source>
         <translation type="unfinished">Ιχνηλάτες</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="828"/>
+        <location filename="../ui/propertieswidget.ui" line="840"/>
         <source>Peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="845"/>
+        <location filename="../ui/propertieswidget.ui" line="857"/>
         <source>URL seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="862"/>
+        <location filename="../ui/propertieswidget.ui" line="874"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4525,27 +4524,27 @@ Changelog:
         <translation type="obsolete">&amp;Όχι</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="733"/>
+        <location filename="../transferlistwidget.cpp" line="747"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="790"/>
+        <location filename="../transferlistwidget.cpp" line="804"/>
         <source>Start</source>
         <translation type="unfinished">Έναρξη</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="792"/>
+        <location filename="../transferlistwidget.cpp" line="806"/>
         <source>Pause</source>
         <translation type="unfinished">Παύση</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="794"/>
+        <location filename="../transferlistwidget.cpp" line="808"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="796"/>
+        <location filename="../transferlistwidget.cpp" line="810"/>
         <source>Preview file</source>
         <translation type="unfinished">Προεπισκόπηση αρχείου</translation>
     </message>
@@ -4604,67 +4603,67 @@ Changelog:
         <translation type="unfinished">Αναλογία</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="639"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Torrent Download Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="675"/>
+        <location filename="../transferlistwidget.cpp" line="689"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="798"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Limit upload rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="800"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Limit download rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="802"/>
+        <location filename="../transferlistwidget.cpp" line="816"/>
         <source>Open destination folder</source>
         <translation type="unfinished">Άνοιγμα φακέλου προορισμού</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="804"/>
+        <location filename="../transferlistwidget.cpp" line="818"/>
         <source>Buy it</source>
         <translation type="unfinished">Αγόρασέ το</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="806"/>
+        <location filename="../transferlistwidget.cpp" line="820"/>
         <source>Increase priority</source>
         <translation type="unfinished">Μεγαλύτερη προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="808"/>
+        <location filename="../transferlistwidget.cpp" line="822"/>
         <source>Decrease priority</source>
         <translation type="unfinished">Μικρότερη προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="824"/>
         <source>Force recheck</source>
         <translation type="unfinished">Αναγκαστικός επανέλεγχος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="812"/>
+        <location filename="../transferlistwidget.cpp" line="826"/>
         <source>Copy magnet link</source>
         <translation type="unfinished">Αντιγραφή magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="814"/>
+        <location filename="../transferlistwidget.cpp" line="828"/>
         <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="816"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Download in sequential order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="818"/>
+        <location filename="../transferlistwidget.cpp" line="832"/>
         <source>Download first and last piece first</source>
         <translation type="unfinished"></translation>
     </message>

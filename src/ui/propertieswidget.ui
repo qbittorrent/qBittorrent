@@ -53,7 +53,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-82</y>
             <width>518</width>
             <height>371</height>
            </rect>
@@ -457,10 +457,22 @@
                  </widget>
                 </item>
                 <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string notr="true"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLabel" name="comment_lbl2">
                   <property name="text">
-                   <string>
-Comment:</string>
+                   <string>Comment:</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>

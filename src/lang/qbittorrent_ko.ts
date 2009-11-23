@@ -1480,7 +1480,7 @@ list:</source>
     <name>EventManager</name>
     <message>
         <location filename="../eventmanager.cpp" line="110"/>
-        <location filename="../eventmanager.cpp" line="116"/>
+        <location filename="../eventmanager.cpp" line="119"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
@@ -3332,8 +3332,9 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished">토렌트 헤쉬(Hash):</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="475"/>
         <source>Comment:</source>
-        <translation type="obsolete">설명:</translation>
+        <translation type="unfinished">설명:</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -3417,47 +3418,41 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="462"/>
-        <source>
-Comment:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Current tracker:</source>
         <translation type="obsolete">현재 트레커:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="734"/>
+        <location filename="../ui/propertieswidget.ui" line="746"/>
         <source>Collapse all</source>
         <translation type="unfinished">모두 접어서 간단하게 보여주기</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="741"/>
+        <location filename="../ui/propertieswidget.ui" line="753"/>
         <source>Expand all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="788"/>
+        <location filename="../ui/propertieswidget.ui" line="800"/>
         <source>General</source>
         <translation type="unfinished">일반</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="805"/>
+        <location filename="../ui/propertieswidget.ui" line="817"/>
         <source>Trackers</source>
         <translation type="unfinished">트렉커(Trackers)</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="828"/>
+        <location filename="../ui/propertieswidget.ui" line="840"/>
         <source>Peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="845"/>
+        <location filename="../ui/propertieswidget.ui" line="857"/>
         <source>URL seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="862"/>
+        <location filename="../ui/propertieswidget.ui" line="874"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4422,27 +4417,27 @@ Changelog:
         <translation type="obsolete">&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="733"/>
+        <location filename="../transferlistwidget.cpp" line="747"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="790"/>
+        <location filename="../transferlistwidget.cpp" line="804"/>
         <source>Start</source>
         <translation type="unfinished">시작</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="792"/>
+        <location filename="../transferlistwidget.cpp" line="806"/>
         <source>Pause</source>
         <translation type="unfinished">정지</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="794"/>
+        <location filename="../transferlistwidget.cpp" line="808"/>
         <source>Delete</source>
         <translation type="unfinished">삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="796"/>
+        <location filename="../transferlistwidget.cpp" line="810"/>
         <source>Preview file</source>
         <translation type="unfinished">미리보기</translation>
     </message>
@@ -4501,67 +4496,67 @@ Changelog:
         <translation type="unfinished">비율</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="639"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Torrent Download Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="675"/>
+        <location filename="../transferlistwidget.cpp" line="689"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="798"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Limit upload rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="800"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Limit download rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="802"/>
+        <location filename="../transferlistwidget.cpp" line="816"/>
         <source>Open destination folder</source>
         <translation type="unfinished">저장 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="804"/>
+        <location filename="../transferlistwidget.cpp" line="818"/>
         <source>Buy it</source>
         <translation type="unfinished">구입하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="806"/>
+        <location filename="../transferlistwidget.cpp" line="820"/>
         <source>Increase priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="808"/>
+        <location filename="../transferlistwidget.cpp" line="822"/>
         <source>Decrease priority</source>
         <translation type="unfinished">우선순위(priority)를 낮추기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="824"/>
         <source>Force recheck</source>
         <translation type="unfinished">강제로 재확인하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="812"/>
+        <location filename="../transferlistwidget.cpp" line="826"/>
         <source>Copy magnet link</source>
         <translation type="unfinished">카피 마그넷 링크 (Copy magnet link)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="814"/>
+        <location filename="../transferlistwidget.cpp" line="828"/>
         <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="816"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Download in sequential order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="818"/>
+        <location filename="../transferlistwidget.cpp" line="832"/>
         <source>Download first and last piece first</source>
         <translation type="unfinished"></translation>
     </message>

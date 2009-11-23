@@ -3044,11 +3044,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>
-Comment:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
@@ -3056,6 +3051,10 @@ Comment:</source>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
