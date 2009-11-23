@@ -138,6 +138,9 @@ TransferListWidget::~TransferListWidget() {
 
 void TransferListWidget::addTorrent(QTorrentHandle& h) {
   if(!h.is_valid()) return;
+  // Check that the torrent is not already there
+  if(getRowFromHash(h.hash()) >= 0) return;
+  // Actuall add the torrent
   int row = listModel->rowCount();
   try {
     // Adding torrent to transfer list
