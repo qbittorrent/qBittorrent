@@ -73,11 +73,11 @@ public:
     connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
     connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
-    dlSpeedLbl = new QPushButton(tr("D: %1 KiB/s - T: %2", "Download speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    dlSpeedLbl = new QPushButton(tr("D: %1 B/s - T: %2", "Download speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
     //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     dlSpeedLbl->setFlat(true);
-    upSpeedLbl = new QPushButton(tr("U: %1 KiB/s - T: %2", "Upload speed: x KiB/s - Transferred: xMiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    upSpeedLbl = new QPushButton(tr("U: %1 B/s - T: %2", "Upload speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
     //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
     upSpeedLbl->setFlat(true);

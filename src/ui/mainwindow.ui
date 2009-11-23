@@ -125,7 +125,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="text">
-    <string>Open</string>
+    <string>Open torrent</string>
    </property>
   </action>
   <action name="actionExit">
@@ -170,7 +170,7 @@
   </action>
   <action name="actionWebsite">
    <property name="text">
-    <string>Visit website</string>
+    <string>Visit Website</string>
    </property>
   </action>
   <action name="actionDownload_from_URL">

@@ -304,27 +304,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished">所定のポートで記入できませんでした。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1554"/>
+        <location filename="../bittorrent.cpp" line="1560"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1559"/>
+        <location filename="../bittorrent.cpp" line="1565"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1574"/>
+        <location filename="../bittorrent.cpp" line="1580"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1579"/>
+        <location filename="../bittorrent.cpp" line="1585"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1647"/>
+        <location filename="../bittorrent.cpp" line="1653"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
@@ -967,11 +967,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <source>Bittorrent features</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../ui/options.ui" line="1530"/>
-        <source>Use the same port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message utf8="true">
         <location filename="../ui/options.ui" line="1609"/>
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
@@ -1172,6 +1167,11 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/options.ui" line="1530"/>
+        <source>Use a different port for DHT and Bittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/options.ui" line="2415"/>
         <source>Enable Web User Interface</source>
         <translation type="unfinished"></translation>
@@ -1335,6 +1335,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <source>Priority</source>
         <translation type="obsolete">優先度</translation>
+    </message>
+</context>
+<context>
+    <name>EventManager</name>
+    <message>
+        <location filename="../eventmanager.cpp" line="110"/>
+        <location filename="../eventmanager.cpp" line="116"/>
+        <source>%1/s</source>
+        <comment>e.g. 120 KiB/s</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2156,10 +2166,9 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">ローカル ピア ディスカバリ [オフ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="794"/>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (DL: %2KiB/s、UP: %3KiB/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (DL: %2KiB/s、UP: %3KiB/s)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="282"/>
@@ -2196,6 +2205,65 @@ qBittorrent を終了してもよろしいですか?</translation>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">オプションの保存に成功しました。</translation>
     </message>
+    <message>
+        <location filename="../GUI.cpp" line="792"/>
+        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HttpServer</name>
+    <message>
+        <location filename="../httpserver.cpp" line="60"/>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="61"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="62"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="63"/>
+        <source>Delete from HD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="64"/>
+        <source>Download Torrents from their URL or Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="65"/>
+        <source>Only one link per line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="66"/>
+        <source>Download local torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="67"/>
+        <source>Torrent files were correctly added to download list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="68"/>
+        <source>Point to torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="69"/>
+        <source>Download</source>
+        <translation type="unfinished">ダウンロード</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -2231,9 +2299,8 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="128"/>
         <source>Open</source>
-        <translation>開く</translation>
+        <translation type="obsolete">開く</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="133"/>
@@ -2276,6 +2343,16 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation>すべて開始</translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="173"/>
+        <source>Visit Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="259"/>
+        <source>Log Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Torrent Properties</source>
         <translation type="obsolete">Torrent のプロパティ</translation>
     </message>
@@ -2312,9 +2389,8 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">永久に削除</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="173"/>
         <source>Visit website</source>
-        <translation>ウェブサイトの訪問</translation>
+        <translation type="obsolete">ウェブサイトの訪問</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="198"/>
@@ -2362,6 +2438,11 @@ qBittorrent を終了してもよろしいですか?</translation>
         <location filename="../ui/mainwindow.ui" line="61"/>
         <source>Options</source>
         <translation>オプション</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="128"/>
+        <source>Open torrent</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="232"/>
@@ -2557,11 +2638,6 @@ qBittorrent を終了してもよろしいですか?</translation>
 <context>
     <name>PropertiesWidget</name>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="19"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/propertieswidget.ui" line="420"/>
         <source>Save path:</source>
         <translation type="unfinished">保存パス:</translation>
@@ -2722,7 +2798,7 @@ Comment:</source>
         <translation type="obsolete">進行状況</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="457"/>
+        <location filename="../propertieswidget.cpp" line="463"/>
         <source>Priority</source>
         <translation type="unfinished">優先度</translation>
     </message>
@@ -2757,13 +2833,20 @@ Comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="310"/>
-        <source>Seeding for %1</source>
-        <comment>e.g. Seeding for 3m10s</comment>
+        <location filename="../propertieswidget.cpp" line="309"/>
+        <location filename="../propertieswidget.cpp" line="313"/>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="313"/>
+        <location filename="../propertieswidget.cpp" line="316"/>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="319"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
@@ -2773,23 +2856,23 @@ Comment:</source>
         <translation type="obsolete">なし - アンリーチ可能ですか?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="517"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished">新しい url シード</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="518"/>
+        <location filename="../propertieswidget.cpp" line="524"/>
         <source>New url seed:</source>
         <translation type="unfinished">新しい url シード:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="523"/>
+        <location filename="../propertieswidget.cpp" line="529"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="524"/>
+        <location filename="../propertieswidget.cpp" line="530"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished">この url シードはすでに一覧にあります。</translation>
     </message>
@@ -2798,18 +2881,18 @@ Comment:</source>
         <translation type="obsolete">トラッカの一覧を空にできません。</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="564"/>
-        <location filename="../propertieswidget.cpp" line="566"/>
+        <location filename="../propertieswidget.cpp" line="570"/>
+        <location filename="../propertieswidget.cpp" line="572"/>
         <source>Choose save path</source>
         <translation type="unfinished">保存パスの選択</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="579"/>
         <source>Save path creation error</source>
         <translation type="unfinished">保存パスの作成エラー</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="579"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">保存パスを作成できませんでした</translation>
     </message>
@@ -3401,53 +3484,63 @@ Changelog:
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="75"/>
-        <location filename="../statusbar.h" line="149"/>
+        <location filename="../statusbar.h" line="151"/>
         <source>Connection status:</source>
         <translation type="unfinished">接続状態:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="75"/>
-        <location filename="../statusbar.h" line="149"/>
+        <location filename="../statusbar.h" line="151"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="76"/>
-        <location filename="../statusbar.h" line="161"/>
-        <source>D: %1 KiB/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
+        <source>D: %1 B/s - T: %2</source>
+        <comment>Download speed: x B/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="80"/>
-        <location filename="../statusbar.h" line="162"/>
-        <source>U: %1 KiB/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
+        <source>U: %1 B/s - T: %2</source>
+        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="84"/>
-        <location filename="../statusbar.h" line="155"/>
+        <location filename="../statusbar.h" line="157"/>
         <source>DHT: %1 nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="146"/>
+        <location filename="../statusbar.h" line="148"/>
         <source>Connection Status:</source>
         <translation type="unfinished">接続状態:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="146"/>
+        <location filename="../statusbar.h" line="148"/>
         <source>Online</source>
         <translation type="unfinished">オンライン</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="167"/>
+        <location filename="../statusbar.h" line="163"/>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../statusbar.h" line="164"/>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../statusbar.h" line="169"/>
         <source>Global Download Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="180"/>
+        <location filename="../statusbar.h" line="182"/>
         <source>Global Upload Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3516,17 +3609,18 @@ Changelog:
     </message>
     <message>
         <location filename="../trackerlist.h" line="197"/>
-        <location filename="../trackerlist.h" line="207"/>
+        <location filename="../trackerlist.h" line="208"/>
         <source>Not working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="199"/>
+        <location filename="../trackerlist.h" line="210"/>
         <source>Not contacted yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="278"/>
+        <location filename="../trackerlist.h" line="281"/>
         <source>Add a new tracker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3582,8 +3676,13 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="117"/>
+        <source>/s</source>
+        <comment>/second (.i.e per second)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -3677,27 +3776,27 @@ Changelog:
         <translation type="obsolete">いいえ(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="730"/>
+        <location filename="../transferlistwidget.cpp" line="733"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="787"/>
+        <location filename="../transferlistwidget.cpp" line="790"/>
         <source>Start</source>
         <translation type="unfinished">開始</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="789"/>
+        <location filename="../transferlistwidget.cpp" line="792"/>
         <source>Pause</source>
         <translation type="unfinished">一時停止</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="791"/>
+        <location filename="../transferlistwidget.cpp" line="794"/>
         <source>Delete</source>
         <translation type="unfinished">削除</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="793"/>
+        <location filename="../transferlistwidget.cpp" line="796"/>
         <source>Preview file</source>
         <translation type="unfinished">ファイルのプレビュー</translation>
     </message>
@@ -3756,67 +3855,67 @@ Changelog:
         <translation type="unfinished">率</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="636"/>
+        <location filename="../transferlistwidget.cpp" line="639"/>
         <source>Torrent Download Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="672"/>
+        <location filename="../transferlistwidget.cpp" line="675"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="795"/>
+        <location filename="../transferlistwidget.cpp" line="798"/>
         <source>Limit upload rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="797"/>
+        <location filename="../transferlistwidget.cpp" line="800"/>
         <source>Limit download rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="799"/>
+        <location filename="../transferlistwidget.cpp" line="802"/>
         <source>Open destination folder</source>
         <translation type="unfinished">作成先のフォルダを開く</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="801"/>
+        <location filename="../transferlistwidget.cpp" line="804"/>
         <source>Buy it</source>
         <translation type="unfinished">購入</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="803"/>
+        <location filename="../transferlistwidget.cpp" line="806"/>
         <source>Increase priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="805"/>
+        <location filename="../transferlistwidget.cpp" line="808"/>
         <source>Decrease priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="807"/>
+        <location filename="../transferlistwidget.cpp" line="810"/>
         <source>Force recheck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="809"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Copy magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="811"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="813"/>
+        <location filename="../transferlistwidget.cpp" line="816"/>
         <source>Download in sequential order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="815"/>
+        <location filename="../transferlistwidget.cpp" line="818"/>
         <source>Download first and last piece first</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5109,8 +5208,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">オプションの保存に成功しました。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1303"/>
-        <location filename="../options_imp.cpp" line="1305"/>
+        <location filename="../options_imp.cpp" line="1314"/>
+        <location filename="../options_imp.cpp" line="1316"/>
         <source>Choose scan directory</source>
         <translation>スキャンするディレクトリを選択します</translation>
     </message>
@@ -5119,8 +5218,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat ファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1326"/>
-        <location filename="../options_imp.cpp" line="1328"/>
+        <location filename="../options_imp.cpp" line="1337"/>
+        <location filename="../options_imp.cpp" line="1339"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリを選択します</translation>
     </message>
@@ -5134,14 +5233,14 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">読み込みモードで %1 を開くことができませんでした。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1314"/>
-        <location filename="../options_imp.cpp" line="1316"/>
+        <location filename="../options_imp.cpp" line="1325"/>
+        <location filename="../options_imp.cpp" line="1327"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1314"/>
-        <location filename="../options_imp.cpp" line="1316"/>
+        <location filename="../options_imp.cpp" line="1325"/>
+        <location filename="../options_imp.cpp" line="1327"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>

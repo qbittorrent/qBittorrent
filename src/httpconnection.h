@@ -66,6 +66,7 @@ class HttpConnection : public QObject
 	public:
                 HttpConnection(QTcpSocket *socket, Bittorrent* BTSession, HttpServer *parent);
 		~HttpConnection();
+                QString translateDocument(QString data);
 
 	private slots:
 		void read();

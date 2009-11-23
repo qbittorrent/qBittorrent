@@ -862,7 +862,7 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Use the same port for DHT and Bittorrent</source>
-        <translation>Usar a mesma porta para o DHT e o Bittorrent</translation>
+        <translation type="obsolete">Usar a mesma porta para o DHT e o Bittorrent</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -1128,6 +1128,10 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
         <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use a different port for DHT and Bittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadingTorrents</name>
@@ -1251,6 +1255,14 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
         <comment>i.e: full/partial sources</comment>
         <translatorcomment>ex: Fontes completas/parciais</translatorcomment>
         <translation type="obsolete">Seeds/Leechers</translation>
+    </message>
+</context>
+<context>
+    <name>EventManager</name>
+    <message>
+        <source>%1/s</source>
+        <comment>e.g. 120 KiB/s</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2311,7 +2323,7 @@ Deseja mesmo sair do qBittorrent?</translation>
     <message>
         <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (Down: %2Kb/s, Up: %3kb/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (Down: %2Kb/s, Up: %3kb/s)</translation>
     </message>
     <message>
         <source>DL: %1 KiB/s</source>
@@ -2372,6 +2384,54 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation type="unfinished">qBittorrent %1</translation>
+    </message>
+    <message>
+        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HttpServer</name>
+    <message>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete from HD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Torrents from their URL or Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only one link per line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download local torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files were correctly added to download list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Point to torrent file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2434,7 +2494,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Open</source>
-        <translation>Abrir</translation>
+        <translation type="obsolete">Abrir</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -2578,7 +2638,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Visit website</source>
-        <translation>Visitar site</translation>
+        <translation type="obsolete">Visitar site</translation>
     </message>
     <message>
         <source>Report a bug</source>
@@ -2623,6 +2683,18 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Console</source>
         <translation>Console</translation>
+    </message>
+    <message>
+        <source>Log Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit Website</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2768,10 +2840,6 @@ Are you sure you want to quit qBittorrent?</source>
 </context>
 <context>
     <name>PropertiesWidget</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Torrent information</source>
         <translation type="obsolete">Informação do Torrent</translation>
@@ -2966,11 +3034,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Seeding for %1</source>
-        <comment>e.g. Seeding for 3m10s</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
@@ -2982,6 +3045,16 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>
 Comment:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3570,16 +3643,6 @@ Log de mudanças:</translation>
         <translation type="unfinished">Sem conexões diretas. Talvez tenha algo errado em sua configuração.</translation>
     </message>
     <message>
-        <source>D: %1 KiB/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: xMiB</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>U: %1 KiB/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: xMiB</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DHT: %1 nodes</source>
         <translation type="unfinished">DHT: %1 nos</translation>
     </message>
@@ -3597,6 +3660,26 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D: %1 B/s - T: %2</source>
+        <comment>Download speed: x B/s - Transferred: x MiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1 B/s - T: %2</source>
+        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3673,10 +3756,6 @@ Log de mudanças:</translation>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <source>KiB/s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Downloading</source>
         <translation type="unfinished">Baixando</translation>
     </message>
@@ -3702,6 +3781,11 @@ Log de mudanças:</translation>
     <message>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (.i.e per second)</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

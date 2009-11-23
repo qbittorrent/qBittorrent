@@ -40,8 +40,7 @@ class Bittorrent;
 class QTimer;
 class EventManager;
 
-class HttpServer : public QTcpServer
-{
+class HttpServer : public QTcpServer {
 	Q_OBJECT
 
 	private:

@@ -41,6 +41,7 @@
 #include <QHttpResponseHeader>
 #include <QFile>
 #include <QDebug>
+#include <QRegExp>
 #include <QTemporaryFile>
 
 HttpConnection::HttpConnection(QTcpSocket *socket, Bittorrent *BTSession, HttpServer *parent)
@@ -100,6 +101,32 @@ void HttpConnection::write()
   socket->disconnectFromHost();
 }
 
+QString HttpConnection::translateDocument(QString data) {
+  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer"};
+  int i=0;
+  bool found = false;
+  do {
+    found = false;
+    QRegExp regex("_\\(([\\w\\s]+)\\)");
+    i = regex.indexIn(data, i);
+    if(i >= 0) {
+      qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
+      QString word = regex.cap(1);
+      QString translation = word;
+      int context_index= 0;
+      do {
+        translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().data(), 0, QCoreApplication::UnicodeUTF8, 1);
+        ++context_index;
+      }while(translation == word && context_index < 6);
+      qDebug("Translation is %s", translation.toUtf8().data());
+      data = data.replace(i, regex.matchedLength(), translation);
+      i += translation.length();
+      found = true;
+    }
+  }while(found && i < data.size());
+  return data;
+}
+
 void HttpConnection::respond()
 {
   //qDebug("Respond called");
@@ -157,6 +184,10 @@ void HttpConnection::respond()
   else
     ext.clear();
   QByteArray data = file.readAll();
+  // Translate the page
+  if(ext == "html") {
+    data = translateDocument(QString::fromUtf8(data.data())).toUtf8();
+  }
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt(ext);
   generator.setMessage(data);

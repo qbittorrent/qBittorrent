@@ -56,6 +56,17 @@ HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcp
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(onTimer()));
 	timer->start(msec);
+        // Additional translations for Web UI
+        QString a = tr("File");
+        a = tr("Edit");
+        a = tr("Help");
+        a = tr("Delete from HD");
+        a = tr("Download Torrents from their URL or Magnet link");
+        a = tr("Only one link per line");
+        a = tr("Download local torrent");
+        a = tr("Torrent files were correctly added to download list.");
+        a = tr("Point to torrent file");
+        a = tr("Download");
 }
 
 HttpServer::~HttpServer()
