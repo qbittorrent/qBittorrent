@@ -23,7 +23,7 @@ initializeWindows = function(){
 		new Event(e).stop();
 		new MochaUI.Window({
 			id: 'downloadPage',
-			title: 'Download from URLs',
+			title: "(Download from URL)",
 			loadMethod: 'iframe',
 			contentURL:'download.html',
 			scrollbars: false,
@@ -41,7 +41,7 @@ initializeWindows = function(){
 		new Event(e).stop();
 		new MochaUI.Window({
 			id: 'uploadPage',
-			title: 'Upload torrent file',
+			title: "_(Download local torrent)",
 			loadMethod: 'iframe',
 			contentURL:'upload.html',
 			scrollbars: false,
@@ -106,7 +106,7 @@ initializeWindows = function(){
 		new Event(e).stop();
 		new MochaUI.Window({
 			id: 'bugPage',
-			title: 'Report a Bug',
+			title: '_(Report a bug)',
 			loadMethod: 'iframe',
 			contentURL: 'http://bugs.qbittorrent.org/',
 			width: 650,

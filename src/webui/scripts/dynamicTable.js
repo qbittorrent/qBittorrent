@@ -78,7 +78,7 @@ var dynamicTable = new Class	({
                  var trs = this.table.getElements('tr');
                         trs.each(function(tr,i){
                                 var tds = tr.getElements('td');
-                                tds.getLast().removeClass('invisible');
+                                tds[2].removeClass('invisible');
                         }.bind(this));
                 this.priority_hidden = false;
         },
@@ -126,8 +126,6 @@ var dynamicTable = new Class	({
 		//this.removeRow(id);
 		var tr = new Element('tr');
 		this.rows[id] = tr;
-		// Apply filter
-		this.applyFilterOnRow(tr, status);
 		for(var i=0; i<row.length; i++)
 		{
 			var td = new Element('td');
@@ -209,6 +207,8 @@ var dynamicTable = new Class	({
 
 		tr.injectInside(this.table);
 		this.altRow();
+		// Apply filter
+		//this.applyFilterOnRow(tr, status);
 	},
 	
 	selectAll: function() {

@@ -93,11 +93,12 @@ window.addEvent('domready', function(){
                 row[8] = event.upspeed;
 		row[9] = event.eta;
 		row[10] = event.ratio;
-		if(row[2] != -1)
+		if(row[2] != "*")
 			queueing_enabled = true;
                if(!torrent_hashes.contains(event.hash)) {
                   // New unfinished torrent
-                  //torrent_hashes[torrent_hashes.length] = event.hash;
+                  torrent_hashes[torrent_hashes.length] = event.hash;
+		  //alert("Inserting row");
                   myTable.insertRow(event.hash, row);
                 } else {
                   // Update torrent data

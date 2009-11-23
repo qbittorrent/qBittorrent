@@ -109,9 +109,12 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
   event["progress"] = QVariant(h.progress());
   event["dlspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.download_payload_rate())));
   if(BTSession->isQueueingEnabled()) {
-    event["priority"] = QVariant(h.queue_position());
+    if(h.queue_position() >= 0)
+      event["priority"] = QVariant(QString::number(h.queue_position()));
+    else
+      event["priority"] = "*";
   } else {
-    event["priority"] = -1;
+    event["priority"] = "*";
   }
   event["upspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.upload_payload_rate())));
   QString seeds = QString::number(h.num_seeds());
