@@ -49,19 +49,19 @@ public:
     // Add filters
     QListWidgetItem *all = new QListWidgetItem(this);
     all->setData(Qt::DisplayRole, tr("All") + " (0)");
-    all->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder-remote16.png"));
+    all->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filterall.png"));
     QListWidgetItem *downloading = new QListWidgetItem(this);
     downloading->setData(Qt::DisplayRole, tr("Downloading") + " (0)");
     downloading->setData(Qt::DecorationRole, QIcon(":/Icons/skin/downloading.png"));
     QListWidgetItem *completed = new QListWidgetItem(this);
     completed->setData(Qt::DisplayRole, tr("Completed") + " (0)");
-    completed->setData(Qt::DecorationRole, QIcon(":/Icons/skin/seeding.png"));
+    completed->setData(Qt::DecorationRole, QIcon(":/Icons/skin/uploading.png"));
     QListWidgetItem *active = new QListWidgetItem(this);
     active->setData(Qt::DisplayRole, tr("Active") + " (0)");
-    active->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/draw-triangle2.png"));
+    active->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filteractive.png"));
     QListWidgetItem *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, tr("Inactive") + " (0)");
-    inactive->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/draw-rectangle.png"));
+    inactive->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filterinactive.png"));
 
     // SIGNAL/SLOT
     connect(this, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyFilter(int)));

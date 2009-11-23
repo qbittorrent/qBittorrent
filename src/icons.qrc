@@ -10,23 +10,32 @@
   <file>Icons/sphere.png</file>
   <file>Icons/uparrow.png</file>
   <file>Icons/rss16.png</file>
+  <file>Icons/skin/checkingUP.png</file>
   <file>Icons/skin/play.png</file>
   <file>Icons/skin/qbittorrent22.png</file>
+  <file>Icons/skin/queuedDL.png</file>
   <file>Icons/skin/new.png</file>
+  <file>Icons/skin/queuedUP.png</file>
   <file>Icons/skin/preview.png</file>
   <file>Icons/skin/stalled.png</file>
   <file>Icons/skin/delete.png</file>
   <file>Icons/skin/url.png</file>
+  <file>Icons/skin/stalledUP.png</file>
+  <file>Icons/skin/filteractive.png</file>
   <file>Icons/skin/connected.png</file>
+  <file>Icons/skin/pausedDL.png</file>
   <file>Icons/skin/mascot.png</file>
+  <file>Icons/skin/pausedUP.png</file>
   <file>Icons/skin/seeding.png</file>
   <file>Icons/skin/increase.png</file>
   <file>Icons/skin/qbittorrent32.png</file>
   <file>Icons/skin/paused.png</file>
+  <file>Icons/skin/stalledDL.png</file>
   <file>Icons/skin/qb_question.png</file>
   <file>Icons/skin/open.png</file>
   <file>Icons/skin/qbittorrent16.png</file>
   <file>Icons/skin/downloading.png</file>
+  <file>Icons/skin/filterinactive.png</file>
   <file>Icons/skin/pause_all.png</file>
   <file>Icons/skin/play_all.png</file>
   <file>Icons/skin/pause.png</file>
@@ -35,11 +44,14 @@
   <file>Icons/skin/info.png</file>
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/delete_perm.png</file>
+  <file>Icons/skin/checkingDL.png</file>
   <file>Icons/skin/settings.png</file>
   <file>Icons/skin/exit.png</file>
   <file>Icons/skin/delete_all.png</file>
   <file>Icons/skin/splash.png</file>
   <file>Icons/skin/decrease.png</file>
+  <file>Icons/skin/uploading.png</file>
+  <file>Icons/skin/filterall.png</file>
   <file>Icons/flags/czech.png</file>
   <file>Icons/flags/serbia.png</file>
   <file>Icons/flags/iceland.png</file>
@@ -123,7 +135,6 @@
   <file>Icons/oxygen/download.png</file>
   <file>Icons/oxygen/application-x-kgetlist-no.png</file>
   <file>Icons/oxygen/gear.png</file>
-  <file>Icons/oxygen/draw-triangle2.png</file>
   <file>Icons/oxygen/remove.png</file>
   <file>Icons/oxygen/dialog-warning.png</file>
   <file>Icons/oxygen/peer.png</file>
@@ -148,7 +159,6 @@
   <file>Icons/oxygen/urlseed.png</file>
   <file>Icons/oxygen/edit-cut.png</file>
   <file>Icons/oxygen/unsubscribe.png</file>
-  <file>Icons/oxygen/draw-rectangle.png</file>
   <file>Icons/oxygen/subscribe16.png</file>
 </qresource>
 </RCC>

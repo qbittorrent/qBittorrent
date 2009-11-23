@@ -155,18 +155,20 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     listModel->setData(listModel->index(row, TR_HASH), QVariant(h.hash()));
     // Pause torrent if it is
     if(h.is_paused()) {
-      listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
-      if(h.is_seed())
+      if(h.is_seed()) {
         listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
-      else
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/pausedUP.png"))), Qt::DecorationRole);
+      } else {
         listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/pausedDL.png"))), Qt::DecorationRole);
+      }
       //setRowColor(row, QString::fromUtf8("red"));
     }else{
       if(h.is_seed()) {
-        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledUP.png"))), Qt::DecorationRole);
         listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_UP);
       } else {
-        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledDL.png"))), Qt::DecorationRole);
         listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_DL);
       }
       //setRowColor(row, QString::fromUtf8("grey"));
@@ -204,11 +206,12 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
   listModel->setData(listModel->index(row, TR_DLSPEED), QVariant((double)0.0));
   listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)0.0));
   listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
-  listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/paused.png")), Qt::DecorationRole);
   if(h.is_seed()) {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
+    listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedUP.png")), Qt::DecorationRole);
   } else {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
+    listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedDL.png")), Qt::DecorationRole);
   }
   listModel->setData(listModel->index(row, TR_SEEDS), QVariant(0.0));
   listModel->setData(listModel->index(row, TR_PEERS), QVariant(0.0));
@@ -226,10 +229,10 @@ void TransferListWidget::resumeTorrent(int row, bool refresh_list) {
   QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
   if(!h.is_valid()) return;
   if(h.is_seed()) {
-    listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+    listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(":/Icons/skin/stalledUP.png")), Qt::DecorationRole);
     listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_UP);
   } else {
-    listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(":/Icons/skin/stalled.png")), Qt::DecorationRole);
+    listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(":/Icons/skin/stalledDL.png")), Qt::DecorationRole);
     listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_DL);
   }
   if(refresh_list)
@@ -261,20 +264,24 @@ int TransferListWidget::updateTorrent(int row) {
       listModel->setData(listModel->index(row, TR_PRIORITY), QVariant((int)h.queue_position()));
       if(h.is_queued()) {
         if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) {
-          listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
           listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
-          if(h.is_seed())
+          if(h.is_seed()) {
             s = STATE_CHECKING_UP;
-          else
+            listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingUP.png"))), Qt::DecorationRole);
+          } else {
             s = STATE_CHECKING_DL;
+            listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingDL.png"))), Qt::DecorationRole);
+          }
           listModel->setData(listModel->index(row, TR_STATUS), s);
         }else {
-          listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/mail-queue.png"))), Qt::DecorationRole);
           listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
-          if(h.is_seed())
-            s = STATE_QUEUED_UP;
-          else
+          if(h.is_seed()) {
+            s = STATE_QUEUED_UP;            
+            listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queuedUP.png"))), Qt::DecorationRole);
+          } else {
             s =STATE_QUEUED_DL;
+            listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queuedDL.png"))), Qt::DecorationRole);
+          }
           listModel->setData(listModel->index(row, TR_STATUS), s);
         }
         // Reset speeds and seeds/leech
@@ -312,11 +319,15 @@ int TransferListWidget::updateTorrent(int row) {
     case torrent_status::checking_files:
     case torrent_status::queued_for_checking:
     case torrent_status::checking_resume_data:
-      listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/run-build.png"))), Qt::DecorationRole);
-      if(h.is_seed())
+      if(h.is_seed()) {
         s = STATE_CHECKING_UP;
-      else
+
+      listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingUP.png"))), Qt::DecorationRole);
+      } else {
         s = STATE_CHECKING_DL;
+
+      listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingDL.png"))), Qt::DecorationRole);
+      }
       listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
       listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
       //setRowColor(row, QString::fromUtf8("grey"));
@@ -329,7 +340,7 @@ int TransferListWidget::updateTorrent(int row) {
         s = STATE_DOWNLOADING;
         //setRowColor(row, QString::fromUtf8("green"));
       }else{
-        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalled.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledDL.png"))), Qt::DecorationRole);
         listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
         s = STATE_STALLED_DL;
         //setRowColor(row, QApplication::palette().color(QPalette::WindowText));
@@ -364,11 +375,11 @@ void TransferListWidget::setFinished(QTorrentHandle &h) {
     row = getRowFromHash(h.hash());
     if(row >= 0) {
       if(h.is_paused()) {
-        listModel->setData(listModel->index(row, TR_NAME), QIcon(":/Icons/skin/paused.png"), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_NAME), QIcon(":/Icons/skin/pausedUP.png"), Qt::DecorationRole);
         listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
         //setRowColor(row, "red");
       }else{
-        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(":/Icons/skin/seeding.png")), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(":/Icons/skin/stalledUP.png")), Qt::DecorationRole);
         listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_UP);
         //setRowColor(row, "orange");
       }
