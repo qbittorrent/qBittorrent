@@ -516,6 +516,7 @@ void TransferListWidget::pauseAllTorrents() {
 }
 
 void TransferListWidget::deleteSelectedTorrents() {
+  if(main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   if(!selectedIndexes.empty()) {
     bool delete_local_files = false;
