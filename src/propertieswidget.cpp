@@ -304,11 +304,11 @@ void PropertiesWidget::loadDynamicData() {
       upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
       if(h.upload_limit() <= 0)
-        lbl_uplimit->setText(tr("Unlimited"));
+        lbl_uplimit->setText(QString::fromUtf8("∞"));
       else
         lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
       if(h.download_limit() <= 0)
-        lbl_dllimit->setText(tr("Unlimited"));
+        lbl_dllimit->setText(QString::fromUtf8("∞"));
       else
         lbl_dllimit->setText(misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
       QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
