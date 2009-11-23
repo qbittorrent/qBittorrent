@@ -110,7 +110,7 @@ QString HttpConnection::translateDocument(QString data) {
     QRegExp regex("_\\(([\\w\\s?!\\.]+)\\)");
     i = regex.indexIn(data, i);
     if(i >= 0) {
-      qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
+      //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
       QString word = regex.cap(1);
       QString translation = word;
       int context_index= 0;
@@ -118,7 +118,7 @@ QString HttpConnection::translateDocument(QString data) {
         translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().data(), 0, QCoreApplication::UnicodeUTF8, 1);
         ++context_index;
       }while(translation == word && context_index < 7);
-      qDebug("Translation is %s", translation.toUtf8().data());
+      //qDebug("Translation is %s", translation.toUtf8().data());
       data = data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
       found = true;

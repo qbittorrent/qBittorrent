@@ -129,6 +129,13 @@ window.addEvent('domready', function(){
 // 	ajaxfn.periodical(5000);
 
 	setFilter = function(f) {
+	  // Visually Select the right filter
+	  $("all_filter").removeClass("selectedFilter");
+	  $("downloading_filter").removeClass("selectedFilter");
+	  $("completed_filter").removeClass("selectedFilter");
+	  $("active_filter").removeClass("selectedFilter");
+	  $("inactive_filter").removeClass("selectedFilter");
+	  $(f+"_filter").addClass("selectedFilter");
 	  myTable.setFilter(f);
 	  ajaxfn();
 	}
