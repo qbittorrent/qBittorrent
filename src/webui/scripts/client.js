@@ -143,6 +143,10 @@ window.addEvent('domready', function(){
 
 });
 
+function closeWindows() {
+  MochaUI.closeAll();
+}
+
 // This runs when a person leaves your page.
 
 window.addEvent('unload', function(){
