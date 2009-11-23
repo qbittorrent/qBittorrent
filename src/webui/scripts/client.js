@@ -31,8 +31,43 @@ window.addEvent('domready', function(){
 	'background': '#fff',
 	'visibility': 'visible'
   });
+  new MochaUI.Column({
+		id: 'filtersColumn',
+		placement: 'left',
+		width: 120,
+		resizeLimit: [100, 300]
+	});
+  new MochaUI.Column({
+		id: 'mainColumn',
+		placement: 'main',	
+		width: null,
+		resizeLimit: [100, 300]
+	});
+  new MochaUI.Panel({
+		id: 'Filters',
+		title: 'Panel',
+		loadMethod: 'xhr',
+		contentURL: 'filters.html',
+		column: 'filtersColumn',
+		height: 300
+	});
+    new MochaUI.Panel({
+		id: 'transferList',
+		title: 'Panel',
+		loadMethod: 'xhr',
+		contentURL: 'transferlist.html',
+		column: 'mainColumn',
+		height: null
+	});
+    new MochaUI.Panel({
+		id: 'properties',
+		title: 'Panel',
+		loadMethod: 'xhr',
+		contentURL: 'properties.html',
+		column: 'mainColumn',
+		height: 200
+	});
   initializeWindows();
-  myTable.setup('myTable', 4);
   var r=0;
   var waiting=false;
   var stateToImg = function(state){

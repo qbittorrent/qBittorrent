@@ -7,36 +7,36 @@
 
 **************************************************************/
 
-table {
+#transferList table {
 	border: 1px solid #ccc;
 	width: 100%;
 }
 
-th {
+#transferList th {
 	background-color: #eee;
 	padding: 4px;
 }
 
-tr {
+#transferList tr {
 	background-color: #fff;
 	padding: 4px;
 }
 
-tr.alt {
+#transferList tr.alt {
 	background-color: #eee;
 	padding: 4px;
 }
 
-td {
+#transferList td {
 	padding: 0 2px;
 }
 
-tr.selected {
+#transferList tr.selected {
 	background-color: #354158;
 	color: #fff;
 }
 
-tr.over {
+#transferList tr.over {
 	background-color: #ee6600;
 	color: #fff;
 	cursor: pointer;

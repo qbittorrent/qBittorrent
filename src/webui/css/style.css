@@ -120,13 +120,6 @@ hr {
 	height:100%;
 }
 
-#Filters {
-	width: 120px;
-	border-right: 1px solid #ccc;
-	color: #000;
-	vertical-align: top;
-}
-
 #Filters ul {
 	list-style-type: none;
 }
@@ -141,29 +134,13 @@ hr {
 	margin-bottom: -4px;
 }
 
-#Transfers {
-	vertical-align: top;
-	height: 100%;
-}
-
-#transferListContainer {
-	height: 50%;
-	border-bottom: 1px solid #ccc;
-	overflow: auto;
-}
-
 .selectedFilter {
 	background-color: #354158;
 	color: #000;
 }
 
-div #PropDiv {
-	height: 50%;
-}
-
-div.PropPanel {
+#properties {
 	background-color: #e5e5e5;
-	overflow: auto;
 }
 
 a.propButton {

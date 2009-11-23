@@ -5,6 +5,9 @@
   <file>webui/upload.html</file>
   <file>webui/uploadframe.html</file>
   <file>webui/about.html</file>
+  <file>webui/filters.html</file>
+  <file>webui/transferlist.html</file>
+  <file>webui/properties.html</file>
   <file>webui/css/mocha.css</file>
   <file>webui/css/dynamicTable.css</file>
   <file>webui/css/style.css</file>
