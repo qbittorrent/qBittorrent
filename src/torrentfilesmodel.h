@@ -37,6 +37,9 @@
 #include <QStringList>
 #include <QString>
 #include <libtorrent/torrent_info.hpp>
+#include "proplistdelegate.h"
+#include "misc.h"
+using namespace libtorrent;
 
 enum TreeItemType {TFILE, FOLDER, ROOT};
 
@@ -49,7 +52,7 @@ private:
 
 public:
   // File Construction
-  TreeItem(file_entry const& f, TreeItem *parent) {
+  TreeItem(file_entry f, TreeItem *parent) {
     Q_ASSERT(parent);
     parentItem = parent;
     type = TFILE;
@@ -247,6 +250,8 @@ public:
 
 
 class TorrentFilesModel:  public QAbstractItemModel {
+  Q_OBJECT
+
 private:
   TreeItem *rootItem;
   TreeItem **files_index;

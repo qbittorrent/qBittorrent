@@ -3126,22 +3126,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Name</source>
         <translation type="unfinished">Název</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Size</source>
         <translation type="unfinished">Velikost</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Progress</source>
         <translation type="unfinished">Průběh</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Priority</source>
         <translation type="unfinished">Priorita</translation>
     </message>

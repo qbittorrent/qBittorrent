@@ -4456,22 +4456,22 @@ Changements:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Priority</source>
         <translation>Priorité</translation>
     </message>

@@ -3853,22 +3853,22 @@ Muutoshistoria:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Name</source>
         <translation type="unfinished">Nimi</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Size</source>
         <translation type="unfinished">Koko</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Progress</source>
         <translation type="unfinished">Edistyminen</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="258"/>
+        <location filename="../torrentfilesmodel.h" line="263"/>
         <source>Priority</source>
         <translation type="unfinished">Prioriteetti</translation>
     </message>
