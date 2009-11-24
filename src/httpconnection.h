@@ -57,6 +57,7 @@ class HttpConnection : public QObject
 		virtual void respond();
 		void respondJson();
                 void respondGenPropertiesJson(QString hash);
+                void respondTrackersPropertiesJson(QString hash);
 		void respondCommand(QString command);
 		void respondNotFound();
 		void processDownloadedFile(QString, QString);

@@ -7,35 +7,42 @@
 
 **************************************************************/
 
+#properties #trackers table,
 #transferList table {
 	border: 1px solid #ccc;
 	width: 100%;
 }
 
+#properties #trackers th,
 #transferList th {
 	background-color: #eee;
 	padding: 4px;
 }
 
+#properties #trackers tr,
 #transferList tr {
 	background-color: #fff;
 	padding: 4px;
 }
 
+#properties #trackers tr.alt,
 #transferList tr.alt {
 	background-color: #eee;
 	padding: 4px;
 }
 
+#properties #trackers td,
 #transferList td {
 	padding: 0 2px;
 }
 
+#properties #trackers tr.selected,
 #transferList tr.selected {
 	background-color: #354158;
 	color: #fff;
 }
 
+#properties #trackers tr.over,
 #transferList tr.over {
 	background-color: #ee6600;
 	color: #fff;

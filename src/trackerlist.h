@@ -174,7 +174,7 @@ public slots:
     std::vector<announce_entry>::iterator it;
     for(it = trackers.begin(); it != trackers.end(); it++) {
       QStringList item_list;
-      QString tracker_url = misc::toQString((*it).url);
+      QString tracker_url = misc::toQString(it->url);
       QTreeWidgetItem *item = tracker_items.value(tracker_url, 0);
       if(!item) {
         item = new QTreeWidgetItem();
@@ -187,13 +187,13 @@ public slots:
       TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
       QString error_message = data.last_message.trimmed();
 #ifdef LIBTORRENT_0_15
-      if((*it).verified) {
+      if(it->verified) {
         item->setText(COL_STATUS, tr("Working"));
       } else {
-        if((*it).updating && (*it).fails == 0) {
+        if(it->updating && it->fails == 0) {
           item->setText(COL_STATUS, tr("Updating..."));
         } else {
-          if((*it).fails > 0) {
+          if(it->fails > 0) {
             item->setText(COL_STATUS, tr("Not working"));
           } else {
             item->setText(COL_STATUS, tr("Not contacted yet"));

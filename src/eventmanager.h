@@ -52,6 +52,7 @@ class EventManager : public QObject
                 EventManager(QObject *parent, Bittorrent* BTSession);
                 QList<QVariantMap> getEventList() const;
                 QVariantMap getPropGeneralInfo(QString hash) const;
+                QList<QVariantMap> getPropTrackersInfo(QString hash) const;
 
 	public slots:
 		void addedTorrent(QTorrentHandle& h);

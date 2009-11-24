@@ -102,7 +102,7 @@ void HttpConnection::write()
 }
 
 QString HttpConnection::translateDocument(QString data) {
-  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer", "confirmDeletionDlg"};
+  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList"};
   int i=0;
   bool found = false;
   do {
@@ -117,7 +117,7 @@ QString HttpConnection::translateDocument(QString data) {
       do {
         translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().data(), 0, QCoreApplication::UnicodeUTF8, 1);
         ++context_index;
-      }while(translation == word && context_index < 7);
+      }while(translation == word && context_index < 8);
       //qDebug("Translation is %s", translation.toUtf8().data());
       data = data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
@@ -160,6 +160,12 @@ void HttpConnection::respond()
         if(list[1] == "propertiesGeneral") {
           QString hash = list[2];
           respondGenPropertiesJson(hash);
+          return;
+        }
+        if(list[1] == "propertiesTrackers") {
+          qDebug("Web UI asked for trackers");
+          QString hash = list[2];
+          respondTrackersPropertiesJson(hash);
           return;
         }
       }
@@ -225,6 +231,16 @@ void HttpConnection::respondGenPropertiesJson(QString hash) {
   generator.setMessage(string);
   write();
 }
+
+void HttpConnection::respondTrackersPropertiesJson(QString hash) {
+  EventManager* manager =  parent->eventManager();
+  QString string = json::toJson(manager->getPropTrackersInfo(hash));
+  generator.setStatusLine(200, "OK");
+  generator.setContentTypeByExt("js");
+  generator.setMessage(string);
+  write();
+}
+
 
 void HttpConnection::respondCommand(QString command)
 {

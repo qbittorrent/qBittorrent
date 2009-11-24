@@ -51,10 +51,14 @@ dynamic information: total_downloaded, total_uploaded, total_wasted, up_limit, d
     }
     
     var loadData = function() {
+      if(!$defined($('torrent_hash'))) {
+        // Tab changed
+        return;
+      }
       var current_hash = myTable.getCurrentTorrentHash();
       if(current_hash == "") {
         clearData();
-        loadData.delay(2000);
+        loadData.delay(1500);
         return;
       }
       // Display hash
@@ -89,7 +93,7 @@ dynamic information: total_downloaded, total_uploaded, total_wasted, up_limit, d
                           clearData();
                         }
                         waiting=false;
-                        loadData.delay(2000);
+                        loadData.delay(1500);
                 }
         }).send();
       }

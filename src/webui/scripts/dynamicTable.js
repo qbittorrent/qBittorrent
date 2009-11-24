@@ -38,12 +38,11 @@ var dynamicTable = new Class	({
 	
 	setup: function(table, progressIndex){
 		this.table = $(table);
-		this.rows = new Object();
+		this.rows = new Hash();
 		this.cur = new Array();
 		this.priority_hidden = false;
 		this.progressIndex = progressIndex;
 		this.filter = 'all';
-		this.current_hash = '';
 	},
 	
 	getCurrentTorrentHash: function() {
@@ -127,12 +126,11 @@ var dynamicTable = new Class	({
 	},
 
 	insertRow: function(id, row, status){
-		var tr = this.rows[id];
-		if($defined(tr))
-		  return;
-		//this.removeRow(id);
+		if(this.rows.has(id)) {
+			return;
+		}
 		var tr = new Element('tr');
-		this.rows[id] = tr;
+		this.rows.set(id, tr);
 		for(var i=0; i<row.length; i++)
 		{
 			var td = new Element('td');
@@ -158,15 +156,15 @@ var dynamicTable = new Class	({
 				  // remove it
 					this.cur.erase(id);
 					// Remove selected style
-					temptr = this.rows[id];
-			    if(temptr){
-				    temptr.removeClass('selected');
-			    }
+					if(this.rows.has(id)) {
+						temptr = this.rows.get(id);
+						temptr.removeClass('selected');
+					}
 				} else {
 					this.cur[this.cur.length] = id;
 					// Add selected style
-					temptr = this.rows[id];
-					if(temptr){
+					if(this.rows.has(id)) {
+						temptr = this.rows.get(id);
 						temptr.addClass('selected');
 					}
 				}
@@ -186,8 +184,8 @@ var dynamicTable = new Class	({
 						curID = ids[i];
 						this.cur[this.cur.length] = curID;
 						// Add selected style
-						temptr = this.rows[curID];
-						if(temptr){
+						if(this.rows.has(curID)) {
+						temptr = this.rows.get(curID);
 							temptr.addClass('selected');
 						}
 					}
@@ -195,15 +193,15 @@ var dynamicTable = new Class	({
 					// Simple selection
 					// Remove selected style from previous ones
 					for(i=0; i<this.cur.length; i++) {
-						var temptr = this.rows[this.cur[i]];
-						if(temptr){
+						if(this.rows.has(this.cur[i])) {
+							var temptr = this.rows.get(this.cur[i]);
 							temptr.removeClass('selected');
 						}
 					}
 					this.cur.empty();
 					// Add selected style to new one
-					temptr = this.rows[id];
-					if(temptr){
+					if(this.rows.has(id)) {
+						temptr = this.rows.get(id);
 						temptr.addClass('selected');
 					}
 					this.cur[0] = id;
@@ -212,44 +210,40 @@ var dynamicTable = new Class	({
 			}
 			return false;
 		}.bind(this));
-
+		// Apply filter
+		this.applyFilterOnRow(tr, status);
+		// Insert
 		tr.injectInside(this.table);
 		this.altRow();
-		// Apply filter
-		//this.applyFilterOnRow(tr, status);
 	},
 	
 	selectAll: function() {
 		this.cur.empty();
-		for (var id in this.rows) {
+		this.rows.each(function(tr, id){
 			this.cur[this.cur.length] = id;
-			temptr = this.rows[id];
-			if(temptr){
-				if(!temptr.hasClass('selected')) {
-					temptr.addClass('selected');
-				}
+			if(!tr.hasClass('selected')) {
+				tr.addClass('selected');
 			}
-		}
+		});
 	},
 
 	updateRow: function(id, row, status){
-		var tr = this.rows[id];
-		if($defined(tr))
-		{
-			// Apply filter
-			this.applyFilterOnRow(tr, status);
-			var tds = tr.getElements('td');
-			for(var i=0; i<row.length; i++) {
-        	                if(i==this.progressIndex) {
-					tds[i].set('html', '');
-                	                tds[i].adopt(new ProgressBar(row[i].toFloat(), {width:80}));
-                        	} else {
-                                	tds[i].set('html', row[i]);
-	                        }
-                	};
-			return true;
+		if(!this.rows.has(id)) {
+			return false;
 		}
-		return false;
+		var tr = this.rows.get(id);
+		// Apply filter
+		this.applyFilterOnRow(tr, status);
+		var tds = tr.getElements('td');
+		for(var i=0; i<row.length; i++) {
+			if(i==this.progressIndex) {
+				tds[i].set('html', '');
+				tds[i].adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+			} else {
+				tds[i].set('html', row[i]);
+			}
+		};
+		return true;
 	},
 
 	removeRow: function(id){
@@ -257,11 +251,11 @@ var dynamicTable = new Class	({
 		{
 			this.cur.erase(id);
 		}
-		var tr = this.rows[id];
-		if($defined(tr))
-		{
+		if(this.rows.has(id)) {
+			var tr = this.rows.get(id);
 			tr.dispose();
 			this.altRow();
+			this.rows.erase(id);
 			return true;
 		}
 		return false;
@@ -274,10 +268,10 @@ var dynamicTable = new Class	({
 	getRowIds: function(){
 		var ids = new Array();
 		var i = 0;
-		for (var id in this.rows) {
+		this.rows.each(function(tr, id) {
 			ids[i] = id;
-			i++
-		}
+			i++;
+		}.bind(this));
 		return ids;
 	}
 });

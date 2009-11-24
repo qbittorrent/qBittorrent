@@ -44,6 +44,51 @@ QList<QVariantMap> EventManager::getEventList() const {
   return event_list.values();
 }
 
+QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
+  QList<QVariantMap> trackersInfo;
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  if(h.is_valid()) {
+    QHash<QString, TrackerInfos> trackers_data = BTSession->getTrackersInfo(hash);
+    std::vector<announce_entry> vect_trackers = h.trackers();
+    std::vector<announce_entry>::iterator it;
+    for(it = vect_trackers.begin(); it != vect_trackers.end(); it++) {
+      QVariantMap tracker;
+      QString tracker_url = misc::toQString(it->url);
+      tracker["url"] = tracker_url;
+      TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
+      QString error_message = data.last_message.trimmed();
+#ifdef LIBTORRENT_0_15
+      if(it->verified) {
+        tracker["status"] = tr("Working");
+      } else {
+        if(it->updating && it->fails == 0) {
+          tracker["status"] = tr("Updating...");
+        } else {
+          if(it->fails > 0) {
+            tracker["status"] = tr("Not working");
+          } else {
+            tracker["status"] = tr("Not contacted yet");
+          }
+        }
+      }
+#else
+      if(data.verified) {
+        tracker["status"] = tr("Working");
+      } else {
+        if(data.fail_count > 0)
+          tracker["status"] = tr("Not working");
+        else
+          tracker["status"] = tr("Not contacted yet");
+      }
+#endif
+      tracker["num_peers"] = QString::number(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers);
+      tracker["msg"] = error_message;
+      trackersInfo << tracker;
+    }
+  }
+  return trackersInfo;
+}
+
 QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
   QVariantMap data;
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
