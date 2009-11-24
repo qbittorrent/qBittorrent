@@ -43,6 +43,13 @@ var dynamicTable = new Class	({
 		this.priority_hidden = false;
 		this.progressIndex = progressIndex;
 		this.filter = 'all';
+		this.current_hash = '';
+	},
+	
+	getCurrentTorrentHash: function() {
+		if(this.cur.length > 0)
+			return this.cur[0];
+		return '';
 	},
 
 	altRow: function()
@@ -200,6 +207,7 @@ var dynamicTable = new Class	({
 						temptr.addClass('selected');
 					}
 					this.cur[0] = id;
+					// TODO: Warn Properties panel
 				}
 			}
 			return false;

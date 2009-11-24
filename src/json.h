@@ -36,71 +36,79 @@
 
 namespace json {
 
-    QString toJson(QVariant v) {
-        if (v.isNull())
-            return "null";
-        switch(v.type())
-        {
+  QString toJson(QVariant v) {
+    if (v.isNull())
+      return "null";
+    switch(v.type())
+    {
                 case QVariant::Bool:
                 case QVariant::Double:
                 case QVariant::Int:
                 case QVariant::LongLong:
                 case QVariant::UInt:
                 case QVariant::ULongLong:
-            return v.value<QString>();
+      return v.value<QString>();
                 case QVariant::String:
-            {
-                QString s = v.value<QString>();
-                QString result = "\"";
-                for(int i=0; i<s.size(); i++)
-                {
-                    QChar ch = s[i];
-                    switch(ch.toAscii())
-                    {
+      {
+        QString s = v.value<QString>();
+        QString result = "\"";
+        for(int i=0; i<s.size(); i++)
+        {
+          QChar ch = s[i];
+          switch(ch.toAscii())
+          {
                                         case '\b':
-                        result += "\\b";
-                        break;
+            result += "\\b";
+            break;
                                         case '\f':
-                        result += "\\f";
-                        break;
+            result += "\\f";
+            break;
                                         case '\n':
-                        result += "\\n";
-                        break;
+            result += "\\n";
+            break;
                                         case '\r':
-                        result += "\\r";
-                        break;
+            result += "\\r";
+            break;
                                         case '\t':
-                        result += "\\t";
-                        break;
+            result += "\\t";
+            break;
                                         case '\"':
                                         case '\'':
                                         case '\\':
                                         case '&':
-                        result += '\\';
+            result += '\\';
                                         case '\0':
                                         default:
-                        result += ch;
-                    }
-                }
-                result += "\"";
-                return result;
-            }
+            result += ch;
+          }
+        }
+        result += "\"";
+        return result;
+      }
             default:
-                return "undefined";
-        }
+      return "undefined";
     }
+  }
 
-   QString toJson(QList<QVariantMap> v) {
-        QStringList res;
-        foreach(QVariantMap m, v) {
-            QStringList vlist;
-            foreach(QString key, m.keys()) {
-                vlist << toJson(key)+":"+toJson(m[key]);
-            }
-            res << "{"+vlist.join(",")+"}";
-        }
-        return "["+res.join(",")+"]";
+  QString toJson(QVariantMap m) {
+    QStringList vlist;
+    foreach(QString key, m.keys()) {
+      vlist << toJson(key)+":"+toJson(m[key]);
     }
+    return "{"+vlist.join(",")+"}";
+  }
+
+  QString toJson(QList<QVariantMap> v) {
+    QStringList res;
+    foreach(QVariantMap m, v) {
+      QStringList vlist;
+      foreach(QString key, m.keys()) {
+        vlist << toJson(key)+":"+toJson(m[key]);
+      }
+      res << "{"+vlist.join(",")+"}";
+    }
+    return "["+res.join(",")+"]";
+  }
 }
 
 #endif

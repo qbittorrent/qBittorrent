@@ -32,6 +32,7 @@
 #include "eventmanager.h"
 #include "bittorrent.h"
 #include "misc.h"
+#include "torrentpersistentdata.h"
 #include <QDebug>
 
 EventManager::EventManager(QObject *parent, Bittorrent *BTSession)
@@ -41,6 +42,51 @@ EventManager::EventManager(QObject *parent, Bittorrent *BTSession)
 
 QList<QVariantMap> EventManager::getEventList() const {
   return event_list.values();
+}
+
+QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
+  QVariantMap data;
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  if(h.is_valid()) {
+    // Save path
+    data["save_path"] = TorrentPersistentData::getSavePath(hash);
+    // Creation date
+    data["creation_date"] = h.creation_date();
+    // Comment
+    data["comment"] = h.comment();
+    data["total_wasted"] = misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes());
+    data["total_uploaded"] = misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")";
+    data["total_downloaded"] = misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")";
+    if(h.upload_limit() <= 0)
+      data["up_limit"] = QString::fromUtf8("∞");
+    else
+      data["up_limit"] = misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)");
+    if(h.download_limit() <= 0)
+      data["dl_limit"] = QString::fromUtf8("∞");
+    else
+      data["dl_limit"] =  misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)");
+    QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
+    if(h.is_seed()) {
+      elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
+    }
+    data["time_elapsed"] = elapsed_txt;
+    data["nb_connections"] = QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")";
+    // Update ratio info
+    float ratio;
+    if(h.total_payload_download() == 0){
+      if(h.total_payload_upload() == 0)
+        ratio = 1.;
+      else
+        ratio = 10.; // Max ratio
+    }else{
+      ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
+      if(ratio > 10.){
+        ratio = 10.;
+      }
+    }
+    data["share_ratio"] = QString(QByteArray::number(ratio, 'f', 1));
+  }
+  return data;
 }
 
 void EventManager::addedTorrent(QTorrentHandle& h)
