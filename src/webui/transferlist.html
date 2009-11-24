@@ -17,6 +17,33 @@
                     </thead>
                     <tbody id="myTable"></tbody>
             </table>
-            <script>
-                myTable.setup('myTable', 4);
-            </script>
+
+<script type="text/javascript">
+
+	//create a context menu
+	var context_menu = new ContextMenu({
+                targets: '.menu-target',
+		menu: 'contextmenu',
+		actions: {
+			Delete: function(element,ref) {
+				deleteFN();
+			},
+                        DeleteHD: function(element,ref) {
+				deleteHDFN();
+			},
+                        Start: function(element, ref) {
+                                startFN();
+                        },
+                        Pause: function(element, ref) {
+                                pauseFN();
+                        },
+                        ForceRecheck: function(element, ref) {
+                                recheckFN();
+                        }
+		},
+		offsets: { x:-15, y:2 }
+	});
+        
+        myTable.setup('myTable', 4, context_menu);
+	
+</script>

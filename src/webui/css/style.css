@@ -154,3 +154,19 @@ a.propButton {
 a.propButton img {
 	margin-bottom: -4px;
 }
+
+/* context menu specific */
+#contextmenu	{ border:1px solid #999; padding:0; background:#eee; width:200px; list-style-type:none; display:none; }
+#contextmenu .separator	{ border-top:1px solid #999; }
+#contextmenu li	{ margin:0; padding:0; }
+#contextmenu li a { display:block; padding:5px 10px 5px 35px; width:155px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; background-position:8px 2px; background-repeat:no-repeat; }
+#contextmenu li a:hover	{ background-color:#ddd; }
+#contextmenu li a.disabled { color:#ccc; font-style:italic; }
+#contextmenu li a.disabled:hover { background-color:#eee; }
+
+/* context menu items */
+#contextmenu li a.pause	{ background-image:url(../images/skin/pause22.png); }
+#contextmenu li a.start	{ background-image:url(../images/skin/play22.png); }
+#contextmenu li a.recheck	{ background-image:url(../images/oxygen/gear.png); }
+#contextmenu li a.delete	{ background-image:url(../images/skin/delete22.png); }
+#contextmenu li a.deleteHD	{ background-image:url(../images/skin/delete_perm22.png); }

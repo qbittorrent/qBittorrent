@@ -36,13 +36,14 @@ var dynamicTable = new Class	({
 	initialize: function(){
 	},
 	
-	setup: function(table, progressIndex){
+	setup: function(table, progressIndex, context_menu){
 		this.table = $(table);
 		this.rows = new Hash();
 		this.cur = new Array();
 		this.priority_hidden = false;
 		this.progressIndex = progressIndex;
 		this.filter = 'all';
+		this.context_menu = context_menu;
 	},
 	
 	getCurrentTorrentHash: function() {
@@ -130,6 +131,7 @@ var dynamicTable = new Class	({
 			return;
 		}
 		var tr = new Element('tr');
+		tr.addClass("menu-target");
 		this.rows.set(id, tr);
 		for(var i=0; i<row.length; i++)
 		{
@@ -148,6 +150,22 @@ var dynamicTable = new Class	({
 			tr.addEvent('mouseout', function(e){
 				tr.removeClass('over');
 			}.bind(this));
+		tr.addEvent('contextmenu', function(e) {
+			if(!this.cur.contains(id)) {
+				// Remove selected style from previous ones
+				for(i=0; i<this.cur.length; i++) {
+					if(this.rows.has(this.cur[i])) {
+						var temptr = this.rows.get(this.cur[i]);
+						temptr.removeClass('selected');
+					}
+				}
+				this.cur.empty();
+				this.cur[this.cur.length] = id;
+				temptr = this.rows.get(id);
+				temptr.addClass("selected");
+			}
+			return true;
+		}.bind(this));
 		tr.addEvent('click', function(e){
 			e.stop();
 			if(e.control) {
@@ -215,6 +233,8 @@ var dynamicTable = new Class	({
 		// Insert
 		tr.injectInside(this.table);
 		this.altRow();
+		// Update context menu
+		this.context_menu.addTarget(tr);
 	},
 	
 	selectAll: function() {

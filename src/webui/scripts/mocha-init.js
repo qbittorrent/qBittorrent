@@ -56,32 +56,61 @@ initializeWindows = function(){
 	
 	
 	
-	
-
-	
-
-
-	addClickEvent('delete', function(e){
-		new Event(e).stop();
+	deleteFN = function() {
 		var h = myTable.selectedIds();
 		if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
 			h.each(function(item, index){
 				new Request({url: '/command/delete', method: 'post', data: {hash: item}}).send();
 			});
-		}
+		}	
+	};
+
+	addClickEvent('delete', function(e){
+		new Event(e).stop();
+		deleteFN();
 	});
 	
-	
-
-	addClickEvent('deletePerm', function(e){
-                new Event(e).stop();
-                var h = myTable.selectedIds();
+	deleteHDFN = function() {
+		var h = myTable.selectedIds();
                 if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list and hard disk?)')) {
                         h.each(function(item, index){
                                 new Request({url: '/command/deletePerm', method: 'post', data: {hash: item}}).send();
                         });
                 }
+	};
+	
+
+	addClickEvent('deletePerm', function(e){
+                new Event(e).stop();
+		deleteHDFN();
         });
+	
+	pauseFN = function() {
+		var h = myTable.selectedIds();
+		if(h.length){
+			h.each(function(hash, index){
+			  new Request({url: '/command/pause', method: 'post', data: {hash: hash}}).send();
+			});
+		}
+	};
+	
+	startFN = function() {
+		var h = myTable.selectedIds();
+		if(h.length){
+			h.each(function(hash, index){
+			  new Request({url: '/command/resume', method: 'post', data: {hash: hash}}).send();
+			});
+		}
+	};
+	
+	recheckFN = function() {
+		var h = myTable.selectedIds();
+		if(h.length){
+			h.each(function(hash, index){
+			  new Request({url: '/command/recheck', method: 'post', data: {hash: hash}}).send();
+			});
+		}
+	};
 
 	['pause','resume','decreasePrio','increasePrio','recheck'].each(function(item) {
 		addClickEvent(item, function(e){
