@@ -26,15 +26,28 @@ myTable = new dynamicTable();
 ajaxfn = function(){};
 
 window.addEvent('domready', function(){
+  
+  var saveColumnSizes = function() {
+    var filters_width = $('Filters').getSize().x;
+    var properties_height = $('properties').getSize().y;
+    // Save it in a cookie
+    Cookie.write('filters_width', filters_width);
+    Cookie.write('properties_height', properties_height);
+  }
+  
   MochaUI.Desktop = new MochaUI.Desktop();
   MochaUI.Desktop.desktop.setStyles({
 	'background': '#fff',
 	'visibility': 'visible'
   });
+  var filt_w = Cookie.read('filters_width').toInt();
+  if(!$defined(filt_w))
+    filt_w = 120;
   new MochaUI.Column({
 		id: 'filtersColumn',
 		placement: 'left',
-		width: 120,
+		onResize: saveColumnSizes,
+		width: filt_w,
 		resizeLimit: [100, 300]
 	});
   new MochaUI.Column({
@@ -57,15 +70,19 @@ window.addEvent('domready', function(){
 		loadMethod: 'xhr',
 		contentURL: 'transferlist.html',
 		column: 'mainColumn',
+		onResize: saveColumnSizes,
 		height: null
 	});
+    var prop_h = Cookie.read('properties_height').toInt();
+    if(!$defined(prop_h))
+      prop_h = 200;
     new MochaUI.Panel({
 		id: 'properties',
 		title: 'Panel',
 		loadMethod: 'xhr',
 		contentURL: 'properties.html',
 		column: 'mainColumn',
-		height: 200
+		height: prop_h
 	});
   initializeWindows();
   var r=0;
