@@ -259,6 +259,23 @@ int TransferListWidget::updateTorrent(int row) {
     return s;
   }
   try {
+    // Connected_seeds*100000+total_seeds*10 (if total_seeds is available)
+    // Connected_seeds*100000+1 (if total_seeds is unavailable)
+    qulonglong seeds = h.num_seeds()*1000000;
+    if(h.num_complete() >= h.num_seeds())
+      seeds += h.num_complete()*10;
+    else
+      seeds += 1;
+    listModel->setData(listModel->index(row, TR_SEEDS), QVariant(seeds));
+    qulonglong peers = (h.num_peers()-h.num_seeds())*1000000;
+    if(h.num_incomplete() >= (h.num_peers()-h.num_seeds()))
+      peers += h.num_incomplete()*10;
+    else
+      peers += 1;
+    listModel->setData(listModel->index(row, TR_PEERS), QVariant(peers));
+    // Update torrent size. It changes when files are filtered from torrent properties
+    // or Web UI
+    listModel->setData(listModel->index(row, TR_SIZE), QVariant((qlonglong)h.actual_size()));
     // Queueing code
     if(!h.is_seed() && BTSession->isQueueingEnabled()) {
       listModel->setData(listModel->index(row, TR_PRIORITY), QVariant((int)h.queue_position()));
@@ -293,20 +310,7 @@ int TransferListWidget::updateTorrent(int row) {
         return s;
       }
     }
-    // Connected_seeds*100000+total_seeds*10 (if total_seeds is available)
-    // Connected_seeds*100000+1 (if total_seeds is unavailable)
-    qulonglong seeds = h.num_seeds()*1000000;
-    if(h.num_complete() >= h.num_seeds())
-      seeds += h.num_complete()*10;
-    else
-      seeds += 1;
-    listModel->setData(listModel->index(row, TR_SEEDS), QVariant(seeds));
-    qulonglong peers = (h.num_peers()-h.num_seeds())*1000000;
-    if(h.num_incomplete() >= (h.num_peers()-h.num_seeds()))
-      peers += h.num_incomplete()*10;
-    else
-      peers += 1;
-    listModel->setData(listModel->index(row, TR_PEERS), QVariant(peers));
+
     if(h.is_paused()) {
       if(h.is_seed())
         return STATE_PAUSED_UP;
@@ -1098,10 +1102,3 @@ void TransferListWidget::applyFilter(int f) {
     selectionModel()->setCurrentIndex(proxyModel->index(0, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 }
 
-void TransferListWidget::updateTorrentSizeAndProgress(QString hash) {
-  int row = getRowFromHash(hash);
-  Q_ASSERT(row != -1);
-  QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  listModel->setData(listModel->index(row, TR_SIZE), QVariant((qlonglong)h.actual_size()));
-  listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
-}

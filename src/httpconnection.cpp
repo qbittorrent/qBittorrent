@@ -310,6 +310,15 @@ void HttpConnection::respondCommand(QString command)
     emit resumeTorrent(parser.post("hash"));
     return;
   }
+  if(command == "setFilePrio") {
+    QString hash = parser.post("hash");
+    int file_id = parser.post("id").toInt();
+    int priority = parser.post("priority").toInt();
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid()) {
+      h.file_priority(file_id, priority);
+    }
+  }
   if(command == "pause") {
     emit pauseTorrent(parser.post("hash"));
     return;

@@ -13,6 +13,49 @@
             </span>
 
 <script type="text/javascript">
+    var round1 = function(val){return Math.round(val*10)/10};
+    var waitingTorrentFiles=false;
+    var current_hash = "";
+    
+var setFilePriority = function(id, priority) {
+  if(current_hash == "") return;
+  new Request({url: '/command/setFilePrio', method: 'post', data: {'hash': current_hash, 'id': id, 'priority': priority}}).send();
+}
+
+var createPriorityCombo = function(id, selected_prio) {
+    var select = new Element('select');
+    select.set('id', 'comboPrio'+id);
+    select.addEvent('change', function(e){
+      var new_prio = $('comboPrio'+id).get('value');
+      setFilePriority(id, new_prio);
+    });
+    var opt = new Element("option");
+    opt.set('value', '0')
+    opt.set('html', "_(Ignored)");
+    if(selected_prio == 0)
+      opt.setAttribute('selected', '');
+    opt.injectInside(select);
+    opt = new Element("option");
+    opt.set('value', '1')
+    opt.set('html', "_(Normal)");
+    if(selected_prio == 1)
+      opt.setAttribute('selected', '');
+    opt.injectInside(select);
+    opt = new Element("option");
+    opt.set('value', '2')
+    opt.set('html', "_(High)");
+    if(selected_prio == 2)
+      opt.setAttribute('selected', '');
+    opt.injectInside(select);
+    opt = new Element("option");
+    opt.set('value', '7')
+    opt.set('html', "_(Maximum)");
+    if(selected_prio == 7)
+      opt.setAttribute('selected', '');
+    opt.injectInside(select);
+    return select;
+}
+
  var filesDynTable = new Class ({
 
 	initialize: function(){
@@ -46,7 +89,13 @@
 	      tds[i].set('html', '');
 	      tds[i].adopt(new ProgressBar(row[i].toFloat(), {width:80}));
 	    } else {
-              tds[i].set('html', row[i]);
+              if(i==3) {
+                tds[i].getChildren('select').set('value', row[i]);
+                //tds[i].set('html', '');
+                //tds[i].adopt(createPriorityCombo(id,row[i]));
+              } else {
+                tds[i].set('html', row[i]);
+              }
             }
           }
           return true;
@@ -67,17 +116,17 @@
                   if(i==2) {
 		    td.adopt(new ProgressBar(row[i].toFloat(), {width:80}));
 		  } else {
-                    td.set('html', row[i]);
+                    if(i == 3) {
+                      td.adopt(createPriorityCombo(id,row[i]));
+                    } else {
+                      td.set('html', row[i]);
+                    }
                   }
                   td.injectInside(tr);
           }
           tr.injectInside(this.table);
         },
 });
-
-    var round1 = function(val){return Math.round(val*10)/10};
-    var waitingTorrentFiles=false;
-    var current_hash = "";
     
     var loadTorrentFilesData = function() {
       if(!$defined($('filesTable'))) {

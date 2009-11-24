@@ -76,7 +76,7 @@ private:
 
 protected:
   QPushButton* getButtonFromIndex(int index);
-  bool savePiecesPriorities();
+  bool applyPriorities();
 
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);

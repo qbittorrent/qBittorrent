@@ -111,23 +111,7 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
     }
     file["size"] = misc::friendlyUnit((double)fi->size);
     file["progress"] = fp[i]/(double)fi->size;
-    switch(priorities[i]) {
-    case IGNORED:
-      file["priority"] = tr("Ignored");
-      break;
-            case NORMAL:
-      file["priority"] = tr("Normal", "Normal (priority)");
-      break;
-            case HIGH:
-      file["priority"] = tr("High", "High (priority)");
-      break;
-            case MAXIMUM:
-      file["priority"] = tr("Maximum", "Maximum (priority)");
-      break;
-      default:
-        qDebug("Unhandled priority, setting NORMAL, priority was %d", priorities[i]);
-        file["priority"] = tr("Normal", "Normal (priority)");
-    }
+    file["priority"] = priorities[i];
     files << file;
     ++i;
   }

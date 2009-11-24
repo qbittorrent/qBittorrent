@@ -108,7 +108,6 @@ public slots:
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);
   void applyFilter(int f);
-  void updateTorrentSizeAndProgress(QString hash);
 
 signals:
   void currentTorrentChanged(QTorrentHandle &h);

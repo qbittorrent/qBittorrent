@@ -74,7 +74,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
   filesList->setModel(PropListModel);
-  PropDelegate = new PropListDelegate(0);
+  PropDelegate = new PropListDelegate(this);
   filesList->setItemDelegate(PropDelegate);
 
   // QActions
@@ -229,7 +229,6 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     // List files in torrent
     PropListModel->clear();
     PropListModel->setupModelData(h.get_torrent_info());
-    PropListModel->updateFilesPriorities(h.file_priorities());
     // Expand first item if possible
     filesList->expand(PropListModel->index(0, 0));
   } catch(invalid_handle e) {
@@ -359,6 +358,7 @@ void PropertiesWidget::loadDynamicData() {
       std::vector<size_type> fp;
       h.file_progress(fp);
       PropListModel->updateFilesProgress(fp);
+      PropListModel->updateFilesPriorities(h.file_priorities());
     }
   } catch(invalid_handle e) {}
 }
@@ -550,13 +550,17 @@ void PropertiesWidget::deleteSelectedUrlSeeds(){
   }
 }
 
-bool PropertiesWidget::savePiecesPriorities() {
+bool PropertiesWidget::applyPriorities() {
   qDebug("Saving pieces priorities");
   std::vector<int> priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
   bool first_last_piece_first = false;
+  // Save first/last piece first option state
   if(h.first_last_piece_first())
     first_last_piece_first = true;
+  // Prioritize the files
+  qDebug("prioritize files: %d", priorities[0]);
   h.prioritize_files(priorities);
+  // Restore first/last piece first option if necessary
   if(first_last_piece_first)
     h.prioritize_first_last_piece(true);
   return true;
@@ -592,7 +596,6 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
 
 void PropertiesWidget::filteredFilesChanged() {
   if(h.is_valid()) {
-    savePiecesPriorities();
-    transferList->updateTorrentSizeAndProgress(h.hash());
+    applyPriorities();
   }
 }

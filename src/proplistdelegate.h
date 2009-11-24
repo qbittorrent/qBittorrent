@@ -41,6 +41,7 @@
 #include <QProgressBar>
 #include <QApplication>
 #include "misc.h"
+#include "propertieswidget.h"
 
 // Defines for properties list columns
 enum PropColumn {NAME, SIZE, PROGRESS, PRIORITY};
@@ -49,11 +50,14 @@ enum PropPriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7};
 class PropListDelegate: public QItemDelegate {
   Q_OBJECT
 
+private:
+  PropertiesWidget *properties;
+
 signals:
   void filteredFilesChanged() const;
 
 public:
-  PropListDelegate(QObject *parent=0) : QItemDelegate(parent){
+  PropListDelegate(PropertiesWidget* properties=0, QObject *parent=0) : QItemDelegate(parent), properties(properties){
   }
 
   ~PropListDelegate(){}
@@ -116,6 +120,10 @@ public:
   QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
     qDebug("CreateEditor called");
     if(index.column() != PRIORITY) return 0;
+    if(properties) {
+      QTorrentHandle h = properties->getCurrentTorrent();
+      if(!h.is_valid() || h.is_seed()) return 0;
+    }
     QComboBox* editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
     editor->addItem(tr("Ignored"));
