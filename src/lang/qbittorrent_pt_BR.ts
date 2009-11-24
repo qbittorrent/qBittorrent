@@ -1299,6 +1299,25 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished">Ignorado</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <comment>Normal (priority)</comment>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <comment>High (priority)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <comment>Maximum (priority)</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FeedDownloader</name>

@@ -1564,56 +1564,80 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../eventmanager.cpp" line="62"/>
-        <location filename="../eventmanager.cpp" line="76"/>
+        <location filename="../eventmanager.cpp" line="63"/>
+        <location filename="../eventmanager.cpp" line="77"/>
         <source>Working</source>
         <translation type="unfinished">Fonctionne</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="65"/>
+        <location filename="../eventmanager.cpp" line="66"/>
         <source>Updating...</source>
         <translation type="unfinished">Mise à jour...</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="68"/>
-        <location filename="../eventmanager.cpp" line="79"/>
+        <location filename="../eventmanager.cpp" line="69"/>
+        <location filename="../eventmanager.cpp" line="80"/>
         <source>Not working</source>
         <translation type="unfinished">Indisponible</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="70"/>
-        <location filename="../eventmanager.cpp" line="81"/>
+        <location filename="../eventmanager.cpp" line="71"/>
+        <location filename="../eventmanager.cpp" line="82"/>
         <source>Not contacted yet</source>
         <translation type="unfinished">Pas encore contacté</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="134"/>
-        <location filename="../eventmanager.cpp" line="135"/>
+        <location filename="../eventmanager.cpp" line="116"/>
+        <source>Ignored</source>
+        <translation type="unfinished">Ignoré</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="119"/>
+        <location filename="../eventmanager.cpp" line="129"/>
+        <source>Normal</source>
+        <comment>Normal (priority)</comment>
+        <translation type="unfinished">Normale</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="122"/>
+        <source>High</source>
+        <comment>High (priority)</comment>
+        <translation type="unfinished">Haute</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="125"/>
+        <source>Maximum</source>
+        <comment>Maximum (priority)</comment>
+        <translation type="unfinished">Maximale</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="148"/>
+        <location filename="../eventmanager.cpp" line="149"/>
         <source>this session</source>
         <translation type="unfinished">cette session</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="139"/>
-        <location filename="../eventmanager.cpp" line="143"/>
+        <location filename="../eventmanager.cpp" line="153"/>
+        <location filename="../eventmanager.cpp" line="157"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished">/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="146"/>
+        <location filename="../eventmanager.cpp" line="160"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished">Complet depuis %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="149"/>
+        <location filename="../eventmanager.cpp" line="163"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished">%1 max</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="232"/>
-        <location filename="../eventmanager.cpp" line="241"/>
+        <location filename="../eventmanager.cpp" line="246"/>
+        <location filename="../eventmanager.cpp" line="255"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>

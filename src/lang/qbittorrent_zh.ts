@@ -1415,6 +1415,25 @@ wait...</comment>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ignored</source>
+        <translation type="unfinished">忽略</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <comment>Normal (priority)</comment>
+        <translation type="unfinished">正常</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <comment>High (priority)</comment>
+        <translation type="unfinished">高</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <comment>Maximum (priority)</comment>
+        <translation type="unfinished">最大</translation>
+    </message>
 </context>
 <context>
     <name>FeedDownloader</name>

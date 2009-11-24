@@ -1368,56 +1368,80 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../eventmanager.cpp" line="62"/>
-        <location filename="../eventmanager.cpp" line="76"/>
+        <location filename="../eventmanager.cpp" line="63"/>
+        <location filename="../eventmanager.cpp" line="77"/>
         <source>Working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="65"/>
+        <location filename="../eventmanager.cpp" line="66"/>
         <source>Updating...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="68"/>
-        <location filename="../eventmanager.cpp" line="79"/>
+        <location filename="../eventmanager.cpp" line="69"/>
+        <location filename="../eventmanager.cpp" line="80"/>
         <source>Not working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="70"/>
-        <location filename="../eventmanager.cpp" line="81"/>
+        <location filename="../eventmanager.cpp" line="71"/>
+        <location filename="../eventmanager.cpp" line="82"/>
         <source>Not contacted yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="134"/>
-        <location filename="../eventmanager.cpp" line="135"/>
+        <location filename="../eventmanager.cpp" line="116"/>
+        <source>Ignored</source>
+        <translation type="unfinished">Mellőzve</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="119"/>
+        <location filename="../eventmanager.cpp" line="129"/>
+        <source>Normal</source>
+        <comment>Normal (priority)</comment>
+        <translation type="unfinished">Átlagos</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="122"/>
+        <source>High</source>
+        <comment>High (priority)</comment>
+        <translation type="unfinished">Magas</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="125"/>
+        <source>Maximum</source>
+        <comment>Maximum (priority)</comment>
+        <translation type="unfinished">Maximális</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="148"/>
+        <location filename="../eventmanager.cpp" line="149"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="139"/>
-        <location filename="../eventmanager.cpp" line="143"/>
+        <location filename="../eventmanager.cpp" line="153"/>
+        <location filename="../eventmanager.cpp" line="157"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="146"/>
+        <location filename="../eventmanager.cpp" line="160"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="149"/>
+        <location filename="../eventmanager.cpp" line="163"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="232"/>
-        <location filename="../eventmanager.cpp" line="241"/>
+        <location filename="../eventmanager.cpp" line="246"/>
+        <location filename="../eventmanager.cpp" line="255"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
