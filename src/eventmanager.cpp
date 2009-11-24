@@ -95,7 +95,7 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   if(!h.is_valid()) return files;
   std::vector<int> priorities = h.file_priorities();
-  std::vector<long long int> fp;
+  std::vector<size_type> fp;
   h.file_progress(fp);
   torrent_info t = h.get_torrent_info();
   torrent_info::file_iterator fi;
