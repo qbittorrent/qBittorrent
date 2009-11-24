@@ -1273,8 +1273,56 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../eventmanager.cpp" line="110"/>
-        <location filename="../eventmanager.cpp" line="119"/>
+        <location filename="../eventmanager.cpp" line="62"/>
+        <location filename="../eventmanager.cpp" line="76"/>
+        <source>Working</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="65"/>
+        <source>Updating...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="68"/>
+        <location filename="../eventmanager.cpp" line="79"/>
+        <source>Not working</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="70"/>
+        <location filename="../eventmanager.cpp" line="81"/>
+        <source>Not contacted yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="134"/>
+        <location filename="../eventmanager.cpp" line="135"/>
+        <source>this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="139"/>
+        <location filename="../eventmanager.cpp" line="143"/>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished">/s</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="146"/>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="149"/>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="232"/>
+        <location filename="../eventmanager.cpp" line="241"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
@@ -3575,6 +3623,29 @@ Log:
     <message>
         <location filename="../statusbar.h" line="182"/>
         <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TorrentFilesModel</name>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Size</source>
+        <translation type="unfinished">Mida</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Progress</source>
+        <translation type="unfinished">Progrès</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -255,7 +255,7 @@ public:
   TorrentFilesModel(QObject *parent=0): QAbstractItemModel(parent) {
     files_index = 0;
     QList<QVariant> rootData;
-    rootData << "Name" << "Size" << "Progress" << "Priority";
+    rootData << tr("Name") << tr("Size") << tr("Progress") << tr("Priority");
     rootItem = new TreeItem(rootData);
   }
 

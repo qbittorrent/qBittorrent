@@ -53,6 +53,7 @@ class EventManager : public QObject
                 QList<QVariantMap> getEventList() const;
                 QVariantMap getPropGeneralInfo(QString hash) const;
                 QList<QVariantMap> getPropTrackersInfo(QString hash) const;
+                QList<QVariantMap> getPropFilesInfo(QString hash) const;
 
 	public slots:
 		void addedTorrent(QTorrentHandle& h);

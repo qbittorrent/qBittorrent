@@ -32,6 +32,7 @@
 #include "eventmanager.h"
 #include "bittorrent.h"
 #include "misc.h"
+#include "proplistdelegate.h"
 #include "torrentpersistentdata.h"
 #include <QDebug>
 
@@ -87,6 +88,50 @@ QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
     }
   }
   return trackersInfo;
+}
+
+QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
+  QList<QVariantMap> files;
+  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  if(!h.is_valid()) return files;
+  std::vector<int> priorities = h.file_priorities();
+  std::vector<long long int> fp;
+  h.file_progress(fp);
+  torrent_info t = h.get_torrent_info();
+  torrent_info::file_iterator fi;
+  int i=0;
+  for(fi=t.begin_files(); fi != t.end_files(); fi++) {
+    QVariantMap file;
+    if(h.num_files() == 1) {
+      file["name"] = h.name();
+    } else {
+      QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
+      QString name = path.split('/').last();
+      file["name"] = name;
+    }
+    file["size"] = misc::friendlyUnit((double)fi->size);
+    file["progress"] = fp[i]/(double)fi->size;
+    switch(priorities[i]) {
+    case IGNORED:
+      file["priority"] = tr("Ignored");
+      break;
+            case NORMAL:
+      file["priority"] = tr("Normal", "Normal (priority)");
+      break;
+            case HIGH:
+      file["priority"] = tr("High", "High (priority)");
+      break;
+            case MAXIMUM:
+      file["priority"] = tr("Maximum", "Maximum (priority)");
+      break;
+      default:
+        qDebug("Unhandled priority, setting NORMAL, priority was %d", priorities[i]);
+        file["priority"] = tr("Normal", "Normal (priority)");
+    }
+    files << file;
+    ++i;
+  }
+  return files;
 }
 
 QVariantMap EventManager::getPropGeneralInfo(QString hash) const {

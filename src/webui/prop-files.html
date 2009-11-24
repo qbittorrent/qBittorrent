@@ -1,12 +1,137 @@
-<ul id="fileTree" class="tree">
-	<li class="folder f-open root"><span>Examples</span>
-		<ul>
-			<li class="doc"><span><a>Lorem Ipsum</a></span></li>
-			<li class="doc"><span><a>Zero7 - Crosses</a></span></li>
-		</ul>
-	</li>
-</ul>
+            <span id="torrentFiles">
+            <table class="torrentTable" cellpadding="0" cellspacing="0">
+                    <thead>
+                            <tr>
+                                    <th>_(Name)</th>
+                                    <th>_(Size)</th>
+                                    <th style="width: 90px;">_(Progress)</th>
+                                    <th>_(Priority)</th>
+                            </tr>
+                    </thead>
+                    <tbody id="filesTable"></tbody>
+            </table>
+            </span>
 
 <script type="text/javascript">
-  buildTree('fileTree');
+ var filesDynTable = new Class ({
+
+	initialize: function(){
+	},
+	
+	setup: function(table){
+		this.table = $(table);
+		this.rows = new Hash();
+	},
+        
+        removeRow: function(id){
+          if(this.rows.has(id)) {
+            var tr = this.rows.get(id);
+            tr.dispose();
+            this.rows.erase(id);
+            return true;
+          }
+          return false;
+	},
+        
+        removeAllRows: function() {
+          this.rows.each(function(tr, id) {
+            this.removeRow(id);
+          }.bind(this));
+        },
+        
+        updateRow: function(tr, row){
+          var tds = tr.getElements('td');
+          for(var i=0; i<row.length; i++) {
+            if(i==2) {
+	      tds[i].set('html', '');
+	      tds[i].adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+	    } else {
+              tds[i].set('html', row[i]);
+            }
+          }
+          return true;
+	},
+        
+        insertRow: function(id, row) {
+          if(this.rows.has(id)) {
+            var tr = this.rows.get(id);
+            this.updateRow(tr, row);
+            return;
+          }
+          //this.removeRow(id);
+          var tr = new Element('tr');
+          this.rows.set(id, tr);
+          for(var i=0; i<row.length; i++)
+          {
+                  var td = new Element('td');
+                  if(i==2) {
+		    td.adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+		  } else {
+                    td.set('html', row[i]);
+                  }
+                  td.injectInside(tr);
+          }
+          tr.injectInside(this.table);
+        },
+});
+
+    var round1 = function(val){return Math.round(val*10)/10};
+    var waitingTorrentFiles=false;
+    var current_hash = "";
+    
+    var loadTorrentFilesData = function() {
+      if(!$defined($('filesTable'))) {
+        // Tab changed
+        return;
+      }
+      var new_hash = myTable.getCurrentTorrentHash();
+      if(new_hash == "") {
+        fTable.removeAllRows();
+        loadTorrentFilesData.delay(1500);
+        return;
+      }
+      if(new_hash != current_hash) {
+        fTable.removeAllRows();
+        current_hash = new_hash;
+      }
+      var url = 'json/propertiesFiles/'+current_hash;
+      if (!waitingTorrentFiles) {
+        waitingTorrentFiles=true;
+        var request = new Request.JSON({
+                url: url,
+                method: 'get',
+                onFailure: function() {
+                        $('error_div').set('html', 'qBittorrent client is not reachable');
+                        waitingTorrentFiles=false;
+                        loadTorrentFilesData.delay(2000);
+                },
+                onSuccess: function(files) {
+                         $('error_div').set('html', '');
+                        if(files){
+                          // Update Trackers data
+                          var i=0;
+                          files.each(function(file){
+                            var row = new Array();
+                            row.length = 4;
+                            row[0] = file.name;
+                            row[1] = file.size;
+                            row[2] = round1(file.progress*100);
+                            row[3] = file.priority;
+                            fTable.insertRow(i, row);
+                            i++;
+                          }.bind(this));
+                        } else {
+                          fTable.removeAllRows();
+                        }
+                        waitingTorrentFiles=false;
+                        loadTorrentFilesData.delay(1500);
+                }
+        }).send();
+      }
+            
+    }
+    fTable = new filesDynTable();
+    fTable.setup($('filesTable'));
+    // Initial loading
+    loadTorrentFilesData();
 </script>

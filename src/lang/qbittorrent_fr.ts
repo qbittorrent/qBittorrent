@@ -1564,8 +1564,56 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../eventmanager.cpp" line="110"/>
-        <location filename="../eventmanager.cpp" line="119"/>
+        <location filename="../eventmanager.cpp" line="62"/>
+        <location filename="../eventmanager.cpp" line="76"/>
+        <source>Working</source>
+        <translation type="unfinished">Fonctionne</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="65"/>
+        <source>Updating...</source>
+        <translation type="unfinished">Mise à jour...</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="68"/>
+        <location filename="../eventmanager.cpp" line="79"/>
+        <source>Not working</source>
+        <translation type="unfinished">Indisponible</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="70"/>
+        <location filename="../eventmanager.cpp" line="81"/>
+        <source>Not contacted yet</source>
+        <translation type="unfinished">Pas encore contacté</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="134"/>
+        <location filename="../eventmanager.cpp" line="135"/>
+        <source>this session</source>
+        <translation type="unfinished">cette session</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="139"/>
+        <location filename="../eventmanager.cpp" line="143"/>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished">/s</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="146"/>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished">Complet depuis %1</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="149"/>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished">%1 max</translation>
+    </message>
+    <message>
+        <location filename="../eventmanager.cpp" line="232"/>
+        <location filename="../eventmanager.cpp" line="241"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -4379,6 +4427,29 @@ Changements:
         <location filename="../statusbar.h" line="182"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limite globale de la vitesse d&apos;envoi</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentFilesModel</name>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Size</source>
+        <translation type="unfinished">Taille</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Progress</source>
+        <translation type="unfinished">Progression</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="258"/>
+        <source>Priority</source>
+        <translation type="unfinished">Priorité</translation>
     </message>
 </context>
 <context>
