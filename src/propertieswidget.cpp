@@ -62,7 +62,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
     QWidget(parent), transferList(transferList), main_window(main_window), BTSession(BTSession) {
   setupUi(this);
   state = VISIBLE;
-
+  setEnabled(false);
   // Buttons stylesheet
   trackers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   peers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
