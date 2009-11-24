@@ -1301,22 +1301,12 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="unfinished">Ignorado</translation>
+        <translation type="obsolete">Ignorado</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normal</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <comment>High (priority)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <comment>Maximum (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Normal</translation>
     </message>
 </context>
 <context>

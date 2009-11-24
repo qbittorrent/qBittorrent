@@ -1347,22 +1347,22 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="unfinished">Ignorowany</translation>
+        <translation type="obsolete">Ignorowany</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normalny</translation>
+        <translation type="obsolete">Normalny</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Wysoki</translation>
+        <translation type="obsolete">Wysoki</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">Maksymalny</translation>
+        <translation type="obsolete">Maksymalny</translation>
     </message>
 </context>
 <context>

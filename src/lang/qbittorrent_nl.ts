@@ -1379,22 +1379,22 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="unfinished">Genegeerd</translation>
+        <translation type="obsolete">Genegeerd</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normaal</translation>
+        <translation type="obsolete">Normaal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Hoog</translation>
+        <translation type="obsolete">Hoog</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">Maximum</translation>
+        <translation type="obsolete">Maximum</translation>
     </message>
 </context>
 <context>

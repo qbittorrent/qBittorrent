@@ -924,22 +924,22 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="unfinished">Ignoreras</translation>
+        <translation type="obsolete">Ignoreras</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Hög</translation>
+        <translation type="obsolete">Hög</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">Maximal</translation>
+        <translation type="obsolete">Maximal</translation>
     </message>
 </context>
 <context>

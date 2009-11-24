@@ -1343,23 +1343,14 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">%1 макс</translation>
     </message>
     <message>
-        <source>Ignored</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Обычный</translation>
+        <translation type="obsolete">Обычный</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Высокий</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <comment>Maximum (priority)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Высокий</translation>
     </message>
 </context>
 <context>
