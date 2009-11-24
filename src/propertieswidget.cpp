@@ -568,6 +568,7 @@ bool PropertiesWidget::applyPriorities() {
 
 
 void PropertiesWidget::on_changeSavePathButton_clicked() {
+  if(!h.is_valid()) return;
   QString dir;
   QDir saveDir(h.save_path());
   if(saveDir.exists()){
