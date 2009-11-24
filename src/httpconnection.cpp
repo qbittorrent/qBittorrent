@@ -158,7 +158,6 @@ void HttpConnection::respond()
       }
       if(list.size() > 2) {
         if(list[1] == "propertiesGeneral") {
-          qDebug("Web UI Asked for general properties data");
           QString hash = list[2];
           respondGenPropertiesJson(hash);
           return;
@@ -219,10 +218,8 @@ void HttpConnection::respondJson()
 }
 
 void HttpConnection::respondGenPropertiesJson(QString hash) {
-  qDebug("Torrent hash is %s", hash.toLocal8Bit().data());
   EventManager* manager =  parent->eventManager();
   QString string = json::toJson(manager->getPropGeneralInfo(hash));
-  qDebug("GenProperties JSON is %s", string.toLocal8Bit().data());
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt("js");
   generator.setMessage(string);
