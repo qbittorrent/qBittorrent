@@ -114,6 +114,20 @@
   <file>Icons/flags/japan.png</file>
   <file>Icons/flags/malaysia.png</file>
   <file>Icons/flags/philippines.png</file>
+  <file>Icons/tree/Lplus.gif</file>
+  <file>Icons/tree/Tminus.gif</file>
+  <file>Icons/tree/Tplus.gif</file>
+  <file>Icons/tree/_open.gif</file>
+  <file>Icons/tree/plus.gif</file>
+  <file>Icons/tree/Rminus.gif</file>
+  <file>Icons/tree/Lminus.gif</file>
+  <file>Icons/tree/T.gif</file>
+  <file>Icons/tree/_closed.gif</file>
+  <file>Icons/tree/L.gif</file>
+  <file>Icons/tree/_doc.gif</file>
+  <file>Icons/tree/I.gif</file>
+  <file>Icons/tree/minus.gif</file>
+  <file>Icons/tree/Rplus.gif</file>
   <file>Icons/oxygen/mail-queue.png</file>
   <file>Icons/oxygen/view-refresh.png</file>
   <file>Icons/oxygen/file.png</file>
