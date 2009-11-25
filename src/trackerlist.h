@@ -221,7 +221,7 @@ public slots:
 
   // Ask the user for new trackers and add them to the torrent
   void askForTrackers(){
-    QStringList trackers = TrackersAdditionDlg::asForTrackers();
+    QStringList trackers = TrackersAdditionDlg::askForTrackers();
     if(!trackers.empty()) {
       QTorrentHandle h = properties->getCurrentTorrent();
       if(!h.is_valid()) return;

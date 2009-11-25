@@ -49,7 +49,7 @@ class TrackersAdditionDlg : public QDialog, private Ui::TrackersAdditionDlg{
       return trackers_list->toPlainText().trimmed().split("\n");
     }
     
-    static QStringList asForTrackers() {
+    static QStringList askForTrackers() {
       QStringList trackers;
       TrackersAdditionDlg dlg;
       if(dlg.exec() == QDialog::Accepted) {
