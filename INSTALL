@@ -19,12 +19,9 @@ Dependencies:
 
 - python >= 2.3 (needed by search engine)
 
-- libzzip (advised, not required)
-  * Needed for zip support (Search plugins)
-
-NOTE FOR NON-KDE USERS:
-- qt4-qtconfig package is advised when using other systems than KDE.
-  You can also change qBittorrent style to Cleanlooks (GNOME like)
+- libnotify >= 0.4.2, glib-2.0 (optional)
+  * Can be used for system notifications to replace standard Qt notifications
+    so that it integrates better into the Desktop
 
 DOCUMENTATION:
 Please note that there is a documentation with a "compiling howto" at http://wiki.qbittorrent.org.
