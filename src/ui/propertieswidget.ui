@@ -53,7 +53,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-82</y>
+            <y>0</y>
             <width>518</width>
             <height>371</height>
            </rect>
@@ -80,6 +80,9 @@
                </property>
                <property name="text">
                 <string>Downloaded:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
               </widget>
              </item>
@@ -131,6 +134,9 @@
                </property>
                <property name="text">
                 <string>Availability:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
               </widget>
              </item>
