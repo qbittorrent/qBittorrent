@@ -11,6 +11,7 @@
   <file>webui/prop-trackers.html</file>
   <file>webui/prop-files.html</file>
   <file>webui/properties.html</file>
+  <file>webui/uploadlimit.html</file>
   <file>webui/css/mocha.css</file>
   <file>webui/css/dynamicTable.css</file>
   <file>webui/css/style.css</file>
@@ -24,5 +25,6 @@
   <file>webui/scripts/download.js</file>
   <file>webui/scripts/progressbar.js</file>
   <file>webui/scripts/contextmenu.js</file>
+  <file>webui/scripts/parametrics.js</file>
 </qresource>
 </RCC>

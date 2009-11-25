@@ -170,3 +170,5 @@ a.propButton img {
 #contextmenu li a.recheck	{ background-image:url(../images/oxygen/gear.png); }
 #contextmenu li a.delete	{ background-image:url(../images/skin/delete22.png); }
 #contextmenu li a.deleteHD	{ background-image:url(../images/skin/delete_perm22.png); }
+#contextmenu li a.uploadLimit	{ background-image:url(../images/skin/seeding.png); }
+#contextmenu li a.downloadLimit	{ background-image:url(../images/skin/download.png); }

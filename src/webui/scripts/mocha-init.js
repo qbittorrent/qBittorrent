@@ -54,7 +54,45 @@ initializeWindows = function(){
 		});
 	});
 	
+	uploadLimitFN = function() {
+		var h = myTable.selectedIds();
+		if(h.length){
+			var hash = h[0];
+			new MochaUI.Window({
+				id: 'uploadLimitPage',
+				title: "_(Torrent Upload Speed Limiting)",
+				loadMethod: 'iframe',
+				contentURL:'uploadlimit.html?hash='+hash,
+				scrollbars: false,
+				resizable: false,
+				maximizable: false,
+				paddingVertical: 0,
+				paddingHorizontal: 0,
+				width: 424,
+				height: 80
+			});
+		}
+	};
 	
+	downloadLimitFN = function() {
+		var h = myTable.selectedIds();
+		if(h.length){
+			var hash = h[0];
+			new MochaUI.Window({
+				id: 'downloadLimitPage',
+				title: "_(Torrent Download Speed Limiting)",
+				loadMethod: 'iframe',
+				contentURL:'downloadlimit.html?hash='+hash,
+				scrollbars: false,
+				resizable: false,
+				maximizable: false,
+				paddingVertical: 0,
+				paddingHorizontal: 0,
+				width: 424,
+				height: 80
+			});
+		}
+	};
 	
 	deleteFN = function() {
 		var h = myTable.selectedIds();

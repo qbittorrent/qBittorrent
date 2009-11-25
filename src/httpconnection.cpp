@@ -107,7 +107,7 @@ QString HttpConnection::translateDocument(QString data) {
   bool found = false;
   do {
     found = false;
-    QRegExp regex("_\\(([\\w\\s?!:\\.]+)\\)");
+    QRegExp regex("_\\(([\\w\\s?!:\\/\\.]+)\\)");
     i = regex.indexIn(data, i);
     if(i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
@@ -317,6 +317,44 @@ void HttpConnection::respondCommand(QString command)
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid()) {
       h.file_priority(file_id, priority);
+    }
+  }
+  if(command == "getTorrentUpLimit") {
+    QString hash = parser.post("hash");
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid()) {
+      generator.setStatusLine(200, "OK");
+      generator.setContentTypeByExt("html");
+      generator.setMessage(QString::number(h.upload_limit()));
+      write();
+    }
+  }
+  if(command == "getTorrentDlLimit") {
+    QString hash = parser.post("hash");
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid()) {
+      generator.setStatusLine(200, "OK");
+      generator.setContentTypeByExt("html");
+      generator.setMessage(QString::number(h.download_limit()));
+      write();
+    }
+  }
+  if(command == "setTorrentUpLimit") {
+    QString hash = parser.post("hash");
+    qlonglong limit = parser.post("limit").toLongLong();
+    if(limit == 0) limit = -1;
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid()) {
+      h.set_upload_limit(limit);
+    }
+  }
+  if(command == "setTorrentDlLimit") {
+    QString hash = parser.post("hash");
+    qlonglong limit = parser.post("limit").toLongLong();
+    if(limit == 0) limit = -1;
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid()) {
+      h.set_download_limit(limit);
     }
   }
   if(command == "pause") {

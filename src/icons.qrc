@@ -22,6 +22,7 @@
   <file>Icons/skin/delete.png</file>
   <file>Icons/skin/handle-icon-horizontal.gif</file>
   <file>Icons/skin/handle-icon.gif</file>
+  <file>Icons/skin/knob.gif</file>
   <file>Icons/skin/url.png</file>
   <file>Icons/skin/stalledUP.png</file>
   <file>Icons/skin/delete_perm22.png</file>
@@ -40,6 +41,7 @@
   <file>Icons/skin/open.png</file>
   <file>Icons/skin/play22.png</file>
   <file>Icons/skin/qbittorrent16.png</file>
+  <file>Icons/skin/slider-area.gif</file>
   <file>Icons/skin/downloading.png</file>
   <file>Icons/skin/filterinactive.png</file>
   <file>Icons/skin/pause22.png</file>
