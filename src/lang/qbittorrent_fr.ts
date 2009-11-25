@@ -525,7 +525,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="1873"/>
         <location filename="../ui/options.ui" line="2068"/>
-        <location filename="../ui/options.ui" line="2437"/>
+        <location filename="../ui/options.ui" line="2434"/>
         <source>Port:</source>
         <translation>Port :</translation>
     </message>
@@ -536,7 +536,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="1913"/>
         <location filename="../ui/options.ui" line="2108"/>
-        <location filename="../ui/options.ui" line="2476"/>
+        <location filename="../ui/options.ui" line="2470"/>
         <source>Authentication</source>
         <translation>Authentification</translation>
     </message>
@@ -547,7 +547,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="1937"/>
         <location filename="../ui/options.ui" line="2132"/>
-        <location filename="../ui/options.ui" line="2497"/>
+        <location filename="../ui/options.ui" line="2485"/>
         <source>Password:</source>
         <translation>Mot de passe :</translation>
     </message>
@@ -1173,7 +1173,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="1927"/>
         <location filename="../ui/options.ui" line="2122"/>
-        <location filename="../ui/options.ui" line="2487"/>
+        <location filename="../ui/options.ui" line="2478"/>
         <source>Username:</source>
         <translation>Nom d&apos;utilisateur :</translation>
     </message>
@@ -1276,22 +1276,22 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     </message>
     <message>
         <location filename="../ui/options.ui" line="194"/>
-        <location filename="../ui/options.ui" line="2594"/>
+        <location filename="../ui/options.ui" line="2576"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2647"/>
+        <location filename="../ui/options.ui" line="2629"/>
         <source>RSS feeds refresh interval:</source>
         <translation>Intervalle de rafraîchissement des flux RSS :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2667"/>
+        <location filename="../ui/options.ui" line="2649"/>
         <source>minutes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2691"/>
+        <location filename="../ui/options.ui" line="2673"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Numbre maximum d&apos;articles par flux :</translation>
     </message>
@@ -1388,12 +1388,12 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>Serveur HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2600"/>
+        <location filename="../ui/options.ui" line="2582"/>
         <source>Enable RSS support</source>
         <translation>Activer le module RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2610"/>
+        <location filename="../ui/options.ui" line="2592"/>
         <source>RSS settings</source>
         <translation>Paramètres du RSS</translation>
     </message>
@@ -2021,7 +2021,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible de trouver le dossier : &apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="607"/>
+        <location filename="../GUI.cpp" line="617"/>
         <source>Open Torrent Files</source>
         <translation>Ouvrir fichiers torrent</translation>
     </message>
@@ -2058,12 +2058,12 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Etes-vous sûr de vouloir enlever tous les fichiers de la liste de téléchargement ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="505"/>
+        <location filename="../GUI.cpp" line="515"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="505"/>
+        <location filename="../GUI.cpp" line="515"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -2132,7 +2132,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible de créer le dossier :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="608"/>
+        <location filename="../GUI.cpp" line="618"/>
         <source>Torrent Files</source>
         <translation>Fichiers Torrent</translation>
     </message>
@@ -2468,7 +2468,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="126"/>
+        <location filename="../GUI.cpp" line="136"/>
         <source>Transfers</source>
         <translation>Transferts</translation>
     </message>
@@ -2494,7 +2494,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Etes-vous certain de vouloir supprimer les fichiers sélectionnés depuis la liste de téléchargement ainsi que le disque dur ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="73"/>
+        <location filename="../GUI.cpp" line="81"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -2562,27 +2562,27 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">qBittorrent %1 démarré.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="503"/>
-        <location filename="../GUI.cpp" line="780"/>
+        <location filename="../GUI.cpp" line="513"/>
+        <location filename="../GUI.cpp" line="790"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="704"/>
+        <location filename="../GUI.cpp" line="714"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="775"/>
-        <location filename="../GUI.cpp" line="783"/>
+        <location filename="../GUI.cpp" line="785"/>
+        <location filename="../GUI.cpp" line="793"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Vitesse DL : %1 Ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="777"/>
-        <location filename="../GUI.cpp" line="786"/>
+        <location filename="../GUI.cpp" line="787"/>
+        <location filename="../GUI.cpp" line="796"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vitesse UP : %1 Ko/s</translation>
@@ -2603,7 +2603,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">En attente</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="503"/>
+        <location filename="../GUI.cpp" line="513"/>
         <source>Are you sure you want to quit?</source>
         <translation>Etes vous certain de vouloir quitter ?</translation>
     </message>
@@ -2666,13 +2666,13 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="276"/>
+        <location filename="../GUI.cpp" line="286"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Le téléchargement de %1 est terminé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="282"/>
+        <location filename="../GUI.cpp" line="292"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Erreur E/S</translation>
@@ -2727,28 +2727,28 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="286"/>
+        <location filename="../GUI.cpp" line="296"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Une erreur s&apos;est produite (disque plein ?), &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="140"/>
+        <location filename="../GUI.cpp" line="150"/>
         <source>Search</source>
         <translation>Recherche</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="227"/>
+        <location filename="../GUI.cpp" line="237"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="276"/>
+        <location filename="../GUI.cpp" line="286"/>
         <source>Download completion</source>
         <translation>Fin du téléchargement</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="282"/>
+        <location filename="../GUI.cpp" line="292"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2757,13 +2757,13 @@ Veuillez d&apos;abord le quitter.</translation>
 Raison : %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="295"/>
+        <location filename="../GUI.cpp" line="305"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+é</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="792"/>
+        <location filename="../GUI.cpp" line="802"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Réception : %2/s, Envoi : %3/s)</translation>
@@ -2837,7 +2837,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Ratio</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="293"/>
+        <location filename="../GUI.cpp" line="303"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+&amp;</translation>
@@ -2858,12 +2858,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Alt+&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="378"/>
+        <location filename="../GUI.cpp" line="388"/>
         <source>Url download error</source>
         <translation>Erreur téléchargement url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="378"/>
+        <location filename="../GUI.cpp" line="388"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Impossible de télécharger le fichier à l&apos;url : %1, raison : %2.</translation>
     </message>
@@ -2894,29 +2894,29 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Alt+&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="297"/>
+        <location filename="../GUI.cpp" line="307"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="299"/>
+        <location filename="../GUI.cpp" line="309"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="384"/>
+        <location filename="../GUI.cpp" line="394"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limite globale de la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="402"/>
+        <location filename="../GUI.cpp" line="412"/>
         <source>Global Download Speed Limit</source>
         <translation>Limite globale de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="504"/>
+        <location filename="../GUI.cpp" line="514"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Certains fichiers sont en cours de transfert.
@@ -2986,7 +2986,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Partages</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="676"/>
+        <location filename="../GUI.cpp" line="686"/>
         <source>Options were saved successfully.</source>
         <translation>Préférences sauvegardées avec succès.</translation>
     </message>
@@ -3538,7 +3538,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Informations sur le torrent</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="420"/>
+        <location filename="../ui/propertieswidget.ui" line="426"/>
         <source>Save path:</source>
         <translation>Répertoire de destination :</translation>
     </message>
@@ -3547,12 +3547,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Auteur :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="452"/>
+        <location filename="../ui/propertieswidget.ui" line="458"/>
         <source>Torrent hash:</source>
         <translation>Hash du torrent :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="475"/>
+        <location filename="../ui/propertieswidget.ui" line="481"/>
         <source>Comment:</source>
         <translation>Commentaire :</translation>
     </message>
@@ -3569,7 +3569,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Total téléchargé :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="334"/>
+        <location filename="../ui/propertieswidget.ui" line="340"/>
         <source>Share ratio:</source>
         <translation>Ratio partage :</translation>
     </message>
@@ -3583,57 +3583,57 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="82"/>
-        <location filename="../ui/propertieswidget.ui" line="200"/>
+        <location filename="../ui/propertieswidget.ui" line="206"/>
         <source>Downloaded:</source>
         <translation>Téléchargé :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="133"/>
+        <location filename="../ui/propertieswidget.ui" line="136"/>
         <source>Availability:</source>
         <translation>Disponibilité :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="167"/>
+        <location filename="../ui/propertieswidget.ui" line="173"/>
         <source>Transfer</source>
         <translation>Transfert</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="190"/>
+        <location filename="../ui/propertieswidget.ui" line="196"/>
         <source>Uploaded:</source>
         <translation>Envoyé :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="210"/>
+        <location filename="../ui/propertieswidget.ui" line="216"/>
         <source>Wasted:</source>
         <translation>Gaspillé :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="262"/>
+        <location filename="../ui/propertieswidget.ui" line="268"/>
         <source>UP limit:</source>
         <translation>Limite envoi :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="272"/>
+        <location filename="../ui/propertieswidget.ui" line="278"/>
         <source>DL limit:</source>
         <translation>Limite réception :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="282"/>
+        <location filename="../ui/propertieswidget.ui" line="288"/>
         <source>Time elapsed:</source>
         <translation>Temps écoulé :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="344"/>
+        <location filename="../ui/propertieswidget.ui" line="350"/>
         <source>Connections:</source>
         <translation>Connexions :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="406"/>
+        <location filename="../ui/propertieswidget.ui" line="412"/>
         <source>Information</source>
         <translation>Informations</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="436"/>
+        <location filename="../ui/propertieswidget.ui" line="442"/>
         <source>Created on:</source>
         <translation>Créé le :</translation>
     </message>
@@ -3647,37 +3647,37 @@ Comment:</source>
         <translation type="obsolete">Tracker actuel :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="746"/>
+        <location filename="../ui/propertieswidget.ui" line="752"/>
         <source>Collapse all</source>
         <translation>Tout réduire</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="753"/>
+        <location filename="../ui/propertieswidget.ui" line="759"/>
         <source>Expand all</source>
         <translation>Tout développer</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="800"/>
+        <location filename="../ui/propertieswidget.ui" line="806"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="817"/>
+        <location filename="../ui/propertieswidget.ui" line="823"/>
         <source>Trackers</source>
         <translation>Trackers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="840"/>
+        <location filename="../ui/propertieswidget.ui" line="846"/>
         <source>Peers</source>
         <translation>Peers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="857"/>
+        <location filename="../ui/propertieswidget.ui" line="863"/>
         <source>URL seeds</source>
         <translation>Sources HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="874"/>
+        <location filename="../ui/propertieswidget.ui" line="880"/>
         <source>Files</source>
         <translation>Fichiers</translation>
     </message>
@@ -3773,18 +3773,18 @@ Comment:</source>
         <translation type="obsolete">La liste des trackers ne peut pas être vide.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="574"/>
-        <location filename="../propertieswidget.cpp" line="576"/>
+        <location filename="../propertieswidget.cpp" line="575"/>
+        <location filename="../propertieswidget.cpp" line="577"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="583"/>
+        <location filename="../propertieswidget.cpp" line="584"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="583"/>
+        <location filename="../propertieswidget.cpp" line="584"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
@@ -4707,27 +4707,27 @@ Changements:
         <translation type="obsolete">&amp;Non</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="751"/>
+        <location filename="../transferlistwidget.cpp" line="753"/>
         <source>Column visibility</source>
         <translation>Visibilité des colonnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="808"/>
+        <location filename="../transferlistwidget.cpp" line="810"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="812"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="814"/>
+        <location filename="../transferlistwidget.cpp" line="816"/>
         <source>Preview file</source>
         <translation>Prévisualiser fichier</translation>
     </message>
@@ -4786,67 +4786,67 @@ Changements:
         <translation>Ratio</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limitation de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="693"/>
+        <location filename="../transferlistwidget.cpp" line="695"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limitation de la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="816"/>
+        <location filename="../transferlistwidget.cpp" line="818"/>
         <source>Limit upload rate</source>
         <translation>Limiter la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="818"/>
+        <location filename="../transferlistwidget.cpp" line="820"/>
         <source>Limit download rate</source>
         <translation>Limiter la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="820"/>
+        <location filename="../transferlistwidget.cpp" line="822"/>
         <source>Open destination folder</source>
         <translation>Ouvrir le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="822"/>
+        <location filename="../transferlistwidget.cpp" line="824"/>
         <source>Buy it</source>
         <translation>Acheter</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="824"/>
+        <location filename="../transferlistwidget.cpp" line="826"/>
         <source>Increase priority</source>
         <translation>Augmenter la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="826"/>
+        <location filename="../transferlistwidget.cpp" line="828"/>
         <source>Decrease priority</source>
         <translation>Diminuer la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="828"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Force recheck</source>
         <translation>Forcer revérification</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="830"/>
+        <location filename="../transferlistwidget.cpp" line="832"/>
         <source>Copy magnet link</source>
         <translation>Copier le lien magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="832"/>
+        <location filename="../transferlistwidget.cpp" line="834"/>
         <source>Super seeding mode</source>
         <translation>Mode de super partage</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="834"/>
+        <location filename="../transferlistwidget.cpp" line="836"/>
         <source>Download in sequential order</source>
         <translation>Téléchargement séquentiel</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="836"/>
+        <location filename="../transferlistwidget.cpp" line="838"/>
         <source>Download first and last piece first</source>
         <translation>Téléchargement prioritaire du début et de la fin</translation>
     </message>
