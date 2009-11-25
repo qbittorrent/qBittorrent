@@ -111,7 +111,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   tabs = new QTabWidget();
   connect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   vSplitter = new QSplitter(Qt::Horizontal);
-  vSplitter->setChildrenCollapsible(false);
+  //vSplitter->setChildrenCollapsible(false);
   hSplitter = new QSplitter(Qt::Vertical);
   hSplitter->setChildrenCollapsible(false);
 
@@ -123,6 +123,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   hSplitter->addWidget(properties);
   vSplitter->addWidget(transferListFilters);
   vSplitter->addWidget(hSplitter);
+  vSplitter->setCollapsible(0, true);
+  vSplitter->setCollapsible(1, false);
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
   vboxLayout->addWidget(tabs);
 
