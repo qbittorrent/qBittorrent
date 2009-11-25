@@ -111,6 +111,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittor
   connect(BTSession, SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateMetadata(QTorrentHandle&)));
   connect(BTSession, SIGNAL(pausedTorrent(QTorrentHandle&)), this, SLOT(pauseTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(resumedTorrent(QTorrentHandle&)), this, SLOT(resumeTorrent(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(torrentFinishedChecking(QTorrentHandle&)), this, SLOT(updateMetadata(QTorrentHandle&)));
 
   // Listen for list events
   connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
@@ -246,6 +247,7 @@ void TransferListWidget::updateMetadata(QTorrentHandle &h) {
     qDebug("Updating torrent metadata in download list");
     listModel->setData(listModel->index(row, TR_NAME), QVariant(h.name()));
     listModel->setData(listModel->index(row, TR_SIZE), QVariant((qlonglong)h.actual_size()));
+    listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
   }
 }
 
