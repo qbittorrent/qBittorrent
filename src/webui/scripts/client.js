@@ -119,7 +119,6 @@ window.addEvent('domready', function(){
     }
     return '';
   };
-	var round1 = function(val){return Math.round(val*10)/10};
 	var ajaxfn = function(){
 		var queueing_enabled = false;
 		var url = 'json/events';
@@ -147,7 +146,7 @@ window.addEvent('domready', function(){
                 row[1] = event.name;
 		row[2] = event.priority
                 row[3] = event.size;
-                row[4] = round1(event.progress*100);
+                row[4] = (event.progress*100).round(1);
 		row[5] = event.num_seeds;
 		row[6] = event.num_leechs;
                 row[7] = event.dlspeed;

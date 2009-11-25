@@ -13,7 +13,6 @@
             </span>
 
 <script type="text/javascript">
-    var round1 = function(val){return Math.round(val*10)/10};
     var waitingTorrentFiles=false;
     var current_hash = "";
     
@@ -164,7 +163,7 @@ var createPriorityCombo = function(id, selected_prio) {
                             row.length = 4;
                             row[0] = file.name;
                             row[1] = file.size;
-                            row[2] = round1(file.progress*100);
+                            row[2] = (file.progress*100).round(1);
                             row[3] = file.priority;
                             fTable.insertRow(i, row);
                             i++;
