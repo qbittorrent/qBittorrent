@@ -1804,8 +1804,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>363</width>
-              <height>424</height>
+              <width>620</width>
+              <height>488</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2304,8 +2304,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>226</width>
-              <height>123</height>
+              <width>620</width>
+              <height>488</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2430,9 +2430,6 @@
                <layout class="QHBoxLayout">
                 <item>
                  <widget class="QLabel" name="lblWebUiPort">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
                   <property name="text">
                    <string>Port:</string>
                   </property>
@@ -2440,9 +2437,6 @@
                 </item>
                 <item>
                  <widget class="QSpinBox" name="spinWebUiPort">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
                   <property name="maximum">
                    <number>65535</number>
                   </property>
@@ -2480,9 +2474,6 @@
                  <layout class="QVBoxLayout">
                   <item>
                    <widget class="QLabel" name="lblWebUiUsername">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
                     <property name="text">
                      <string>Username:</string>
                     </property>
@@ -2490,9 +2481,6 @@
                   </item>
                   <item>
                    <widget class="QLabel" name="lblWebUiPassword">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
                     <property name="text">
                      <string>Password:</string>
                     </property>
@@ -2504,9 +2492,6 @@
                  <layout class="QVBoxLayout">
                   <item>
                    <widget class="QLineEdit" name="textWebUiUsername">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
                     <property name="text">
                      <string/>
                     </property>
@@ -2520,9 +2505,6 @@
                   </item>
                   <item>
                    <widget class="QLineEdit" name="textWebUiPassword">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
                     <property name="text">
                      <string/>
                     </property>
