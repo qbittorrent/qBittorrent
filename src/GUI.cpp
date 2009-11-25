@@ -803,7 +803,7 @@ void GUI::updateGUI() {
 
 void GUI::showNotificationBaloon(QString title, QString msg) const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool()) {
+  if(settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool()) {
 #ifdef WITH_LIBNOTIFY
     if (notify_init ("summary-body")) {
       NotifyNotification* notification;
@@ -815,7 +815,8 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
         return;
     }
 #else
-    systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+    if(systrayIcon)
+      systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
 #endif
   }
 }
