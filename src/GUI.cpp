@@ -27,6 +27,12 @@
  *
  * Contact : chris@qbittorrent.org
  */
+#ifdef WITH_LIBNOTIFY
+#include <glib.h>
+#include <unistd.h>
+#include <libnotify/notify.h>
+#endif
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDesktopWidget>
@@ -798,7 +804,19 @@ void GUI::updateGUI() {
 void GUI::showNotificationBaloon(QString title, QString msg) const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool()) {
+#ifdef WITH_LIBNOTIFY
+    if (notify_init ("summary-body")) {
+      NotifyNotification* notification;
+      notification = notify_notification_new (title.toLocal8Bit().data(), msg.toLocal8Bit().data(), 0, 0);
+      GError* error = 0;
+      gboolean success = notify_notification_show (notification, &error);
+      notify_uninit ();
+      if(success)
+        return;
+    }
+#else
     systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+#endif
   }
 }
 

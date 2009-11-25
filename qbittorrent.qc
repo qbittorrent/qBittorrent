@@ -12,4 +12,6 @@
   <dep type='libboost'>
     <required/>
   </dep>
+  <dep type='libnotify'>
+  </dep>
 </qconf>

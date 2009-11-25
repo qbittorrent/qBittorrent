@@ -1,0 +1,41 @@
+/*
+-----BEGIN QCMOD-----
+name: libnotify
+-----END QCMOD-----
+*/
+// see  Conf::findPkgConfig
+class qc_libnotify : public ConfObj
+{
+public:
+	qc_libnotify(Conf *c) : ConfObj(c) {}
+	QString name() const { return "libnotify >= 0.4.2 (optional)"; }
+	QString shortname() const { return "libnotify"; }
+	bool exec(){
+		QStringList incs;
+		QString req_ver = "0.4.2";
+		QString version, libs, other;
+		VersionMode mode = VersionMin;
+		if(conf->findPkgConfig("libnotify", mode, req_ver, &version, &incs, &libs, &other)) {
+			conf->addDefine("WITH_LIBNOTIFY");
+			for(int n = 0; n < incs.count(); ++n)
+				conf->addIncludePath(incs[n]);
+			if(!libs.isEmpty())
+				conf->addLib(libs);
+			QStringList incs2;
+			QString req_ver2 = "2.0";
+			QString version2, libs2, other2;
+			if(conf->findPkgConfig("glib-2.0", mode, req_ver2, &version2, &incs2, &libs2, &other2)) {
+				for(int n = 0; n < incs2.count(); ++n)
+				conf->addIncludePath(incs2[n]);
+				if(!libs2.isEmpty())
+					conf->addLib(libs2);
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		
+		return true;
+	}
+};
