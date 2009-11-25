@@ -156,7 +156,7 @@ window.addEvent('domready', function(){
 	    }
 					}
 					waiting=false;
-					ajaxfn.delay(1500);
+					ajaxfn.delay(1000);
 				}
 			}).send();
 		}
