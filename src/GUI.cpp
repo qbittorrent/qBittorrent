@@ -67,6 +67,8 @@
 
 using namespace libtorrent;
 
+#define TIME_TRAY_BALLOON 5000
+
 /*****************************************************
  *                                                   *
  *                       GUI                         *
@@ -814,10 +816,9 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
       if(success)
         return;
     }
-#else
+#endif
     if(systrayIcon)
       systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
-#endif
   }
 }
 
