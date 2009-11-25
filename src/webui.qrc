@@ -12,6 +12,7 @@
   <file>webui/prop-files.html</file>
   <file>webui/properties.html</file>
   <file>webui/uploadlimit.html</file>
+  <file>webui/downloadlimit.html</file>
   <file>webui/css/mocha.css</file>
   <file>webui/css/dynamicTable.css</file>
   <file>webui/css/style.css</file>
