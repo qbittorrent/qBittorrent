@@ -31,8 +31,6 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 
-#define TIME_TRAY_BALLOON 5000
-
 #include <QProcess>
 #include <QList>
 #include <QPair>
@@ -44,10 +42,10 @@
 #include "supportedengines.h"
 
 class Bittorrent;
-class QSystemTrayIcon;
 class downloadThread;
 class QTimer;
 class SearchEngine;
+class GUI;
 
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
@@ -63,15 +61,16 @@ private:
   QPointer<QCompleter> searchCompleter;
   QStringListModel searchHistory;
   Bittorrent *BTSession;
-  QSystemTrayIcon *systrayIcon;
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
   SearchTab *currentSearchTab;
   QPushButton *closeTab_button;
   QList<SearchTab*> all_tab; // To store all tabs
   const SearchCategories full_cat_names;
+  GUI *parent;
+
 public:
-  SearchEngine(Bittorrent *BTSession, QSystemTrayIcon *systrayIcon);
+  SearchEngine(GUI *parent, Bittorrent *BTSession);
   ~SearchEngine();
   QString selectedCategory() const;
 

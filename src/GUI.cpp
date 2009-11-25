@@ -144,7 +144,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
 
   // Search engine tab
-  searchEngine = new SearchEngine(BTSession, systrayIcon);
+  searchEngine = new SearchEngine(this, BTSession);
   tabs->addTab(searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
 
   // Configure BT session according to options
@@ -429,7 +429,7 @@ void GUI::previewFile(QString filePath) {
   QDesktopServices::openUrl(QString("file://")+filePath);
 }
 
-int GUI::getCurrentTabIndex() const{
+int GUI::getCurrentTabIndex() const {
   if(isMinimized() || !isVisible())
     return -1;
   return tabs->currentIndex();
