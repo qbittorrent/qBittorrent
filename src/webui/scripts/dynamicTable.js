@@ -137,7 +137,7 @@ var dynamicTable = new Class	({
 		{
 			var td = new Element('td');
 			if(i==this.progressIndex) {
-				td.adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+				td.adopt(new ProgressBar(row[i].toFloat(), {'id': 'pb_'+id, 'width':80}));
 			} else {
 				if(i==0) {
 					td.adopt(new Element('img', {'src':row[i]}));
@@ -261,9 +261,7 @@ var dynamicTable = new Class	({
 		var tds = tr.getElements('td');
 		for(var i=0; i<row.length; i++) {
 			if(i==this.progressIndex) {
-				new ProgressBar(row[i].toFloat(), {width:80}).replaces(tds[i].getChildren()[0]);
-				/*tds[i].set('html', '');
-				tds[i].adopt(new ProgressBar(row[i].toFloat(), {width:80}));*/
+				$('pb_'+id).setValue(row[i].toFloat());
 			} else {
 				if(i==0) {
 					tds[i].getChildren('img')[0].set('src', row[i]);
