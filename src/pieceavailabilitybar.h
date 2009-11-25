@@ -91,6 +91,10 @@ protected:
     //qDebug("avail: %d/%d", avail, max_avail);
     QColor color = Qt::blue; // average avail
     double fraction = 100.*average/avail;
+    if(fraction < 100)
+      fraction *= 0.9;
+    else
+      fraction *= 1.1;
     return color.lighter(fraction);
   }
 };
