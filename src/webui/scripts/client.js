@@ -40,8 +40,10 @@ window.addEvent('domready', function(){
 	'background': '#fff',
 	'visibility': 'visible'
   });
-  var filt_w = Cookie.read('filters_width').toInt();
-  if(!$defined(filt_w))
+  var filt_w = Cookie.read('filters_width');
+  if($defined(filt_w))
+     filt_w =  filt_w.toInt();
+  else
     filt_w = 120;
   new MochaUI.Column({
 		id: 'filtersColumn',
@@ -73,8 +75,10 @@ window.addEvent('domready', function(){
 		onResize: saveColumnSizes,
 		height: null
 	});
-    var prop_h = Cookie.read('properties_height').toInt();
-    if(!$defined(prop_h))
+    var prop_h = Cookie.read('properties_height');
+    if($defined(prop_h))
+      prop_h = prop_h.toInt();
+    else
       prop_h = 200;
     new MochaUI.Panel({
 		id: 'properties',
