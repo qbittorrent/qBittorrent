@@ -328,11 +328,11 @@ int TransferListWidget::updateTorrent(int row) {
       if(h.is_seed()) {
         s = STATE_CHECKING_UP;
 
-      listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingUP.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingUP.png"))), Qt::DecorationRole);
       } else {
         s = STATE_CHECKING_DL;
 
-      listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingDL.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/checkingDL.png"))), Qt::DecorationRole);
       }
       listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
       listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
@@ -1074,6 +1074,8 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
   if(current.isValid()) {
     int row = proxyModel->mapToSource(current).row();
     h = BTSession->getTorrentHandle(getHashFromRow(row));
+    // Scroll Fix
+    scrollTo(current);
   }
   emit currentTorrentChanged(h);
 }
