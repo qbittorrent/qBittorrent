@@ -14,10 +14,10 @@
   <div style="padding-left: 30px;">
   <table>
   <tr>
-  <td style="vertical-align: bottom;"><input type="checkbox" id="up_limit_checkbox"/></td><td style="text-align: right; padding-right: 3px;">_(Upload:)</td><td><input type="text" id="up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="up_limit_checkbox" onClick="updateUpLimitEnabled();"/></td><td style="text-align: right; padding-right: 3px;">_(Upload:)</td><td><input type="text" id="up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom;"><input type="checkbox" id="dl_limit_checkbox" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Download:)</td><td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="dl_limit_checkbox" onClick="updateDlLimitEnabled();"/></td><td style="text-align: right; padding-right: 3px;">_(Download:)</td><td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
   </tr>
   </table>
   </div>
@@ -28,13 +28,13 @@
   <div style="padding-left: 30px;">
   <table>
   <tr>
-  <td style="vertical-align: bottom;"><input type="checkbox" id="max_connec_checkbox"/></td><td style="text-align: right; padding-right: 3px;">_(Global maximum number of connections:)</td><td><input type="text" id="max_connec_value" style="width: 4em;"/></td>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="max_connec_checkbox" onClick="updateMaxConnecEnabled();"/></td><td style="text-align: right; padding-right: 3px;">_(Global maximum number of connections:)</td><td><input type="text" id="max_connec_value" style="width: 4em;"/></td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom;"><input type="checkbox" id="mac_connec_per_torrent_checkbox" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Maximum number of connections per torrent:)</td><td><input type="text" id="max_connec_per_torrent_value" style="width: 4em;"/></td>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="max_connec_per_torrent_checkbox" onClick="updateMaxConnecPerTorrentEnabled();" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Maximum number of connections per torrent:)</td><td><input type="text" id="max_connec_per_torrent_value" style="width: 4em;"/></td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom;"><input type="checkbox" id="max_uploads_per_torrent_checkbox" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Maximum number of upload slots per torrent:)</td><td><input type="text" id="max_uploads_per_torrent_value" style="width: 4em;"/></td>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="max_uploads_per_torrent_checkbox" onClick="updateMaxUploadsPerTorrentEnabled();" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Maximum number of upload slots per torrent:)</td><td><input type="text" id="max_uploads_per_torrent_value" style="width: 4em;"/></td>
   </tr>
   </table>
   </div>
@@ -50,6 +50,121 @@
   </table>
   </div>
 </fieldset>
+<br/>
+<center><input type="button" value="_(Apply)" onclick="applyPreferences();"/></center>
+<script type="text/javascript">
+applyPreferences = function() {
+  // Validate form data
+  // Send it to qBT
+  // Close window
+  window.parent.closeWindows();
+};
 
+updateDlLimitEnabled = function() {
+  if($defined($('dl_limit_checkbox').get('checked')) && $('dl_limit_checkbox').get('checked')) {
+    $('dl_limit_value').set('disabled', 'false');
+  } else {
+    $('dl_limit_value').set('disabled', 'true');
+  }
+}
+
+updateUpLimitEnabled = function() {
+  if($defined($('up_limit_checkbox').get('checked')) && $('up_limit_checkbox').get('checked')) {
+    $('up_limit_value').removeProperty('disabled');
+  } else {
+    $('up_limit_value').set('disabled', 'true');
+  }
+}
+
+updateMaxConnecEnabled = function() {
+  if($defined($('max_connec_checkbox').get('checked')) && $('max_connec_checkbox').get('checked')) {
+    $('max_connec_value').removeProperty('disabled');
+  } else {
+    $('max_connec_value').set('disabled', 'true');
+  }
+}
+
+updateMaxConnecPerTorrentEnabled = function() {
+  if($defined($('max_connec_per_torrent_checkbox').get('checked')) && $('max_connec_per_torrent_checkbox').get('checked')) {
+    $('max_connec_per_torrent_value').removeProperty('disabled');
+  } else {
+    $('max_connec_per_torrent_value').set('disabled', 'true');
+  }
+}
+
+updateMaxUploadsPerTorrentEnabled = function() {
+  if($defined($('max_uploads_per_torrent_checkbox').get('checked')) && $('max_uploads_per_torrent_checkbox').get('checked')) {
+    $('max_uploads_per_torrent_value').removeProperty('disabled');
+  } else {
+    $('max_uploads_per_torrent_value').set('disabled', 'true');
+  }
+}
+
+loadPreferences = function() {
+  var url = 'json/preferences';
+  var request = new Request.JSON({
+          url: url,
+          method: 'get',
+          onFailure: function() {
+            alert("Could not contact qBittorrent");
+          },
+          onSuccess: function(pref) {
+                  if(pref){
+                    var dl_limit = pref.dl_limit.toInt();
+                    if(dl_limit <= 0) {
+                      $('dl_limit_checkbox').removeProperty('checked');
+                    } else {
+                      $('dl_limit_checkbox').set('checked', 'checked');
+                      ('dl_limit_value').set('value', dl_limit);
+                    }
+                    updateDlLimitEnabled();
+                    var up_limit = pref.up_limit.toInt();
+                    if(up_limit <= 0) {
+                      $('up_limit_checkbox').removeProperty('checked');
+                    } else {
+                      $('up_limit_checkbox').set('checked', 'checked');
+                      $('up_limit_value').set('value', up_limit);
+                    }
+                    updateUpLimitEnabled();
+                    var dht = pref.dht; //bool
+                    if(dht) {
+                      $('dht_checkbox').set('checked', 'checked');
+                    } else {
+                      $('dht_checkbox').removeProperty('checked');
+                    }
+                    var max_connec = pref.max_connec.toInt();
+                    if(max_connec <= 0) {
+                      $('max_connec_checkbox').removeProperty('checked');
+                      $('max_connec_value').set('value', 500);
+                    } else {
+                      $('max_connec_checkbox').set('checked', 'checked');
+                      $('max_connec_value').set('value', max_connec);
+                    }
+                    updateMaxConnecEnabled();
+                    var max_connec_per_torrent = pref.max_connec_per_torrent.toInt();
+                    if(max_connec_per_torrent <= 0) {
+                      $('max_connec_per_torrent_checkbox').removeProperty('checked');
+                      $('max_connec_per_torrent_value').set('value', 100);
+                    } else {
+                      $('max_connec_per_torrent_checkbox').set('checked', 'checked');
+                      $('max_connec_per_torrent_value').set('value', max_connec_per_torrent);
+                    }
+                    updateMaxConnecPerTorrentEnabled();
+                    var max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
+                    if(max_uploads_per_torrent <= 0) {
+                      $('max_uploads_per_torrent_checkbox').removeProperty('checked');
+                      $('max_uploads_per_torrent_value').set('value', 4);
+                    } else {
+                      $('max_uploads_per_torrent_checkbox').set('checked', 'checked');
+                      $('max_uploads_per_torrent_value').set('value', max_uploads_per_torrent);
+                    }
+                    updateMaxUploadsPerTorrentEnabled();
+                  }
+          }
+  }).send();
+}
+
+loadPreferences();
+</script>
 </body>
 </html>
