@@ -135,7 +135,7 @@ window.addEvent('domready', function(){
                   // New unfinished torrent
                   torrent_hashes[torrent_hashes.length] = event.hash;
 		  //alert("Inserting row");
-                  myTable.insertRow(event.hash, row);
+                  myTable.insertRow(event.hash, row, event.state);
                 } else {
                   // Update torrent data
                   myTable.updateRow(event.hash, row, event.state);

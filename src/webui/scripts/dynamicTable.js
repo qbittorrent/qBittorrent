@@ -94,36 +94,36 @@ var dynamicTable = new Class	({
 		switch(this.filter) {
 			case 'all':
 				tr.removeClass("invisible");
-				return;
+				break;
 			case 'downloading':
 				if(status == "downloading" || status == "stalledDL" || status == "checkingDL" || status == "pausedDL" || status == "queuedDL") {
 					tr.removeClass("invisible");
 				} else {
 					tr.addClass("invisible");
 				}
-				return;
+				break;
 			case 'completed':
 				if(status == "seeding" || status == "stalledUP" || status == "checkingUP" || status == "pausedUP" || status == "queuedUP") {
 					tr.removeClass("invisible");
 				} else {
 					tr.addClass("invisible");
 				}
-				return;
+				break;
 			case 'active':
 				if(status == "downloading" || status == "seeding") {
 					tr.removeClass("invisible");
 				} else {
 					tr.addClass("invisible");
 				}
-				return;
+				break;
 			case 'inactive':
 				if(status != "downloading" && status != "seeding") {
 					tr.removeClass("invisible");
 				} else {
 					tr.addClass("invisible");
 				}
-				return;
 		}
+		return !tr.hasClass('invisible');
 	},
 
 	insertRow: function(id, row, status){
@@ -257,19 +257,21 @@ var dynamicTable = new Class	({
 		}
 		var tr = this.rows.get(id);
 		// Apply filter
-		this.applyFilterOnRow(tr, status);
-		var tds = tr.getElements('td');
-		for(var i=0; i<row.length; i++) {
-			if(i==this.progressIndex) {
-				$('pb_'+id).setValue(row[i].toFloat());
-			} else {
-				if(i==0) {
-					tds[i].getChildren('img')[0].set('src', row[i]);
+		if(this.applyFilterOnRow(tr, status)) {
+			var tds = tr.getElements('td');
+			for(var i=0; i<row.length; i++) {
+				if(i==1) continue; // Do not refresh name
+				if(i==this.progressIndex) {
+					$('pb_'+id).setValue(row[i].toFloat());
 				} else {
-					tds[i].set('html', row[i]);
+					if(i==0) {
+						tds[i].getChildren('img')[0].set('src', row[i]);
+					} else {
+						tds[i].set('html', row[i]);
+					}
 				}
-			}
-		};
+			};
+		}
 		return true;
 	},
 
