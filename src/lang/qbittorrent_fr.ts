@@ -3059,32 +3059,32 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../httpserver.cpp" line="71"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>La limite pour la vitesse de réception doit être supérieure à 0 ou désactivée.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="72"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>La limite pour la vitesse d&apos;envoi doit être supérieure à 0 ou désactivée.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="73"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nombre maximum de connexions doit être supérieur à 0 ou désactivé.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="74"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nombre maximum de connexions par torrent doit être supérieur à 0 ou désactivé.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="75"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nombre maximum de slots d&apos;envoi par torrent doit être supérieur à 0 ou désactivé.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="76"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de sauvegarder les préférences, qBittorrent est probablement injoignable.</translation>
     </message>
 </context>
 <context>
