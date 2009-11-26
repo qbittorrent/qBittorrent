@@ -273,7 +273,7 @@ cat >$1/modules.cpp <<EOT
 #line 1 "qt4.qcm"
 /*
 -----BEGIN QCMOD-----
-name: Qt >= 4.3
+name: Qt >= 4.4
 -----END QCMOD-----
 */
 class qc_qt4 : public ConfObj
@@ -284,6 +284,9 @@ public:
 	QString shortname() const { return "Qt 4.4"; }
 	bool exec()
 	{
+		if(QT_VERSION >= 0x040500) {
+                        conf->addDefine("QT_4_5");
+                }
 		return(QT_VERSION >= 0x040400);
 		
 	}

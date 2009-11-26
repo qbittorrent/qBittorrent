@@ -58,12 +58,17 @@ SearchEngine::SearchEngine(GUI *parent, Bittorrent *BTSession) : QWidget(parent)
   // new qCompleter to the search pattern
   startSearchHistory();
   createCompleter();
+#ifdef QT_4_5
+  tabWidget->setTabsClosable(true);
+  connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
+#else
   // Add close tab button
   closeTab_button = new QPushButton();
   closeTab_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/tab-close.png")));
   closeTab_button->setFlat(true);
-  connect(closeTab_button, SIGNAL(clicked()), this, SLOT(closeTab_button_clicked()));
   tabWidget->setCornerWidget(closeTab_button);
+  connect(closeTab_button, SIGNAL(clicked()), this, SLOT(closeTab_button_clicked()));
+#endif
   // Boolean initialization
   search_stopped = false;
   // Creating Search Process
@@ -113,6 +118,9 @@ SearchEngine::~SearchEngine(){
     downloader->waitForFinished();
     delete downloader;
   }
+#ifndef QT_4_5
+  delete closeTab_button;
+#endif
   delete searchTimeout;
   delete searchProcess;
   delete supported_engines;
@@ -214,7 +222,9 @@ void SearchEngine::on_search_button_clicked(){
   all_tab.append(currentSearchTab);
   tabWidget->addTab(currentSearchTab, pattern);
   tabWidget->setCurrentWidget(currentSearchTab);
+#ifndef QT_4_5
   closeTab_button->setEnabled(true);
+#endif
   // if the pattern is not in the pattern
   QStringList wordList = searchHistory.stringList();
   if(wordList.indexOf(pattern) == -1){
@@ -490,6 +500,25 @@ void SearchEngine::appendSearchResult(QString line){
   download_button->setEnabled(true);
 }
 
+#ifdef QT_4_5
+void SearchEngine::closeTab(int index) {
+  if(index == tabWidget->indexOf(currentSearchTab)) {
+    qDebug("Deleted current search Tab");
+    if(searchProcess->state() != QProcess::NotRunning){
+      searchProcess->terminate();
+    }
+    if(searchTimeout->isActive()) {
+      searchTimeout->stop();
+    }
+    search_stopped = true;
+    currentSearchTab = 0;
+  }
+  delete all_tab.takeAt(tabWidget->currentIndex());
+  if(!all_tab.size()) {
+    download_button->setEnabled(false);
+  }
+}
+#else
 // Clear search results list
 void SearchEngine::closeTab_button_clicked(){
   if(all_tab.size()) {
@@ -513,6 +542,7 @@ void SearchEngine::closeTab_button_clicked(){
     }
   }
 }
+#endif
 
 // Download selected items in search results list
 void SearchEngine::on_download_button_clicked(){
