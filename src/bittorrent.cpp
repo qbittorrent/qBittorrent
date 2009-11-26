@@ -1136,6 +1136,7 @@ void Bittorrent::saveFastResumeData() {
     if (!rd->resume_data) continue;
     QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
     QTorrentHandle h(rd->handle);
+    if(!h.is_valid()) continue;
     // Remove old fastresume file if it exists
     QFile::remove(torrentBackup.path()+QDir::separator()+ h.hash() + ".fastresume");
     QString file = h.hash()+".fastresume";
