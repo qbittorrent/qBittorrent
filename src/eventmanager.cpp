@@ -32,6 +32,7 @@
 #include "eventmanager.h"
 #include "bittorrent.h"
 #include "misc.h"
+#include "preferences.h"
 #include "proplistdelegate.h"
 #include "torrentpersistentdata.h"
 #include <QDebug>
@@ -116,6 +117,17 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
     ++i;
   }
   return files;
+}
+
+QVariantMap EventManager::getGlobalPreferences() const {
+  QVariantMap data;
+  data["dl_limit"] = Preferences::getGlobalDownloadLimit();
+  data["up_limit"] = Preferences::getGlobalUploadLimit();
+  data["dht"] = Preferences::isDHTEnabled();
+  data["max_connec"] = Preferences::getMaxConnecs();
+  data["max_connec_per_torrent"] = Preferences::getMaxConnecsPerTorrent();
+  data["max_uploads_per_torrent"] = Preferences::getMaxUploadsPerTorrent();
+  return data;
 }
 
 QVariantMap EventManager::getPropGeneralInfo(QString hash) const {

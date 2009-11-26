@@ -23,9 +23,27 @@ initializeWindows = function(){
 		new Event(e).stop();
 		new MochaUI.Window({
 			id: 'downloadPage',
-			title: "(Download from URL)",
+			title: "_(Download from URL)",
 			loadMethod: 'iframe',
 			contentURL:'download.html',
+			scrollbars: false,
+			resizable: false,
+			maximizable: false,
+			closable: true,
+			paddingVertical: 0,
+			paddingHorizontal: 0,
+			width: 500,
+			height: 270
+		});
+	});
+	
+	addClickEvent('preferences', function(e) {
+		new Event(e).stop();
+		new MochaUI.Window({
+			id: 'preferencesPage',
+			title: "_(Preferences)",
+			loadMethod: 'iframe',
+			contentURL:'preferences.html',
 			scrollbars: false,
 			resizable: false,
 			maximizable: false,

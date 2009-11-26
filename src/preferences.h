@@ -33,6 +33,7 @@
 
 #include <QSettings>
 #include <QPair>
+#include <QDir>
 
 class Preferences {
 public:
@@ -311,9 +312,19 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/MaxConnecs"), 500).toInt();
   }
 
+  static void setMaxConnecs(int val) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/MaxConnecs"), val);
+  }
+
   static int getMaxConnecsPerTorrent() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/MaxConnecsPerTorrent"), 100).toInt();
+  }
+
+  static void setMaxConnecsPerTorrent(int val) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/MaxConnecsPerTorrent"), val);
   }
 
   static int getMaxUploadsPerTorrent() {
@@ -321,9 +332,19 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/MaxUploadsPerTorrent"), 4).toInt();
   }
 
+  static void setMaxUploadsPerTorrent(int val) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/MaxUploadsPerTorrent"), val);
+  }
+
   static bool isDHTEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/DHT"), true).toBool();
+  }
+
+  static void setDHTEnabled(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/DHT"), enabled);
   }
 
   static bool isDHTPortSameAsBT() {
