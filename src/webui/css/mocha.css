@@ -579,6 +579,11 @@ div.mochaToolbarWrapper.bottom {
 	border-bottom: 1px solid #d9d9d9;
 }
 
+#mochaToolbar .divider {
+	background: url(../images/skin/toolbox-divider.gif) left center no-repeat;
+	padding: 30px 3px 0 12px;
+}
+
 #mochaToolbar {
 	padding: 4px 4px 4px 4px;
 	background: #f0f0f0;
