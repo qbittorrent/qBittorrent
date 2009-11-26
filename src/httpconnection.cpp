@@ -340,17 +340,17 @@ void HttpConnection::respondCommand(QString command)
       BTSession->enableDHT(dht_state == 1);
       Preferences::setDHTEnabled(dht_state == 1);
     }
-    int mac_connec = parser.post("mac_connec").toInt(&ok);
+    int max_connec = parser.post("max_connec").toInt(&ok);
     if(ok) {
-      BTSession->setMaxConnections(mac_connec);
-      Preferences::setMaxConnecs(mac_connec);
+      BTSession->setMaxConnections(max_connec);
+      Preferences::setMaxConnecs(max_connec);
     }
-    int max_connec_per_torrent = parser.post("mac_connec_per_torrent").toInt(&ok);
+    int max_connec_per_torrent = parser.post("max_connec_per_torrent").toInt(&ok);
     if(ok) {
       BTSession->setMaxConnectionsPerTorrent(max_connec_per_torrent);
       Preferences::setMaxConnecsPerTorrent(max_connec_per_torrent);
     }
-    int max_uploads_per_torrent = parser.post("mac_uploads_per_torrent").toInt(&ok);
+    int max_uploads_per_torrent = parser.post("max_uploads_per_torrent").toInt(&ok);
     if(ok) {
       BTSession->setMaxUploadsPerTorrent(max_uploads_per_torrent);
       Preferences::setMaxUploadsPerTorrent(max_uploads_per_torrent);

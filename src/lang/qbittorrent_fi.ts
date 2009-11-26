@@ -1325,25 +1325,25 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../eventmanager.cpp" line="63"/>
-        <location filename="../eventmanager.cpp" line="77"/>
+        <location filename="../eventmanager.cpp" line="64"/>
+        <location filename="../eventmanager.cpp" line="78"/>
         <source>Working</source>
         <translation>Työstetään</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="66"/>
+        <location filename="../eventmanager.cpp" line="67"/>
         <source>Updating...</source>
         <translation>Päivitetään...</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="69"/>
-        <location filename="../eventmanager.cpp" line="80"/>
+        <location filename="../eventmanager.cpp" line="70"/>
+        <location filename="../eventmanager.cpp" line="81"/>
         <source>Not working</source>
         <translation>Ei toimi</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="71"/>
-        <location filename="../eventmanager.cpp" line="82"/>
+        <location filename="../eventmanager.cpp" line="72"/>
+        <location filename="../eventmanager.cpp" line="83"/>
         <source>Not contacted yet</source>
         <translation>Ei ole vielä yheyttä</translation>
     </message>
@@ -1367,33 +1367,33 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Korkein</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="132"/>
-        <location filename="../eventmanager.cpp" line="133"/>
+        <location filename="../eventmanager.cpp" line="144"/>
+        <location filename="../eventmanager.cpp" line="145"/>
         <source>this session</source>
         <translation>tämä istunto</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="137"/>
-        <location filename="../eventmanager.cpp" line="141"/>
+        <location filename="../eventmanager.cpp" line="149"/>
+        <location filename="../eventmanager.cpp" line="153"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="144"/>
+        <location filename="../eventmanager.cpp" line="156"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>jaettu %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="147"/>
+        <location filename="../eventmanager.cpp" line="159"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>korkeintaan %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="230"/>
-        <location filename="../eventmanager.cpp" line="239"/>
+        <location filename="../eventmanager.cpp" line="242"/>
+        <location filename="../eventmanager.cpp" line="251"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -2561,6 +2561,36 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <location filename="../httpserver.cpp" line="70"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Haluatko poistaa valitut torrentit siirtolistalta ja kovalevyltä?</translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="71"/>
+        <source>Download rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="72"/>
+        <source>Upload rate limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="73"/>
+        <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="74"/>
+        <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="75"/>
+        <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="76"/>
+        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -68,6 +68,12 @@ HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcp
         a = tr("Point to torrent file");
         a = tr("Download");
         a = tr("Are you sure you want to delete the selected torrents from the transfer list and hard disk?");
+        a = tr("Download rate limit must be greater than 0 or disabled.");
+        a = tr("Upload rate limit must be greater than 0 or disabled.");
+        a = tr("Maximum number of connections limit must be greater than 0 or disabled.");
+        a = tr("Maximum number of connections per torrent limit must be greater than 0 or disabled.");
+        a = tr("Maximum number of upload slots per torrent limit must be greater than 0 or disabled.");
+        a = tr("Unable to save program preferences, qBittorrent is probably unreachable.");
 }
 
 HttpServer::~HttpServer()
