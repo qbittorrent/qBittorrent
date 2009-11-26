@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>_(Download from URL)</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
+	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+</head>
+<body style="padding: 5px;">
+<!-- preferences -->
+<fieldset>
+  <legend><b>_(Global bandwidth limiting)</b></legend>
+  <div style="padding-left: 30px;">
+  <table>
+  <tr>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="up_limit_checkbox"/></td><td style="text-align: right; padding-right: 3px;">_(Upload:)</td><td><input type="text" id="up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
+  </tr>
+  <tr>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="dl_limit_checkbox" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Download:)</td><td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
+  </tr>
+  </table>
+  </div>
+</fieldset>
+<br/>
+<fieldset>
+  <legend><b>_(Connections limit)</b></legend>
+  <div style="padding-left: 30px;">
+  <table>
+  <tr>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="max_connec_checkbox"/></td><td style="text-align: right; padding-right: 3px;">_(Global maximum number of connections:)</td><td><input type="text" id="max_connec_value" style="width: 4em;"/></td>
+  </tr>
+  <tr>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="mac_connec_per_torrent_checkbox" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Maximum number of connections per torrent:)</td><td><input type="text" id="max_connec_per_torrent_value" style="width: 4em;"/></td>
+  </tr>
+  <tr>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="max_uploads_per_torrent_checkbox" style="margin-bottom: -2px;"/></td><td style="text-align: right; padding-right: 3px;">_(Maximum number of upload slots per torrent:)</td><td><input type="text" id="max_uploads_per_torrent_value" style="width: 4em;"/></td>
+  </tr>
+  </table>
+  </div>
+</fieldset>
+<br/>
+<fieldset>
+  <legend><b>_(Bittorrent features)</b></legend>
+  <div style="padding-left: 30px;">
+  <table>
+  <tr>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="dht_checkbox"/></td><td style="text-align: right;">_(Enable DHT network (decentralized))</td>
+  </tr>
+  </table>
+  </div>
+</fieldset>
+
+</body>
+</html>
