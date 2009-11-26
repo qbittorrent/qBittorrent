@@ -136,7 +136,7 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   QAction *banAct = 0;
   if(!selectedPeerIPs.isEmpty()) {
     upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate"));
-    dlLimitAct = menu.addAction(QIcon(":/Icons/skin/downloading.png"), tr("Limit download rate"));
+    dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate"));
     banAct = menu.addAction(QIcon(":/Icons/oxygen/user-group-delete.png"), tr("Ban peer permanently"));
     empty_menu = false;
   }
