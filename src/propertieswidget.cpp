@@ -315,7 +315,10 @@ void PropertiesWidget::loadDynamicData() {
         elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
       }
       lbl_elapsed->setText(elapsed_txt);
-      lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
+      if(h.connections_limit() > 0)
+        lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
+      else
+        lbl_connections->setText(QString::number(h.num_connections()));
       // Update ratio info
       float ratio;
       if(h.total_payload_download() == 0){
