@@ -258,7 +258,11 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
     leechs += " ("+QString::number(h.num_incomplete())+")";
   event["num_leechs"] = QVariant(leechs);
   event["seed"] = QVariant(h.is_seed());
-  event["ratio"] = QVariant(QString::number(BTSession->getRealRatio(hash), 'f', 1));
+  double ratio = BTSession->getRealRatio(hash);
+  if(ratio > 100.)
+    QString::fromUtf8("∞");
+  else
+    event["ratio"] = QVariant(QString::number(ratio, 'f', 1));
   event["hash"] = QVariant(hash);
   event_list[hash] = event;
 }

@@ -320,19 +320,11 @@ void PropertiesWidget::loadDynamicData() {
       else
         lbl_connections->setText(QString::number(h.num_connections()));
       // Update ratio info
-      float ratio;
-      if(h.total_payload_download() == 0){
-        if(h.total_payload_upload() == 0)
-          ratio = 1.;
-        else
-          ratio = 10.; // Max ratio
-      }else{
-        ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
-        if(ratio > 10.){
-          ratio = 10.;
-        }
-      }
-      shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
+      double ratio = BTSession->getRealRatio(h.hash());
+      if(ratio > 100.)
+        shareRatio->setText(QString::fromUtf8("∞"));
+      else
+        shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
       if(!h.is_seed()) {
         // Downloaded pieces
         downloaded_pieces->setProgress(h.pieces());

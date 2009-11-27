@@ -101,10 +101,16 @@ var dynamicTable = new Class	({
 				else
 					return (tr2.getElements('td')[i].get('html').split(' ')[0].toInt() - tr1.getElements('td')[i].get('html').split(' ')[0].toInt());
 			default: // Ratio
+				var ratio1 = tr1.getElements('td')[i].get('html');
+				if(ratio1 == '∞')
+					ratio1 = '101.0';
+				var ratio2 = tr2.getElements('td')[i].get('html');
+				if(ratio2 == '∞')
+					ratio2 = '101.0';
 				if(order == "ASC")
-					return (tr1.getElements('td')[i].get('html').toFloat() -  tr2.getElements('td')[i].get('html')).toFloat();
+					return (ratio1.toFloat() -  ratio2.toFloat());
 				else
-					return (tr2.getElements('td')[i].get('html').toFloat() -  tr1.getElements('td')[i].get('html')).toFloat();
+					return (ratio2.toFloat() -  ratio1.toFloat());
 		}
 	},
 	
