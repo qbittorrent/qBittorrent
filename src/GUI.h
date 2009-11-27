@@ -105,7 +105,6 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     void on_actionShow_console_triggered();
     void readParamsOnSocket();
     void acceptConnection();
-    void previewFile(QString filePath);
     void balloonClicked();
     void writeSettings();
     void readSettings();

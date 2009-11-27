@@ -424,10 +424,6 @@ void GUI::on_actionExit_triggered() {
   close();
 }
 
-void GUI::previewFile(QString filePath) {
-  QDesktopServices::openUrl(QString("file://")+filePath);
-}
-
 int GUI::getCurrentTabIndex() const {
   if(isMinimized() || !isVisible())
     return -1;

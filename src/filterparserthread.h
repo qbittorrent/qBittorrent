@@ -72,7 +72,7 @@ class FilterParserThread : public QThread  {
           parseP2PFilterFile(filePath);
         } else {
             if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
-              // PeerGuardian p2p file
+              // PeerGuardian p2b file
               parseP2BFilterFile(filePath);
             } else {
               // Default: eMule DAT format

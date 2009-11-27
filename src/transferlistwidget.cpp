@@ -251,6 +251,10 @@ void TransferListWidget::updateMetadata(QTorrentHandle &h) {
   }
 }
 
+void TransferListWidget::previewFile(QString filePath) {
+  QDesktopServices::openUrl(QString("file://")+filePath);
+}
+
 int TransferListWidget::updateTorrent(int row) {
   TorrentState s = STATE_INVALID;
   QString hash = getHashFromRow(row);
