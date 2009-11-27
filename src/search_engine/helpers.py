@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.02
+#VERSION: 1.1
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -31,6 +31,7 @@ import re, htmlentitydefs
 import urllib2
 import tempfile
 import os
+import StringIO, gzip, httplib
 
 def htmlentitydecode(s):
     # First convert alpha entities (such as &eacute;)
@@ -66,11 +67,20 @@ def retrieve_url(url):
 def download_file(url):
     """ Download file at url and write it to a file, return the path to the file and the url """
     file, path = tempfile.mkstemp()
-    file = os.fdopen(file, "wb")
+    file = os.fdopen(file, "w")
     # Download url
     req = urllib2.Request(url)
     response = urllib2.urlopen(req)
     dat = response.read()
+    # Check if data is gzip encoded
+    response_info = response.info()
+    content_encoding = response_info.get('Content-Encoding')
+    if content_encoding is not None and 'gzip' in content_encoding:
+        # Data is gzip encoded, decode it
+        compressedstream = StringIO.StringIO(dat)
+        gzipper = gzip.GzipFile(fileobj=compressedstream)
+        extracted_data = gzipper.read()
+        dat = extracted_data
     # Write it to a file
     file.write(dat)
     file.close()
