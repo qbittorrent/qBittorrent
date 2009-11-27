@@ -1249,8 +1249,9 @@ void Bittorrent::enableDirectoryScanning(QString scan_dir) {
     }
     if(FSWatcher == 0) {
       // Set up folder watching
-      FSWatcher = new FileSystemWatcher(scan_dir, this);
+      FSWatcher = new FileSystemWatcher(this);
       connect(FSWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
+      FSWatcher->addPath(scan_dir);
     } else {
       QString old_scan_dir = "";
       if(!FSWatcher->directories().empty())

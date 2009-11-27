@@ -139,6 +139,7 @@ public:
     } else {
 #endif
       // Normal mode
+      qDebug("FS Watching is watching %s in normal mode", path.toLocal8Bit().data());
       QFileSystemWatcher::addPath(path);
       scanFolder();
 #ifndef Q_WS_WIN
@@ -165,11 +166,14 @@ public:
 protected slots:
   // XXX: Does not detect file size changes to improve performance.
   void scanFolder() {
+    qDebug("Scan folder was called");
     QStringList torrents;
-    if(watch_timer)
+    if(watch_timer) {
       torrents = watched_folder.entryList(filters, QDir::Files, QDir::Unsorted);
-    else
+    } else {
       torrents = QDir(QFileSystemWatcher::directories().first()).entryList(filters, QDir::Files, QDir::Unsorted);
+      qDebug("FSWatcher: Polling manually folder %s", QFileSystemWatcher::directories().first().toLocal8Bit().data());
+    }
     if(!torrents.empty())
       emit torrentsAdded(torrents);
   }
