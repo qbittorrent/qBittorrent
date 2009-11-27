@@ -362,8 +362,10 @@ int TransferListWidget::updateTorrent(int row) {
     case torrent_status::seeding:
       if(h.upload_payload_rate() > 0) {
         s = STATE_SEEDING;
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/uploading.png"))), Qt::DecorationRole);
       } else {
         s = STATE_STALLED_UP;
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledUP.png"))), Qt::DecorationRole);
       }
     }
     // Common to both downloads and uploads
