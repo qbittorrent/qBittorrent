@@ -149,8 +149,7 @@ public:
             newopt.minimum = 0;
             newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt,
-                                               painter);
+            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
             break;
           }
         default:
