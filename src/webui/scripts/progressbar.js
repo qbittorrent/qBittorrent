@@ -23,6 +23,7 @@ var ProgressBar=new Class({
 			}
 		});
 		obj.vals=vals;
+		obj.vals.value = $pick(value, 0); // Fix by Chris
 		obj.vals.dark=new Element('div',{
 			'id':vals.id+'_dark',
 			'class':'progressbar_dark',
@@ -55,12 +56,18 @@ var ProgressBar=new Class({
 		});
 		obj.appendChild(obj.vals.dark);
 		obj.appendChild(obj.vals.light);
+		obj.getValue=ProgressBar_getValue;
 		obj.setValue=ProgressBar_setValue;
 		if(vals.width)obj.setValue(vals.value);
 		else setTimeout('ProgressBar_checkForParent("'+obj.id+'")',1);
 		return obj;
 	}
 });
+
+function ProgressBar_getValue(){
+	return this.vals.value;
+}
+
 function ProgressBar_setValue(value){
 	value=parseFloat(value);
 	if(isNaN(value))value=0;

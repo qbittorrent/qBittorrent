@@ -24,6 +24,9 @@
 
 myTable = new dynamicTable();
 ajaxfn = function(){};
+setSortedColumn = function(index){
+  myTable.setSortedColumn(index);
+};
 
 window.addEvent('domready', function(){
   

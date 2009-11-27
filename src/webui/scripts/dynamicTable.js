@@ -44,6 +44,90 @@ var dynamicTable = new Class	({
 		this.progressIndex = progressIndex;
 		this.filter = 'all';
 		this.context_menu = context_menu;
+		this.table.sortedIndex = 1; // Default is NAME
+		this.table.sortOrder = 'ASC';
+	},
+	
+	sortfunction: function(tr1, tr2) {
+		var i = tr2.getParent().sortedIndex;
+		var order = tr2.getParent().sortOrder;
+		switch(i) {
+			case 1: // Name
+				if(order == "ASC") {
+					if(tr1.getElements('td')[i].get('html') >  tr2.getElements('td')[i].get('html'))
+						return 1;
+					return -1;
+				} else {
+					if(tr1.getElements('td')[i].get('html') <  tr2.getElements('td')[i].get('html'))
+						return 1;
+					return -1;
+				}
+			case 2: // Prio
+				if(order == "ASC")
+					return (tr1.getElements('td')[i].get('html').toInt() -  tr2.getElements('td')[i].get('html')).toInt();
+				else
+					return (tr2.getElements('td')[i].get('html').toInt() -  tr1.getElements('td')[i].get('html')).toInt();
+			case 3: // Size
+			case 7: // Up Speed
+			case 8: // Down Speed
+				var sizeStrToFloat = function(mystr) {
+					var val1 = mystr.split(' ');
+					var val1num = val1[0].toFloat()
+					var unit = val1[1].capitalize();
+					switch(unit[0]) {
+						case 'G':
+							return val1num*1073741824;
+						case 'M':
+							return val1num*1048576;
+						case 'K':
+							return val1num*1024;
+						default:
+							return val1num;
+					}
+				};
+				if(order == "ASC")
+					return (sizeStrToFloat(tr1.getElements('td')[i].get('html')) - sizeStrToFloat(tr2.getElements('td')[i].get('html')));
+				else
+					return (sizeStrToFloat(tr2.getElements('td')[i].get('html')) - sizeStrToFloat(tr1.getElements('td')[i].get('html')));
+			case 4: // Progress
+				if(order == "ASC")
+					return (tr1.getElements('td')[i].getChildren()[0].getValue() - tr2.getElements('td')[i].getChildren()[0].getValue());
+				else
+					return (tr2.getElements('td')[i].getChildren()[0].getValue() - tr1.getElements('td')[i].getChildren()[0].getValue());
+			case 5: // Seeds
+			case 6: // Peers
+				if(order == "ASC")
+					return (tr1.getElements('td')[i].get('html').split(' ')[0].toInt() - tr2.getElements('td')[i].get('html').split(' ')[0].toInt());
+				else
+					return (tr2.getElements('td')[i].get('html').split(' ')[0].toInt() - tr1.getElements('td')[i].get('html').split(' ')[0].toInt());
+			default: // Ratio
+				if(order == "ASC")
+					return (tr1.getElements('td')[i].get('html').toFloat() -  tr2.getElements('td')[i].get('html')).toFloat();
+				else
+					return (tr2.getElements('td')[i].get('html').toFloat() -  tr1.getElements('td')[i].get('html')).toFloat();
+		}
+	},
+	
+	updateSort: function() {
+		var trs = this.table.getChildren('tr');
+		trs.sort(this.sortfunction);
+		this.table.set('html', '');
+		this.table.adopt(trs);
+	},
+	
+	setSortedColumn: function(index) {
+		if(index != this.table.sortedIndex) {
+			this.table.sortedIndex = index;
+			this.table.sortOrder = 'ASC';
+		} else {
+			// Toggle sort order
+			if(this.table.sortOrder == 'ASC')
+				this.table.sortOrder = 'DSC'
+			else
+				this.table.sortOrder = 'ASC'
+		}
+		this.updateSort();
+		this.altRow();
 	},
 	
 	getCurrentTorrentHash: function() {
@@ -235,7 +319,17 @@ var dynamicTable = new Class	({
 		// Apply filter
 		this.applyFilterOnRow(tr, status);
 		// Insert
-		tr.injectInside(this.table);
+		var trs = this.table.getChildren('tr');
+		var i=0;
+		while(i<trs.length && this.sortfunction(tr, trs[i]) > 0) {
+			i++;
+		}
+		if(i==trs.length) {
+			tr.inject(this.table);
+		} else {
+			tr.inject(trs[i], 'before');
+		}
+		//tr.injectInside(this.table);
 		this.altRow();
 		// Update context menu
 		this.context_menu.addTarget(tr);
