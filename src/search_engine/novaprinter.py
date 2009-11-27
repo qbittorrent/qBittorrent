@@ -1,4 +1,4 @@
-#VERSION: 1.32
+#VERSION: 1.33
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -48,12 +48,15 @@ def anySizeToBytes(size_string):
 		try:
 			size = size_string.strip()
 			unit = ''.join([c for c in size if c.isalpha()])
-			size = size[:-len(unit)]
+			if len(unit) > 0:
+				size = size[:-len(unit)]
 		except:
 			return -1
 	if len(size) == 0:
 		return -1
 	size = float(size)
+	if len(unit) == 0:
+		return int(size)
 	short_unit = unit.upper()[0]
 
 	# convert
