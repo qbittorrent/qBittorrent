@@ -65,7 +65,7 @@ public:
     QStringList path;
     if(item) {
       if(item->parent())
-        path.append(getItemPath(item->parent()));
+        path << getItemPath(item->parent());
       path.append(getRSSItem(item)->getID());
     }
     return path;
@@ -87,7 +87,7 @@ public:
       if(getItemType(item) == RssFile::FOLDER && item->isExpanded()) {
         QList<QTreeWidgetItem*> open_subfolders = getAllOpenFolders(item);
         if(!open_subfolders.empty()) {
-          open_folders.append(open_subfolders);
+          open_folders << open_subfolders;
         } else {
           open_folders << item;
         }
@@ -104,7 +104,7 @@ public:
       if(getItemType(item) == RssFile::STREAM) {
         feeds << item;
       } else {
-        feeds.append(getAllFeedItems(item));
+        feeds << getAllFeedItems(item);
       }
     }
     return feeds;
