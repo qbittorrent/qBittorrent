@@ -108,6 +108,9 @@ Bittorrent::~Bittorrent() {
   saveDHTEntry();
   saveSessionState();
   saveFastResumeData();
+  // Delete session
+  session_proxy sp = s->abort();
+  delete s;
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects
@@ -125,10 +128,7 @@ Bittorrent::~Bittorrent() {
     delete httpServer;
   if(timerETA)
     delete timerETA;
-  // Delete BT session
-  qDebug("Deleting session");
-  delete s;
-  qDebug("Session deleted");
+  qDebug("Deleting session...");
 }
 
 void Bittorrent::preAllocateAllFiles(bool b) {
@@ -293,6 +293,8 @@ void Bittorrent::configureSession() {
   sessionSettings.use_dht_as_fallback = false;
   // To prevent ISPs from blocking seeding
   sessionSettings.lazy_bitfields = true;
+  // Speed up exit
+  sessionSettings.stop_tracker_timeout = 1;
   //sessionSettings.announce_to_all_trackers = true;
 #ifdef LIBTORRENT_0_15
   sessionSettings.announce_to_all_tiers = true; //uTorrent behavior
