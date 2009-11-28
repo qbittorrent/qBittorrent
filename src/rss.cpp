@@ -120,7 +120,7 @@ void RssFolder::refresh() {
 QList<RssItem*> RssFolder::getNewsList() const {
   QList<RssItem*> news;
   foreach(RssFile *child, this->values()) {
-    news.append(child->getNewsList());
+    news << child->getNewsList();
   }
   return news;
 }
@@ -128,7 +128,7 @@ QList<RssItem*> RssFolder::getNewsList() const {
 QList<RssItem*> RssFolder::getUnreadNewsList() const {
   QList<RssItem*> unread_news;
   foreach(RssFile *child, this->values()) {
-    unread_news.append(child->getUnreadNewsList());
+    unread_news << child->getUnreadNewsList();
   }
   return unread_news;
 }
