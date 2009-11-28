@@ -291,6 +291,8 @@ void Bittorrent::configureSession() {
   }
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
+  // To prevent ISPs from blocking seeding
+  sessionSettings.lazy_bitfields = true;
   //sessionSettings.announce_to_all_trackers = true;
 #ifdef LIBTORRENT_0_15
   sessionSettings.announce_to_all_tiers = true; //uTorrent behavior

@@ -22,6 +22,7 @@
     - FEATURE: Display close tab button into the tabs in search engine (Qt >= 4.5 only)
     - FEATURE: Show official documentation when pressing F1 key
     - FEATURE: Search engine plugins now handle HTTP protocol gzip compression
+    - FEATURE: Enabled lazy bitfield as a counter-measure for ISP speed throttling
     - FEATURE: Announce to all trackers specified for a torrent (µTorrent behavior) (libtorrent >= v0.15 only)
     - FEATURE: Added per-torrent super seeding mode (libtorrent >= v0.15 only)
     - FEATURE: Support for storing symbolic links in .torrent files (libtorrent >= v0.15 only)
