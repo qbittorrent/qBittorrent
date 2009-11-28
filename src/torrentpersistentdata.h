@@ -32,12 +32,18 @@
 #define TORRENTPERSISTENTDATA_H
 
 #include <QSettings>
-#include <QHash>
 #include <QVariant>
 #include <libtorrent/magnet_uri.hpp>
-
 #include "qtorrenthandle.h"
 #include "misc.h"
+
+#ifdef QT_4_5
+#include <QHash>
+#else
+#include <QMap>
+#define QHash QMap
+#define toHash toMap
+#endif
 
 class TorrentTempData {
 public:
@@ -256,4 +262,8 @@ public:
   }
 
 };
+
+#undef QHash
+#undef toHash
+
 #endif // TORRENTPERSISTENTDATA_H

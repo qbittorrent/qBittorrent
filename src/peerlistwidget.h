@@ -53,7 +53,7 @@ private:
   PeerListDelegate *listDelegate;
   QSortFilterProxyModel * proxyModel;
   QHash<QString, QStandardItem*> peerItems;
-  QHash<QString, boost::asio::ip::tcp::endpoint> peerEndpoints;
+  QHash<QString, libtorrent::asio::ip::tcp::endpoint> peerEndpoints;
   QSet<QString> missingFlags;
   QPointer<ReverseResolution> resolver;
   PropertiesWidget* properties;

@@ -29,8 +29,14 @@
  */
 
 #include "rss.h"
-#include <QTimer>
-#include <QUrl>
+
+#ifdef QT_4_5
+#include <QHash>
+#else
+#include <QMap>
+#define QHash QMap
+#define toHash toMap
+#endif
 
 /** RssFolder **/
 
@@ -673,3 +679,4 @@ void RssStream::processDownloadedFile(QString file_path) {
 void RssStream::setDownloadFailed(){
   downloadFailure = true;
 }
+

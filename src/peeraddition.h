@@ -35,7 +35,8 @@
 #include <QRegExp>
 #include <QMessageBox>
 #include "ui_peer.h"
-#include <boost/asio/ip/tcp.hpp>
+#include <libtorrent/session.hpp>
+#include <libtorrent/asio/ip/tcp.hpp>
 
 class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog {
   Q_OBJECT
@@ -57,8 +58,8 @@ public:
     return spinPort->value();
   }
 
-  static boost::asio::ip::tcp::endpoint askForPeerEndpoint() {
-    boost::asio::ip::tcp::endpoint ep;
+  static libtorrent::asio::ip::tcp::endpoint askForPeerEndpoint() {
+    libtorrent::asio::ip::tcp::endpoint ep;
     PeerAdditionDlg dlg;
     if(dlg.exec() == QDialog::Accepted) {
       const QRegExp is_ipv6(QString::fromUtf8("[0-9a-f]{4}(:[0-9a-f]{4}){7}"), Qt::CaseInsensitive, QRegExp::RegExp);
@@ -66,10 +67,10 @@ public:
       QString IP = dlg.getIP();
       if(is_ipv4.exactMatch(IP)) {
         // IPv4
-        ep = boost::asio::ip::tcp::endpoint(boost::asio::ip::address_v4::from_string(IP.toLocal8Bit().data()), dlg.getPort());
+        ep = libtorrent::asio::ip::tcp::endpoint(libtorrent::asio::ip::address_v4::from_string(IP.toLocal8Bit().data()), dlg.getPort());
       } else {
         // IPv6
-        ep = boost::asio::ip::tcp::endpoint(boost::asio::ip::address_v6::from_string(IP.toLocal8Bit().data()), dlg.getPort());
+        ep = libtorrent::asio::ip::tcp::endpoint(libtorrent::asio::ip::address_v6::from_string(IP.toLocal8Bit().data()), dlg.getPort());
       }
     }
     return ep;

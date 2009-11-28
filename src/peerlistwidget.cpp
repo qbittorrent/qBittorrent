@@ -40,6 +40,7 @@
 #include <QSortFilterProxyModel>
 #include <QSet>
 #include <QSettings>
+#include <QHeaderView>
 #include <QMenu>
 #include <vector>
 
@@ -143,8 +144,8 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   if(empty_menu) return;
   QAction *act = menu.exec(QCursor::pos());
   if(act == addPeerAct) {
-    boost::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
-    if(ep != boost::asio::ip::tcp::endpoint()) {
+    libtorrent::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
+    if(ep != libtorrent::asio::ip::tcp::endpoint()) {
       try {
         h.connect_peer(ep);
         QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
@@ -192,8 +193,8 @@ void PeerListWidget::limitUpRateSelectedPeers(QStringList peer_ips) {
   long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Upload rate limiting"), -1);
   if(!ok) return;
   foreach(const QString &ip, peer_ips) {
-    boost::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, boost::asio::ip::tcp::endpoint());
-    if(ep != boost::asio::ip::tcp::endpoint()) {
+    libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());
+    if(ep != libtorrent::asio::ip::tcp::endpoint()) {
       qDebug("Settings Upload limit of %.1f Kb/s to peer %s", limit/1024., ip.toLocal8Bit().data());
       try {
         h.set_peer_upload_limit(ep, limit);
@@ -213,8 +214,8 @@ void PeerListWidget::limitDlRateSelectedPeers(QStringList peer_ips) {
   long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), -1);
   if(!ok) return;
   foreach(const QString &ip, peer_ips) {
-    boost::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, boost::asio::ip::tcp::endpoint());
-    if(ep != boost::asio::ip::tcp::endpoint()) {
+    libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());
+    if(ep != libtorrent::asio::ip::tcp::endpoint()) {
       qDebug("Settings Download limit of %.1f Kb/s to peer %s", limit/1024., ip.toLocal8Bit().data());
       try {
         h.set_peer_download_limit(ep, limit);

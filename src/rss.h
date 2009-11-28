@@ -40,13 +40,22 @@
 #include <QUrl>
 #include <QTimer>
 #include <QImage>
-#include <QHash>
 #include <QDateTime>
+#include <QTimer>
+#include <QUrl>
 
 #include "misc.h"
 #include "feeddownloader.h"
 #include "bittorrent.h"
 #include "downloadthread.h"
+
+#ifdef QT_4_5
+#include <QHash>
+#else
+#include <QMap>
+#define QHash QMap
+#define toHash toMap
+#endif
 
 class RssManager;
 class RssFile; // Folder or Stream
@@ -510,8 +519,5 @@ public:
   }
 
 };
-
-
-
 
 #endif

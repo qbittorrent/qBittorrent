@@ -32,7 +32,6 @@
 #define FEEDDOWNLOADER_H
 
 #include <QString>
-#include <QHash>
 #include <QSettings>
 #include <QListWidget>
 #include <QListWidgetItem>
@@ -46,6 +45,14 @@
 
 #include "bittorrent.h"
 #include "ui_feeddownloader.h"
+
+#ifdef QT_4_5
+#include <QHash>
+#else
+#include <QMap>
+#define QHash QMap
+#define toHash toMap
+#endif
 
 class FeedFilter: public QHash<QString, QVariant> {
 private:
@@ -476,5 +483,8 @@ protected slots:
   }
 
 };
+
+#undef QHash
+#undef toHash
 
 #endif // FEEDDOWNLOADER_H

@@ -36,7 +36,7 @@
 #include <QWaitCondition>
 #include <QMutex>
 #include <QList>
-#include <boost/asio/ip/tcp.hpp>
+#include <libtorrent/asio/ip/tcp.hpp>
 #include "misc.h"
 
 #define MAX_THREADS 20
@@ -45,12 +45,12 @@ class ReverseResolutionST: public QThread {
   Q_OBJECT
 
 private:
-  boost::asio::ip::tcp::endpoint ip;
-  boost::asio::ip::tcp::resolver resolver;
+  libtorrent::asio::ip::tcp::endpoint ip;
+  libtorrent::asio::ip::tcp::resolver resolver;
   bool stopped;
 
 public:
-  ReverseResolutionST(boost::asio::io_service &ios, QObject *parent=0): QThread(parent), resolver(ios), stopped(false) {
+  ReverseResolutionST(libtorrent::asio::io_service &ios, QObject *parent=0): QThread(parent), resolver(ios), stopped(false) {
 
   }
 
@@ -62,7 +62,7 @@ public:
     }
   }
 
-  void setIP(boost::asio::ip::tcp::endpoint &_ip) {
+  void setIP(libtorrent::asio::ip::tcp::endpoint &_ip) {
     ip = _ip;
   }
 
@@ -72,9 +72,9 @@ signals:
 protected:
   void run() {
     try {
-      boost::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip);
+      libtorrent::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip);
       if(stopped) return;
-      boost::asio::ip::tcp::endpoint endpoint = *it;
+      libtorrent::asio::ip::tcp::endpoint endpoint = *it;
       emit ip_resolved(misc::toQString(endpoint.address().to_string()), misc::toQString((*it).host_name()));
     } catch(std::exception &e) {
       std::cerr << "Hostname resolution failed, reason: " << e.what() << std::endl;
@@ -86,11 +86,11 @@ class ReverseResolution: public QThread {
   Q_OBJECT
 
 private:
-  QQueue<boost::asio::ip::tcp::endpoint> ips;
+  QQueue<libtorrent::asio::ip::tcp::endpoint> ips;
   QMutex mut;
   QWaitCondition cond;
   bool stopped;
-  boost::asio::io_service ios;
+  libtorrent::asio::io_service ios;
   QList<ReverseResolutionST*> subThreads;
 
 
@@ -115,7 +115,7 @@ public:
     cond.wakeOne();
   }
 
-  void resolve(boost::asio::ip::tcp::endpoint ip) {
+  void resolve(libtorrent::asio::ip::tcp::endpoint ip) {
     mut.lock();
     ips.enqueue(ip);
     if(subThreads.size() < MAX_THREADS)
@@ -147,7 +147,7 @@ protected:
         mut.unlock();
         break;
       }
-      boost::asio::ip::tcp::endpoint ip = ips.dequeue();
+      libtorrent::asio::ip::tcp::endpoint ip = ips.dequeue();
       ReverseResolutionST *st = new ReverseResolutionST(ios);
       subThreads.append(st);
       mut.unlock();

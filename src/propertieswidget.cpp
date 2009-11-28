@@ -33,6 +33,7 @@
 #include <QVBoxLayout>
 #include <QStackedWidget>
 #include <QSplitter>
+#include <QHeaderView>
 #include <QAction>
 #include <QMessageBox>
 #include <QMenu>
