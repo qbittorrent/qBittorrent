@@ -33,6 +33,7 @@
 #include <QString>
 #include <QTimer>
 #include <QSettings>
+#include <stdlib.h>
 
 #include "filesystemwatcher.h"
 #include "bittorrent.h"
@@ -1496,9 +1497,16 @@ void Bittorrent::readAlerts() {
         }
       }
     }
-    else if (dynamic_cast<listen_failed_alert*>(a.get())) {
+    else if (listen_failed_alert* p = dynamic_cast<listen_failed_alert*>(a.get())) {
       // Level: fatal
-      addConsoleMessage(tr("Couldn't listen on any of the given ports."), QString::fromUtf8("red"));
+      int tried_port = p->endpoint.port();
+      srand(time(0));
+      int fallback_port = tried_port;
+      do {
+        fallback_port = rand() % 64512 + 1024;
+      } while(fallback_port == tried_port);
+      addConsoleMessage(tr("Couldn't listen on port %1, using %2 instead.").arg(QString::number(tried_port)).arg(QString::number(fallback_port)), QString::fromUtf8("red"));
+      setListeningPort(fallback_port);
       //emit portListeningFailure();
     }
     /*else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
