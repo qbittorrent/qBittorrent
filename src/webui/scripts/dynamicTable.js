@@ -45,15 +45,15 @@ var dynamicTable = new Class	({
 		this.filter = 'all';
 		this.context_menu = context_menu;
 		this.table.sortedIndex = 1; // Default is NAME
-		this.table.sortOrder = 'ASC';
+		this.table.reverseSort = false;
 	},
 	
 	sortfunction: function(tr1, tr2) {
 		var i = tr2.getParent().sortedIndex;
-		var order = tr2.getParent().sortOrder;
+		var reverseSort = tr2.getParent().reverseSort;
 		switch(i) {
 			case 1: // Name
-				if(order == "ASC") {
+				if(!reverseSort) {
 					if(tr1.getElements('td')[i].get('html') >  tr2.getElements('td')[i].get('html'))
 						return 1;
 					return -1;
@@ -63,10 +63,14 @@ var dynamicTable = new Class	({
 					return -1;
 				}
 			case 2: // Prio
-				if(order == "ASC")
-					return (tr1.getElements('td')[i].get('html').toInt() -  tr2.getElements('td')[i].get('html')).toInt();
+				var prio1 = tr1.getElements('td')[i].get('html');
+				if(prio1 == '*') prio1 = '-1';
+				var prio2 = tr2.getElements('td')[i].get('html');
+				if(prio2 == '*') prio2 = '-1';
+				if(!reverseSort)
+					return (prio1.toInt() -  prio2.toInt());
 				else
-					return (tr2.getElements('td')[i].get('html').toInt() -  tr1.getElements('td')[i].get('html')).toInt();
+					return (prio2.toInt() -  prio1.toInt());
 			case 3: // Size
 			case 7: // Up Speed
 			case 8: // Down Speed
@@ -85,18 +89,18 @@ var dynamicTable = new Class	({
 							return val1num;
 					}
 				};
-				if(order == "ASC")
+				if(!reverseSort)
 					return (sizeStrToFloat(tr1.getElements('td')[i].get('html')) - sizeStrToFloat(tr2.getElements('td')[i].get('html')));
 				else
 					return (sizeStrToFloat(tr2.getElements('td')[i].get('html')) - sizeStrToFloat(tr1.getElements('td')[i].get('html')));
 			case 4: // Progress
-				if(order == "ASC")
+				if(!reverseSort)
 					return (tr1.getElements('td')[i].getChildren()[0].getValue() - tr2.getElements('td')[i].getChildren()[0].getValue());
 				else
 					return (tr2.getElements('td')[i].getChildren()[0].getValue() - tr1.getElements('td')[i].getChildren()[0].getValue());
 			case 5: // Seeds
 			case 6: // Peers
-				if(order == "ASC")
+				if(!reverseSort)
 					return (tr1.getElements('td')[i].get('html').split(' ')[0].toInt() - tr2.getElements('td')[i].get('html').split(' ')[0].toInt());
 				else
 					return (tr2.getElements('td')[i].get('html').split(' ')[0].toInt() - tr1.getElements('td')[i].get('html').split(' ')[0].toInt());
@@ -107,7 +111,7 @@ var dynamicTable = new Class	({
 				var ratio2 = tr2.getElements('td')[i].get('html');
 				if(ratio2 == '∞')
 					ratio2 = '101.0';
-				if(order == "ASC")
+				if(!reverseSort)
 					return (ratio1.toFloat() -  ratio2.toFloat());
 				else
 					return (ratio2.toFloat() -  ratio1.toFloat());
@@ -124,13 +128,10 @@ var dynamicTable = new Class	({
 	setSortedColumn: function(index) {
 		if(index != this.table.sortedIndex) {
 			this.table.sortedIndex = index;
-			this.table.sortOrder = 'ASC';
+			this.table.reverseSort = false;
 		} else {
 			// Toggle sort order
-			if(this.table.sortOrder == 'ASC')
-				this.table.sortOrder = 'DSC'
-			else
-				this.table.sortOrder = 'ASC'
+			this.table.reverseSort = !this.table.reverseSort;
 		}
 		this.updateSort();
 		this.altRow();
