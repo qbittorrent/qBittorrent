@@ -239,154 +239,154 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation type="unfinished">Υποστήριξη NAT-PMP [OXI]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="329"/>
+        <location filename="../bittorrent.cpp" line="331"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished">Υποστήριξη DHT [NAI], θύρα: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="331"/>
-        <location filename="../bittorrent.cpp" line="335"/>
+        <location filename="../bittorrent.cpp" line="333"/>
+        <location filename="../bittorrent.cpp" line="337"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished">Υποστήριξη DHT [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="338"/>
+        <location filename="../bittorrent.cpp" line="340"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished">Υποστήριξη PeX [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="342"/>
+        <location filename="../bittorrent.cpp" line="344"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished">Ανακάλυψη Τοπικών Συνδέσεων [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="345"/>
+        <location filename="../bittorrent.cpp" line="347"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished">Ανακάλυψη Τοπικών Συνδέσεων [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="357"/>
+        <location filename="../bittorrent.cpp" line="359"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished">Υποστήριξη κρυπτογράφησης [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="362"/>
+        <location filename="../bittorrent.cpp" line="364"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished">Υποστήριξη κρυπτογράφησης [ΑΝΑΓΚΑΣΤΙΚΑ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="367"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Υποστήριξη κρυπτογράφησης [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="468"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="585"/>
+        <location filename="../bittorrent.cpp" line="587"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="587"/>
+        <location filename="../bittorrent.cpp" line="589"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="637"/>
+        <location filename="../bittorrent.cpp" line="639"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished">Το &apos;%1&apos; δεν είναι ένα έγκυρο magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="662"/>
-        <location filename="../bittorrent.cpp" line="798"/>
-        <location filename="../bittorrent.cpp" line="801"/>
+        <location filename="../bittorrent.cpp" line="664"/>
+        <location filename="../bittorrent.cpp" line="800"/>
+        <location filename="../bittorrent.cpp" line="803"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">Το &apos;%1&apos; είναι ήδη στη λίστα κατεβάσματος.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="736"/>
-        <location filename="../bittorrent.cpp" line="920"/>
-        <location filename="../bittorrent.cpp" line="925"/>
+        <location filename="../bittorrent.cpp" line="738"/>
+        <location filename="../bittorrent.cpp" line="922"/>
+        <location filename="../bittorrent.cpp" line="927"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">Το &apos;%1&apos; ξανάρχισε. (γρήγορη επανασύνδεση)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="738"/>
-        <location filename="../bittorrent.cpp" line="922"/>
-        <location filename="../bittorrent.cpp" line="927"/>
+        <location filename="../bittorrent.cpp" line="740"/>
+        <location filename="../bittorrent.cpp" line="924"/>
+        <location filename="../bittorrent.cpp" line="929"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">Το &apos;%1&apos; προστέθηκε στη λίστα κατεβάσματος.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="772"/>
-        <location filename="../bittorrent.cpp" line="776"/>
+        <location filename="../bittorrent.cpp" line="774"/>
+        <location filename="../bittorrent.cpp" line="778"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">Αδύνατο να αποκωδικοποιηθεί το αρχείο τορεντ: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="779"/>
+        <location filename="../bittorrent.cpp" line="781"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1172"/>
+        <location filename="../bittorrent.cpp" line="1176"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του IP φίλτρου&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1174"/>
+        <location filename="../bittorrent.cpp" line="1178"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1434"/>
+        <location filename="../bittorrent.cpp" line="1438"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο τόρεντ %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1445"/>
+        <location filename="../bittorrent.cpp" line="1449"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">Αδύνατο να αποκωδικοποιηθεί το αρχείο τόρεντ %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1495"/>
+        <location filename="../bittorrent.cpp" line="1499"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="unfinished">Δεν &quot;ακροάστηκα&quot; καμία σπό τις δωσμένες θύρες.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1562"/>
+        <location filename="../bittorrent.cpp" line="1566"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1567"/>
+        <location filename="../bittorrent.cpp" line="1571"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1582"/>
+        <location filename="../bittorrent.cpp" line="1586"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Γρήγορη συνέχεια κατεβάσματος αρχείων απορρίφθηκε για το τορεντ %1, επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1587"/>
+        <location filename="../bittorrent.cpp" line="1591"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Αποτυχία ελέγχου url μοιράσματος για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1655"/>
+        <location filename="../bittorrent.cpp" line="1659"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>

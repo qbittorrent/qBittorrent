@@ -161,154 +161,154 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>NAT-PMP understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="329"/>
+        <location filename="../bittorrent.cpp" line="331"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT understøttelse [ON], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="331"/>
-        <location filename="../bittorrent.cpp" line="335"/>
+        <location filename="../bittorrent.cpp" line="333"/>
+        <location filename="../bittorrent.cpp" line="337"/>
         <source>DHT support [OFF]</source>
         <translation>DHT understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="338"/>
+        <location filename="../bittorrent.cpp" line="340"/>
         <source>PeX support [ON]</source>
         <translation>PEX understøttelse [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="342"/>
+        <location filename="../bittorrent.cpp" line="344"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Lokal Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="345"/>
+        <location filename="../bittorrent.cpp" line="347"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Lokal Peer Discovery understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="357"/>
+        <location filename="../bittorrent.cpp" line="359"/>
         <source>Encryption support [ON]</source>
         <translation>Understøttelse af kryptering [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="362"/>
+        <location filename="../bittorrent.cpp" line="364"/>
         <source>Encryption support [FORCED]</source>
         <translation>Understøttelse af kryptering [FORCED]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="367"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>Encryption support [OFF]</source>
         <translation>Understøttelse af kryptering [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="468"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Web User Interface fejl - Ikke i stand til at binde Web UI til port %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="585"/>
+        <location filename="../bittorrent.cpp" line="587"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; blev fjernet fra listen og harddisken.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="587"/>
+        <location filename="../bittorrent.cpp" line="589"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; blev fjernet fra listen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="637"/>
+        <location filename="../bittorrent.cpp" line="639"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; er ikke en gyldig magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="662"/>
-        <location filename="../bittorrent.cpp" line="798"/>
-        <location filename="../bittorrent.cpp" line="801"/>
+        <location filename="../bittorrent.cpp" line="664"/>
+        <location filename="../bittorrent.cpp" line="800"/>
+        <location filename="../bittorrent.cpp" line="803"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; findes allerede i download listen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="736"/>
-        <location filename="../bittorrent.cpp" line="920"/>
-        <location filename="../bittorrent.cpp" line="925"/>
+        <location filename="../bittorrent.cpp" line="738"/>
+        <location filename="../bittorrent.cpp" line="922"/>
+        <location filename="../bittorrent.cpp" line="927"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; fortsat. (hurtig fortsættelse)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="738"/>
-        <location filename="../bittorrent.cpp" line="922"/>
-        <location filename="../bittorrent.cpp" line="927"/>
+        <location filename="../bittorrent.cpp" line="740"/>
+        <location filename="../bittorrent.cpp" line="924"/>
+        <location filename="../bittorrent.cpp" line="929"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; lagt til download listen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="772"/>
-        <location filename="../bittorrent.cpp" line="776"/>
+        <location filename="../bittorrent.cpp" line="774"/>
+        <location filename="../bittorrent.cpp" line="778"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Kan ikke dekode torrent filen: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="779"/>
+        <location filename="../bittorrent.cpp" line="781"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Denne fil er enten fejlbehæftet eller ikke en torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1172"/>
+        <location filename="../bittorrent.cpp" line="1176"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blev blokeret af dit IP filter&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1174"/>
+        <location filename="../bittorrent.cpp" line="1178"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blev bandlyst pga. fejlbehæftede stykker&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1434"/>
+        <location filename="../bittorrent.cpp" line="1438"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiv download af filen %1 indlejret i torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1445"/>
+        <location filename="../bittorrent.cpp" line="1449"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Kan ikke dekode %1 torrent fil.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1495"/>
+        <location filename="../bittorrent.cpp" line="1499"/>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation>Kunne ikke lytte på de opgivne porte.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1562"/>
+        <location filename="../bittorrent.cpp" line="1566"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping fejlede, besked: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1567"/>
+        <location filename="../bittorrent.cpp" line="1571"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping lykkedes, besked: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1582"/>
+        <location filename="../bittorrent.cpp" line="1586"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Der blev fundet fejl i data for hurtig genstart af torrent %1, tjekker igen...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1587"/>
+        <location filename="../bittorrent.cpp" line="1591"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url seed lookup fejlede for url: %1, besked: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1655"/>
+        <location filename="../bittorrent.cpp" line="1659"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Downloader &apos;%1&apos;, vent venligst...</translation>

@@ -132,146 +132,146 @@ p, li { white-space: pre-wrap; }
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">%1 dosiahol maximálny požadovaný pomer.</translation>
+        <translation>%1 dosiahol maximálny požadovaný pomer.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent sa viaže na port: TCP/%1</translation>
+        <translation>qBittorrent sa viaže na port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">Podpora UPnP [zapnutá]</translation>
+        <translation>Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">Podpora UPnP [vypnutá]</translation>
+        <translation>Podpora UPnP [vypnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">Podpora NAT-PMP [zapnutá]</translation>
+        <translation>Podpora NAT-PMP [zapnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">Podpora NAT-PMP [vypnutá]</translation>
+        <translation>Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">Podpora DHT [ZAP], port: UDP/%1</translation>
+        <translation>Podpora DHT [ZAP], port: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">Podpora DHT [vypnutá]</translation>
+        <translation>Podpora DHT [vypnutá]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">Podpora PeX [zapnutá]</translation>
+        <translation>Podpora PeX [zapnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">Local Peer Discovery [zapnutá]</translation>
+        <translation>Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">Podpora Local Peer Discovery support [vypnutá]</translation>
+        <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">Podpora šifrovania [zapnuté]</translation>
+        <translation>Podpora šifrovania [zapnuté]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">Podpora šifrovania [vynútené]</translation>
+        <translation>Podpora šifrovania [vynútené]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">Podpora šifrovania [vypnuté]</translation>
+        <translation>Podpora šifrovania [vypnuté]</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba webového rozhrania - nepodaril sa bind webového rozhrania na port %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>„%1“ bol odstránený zo zoznamu sťahovaných a z pevného disku.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>„%1“ bol odstránený zo zoznamu sťahovaných.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">„%1“ nie je platný magnet URI.</translation>
+        <translation>„%1“ nie je platný magnet URI.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">„%1“ sa už nachádza v zozname sťahovaných.</translation>
+        <translation>„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">„%1“ bol obnovený. (rýchle obnovenie)</translation>
+        <translation>„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
+        <translation>„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa dekódovať torrent súbor: „%1“</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
+        <translation>Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Nepodarilo sa dekódovať torrent súbor %1.</translation>
+        <translation>Nepodarilo sa dekódovať torrent súbor %1.</translation>
     </message>
     <message>
         <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished">Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
+        <translation>Nepodarilo sa počúvať na žiadnom zo zadaných portov.</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
+        <translation>UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
+        <translation>UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rýchle obnovenie torrentu %1 bolo odmietnuté, prebieha opätovná kontrola...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
+        <translation>Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prebieha sťahovanie „%1“, čakajte prosím...</translation>
     </message>
 </context>
 <context>
@@ -1107,40 +1107,40 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť štartovaciu obrazovku</translation>
     </message>
     <message>
         <source>Transfer list refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval obnovenia zoznamu prenosov:</translation>
     </message>
     <message>
         <source>Action on double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Operácia po dvojitom kliknutí</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahuje sa:</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hotovo:</translation>
     </message>
     <message>
         <source>Peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripojení</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Prekladať krajiny rovesníkov</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Prekladať názvy počítačov rovesníkov</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Používať odlišný port pre DHT a Bittorrent</translation>
     </message>
 </context>
 <context>
@@ -1266,42 +1266,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Pracuje sa</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Prebieha aktualizácia...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Nefunguje</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatiaľ nekontaktovaný</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished"></translation>
+        <translation>táto relácia</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seedovaný %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished"></translation>
+        <translation>max %1</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -1936,7 +1936,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Prenosy</translation>
+        <translation>Prenosy</translation>
     </message>
     <message>
         <source>Preview process already running</source>
@@ -2418,111 +2418,112 @@ Ste si istý, že chcete ukončiť qBittorrent?</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončenie sťahovnia</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Niektoré súbory sa práve prenášajú.
+Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Globálne rýchlostné obmedzenie nahrávania</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Globálne rýchlostné obmedzenie sťahovania</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
     </message>
 </context>
 <context>
     <name>HttpServer</name>
     <message>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť</translation>
     </message>
     <message>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomocník</translation>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať z disku</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuť torrenty z ich URL alebo Magnet odkazu</translation>
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Iba jeden odkaz na riadok</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished">Stiahnuť</translation>
+        <translation>Stiahnuť</translation>
     </message>
     <message>
         <source>Download local torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuť lokálny torrent</translation>
     </message>
     <message>
         <source>Torrent files were correctly added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenty boli úspešne pridané do zoznamu sťahovaných.</translation>
     </message>
     <message>
         <source>Point to torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázať na torrent</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste s istý, že chcete zmazať vybrané torrenty zo zoznamu prenosov a pevného disku?</translation>
     </message>
     <message>
         <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie rýchlosti sťahovania musí byť väčšie ako 0 alebo vypnuté.</translation>
     </message>
     <message>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie rýchlosti nahrávania musí byť väčšie ako 0 alebo vypnuté.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet spojení musí byť väčší ako 0 alebo vypnutý.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet spojení na torrent musí byť väčší ako 0 alebo vypnutý.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet nahrávacích pozící musí byť väčší ako 0 alebo vypnutý.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa uložiť nastavenia programu, qBittorrent je pravdepodobne nedostupný.</translation>
     </message>
 </context>
 <context>
@@ -2773,126 +2774,126 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno so záznamom</translation>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť torrent</translation>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Navštíviť webstránku</translation>
     </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
     <message>
         <source>Invalid IP</source>
-        <translation type="unfinished">Neplatná IP</translation>
+        <translation>Neplatná IP</translation>
     </message>
     <message>
         <source>The IP you provided is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP, ktorú ste poskytli je neplatná.</translation>
     </message>
 </context>
 <context>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>PeerListWidget</name>
     <message>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP</translation>
     </message>
     <message>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation type="unfinished"></translation>
+        <translation>Klient</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuté</translation>
     </message>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nahrané</translation>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nového rovesníka</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedziť rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedziť rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokovať rovesníka na stálo</translation>
     </message>
     <message>
         <source>Peer addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridanie rovesníka</translation>
     </message>
     <message>
         <source>The peer was added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rovesník bol pridaný k tomuto torrentu.</translation>
     </message>
     <message>
         <source>The peer could not be added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rovesníka nebolo možné pridať k tomuto torrentu.</translation>
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
-        <translation type="unfinished">Ste si istý? -- qBittorrent</translation>
+        <translation>Ste si istý? -- qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete zmazať natrvalo zablokovať vybraného rovesníka?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Áno</translation>
+        <translation>Án&amp;o</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Nie</translation>
+        <translation>&amp;Nie</translation>
     </message>
     <message>
         <source>Manually banning peer %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuálne zablokovaný rovesník %1...</translation>
     </message>
     <message>
         <source>Upload rate limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie rýchlosti nahrávania</translation>
     </message>
     <message>
         <source>Download rate limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie rýchlosti sťahovania</translation>
     </message>
 </context>
 <context>
@@ -2933,7 +2934,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished">Uložiť kam:</translation>
+        <translation>Uložiť kam:</translation>
     </message>
     <message>
         <source>Creator:</source>
@@ -2941,7 +2942,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation type="unfinished">Haš torrentu:</translation>
+        <translation>Haš torrentu:</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -2957,7 +2958,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation type="unfinished">Pomer zdieľania:</translation>
+        <translation>Pomer zdieľania:</translation>
     </message>
     <message>
         <source>Total failed:</source>
@@ -2973,27 +2974,27 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation type="unfinished">Zbaliť všetko</translation>
+        <translation>Zbaliť všetko</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation type="unfinished">Rozbaliť všetko</translation>
+        <translation>Rozbaliť všetko</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished">Všeobecné</translation>
+        <translation>Všeobecné</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished">Trackery</translation>
+        <translation>Trackery</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>URL seedy</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbory</translation>
     </message>
     <message>
         <source>File name</source>
@@ -3005,7 +3006,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -3014,19 +3015,19 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation type="unfinished">Nový URL seed</translation>
+        <translation>Nový HTTP zdroj</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation type="unfinished">Nový URL seed:</translation>
+        <translation>Nový URL seed:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation type="unfinished">Tento URL seed je už v zozname.</translation>
+        <translation>Tento URL seed je už v zozname.</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
@@ -3034,102 +3035,102 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Zvoľte cestu pre uloženie</translation>
+        <translation>Zvoľte cieľový adresár</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Chyba pri vytváraní cesty pre uloženie</translation>
+        <translation>Chyba pri vytváraní cieľového adresára</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa vytvoriť cieľový adresár</translation>
     </message>
     <message>
         <source>Downloaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuté:</translation>
     </message>
     <message>
         <source>Transfer</source>
-        <translation type="unfinished"></translation>
+        <translation>Prenos</translation>
     </message>
     <message>
         <source>Uploaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrané:</translation>
     </message>
     <message>
         <source>Wasted:</source>
-        <translation type="unfinished"></translation>
+        <translation>Premrhané:</translation>
     </message>
     <message>
         <source>UP limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit nahr.:</translation>
     </message>
     <message>
         <source>DL limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit sťah.:</translation>
     </message>
     <message>
         <source>Time elapsed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uplynulý čas:</translation>
     </message>
     <message>
         <source>Connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spojení:</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informácie</translation>
     </message>
     <message>
         <source>Created on:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvorené:</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Rovesníkov</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorované</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normálna</translation>
+        <translation>Normálna</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Maximálna</translation>
+        <translation>Maximálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Vysoká</translation>
+        <translation>Vysoká</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished"></translation>
+        <translation>táto relácia</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished"></translation>
+        <translation>max. %1</translation>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnosť:</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seedovanie trvalo %1</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished"></translation>
+        <translation>Komentár:</translation>
     </message>
 </context>
 <context>
@@ -3261,11 +3262,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bullet</source>
-        <translation type="unfinished"></translation>
+        <translation>Odrážka</translation>
     </message>
     <message>
         <source>Article title</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov článku</translation>
     </message>
 </context>
 <context>
@@ -3622,136 +3623,136 @@ Záznam zmien:</translation>
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
         <source>Connection status:</source>
-        <translation type="unfinished">Stav spojenia:</translation>
+        <translation>Stav spojenia:</translation>
     </message>
     <message>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished">Žiadne priame spojenia. To môže znamenať problém s pripojením.</translation>
+        <translation>Žiadne priame spojenia. To môže znamenať problém s nastavením siete.</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished">DHT: %1 uzlov</translation>
+        <translation>DHT: %1 uzlov</translation>
     </message>
     <message>
         <source>Connection Status:</source>
-        <translation type="unfinished">Stav spojenia:</translation>
+        <translation>Stav spojenia:</translation>
     </message>
     <message>
         <source>Online</source>
-        <translation type="unfinished">Online</translation>
+        <translation>Online</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Globálne rýchlostné obmedzenie sťahovania</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Globálne rýchlostné obmedzenie nahrávania</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sťah.: %1/s - Pren.: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nahr.: %1/s - Pren.: %2</translation>
     </message>
     <message>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sťah.: %1 B/s - Pren.: %2</translation>
     </message>
     <message>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nahr.: %1 B/s - Pren.: %2</translation>
     </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
 </context>
 <context>
     <name>TrackerList</name>
     <message>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Stav</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Rovesníci</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Správa</translation>
     </message>
     <message>
         <source>[DHT]</source>
-        <translation type="unfinished"></translation>
+        <translation>[DHT]</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Pracuje sa</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Vypnuté</translation>
+        <translation>Vypnuté</translation>
     </message>
     <message>
         <source>This torrent is private</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent je súkromný</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Prebieha aktualizácia...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Nefunguje</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatiaľ nekontaktovaný</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nový tracker</translation>
     </message>
     <message>
         <source>[PeX]</source>
-        <translation type="unfinished"></translation>
+        <translation>[PeX]</translation>
     </message>
     <message>
         <source>[LSD]</source>
-        <translation type="unfinished"></translation>
+        <translation>[LSD]</translation>
     </message>
 </context>
 <context>
@@ -3773,59 +3774,59 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished">Sťahujem</translation>
+        <translation>Sťahuje sa</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Pozastavený</translation>
+        <translation>Pozastavený</translation>
     </message>
     <message>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vo fronte</translation>
     </message>
     <message>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation type="unfinished">Seedujem</translation>
+        <translation>Seeduje sa</translation>
     </message>
     <message>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bez pohybu</translation>
     </message>
     <message>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished">Sťahujem</translation>
+        <translation>Sťahované</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončené</translation>
     </message>
     <message>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktívne</translation>
     </message>
     <message>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>Neaktívne</translation>
     </message>
 </context>
 <context>
@@ -3847,7 +3848,7 @@ Záznam zmien:</translation>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odhad. čas</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -3859,23 +3860,23 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Column visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Viditeľnosť stĺpca</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished">Spustiť</translation>
+        <translation>Spustiť</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pozastaviť</translation>
+        <translation>Pozastaviť</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Zmazať</translation>
+        <translation>Zmazať</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation type="unfinished">Náhľad súboru</translation>
+        <translation>Náhľad súboru</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3891,100 +3892,100 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation type="unfinished">Otvoriť cieľový priečinok</translation>
+        <translation>Otvoriť cieľový priečinok</translation>
     </message>
     <message>
         <source>Buy it</source>
-        <translation type="unfinished">Kúpiť</translation>
+        <translation>Kúpiť</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation type="unfinished">Zvýšiť prioritu</translation>
+        <translation>Zvýšiť prioritu</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation type="unfinished">Znížiť prioritu</translation>
+        <translation>Znížiť prioritu</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation type="unfinished">Vynútiť opätovnú kontrolu</translation>
+        <translation>Vynútiť opätovnú kontrolu</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation type="unfinished">Kopírovať magnet URI</translation>
+        <translation>Kopírovať magnet URI</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hotovo</translation>
     </message>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stav</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Seedy</translation>
+        <translation>Seedy</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rovesníci</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Pomer</translation>
+        <translation>Pomer</translation>
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie rýchlosti sťahovania torrentu</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie rýchlosti nahrávania torrentu</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedziť rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedziť rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim super seedovania</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovať v poradí</translation>
     </message>
     <message>
         <source>Download first and last piece first</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovať najprv prvú a poslednú časť</translation>
     </message>
 </context>
 <context>
@@ -4065,15 +4066,15 @@ Záznam zmien:</translation>
     <name>addPeerDialog</name>
     <message>
         <source>Peer addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridanie rovesníka</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port</translation>
     </message>
 </context>
 <context>
@@ -4180,7 +4181,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Preskočiť kontrolu súborov a začať seedovať okamžite</translation>
     </message>
 </context>
 <context>
@@ -4381,15 +4382,15 @@ Záznam zmien:</translation>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie zmazania - qBittorrent</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste s istý, že chcete zmazať vybrané torrenty zo zoznamu prenosov?</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať aj súbory na pevnom disku</translation>
     </message>
 </context>
 <context>
@@ -4682,95 +4683,95 @@ Záznam zmien:</translation>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">V/V Chyba</translation>
+        <translation>V/V Chyba</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov vzdialeného počítača nebol zistený (neplatný názov)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Operácia bola zrušená</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdialený server predčasne zatvoril spojenie predtým, než bola prijatá a spracovaná celá odpoveď</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas spojenia so vzdialeným serverom vypršal</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL/TLS handshake zlyhal</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdialený server odmietol spojenie</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished"></translation>
+        <translation>Spojenie s proxy serverom bolo odmietnuté</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy server predčasne zatvoril spojenie</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov proxy servera nebol nájdený</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas spojenia s proxy serverom vypršal alebo proxy server neodpovedal včas na zaslanú požiadavku</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy vyžaduje autentifikáciu aby mohol splniť požiadavku, ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished"></translation>
+        <translation>Prístup k vzdialenému obsahu bol zamietnutý (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadovaná operácia so vzdialeným obsahom nie je povolená</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdialený obsah nebol nájdený na serveri (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, , ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished"></translation>
+        <translation>Network Access API neprijalo požiadavku, pretože nie je známy protokol</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadovaná operácia nie je platná pre tento protokol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Bola zistená neznáma chyba týkajúca sa siete</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Bola zistená neznáma chyba týkajúca sa proxy</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Bola zistená neznáma chyba týkajúca sa vzdialeného obsahu</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Bola zistená porucha v protokole</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Neznáma chyba</translation>
+        <translation>Neznáma chyba</translation>
     </message>
 </context>
 <context>
@@ -5116,7 +5117,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Neznámy</translation>
+        <translation>Neznámy</translation>
     </message>
     <message>
         <source>h</source>
@@ -6039,11 +6040,11 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba režimu seedovania</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozhodli ste sa preskočiť kontrolu súborov. Zdá sa však, že lokálne súbory neexistujú v aktuálnom cieľovom priečinku torrentu. Prosím, vypnite túto možnosť alebo aktualizujte cieľovú cestu.</translation>
     </message>
 </context>
 </TS>
