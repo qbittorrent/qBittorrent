@@ -45,6 +45,13 @@ class PeerListDelegate;
 class ReverseResolution;
 class PropertiesWidget;
 
+#include <boost/version.hpp>
+#if BOOST_VERSION < 103500
+#include <libtorrent/asio/ip/tcp.hpp>
+#else
+#include <boost/asio/ip/tcp.hpp>
+#endif
+
 class PeerListWidget : public QTreeView {
   Q_OBJECT
 

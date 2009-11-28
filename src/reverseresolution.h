@@ -36,8 +36,16 @@
 #include <QWaitCondition>
 #include <QMutex>
 #include <QList>
-#include <libtorrent/asio/ip/tcp.hpp>
 #include "misc.h"
+
+#include <boost/version.hpp>
+#if BOOST_VERSION < 103500
+#include <libtorrent/asio/ip/tcp.hpp>
+#else
+#include <boost/asio/ip/tcp.hpp>
+#endif
+
+using namespace libtorrent;
 
 #define MAX_THREADS 20
 
