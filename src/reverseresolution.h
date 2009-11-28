@@ -56,9 +56,10 @@ public:
 
   ~ReverseResolutionST() {
     stopped = true;
-    if(isRunning())
+    if(isRunning()) {
       resolver.cancel();
-    wait();
+      wait();
+    }
   }
 
   void setIP(boost::asio::ip::tcp::endpoint &_ip) {

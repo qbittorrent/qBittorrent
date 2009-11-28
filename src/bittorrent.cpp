@@ -1124,8 +1124,10 @@ void Bittorrent::saveFastResumeData() {
     if (rda) {
       --num_resume_data;
       s->pop_alert();
-      // Remove torrent from session
-      s->remove_torrent(rda->handle);
+      try {
+        // Remove torrent from session
+        s->remove_torrent(rda->handle);
+      }catch(libtorrent::libtorrent_exception){}
       continue;
     }
     save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
@@ -1161,14 +1163,14 @@ QStringList Bittorrent::getPeerBanMessages() const {
 
 void Bittorrent::addConsoleMessage(QString msg, QColor color) {
   if(consoleMessages.size() > 100) {
-    consoleMessages.removeFirst(); 
+    consoleMessages.removeFirst();
   }
   consoleMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + msg + QString::fromUtf8("</i></font>"));
 }
 
 void Bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
   if(peerBanMessages.size() > 100) {
-    peerBanMessages.removeFirst(); 
+    peerBanMessages.removeFirst();
   }
   if(from_ipfilter)
     peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was blocked due to your IP filter</i>", "x.y.z.w was blocked").arg(ip));
@@ -1515,7 +1517,7 @@ void Bittorrent::readAlerts() {
           QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
           TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
           data.last_message = misc::toQString(p->msg);
- #ifndef LIBTORRENT_0_15
+#ifndef LIBTORRENT_0_15
           data.verified = false;
           ++data.fail_count;
 #endif
