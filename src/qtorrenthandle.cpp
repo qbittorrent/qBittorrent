@@ -546,17 +546,17 @@ void QTorrentHandle::resolve_countries(bool r) {
   h.resolve_countries(r);
 }
 
-void QTorrentHandle::connect_peer(asio::ip::tcp::endpoint const& adr, int source) const {
+void QTorrentHandle::connect_peer(libtorrent::asio::ip::tcp::endpoint const& adr, int source) const {
   Q_ASSERT(h.is_valid());
   h.connect_peer(adr, source);
 }
 
-void QTorrentHandle::set_peer_upload_limit(asio::ip::tcp::endpoint ip, int limit) const {
+void QTorrentHandle::set_peer_upload_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const {
   Q_ASSERT(h.is_valid());
   h.set_peer_upload_limit(ip, limit);
 }
 
-void QTorrentHandle::set_peer_download_limit(asio::ip::tcp::endpoint ip, int limit) const {
+void QTorrentHandle::set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const {
   Q_ASSERT(h.is_valid());
   h.set_peer_download_limit(ip, limit);
 }

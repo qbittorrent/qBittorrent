@@ -35,6 +35,7 @@
 #include <libtorrent/torrent_info.hpp>
 
 using namespace libtorrent;
+
 #include <QString>
 class QStringList;
 
@@ -152,9 +153,9 @@ class QTorrentHandle {
     void super_seeding(bool on) const;
 #endif
     void resolve_countries(bool r);
-    void connect_peer(asio::ip::tcp::endpoint const& adr, int source = 0) const;
-    void set_peer_upload_limit(asio::ip::tcp::endpoint ip, int limit) const;
-    void set_peer_download_limit(asio::ip::tcp::endpoint ip, int limit) const;
+    void connect_peer(libtorrent::asio::ip::tcp::endpoint const& adr, int source = 0) const;
+    void set_peer_upload_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
+    void set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
     void add_tracker(announce_entry const& url);
     void prioritize_first_last_piece(bool b);
 
