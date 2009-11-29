@@ -56,3 +56,7 @@
 	color: #fff;
 	cursor: pointer;
 }
+
+#transferList img.statusIcon {
+  margin-bottom: -4px;
+}

@@ -231,7 +231,7 @@ var dynamicTable = new Class	({
 				td.adopt(new ProgressBar(row[i].toFloat(), {'id': 'pb_'+id, 'width':80}));
 			} else {
 				if(i==0) {
-					td.adopt(new Element('img', {'src':row[i]}));
+					td.adopt(new Element('img', {'src':row[i], 'class': 'statusIcon'}));
 				} else {
 					td.set('html', row[i]);
 				}
