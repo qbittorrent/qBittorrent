@@ -136,6 +136,7 @@ public:
 
   void setProgress(float progress) {
     if(progress == getProgress()) return;
+    Q_ASSERT(progress >= 0. && progress <= 1.);
     itemData.replace(2, progress);
     if(parentItem)
       parentItem->updateProgress();
