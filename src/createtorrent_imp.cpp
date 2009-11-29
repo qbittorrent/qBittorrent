@@ -57,9 +57,9 @@ using namespace boost::filesystem;
 // name starts with a .
 bool file_filter(boost::filesystem::path const& filename)
 {
-        if (filename.leaf()[0] == '.') return false;
-        std::cerr << filename << std::endl;
-        return true;
+  if (filename.leaf()[0] == '.') return false;
+  std::cerr << filename << std::endl;
+  return true;
 }
 
 createtorrent::createtorrent(QWidget *parent): QDialog(parent){
@@ -99,30 +99,30 @@ void createtorrent::on_removeTracker_button_clicked() {
 
 int createtorrent::getPieceSize() const {
   switch(comboPieceSize->currentIndex()) {
-    case 0:
-      return 32*1024;
-    case 1:
-      return 64*1024;
-    case 2:
-      return 128*1024;
-    case 3:
-      return 256*1024;
-    case 4:
-      return 512*1024;
-    case 5:
-      return 1024*1024;
-    case 6:
-      return 2048*1024;
-    default:
-      return 256*1024;
+  case 0:
+    return 32*1024;
+  case 1:
+    return 64*1024;
+  case 2:
+    return 128*1024;
+  case 3:
+    return 256*1024;
+  case 4:
+    return 512*1024;
+  case 5:
+    return 1024*1024;
+  case 6:
+    return 2048*1024;
+  default:
+    return 256*1024;
   }
 }
 
 void createtorrent::on_addTracker_button_clicked() {
   bool ok;
   QString URL = QInputDialog::getText(this, tr("Please type an announce URL"),
-                                       tr("Announce URL:", "Tracker URL"), QLineEdit::Normal,
-                                       "http://", &ok);
+                                      tr("Announce URL:", "Tracker URL"), QLineEdit::Normal,
+                                      "http://", &ok);
   if(ok){
     if(trackers_list->findItems(URL, Qt::MatchFixedString).size() == 0)
       trackers_list->addItem(URL);
@@ -140,8 +140,8 @@ void createtorrent::on_removeURLSeed_button_clicked(){
 void createtorrent::on_addURLSeed_button_clicked(){
   bool ok;
   QString URL = QInputDialog::getText(this, tr("Please type a web seed url"),
-                                       tr("Web seed URL:"), QLineEdit::Normal,
-                                       "http://", &ok);
+                                      tr("Web seed URL:"), QLineEdit::Normal,
+                                      "http://", &ok);
   if(ok){
     if(URLSeeds_list->findItems(URL, Qt::MatchFixedString).size() == 0)
       URLSeeds_list->addItem(URL);
@@ -188,21 +188,25 @@ void createtorrent::handleCreationFailure(QString msg) {
 }
 
 void createtorrent::handleCreationSuccess(QString path, const char* branch_path) {
-    if(checkStartSeeding->isChecked()) {
-        // Create save path temp data
-        boost::intrusive_ptr<torrent_info> t;
-        try {
-            t = new torrent_info(path.toLocal8Bit().data());
-        } catch(std::exception&) {
-            QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
-            return;
-        }
-        QString hash = misc::toQString(t->info_hash());
-        TorrentTempData::setSavePath(hash, QString(branch_path));
-        emit torrent_to_seed(path);
+  if(checkStartSeeding->isChecked()) {
+    // Create save path temp data
+    boost::intrusive_ptr<torrent_info> t;
+    try {
+      t = new torrent_info(path.toLocal8Bit().data());
+    } catch(std::exception&) {
+      QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
+      return;
     }
-    QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
-    close();
+    QString hash = misc::toQString(t->info_hash());
+    TorrentTempData::setSavePath(hash, QString(branch_path));
+#ifdef LIBTORRENT_0_15
+    // Enable seeding mode (do not recheck the files)
+    TorrentTempData::setSeedingMode(hash, true);
+#endif
+    emit torrent_to_seed(path);
+  }
+  QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
+  close();
 }
 
 void createtorrent::updateProgressBar(int progress) {
@@ -226,7 +230,7 @@ void torrentCreatorThread::create(QString _input_path, QString _save_path, QStri
 }
 
 void sendProgressUpdateSignal(int i, int num, torrentCreatorThread *parent){
-    parent->sendProgressSignal((int)(i*100./(float)num));
+  parent->sendProgressSignal((int)(i*100./(float)num));
 }
 
 void torrentCreatorThread::sendProgressSignal(int progress) {
