@@ -46,6 +46,7 @@
 #include <libtorrent/file_pool.hpp>
 #include <libtorrent/create_torrent.hpp>
 
+#include "torrentpersistentdata.h"
 #include "createtorrent_imp.h"
 #include "misc.h"
 
@@ -188,7 +189,7 @@ void createtorrent::handleCreationFailure(QString msg) {
 
 void createtorrent::handleCreationSuccess(QString path, const char* branch_path) {
     if(checkStartSeeding->isChecked()) {
-        // Create save path file
+        // Create save path temp data
         boost::intrusive_ptr<torrent_info> t;
         try {
             t = new torrent_info(path.toLocal8Bit().data());
@@ -197,10 +198,7 @@ void createtorrent::handleCreationSuccess(QString path, const char* branch_path)
             return;
         }
         QString hash = misc::toQString(t->info_hash());
-        QFile savepath_file(misc::qBittorrentPath()+QString::fromUtf8("BT_backup")+QDir::separator()+hash+QString::fromUtf8(".savepath"));
-        savepath_file.open(QIODevice::WriteOnly | QIODevice::Text);
-        savepath_file.write(branch_path);
-        savepath_file.close();
+        TorrentTempData::setSavePath(hash, QString(branch_path));
         emit torrent_to_seed(path);
     }
     QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
