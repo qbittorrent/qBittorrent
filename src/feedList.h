@@ -36,6 +36,10 @@ public:
     setCurrentItem(unread_item);
   }
 
+  ~FeedList() {
+    delete unread_item;
+  }
+
   void itemAdded(QTreeWidgetItem *item, RssFile* file) {
     mapping[item] = file;
     if(file->getType() == RssFile::STREAM) {
