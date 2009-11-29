@@ -272,7 +272,10 @@ public:
   void updateFilesProgress(std::vector<size_type> fp) {
     for(unsigned int i=0; i<fp.size(); ++i) {
       TreeItem *item = files_index[i];
-      item->setProgress((float)fp[i]/(float)item->getSize());
+      if(item->getSize() > 0)
+        item->setProgress((float)fp[i]/(float)item->getSize());
+      else
+        item->setProgress(1.); // Empty file...
     }
     emit layoutChanged();
   }

@@ -111,7 +111,10 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
       file["name"] = name;
     }
     file["size"] = misc::friendlyUnit((double)fi->size);
-    file["progress"] = fp[i]/(double)fi->size;
+    if(fi->size > 0)
+      file["progress"] = fp[i]/(double)fi->size;
+    else
+      file["progress"] = 1.; // Empty file...
     file["priority"] = priorities[i];
     files << file;
     ++i;
