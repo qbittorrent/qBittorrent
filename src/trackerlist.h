@@ -284,6 +284,7 @@ public slots:
       delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), "Remove tracker");
     }
     QAction *act = menu.exec(QCursor::pos());
+    if(act == 0) return;
     if(act == addAct) {
       askForTrackers();
       return;

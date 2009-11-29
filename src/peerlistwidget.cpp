@@ -143,6 +143,7 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   }
   if(empty_menu) return;
   QAction *act = menu.exec(QCursor::pos());
+  if(act == 0) return;
   if(act == addPeerAct) {
     libtorrent::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
     if(ep != libtorrent::asio::ip::tcp::endpoint()) {
