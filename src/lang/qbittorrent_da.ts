@@ -1205,33 +1205,33 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Ikke kontaktet endnu</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="144"/>
-        <location filename="../eventmanager.cpp" line="145"/>
+        <location filename="../eventmanager.cpp" line="147"/>
+        <location filename="../eventmanager.cpp" line="148"/>
         <source>this session</source>
         <translation>denne session</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="149"/>
-        <location filename="../eventmanager.cpp" line="153"/>
+        <location filename="../eventmanager.cpp" line="152"/>
+        <location filename="../eventmanager.cpp" line="156"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="156"/>
+        <location filename="../eventmanager.cpp" line="159"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Seeded i %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="159"/>
+        <location filename="../eventmanager.cpp" line="162"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="242"/>
-        <location filename="../eventmanager.cpp" line="251"/>
+        <location filename="../eventmanager.cpp" line="245"/>
+        <location filename="../eventmanager.cpp" line="254"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation></translation>
@@ -2677,7 +2677,7 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
         <translation type="obsolete">Hentet</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="459"/>
+        <location filename="../propertieswidget.cpp" line="462"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
@@ -2735,39 +2735,39 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
         <translation>Har seeded i %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="519"/>
+        <location filename="../propertieswidget.cpp" line="522"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny url seed</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="520"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>New url seed:</source>
         <translation>Ny url seed:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="525"/>
+        <location filename="../propertieswidget.cpp" line="528"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="526"/>
+        <location filename="../propertieswidget.cpp" line="529"/>
         <source>This url seed is already in the list.</source>
         <translation>Denne url seed er allerede på listen.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="571"/>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
+        <location filename="../propertieswidget.cpp" line="576"/>
         <source>Choose save path</source>
         <translation>Gem til denne mappe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="580"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>Save path creation error</source>
         <translation>Fejl ved oprettelse af mappe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="580"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>Could not create the save path</source>
         <translation>Kunne ikke oprette mappe svarende til den indtastede sti</translation>
     </message>
@@ -3331,22 +3331,22 @@ Changelog:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Name</source>
         <translation>Navn</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Size</source>
         <translation>Størrelse</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Progress</source>
         <translation>Hentet</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>

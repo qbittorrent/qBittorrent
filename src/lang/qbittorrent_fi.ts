@@ -1371,33 +1371,33 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Korkein</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="144"/>
-        <location filename="../eventmanager.cpp" line="145"/>
+        <location filename="../eventmanager.cpp" line="147"/>
+        <location filename="../eventmanager.cpp" line="148"/>
         <source>this session</source>
         <translation>tämä istunto</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="149"/>
-        <location filename="../eventmanager.cpp" line="153"/>
+        <location filename="../eventmanager.cpp" line="152"/>
+        <location filename="../eventmanager.cpp" line="156"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="156"/>
+        <location filename="../eventmanager.cpp" line="159"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>jaettu %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="159"/>
+        <location filename="../eventmanager.cpp" line="162"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>korkeintaan %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="242"/>
-        <location filename="../eventmanager.cpp" line="251"/>
+        <location filename="../eventmanager.cpp" line="245"/>
+        <location filename="../eventmanager.cpp" line="254"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -3169,7 +3169,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Edistyminen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="459"/>
+        <location filename="../propertieswidget.cpp" line="462"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>
@@ -3223,23 +3223,23 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Ei yhtään - tavoittamattomissa?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="519"/>
+        <location filename="../propertieswidget.cpp" line="522"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi URL-lähde</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="520"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>New url seed:</source>
         <translation>Uusi URL-lähde:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="525"/>
+        <location filename="../propertieswidget.cpp" line="528"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="526"/>
+        <location filename="../propertieswidget.cpp" line="529"/>
         <source>This url seed is already in the list.</source>
         <translation>URL-jakaja on jo listalla.</translation>
     </message>
@@ -3248,18 +3248,18 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="571"/>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
+        <location filename="../propertieswidget.cpp" line="576"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="580"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="580"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
@@ -3883,22 +3883,22 @@ Muutoshistoria:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Size</source>
         <translation>Koko</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Progress</source>
         <translation>Edistyminen</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>

@@ -1386,33 +1386,33 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">最大</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="144"/>
-        <location filename="../eventmanager.cpp" line="145"/>
+        <location filename="../eventmanager.cpp" line="147"/>
+        <location filename="../eventmanager.cpp" line="148"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="149"/>
-        <location filename="../eventmanager.cpp" line="153"/>
+        <location filename="../eventmanager.cpp" line="152"/>
+        <location filename="../eventmanager.cpp" line="156"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="156"/>
+        <location filename="../eventmanager.cpp" line="159"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="159"/>
+        <location filename="../eventmanager.cpp" line="162"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="242"/>
-        <location filename="../eventmanager.cpp" line="251"/>
+        <location filename="../eventmanager.cpp" line="245"/>
+        <location filename="../eventmanager.cpp" line="254"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
@@ -2899,7 +2899,7 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">進行状況</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="459"/>
+        <location filename="../propertieswidget.cpp" line="462"/>
         <source>Priority</source>
         <translation type="unfinished">優先度</translation>
     </message>
@@ -2957,23 +2957,23 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">なし - アンリーチ可能ですか?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="519"/>
+        <location filename="../propertieswidget.cpp" line="522"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished">新しい url シード</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="520"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>New url seed:</source>
         <translation type="unfinished">新しい url シード:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="525"/>
+        <location filename="../propertieswidget.cpp" line="528"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="526"/>
+        <location filename="../propertieswidget.cpp" line="529"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished">この url シードはすでに一覧にあります。</translation>
     </message>
@@ -2982,18 +2982,18 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">トラッカの一覧を空にできません。</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="571"/>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
+        <location filename="../propertieswidget.cpp" line="576"/>
         <source>Choose save path</source>
         <translation type="unfinished">保存パスの選択</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="580"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>Save path creation error</source>
         <translation type="unfinished">保存パスの作成エラー</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="580"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">保存パスを作成できませんでした</translation>
     </message>
@@ -3649,22 +3649,22 @@ Changelog:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Name</source>
         <translation type="unfinished">名前</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Size</source>
         <translation type="unfinished">サイズ</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Progress</source>
         <translation type="unfinished">進行状況</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="263"/>
+        <location filename="../torrentfilesmodel.h" line="278"/>
         <source>Priority</source>
         <translation type="unfinished">優先度</translation>
     </message>
