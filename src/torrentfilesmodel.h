@@ -49,6 +49,7 @@ private:
   QList<QVariant> itemData;
   TreeItem *parentItem;
   TreeItemType type;
+  qulonglong total_done;
 
 public:
   // File Construction
@@ -60,6 +61,7 @@ public:
     qDebug("Created a TreeItem file with name %s", getName().toLocal8Bit().data());
     qDebug("parent is %s", parent->getName().toLocal8Bit().data());
     itemData << QVariant((qulonglong)f.size);
+    total_done = 0;
     itemData << 0.; // Progress;
     itemData << 1; // Priority
     if(parent) {
@@ -75,6 +77,7 @@ public:
     itemData << name;
     itemData << 0.; // Size
     itemData << 0.; // Progress;
+    total_done = 0;
     itemData << 1; // Priority
     if(parent) {
       parent->appendChild(this);
@@ -85,6 +88,7 @@ public:
     parentItem = 0;
     type = ROOT;
     itemData = data;
+    total_done = 0;
   }
 
   ~TreeItem() {
@@ -134,32 +138,42 @@ public:
     setSize(size);
   }
 
-  void setProgress(float progress) {
-    if(progress == getProgress()) return;
+  void setProgress(qulonglong done) {
+    if(done == total_done) return;
+    total_done = done;
+    qulonglong size = getSize();
+    Q_ASSERT(total_done <= size);
+    float progress;
+    if(size > 0)
+      progress = total_done/(float)size;
+    else
+      progress = 1.;
     Q_ASSERT(progress >= 0. && progress <= 1.);
     itemData.replace(2, progress);
     if(parentItem)
       parentItem->updateProgress();
   }
 
+  qulonglong getTotalDone() const {
+    return total_done;
+  }
+
   float getProgress() const {
-    return itemData.value(2).toDouble();
+    qulonglong size = getSize();
+    if(size > 0)
+      return total_done/(float)getSize();
+    return 1.;
   }
 
   void updateProgress() {
     if(type == ROOT) return;
     Q_ASSERT(type == FOLDER);
-    size_t total_size = 0;
-    size_t total_done = 0;
+    total_done = 0;
     foreach(TreeItem* child, childItems) {
-      size_t size = child->getSize();
-      total_size += size;
-      total_done += size*child->getProgress();
+      total_done += child->getTotalDone();
     }
-    if(total_size == 0)
-      setProgress(1.);
-    else
-      setProgress((float)total_done/(float)total_size);
+    Q_ASSERT(total_done <= getSize());
+    setProgress(total_done);
   }
 
   int getPriority() const {
@@ -272,11 +286,8 @@ public:
 
   void updateFilesProgress(std::vector<size_type> fp) {
     for(unsigned int i=0; i<fp.size(); ++i) {
-      TreeItem *item = files_index[i];
-      if(item->getSize() > 0)
-        item->setProgress((float)fp[i]/(float)item->getSize());
-      else
-        item->setProgress(1.); // Empty file...
+      Q_ASSERT(fp[i] >= 0);
+      files_index[i]->setProgress(fp[i]);
     }
     emit layoutChanged();
   }
