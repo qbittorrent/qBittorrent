@@ -327,6 +327,7 @@ void PropertiesWidget::loadDynamicData() {
       else
         shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
       if(!h.is_seed()) {
+        showPieceBars(true);
         // Downloaded pieces
         downloaded_pieces->setProgress(h.pieces());
         // Pieces availability
@@ -336,6 +337,8 @@ void PropertiesWidget::loadDynamicData() {
         avail_average_lbl->setText(QString::number(avail_average, 'f', 1));
         // Progress
         progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
+      } else {
+        showPieceBars(false);
       }
       return;
     }
