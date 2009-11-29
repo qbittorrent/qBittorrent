@@ -211,6 +211,7 @@ int main(int argc, char *argv[]){
   }
   int ret =  app->exec();
   delete window;
+  qDebug("app children: %d", app->children().size());
   delete app;
   return ret;
 }

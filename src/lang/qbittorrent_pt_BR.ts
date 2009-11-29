@@ -250,10 +250,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Impossível decodificar %1 do arquivo torrent.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Falha no mapeamento de porta, mensagem: %1</translation>
     </message>
@@ -273,6 +269,10 @@ p, li { white-space: pre-wrap; }
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">baixando &apos;%1&apos;, por favor espere...</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
