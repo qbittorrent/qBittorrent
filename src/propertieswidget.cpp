@@ -356,8 +356,8 @@ void PropertiesWidget::loadDynamicData() {
       // Files progress
       std::vector<size_type> fp;
       h.file_progress(fp);
-      PropListModel->updateFilesProgress(fp);
       PropListModel->updateFilesPriorities(h.file_priorities());
+      PropListModel->updateFilesProgress(fp);
     }
   } catch(invalid_handle e) {}
 }

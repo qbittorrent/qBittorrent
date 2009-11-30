@@ -63,7 +63,7 @@
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
 
 // Main constructor
-Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), queueingEnabled(false), geoipDBLoaded(false) {
+Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), queueingEnabled(false), geoipDBLoaded(false), exiting(false) {
   resolve_countries = false;
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
@@ -102,9 +102,9 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
   qDebug("* BTSession constructed");
 }
 
-// Main destructor
-Bittorrent::~Bittorrent() {
-  qDebug("BTSession deletion");
+session_proxy Bittorrent::asyncDeletion() {
+  qDebug("Bittorrent session async deletion IN");
+  exiting = true;
   // Do some BT related saving
   saveDHTEntry();
   saveSessionState();
@@ -112,6 +112,22 @@ Bittorrent::~Bittorrent() {
   // Delete session
   session_proxy sp = s->abort();
   delete s;
+  qDebug("Bittorrent session async deletion OUT");
+  return sp;
+}
+
+// Main destructor
+Bittorrent::~Bittorrent() {
+  qDebug("BTSession destructor IN");
+  if(!exiting) {
+    // Do some BT related saving
+    saveDHTEntry();
+    saveSessionState();
+    saveFastResumeData();
+    // Delete session
+    session_proxy sp = s->abort();
+    delete s;
+  }
   // Disable directory scanning
   disableDirectoryScanning();
   // Delete our objects
@@ -129,7 +145,7 @@ Bittorrent::~Bittorrent() {
     delete httpServer;
   if(timerETA)
     delete timerETA;
-  qDebug("Deleting session...");
+  qDebug("BTSession destructor OUT");
 }
 
 void Bittorrent::preAllocateAllFiles(bool b) {

@@ -194,21 +194,21 @@ var dynamicTable = new Class	({
 				}
 				break;
 			case 'completed':
-				if(status == "seeding" || status == "stalledUP" || status == "checkingUP" || status == "pausedUP" || status == "queuedUP") {
+				if(status == "uploading" || status == "stalledUP" || status == "checkingUP" || status == "pausedUP" || status == "queuedUP") {
 					tr.removeClass("invisible");
 				} else {
 					tr.addClass("invisible");
 				}
 				break;
 			case 'active':
-				if(status == "downloading" || status == "seeding") {
+				if(status == "downloading" || status == "uploading") {
 					tr.removeClass("invisible");
 				} else {
 					tr.addClass("invisible");
 				}
 				break;
 			case 'inactive':
-				if(status != "downloading" && status != "seeding") {
+				if(status != "downloading" && status != "uploading") {
 					tr.removeClass("invisible");
 				} else {
 					tr.addClass("invisible");

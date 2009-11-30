@@ -133,13 +133,13 @@ public:
     Q_ASSERT(type == FOLDER);
     qulonglong size = 0;
     foreach(TreeItem* child, childItems) {
-      size += child->getSize();
+      if(child->getPriority() > 0)
+        size += child->getSize();
     }
     setSize(size);
   }
 
   void setProgress(qulonglong done) {
-    if(done == total_done) return;
     total_done = done;
     qulonglong size = getSize();
     Q_ASSERT(total_done <= size);
@@ -149,6 +149,7 @@ public:
     else
       progress = 1.;
     Q_ASSERT(progress >= 0. && progress <= 1.);
+    //qDebug("setProgress(%s): %f", getName().toLocal8Bit().data(), progress);
     itemData.replace(2, progress);
     if(parentItem)
       parentItem->updateProgress();
@@ -169,9 +170,12 @@ public:
     if(type == ROOT) return;
     Q_ASSERT(type == FOLDER);
     total_done = 0;
+    //qDebug("Folder %s is updating its progress", getName().toLocal8Bit().data());
     foreach(TreeItem* child, childItems) {
-      total_done += child->getTotalDone();
+      if(child->getPriority() > 0)
+        total_done += child->getTotalDone();
     }
+    //qDebug("Folder: total_done: %llu/%llu", total_done, getSize());
     Q_ASSERT(total_done <= getSize());
     setProgress(total_done);
   }
@@ -180,16 +184,24 @@ public:
     return itemData.value(3).toInt();
   }
 
-  void setPriority(int priority) {
-    if(getPriority() != priority) {
-      itemData.replace(3, priority);
+  void setPriority(int new_prio) {
+    int old_prio = getPriority();
+    if(old_prio != new_prio) {
+      itemData.replace(3, new_prio);
       // Update parent
-      if(parentItem)
+      if(parentItem) {
+        if(new_prio == 0 || old_prio == 0) {
+          // Files got filtered or unfiltered
+          // Update parent size and progress
+          parentItem->updateSize();
+          parentItem->updateProgress();
+        }
         parentItem->updatePriority();
+      }
     }
     // Update children
     foreach(TreeItem* child, childItems) {
-      child->setPriority(priority);
+      child->setPriority(new_prio);
     }
   }
 

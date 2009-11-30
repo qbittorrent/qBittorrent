@@ -84,7 +84,7 @@ protected slots:
 #endif
   void toggleSelectedTorrentsSequentialDownload();
   void toggleSelectedFirstLastPiecePrio();
-  //void setRowColor(int row, QColor color);
+  void setRowColor(int row, QColor color);
 
 public slots:
   void refreshList();

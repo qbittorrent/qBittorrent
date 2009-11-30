@@ -161,19 +161,11 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
     data["time_elapsed"] = elapsed_txt;
     data["nb_connections"] = QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")";
     // Update ratio info
-    float ratio;
-    if(h.total_payload_download() == 0){
-      if(h.total_payload_upload() == 0)
-        ratio = 1.;
+    double ratio = BTSession->getRealRatio(h.hash());
+      if(ratio > 100.)
+        data["share_ratio"] = QString::fromUtf8("∞");
       else
-        ratio = 10.; // Max ratio
-    }else{
-      ratio = (double)h.total_payload_upload()/(double)h.total_payload_download();
-      if(ratio > 10.){
-        ratio = 10.;
-      }
-    }
-    data["share_ratio"] = QString(QByteArray::number(ratio, 'f', 1));
+        data["share_ratio"] = QString(QByteArray::number(ratio, 'f', 1));
   }
   return data;
 }
@@ -210,7 +202,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
       case torrent_status::finished:
       case torrent_status::seeding:
         if(h.upload_payload_rate() > 0) {
-          event["state"] = QVariant("seeding");
+          event["state"] = QVariant("uploading");
         } else {
           event["state"] = QVariant("stalledUP");
         }
@@ -263,7 +255,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
   event["seed"] = QVariant(h.is_seed());
   double ratio = BTSession->getRealRatio(hash);
   if(ratio > 100.)
-    QString::fromUtf8("∞");
+    event["ratio"] = QString::fromUtf8("∞");
   else
     event["ratio"] = QVariant(QString::number(ratio, 'f', 1));
   event["hash"] = QVariant(hash);

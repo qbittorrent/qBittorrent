@@ -120,6 +120,8 @@ private:
   // Web UI
   QPointer<HttpServer> httpServer;
   QStringList url_skippingDlg;
+  // Fast exit (async)
+  bool exiting;
 
 protected:
   QString getSavePath(QString hash);
@@ -163,6 +165,7 @@ public slots:
   void downloadFromUrl(QString url);
   void deleteTorrent(QString hash, bool delete_local_files = false);
   void startUpTorrents();
+  session_proxy asyncDeletion();
   /* Needed by Web UI */
   void pauseAllTorrents();
   void pauseTorrent(QString hash);

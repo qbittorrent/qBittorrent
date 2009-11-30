@@ -211,8 +211,10 @@ int main(int argc, char *argv[]){
   }
   int ret =  app->exec();
   delete window;
-  qDebug("app children: %d", app->children().size());
+  qDebug("GUI was deleted!");
+  qDebug("Deleting app...");
   delete app;
+  qDebug("App was deleted! All good.");
   return ret;
 }
 

@@ -196,17 +196,21 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 GUI::~GUI() {
   qDebug("GUI destruction");
   hide();
+  // Async deletion of Bittorrent session as early as possible
+  // in order to speed up exit
+  session_proxy sp = BTSession->asyncDeletion();
+  // Delete other GUI objects
   delete status_bar;
+  delete transferList;
+  delete guiUpdater;
+
   if(rssWidget)
     delete rssWidget;
   delete searchEngine;
   delete transferListFilters;
   delete properties;
-  delete transferList;
   delete hSplitter;
   delete vSplitter;
-  delete guiUpdater;
-  qDebug("1");
   if(systrayCreator) {
     delete systrayCreator;
   }
@@ -214,19 +218,21 @@ GUI::~GUI() {
     delete systrayIcon;
     delete myTrayIconMenu;
   }
-  qDebug("2");
   localServer->close();
   delete localServer;
   delete tabs;
-  qDebug("3");
   // Keyboard shortcuts
   delete switchSearchShortcut;
   delete switchSearchShortcut2;
   delete switchTransferShortcut;
   delete switchRSSShortcut;
-  qDebug("4");
+  // Delete BTSession objects
   delete BTSession;
-  qDebug("5");
+  // May freeze for a few seconds after the next line
+  // because the Bittorrent session proxy will
+  // actually be deleted now and destruction
+  // becomes synchronous
+  qDebug("Exiting GUI destructor...");
 }
 
 void GUI::displayRSSTab(bool enable) {

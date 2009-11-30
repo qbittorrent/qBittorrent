@@ -4,7 +4,7 @@
     - FEATURE: Display more information regarding the torrent in its properties
     - FEATURE: Various optimizations to save CPU and memory
     - FEATURE: Folder scanning now works with CIFS and NFS mounted folders
-    - FEATURE: Speed up qBittorrent startup
+    - FEATURE: Speed up qBittorrent startup and shutdown
     - FEATURE: Display per-torrent peer list
     - FEATURE: Make sure torrent files are always sorted by name
     - FEATURE: Seeds and Peers columns are now sortable
