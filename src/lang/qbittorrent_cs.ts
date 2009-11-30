@@ -147,160 +147,160 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="155"/>
+        <location filename="../bittorrent.cpp" line="171"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">&apos;%1&apos; - poměr dosáhl nastaveného maxima.</translation>
+        <translation>%1 dosáhl maximálního nastaveného poměru sdílení.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="230"/>
+        <location filename="../bittorrent.cpp" line="246"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent naslouchá na portu: TCP/%1</translation>
+        <translation>qBittorrent naslouchá na portu: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="273"/>
+        <location filename="../bittorrent.cpp" line="289"/>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">Podpora UPnP [ZAP]</translation>
+        <translation>Podpora UPnP [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="276"/>
+        <location filename="../bittorrent.cpp" line="292"/>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">Podpora UPnP [VYP]</translation>
+        <translation>Podpora UPnP [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="281"/>
+        <location filename="../bittorrent.cpp" line="297"/>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">Podpora NAT-PMP [ZAP]</translation>
+        <translation>Podpora NAT-PMP [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="284"/>
+        <location filename="../bittorrent.cpp" line="300"/>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">Podpora NAT-PMP [VYP]</translation>
-    </message>
-    <message>
-        <location filename="../bittorrent.cpp" line="334"/>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">Podpora DHT [ZAP], port: UDP/%1</translation>
-    </message>
-    <message>
-        <location filename="../bittorrent.cpp" line="336"/>
-        <location filename="../bittorrent.cpp" line="340"/>
-        <source>DHT support [OFF]</source>
-        <translation type="unfinished">Podpora DHT [VYP]</translation>
-    </message>
-    <message>
-        <location filename="../bittorrent.cpp" line="343"/>
-        <source>PeX support [ON]</source>
-        <translation type="unfinished">Podpora PeX [ZAP]</translation>
-    </message>
-    <message>
-        <location filename="../bittorrent.cpp" line="347"/>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">Local Peer Discovery [ZAP]</translation>
+        <translation>Podpora NAT-PMP [VYP]</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="350"/>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation>Podpora DHT [ZAP], port: UDP/%1</translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="352"/>
+        <location filename="../bittorrent.cpp" line="356"/>
+        <source>DHT support [OFF]</source>
+        <translation>Podpora DHT [VYP]</translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="359"/>
+        <source>PeX support [ON]</source>
+        <translation>Podpora PeX [ZAP]</translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="363"/>
+        <source>Local Peer Discovery [ON]</source>
+        <translation>Local Peer Discovery [ZAP]</translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="366"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">Podpora Local Peer Discovery [VYP]</translation>
+        <translation>Podpora Local Peer Discovery [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="362"/>
+        <location filename="../bittorrent.cpp" line="378"/>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">Podpora šifrování [ZAP]</translation>
+        <translation>Podpora šifrování [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="367"/>
+        <location filename="../bittorrent.cpp" line="383"/>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">Podpora šifrování [VYNUCENO]</translation>
+        <translation>Podpora šifrování [VYNUCENO]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="372"/>
+        <location filename="../bittorrent.cpp" line="388"/>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">Podpora šifrování [VYP]</translation>
+        <translation>Podpora šifrování [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="473"/>
+        <location filename="../bittorrent.cpp" line="489"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba webového rozhraní - Nelze se připojit k Web UI na port %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="590"/>
+        <location filename="../bittorrent.cpp" line="606"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; byl odstraněn ze seznamu i z pevného disku.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="592"/>
+        <location filename="../bittorrent.cpp" line="608"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; byl odstraněn ze seznamu přenosů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="642"/>
+        <location filename="../bittorrent.cpp" line="658"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">&apos;%1&apos; není platný magnet URI.</translation>
+        <translation>&apos;%1&apos; není platný magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="667"/>
-        <location filename="../bittorrent.cpp" line="803"/>
-        <location filename="../bittorrent.cpp" line="806"/>
+        <location filename="../bittorrent.cpp" line="683"/>
+        <location filename="../bittorrent.cpp" line="819"/>
+        <location filename="../bittorrent.cpp" line="822"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; už je v seznamu stahování.</translation>
+        <translation>&apos;%1&apos; už je v seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="741"/>
-        <location filename="../bittorrent.cpp" line="925"/>
-        <location filename="../bittorrent.cpp" line="930"/>
+        <location filename="../bittorrent.cpp" line="757"/>
+        <location filename="../bittorrent.cpp" line="941"/>
+        <location filename="../bittorrent.cpp" line="946"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
+        <translation>&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="743"/>
-        <location filename="../bittorrent.cpp" line="927"/>
-        <location filename="../bittorrent.cpp" line="932"/>
+        <location filename="../bittorrent.cpp" line="759"/>
+        <location filename="../bittorrent.cpp" line="943"/>
+        <location filename="../bittorrent.cpp" line="948"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; přidán do seznamu stahování.</translation>
+        <translation>&apos;%1&apos; přidán do seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="777"/>
-        <location filename="../bittorrent.cpp" line="781"/>
+        <location filename="../bittorrent.cpp" line="793"/>
+        <location filename="../bittorrent.cpp" line="797"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Nelze dekódovat soubor torrentu: &apos;%1&apos;</translation>
+        <translation>Nelze dekódovat soubor torrentu: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="784"/>
+        <location filename="../bittorrent.cpp" line="800"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
+        <translation>Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1179"/>
+        <location filename="../bittorrent.cpp" line="1195"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1181"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1441"/>
+        <location filename="../bittorrent.cpp" line="1457"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
+        <translation>Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1452"/>
+        <location filename="../bittorrent.cpp" line="1468"/>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Nelze dekódovat soubor torrentu %1.</translation>
+        <translation>Nelze dekódovat soubor torrentu %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1508"/>
+        <location filename="../bittorrent.cpp" line="1524"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,30 +309,30 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nelze naslouchat na žádném z udaných portů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1576"/>
+        <location filename="../bittorrent.cpp" line="1592"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
+        <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1581"/>
+        <location filename="../bittorrent.cpp" line="1597"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
+        <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1596"/>
+        <location filename="../bittorrent.cpp" line="1612"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
+        <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1601"/>
+        <location filename="../bittorrent.cpp" line="1617"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
+        <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1669"/>
+        <location filename="../bittorrent.cpp" line="1685"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
+        <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
     </message>
 </context>
 <context>
@@ -449,37 +449,37 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../ui/options.ui" line="487"/>
         <source>Action on double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Akce po dvojitém kliknutí</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="495"/>
         <source>Downloading:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahování:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="542"/>
         <source>Completed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončeno:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1449"/>
         <source>Peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojení protějšků</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1455"/>
         <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Zjišťovat zemi původu protějšků</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1465"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Zjišťovat názvy počítačů protějšků</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1530"/>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít jiný port pro DHT a bittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1836"/>
@@ -530,12 +530,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="1636"/>
         <source>Disabled</source>
-        <translation>Vypnuto</translation>
+        <translation>Zakázáno</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Preferences</source>
-        <translation>Předvolby</translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <source>General</source>
@@ -578,7 +578,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="369"/>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakázat úvodní obrazovku</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="376"/>
@@ -588,7 +588,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="385"/>
         <source>Transfer list refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval obnovování seznamu přenosů:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="429"/>
@@ -650,7 +650,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../ui/options.ui" line="773"/>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>Sledování adresářů</translation>
+        <translation>Sledování adresáře</translation>
     </message>
     <message>
         <source>Transfer lists double-click</source>
@@ -798,12 +798,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/options.ui" line="1170"/>
         <source>Connections limit</source>
-        <translation>Limit spojení</translation>
+        <translation>Limit připojení</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1178"/>
         <source>Global maximum number of connections:</source>
-        <translation>Celkový maximální počet spojení:</translation>
+        <translation>Celkový maximální počet připojení:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1226"/>
@@ -1135,24 +1135,24 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../eventmanager.cpp" line="64"/>
         <location filename="../eventmanager.cpp" line="78"/>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Funkční</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="67"/>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuji...</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="70"/>
         <location filename="../eventmanager.cpp" line="81"/>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Nefunkční</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="72"/>
         <location filename="../eventmanager.cpp" line="83"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosud nekontaktován</translation>
     </message>
     <message>
         <source>Ignored</source>
@@ -1177,33 +1177,33 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../eventmanager.cpp" line="147"/>
         <location filename="../eventmanager.cpp" line="148"/>
         <source>this session</source>
-        <translation type="unfinished"></translation>
+        <translation>tato relace</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="152"/>
         <location filename="../eventmanager.cpp" line="156"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="159"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sdíleno %1</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="162"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="245"/>
-        <location filename="../eventmanager.cpp" line="254"/>
+        <location filename="../eventmanager.cpp" line="237"/>
+        <location filename="../eventmanager.cpp" line="246"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -1211,7 +1211,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/feeddownloader.ui" line="14"/>
         <source>RSS Feed downloader</source>
-        <translation>Stáhnout z RSS kanálů</translation>
+        <translation type="unfinished">Stahování z RSS kanálů</translation>
     </message>
     <message>
         <location filename="../ui/feeddownloader.ui" line="29"/>
@@ -1543,54 +1543,54 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="610"/>
+        <location filename="../GUI.cpp" line="616"/>
         <source>Open Torrent Files</source>
         <translation>Otevřít torrent soubory</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="508"/>
+        <location filename="../GUI.cpp" line="514"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ano</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="302"/>
+        <location filename="../GUI.cpp" line="308"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="306"/>
+        <location filename="../GUI.cpp" line="312"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="391"/>
+        <location filename="../GUI.cpp" line="397"/>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkový limit rychlosti nahrávání</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="409"/>
+        <location filename="../GUI.cpp" line="415"/>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkový limit rychlosti stahování</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="508"/>
+        <location filename="../GUI.cpp" line="514"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="795"/>
+        <location filename="../GUI.cpp" line="801"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1 (Stahování: %2/s, Nahrávání: %3/s)</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
         <translation type="obsolete">Jste si jist, že chcete smazat vybrané položky ze seznamu stahování?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="611"/>
+        <location filename="../GUI.cpp" line="617"/>
         <source>Torrent Files</source>
         <translation>Torrent soubory</translation>
     </message>
@@ -1621,35 +1621,35 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nebyly nalezeny žádné peery...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="506"/>
-        <location filename="../GUI.cpp" line="783"/>
+        <location filename="../GUI.cpp" line="512"/>
+        <location filename="../GUI.cpp" line="789"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="707"/>
+        <location filename="../GUI.cpp" line="713"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="778"/>
-        <location filename="../GUI.cpp" line="786"/>
+        <location filename="../GUI.cpp" line="784"/>
+        <location filename="../GUI.cpp" line="792"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rychlost stahování: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="780"/>
-        <location filename="../GUI.cpp" line="789"/>
+        <location filename="../GUI.cpp" line="786"/>
+        <location filename="../GUI.cpp" line="795"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rychlost nahrávání: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="506"/>
+        <location filename="../GUI.cpp" line="512"/>
         <source>Are you sure you want to quit?</source>
-        <translation>Opravdu ukončit program?</translation>
+        <translation>Opravdu chcete ukončit program?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -1675,13 +1675,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">&apos;%1&apos; obnoven.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="283"/>
+        <location filename="../GUI.cpp" line="289"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Stahování %1 bylo dokončeno.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="289"/>
+        <location filename="../GUI.cpp" line="295"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Chyba I/O</translation>
@@ -1709,7 +1709,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Žádná příchozí spojení...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="293"/>
+        <location filename="../GUI.cpp" line="299"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Nastala chyba (plný disk?), &apos;%1&apos; pozastaven.</translation>
@@ -1720,7 +1720,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="237"/>
+        <location filename="../GUI.cpp" line="243"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -1780,7 +1780,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation type="obsolete">Podpora šifrování [VYP]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="300"/>
+        <location filename="../GUI.cpp" line="306"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -1788,15 +1788,15 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../GUI.cpp" line="136"/>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="283"/>
-        <source>Download completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Přenosy</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="289"/>
+        <source>Download completion</source>
+        <translation>Kompletace  stahování</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="295"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1815,14 +1815,14 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="385"/>
+        <location filename="../GUI.cpp" line="391"/>
         <source>Url download error</source>
         <translation>Chyba stahování URL</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="385"/>
+        <location filename="../GUI.cpp" line="391"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Nemohu stáhnout soubor na URL: %1, důvod: %2.</translation>
+        <translation>Nelze stáhnout soubor z URL: %1, důvod: %2.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
@@ -1843,16 +1843,17 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="507"/>
+        <location filename="../GUI.cpp" line="513"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Některé soubory se právě přenášejí.
+Opravdu chcete ukončit qBittorrent?</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
@@ -1918,7 +1919,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Nahrávání</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="679"/>
+        <location filename="../GUI.cpp" line="685"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavení bylo úspěšně uloženo.</translation>
     </message>
@@ -1928,57 +1929,57 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../httpserver.cpp" line="60"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="61"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Úpravy</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="62"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Nápověda</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="63"/>
         <source>Delete from HD</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat z pevného disku</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="64"/>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahovat torrenty z jejich URL nebo Magnet odkazu</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="65"/>
         <source>Only one link per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Pouze jeden odkaz na řádek</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="66"/>
         <source>Download local torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout lokální torrent</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="67"/>
         <source>Torrent files were correctly added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent soubory byly úspěšně přidány do seznamu stahování.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="68"/>
         <source>Point to torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkazovat na torrent soubor</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="69"/>
         <source>Download</source>
-        <translation type="unfinished">Stáhnout</translation>
+        <translation>Stahování</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="70"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jist, že chcete smazat vybrané torrenty ze seznamu stahování i pevného disku?</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="71"/>
@@ -2075,12 +2076,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="173"/>
         <source>Visit Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Navštívit webovou stránku</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="259"/>
         <source>Log Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno se záznamy</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -2104,7 +2105,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="193"/>
         <source>Clear log</source>
-        <translation>Vyprázdnit log</translation>
+        <translation>Vyprázdnit záznamy</translation>
     </message>
     <message>
         <source>Delete Permanently</source>
@@ -2152,7 +2153,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="128"/>
         <source>Open torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít torrent</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="232"/>
@@ -2175,12 +2176,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../peeraddition.h" line="101"/>
         <source>Invalid IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatná IP</translation>
     </message>
     <message>
         <location filename="../peeraddition.h" line="102"/>
         <source>The IP you provided is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Poskytnutá IP je neplatná.</translation>
     </message>
 </context>
 <context>
@@ -2188,7 +2189,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../peerlistdelegate.h" line="59"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -2196,114 +2197,114 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="55"/>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="56"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation type="unfinished"></translation>
+        <translation>Klient</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="57"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished">Průběh</translation>
+        <translation>Průběh</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="58"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rychlost stahování</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="59"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rychlost nahrávání</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="60"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Staženo</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="61"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nahráno</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="131"/>
         <source>Add a new peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat nový protějšek</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="140"/>
         <source>Limit upload rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost nahrávání</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="139"/>
         <source>Limit download rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost stahování</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
         <source>Ban peer permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Natrvalo zakázat protějšek</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="152"/>
         <location filename="../peerlistwidget.cpp" line="154"/>
         <source>Peer addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidání protějšku</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="152"/>
         <source>The peer was added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Protějšek byl přidán do tohoto torrentu.</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="154"/>
         <source>The peer could not be added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Protějšek nemohl být přidán do tohoto torrentu.</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="177"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation type="unfinished">Jste si jist? -- qBittorrent</translation>
+        <translation>Jste si jist? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="177"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jist, že chcete natrvalo zakázat označené protějšky?</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="178"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Ano</translation>
+        <translation>&amp;Ano</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="178"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Ne</translation>
+        <translation>&amp;Ne</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="183"/>
         <source>Manually banning peer %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ručně zakázat protějšek %1...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="194"/>
         <source>Upload rate limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezení rychlosti nahrávání</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="215"/>
         <source>Download rate limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezení rychlosti stahování</translation>
     </message>
 </context>
 <context>
@@ -2346,7 +2347,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/propertieswidget.ui" line="426"/>
         <source>Save path:</source>
-        <translation type="unfinished">Uložit do:</translation>
+        <translation>Uložit do:</translation>
     </message>
     <message>
         <source>Creator:</source>
@@ -2355,12 +2356,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/propertieswidget.ui" line="458"/>
         <source>Torrent hash:</source>
-        <translation type="unfinished">Kontrolní součet (hash) torrentu:</translation>
+        <translation>Kontrolní součet (hash) torrentu:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="481"/>
         <source>Comment:</source>
-        <translation type="unfinished">Komentář:</translation>
+        <translation>Komentář:</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -2377,7 +2378,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/propertieswidget.ui" line="340"/>
         <source>Share ratio:</source>
-        <translation type="unfinished">Poměr sdílení:</translation>
+        <translation>Poměr sdílení:</translation>
     </message>
     <message>
         <source>Total failed:</source>
@@ -2391,57 +2392,57 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../ui/propertieswidget.ui" line="82"/>
         <location filename="../ui/propertieswidget.ui" line="206"/>
         <source>Downloaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Staženo:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="136"/>
         <source>Availability:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="173"/>
         <source>Transfer</source>
-        <translation type="unfinished"></translation>
+        <translation>Přenos</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="196"/>
         <source>Uploaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahráno:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="216"/>
         <source>Wasted:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zahozeno:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="268"/>
         <source>UP limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit nahrávání:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="278"/>
         <source>DL limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit stahování:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="288"/>
         <source>Time elapsed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uplynulý čas:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="350"/>
         <source>Connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojení:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="412"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informace</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="442"/>
         <source>Created on:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořeno:</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -2454,37 +2455,37 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/propertieswidget.ui" line="752"/>
         <source>Collapse all</source>
-        <translation type="unfinished">Sbalit vše</translation>
+        <translation>Sbalit vše</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="759"/>
         <source>Expand all</source>
-        <translation type="unfinished">Rozbalit vše</translation>
+        <translation>Rozbalit vše</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="806"/>
         <source>General</source>
-        <translation type="unfinished">Obecné</translation>
+        <translation>Obecné</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="823"/>
         <source>Trackers</source>
-        <translation type="unfinished">Trackery</translation>
+        <translation>Trackery</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="846"/>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Protějšky</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="863"/>
         <source>URL seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>URL seedy</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="880"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory</translation>
     </message>
     <message>
         <source>File name</source>
@@ -2501,7 +2502,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../propertieswidget.cpp" line="462"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2510,47 +2511,47 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../propertieswidget.cpp" line="82"/>
         <source>Ignored</source>
-        <translation type="unfinished">Ignorovat</translation>
+        <translation>Ignorovat</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="83"/>
         <source>Normal</source>
-        <translation type="unfinished">Normální</translation>
+        <translation>Normální</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="84"/>
         <source>Maximum</source>
-        <translation type="unfinished">Maximální</translation>
+        <translation>Maximální</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="85"/>
         <source>High</source>
-        <translation type="unfinished">Vysoká</translation>
+        <translation>Vysoká</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="304"/>
         <location filename="../propertieswidget.cpp" line="305"/>
         <source>this session</source>
-        <translation type="unfinished"></translation>
+        <translation>tato relace</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="309"/>
         <location filename="../propertieswidget.cpp" line="313"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="316"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sdíleno %1</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="320"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2560,22 +2561,22 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../propertieswidget.cpp" line="522"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation type="unfinished">Nový URL seed</translation>
+        <translation>Nový URL seed</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="523"/>
         <source>New url seed:</source>
-        <translation type="unfinished">Nový URL seed:</translation>
+        <translation>Nový URL seed:</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="528"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="529"/>
         <source>This url seed is already in the list.</source>
-        <translation type="unfinished">Tento URL seed už v seznamu existuje.</translation>
+        <translation>Tento URL seed už v seznamu existuje.</translation>
     </message>
     <message>
         <source>Trackers list can&apos;t be empty.</source>
@@ -2585,17 +2586,17 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../propertieswidget.cpp" line="574"/>
         <location filename="../propertieswidget.cpp" line="576"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Vyberte cestu pro uložení</translation>
+        <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="583"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Chyba při vytváření cesty pro uložení</translation>
+        <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="583"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nemohu vytvořit cestu pro uložení</translation>
+        <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
 </context>
 <context>
@@ -2664,12 +2665,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="147"/>
         <source>Bullet</source>
-        <translation type="unfinished"></translation>
+        <translation>Odrážka</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="152"/>
         <source>Article title</source>
-        <translation type="unfinished"></translation>
+        <translation>Název položky</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="220"/>
@@ -3084,7 +3085,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../speedlimitdlg.h" line="79"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -3093,86 +3094,86 @@ p, li { white-space: pre-wrap; }
         <location filename="../statusbar.h" line="75"/>
         <location filename="../statusbar.h" line="151"/>
         <source>Connection status:</source>
-        <translation type="unfinished">Stav připojení:</translation>
+        <translation>Stav připojení:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="75"/>
         <location filename="../statusbar.h" line="151"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished">Žádná přímá spojení. To může značit problémy s nastavením sítě.</translation>
+        <translation>Žádná přímá spojení. To může značit problémy s nastavením sítě.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="76"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>S: %1 B/s - P: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="80"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>N: %1 B/s - P: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="84"/>
         <location filename="../statusbar.h" line="157"/>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished">DHT: %1 uzlů</translation>
+        <translation>DHT: %1 uzlů</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="148"/>
         <source>Connection Status:</source>
-        <translation type="unfinished">Stav připojení:</translation>
+        <translation>Stav připojení:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="148"/>
         <source>Online</source>
-        <translation type="unfinished">Online</translation>
+        <translation>Online</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="163"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>S: %1/s - P: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="164"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>N: %1/s - P: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="169"/>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkový limit rychlosti stahování</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="182"/>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkový limit rychlosti nahrávání</translation>
     </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="278"/>
+        <location filename="../torrentfilesmodel.h" line="290"/>
         <source>Name</source>
-        <translation type="unfinished">Název</translation>
+        <translation>Název</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="278"/>
+        <location filename="../torrentfilesmodel.h" line="290"/>
         <source>Size</source>
-        <translation type="unfinished">Velikost</translation>
+        <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="278"/>
+        <location filename="../torrentfilesmodel.h" line="290"/>
         <source>Progress</source>
-        <translation type="unfinished">Průběh</translation>
+        <translation>Průběh</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="278"/>
+        <location filename="../torrentfilesmodel.h" line="290"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
 </context>
 <context>
@@ -3180,37 +3181,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../trackerlist.h" line="72"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="73"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="74"/>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Protějšky</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="75"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpráva</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="77"/>
         <source>[DHT]</source>
-        <translation type="unfinished"></translation>
+        <translation>[DHT]</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="80"/>
         <source>[PeX]</source>
-        <translation type="unfinished"></translation>
+        <translation>[PeX]</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="83"/>
         <source>[LSD]</source>
-        <translation type="unfinished"></translation>
+        <translation>[LSD]</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="146"/>
@@ -3219,40 +3220,40 @@ p, li { white-space: pre-wrap; }
         <location filename="../trackerlist.h" line="191"/>
         <location filename="../trackerlist.h" line="205"/>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Funkční</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="148"/>
         <location filename="../trackerlist.h" line="161"/>
         <source>Disabled</source>
-        <translation type="unfinished">Vypnuto</translation>
+        <translation>Vypnuto</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="152"/>
         <source>This torrent is private</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento torrent je soukromý</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="194"/>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuji...</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="197"/>
         <location filename="../trackerlist.h" line="208"/>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Nefunkční</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="199"/>
         <location filename="../trackerlist.h" line="210"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosud nekontaktován</translation>
     </message>
     <message>
         <location filename="../trackerlist.h" line="281"/>
         <source>Add a new tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat nový tracker</translation>
     </message>
 </context>
 <context>
@@ -3273,42 +3274,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../transferlistdelegate.h" line="87"/>
         <source>Downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahuji</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="91"/>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozastaveno</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="95"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zařazeno do fronty</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="99"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sdílím</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="102"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zastaveno</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="106"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kontroluji</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="117"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -3321,31 +3322,31 @@ p, li { white-space: pre-wrap; }
         <location filename="../transferlistfilterswidget.h" line="51"/>
         <location filename="../transferlistfilterswidget.h" line="92"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Vše</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="54"/>
         <location filename="../transferlistfilterswidget.h" line="93"/>
         <source>Downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahováno</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="57"/>
         <location filename="../transferlistfilterswidget.h" line="94"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončeno</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="60"/>
         <location filename="../transferlistfilterswidget.h" line="95"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivní</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="63"/>
         <location filename="../transferlistfilterswidget.h" line="96"/>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>Neaktivní</translation>
     </message>
 </context>
 <context>
@@ -3379,13 +3380,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../transferlistwidget.cpp" line="74"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rychlost stahování</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="76"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rychlost nahrávání</translation>
     </message>
     <message>
         <source>Seeds/Leechers</source>
@@ -3400,7 +3401,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../transferlistwidget.cpp" line="80"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">Odh. čas</translation>
+        <translation>Odh. čas</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -3411,29 +3412,29 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="759"/>
+        <location filename="../transferlistwidget.cpp" line="762"/>
         <source>Column visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazení sloupců</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="816"/>
+        <location filename="../transferlistwidget.cpp" line="819"/>
         <source>Start</source>
-        <translation type="unfinished">Spustit</translation>
+        <translation>Spustit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="818"/>
+        <location filename="../transferlistwidget.cpp" line="821"/>
         <source>Pause</source>
-        <translation type="unfinished">Pozastavit</translation>
+        <translation>Pozastavit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="820"/>
+        <location filename="../transferlistwidget.cpp" line="823"/>
         <source>Delete</source>
-        <translation type="unfinished">Smazat</translation>
+        <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="822"/>
+        <location filename="../transferlistwidget.cpp" line="825"/>
         <source>Preview file</source>
-        <translation type="unfinished">Náhled souboru</translation>
+        <translation>Náhled souboru</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3451,108 +3452,108 @@ p, li { white-space: pre-wrap; }
         <location filename="../transferlistwidget.cpp" line="62"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">Název</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="65"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">Velikost</translation>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="67"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hotovo</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="69"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="70"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seedy</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="72"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Protějšky</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="78"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Poměr</translation>
+        <translation>Poměr</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="665"/>
+        <location filename="../transferlistwidget.cpp" line="668"/>
         <source>Torrent Download Speed Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit rychlosti stahování torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="701"/>
+        <location filename="../transferlistwidget.cpp" line="704"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit rychlosti nahrávání torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="824"/>
+        <location filename="../transferlistwidget.cpp" line="827"/>
         <source>Limit upload rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost nahrávání</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="826"/>
+        <location filename="../transferlistwidget.cpp" line="829"/>
         <source>Limit download rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost stahování</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="828"/>
+        <location filename="../transferlistwidget.cpp" line="831"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">Otevřít cílový adresář</translation>
+        <translation>Otevřít cílový adresář</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="830"/>
+        <location filename="../transferlistwidget.cpp" line="833"/>
         <source>Buy it</source>
-        <translation type="unfinished">Koupit</translation>
+        <translation>Koupit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="832"/>
+        <location filename="../transferlistwidget.cpp" line="835"/>
         <source>Increase priority</source>
-        <translation type="unfinished">Zvýšit prioritu</translation>
+        <translation>Zvýšit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="834"/>
+        <location filename="../transferlistwidget.cpp" line="837"/>
         <source>Decrease priority</source>
-        <translation type="unfinished">Snížit prioritu</translation>
+        <translation>Snížit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="836"/>
+        <location filename="../transferlistwidget.cpp" line="839"/>
         <source>Force recheck</source>
-        <translation type="unfinished">Překontrolovat platnost</translation>
+        <translation>Překontrolovat platnost</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="838"/>
+        <location filename="../transferlistwidget.cpp" line="841"/>
         <source>Copy magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat odkaz Magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="840"/>
+        <location filename="../transferlistwidget.cpp" line="843"/>
         <source>Super seeding mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Super seeding mód</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="842"/>
+        <location filename="../transferlistwidget.cpp" line="845"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahovat v souvislém pořadí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="844"/>
+        <location filename="../transferlistwidget.cpp" line="847"/>
         <source>Download first and last piece first</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
 </context>
 <context>
@@ -3578,17 +3579,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/peer.ui" line="20"/>
         <source>Peer addition</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidání protějšku</translation>
     </message>
     <message>
         <location filename="../ui/peer.ui" line="36"/>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP</translation>
     </message>
     <message>
         <location filename="../ui/peer.ui" line="59"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port</translation>
     </message>
 </context>
 <context>
@@ -3637,7 +3638,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="213"/>
         <source>Skip file checking and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Přeskočit kontrolu souboru a začít sdílet okamžitě</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -3896,17 +3897,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="14"/>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrzení o smazání - qBittorrent</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="42"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jist, že chcete smazat vybrané torrenty ze seznamu přenosů?</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="66"/>
         <source>Delete the files on the hard disk as well</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat tyto soubory také z pevného disku</translation>
     </message>
 </context>
 <context>
@@ -4129,7 +4130,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/downloadfromurldlg.ui" line="127"/>
         <source>Download</source>
-        <translation>Stáhnout</translation>
+        <translation>Stahování</translation>
     </message>
     <message>
         <location filename="../ui/downloadfromurldlg.ui" line="134"/>
@@ -4158,117 +4159,117 @@ p, li { white-space: pre-wrap; }
         <location filename="../downloadthread.cpp" line="73"/>
         <location filename="../downloadthread.cpp" line="76"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Chyba I/O</translation>
+        <translation>Chyba I/O</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="126"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="128"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Operace byla zrušena</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="130"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdálený server předčasně ukončil připojení, dříve než byla celá odpověď přijata a zpracována</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="132"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojení k vzdálenému serveru vypršelo</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="134"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL/TLS handshake selhalo</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="136"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdálený server odmítl připojení</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="138"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojení k proxy serveru bylo odmítnuto</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="140"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy server předčasně ukončil připojení</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="142"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Název proxy serveru nebyl nalezen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="144"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="146"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy vyžaduje ověření, ale neakceptovala žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="148"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished"></translation>
+        <translation>Přístup ke vzdálenému obsahu byl odepřen (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="150"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadovaná operace na vzdáleném obsahu není dovolena</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="152"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdálený obsah nebyl na serveru nalezen (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="154"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdálený server vyžaduje ověření, ale neakceptoval žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="156"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished"></translation>
+        <translation>API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="158"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadovaná operace není pro tento protokol platná</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="160"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Byla detekována neznámá chyba sítě</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="162"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Byla detekována neznámá chyba související s proxy</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="164"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Byla detekována neznámá chyba související se vzdáleným obsahem</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="166"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Byla detekována chyba v protokolu</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="168"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Neznámá chyba</translation>
+        <translation>Neznámá chyba</translation>
     </message>
 </context>
 <context>
@@ -4637,7 +4638,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../misc.h" line="286"/>
         <source>Unknown</source>
-        <translation type="unfinished">Neznámý</translation>
+        <translation>Neznámý</translation>
     </message>
     <message>
         <location filename="../misc.h" line="298"/>
@@ -5019,7 +5020,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../ui/search.ui" line="146"/>
         <source>Download</source>
-        <translation>Stáhnout</translation>
+        <translation>Stahování</translation>
     </message>
     <message>
         <location filename="../ui/search.ui" line="166"/>
@@ -5230,12 +5231,12 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Seeding mode error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba sdílení</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="310"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozhodl jste se přeskočit kontrolu souborů. Nicméně místní soubory v zadaném cílovém adresáři neexistují. Vypněte prosím tuto funkci nebo zaktualizujte cestu pro uložení.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="317"/>
