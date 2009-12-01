@@ -287,6 +287,17 @@ protected slots:
     }
   }
 
+  void on_browse_button_clicked() {
+    QString default_path = savepath_line->text();
+    if(default_path.isEmpty() || !QDir(default_path).exists()) {
+      default_path = QDir::homePath();
+    }
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+    if(!dir.isNull() and QDir(dir).exists()) {
+      savepath_line->setText(dir);
+    }
+  }
+
   void fillFiltersList() {
     // Fill filter list
     foreach(QString filter_name, filters.names()) {
@@ -434,7 +445,11 @@ protected slots:
   }
 
   void on_testButton_clicked(bool) {
-    if(selected_filter.isEmpty()) return;
+    test_res_lbl->clear();
+    if(selected_filter.isEmpty()) {
+      qDebug("No filter is selected!!!");
+      return;
+    }
     QString s = test_line->text().trimmed();
     if(s.isEmpty()) {
       QMessageBox::warning(0, tr("Filter testing error"), tr("Please specify a test torrent name."));
