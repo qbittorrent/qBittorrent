@@ -1018,7 +1018,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation>Pożądany współczynnik:</translation>
+        <translation>Żądany współczynnik:</translation>
     </message>
     <message>
         <source>Filter file path:</source>
@@ -1172,15 +1172,15 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>Action on double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished">Podwójne kliknięcie na liście</translation>
+        <translation>Podwójne kliknięcie na liście</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation type="unfinished">Pobieranych:</translation>
+        <translation>Pobieranych:</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation type="unfinished">Ukończonych:</translation>
+        <translation>Ukończonych:</translation>
     </message>
     <message>
         <source>Peer connections</source>
@@ -2593,7 +2593,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Czy chcesz usunąć wybrane pliki torrent z listy transferów i z twardego dysku?</translation>
+        <translation type="unfinished">Czy chcesz usunąć wybrane pliki torrent z listy transferów i z twardego dysku?</translation>
     </message>
     <message>
         <source>Download rate limit must be greater than 0 or disabled.</source>
@@ -2720,7 +2720,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Rozpocznij wszystko</translation>
+        <translation>Uruchom wszystko</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -2983,7 +2983,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno zablokować na stałe wybranych partnerów?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -3205,7 +3205,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Created on:</source>
-        <translation type="unfinished">Utworzony w:</translation>
+        <translation>Utworzono:</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -3474,11 +3474,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>Czy chcesz usunąć wybrane elementy z listy?</translation>
+        <translation type="unfinished">Czy chcesz usunąć wybrane elementy z listy?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation>Czy chcesz usunąć wybrany element z listy?</translation>
+        <translation type="unfinished">Czy chcesz usunąć wybrany element z listy?</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -3914,7 +3914,7 @@ Zmiany:
     <message>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation type="unfinished">Wysyłanie</translation>
+        <translation>Rozsiewanie</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -4258,7 +4258,7 @@ Zmiany:
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pobierz w kolejności sekwencyjnej (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
     </message>
     <message>
         <source>File name</source>
@@ -4326,7 +4326,7 @@ Zmiany:
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pomiń sprawdzanie danych i natychmiast zacznij rozsiewanie</translation>
     </message>
 </context>
 <context>
@@ -4509,7 +4509,7 @@ Zmiany:
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Czy chcesz usunąć wybrane pliki torrent z listy transferów?</translation>
+        <translation type="unfinished">Czy chcesz usunąć wybrane pliki torrent z listy transferów?</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
@@ -4660,7 +4660,7 @@ Zmiany:
     </message>
     <message>
         <source>Start seeding after creation</source>
-        <translation>Uruchom seedowanie po utworzeniu</translation>
+        <translation>Uruchom rozsiewanie po utworzeniu</translation>
     </message>
     <message>
         <source>Create and save...</source>
@@ -5020,7 +5020,7 @@ Zmiany:
     </message>
     <message>
         <source>Installed search engines:</source>
-        <translation>Zainstalowane silniki wyszukiwania:</translation>
+        <translation>Zainstalowane wyszukiwarki:</translation>
     </message>
     <message>
         <source>Name</source>
@@ -5036,7 +5036,7 @@ Zmiany:
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Tutaj możesz pobrać nowe silniki wtyczek wyszukiwania: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Tutaj możesz pobrać nowe wtyczki wyszukiwania: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Install a new one</source>
@@ -5415,7 +5415,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Search plugin source:</source>
-        <translation>Szukaj źródła wtyczki:</translation>
+        <translation>Źródło wtyczki wyszukiwania:</translation>
     </message>
     <message>
         <source>Local file</source>
@@ -6035,12 +6035,12 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(%1 po pobraniu torrenta)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="unfinished"></translation>
+        <translation>(aby pobrać torrenta potrzeba jeszcze %1 wolnego miejsca)</translation>
     </message>
     <message>
         <source>Empty save path</source>
@@ -6088,7 +6088,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="unfinished">Wybrano pomijanie sprawdzania pliku, jednak pliki lokalne prawdopodobnie nie istnieją w aktualnym katalogu pobierać. Należy wyłączyć tą opcję lub zaktualizować katalog zapisu.</translation>
+        <translation type="unfinished">Wybrano pomijanie sprawdzania pliku, jednak pliki lokalne prawdopodobnie nie istnieją w aktualnym katalogu pobierań. Należy wyłączyć tą opcję lub zaktualizować katalog zapisu.</translation>
     </message>
 </context>
 </TS>
