@@ -118,7 +118,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
 }
 
 PropertiesWidget::~PropertiesWidget() {
-  saveSettings();
   delete refreshTimer;
   delete trackerList;
   delete peersList;

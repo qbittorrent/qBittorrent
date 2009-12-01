@@ -199,6 +199,9 @@ GUI::~GUI() {
   // Async deletion of Bittorrent session as early as possible
   // in order to speed up exit
   session_proxy sp = BTSession->asyncDeletion();
+  // Some saving
+  properties->saveSettings();
+  disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   // Delete other GUI objects
   delete status_bar;
   delete transferList;
