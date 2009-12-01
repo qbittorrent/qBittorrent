@@ -322,17 +322,19 @@ void RSSImp::renameFiles() {
   do {
     newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, listStreams->getRSSItem(item)->getName(), &ok);
     // Check if name is already taken
-    if(ok && rss_item->getParent()->contains(newName)) {
-      QMessageBox::warning(0, tr("Name already in use"), tr("This name is already used by another item, please choose another one."));
-      ok = false;
+    if(ok) {
+      if(rss_item->getParent()->contains(newName)) {
+        QMessageBox::warning(0, tr("Name already in use"), tr("This name is already used by another item, please choose another one."));
+        ok = false;
+      }
+    } else {
+      return;
     }
   }while(!ok);
-  if(ok) {
-    // Rename item
-    rss_item->rename(newName);
-    // Update TreeWidget
-    updateItemInfos(item);
-  }
+  // Rename item
+  rss_item->rename(newName);
+  // Update TreeWidget
+  updateItemInfos(item);
 }
 
 //right-click on stream : refresh it
