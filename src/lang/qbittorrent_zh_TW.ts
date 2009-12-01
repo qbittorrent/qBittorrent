@@ -1185,6 +1185,10 @@ p, li { white-space: pre-wrap; }
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>因 I/O 錯誤導致過濾器不能匯出。</translation>
     </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">選擇儲存路徑</translation>
+    </message>
 </context>
 <context>
     <name>FeedList</name>

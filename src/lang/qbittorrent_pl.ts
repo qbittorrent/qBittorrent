@@ -53,12 +53,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Klient sieci bittorrent napisany w języku C++, wykorzystuje biblioteki Qt4&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;i libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Wszystkie prawa zastrżeżone ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Strona domowa:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;i libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Strona domowa:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Author</source>
@@ -321,7 +321,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można nasłuchiwać na porcie %1, zostanie użyty port %2.</translation>
     </message>
 </context>
 <context>
@@ -514,7 +514,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation>Ustawienia filtru</translation>
+        <translation>Ustawienia filtra</translation>
     </message>
     <message>
         <source>ipfilter.dat URL or PATH:</source>
@@ -1022,7 +1022,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Filter file path:</source>
-        <translation>Filtr ścieżki pliku:</translation>
+        <translation>Plik filtra IP:</translation>
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
@@ -1184,19 +1184,19 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Peer connections</source>
-        <translation type="unfinished">Połączenia partnerów</translation>
+        <translation>Połączenia partnerów</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation type="unfinished">Odczytuje kraje partnerów</translation>
+        <translation>Odczytuje kraje partnerów</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished">Odczytuje nazwy hostów partnerów</translation>
+        <translation>Odczytuje nazwy hostów partnerów</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished">Używa innego portu dla DHT i bittorrent</translation>
+        <translation>Używa innego portu dla DHT i bittorrent</translation>
     </message>
 </context>
 <context>
@@ -1337,12 +1337,12 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">w tej sesji</translation>
+        <translation>w tej sesji</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
@@ -1352,7 +1352,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 max</translation>
+        <translation>max %1</translation>
     </message>
     <message>
         <source>Ignored</source>
@@ -1378,7 +1378,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation>Czytnik kanałów RSS</translation>
+        <translation>Pobieranie z kanałów RSS</translation>
     </message>
     <message>
         <source>RSS feed:</source>
@@ -1394,7 +1394,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Download filters</source>
-        <translation type="unfinished">Filtry pobierania</translation>
+        <translation>Filtry pobierania</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1406,11 +1406,11 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Matches:</source>
-        <translation type="unfinished">Zgodnych:</translation>
+        <translation type="unfinished">Zgodne:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation type="unfinished">Niezgodnych:</translation>
+        <translation type="unfinished">Niezgodne:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
@@ -1422,11 +1422,11 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Filter testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Testowanie filtra</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation type="unfinished">Tytuł torrenta:</translation>
+        <translation>Tytuł torrenta:</translation>
     </message>
     <message>
         <source>Result:</source>
@@ -1434,7 +1434,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Test</source>
-        <translation>Test</translation>
+        <translation>Testuj</translation>
     </message>
     <message>
         <source>Import...</source>
@@ -1446,110 +1446,114 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Rename filter</source>
-        <translation type="unfinished">Zmień nazwę filtru</translation>
+        <translation>Zmień nazwę filtra</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation type="unfinished">Usuń filtr</translation>
+        <translation>Usuń filtr</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation type="unfinished">Dodaj filtr</translation>
+        <translation>Dodaj filtr</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation type="unfinished">Nowy filtr</translation>
+        <translation>Nowy filtr</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Należy podać nazwę dla tego filtra</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa filtra:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprawidłowa nazwa filtra</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa filtra nie może być pusta.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Taka nazwa filtra już istnieje.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd testowania filtra</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Należy podać nazwę torrenta do przetestowania.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">pasuje</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">nie pasuje</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik do zaimportowania</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki filtrów</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Udane importowanie</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomyślnie zaimportowano filtry.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Błąd importowania</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieudane importowanie filtrów z powodu błędu We/Wy.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Należy wybrać plik docelowy</translation>
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potwierdzenie nadpisania</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz nadpisać istniejący plik?</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pomyślne eksportowanie</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomyślnie wyeksportowano fitry.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Błąd eksportowania</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieudane eksportowanie filtrów z powodu błędu We/Wy.</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Wybierz katalog docelowy</translation>
     </message>
 </context>
 <context>
@@ -2512,7 +2516,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zakończenie pobierania</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
@@ -3181,23 +3185,23 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Wasted:</source>
-        <translation type="unfinished">Odrzucono:</translation>
+        <translation>Odrzucono:</translation>
     </message>
     <message>
         <source>UP limit:</source>
-        <translation type="unfinished">Limit wysyłania:</translation>
+        <translation>Limit wysyłania:</translation>
     </message>
     <message>
         <source>DL limit:</source>
-        <translation type="unfinished">Limit pobierania:</translation>
+        <translation>Limit pobierania:</translation>
     </message>
     <message>
         <source>Time elapsed:</source>
-        <translation type="unfinished">Czas działania:</translation>
+        <translation>Czas działania:</translation>
     </message>
     <message>
         <source>Connections:</source>
-        <translation type="unfinished">Połączeń:</translation>
+        <translation>Połączeń:</translation>
     </message>
     <message>
         <source>Information</source>
@@ -3209,32 +3213,32 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished">Partnerzy</translation>
+        <translation>Partnerzy</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="unfinished">Ignorowany</translation>
+        <translation>Ignorowany</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normalny</translation>
+        <translation>Normalny</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Maksymalny</translation>
+        <translation>Maksymalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Wysoki</translation>
+        <translation>Wysoki</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">w tej sesji</translation>
+        <translation>w tej sesji</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 max</translation>
+        <translation>max %1</translation>
     </message>
     <message>
         <source>Availability:</source>
@@ -3243,12 +3247,12 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Seedowny przez: %1</translation>
+        <translation>rozsiewany przez: %1</translation>
     </message>
 </context>
 <context>
@@ -3338,11 +3342,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished">Kopiuj ader wiadomości</translation>
+        <translation type="unfinished">Kopiuj adres kanału RSS</translation>
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation type="unfinished">Czytnik kanałów RSS</translation>
+        <translation type="unfinished">Pobieranie z kanałów RSS</translation>
     </message>
     <message>
         <source>Create</source>
@@ -3389,11 +3393,11 @@ p, li { white-space: pre-wrap; }
     <name>RSSImp</name>
     <message>
         <source>Please type a rss stream url</source>
-        <translation type="unfinished">Wprowadź URL strumienia RSS</translation>
+        <translation>Wprowadź URL kanału RSS</translation>
     </message>
     <message>
         <source>Stream URL:</source>
-        <translation>URL strumienia:</translation>
+        <translation type="unfinished">URL dla nowego kanału RSS:</translation>
     </message>
     <message>
         <source>Please choose a new name for this stream</source>
@@ -3449,7 +3453,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Folder name:</source>
-        <translation>Nazwa katalogu:</translation>
+        <translation type="unfinished">Nazwa dla nowego katalogu:</translation>
     </message>
     <message>
         <source>New folder</source>
@@ -3678,7 +3682,7 @@ Zmiany:
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation type="unfinished">Wyczyść historię</translation>
+        <translation>Wyczyść historię</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -3834,7 +3838,7 @@ Zmiany:
     </message>
     <message>
         <source>Peers</source>
-        <translation>Partnerzy</translation>
+        <translation>Partnerów</translation>
     </message>
     <message>
         <source>Message</source>
@@ -3900,7 +3904,7 @@ Zmiany:
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished">Pobieranie</translation>
+        <translation>Pobieranie</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3989,7 +3993,7 @@ Zmiany:
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">ETA</translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -4005,7 +4009,7 @@ Zmiany:
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation>Uruchom</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -4058,12 +4062,12 @@ Zmiany:
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Prędkość DL</translation>
+        <translation>Prędkość DL</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Prędkość UP</translation>
+        <translation>Prędkość UP</translation>
     </message>
     <message>
         <source>Name</source>
@@ -4102,23 +4106,23 @@ Zmiany:
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation type="unfinished">Ograniczanie prędkości pobierania torrenta</translation>
+        <translation>Ograniczanie prędkości pobierania torrenta</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation type="unfinished">Ograniczanie prędkości wysyłania torrenta</translation>
+        <translation>Ograniczanie prędkości wysyłania torrenta</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished">Ogranicz prędkość wysyłania</translation>
+        <translation>Ogranicz prędkość wysyłania</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished">Ogranicz prędkość pobierania</translation>
+        <translation>Ogranicz prędkość pobierania</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation type="unfinished">Tryb &apos;super seed&apos;</translation>
+        <translation>Tryb &apos;super seed&apos;</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -4215,7 +4219,7 @@ Zmiany:
     <name>addPeerDialog</name>
     <message>
         <source>Peer addition</source>
-        <translation type="unfinished">Dodawanie partnera</translation>
+        <translation>Dodawanie partnera</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4258,7 +4262,7 @@ Zmiany:
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="unfinished">Pobierz w kolejności sekwencyjnej (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
+        <translation>Pobierz w kolejności sekwencyjnej (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
     </message>
     <message>
         <source>File name</source>
@@ -4318,11 +4322,11 @@ Zmiany:
     </message>
     <message>
         <source>Collapse all</source>
-        <translation type="unfinished">Zwiń wszystko</translation>
+        <translation>Zwiń wszystko</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation type="unfinished">Rozwiń wszystko</translation>
+        <translation>Rozwiń wszystko</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
@@ -4509,11 +4513,11 @@ Zmiany:
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="unfinished">Czy chcesz usunąć wybrane pliki torrent z listy transferów?</translation>
+        <translation>Czy chcesz usunąć wybrane pliki torrent z listy transferów?</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation>Usuń także pliki z twardego dysku</translation>
+        <translation>Usuń także dane z twardego dysku</translation>
     </message>
 </context>
 <context>
@@ -4656,7 +4660,7 @@ Zmiany:
     </message>
     <message>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation type="unfinished">Prywatny (gdy zaznaczone torrent nie będzie rozprowadzany w sieci DHT)</translation>
+        <translation>Prywatny (gdy zaznaczone torrent nie będzie rozprowadzany w sieci DHT)</translation>
     </message>
     <message>
         <source>Start seeding after creation</source>
@@ -5396,7 +5400,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Choose an ip filter file</source>
-        <translation>Wybierz plik ip filter</translation>
+        <translation>Wybierz plik filtra IP</translation>
     </message>
     <message>
         <source>Filters (*.dat *.p2p *.p2b)</source>
@@ -6084,11 +6088,11 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation type="unfinished">Błąd trybu rozsiewania</translation>
+        <translation>Błąd trybu rozsiewania</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="unfinished">Wybrano pomijanie sprawdzania pliku, jednak pliki lokalne prawdopodobnie nie istnieją w aktualnym katalogu pobierań. Należy wyłączyć tą opcję lub zaktualizować katalog zapisu.</translation>
+        <translation>Wybrano pomijanie sprawdzania pliku, jednak pliki lokalne prawdopodobnie nie istnieją w aktualnym katalogu pobierań. Należy wyłączyć tą opcję lub zaktualizować katalog zapisu.</translation>
     </message>
 </context>
 </TS>

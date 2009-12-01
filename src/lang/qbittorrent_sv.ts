@@ -1123,6 +1123,10 @@ p, li { white-space: pre-wrap; }
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Filter kunde inte exporteras på grund av ett in-/ut-fel.</translation>
     </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Välj sökväg att spara i</translation>
+    </message>
 </context>
 <context>
     <name>FeedList</name>

@@ -1616,6 +1616,10 @@ wait...</comment>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>输入/输出错误使过滤器不能被导出.</translation>
     </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">选择保存路径</translation>
+    </message>
 </context>
 <context>
     <name>FeedList</name>

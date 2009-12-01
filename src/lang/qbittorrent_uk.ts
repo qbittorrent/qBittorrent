@@ -1441,6 +1441,10 @@ p, li { white-space: pre-wrap; }
         <source>Filters could not be exported due to an I/O error.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Виберіть шлях збереження</translation>
+    </message>
 </context>
 <context>
     <name>FeedList</name>

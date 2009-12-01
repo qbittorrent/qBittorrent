@@ -1707,121 +1707,126 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="387"/>
+        <location filename="../feeddownloader.h" line="398"/>
         <source>New filter</source>
         <translation>Нов филтър</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="394"/>
+        <location filename="../feeddownloader.h" line="405"/>
         <source>Please choose a name for this filter</source>
         <translation>Моля изберете име за този филтър</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="394"/>
+        <location filename="../feeddownloader.h" line="405"/>
         <source>Filter name:</source>
         <translation>Име на филтър:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="363"/>
-        <location filename="../feeddownloader.h" line="402"/>
-        <location filename="../feeddownloader.h" line="418"/>
+        <location filename="../feeddownloader.h" line="374"/>
+        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="429"/>
         <source>Invalid filter name</source>
         <translation>Невалидно име на филтър</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="402"/>
+        <location filename="../feeddownloader.h" line="413"/>
         <source>The filter name cannot be left empty.</source>
         <translation>Името на филтър не може да е празно.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="363"/>
-        <location filename="../feeddownloader.h" line="418"/>
+        <location filename="../feeddownloader.h" line="374"/>
+        <location filename="../feeddownloader.h" line="429"/>
         <source>This filter name is already in use.</source>
         <translation>Това име на филтър вече се ползва.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="440"/>
+        <location filename="../feeddownloader.h" line="295"/>
+        <source>Choose save path</source>
+        <translation type="unfinished">Избери път за съхранение</translation>
+    </message>
+    <message>
+        <location filename="../feeddownloader.h" line="455"/>
         <source>Filter testing error</source>
         <translation>Грешка при тест на филтъра</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="440"/>
+        <location filename="../feeddownloader.h" line="455"/>
         <source>Please specify a test torrent name.</source>
         <translation>Моля определете име на тест торент.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="447"/>
+        <location filename="../feeddownloader.h" line="462"/>
         <source>matches</source>
         <translation>съответства</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="449"/>
+        <location filename="../feeddownloader.h" line="464"/>
         <source>does not match</source>
         <translation>несъответства</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="453"/>
+        <location filename="../feeddownloader.h" line="468"/>
         <source>Select file to import</source>
         <translation>Изберете файл за внос</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="453"/>
-        <location filename="../feeddownloader.h" line="470"/>
+        <location filename="../feeddownloader.h" line="468"/>
+        <location filename="../feeddownloader.h" line="485"/>
         <source>Filters Files</source>
         <translation>Файлове Филтри</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="463"/>
+        <location filename="../feeddownloader.h" line="478"/>
         <source>Import successful</source>
         <translation>Внос успешен</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="463"/>
+        <location filename="../feeddownloader.h" line="478"/>
         <source>Filters import was successful.</source>
         <translation>Внос на филтри успешен.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="465"/>
+        <location filename="../feeddownloader.h" line="480"/>
         <source>Import failure</source>
         <translation>Грешка при внос</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="465"/>
+        <location filename="../feeddownloader.h" line="480"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>Филтрите не могат да бъдат внесени поради В/И грешка.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="470"/>
+        <location filename="../feeddownloader.h" line="485"/>
         <source>Select destination file</source>
         <translation>Изберете файл-получател</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="476"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Overwriting confirmation</source>
         <translation>Потвърждение за запис върху предишен</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="476"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Are you sure you want to overwrite existing file?</source>
         <translation>Сигурни ли сте че искате да запишете върху съществуващ файл?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Export successful</source>
         <translation>Износ успешен</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Filters export was successful.</source>
         <translation>Износ на филтри успешен.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="482"/>
+        <location filename="../feeddownloader.h" line="497"/>
         <source>Export failure</source>
         <translation>Грешка при износ</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="482"/>
+        <location filename="../feeddownloader.h" line="497"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Филтрите не могат да бъдат изнесени поради В/И грешка.</translation>
     </message>
@@ -3944,27 +3949,27 @@ p, li { white-space: pre-wrap; }
         <translation>Име на нов канал:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="326"/>
+        <location filename="../rss_imp.cpp" line="327"/>
         <source>Name already in use</source>
         <translation>Името вече се ползва</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="326"/>
+        <location filename="../rss_imp.cpp" line="327"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Това име се ползва от друг елемент, моля изберете друго.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="482"/>
+        <location filename="../rss_imp.cpp" line="484"/>
         <source>Date: </source>
         <translation> Дата:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="485"/>
+        <location filename="../rss_imp.cpp" line="487"/>
         <source>Author: </source>
         <translation> Автор:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="528"/>
+        <location filename="../rss_imp.cpp" line="530"/>
         <source>Unread</source>
         <translation>Непрочетен</translation>
     </message>
@@ -5488,112 +5493,112 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="126"/>
+        <location filename="../downloadthread.cpp" line="132"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="128"/>
+        <location filename="../downloadthread.cpp" line="134"/>
         <source>The operation was canceled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="130"/>
+        <location filename="../downloadthread.cpp" line="136"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="132"/>
+        <location filename="../downloadthread.cpp" line="138"/>
         <source>The connection to the remote server timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="134"/>
+        <location filename="../downloadthread.cpp" line="140"/>
         <source>SSL/TLS handshake failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="136"/>
+        <location filename="../downloadthread.cpp" line="142"/>
         <source>The remote server refused the connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="138"/>
+        <location filename="../downloadthread.cpp" line="144"/>
         <source>The connection to the proxy server was refused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="140"/>
+        <location filename="../downloadthread.cpp" line="146"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="142"/>
+        <location filename="../downloadthread.cpp" line="148"/>
         <source>The proxy host name was not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="144"/>
+        <location filename="../downloadthread.cpp" line="150"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="146"/>
+        <location filename="../downloadthread.cpp" line="152"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="148"/>
+        <location filename="../downloadthread.cpp" line="154"/>
         <source>The access to the remote content was denied (401)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="150"/>
+        <location filename="../downloadthread.cpp" line="156"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="152"/>
+        <location filename="../downloadthread.cpp" line="158"/>
         <source>The remote content was not found at the server (404)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="154"/>
+        <location filename="../downloadthread.cpp" line="160"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="156"/>
+        <location filename="../downloadthread.cpp" line="162"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="158"/>
+        <location filename="../downloadthread.cpp" line="164"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="160"/>
+        <location filename="../downloadthread.cpp" line="166"/>
         <source>An unknown network-related error was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="162"/>
+        <location filename="../downloadthread.cpp" line="168"/>
         <source>An unknown proxy-related error was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="164"/>
+        <location filename="../downloadthread.cpp" line="170"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="166"/>
+        <location filename="../downloadthread.cpp" line="172"/>
         <source>A breakdown in protocol was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="168"/>
+        <location filename="../downloadthread.cpp" line="174"/>
         <source>Unknown error</source>
         <translation type="unfinished">Неизвестна грешка</translation>
     </message>

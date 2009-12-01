@@ -1488,6 +1488,10 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Filtrele nu pot fi exportate din cauza erorilor I/O.</translation>
     </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Alegeţi calea de salvare</translation>
+    </message>
 </context>
 <context>
     <name>FeedList</name>

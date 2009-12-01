@@ -1516,6 +1516,10 @@ p, li { white-space: pre-wrap; }
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Süzgeçler bir Girdi/Çıktı hatası sebebiyle dışa aktarılamadı.</translation>
     </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FeedList</name>

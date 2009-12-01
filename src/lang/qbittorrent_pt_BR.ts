@@ -1486,6 +1486,10 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Os filtros não puderam ser exportados por um erro de entrada e saída.</translation>
     </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Escolha um caminho de salvamento</translation>
+    </message>
 </context>
 <context>
     <name>FeedList</name>
