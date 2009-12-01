@@ -84,7 +84,13 @@ void downloadThread::downloadUrl(QString url){
   // Update proxy settings
   applyProxySettings();
   // Process download request
-  networkManager->get(QNetworkRequest(QUrl(url)));
+  QNetworkRequest request;
+  request.setUrl(QUrl::fromEncoded(url.toLocal8Bit()));
+  // Spoof Firefox 3.5 user agent to avoid
+  // Web server banning
+  request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5");
+  qDebug("Downloading %s...", request.url().toString().toLocal8Bit().data());
+  networkManager->get(request);
 }
 
 void downloadThread::applyProxySettings() {
