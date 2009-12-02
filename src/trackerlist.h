@@ -275,6 +275,8 @@ public slots:
   }
 
   void showTrackerListMenu(QPoint) {
+    QTorrentHandle h = properties->getCurrentTorrent();
+    if(!h.is_valid() || !h.has_metadata()) return;
     QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
     QMenu menu;
     // Add actions

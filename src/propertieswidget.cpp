@@ -204,6 +204,7 @@ Bittorrent* PropertiesWidget::getBTSession() const {
 }
 
 void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
+  clear();
   h = _h;
   if(!h.is_valid()) {
     clear();
@@ -330,10 +331,12 @@ void PropertiesWidget::loadDynamicData() {
         // Downloaded pieces
         downloaded_pieces->setProgress(h.pieces());
         // Pieces availability
-        std::vector<int> avail;
-        h.piece_availability(avail);
-        double avail_average =  pieces_availability->setAvailability(avail);
-        avail_average_lbl->setText(QString::number(avail_average, 'f', 1));
+        if(h.has_metadata()) {
+          std::vector<int> avail;
+          h.piece_availability(avail);
+          double avail_average =  pieces_availability->setAvailability(avail);
+          avail_average_lbl->setText(QString::number(avail_average, 'f', 1));
+        }
         // Progress
         progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
       } else {
@@ -353,10 +356,12 @@ void PropertiesWidget::loadDynamicData() {
     }
     if(stackedProperties->currentIndex() == FILES_TAB) {
       // Files progress
-      std::vector<size_type> fp;
-      h.file_progress(fp);
-      PropListModel->updateFilesPriorities(h.file_priorities());
-      PropListModel->updateFilesProgress(fp);
+      if(h.has_metadata()) {
+        std::vector<size_type> fp;
+        h.file_progress(fp);
+        PropListModel->updateFilesPriorities(h.file_priorities());
+        PropListModel->updateFilesProgress(fp);
+      }
     }
   } catch(invalid_handle e) {}
 }

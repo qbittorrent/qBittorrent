@@ -122,7 +122,7 @@ public:
     if(index.column() != PRIORITY) return 0;
     if(properties) {
       QTorrentHandle h = properties->getCurrentTorrent();
-      if(!h.is_valid() || h.is_seed()) return 0;
+      if(!h.is_valid() || h.is_seed() || !h.has_metadata()) return 0;
     }
     QComboBox* editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
