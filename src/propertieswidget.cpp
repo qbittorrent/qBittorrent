@@ -132,14 +132,21 @@ PropertiesWidget::~PropertiesWidget() {
   delete actionHigh;
 }
 
-void PropertiesWidget::showPieceBars(bool show) {
+
+void PropertiesWidget::showPiecesAvailability(bool show) {
   avail_pieces_lbl->setVisible(show);
   pieces_availability->setVisible(show);
+  avail_average_lbl->setVisible(show);
+  if(show || (!show && !downloaded_pieces->isVisible()))
+    line_2->setVisible(show);
+}
+
+void PropertiesWidget::showPiecesDownloaded(bool show) {
   downloaded_pieces_lbl->setVisible(show);
   downloaded_pieces->setVisible(show);
   progress_lbl->setVisible(show);
-  line_2->setVisible(show);
-  avail_average_lbl->setVisible(show);
+  if(show || (!show && !pieces_availability->isVisible()))
+    line_2->setVisible(show);
 }
 
 void PropertiesWidget::reduce() {
@@ -191,7 +198,8 @@ void PropertiesWidget::clear() {
   shareRatio->clear();
   listWebSeeds->clear();
   PropListModel->clear();
-  showPieceBars(false);
+  showPiecesAvailability(false);
+  showPiecesDownloaded(false);
   setEnabled(false);
 }
 
@@ -213,10 +221,6 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   setEnabled(true);
 
   try {
-    if(!h.is_seed())
-      showPieceBars(true);
-    else
-      showPieceBars(false);
     // Save path
     save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
     // Creation date
@@ -327,20 +331,24 @@ void PropertiesWidget::loadDynamicData() {
       else
         shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
       if(!h.is_seed()) {
-        showPieceBars(true);
+        showPiecesDownloaded(true);
         // Downloaded pieces
         downloaded_pieces->setProgress(h.pieces());
         // Pieces availability
-        if(h.has_metadata()) {
+        if(h.has_metadata() && !h.is_paused() && !h.is_queued() && !h.is_checking()) {
+          showPiecesAvailability(true);
           std::vector<int> avail;
           h.piece_availability(avail);
           double avail_average =  pieces_availability->setAvailability(avail);
           avail_average_lbl->setText(QString::number(avail_average, 'f', 1));
+        } else {
+          showPiecesAvailability(false);
         }
         // Progress
         progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
       } else {
-        showPieceBars(false);
+        showPiecesAvailability(false);
+        showPiecesDownloaded(false);
       }
       return;
     }
