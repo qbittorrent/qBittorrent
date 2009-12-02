@@ -602,7 +602,7 @@ void TransferListWidget::copySelectedMagnetURIs() const {
   QStringList magnet_uris;
   foreach(const QModelIndex &index, selectedIndexes) {
     QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
-    if(h.is_valid())
+    if(h.is_valid() && h.has_metadata())
       magnet_uris << misc::toQString(make_magnet_uri(h.get_torrent_info()));
   }
   qApp->clipboard()->setText(magnet_uris.join("\n"));
@@ -632,7 +632,7 @@ void TransferListWidget::previewSelectedTorrents() {
   QStringList pathsList;
   foreach(const QModelIndex &index, selectedIndexes) {
     QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(proxyModel->mapToSource(index).row()));
-    if(h.is_valid()) {
+    if(h.is_valid() && h.has_metadata()) {
       new previewSelect(this, h);
     }
   }
@@ -783,7 +783,7 @@ void TransferListWidget::toggleSelectedTorrentsSuperSeeding() {
     // Get the file hash
     QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid()) {
+    if(h.is_valid() && h.has_metadata()) {
       h.super_seeding(!h.super_seeding());
     }
   }
@@ -796,7 +796,7 @@ void TransferListWidget::toggleSelectedTorrentsSequentialDownload() {
     // Get the file hash
     QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid()) {
+    if(h.is_valid() && h.has_metadata()) {
       h.set_sequential_download(!h.is_sequential_download());
     }
   }
@@ -808,7 +808,7 @@ void TransferListWidget::toggleSelectedFirstLastPiecePrio() {
     // Get the file hash
     QString hash = getHashFromRow(proxyModel->mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && h.num_files() == 1) {
+    if(h.is_valid() && h.has_metadata()) {
       h.prioritize_first_last_piece(!h.first_last_piece_first());
     }
   }
@@ -871,21 +871,23 @@ void TransferListWidget::displayListMenu(const QPoint&) {
       one_has_metadata = true;
     if(!h.is_seed()) {
       one_not_seed = true;
-      if(first) {
-        sequential_download_mode = h.is_sequential_download();
-        prioritize_first_last = h.first_last_piece_first();
-      } else {
-        if(sequential_download_mode != h.is_sequential_download()) {
-          all_same_sequential_download_mode = false;
-        }
-        if(prioritize_first_last != h.first_last_piece_first()) {
-          all_same_prio_firstlast = false;
+      if(h.has_metadata()) {
+        if(first) {
+          sequential_download_mode = h.is_sequential_download();
+          prioritize_first_last = h.first_last_piece_first();
+        } else {
+          if(sequential_download_mode != h.is_sequential_download()) {
+            all_same_sequential_download_mode = false;
+          }
+          if(prioritize_first_last != h.first_last_piece_first()) {
+            all_same_prio_firstlast = false;
+          }
         }
       }
     }
 #ifdef LIBTORRENT_0_15
     else {
-      if(!one_not_seed && all_same_super_seeding) {
+      if(!one_not_seed && all_same_super_seeding && h.has_metadata()) {
         if(first) {
           super_seeding_mode = h.super_seeding();
         } else {
@@ -920,7 +922,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     listMenu.addAction(&actionSet_download_limit);
   listMenu.addAction(&actionSet_upload_limit);
 #ifdef LIBTORRENT_0_15
-  if(!one_not_seed && all_same_super_seeding) {
+  if(!one_not_seed && all_same_super_seeding && one_has_metadata) {
     QIcon ico;
     if(super_seeding_mode) {
       ico = QIcon(":/Icons/oxygen/button_ok.png");
@@ -937,7 +939,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     listMenu.addAction(&actionPreview_file);
     added_preview_action = true;
   }
-  if(one_not_seed) {
+  if(one_not_seed && one_has_metadata) {
     if(all_same_sequential_download_mode) {
       QIcon ico;
       if(sequential_download_mode) {
@@ -974,7 +976,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     listMenu.addAction(&actionDecreasePriority);
   }
   listMenu.addSeparator();
-  listMenu.addAction(&actionCopy_magnet_link);
+  if(one_has_metadata)
+    listMenu.addAction(&actionCopy_magnet_link);
   listMenu.addAction(&actionBuy_it);
   // Call menu
   listMenu.exec(QCursor::pos());
