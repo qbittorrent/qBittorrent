@@ -812,11 +812,13 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
     if (notify_init ("summary-body")) {
       NotifyNotification* notification;
       notification = notify_notification_new (title.toLocal8Bit().data(), msg.toLocal8Bit().data(), "qbittorrent", 0);
-      GError* error = 0;
-      gboolean success = notify_notification_show (notification, &error);
-      notify_uninit ();
-      if(success)
+      gboolean success = notify_notification_show (notification, NULL);
+      if(success) {
+        g_object_unref(G_OBJECT(notification));
+        notify_uninit ();
         return;
+      }
+      notify_uninit ();
     }
 #endif
     if(systrayIcon)
