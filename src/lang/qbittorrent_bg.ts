@@ -219,129 +219,129 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <translation type="unfinished">NAT-PMP поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="350"/>
+        <location filename="../bittorrent.cpp" line="352"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished">DHT поддръжка [ВКЛ], порт: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="352"/>
-        <location filename="../bittorrent.cpp" line="356"/>
+        <location filename="../bittorrent.cpp" line="354"/>
+        <location filename="../bittorrent.cpp" line="358"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished">DHT поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="359"/>
+        <location filename="../bittorrent.cpp" line="361"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished">PeX поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="363"/>
+        <location filename="../bittorrent.cpp" line="365"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished">Търсене на локални връзки [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="366"/>
+        <location filename="../bittorrent.cpp" line="368"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished">Търсене на локални връзки [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="378"/>
+        <location filename="../bittorrent.cpp" line="380"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished">Поддръжка кодиране [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="383"/>
+        <location filename="../bittorrent.cpp" line="385"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished">Поддръжка кодиране [ФОРСИРАНА]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="388"/>
+        <location filename="../bittorrent.cpp" line="390"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Поддръжка кодиране [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="489"/>
+        <location filename="../bittorrent.cpp" line="491"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="606"/>
+        <location filename="../bittorrent.cpp" line="608"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="608"/>
+        <location filename="../bittorrent.cpp" line="610"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="658"/>
+        <location filename="../bittorrent.cpp" line="660"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished">&apos;%1&apos; е невалиден magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="683"/>
-        <location filename="../bittorrent.cpp" line="819"/>
-        <location filename="../bittorrent.cpp" line="822"/>
+        <location filename="../bittorrent.cpp" line="685"/>
+        <location filename="../bittorrent.cpp" line="821"/>
+        <location filename="../bittorrent.cpp" line="824"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos; вече е в листа за сваляне.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="757"/>
-        <location filename="../bittorrent.cpp" line="941"/>
-        <location filename="../bittorrent.cpp" line="946"/>
+        <location filename="../bittorrent.cpp" line="759"/>
+        <location filename="../bittorrent.cpp" line="943"/>
+        <location filename="../bittorrent.cpp" line="948"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; бе възстановен. (бързо възстановяване)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="759"/>
-        <location filename="../bittorrent.cpp" line="943"/>
-        <location filename="../bittorrent.cpp" line="948"/>
+        <location filename="../bittorrent.cpp" line="761"/>
+        <location filename="../bittorrent.cpp" line="945"/>
+        <location filename="../bittorrent.cpp" line="950"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; добавен в листа за сваляне.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="793"/>
-        <location filename="../bittorrent.cpp" line="797"/>
+        <location filename="../bittorrent.cpp" line="795"/>
+        <location filename="../bittorrent.cpp" line="799"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">Не мога да декодирам торент-файла: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="800"/>
+        <location filename="../bittorrent.cpp" line="802"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе блокиран от вашия IP филтър&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1197"/>
+        <location filename="../bittorrent.cpp" line="1199"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе прекъснат поради разрушени части&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1457"/>
+        <location filename="../bittorrent.cpp" line="1459"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">Програмирано сваляне на файл %1 вмъкнато в торент %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1468"/>
+        <location filename="../bittorrent.cpp" line="1470"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">Не мога да декодирам %1 торент-файла.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1524"/>
+        <location filename="../bittorrent.cpp" line="1526"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -350,27 +350,27 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Невъзможно изчакване от дадените портове.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1592"/>
+        <location filename="../bittorrent.cpp" line="1594"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Грешка при следене на порт, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1597"/>
+        <location filename="../bittorrent.cpp" line="1599"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Следене на порт успешно, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1612"/>
+        <location filename="../bittorrent.cpp" line="1614"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Бърза пауза бе отхвърлена за торент %1, нова проверка...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1617"/>
+        <location filename="../bittorrent.cpp" line="1619"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1685"/>
+        <location filename="../bittorrent.cpp" line="1687"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
@@ -3583,7 +3583,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Изпълнение</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="461"/>
+        <location filename="../propertieswidget.cpp" line="474"/>
         <source>Priority</source>
         <translation type="unfinished">Предимство</translation>
     </message>
@@ -3608,26 +3608,26 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished">Висок</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="303"/>
-        <location filename="../propertieswidget.cpp" line="304"/>
+        <location filename="../propertieswidget.cpp" line="308"/>
+        <location filename="../propertieswidget.cpp" line="309"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="308"/>
-        <location filename="../propertieswidget.cpp" line="312"/>
+        <location filename="../propertieswidget.cpp" line="313"/>
+        <location filename="../propertieswidget.cpp" line="317"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished">/с</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="315"/>
+        <location filename="../propertieswidget.cpp" line="320"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="319"/>
+        <location filename="../propertieswidget.cpp" line="324"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
@@ -3637,23 +3637,23 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Няма - Недостъпни?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="521"/>
+        <location filename="../propertieswidget.cpp" line="534"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished">Нов url на даващ</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="522"/>
+        <location filename="../propertieswidget.cpp" line="535"/>
         <source>New url seed:</source>
         <translation type="unfinished">Нов url на даващ:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="527"/>
+        <location filename="../propertieswidget.cpp" line="540"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="528"/>
+        <location filename="../propertieswidget.cpp" line="541"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished">Този url на даващ е вече в списъка.</translation>
     </message>
@@ -3662,18 +3662,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Листата на тракери не може да бъде празна.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="573"/>
-        <location filename="../propertieswidget.cpp" line="575"/>
+        <location filename="../propertieswidget.cpp" line="586"/>
+        <location filename="../propertieswidget.cpp" line="588"/>
         <source>Choose save path</source>
         <translation type="unfinished">Избери път за съхранение</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="582"/>
+        <location filename="../propertieswidget.cpp" line="595"/>
         <source>Save path creation error</source>
         <translation type="unfinished">Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="582"/>
+        <location filename="../propertieswidget.cpp" line="595"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">Не мога да създам път за съхранение</translation>
     </message>
@@ -4407,7 +4407,7 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="281"/>
+        <location filename="../trackerlist.h" line="283"/>
         <source>Add a new tracker</source>
         <translation type="unfinished"></translation>
     </message>
