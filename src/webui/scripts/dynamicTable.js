@@ -372,6 +372,15 @@ var dynamicTable = new Class	({
 					}
 				}
 			};
+		} else {
+			// Row was hidden, check if it was selected
+			// and unselect it if it was
+			if(this.cur.contains(id)) {
+				// Remove from selection
+				this.cur.erase(id);
+				// Remove selected style
+				tr.removeClass('selected');
+			}
 		}
 		return true;
 	},
