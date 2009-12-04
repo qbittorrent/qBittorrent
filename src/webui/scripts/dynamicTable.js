@@ -42,7 +42,10 @@ var dynamicTable = new Class	({
 		this.cur = new Array();
 		this.priority_hidden = false;
 		this.progressIndex = progressIndex;
-		this.filter = 'all';
+		this.filter = Cookie.read('selected_filter');
+		if(!$defined(this.filter)) {
+			this.filter = 'all';
+		}
 		this.context_menu = context_menu;
 		this.table.sortedIndex = 1; // Default is NAME
 		this.table.reverseSort = false;

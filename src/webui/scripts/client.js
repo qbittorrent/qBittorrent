@@ -177,6 +177,8 @@ window.addEvent('domready', function(){
 	  $(f+"_filter").addClass("selectedFilter");
 	  myTable.setFilter(f);
 	  ajaxfn();
+	  // Remember this via Cookie
+	  Cookie.write('selected_filter', f);
 	}
 
 });
