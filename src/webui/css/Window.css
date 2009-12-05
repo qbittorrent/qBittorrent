@@ -1,0 +1,371 @@
+/*
+
+Window.css for Mocha UI
+
+Theme: Default
+
+Copyright:
+	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	
+License:
+	MIT-style license.
+	
+Required by:
+	Window.js and Modal.css	
+
+*/
+
+/* Windows
+---------------------------------------------------------------- */
+
+.mocha {
+	display: none;
+	overflow: hidden;
+	background-color: #e5e5e5;	
+}
+
+.mocha.isFocused {	
+}	
+
+.mochaOverlay {
+	position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
+	top: 0;
+	left: 0;	
+}
+
+/*
+
+	We get a little creative here in order to define a gradient in the CSS using a query
+	string appended to a background image.
+	
+	"from" is the top color of the gradient. "to" is the bottom color of the gradient.
+	
+	Both must be hex values without the leading # sign.
+  
+*/	
+
+.mochaTitlebar {
+	width: 100%;
+	overflow: hidden;
+	background: url(../images/spacer.gif?from=fafafa&to=e5e5e5); 
+}
+
+.mochaTitlebar h3 {
+	font-size: 12px;
+	line-height: 15px;	
+	font-weight: bold;
+	margin: 0;
+	padding: 5px 10px 4px 12px;
+	color: #888;
+}
+
+.mocha.isFocused .mochaTitlebar h3 {
+	color: #181818;
+}
+
+.mochaToolbarWrapper {
+	width: 100%; /* For IE */
+	position: relative;
+	height: 29px;
+	background: #f1f1f1;	
+	overflow: hidden;
+	border-top: 1px solid #d9d9d9;
+}
+
+div.mochaToolbarWrapper.bottom {
+	border: 0;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.mochaToolbar {
+	width: 100%; /* For IE */
+	border-top: 1px solid #fff;
+}
+
+.mochaContentBorder {
+	border-top: 1px solid #dadada;
+	border-bottom: 1px solid #dadada;
+}
+
+.mochaContentWrapper { /* Has a fixed height and scrollbars if required. */
+	font-size: 12px;
+	overflow: auto;
+	background: #fff;	
+}
+	
+.mochaContent {
+	padding: 10px 12px;
+}
+
+.mocha .handle {
+	position: absolute;
+	background: #0f0;
+	width: 3px;
+	height: 3px;
+	z-index: 2;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */		
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
+	opacity: .0;	
+	-moz-opacity: .0;
+	overflow: hidden;
+	font-size: 1px; /* For IE6 */
+}
+
+.mocha .corner { /* Corner resize handles */
+	width: 10px;
+	height: 10px;
+	background: #f00;	
+}
+
+.mocha .cornerSE { /* Bottom right resize handle */
+	width: 20px;
+	height: 20px;
+	background: #fefefe; /* This is the color of the visible resize handle */	
+}
+
+.mochaCanvasHeader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
+	z-index: -1;
+	visibility: hidden;
+	overflow: hidden;
+}
+
+.mochaControls {
+	position: absolute;
+	width: 52px;
+	top: 8px;
+	right: 8px;
+	height: 14px;
+	z-index: 4;
+	background: transparent;
+}
+
+.mochaCanvasControls {
+	position: absolute;	
+	top: 8px;
+	right: 8px;	
+	z-index: 3;
+	background: transparent;
+}
+
+/*
+	To use images for these buttons:
+	1. Set the useCanvasControls window option to false.
+	2. If you use a different button size you may need to reposition the controls.
+	   Modify the controlsOffset window option.		
+	2. Replcac the background-color with a background-image for each button.
+
+*/
+.mochaMinimizeButton, .mochaMaximizeButton, .mochaCloseButton {
+	float: right;
+	width: 14px;
+	height: 14px;
+	font-size: 1px;	
+	cursor: pointer;
+	z-index: 4;
+	color: #666;
+	background-color: #fff;
+	margin-left: 5px;
+}
+
+.mochaMinimizeButton {
+	margin-left: 0;
+}
+
+.mochaMaximizeButton {
+}
+
+.mochaCloseButton {
+}
+
+.mochaSpinner{
+	display: none;	
+	position: absolute;
+	bottom: 7px;
+	left: 6px;
+	width: 16px;
+	height: 16px;
+	background: url(../images/spinner.gif) no-repeat;
+}
+
+.mochaIframe {
+	width: 100%;
+}  
+		
+/* Fix for IE6 select z-index issue */
+.zIndexFix {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	filter: mask();
+	width: 100px;
+	height: 100px;
+	border: 1px solid transparent;
+}
+
+/* Viewport overlays
+---------------------------------------------------------------- */
+
+#modalOverlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #000;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */		
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/	
+	opacity: 0;
+	-moz-opacity: 0;
+	z-index: 10000;
+}
+
+/* Fix for IE6 select z-index issue */
+#modalFix {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */		
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/	
+	opacity: 0;
+	-moz-opacity: 0;
+	z-index: 9999;
+}
+
+/* Underlay */
+
+#windowUnderlay { 
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #fff;	
+}
+
+* html #windowUnderlay { 
+	position: absolute; 
+}
+
+/* The replaced class is used internally when converting CSS values to Canvas. These classes should not be removed. */
+
+.mocha.replaced, .mochaTitlebar.replaced, .mochaMinimizeButton.replaced, .mochaMaximizeButton.replaced, .mochaCloseButton.replaced {
+	background-color: transparent !important;
+}
+
+.windowClosed {
+	visibility: hidden;	
+	display: none;
+	position: absolute;
+	top: -20000px;
+	left: -20000px;
+	z-index: -1;
+	overflow: hidden;		
+}
+
+.windowClosed .mochaContentBorder, .windowClosed .mochaToolbarWrapper, .windowClosed .mochaTitlebar, .windowClosed .mochaControls,
+.windowClosed .mochaCanvasControls {
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility: hidden;	
+	display: none;
+	z-index: -1;	
+}		
+
+/* Modals */
+
+.modal2 {
+	border: 8px solid #fff;		
+}
+
+.modal2 .mochaContentBorder {
+	border-width: 0px;
+}
+	
+/* Window Themes */
+
+.mocha.no-canvas {
+	background: #e5e5e5;
+	border: 1px solid #555;	
+}
+
+.mocha.no-canvas .mochaTitlebar {
+	background: #e5e5e5;	
+}
+
+.mocha.transparent .mochaTitlebar h3 {
+	color: #fff;
+	display: none;
+}
+
+.mocha.transparent .mochaContentWrapper {
+	background: transparent;	
+}
+
+.mocha.notification {
+	background: #cedff2;	
+}
+
+.mocha.notification .mochaTitlebar {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */		
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/	
+	opacity: .0;
+	-moz-opacity: 0;
+}
+
+.mocha.notification .mochaContentBorder {
+	border-width: 0px;
+}
+
+.mocha.notification .mochaContentWrapper {
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	background: transparent;
+}
+
+/* Example Window Themes */
+
+#about_contentWrapper {
+	background: #e5e5e5 url(../images/logo2.gif) 3px 3px no-repeat;
+}
+
+#builder_contentWrapper {
+	background: #f5f5f7;
+}
+
+#json01 .mochaTitlebar {
+	background: #6dd2db;
+}
+
+#json02 .mochaTitlebar {
+	background: #6db6db;
+}
+
+#json03 .mochaTitlebar {
+	background: #6d92db;
+}
+
+.jsonExample .mochaTitlebar h3 {
+	color: #ddd;
+}	
+
+/* This does not work in IE6. */
+.isFocused.jsonExample .mochaTitlebar h3 {
+	color: #fff;
+}
+
+#fxmorpherExample .mochaContentWrapper {
+	background: #577a9e;	
+}
+
+#clock {
+	background: #fff;	
+}

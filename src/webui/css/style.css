@@ -172,3 +172,57 @@ a.propButton img {
 #contextmenu li a.deleteHD	{ background-image:url(../images/skin/delete_perm22.png); }
 #contextmenu li a.uploadLimit	{ background-image:url(../images/skin/seeding.png); }
 #contextmenu li a.downloadLimit	{ background-image:url(../images/skin/download.png); }
+
+/* Sliders */
+
+.slider {
+	clear: both;
+	position: relative;
+	font-size: 12px;
+	font-weight: bold;
+	width: 400px;
+	margin-bottom: 15px;	
+}
+
+.sliderWrapper {
+	position: relative;
+	font-size: 1px;
+	line-height: 1px;
+	height: 9px;
+	width: 422px;
+}
+
+.sliderarea {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 7px;
+	width: 420px;
+	font-size: 1px;
+	line-height: 1px;
+	background: #f2f2f2 url(../images/skin/slider-area.gif) repeat-x;
+	border: 1px solid #a3a3a3;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+ 
+.sliderknob {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 9px;
+	width: 19px;
+	font-size: 1px;
+	line-height: 1px;	
+	background: url(../images/skin/knob.gif) no-repeat;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 2;
+}
+	
+.update {
+	padding-bottom: 5px;	
+}

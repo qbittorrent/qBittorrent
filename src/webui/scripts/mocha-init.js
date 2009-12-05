@@ -26,14 +26,14 @@ initializeWindows = function(){
 			title: "_(Download from URL)",
 			loadMethod: 'iframe',
 			contentURL:'download.html',
-			scrollbars: false,
+			scrollbars: true,
 			resizable: false,
 			maximizable: false,
 			closable: true,
 			paddingVertical: 0,
 			paddingHorizontal: 0,
 			width: 500,
-			height: 270
+			height: 280
 		});
 	});
 	
@@ -62,13 +62,13 @@ initializeWindows = function(){
 			title: "_(Download local torrent)",
 			loadMethod: 'iframe',
 			contentURL:'upload.html',
-			scrollbars: false,
+			scrollbars: true,
 			resizable: false,
 			maximizable: false,
 			paddingVertical: 0,
 			paddingHorizontal: 0,
 			width: 500,
-			height: 120
+			height: 150
 		});
 	});
 	

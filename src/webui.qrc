@@ -14,11 +14,14 @@
   <file>webui/uploadlimit.html</file>
   <file>webui/downloadlimit.html</file>
   <file>webui/preferences.html</file>
-  <file>webui/css/mocha.css</file>
+  <file>webui/css/Core.css</file>
+  <file>webui/css/Layout.css</file>
+  <file>webui/css/Window.css</file>
+  <file>webui/css/Tabs.css</file>
   <file>webui/css/dynamicTable.css</file>
   <file>webui/css/style.css</file>
   <file>webui/scripts/excanvas-compressed.js</file>
-  <file>webui/scripts/mocha.js</file>
+  <file>webui/scripts/mocha-yc.js</file>
   <file>webui/scripts/mocha-init.js</file>
   <file>webui/scripts/mootools-1.2-core-yc.js</file>
   <file>webui/scripts/mootools-1.2-more.js</file>

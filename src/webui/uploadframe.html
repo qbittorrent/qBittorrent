@@ -4,9 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>_(Download local torrent)</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" />
-        <link rel="stylesheet" href="css/mocha.css" type="text/css" />
         <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
-        <!-- <script type="text/javascript" src="scripts/upload.js" charset="utf-8"></script> -->
 <script type="text/javascript">
 function submitForm(form) {
   if($('torrentfile').get('value').length == 0) {
@@ -14,7 +12,7 @@ function submitForm(form) {
     return false;
   }
   document.uploadForm.submit();
-  window.parent.showSuccess();
+  window.parent.hideAll();
 }
 </script>
 </head>

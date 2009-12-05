@@ -147,6 +147,7 @@ var createPriorityCombo = function(id, selected_prio) {
         waitingTorrentFiles=true;
         var request = new Request.JSON({
                 url: url,
+                noCache: true,
                 method: 'get',
                 onFailure: function() {
                         $('error_div').set('html', 'qBittorrent client is not reachable');

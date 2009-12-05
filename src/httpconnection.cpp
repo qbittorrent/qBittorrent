@@ -207,7 +207,7 @@ void HttpConnection::respond()
     ext.clear();
   QByteArray data = file.readAll();
   // Translate the page
-  if(ext == "html" || ext == "js") {
+  if(ext == "html" || (ext == "js" && !list.last().startsWith("excanvas"))) {
     data = translateDocument(QString::fromUtf8(data.data())).toUtf8();
   }
   generator.setStatusLine(200, "OK");

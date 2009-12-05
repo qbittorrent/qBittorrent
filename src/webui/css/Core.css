@@ -1,0 +1,54 @@
+/*
+
+Core.css for Mocha UI
+
+Theme: Default
+
+Copyright:
+	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	
+License:
+	MIT-style license.
+
+Notes:
+	CSS rules in this file:
+	
+	1. Rules required by all MochaUI components or are shared by more than one.
+	2. Theme specific ajustments to plugin styles.
+	3. Miscellaneous rules that have no better place to go.
+ 
+*/
+
+/* Required By All
+---------------------------------------------------------------- */
+
+/* Clears */
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+* html .clear {
+	font-size: 1px;
+	line-height: 1px;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+/* Miscellaneous
+---------------------------------------------------------------- */
+
+#themeControl {
+	margin-top: 2px;	
+}
+
+
+/* Theme Specific Adjustments to Default Plugin Styles
+---------------------------------------------------------------- */
+
+/* Folder Tree */
+
+.tree li a {
+	color: #3f3f3f !important;	
+}

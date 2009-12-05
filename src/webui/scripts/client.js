@@ -28,7 +28,7 @@ setSortedColumn = function(index){
   myTable.setSortedColumn(index);
 };
 
-window.addEvent('domready', function(){
+window.addEvent('load', function(){
   
   var saveColumnSizes = function() {
     var filters_width = $('Filters').getSize().x;
@@ -38,11 +38,13 @@ window.addEvent('domready', function(){
     Cookie.write('properties_height', properties_height);
   }
   
-  MochaUI.Desktop = new MochaUI.Desktop();
+  /*MochaUI.Desktop = new MochaUI.Desktop();
   MochaUI.Desktop.desktop.setStyles({
 	'background': '#fff',
 	'visibility': 'visible'
-  });
+  });*/
+  MochaUI.Desktop.initialize();
+
   var filt_w = Cookie.read('filters_width');
   if($defined(filt_w))
      filt_w =  filt_w.toInt();
@@ -61,9 +63,12 @@ window.addEvent('domready', function(){
 		width: null,
 		resizeLimit: [100, 300]
 	});
+  MochaUI.Desktop.setDesktopSize();
   new MochaUI.Panel({
 		id: 'Filters',
 		title: 'Panel',
+		header: false,
+		padding: { top: 0, right: 0, bottom: 0, left: 0 },
 		loadMethod: 'xhr',
 		contentURL: 'filters.html',
 		column: 'filtersColumn',
@@ -72,6 +77,8 @@ window.addEvent('domready', function(){
     new MochaUI.Panel({
 		id: 'transferList',
 		title: 'Panel',
+		header: false,
+		padding: { top: 0, right: 0, bottom: 0, left: 0 },
 		loadMethod: 'xhr',
 		contentURL: 'transferlist.html',
 		column: 'mainColumn',
@@ -86,6 +93,8 @@ window.addEvent('domready', function(){
     new MochaUI.Panel({
 		id: 'properties',
 		title: 'Panel',
+		header: false,
+		padding: { top: 0, right: 0, bottom: 0, left: 0 },
 		loadMethod: 'xhr',
 		contentURL: 'properties.html',
 		column: 'mainColumn',
@@ -105,6 +114,7 @@ window.addEvent('domready', function(){
 			waiting=true;
 			var request = new Request.JSON({
                                 url: url,
+				noCache: true,
 				method: 'get',
 				onFailure: function() {
 					$('error_div').set('html', 'qBittorrent client is not reachable');
@@ -189,9 +199,11 @@ function closeWindows() {
 
 // This runs when a person leaves your page.
 
-window.addEvent('unload', function(){
-	if (MochaUI) MochaUI.garbageCleanUp();
-});
+//window.addEvent('unload', function(){
+//	if (MochaUI && Browser.Engine.trident != true) {
+//	  MochaUI.garbageCleanUp();
+//	}
+//});
 
 window.addEvent('keydown', function(event){
   if (event.key == 'a' && event.control) {

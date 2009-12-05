@@ -4,7 +4,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>_(Download from URL)</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
-	<link rel="stylesheet" href="css/mocha.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 </head>
 <body style="padding: 5px;">
@@ -164,6 +163,7 @@ loadPreferences = function() {
   var request = new Request.JSON({
           url: url,
           method: 'get',
+          noCache: true,
           onFailure: function() {
             alert("Could not contact qBittorrent");
           },
