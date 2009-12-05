@@ -93,10 +93,13 @@ window.addEvent('load', function(){
     new MochaUI.Panel({
 		id: 'properties',
 		title: 'Panel',
-		header: false,
+		header: true,
 		padding: { top: 0, right: 0, bottom: 0, left: 0 },
-		loadMethod: 'xhr',
-		contentURL: 'properties.html',
+		contentURL: 'prop-general.html',
+		require: {
+                  css: ['css/Tabs.css']
+                },
+                tabsURL: 'properties.html',
 		column: 'mainColumn',
 		height: prop_h
 	});
