@@ -94,7 +94,7 @@ QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
 QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   QList<QVariantMap> files;
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  if(!h.is_valid()) return files;
+  if(!h.is_valid() || !h.has_metadata()) return files;
   std::vector<int> priorities = h.file_priorities();
   std::vector<size_type> fp;
   h.file_progress(fp);
@@ -136,7 +136,7 @@ QVariantMap EventManager::getGlobalPreferences() const {
 QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
   QVariantMap data;
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  if(h.is_valid()) {
+  if(h.is_valid() && h.has_metadata()) {
     // Save path
     data["save_path"] = TorrentPersistentData::getSavePath(hash);
     // Creation date
