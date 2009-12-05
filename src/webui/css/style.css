@@ -226,3 +226,13 @@ a.propButton img {
 .update {
 	padding-bottom: 5px;	
 }
+
+.mochaToolButton {
+	margin-right: 10px;
+}
+
+/* Mocha Customization */
+#mochaToolbar .divider {
+        background: url(../images/skin/toolbox-divider.gif) left center no-repeat;
+        padding: 25px 0 0 14px;
+}
