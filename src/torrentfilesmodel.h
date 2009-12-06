@@ -184,7 +184,7 @@ public:
     return itemData.value(3).toInt();
   }
 
-  void setPriority(int new_prio) {
+  void setPriority(int new_prio, bool update_children=true) {
     int old_prio = getPriority();
     if(old_prio != new_prio) {
       itemData.replace(3, new_prio);
@@ -200,8 +200,10 @@ public:
       }
     }
     // Update children
-    foreach(TreeItem* child, childItems) {
-      child->setPriority(new_prio);
+    if(update_children) {
+      foreach(TreeItem* child, childItems) {
+        child->setPriority(new_prio);
+      }
     }
   }
 
@@ -215,7 +217,10 @@ public:
         priority = child->getPriority();
         first = false;
       } else {
-        if(child->getPriority() != priority) return;
+        if(child->getPriority() != priority) {
+          setPriority(NORMAL, false);
+          return;
+        }
       }
     }
     setPriority(priority);
