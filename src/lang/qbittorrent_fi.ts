@@ -3888,22 +3888,22 @@ Muutoshistoria:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Size</source>
         <translation>Koko</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Progress</source>
         <translation>Edistyminen</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>

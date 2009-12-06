@@ -3537,22 +3537,22 @@ Endringer:</translation>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Name</source>
         <translation type="unfinished">Navn</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Size</source>
         <translation type="unfinished">Størrelse</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>

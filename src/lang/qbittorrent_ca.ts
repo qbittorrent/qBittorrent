@@ -3668,22 +3668,22 @@ Log:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Name</source>
         <translation type="unfinished">Nom</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Size</source>
         <translation type="unfinished">Mida</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Progress</source>
         <translation type="unfinished">Progrès</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="290"/>
+        <location filename="../torrentfilesmodel.h" line="295"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
