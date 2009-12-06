@@ -236,6 +236,11 @@ var dynamicTable = new Class	({
 				if(i==0) {
 					td.adopt(new Element('img', {'src':row[i], 'class': 'statusIcon'}));
 				} else {
+					if(i==2) {
+						// Priority
+						if(this.priority_hidden)
+							td.addClass('invisible');
+					}
 					td.set('html', row[i]);
 				}
 			}
