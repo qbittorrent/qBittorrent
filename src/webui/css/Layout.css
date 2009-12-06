@@ -102,9 +102,14 @@ body {
 
 #desktopNavbar {
 	background: #f2f2f2;
-	height: 30px;
+	/*height: 30px;*/
 	margin: 0 0px;
-	overflow: hidden; /* Remove this line if you want the menu to be backward compatible with Firefox 2 */	
+	overflow: hidden; /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
+	/* Fixes by Chris */
+	/*background-color: #ccc;*/
+	height: 20px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #3f3f3f;
 }
 
 #desktopNavbar ul {	
@@ -123,13 +128,17 @@ body {
 }	
 	
 #desktopNavbar ul li a {
-	padding: 6px 10px 6px 10px;	
+	/*padding: 6px 10px 6px 10px;*/
 	color: #333;
 	font-weight: normal;
+	/* Fix by Chris */
+	padding: 2px 10px 6px 10px;
 }
 
 #desktopNavbar ul li a:hover {
 	color: #333;
+	/* Fix By Chris */
+        background-color: #fff;
 }
 
 #desktopNavbar ul li a.arrow-right, #desktopNavbar ul li a:hover.arrow-right {
@@ -146,6 +155,8 @@ body {
 	width: 164px;
 	left: -999em;
 	z-index: 8000;
+	/* Fix by Chris */
+	margin-top: -6px;
 }
 
 #desktopNavbar li:hover ul ul,
@@ -173,10 +184,12 @@ body {
 
 #desktopNavbar li ul li a {
 	position: relative;
-	padding: 1px 9px 1px 25px;
+	/*padding: 1px 9px 1px 25px;*/
 	width: 130px;
 	color: #3f3f3f;
-	font-weight: normal;	
+	font-weight: normal;
+	/* Fix By Chris */
+	padding: 1px 9px 1px 20px; /* Reduce left padding */
 }
 
 #desktopNavbar li ul li a:hover {
