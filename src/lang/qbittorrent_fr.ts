@@ -406,7 +406,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1526"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;écouter sur le port %1, utilisation de %2 à la place.</translation>
     </message>
     <message>
         <source>Couldn&apos;t listen on any of the given ports.</source>
@@ -1785,7 +1785,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../feeddownloader.h" line="295"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Choix du répertoire de destination</translation>
+        <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="455"/>
