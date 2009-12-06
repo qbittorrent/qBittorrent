@@ -292,24 +292,25 @@ var dynamicTable = new Class	({
 			} else {
 				if(e.shift && this.cur.length == 1) {
 					// Shift key was pressed
-					ids = this.getRowIds();
-					beginIndex = ids.indexOf(this.cur[0]);
-					endIndex = ids.indexOf(id);
-					if(beginIndex > endIndex) {
-						// Backward shift
-						tmp = beginIndex;
-						beginIndex = endIndex-1;
-						endIndex = tmp-1;
-					}
-					for(i=beginIndex+1; i<(endIndex+1); i++) {
-						curID = ids[i];
-						this.cur[this.cur.length] = curID;
-						// Add selected style
-						if(this.rows.has(curID)) {
-						temptr = this.rows.get(curID);
-							temptr.addClass('selected');
-						}
-					}
+					var first_id = this.cur[0];
+					var first_tr = this.rows.get(first_id);
+					var last_id = id;
+					var last_tr = this.rows.get(last_id);
+					var all_trs = this.table.getChildren('tr');
+					var index_first_tr = all_trs.indexOf(first_tr);
+					var index_last_tr = all_trs.indexOf(last_tr);
+					var trs_to_select = all_trs.filter(function(item, index){
+						if(index_first_tr < index_last_tr)
+							return (index > index_first_tr) && (index <= index_last_tr);
+						else
+							return (index < index_first_tr) && (index >= index_last_tr);
+					});
+					trs_to_select.each(function(item, index){
+						// Add to selection
+						this.cur[this.cur.length] = this.getRowId(item);
+						// Select it visually
+						item.addClass('selected');
+					}.bind(this));
 				} else {
 					// Simple selection
 					// Remove selected style from previous ones
@@ -412,15 +413,14 @@ var dynamicTable = new Class	({
 		return this.cur;
 	},
 	
+	getRowId: function(tr){
+		return this.rows.keyOf(tr);
+	},
+	
 	getRowIds: function(){
-		var ids = new Array();
-		var i = 0;
-		this.rows.each(function(tr, id) {
-			ids[i] = id;
-			i++;
-		}.bind(this));
-		return ids;
+		return this.rows.getKeys();
 	}
+	
 });
 //dynamicTable.implement(new Options);
 //dynamicTable.implement(new Events);
