@@ -53,7 +53,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-81</y>
             <width>518</width>
             <height>371</height>
            </rect>
@@ -414,6 +414,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_2">
+                <property name="spacing">
+                 <number>8</number>
+                </property>
                 <item>
                  <widget class="QLabel" name="savePath_lbl">
                   <property name="sizePolicy">
@@ -463,25 +466,12 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_3">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string notr="true"/>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QLabel" name="comment_lbl2">
                   <property name="text">
                    <string>Comment:</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>

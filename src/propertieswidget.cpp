@@ -284,8 +284,6 @@ void PropertiesWidget::saveSettings() {
     sizes = hSplitter->sizes();
   else
     sizes = slideSizes;
-  if(state == VISIBLE)
-    qDebug("Visible");
   qDebug("Sizes: %d", sizes.size());
   if(sizes.size() == 2) {
     settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString::number(sizes.first())+','+QString::number(sizes.last()));
