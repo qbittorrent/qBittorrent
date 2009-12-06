@@ -31,6 +31,8 @@
 #define __BITTORRENT_H__
 
 #include <QHash>
+#include <QMap>
+#include <QUrl>
 #include <QStringList>
 #include <QApplication>
 #include <QPalette>
@@ -86,7 +88,7 @@ private:
   // Bittorrent
   session *s;
   QPointer<QTimer> timerAlerts;
-  QHash<QString, QString> savepath_fromurl;
+  QMap<QUrl, QString> savepath_fromurl;
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
   // Ratio
   QPointer<QTimer> BigRatioTimer;
@@ -119,7 +121,7 @@ private:
   QString filterPath;
   // Web UI
   QPointer<HttpServer> httpServer;
-  QStringList url_skippingDlg;
+  QList<QUrl> url_skippingDlg;
   // Fast exit (async)
   bool exiting;
 

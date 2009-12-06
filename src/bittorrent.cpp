@@ -198,11 +198,12 @@ void Bittorrent::setUploadLimit(QString hash, long val) {
 void Bittorrent::handleDownloadFailure(QString url, QString reason) {
   emit downloadFromUrlFailure(url, reason);
   // Clean up
-  int index = url_skippingDlg.indexOf(url);
+    QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
+  int index = url_skippingDlg.indexOf(qurl);
   if(index >= 0)
     url_skippingDlg.removeAt(index);
-  if(savepath_fromurl.contains(url))
-    savepath_fromurl.remove(url);
+  if(savepath_fromurl.contains(qurl))
+    savepath_fromurl.remove(qurl);
 }
 
 void Bittorrent::startTorrentsInPause(bool b) {
@@ -842,9 +843,9 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     }
   }
   QString savePath;
-  if(!from_url.isEmpty() && savepath_fromurl.contains(from_url)) {
+  if(!from_url.isEmpty() && savepath_fromurl.contains(QUrl::fromEncoded(from_url.toLocal8Bit()))) {
     // Enforcing the save path defined before URL download (from RSS for example)
-    savePath = savepath_fromurl.take(from_url);
+    savePath = savepath_fromurl.take(QUrl::fromEncoded(from_url.toLocal8Bit()));
   } else {
     savePath = getSavePath(hash);
   }
@@ -1702,16 +1703,17 @@ void Bittorrent::addMagnetSkipAddDlg(QString uri) {
 
 void Bittorrent::downloadUrlAndSkipDialog(QString url, QString save_path) {
   //emit aboutToDownloadFromUrl(url);
+  QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
   if(!save_path.isEmpty())
-    savepath_fromurl[url] = save_path;
-  url_skippingDlg << url;
+    savepath_fromurl[qurl] = save_path;
+  url_skippingDlg << qurl;
   // Launch downloader thread
   downloader->downloadUrl(url);
 }
 
 // Add to Bittorrent session the downloaded torrent file
 void Bittorrent::processDownloadedFile(QString url, QString file_path) {
-  int index = url_skippingDlg.indexOf(url);
+  int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toLocal8Bit()));
   if(index < 0) {
     // Add file to torrent download list
     emit newDownloadedTorrent(file_path, url);
