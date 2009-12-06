@@ -56,6 +56,9 @@ var ContextMenu = new Class({
 					this.show();
 				}
 			}.bind(this));
+		t.addEvent('click',function(e) {
+				this.hide();
+			}.bind(this));
 	},
 	
 	//get things started
@@ -80,6 +83,9 @@ var ContextMenu = new Class({
 					//show the menu
 					this.show();
 				}
+			}.bind(this));
+			el.addEvent('click',function(e) {
+				this.hide();
 			}.bind(this));
 		},this);
 		
