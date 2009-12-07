@@ -29,6 +29,7 @@
  */
 
 #include "rss.h"
+#include "preferences.h"
 
 #ifdef QT_4_5
 #include <QHash>
@@ -286,8 +287,7 @@ void RssFolder::addFile(RssFile * item) {
 RssManager::RssManager(Bittorrent *BTSession): RssFolder(0, this, BTSession, QString::null) {
   loadStreamList();
   connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshAll()));
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  refreshInterval = settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toInt();
+  refreshInterval = Preferences::getRSSRefreshInterval();
   newsRefresher.start(refreshInterval*60000);
 }
 
@@ -624,8 +624,7 @@ short RssStream::readDoc(const QDomDocument& doc) {
 }
 
 void RssStream::resizeList() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  unsigned int max_articles = settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
+  unsigned int max_articles = Preferences::getRSSMaxArticlesPerFeed();
   unsigned int nb_articles = this->size();
   if(nb_articles > max_articles) {
     QList<RssItem*> listItem = RssManager::sortNewsList(this->values());
