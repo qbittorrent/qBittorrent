@@ -749,7 +749,7 @@ void GUI::loadPreferences(bool configure_session) {
   // RSS
   if(Preferences::isRSSEnabled()) {
     displayRSSTab(true);
-    rssWidget->updateRefreshInterval(Preferences::getRefreshInterval());
+    rssWidget->updateRefreshInterval(Preferences::getRSSRefreshInterval());
   } else {
     displayRSSTab(false);
   }

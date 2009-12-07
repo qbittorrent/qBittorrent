@@ -301,6 +301,7 @@ void RssManager::updateRefreshInterval(unsigned int val){
   if(refreshInterval != val) {
     refreshInterval = val;
     newsRefresher.start(refreshInterval*60000);
+    qDebug("New RSS refresh interval is now every %dmin", refreshInterval);
   }
 }
 
