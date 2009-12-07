@@ -18,6 +18,7 @@ Dependencies:
 - libboost: libboost-filesystem, libboost-date-time, libboost-thread, libboost-serialization
 
 - python >= 2.3 (needed by search engine)
+  * Run time only dependency
 
 - libnotify >= 0.4.2, glib-2.0 (optional)
   * Can be used for system notifications to replace standard Qt notifications
@@ -25,6 +26,7 @@ Dependencies:
 
 - geoip-database (optional)
   * If qBittorrent cannot find this database, it will try to resolve countries using the Internet but it will be a lot slower.
+  * Run time only dependency
 
 DOCUMENTATION:
 Please note that there is a documentation with a "compiling howto" at http://wiki.qbittorrent.org.
