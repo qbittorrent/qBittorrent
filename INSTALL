@@ -23,6 +23,9 @@ Dependencies:
   * Can be used for system notifications to replace standard Qt notifications
     so that it integrates better into the Desktop
 
+- geoip-database (optional)
+  * If qBittorrent cannot find this database, it will try to resolve countries using the Internet but it will be a lot slower.
+
 DOCUMENTATION:
 Please note that there is a documentation with a "compiling howto" at http://wiki.qbittorrent.org.
 
