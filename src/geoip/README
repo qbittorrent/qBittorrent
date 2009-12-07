@@ -1,0 +1,12 @@
+If you wish to embed GeoIP database into qBittorrent executable, please download put GeoIP.dat in this folder.
+
+GeoIP Database can be downloaded from here:
+* http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+Note that the database should be uncompressed.
+
+Embedding GeoIP database into qBittorrent executable is advised for:
+* Windows
+* Mac OS X
+* Linux distributions that don't provide GeoIP database in a separate package
+
+On Linux operating system, since this is not the default behavior, you also need to pass --with-geoip-database-embedded parameter to the configure file.

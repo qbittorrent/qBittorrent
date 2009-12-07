@@ -1,7 +1,5 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
-  <file>geoip/GeoIP.dat</file>
-  <file>geoip/VERSION</file>
-</qresource>
+<RCC>
+    <qresource prefix="/" >
+        <file>geoip/GeoIP.dat</file>
+    </qresource>
 </RCC>
-

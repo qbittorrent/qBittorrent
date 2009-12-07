@@ -40,43 +40,27 @@
 
 using namespace libtorrent;
 
-// TODO: Update from Internet
 class GeoIP {
 protected:
   static QString geoipFolder(bool embedded=false) {
+#ifdef WITH_GEOIP_EMBEDDED
     if(embedded)
       return ":/geoip/";
     return misc::qBittorrentPath()+"geoip"+QDir::separator();
+#else
+    if(QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))
+      return "/usr/local/share/GeoIP/";
+    return "/usr/share/GeoIP/";
+#endif
   }
 
   static QString geoipDBpath(bool embedded=false) {
     return geoipFolder(embedded)+"GeoIP.dat";
   }
 
-  static QString geoipVersionPath(bool embedded=false) {
-    return geoipFolder(embedded)+"VERSION";
-  }
-
-  static int getDBVersion(bool embedded = false) {
-    QFile vFile(geoipVersionPath(embedded));
-    qDebug("Reading file at %s", geoipVersionPath(embedded).toLocal8Bit().data());
-    if(vFile.exists() && vFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      qDebug("File exists and was opened");
-      QByteArray v = vFile.readAll().trimmed();
-      /*while(!v.isEmpty() && v[0] == '0') {
-        v = v.mid(1);
-      }*/
-      qDebug("Read version: %s", v.data());
-      bool ok = false;
-      int version = v.toInt(&ok);
-      qDebug("Read version %d (Error? %d)", version, (int) !ok);
-      if(ok) return version;
-    }
-    return 0;
-  }
-
-  static void updateLocalDb() {
-    if(getDBVersion(true) > getDBVersion(false)) { // Update required
+#ifdef WITH_GEOIP_EMBEDDED
+  static void exportEmbeddedDb() {
+    if(!QFile::exists(geoipDBpath(false)) || QFile(geoipDBpath(false)).size() != QFile(geoipDBpath(true)).size()) { // Export is required
       qDebug("A local Geoip database update is required, proceeding...");
       // Create geoip folder is necessary
       QDir gfolder(geoipFolder(false));
@@ -86,18 +70,18 @@ protected:
       // Remove destination files
       if(QFile::exists(geoipDBpath(false)))
         QFile::remove(geoipDBpath(false));
-      if(QFile::exists(geoipVersionPath(false)))
-        QFile::remove(geoipVersionPath(false));
       // Copy from executable to hard disk
       QFile::copy(geoipDBpath(true), geoipDBpath(false));
-      QFile::copy(geoipVersionPath(true), geoipVersionPath(false));
       qDebug("Local Geoip database was updated");
     }
   }
+#endif
 
 public:
   static void loadDatabase(session *s) {
-    updateLocalDb();
+ #ifdef WITH_GEOIP_EMBEDDED
+    exportEmbeddedDb();
+#endif
     if(QFile::exists(geoipDBpath(false))) {
       qDebug("Loading GeoIP database from %s...", geoipDBpath(false).toLocal8Bit().data());
       if(!s->load_country_db(geoipDBpath(false).toLocal8Bit().data())) {

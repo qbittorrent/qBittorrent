@@ -18,8 +18,12 @@ Main options:
   --help              This help text.
 
 Dependency options:
-  --with-libboost-inc=[path]     Path to libboost include files
-  --disable-libnotify           Disable use of libnotify
+  --with-libboost-inc=[path]         Path to libboost include files
+  --disable-libnotify               Disable use of libnotify
+  --disable-geoip-database          Disable use of geoip-database
+  --with-geoip-database-embedded     Geoip Database will be embedded in
+                                    qBittorrent executable (please follow
+                                    instructions in src/geoip/README)
 
 EOT
 }
@@ -146,6 +150,16 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--disable-geoip-database)
+			QC_DISABLE_geoip_database="Y"
+			shift
+			;;
+
+		--with-geoip-database-embedded)
+			QC_WITH_GEOIP_DATABASE_EMBEDDED="Y"
+			shift
+			;;
+
 		--verbose)
 			QC_VERBOSE="Y"
 			shift
@@ -169,6 +183,8 @@ echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_DISABLE_libnotify=$QC_DISABLE_libnotify
+echo QC_DISABLE_geoip_database=$QC_DISABLE_geoip_database
+echo QC_WITH_GEOIP_DATABASE_EMBEDDED=$QC_WITH_GEOIP_DATABASE_EMBEDDED
 echo
 fi
 
@@ -422,6 +438,36 @@ public:
 		return true;
 	}
 };
+#line 1 "geoip-database.qcm"
+/*
+-----BEGIN QCMOD-----
+name: geoip-database
+arg: with-geoip-database-embedded, Geoip Database will be embedded in qBittorrent executable (please follow instructions in src/geoip/README)
+-----END QCMOD-----
+*/
+// see  Conf::findPkgConfig
+class qc_geoip_database : public ConfObj
+{
+public:
+	qc_geoip_database(Conf *c) : ConfObj(c) {}
+	QString name() const { return "GeoIP Database (optional)"; }
+	QString shortname() const { return "GeoIP Database"; }
+	bool exec() {
+#ifdef Q_WS_X11
+		if(!conf->getenv("QC_WITH_GEOIP_DATABASE_EMBEDDED").isEmpty()) {
+#endif
+			conf->addDefine("WITH_GEOIP_EMBEDDED");
+                        printf(" embedded and");
+			return true;
+#ifdef Q_WS_X11
+		}
+                if(QFile::exists("/usr/share/GeoIP/GeoIP.dat") || QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))
+			return true;
+                printf("\nWarning: GeoIP database was not found at /usr/share/GeoIP/GeoIP.dat\nCountry resolution will be slow.");
+		return false;
+#endif
+	}
+};
 
 EOT
 cat >$1/modules_new.cpp <<EOT
@@ -435,6 +481,9 @@ cat >$1/modules_new.cpp <<EOT
     o->required = true;
     o->disabled = false;
     o = new qc_libnotify(conf);
+    o->required = false;
+    o->disabled = false;
+    o = new qc_geoip_database(conf);
     o->required = false;
     o->disabled = false;
 
@@ -1384,6 +1433,8 @@ export DATADIR
 export EX_QTDIR
 export QC_WITH_LIBBOOST_INC
 export QC_DISABLE_libnotify
+export QC_DISABLE_geoip_database
+export QC_WITH_GEOIP_DATABASE_EMBEDDED
 export QC_VERBOSE
 rm -rf .qconftemp
 (

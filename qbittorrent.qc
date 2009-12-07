@@ -14,4 +14,6 @@
   </dep>
   <dep type='libnotify'>
   </dep>
+  <dep type='geoip-database'>
+  </dep>
 </qconf>

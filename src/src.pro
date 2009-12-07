@@ -9,12 +9,10 @@ DEBUG_MODE = 0
 TEMPLATE = app
 TARGET = qbittorrent
 CONFIG += qt \
-    thread \
-    x11 \
-    network
+    thread
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v2.0.0rc5\\\"
+DEFINES += VERSION=\\\"v2.0.0rc6\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=0
 DEFINES += VERSION_BUGFIX=0
@@ -105,11 +103,41 @@ win32:LIBS += -lssl32 \
     -lwsock32 \
     -ladvapi32 \
     -lwinmm
+
+win32 {
+  DEFINES += WITH_GEOIP_EMBEDDED
+  message("On Windows, GeoIP database must be embedded.")
+}
+
+macx {
+  DEFINES += WITH_GEOIP_EMBEDDED
+  message("On Mac OS X, GeoIP database must be embedded.")
+}
+
+unix:!macx {
+  contains(DEFINES, WITH_GEOIP_EMBEDDED) {
+    message("You chose to embed GeoIP database in qBittorrent executable.")
+  }
+}
+
 RESOURCES = icons.qrc \
     lang.qrc \
     search.qrc \
-    webui.qrc \
-    geoip.qrc
+    webui.qrc
+
+# Add GeoIP resource file if the GeoIP database
+# should be embedded in qBittorrent executable
+contains(DEFINES, WITH_GEOIP_EMBEDDED) {
+    exists("geoip/GeoIP.dat") {
+       message("GeoIP.dat was found in src/geoip/.")
+       RESOURCES += geoip.qrc
+    } else {
+      DEFINES -= WITH_GEOIP_EMBEDDED
+      error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
+    }
+} else {
+  message("GeoIP database will not be embedded in qBittorrent executable.")
+}
 
 # Translations
 TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
