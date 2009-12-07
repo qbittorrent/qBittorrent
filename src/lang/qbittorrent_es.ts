@@ -167,155 +167,155 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="246"/>
+        <location filename="../bittorrent.cpp" line="247"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="289"/>
+        <location filename="../bittorrent.cpp" line="290"/>
         <source>UPnP support [ON]</source>
         <translation type="unfinished">Soporte para UPnP [encendido]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="292"/>
+        <location filename="../bittorrent.cpp" line="293"/>
         <source>UPnP support [OFF]</source>
         <translation type="unfinished">Soporte para UPnP [Apagado]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="297"/>
+        <location filename="../bittorrent.cpp" line="298"/>
         <source>NAT-PMP support [ON]</source>
         <translation type="unfinished">Soporte para NAT-PMP [Encendido]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="300"/>
+        <location filename="../bittorrent.cpp" line="301"/>
         <source>NAT-PMP support [OFF]</source>
         <translation type="unfinished">Soporte para NAT-PMP[Apagado]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="352"/>
+        <location filename="../bittorrent.cpp" line="353"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="354"/>
-        <location filename="../bittorrent.cpp" line="358"/>
+        <location filename="../bittorrent.cpp" line="355"/>
+        <location filename="../bittorrent.cpp" line="359"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished">Soporte para DHT [apagado]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="361"/>
+        <location filename="../bittorrent.cpp" line="362"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished">Soporte para PeX [encendido]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="365"/>
+        <location filename="../bittorrent.cpp" line="366"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished">Descubrimiento local de Peers [Encendido]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="368"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished">Soporte para descubrimiento local de Peers [Apagado]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="380"/>
+        <location filename="../bittorrent.cpp" line="381"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished">Soporte para encriptado [encendido]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="385"/>
+        <location filename="../bittorrent.cpp" line="386"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished">Soporte para encriptado [forzado]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="391"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Sopote para encriptado [apagado]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="491"/>
+        <location filename="../bittorrent.cpp" line="492"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="608"/>
+        <location filename="../bittorrent.cpp" line="609"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="610"/>
+        <location filename="../bittorrent.cpp" line="611"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="660"/>
+        <location filename="../bittorrent.cpp" line="661"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="685"/>
-        <location filename="../bittorrent.cpp" line="821"/>
-        <location filename="../bittorrent.cpp" line="824"/>
+        <location filename="../bittorrent.cpp" line="686"/>
+        <location filename="../bittorrent.cpp" line="822"/>
+        <location filename="../bittorrent.cpp" line="825"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos; ya está en la lista de descargas.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="759"/>
-        <location filename="../bittorrent.cpp" line="943"/>
-        <location filename="../bittorrent.cpp" line="948"/>
+        <location filename="../bittorrent.cpp" line="760"/>
+        <location filename="../bittorrent.cpp" line="944"/>
+        <location filename="../bittorrent.cpp" line="949"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; reiniciado. (reinicio rápido)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="761"/>
-        <location filename="../bittorrent.cpp" line="945"/>
-        <location filename="../bittorrent.cpp" line="950"/>
+        <location filename="../bittorrent.cpp" line="762"/>
+        <location filename="../bittorrent.cpp" line="946"/>
+        <location filename="../bittorrent.cpp" line="951"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; agregado a la lista de descargas.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="795"/>
-        <location filename="../bittorrent.cpp" line="799"/>
+        <location filename="../bittorrent.cpp" line="796"/>
+        <location filename="../bittorrent.cpp" line="800"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">Imposible decodificar el archivo torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="802"/>
+        <location filename="../bittorrent.cpp" line="803"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">Este archivo puede estar corrupto, o no ser un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1197"/>
+        <location filename="../bittorrent.cpp" line="1198"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1199"/>
+        <location filename="../bittorrent.cpp" line="1200"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1459"/>
+        <location filename="../bittorrent.cpp" line="1460"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1470"/>
+        <location filename="../bittorrent.cpp" line="1471"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1526"/>
+        <location filename="../bittorrent.cpp" line="1527"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -324,27 +324,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">No se pudo escuchar en ninguno de los puertos brindados.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1594"/>
+        <location filename="../bittorrent.cpp" line="1595"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Falló el mapeo del puerto, mensaje: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1599"/>
+        <location filename="../bittorrent.cpp" line="1600"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Mapeo del puerto exitoso, mensaje: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1614"/>
+        <location filename="../bittorrent.cpp" line="1615"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Se negaron los datos para reinicio rápido del torrent: %1, verificando de nuevo...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1619"/>
+        <location filename="../bittorrent.cpp" line="1620"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Falló la búsqueda de semilla por Url para la url: %1, mensaje: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1687"/>
+        <location filename="../bittorrent.cpp" line="1688"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Descargando &apos;%1&apos;, por favor espera...</translation>
@@ -3342,7 +3342,7 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>PropertiesWidget</name>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="426"/>
+        <location filename="../ui/propertieswidget.ui" line="429"/>
         <source>Save path:</source>
         <translation type="unfinished">Ruta de guardado:</translation>
     </message>
@@ -3351,12 +3351,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Creador:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="458"/>
+        <location filename="../ui/propertieswidget.ui" line="461"/>
         <source>Torrent hash:</source>
         <translation type="unfinished">Dispersión del torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="481"/>
+        <location filename="../ui/propertieswidget.ui" line="471"/>
         <source>Comment:</source>
         <translation type="unfinished">Comentario:</translation>
     </message>
@@ -3437,7 +3437,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="442"/>
+        <location filename="../ui/propertieswidget.ui" line="445"/>
         <source>Created on:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3446,37 +3446,37 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Pista actual:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="752"/>
+        <location filename="../ui/propertieswidget.ui" line="742"/>
         <source>Collapse all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="759"/>
+        <location filename="../ui/propertieswidget.ui" line="749"/>
         <source>Expand all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="806"/>
+        <location filename="../ui/propertieswidget.ui" line="796"/>
         <source>General</source>
         <translation type="unfinished">General</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="823"/>
+        <location filename="../ui/propertieswidget.ui" line="813"/>
         <source>Trackers</source>
         <translation type="unfinished">Trackers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="846"/>
+        <location filename="../ui/propertieswidget.ui" line="836"/>
         <source>Peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="863"/>
+        <location filename="../ui/propertieswidget.ui" line="853"/>
         <source>URL seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="880"/>
+        <location filename="../ui/propertieswidget.ui" line="870"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3493,7 +3493,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Progreso</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="474"/>
+        <location filename="../propertieswidget.cpp" line="472"/>
         <source>Priority</source>
         <translation type="unfinished">Prioridad</translation>
     </message>
@@ -3522,26 +3522,26 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished">Alta</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="308"/>
-        <location filename="../propertieswidget.cpp" line="309"/>
+        <location filename="../propertieswidget.cpp" line="306"/>
+        <location filename="../propertieswidget.cpp" line="307"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="313"/>
-        <location filename="../propertieswidget.cpp" line="317"/>
+        <location filename="../propertieswidget.cpp" line="311"/>
+        <location filename="../propertieswidget.cpp" line="315"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="320"/>
+        <location filename="../propertieswidget.cpp" line="318"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="324"/>
+        <location filename="../propertieswidget.cpp" line="322"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
@@ -3551,23 +3551,23 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Nada - ¿Inaccesible?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="534"/>
+        <location filename="../propertieswidget.cpp" line="532"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished">Nueva semilla url</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="535"/>
+        <location filename="../propertieswidget.cpp" line="533"/>
         <source>New url seed:</source>
         <translation type="unfinished">Nueva semilla url:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="540"/>
+        <location filename="../propertieswidget.cpp" line="538"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="541"/>
+        <location filename="../propertieswidget.cpp" line="539"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished">Esta semilla url ya está en la lista.</translation>
     </message>
@@ -3576,18 +3576,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">La lista de trackers no puede estar vacía.</translation>
     </message>
     <message>
+        <location filename="../propertieswidget.cpp" line="584"/>
         <location filename="../propertieswidget.cpp" line="586"/>
-        <location filename="../propertieswidget.cpp" line="588"/>
         <source>Choose save path</source>
         <translation type="unfinished">Selecciona la ruta de guardado</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="595"/>
+        <location filename="../propertieswidget.cpp" line="593"/>
         <source>Save path creation error</source>
         <translation type="unfinished">Error en la creación de ruta de guardado</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="595"/>
+        <location filename="../propertieswidget.cpp" line="593"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">No se pudo crear la ruta de guardado</translation>
     </message>
@@ -4705,7 +4705,7 @@ Log:
         <translation>Quiero agradecer a las siguientes personas que voluntariamente tradujeron qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Por favor contáctame si quieres traducir qBittorrent a tu propio idioma.</translation>
     </message>
@@ -6004,8 +6004,8 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Opciones guardadas exitosamente.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1314"/>
         <location filename="../options_imp.cpp" line="1316"/>
+        <location filename="../options_imp.cpp" line="1318"/>
         <source>Choose scan directory</source>
         <translation>Selecciona un directorio a inspeccionar</translation>
     </message>
@@ -6014,8 +6014,8 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Selecciona un archivo ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1337"/>
         <location filename="../options_imp.cpp" line="1339"/>
+        <location filename="../options_imp.cpp" line="1341"/>
         <source>Choose a save directory</source>
         <translation>Selecciona un directorio para guardar</translation>
     </message>
@@ -6029,14 +6029,14 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">No se pudo abrir %1 en modo lectura.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1325"/>
         <location filename="../options_imp.cpp" line="1327"/>
+        <location filename="../options_imp.cpp" line="1329"/>
         <source>Choose an ip filter file</source>
         <translation>Selecciona un archivo de filtro de ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1325"/>
         <location filename="../options_imp.cpp" line="1327"/>
+        <location filename="../options_imp.cpp" line="1329"/>
         <source>Filters</source>
         <translation>Filtros</translation>
     </message>
