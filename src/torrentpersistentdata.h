@@ -36,6 +36,7 @@
 #include <libtorrent/magnet_uri.hpp>
 #include "qtorrenthandle.h"
 #include "misc.h"
+#include <vector>
 
 #ifdef QT_4_5
 #include <QHash>
@@ -135,13 +136,18 @@ public:
     return QString::null;
   }
 
-  static QVariantList getFilesPriority(QString hash) {
+  static std::vector<int> getFilesPriority(QString hash) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
-    if(data.contains("files_priority"))
-      return data["files_priority"].toList();
-    return QVariantList();
+    std::vector<int> fp;
+    if(data.contains("files_priority")) {
+      QVariantList list_var = data["files_priority"].toList();
+      foreach(const QVariant& var, list_var) {
+        fp.push_back(var.toInt());
+      }
+    }
+    return fp;
   }
 };
 

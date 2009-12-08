@@ -472,7 +472,8 @@ void QTorrentHandle::set_max_connections(int val) {
 void QTorrentHandle::prioritize_files(std::vector<int> v) {
   // Does not do anything for seeding torrents
   Q_ASSERT(h.is_valid());
-  Q_ASSERT(v.size() == (unsigned int)h.get_torrent_info().num_files());
+  if(v.size() != (unsigned int)h.get_torrent_info().num_files())
+    return;
   h.prioritize_files(v);
 }
 

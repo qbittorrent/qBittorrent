@@ -893,12 +893,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     if(!from_url.isNull()) QFile::remove(file);
     return h;
   }
-  // FIXME: Remove this debug
-  std::vector<announce_entry> trackers = h.trackers();
-  std::vector<announce_entry>::iterator it;
-  for(it=trackers.begin(); it!=trackers.end(); it++) {
-    qDebug("* Tracker: %s", it->url.c_str());
-  }
+
   // Connections limit per torrent
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
@@ -910,6 +905,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     // Sequential download
     if(TorrentTempData::hasTempData(hash)) {
       qDebug("addTorrent: Setting download as sequential (from tmp data)");
+      h.prioritize_files(TorrentTempData::getFilesPriority(hash));
       h.set_sequential_download(TorrentTempData::isSequential(hash));
     }
     // Save persistent data for new torrent
