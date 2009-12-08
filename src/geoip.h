@@ -50,6 +50,8 @@ protected:
 #else
     if(QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))
       return "/usr/local/share/GeoIP/";
+    if(QFile::exists("/var/lib/GeoIP/GeoIP.dat"))
+      return "/var/lib/GeoIP/";
     return "/usr/share/GeoIP/";
 #endif
   }
