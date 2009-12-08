@@ -38,6 +38,7 @@
     - FEATURE: Support for bitcomet padding files (libtorrent >= v0.15 only)
     - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris) (libtorrent >= v0.15 only)
     - BUGFIX: Made sure qBittorrent does not scrape the tracker too frequently (libtorrent >= 0.15 only)
+    - BUGFIX: Fix Paste action in search engine field
     - WEB UI: Remodeled Web UI to match new qBittorrent UI (Properties and preferences available)
     - WEB UI: Added internationalization support
     - WEB UI: Reduced computation in Javascript (do this one server side instead)
