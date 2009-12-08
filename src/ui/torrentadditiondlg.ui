@@ -7,13 +7,16 @@
     <x>0</x>
     <y>0</y>
     <width>511</width>
-    <height>461</height>
+    <height>517</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Torrent addition dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>3</number>
+   </property>
    <item>
     <widget class="QLabel" name="fileNameLbl">
      <property name="text">
@@ -29,19 +32,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="savePathLbl">
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Save path:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout">
      <property name="spacing">
       <number>6</number>
@@ -49,6 +39,19 @@
      <property name="margin">
       <number>0</number>
      </property>
+     <item>
+      <widget class="QLabel" name="savePathLbl">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Save path:</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLineEdit" name="savePathTxt"/>
      </item>
@@ -173,6 +176,17 @@
      </item>
      <item>
       <widget class="QPushButton" name="collapseAllButton">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Collapse all</string>
        </property>
@@ -180,6 +194,17 @@
      </item>
      <item>
       <widget class="QPushButton" name="expandAllButton">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Expand all</string>
        </property>
