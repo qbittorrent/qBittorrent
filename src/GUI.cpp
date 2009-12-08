@@ -913,6 +913,6 @@ void GUI::on_actionOptions_triggered() {
 // an url
 void GUI::on_actionDownload_from_URL_triggered() {
   downloadFromURL *downloadFromURLDialog = new downloadFromURL(this);
-  connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), BTSession, SLOT(downloadFromURLList(const QStringList&)));
+  connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
 }
 
