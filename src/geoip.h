@@ -42,12 +42,13 @@ using namespace libtorrent;
 
 class GeoIP {
 protected:
-  static QString geoipFolder(bool embedded=false) {
 #ifdef WITH_GEOIP_EMBEDDED
+  static QString geoipFolder(bool embedded=false) {
     if(embedded)
       return ":/geoip/";
     return misc::qBittorrentPath()+"geoip"+QDir::separator();
 #else
+  static QString geoipFolder(bool) {
     if(QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))
       return "/usr/local/share/GeoIP/";
     if(QFile::exists("/var/lib/GeoIP/GeoIP.dat"))
