@@ -309,6 +309,11 @@ void HttpConnection::respondCommand(QString command)
       torrent.close();
     }
     emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
+    // Prepare response
+    generator.setStatusLine(200, "OK");
+    generator.setContentTypeByExt("html");
+    generator.setMessage(QString("<script type=\"text/javascript\">window.parent.hideAll();</script>"));
+    write();
     return;
   }
   if(command == "resumeall") {
