@@ -3382,7 +3382,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1 előtt</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="593"/>
+        <location filename="../rss.cpp" line="594"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Automatikus letöltése %1 torrentnek a %2 RSS forrásból...</translation>
     </message>

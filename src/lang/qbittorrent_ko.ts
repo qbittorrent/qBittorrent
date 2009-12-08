@@ -3974,7 +3974,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1분전</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="593"/>
+        <location filename="../rss.cpp" line="594"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>RSS 피드(%2)에서 자동으로 자료(%1) 다운하기...</translation>
     </message>

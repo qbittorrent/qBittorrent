@@ -4160,7 +4160,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">il y a %1</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="593"/>
+        <location filename="../rss.cpp" line="594"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Téléchargement automatique du torrent %1 depuis le flux RSS %2...</translation>
     </message>
