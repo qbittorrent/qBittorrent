@@ -153,8 +153,8 @@ void SearchEngine::displayPatternContextMenu(QPoint) {
   if(act != 0) {
     if(act == &clearHistoryAct) {
       searchHistory.setStringList(QStringList());
-    } else if (act == &pasteAct) {
-    } else if (act == &pasteAct) {
+    }
+    else if (act == &pasteAct) {
       search_pattern->paste();
     }
     else if (act == &cutAct) {
