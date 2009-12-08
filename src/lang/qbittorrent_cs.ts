@@ -250,16 +250,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="760"/>
-        <location filename="../bittorrent.cpp" line="944"/>
-        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="945"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="946"/>
-        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="942"/>
+        <location filename="../bittorrent.cpp" line="947"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; přidán do seznamu stahování.</translation>
@@ -277,30 +277,30 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1194"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1196"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1460"/>
+        <location filename="../bittorrent.cpp" line="1456"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1467"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nelze dekódovat soubor torrentu %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1527"/>
+        <location filename="../bittorrent.cpp" line="1523"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,27 +309,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nelze naslouchat na žádném z udaných portů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1595"/>
+        <location filename="../bittorrent.cpp" line="1591"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1600"/>
+        <location filename="../bittorrent.cpp" line="1596"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1615"/>
+        <location filename="../bittorrent.cpp" line="1611"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1620"/>
+        <location filename="../bittorrent.cpp" line="1616"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1688"/>
+        <location filename="../bittorrent.cpp" line="1684"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
@@ -3605,43 +3605,43 @@ p, li { white-space: pre-wrap; }
         <translation>Dialog pro přidání torrentu</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="40"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="51"/>
         <source>Save path:</source>
         <translation>Uložit do:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="58"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="61"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="69"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="72"/>
         <source>Torrent size:</source>
         <translation>Velikost torrentu:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="76"/>
-        <location filename="../ui/torrentadditiondlg.ui" line="107"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="79"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="110"/>
         <source>Unknown</source>
         <translation>Neznámý</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="100"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="103"/>
         <source>Free disk space:</source>
         <translation>Volné místo na disku:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="142"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="145"/>
         <source>Torrent content:</source>
         <translation>Obsah torrentu:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="206"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="231"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Stahovat v sekvenčním pořadí (pomalejší, ale dobré pro náhled)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="213"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="238"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Přeskočit kontrolu souboru a začít sdílet okamžitě</translation>
     </message>
@@ -3650,47 +3650,47 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Stahovat ve správném pořadí (pomalejší, ale dobré pro náhled)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="220"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="245"/>
         <source>Add to download list in paused state</source>
         <translation>Přidat do seznamu stahování jako pozastavené</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="248"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="273"/>
         <source>Add</source>
         <translation>Přidat</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="255"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="280"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="277"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="302"/>
         <source>Ignored</source>
         <translation>Ignorovat</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="282"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="307"/>
         <source>Normal</source>
         <translation>Normální</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="287"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="312"/>
         <source>High</source>
         <translation>Vysoká</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="292"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="317"/>
         <source>Maximum</source>
         <translation>Maximální</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="177"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="191"/>
         <source>Collapse all</source>
         <translation>Sbalit vše</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="184"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="209"/>
         <source>Expand all</source>
         <translation>Rozbalit vše</translation>
     </message>
@@ -5182,8 +5182,8 @@ Nicméně, tyto moduly byly vypnuty.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.h" line="146"/>
-        <location filename="../torrentadditiondlg.h" line="149"/>
+        <location filename="../torrentadditiondlg.h" line="170"/>
+        <location filename="../torrentadditiondlg.h" line="173"/>
         <source>Unable to decode torrent file:</source>
         <translation>Nelze dekódovat soubor torrentu:</translation>
     </message>
@@ -5196,60 +5196,60 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation type="obsolete">Neznámý</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="197"/>
+        <location filename="../torrentadditiondlg.h" line="221"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 zbývá po stažení torrentu)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="200"/>
+        <location filename="../torrentadditiondlg.h" line="224"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 nebo více je potřeba pro stažení)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="212"/>
-        <location filename="../torrentadditiondlg.h" line="214"/>
+        <location filename="../torrentadditiondlg.h" line="236"/>
+        <location filename="../torrentadditiondlg.h" line="238"/>
         <source>Choose save path</source>
         <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Empty save path</source>
         <translation>Prázdná cesta pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Please enter a save path</source>
         <translation>Vložte prosím cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Save path creation error</source>
         <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Could not create the save path</source>
         <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>Seeding mode error</source>
         <translation>Chyba sdílení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Rozhodl jste se přeskočit kontrolu souborů. Nicméně místní soubory v zadaném cílovém adresáři neexistují. Vypněte prosím tuto funkci nebo zaktualizujte cestu pro uložení.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>Invalid file selection</source>
         <translation>Neplatný výběr souboru</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musíte v torrentu vybrat alespoň jeden soubor</translation>
     </message>
@@ -5266,7 +5266,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation type="obsolete">Průběh</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="232"/>
+        <location filename="../torrentadditiondlg.h" line="256"/>
         <source>Priority</source>
         <translation>Priorita</translation>
     </message>

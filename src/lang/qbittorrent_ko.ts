@@ -274,16 +274,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="760"/>
-        <location filename="../bittorrent.cpp" line="944"/>
-        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="945"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="946"/>
-        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="942"/>
+        <location filename="../bittorrent.cpp" line="947"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos;가 다운로드 목록에 추가되었습니다.</translation>
@@ -301,30 +301,30 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1194"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1196"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1460"/>
+        <location filename="../bittorrent.cpp" line="1456"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">토렌트 %2 에는 회귀적 다운로드 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1467"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">%1 토렌트를 해독할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1527"/>
+        <location filename="../bittorrent.cpp" line="1523"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -333,27 +333,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트에 연결할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1595"/>
+        <location filename="../bittorrent.cpp" line="1591"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port mapping 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1600"/>
+        <location filename="../bittorrent.cpp" line="1596"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port mapping 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1615"/>
+        <location filename="../bittorrent.cpp" line="1611"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">토렌트 %1는 빨리 이어받기가 사용될수 없습니다, 확인중입니다... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1620"/>
+        <location filename="../bittorrent.cpp" line="1616"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1688"/>
+        <location filename="../bittorrent.cpp" line="1684"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
@@ -4801,43 +4801,43 @@ Changelog:
         <translation>토렌트 추가 다이얼로그</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="40"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="51"/>
         <source>Save path:</source>
         <translation>저장 경로:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="58"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="61"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="69"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="72"/>
         <source>Torrent size:</source>
         <translation>토렌트 사이즈:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="76"/>
-        <location filename="../ui/torrentadditiondlg.ui" line="107"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="79"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="110"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="100"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="103"/>
         <source>Free disk space:</source>
         <translation>남은 디스크 공간:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="142"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="145"/>
         <source>Torrent content:</source>
         <translation>토렌트 내용:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="206"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="231"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>순차적으로 다운받기(느리지만 미리보기에 좋음)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="213"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="238"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4858,17 +4858,17 @@ Changelog:
         <translation type="obsolete">순차적으로 다운받기(느리지만 미리보기에 편합니다)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="220"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="245"/>
         <source>Add to download list in paused state</source>
         <translation>정지 상태로 다운로드 목록에 추가하기</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="248"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="273"/>
         <source>Add</source>
         <translation>추가</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="255"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="280"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
@@ -4885,32 +4885,32 @@ Changelog:
         <translation type="obsolete">선택</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="277"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="302"/>
         <source>Ignored</source>
         <translation>무시</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="282"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="307"/>
         <source>Normal</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="287"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="312"/>
         <source>High</source>
         <translation>높음</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="292"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="317"/>
         <source>Maximum</source>
         <translation>최고</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="177"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="191"/>
         <source>Collapse all</source>
         <translation>모두 접어서 간단하게 보여주기</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="184"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="209"/>
         <source>Expand all</source>
         <translation>다 펼쳐서 보여주기</translation>
     </message>
@@ -6822,8 +6822,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">맞음</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="146"/>
-        <location filename="../torrentadditiondlg.h" line="149"/>
+        <location filename="../torrentadditiondlg.h" line="170"/>
+        <location filename="../torrentadditiondlg.h" line="173"/>
         <source>Unable to decode torrent file:</source>
         <translation>토런트 파일을 해독 할 수가 없습니다:</translation>
     </message>
@@ -6832,8 +6832,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="212"/>
-        <location filename="../torrentadditiondlg.h" line="214"/>
+        <location filename="../torrentadditiondlg.h" line="236"/>
+        <location filename="../torrentadditiondlg.h" line="238"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
@@ -6846,54 +6846,54 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">알려지지 않음</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="197"/>
+        <location filename="../torrentadditiondlg.h" line="221"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(자료를 다운 후에는 %1 의 디스크 공간이 남습니다.)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="200"/>
+        <location filename="../torrentadditiondlg.h" line="224"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(자료를 다운받기 위해서는 %1 의 디스크 공간이 필요합니다)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Empty save path</source>
         <translation>저장 경로 지우기</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Please enter a save path</source>
         <translation>저장 경로를 지정해주십시오</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Save path creation error</source>
         <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>Seeding mode error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>
@@ -6910,7 +6910,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">진행상황</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="232"/>
+        <location filename="../torrentadditiondlg.h" line="256"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>

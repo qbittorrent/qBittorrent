@@ -254,16 +254,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="760"/>
-        <location filename="../bittorrent.cpp" line="944"/>
-        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="945"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="946"/>
-        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="942"/>
+        <location filename="../bittorrent.cpp" line="947"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; felvéve a letöltési listára.</translation>
@@ -281,30 +281,30 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished">Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1194"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;letiltva IP szűrés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1196"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;kitiltva hibás adatküldés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1460"/>
+        <location filename="../bittorrent.cpp" line="1456"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">Fájl ismételt letöltése %1 beágyazva a torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1467"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">Megfejthetetlen torrent: %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1527"/>
+        <location filename="../bittorrent.cpp" line="1523"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -313,27 +313,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">A megadott porok zártak.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1595"/>
+        <location filename="../bittorrent.cpp" line="1591"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port felderítése sikertelen, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1600"/>
+        <location filename="../bittorrent.cpp" line="1596"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port felderítése sikeres, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1615"/>
+        <location filename="../bittorrent.cpp" line="1611"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1620"/>
+        <location filename="../bittorrent.cpp" line="1616"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1688"/>
+        <location filename="../bittorrent.cpp" line="1684"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
@@ -4142,43 +4142,43 @@ Changelog:
         <translation>Torrent hozzáadása</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="40"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="51"/>
         <source>Save path:</source>
         <translation>Mentés helye:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="58"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="61"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="69"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="72"/>
         <source>Torrent size:</source>
         <translation>Torrent mérete:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="76"/>
-        <location filename="../ui/torrentadditiondlg.ui" line="107"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="79"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="110"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="100"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="103"/>
         <source>Free disk space:</source>
         <translation>Szabad hely:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="142"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="145"/>
         <source>Torrent content:</source>
         <translation>Torrent tartalma:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="206"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="231"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Letöltés sorrendben (lassabb, de előnézethez ideális)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="213"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="238"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4187,42 +4187,42 @@ Changelog:
         <translation type="obsolete">Letöltés sorrendben. Előnézethez kiváló, de lassabb a letöltés</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="220"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="245"/>
         <source>Add to download list in paused state</source>
         <translation>Letöltés nélkül add a listához</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="248"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="273"/>
         <source>Add</source>
         <translation>Mehet</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="255"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="280"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="277"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="302"/>
         <source>Ignored</source>
         <translation>Mellőzve</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="282"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="307"/>
         <source>Normal</source>
         <translation>Átlagos</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="287"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="312"/>
         <source>High</source>
         <translation>Magas</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="292"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="317"/>
         <source>Maximum</source>
         <translation>Maximális</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="177"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="191"/>
         <source>Collapse all</source>
         <translation>Elrejtés</translation>
     </message>
@@ -4231,7 +4231,7 @@ Changelog:
         <translation type="obsolete">Kibontás</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="184"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="209"/>
         <source>Expand all</source>
         <translation>Kibontás</translation>
     </message>
@@ -5896,8 +5896,8 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.h" line="146"/>
-        <location filename="../torrentadditiondlg.h" line="149"/>
+        <location filename="../torrentadditiondlg.h" line="170"/>
+        <location filename="../torrentadditiondlg.h" line="173"/>
         <source>Unable to decode torrent file:</source>
         <translation>Hasznavehetetlen torrent fájl:</translation>
     </message>
@@ -5910,60 +5910,60 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ismeretlen</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="197"/>
+        <location filename="../torrentadditiondlg.h" line="221"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 hely marad letöltés után)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="200"/>
+        <location filename="../torrentadditiondlg.h" line="224"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 hely hiányzik a letöltéshez)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="212"/>
-        <location filename="../torrentadditiondlg.h" line="214"/>
+        <location filename="../torrentadditiondlg.h" line="236"/>
+        <location filename="../torrentadditiondlg.h" line="238"/>
         <source>Choose save path</source>
         <translation>Mentés helye</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Empty save path</source>
         <translation>Mentés helye hiányos</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Please enter a save path</source>
         <translation>Kérlek add meg a mentés helyét</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Save path creation error</source>
         <translation>Járhatatlan ösvény</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Could not create the save path</source>
         <translation>Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>Seeding mode error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>Invalid file selection</source>
         <translation>Választás hiánya</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Legalább egy fájlt ki kell választanod</translation>
     </message>
@@ -5980,7 +5980,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Folyamat</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="232"/>
+        <location filename="../torrentadditiondlg.h" line="256"/>
         <source>Priority</source>
         <translation>Elsőbbség</translation>
     </message>

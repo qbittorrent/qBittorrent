@@ -311,16 +311,16 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="760"/>
-        <location filename="../bittorrent.cpp" line="944"/>
-        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="940"/>
+        <location filename="../bittorrent.cpp" line="945"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Το &apos;%1&apos; ξανάρχισε. (γρήγορη επανασύνδεση)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="946"/>
-        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="942"/>
+        <location filename="../bittorrent.cpp" line="947"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>Το &apos;%1&apos; προστέθηκε στη λίστα κατεβασμάτων.</translation>
@@ -338,30 +338,30 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation>Το αρχείο είναι είτε κατεστραμμένο ή δεν είναι τόρεντ.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1194"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του φίλτρου IP σας&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1200"/>
+        <location filename="../bittorrent.cpp" line="1196"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1460"/>
+        <location filename="../bittorrent.cpp" line="1456"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο τόρεντ %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1467"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο τόρεντ %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1527"/>
+        <location filename="../bittorrent.cpp" line="1523"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -370,27 +370,27 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Αδύνατη η επικοινωνία με καμία από της δεδομένες θύρες.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1595"/>
+        <location filename="../bittorrent.cpp" line="1591"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1600"/>
+        <location filename="../bittorrent.cpp" line="1596"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1615"/>
+        <location filename="../bittorrent.cpp" line="1611"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη συνέχεια κατεβάσματος αρχείων απορρίφθηκε για το τορεντ %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1620"/>
+        <location filename="../bittorrent.cpp" line="1616"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url μοιράσματος για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1688"/>
+        <location filename="../bittorrent.cpp" line="1684"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
@@ -4890,43 +4890,43 @@ Changelog:
         <translation>Διάλογος προσθήκης τορεντ</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="40"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="51"/>
         <source>Save path:</source>
         <translation>Αποθήκευση σε:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="58"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="61"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="69"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="72"/>
         <source>Torrent size:</source>
         <translation>Μέγεθος τόρεντ:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="76"/>
-        <location filename="../ui/torrentadditiondlg.ui" line="107"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="79"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="110"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="100"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="103"/>
         <source>Free disk space:</source>
         <translation>Ελεύθερος χώρος στο δίσκο:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="142"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="145"/>
         <source>Torrent content:</source>
         <translation>Περιεχόμενο τορεντ:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="206"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="231"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Κατέβασμα σε συνεχόμενη σειρά (πιο αργό αλλά καλό για preview)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="213"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="238"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Προσπέλαση ελέγχου αρχείου και έναρξη μοιράσματος</translation>
     </message>
@@ -4947,17 +4947,17 @@ Changelog:
         <translation type="obsolete">Κατέβασμα στη σωστή σειρά (πιο αργό αλλα καλό για προεπισκόπηση)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="220"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="245"/>
         <source>Add to download list in paused state</source>
         <translation>Προσθήκη στη λίστα κατεβάσματος σε κατάσταση παύσης</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="248"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="273"/>
         <source>Add</source>
         <translation>Προσθήκη</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="255"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="280"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
@@ -4974,27 +4974,27 @@ Changelog:
         <translation type="obsolete"> Επιλογή</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="277"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="302"/>
         <source>Ignored</source>
         <translation>Αγνοήθηκε</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="282"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="307"/>
         <source>Normal</source>
         <translation>Κανονικό</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="287"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="312"/>
         <source>High</source>
         <translation>Υψηλό</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="292"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="317"/>
         <source>Maximum</source>
         <translation>Μέγιστο</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="177"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="191"/>
         <source>Collapse all</source>
         <translation>Κατάρρευση όλων</translation>
     </message>
@@ -5003,7 +5003,7 @@ Changelog:
         <translation type="obsolete">Επέκταση όλων</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="184"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="209"/>
         <source>Expand all</source>
         <translation>Επέκταση όλων</translation>
     </message>
@@ -6932,8 +6932,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Σωστό</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="146"/>
-        <location filename="../torrentadditiondlg.h" line="149"/>
+        <location filename="../torrentadditiondlg.h" line="170"/>
+        <location filename="../torrentadditiondlg.h" line="173"/>
         <source>Unable to decode torrent file:</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο τορεντ:</translation>
     </message>
@@ -6942,8 +6942,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Το αρχείο είτε είναι κατεστραμμένο, ή δεν ειναι ενα τορεντ.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="212"/>
-        <location filename="../torrentadditiondlg.h" line="214"/>
+        <location filename="../torrentadditiondlg.h" line="236"/>
+        <location filename="../torrentadditiondlg.h" line="238"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
@@ -6956,54 +6956,54 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="197"/>
+        <location filename="../torrentadditiondlg.h" line="221"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 απομένουν μετά από το κατέβασμα του τόρεντ)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="200"/>
+        <location filename="../torrentadditiondlg.h" line="224"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 επιπλέον απαιτούνται για κατέβασμα)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Empty save path</source>
         <translation>Κενή διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="310"/>
         <source>Please enter a save path</source>
         <translation>Παρακαλώ εισάγετε μία διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="316"/>
         <source>Could not create the save path</source>
         <translation>Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>Seeding mode error</source>
         <translation>Σφάλμα λειτουργίας μοιράσματος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="310"/>
+        <location filename="../torrentadditiondlg.h" line="334"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Επιλέξατε προσπέλαση του ελέγχου αρχείων. Ωστόσο, τα τοπικά αρχεία δεν φαίνεται να υπάρχουν στον τρέχον φάκελο προορισμού. Παρακαλούμε απενεργοποιήστε αυτή τη λειτουργία ή ανανεώστε την διαδρομή αποθήκευσης.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>Invalid file selection</source>
         <translation>Άκυρη επιλογή αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="317"/>
+        <location filename="../torrentadditiondlg.h" line="341"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Πρέπει να επιλέξετε τουλάχιστο ένα αρχείο του τορεντ</translation>
     </message>
@@ -7020,7 +7020,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="232"/>
+        <location filename="../torrentadditiondlg.h" line="256"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>
