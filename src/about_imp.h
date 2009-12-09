@@ -75,7 +75,7 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net)<br>\
           - <u>Hungarian:</u> Majoros Péter (majoros.peterj@gmail.com)<br>\
           - <u>Italian:</u> Mirko Ferrari (mirkoferrari@gmail.com) and Ferraro Luciano (luciano.ferraro@gmail.com)<br>\
-          - <u>Japanese:</u> Nardog (nardog@e2umail.com)<br>\
+          - <u>Japanese:</u> Nardog (alphisation@gmail.com)<br>\
           - <u>Korean:</u> Jin Woo Sin (jin828sin@users.sourceforge.net)<br>\
           - <u>Norwegian:</u> Lars-Erik Labori (hamil@users.sourceforge.net)<br>\
           - <u>Polish:</u> Mariusz Fik (fisiu@opensuse.org)<br>\
