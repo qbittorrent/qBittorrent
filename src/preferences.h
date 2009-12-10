@@ -32,6 +32,7 @@
 #define PREFERENCES_H
 
 #include <QSettings>
+#include <QCryptographicHash>
 #include <QPair>
 #include <QDir>
 
@@ -456,12 +457,40 @@ public:
 
   static QString getWebUiUsername() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value("Preferences/WebUI/Username", "user").toString();
+    return settings.value("Preferences/WebUI/Username", "admin").toString();
+  }
+
+  static void setWebUiPassword(QString new_password) {
+    // Get current password md5
+    QString current_pass_md5 = getWebUiPassword();
+    // Check if password did not change
+    if(current_pass_md5 == new_password) return;
+    // Encode to md5 and save
+    QCryptographicHash md5(QCryptographicHash::Md5);
+    md5.addData(new_password.toLocal8Bit());
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue("Preferences/WebUI/Password_md5", md5.result().toHex());
   }
 
   static QString getWebUiPassword() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value("Preferences/WebUI/Password", "").toString();
+    // Here for backward compatiblity
+    if(settings.contains("Preferences/WebUI/Password")) {
+      QString clear_pass = settings.value("Preferences/WebUI/Password", "adminadmin").toString();
+      settings.remove("Preferences/WebUI/Password");
+      QCryptographicHash md5(QCryptographicHash::Md5);
+      md5.addData(clear_pass.toLocal8Bit());
+      QString pass_md5(md5.result().toHex());
+      settings.setValue("Preferences/WebUI/Password_md5", pass_md5);
+      return pass_md5;
+    }
+    QString pass_md5 = settings.value("Preferences/WebUI/Password_md5", "").toString();
+    if(pass_md5.isEmpty()) {
+      QCryptographicHash md5(QCryptographicHash::Md5);
+      md5.addData("adminadmin");
+      pass_md5 = md5.result().toHex();
+    }
+    return pass_md5;
   }
 
 };

@@ -44,7 +44,8 @@ class HttpServer : public QTcpServer {
 	Q_OBJECT
 
 	private:
-		QByteArray base64;
+                QByteArray username;
+                QByteArray password_md5;
                 Bittorrent *BTSession;
 		EventManager *manager;
 		QTimer *timer;
@@ -52,7 +53,7 @@ class HttpServer : public QTcpServer {
 	public:
                 HttpServer(Bittorrent *BTSession, int msec, QObject* parent = 0);
 		~HttpServer();
-		void setAuthorization(QString username, QString password);
+                void setAuthorization(QString username, QString password_md5);
 		bool isAuthorized(QByteArray auth) const;
 		EventManager *eventManager() const;
 

@@ -465,7 +465,8 @@ void options_imp::saveOptions(){
   {
     settings.setValue("Port", webUiPort());
     settings.setValue("Username", webUiUsername());
-    settings.setValue("Password", webUiPassword());
+    // FIXME: Check that the password is valid (not empty at least)
+    Preferences::setWebUiPassword(webUiPassword());
   }
   // End Web UI
   settings.endGroup();

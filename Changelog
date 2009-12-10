@@ -45,6 +45,7 @@
     - WEB UI: Added internationalization support
     - WEB UI: Reduced computation in Javascript (do this one server side instead)
     - WEB UI: Fixed Transfer list flickering
+    - WEB UI: Password is now stored as md5
     - I18N: Added Serbian translation (By Anaximandar Milet)
     - COSMETIC: Merged download / upload lists
     - COSMETIC: Torrents can be filtered based on their status

@@ -33,95 +33,103 @@
 #include "httpconnection.h"
 #include "eventmanager.h"
 #include "bittorrent.h"
+#include "preferences.h"
 #include <QTimer>
+#include <QCryptographicHash>
 
-HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent)
-{
-	base64 = QByteArray(":").toBase64();
-	connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
-        BTSession = _BTSession;
-	manager = new EventManager(this, BTSession);
-	//add torrents
-        std::vector<torrent_handle> torrents = BTSession->getTorrents();
-        std::vector<torrent_handle>::iterator torrentIT;
-        for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-            QTorrentHandle h = QTorrentHandle(*torrentIT);
-            if(h.is_valid())
-                manager->addedTorrent(h);
-        }
-	//connect BTSession to manager
-	connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
-	connect(BTSession, SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
-	//set timer
-	timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(onTimer()));
-	timer->start(msec);
-        // Additional translations for Web UI
-        QString a = tr("File");
-        a = tr("Edit");
-        a = tr("Help");
-        a = tr("Delete from HD");
-        a = tr("Download Torrents from their URL or Magnet link");
-        a = tr("Only one link per line");
-        a = tr("Download local torrent");
-        a = tr("Torrent files were correctly added to download list.");
-        a = tr("Point to torrent file");
-        a = tr("Download");
-        a = tr("Are you sure you want to delete the selected torrents from the transfer list and hard disk?");
-        a = tr("Download rate limit must be greater than 0 or disabled.");
-        a = tr("Upload rate limit must be greater than 0 or disabled.");
-        a = tr("Maximum number of connections limit must be greater than 0 or disabled.");
-        a = tr("Maximum number of connections per torrent limit must be greater than 0 or disabled.");
-        a = tr("Maximum number of upload slots per torrent limit must be greater than 0 or disabled.");
-        a = tr("Unable to save program preferences, qBittorrent is probably unreachable.");
+HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent) {
+  username = Preferences::getWebUiUsername().toLocal8Bit();
+  password_md5 = Preferences::getWebUiPassword().toLocal8Bit();
+  connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
+  BTSession = _BTSession;
+  manager = new EventManager(this, BTSession);
+  //add torrents
+  std::vector<torrent_handle> torrents = BTSession->getTorrents();
+  std::vector<torrent_handle>::iterator torrentIT;
+  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+    QTorrentHandle h = QTorrentHandle(*torrentIT);
+    if(h.is_valid())
+      manager->addedTorrent(h);
+  }
+  //connect BTSession to manager
+  connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
+  //set timer
+  timer = new QTimer(this);
+  connect(timer, SIGNAL(timeout()), this, SLOT(onTimer()));
+  timer->start(msec);
+  // Additional translations for Web UI
+  QString a = tr("File");
+  a = tr("Edit");
+  a = tr("Help");
+  a = tr("Delete from HD");
+  a = tr("Download Torrents from their URL or Magnet link");
+  a = tr("Only one link per line");
+  a = tr("Download local torrent");
+  a = tr("Torrent files were correctly added to download list.");
+  a = tr("Point to torrent file");
+  a = tr("Download");
+  a = tr("Are you sure you want to delete the selected torrents from the transfer list and hard disk?");
+  a = tr("Download rate limit must be greater than 0 or disabled.");
+  a = tr("Upload rate limit must be greater than 0 or disabled.");
+  a = tr("Maximum number of connections limit must be greater than 0 or disabled.");
+  a = tr("Maximum number of connections per torrent limit must be greater than 0 or disabled.");
+  a = tr("Maximum number of upload slots per torrent limit must be greater than 0 or disabled.");
+  a = tr("Unable to save program preferences, qBittorrent is probably unreachable.");
 }
 
 HttpServer::~HttpServer()
 {
-	delete timer;
-	delete manager;
+  delete timer;
+  delete manager;
 }
 
 void HttpServer::newHttpConnection()
 {
-	QTcpSocket *socket;
-	while((socket = nextPendingConnection()))
-	{
-                HttpConnection *connection = new HttpConnection(socket, BTSession, this);
-		//connect connection to BTSession
-		connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), BTSession, SLOT(downloadUrlAndSkipDialog(QString)));
-                connect(connection, SIGNAL(MagnetReadyToBeDownloaded(QString)), BTSession, SLOT(addMagnetSkipAddDlg(QString)));
-		connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), BTSession, SLOT(addTorrent(QString, bool, QString, bool)));
-                connect(connection, SIGNAL(deleteTorrent(QString, bool)), BTSession, SLOT(deleteTorrent(QString, bool)));
-		connect(connection, SIGNAL(pauseTorrent(QString)), BTSession, SLOT(pauseTorrent(QString)));
-		connect(connection, SIGNAL(resumeTorrent(QString)), BTSession, SLOT(resumeTorrent(QString)));
-		connect(connection, SIGNAL(pauseAllTorrents()), BTSession, SLOT(pauseAllTorrents()));
-		connect(connection, SIGNAL(resumeAllTorrents()), BTSession, SLOT(resumeAllTorrents()));
-	}
+  QTcpSocket *socket;
+  while((socket = nextPendingConnection()))
+  {
+    HttpConnection *connection = new HttpConnection(socket, BTSession, this);
+    //connect connection to BTSession
+    connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), BTSession, SLOT(downloadUrlAndSkipDialog(QString)));
+    connect(connection, SIGNAL(MagnetReadyToBeDownloaded(QString)), BTSession, SLOT(addMagnetSkipAddDlg(QString)));
+    connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), BTSession, SLOT(addTorrent(QString, bool, QString, bool)));
+    connect(connection, SIGNAL(deleteTorrent(QString, bool)), BTSession, SLOT(deleteTorrent(QString, bool)));
+    connect(connection, SIGNAL(pauseTorrent(QString)), BTSession, SLOT(pauseTorrent(QString)));
+    connect(connection, SIGNAL(resumeTorrent(QString)), BTSession, SLOT(resumeTorrent(QString)));
+    connect(connection, SIGNAL(pauseAllTorrents()), BTSession, SLOT(pauseAllTorrents()));
+    connect(connection, SIGNAL(resumeAllTorrents()), BTSession, SLOT(resumeAllTorrents()));
+  }
 }
 
 void HttpServer::onTimer() {
-        std::vector<torrent_handle> torrents = BTSession->getTorrents();
-        std::vector<torrent_handle>::iterator torrentIT;
-        for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-            QTorrentHandle h = QTorrentHandle(*torrentIT);
-            if(h.is_valid())
-                manager->modifiedTorrent(h);
-        }
+  std::vector<torrent_handle> torrents = BTSession->getTorrents();
+  std::vector<torrent_handle>::iterator torrentIT;
+  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+    QTorrentHandle h = QTorrentHandle(*torrentIT);
+    if(h.is_valid())
+      manager->modifiedTorrent(h);
+  }
 }
 
-void HttpServer::setAuthorization(QString username, QString password)
-{
-	QString cat = username + ":" + password;
-  base64 = QByteArray(cat.toLocal8Bit()).toBase64();
+void HttpServer::setAuthorization(QString _username, QString _password_md5) {
+  username = _username.toLocal8Bit();
+  password_md5 = _password_md5.toLocal8Bit();
 }
 
-bool HttpServer::isAuthorized(QByteArray auth) const
-{
-	return (auth == base64);
+bool HttpServer::isAuthorized(QByteArray auth) const {
+  // Decode Auth
+  QByteArray decoded = QByteArray::fromBase64(auth);
+  QList<QByteArray> creds = decoded.split(':');
+  if(creds.size() != 2) return false;
+  QByteArray prop_username = creds.first();
+  if(prop_username != username) return false;
+  QCryptographicHash md5(QCryptographicHash::Md5);
+  md5.addData(creds.last());
+  return (password_md5 == md5.result().toHex());
 }
 
 EventManager* HttpServer::eventManager() const
 {
-	return manager;
+  return manager;
 }
