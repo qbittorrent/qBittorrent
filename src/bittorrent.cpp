@@ -303,9 +303,11 @@ void Bittorrent::configureSession() {
   // * Session settings
   session_settings sessionSettings;
   if(Preferences::isUtorrentSpoofingEnabled()) {
-    sessionSettings.user_agent = "uTorrent/1850";
+    sessionSettings.user_agent = "uTorrent/1850(17414)";
+    qDebug("User agent is: BTWebClient/1850(17414)");
   } else {
     sessionSettings.user_agent = "qBittorrent "VERSION;
+    qDebug("User agent is: qBittorrent "VERSION);
   }
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
