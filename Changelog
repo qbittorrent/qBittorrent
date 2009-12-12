@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.1
     - BUGFIX: µTorrent user-agent is now spoofed correctly
+    - BUGFIX: Fix column hiding behavior when queueing system is disabled
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen
