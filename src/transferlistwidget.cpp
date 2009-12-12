@@ -762,7 +762,10 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   hideshowColumn.setTitle(tr("Column visibility"));
   QList<QAction*> actions;
   for(int i=0; i < TR_HASH; ++i) {
-    if(!BTSession->isQueueingEnabled() && i == TR_PRIORITY) continue;
+    if(!BTSession->isQueueingEnabled() && i == TR_PRIORITY) {
+      actions.append(0);
+      continue;
+    }
     QIcon icon;
     if(isColumnHidden(i))
       icon = QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png"));
@@ -771,9 +774,12 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
     actions.append(hideshowColumn.addAction(icon, listModel->headerData(i, Qt::Horizontal).toString()));
   }
   // Call menu
-  QAction *act = hideshowColumn.exec(QCursor::pos());
-  int col = actions.indexOf(act);
-  setColumnHidden(col, !isColumnHidden(col));
+  QAction *act = 0;
+  act = hideshowColumn.exec(QCursor::pos());
+  if(act) {
+    int col = actions.indexOf(act);
+    setColumnHidden(col, !isColumnHidden(col));
+  }
 }
 
 #ifdef LIBTORRENT_0_15
