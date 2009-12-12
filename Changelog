@@ -2,6 +2,7 @@
     - BUGFIX: µTorrent user-agent is now spoofed correctly
     - BUGFIX: Fix column hiding behavior when queueing system is disabled
     - BUGFIX: Fix link to plugins.qbittorrent.org in plugins dialog
+    - BUGFIX: ~/qBT_dir is created only when it is actually used
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen
