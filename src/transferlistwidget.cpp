@@ -846,8 +846,10 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
   QAction actionCopy_magnet_link(QIcon(QString::fromUtf8(":/Icons/magnet.png")), tr("Copy magnet link"), 0);
   connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
+#ifdef LIBTORRENT_0_15
   QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
+#endif
   QAction actionSequential_download(tr("Download in sequential order"), 0);
   connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
   QAction actionFirstLastPiece_prio(tr("Download first and last piece first"), 0);
