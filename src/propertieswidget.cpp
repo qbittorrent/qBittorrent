@@ -362,7 +362,12 @@ void PropertiesWidget::loadDynamicData() {
     }
     if(stackedProperties->currentIndex() == FILES_TAB) {
       // Files progress
-      if(h.has_metadata()) {
+      if(h.is_valid() && h.has_metadata()) {
+        if(PropListModel->rowCount() == 0) {
+          PropListModel->setupModelData(h.get_torrent_info());
+          // Expand first item if possible
+          filesList->expand(PropListModel->index(0, 0));
+        }
         std::vector<size_type> fp;
         h.file_progress(fp);
         PropListModel->updateFilesPriorities(h.file_priorities());
