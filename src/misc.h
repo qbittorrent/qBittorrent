@@ -266,14 +266,30 @@ public:
 
   static QString magnetUriToHash(QString magnet_uri) {
     QString hash = "";
-    QRegExp reg("urn:btih:([A-Z2-7=]+)");
-    int pos = reg.indexIn(magnet_uri);
+    QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
+    // Hex
+    int pos = regHex.indexIn(magnet_uri);
     if(pos > -1) {
-      sha1_hash sha1;
-      sha1.assign(base32decode(reg.cap(1).toStdString()));
-      hash = misc::toQString(sha1);
+      QString found = regHex.cap(1);
+      if(found.length() == 40) {
+        sha1_hash sha1;
+        sha1.assign(QString(QByteArray::fromHex(regHex.cap(1).toLocal8Bit())).toStdString());
+        qDebug("magnetUriToHash (Hex): hash: %s", misc::toString(sha1).c_str());
+        return misc::toQString(sha1);
+      }
     }
-    qDebug("magnetUriToHash: hash: %s", hash.toLocal8Bit().data());
+    // Base 32
+    QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
+    pos = regBase32.indexIn(magnet_uri);
+    if(pos > -1) {
+      QString found = regBase32.cap(1);
+      if(found.length() > 20) {
+        sha1_hash sha1;
+        sha1.assign(base32decode(regBase32.cap(1).toStdString()));
+        hash = misc::toQString(sha1);
+      }
+    }
+    qDebug("magnetUriToHash (base32): hash: %s", hash.toLocal8Bit().data());
     return hash;
   }
 

@@ -5,6 +5,7 @@
     - BUGFIX: ~/qBT_dir is created only when it is actually used
     - BUGFIX: Fix possible missing slot message (toggleSelectedTorrentsSuperSeeding)
     - BUGFIX: Fix possible crash in torrent properties (files)
+    - BUGFIX: Added Hex Magnet Links support (Thanks Haypo)
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen
