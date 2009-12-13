@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.1
+* Sun Dec 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.1
     - BUGFIX: µTorrent user-agent is now spoofed correctly
     - BUGFIX: Fix column hiding behavior when queueing system is disabled
     - BUGFIX: Fix link to plugins.qbittorrent.org in plugins dialog
