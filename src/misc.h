@@ -283,7 +283,7 @@ public:
     pos = regBase32.indexIn(magnet_uri);
     if(pos > -1) {
       QString found = regBase32.cap(1);
-      if(found.length() > 20) {
+      if(found.length() > 20 && (found.length()*5)%40 == 0) {
         sha1_hash sha1;
         sha1.assign(base32decode(regBase32.cap(1).toStdString()));
         hash = misc::toQString(sha1);
