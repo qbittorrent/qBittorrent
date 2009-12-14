@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
+    - BUGFIX: Fix RSS Feed downloader for some feeds
+
 * Sun Dec 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.1
     - BUGFIX: µTorrent user-agent is now spoofed correctly
     - BUGFIX: Fix column hiding behavior when queueing system is disabled

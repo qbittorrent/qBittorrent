@@ -394,7 +394,6 @@ private:
   bool refreshed;
   bool downloadFailure;
   bool currently_loading;
-  bool has_attachments;
 
 public slots:
   void processDownloadedFile(QString file_path);
@@ -430,7 +429,6 @@ public:
   QList<RssItem*> getNewsList() const;
   QList<RssItem*> getUnreadNewsList() const;
   QString getIconUrl();
-  bool hasAttachments() const { return has_attachments; }
 
 private:
   short readDoc(const QDomDocument& doc);
