@@ -71,10 +71,8 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
       myRSSListMenu.addSeparator();
       myRSSListMenu.addAction(actionCopy_feed_URL);
       if(selectedItems.size() == 1) {
-        if(((RssStream*)listStreams->getRSSItem(selectedItems.first()))->hasAttachments()) {
-          myRSSListMenu.addSeparator();
-          myRSSListMenu.addAction(actionRSS_feed_downloader);
-        }
+        myRSSListMenu.addSeparator();
+        myRSSListMenu.addAction(actionRSS_feed_downloader);
       }
     }
   }else{
@@ -293,9 +291,7 @@ void RSSImp::downloadTorrent() {
     if(article->has_attachment()) {
       BTSession->downloadFromUrl(article->getTorrentUrl());
     } else {
-      QString link = article->getLink();
-      if(!link.isEmpty())
-        QDesktopServices::openUrl(QUrl(link));
+      BTSession->downloadFromUrl(article->getLink());
     }
   }
 }
@@ -444,10 +440,6 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   foreach(RssItem* article, news){
     QTreeWidgetItem* it = new QTreeWidgetItem(listNews);
     it->setText(NEWS_TITLE_COL, article->getTitle());
-    if(article->has_attachment())
-      it->setData(NEWS_TITLE_COL, Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/application-x-kgetlist.png")));
-    else
-      it->setData(NEWS_TITLE_COL, Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/application-x-kgetlist-no.png")));
     it->setText(NEWS_URL_COL, article->getParent()->getUrl());
     if(article->isRead()){
       it->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("grey")));
