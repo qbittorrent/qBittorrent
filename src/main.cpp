@@ -33,7 +33,7 @@
 #include <QTranslator>
 #include <QFile>
 
-#ifndef DIABLE_GUI
+#ifndef DISABLE_GUI
   #include <QSplashScreen>
   #include <QPlastiqueStyle>
   #include "qgnomelook.h"
@@ -47,6 +47,8 @@
   #endif
   #include "GUI.h"
   #include "ico.h"
+#else
+  #include "headlessloader.h"
 #endif
 
 #include <QSettings>
@@ -231,11 +233,14 @@ int main(int argc, char *argv[]){
 #else
   // Load Headless class
   // TODO: by Frederic Lassabe
+  HeadlessLoader *loader = new HeadlessLoader();
 #endif
   int ret =  app->exec();
 #ifndef DISABLE_GUI
   delete window;
   qDebug("GUI was deleted!");
+#else
+  delete loader;
 #endif
   qDebug("Deleting app...");
   delete app;

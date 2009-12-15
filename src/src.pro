@@ -186,7 +186,9 @@ HEADERS += misc.h \
     filesystemwatcher.h \
     preferences.h
 
-!contains(DEFINES, DISABLE_GUI) {
+contains(DEFINES, DISABLE_GUI) {
+    HEADERS += headlessloader.h
+} else {
 	FORMS += GUI.h \
                  feedList.h \
                  supportedengines.h \
