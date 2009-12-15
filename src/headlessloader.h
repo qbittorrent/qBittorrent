@@ -49,6 +49,7 @@ class HeadlessLoader: QObject {
       // TODO: Listen on socket for parameters
       // Instanciate Bittorrent Object
       BTSession = new Bittorrent();
+      connect(BTSession, SIGNAL(newConsoleMessage(QString)), this, SLOT(displayConsoleMessage(QString)));
       // Resume unfinished torrents
       BTSession->startUpTorrents();
       // TODO: Process command line parameter
@@ -63,6 +64,10 @@ class HeadlessLoader: QObject {
     // and return to prompt (object will be deleted by main)
     void exit() {
      qApp->quit();
+    }
+
+    void displayConsoleMessage(QString msg) {
+      std::cout << msg.toLocal8Bit().data() << std::endl;
     }
 };
 

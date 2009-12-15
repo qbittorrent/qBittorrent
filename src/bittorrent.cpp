@@ -1184,6 +1184,7 @@ void Bittorrent::addConsoleMessage(QString msg, QColor color) {
     consoleMessages.removeFirst();
   }
   consoleMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + msg + QString::fromUtf8("</i></font>"));
+  emit newConsoleMessage(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss") + " - " + msg);
 }
 
 void Bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
