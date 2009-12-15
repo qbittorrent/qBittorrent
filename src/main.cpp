@@ -242,7 +242,7 @@ int main(int argc, char *argv[]){
 #else
   // Load Headless class
   // TODO: by Frederic Lassabe
-  HeadlessLoader *loader = new HeadlessLoader();
+  HeadlessLoader *loader = new HeadlessLoader(torrentCmdLine);
 #endif
   int ret =  app->exec();
 #ifndef DISABLE_GUI

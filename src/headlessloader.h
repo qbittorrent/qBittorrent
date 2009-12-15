@@ -33,13 +33,29 @@
 
 #include <QObject>
 #include <QCoreApplication>
+#include "preferences.h"
+#include "bittorrent.h"
 
 class HeadlessLoader: QObject {
   Q_OBJECT
 
-  public:
-    HeadlessLoader() {
+  private:
+    Bittorrent *BTSession;
 
+  public:
+    HeadlessLoader(QStringList torrentCmdLine) {
+      // Enable Web UI
+      Preferences::setWebUiEnabled(true);
+      // TODO: Listen on socket for parameters
+      // Instanciate Bittorrent Object
+      BTSession = new Bittorrent();
+      // Resume unfinished torrents
+      BTSession->startUpTorrents();
+      // TODO: Process command line parameter
+    }
+
+    ~HeadlessLoader() {
+      delete BTSession;
     }
 
   public slots:
