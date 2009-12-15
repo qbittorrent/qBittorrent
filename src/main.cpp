@@ -227,6 +227,7 @@ int main(int argc, char *argv[]){
 #ifndef Q_WS_WIN
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
+  signal(SIGINT, sigtermHandler);
   signal(SIGSEGV, sigsegvHandler);
 #endif
   // Read torrents given on command line
