@@ -28,12 +28,12 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 #include <QFile>
 
 #ifndef DISABLE_GUI
+  #include <QApplication>
   #include <QSplashScreen>
   #include <QPlastiqueStyle>
   #include "qgnomelook.h"
@@ -48,6 +48,7 @@
   #include "GUI.h"
   #include "ico.h"
 #else
+  #include <QCoreApplication>
   #include "headlessloader.h"
 #endif
 
@@ -64,7 +65,11 @@
 #include <stdlib.h>
 #include "misc.h"
 
-QApplication *app;
+#ifdef DISABLE_GUI
+  QCoreApplication *app;
+#else
+  QApplication *app;
+#endif
 
 #ifndef Q_WS_WIN
 void sigtermHandler(int) {
@@ -188,7 +193,11 @@ int main(int argc, char *argv[]){
       localSocket.close();
       return 0;
     }
+#ifdef DISABLE_GUI
+  app = new QCoreApplication(argc, argv);
+#else
   app = new QApplication(argc, argv);
+#endif
 #ifndef DISABLE_GUI
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
