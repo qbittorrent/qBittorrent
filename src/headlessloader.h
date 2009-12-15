@@ -32,11 +32,21 @@
 #define HEADLESSLOADER_H
 
 #include <QObject>
+#include <QCoreApplication>
 
 class HeadlessLoader: QObject {
+  Q_OBJECT
+
   public:
     HeadlessLoader() {
 
+    }
+
+  public slots:
+    // Call this function to exit qBittorrent headless loader
+    // and return to prompt (object will be deleted by main)
+    void exit() {
+     qApp->quit();
     }
 };
 
