@@ -11,6 +11,10 @@ public:
 	QString name() const { return "libnotify >= 0.4.2 (optional)"; }
 	QString shortname() const { return "libnotify"; }
 	bool exec(){
+		if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+			printf("\nNot Required");
+			return true;
+		}
 		QStringList incs;
 		QString req_ver = "0.4.2";
 		QString version, libs, other;

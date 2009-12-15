@@ -12,6 +12,10 @@ public:
 	QString name() const { return "GeoIP Database (optional)"; }
 	QString shortname() const { return "GeoIP Database"; }
 	bool exec() {
+	if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+		printf("\nNot Required");
+		return true;
+	}
 #ifdef Q_WS_X11
 		if(!conf->getenv("QC_WITH_GEOIP_DATABASE_EMBEDDED").isEmpty()) {
 #endif
