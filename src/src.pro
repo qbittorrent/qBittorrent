@@ -189,7 +189,7 @@ HEADERS += misc.h \
 contains(DEFINES, DISABLE_GUI) {
     HEADERS += headlessloader.h
 } else {
-	FORMS += GUI.h \
+	HEADERS += GUI.h \
                  feedList.h \
                  supportedengines.h \
                  transferlistwidget.h \
@@ -232,6 +232,7 @@ contains(DEFINES, DISABLE_GUI) {
 }
 
 !contains(DEFINES, DISABLE_GUI) {
+        message(adding forms)
 	FORMS += ui/mainwindow.ui \
 	    ui/options.ui \
 	    ui/about.ui \
@@ -252,6 +253,7 @@ contains(DEFINES, DISABLE_GUI) {
 	    ui/peer.ui \
 	    ui/confirmdeletiondlg.ui
 }
+
 SOURCES += main.cpp \ 
     bittorrent.cpp \
     qtorrenthandle.cpp \
