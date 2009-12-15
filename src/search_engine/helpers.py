@@ -22,16 +22,15 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.1
+#VERSION: 1.2
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
 
 import re, htmlentitydefs
-import urllib2
 import tempfile
 import os
-import StringIO, gzip, httplib
+import StringIO, gzip, urllib2
 
 def htmlentitydecode(s):
     # First convert alpha entities (such as &eacute;)
@@ -64,12 +63,14 @@ def retrieve_url(url):
     dat = htmlentitydecode(dat)
     return dat.encode('utf-8', 'replace')
 
-def download_file(url):
+def download_file(url, referer=None):
     """ Download file at url and write it to a file, return the path to the file and the url """
     file, path = tempfile.mkstemp()
     file = os.fdopen(file, "w")
     # Download url
     req = urllib2.Request(url)
+    if referer is not None:
+        req.add_header('referer', referer)
     response = urllib2.urlopen(req)
     dat = response.read()
     # Check if data is gzip encoded
