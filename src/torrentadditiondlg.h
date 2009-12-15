@@ -126,21 +126,21 @@ public:
     }
   }
 
-// Screen center point
-QPoint screenCenter() const{
-  int scrn = 0;
-  QWidget *w = this->topLevelWidget();
+  // Screen center point
+  QPoint screenCenter() const{
+    int scrn = 0;
+    QWidget *w = this->topLevelWidget();
 
-  if(w)
-    scrn = QApplication::desktop()->screenNumber(w);
-  else if(QApplication::desktop()->isVirtualDesktop())
-    scrn = QApplication::desktop()->screenNumber(QCursor::pos());
-  else
-    scrn = QApplication::desktop()->screenNumber(this);
+    if(w)
+      scrn = QApplication::desktop()->screenNumber(w);
+    else if(QApplication::desktop()->isVirtualDesktop())
+      scrn = QApplication::desktop()->screenNumber(QCursor::pos());
+    else
+      scrn = QApplication::desktop()->screenNumber(this);
 
-  QRect desk(QApplication::desktop()->availableGeometry(scrn));
-  return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
-}
+    QRect desk(QApplication::desktop()->availableGeometry(scrn));
+    return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
+  }
 
   void saveSettings() {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -195,6 +195,14 @@ QPoint screenCenter() const{
     //torrentContentList->expandAll();
     connect(savePathTxt, SIGNAL(textChanged(QString)), this, SLOT(updateDiskSpaceLabels()));
     updateDiskSpaceLabels();
+    // Load custom labels
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    settings.beginGroup(QString::fromUtf8("TransferListFilters"));
+    QStringList customLabels = settings.value("customLabels", QStringList()).toStringList();
+    foreach(const QString& label, customLabels) {
+      comboLabel->addItem(label);
+    }
+    // Show the dialog
     show();
   }
 
@@ -319,6 +327,7 @@ public slots:
     }
     // Save savepath
     TorrentTempData::setSavePath(hash, savePath.path());
+    TorrentTempData::setLabel(hash, comboLabel->currentText().trimmed());
     // Save last dir to remember it
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.setValue(QString::fromUtf8("LastDirTorrentAdd"), savePathTxt->text());

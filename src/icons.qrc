@@ -168,6 +168,7 @@
   <file>Icons/oxygen/urlseed.png</file>
   <file>Icons/oxygen/edit-cut.png</file>
   <file>Icons/oxygen/unsubscribe.png</file>
+  <file>Icons/oxygen/feed-subscribe.png</file>
   <file>Icons/oxygen/subscribe16.png</file>
 </qresource>
 </RCC>

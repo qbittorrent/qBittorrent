@@ -14,9 +14,6 @@
    <string>Torrent addition dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>3</number>
-   </property>
    <item>
     <widget class="QLabel" name="fileNameLbl">
      <property name="text">
@@ -65,68 +62,112 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Torrent size:</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Torrent size:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_torrent_size">
+         <property name="text">
+          <string>Unknown</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="QLabel" name="lbl_torrent_size">
-       <property name="text">
-        <string>Unknown</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Free disk space:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_disk_space">
+         <property name="text">
+          <string>Unknown</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_space_msg">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Free disk space:</string>
+        <string>Label:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lbl_disk_space">
-       <property name="text">
-        <string>Unknown</string>
+      <widget class="QComboBox" name="comboLabel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_space_msg">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>20</height>
+         <height>17</height>
         </size>
        </property>
       </spacer>

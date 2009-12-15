@@ -50,6 +50,7 @@ private:
   TransferListDelegate *listDelegate;
   QStandardItemModel *listModel;
   QSortFilterProxyModel *proxyModel;
+  QSortFilterProxyModel *labelFilterModel;
   Bittorrent* BTSession;
   QTimer *refreshTimer;
   GUI *main_window;
@@ -61,6 +62,8 @@ public:
 protected:
   int getRowFromHash(QString hash) const;
   QString getHashFromRow(int row) const;
+  QModelIndex mapToSource(QModelIndex index) const;
+  QStringList getCustomLabels() const;
   void saveColWidthList();
   bool loadColWidthList();
   void saveLastSortedColumn();
@@ -84,6 +87,8 @@ protected slots:
 #endif
   void toggleSelectedTorrentsSequentialDownload();
   void toggleSelectedFirstLastPiecePrio();
+  void setSelectionLabel(QString label);
+  void askNewLabelForSelection();
   void setRowColor(int row, QColor color);
 
 public slots:
@@ -107,12 +112,15 @@ public slots:
   void previewSelectedTorrents();
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);
-  void applyFilter(int f);
+  void applyStatusFilter(int f);
+  void applyLabelFilter(QString label);
   void previewFile(QString filePath);
+  void removeLabelFromRows(QString label);
 
 signals:
   void currentTorrentChanged(QTorrentHandle &h);
   void torrentStatusUpdate(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive);
+  void newLabel(QString label);
 
 };
 

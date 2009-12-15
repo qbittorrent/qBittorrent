@@ -198,7 +198,7 @@ void Bittorrent::setUploadLimit(QString hash, long val) {
 void Bittorrent::handleDownloadFailure(QString url, QString reason) {
   emit downloadFromUrlFailure(url, reason);
   // Clean up
-    QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
+  QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
   int index = url_skippingDlg.indexOf(qurl);
   if(index >= 0)
     url_skippingDlg.removeAt(index);
@@ -910,6 +910,10 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     }
     // Save persistent data for new torrent
     TorrentPersistentData::saveTorrentPersistentData(h);
+    // Save Label
+    if(TorrentTempData::hasTempData(hash)) {
+      TorrentPersistentData::saveLabel(hash, TorrentTempData::getLabel(hash));
+    }
     // Save save_path
     if(!defaultTempPath.isEmpty()) {
       qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
