@@ -58,6 +58,7 @@ private:
 public:
   TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent* BTSession);
   ~TransferListWidget();
+  int getNbTorrents() const;
 
 protected:
   int getRowFromHash(QString hash) const;
@@ -120,8 +121,9 @@ public slots:
 signals:
   void currentTorrentChanged(QTorrentHandle &h);
   void torrentStatusUpdate(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive);
-  void newLabel(QString label);
-
+  void torrentAdded(QModelIndex index);
+  void torrentAboutToBeRemoved(QModelIndex index);
+  void torrentChangedLabel(QString old_label, QString new_label);
 };
 
 #endif // TRANSFERLISTWIDGET_H

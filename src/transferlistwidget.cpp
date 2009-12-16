@@ -163,7 +163,6 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     listModel->setData(listModel->index(row, TR_SEEDS), QVariant((double)0.0));
     listModel->setData(listModel->index(row, TR_PEERS), QVariant((double)0.0));
     QString label = TorrentPersistentData::getLabel(h.hash());
-    emit newLabel(label);
     listModel->setData(listModel->index(row, TR_LABEL), QVariant(label));
     if(BTSession->isQueueingEnabled())
       listModel->setData(listModel->index(row, TR_PRIORITY), QVariant((int)h.queue_position()));
@@ -191,6 +190,9 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     // Select first torrent to be added
     if(listModel->rowCount() == 1)
       selectionModel()->setCurrentIndex(proxyModel->index(row, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
+    // Emit signal
+    emit torrentAdded(listModel->index(row, 0));
+    // Refresh the list
     refreshList();
   } catch(invalid_handle e) {
     // Remove added torrent
@@ -206,6 +208,7 @@ void TransferListWidget::setRowColor(int row, QColor color) {
 }
 
 void TransferListWidget::deleteTorrent(int row, bool refresh_list) {
+  emit torrentAboutToBeRemoved(listModel->index(row, 0));
   listModel->removeRow(row);
   if(refresh_list)
     refreshList();
@@ -233,6 +236,11 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
   setRowColor(row, QString::fromUtf8("red"));
   if(refresh_list)
     refreshList();
+}
+
+
+int TransferListWidget::getNbTorrents() const {
+  return listModel->rowCount();
 }
 
 // Wrapper slot for bittorrent signal
@@ -418,7 +426,9 @@ void TransferListWidget::setFinished(QTorrentHandle &h) {
       listModel->setData(listModel->index(row, TR_PRIORITY), QVariant((int)-1));
     }
   } catch(invalid_handle e) {
-    if(row >= 0) deleteTorrent(row);
+    if(row >= 0) {
+      deleteTorrent(row);
+    }
   }
 }
 
@@ -580,7 +590,8 @@ void TransferListWidget::deleteSelectedTorrents() {
         hashes << getHashFromRow(mapToSource(index).row());
       }
       foreach(const QString &hash, hashes) {
-        deleteTorrent(getRowFromHash(hash), false);
+        int row = getRowFromHash(hash);
+        deleteTorrent(row, false);
         BTSession->deleteTorrent(hash, delete_local_files);
       }
       refreshList();
@@ -849,7 +860,6 @@ void TransferListWidget::askNewLabelForSelection() {
   bool ok;
   QString label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok);
   if (ok && !label.isEmpty()) {
-    emit newLabel(label);
     // Assign label to selection
     setSelectionLabel(label);
   }
@@ -859,8 +869,10 @@ void TransferListWidget::setSelectionLabel(QString label) {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
     QString hash = getHashFromRow(mapToSource(index).row());
+    QString old_label = proxyModel->data(proxyModel->index(index.row(), TR_LABEL)).toString();
     proxyModel->setData(proxyModel->index(index.row(), TR_LABEL), QVariant(label));
     TorrentPersistentData::saveLabel(hash, label);
+    emit torrentChangedLabel(old_label, label);
   }
 }
 
@@ -868,6 +880,7 @@ void TransferListWidget::removeLabelFromRows(QString label) {
   for(int i=0; i<listModel->rowCount(); ++i) {
     if(label == listModel->data(listModel->index(i, TR_LABEL), Qt::DisplayRole))
       listModel->setData(listModel->index(i, TR_LABEL), "", Qt::DisplayRole);
+      emit torrentChangedLabel(label, "");
   }
 }
 
