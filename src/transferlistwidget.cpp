@@ -52,7 +52,6 @@
 
 TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent *_BTSession):
     QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
-
   QSettings settings("qBittorrent", "qBittorrent");
   // Create and apply delegate
   listDelegate = new TransferListDelegate(this);
@@ -103,6 +102,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittor
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   setItemsExpandable(false);
   setAutoScroll(true);
+  setDragDropMode(QAbstractItemView::DragOnly);
 
   hideColumn(TR_PRIORITY);
   //hideColumn(TR_LABEL);

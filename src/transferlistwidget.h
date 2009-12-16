@@ -88,7 +88,6 @@ protected slots:
 #endif
   void toggleSelectedTorrentsSequentialDownload();
   void toggleSelectedFirstLastPiecePrio();
-  void setSelectionLabel(QString label);
   void askNewLabelForSelection();
   void setRowColor(int row, QColor color);
 
@@ -96,6 +95,7 @@ public slots:
   void refreshList();
   void addTorrent(QTorrentHandle& h);
   void setFinished(QTorrentHandle &h);
+  void setSelectionLabel(QString label);
   void setRefreshInterval(int t);
   void startSelectedTorrents();
   void startAllTorrents();

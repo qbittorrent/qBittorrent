@@ -97,6 +97,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // GUI related slots
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
+    void dragMoveEvent(QDragMoveEvent *event);
     void toggleVisibility(QSystemTrayIcon::ActivationReason e);
     void on_actionAbout_triggered();
     void on_actionCreate_torrent_triggered();

@@ -39,9 +39,42 @@
 #include <QVBoxLayout>
 #include <QMenu>
 #include <QInputDialog>
+#include <QDragMoveEvent>
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
+
+class LabelFiltersList: public QListWidget {
+  Q_OBJECT
+
+public:
+  LabelFiltersList(QWidget *parent): QListWidget(parent){
+    // Accept drop
+    setAcceptDrops(true);
+  }
+
+signals:
+  void torrentDropped(int label_row);
+
+protected:
+  void dragMoveEvent(QDragMoveEvent* event) {
+    //qDebug("filters, dragmoveevent");
+    if(itemAt(event->pos()) && row(itemAt(event->pos())) > 0) {
+      //qDebug("Name: %s", itemAt(event->pos())->text().toLocal8Bit().data());
+      event->acceptProposedAction();
+    } else {
+      event->ignore();
+    }
+  }
+
+  void dropEvent(QDropEvent *event) {
+    qDebug("Drop Event in labels list");
+    if(itemAt(event->pos())) {
+      emit torrentDropped(row(itemAt(event->pos())));
+    }
+    event->ignore();
+  }
+};
 
 class TransferListFiltersWidget: public QFrame {
   Q_OBJECT
@@ -50,7 +83,7 @@ private:
   QStringList customLabels;
   QList<int> labelCounters;
   QListWidget* statusFilters;
-  QListWidget* labelFilters;
+  LabelFiltersList* labelFilters;
   QVBoxLayout* vLayout;
   TransferListWidget *transferList;
   int nb_labeled;
@@ -60,9 +93,9 @@ public:
   TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList): QFrame(parent), transferList(transferList), nb_labeled(0), nb_torrents(0) {
     // Construct lists
     vLayout = new QVBoxLayout();
-    statusFilters = new QListWidget();
+    statusFilters = new QListWidget(this);
     vLayout->addWidget(statusFilters);
-    labelFilters = new QListWidget();
+    labelFilters = new LabelFiltersList(this);
     vLayout->addWidget(labelFilters);
     setLayout(vLayout);
     // Limit status filters list height
@@ -90,8 +123,10 @@ public:
     connect(statusFilters, SIGNAL(currentRowChanged(int)), transferList, SLOT(applyStatusFilter(int)));
     connect(transferList, SIGNAL(torrentStatusUpdate(uint,uint,uint,uint)), this, SLOT(updateTorrentNumbers(uint, uint, uint, uint)));
     connect(labelFilters, SIGNAL(currentRowChanged(int)), this, SLOT(applyLabelFilter(int)));
+    connect(labelFilters, SIGNAL(torrentDropped(int)), this, SLOT(torrentDropped(int)));
     connect(transferList, SIGNAL(torrentAdded(QModelIndex)), this, SLOT(torrentAdded(QModelIndex)));
     connect(transferList, SIGNAL(torrentAboutToBeRemoved(QModelIndex)), this, SLOT(torrentAboutToBeDeleted(QModelIndex)));
+    connect(transferList, SIGNAL(torrentChangedLabel(QString,QString)), this, SLOT(torrentChangedLabel(QString, QString)));
 
     // Load settings
     loadSettings();
@@ -151,6 +186,16 @@ protected slots:
     statusFilters->item(FILTER_COMPLETED)->setData(Qt::DisplayRole, tr("Completed")+" ("+QString::number(nb_seeding)+")");
     statusFilters->item(FILTER_ACTIVE)->setData(Qt::DisplayRole, tr("Active")+" ("+QString::number(nb_active)+")");
     statusFilters->item(FILTER_INACTIVE)->setData(Qt::DisplayRole, tr("Inactive")+" ("+QString::number(nb_inactive)+")");
+  }
+
+  void torrentDropped(int row) {
+    Q_ASSERT(row > 0);
+    if(row == 1) {
+      transferList->setSelectionLabel("");
+    } else {
+      QString label = customLabels.at(row-2);
+      transferList->setSelectionLabel(label);
+    }
   }
 
   void addLabel(QString label) {
@@ -214,12 +259,14 @@ protected slots:
   }
 
   void torrentChangedLabel(QString old_label, QString new_label) {
+    qDebug("Torrent label changed from %s to %s", old_label.toLocal8Bit().data(), new_label.toLocal8Bit().data());
     if(!old_label.isEmpty()) {
       int i = customLabels.indexOf(old_label);
       int new_count = labelCounters[i]-1;
       Q_ASSERT(new_count >= 0);
       labelCounters.replace(i, new_count);
       labelFilters->item(i+2)->setText(old_label + " ("+ QString::number(new_count) +")");
+      --nb_labeled;
     }
     if(!new_label.isEmpty()) {
       if(!customLabels.contains(new_label))
@@ -228,7 +275,9 @@ protected slots:
       int new_count = labelCounters[i]+1;
       labelCounters.replace(i, new_count);
       labelFilters->item(i+2)->setText(new_label + " ("+ QString::number(new_count) +")");
+      ++nb_labeled;
     }
+    updateStickyLabelCounters();
   }
 
   void torrentAdded(QModelIndex index) {
