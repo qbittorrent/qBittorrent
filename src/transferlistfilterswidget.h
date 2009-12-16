@@ -47,8 +47,12 @@
 class LabelFiltersList: public QListWidget {
   Q_OBJECT
 
+private:
+  QListWidgetItem *itemHover;
+
 public:
-  LabelFiltersList(QWidget *parent): QListWidget(parent){
+  LabelFiltersList(QWidget *parent): QListWidget(parent) {
+    itemHover = 0;
     // Accept drop
     setAcceptDrops(true);
   }
@@ -57,12 +61,24 @@ signals:
   void torrentDropped(int label_row);
 
 protected:
-  void dragMoveEvent(QDragMoveEvent* event) {
+  void dragMoveEvent(QDragMoveEvent *event) {
     //qDebug("filters, dragmoveevent");
     if(itemAt(event->pos()) && row(itemAt(event->pos())) > 0) {
       //qDebug("Name: %s", itemAt(event->pos())->text().toLocal8Bit().data());
+      if(itemHover) {
+        if(itemHover != itemAt(event->pos())) {
+          setItemHover(false);
+          itemHover = itemAt(event->pos());
+          setItemHover(true);
+        }
+      } else {
+        itemHover = itemAt(event->pos());
+        setItemHover(true);
+      }
       event->acceptProposedAction();
     } else {
+      if(itemHover)
+        setItemHover(false);
       event->ignore();
     }
   }
@@ -73,6 +89,29 @@ protected:
       emit torrentDropped(row(itemAt(event->pos())));
     }
     event->ignore();
+    setItemHover(false);
+    // Select current item again
+    currentItem()->setSelected(true);
+  }
+
+  void dragLeaveEvent(QDragLeaveEvent*) {
+    if(itemHover)
+      setItemHover(false);
+    // Select current item again
+    currentItem()->setSelected(true);
+  }
+
+  void setItemHover(bool hover) {
+    Q_ASSERT(itemHover);
+    if(hover) {
+      itemHover->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder-documents.png"));
+      itemHover->setSelected(true);
+      //setCurrentItem(itemHover);
+    } else {
+      itemHover->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
+      //itemHover->setSelected(false);
+      itemHover = 0;
+    }
   }
 };
 
@@ -144,6 +183,7 @@ public:
       newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     }
     labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
+    labelFilters->setCurrentItem(labelFilters->item(0));
     // Label menu
     labelFilters->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(labelFilters, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showLabelMenu(QPoint)));
