@@ -99,11 +99,14 @@ public:
     // Add Label filters
     QListWidgetItem *allLabels = new QListWidgetItem(labelFilters);
     allLabels->setData(Qt::DisplayRole, tr("All labels") + " (0)");
+    allLabels->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     QListWidgetItem *noLabel = new QListWidgetItem(labelFilters);
-    noLabel->setData(Qt::DisplayRole, tr("No label") + " (0)");
+    noLabel->setData(Qt::DisplayRole, tr("Unlabeled") + " (0)");
+    noLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     foreach(const QString& label, customLabels) {
       QListWidgetItem *newLabel = new QListWidgetItem(labelFilters);
       newLabel->setText(label + " (0)");
+      newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     }
     labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
     // Label menu
@@ -155,6 +158,7 @@ protected slots:
     if(customLabels.contains(label)) return;
     QListWidgetItem *newLabel = new QListWidgetItem(labelFilters);
     newLabel->setText(label + " (0)");
+    newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     customLabels << label;
     labelCounters << 0;
     saveCustomLabels();
@@ -269,7 +273,7 @@ protected slots:
 
   void updateStickyLabelCounters() {
     labelFilters->item(0)->setText(tr("All labels") + " ("+QString::number(nb_torrents)+")");
-    labelFilters->item(1)->setText(tr("No label") + " ("+QString::number(nb_torrents-nb_labeled)+")");
+    labelFilters->item(1)->setText(tr("Unlabeled") + " ("+QString::number(nb_torrents-nb_labeled)+")");
   }
 
 };
