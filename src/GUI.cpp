@@ -598,28 +598,8 @@ void GUI::dragEnterEvent(QDragEnterEvent *event) {
   foreach(const QString &mime, event->mimeData()->formats()){
     qDebug("mimeData: %s", mime.toLocal8Bit().data());
   }
-  if (event->mimeData()->hasFormat("application/x-qstandarditemmodeldatalist")) {
-    if(childAt(event->pos()) == transferListFilters) {
-      qDebug("DragEnterEvent: torrent to filter list, accepting...");
-      event->acceptProposedAction();
-    }
-  } else {
-    if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
-      event->acceptProposedAction();
-    }
-  }
-}
-
-void GUI::dragMoveEvent(QDragMoveEvent *event) {
-  if (event->mimeData()->hasFormat("application/x-qstandarditemmodeldatalist")) {
-    if(childAt(event->pos()) == transferListFilters) {
-      qDebug("DragMoveEvent: torrent to filter list, accepting...");
-      event->acceptProposedAction();
-    }
-  } else {
-    if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
-      event->acceptProposedAction();
-    }
+  if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
+    event->acceptProposedAction();
   }
 }
 
