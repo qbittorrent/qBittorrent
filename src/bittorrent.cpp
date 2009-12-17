@@ -102,6 +102,7 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
+  appendLabelToSavePath = Preferences::appendTorrentLabel();
   // Apply user settings to Bittorrent session
   configureSession();
   qDebug("* BTSession constructed");
@@ -233,6 +234,7 @@ void Bittorrent::configureSession() {
   } else {
     setDefaultTempPath(QString::null);
   }
+  setAppendLabelToSavePath(Preferences::appendTorrentLabel());
   preAllocateAllFiles(Preferences::preAllocateAllFiles());
   startTorrentsInPause(Preferences::addTorrentsInPause());
   // * Scan dir
@@ -1279,6 +1281,38 @@ void Bittorrent::setDefaultTempPath(QString temppath) {
   defaultTempPath = temppath;
 }
 
+void Bittorrent::appendLabelToTorrentSavePath(QTorrentHandle h) {
+  if(!h.is_valid()) return;
+  QString label = TorrentPersistentData::getLabel(h.hash());
+  if(label.isEmpty()) return;
+  // Current save path
+  QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
+  QDir old_dir(old_save_path);
+  if(old_dir.dirName() != label) {
+    QString new_save_path = old_dir.absoluteFilePath(label);
+    TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
+    if(old_dir == QDir(h.save_path())) {
+      // Move storage
+      h.move_storage(new_save_path);
+    }
+  }
+}
+
+void Bittorrent::setAppendLabelToSavePath(bool append) {
+  if(appendLabelToSavePath != Preferences::appendTorrentLabel()) {
+    appendLabelToSavePath = !appendLabelToSavePath;
+    if(appendLabelToSavePath) {
+      // Move torrents storage to sub folder with label name
+      std::vector<torrent_handle> torrents = getTorrents();
+      std::vector<torrent_handle>::iterator torrentIT;
+      for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+        QTorrentHandle h = QTorrentHandle(*torrentIT);
+        appendLabelToTorrentSavePath(h);
+      }
+    }
+  }
+}
+
 // Enable directory scanning
 void Bittorrent::enableDirectoryScanning(QString scan_dir) {
   if(!scan_dir.isEmpty()) {
@@ -1672,15 +1706,32 @@ QString Bittorrent::getSavePath(QString hash) {
   QString savePath;
   if(TorrentTempData::hasTempData(hash)) {
     savePath = TorrentTempData::getSavePath(hash);
+    if(savePath.isEmpty())
+      savePath = defaultSavePath;
+    if(appendLabelToSavePath) {
+      QString label = TorrentTempData::getLabel(hash);
+      if(!label.isEmpty()) {
+        QDir save_dir(savePath);
+        if(save_dir.dirName() != label) {
+          savePath = save_dir.absoluteFilePath(label);
+        }
+      }
+    }
     qDebug("getSavePath, got save_path from temp data: %s", savePath.toLocal8Bit().data());
   } else {
     savePath = TorrentPersistentData::getSavePath(hash);
+    if(savePath.isEmpty())
+      savePath = defaultSavePath;
+    if(appendLabelToSavePath) {
+      QString label = TorrentPersistentData::getLabel(hash);
+      if(!label.isEmpty()) {
+        QDir save_dir(savePath);
+        if(save_dir.dirName() != label) {
+          savePath = save_dir.absoluteFilePath(label);
+        }
+      }
+    }
     qDebug("getSavePath, got save_path from persistent data: %s", savePath.toLocal8Bit().data());
-  }
-  if(savePath.isEmpty()) {
-    // use default save path if no other can be found
-    qDebug("Using default save path because none was set: %s", defaultSavePath.toLocal8Bit().data());
-    savePath = defaultSavePath;
   }
   // Checking if savePath Dir exists
   // create it if it is not
@@ -1688,8 +1739,7 @@ QString Bittorrent::getSavePath(QString hash) {
   if(!saveDir.exists()) {
     if(!saveDir.mkpath(saveDir.path())) {
       std::cerr << "Couldn't create the save directory: " << saveDir.path().toLocal8Bit().data() << "\n";
-      // XXX: handle this better
-      return QDir::homePath();
+      // XXX: Do something else?
     }
   }
   return savePath;

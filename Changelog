@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Torrents can be labeled/categorized
+    - FEATURE: Labeled torrent can be downloaded corresponding subfolders
     - FEATURE: Disk cache size can be set from preferences
     - FEATURE: Peer Exchange (PeX) can be disabled from preferences
 

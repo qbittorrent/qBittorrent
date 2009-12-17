@@ -109,6 +109,7 @@ private:
   bool DHTEnabled;
   bool PeXEnabled;
   bool queueingEnabled;
+  bool appendLabelToSavePath;
   QString defaultSavePath;
   QString defaultTempPath;
   // GeoIP
@@ -199,6 +200,8 @@ public slots:
   void setSessionSettings(session_settings sessionSettings);
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);
+  void setAppendLabelToSavePath(bool append);
+  void appendLabelToTorrentSavePath(QTorrentHandle h);
   void applyEncryptionSettings(pe_settings se);
   void setDownloadLimit(QString hash, long val);
   void setUploadLimit(QString hash, long val);

@@ -133,6 +133,16 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Downloads/TempPath"), home+"qBT_dir"+QDir::separator()+"temp").toString();
   }
 
+  static bool useIncompleteFilesExtension() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Downloads/UseIncompleteExtension"), false).toBool();
+  }
+
+  static bool appendTorrentLabel() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Downloads/AppendLabel"), false).toBool();
+  }
+
   static bool preAllocateAllFiles() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/PreAllocation"), false).toBool();

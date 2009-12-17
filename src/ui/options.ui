@@ -639,7 +639,7 @@
               <x>0</x>
               <y>0</y>
               <width>642</width>
-              <height>472</height>
+              <height>515</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -655,76 +655,86 @@
                 <string>File system</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
+                <property name="spacing">
+                 <number>3</number>
+                </property>
                 <item>
-                 <layout class="QHBoxLayout">
-                  <property name="spacing">
-                   <number>6</number>
+                 <widget class="QGroupBox" name="groupBox_3">
+                  <property name="styleSheet">
+                   <string>QGroupBox::title {
+font-weight: normal;
+margin-left: -3px;
+}
+QGroupBox {
+  border-width: 0;
+}</string>
                   </property>
-                  <property name="margin">
-                   <number>0</number>
+                  <property name="title">
+                   <string>Destination Folder:</string>
                   </property>
-                  <item>
-                   <layout class="QHBoxLayout">
-                    <property name="spacing">
-                     <number>6</number>
-                    </property>
-                    <property name="margin">
-                     <number>0</number>
-                    </property>
-                    <item>
-                     <widget class="QLabel" name="lblSavePath">
-                      <property name="text">
-                       <string>Download folder:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="textSavePath">
-                      <property name="text">
-                       <string/>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QToolButton" name="browseSaveDirButton">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>22</width>
-                        <height>22</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>25</width>
-                        <height>27</height>
-                       </size>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="../icons.qrc">
-                        <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
+                  <layout class="QVBoxLayout" name="verticalLayout_26">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_10">
+                     <item>
+                      <widget class="QLineEdit" name="textSavePath">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="browseSaveDirButton">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>22</width>
+                         <height>22</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>25</width>
+                         <height>27</height>
+                        </size>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="../icons.qrc">
+                         <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="checkAppendLabel">
+                     <property name="text">
+                      <string>Append the torrent's label</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkTempFolder">
+                  <property name="text">
+                   <string>Use a different folder for incomplete downloads:</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_7">
                   <item>
-                   <widget class="QCheckBox" name="checkTempFolder">
-                    <property name="text">
-                     <string>Temp folder:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <widget class="QLineEdit" name="textTempPath">
                     <property name="enabled">
                      <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string>QLineEdit {
+  margin-left: 23px;
+}</string>
                     </property>
                    </widget>
                   </item>
@@ -758,6 +768,65 @@
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkScanDir">
+                  <property name="text">
+                   <string>Automatically load .torrent files from:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="margin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLineEdit" name="textScanDir">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string>QLineEdit {
+  margin-left: 23px;
+}</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="browseScanDirButton">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>22</width>
+                      <height>22</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>27</height>
+                     </size>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../icons.qrc">
+                      <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkAppendqB">
+                  <property name="text">
+                   <string>Append .!qB extension to incomplete files</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="checkPreallocateAll">
@@ -807,68 +876,6 @@
                      </size>
                     </property>
                    </spacer>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QGroupBox" name="dirScanBox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="title">
-                <string comment="qBittorrent will watch a directory and automatically download torrents present in it">Folder watching</string>
-               </property>
-               <layout class="QVBoxLayout">
-                <item>
-                 <widget class="QCheckBox" name="checkScanDir">
-                  <property name="text">
-                   <string>Automatically download torrents present in this folder:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout">
-                  <property name="spacing">
-                   <number>6</number>
-                  </property>
-                  <property name="margin">
-                   <number>0</number>
-                  </property>
-                  <item>
-                   <widget class="QLineEdit" name="textScanDir">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QToolButton" name="browseScanDirButton">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>22</width>
-                      <height>22</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>25</width>
-                      <height>27</height>
-                     </size>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../icons.qrc">
-                      <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
-                    </property>
-                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -1125,7 +1132,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>602</width>
+              <width>451</width>
               <height>513</height>
              </rect>
             </property>
@@ -1546,8 +1553,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>468</width>
+              <height>376</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -2454,8 +2461,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>218</width>
-              <height>220</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2618,8 +2625,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>451</width>
-              <height>195</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -2834,7 +2841,6 @@
   <tabstop>checkPreallocateAll</tabstop>
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkStartPaused</tabstop>
-  <tabstop>checkScanDir</tabstop>
   <tabstop>browseScanDirButton</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
