@@ -993,7 +993,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   // Label Menu
   QStringList customLabels = getCustomLabels();
   QList<QAction*> labelActions;
-  QMenu *labelMenu = listMenu.addMenu(QIcon(":/Icons/oxygen/feed-subscribe.png"), "Label");
+  QMenu *labelMenu = listMenu.addMenu(QIcon(":/Icons/oxygen/feed-subscribe.png"), tr("Label"));
   labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("New..."));
   labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/edit-clear.png"), tr("Reset"));
   labelMenu->addSeparator();
