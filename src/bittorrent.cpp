@@ -1671,7 +1671,7 @@ QString Bittorrent::getSavePath(QString hash) {
     if(!saveDir.mkpath(saveDir.path())) {
       std::cerr << "Couldn't create the save directory: " << saveDir.path().toLocal8Bit().data() << "\n";
       // XXX: handle this better
-      return QDir::homePath();
+      //return QDir::homePath();
     }
   }
   return savePath;
