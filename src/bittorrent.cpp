@@ -88,7 +88,12 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
 #ifdef LIBTORRENT_0_15
   s->add_extension(create_lt_trackers_plugin);
 #endif
-  s->add_extension(&create_ut_pex_plugin);
+  if(Preferences::isPeXEnabled()) {
+    PeXEnabled = true;
+    s->add_extension(&create_ut_pex_plugin);
+  } else {
+    PeXEnabled = false;
+  }
   s->add_extension(&create_smart_ban_plugin);
   timerAlerts = new QTimer();
   connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
@@ -361,7 +366,14 @@ void Bittorrent::configureSession() {
     addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
   }
   // * PeX
-  addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
+  if(PeXEnabled) {
+    addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
+  } else {
+    addConsoleMessage(tr("PeX support [OFF]"), QString::fromUtf8("red"));
+  }
+  if(PeXEnabled != Preferences::isPeXEnabled()) {
+    addConsoleMessage(tr("Restart is required to toggle PeX support"), QString::fromUtf8("red"));
+  }
   // * LSD
   if(Preferences::isLSDEnabled()) {
     enableLSD(true);

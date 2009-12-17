@@ -214,6 +214,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -427,6 +428,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("MaxConnecsPerTorrent"), getMaxConnecsPerTorrent());
   settings.setValue(QString::fromUtf8("MaxUploadsPerTorrent"), getMaxUploadsPerTorrent());
   settings.setValue(QString::fromUtf8("DHT"), isDHTEnabled());
+  settings.setValue(QString::fromUtf8("PeX"), checkPeX->isChecked());
   settings.setValue(QString::fromUtf8("sameDHTPortAsBT"), isDHTPortSameAsBT());
   settings.setValue(QString::fromUtf8("DHTPort"), getDHTPort());
   settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
@@ -713,6 +715,7 @@ void options_imp::loadOptions(){
   checkDifferentDHTPort->setChecked(!Preferences::isDHTPortSameAsBT());
   enableDHTPortSettings(checkDifferentDHTPort->isChecked());
   spinDHTPort->setValue(Preferences::getDHTPort());
+  checkPeX->setChecked(Preferences::isPeXEnabled());
   checkLSD->setChecked(Preferences::isLSDEnabled());
   checkAzureusSpoof->setChecked(Preferences::isUtorrentSpoofingEnabled());
   comboEncryption->setCurrentIndex(Preferences::getEncryptionSetting());

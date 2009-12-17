@@ -348,6 +348,11 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/DHT"), true).toBool();
   }
 
+  static bool isPeXEnabled() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Bittorrent/PeX"), true).toBool();
+  }
+
   static void setDHTEnabled(bool enabled) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Bittorrent/DHT"), enabled);

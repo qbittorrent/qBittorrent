@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Torrents can be labeled/categorized
     - FEATURE: Disk cache size can be set from preferences
+    - FEATURE: Peer Exchange (PeX) can be disabled from preferences
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen

@@ -107,6 +107,7 @@ private:
   bool NATPMPEnabled;
   bool LSDEnabled;
   bool DHTEnabled;
+  bool PeXEnabled;
   bool queueingEnabled;
   QString defaultSavePath;
   QString defaultTempPath;

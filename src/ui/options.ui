@@ -639,7 +639,7 @@
               <x>0</x>
               <y>0</y>
               <width>642</width>
-              <height>457</height>
+              <height>472</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1125,7 +1125,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>451</width>
+              <width>602</width>
               <height>513</height>
              </rect>
             </property>
@@ -1546,8 +1546,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>468</width>
-              <height>347</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1635,6 +1635,16 @@
                    </spacer>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkPeX">
+                  <property name="text">
+                   <string>Enable Peer Exchange / PeX (requires restart)</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="checkLSD">
