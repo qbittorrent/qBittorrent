@@ -277,6 +277,10 @@ p, li { white-space: pre-wrap; }
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -1145,6 +1149,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Používať odlišný port pre DHT a Bittorrent</translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3836,6 +3848,30 @@ Záznam zmien:</translation>
         <source>Inactive</source>
         <translation>Neaktívne</translation>
     </message>
+    <message>
+        <source>All labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlabeled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -3994,6 +4030,26 @@ Záznam zmien:</translation>
     <message>
         <source>Download first and last piece first</source>
         <translation>Sťahovať najprv prvú a poslednú časť</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4190,6 +4246,10 @@ Záznam zmien:</translation>
     <message>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Preskočiť kontrolu súborov a začať seedovať okamžite</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4933,7 +4993,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Nové vyhľadávače môžete získať tu: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="obsolete">Nové vyhľadávače môžete získať tu: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Install a new one</source>
@@ -4958,6 +5018,10 @@ Záznam zmien:</translation>
     <message>
         <source>Uninstall</source>
         <translation>Odinštalovať</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

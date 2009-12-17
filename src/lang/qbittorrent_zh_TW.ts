@@ -273,6 +273,10 @@ p, li { white-space: pre-wrap; }
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -829,6 +833,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>DHT 和 Bittorrent 使用不同的埠</translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2770,6 +2782,30 @@ p, li { white-space: pre-wrap; }
         <source>Inactive</source>
         <translation>不活躍的</translation>
     </message>
+    <message>
+        <source>All labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlabeled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -2949,6 +2985,26 @@ p, li { white-space: pre-wrap; }
         <source>Download first and last piece first</source>
         <translation>先下載第一和最後一塊</translation>
     </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>about</name>
@@ -3061,6 +3117,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Skip file checking and start seeding immediately</source>
         <translation>停止檔案檢查並立刻開始做種</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3700,7 +3760,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>你可以在這裡取得新的搜尋引擎外掛: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="obsolete">你可以在這裡取得新的搜尋引擎外掛: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Install a new one</source>
@@ -3725,6 +3785,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Uninstall</source>
         <translation>反安裝</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

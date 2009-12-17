@@ -334,6 +334,10 @@ p, li { white-space: pre-wrap; }
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -1170,6 +1174,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>DHT ve Bittorrent için farklı bir port kullan</translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3898,6 +3910,30 @@ Changelog:
         <source>Inactive</source>
         <translation>Etkisiz</translation>
     </message>
+    <message>
+        <source>All labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlabeled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -4057,6 +4093,26 @@ Changelog:
     <message>
         <source>Download first and last piece first</source>
         <translation>Önce ilk ve son parçayı indir</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4257,6 +4313,10 @@ Changelog:
     <message>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Dosya denetlemeyi atla ve hemen göndermeye başla</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4984,7 +5044,7 @@ Changelog:
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Buradan yeni arama motoru eklentileri bulabilirsiniz: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="obsolete">Buradan yeni arama motoru eklentileri bulabilirsiniz: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Install a new one</source>
@@ -5009,6 +5069,10 @@ Changelog:
     <message>
         <source>Uninstall</source>
         <translation>Yüklemeyi kaldır</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

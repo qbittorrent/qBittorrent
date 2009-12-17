@@ -260,6 +260,10 @@ p, li { white-space: pre-wrap; }
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Преузимање &apos;%1&apos;, молим сачекајте...</translation>
     </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -742,6 +746,14 @@ RSS (most commonly translated as &quot;Really Simple Syndication&quot; but somet
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Користи различит порт за DHT и Bittorrent</translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2445,6 +2457,30 @@ p, li { white-space: pre-wrap; }
         <source>Inactive</source>
         <translation>Неактиван</translation>
     </message>
+    <message>
+        <source>All labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlabeled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -2572,6 +2608,26 @@ p, li { white-space: pre-wrap; }
         <source>Download first and last piece first</source>
         <translation>Преузимање почетних и крајњих делова</translation>
     </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>about</name>
@@ -2676,6 +2732,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Прескочи проверу фајла и одмах стартуј донирање</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3227,7 +3287,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Можете преузети нови додатак за претраживање, овде: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="obsolete">Можете преузети нови додатак за претраживање, овде: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Install a new one</source>
@@ -3252,6 +3312,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Uninstall</source>
         <translation>Деинсталирај</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

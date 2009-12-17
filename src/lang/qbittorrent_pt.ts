@@ -277,6 +277,10 @@ p, li { white-space: pre-wrap; }
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -1130,6 +1134,14 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Usar portas diferentes no DHT e no Bittorrent</translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3895,6 +3907,30 @@ Log de mudanças:</translation>
         <source>Inactive</source>
         <translation>Inativo</translation>
     </message>
+    <message>
+        <source>All labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlabeled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -4073,6 +4109,26 @@ Log de mudanças:</translation>
     <message>
         <source>Download first and last piece first</source>
         <translation>Baixar primeiro a primeira e a última parte</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4261,6 +4317,10 @@ Log de mudanças:</translation>
     <message>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Passar checagem de arquivo e começar a compartilhar imediatamente</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5000,7 +5060,7 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Você pode encontrar novos plugins de busca aqui: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="obsolete">Você pode encontrar novos plugins de busca aqui: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Install a new one</source>
@@ -5025,6 +5085,10 @@ Log de mudanças:</translation>
     <message>
         <source>Uninstall</source>
         <translation>Desinstalar</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
