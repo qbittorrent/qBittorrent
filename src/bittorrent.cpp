@@ -321,6 +321,8 @@ void Bittorrent::configureSession() {
 #endif
   // To keep same behavior as in qBittorrent v1.2.0
   sessionSettings.rate_limit_ip_overhead = false;
+  sessionSettings.cache_size = Preferences::diskCacheSize()*64;
+  addConsoleMessage(tr("Using a disk cache size of %1 MiB").arg(Preferences::diskCacheSize()));
   // Queueing System
   if(Preferences::isQueueingSystemEnabled()) {
     sessionSettings.active_downloads = Preferences::getMaxActiveDownloads();

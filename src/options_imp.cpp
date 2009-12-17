@@ -191,6 +191,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(spinCache, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkScanDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -368,6 +369,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("TempPathEnabled"), isTempPathEnabled());
   settings.setValue(QString::fromUtf8("TempPath"), getTempPath());
   settings.setValue(QString::fromUtf8("PreAllocation"), preAllocateAllFiles());
+  settings.setValue(QString::fromUtf8("DiskCache"), spinCache->value());
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
   settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
@@ -577,6 +579,7 @@ void options_imp::loadOptions(){
   }
   textTempPath->setText(Preferences::getTempPath());
   checkPreallocateAll->setChecked(Preferences::preAllocateAllFiles());
+  spinCache->setValue(Preferences::diskCacheSize());
   checkAdditionDialog->setChecked(Preferences::useAdditionDialog());
   checkStartPaused->setChecked(Preferences::addTorrentsInPause());
   strValue = Preferences::getScanDir();
