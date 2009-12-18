@@ -98,6 +98,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
+  connect(BTSession, SIGNAL(savePathChanged(QTorrentHandle&)), this, SLOT(updateSavePath(QTorrentHandle&)));
 
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
@@ -209,6 +210,12 @@ const QTorrentHandle& PropertiesWidget::getCurrentTorrent() const {
 
 Bittorrent* PropertiesWidget::getBTSession() const {
   return BTSession;
+}
+
+void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
+  if(h.is_valid() && h == _h) {
+    save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
+  }
 }
 
 void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {

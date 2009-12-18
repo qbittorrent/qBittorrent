@@ -245,6 +245,7 @@ signals:
   void downloadFromUrlFailure(QString url, QString reason);
   void torrentFinishedChecking(QTorrentHandle& h);
   void metadataReceived(QTorrentHandle &h);
+  void savePathChanged(QTorrentHandle &h);
 };
 
 #endif

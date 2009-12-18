@@ -1325,18 +1325,25 @@ void Bittorrent::changeLabelInTorrentSavePath(QTorrentHandle h, QString old_labe
   bool move_storage = (old_dir == QDir(h.save_path()));
   if(!old_label.isEmpty()) {
     Q_ASSERT(old_dir.dirName() == old_label);
-    old_dir.cdUp();
+    QString path = old_save_path;
+    // Cd UP
+    if(path.endsWith(QDir::separator()))
+      path.chop(1);
+    QStringList path_items = path.split(QDir::separator());
+    path_items.removeLast();
+    old_dir = QDir(path_items.join(QDir::separator()));
   }
   QString new_save_path;
   if(new_label.isEmpty())
     new_save_path = old_dir.absolutePath();
   else
-    old_dir.absoluteFilePath(new_label);
+    new_save_path = old_dir.absoluteFilePath(new_label);
   TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
   if(move_storage) {
     // Move storage
       h.move_storage(new_save_path);
   }
+  emit savePathChanged(h);
 }
 
 void Bittorrent::appendLabelToTorrentSavePath(QTorrentHandle h) {
@@ -1353,6 +1360,7 @@ void Bittorrent::appendLabelToTorrentSavePath(QTorrentHandle h) {
       // Move storage
       h.move_storage(new_save_path);
     }
+    emit savePathChanged(h);
   }
 }
 
