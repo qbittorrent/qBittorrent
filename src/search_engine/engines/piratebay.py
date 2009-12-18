@@ -1,4 +1,4 @@
-#VERSION: 1.22
+#VERSION: 1.30
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -50,32 +50,35 @@ class piratebay(object):
 			self.results = results
 			self.url = url
 			self.code = 0
+			self.in_name = None
 
 		def start_a(self, attr):
 			params = dict(attr)
-			if params['href'].startswith('/browse'):
+			if params['href'].startswith('/torrent/'):
 				self.current_item = {}
 				self.td_counter = 0
-			elif params['href'].startswith('/tor'):
 				self.code = params['href'].split('/')[2]
+				self.in_name = True
 			elif params['href'].startswith('http://torrents.thepiratebay.org/%s'%self.code):
 				self.current_item['link']=params['href'].strip()
-				self.td_counter = self.td_counter+1
+				self.in_name = False
 
 		def handle_data(self, data):
-			if self.td_counter == 1:
-				if not self.current_item.has_key('name'):
-					self.current_item['name'] = ''
-				self.current_item['name']+= data.strip()
-			if self.td_counter == 5:
-				if not self.current_item.has_key('size'):
-					self.current_item['size'] = ''
-				self.current_item['size']+= data.strip()
-			elif self.td_counter == 6:
+			if self.td_counter == 0:
+				if self.in_name:
+					if not self.current_item.has_key('name'):
+						self.current_item['name'] = ''
+					self.current_item['name']+= data.strip()
+				else:
+					#Parse size
+					if 'Size' in data:
+						self.current_item['size'] = data[data.index("Size")+5:]
+						self.current_item['size'] = self.current_item['size'][:self.current_item['size'].index(',')]
+			elif self.td_counter == 1:
 				if not self.current_item.has_key('seeds'):
 					self.current_item['seeds'] = ''
 				self.current_item['seeds']+= data.strip()
-			elif self.td_counter == 7:
+			elif self.td_counter == 2:
 				if not self.current_item.has_key('leech'):
 					self.current_item['leech'] = ''
 				self.current_item['leech']+= data.strip()
@@ -83,7 +86,7 @@ class piratebay(object):
 		def start_td(self,attr):
 			if isinstance(self.td_counter,int):
 				self.td_counter += 1
-				if self.td_counter > 7:
+				if self.td_counter > 3:
 					self.td_counter = None
 					# Display item
 					if self.current_item:
@@ -101,7 +104,8 @@ class piratebay(object):
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/search/%s/%u/99/%s' % (what, i, self.supported_categories[cat]))
+			dat = retrieve_url(self.url+'/search/%s/%u/7/%s' % (what, i, self.supported_categories[cat]))
+			print self.url+'/search/%s/%u/7/%s' % (what, i, self.supported_categories[cat])
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:
