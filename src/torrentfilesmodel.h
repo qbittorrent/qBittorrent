@@ -57,7 +57,11 @@ public:
     Q_ASSERT(parent);
     parentItem = parent;
     type = TFILE;
-    itemData << misc::toQString(f.path.string()).split("/").last();
+    QString name = misc::toQString(f.path.string()).split("/").last();
+    // Do not display incomplete extensions
+    if(name.endsWith(".!qB"))
+      name.chop(4);
+    itemData << name;
     qDebug("Created a TreeItem file with name %s", getName().toLocal8Bit().data());
     qDebug("parent is %s", parent->getName().toLocal8Bit().data());
     itemData << QVariant((qulonglong)f.size);
@@ -74,6 +78,9 @@ public:
   TreeItem(QString name, TreeItem *parent=0) {
     parentItem = parent;
     type = FOLDER;
+    // Do not display incomplete extensions
+    if(name.endsWith(".!qB"))
+      name.chop(4);
     itemData << name;
     itemData << 0.; // Size
     itemData << 0.; // Progress;
