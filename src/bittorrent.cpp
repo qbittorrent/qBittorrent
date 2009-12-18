@@ -1300,7 +1300,8 @@ void Bittorrent::appendqBextensionToTorrent(QTorrentHandle h, bool append) {
   h.file_progress(fp);
   for(int i=0; i<h.num_files(); ++i) {
     if(append) {
-      if(fp[i] < 1.) {
+      qulonglong file_size = h.filesize_at(i);
+      if(file_size > 0 && (fp[i]/(double)file_size) < 1.) {
         QString name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
         if(!name.endsWith(".!qB")) {
           qDebug("Renaming %s to %s", name.toLocal8Bit().data(), (name+".!qB").toLocal8Bit().data());
