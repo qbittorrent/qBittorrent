@@ -148,8 +148,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Downloads tab
   connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableTempPathInput(bool)));
   connect(checkScanDir, SIGNAL(toggled(bool)), this, SLOT(enableDirScan(bool)));
-  connect(checkAppendLabel, SIGNAL(toggled(bool)), this, SLOT(enableDirScan(bool)));
-  connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableDirScan(bool)));
   connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -192,6 +190,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkNoSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkAppendLabel, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinCache, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));

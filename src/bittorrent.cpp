@@ -1794,6 +1794,7 @@ QString Bittorrent::getSavePath(QString hash) {
     if(savePath.isEmpty())
       savePath = defaultSavePath;
     if(appendLabelToSavePath) {
+      qDebug("appendLabelToSavePath is true");
       QString label = TorrentTempData::getLabel(hash);
       if(!label.isEmpty()) {
         QDir save_dir(savePath);
