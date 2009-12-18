@@ -110,6 +110,9 @@ private:
   bool PeXEnabled;
   bool queueingEnabled;
   bool appendLabelToSavePath;
+#ifdef LIBTORRENT_0_15
+  bool appendqBExtension;
+#endif
   QString defaultSavePath;
   QString defaultTempPath;
   // GeoIP
@@ -202,6 +205,11 @@ public slots:
   void setDefaultTempPath(QString temppath);
   void setAppendLabelToSavePath(bool append);
   void appendLabelToTorrentSavePath(QTorrentHandle h);
+  void changeLabelInTorrentSavePath(QTorrentHandle h, QString old_label, QString new_label);
+#ifdef LIBTORRENT_0_15
+  void appendqBextensionToTorrent(QTorrentHandle h, bool append);
+  void setAppendqBExtension(bool append);
+#endif
   void applyEncryptionSettings(pe_settings se);
   void setDownloadLimit(QString hash, long val);
   void setUploadLimit(QString hash, long val);

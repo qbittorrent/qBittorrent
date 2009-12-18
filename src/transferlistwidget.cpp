@@ -873,6 +873,8 @@ void TransferListWidget::setSelectionLabel(QString label) {
     proxyModel->setData(proxyModel->index(index.row(), TR_LABEL), QVariant(label));
     TorrentPersistentData::saveLabel(hash, label);
     emit torrentChangedLabel(old_label, label);
+    // Update save path if necessary
+    BTSession->changeLabelInTorrentSavePath(BTSession->getTorrentHandle(hash), old_label, label);
   }
 }
 

@@ -133,10 +133,12 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Downloads/TempPath"), home+"qBT_dir"+QDir::separator()+"temp").toString();
   }
 
+#ifdef LIBTORRENT_0_15
   static bool useIncompleteFilesExtension() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/UseIncompleteExtension"), false).toBool();
   }
+#endif
 
   static bool appendTorrentLabel() {
     QSettings settings("qBittorrent", "qBittorrent");

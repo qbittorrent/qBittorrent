@@ -618,6 +618,10 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) {
   h.piece_priority(last_piece, prio);
 }
 
+void QTorrentHandle::rename_file(int index, QString name) {
+  h.rename_file(index, name.toStdString());
+}
+
 //
 // Operators
 //

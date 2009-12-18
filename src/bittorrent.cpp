@@ -103,6 +103,9 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   appendLabelToSavePath = Preferences::appendTorrentLabel();
+#ifdef LIBTORRENT_0_15
+  appendqBExtension = Preferences::useIncompleteFilesExtension();
+#endif
   // Apply user settings to Bittorrent session
   configureSession();
   qDebug("* BTSession constructed");
@@ -235,6 +238,9 @@ void Bittorrent::configureSession() {
     setDefaultTempPath(QString::null);
   }
   setAppendLabelToSavePath(Preferences::appendTorrentLabel());
+#ifdef LIBTORRENT_0_15
+  setAppendqBExtension(Preferences::useIncompleteFilesExtension());
+#endif
   preAllocateAllFiles(Preferences::preAllocateAllFiles());
   startTorrentsInPause(Preferences::addTorrentsInPause());
   // * Scan dir
@@ -935,6 +941,11 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
       TorrentPersistentData::saveSavePath(hash, savePath);
     }
+#ifdef LIBTORRENT_0_15
+    // Append .!qB to incomplete files
+    if(appendqBExtension)
+      appendqBextensionToTorrent(h, true);
+#endif
   }
   QString newFile = torrentBackup.path() + QDir::separator() + hash + ".torrent";
   if(file != newFile) {
@@ -1281,6 +1292,52 @@ void Bittorrent::setDefaultTempPath(QString temppath) {
   defaultTempPath = temppath;
 }
 
+#ifdef LIBTORRENT_0_15
+void Bittorrent::appendqBextensionToTorrent(QTorrentHandle h, bool append) {
+  if(!h.is_valid()) return;
+  std::vector<size_type> fp;
+  h.file_progress(fp);
+  for(int i=0; i<h.num_files(); ++i) {
+    if(append) {
+      if(fp[i] < 1.) {
+        QString name = h.file_at(i);
+        if(!name.endsWith(".!qB")) {
+          h.rename_file(i, name + ".!qB");
+        }
+      }
+    } else {
+      QString name = h.file_at(i);
+      if(name.endsWith(".!qB")) {
+        name.chop(4);
+        h.rename_file(i, name);
+      }
+    }
+  }
+}
+#endif
+
+void Bittorrent::changeLabelInTorrentSavePath(QTorrentHandle h, QString old_label, QString new_label) {
+  if(!h.is_valid()) return;
+  if(!appendLabelToSavePath) return;
+  QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
+  QDir old_dir(old_save_path);
+  bool move_storage = (old_dir == QDir(h.save_path()));
+  if(!old_label.isEmpty()) {
+    Q_ASSERT(old_dir.dirName() == old_label);
+    old_dir.cdUp();
+  }
+  QString new_save_path;
+  if(new_label.isEmpty())
+    new_save_path = old_dir.absolutePath();
+  else
+    old_dir.absoluteFilePath(new_label);
+  TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
+  if(move_storage) {
+    // Move storage
+      h.move_storage(new_save_path);
+  }
+}
+
 void Bittorrent::appendLabelToTorrentSavePath(QTorrentHandle h) {
   if(!h.is_valid()) return;
   QString label = TorrentPersistentData::getLabel(h.hash());
@@ -1299,7 +1356,7 @@ void Bittorrent::appendLabelToTorrentSavePath(QTorrentHandle h) {
 }
 
 void Bittorrent::setAppendLabelToSavePath(bool append) {
-  if(appendLabelToSavePath != Preferences::appendTorrentLabel()) {
+  if(appendLabelToSavePath != append) {
     appendLabelToSavePath = !appendLabelToSavePath;
     if(appendLabelToSavePath) {
       // Move torrents storage to sub folder with label name
@@ -1312,6 +1369,21 @@ void Bittorrent::setAppendLabelToSavePath(bool append) {
     }
   }
 }
+
+#ifdef LIBTORRENT_0_15
+void Bittorrent::setAppendqBExtension(bool append) {
+  if(appendqBExtension != append) {
+    appendqBExtension = !appendqBExtension;
+    // append or remove .!qB extension for incomplete files
+    std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle>::iterator torrentIT;
+    for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+      QTorrentHandle h = QTorrentHandle(*torrentIT);
+      appendqBextensionToTorrent(h, appendqBExtension);
+    }
+  }
+}
+#endif
 
 // Enable directory scanning
 void Bittorrent::enableDirectoryScanning(QString scan_dir) {
@@ -1564,6 +1636,19 @@ void Bittorrent::readAlerts() {
         }
       }
     }
+#ifdef LIBTORRENT_0_15
+    else if (file_completed_alert* p = dynamic_cast<file_completed_alert*>(a.get())) {
+      QTorrentHandle h(p->handle);
+      if(appendqBExtension) {
+        QString name = h.file_at(p->index);
+        if(name.endsWith(".!qB")) {
+          qDebug("File %s finished, removing .!qB extension", name.toLocal8Bit().data());
+          name.chop(4);
+          h.rename_file(p->index, name);
+        }
+      }
+    }
+#endif
     else if (listen_failed_alert* p = dynamic_cast<listen_failed_alert*>(a.get())) {
       // Level: fatal
       int tried_port = p->endpoint.port();

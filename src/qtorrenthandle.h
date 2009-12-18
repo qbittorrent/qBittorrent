@@ -158,6 +158,7 @@ class QTorrentHandle {
     void set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
     void add_tracker(announce_entry const& url);
     void prioritize_first_last_piece(bool b);
+    void rename_file(int index, QString name);
 
     //
     // Operators

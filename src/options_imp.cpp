@@ -267,6 +267,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
+#ifndef LIBTORRENT_0_15
+  checkAppendqB->setVisible(false);
+#endif
   // Adapt size
   loadWindowState();
   show();
@@ -372,7 +375,9 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("TempPathEnabled"), isTempPathEnabled());
   settings.setValue(QString::fromUtf8("TempPath"), getTempPath());
   settings.setValue(QString::fromUtf8("AppendLabel"), checkAppendLabel->isChecked());
+#ifdef LIBTORRENT_0_15
   settings.setValue(QString::fromUtf8("UseIncompleteExtension"), checkAppendqB->isChecked());
+#endif
   settings.setValue(QString::fromUtf8("PreAllocation"), preAllocateAllFiles());
   settings.setValue(QString::fromUtf8("DiskCache"), spinCache->value());
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
@@ -585,7 +590,9 @@ void options_imp::loadOptions(){
   }
   textTempPath->setText(Preferences::getTempPath());
   checkAppendLabel->setChecked(Preferences::appendTorrentLabel());
+#ifdef LIBTORRENT_0_15
   checkAppendqB->setChecked(Preferences::useIncompleteFilesExtension());
+#endif
   checkPreallocateAll->setChecked(Preferences::preAllocateAllFiles());
   spinCache->setValue(Preferences::diskCacheSize());
   checkAdditionDialog->setChecked(Preferences::useAdditionDialog());
