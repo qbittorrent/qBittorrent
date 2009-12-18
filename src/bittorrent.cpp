@@ -1657,10 +1657,10 @@ void Bittorrent::readAlerts() {
     else if (file_completed_alert* p = dynamic_cast<file_completed_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       if(appendqBExtension) {
-        QString name = h.file_at(p->index);
+        QString name = misc::toQString(h.get_torrent_info().file_at(p->index).path.string());
         if(name.endsWith(".!qB")) {
-          qDebug("File %s finished, removing .!qB extension", name.toLocal8Bit().data());
           name.chop(4);
+          qDebug("Renaming %s to %s", (name+".!qB").toLocal8Bit().data(), name.toLocal8Bit().data());
           h.rename_file(p->index, name);
         }
       }
