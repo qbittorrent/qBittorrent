@@ -1301,15 +1301,17 @@ void Bittorrent::appendqBextensionToTorrent(QTorrentHandle h, bool append) {
   for(int i=0; i<h.num_files(); ++i) {
     if(append) {
       if(fp[i] < 1.) {
-        QString name = h.file_at(i);
+        QString name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
         if(!name.endsWith(".!qB")) {
+          qDebug("Renaming %s to %s", name.toLocal8Bit().data(), (name+".!qB").toLocal8Bit().data());
           h.rename_file(i, name + ".!qB");
         }
       }
     } else {
-      QString name = h.file_at(i);
+      QString name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
       if(name.endsWith(".!qB")) {
         name.chop(4);
+        qDebug("Renaming %s to %s", (name+".!qB").toLocal8Bit().data(), name.toLocal8Bit().data());
         h.rename_file(i, name);
       }
     }
