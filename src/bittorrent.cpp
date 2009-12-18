@@ -930,11 +930,12 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       h.prioritize_files(TorrentTempData::getFilesPriority(hash));
       h.set_sequential_download(TorrentTempData::isSequential(hash));
     }
+    QString label = TorrentTempData::getLabel(hash);
     // Save persistent data for new torrent
     TorrentPersistentData::saveTorrentPersistentData(h);
     // Save Label
-    if(TorrentTempData::hasTempData(hash)) {
-      TorrentPersistentData::saveLabel(hash, TorrentTempData::getLabel(hash));
+    if(!label.isEmpty()) {
+      TorrentPersistentData::saveLabel(hash, label);
     }
     // Save save_path
     if(!defaultTempPath.isEmpty()) {
