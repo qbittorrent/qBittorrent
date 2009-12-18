@@ -1,5 +1,5 @@
-#VERSION: 1.32
-#AUTHORS: Fabien Devaux (fab@gnux.info)
+#VERSION: 1.40
+#AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,88 +27,85 @@
 
 from novaprinter import prettyPrinter
 from helpers import retrieve_url, download_file
-from xml.dom import minidom
+import sgmllib
 import re
 
 class mininova(object):
-	# Mandatory properties
-	url = 'http://www.mininova.org'
-	name = 'Mininova'
-	supported_categories = {'all': '0', 'movies': '4', 'tv': '8', 'music': '5', 'games': '3', 'anime': '1', 'software': '7', 'pictures': '6', 'books': '2'}
-	
-	def download_torrent(self, info):
-		print download_file(info)
+  # Mandatory properties
+  url = 'http://www.mininova.org'
+  name = 'Mininova'
+  supported_categories = {'all': '0', 'movies': '4', 'tv': '8', 'music': '5', 'games': '3', 'anime': '1', 'software': '7', 'pictures': '6', 'books': '2'}
 
-	def search(self, what, cat='all'):
+  def __init__(self):
+    self.results = []
+    self.parser = self.SimpleSGMLParser(self.results, self.url)
 
-		def get_link(lnk):
-			lnks = lnk.getElementsByTagName('a')
-			i = 0
-			try:
-				while not lnks.item(i).attributes.get('href').value.startswith('/get'):
-					i += 1
-			except:
-				return None
-			return (self.url+lnks.item(i).attributes.get('href').value).strip()
-		
-		def get_name(lnk):
-			lnks = lnk.getElementsByTagName('a')
-			i = 0
-			try:
-				while not lnks.item(i).attributes.get('href').value.startswith('/tor'):
-					i += 1
-			except:
-				return None
-			name = ""
-			for node in lnks[i].childNodes:
-				if node.hasChildNodes():
-					name += node.firstChild.toxml()
-				else:
-					name += node.toxml()
-			return re.sub('<[a-zA-Z\/][^>]*>', '', name)
+  def download_torrent(self, info):
+    print download_file(info)
 
-		def get_text(txt):
-			if txt.nodeType == txt.TEXT_NODE:
-				return txt.toxml()
-			else:
-				return ''.join([ get_text(n) for n in txt.childNodes])
-		
-		if cat == 'all':
-			self.table_items = 'added cat name size seeds leech'.split()
-		else:
-			self.table_items = 'added name size seeds leech'.split()
-		page = 1
-		while True and page<11:
-			res = 0
-			dat = retrieve_url(self.url+'/search/%s/%s/seeds/%d'%(what, self.supported_categories[cat], page))
-			dat = re.sub("<a href=\"http://www.boardreader.com/index.php.*\"", "<a href=\"plop\"", dat)
-			dat = re.sub("<=", "&lt;=", dat)
-			dat = re.sub("&\s", "&amp; ", dat)
-			dat = re.sub("&(?!amp)", "&amp;", dat)
-			x = minidom.parseString(dat)
-			table = x.getElementsByTagName('table').item(0)
-			if not table: return
-			for tr in table.getElementsByTagName('tr'):
-				tds = tr.getElementsByTagName('td')
-				if tds:
-					i = 0
-					vals = {}
-					for td in tds:
-						if self.table_items[i] == 'name':
-							vals['link'] = get_link(td)
-							vals['name'] = get_name(td)
-						else:
-							vals[self.table_items[i]] = get_text(td).strip()
-						i += 1
-					vals['engine_url'] = self.url
-					if not vals['seeds'].isdigit():
-						vals['seeds'] = 0
-					if not vals['leech'].isdigit():
-						vals['leech'] = 0
-					if vals['link'] is None:
-						continue
-					prettyPrinter(vals)
-					res = res + 1
-			if res == 0:
-				break
-			page = page +1
+  class SimpleSGMLParser(sgmllib.SGMLParser):
+    def __init__(self, results, url, *args):
+      sgmllib.SGMLParser.__init__(self)
+      self.url = url
+      self.td_counter = None
+      self.current_item = None
+      self.results = results
+      
+    def start_a(self, attr):
+      params = dict(attr)
+      #print params
+      if params.has_key('href') and params['href'].startswith("/get/"):
+        self.current_item = {}
+        self.td_counter = 0
+        self.current_item['link']=self.url+params['href'].strip()
+    
+    def handle_data(self, data):
+      if self.td_counter == 0:
+        if not self.current_item.has_key('name'):
+          self.current_item['name'] = ''
+        self.current_item['name']+= data
+      elif self.td_counter == 1:
+        if not self.current_item.has_key('size'):
+          self.current_item['size'] = ''
+        self.current_item['size']+= data.strip()
+      elif self.td_counter == 2:
+        if not self.current_item.has_key('seeds'):
+          self.current_item['seeds'] = ''
+        self.current_item['seeds']+= data.strip()
+      elif self.td_counter == 3:
+        if not self.current_item.has_key('leech'):
+          self.current_item['leech'] = ''
+        self.current_item['leech']+= data.strip()
+      
+    def start_td(self,attr):
+        if isinstance(self.td_counter,int):
+          self.td_counter += 1
+          if self.td_counter > 4:
+            self.td_counter = None
+            # Display item
+            if self.current_item:
+              self.current_item['engine_url'] = self.url
+              if not self.current_item['seeds'].isdigit():
+                self.current_item['seeds'] = 0
+              if not self.current_item['leech'].isdigit():
+                self.current_item['leech'] = 0
+              prettyPrinter(self.current_item)
+              self.results.append('a')
+
+  def search(self, what, cat='all'):
+    ret = []
+    i = 1
+    while True and i<11:
+      results = []
+      parser = self.SimpleSGMLParser(results, self.url)
+      dat = retrieve_url(self.url+'/search/%s/%s/seeds/%d'%(what, self.supported_categories[cat], i))
+      results_re = re.compile('(?s)<h1>Search results for.*')
+      for match in results_re.finditer(dat):
+        res_tab = match.group(0)
+        parser.feed(res_tab)
+        parser.close()
+        break
+      if len(results) <= 0:
+        break
+      i += 1
+      
