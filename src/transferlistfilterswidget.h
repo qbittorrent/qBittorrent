@@ -354,6 +354,7 @@ protected slots:
       --nb_labeled;
     }
     --nb_torrents;
+    qDebug("nb_torrents: %d, nb_labeled: %d", nb_torrents, nb_labeled);
     Q_ASSERT(nb_torrents >= 0);
     Q_ASSERT(nb_labeled >= 0);
     Q_ASSERT(nb_labeled <= nb_torrents);

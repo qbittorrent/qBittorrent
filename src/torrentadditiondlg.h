@@ -199,6 +199,7 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     QStringList customLabels = settings.value("customLabels", QStringList()).toStringList();
+    comboLabel->addItem("");
     foreach(const QString& label, customLabels) {
       comboLabel->addItem(label);
     }
@@ -327,6 +328,7 @@ public slots:
     }
     // Save savepath
     TorrentTempData::setSavePath(hash, savePath.path());
+    qDebug("Torrent label is: %s", comboLabel->currentText().trimmed().toLocal8Bit().data());
     TorrentTempData::setLabel(hash, comboLabel->currentText().trimmed());
     // Save last dir to remember it
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));

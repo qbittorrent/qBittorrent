@@ -145,6 +145,12 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboLabel">
+       <property name="minimumSize">
+        <size>
+         <width>180</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
