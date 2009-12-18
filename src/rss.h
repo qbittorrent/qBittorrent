@@ -298,7 +298,7 @@ public:
 
   RssItem(RssStream* parent, QString _title, QString _torrent_url, QString _news_link, QString _description, QDateTime _date, QString _author, bool _read):
       parent(parent), title(_title), torrent_url(_torrent_url), news_link(_news_link), description(_description), date(_date), author(_author), read(_read){
-    if(!title.isEmpty() && !torrent_url.isEmpty()) {
+    if(!title.isEmpty()) {
       is_valid = true;
     } else {
       std::cerr << "ERROR: an invalid RSS item was saved" << std::endl;
