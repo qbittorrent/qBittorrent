@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>789</width>
+    <width>791</width>
     <height>572</height>
    </rect>
   </property>
@@ -25,7 +25,7 @@
      <item>
       <widget class="QListWidget" name="tabSelection">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -34,6 +34,12 @@
         <size>
          <width>121</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>121</width>
+         <height>16777215</height>
         </size>
        </property>
        <property name="frameShape">
@@ -98,7 +104,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/oxygen/preferences-desktop.png</normaloff>:/Icons/oxygen/preferences-desktop.png</iconset>
         </property>
         <property name="flags">
@@ -113,7 +119,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
         </property>
         <property name="flags">
@@ -128,7 +134,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/oxygen/connection.png</normaloff>:/Icons/oxygen/connection.png</iconset>
         </property>
         <property name="flags">
@@ -143,7 +149,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/oxygen/bt_settings.png</normaloff>:/Icons/oxygen/bt_settings.png</iconset>
         </property>
         <property name="flags">
@@ -155,7 +161,7 @@
          <string>Proxy</string>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/oxygen/proxy.png</normaloff>:/Icons/oxygen/proxy.png</iconset>
         </property>
        </item>
@@ -167,7 +173,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/oxygen/filter.png</normaloff>:/Icons/oxygen/filter.png</iconset>
         </property>
         <property name="flags">
@@ -182,7 +188,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/oxygen/webui.png</normaloff>:/Icons/oxygen/webui.png</iconset>
         </property>
         <property name="flags">
@@ -197,7 +203,7 @@
          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../icons.qrc">
           <normaloff>:/Icons/rss32.png</normaloff>:/Icons/rss32.png</iconset>
         </property>
         <property name="flags">
@@ -223,8 +229,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>622</width>
+              <height>493</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -626,8 +632,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>149</height>
+              <width>644</width>
+              <height>418</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -691,7 +697,7 @@
                        </size>
                       </property>
                       <property name="icon">
-                       <iconset>
+                       <iconset resource="../icons.qrc">
                         <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
                       </property>
                      </widget>
@@ -740,7 +746,7 @@
                      </size>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="../icons.qrc">
                       <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
                     </property>
                    </widget>
@@ -757,223 +763,8 @@
                </layout>
               </widget>
              </item>
-            </layout>
-           </widget>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="dirScanBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="title">
-            <string comment="qBittorrent will watch a directory and automatically download torrents present in it">Folder watching</string>
-           </property>
-           <layout class="QVBoxLayout">
-            <item>
-             <widget class="QCheckBox" name="checkScanDir">
-              <property name="text">
-               <string>Automatically download torrents present in this folder:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout">
-              <property name="spacing">
-               <number>6</number>
-              </property>
-              <property name="margin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLineEdit" name="textScanDir">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QToolButton" name="browseScanDirButton">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>22</width>
-                  <height>22</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>25</width>
-                  <height>27</height>
-                 </size>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_6">
-           <item>
-            <widget class="QGroupBox" name="groupQueueing">
-             <property name="title">
-              <string>Torrent queueing</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout">
-              <item>
-               <widget class="QCheckBox" name="checkEnableQueueing">
-                <property name="text">
-                 <string>Enable queueing system</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="_2">
-                <item>
-                 <widget class="QLabel" name="label_max_active_dl">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="text">
-                   <string>Maximum active downloads:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spinMaxActiveDownloads">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="minimum">
-                   <number>-1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>999</number>
-                  </property>
-                  <property name="value">
-                   <number>3</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="_6">
-                <item>
-                 <widget class="QLabel" name="label_max_active_up">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="text">
-                   <string>Maximum active uploads:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spinMaxActiveUploads">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="minimum">
-                   <number>-1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>999</number>
-                  </property>
-                  <property name="value">
-                   <number>3</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="_7">
-                <item>
-                 <widget class="QLabel" name="maxActiveTorrents_lbl">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="text">
-                   <string>Maximum active torrents:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spinMaxActiveTorrents">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="minimum">
-                   <number>-1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>999</number>
-                  </property>
-                  <property name="value">
-                   <number>5</number>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>381</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_11">
              <item>
-              <widget class="QGroupBox" name="torrentAdditionBox">
+              <widget class="QGroupBox" name="dirScanBox">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -981,57 +772,53 @@
                 </sizepolicy>
                </property>
                <property name="title">
-                <string>When adding a torrent</string>
+                <string comment="qBittorrent will watch a directory and automatically download torrents present in it">Folder watching</string>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_5">
+               <layout class="QVBoxLayout">
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_4">
-                  <item>
-                   <widget class="QCheckBox" name="checkAdditionDialog">
-                    <property name="text">
-                     <string>Display torrent content and some options</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_2">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
+                 <widget class="QCheckBox" name="checkScanDir">
+                  <property name="text">
+                   <string>Automatically download torrents present in this folder:</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                 <layout class="QHBoxLayout">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="margin">
+                   <number>0</number>
+                  </property>
                   <item>
-                   <widget class="QCheckBox" name="checkStartPaused">
-                    <property name="text">
-                     <string comment="The torrent will be added to download list in pause state">Do not start download automatically</string>
+                   <widget class="QLineEdit" name="textScanDir">
+                    <property name="enabled">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <spacer name="horizontalSpacer_3">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                   <widget class="QToolButton" name="browseScanDirButton">
+                    <property name="enabled">
+                     <bool>false</bool>
                     </property>
-                    <property name="sizeHint" stdset="0">
+                    <property name="minimumSize">
                      <size>
-                      <width>40</width>
-                      <height>20</height>
+                      <width>22</width>
+                      <height>22</height>
                      </size>
                     </property>
-                   </spacer>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>27</height>
+                     </size>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../icons.qrc">
+                      <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -1039,34 +826,240 @@
               </widget>
              </item>
              <item>
-              <spacer name="verticalSpacer_5">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QGroupBox" name="groupQueueing">
+                 <property name="title">
+                  <string>Torrent queueing</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout">
+                  <item>
+                   <widget class="QCheckBox" name="checkEnableQueueing">
+                    <property name="text">
+                     <string>Enable queueing system</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="_2">
+                    <item>
+                     <widget class="QLabel" name="label_max_active_dl">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Maximum active downloads:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_6">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinMaxActiveDownloads">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="minimum">
+                       <number>-1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>999</number>
+                      </property>
+                      <property name="value">
+                       <number>3</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="_6">
+                    <item>
+                     <widget class="QLabel" name="label_max_active_up">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Maximum active uploads:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinMaxActiveUploads">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="minimum">
+                       <number>-1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>999</number>
+                      </property>
+                      <property name="value">
+                       <number>3</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="_7">
+                    <item>
+                     <widget class="QLabel" name="maxActiveTorrents_lbl">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Maximum active torrents:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>381</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinMaxActiveTorrents">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="minimum">
+                       <number>-1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>999</number>
+                      </property>
+                      <property name="value">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_11">
+                 <item>
+                  <widget class="QGroupBox" name="torrentAdditionBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="title">
+                    <string>When adding a torrent</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_5">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_4">
+                      <item>
+                       <widget class="QCheckBox" name="checkAdditionDialog">
+                        <property name="text">
+                         <string>Display torrent content and some options</string>
+                        </property>
+                        <property name="checked">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_2">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QCheckBox" name="checkStartPaused">
+                        <property name="text">
+                         <string comment="The torrent will be added to download list in pause state">Do not start download automatically</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
              </item>
             </layout>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
+           </widget>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -1082,8 +1075,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>602</width>
-              <height>513</height>
+              <width>451</width>
+              <height>505</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -1503,8 +1496,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>466</width>
+              <height>340</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1804,8 +1797,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>488</height>
+              <width>370</width>
+              <height>428</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2304,8 +2297,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>226</width>
-              <height>123</height>
+              <width>228</width>
+              <height>124</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2360,7 +2353,7 @@
                      </size>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="../icons.qrc">
                       <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
                     </property>
                    </widget>
@@ -2401,8 +2394,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>218</width>
-              <height>220</height>
+              <width>219</width>
+              <height>221</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2565,8 +2558,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>451</width>
-              <height>195</height>
+              <width>452</width>
+              <height>192</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -2612,7 +2605,7 @@
                         <string/>
                        </property>
                        <property name="pixmap">
-                        <pixmap>:/Icons/rss32.png</pixmap>
+                        <pixmap resource="../icons.qrc">:/Icons/rss32.png</pixmap>
                        </property>
                        <property name="scaledContents">
                         <bool>true</bool>
@@ -2811,7 +2804,7 @@
   <tabstop>textWebUiPassword</tabstop>
  </tabstops>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="../icons.qrc"/>
  </resources>
  <connections/>
 </ui>
