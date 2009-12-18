@@ -1295,7 +1295,7 @@ void Bittorrent::setDefaultTempPath(QString temppath) {
 
 #ifdef LIBTORRENT_0_15
 void Bittorrent::appendqBextensionToTorrent(QTorrentHandle h, bool append) {
-  if(!h.is_valid()) return;
+  if(!h.is_valid() || !h.has_metadata()) return;
   std::vector<size_type> fp;
   h.file_progress(fp);
   for(int i=0; i<h.num_files(); ++i) {
