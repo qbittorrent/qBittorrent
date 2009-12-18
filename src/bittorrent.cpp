@@ -1625,6 +1625,11 @@ void Bittorrent::readAlerts() {
       QTorrentHandle h(p->handle);
       if(h.is_valid()) {
         qDebug("Received metadata for %s", h.hash().toLocal8Bit().data());
+#ifdef LIBTORRENT_0_15
+        // Append .!qB to incomplete files
+        if(appendqBExtension)
+          appendqBextensionToTorrent(h, true);
+#endif
         emit metadataReceived(h);
         if(h.is_paused()) {
           // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
