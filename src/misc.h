@@ -215,6 +215,11 @@ public:
   // return qBittorrent config path
   static QString qBittorrentPath() {
     QString qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();
+    // Create dir if it does not exist
+    if(!QFile::exists(qBtPath)){
+      QDir dir(qBtPath);
+      dir.mkpath(qBtPath);
+    }
     return qBtPath;
   }
 

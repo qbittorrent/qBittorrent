@@ -1,4 +1,5 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
+* Fri Dec 18 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
+    - BUGFIX: Fix .qbittorrent folder not being created (critical bug introduced in v2.0.1 that makes qBittorrent unusuable for new users)
     - BUGFIX: Fix RSS Feed downloader for some feeds
     - BUGFIX: Do not use home folder as a fallback when the save path is not accessible
     - BUGFIX: Fix Mininova, ThePirateBay search engine plugins
