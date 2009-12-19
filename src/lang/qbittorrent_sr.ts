@@ -499,7 +499,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2263"/>
         <source>Affected connections</source>
-        <translation>Проблематичне конекције</translation>
+        <translation>Очекиване конекције</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2275"/>
@@ -709,13 +709,13 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1505"/>
         <source>Resolve peer countries</source>
-        <translatorcomment>Peer (учесничк) -активна веза</translatorcomment>
-        <translation>Одреди земљу peer-а (учесничка)</translation>
+        <translatorcomment>Peer (учесник) -активна веза</translatorcomment>
+        <translation>Одреди земљу peer-а (учесника)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1515"/>
         <source>Resolve peer host names</source>
-        <translation>Одреди име хоста peer-а (учесничка)</translation>
+        <translation>Одреди име хоста peer-а (учесника)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1564"/>
