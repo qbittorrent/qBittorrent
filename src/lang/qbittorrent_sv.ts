@@ -2003,7 +2003,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2124,6 +2124,14 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Distribuerad i %1</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

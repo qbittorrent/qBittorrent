@@ -3420,9 +3420,8 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
         <translation type="obsolete">Dimensione</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="484"/>
         <source>Priority</source>
-        <translation>Priorità</translation>
+        <translation type="obsolete">Priorità</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="82"/>
@@ -3470,27 +3469,37 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
         <translation>Max %1</translation>
     </message>
     <message>
+        <location filename="../propertieswidget.cpp" line="483"/>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="486"/>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>None - Unreachable?</source>
         <translation type="obsolete">Nessuno - Irraggiungibile?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="547"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nuovo seed web</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="545"/>
+        <location filename="../propertieswidget.cpp" line="548"/>
         <source>New url seed:</source>
         <translation>Nuovo seed web:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="550"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="551"/>
+        <location filename="../propertieswidget.cpp" line="554"/>
         <source>This url seed is already in the list.</source>
         <translation>Questo seed web è già nella lista.</translation>
     </message>
@@ -3499,18 +3508,18 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
         <translation type="obsolete">La lista dei tracker non può essere vuota.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="596"/>
-        <location filename="../propertieswidget.cpp" line="598"/>
+        <location filename="../propertieswidget.cpp" line="599"/>
+        <location filename="../propertieswidget.cpp" line="601"/>
         <source>Choose save path</source>
         <translation>Scegliere una directory di salvataggio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Save path creation error</source>
         <translation>Errore nella creazione della directory di salvataggio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Could not create the save path</source>
         <translation>Impossibile creare la directory di salvataggio</translation>
     </message>

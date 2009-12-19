@@ -50,13 +50,15 @@ private:
   TreeItem *parentItem;
   TreeItemType type;
   qulonglong total_done;
+  int file_index;
 
 public:
   // File Construction
-  TreeItem(file_entry f, TreeItem *parent) {
+  TreeItem(file_entry f, TreeItem *parent, int _file_index) {
     Q_ASSERT(parent);
     parentItem = parent;
     type = TFILE;
+    file_index = _file_index;
     QString name = misc::toQString(f.path.string()).split("/").last();
     // Do not display incomplete extensions
     if(name.endsWith(".!qB"))
@@ -101,6 +103,15 @@ public:
   ~TreeItem() {
     qDebug("Deleting item: %s", getName().toLocal8Bit().data());
     qDeleteAll(childItems);
+  }
+
+  TreeItemType getType() const {
+    return type;
+  }
+
+  int getFileIndex() const {
+    Q_ASSERT(type ==TFILE);
+    return file_index;
   }
 
   void deleteAllChildren() {
@@ -369,6 +380,16 @@ public:
     return true;
   }
 
+  TreeItemType getType(const QModelIndex &index) {
+    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+    return item->getType();
+  }
+
+  int getFileIndex(const QModelIndex &index) {
+    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+    return item->getFileIndex();
+  }
+
   QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const {
     if (!index.isValid())
       return QVariant();
@@ -464,7 +485,7 @@ public:
 
     TreeItem *parent = this->rootItem;
     if(t.num_files() ==1) {
-      TreeItem *f = new TreeItem(t.file_at(0), parent);
+      TreeItem *f = new TreeItem(t.file_at(0), parent, 0);
       //parent->appendChild(f);
       files_index[0] = f;
       emit layoutChanged();
@@ -496,7 +517,7 @@ public:
         current_parent = new_parent;
       }
       // Actually create the file
-      TreeItem *f = new TreeItem(*fi, current_parent);
+      TreeItem *f = new TreeItem(*fi, current_parent, i);
       //current_parent->appendChild(f);
       files_index[i] = f;
       fi++;

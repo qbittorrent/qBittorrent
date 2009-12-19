@@ -3006,7 +3006,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Пріоритет</translation>
+        <translation type="obsolete">Пріоритет</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3130,6 +3130,14 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set priority</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

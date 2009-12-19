@@ -3641,9 +3641,8 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">크기</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="484"/>
         <source>Priority</source>
-        <translation>우선순위</translation>
+        <translation type="obsolete">우선순위</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="82"/>
@@ -3691,27 +3690,37 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>최고 %1</translation>
     </message>
     <message>
+        <location filename="../propertieswidget.cpp" line="483"/>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="486"/>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>None - Unreachable?</source>
         <translation type="obsolete">없음 - 접근할수 없습니까?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="547"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 웹 완전체(Url seed)</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="545"/>
+        <location filename="../propertieswidget.cpp" line="548"/>
         <source>New url seed:</source>
         <translation>새 웹 완전체(Url seed):</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="550"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
         <source>qBittorrent</source>
         <translation>큐비토렌트</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="551"/>
+        <location filename="../propertieswidget.cpp" line="554"/>
         <source>This url seed is already in the list.</source>
         <translation>이 웹완전체(Url seed)는 이미 목록에 포함되어 있습니다.</translation>
     </message>
@@ -3720,18 +3729,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">트렉커 리스트(Trackers List)를 비울수 없습니다. </translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="596"/>
-        <location filename="../propertieswidget.cpp" line="598"/>
+        <location filename="../propertieswidget.cpp" line="599"/>
+        <location filename="../propertieswidget.cpp" line="601"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Save path creation error</source>
         <translation>저장 경로에 설정 오류</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>

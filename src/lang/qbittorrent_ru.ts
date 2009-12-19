@@ -167,121 +167,121 @@ p, li { white-space: pre-wrap; }
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">%1 достиг установленного вами максимального соотношения.</translation>
+        <translation>%1 достиг установленного вами максимального соотношения.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent привязан к порту: TCP/%1</translation>
+        <translation>qBittorrent привязан к порту: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">Поддержка UPnP [Вкл]</translation>
+        <translation>Поддержка UPnP [Вкл]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">Поддержка UPnP [Выкл]</translation>
+        <translation>Поддержка UPnP [Выкл]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">Поддержка NAT-PMP [Вкл]</translation>
+        <translation>Поддержка NAT-PMP [Вкл]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">Поддержка NAT-PMP [Выкл]</translation>
+        <translation>Поддержка NAT-PMP [Выкл]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">Поддержка DHT [Вкл.], порт: UDP/%1</translation>
+        <translation>Поддержка DHT [Вкл.], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">Поддержка DHT [Выкл]</translation>
+        <translation>Поддержка DHT [Выкл]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">Поддержка PeX [Вкл]</translation>
+        <translation>Поддержка PeX [Вкл]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">Обнаружение локальных пиров [Вкл]</translation>
+        <translation>Обнаружение локальных пиров [Вкл]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">Обнаружение локальных пиров [Выкл]</translation>
+        <translation>Обнаружение локальных пиров [Выкл]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">Поддержка шифрования [Вкл]</translation>
+        <translation>Поддержка шифрования [Вкл]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">Поддержка шифрования [Принудительно]</translation>
+        <translation>Поддержка шифрования [Принудительно]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">Поддержка шифрования [Выкл]</translation>
+        <translation>Поддержка шифрования [Выкл]</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка WEb интерфейса - Не могу привязаться к порту %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; был удален из списка передач и с жесткого диска.</translation>
+        <translation>&apos;%1&apos; был удален из списка передач и с жесткого диска.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; был удален из списка передач.</translation>
+        <translation>&apos;%1&apos; был удален из списка передач.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">&apos;%1&apos; не является magnet URI.</translation>
+        <translation>&apos;%1&apos; не является magnet URI.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; уже присутствует в списке закачек.</translation>
+        <translation>&apos;%1&apos; уже присутствует в списке закачек.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; добавлен в список закачек.</translation>
+        <translation>&apos;%1&apos; добавлен в список закачек.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось декодировать torrent файл: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Этот файл либо поврежден, либо не torrent типа.</translation>
+        <translation>Этот файл либо поврежден, либо не torrent типа.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;был заблокирован в соответствии с вашим IP фильтром&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;был заблокирован в соответствии с вашим IP фильтром&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;был заблокирован из-за поврежденных кусочков&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;был заблокирован из-за поврежденных кусочков&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">Рекурсивная загрузка файла %1 ввстроенного в торрент %2</translation>
+        <translation>Рекурсивная загрузка файла %1 ввстроенного в торрент %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Не удалось декодировать %1 torrent файл.</translation>
+        <translation>Не удалось декодировать %1 torrent файл.</translation>
     </message>
     <message>
         <source>Couldn&apos;t listen on any of the given ports.</source>
@@ -289,28 +289,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">Распределение портов UPnP/NAT-PMP не удалось с сообщением: %1</translation>
+        <translation>Распределение портов UPnP/NAT-PMP не удалось с сообщением: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">Распределение портов UPnP/NAT-PMP прошло успешно: %1</translation>
+        <translation>Распределение портов UPnP/NAT-PMP прошло успешно: %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Быстрое восстановление данных для torrentа %1 было невозможно, проверка заново...</translation>
+        <translation>Быстрое восстановление данных для torrentа %1 было невозможно, проверка заново...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Поиск раздающего Url не удался: %1, сообщение: %2</translation>
+        <translation>Поиск раздающего Url не удался: %1, сообщение: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Скачивание &apos;%1&apos;, подождите...</translation>
+        <translation>Скачивание &apos;%1&apos;, подождите...</translation>
     </message>
     <message>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно прослушать порт %1, используется %2 взамен.</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
@@ -779,7 +779,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Предпочтения</translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>General</source>
@@ -1195,15 +1195,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MiB (advanced)</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать разные  порты для DHT и Bittorrent</translation>
     </message>
     <message>
         <source>QGroupBox::title {
@@ -1239,6 +1231,14 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MiB (advanced)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1369,42 +1369,42 @@ QGroupBox {
     <message>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1/с</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Работает</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновляется...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Не работает</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Не соединился</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">эта сессия</translation>
+        <translation>эта сессия</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/с</translation>
+        <translation>/с</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Раздается %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 макс</translation>
+        <translation>%1 макс</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -1597,7 +1597,7 @@ QGroupBox {
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Выберите путь сохранения</translation>
+        <translation>Выберите путь сохранения</translation>
     </message>
 </context>
 <context>
@@ -2561,7 +2561,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Некоторые файлы еще переносятся. Вы уверены что хотите выйти из qBittorrent?</translation>
+        <translation>Есть активные торренты. Вы уверены что хотите выйти из qBittorrent?</translation>
     </message>
     <message>
         <source>Alt+2</source>
@@ -2589,78 +2589,78 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent %1 (Скач: %2/с, Отд: %3/с)</translation>
     </message>
 </context>
 <context>
     <name>HttpServer</name>
     <message>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить</translation>
     </message>
     <message>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Помощь</translation>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить с жесткого диска</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачативать торренты с их URL и Magnet ссылки</translation>
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Толко одна ссылка в строке</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачать</translation>
     </message>
     <message>
         <source>Download local torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачать локальный торрент</translation>
     </message>
     <message>
         <source>Torrent files were correctly added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Торренты были добавлены в список скачивания.</translation>
     </message>
     <message>
         <source>Point to torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Укажите торрент файл</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены что хотите удалить выделенные торренты из списка и с жесткого диска?</translation>
     </message>
     <message>
         <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение соотношения скачивания должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение соотношения раздачи должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число соединений должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число соединений на торрент должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число слотов раздачи на торрент должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не возможно сохранить настройки, qBittorrent возможно недоступен.</translation>
     </message>
 </context>
 <context>
@@ -2735,7 +2735,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Предпочтения</translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>About</source>
@@ -2839,7 +2839,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Создать поток</translation>
+        <translation>Создать торрент</translation>
     </message>
     <message>
         <source>Ratio: </source>
@@ -2919,15 +2919,15 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Лог</translation>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть торрент</translation>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Посетить веб-сайт</translation>
     </message>
 </context>
 <context>
@@ -3095,7 +3095,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Комментарий:</translation>
+        <translation>Комментарий:</translation>
     </message>
     <message>
         <source>Current session</source>
@@ -3163,7 +3163,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Приоритет</translation>
+        <translation type="obsolete">Приоритет</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3220,7 +3220,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Wasted:</source>
-        <translation type="unfinished"></translation>
+        <translation>Потрачено:</translation>
     </message>
     <message>
         <source>UP limit:</source>
@@ -3282,16 +3282,24 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступность:</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/с</translation>
+        <translation>/с</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
+        <translation>Раздается %1</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set priority</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3426,7 +3434,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bullet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Article title</source>
@@ -3821,109 +3829,109 @@ Changelog:
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished">Глобальное ограничение скорости закачки</translation>
+        <translation>Глобальное ограничение скорости закачки</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished">Глобальное ограничение  скорость раздачи</translation>
+        <translation>Глобальное ограничение  скорость раздачи</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скач: %1/с - Перед: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Отдача: %1/с - Перед: %2</translation>
     </message>
     <message>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скач: %1Б/с - Перед: %2</translation>
     </message>
     <message>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translation>Отдача: %1Б/с - Перед: %2</translation>
     </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
 </context>
 <context>
     <name>TrackerList</name>
     <message>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Ссылка</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Статус</translation>
+        <translation>Статус</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished">Пиры</translation>
+        <translation>Пиры</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Сообщение</translation>
     </message>
     <message>
         <source>[DHT]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>[PeX]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>[LSD]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Работает</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Выключено</translation>
+        <translation>Выключено</translation>
     </message>
     <message>
         <source>This torrent is private</source>
-        <translation type="unfinished"></translation>
+        <translation>Это приватный торрент</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновляется...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Не работает</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Не соединился</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить новый трекер</translation>
     </message>
 </context>
 <context>
@@ -3974,7 +3982,7 @@ Changelog:
     <message>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
-        <translation type="unfinished">/с</translation>
+        <translation>/с</translation>
     </message>
 </context>
 <context>
@@ -4065,7 +4073,7 @@ Changelog:
     </message>
     <message>
         <source>Column visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображение колонок</translation>
     </message>
     <message>
         <source>Start</source>
@@ -4119,7 +4127,7 @@ Changelog:
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость загр</translation>
+        <translation>Скорость отдачи</translation>
     </message>
     <message>
         <source>Name</source>
@@ -4178,11 +4186,11 @@ Changelog:
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачивать последовательно</translation>
     </message>
     <message>
         <source>Download first and last piece first</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачивать первый и последний кусок сначала</translation>
     </message>
     <message>
         <source>Label</source>
@@ -5172,7 +5180,7 @@ Changelog:
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы можете получить новый плагины поиска здесь: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
 </context>
 <context>

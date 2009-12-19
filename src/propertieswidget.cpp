@@ -476,64 +476,106 @@ void PropertiesWidget::on_files_button_clicked() {
 }
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&){
-  //if(h.get_torrent_info().num_files() == 1) return;
-  QMenu myFilesLlistMenu(this);
-  //QModelIndex index;
-  // Enable/disable pause/start action given the DL state
-  //QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
-  myFilesLlistMenu.setTitle(tr("Priority"));
-  myFilesLlistMenu.addAction(actionIgnored);
-  myFilesLlistMenu.addAction(actionNormal);
-  myFilesLlistMenu.addAction(actionHigh);
-  myFilesLlistMenu.addAction(actionMaximum);
+  QMenu myFilesLlistMenu;
+  QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
+  QAction *actRename = 0;
+  if(selectedRows.size() == 1 && PropListModel->getType(selectedRows.first())==TFILE) {
+    actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
+    myFilesLlistMenu.addSeparator();
+  }
+  QMenu *prioritiesMenu = myFilesLlistMenu.addMenu(QIcon(":/Icons/oxygen/services.png"), tr("Set priority"));
+  prioritiesMenu->addAction(actionIgnored);
+  prioritiesMenu->addAction(actionNormal);
+  prioritiesMenu->addAction(actionHigh);
+  prioritiesMenu->addAction(actionMaximum);
   // Call menu
-  myFilesLlistMenu.exec(QCursor::pos());
+  QAction *act = myFilesLlistMenu.exec(QCursor::pos());
+  if(act) {
+    if(act == actRename) {
+      renameSelectedFile();
+    }
+  }
+}
+
+void PropertiesWidget::renameSelectedFile() {
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
+  Q_ASSERT(selectedIndexes.size() == 1);
+  // Ask for new name
+  bool ok;
+  QString new_name_last = QInputDialog::getText(this, tr("Rename torrent file"),
+                                           tr("New name:"), QLineEdit::Normal,
+                                           selectedIndexes.first().data().toString(), &ok);
+  if (ok && !new_name_last.isEmpty()) {
+    int file_index = PropListModel->getFileIndex(selectedIndexes.first());
+    if(!h.is_valid() || !h.has_metadata()) return;
+    QString old_name = misc::toQString(h.get_torrent_info().file_at(file_index).path.string());
+    if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
+      new_name_last += ".!qB";
+    }
+    QStringList path_items = old_name.split(QDir::separator());
+    path_items.removeLast();
+    path_items << new_name_last;
+    QString new_name = path_items.join(QDir::separator());
+    if(old_name == new_name) {
+      qDebug("Name did not change");
+      return;
+    }
+    // Check if that name is already used
+    for(int i=0; i<h.num_files(); ++i) {
+      if(i == file_index) continue;
+      if(misc::toQString(h.get_torrent_info().file_at(i).path.string()) == new_name) {
+        // Display error message
+        QMessageBox::warning(this, tr("The file could not be renamed"),
+                         tr("This name is already in use in this folder. Please use a different name."),
+                         QMessageBox::Ok);
+        return;
+      }
+    }
+    qDebug("Renaming %s to %s", old_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+    h.rename_file(file_index, new_name);
+    // Rename if torrent files model too
+    if(new_name_last.endsWith(".!qB"))
+      new_name_last.chop(4);
+    PropListModel->setData(selectedIndexes.first(), new_name_last);
+  }
 }
 
 void PropertiesWidget::ignoreSelection(){
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
   foreach(const QModelIndex &index, selectedIndexes){
-    if(index.column() == PRIORITY){
-      if(PropListModel->data(index) != QVariant(IGNORED)){
-        PropListModel->setData(index, QVariant(IGNORED));
-        filteredFilesChanged();
-      }
+    if(PropListModel->data(index) != QVariant(IGNORED)){
+      PropListModel->setData(index, QVariant(IGNORED));
+      filteredFilesChanged();
     }
   }
 }
 
 void PropertiesWidget::normalSelection(){
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
   foreach(const QModelIndex &index, selectedIndexes){
-    if(index.column() == PRIORITY){
-      if(PropListModel->data(index) != QVariant(NORMAL)){
-        PropListModel->setData(index, QVariant(NORMAL));
-        filteredFilesChanged();
-      }
+    if(PropListModel->data(index) != QVariant(NORMAL)){
+      PropListModel->setData(index, QVariant(NORMAL));
+      filteredFilesChanged();
     }
   }
 }
 
 void PropertiesWidget::highSelection(){
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
   foreach(const QModelIndex &index, selectedIndexes){
-    if(index.column() == PRIORITY){
-      if(PropListModel->data(index) != QVariant(HIGH)){
-        PropListModel->setData(index, QVariant(HIGH));
-        filteredFilesChanged();
-      }
+    if(PropListModel->data(index) != QVariant(HIGH)){
+      PropListModel->setData(index, QVariant(HIGH));
+      filteredFilesChanged();
     }
   }
 }
 
 void PropertiesWidget::maximumSelection(){
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedIndexes();
+  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
   foreach(const QModelIndex &index, selectedIndexes){
-    if(index.column() == PRIORITY){
-      if(PropListModel->data(index) != QVariant(MAXIMUM)){
-        PropListModel->setData(index, QVariant(MAXIMUM));
-        filteredFilesChanged();
-      }
+    if(PropListModel->data(index) != QVariant(MAXIMUM)){
+      PropListModel->setData(index, QVariant(MAXIMUM));
+      filteredFilesChanged();
     }
   }
 }

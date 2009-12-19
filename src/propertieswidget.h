@@ -98,6 +98,7 @@ protected slots:
   void showPiecesDownloaded(bool show);
   void showPiecesAvailability(bool show);
   void updateSavePath(QTorrentHandle& h);
+  void renameSelectedFile();
 
 public slots:
   void loadDynamicData();

@@ -3056,7 +3056,7 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioridade</translation>
+        <translation type="obsolete">Prioridade</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3181,6 +3181,14 @@ Está certo que quer sair do qBittorrent?</translation>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Seeded pelo %1</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

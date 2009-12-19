@@ -3717,9 +3717,8 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="484"/>
         <source>Priority</source>
-        <translation>Προτεραιότητα</translation>
+        <translation type="obsolete">Προτεραιότητα</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="82"/>
@@ -3767,27 +3766,37 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>μέγιστο %1</translation>
     </message>
     <message>
+        <location filename="../propertieswidget.cpp" line="483"/>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="486"/>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>None - Unreachable?</source>
         <translation type="obsolete">Κανένα - Απροσπέλαστο?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="547"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Νέο url διαμοιρασμού</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="545"/>
+        <location filename="../propertieswidget.cpp" line="548"/>
         <source>New url seed:</source>
         <translation>Νέο url διαμοιρασμού:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="550"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="551"/>
+        <location filename="../propertieswidget.cpp" line="554"/>
         <source>This url seed is already in the list.</source>
         <translation>Αυτό το url διαμοιρασμού είναι ήδη στη λίστα.</translation>
     </message>
@@ -3796,18 +3805,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Η λίστα των ιχνηλατών δεν γίνεται να είναι άδειο.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="596"/>
-        <location filename="../propertieswidget.cpp" line="598"/>
+        <location filename="../propertieswidget.cpp" line="599"/>
+        <location filename="../propertieswidget.cpp" line="601"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Could not create the save path</source>
         <translation>Αδύνατο να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>

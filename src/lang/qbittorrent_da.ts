@@ -2752,9 +2752,8 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
         <translation type="obsolete">Hentet</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="484"/>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2810,39 +2809,49 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
         <translation>Har seeded i %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="483"/>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="486"/>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="547"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny url seed</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="545"/>
+        <location filename="../propertieswidget.cpp" line="548"/>
         <source>New url seed:</source>
         <translation>Ny url seed:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="550"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="551"/>
+        <location filename="../propertieswidget.cpp" line="554"/>
         <source>This url seed is already in the list.</source>
         <translation>Denne url seed er allerede på listen.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="596"/>
-        <location filename="../propertieswidget.cpp" line="598"/>
+        <location filename="../propertieswidget.cpp" line="599"/>
+        <location filename="../propertieswidget.cpp" line="601"/>
         <source>Choose save path</source>
         <translation>Gem til denne mappe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Save path creation error</source>
         <translation>Fejl ved oprettelse af mappe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Could not create the save path</source>
         <translation>Kunne ikke oprette mappe svarende til den indtastede sti</translation>
     </message>

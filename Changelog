@@ -4,6 +4,7 @@
     - FEATURE: Disk cache size can be set from preferences
     - FEATURE: Peer Exchange (PeX) can be disabled from preferences
     - FEATURE: Append !.qB extension to incomplete files option (libtorrent >= v0.15 only)
+    - FEATURE: Torrent files can be renamed
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen

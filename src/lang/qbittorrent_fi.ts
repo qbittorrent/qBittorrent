@@ -3244,9 +3244,8 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Edistyminen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="484"/>
         <source>Priority</source>
-        <translation>Prioriteetti</translation>
+        <translation type="obsolete">Prioriteetti</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="82"/>
@@ -3294,27 +3293,37 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation>korkeintaan %1</translation>
     </message>
     <message>
+        <location filename="../propertieswidget.cpp" line="483"/>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="486"/>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>None - Unreachable?</source>
         <translation type="obsolete">Ei yhtään - tavoittamattomissa?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="547"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi URL-lähde</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="545"/>
+        <location filename="../propertieswidget.cpp" line="548"/>
         <source>New url seed:</source>
         <translation>Uusi URL-lähde:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="550"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="551"/>
+        <location filename="../propertieswidget.cpp" line="554"/>
         <source>This url seed is already in the list.</source>
         <translation>URL-jakaja on jo listalla.</translation>
     </message>
@@ -3323,18 +3332,18 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="596"/>
-        <location filename="../propertieswidget.cpp" line="598"/>
+        <location filename="../propertieswidget.cpp" line="599"/>
+        <location filename="../propertieswidget.cpp" line="601"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="605"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>

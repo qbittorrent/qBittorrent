@@ -3149,7 +3149,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Öncelik</translation>
+        <translation type="obsolete">Öncelik</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3274,6 +3274,14 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Gönderme zamanı:  %1</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

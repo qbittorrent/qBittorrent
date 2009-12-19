@@ -3074,7 +3074,7 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -3199,6 +3199,14 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     <message>
         <source>Comment:</source>
         <translation>Komentár:</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -2990,7 +2990,7 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritate</translation>
+        <translation type="obsolete">Prioritate</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3115,6 +3115,14 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Seed-eri pentru %1</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set priority</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
