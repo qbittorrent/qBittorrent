@@ -526,7 +526,11 @@ void PropertiesWidget::renameSelectedFile() {
       // Check if that name is already used
       for(int i=0; i<h.num_files(); ++i) {
         if(i == file_index) continue;
-        if(misc::toQString(h.get_torrent_info().file_at(i).path.string()) == new_name) {
+#ifdef Q_WS_WIN
+        if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseInsensitive) == 0) {
+#else
+        if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseSensitive) == 0) {
+#endif
           // Display error message
           QMessageBox::warning(this, tr("The file could not be renamed"),
                                tr("This name is already in use in this folder. Please use a different name."),
@@ -554,6 +558,19 @@ void PropertiesWidget::renameSelectedFile() {
       path_items << new_name_last;
       QString new_path = path_items.join(QDir::separator());
       // XXX: Check for overwriting
+      for(int i=0; i<h.num_files(); ++i) {
+        QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+#ifdef Q_WS_WIN
+        if(current_name.contains(new_path, Qt::CaseInsensitive)) {
+#else
+          if(current_name.contains(new_path, Qt::CaseSensitive)) {
+#endif
+          QMessageBox::warning(this, tr("The folder could not be renamed"),
+                               tr("This name is already in use in this folder. Please use a different name."),
+                               QMessageBox::Ok);
+          return;
+        }
+      }
       // Replace path in all files
       for(int i=0; i<h.num_files(); ++i) {
         QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
