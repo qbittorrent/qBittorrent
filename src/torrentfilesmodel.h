@@ -329,7 +329,7 @@ public:
 
   void updateFilesPriorities(std::vector<int> fprio) {
     for(unsigned int i=0; i<fprio.size(); ++i) {
-      qDebug("Called updateFilesPriorities with %d", fprio[i]);
+      //qDebug("Called updateFilesPriorities with %d", fprio[i]);
       files_index[i]->setPriority(fprio[i]);
     }
     emit layoutChanged();
@@ -338,7 +338,7 @@ public:
   std::vector<int> getFilesPriorities(unsigned int nbFiles) const {
     std::vector<int> prio;
     for(unsigned int i=0; i<nbFiles; ++i) {
-      qDebug("Called getFilesPriorities: %d", files_index[i]->getPriority());
+      //qDebug("Called getFilesPriorities: %d", files_index[i]->getPriority());
       prio.push_back(files_index[i]->getPriority());
     }
     return prio;

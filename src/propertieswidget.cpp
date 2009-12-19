@@ -479,7 +479,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   QMenu myFilesLlistMenu;
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
-  if(selectedRows.size() == 1 && PropListModel->getType(selectedRows.first())==TFILE) {
+  if(selectedRows.size() == 1) {
     actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
@@ -500,43 +500,70 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
 void PropertiesWidget::renameSelectedFile() {
   QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
   Q_ASSERT(selectedIndexes.size() == 1);
+  QModelIndex index = selectedIndexes.first();
   // Ask for new name
   bool ok;
   QString new_name_last = QInputDialog::getText(this, tr("Rename torrent file"),
-                                           tr("New name:"), QLineEdit::Normal,
-                                           selectedIndexes.first().data().toString(), &ok);
+                                                tr("New name:"), QLineEdit::Normal,
+                                                index.data().toString(), &ok);
   if (ok && !new_name_last.isEmpty()) {
-    int file_index = PropListModel->getFileIndex(selectedIndexes.first());
-    if(!h.is_valid() || !h.has_metadata()) return;
-    QString old_name = misc::toQString(h.get_torrent_info().file_at(file_index).path.string());
-    if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
-      new_name_last += ".!qB";
-    }
-    QStringList path_items = old_name.split(QDir::separator());
-    path_items.removeLast();
-    path_items << new_name_last;
-    QString new_name = path_items.join(QDir::separator());
-    if(old_name == new_name) {
-      qDebug("Name did not change");
-      return;
-    }
-    // Check if that name is already used
-    for(int i=0; i<h.num_files(); ++i) {
-      if(i == file_index) continue;
-      if(misc::toQString(h.get_torrent_info().file_at(i).path.string()) == new_name) {
-        // Display error message
-        QMessageBox::warning(this, tr("The file could not be renamed"),
-                         tr("This name is already in use in this folder. Please use a different name."),
-                         QMessageBox::Ok);
+    if(PropListModel->getType(index)==TFILE) {
+      // File renaming
+      int file_index = PropListModel->getFileIndex(index);
+      if(!h.is_valid() || !h.has_metadata()) return;
+      QString old_name = misc::toQString(h.get_torrent_info().file_at(file_index).path.string());
+      if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
+        new_name_last += ".!qB";
+      }
+      QStringList path_items = old_name.split(QDir::separator());
+      path_items.removeLast();
+      path_items << new_name_last;
+      QString new_name = path_items.join(QDir::separator());
+      if(old_name == new_name) {
+        qDebug("Name did not change");
         return;
       }
+      // Check if that name is already used
+      for(int i=0; i<h.num_files(); ++i) {
+        if(i == file_index) continue;
+        if(misc::toQString(h.get_torrent_info().file_at(i).path.string()) == new_name) {
+          // Display error message
+          QMessageBox::warning(this, tr("The file could not be renamed"),
+                               tr("This name is already in use in this folder. Please use a different name."),
+                               QMessageBox::Ok);
+          return;
+        }
+      }
+      qDebug("Renaming %s to %s", old_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+      h.rename_file(file_index, new_name);
+      // Rename if torrent files model too
+      if(new_name_last.endsWith(".!qB"))
+        new_name_last.chop(4);
+      PropListModel->setData(index, new_name_last);
+    } else {
+      // Folder renaming
+      QStringList path_items;
+      path_items << index.data().toString();
+      QModelIndex parent = PropListModel->parent(index);
+      while(parent.isValid()) {
+        path_items.prepend(parent.data().toString());
+        parent = PropListModel->parent(parent);
+      }
+      QString old_path = path_items.join(QDir::separator());
+      path_items.removeLast();
+      path_items << new_name_last;
+      QString new_path = path_items.join(QDir::separator());
+      // XXX: Check for overwriting
+      // Replace path in all files
+      for(int i=0; i<h.num_files(); ++i) {
+        QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+        QString new_name = current_name.replace(old_path, new_path);
+        qDebug("Rename %s to %s", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+        h.rename_file(i, new_name);
+      }
+      // Rename folder in torrent files model too
+      PropListModel->setData(index, new_name_last);
     }
-    qDebug("Renaming %s to %s", old_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
-    h.rename_file(file_index, new_name);
-    // Rename if torrent files model too
-    if(new_name_last.endsWith(".!qB"))
-      new_name_last.chop(4);
-    PropListModel->setData(selectedIndexes.first(), new_name_last);
   }
 }
 
