@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
     - BUGFIX: Minor cosmetic fix to program preferences
+    - BUGFIX: Fix "Temp path" button in program preferences
 
 * Fri Dec 18 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
     - BUGFIX: Fix .qbittorrent folder not being created (critical bug introduced in v2.0.1 that makes qBittorrent unusuable for new users)
