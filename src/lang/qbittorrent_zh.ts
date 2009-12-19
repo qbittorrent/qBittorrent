@@ -3179,22 +3179,22 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>忽略</translation>
+        <translation type="obsolete">忽略</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>正常</translation>
+        <translation type="obsolete">正常</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>高</translation>
+        <translation type="obsolete">高</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>最大</translation>
+        <translation type="obsolete">最大</translation>
     </message>
 </context>
 <context>
@@ -3374,19 +3374,19 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>忽略</translation>
+        <translation type="obsolete">忽略</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>正常</translation>
+        <translation type="obsolete">正常</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>最大</translation>
+        <translation type="obsolete">最大</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>高</translation>
+        <translation type="obsolete">高</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3416,7 +3416,23 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set priority</source>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3992,7 +4008,7 @@ reason: %2.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation>优先</translation>
+        <translation type="obsolete">优先</translation>
     </message>
 </context>
 <context>
@@ -4344,10 +4360,12 @@ reason: %2.</source>
     </message>
     <message>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4526,19 +4544,19 @@ previewing)</source>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>忽略</translation>
+        <translation type="obsolete">忽略</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>正常</translation>
+        <translation type="obsolete">正常</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>高</translation>
+        <translation type="obsolete">高</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>最大</translation>
+        <translation type="obsolete">最大</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -6449,7 +6467,7 @@ torrent.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation>优先</translation>
+        <translation type="obsolete">优先</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>

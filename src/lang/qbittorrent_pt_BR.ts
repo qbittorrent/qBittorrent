@@ -2950,22 +2950,22 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorado</translation>
+        <translation type="obsolete">Ignorado</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Alta</translation>
+        <translation type="obsolete">Alta</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Máxima</translation>
+        <translation type="obsolete">Máxima</translation>
     </message>
 </context>
 <context>
@@ -3145,19 +3145,19 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorado</translation>
+        <translation type="obsolete">Ignorado</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Máximo</translation>
+        <translation type="obsolete">Máximo</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Forte</translation>
+        <translation type="obsolete">Forte</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3187,7 +3187,23 @@ Está certo que quer sair do qBittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set priority</source>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3832,7 +3848,7 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioridade</translation>
+        <translation type="obsolete">Prioridade</translation>
     </message>
 </context>
 <context>
@@ -4180,10 +4196,12 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4332,19 +4350,19 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorado</translation>
+        <translation type="obsolete">Ignorado</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Alto</translation>
+        <translation type="obsolete">Alto</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Máximo</translation>
+        <translation type="obsolete">Máximo</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6141,7 +6159,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioridade</translation>
+        <translation type="obsolete">Prioridade</translation>
     </message>
     <message>
         <source>Unknown</source>

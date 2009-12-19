@@ -3082,22 +3082,22 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorowany</translation>
+        <translation type="obsolete">Ignorowany</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Normalny</translation>
+        <translation type="obsolete">Normalny</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Wysoki</translation>
+        <translation type="obsolete">Wysoki</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maksymalny</translation>
+        <translation type="obsolete">Maksymalny</translation>
     </message>
 </context>
 <context>
@@ -3277,19 +3277,19 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorowany</translation>
+        <translation type="obsolete">Ignorowany</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normalny</translation>
+        <translation type="obsolete">Normalny</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maksymalny</translation>
+        <translation type="obsolete">Maksymalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Wysoki</translation>
+        <translation type="obsolete">Wysoki</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3319,7 +3319,23 @@ Czy napewno zamknąć qBittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set priority</source>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3891,7 +3907,7 @@ Zmiany:
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorytet</translation>
+        <translation type="obsolete">Priorytet</translation>
     </message>
 </context>
 <context>
@@ -4238,10 +4254,12 @@ Zmiany:
     </message>
     <message>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4418,19 +4436,19 @@ Zmiany:
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorowany</translation>
+        <translation type="obsolete">Ignorowany</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normalny</translation>
+        <translation type="obsolete">Normalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Wysoki</translation>
+        <translation type="obsolete">Wysoki</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maksymalny</translation>
+        <translation type="obsolete">Maksymalny</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6204,7 +6222,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorytet</translation>
+        <translation type="obsolete">Priorytet</translation>
     </message>
     <message>
         <source>Seeding mode error</source>

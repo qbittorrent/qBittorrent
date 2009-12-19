@@ -2976,22 +2976,22 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorovaný</translation>
+        <translation type="obsolete">Ignorovaný</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Normálna</translation>
+        <translation type="obsolete">Normálna</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Vysoká</translation>
+        <translation type="obsolete">Vysoká</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maximálna</translation>
+        <translation type="obsolete">Maximálna</translation>
     </message>
 </context>
 <context>
@@ -3159,19 +3159,19 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorované</translation>
+        <translation type="obsolete">Ignorované</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normálna</translation>
+        <translation type="obsolete">Normálna</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximálna</translation>
+        <translation type="obsolete">Maximálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Vysoká</translation>
+        <translation type="obsolete">Vysoká</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3205,7 +3205,23 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set priority</source>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3769,7 +3785,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
     </message>
 </context>
 <context>
@@ -4101,10 +4117,12 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4257,19 +4275,19 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorovaný</translation>
+        <translation type="obsolete">Ignorovaný</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normálna</translation>
+        <translation type="obsolete">Normálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Vysoká</translation>
+        <translation type="obsolete">Vysoká</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximálna</translation>
+        <translation type="obsolete">Maximálna</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6150,7 +6168,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
     </message>
     <message>
         <source>Unknown</source>

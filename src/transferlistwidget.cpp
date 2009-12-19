@@ -996,8 +996,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   QStringList customLabels = getCustomLabels();
   QList<QAction*> labelActions;
   QMenu *labelMenu = listMenu.addMenu(QIcon(":/Icons/oxygen/feed-subscribe.png"), tr("Label"));
-  labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("New..."));
-  labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/edit-clear.png"), tr("Reset"));
+  labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("New...", "New label..."));
+  labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/edit-clear.png"), tr("Reset", "Reset label"));
   labelMenu->addSeparator();
   foreach(const QString &label, customLabels) {
     labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/folder.png"), label);

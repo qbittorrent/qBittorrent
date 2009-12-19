@@ -1893,22 +1893,22 @@ Are you sure you want to quit qBittorrent?</source>
     <name>PropListDelegate</name>
     <message>
         <source>Ignored</source>
-        <translation>Ignoreras</translation>
+        <translation type="obsolete">Ignoreras</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Hög</translation>
+        <translation type="obsolete">Hög</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maximal</translation>
+        <translation type="obsolete">Maximal</translation>
     </message>
 </context>
 <context>
@@ -2088,19 +2088,19 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignoreras</translation>
+        <translation type="obsolete">Ignoreras</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximal</translation>
+        <translation type="obsolete">Maximal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Hög</translation>
+        <translation type="obsolete">Hög</translation>
     </message>
     <message>
         <source>this session</source>
@@ -2130,7 +2130,23 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set priority</source>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2604,7 +2620,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
 </context>
 <context>
@@ -2956,10 +2972,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3029,19 +3047,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignoreras</translation>
+        <translation type="obsolete">Ignoreras</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Hög</translation>
+        <translation type="obsolete">Hög</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximal</translation>
+        <translation type="obsolete">Maximal</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -4423,7 +4441,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
     <message>
         <source>Unknown</source>

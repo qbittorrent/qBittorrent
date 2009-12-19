@@ -2904,22 +2904,22 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ігнорувати</translation>
+        <translation type="obsolete">Ігнорувати</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Нормальний</translation>
+        <translation type="obsolete">Нормальний</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Високий</translation>
+        <translation type="obsolete">Високий</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Максимальний</translation>
+        <translation type="obsolete">Максимальний</translation>
     </message>
 </context>
 <context>
@@ -3094,20 +3094,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignored</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Maximum</source>
-        <translation type="unfinished">Максимальний</translation>
+        <translation type="obsolete">Максимальний</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Високий</translation>
+        <translation type="obsolete">Високий</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3137,7 +3129,23 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set priority</source>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3696,7 +3704,7 @@ Changelog:
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Пріоритет</translation>
+        <translation type="obsolete">Пріоритет</translation>
     </message>
 </context>
 <context>
@@ -4017,10 +4025,12 @@ Changelog:
     </message>
     <message>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4173,19 +4183,19 @@ Changelog:
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Проігноровано</translation>
+        <translation type="obsolete">Проігноровано</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Нормально</translation>
+        <translation type="obsolete">Нормально</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Високий</translation>
+        <translation type="obsolete">Високий</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Максимальний</translation>
+        <translation type="obsolete">Максимальний</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -5844,7 +5854,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Пріоритет</translation>
+        <translation type="obsolete">Пріоритет</translation>
     </message>
     <message>
         <source>Unknown</source>

@@ -3527,32 +3527,23 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Σωστό</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="90"/>
-        <location filename="../proplistdelegate.h" line="129"/>
         <source>Ignored</source>
-        <translation>Αγνοείται</translation>
+        <translation type="obsolete">Αγνοείται</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="93"/>
-        <location filename="../proplistdelegate.h" line="103"/>
-        <location filename="../proplistdelegate.h" line="130"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Κανονική</translation>
+        <translation type="obsolete">Κανονική</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="96"/>
-        <location filename="../proplistdelegate.h" line="131"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Υψηλή</translation>
+        <translation type="obsolete">Υψηλή</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="99"/>
-        <location filename="../proplistdelegate.h" line="132"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Μέγιστη</translation>
+        <translation type="obsolete">Μέγιστη</translation>
     </message>
 </context>
 <context>
@@ -3721,58 +3712,75 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="82"/>
         <source>Ignored</source>
-        <translation>Αγνοήθηκε</translation>
+        <translation type="obsolete">Αγνοήθηκε</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="83"/>
         <source>Normal</source>
-        <translation>Κανονικό</translation>
+        <translation type="obsolete">Κανονικό</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="84"/>
         <source>Maximum</source>
-        <translation>Μέγιστο</translation>
+        <translation type="obsolete">Μέγιστο</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="85"/>
         <source>High</source>
-        <translation>Υψηλό</translation>
+        <translation type="obsolete">Υψηλό</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="313"/>
-        <location filename="../propertieswidget.cpp" line="314"/>
+        <location filename="../propertieswidget.cpp" line="299"/>
+        <location filename="../propertieswidget.cpp" line="300"/>
         <source>this session</source>
         <translation>τρέχουσα συνεδρία</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="318"/>
-        <location filename="../propertieswidget.cpp" line="322"/>
+        <location filename="../propertieswidget.cpp" line="304"/>
+        <location filename="../propertieswidget.cpp" line="308"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="325"/>
+        <location filename="../propertieswidget.cpp" line="311"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Διαμοιράστηκε για %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="329"/>
+        <location filename="../propertieswidget.cpp" line="315"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>μέγιστο %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="483"/>
+        <location filename="../propertieswidget.cpp" line="469"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="486"/>
-        <source>Set priority</source>
+        <location filename="../propertieswidget.cpp" line="489"/>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="490"/>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="518"/>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="519"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="552"/>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3780,23 +3788,23 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Κανένα - Απροσπέλαστο?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="547"/>
+        <location filename="../propertieswidget.cpp" line="581"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Νέο url διαμοιρασμού</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="548"/>
+        <location filename="../propertieswidget.cpp" line="582"/>
         <source>New url seed:</source>
         <translation>Νέο url διαμοιρασμού:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="553"/>
+        <location filename="../propertieswidget.cpp" line="587"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="554"/>
+        <location filename="../propertieswidget.cpp" line="588"/>
         <source>This url seed is already in the list.</source>
         <translation>Αυτό το url διαμοιρασμού είναι ήδη στη λίστα.</translation>
     </message>
@@ -3805,18 +3813,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Η λίστα των ιχνηλατών δεν γίνεται να είναι άδειο.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="599"/>
-        <location filename="../propertieswidget.cpp" line="601"/>
+        <location filename="../propertieswidget.cpp" line="633"/>
+        <location filename="../propertieswidget.cpp" line="635"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="608"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="608"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>Could not create the save path</source>
         <translation>Αδύνατο να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
@@ -4468,24 +4476,23 @@ Changelog:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Progress</source>
         <translation>Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
         <source>Priority</source>
-        <translation>Προτεραιότητα</translation>
+        <translation type="obsolete">Προτεραιότητα</translation>
     </message>
 </context>
 <context>
@@ -4913,11 +4920,13 @@ Changelog:
     <message>
         <location filename="../transferlistwidget.cpp" line="999"/>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5121,24 +5130,20 @@ Changelog:
         <translation type="obsolete"> Επιλογή</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Ignored</source>
-        <translation>Αγνοήθηκε</translation>
+        <translation type="obsolete">Αγνοήθηκε</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="340"/>
         <source>Normal</source>
-        <translation>Κανονικό</translation>
+        <translation type="obsolete">Κανονικό</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="345"/>
         <source>High</source>
-        <translation>Υψηλό</translation>
+        <translation type="obsolete">Υψηλό</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="350"/>
         <source>Maximum</source>
-        <translation>Μέγιστο</translation>
+        <translation type="obsolete">Μέγιστο</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
@@ -6239,7 +6244,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> μ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="302"/>
+        <location filename="../misc.h" line="315"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -6260,25 +6265,25 @@ However, those plugins were disabled.</source>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="314"/>
+        <location filename="../misc.h" line="327"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="318"/>
+        <location filename="../misc.h" line="331"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="323"/>
+        <location filename="../misc.h" line="336"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ώ%2λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="328"/>
+        <location filename="../misc.h" line="341"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1μ%2ώ%3λ</translation>
@@ -7083,8 +7088,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Σωστό</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="170"/>
-        <location filename="../torrentadditiondlg.h" line="173"/>
+        <location filename="../torrentadditiondlg.h" line="165"/>
+        <location filename="../torrentadditiondlg.h" line="168"/>
         <source>Unable to decode torrent file:</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent:</translation>
     </message>
@@ -7093,8 +7098,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Το αρχείο είτε είναι κατεστραμμένο, ή δεν ειναι ενα torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="245"/>
-        <location filename="../torrentadditiondlg.h" line="247"/>
+        <location filename="../torrentadditiondlg.h" line="240"/>
+        <location filename="../torrentadditiondlg.h" line="242"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
@@ -7107,54 +7112,54 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="230"/>
+        <location filename="../torrentadditiondlg.h" line="225"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 απομένουν μετά από το λήψη του torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="233"/>
+        <location filename="../torrentadditiondlg.h" line="228"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 επιπλέον απαιτούνται για τη λήψη)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="319"/>
+        <location filename="../torrentadditiondlg.h" line="266"/>
         <source>Empty save path</source>
         <translation>Κενή διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="319"/>
+        <location filename="../torrentadditiondlg.h" line="266"/>
         <source>Please enter a save path</source>
         <translation>Παρακαλώ εισάγετε μία διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="325"/>
+        <location filename="../torrentadditiondlg.h" line="272"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="325"/>
+        <location filename="../torrentadditiondlg.h" line="272"/>
         <source>Could not create the save path</source>
         <translation>Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="345"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
         <source>Seeding mode error</source>
         <translation>Σφάλμα λειτουργίας μοιράσματος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="345"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Επιλέξατε προσπέλαση του ελέγχου αρχείων. Ωστόσο, τα τοπικά αρχεία δεν φαίνεται να υπάρχουν στον τρέχον φάκελο προορισμού. Παρακαλούμε απενεργοποιήστε αυτή τη λειτουργία ή ανανεώστε την διαδρομή αποθήκευσης.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="352"/>
+        <location filename="../torrentadditiondlg.h" line="299"/>
         <source>Invalid file selection</source>
         <translation>Άκυρη επιλογή αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="352"/>
+        <location filename="../torrentadditiondlg.h" line="299"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Πρέπει να επιλέξετε τουλάχιστο ένα αρχείο του torrent</translation>
     </message>
@@ -7171,9 +7176,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="265"/>
         <source>Priority</source>
-        <translation>Προτεραιότητα</translation>
+        <translation type="obsolete">Προτεραιότητα</translation>
     </message>
 </context>
 </TS>

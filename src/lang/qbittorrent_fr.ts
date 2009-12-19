@@ -284,7 +284,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="338"/>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisation d&apos;un tampon disque de %1 Mo</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="368"/>
@@ -305,12 +305,12 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="380"/>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Support PeX [OFF]</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="383"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished"></translation>
+        <translation>Un redémarrage est nécessaire afin de changer l&apos;état du support PeX</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="388"/>
@@ -1227,22 +1227,22 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="673"/>
         <source>Destination Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire de destination :</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="713"/>
         <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter à la fin la catégorie du torrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="723"/>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser un répertoire différent pour les téléchargements incomplets :</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="735"/>
@@ -1250,27 +1250,27 @@ QGroupBox {
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="775"/>
         <source>Automatically load .torrent files from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger automatiquement les fichiers .torrent depuis :</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="827"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter l&apos;extension .!qB aux fichiers incomplets</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="843"/>
         <source>Disk cache:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tampon disque :</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="863"/>
         <source>MiB (advanced)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mo (avancé)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1220"/>
@@ -1449,7 +1449,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1649"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;échange de sources / PeX (redémarrage nécessaire)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2475"/>
@@ -3612,32 +3612,23 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Oui</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="90"/>
-        <location filename="../proplistdelegate.h" line="129"/>
         <source>Ignored</source>
-        <translation>Ignoré</translation>
+        <translation type="obsolete">Ignoré</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="93"/>
-        <location filename="../proplistdelegate.h" line="103"/>
-        <location filename="../proplistdelegate.h" line="130"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Normale</translation>
+        <translation type="obsolete">Normale</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="96"/>
-        <location filename="../proplistdelegate.h" line="131"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Haute</translation>
+        <translation type="obsolete">Haute</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="99"/>
-        <location filename="../proplistdelegate.h" line="132"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maximale</translation>
+        <translation type="obsolete">Maximale</translation>
     </message>
 </context>
 <context>
@@ -3807,82 +3798,99 @@ Comment:</source>
         <translation type="obsolete">Priorité</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="82"/>
         <source>Ignored</source>
-        <translation>Ignoré</translation>
+        <translation type="obsolete">Ignoré</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="83"/>
         <source>Normal</source>
-        <translation>Normale</translation>
+        <translation type="obsolete">Normale</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="84"/>
         <source>Maximum</source>
-        <translation>Maximale</translation>
+        <translation type="obsolete">Maximale</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="85"/>
         <source>High</source>
-        <translation>Haute</translation>
+        <translation type="obsolete">Haute</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="313"/>
-        <location filename="../propertieswidget.cpp" line="314"/>
+        <location filename="../propertieswidget.cpp" line="299"/>
+        <location filename="../propertieswidget.cpp" line="300"/>
         <source>this session</source>
         <translation>cette session</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="318"/>
-        <location filename="../propertieswidget.cpp" line="322"/>
+        <location filename="../propertieswidget.cpp" line="304"/>
+        <location filename="../propertieswidget.cpp" line="308"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="325"/>
+        <location filename="../propertieswidget.cpp" line="311"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Complet depuis %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="329"/>
+        <location filename="../propertieswidget.cpp" line="315"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="483"/>
+        <location filename="../propertieswidget.cpp" line="469"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="486"/>
-        <source>Set priority</source>
-        <translation type="unfinished"></translation>
+        <location filename="../propertieswidget.cpp" line="489"/>
+        <source>Rename torrent file</source>
+        <translation>Renommer le fichier</translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="490"/>
+        <source>New name:</source>
+        <translation>Nouveau nom :</translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="518"/>
+        <source>The file could not be renamed</source>
+        <translation>Le fichier n&apos;a pas pu être renommé</translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="519"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation>Ce nom est déjà utilisé au sein de ce dossier. Veuillez choisir un nom différent.</translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="552"/>
+        <source>The folder could not be renamed</source>
+        <translation>Le dossier n&apos;a pas pu être renommé</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
         <translation type="obsolete">Aucun - indisponible ?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="547"/>
+        <location filename="../propertieswidget.cpp" line="581"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nouvelle source HTTP</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="548"/>
+        <location filename="../propertieswidget.cpp" line="582"/>
         <source>New url seed:</source>
         <translation>Nouvelle source HTTP :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="553"/>
+        <location filename="../propertieswidget.cpp" line="587"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="554"/>
+        <location filename="../propertieswidget.cpp" line="588"/>
         <source>This url seed is already in the list.</source>
         <translation>Cette source HTTP est déjà dans la liste.</translation>
     </message>
@@ -3891,18 +3899,18 @@ Comment:</source>
         <translation type="obsolete">La liste des trackers ne peut pas être vide.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="599"/>
-        <location filename="../propertieswidget.cpp" line="601"/>
+        <location filename="../propertieswidget.cpp" line="633"/>
+        <location filename="../propertieswidget.cpp" line="635"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="608"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="608"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
@@ -4569,24 +4577,23 @@ Changements:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
         <source>Priority</source>
-        <translation>Priorité</translation>
+        <translation type="obsolete">Priorité</translation>
     </message>
 </context>
 <context>
@@ -4765,33 +4772,33 @@ Changements:
         <location filename="../transferlistfilterswidget.h" line="175"/>
         <location filename="../transferlistfilterswidget.h" line="365"/>
         <source>All labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Toutes catégories</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="178"/>
         <location filename="../transferlistfilterswidget.h" line="366"/>
         <source>Unlabeled</source>
-        <translation type="unfinished"></translation>
+        <translation>Sans catégorie</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="256"/>
         <source>Remove label</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer catégorie</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="257"/>
         <source>Add label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle catégorie</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="267"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle catégorie</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="267"/>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie :</translation>
     </message>
 </context>
 <context>
@@ -4939,7 +4946,7 @@ Changements:
         <location filename="../transferlistwidget.cpp" line="81"/>
         <location filename="../transferlistwidget.cpp" line="998"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="703"/>
@@ -4954,12 +4961,12 @@ Changements:
     <message>
         <location filename="../transferlistwidget.cpp" line="861"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle catégorie</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="861"/>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie :</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="899"/>
@@ -5019,12 +5026,22 @@ Changements:
     <message>
         <location filename="../transferlistwidget.cpp" line="999"/>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New...</source>
+        <translation type="obsolete">Nouvelle...</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="obsolete">Réinitialiser catégorie</translation>
     </message>
 </context>
 <context>
@@ -5162,7 +5179,7 @@ Changements:
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="128"/>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie :</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="178"/>
@@ -5223,24 +5240,20 @@ Changements:
         <translation type="obsolete">Sélectionner</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Ignored</source>
-        <translation>Ignoré</translation>
+        <translation type="obsolete">Ignoré</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="340"/>
         <source>Normal</source>
-        <translation>Normale</translation>
+        <translation type="obsolete">Normale</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="345"/>
         <source>High</source>
-        <translation>Haute</translation>
+        <translation type="obsolete">Haute</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="350"/>
         <source>Maximum</source>
-        <translation>Maximale</translation>
+        <translation type="obsolete">Maximale</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
@@ -6100,7 +6113,7 @@ Changements:
     <message>
         <location filename="../ui/engineselect.ui" line="78"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Autres plugins de recherche ici : &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../ui/engineselect.ui" line="93"/>
@@ -6361,7 +6374,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete"> j</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="302"/>
+        <location filename="../misc.h" line="315"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -6382,25 +6395,25 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Inconnue</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="314"/>
+        <location filename="../misc.h" line="327"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="318"/>
+        <location filename="../misc.h" line="331"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="323"/>
+        <location filename="../misc.h" line="336"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="328"/>
+        <location filename="../misc.h" line="341"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1j%2h%3min</translation>
@@ -7217,8 +7230,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Oui</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="170"/>
-        <location filename="../torrentadditiondlg.h" line="173"/>
+        <location filename="../torrentadditiondlg.h" line="165"/>
+        <location filename="../torrentadditiondlg.h" line="168"/>
         <source>Unable to decode torrent file:</source>
         <translation>Impossible de décoder le fichier torrent :</translation>
     </message>
@@ -7227,8 +7240,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="245"/>
-        <location filename="../torrentadditiondlg.h" line="247"/>
+        <location filename="../torrentadditiondlg.h" line="240"/>
+        <location filename="../torrentadditiondlg.h" line="242"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
@@ -7241,54 +7254,54 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Inconnu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="230"/>
+        <location filename="../torrentadditiondlg.h" line="225"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 disponible after téléchargement)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="233"/>
+        <location filename="../torrentadditiondlg.h" line="228"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 de plus sont nécessaires)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="319"/>
+        <location filename="../torrentadditiondlg.h" line="266"/>
         <source>Empty save path</source>
         <translation>Chemin de destination vide</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="319"/>
+        <location filename="../torrentadditiondlg.h" line="266"/>
         <source>Please enter a save path</source>
         <translation>Veuillez entrer un répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="325"/>
+        <location filename="../torrentadditiondlg.h" line="272"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="325"/>
+        <location filename="../torrentadditiondlg.h" line="272"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="345"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
         <source>Seeding mode error</source>
         <translation>Erreur du mode partage</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="345"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Vous avez choisir de ne pas vérifier les fichiers locaux. Cependant, les fichiers locaux n&apos;ont pas été trouvé dans le répertoire de destination actuel. Veuillez désactiver cette fonctionnalité ou alors changer de répertoire de destination.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="352"/>
+        <location filename="../torrentadditiondlg.h" line="299"/>
         <source>Invalid file selection</source>
         <translation>Sélection de fichiers invalide</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="352"/>
+        <location filename="../torrentadditiondlg.h" line="299"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Veuillez sélectionner au moins un fichier dans le torrent</translation>
     </message>
@@ -7305,9 +7318,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Progression</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="265"/>
         <source>Priority</source>
-        <translation>Priorité</translation>
+        <translation type="obsolete">Priorité</translation>
     </message>
 </context>
 </TS>

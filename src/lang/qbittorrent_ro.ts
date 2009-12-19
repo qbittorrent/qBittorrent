@@ -2880,22 +2880,22 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorat</translation>
+        <translation type="obsolete">Ignorat</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Înaltă</translation>
+        <translation type="obsolete">Înaltă</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maximală</translation>
+        <translation type="obsolete">Maximală</translation>
     </message>
 </context>
 <context>
@@ -3079,19 +3079,19 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorat</translation>
+        <translation type="obsolete">Ignorat</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximum</translation>
+        <translation type="obsolete">Maximum</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Mare</translation>
+        <translation type="obsolete">Mare</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3121,7 +3121,23 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set priority</source>
+        <source>Rename torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3684,7 +3700,7 @@ Changelog:
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritate</translation>
+        <translation type="obsolete">Prioritate</translation>
     </message>
 </context>
 <context>
@@ -4028,10 +4044,12 @@ Changelog:
     </message>
     <message>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4172,19 +4190,19 @@ Changelog:
     </message>
     <message>
         <source>Ignored</source>
-        <translation>Ignorat</translation>
+        <translation type="obsolete">Ignorat</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Înalt</translation>
+        <translation type="obsolete">Înalt</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximal</translation>
+        <translation type="obsolete">Maximal</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -5989,7 +6007,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritate</translation>
+        <translation type="obsolete">Prioritate</translation>
     </message>
     <message>
         <source>Unknown</source>

@@ -1835,32 +1835,23 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../proplistdelegate.h" line="90"/>
-        <location filename="../proplistdelegate.h" line="129"/>
         <source>Ignored</source>
-        <translation>Игнориши</translation>
+        <translation type="obsolete">Игнориши</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="93"/>
-        <location filename="../proplistdelegate.h" line="103"/>
-        <location filename="../proplistdelegate.h" line="130"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>Нормалан</translation>
+        <translation type="obsolete">Нормалан</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="96"/>
-        <location filename="../proplistdelegate.h" line="131"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>Висок</translation>
+        <translation type="obsolete">Висок</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="99"/>
-        <location filename="../proplistdelegate.h" line="132"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Максималан</translation>
+        <translation type="obsolete">Максималан</translation>
     </message>
 </context>
 <context>
@@ -1986,94 +1977,111 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Приоритет</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="82"/>
         <source>Ignored</source>
-        <translation>Игнориши</translation>
+        <translation type="obsolete">Игнориши</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="83"/>
         <source>Normal</source>
-        <translation>Нормалан</translation>
+        <translation type="obsolete">Нормалан</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="84"/>
         <source>Maximum</source>
-        <translation>Максималан</translation>
+        <translation type="obsolete">Максималан</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="85"/>
         <source>High</source>
-        <translation>Висок</translation>
+        <translation type="obsolete">Висок</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="313"/>
-        <location filename="../propertieswidget.cpp" line="314"/>
+        <location filename="../propertieswidget.cpp" line="299"/>
+        <location filename="../propertieswidget.cpp" line="300"/>
         <source>this session</source>
         <translation>ова сесија</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="318"/>
-        <location filename="../propertieswidget.cpp" line="322"/>
+        <location filename="../propertieswidget.cpp" line="304"/>
+        <location filename="../propertieswidget.cpp" line="308"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="325"/>
+        <location filename="../propertieswidget.cpp" line="311"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Донирано за %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="329"/>
+        <location filename="../propertieswidget.cpp" line="315"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="483"/>
+        <location filename="../propertieswidget.cpp" line="469"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="486"/>
-        <source>Set priority</source>
+        <location filename="../propertieswidget.cpp" line="489"/>
+        <source>Rename torrent file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="547"/>
+        <location filename="../propertieswidget.cpp" line="490"/>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="518"/>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="519"/>
+        <location filename="../propertieswidget.cpp" line="553"/>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="552"/>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="581"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Нов Url донор</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="548"/>
+        <location filename="../propertieswidget.cpp" line="582"/>
         <source>New url seed:</source>
         <translation>Нов Url донор:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="553"/>
+        <location filename="../propertieswidget.cpp" line="587"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="554"/>
+        <location filename="../propertieswidget.cpp" line="588"/>
         <source>This url seed is already in the list.</source>
         <translation>Овај Url донор је већ на листи.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="599"/>
-        <location filename="../propertieswidget.cpp" line="601"/>
+        <location filename="../propertieswidget.cpp" line="633"/>
+        <location filename="../propertieswidget.cpp" line="635"/>
         <source>Choose save path</source>
         <translation>Изаберите путању чувања</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="608"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>Save path creation error</source>
         <translation>Грешка у путањи за чување</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="608"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>Could not create the save path</source>
         <translation>Не могу да креирам путању за чување фајла</translation>
     </message>
@@ -2576,24 +2584,23 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Name</source>
         <translation>Име</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Size</source>
         <translation>Величина</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
+        <location filename="../torrentfilesmodel.h" line="311"/>
         <source>Progress</source>
         <translation>Напредак</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="302"/>
         <source>Priority</source>
-        <translation>Приоритет</translation>
+        <translation type="obsolete">Приоритет</translation>
     </message>
 </context>
 <context>
@@ -2971,11 +2978,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../transferlistwidget.cpp" line="999"/>
         <source>New...</source>
+        <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Reset</source>
+        <comment>Reset label</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3084,24 +3093,20 @@ p, li { white-space: pre-wrap; }
         <translation>Откажи</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Ignored</source>
-        <translation>Игнориши</translation>
+        <translation type="obsolete">Игнориши</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="340"/>
         <source>Normal</source>
-        <translation>Нормалан</translation>
+        <translation type="obsolete">Нормалан</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="345"/>
         <source>High</source>
-        <translation>Висок</translation>
+        <translation type="obsolete">Висок</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="350"/>
         <source>Maximum</source>
-        <translation>Максималан</translation>
+        <translation type="obsolete">Максималан</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
@@ -3779,32 +3784,32 @@ However, those plugins were disabled.</source>
         <translation>Непознат-а</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="302"/>
+        <location filename="../misc.h" line="315"/>
         <source>Unknown</source>
         <translation>Непознат-а</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="314"/>
+        <location filename="../misc.h" line="327"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translatorcomment>&lt; 1 минута</translatorcomment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="318"/>
+        <location filename="../misc.h" line="331"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translatorcomment>e.g: 10минута</translatorcomment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="323"/>
+        <location filename="../misc.h" line="336"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="328"/>
+        <location filename="../misc.h" line="341"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>
@@ -3954,73 +3959,72 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.h" line="170"/>
-        <location filename="../torrentadditiondlg.h" line="173"/>
+        <location filename="../torrentadditiondlg.h" line="165"/>
+        <location filename="../torrentadditiondlg.h" line="168"/>
         <source>Unable to decode torrent file:</source>
         <translation>Не могу да декодирам Торент фајл:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="230"/>
+        <location filename="../torrentadditiondlg.h" line="225"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 остало након преузетог Торента)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="233"/>
+        <location filename="../torrentadditiondlg.h" line="228"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 више је потребно ради преузимања)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="245"/>
-        <location filename="../torrentadditiondlg.h" line="247"/>
+        <location filename="../torrentadditiondlg.h" line="240"/>
+        <location filename="../torrentadditiondlg.h" line="242"/>
         <source>Choose save path</source>
         <translation>Изабери путању чувања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="319"/>
+        <location filename="../torrentadditiondlg.h" line="266"/>
         <source>Empty save path</source>
         <translation>Празна путања чувања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="319"/>
+        <location filename="../torrentadditiondlg.h" line="266"/>
         <source>Please enter a save path</source>
         <translation>Молим унесите путању чувања фајла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="325"/>
+        <location filename="../torrentadditiondlg.h" line="272"/>
         <source>Save path creation error</source>
         <translation>Грешка креирања путање чувања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="325"/>
+        <location filename="../torrentadditiondlg.h" line="272"/>
         <source>Could not create the save path</source>
         <translation>Не могу да креирам путању за чување фајла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="345"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
         <source>Seeding mode error</source>
         <translation>Грешка у режиму донирања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="345"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Висте изабрали да прескочите проверу датотеке. Међутим, локални фајлови изгледа не постоје у одредишном директоријуму. Молим онемогућите ову функцију или ажурирајте путању фајла.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="352"/>
+        <location filename="../torrentadditiondlg.h" line="299"/>
         <source>Invalid file selection</source>
         <translation>Погрешан избор датотеке</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="352"/>
+        <location filename="../torrentadditiondlg.h" line="299"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Морате изабрати бар једну датотеку за Торенту</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="265"/>
         <source>Priority</source>
-        <translation>Приоритет</translation>
+        <translation type="obsolete">Приоритет</translation>
     </message>
 </context>
 </TS>
