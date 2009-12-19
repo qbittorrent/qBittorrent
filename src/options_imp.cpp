@@ -1355,13 +1355,22 @@ void options_imp::on_browseFilterButton_clicked() {
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked(){
-#ifdef Q_WS_WIN
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::rootPath());
-#else
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
-#endif
+  QString def_path = QDir::homePath();
+  if(!textSavePath->text().isEmpty())
+    def_path = textSavePath->text();
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), def_path);
   if(!dir.isNull()){
     textSavePath->setText(dir);
+  }
+}
+
+void options_imp::on_browseTempDirButton_clicked(){
+  QString def_path = QDir::homePath();
+  if(!textTempPath->text().isEmpty())
+    def_path = textTempPath->text();
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), def_path);
+  if(!dir.isNull()){
+    textTempPath->setText(dir);
   }
 }
 

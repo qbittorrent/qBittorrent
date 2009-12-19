@@ -162,6 +162,7 @@ protected slots:
   void on_browseScanDirButton_clicked();
   void on_browseFilterButton_clicked();
   void on_browseSaveDirButton_clicked();
+  void on_browseTempDirButton_clicked();
   void enableApplyButton();
   void enableSystrayOptions();
   void disableSystrayOptions();
