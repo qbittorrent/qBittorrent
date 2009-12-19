@@ -425,7 +425,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/options.ui" line="2196"/>
         <source>Affected connections</source>
-        <translation>Проблематичне конекције</translation>
+        <translation>Очекиване конекције</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2208"/>
@@ -639,13 +639,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/options.ui" line="1448"/>
         <source>Resolve peer countries</source>
-        <translatorcomment>Peer (учесничк) -активна веза</translatorcomment>
-        <translation>Одреди земљу peer-а (учесничка)</translation>
+        <translatorcomment>Peer (учесник) -активна веза</translatorcomment>
+        <translation>Одреди земљу peer-а (учесника)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1458"/>
         <source>Resolve peer host names</source>
-        <translation>Одреди име хоста peer-а (учесничка)</translation>
+        <translation>Одреди име хоста peer-а (учесника)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1507"/>
