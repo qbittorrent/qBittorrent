@@ -281,6 +281,14 @@ p, li { white-space: pre-wrap; }
         <source>Using a disk cache size of %1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>PeX support [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart is required to toggle PeX support</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -803,7 +811,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation>Varredura de pasta</translation>
+        <translation type="obsolete">Varredura de pasta</translation>
     </message>
     <message>
         <source>Transfer lists double-click</source>
@@ -821,15 +829,15 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Download folder:</source>
-        <translation>Pasta de Download:</translation>
+        <translation type="obsolete">Pasta de Download:</translation>
     </message>
     <message>
         <source>Temp folder:</source>
-        <translation>Pasta temporária:</translation>
+        <translation type="obsolete">Pasta temporária:</translation>
     </message>
     <message>
         <source>Automatically download torrents present in this folder:</source>
-        <translation>Baixar automaticamente torrents presentes nesta pasta:</translation>
+        <translation type="obsolete">Baixar automaticamente torrents presentes nesta pasta:</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -1141,6 +1149,46 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QGroupBox::title {
+font-weight: normal;
+margin-left: -3px;
+}
+QGroupBox {
+  border-width: 0;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination Folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the torrent&apos;s label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a different folder for incomplete downloads:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QLineEdit {
+  margin-left: 23px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically load .torrent files from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
