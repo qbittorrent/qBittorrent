@@ -492,7 +492,8 @@ public:
       return;
     }
     // Create parent folder
-    TreeItem *current_parent = new TreeItem(misc::toQString(t.name()), parent);
+    QString root_name = misc::toQString(t.file_at(0).path.string()).split('/').first();
+    TreeItem *current_parent = new TreeItem(root_name, parent);
     //parent->appendChild(current_parent);
     TreeItem *root_folder = current_parent;
 

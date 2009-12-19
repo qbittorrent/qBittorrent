@@ -269,6 +269,19 @@ public:
     list.insert(i, value);
   }
 
+  static bool removeEmptyTree(QString path) {
+    QDir dir(path);
+    foreach(QString child, dir.entryList(QDir::AllDirs)) {
+      if(child == "." || child == "..") continue;
+      return removeEmptyTree(dir.absoluteFilePath(child));
+    }
+    QString dir_name = dir.dirName();
+    if(dir.cdUp()) {
+      return dir.rmdir(dir_name);
+    }
+    return false;
+  }
+
   static QString magnetUriToHash(QString magnet_uri) {
     QString hash = "";
     QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
