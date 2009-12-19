@@ -79,11 +79,6 @@ public:
     PropDelegate = new PropListDelegate();
     torrentContentList->setItemDelegate(PropDelegate);
     connect(torrentContentList, SIGNAL(clicked(const QModelIndex&)), torrentContentList, SLOT(edit(const QModelIndex&)));
-    connect(torrentContentList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
-    connect(actionIgnored, SIGNAL(triggered()), this, SLOT(ignoreSelection()));
-    connect(actionNormal, SIGNAL(triggered()), this, SLOT(normalSelection()));
-    connect(actionHigh, SIGNAL(triggered()), this, SLOT(highSelection()));
-    connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
     connect(collapseAllButton, SIGNAL(clicked()), torrentContentList, SLOT(collapseAll()));
     connect(expandAllButton, SIGNAL(clicked()), torrentContentList, SLOT(expandAll()));
     // Remember columns width
@@ -257,54 +252,6 @@ public slots:
 
   bool allFiltered() const {
     return PropListModel->allFiltered();
-  }
-
-  void displayFilesListMenu(const QPoint&){
-    QMenu myFilesLlistMenu(this);
-    // Enable/disable pause/start action given the DL state
-    myFilesLlistMenu.setTitle(tr("Priority"));
-    myFilesLlistMenu.addAction(actionIgnored);
-    myFilesLlistMenu.addAction(actionNormal);
-    myFilesLlistMenu.addAction(actionHigh);
-    myFilesLlistMenu.addAction(actionMaximum);
-    // Call menu
-    myFilesLlistMenu.exec(QCursor::pos());
-  }
-
-  void ignoreSelection(){
-    QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-    foreach(const QModelIndex &index, selectedIndexes){
-      if(index.column() == PRIORITY){
-        PropListModel->setData(index, QVariant(IGNORED));
-      }
-    }
-  }
-
-  void normalSelection(){
-    QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-    foreach(const QModelIndex &index, selectedIndexes){
-      if(index.column() == PRIORITY){
-        PropListModel->setData(index, QVariant(NORMAL));
-      }
-    }
-  }
-
-  void highSelection(){
-    QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-    foreach(const QModelIndex &index, selectedIndexes){
-      if(index.column() == PRIORITY){
-        PropListModel->setData(index, QVariant(HIGH));
-      }
-    }
-  }
-
-  void maximumSelection(){
-    QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedIndexes();
-    foreach(const QModelIndex &index, selectedIndexes){
-      if(index.column() == PRIORITY){
-        PropListModel->setData(index, QVariant(MAXIMUM));
-      }
-    }
   }
 
   void savePiecesPriorities(){

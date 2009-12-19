@@ -44,8 +44,7 @@
 #include "propertieswidget.h"
 
 // Defines for properties list columns
-enum PropColumn {NAME, SIZE, PROGRESS, PRIORITY};
-enum PropPriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7};
+enum PropColumn {NAME, SIZE, PROGRESS};
 
 class PropListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -82,79 +81,9 @@ public:
             QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
             break;
           }
-        case PRIORITY:{
-            QStyleOptionComboBox newopt;
-            newopt.rect = opt.rect;
-            switch(index.data().toInt()){
-            case IGNORED:
-              newopt.currentText = tr("Ignored");
-              break;
-            case NORMAL:
-              newopt.currentText = tr("Normal", "Normal (priority)");
-              break;
-            case HIGH:
-              newopt.currentText = tr("High", "High (priority)");
-              break;
-            case MAXIMUM:
-              newopt.currentText = tr("Maximum", "Maximum (priority)");
-              break;
-            default:
-              qDebug("Unhandled priority, setting NORMAL");
-              newopt.currentText = tr("Normal", "Normal (priority)");
-            }
-            //newopt.state |= QStyle::State_Enabled;
-            //newopt.subControls = QStyle::SC_All;
-            //painter->translate(QPoint(opt.rect.x()*-1,opt.rect.y()*-1));
-            //QApplication::style()->drawComplexControl(QStyle::CC_ComboBox, &newopt, painter);
-            //painter->translate(QPoint(opt.rect.x(),opt.rect.y()));
-            //QApplication::style()->drawControl(QStyle::CE_ComboBoxLabel, &newopt, painter);
-            QItemDelegate::drawBackground(painter, opt, index);
-            QItemDelegate::drawDisplay(painter, opt, option.rect, newopt.currentText);
-            break;
-          }
         default:
           QItemDelegate::paint(painter, option, index);
         }
-  }
-
-  QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex & index) const {
-    qDebug("CreateEditor called");
-    if(index.column() != PRIORITY) return 0;
-    if(properties) {
-      QTorrentHandle h = properties->getCurrentTorrent();
-      if(!h.is_valid() || h.get_torrent_handle().is_seed() || !h.has_metadata()) return 0;
-    }
-    QComboBox* editor = new QComboBox(parent);
-    editor->setFocusPolicy(Qt::StrongFocus);
-    editor->addItem(tr("Ignored"));
-    editor->addItem(tr("Normal", "Normal (priority)"));
-    editor->addItem(tr("High", "High (priority)"));
-    editor->addItem(tr("Maximum", "Maximum (priority)"));
-    return editor;
-  }
-
-  void setEditorData(QWidget *editor, const QModelIndex &index) const {
-    qDebug("setEditorData called");
-    unsigned short val = index.model()->data(index, Qt::DisplayRole).toInt();
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
-    qDebug("Set Editor data: Prio is %d", val);
-    switch(val){
-        case IGNORED:
-      combobox->setCurrentIndex(0);
-      break;
-        case NORMAL:
-      combobox->setCurrentIndex(1);
-      break;
-        case HIGH:
-      combobox->setCurrentIndex(2);
-      break;
-        case MAXIMUM:
-      combobox->setCurrentIndex(3);
-      break;
-        default:
-      qDebug("Unhandled priority, setting to NORMAL");
-      combobox->setCurrentIndex(1);
-    }
   }
 
   QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
@@ -167,66 +96,8 @@ public:
     return textRect.size();
   }
 
-    public slots:
-  void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
-    int value = combobox->currentIndex();
-    qDebug("Setting combobox value in index: %d", value);
-    unsigned short old_val = index.model()->data(index, Qt::DisplayRole).toInt();
-    switch(value){
-        case 0:
-      if(old_val != IGNORED){
-        model->setData(index, QVariant(IGNORED));
-        emit filteredFilesChanged();
-      } else {
-        // XXX: hack to force the model to send the itemChanged() signal
-        model->setData(index, QVariant(NORMAL));
-        model->setData(index, QVariant(IGNORED));
-      }
-      break;
-        case 1:
-      //           if(old_val != NORMAL){
-      //             model->setData(index, QVariant(NORMAL));
-      //             if(filteredFilesChanged != 0)
-      //               *filteredFilesChanged = true;
-      //           } else {
-      model->setData(index, QVariant(HIGH));
-      model->setData(index, QVariant(NORMAL));
-      emit filteredFilesChanged();
-      //           }
-      break;
-        case 2:
-      if(old_val != HIGH){
-        model->setData(index, QVariant(HIGH));
-        emit filteredFilesChanged();
-      } else {
-        model->setData(index, QVariant(NORMAL));
-        model->setData(index, QVariant(HIGH));
-      }
-      break;
-        case 3:
-      if(old_val != MAXIMUM){
-        model->setData(index, QVariant(MAXIMUM));
-        emit filteredFilesChanged();
-      } else {
-        model->setData(index, QVariant(HIGH));
-        model->setData(index, QVariant(MAXIMUM));
-      }
-      break;
-        default:
-      if(old_val != NORMAL){
-        model->setData(index, QVariant(NORMAL));
-        emit filteredFilesChanged();
-      } else {
-        model->setData(index, QVariant(HIGH));
-        model->setData(index, QVariant(NORMAL));
-      }
-    }
-  }
-
-  void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
-    qDebug("UpdateEditor Geometry called");
-    editor->setGeometry(option.rect);
+  QWidget* createEditor(QWidget *, const QStyleOptionViewItem &/* option */, const QModelIndex &) const {
+    return 0;
   }
 
 };

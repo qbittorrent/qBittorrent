@@ -66,10 +66,6 @@ private:
   PropListDelegate *PropDelegate;
   PeerListWidget *peersList;
   TrackerList *trackerList;
-  QAction *actionIgnored;
-  QAction *actionNormal;
-  QAction *actionMaximum;
-  QAction *actionHigh;
   QList<int> slideSizes;
   DownloadedPiecesBar *downloaded_pieces;
   PieceAvailabilityBar *pieces_availability;
@@ -86,10 +82,6 @@ protected slots:
   void on_peers_button_clicked();
   void on_url_seeds_button_clicked();
   void on_files_button_clicked();
-  void ignoreSelection();
-  void normalSelection();
-  void highSelection();
-  void maximumSelection();
   void askWebSeed();
   void deleteSelectedUrlSeeds();
   void displayFilesListMenu(const QPoint& pos);

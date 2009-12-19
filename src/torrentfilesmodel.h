@@ -42,6 +42,8 @@
 using namespace libtorrent;
 
 enum TreeItemType {TFILE, FOLDER, ROOT};
+#define IGNORED 0
+#define NORMAL 1
 
 class TreeItem {
 private:
@@ -208,12 +210,8 @@ public:
       itemData.replace(3, new_prio);
       // Update parent
       if(parentItem) {
-        if(new_prio == 0 || old_prio == 0) {
-          // Files got filtered or unfiltered
-          // Update parent size and progress
-          parentItem->updateSize();
-          parentItem->updateProgress();
-        }
+        parentItem->updateSize();
+        parentItem->updateProgress();
         parentItem->updatePriority();
       }
     }
@@ -310,7 +308,7 @@ public:
   TorrentFilesModel(QObject *parent=0): QAbstractItemModel(parent) {
     files_index = 0;
     QList<QVariant> rootData;
-    rootData << tr("Name") << tr("Size") << tr("Progress") << tr("Priority");
+    rootData << tr("Name") << tr("Size") << tr("Progress");
     rootItem = new TreeItem(rootData);
   }
 
@@ -358,26 +356,37 @@ public:
 
   bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole) {
     if(!index.isValid()) return false;
-    if (role != Qt::EditRole) return false;
-    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
-    switch(index.column()) {
-    case 0:
-      item->setName(value.toString());
-      break;
-    case 1:
-      item->setSize(value.toULongLong());
-      break;
-    case 2:
-      item->setProgress(value.toDouble());
-      break;
-    case 3:
-      item->setPriority(value.toInt());
-      break;
-    default:
-      return false;
+    if (role == Qt::CheckStateRole) {
+      TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+      if(item->getPriority() != value.toInt()) {
+        if(value.toInt() == Qt::Checked)
+          item->setPriority(1);
+        else
+          item->setPriority(0);
+        emit filteredFilesChanged();
+        emit dataChanged(this->index(0,0), this->index(rowCount(), 0));
+      }
+      return true;
     }
-    emit dataChanged(index, index);
-    return true;
+    if (role == Qt::EditRole) {
+      TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+      switch(index.column()) {
+      case 0:
+        item->setName(value.toString());
+        break;
+      case 1:
+        item->setSize(value.toULongLong());
+        break;
+      case 2:
+        item->setProgress(value.toDouble());
+        break;
+      default:
+        return false;
+      }
+      emit dataChanged(index, index);
+      return true;
+    }
+    return false;
   }
 
   TreeItemType getType(const QModelIndex &index) {
@@ -400,6 +409,11 @@ public:
       else
         return QIcon(":/Icons/oxygen/file.png");
     }
+    if(role == Qt::CheckStateRole) {
+      if(item->data(3).toInt() == 0)
+        return Qt::Unchecked;
+      return Qt::Checked;
+    }
     if (role != Qt::DisplayRole)
       return QVariant();
 
@@ -410,7 +424,7 @@ public:
     if (!index.isValid())
       return 0;
 
-    return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable;
   }
 
   QVariant headerData(int section, Qt::Orientation orientation, int role) const {
@@ -526,6 +540,10 @@ public:
     }
     emit layoutChanged();
   }
+
+public:
+signals:
+  void filteredFilesChanged();
 };
 
 

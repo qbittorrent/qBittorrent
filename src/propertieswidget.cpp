@@ -78,21 +78,12 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   PropDelegate = new PropListDelegate(this);
   filesList->setItemDelegate(PropDelegate);
 
-  // QActions
-  actionIgnored = new QAction(tr("Ignored"), this);
-  actionNormal = new QAction(tr("Normal"), this);
-  actionMaximum = new QAction(tr("Maximum"), this);
-  actionHigh = new QAction(tr("High"), this);
-
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
   connect(collapseAllButton, SIGNAL(clicked()), filesList, SLOT(collapseAll()));
   connect(expandAllButton, SIGNAL(clicked()), filesList, SLOT(expandAll()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
-  connect(actionIgnored, SIGNAL(triggered()), this, SLOT(ignoreSelection()));
-  connect(actionNormal, SIGNAL(triggered()), this, SLOT(normalSelection()));
-  connect(actionHigh, SIGNAL(triggered()), this, SLOT(highSelection()));
-  connect(actionMaximum, SIGNAL(triggered()), this, SLOT(maximumSelection()));
+  connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
   connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
@@ -126,11 +117,6 @@ PropertiesWidget::~PropertiesWidget() {
   delete pieces_availability;
   delete PropListModel;
   delete PropDelegate;
-  // Delete QActions
-  delete actionIgnored;
-  delete actionNormal;
-  delete actionMaximum;
-  delete actionHigh;
 }
 
 
@@ -482,12 +468,9 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   if(selectedRows.size() == 1) {
     actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
+  } else {
+    return;
   }
-  QMenu *prioritiesMenu = myFilesLlistMenu.addMenu(QIcon(":/Icons/oxygen/services.png"), tr("Set priority"));
-  prioritiesMenu->addAction(actionIgnored);
-  prioritiesMenu->addAction(actionNormal);
-  prioritiesMenu->addAction(actionHigh);
-  prioritiesMenu->addAction(actionMaximum);
   // Call menu
   QAction *act = myFilesLlistMenu.exec(QCursor::pos());
   if(act) {
@@ -588,46 +571,6 @@ void PropertiesWidget::renameSelectedFile() {
             SleeperThread::msleep(100);
             --timeout;
           }
-        }
-      }
-    }
-
-    void PropertiesWidget::ignoreSelection(){
-      QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
-      foreach(const QModelIndex &index, selectedIndexes){
-        if(PropListModel->data(index) != QVariant(IGNORED)){
-          PropListModel->setData(index, QVariant(IGNORED));
-          filteredFilesChanged();
-        }
-      }
-    }
-
-    void PropertiesWidget::normalSelection(){
-      QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
-      foreach(const QModelIndex &index, selectedIndexes){
-        if(PropListModel->data(index) != QVariant(NORMAL)){
-          PropListModel->setData(index, QVariant(NORMAL));
-          filteredFilesChanged();
-        }
-      }
-    }
-
-    void PropertiesWidget::highSelection(){
-      QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
-      foreach(const QModelIndex &index, selectedIndexes){
-        if(PropListModel->data(index) != QVariant(HIGH)){
-          PropListModel->setData(index, QVariant(HIGH));
-          filteredFilesChanged();
-        }
-      }
-    }
-
-    void PropertiesWidget::maximumSelection(){
-      QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(PRIORITY);
-      foreach(const QModelIndex &index, selectedIndexes){
-        if(PropListModel->data(index) != QVariant(MAXIMUM)){
-          PropListModel->setData(index, QVariant(MAXIMUM));
-          filteredFilesChanged();
         }
       }
     }

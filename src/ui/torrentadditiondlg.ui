@@ -330,26 +330,6 @@
     </layout>
    </item>
   </layout>
-  <action name="actionIgnored">
-   <property name="text">
-    <string>Ignored</string>
-   </property>
-  </action>
-  <action name="actionNormal">
-   <property name="text">
-    <string>Normal</string>
-   </property>
-  </action>
-  <action name="actionHigh">
-   <property name="text">
-    <string>High</string>
-   </property>
-  </action>
-  <action name="actionMaximum">
-   <property name="text">
-    <string>Maximum</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>
