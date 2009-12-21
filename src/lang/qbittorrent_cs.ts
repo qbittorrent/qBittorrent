@@ -4834,8 +4834,8 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation>Vyberte adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1359"/>
         <location filename="../options_imp.cpp" line="1361"/>
+        <location filename="../options_imp.cpp" line="1371"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresář pro ukládání</translation>
     </message>

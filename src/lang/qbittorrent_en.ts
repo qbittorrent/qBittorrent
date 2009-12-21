@@ -3657,8 +3657,8 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1359"/>
         <location filename="../options_imp.cpp" line="1361"/>
+        <location filename="../options_imp.cpp" line="1371"/>
         <source>Choose a save directory</source>
         <translation type="unfinished"></translation>
     </message>

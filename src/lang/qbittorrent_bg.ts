@@ -6313,8 +6313,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Изберете ipfilter.dat файл </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1359"/>
         <location filename="../options_imp.cpp" line="1361"/>
+        <location filename="../options_imp.cpp" line="1371"/>
         <source>Choose a save directory</source>
         <translation>Изберете директория за съхранение</translation>
     </message>

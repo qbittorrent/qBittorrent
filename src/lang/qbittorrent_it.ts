@@ -6051,8 +6051,8 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <translation type="obsolete">Scegliere un file ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1359"/>
         <location filename="../options_imp.cpp" line="1361"/>
+        <location filename="../options_imp.cpp" line="1371"/>
         <source>Choose a save directory</source>
         <translation>Scegliere una directory di salvataggio</translation>
     </message>
