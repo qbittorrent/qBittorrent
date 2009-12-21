@@ -84,7 +84,7 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Russian:</u> Nick Khazov (m2k3d0n@users.sourceforge.net) and Alexey Morsov (samurai@ricom.ru)<br>\
           - <u>Serbian:</u> Anaximandar Milet (anaximandar@operamail.com)<br>\
           - <u>Slovak:</u>  helix84<br>\
-          - <u>Spanish:</u> Vicente Raul Plata Fonseca (silverxnt@users.sourceforge.net) and Gabriel de Oliveira (deadloop@hotmail.com)<br>\
+          - <u>Spanish:</u> Francisco Luque Contreras (frannoe@ya.com)<br>\
           - <u>Swedish:</u> Daniel Nylander (po@danielnylander.se)<br>\
           - <u>Turkish:</u> Hasan YILMAZ (iletisim@hedefturkce.com) and Erdem Bingöl (erdem84@gmail.com)<br>\
           - <u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net)<br><br>"));
