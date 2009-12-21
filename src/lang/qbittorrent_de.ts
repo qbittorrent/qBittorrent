@@ -6085,8 +6085,8 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">ipfilter.dat Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1340"/>
         <location filename="../options_imp.cpp" line="1342"/>
+        <location filename="../options_imp.cpp" line="1352"/>
         <source>Choose a save directory</source>
         <translation>Verzeichnis zum Speichern auswählen</translation>
     </message>

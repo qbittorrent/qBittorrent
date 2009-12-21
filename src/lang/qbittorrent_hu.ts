@@ -5336,8 +5336,8 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ipfilter.dat fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1340"/>
         <location filename="../options_imp.cpp" line="1342"/>
+        <location filename="../options_imp.cpp" line="1352"/>
         <source>Choose a save directory</source>
         <translation>Letöltési könyvtár megadása</translation>
     </message>
