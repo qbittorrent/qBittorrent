@@ -274,7 +274,7 @@ public slots:
     TorrentTempData::setSavePath(hash, savePath.path());
     qDebug("Torrent label is: %s", comboLabel->currentText().trimmed().toLocal8Bit().data());
     TorrentTempData::setLabel(hash, comboLabel->currentText().trimmed());
-    // Create .incremental file if necessary
+    // Is download sequential?
     TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
 #ifdef LIBTORRENT_0_15
     // Skip file checking and directly start seeding
