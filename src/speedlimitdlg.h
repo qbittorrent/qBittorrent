@@ -62,7 +62,10 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
       dlg.setDefaultValue(default_value/1024.);
       if(dlg.exec() == QDialog::Accepted) {
         *ok = true;
-        return dlg.getSpeedLimit()*1024;
+        int val = dlg.getSpeedLimit();
+        if(val <= 0)
+          return -1;
+        return val*1024;
       } else {
         *ok = false;
         return -2;

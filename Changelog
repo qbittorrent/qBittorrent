@@ -3,6 +3,7 @@
     - BUGFIX: Fix "Temp path" button in program preferences
     - BUGFIX: Handle paths with [~, ., ..] properly
     - BUGFIX: Trackers are now displayed for torrents without metadata
+    - BUGFIX: Fix issue with speed limiting (value should be -1 not 0)
 
 * Fri Dec 18 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
     - BUGFIX: Fix .qbittorrent folder not being created (critical bug introduced in v2.0.1 that makes qBittorrent unusuable for new users)
