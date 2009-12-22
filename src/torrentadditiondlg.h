@@ -50,6 +50,7 @@
 #include "ui_torrentadditiondlg.h"
 #include "torrentpersistentdata.h"
 #include "torrentfilesmodel.h"
+#include "preferences.h"
 
 using namespace libtorrent;
 
@@ -89,13 +90,8 @@ public:
     // Remember columns width
     readSettings();
     //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
-    QString home = QDir::homePath();
-    if(home[home.length()-1] != QDir::separator()){
-      home += QDir::separator();
-    }
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    savePathTxt->setText(settings.value(QString::fromUtf8("LastDirTorrentAdd"), home+QString::fromUtf8("qBT_dir")).toString());
-    if(settings.value("Preferences/Downloads/StartInPause", false).toBool()) {
+    savePathTxt->setText(Preferences::getSavePath());
+    if(Preferences::addTorrentsInPause()) {
       addInPause->setChecked(true);
       addInPause->setEnabled(false);
     }
@@ -320,9 +316,6 @@ public slots:
     }
     // Save savepath
     TorrentTempData::setSavePath(hash, savePath.path());
-    // Save last dir to remember it
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    settings.setValue(QString::fromUtf8("LastDirTorrentAdd"), savePathTxt->text());
     // Create .incremental file if necessary
     TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
 #ifdef LIBTORRENT_0_15
