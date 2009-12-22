@@ -7,6 +7,7 @@
     - FEATURE: Torrent files/folders can be renamed
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)
+    - COSMETIC: Added a spin box to speed limiting dialog for manual input
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen
