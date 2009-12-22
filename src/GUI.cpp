@@ -724,7 +724,7 @@ void GUI::loadPreferences(bool configure_session) {
   }
   unsigned int new_refreshInterval = Preferences::getRefreshInterval();
   transferList->setRefreshInterval(new_refreshInterval);
-
+  transferList->setAlternatingRowColors(Preferences::useAlternatingRowColors());
   // Queueing System
   if(Preferences::isQueueingSystemEnabled()) {
     if(!configure_session || !BTSession->isQueueingEnabled()) {

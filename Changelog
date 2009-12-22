@@ -6,6 +6,7 @@
     - FEATURE: Append !.qB extension to incomplete files option (libtorrent >= v0.15 only)
     - FEATURE: Torrent files/folders can be renamed
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
+    - COSMETIC: Use alternating row colors in transfer list (set in program preferences)
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen

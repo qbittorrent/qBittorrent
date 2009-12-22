@@ -64,6 +64,11 @@ public:
     return settings.value(QString::fromUtf8("Preferences/General/RefreshInterval"), 1500).toUInt();
   }
 
+  static bool useAlternatingRowColors() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/General/AlternatingRowColors"), true).toBool();
+  }
+
   static bool systrayIntegration() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
