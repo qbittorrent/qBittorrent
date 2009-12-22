@@ -168,12 +168,15 @@ public slots:
     bool ok = false;
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), BTSession->getSession()->download_rate_limit());
     if(ok) {
-      qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
-      BTSession->getSession()->set_download_rate_limit(new_limit);
-      if(new_limit <= 0)
+      if(new_limit <= 0) {
+        qDebug("Setting global download rate limit to Unlimited");
+        BTSession->getSession()->set_download_rate_limit(-1);
         Preferences::setGlobalDownloadLimit(-1);
-      else
+      } else {
+        qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
+        BTSession->getSession()->set_download_rate_limit(new_limit);
         Preferences::setGlobalDownloadLimit(new_limit/1024.);
+      }
     }
   }
 
@@ -181,12 +184,15 @@ public slots:
     bool ok = false;
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), BTSession->getSession()->upload_rate_limit());
     if(ok) {
-      qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
-      BTSession->getSession()->set_upload_rate_limit(new_limit);
-      if(new_limit <= 0)
+      if(new_limit <= 0) {
+        qDebug("Setting global upload rate limit to Unlimited");
+        BTSession->getSession()->set_upload_rate_limit(-1);
         Preferences::setGlobalUploadLimit(-1);
-      else
+      } else {
+        qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
         Preferences::setGlobalUploadLimit(new_limit/1024.);
+        BTSession->getSession()->set_upload_rate_limit(new_limit);
+      }
     }
   }
 };

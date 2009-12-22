@@ -48,7 +48,8 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
       setupUi(this);
       qDebug("Bandwidth allocation dialog creation");
       // Connect to slots
-      connect(bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateBandwidthLabel(int)));
+      connect(bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateSpinValue(int)));
+      connect(spinBandwidth, SIGNAL(valueChanged(int)), this, SLOT(updateSliderValue(int)));
     }
 
     ~SpeedLimitDialog(){
@@ -62,7 +63,10 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
       dlg.setDefaultValue(default_value/1024.);
       if(dlg.exec() == QDialog::Accepted) {
         *ok = true;
-        return dlg.getSpeedLimit()*1024;
+        int val = dlg.getSpeedLimit();
+        if(val <= 0)
+          return -1;
+        return val*1024;
       } else {
         *ok = false;
         return -2;
@@ -70,14 +74,25 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
     }
 
   protected slots:
-    void updateBandwidthLabel(int val){
+    void updateSpinValue(int val) const {
+      qDebug("Called updateSpinValue with %d", val);
       if(val <= 0){
-        limit_lbl->setText(QString::fromUtf8("∞"));
-        kb_lbl->setText(QString::fromUtf8(""));
+        spinBandwidth->setValue(0);
+        spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
+        spinBandwidth->setSuffix(QString::fromUtf8(""));
       }else{
-        limit_lbl->setText(misc::toQString(val));
-        kb_lbl->setText(tr("KiB/s"));
+        spinBandwidth->setValue(val);
+        spinBandwidth->setSuffix(" "+tr("KiB/s"));
       }
+    }
+
+    void updateSliderValue(int val) const {
+      if(val <= 0) {
+        spinBandwidth->setValue(0);
+        spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
+        spinBandwidth->setSuffix(QString::fromUtf8(""));
+      }
+      bandwidthSlider->setValue(val);
     }
 
     long getSpeedLimit() const {
@@ -90,6 +105,7 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
     void setDefaultValue(long val) const {
       if(val < 0) val = 0;
       bandwidthSlider->setValue(val);
+      updateSpinValue(val);
     }
 };
 

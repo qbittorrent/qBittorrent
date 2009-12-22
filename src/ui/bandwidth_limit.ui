@@ -33,28 +33,17 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout">
-       <property name="spacing">
-        <number>6</number>
+      <widget class="QSpinBox" name="spinBandwidth">
+       <property name="suffix">
+        <string/>
        </property>
-       <property name="margin">
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+       <property name="value">
         <number>0</number>
        </property>
-       <item>
-        <widget class="QLabel" name="limit_lbl">
-         <property name="text">
-          <string notr="true">∞</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="kb_lbl">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      </widget>
      </item>
     </layout>
    </item>
@@ -69,9 +58,6 @@
     </widget>
    </item>
   </layout>
-  <zorder>bandwidthSlider</zorder>
-  <zorder>buttonBox</zorder>
-  <zorder>kb_lbl</zorder>
  </widget>
  <resources/>
  <connections>
