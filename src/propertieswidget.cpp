@@ -636,20 +636,20 @@ void PropertiesWidget::renameSelectedFile() {
       }
       if(!dir.isNull()){
         // Check if savePath exists
-        QDir savePath(dir);
+        QDir savePath(misc::expandPath(dir));
         if(!savePath.exists()){
-          if(!savePath.mkpath(savePath.path())){
+          if(!savePath.mkpath(savePath.absolutePath())){
             QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
             return;
           }
         }
         // Save savepath
-        TorrentPersistentData::saveSavePath(h.hash(), savePath.path());
+        TorrentPersistentData::saveSavePath(h.hash(), savePath.absolutePath());
         // Actually move storage
         if(!BTSession->useTemporaryFolder() || h.is_seed())
-          h.move_storage(savePath.path());
+          h.move_storage(savePath.absolutePath());
         // Update save_path in dialog
-        save_path->setText(savePath.path());
+        save_path->setText(savePath.absolutePath());
       }
     }
 
