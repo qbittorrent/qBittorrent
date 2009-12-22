@@ -902,11 +902,11 @@ QString options_imp::getSavePath() const{
   if(textSavePath->text().trimmed().isEmpty()){
     textSavePath->setText(home+QString::fromUtf8("qBT_dir"));
   }
-  return textSavePath->text();
+  return misc::expandPath(textSavePath->text());
 }
 
 QString options_imp::getTempPath() const {
-  return textTempPath->text();
+  return misc::expandPath(textTempPath->text());
 }
 
 bool options_imp::isTempPathEnabled() const {
@@ -1291,9 +1291,9 @@ void options_imp::setLocale(QString locale){
 // Return scan dir set in options
 QString options_imp::getScanDir() const {
   if(checkScanDir->isChecked()){
-    return textScanDir->text().trimmed();
+    return misc::expandPath(textScanDir->text());
   }else{
-    return QString();
+    return QString::null;
   }
 }
 
@@ -1313,22 +1313,28 @@ int options_imp::getActionOnDblClOnTorrentFn() const {
 
 // Display dialog to choose scan dir
 void options_imp::on_browseScanDirButton_clicked() {
-#ifdef Q_WS_WIN
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), QDir::rootPath());
-#else
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), QDir::homePath());
-#endif
+  QString scan_path = misc::expandPath(textScanDir->text());
+  QDir scanDir(scan_path);
+  QString dir;
+  if(!scan_path.isEmpty() && scanDir.exists()) {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), scanDir.absolutePath());
+  } else {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), QDir::homePath());
+  }
   if(!dir.isNull()){
     textScanDir->setText(dir);
   }
 }
 
 void options_imp::on_browseFilterButton_clicked() {
-#ifdef Q_WS_WIN
-  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::rootPath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
-#else
-  QString ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
-#endif
+  QString filter_path = misc::expandPath(textFilterPath->text());
+  QDir filterDir(filter_path);
+  QString ipfilter;
+  if(!filter_path.isEmpty() && filterDir.exists()) {
+    ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), filterDir.absolutePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
+  } else {
+    ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
+  }
   if(!ipfilter.isNull()){
     textFilterPath->setText(ipfilter);
   }
@@ -1336,20 +1342,28 @@ void options_imp::on_browseFilterButton_clicked() {
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked(){
-  QString def_path = QDir::homePath();
-  if(!textSavePath->text().isEmpty())
-    def_path = textSavePath->text();
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), def_path);
+  QString save_path = misc::expandPath(textSavePath->text());
+  QDir saveDir(save_path);
+  QString dir;
+  if(!save_path.isEmpty() && saveDir.exists()) {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), saveDir.absolutePath());
+  } else {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
+  }
   if(!dir.isNull()){
     textSavePath->setText(dir);
   }
 }
 
 void options_imp::on_browseTempDirButton_clicked(){
-  QString def_path = QDir::homePath();
-  if(!textTempPath->text().isEmpty())
-    def_path = textTempPath->text();
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), def_path);
+  QString temp_path = misc::expandPath(textTempPath->text());
+  QDir tempDir(temp_path);
+  QString dir;
+  if(!temp_path.isEmpty() && tempDir.exists()) {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), tempDir.absolutePath());
+  } else {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
+  }
   if(!dir.isNull()){
     textTempPath->setText(dir);
   }

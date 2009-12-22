@@ -579,35 +579,34 @@ bool PropertiesWidget::applyPriorities() {
     h.prioritize_first_last_piece(true);
   return true;
 }
-
-
+    
 void PropertiesWidget::on_changeSavePathButton_clicked() {
-  if(!h.is_valid()) return;
-  QString dir;
-  QDir saveDir(h.save_path());
-  if(saveDir.exists()){
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
-  }else{
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
-  }
-  if(!dir.isNull()){
-    // Check if savePath exists
-    QDir savePath(dir);
-    if(!savePath.exists()){
-      if(!savePath.mkpath(savePath.path())){
-        QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
-        return;
+      if(!h.is_valid()) return;
+      QString dir;
+      QDir saveDir(h.save_path());
+      if(saveDir.exists()){
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
+      }else{
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+      }
+      if(!dir.isNull()){
+        // Check if savePath exists
+        QDir savePath(misc::expandPath(dir));
+        if(!savePath.exists()){
+          if(!savePath.mkpath(savePath.absolutePath())){
+            QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
+            return;
+          }
+        }
+        // Save savepath
+        TorrentPersistentData::saveSavePath(h.hash(), savePath.absolutePath());
+        // Actually move storage
+        if(!BTSession->useTemporaryFolder() || h.is_seed())
+          h.move_storage(savePath.absolutePath());
+        // Update save_path in dialog
+        save_path->setText(savePath.absolutePath());
       }
     }
-    // Save savepath
-    TorrentPersistentData::saveSavePath(h.hash(), savePath.path());
-    // Actually move storage
-    if(!BTSession->useTemporaryFolder() || h.is_seed())
-      h.move_storage(savePath.path());
-    // Update save_path in dialog
-    save_path->setText(savePath.path());
-  }
-}
 
 void PropertiesWidget::filteredFilesChanged() {
   if(h.is_valid()) {

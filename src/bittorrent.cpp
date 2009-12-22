@@ -1664,11 +1664,13 @@ QString Bittorrent::getSavePath(QString hash) {
     qDebug("Using default save path because none was set: %s", defaultSavePath.toLocal8Bit().data());
     savePath = defaultSavePath;
   }
+  // Clean path
+  savePath = misc::expandPath(savePath);
   // Checking if savePath Dir exists
   // create it if it is not
   QDir saveDir(savePath);
   if(!saveDir.exists()) {
-    if(!saveDir.mkpath(saveDir.path())) {
+    if(!saveDir.mkpath(saveDir.absolutePath())) {
       std::cerr << "Couldn't create the save directory: " << saveDir.path().toLocal8Bit().data() << "\n";
       // XXX: handle this better
       //return QDir::homePath();

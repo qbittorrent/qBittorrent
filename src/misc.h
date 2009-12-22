@@ -304,6 +304,23 @@ public:
     return QDateTime::fromTime_t(mktime(&tm)).toString(Qt::DefaultLocaleLongDate);
   }
 
+  // Replace ~ in path
+  static QString expandPath(QString path) {
+    path = path.trimmed();
+    if(path.isEmpty()) return path;
+    if(path.length() == 1) {
+      if(path[0] == '~' ) return QDir::homePath();
+    }
+    if(path[0] == '~' && path[1] == QDir::separator()) {
+      path = path.replace(0, 1, QDir::homePath());
+    } else {
+      if(QDir::isAbsolutePath(path)) {
+        path = QDir(path).absolutePath();
+      }
+    }
+    return QDir::cleanPath(path);
+  }
+
   // Take a number of seconds and return an user-friendly
   // time duration like "1d 2h 10m".
   static QString userFriendlyDuration(qlonglong seconds) {
