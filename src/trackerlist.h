@@ -142,13 +142,13 @@ public slots:
         ++nb_pex;
     }
     // load DHT information
-    if(properties->getBTSession()->isDHTEnabled() && !h.priv()) {
+    if(properties->getBTSession()->isDHTEnabled() && h.has_metadata() && !h.priv()) {
       dht_item->setText(COL_STATUS, tr("Working"));
     } else {
       dht_item->setText(COL_STATUS, tr("Disabled"));
     }
     dht_item->setText(COL_PEERS, QString::number(nb_dht));
-    if(h.priv()) {
+    if(h.has_metadata() && h.priv()) {
       dht_item->setText(COL_MSG, tr("This torrent is private"));
     }
     // Load PeX Information
