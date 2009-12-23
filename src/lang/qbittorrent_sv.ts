@@ -353,7 +353,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation>&lt;b&gt;Observera:&lt;/b&gt; Ändringar kommer att verkställas efter att qBittorrent har startats om.</translation>
+        <translation type="obsolete">&lt;b&gt;Observera:&lt;/b&gt; Ändringar kommer att verkställas efter att qBittorrent har startats om.</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -425,7 +425,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>User interface settings</source>
-        <translation>Inställningar för användargränssnitt</translation>
+        <translation type="obsolete">Inställningar för användargränssnitt</translation>
     </message>
     <message>
         <source>Visual style:</source>
@@ -804,12 +804,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Transfer list refresh interval:</source>
-        <translation>Uppdateringsintervall för överföringslista:</translation>
+        <translation type="obsolete">Uppdateringsintervall för överföringslista:</translation>
     </message>
     <message>
         <source>Action on double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Åtgärd vid dubbelklick</translation>
+        <translation type="obsolete">Åtgärd vid dubbelklick</translation>
     </message>
     <message>
         <source>Downloading:</source>
@@ -881,6 +881,32 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click:</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

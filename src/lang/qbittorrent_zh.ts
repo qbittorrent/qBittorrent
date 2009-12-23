@@ -783,7 +783,7 @@ XP)</translation>
     </message>
     <message>
         <source>User interface settings</source>
-        <translation>用户界面设置</translation>
+        <translation type="obsolete">用户界面设置</translation>
     </message>
     <message>
         <source>Visual style:</source>
@@ -1029,7 +1029,7 @@ folder:</source>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation>注意:变动会在重新运行qBittorrent之后生效.</translation>
+        <translation type="obsolete">注意:变动会在重新运行qBittorrent之后生效.</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -1190,12 +1190,12 @@ folder:</source>
     </message>
     <message>
         <source>Transfer list refresh interval:</source>
-        <translation>传输列表刷新间隔:</translation>
+        <translation type="obsolete">传输列表刷新间隔:</translation>
     </message>
     <message>
         <source>Action on double click</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>双击执行活动</translation>
+        <translation type="obsolete">双击执行活动</translation>
     </message>
     <message>
         <source>Downloading:</source>
@@ -1267,6 +1267,32 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click:</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
