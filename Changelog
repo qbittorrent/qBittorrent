@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
+* Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
     - BUGFIX: Minor cosmetic fix to program preferences
     - BUGFIX: Fix "Temp path" button in program preferences
     - BUGFIX: Handle paths with [~, ., ..] properly
