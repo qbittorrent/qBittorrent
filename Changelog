@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.4
     - BUGFIX: Fix PeerGuardian .p2b binary filter support
     - BUGFIX: Fix possible crash when closing a search engine tab
+    - BUGFIX: Make sure service port does not change
 
 * Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
     - BUGFIX: Minor cosmetic fix to program preferences
