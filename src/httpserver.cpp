@@ -76,6 +76,12 @@ HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcp
   a = tr("Maximum number of connections per torrent limit must be greater than 0 or disabled.");
   a = tr("Maximum number of upload slots per torrent limit must be greater than 0 or disabled.");
   a = tr("Unable to save program preferences, qBittorrent is probably unreachable.");
+  a = tr("Language");
+  a = tr("Downloaded", "Is the file downloaded or not?");
+  a = tr("The port used for incoming connections must be greater than 1024 and less than 65535.");
+  a = tr("The port used for the Web UI must be greater than 1024 and less than 65535.");
+  a = tr("The Web UI username must be at least 3 characters long.");
+  a = tr("The Web UI password must be at least 3 characters long.");
 }
 
 HttpServer::~HttpServer()

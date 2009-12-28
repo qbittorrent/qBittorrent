@@ -98,6 +98,36 @@ namespace json {
     return "{"+vlist.join(",")+"}";
   }
 
+  QVariantMap fromJson(QString json) {
+    QVariantMap m;
+    if(json.startsWith("{") && json.endsWith("}")) {
+      json.chop(1);
+      json = json.replace(0, 1, "");
+      QStringList couples = json.split(",");
+      foreach(QString couple, couples) {
+        QStringList parts = couple.split(":");
+        if(parts.size() != 2) continue;
+        QString key = parts.first();
+        if(key.startsWith("\"") && key.endsWith("\"")) {
+          key.chop(1);
+          key = key.replace(0, 1, "");
+        }
+        QString value_str = parts.last();
+        QVariant value;
+        if(value_str.startsWith("\"") && value_str.endsWith("\"")) {
+          value_str.chop(1);
+          value_str = value_str.replace(0, 1, "");
+          value = value_str;
+        } else {
+          value = value_str.toInt();
+        }
+        m.insert(key,value);
+        qDebug("%s:%s", key.toLocal8Bit().data(), value_str.toLocal8Bit().data());
+      }
+    }
+    return m;
+  }
+
   QString toJson(QList<QVariantMap> v) {
     QStringList res;
     foreach(QVariantMap m, v) {

@@ -43,7 +43,7 @@ using namespace libtorrent;
 
 class QCloseEvent;
 
-class options_imp : public QDialog, private Ui::Dialog {
+class options_imp : public QDialog, private Ui_Preferences {
   Q_OBJECT
 
 private:

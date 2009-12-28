@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>Preferences</class>
+ <widget class="QDialog" name="Preferences">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -2345,8 +2345,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>228</width>
-              <height>124</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2378,7 +2378,7 @@ QGroupBox {
                      <bool>false</bool>
                     </property>
                     <property name="text">
-                     <string>Filter file path:</string>
+                     <string>Filter path (.dat, .p2p, .p2b):</string>
                     </property>
                    </widget>
                   </item>
@@ -2442,8 +2442,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>219</width>
-              <height>221</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">

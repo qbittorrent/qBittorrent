@@ -459,9 +459,8 @@ inside)</source>
 것입니다.)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="161"/>
         <source>Proxy</source>
-        <translation>프럭시 (Proxy)</translation>
+        <translation type="obsolete">프럭시 (Proxy)</translation>
     </message>
     <message>
         <source>Enable connection through a proxy server</source>
@@ -480,33 +479,24 @@ inside)</source>
         <translation type="obsolete">0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1914"/>
-        <location filename="../ui/options.ui" line="2109"/>
-        <location filename="../ui/options.ui" line="2475"/>
         <source>Port:</source>
-        <translation>포트:</translation>
+        <translation type="obsolete">포트:</translation>
     </message>
     <message>
         <source>Proxy server requires authentication</source>
         <translation type="obsolete">프록시 서버를 사용하기 위해서는 인증확인이 필요합니다</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1954"/>
-        <location filename="../ui/options.ui" line="2149"/>
-        <location filename="../ui/options.ui" line="2511"/>
         <source>Authentication</source>
-        <translation>인증</translation>
+        <translation type="obsolete">인증</translation>
     </message>
     <message>
         <source>User Name:</source>
         <translation type="obsolete">아이디:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1978"/>
-        <location filename="../ui/options.ui" line="2173"/>
-        <location filename="../ui/options.ui" line="2526"/>
         <source>Password:</source>
-        <translation>비밀번호:</translation>
+        <translation type="obsolete">비밀번호:</translation>
     </message>
     <message>
         <source>Language</source>
@@ -551,14 +541,12 @@ list:</source>
         <translation type="obsolete">KB 최고 업로딩 속도.</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2365"/>
         <source>Activate IP Filtering</source>
-        <translation>IP 필터링 사용</translation>
+        <translation type="obsolete">IP 필터링 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2359"/>
         <source>Filter Settings</source>
-        <translation>필터 설정</translation>
+        <translation type="obsolete">필터 설정</translation>
     </message>
     <message>
         <source>ipfilter.dat URL or PATH:</source>
@@ -585,9 +573,8 @@ list:</source>
         <translation type="obsolete">적용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="170"/>
         <source>IP Filter</source>
-        <translation>IP 필터</translation>
+        <translation type="obsolete">IP 필터</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -622,9 +609,8 @@ list:</source>
         <translation type="obsolete">변환</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="254"/>
         <source>Language:</source>
-        <translation>언어:</translation>
+        <translation type="obsolete">언어:</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -675,19 +661,12 @@ list:</source>
         <translation type="obsolete">음악 및 영상 재생기:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1415"/>
-        <location filename="../ui/options.ui" line="1451"/>
-        <source>KiB/s</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>DHT configuration</source>
         <translation type="obsolete">DHT 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1592"/>
         <source>DHT port:</source>
-        <translation>DHT 포트:</translation>
+        <translation type="obsolete">DHT 포트:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
@@ -734,9 +713,8 @@ list:</source>
         <translation type="obsolete">메인 창을 닫을 때 시스템 트레이에 아이템 보여주기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="131"/>
         <source>Connection</source>
-        <translation>연결</translation>
+        <translation type="obsolete">연결</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -767,9 +745,8 @@ list:</source>
         <translation type="obsolete">스타일 (Look &apos;n  Feel)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="323"/>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastique 스타일 (KDE 과 비슷)</translation>
+        <translation type="obsolete">Plastique 스타일 (KDE 과 비슷)</translation>
     </message>
     <message>
         <source>Cleanlooks style (GNOME like)</source>
@@ -780,9 +757,8 @@ list:</source>
         <translation type="obsolete">Motif 스타일 (기본 Qt 스타일 on 유닉스 시스템)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="338"/>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>CDE 스타일 (Common Desktop Environment과 비슷)</translation>
+        <translation type="obsolete">CDE 스타일 (Common Desktop Environment과 비슷)</translation>
     </message>
     <message>
         <source>MacOS style (MacOSX only)</source>
@@ -809,40 +785,24 @@ list:</source>
         <translation type="obsolete">프락시 종류 (Proxy type): </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1877"/>
-        <location filename="../ui/options.ui" line="2067"/>
-        <source>HTTP</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="2072"/>
-        <source>SOCKS5</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="2244"/>
         <source>Affected connections</source>
-        <translation>관련된 연결</translation>
+        <translation type="obsolete">관련된 연결</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2256"/>
         <source>Use proxy for connections to trackers</source>
-        <translation>트렉커(tracker)에 연결하는데 프락시 사용</translation>
+        <translation type="obsolete">트렉커(tracker)에 연결하는데 프락시 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2272"/>
         <source>Use proxy for connections to regular peers</source>
-        <translation>일반 사용자(peer)와 연결하는데 프락시 사용</translation>
+        <translation type="obsolete">일반 사용자(peer)와 연결하는데 프락시 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2304"/>
         <source>Use proxy for connections to web seeds</source>
-        <translation>웹 완전체(Web seed)와 연결하는데 프락시 사용</translation>
+        <translation type="obsolete">웹 완전체(Web seed)와 연결하는데 프락시 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2288"/>
         <source>Use proxy for DHT messages</source>
-        <translation>DHT 메세지에 프락시 사용</translation>
+        <translation type="obsolete">DHT 메세지에 프락시 사용</translation>
     </message>
     <message>
         <source>Encryption</source>
@@ -853,24 +813,20 @@ list:</source>
         <translation type="obsolete">암호화(Encryption) 상태:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1667"/>
         <source>Enabled</source>
-        <translation>사용하기</translation>
+        <translation type="obsolete">사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1672"/>
         <source>Forced</source>
-        <translation>강제</translation>
+        <translation type="obsolete">강제</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1677"/>
         <source>Disabled</source>
-        <translation>사용하지 않기</translation>
+        <translation type="obsolete">사용하지 않기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="20"/>
         <source>Preferences</source>
-        <translation>선호사항 설정</translation>
+        <translation type="obsolete">선호사항 설정</translation>
     </message>
     <message>
         <source>General</source>
@@ -885,98 +841,82 @@ list:</source>
         <translation type="obsolete">사용자 인터페이스 정의</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="310"/>
         <source>Visual style:</source>
-        <translation>시각 스타일:</translation>
+        <translation type="obsolete">시각 스타일:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="328"/>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>깨끗한 스타일 (Gnome과 비슷)</translation>
+        <translation type="obsolete">깨끗한 스타일 (Gnome과 비슷)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="333"/>
         <source>Motif style (Unix like)</source>
-        <translation>모티브 스타일 (Unix와 비슷)</translation>
+        <translation type="obsolete">모티브 스타일 (Unix와 비슷)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="361"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>종료시 다운로드 목록에 파일이 남아있다면 종료 확인하기 </translation>
+        <translation type="obsolete">종료시 다운로드 목록에 파일이 남아있다면 종료 확인하기 </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="381"/>
         <source>Disable splash screen</source>
-        <translation>시작 팝업 화면 숨기기</translation>
+        <translation type="obsolete">시작 팝업 화면 숨기기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="388"/>
         <source>Display current speed in title bar</source>
-        <translation>현재 속도를 타이틀 바에 표시하기</translation>
+        <translation type="obsolete">현재 속도를 타이틀 바에 표시하기</translation>
     </message>
     <message>
         <source>Transfer list refresh interval:</source>
         <translation type="obsolete">전송 목록 새로고침 빈도:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="552"/>
         <source>System tray icon</source>
-        <translation>시스템 트레이 이이콘</translation>
+        <translation type="obsolete">시스템 트레이 이이콘</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="558"/>
         <source>Disable system tray icon</source>
-        <translation>시스템 트레이 아이템 사용하지 않기</translation>
+        <translation type="obsolete">시스템 트레이 아이템 사용하지 않기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="565"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>창을 닫은 후 시스템 트레이 이이콘으로</translation>
+        <translation type="obsolete">창을 닫은 후 시스템 트레이 이이콘으로</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="572"/>
         <source>Minimize to tray</source>
-        <translation>최소화후 시스템 트레이 이이콘으로</translation>
+        <translation type="obsolete">최소화후 시스템 트레이 이이콘으로</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="589"/>
         <source>Show notification balloons in tray</source>
-        <translation>트레이에서 알림창 띄우기</translation>
+        <translation type="obsolete">트레이에서 알림창 띄우기</translation>
     </message>
     <message>
         <source>Media player:</source>
         <translation type="obsolete">미디어 플레이어:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="116"/>
         <source>Downloads</source>
-        <translation>다운로드</translation>
+        <translation type="obsolete">다운로드</translation>
     </message>
     <message>
         <source>Put downloads in this folder:</source>
         <translation type="obsolete">다운로드 된것을 다음 폴더에 보관함:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="815"/>
         <source>Pre-allocate all files</source>
-        <translation>파일을 받기전에 디스크 용량 확보하기</translation>
+        <translation type="obsolete">파일을 받기전에 디스크 용량 확보하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1024"/>
         <source>When adding a torrent</source>
-        <translation>토렌트를 추가할때</translation>
+        <translation type="obsolete">토렌트를 추가할때</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1032"/>
         <source>Display torrent content and some options</source>
-        <translation>토렌트 내용과 선택사항을 보이기</translation>
+        <translation type="obsolete">토렌트 내용과 선택사항을 보이기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1059"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>자동 다운로드 시작 사용하기 않기 </translation>
+        <translation type="obsolete">자동 다운로드 시작 사용하기 않기 </translation>
     </message>
     <message>
         <source>Folder watching</source>
@@ -993,16 +933,12 @@ list:</source>
         <translation type="obsolete">다운로드 목록:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="495"/>
-        <location filename="../ui/options.ui" line="529"/>
         <source>Start/Stop</source>
-        <translation>시작/멈춤</translation>
+        <translation type="obsolete">시작/멈춤</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="500"/>
-        <location filename="../ui/options.ui" line="534"/>
         <source>Open folder</source>
-        <translation>폴더 열기</translation>
+        <translation type="obsolete">폴더 열기</translation>
     </message>
     <message>
         <source>Show properties</source>
@@ -1025,9 +961,8 @@ list:</source>
         <translation type="obsolete">이 폴더에 있는 토렌트 파일을 자동으로 다운받기: </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1126"/>
         <source>Listening port</source>
-        <translation>포트 연결</translation>
+        <translation type="obsolete">포트 연결</translation>
     </message>
     <message>
         <source>to</source>
@@ -1035,93 +970,72 @@ list:</source>
         <translation type="obsolete">~</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1176"/>
         <source>Enable UPnP port mapping</source>
-        <translation>UPnP 포트 맵핑 사용하기</translation>
+        <translation type="obsolete">UPnP 포트 맵핑 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1186"/>
         <source>Enable NAT-PMP port mapping</source>
-        <translation>NAT-PMP 포트 맵핑 사용하기</translation>
+        <translation type="obsolete">NAT-PMP 포트 맵핑 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1345"/>
         <source>Global bandwidth limiting</source>
-        <translation>전제 속도 제한하기</translation>
+        <translation type="obsolete">전제 속도 제한하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1361"/>
         <source>Upload:</source>
-        <translation>업로드:</translation>
+        <translation type="obsolete">업로드:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1377"/>
         <source>Download:</source>
-        <translation>다운로드:</translation>
+        <translation type="obsolete">다운로드:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1480"/>
         <source>Peer connections</source>
-        <translation>공유자(Peer) 연결</translation>
+        <translation type="obsolete">공유자(Peer) 연결</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1486"/>
         <source>Resolve peer countries</source>
-        <translation>공유자(Peer) 국가 재설정하기</translation>
+        <translation type="obsolete">공유자(Peer) 국가 재설정하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1496"/>
         <source>Resolve peer host names</source>
-        <translation>공유자(Peer) 호스트 이름 재 설정하기</translation>
+        <translation type="obsolete">공유자(Peer) 호스트 이름 재 설정하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1545"/>
         <source>Bittorrent features</source>
-        <translation>비토렌트 기능</translation>
+        <translation type="obsolete">비토렌트 기능</translation>
     </message>
     <message>
         <source>Use the same port for DHT and Bittorrent</source>
         <translation type="obsolete">DHT와 비토렌트에 동일한 포트를 사용하기</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1650"/>
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation>Ban을 피하기 위해 µtorrent처럼 보이게 하기 (Spoof µtorrent) (이 설정은 재시작을 필요합니다)</translation>
+        <translation type="obsolete">Ban을 피하기 위해 µtorrent처럼 보이게 하기 (Spoof µtorrent) (이 설정은 재시작을 필요합니다)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1864"/>
-        <location filename="../ui/options.ui" line="2054"/>
         <source>Type:</source>
-        <translation>종류:</translation>
+        <translation type="obsolete">종류:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1872"/>
-        <location filename="../ui/options.ui" line="2062"/>
         <source>(None)</source>
-        <translation>(없음)</translation>
+        <translation type="obsolete">(없음)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1888"/>
-        <location filename="../ui/options.ui" line="2083"/>
         <source>Proxy:</source>
-        <translation>프록시:</translation>
+        <translation type="obsolete">프록시:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1968"/>
-        <location filename="../ui/options.ui" line="2163"/>
-        <location filename="../ui/options.ui" line="2519"/>
         <source>Username:</source>
-        <translation>사용자 이름:</translation>
+        <translation type="obsolete">사용자 이름:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="146"/>
         <source>Bittorrent</source>
-        <translation>비트토렌트</translation>
+        <translation type="obsolete">비트토렌트</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="101"/>
         <source>UI</source>
-        <translation>사용자 인터페이스(UI)</translation>
+        <translation type="obsolete">사용자 인터페이스(UI)</translation>
     </message>
     <message>
         <source>Action on double click</source>
@@ -1129,208 +1043,96 @@ list:</source>
         <translation type="obsolete">더블 클릭시</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="478"/>
         <source>Downloading:</source>
-        <translation>다운로딩중:</translation>
+        <translation type="obsolete">다운로딩중:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="521"/>
         <source>Completed:</source>
-        <translation>완료됨:</translation>
+        <translation type="obsolete">완료됨:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="645"/>
-        <source>QGroupBox::title {
-font-weight: normal;
-margin-left: -3px;
-}
-QGroupBox {
-  border-width: 0;
-}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="654"/>
-        <source>Destination Folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="694"/>
-        <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="704"/>
-        <source>Use a different folder for incomplete downloads:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="716"/>
-        <location filename="../ui/options.ui" line="774"/>
-        <source>QLineEdit {
-  margin-left: 23px;
-}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="756"/>
-        <source>Automatically load .torrent files from:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="808"/>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="824"/>
-        <source>Disk cache:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="844"/>
-        <source>MiB (advanced)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1201"/>
         <source>Connections limit</source>
-        <translation>연결 제한</translation>
+        <translation type="obsolete">연결 제한</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1209"/>
         <source>Global maximum number of connections:</source>
-        <translation>최대 전체 연결수 </translation>
+        <translation type="obsolete">최대 전체 연결수 </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1257"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation>한 토렌트 파일에 사용할수 있는 최대 연결수:</translation>
+        <translation type="obsolete">한 토렌트 파일에 사용할수 있는 최대 연결수:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1302"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>한 토렌트 파일의 업로드에 사용할수 있는 최대 연결수:</translation>
+        <translation type="obsolete">한 토렌트 파일의 업로드에 사용할수 있는 최대 연결수:</translation>
     </message>
     <message>
         <source>Additional Bittorrent features</source>
         <translation type="obsolete">부과 비토렌트 사항</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1551"/>
         <source>Enable DHT network (decentralized)</source>
-        <translation>DHT 네트웍크 (분화됨, decentralized) 사용하기</translation>
+        <translation type="obsolete">DHT 네트웍크 (분화됨, decentralized) 사용하기</translation>
     </message>
     <message>
         <source>Enable Peer eXchange (PeX)</source>
         <translation type="obsolete">피어 익스체인지(Pex) 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1640"/>
         <source>Enable Local Peer Discovery</source>
-        <translation>로컬 네트웍크내 공유자 찾기 (Local Peer Discovery) 사용하기</translation>
+        <translation type="obsolete">로컬 네트웍크내 공유자 찾기 (Local Peer Discovery) 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1659"/>
         <source>Encryption:</source>
-        <translation>암호화(Encryption)</translation>
+        <translation type="obsolete">암호화(Encryption)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1703"/>
         <source>Share ratio settings</source>
-        <translation>공유 비율(Radio) 설정</translation>
+        <translation type="obsolete">공유 비율(Radio) 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1711"/>
         <source>Desired ratio:</source>
-        <translation>원하는 할당비(Ratio):</translation>
+        <translation type="obsolete">원하는 할당비(Ratio):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2381"/>
         <source>Filter file path:</source>
-        <translation>필터 파일 경로:</translation>
+        <translation type="obsolete">필터 파일 경로:</translation>
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
         <translation type="obsolete">전송 목록을 업데이트 할 간격:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="423"/>
         <source>ms</source>
-        <translation>ms(milli second)</translation>
+        <translation type="obsolete">ms(milli second)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="200"/>
-        <location filename="../ui/options.ui" line="2617"/>
-        <source>RSS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="246"/>
-        <source>User interface</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="283"/>
-        <source>(Requires restart)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="395"/>
-        <source>Transfer list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="403"/>
-        <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="445"/>
-        <source>Use alternating row colors</source>
-        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="470"/>
-        <source>Action on double click:</source>
-        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="2670"/>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS 을 새로 고칠 시간 간격:</translation>
+        <translation type="obsolete">RSS 을 새로 고칠 시간 간격:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2690"/>
         <source>minutes</source>
-        <translation>분</translation>
+        <translation type="obsolete">분</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2714"/>
         <source>Maximum number of articles per feed:</source>
-        <translation>하나의 소스당 최대 기사수:</translation>
+        <translation type="obsolete">하나의 소스당 최대 기사수:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="636"/>
         <source>File system</source>
-        <translation>파일 시스템</translation>
+        <translation type="obsolete">파일 시스템</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1765"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>공유비율(Shared Ratio)에 도달했을때 완료된 파일을 목록에서 지우기:</translation>
+        <translation type="obsolete">공유비율(Shared Ratio)에 도달했을때 완료된 파일을 목록에서 지우기:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="318"/>
         <source>System default</source>
-        <translation>시스템 디폴트</translation>
+        <translation type="obsolete">시스템 디폴트</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="582"/>
         <source>Start minimized</source>
-        <translation>최소화하기</translation>
+        <translation type="obsolete">최소화하기</translation>
     </message>
     <message>
         <source>Action on double click in transfer lists</source>
@@ -1370,9 +1172,8 @@ QGroupBox {
         <translation type="obsolete">Ban을 피하기 위해 Arureus처럼 보이게 하기 (Spoof Azureus) (이 설정은 재시작을 필요합니다)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="185"/>
         <source>Web UI</source>
-        <translation>웹 유저 인터페이스</translation>
+        <translation type="obsolete">웹 유저 인터페이스</translation>
     </message>
     <message>
         <source>Action for double click</source>
@@ -1380,84 +1181,64 @@ QGroupBox {
         <translation type="obsolete">더블 클릭시 동작</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1134"/>
         <source>Port used for incoming connections:</source>
-        <translation>다운용(incoming connection) 으로 사용된 포트:</translation>
+        <translation type="obsolete">다운용(incoming connection) 으로 사용된 포트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1154"/>
         <source>Random</source>
-        <translation>무작위</translation>
+        <translation type="obsolete">무작위</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1561"/>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation>비토렌트와 DHT에 다른 포트 사용하기</translation>
+        <translation type="obsolete">비토렌트와 DHT에 다른 포트 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1630"/>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="2456"/>
         <source>Enable Web User Interface</source>
-        <translation>웹사용자인터페이스 사용</translation>
+        <translation type="obsolete">웹사용자인터페이스 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2469"/>
         <source>HTTP Server</source>
-        <translation>HTTP 서버</translation>
+        <translation type="obsolete">HTTP 서버</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2623"/>
         <source>Enable RSS support</source>
-        <translation>RSS 지원을 사용하기</translation>
+        <translation type="obsolete">RSS 지원을 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2633"/>
         <source>RSS settings</source>
-        <translation>RSS 설정</translation>
+        <translation type="obsolete">RSS 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="877"/>
         <source>Enable queueing system</source>
-        <translation>우선 순위 배열 시스템(queueing system) 사용하기</translation>
+        <translation type="obsolete">우선 순위 배열 시스템(queueing system) 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="889"/>
         <source>Maximum active downloads:</source>
-        <translation>최대 활성 다운로드(Maximum active downloads):</translation>
+        <translation type="obsolete">최대 활성 다운로드(Maximum active downloads):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="871"/>
         <source>Torrent queueing</source>
-        <translation>토렌트 배열</translation>
+        <translation type="obsolete">토렌트 배열</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="975"/>
         <source>Maximum active torrents:</source>
-        <translation>최대 활성 토렌트(Maximum active torrents):</translation>
+        <translation type="obsolete">최대 활성 토렌트(Maximum active torrents):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="371"/>
         <source>Display top toolbar</source>
-        <translation>상위 도구메뉴 보이기</translation>
+        <translation type="obsolete">상위 도구메뉴 보이기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1856"/>
         <source>Search engine proxy settings</source>
-        <translation>검색 엔진 프록시 설정</translation>
+        <translation type="obsolete">검색 엔진 프록시 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2046"/>
         <source>Bittorrent proxy settings</source>
-        <translation>비토렌트 프록시 설정</translation>
+        <translation type="obsolete">비토렌트 프록시 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="932"/>
         <source>Maximum active uploads:</source>
-        <translation>최대 활성 업로드(Maximum active downloads):</translation>
+        <translation type="obsolete">최대 활성 업로드(Maximum active downloads):</translation>
     </message>
 </context>
 <context>
@@ -1623,33 +1404,33 @@ QGroupBox {
         <translation type="obsolete">최고</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="147"/>
-        <location filename="../eventmanager.cpp" line="148"/>
+        <location filename="../eventmanager.cpp" line="268"/>
+        <location filename="../eventmanager.cpp" line="269"/>
         <source>this session</source>
         <translation>이 세션</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="152"/>
-        <location filename="../eventmanager.cpp" line="156"/>
+        <location filename="../eventmanager.cpp" line="273"/>
+        <location filename="../eventmanager.cpp" line="277"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/초</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="159"/>
+        <location filename="../eventmanager.cpp" line="280"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>완전체 공유한 시간: %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="162"/>
+        <location filename="../eventmanager.cpp" line="283"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>최고 %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="237"/>
-        <location filename="../eventmanager.cpp" line="246"/>
+        <location filename="../eventmanager.cpp" line="358"/>
+        <location filename="../eventmanager.cpp" line="367"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/초</translation>
@@ -3040,6 +2821,37 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../httpserver.cpp" line="79"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="80"/>
+        <source>Downloaded</source>
+        <comment>Is the file downloaded or not?</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="81"/>
+        <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="82"/>
+        <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="83"/>
+        <source>The Web UI username must be at least 3 characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpserver.cpp" line="84"/>
+        <source>The Web UI password must be at least 3 characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -3474,6 +3286,598 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../peerlistwidget.cpp" line="215"/>
         <source>Download rate limiting</source>
         <translation>다운로드 비율 제한</translation>
+    </message>
+</context>
+<context>
+    <name>Preferences</name>
+    <message>
+        <location filename="../ui/options.ui" line="20"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="101"/>
+        <source>UI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="116"/>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="131"/>
+        <source>Connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="146"/>
+        <source>Bittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="161"/>
+        <source>Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="170"/>
+        <source>IP Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="185"/>
+        <source>Web UI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="200"/>
+        <location filename="../ui/options.ui" line="2617"/>
+        <source>RSS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="246"/>
+        <source>User interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="254"/>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="283"/>
+        <source>(Requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="310"/>
+        <source>Visual style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="318"/>
+        <source>System default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="323"/>
+        <source>Plastique style (KDE like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="328"/>
+        <source>Cleanlooks style (Gnome like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="333"/>
+        <source>Motif style (Unix like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="338"/>
+        <source>CDE style (Common Desktop Environment like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="361"/>
+        <source>Ask for confirmation on exit when download list is not empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="371"/>
+        <source>Display top toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="381"/>
+        <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="388"/>
+        <source>Display current speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="395"/>
+        <source>Transfer list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="403"/>
+        <source>Refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="423"/>
+        <source>ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="445"/>
+        <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="470"/>
+        <source>Action on double click:</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="478"/>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="495"/>
+        <location filename="../ui/options.ui" line="529"/>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="500"/>
+        <location filename="../ui/options.ui" line="534"/>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="521"/>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="552"/>
+        <source>System tray icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="558"/>
+        <source>Disable system tray icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="565"/>
+        <source>Close to tray</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="572"/>
+        <source>Minimize to tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="582"/>
+        <source>Start minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="589"/>
+        <source>Show notification balloons in tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="636"/>
+        <source>File system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="645"/>
+        <source>QGroupBox::title {
+font-weight: normal;
+margin-left: -3px;
+}
+QGroupBox {
+  border-width: 0;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="654"/>
+        <source>Destination Folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="694"/>
+        <source>Append the torrent&apos;s label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="704"/>
+        <source>Use a different folder for incomplete downloads:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="716"/>
+        <location filename="../ui/options.ui" line="774"/>
+        <source>QLineEdit {
+  margin-left: 23px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="756"/>
+        <source>Automatically load .torrent files from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="808"/>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="815"/>
+        <source>Pre-allocate all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="824"/>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="844"/>
+        <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="871"/>
+        <source>Torrent queueing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="877"/>
+        <source>Enable queueing system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="889"/>
+        <source>Maximum active downloads:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="932"/>
+        <source>Maximum active uploads:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="975"/>
+        <source>Maximum active torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1024"/>
+        <source>When adding a torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1032"/>
+        <source>Display torrent content and some options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1059"/>
+        <source>Do not start download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1126"/>
+        <source>Listening port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1134"/>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1154"/>
+        <source>Random</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1176"/>
+        <source>Enable UPnP port mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1186"/>
+        <source>Enable NAT-PMP port mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1201"/>
+        <source>Connections limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1209"/>
+        <source>Global maximum number of connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1257"/>
+        <source>Maximum number of connections per torrent:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1302"/>
+        <source>Maximum number of upload slots per torrent:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1345"/>
+        <source>Global bandwidth limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1361"/>
+        <source>Upload:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1377"/>
+        <source>Download:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1415"/>
+        <location filename="../ui/options.ui" line="1451"/>
+        <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1480"/>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1486"/>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1496"/>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1545"/>
+        <source>Bittorrent features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1551"/>
+        <source>Enable DHT network (decentralized)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1561"/>
+        <source>Use a different port for DHT and Bittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1592"/>
+        <source>DHT port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1630"/>
+        <source>Enable Peer Exchange / PeX (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1640"/>
+        <source>Enable Local Peer Discovery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <location filename="../ui/options.ui" line="1650"/>
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1659"/>
+        <source>Encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1667"/>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1672"/>
+        <source>Forced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1677"/>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1703"/>
+        <source>Share ratio settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1711"/>
+        <source>Desired ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1765"/>
+        <source>Remove finished torrents when their ratio reaches:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1856"/>
+        <source>Search engine proxy settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1864"/>
+        <location filename="../ui/options.ui" line="2054"/>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1872"/>
+        <location filename="../ui/options.ui" line="2062"/>
+        <source>(None)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1877"/>
+        <location filename="../ui/options.ui" line="2067"/>
+        <source>HTTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1888"/>
+        <location filename="../ui/options.ui" line="2083"/>
+        <source>Proxy:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1914"/>
+        <location filename="../ui/options.ui" line="2109"/>
+        <location filename="../ui/options.ui" line="2475"/>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1954"/>
+        <location filename="../ui/options.ui" line="2149"/>
+        <location filename="../ui/options.ui" line="2511"/>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1968"/>
+        <location filename="../ui/options.ui" line="2163"/>
+        <location filename="../ui/options.ui" line="2519"/>
+        <source>Username:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1978"/>
+        <location filename="../ui/options.ui" line="2173"/>
+        <location filename="../ui/options.ui" line="2526"/>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2046"/>
+        <source>Bittorrent proxy settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2072"/>
+        <source>SOCKS5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2244"/>
+        <source>Affected connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2256"/>
+        <source>Use proxy for connections to trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2272"/>
+        <source>Use proxy for connections to regular peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2288"/>
+        <source>Use proxy for DHT messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2304"/>
+        <source>Use proxy for connections to web seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2359"/>
+        <source>Filter Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2365"/>
+        <source>Activate IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2381"/>
+        <source>Filter path (.dat, .p2p, .p2b):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2456"/>
+        <source>Enable Web User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2469"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2623"/>
+        <source>Enable RSS support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2633"/>
+        <source>RSS settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2670"/>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2690"/>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2714"/>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

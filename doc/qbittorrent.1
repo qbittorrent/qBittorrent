@@ -8,7 +8,7 @@ qBittorrent \- a Bittorrent client written in C++ / Qt4
 
 .SH "SYNOPSIS"
 
-\fBqbittorrent\fR [\-\-no-splash] [TORRENT_FILE | URL]...
+\fBqbittorrent\fR [\-\-no-splash] [\-\-webui-port=x] [TORRENT_FILE | URL]...
 
 \fBqbittorrent\fR \-\-help
 
@@ -21,7 +21,7 @@ qBittorrent \- a Bittorrent client written in C++ / Qt4
 using the \fBrblibtorrent\fR library by Arvid Norberg. qBittorrent aims
 to be a good alternative to all other bittorrent clients out there. qBittorrent
 is fast, stable, light, it supports unicode and it provides a good integrated search engine.
-It also comes with UPnP port forwarding / NAT-PMP, encryption (Azureus compatible), 
+It also comes with UPnP port forwarding / NAT-PMP, encryption (Vuze compatible), 
 FAST extension (mainline) and PeX support (utorrent compatible).
 
 .SH "OPTIONS"
@@ -31,6 +31,8 @@ FAST extension (mainline) and PeX support (utorrent compatible).
 \fB--version\fR Prints qbittorrent program version number.
 
 \fB--no-splash\fR Disables splash screen on startup.
+
+\fB--webui-port=x\fR Changes Web UI port to x (default: 8080).
 
 .SH "BUGS"
 

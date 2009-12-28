@@ -439,15 +439,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Filter</source>
-        <translation>IP Filter</translation>
+        <translation type="obsolete">IP Filter</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation>IP filteren activeren</translation>
+        <translation type="obsolete">IP filteren activeren</translation>
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation>Filterinstellingen</translation>
+        <translation type="obsolete">Filterinstellingen</translation>
     </message>
     <message>
         <source> Add Range</source>
@@ -479,7 +479,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
         <source>Enable connection through a proxy server</source>
@@ -499,11 +499,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Port:</source>
-        <translation>Poort:</translation>
+        <translation type="obsolete">Poort:</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Authenticatie</translation>
+        <translation type="obsolete">Authenticatie</translation>
     </message>
     <message>
         <source>User Name:</source>
@@ -511,7 +511,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Password:</source>
-        <translation>Wachtwoord:</translation>
+        <translation type="obsolete">Wachtwoord:</translation>
     </message>
     <message>
         <source>Proxy server requires authentication</source>
@@ -595,7 +595,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation type="obsolete">Taal:</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -619,7 +619,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
         <source>1 KiB DL = </source>
@@ -671,7 +671,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>DHT port:</source>
-        <translation>DHT poort:</translation>
+        <translation type="obsolete">DHT poort:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
@@ -703,7 +703,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection</source>
-        <translation>Verbinding</translation>
+        <translation type="obsolete">Verbinding</translation>
     </message>
     <message>
         <source>Peer eXchange (PeX)</source>
@@ -735,7 +735,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastique stijl (zoals KDE)</translation>
+        <translation type="obsolete">Plastique stijl (zoals KDE)</translation>
     </message>
     <message>
         <source>Cleanlooks style (GNOME like)</source>
@@ -747,7 +747,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>CDE stijl (zoals Common Desktop Environment)</translation>
+        <translation type="obsolete">CDE stijl (zoals Common Desktop Environment)</translation>
     </message>
     <message>
         <source>MacOS style (MacOSX only)</source>
@@ -775,31 +775,31 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>HTTP</source>
-        <translation>HTTP</translation>
+        <translation type="obsolete">HTTP</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation>SOCKS5</translation>
+        <translation type="obsolete">SOCKS5</translation>
     </message>
     <message>
         <source>Affected connections</source>
-        <translation>Beïnvloedde verbindingen</translation>
+        <translation type="obsolete">Beïnvloedde verbindingen</translation>
     </message>
     <message>
         <source>Use proxy for connections to trackers</source>
-        <translation>Proxy gebruiken voor verbindingen met tracker</translation>
+        <translation type="obsolete">Proxy gebruiken voor verbindingen met tracker</translation>
     </message>
     <message>
         <source>Use proxy for connections to regular peers</source>
-        <translation>Proxy gebruiken voor verbindingen met normale peers</translation>
+        <translation type="obsolete">Proxy gebruiken voor verbindingen met normale peers</translation>
     </message>
     <message>
         <source>Use proxy for connections to web seeds</source>
-        <translation>Proxy gebruiken voor verbindingen met web seeds</translation>
+        <translation type="obsolete">Proxy gebruiken voor verbindingen met web seeds</translation>
     </message>
     <message>
         <source>Use proxy for DHT messages</source>
-        <translation>Proxy gebruiken voor DHT berichten</translation>
+        <translation type="obsolete">Proxy gebruiken voor DHT berichten</translation>
     </message>
     <message>
         <source>Encryption</source>
@@ -811,19 +811,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Ingeschakeld</translation>
+        <translation type="obsolete">Ingeschakeld</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation>Geforceerd</translation>
+        <translation type="obsolete">Geforceerd</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Uitgeschakeld</translation>
+        <translation type="obsolete">Uitgeschakeld</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Voorkeuren</translation>
+        <translation type="obsolete">Voorkeuren</translation>
     </message>
     <message>
         <source>General</source>
@@ -835,44 +835,44 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>Visuele stijl:</translation>
+        <translation type="obsolete">Visuele stijl:</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Cleanlooks stijl (zoals Gnome)</translation>
+        <translation type="obsolete">Cleanlooks stijl (zoals Gnome)</translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation>Motif stijl (zoals Unix)</translation>
+        <translation type="obsolete">Motif stijl (zoals Unix)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>Toestemming vragen tijdens afsluiten als de downloadlijst niet leeg is</translation>
+        <translation type="obsolete">Toestemming vragen tijdens afsluiten als de downloadlijst niet leeg is</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation>Huidige snelheid weergeven in titelbalk</translation>
+        <translation type="obsolete">Huidige snelheid weergeven in titelbalk</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation>Systeemvakicoon</translation>
+        <translation type="obsolete">Systeemvakicoon</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation>Systeemvakicon uitschakelen</translation>
+        <translation type="obsolete">Systeemvakicon uitschakelen</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Sluiten naar systeemvak</translation>
+        <translation type="obsolete">Sluiten naar systeemvak</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation>Minimaliseren naar systeemvak</translation>
+        <translation type="obsolete">Minimaliseren naar systeemvak</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation>Notificaties weergeven in systeemvak</translation>
+        <translation type="obsolete">Notificaties weergeven in systeemvak</translation>
     </message>
     <message>
         <source>Media player:</source>
@@ -880,7 +880,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Downloads</translation>
+        <translation type="obsolete">Downloads</translation>
     </message>
     <message>
         <source>Put downloads in this folder:</source>
@@ -888,29 +888,25 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation>Schijfruimte vooraf toewijzen voor alle bestanden</translation>
+        <translation type="obsolete">Schijfruimte vooraf toewijzen voor alle bestanden</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation>Tijdens torrent toevoegen</translation>
+        <translation type="obsolete">Tijdens torrent toevoegen</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation>Torrentinhoud en enkele opties weergeven</translation>
+        <translation type="obsolete">Torrentinhoud en enkele opties weergeven</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Download niet automatisch starten</translation>
+        <translation type="obsolete">Download niet automatisch starten</translation>
     </message>
     <message>
         <source>Folder watching</source>
         <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
         <translation type="obsolete">Map in de gaten houden</translation>
-    </message>
-    <message>
-        <source>UI</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Action for double click</source>
@@ -923,11 +919,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation>Start/Stop</translation>
+        <translation type="obsolete">Start/Stop</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation>Open map</translation>
+        <translation type="obsolete">Open map</translation>
     </message>
     <message>
         <source>Show properties</source>
@@ -951,7 +947,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Listening port</source>
-        <translation>Luisterpoort</translation>
+        <translation type="obsolete">Luisterpoort</translation>
     </message>
     <message>
         <source>to</source>
@@ -960,27 +956,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation>UPnP port mapping inschakelen</translation>
+        <translation type="obsolete">UPnP port mapping inschakelen</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation>NAT-PMP port mapping inschakelen</translation>
+        <translation type="obsolete">NAT-PMP port mapping inschakelen</translation>
     </message>
     <message>
         <source>Global bandwidth limiting</source>
-        <translation>Globaal bandbreedtelimiet</translation>
+        <translation type="obsolete">Globaal bandbreedtelimiet</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation>Upload:</translation>
+        <translation type="obsolete">Upload:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation>Download:</translation>
-    </message>
-    <message>
-        <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Download:</translation>
     </message>
     <message>
         <source>Use the same port for DHT and Bittorrent</source>
@@ -988,43 +980,43 @@ p, li { white-space: pre-wrap; }
     </message>
     <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation>Spoof µtorrent om ban te voorkomen (herstart nodig)</translation>
+        <translation type="obsolete">Spoof µtorrent om ban te voorkomen (herstart nodig)</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Type:</translation>
+        <translation type="obsolete">Type:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation>(Geen)</translation>
+        <translation type="obsolete">(Geen)</translation>
     </message>
     <message>
         <source>Proxy:</source>
-        <translation>Proxy:</translation>
+        <translation type="obsolete">Proxy:</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation>Gebruikersnaam:</translation>
+        <translation type="obsolete">Gebruikersnaam:</translation>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation>Bittorrent</translation>
+        <translation type="obsolete">Bittorrent</translation>
     </message>
     <message>
         <source>Connections limit</source>
-        <translation>Verbindingslimiet</translation>
+        <translation type="obsolete">Verbindingslimiet</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Globaal verbindingslimiet:</translation>
+        <translation type="obsolete">Globaal verbindingslimiet:</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Verbindingslimiet per torrent:</translation>
+        <translation type="obsolete">Verbindingslimiet per torrent:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maximum aantal uploads per torrent:</translation>
+        <translation type="obsolete">Maximum aantal uploads per torrent:</translation>
     </message>
     <message>
         <source>Additional Bittorrent features</source>
@@ -1032,7 +1024,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation>DHT (gedecentraliseerd) netwerk inschakelen</translation>
+        <translation type="obsolete">DHT (gedecentraliseerd) netwerk inschakelen</translation>
     </message>
     <message>
         <source>Enable Peer eXchange (PeX)</source>
@@ -1040,23 +1032,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation>Local Peer Discovery inschakelen</translation>
+        <translation type="obsolete">Local Peer Discovery inschakelen</translation>
     </message>
     <message>
         <source>Encryption:</source>
-        <translation>Encryptie:</translation>
+        <translation type="obsolete">Encryptie:</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Deel ratio instellingen</translation>
+        <translation type="obsolete">Deel ratio instellingen</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation>Gewenste ratio:</translation>
+        <translation type="obsolete">Gewenste ratio:</translation>
     </message>
     <message>
         <source>Filter file path:</source>
-        <translation>Filterbestand pad:</translation>
+        <translation type="obsolete">Filterbestand pad:</translation>
     </message>
     <message>
         <source>transfer lists refresh interval:</source>
@@ -1064,39 +1056,39 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>ms</source>
-        <translation>ms</translation>
+        <translation type="obsolete">ms</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS feeds vernieuwingsinterval:</translation>
+        <translation type="obsolete">RSS feeds vernieuwingsinterval:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minuten</translation>
+        <translation type="obsolete">minuten</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maximum aantal artikelen per feed:</translation>
+        <translation type="obsolete">Maximum aantal artikelen per feed:</translation>
     </message>
     <message>
         <source>File system</source>
-        <translation>Bestandssysteem</translation>
+        <translation type="obsolete">Bestandssysteem</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Complete torrents verwijderen bij een ratio van:</translation>
+        <translation type="obsolete">Complete torrents verwijderen bij een ratio van:</translation>
     </message>
     <message>
         <source>System default</source>
-        <translation>Systeem standaard</translation>
+        <translation type="obsolete">Systeem standaard</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Start geminimaliseerd</translation>
+        <translation type="obsolete">Start geminimaliseerd</translation>
     </message>
     <message>
         <source>Action on double click in transfer lists</source>
@@ -1137,165 +1129,63 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="obsolete">Web UI</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation>Poort voor inkomende verbindingen:</translation>
+        <translation type="obsolete">Poort voor inkomende verbindingen:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation>Willekeurig</translation>
+        <translation type="obsolete">Willekeurig</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation>Web Gebruikers Interface inschakelen</translation>
+        <translation type="obsolete">Web Gebruikers Interface inschakelen</translation>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation>HTTP Server</translation>
+        <translation type="obsolete">HTTP Server</translation>
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation>RSS ondersteuning inschakelen</translation>
+        <translation type="obsolete">RSS ondersteuning inschakelen</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation>RSS instellingen</translation>
+        <translation type="obsolete">RSS instellingen</translation>
     </message>
     <message>
         <source>Torrent queueing</source>
-        <translation>Torrent wachtrij</translation>
+        <translation type="obsolete">Torrent wachtrij</translation>
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation>Wachtrij inschakelen</translation>
+        <translation type="obsolete">Wachtrij inschakelen</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Maximum actieve downloads:</translation>
+        <translation type="obsolete">Maximum actieve downloads:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Maximum actieve torrents:</translation>
+        <translation type="obsolete">Maximum actieve torrents:</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation>Werkbalk boven weergeven</translation>
+        <translation type="obsolete">Werkbalk boven weergeven</translation>
     </message>
     <message>
         <source>Search engine proxy settings</source>
-        <translation>Zoekmachine proxy instellingen</translation>
+        <translation type="obsolete">Zoekmachine proxy instellingen</translation>
     </message>
     <message>
         <source>Bittorrent proxy settings</source>
-        <translation>Bittorrent proxy instellingen</translation>
+        <translation type="obsolete">Bittorrent proxy instellingen</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>Maximum actieve uploads:</translation>
-    </message>
-    <message>
-        <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Completed:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Peer connections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MiB (advanced)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QGroupBox::title {
-font-weight: normal;
-margin-left: -3px;
-}
-QGroupBox {
-  border-width: 0;
-}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Destination Folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use a different folder for incomplete downloads:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QLineEdit {
-  margin-left: 23px;
-}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically load .torrent files from:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User interface</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>(Requires restart)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use alternating row colors</source>
-        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Action on double click:</source>
-        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Maximum actieve uploads:</translation>
     </message>
 </context>
 <context>
@@ -2671,6 +2561,31 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI username must be at least 3 characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI password must be at least 3 characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloaded</source>
+        <comment>Is the file downloaded or not?</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -3047,6 +2962,469 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Download rate limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Preferences</name>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web UI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visual style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plastique style (KDE like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cleanlooks style (Gnome like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Motif style (Unix like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CDE style (Common Desktop Environment like)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ask for confirmation on exit when download list is not empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display top toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display current speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double click:</source>
+        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System tray icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable system tray icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close to tray</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimize to tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show notification balloons in tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QGroupBox::title {
+font-weight: normal;
+margin-left: -3px;
+}
+QGroupBox {
+  border-width: 0;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination Folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the torrent&apos;s label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a different folder for incomplete downloads:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QLineEdit {
+  margin-left: 23px;
+}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically load .torrent files from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-allocate all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MiB (advanced)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent queueing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable queueing system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum active downloads:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum active uploads:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum active torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When adding a torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display torrent content and some options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not start download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Listening port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable UPnP port mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable NAT-PMP port mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global maximum number of connections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum number of connections per torrent:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum number of upload slots per torrent:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global bandwidth limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer countries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bittorrent features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable DHT network (decentralized)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a different port for DHT and Bittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DHT port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Peer Exchange / PeX (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Local Peer Discovery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Spoof µtorrent to avoid ban (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desired ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove finished torrents when their ratio reaches:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine proxy settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bittorrent proxy settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SOCKS5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Affected connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use proxy for connections to trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use proxy for connections to regular peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use proxy for DHT messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use proxy for connections to web seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activate IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable RSS support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

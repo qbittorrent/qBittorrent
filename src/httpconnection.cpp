@@ -103,12 +103,12 @@ void HttpConnection::write()
 }
 
 QString HttpConnection::translateDocument(QString data) {
-  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel", "options_imp"};
+  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel", "options_imp", "Preferences"};
   int i=0;
   bool found = false;
   do {
     found = false;
-    QRegExp regex("_\\(([\\w\\s?!:\\/\\(\\)\\.]+)\\)");
+    QRegExp regex("_\\(([\\w\\s?!:\\/\\(\\),\\-\\.]+)\\)");
     i = regex.indexIn(data, i);
     if(i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
@@ -118,7 +118,7 @@ QString HttpConnection::translateDocument(QString data) {
       do {
         translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().data(), 0, QCoreApplication::UnicodeUTF8, 1);
         ++context_index;
-      }while(translation == word && context_index < 10);
+      }while(translation == word && context_index < 11);
       //qDebug("Translation is %s", translation.toUtf8().data());
       data = data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
@@ -193,6 +193,7 @@ void HttpConnection::respond()
   else
     list.prepend("webui");
   url = ":/" + list.join("/");
+  qDebug("Resource URL: %s", url.toLocal8Bit().data());
   QFile file(url);
   if(!file.open(QIODevice::ReadOnly))
   {
@@ -329,37 +330,10 @@ void HttpConnection::respondCommand(QString command)
     return;
   }
   if(command == "setPreferences") {
-    bool ok = false;
-    int dl_limit = parser.post("dl_limit").toInt(&ok);
-    if(ok) {
-      BTSession->setDownloadRateLimit(dl_limit*1024);
-      Preferences::setGlobalDownloadLimit(dl_limit);
-    }
-    int up_limit = parser.post("up_limit").toInt(&ok);
-    if(ok) {
-      BTSession->setUploadRateLimit(up_limit*1024);
-      Preferences::setGlobalUploadLimit(up_limit);
-    }
-    int dht_state = parser.post("dht").toInt(&ok);
-    if(ok) {
-      BTSession->enableDHT(dht_state == 1);
-      Preferences::setDHTEnabled(dht_state == 1);
-    }
-    int max_connec = parser.post("max_connec").toInt(&ok);
-    if(ok) {
-      BTSession->setMaxConnections(max_connec);
-      Preferences::setMaxConnecs(max_connec);
-    }
-    int max_connec_per_torrent = parser.post("max_connec_per_torrent").toInt(&ok);
-    if(ok) {
-      BTSession->setMaxConnectionsPerTorrent(max_connec_per_torrent);
-      Preferences::setMaxConnecsPerTorrent(max_connec_per_torrent);
-    }
-    int max_uploads_per_torrent = parser.post("max_uploads_per_torrent").toInt(&ok);
-    if(ok) {
-      BTSession->setMaxUploadsPerTorrent(max_uploads_per_torrent);
-      Preferences::setMaxUploadsPerTorrent(max_uploads_per_torrent);
-    }
+    QString json_str = parser.post("json");
+    //qDebug("setPreferences, json: %s", json_str.toLocal8Bit().data());
+    EventManager* manager =  parent->eventManager();
+    manager->setGlobalPreferences(json::fromJson(json_str));
   }
   if(command == "setFilePrio") {
     QString hash = parser.post("hash");

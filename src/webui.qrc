@@ -14,6 +14,7 @@
   <file>webui/uploadlimit.html</file>
   <file>webui/downloadlimit.html</file>
   <file>webui/preferences.html</file>
+  <file>webui/preferences_content.html</file>
   <file>webui/css/Core.css</file>
   <file>webui/css/Layout.css</file>
   <file>webui/css/Window.css</file>

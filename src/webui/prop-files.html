@@ -5,7 +5,7 @@
                                     <th>_(Name)</th>
                                     <th>_(Size)</th>
                                     <th style="width: 90px;">_(Progress)</th>
-                                    <th>_(Priority)</th>
+                                    <th>_(Downloaded)</th>
                             </tr>
                     </thead>
                     <tbody id="filesTable"></tbody>
@@ -21,38 +21,19 @@ var setFilePriority = function(id, priority) {
   new Request({url: '/command/setFilePrio', method: 'post', data: {'hash': current_hash, 'id': id, 'priority': priority}}).send();
 }
 
-var createPriorityCombo = function(id, selected_prio) {
-    var select = new Element('select');
-    select.set('id', 'comboPrio'+id);
+var createDownloadedCB = function(id, downloaded) {
+    var CB = new Element('input');
+    CB.set('type', 'checkbox');
+    if(downloaded)
+      CB.set('checked', 'checked');
+    CB.set('id', 'cbPrio'+id);
     select.addEvent('change', function(e){
-      var new_prio = $('comboPrio'+id).get('value');
-      setFilePriority(id, new_prio);
+      var checked = 0;
+      if($defined($('cbPrio'+id).get('checked')) && $('cbPrio'+id).get('checked'))
+        checked = 1;
+      setFilePriority(id, checked);
     });
-    var opt = new Element("option");
-    opt.set('value', '0')
-    opt.set('html', "_(Ignored)");
-    if(selected_prio == 0)
-      opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    opt = new Element("option");
-    opt.set('value', '1')
-    opt.set('html', "_(Normal)");
-    if(selected_prio == 1)
-      opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    opt = new Element("option");
-    opt.set('value', '2')
-    opt.set('html', "_(High)");
-    if(selected_prio == 2)
-      opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    opt = new Element("option");
-    opt.set('value', '7')
-    opt.set('html', "_(Maximum)");
-    if(selected_prio == 7)
-      opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    return select;
+    return CB;
 }
 
  var filesDynTable = new Class ({
@@ -81,17 +62,18 @@ var createPriorityCombo = function(id, selected_prio) {
           }.bind(this));
         },
         
-        updateRow: function(tr, row){
+        updateRow: function(tr, row, id){
           var tds = tr.getElements('td');
           for(var i=0; i<row.length; i++) {
             if(i==2) {
 	      tds[i].set('html', '');
-	      tds[i].adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+              $('pbf_'+id).setValue(row[i].toFloat());
 	    } else {
               if(i==3) {
-                tds[i].getChildren('select').set('value', row[i]);
-                //tds[i].set('html', '');
-                //tds[i].adopt(createPriorityCombo(id,row[i]));
+                if(row[i] > 0)
+                  tds[i].getChildren('input')[0].set('checked', 'checked');
+                else
+                  tds[i].removeProperty('checked')
               } else {
                 tds[i].set('html', row[i]);
               }
@@ -103,7 +85,7 @@ var createPriorityCombo = function(id, selected_prio) {
         insertRow: function(id, row) {
           if(this.rows.has(id)) {
             var tr = this.rows.get(id);
-            this.updateRow(tr, row);
+            this.updateRow(tr, row, id);
             return;
           }
           //this.removeRow(id);
@@ -113,10 +95,10 @@ var createPriorityCombo = function(id, selected_prio) {
           {
                   var td = new Element('td');
                   if(i==2) {
-		    td.adopt(new ProgressBar(row[i].toFloat(), {width:80}));
+		    td.adopt(new ProgressBar(row[i].toFloat(), {'id', 'pbf_'+id, 'width':80}));
 		  } else {
                     if(i == 3) {
-                      td.adopt(createPriorityCombo(id,row[i]));
+                      td.adopt(createDownloadedCB(id,row[i]));
                     } else {
                       td.set('html', row[i]);
                     }

@@ -56,6 +56,7 @@
 #include <stdlib.h>
 #include "GUI.h"
 #include "misc.h"
+#include "preferences.h"
 #include "ico.h"
 
 QApplication *app;
@@ -130,11 +131,25 @@ int main(int argc, char *argv[]){
       std::cout << '\t' << argv[0] << " --version : displays program version\n";
       std::cout << '\t' << argv[0] << " --no-splash : disable splash screen\n";
       std::cout << '\t' << argv[0] << " --help : displays this help message\n";
+      std::cout << '\t' << argv[0] << " --webui-port=x : changes the webui port (default: 8080)\n";
       std::cout << '\t' << argv[0] << " [files or urls] : starts program and download given parameters (optional)\n";
       return 0;
     }
-    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--no-splash")){
-      no_splash = true;
+    for(int i=1; i<argc; ++i) {
+      if(QString::fromUtf8(argv[i]) == QString::fromUtf8("--no-splash")) {
+        no_splash = true;
+      } else {
+        if(QString::fromUtf8(argv[i]).startsWith("--webui-port=")) {
+          QStringList parts = QString::fromUtf8(argv[i]).split("=");
+          if(parts.size() == 2) {
+            bool ok = false;
+            int new_port = parts.last().toInt(&ok);
+            if(ok && new_port > 1024 && new_port <= 65535) {
+              Preferences::setWebUiPort(new_port);
+            }
+          }
+        }
+      }
     }
   }
   if(settings.value(QString::fromUtf8("Preferences/General/NoSplashScreen"), false).toBool()) {
@@ -148,30 +163,30 @@ int main(int argc, char *argv[]){
   QLocalSocket localSocket;
   QString uid = QString::number(getuid());
   localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
-    if (localSocket.waitForConnected(1000)){
-      std::cout << "Another qBittorrent instance is already running...\n";
-      // Send parameters
-      if(argc > 1){
-        QStringList params;
-        for(int i=1;i<argc;++i){
-          params << QString::fromLocal8Bit(argv[i]);
-          std::cout << argv[i] << '\n';
-        }
-        QByteArray block = params.join("\n").toLocal8Bit();
-        std::cout << "writting: " << block.data() << '\n';
-        std::cout << "size: " << block.size() << '\n';
-        uint val = localSocket.write(block);
-        if(localSocket.waitForBytesWritten(5000)){
-          std::cout << "written(" <<val<<"): " << block.data() << '\n';
-        }else{
-          std::cerr << "Writing to the socket timed out\n";
-        }
-        localSocket.disconnectFromServer();
-        std::cout << "disconnected\n";
+  if (localSocket.waitForConnected(1000)){
+    std::cout << "Another qBittorrent instance is already running...\n";
+    // Send parameters
+    if(argc > 1){
+      QStringList params;
+      for(int i=1;i<argc;++i){
+        params << QString::fromLocal8Bit(argv[i]);
+        std::cout << argv[i] << '\n';
       }
-      localSocket.close();
-      return 0;
+      QByteArray block = params.join("\n").toLocal8Bit();
+      std::cout << "writting: " << block.data() << '\n';
+      std::cout << "size: " << block.size() << '\n';
+      uint val = localSocket.write(block);
+      if(localSocket.waitForBytesWritten(5000)){
+        std::cout << "written(" <<val<<"): " << block.data() << '\n';
+      }else{
+        std::cerr << "Writing to the socket timed out\n";
+      }
+      localSocket.disconnectFromServer();
+      std::cout << "disconnected\n";
     }
+    localSocket.close();
+    return 0;
+  }
   app = new QApplication(argc, argv);
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");

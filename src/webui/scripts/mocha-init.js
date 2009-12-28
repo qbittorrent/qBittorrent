@@ -42,15 +42,19 @@ initializeWindows = function(){
 		new MochaUI.Window({
 			id: 'preferencesPage',
 			title: "_(Preferences)",
-			loadMethod: 'iframe',
-			contentURL:'preferences.html',
-			scrollbars: false,
-			resizable: false,
+			loadMethod: 'xhr',
+			toolbar: true,
+			contentURL: 'preferences_content.html',
+			require: {
+				css: ['css/Tabs.css']
+			},
+			toolbarURL: 'preferences.html',
+			resizable: true,
 			maximizable: false,
 			closable: true,
 			paddingVertical: 0,
 			paddingHorizontal: 0,
-			width: 500,
+			width: 700,
 			height: 300
 		});
 	});
