@@ -107,6 +107,7 @@ private:
   bool NATPMPEnabled;
   bool LSDEnabled;
   bool DHTEnabled;
+  int current_dht_port;
   bool PeXEnabled;
   bool queueingEnabled;
   bool appendLabelToSavePath;
