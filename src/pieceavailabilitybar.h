@@ -60,8 +60,8 @@ public:
       painter.drawPoint(0,0);
     } else {
       // Look for maximum value
-      average = std::accumulate(avail.begin(), avail.end(), 0)/(double)avail.size();
       uint nb_pieces = avail.size();
+      average = std::accumulate(avail.begin(), avail.end(), 0)/(double)nb_pieces;
       pixmap = QPixmap(nb_pieces, 1);
       QPainter painter(&pixmap);
       std::vector<int>::iterator it;
