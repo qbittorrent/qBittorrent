@@ -63,11 +63,11 @@ private:
   Bittorrent *BTSession;
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
-  SearchTab *currentSearchTab;
+  QPointer<SearchTab> currentSearchTab;
 #ifndef QT_4_5
   QPushButton *closeTab_button;
 #endif
-  QList<SearchTab*> all_tab; // To store all tabs
+  QList<QPointer<SearchTab> > all_tab; // To store all tabs
   const SearchCategories full_cat_names;
   GUI *parent;
 
