@@ -71,7 +71,7 @@ class FilterParserThread : public QThread  {
           // PeerGuardian p2p file
           parseP2PFilterFile(filePath);
         } else {
-            if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
+            if(filePath.endsWith(".p2b", Qt::CaseInsensitive)) {
               // PeerGuardian p2b file
               parseP2BFilterFile(filePath);
             } else {
