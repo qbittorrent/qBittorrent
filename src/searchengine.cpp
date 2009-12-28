@@ -334,7 +334,8 @@ void SearchEngine::readSearchOutput(){
   foreach(const QByteArray &line, lines_list){
     appendSearchResult(QString::fromUtf8(line));
   }
-  currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+  if(currentSearchTab)
+    currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
 
 void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
@@ -436,6 +437,9 @@ void SearchEngine::updateNova() {
 // Search can be finished for 3 reasons :
 // Error | Stopped by user | Finished normally
 void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
+  if(searchTimeout->isActive()) {
+    searchTimeout->stop();
+  }
   QSettings settings("qBittorrent", "qBittorrent");
   bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
   if(useNotificationBalloons && parent->getCurrentTabIndex() != TAB_SEARCH) {
@@ -457,22 +461,30 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   if(currentSearchTab)
     currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
   search_button->setText("Search");
-  if(searchTimeout->isActive()) {
-    searchTimeout->stop();
-  }
 }
 
 // SLOT to append one line to search results list
 // Line is in the following form :
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
 void SearchEngine::appendSearchResult(QString line){
+  if(!currentSearchTab) {
+    if(searchProcess->state() != QProcess::NotRunning){
+      searchProcess->terminate();
+    }
+    if(searchTimeout->isActive()) {
+      searchTimeout->stop();
+    }
+    search_stopped = true;
+    return;
+  }
   QStringList parts = line.split("|");
   if(parts.size() != 6){
     return;
   }
-
+  Q_ASSERT(currentSearchTab);
   // Add item to search result list
   QStandardItemModel* cur_model = currentSearchTab->getCurrentSearchListModel();
+  Q_ASSERT(cur_model);
   int row = cur_model->rowCount();
   cur_model->insertRow(row);
 
@@ -513,7 +525,7 @@ void SearchEngine::closeTab(int index) {
     search_stopped = true;
     currentSearchTab = 0;
   }
-  delete all_tab.takeAt(tabWidget->currentIndex());
+  delete all_tab.takeAt(index);
   if(!all_tab.size()) {
     download_button->setEnabled(false);
   }
