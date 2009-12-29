@@ -229,6 +229,7 @@ void HttpConnection::respondJson()
   QString string = json::toJson(manager->getEventList());
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt("js");
+  //qDebug("JSON: %s", string.toLocal8Bit().data());
   generator.setMessage(string);
   write();
 }
