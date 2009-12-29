@@ -254,15 +254,10 @@ void Bittorrent::configureSession() {
   // Connection
   // * Ports binding
   unsigned short old_listenPort = getListenPort();
-  unsigned short new_listenPort;
-  if(old_listenPort != Preferences::getSessionPort()) {
-    setListeningPort(Preferences::getSessionPort());
-    new_listenPort = getListenPort();
-    if(new_listenPort != old_listenPort) {
-      addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg( misc::toQString(new_listenPort)));
-    }
-  } else {
-    new_listenPort = old_listenPort;
+  unsigned short new_listenPort = Preferences::getSessionPort();
+  if(old_listenPort != new_listenPort) {
+    setListeningPort(new_listenPort);
+    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg( misc::toQString(new_listenPort)));
   }
   // * Global download limit
   int down_limit = Preferences::getGlobalDownloadLimit();
@@ -366,8 +361,10 @@ void Bittorrent::configureSession() {
   if(Preferences::isDHTEnabled()) {
     // Set DHT Port
     if(enableDHT(true)) {
-      int dht_port = new_listenPort;
-      if(!Preferences::isDHTPortSameAsBT())
+      int dht_port;
+      if(Preferences::isDHTPortSameAsBT())
+        dht_port = new_listenPort;
+      else
         dht_port = Preferences::getDHTPort();
       setDHTPort(dht_port);
       addConsoleMessage(tr("DHT support [ON], port: UDP/%1").arg(dht_port), QString::fromUtf8("blue"));
@@ -1349,7 +1346,7 @@ void Bittorrent::changeLabelInTorrentSavePath(QTorrentHandle h, QString old_labe
   TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
   if(move_storage) {
     // Move storage
-      h.move_storage(new_save_path);
+    h.move_storage(new_save_path);
   }
   emit savePathChanged(h);
 }

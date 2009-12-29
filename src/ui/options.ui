@@ -1113,7 +1113,7 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>451</width>
+              <width>602</width>
               <height>505</height>
              </rect>
             </property>
@@ -1534,8 +1534,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>466</width>
-              <height>368</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1599,7 +1599,7 @@ QGroupBox {
                      <bool>false</bool>
                     </property>
                     <property name="minimum">
-                     <number>1000</number>
+                     <number>1024</number>
                     </property>
                     <property name="maximum">
                      <number>65525</number>
@@ -2345,8 +2345,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>290</width>
+              <height>124</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2442,8 +2442,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>219</width>
+              <height>221</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2606,8 +2606,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>452</width>
+              <height>192</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
