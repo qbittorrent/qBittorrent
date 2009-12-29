@@ -193,7 +193,7 @@ void HttpConnection::respond()
   else
     list.prepend("webui");
   url = ":/" + list.join("/");
-  qDebug("Resource URL: %s", url.toLocal8Bit().data());
+  //qDebug("Resource URL: %s", url.toLocal8Bit().data());
   QFile file(url);
   if(!file.open(QIODevice::ReadOnly))
   {
@@ -258,6 +258,7 @@ void HttpConnection::respondFilesPropertiesJson(QString hash) {
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt("js");
   generator.setMessage(string);
+  //qDebug("JSON: %s", string.toLocal8Bit().data());
   write();
 }
 

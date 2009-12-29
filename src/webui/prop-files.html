@@ -27,7 +27,7 @@ var createDownloadedCB = function(id, downloaded) {
     if(downloaded)
       CB.set('checked', 'checked');
     CB.set('id', 'cbPrio'+id);
-    select.addEvent('change', function(e){
+    CB.addEvent('change', function(e){
       var checked = 0;
       if($defined($('cbPrio'+id).get('checked')) && $('cbPrio'+id).get('checked'))
         checked = 1;
@@ -66,7 +66,6 @@ var createDownloadedCB = function(id, downloaded) {
           var tds = tr.getElements('td');
           for(var i=0; i<row.length; i++) {
             if(i==2) {
-	      tds[i].set('html', '');
               $('pbf_'+id).setValue(row[i].toFloat());
 	    } else {
               if(i==3) {
@@ -95,7 +94,7 @@ var createDownloadedCB = function(id, downloaded) {
           {
                   var td = new Element('td');
                   if(i==2) {
-		    td.adopt(new ProgressBar(row[i].toFloat(), {'id', 'pbf_'+id, 'width':80}));
+		    td.adopt(new ProgressBar(row[i].toFloat(), {'id': 'pbf_'+id, 'width':80}));
 		  } else {
                     if(i == 3) {
                       td.adopt(createDownloadedCB(id,row[i]));

@@ -86,6 +86,7 @@ namespace json {
         return result;
       }
             default:
+      qDebug("Unknown QVariantType: %d", (int)v.type());
       return "undefined";
     }
   }
