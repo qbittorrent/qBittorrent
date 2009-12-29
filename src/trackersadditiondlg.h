@@ -33,30 +33,105 @@
 
 #include <QDialog>
 #include <QStringList>
+#include <QMessageBox>
+#include <QFile>
+#include <QUrl>
+#include "misc.h"
 #include "ui_trackersadditiondlg.h"
+#include "downloadthread.h"
+#include "qtorrenthandle.h"
 
 class TrackersAdditionDlg : public QDialog, private Ui::TrackersAdditionDlg{
   Q_OBJECT
 
-  public:
-    TrackersAdditionDlg(QWidget *parent=0): QDialog(parent){
-      setupUi(this);
-    }
-    
-    ~TrackersAdditionDlg(){}
+private:
+  QTorrentHandle h;
 
-    QStringList newTrackers() const {
-      return trackers_list->toPlainText().trimmed().split("\n");
+public:
+  TrackersAdditionDlg(QTorrentHandle h, QWidget *parent=0): QDialog(parent), h(h) {
+    setupUi(this);
+    // As a default, use torrentz.com link
+    list_url->setText("http://www.torrentz.com/announce_"+h.hash());
+    list_url->setCursorPosition(0);
+  }
+
+  ~TrackersAdditionDlg(){}
+
+  QStringList newTrackers() const {
+    return trackers_list->toPlainText().trimmed().split("\n");
+  }
+
+public slots:
+  void on_uTorrentListButton_clicked() {
+    downloadThread *d = new downloadThread(this);
+    connect(d, SIGNAL(downloadFinished(QString,QString)), this, SLOT(parseUTorrentList(QString,QString)));
+    connect(d, SIGNAL(downloadFailure(QString,QString)), this, SLOT(getTrackerError(QString,QString)));
+    //Just to show that it takes times
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    d->downloadUrl("http://www.torrentz.com/announce_"+h.hash());
+  }
+
+  void parseUTorrentList(QString, QString path) {
+    QFile list_file(path);
+    if (!list_file.open(QFile::ReadOnly)) {
+      QMessageBox::warning(this, tr("I/O Error"), tr("Error while trying to open the downloaded file."), QMessageBox::Ok);
+      return;
     }
-    
-    static QStringList askForTrackers() {
-      QStringList trackers;
-      TrackersAdditionDlg dlg;
-      if(dlg.exec() == QDialog::Accepted) {
-        return dlg.newTrackers();
+    QList<QUrl> existingTrackers;
+    // Load from torrent handle
+    std::vector<announce_entry> tor_trackers = h.trackers();
+    std::vector<announce_entry>::iterator itr = tor_trackers.begin();
+    while(itr != tor_trackers.end()) {
+      existingTrackers << QUrl(misc::toQString(itr->url));
+      itr++;
+    }
+    // Load from current user list
+    QStringList tmp = trackers_list->toPlainText().split("\n");
+    foreach(QString user_url_str, tmp) {
+      QUrl user_url(user_url_str);
+      if(!existingTrackers.contains(user_url))
+        existingTrackers << user_url;
+    }
+    // Add new trackers to the list
+    if(!trackers_list->toPlainText().isEmpty() && !trackers_list->toPlainText().endsWith("\n"))
+      trackers_list->insertPlainText("\n");
+    int nb = 0;
+    while (!list_file.atEnd()) {
+      QByteArray line = list_file.readLine().trimmed();
+      if(line.isEmpty()) continue;
+      QUrl url(line);
+      if (!existingTrackers.contains(url)) {
+        trackers_list->insertPlainText(line + "\n");
+        ++nb;
       }
-      return trackers;
     }
+    // Clean up
+    list_file.close();
+    list_file.remove();
+    //To restore the cursor ...
+    QApplication::restoreOverrideCursor();
+    // Display information message if necessary
+    if(nb == 0) {
+      QMessageBox::information(this, tr("No change"), tr("No additional trackers were found."), QMessageBox::Ok);
+    }
+  }
+
+  void getTrackerError(QString, QString error) {
+    //To restore the cursor ...
+    QApplication::restoreOverrideCursor();
+    QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(error), QMessageBox::Ok);
+  }
+
+public:
+
+  static QStringList askForTrackers(QTorrentHandle h) {
+    QStringList trackers;
+    TrackersAdditionDlg dlg(h);
+    if(dlg.exec() == QDialog::Accepted) {
+      return dlg.newTrackers();
+    }
+    return trackers;
+  }
 };
 
 #endif
