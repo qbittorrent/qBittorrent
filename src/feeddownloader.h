@@ -78,7 +78,7 @@ public:
     QStringList notmatch_tokens = getNotMatchingTokens();
     foreach(const QString& token, notmatch_tokens) {
       if(token.isEmpty()) continue;
-      QRegExp reg(token, Qt::CaseInsensitive);
+      QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
       if(reg.indexIn(s) > -1) return false;
     }
     return true;
