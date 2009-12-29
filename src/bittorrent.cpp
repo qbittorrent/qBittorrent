@@ -363,7 +363,7 @@ void Bittorrent::configureSession() {
     if(enableDHT(true)) {
       int dht_port;
       if(Preferences::isDHTPortSameAsBT())
-        dht_port = new_listenPort;
+        dht_port = 0;
       else
         dht_port = Preferences::getDHTPort();
       setDHTPort(dht_port);

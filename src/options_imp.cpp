@@ -890,8 +890,6 @@ bool options_imp::systrayIntegration() const{
 }
 
 int options_imp::getDHTPort() const {
-  if(isDHTPortSameAsBT())
-    return 0;
   return spinDHTPort->value();
 }
 
