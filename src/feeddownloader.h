@@ -67,14 +67,14 @@ public:
     foreach(const QString& token, match_tokens) {
       if(token.isEmpty() || token == "")
         continue;
-      QRegExp reg(token, Qt::CaseInsensitive);
+      QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
       if(reg.indexIn(s) < 0) return false;
     }
     // Checking not matching
     QStringList notmatch_tokens = getNotMatchingTokens();
     foreach(const QString& token, notmatch_tokens) {
       if(token.isEmpty()) continue;
-      QRegExp reg(token, Qt::CaseInsensitive);
+      QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
       if(reg.indexIn(s) > -1) return false;
     }
     return true;

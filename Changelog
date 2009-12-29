@@ -4,6 +4,7 @@
     - BUGFIX: Make sure service port does not change
     - BUGFIX: Fix possible DHT port saving issue
     - BUGFIX: Fix communication between qBittorrent and Web UI (Qt 4.6)
+    - BUGFIX: Use Wildcard matching instead of full regex in RSS feed downloader
 
 * Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
     - BUGFIX: Minor cosmetic fix to program preferences
