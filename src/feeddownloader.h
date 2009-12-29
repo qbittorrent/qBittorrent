@@ -64,12 +64,16 @@ public:
 
   bool matches(QString s) {
     QStringList match_tokens = getMatchingTokens();
+    //qDebug("Checking matching tokens: \"%s\"", getMatchingTokens_str().toLocal8Bit().data());
     foreach(const QString& token, match_tokens) {
       if(token.isEmpty() || token == "")
         continue;
-      QRegExp reg(token, Qt::CaseInsensitive);
+      qDebug("Token: %s", token.toLocal8Bit().data());
+      QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
+      //reg.setMinimal(false);
       if(reg.indexIn(s) < 0) return false;
     }
+    qDebug("Checking not matching tokens");
     // Checking not matching
     QStringList notmatch_tokens = getNotMatchingTokens();
     foreach(const QString& token, notmatch_tokens) {
