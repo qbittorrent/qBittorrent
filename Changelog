@@ -3,6 +3,7 @@
     - BUGFIX: Fix possible crash when closing a search engine tab
     - BUGFIX: Make sure service port does not change
     - BUGFIX: Fix possible DHT port saving issue
+    - BUGFIX: Fix communication between qBittorrent and Web UI (Qt 4.6)
 
 * Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
     - BUGFIX: Minor cosmetic fix to program preferences

@@ -233,7 +233,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
   }
   event["name"] = QVariant(h.name());
   event["size"] = QVariant(misc::friendlyUnit(h.actual_size()));
-  event["progress"] = QVariant(h.progress());
+  event["progress"] = QVariant((double)h.progress());
   event["dlspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.download_payload_rate())));
   if(BTSession->isQueueingEnabled()) {
     if(h.queue_position() >= 0)
