@@ -7,6 +7,7 @@
     - BUGFIX: Use Wildcard matching instead of full regex in RSS feed downloader
     - BUGFIX: Fix code for listening on a random port whenever it failed to listen on the one defined
     - BUGFIX: Use global maximum transfer rates as maximum values in per-torrent speed limiting dialogs
+    - BUGFIX: Fix global download rate limiting from Web UI
     - COSMETIC: Display a disconnected icon in status bar whenever qBittorrent failed to listen on the port defined
 
 * Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
