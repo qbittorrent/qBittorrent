@@ -4462,7 +4462,7 @@ Changements:
     <message>
         <location filename="../statusbar.h" line="147"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hors ligne. Ceci signifie généralement que qBittorrent n&apos;a pas pu écouter sur le port indiqué pour les connexions entrantes.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="152"/>
