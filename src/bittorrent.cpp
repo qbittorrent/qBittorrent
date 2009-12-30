@@ -504,17 +504,23 @@ void Bittorrent::configureSession() {
 }
 
 bool Bittorrent::initWebUi(QString username, QString password, int port) {
-  if(httpServer)
-    httpServer->close();
-  else
+  if(httpServer) {
+    if(httpServer->serverPort() != port) {
+      httpServer->close();
+    }
+  } else {
     httpServer = new HttpServer(this, 3000, this);
+  }
   httpServer->setAuthorization(username, password);
-  bool success = httpServer->listen(QHostAddress::Any, port);
-  if (success)
-    qDebug("Web UI listening on port %d", port);
-  else
-    addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), QColor("red"));
-  return success;
+  bool success = true;
+  if(!httpServer->isListening()) {
+    success = httpServer->listen(QHostAddress::Any, port);
+    if (success)
+      qDebug("Web UI listening on port %d", port);
+    else
+      addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), QColor("red"));
+  }
+  return success; 
 }
 
 void Bittorrent::takeETASamples() {
