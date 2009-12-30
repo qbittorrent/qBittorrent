@@ -352,6 +352,7 @@ void Bittorrent::configureSession() {
       else
         dht_port = Preferences::getDHTPort();
       setDHTPort(dht_port);
+      if(dht_port == 0) dht_port = new_listenPort;
       addConsoleMessage(tr("DHT support [ON], port: UDP/%1").arg(dht_port), QString::fromUtf8("blue"));
     } else {
       addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("red"));
