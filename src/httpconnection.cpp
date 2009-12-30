@@ -108,7 +108,7 @@ QString HttpConnection::translateDocument(QString data) {
   bool found = false;
   do {
     found = false;
-    QRegExp regex("_\\(([\\w\\s?!:\\/\\(\\),\\-\\.]+)\\)");
+    QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),µ\\-\\.]+)\\)"));
     i = regex.indexIn(data, i);
     if(i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());

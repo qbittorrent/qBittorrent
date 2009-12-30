@@ -69,6 +69,20 @@
   </select><br/>
   </div>
 </fieldset>
+<fieldset>
+  <legend><b>_(Client whitelisting workaround)</b></legend>
+  _(Identify as:)
+  <select id="peer_id_select" onchange="updateSpoofingSettings();">
+    <option value="qB">_(qBittorrent)</option>
+    <option value="AZ">_(Vuze)</option>
+    <option value="UT">_(µTorrent)</option>
+  </select>
+  &nbsp;&nbsp;
+  _(Version:) <input type="text" id="peer_version_text" style="width: 7em;" />
+  &nbsp;&nbsp;
+  _(Build:) <input type="text" id="peer_build_text" style="width: 5em;" />
+  <br/>
+</fieldset>
 </div>
 
 <div id="DownloadsTab" class="PrefTab invisible">
@@ -475,6 +489,31 @@ updateUpLimitEnabled = function() {
     $('up_limit_value').removeProperty('disabled');
   } else {
     $('up_limit_value').set('disabled', 'true');
+  }
+}
+
+updateSpoofingSettings = function() {
+  var peer_id = $('peer_id_select').get('value');
+  if(peer_id == "UT") {
+    // uTorrent
+    $('peer_version_text').removeProperty('disabled');
+    $('peer_version_text').set('value', '1.8.5');
+    $('peer_build_text').removeProperty('disabled');
+    $('peer_build_text').set('value', '17414');
+  } else {
+    if(peer_id = "AZ") {
+      // Vuze
+      $('peer_version_text').removeProperty('disabled');
+      $('peer_version_text').set('value', '4.3.0.4');
+      $('peer_build_text').set('disabled', 'true');
+      $('peer_build_text').set('value', '');
+    } else {
+      // qBittorrent
+      $('peer_version_text').set('disabled', 'true');
+      $('peer_version_text').set('value', '');
+      $('peer_build_text').set('disabled', 'true');
+      $('peer_build_text').set('value', '');
+    }
   }
 }
 
