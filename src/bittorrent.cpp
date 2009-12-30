@@ -60,7 +60,7 @@
 
 #define MAX_TRACKER_ERRORS 2
 #define MAX_RATIO 100.
-enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
+enum ProxyType {HTTP, SOCKS4, SOCKS5, HTTP_PW, SOCKS5_PW};
 
 // Main constructor
 Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), geoipDBLoaded(false), exiting(false) {
@@ -437,69 +437,61 @@ void Bittorrent::configureSession() {
   }
   // * Proxy settings
   proxy_settings proxySettings;
-  if(Preferences::isProxyEnabled()) {
+  if(Preferences::isPeerProxyEnabled()) {
     qDebug("Enabling P2P proxy");
-    proxySettings.hostname = Preferences::getProxyIp().toStdString();
+    proxySettings.hostname = Preferences::getPeerProxyIp().toStdString();
     qDebug("hostname is %s", proxySettings.hostname.c_str());
-    proxySettings.port = Preferences::getProxyPort();
+    proxySettings.port = Preferences::getPeerProxyPort();
     qDebug("port is %d", proxySettings.port);
-    if(Preferences::isProxyAuthEnabled()) {
-      proxySettings.username = Preferences::getProxyUsername().toStdString();
-      proxySettings.password = Preferences::getProxyPassword().toStdString();
+    if(Preferences::isPeerProxyAuthEnabled()) {
+      proxySettings.username = Preferences::getPeerProxyUsername().toStdString();
+      proxySettings.password = Preferences::getPeerProxyPassword().toStdString();
       qDebug("username is %s", proxySettings.username.c_str());
       qDebug("password is %s", proxySettings.password.c_str());
     }
-    switch(Preferences::getProxyType()) {
-    case HTTP:
-      qDebug("type: http");
-      proxySettings.type = proxy_settings::http;
-      break;
-    case HTTP_PW:
-      qDebug("type: http_pw");
-      proxySettings.type = proxy_settings::http_pw;
-      break;
-    case SOCKS5:
-      qDebug("type: socks5");
-      proxySettings.type = proxy_settings::socks5;
-      break;
-    default:
-      qDebug("type: socks5_pw");
-      proxySettings.type = proxy_settings::socks5_pw;
-      break;
-    }
-    setProxySettings(proxySettings, Preferences::useProxyForTrackers(), Preferences::useProxyForPeers(), Preferences::useProxyForWebseeds(), Preferences::useProxyForDHT());
-  } else {
-    qDebug("Disabling P2P proxy");
-    setProxySettings(proxySettings, false, false, false, false);
   }
-  if(Preferences::isHTTPProxyEnabled()) {
-    qDebug("Enabling Search HTTP proxy");
-    // HTTP Proxy
-    QString proxy_str;
-    switch(Preferences::getHTTPProxyType()) {
-    case HTTP_PW:
-      proxy_str = "http://"+Preferences::getHTTPProxyUsername()+":"+Preferences::getHTTPProxyPassword()+"@"+Preferences::getHTTPProxyIp()+":"+QString::number(Preferences::getHTTPProxyPort());
-      break;
-    default:
-      proxy_str = "http://"+Preferences::getHTTPProxyIp()+":"+QString::number(Preferences::getHTTPProxyPort());
-    }
-    // We need this for urllib in search engine plugins
-#ifdef Q_WS_WIN
-    char proxystr[512];
-    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().data());
-    putenv(proxystr);
-#else
-    qDebug("HTTP: proxy string: %s", proxy_str.toLocal8Bit().data());
-    setenv("http_proxy", proxy_str.toLocal8Bit().data(), 1);
-#endif
-  } else {
-    qDebug("Disabling search proxy");
-#ifdef Q_WS_WIN
-    putenv("http_proxy=");
-#else
-    unsetenv("http_proxy");
-#endif
+  switch(Preferences::getPeerProxyType()) {
+  case HTTP:
+    qDebug("type: http");
+    proxySettings.type = proxy_settings::http;
+    break;
+  case HTTP_PW:
+    qDebug("type: http_pw");
+    proxySettings.type = proxy_settings::http_pw;
+    break;
+  case SOCKS4:
+    proxySettings.type = proxy_settings::socks4;
+  case SOCKS5:
+    qDebug("type: socks5");
+    proxySettings.type = proxy_settings::socks5;
+    break;
+  case SOCKS5_PW:
+    qDebug("type: socks5_pw");
+    proxySettings.type = proxy_settings::socks5_pw;
+    break;
+  default:
+    proxySettings.type = proxy_settings::none;
   }
+  setPeerProxySettings(proxySettings);
+  // HTTP Proxy
+  proxy_settings http_proxySettings;
+  switch(Preferences::getHTTPProxyType()) {
+  case HTTP_PW:
+    http_proxySettings.type = proxy_settings::http_pw;
+    http_proxySettings.username = Preferences::getHTTPProxyUsername().toStdString();
+    http_proxySettings.password = Preferences::getHTTPProxyPassword().toStdString();
+    http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
+    http_proxySettings.port = Preferences::getHTTPProxyPort();
+    break;
+  case HTTP:
+    http_proxySettings.type = proxy_settings::http;
+    http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
+    http_proxySettings.port = Preferences::getHTTPProxyPort();
+    break;
+  default:
+    http_proxySettings.type = proxy_settings::none;
+  }
+  setHTTPProxySettings(http_proxySettings);
   qDebug("Session configured");
 }
 
@@ -1545,32 +1537,39 @@ void Bittorrent::setSessionSettings(session_settings sessionSettings) {
 }
 
 // Set Proxy
-void Bittorrent::setProxySettings(proxy_settings proxySettings, bool trackers, bool peers, bool web_seeds, bool dht) {
-  qDebug("Set Proxy settings");
-  proxy_settings ps_null;
-  ps_null.type = proxy_settings::none;
-  qDebug("Setting trackers proxy");
-  if(trackers)
-    s->set_tracker_proxy(proxySettings);
-  else
-    s->set_tracker_proxy(ps_null);
-  qDebug("Setting peers proxy");
-  if(peers)
-    s->set_peer_proxy(proxySettings);
-  else
-    s->set_peer_proxy(ps_null);
-  qDebug("Setting web seeds proxy");
-  if(web_seeds)
-    s->set_web_seed_proxy(proxySettings);
-  else
-    s->set_web_seed_proxy(ps_null);
-  if(DHTEnabled) {
-    qDebug("Setting DHT proxy, %d", dht);
-    if(dht)
-      s->set_dht_proxy(proxySettings);
-    else
-      s->set_dht_proxy(ps_null);
+void Bittorrent::setPeerProxySettings(proxy_settings proxySettings) {
+  qDebug("Set Peer Proxy settings");
+  s->set_peer_proxy(proxySettings);
+  s->set_dht_proxy(proxySettings);
+}
+
+void Bittorrent::setHTTPProxySettings(proxy_settings proxySettings) {
+  s->set_tracker_proxy(proxySettings);
+  s->set_web_seed_proxy(proxySettings);
+  QString proxy_str;
+  switch(proxySettings.type) {
+  case proxy_settings::http:
+    proxy_str = "http://"+misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+  case proxy_settings::http_pw:
+    proxy_str = "http://"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+  default:
+    qDebug("Disabling search proxy");
+#ifdef Q_WS_WIN
+    putenv("http_proxy=");
+#else
+    unsetenv("http_proxy");
+#endif
+    return;
   }
+  // We need this for urllib in search engine plugins
+#ifdef Q_WS_WIN
+  char proxystr[512];
+  snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().data());
+  putenv(proxystr);
+#else
+  qDebug("HTTP: proxy string: %s", proxy_str.toLocal8Bit().data());
+  setenv("http_proxy", proxy_str.toLocal8Bit().data(), 1);
+#endif
 }
 
 // Read alerts sent by the Bittorrent session

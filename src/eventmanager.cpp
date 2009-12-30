@@ -178,17 +178,29 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     Preferences::setEncryptionSetting(m["encryption"].toInt());
   // Proxy
   if(m.contains("proxy_type"))
-    Preferences::setProxyType(m["proxy_type"].toInt());
+    Preferences::setPeerProxyType(m["proxy_type"].toInt());
   if(m.contains("proxy_ip"))
-    Preferences::setProxyIp(m["proxy_ip"].toString());
+    Preferences::setPeerProxyIp(m["proxy_ip"].toString());
   if(m.contains("proxy_port"))
-    Preferences::setProxyPort(m["proxy_port"].toUInt());
+    Preferences::setPeerProxyPort(m["proxy_port"].toUInt());
   if(m.contains("proxy_auth_enabled"))
-    Preferences::setProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
+    Preferences::setPeerProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
   if(m.contains("proxy_username"))
-    Preferences::setProxyUsername(m["proxy_username"].toString());
+    Preferences::setPeerProxyUsername(m["proxy_username"].toString());
   if(m.contains("proxy_password"))
-    Preferences::setProxyPassword(m["proxy_password"].toString());
+    Preferences::setPeerProxyPassword(m["proxy_password"].toString());
+  if(m.contains("http_proxy_type"))
+    Preferences::setHTTPProxyType(m["http_proxy_type"].toInt());
+  if(m.contains("http_proxy_ip"))
+    Preferences::setHTTPProxyIp(m["http_proxy_ip"].toString());
+  if(m.contains("http_proxy_port"))
+    Preferences::setHTTPProxyPort(m["http_proxy_port"].toUInt());
+  if(m.contains("http_proxy_auth_enabled"))
+    Preferences::setHTTPProxyAuthEnabled(m["http_proxy_auth_enabled"].toBool());
+  if(m.contains("http_proxy_username"))
+    Preferences::setHTTPProxyUsername(m["proxy_username"].toString());
+  if(m.contains("http_proxy_password"))
+    Preferences::setHTTPProxyPassword(m["proxy_password"].toString());
   // IP Filter
   if(m.contains("ip_filter_enabled"))
     Preferences::setFilteringEnabled(m["ip_filter_enabled"].toBool());
@@ -238,12 +250,18 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["lsd"] = Preferences::isLSDEnabled();
   data["encryption"] = Preferences::getEncryptionSetting();
   // Proxy
-  data["proxy_type"] = Preferences::getProxyType();
-  data["proxy_ip"] = Preferences::getProxyIp();
-  data["proxy_port"] = Preferences::getProxyPort();
-  data["proxy_auth_enabled"] = Preferences::isProxyAuthEnabled();
-  data["proxy_username"] = Preferences::getProxyUsername();
-  data["proxy_password"] = Preferences::getProxyPassword();
+  data["proxy_type"] = Preferences::getPeerProxyType();
+  data["proxy_ip"] = Preferences::getPeerProxyIp();
+  data["proxy_port"] = Preferences::getPeerProxyPort();
+  data["proxy_auth_enabled"] = Preferences::isPeerProxyAuthEnabled();
+  data["proxy_username"] = Preferences::getPeerProxyUsername();
+  data["proxy_password"] = Preferences::getPeerProxyPassword();
+  data["http_proxy_type"] = Preferences::getHTTPProxyType();
+  data["http_proxy_ip"] = Preferences::getHTTPProxyIp();
+  data["http_proxy_port"] = Preferences::getHTTPProxyPort();
+  data["http_proxy_auth_enabled"] = Preferences::isHTTPProxyAuthEnabled();
+  data["http_proxy_username"] = Preferences::getHTTPProxyUsername();
+  data["http_proxy_password"] = Preferences::getHTTPProxyPassword();
   // IP Filter
   data["ip_filter_enabled"] = Preferences::isFilteringEnabled();
   data["ip_filter_path"] = Preferences::getFilter();

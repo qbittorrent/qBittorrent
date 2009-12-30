@@ -34,7 +34,7 @@
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
 
-enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4};
+enum ProxyType {HTTP, SOCKS4, SOCKS5, HTTP_PW, SOCKS5_PW};
 
 // actions on double-click on torrents
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST};
@@ -109,19 +109,15 @@ protected:
   QString getHTTPProxyUsername() const;
   QString getHTTPProxyPassword() const;
   int getHTTPProxyType() const;
-  bool isProxyEnabled() const;
+  bool isPeerProxyEnabled() const;
   bool isHTTPProxyEnabled() const;
-  bool isProxyAuthEnabled() const;
+  bool isPeerProxyAuthEnabled() const;
   bool isHTTPProxyAuthEnabled() const;
-  QString getProxyIp() const;
-  unsigned short getProxyPort() const;
-  QString getProxyUsername() const;
-  QString getProxyPassword() const;
-  int getProxyType() const;
-  bool useProxyForTrackers() const;
-  bool useProxyForPeers() const;
-  bool useProxyForWebseeds() const;
-  bool useProxyForDHT() const;
+  QString getPeerProxyIp() const;
+  unsigned short getPeerProxyPort() const;
+  QString getPeerProxyUsername() const;
+  QString getPeerProxyPassword() const;
+  int getPeerProxyType() const;
   // IP Filter
   bool isFilteringEnabled() const;
   QString getFilter() const;
@@ -140,10 +136,10 @@ protected slots:
   void enableDownloadLimit(bool checked);
   void enableTempPathInput(bool checked);
   void enableDirScan(bool checked);
-  void enableProxy(int comboIndex);
-  void enableProxyAuth(bool checked);
-  void enableProxyHTTP(int comboIndex);
-  void enableProxyAuthHTTP(bool checked);
+  void enablePeerProxy(int comboIndex);
+  void enablePeerProxyAuth(bool checked);
+  void enableHTTPProxy(int comboIndex);
+  void enableHTTPProxyAuth(bool checked);
   void enableMaxConnecsLimit(bool checked);
   void enableMaxConnecsLimitPerTorrent(bool checked);
   void enableMaxUploadsLimitPerTorrent(bool checked);

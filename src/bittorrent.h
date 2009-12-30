@@ -200,7 +200,8 @@ public slots:
   void setGlobalRatio(float ratio);
   void setDeleteRatio(float ratio);
   void setDHTPort(int dht_port);
-  void setProxySettings(proxy_settings proxySettings, bool trackers=true, bool peers=true, bool web_seeds=true, bool dht=true);
+  void setPeerProxySettings(proxy_settings proxySettings);
+  void setHTTPProxySettings(proxy_settings proxySettings);
   void setSessionSettings(session_settings sessionSettings);
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);

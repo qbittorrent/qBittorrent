@@ -294,9 +294,19 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Authentication"), false).toBool();
   }
 
+  static void setHTTPProxyAuthEnabled(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Authentication"), enabled);
+  }
+
   static QString getHTTPProxyIp() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
+  }
+
+  static void setHTTPProxyIp(QString ip) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), ip);
   }
 
   static unsigned short getHTTPProxyPort() {
@@ -304,9 +314,19 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toInt();
   }
 
+  static void setHTTPProxyPort(unsigned short port) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), port);
+  }
+
   static QString getHTTPProxyUsername() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), QString()).toString();
+  }
+
+  static void setHTTPProxyUsername(QString username) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), username);
   }
 
   static QString getHTTPProxyPassword() {
@@ -314,94 +334,84 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), QString()).toString();
   }
 
+  static void setHTTPProxyPassword(QString password) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), password);
+  }
+
   static int getHTTPProxyType() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt();
   }
 
-  static bool isProxyEnabled() {
+  static void setHTTPProxyType(int type) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), type);
+  }
+
+  static bool isPeerProxyEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt() > 0;
   }
 
-  static bool isProxyAuthEnabled() {
+  static bool isPeerProxyAuthEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Authentication"), false).toBool();
   }
 
-  static void setProxyAuthEnabled(bool enabled) {
+  static void setPeerProxyAuthEnabled(bool enabled) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Connection/Proxy/Authentication"), enabled);
   }
 
-  static QString getProxyIp() {
+  static QString getPeerProxyIp() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString();
   }
 
-  static void setProxyIp(QString ip) {
+  static void setPeerProxyIp(QString ip) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Connection/Proxy/IP"), ip);
   }
 
-  static unsigned short getProxyPort() {
+  static unsigned short getPeerProxyPort() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt();
   }
 
-  static void setProxyPort(unsigned short port) {
+  static void setPeerProxyPort(unsigned short port) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Connection/Proxy/Port"), port);
   }
 
-  static QString getProxyUsername() {
+  static QString getPeerProxyUsername() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Username"), QString()).toString();
   }
 
-  static void setProxyUsername(QString username) {
+  static void setPeerProxyUsername(QString username) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Connection/Proxy/Username"), username);
   }
 
-  static QString getProxyPassword() {
+  static QString getPeerProxyPassword() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/Password"), QString()).toString();
   }
 
-  static void setProxyPassword(QString password) {
+  static void setPeerProxyPassword(QString password) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Connection/Proxy/Password"), password);
   }
 
-  static int getProxyType() {
+  static int getPeerProxyType() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
   }
 
-  static void setProxyType(int type) {
+  static void setPeerProxyType(int type) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Connection/ProxyType"), type);
-  }
-
-  static bool useProxyForTrackers() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/AffectTrackers"), true).toBool();
-  }
-
-  static bool useProxyForPeers() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/AffectPeers"), true).toBool();
-  }
-
-  static bool useProxyForWebseeds() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/AffectWebSeeds"), true).toBool();
-  }
-
-  static bool useProxyForDHT() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/Proxy/AffectDHT"), true).toBool();
   }
 
   // Bittorrent options

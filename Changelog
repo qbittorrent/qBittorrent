@@ -6,6 +6,7 @@
     - FEATURE: Append !.qB extension to incomplete files option (libtorrent >= v0.15 only)
     - FEATURE: Torrent files/folders can be renamed
     - FEATURE: uTorrent compatible tracker list support (use torrentz.com url as a default)
+    - FEATURE: Better proxy support and preferences remodeling
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)
     - COSMETIC: Added a spin box to speed limiting dialog for manual input

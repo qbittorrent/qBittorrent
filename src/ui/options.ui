@@ -1845,15 +1845,15 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>370</width>
-              <height>428</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_20">
+            <layout class="QVBoxLayout" name="verticalLayout_16">
              <item>
               <widget class="QGroupBox" name="groupBox">
                <property name="title">
-                <string>Search engine proxy settings</string>
+                <string>HTTP Communications (trackers, Web seeds, search engine)</string>
                </property>
                <layout class="QVBoxLayout">
                 <item>
@@ -1885,7 +1885,7 @@ QGroupBox {
                      <bool>false</bool>
                     </property>
                     <property name="text">
-                     <string>Proxy:</string>
+                     <string>Host:</string>
                     </property>
                    </widget>
                   </item>
@@ -2043,7 +2043,7 @@ QGroupBox {
                 <bool>true</bool>
                </property>
                <property name="title">
-                <string>Bittorrent proxy settings</string>
+                <string>Peer Communications</string>
                </property>
                <layout class="QVBoxLayout">
                 <item>
@@ -2064,7 +2064,7 @@ QGroupBox {
                     </item>
                     <item>
                      <property name="text">
-                      <string>HTTP</string>
+                      <string>SOCKS4</string>
                      </property>
                     </item>
                     <item>
@@ -2080,7 +2080,7 @@ QGroupBox {
                      <bool>false</bool>
                     </property>
                     <property name="text">
-                     <string>Proxy:</string>
+                     <string>Host:</string>
                     </property>
                    </widget>
                   </item>
@@ -2229,100 +2229,18 @@ QGroupBox {
                   </item>
                  </layout>
                 </item>
-                <item>
-                 <widget class="QGroupBox" name="ProxyConnecsBox">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>110</height>
-                   </size>
-                  </property>
-                  <property name="title">
-                   <string>Affected connections</string>
-                  </property>
-                  <layout class="QVBoxLayout">
-                   <item>
-                    <widget class="QCheckBox" name="checkProxyTrackers">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string>Use proxy for connections to trackers</string>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QCheckBox" name="checkProxyPeers">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string>Use proxy for connections to regular peers</string>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QCheckBox" name="checkProxyDHT">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string>Use proxy for DHT messages</string>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QCheckBox" name="checkProxyWebseeds">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string>Use proxy for connections to web seeds</string>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
                </layout>
               </widget>
              </item>
              <item>
-              <spacer name="verticalSpacer_2">
+              <spacer name="verticalSpacer">
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
                  <width>20</width>
-                 <height>40</height>
+                 <height>180</height>
                 </size>
                </property>
               </spacer>
@@ -2345,8 +2263,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>290</width>
-              <height>124</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2442,8 +2360,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>219</width>
-              <height>221</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2606,8 +2524,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>452</width>
-              <height>192</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
