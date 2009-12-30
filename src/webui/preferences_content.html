@@ -478,7 +478,7 @@
 
 updateDlLimitEnabled = function() {
   if($defined($('dl_limit_checkbox').get('checked')) && $('dl_limit_checkbox').get('checked')) {
-    $('dl_limit_value').set('disabled', 'false');
+    $('dl_limit_value').removeProperty('disabled');
   } else {
     $('dl_limit_value').set('disabled', 'true');
   }
