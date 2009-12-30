@@ -187,139 +187,144 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="368"/>
+        <location filename="../bittorrent.cpp" line="370"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT támogatás [ON], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="370"/>
-        <location filename="../bittorrent.cpp" line="374"/>
+        <location filename="../bittorrent.cpp" line="372"/>
+        <location filename="../bittorrent.cpp" line="376"/>
         <source>DHT support [OFF]</source>
         <translation>DHT funkció [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="378"/>
+        <location filename="../bittorrent.cpp" line="380"/>
         <source>PeX support [ON]</source>
         <translation>PeX [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="380"/>
+        <location filename="../bittorrent.cpp" line="382"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="383"/>
+        <location filename="../bittorrent.cpp" line="385"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="388"/>
+        <location filename="../bittorrent.cpp" line="390"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="391"/>
+        <location filename="../bittorrent.cpp" line="393"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="403"/>
+        <location filename="../bittorrent.cpp" line="405"/>
         <source>Encryption support [ON]</source>
         <translation>Titkosítás [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="408"/>
+        <location filename="../bittorrent.cpp" line="410"/>
         <source>Encryption support [FORCED]</source>
         <translation>Titkosítás [KÉNYSZERÍTVE]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="413"/>
+        <location filename="../bittorrent.cpp" line="415"/>
         <source>Encryption support [OFF]</source>
         <translation>Titkosítás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="514"/>
+        <location filename="../bittorrent.cpp" line="519"/>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="521"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Web felhasználói felület hiba a port használatánál: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="631"/>
+        <location filename="../bittorrent.cpp" line="639"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról és a merevlemezről.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="633"/>
+        <location filename="../bittorrent.cpp" line="641"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="683"/>
+        <location filename="../bittorrent.cpp" line="691"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; nem hiteles magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="708"/>
-        <location filename="../bittorrent.cpp" line="844"/>
-        <location filename="../bittorrent.cpp" line="847"/>
+        <location filename="../bittorrent.cpp" line="716"/>
+        <location filename="../bittorrent.cpp" line="852"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; már letöltés alatt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="782"/>
-        <location filename="../bittorrent.cpp" line="972"/>
-        <location filename="../bittorrent.cpp" line="977"/>
+        <location filename="../bittorrent.cpp" line="790"/>
+        <location filename="../bittorrent.cpp" line="980"/>
+        <location filename="../bittorrent.cpp" line="985"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="784"/>
-        <location filename="../bittorrent.cpp" line="974"/>
-        <location filename="../bittorrent.cpp" line="979"/>
+        <location filename="../bittorrent.cpp" line="792"/>
+        <location filename="../bittorrent.cpp" line="982"/>
+        <location filename="../bittorrent.cpp" line="987"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; felvéve a letöltési listára.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="818"/>
-        <location filename="../bittorrent.cpp" line="822"/>
+        <location filename="../bittorrent.cpp" line="826"/>
+        <location filename="../bittorrent.cpp" line="830"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Megfejthetetlen torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="825"/>
+        <location filename="../bittorrent.cpp" line="833"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1226"/>
+        <location filename="../bittorrent.cpp" line="1234"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;letiltva IP szűrés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1228"/>
+        <location filename="../bittorrent.cpp" line="1236"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;kitiltva hibás adatküldés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1592"/>
+        <location filename="../bittorrent.cpp" line="1602"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Fájl ismételt letöltése %1 beágyazva a torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1603"/>
+        <location filename="../bittorrent.cpp" line="1613"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Megfejthetetlen torrent: %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1677"/>
+        <location filename="../bittorrent.cpp" line="1687"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -328,27 +333,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">A megadott porok zártak.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1745"/>
+        <location filename="../bittorrent.cpp" line="1755"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikertelen, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1750"/>
+        <location filename="../bittorrent.cpp" line="1760"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikeres, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1765"/>
+        <location filename="../bittorrent.cpp" line="1775"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1770"/>
+        <location filename="../bittorrent.cpp" line="1780"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1857"/>
+        <location filename="../bittorrent.cpp" line="1868"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
@@ -1449,126 +1454,126 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="398"/>
+        <location filename="../feeddownloader.h" line="402"/>
         <source>New filter</source>
         <translation>Új szűrő</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="405"/>
+        <location filename="../feeddownloader.h" line="409"/>
         <source>Please choose a name for this filter</source>
         <translation>Kérlek válassz nevet a szűrőnek</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="405"/>
+        <location filename="../feeddownloader.h" line="409"/>
         <source>Filter name:</source>
         <translation>Filter név:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="374"/>
-        <location filename="../feeddownloader.h" line="413"/>
-        <location filename="../feeddownloader.h" line="429"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="417"/>
+        <location filename="../feeddownloader.h" line="433"/>
         <source>Invalid filter name</source>
         <translation>Érvénytelen szűrő név</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="417"/>
         <source>The filter name cannot be left empty.</source>
         <translation>A szűrő név mindenképpen szükséges.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="374"/>
-        <location filename="../feeddownloader.h" line="429"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="433"/>
         <source>This filter name is already in use.</source>
         <translation>A szűrő név már használatban.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="295"/>
+        <location filename="../feeddownloader.h" line="299"/>
         <source>Choose save path</source>
         <translation type="unfinished">Mentés helye</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="455"/>
+        <location filename="../feeddownloader.h" line="459"/>
         <source>Filter testing error</source>
         <translation>Szűrő teszt hiba</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="455"/>
+        <location filename="../feeddownloader.h" line="459"/>
         <source>Please specify a test torrent name.</source>
         <translation>Kérlek válassz teszt torrentet.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="462"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>matches</source>
         <translation>egyezés</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="464"/>
+        <location filename="../feeddownloader.h" line="468"/>
         <source>does not match</source>
         <translation>nincs egyezés</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
+        <location filename="../feeddownloader.h" line="472"/>
         <source>Select file to import</source>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
-        <location filename="../feeddownloader.h" line="485"/>
+        <location filename="../feeddownloader.h" line="472"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters Files</source>
         <translation>Szűrő fájlok</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="478"/>
+        <location filename="../feeddownloader.h" line="482"/>
         <source>Import successful</source>
         <translation>Importálás sikeres</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="478"/>
+        <location filename="../feeddownloader.h" line="482"/>
         <source>Filters import was successful.</source>
         <translation>Szűrő importálás sikeres.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Import failure</source>
         <translation>Importálás sikertelen</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>A szűrőt nem sikerült importálni I/O hiba miatt.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="485"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Select destination file</source>
         <translation>Szűrő fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Overwriting confirmation</source>
         <translation>Felülírás megerősítése</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Are you sure you want to overwrite existing file?</source>
         <translation>Biztosan felül akarod írni a már létező fájlt?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="495"/>
+        <location filename="../feeddownloader.h" line="499"/>
         <source>Export successful</source>
         <translation>Exportálás sikeres</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="495"/>
+        <location filename="../feeddownloader.h" line="499"/>
         <source>Filters export was successful.</source>
         <translation>Szűrő exportálás sikeres.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Export failure</source>
         <translation>Exportálás sikertelen</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>A szűrőt nem sikerült exportálni I/O hiba miatt.</translation>
     </message>
@@ -4021,7 +4026,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="337"/>
+        <location filename="../searchengine.cpp" line="338"/>
         <source>Results</source>
         <translation>Eredmény</translation>
     </message>
@@ -4094,33 +4099,33 @@ Changelog:
         <translation>Előzmények törlése</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
+        <location filename="../searchengine.cpp" line="446"/>
         <source>Search Engine</source>
         <translation>Keresőmotor</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
-        <location filename="../searchengine.cpp" line="453"/>
+        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="457"/>
         <source>Search has finished</source>
         <translation>A keresés befejeződött</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="445"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>An error occured during search...</source>
         <translation>Hiba a keresés közben...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="448"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>Search aborted</source>
         <translation>Keresés félbeszakítva</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="451"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search returned no results</source>
         <translation>Eredménytelen keresés</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="458"/>
+        <location filename="../searchengine.cpp" line="462"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Találat</translation>
@@ -4134,8 +4139,8 @@ Changelog:
         <translation type="obsolete">Nem sikerült kereső modult letölteni innen: %1, mert: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="485"/>
-        <location filename="../searchengine.cpp" line="491"/>
+        <location filename="../searchengine.cpp" line="497"/>
+        <location filename="../searchengine.cpp" line="503"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -4350,14 +4355,49 @@ Changelog:
 <context>
     <name>TrackersAdditionDlg</name>
     <message>
-        <location filename="../ui/trackersadditiondlg.ui" line="13"/>
+        <location filename="../ui/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
         <translation>Tracker hozzáadása</translation>
     </message>
     <message>
-        <location filename="../ui/trackersadditiondlg.ui" line="19"/>
+        <location filename="../ui/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
         <translation>Trackerek listája (soronként egyet):</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../ui/trackersadditiondlg.ui" line="44"/>
+        <source>µTorrent compatible list URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="77"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="77"/>
+        <source>Error while trying to open the downloaded file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="115"/>
+        <source>No change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="115"/>
+        <source>No additional trackers were found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="122"/>
+        <source>Download error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="122"/>
+        <source>The trackers list could not be downloaded, reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5921,8 +5961,8 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Beállítások sikeresen elmentve.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1340"/>
         <location filename="../options_imp.cpp" line="1342"/>
-        <location filename="../options_imp.cpp" line="1344"/>
         <source>Choose scan directory</source>
         <translation>Megfigyelt könyvtár beállítása</translation>
     </message>
@@ -5931,10 +5971,10 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Ipfilter.dat fájl megnyitása</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1369"/>
         <location filename="../options_imp.cpp" line="1371"/>
-        <location filename="../options_imp.cpp" line="1373"/>
+        <location filename="../options_imp.cpp" line="1383"/>
         <location filename="../options_imp.cpp" line="1385"/>
-        <location filename="../options_imp.cpp" line="1387"/>
         <source>Choose a save directory</source>
         <translation>Letöltési könyvtár megadása</translation>
     </message>
@@ -5948,14 +5988,14 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">%1 olvasása sikertelen.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1354"/>
         <location filename="../options_imp.cpp" line="1356"/>
-        <location filename="../options_imp.cpp" line="1358"/>
         <source>Choose an ip filter file</source>
         <translation>Válassz egy ip szűrő fájlt</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1354"/>
         <location filename="../options_imp.cpp" line="1356"/>
-        <location filename="../options_imp.cpp" line="1358"/>
         <source>Filters</source>
         <translation>Szűrők</translation>
     </message>

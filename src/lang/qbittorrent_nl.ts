@@ -336,6 +336,10 @@ p, li { white-space: pre-wrap; }
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -4331,6 +4335,34 @@ Changelog:
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Lijst van toe te voegen trackers (een per regel):</translation>
+    </message>
+    <message utf8="true">
+        <source>µTorrent compatible list URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error while trying to open the downloaded file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No additional trackers were found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The trackers list could not be downloaded, reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

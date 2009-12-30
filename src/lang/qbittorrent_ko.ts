@@ -207,139 +207,144 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="368"/>
+        <location filename="../bittorrent.cpp" line="370"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT 지원 [사용], 포트:&apos;UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="370"/>
-        <location filename="../bittorrent.cpp" line="374"/>
+        <location filename="../bittorrent.cpp" line="372"/>
+        <location filename="../bittorrent.cpp" line="376"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="378"/>
+        <location filename="../bittorrent.cpp" line="380"/>
         <source>PeX support [ON]</source>
         <translation>Pes 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="380"/>
+        <location filename="../bittorrent.cpp" line="382"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="383"/>
+        <location filename="../bittorrent.cpp" line="385"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="388"/>
+        <location filename="../bittorrent.cpp" line="390"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="391"/>
+        <location filename="../bittorrent.cpp" line="393"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="403"/>
+        <location filename="../bittorrent.cpp" line="405"/>
         <source>Encryption support [ON]</source>
         <translation>암호화 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="408"/>
+        <location filename="../bittorrent.cpp" line="410"/>
         <source>Encryption support [FORCED]</source>
         <translation>암호화 지원 [강제사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="413"/>
+        <location filename="../bittorrent.cpp" line="415"/>
         <source>Encryption support [OFF]</source>
         <translation>암호화 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="514"/>
+        <location filename="../bittorrent.cpp" line="519"/>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="521"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>웹 유저 인터페이스 에러 - 웹 유저 인터페이스를 다음 포트에 연결 할수 없습니다:%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="631"/>
+        <location filename="../bittorrent.cpp" line="639"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록과 디스크에서 &apos;%1&apos; 를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="633"/>
+        <location filename="../bittorrent.cpp" line="641"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록에서 &apos;%1&apos;를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="683"/>
+        <location filename="../bittorrent.cpp" line="691"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos;는 유효한 마그넷 URI (magnet URI)가 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="708"/>
-        <location filename="../bittorrent.cpp" line="844"/>
-        <location filename="../bittorrent.cpp" line="847"/>
+        <location filename="../bittorrent.cpp" line="716"/>
+        <location filename="../bittorrent.cpp" line="852"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 전송목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="782"/>
-        <location filename="../bittorrent.cpp" line="972"/>
-        <location filename="../bittorrent.cpp" line="977"/>
+        <location filename="../bittorrent.cpp" line="790"/>
+        <location filename="../bittorrent.cpp" line="980"/>
+        <location filename="../bittorrent.cpp" line="985"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="784"/>
-        <location filename="../bittorrent.cpp" line="974"/>
-        <location filename="../bittorrent.cpp" line="979"/>
+        <location filename="../bittorrent.cpp" line="792"/>
+        <location filename="../bittorrent.cpp" line="982"/>
+        <location filename="../bittorrent.cpp" line="987"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="818"/>
-        <location filename="../bittorrent.cpp" line="822"/>
+        <location filename="../bittorrent.cpp" line="826"/>
+        <location filename="../bittorrent.cpp" line="830"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>토렌트 파일을 해독할수 없음: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="825"/>
+        <location filename="../bittorrent.cpp" line="833"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>파일에 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1226"/>
+        <location filename="../bittorrent.cpp" line="1234"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1228"/>
+        <location filename="../bittorrent.cpp" line="1236"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1592"/>
+        <location filename="../bittorrent.cpp" line="1602"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1603"/>
+        <location filename="../bittorrent.cpp" line="1613"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1677"/>
+        <location filename="../bittorrent.cpp" line="1687"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -348,27 +353,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트을 사용할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1745"/>
+        <location filename="../bittorrent.cpp" line="1755"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1750"/>
+        <location filename="../bittorrent.cpp" line="1760"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1765"/>
+        <location filename="../bittorrent.cpp" line="1775"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1770"/>
+        <location filename="../bittorrent.cpp" line="1780"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1857"/>
+        <location filename="../bittorrent.cpp" line="1868"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -1544,126 +1549,126 @@ list:</source>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="398"/>
+        <location filename="../feeddownloader.h" line="402"/>
         <source>New filter</source>
         <translation>새 필터</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="405"/>
+        <location filename="../feeddownloader.h" line="409"/>
         <source>Please choose a name for this filter</source>
         <translation>이 필터 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="405"/>
+        <location filename="../feeddownloader.h" line="409"/>
         <source>Filter name:</source>
         <translation>필터 이름:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="374"/>
-        <location filename="../feeddownloader.h" line="413"/>
-        <location filename="../feeddownloader.h" line="429"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="417"/>
+        <location filename="../feeddownloader.h" line="433"/>
         <source>Invalid filter name</source>
         <translation>부적당한 필터 이름</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="417"/>
         <source>The filter name cannot be left empty.</source>
         <translation>필터 이름을 꼭 입력하셔야 합니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="374"/>
-        <location filename="../feeddownloader.h" line="429"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="433"/>
         <source>This filter name is already in use.</source>
         <translation>이 필터 이름은 벌써 사용되고 있습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="295"/>
+        <location filename="../feeddownloader.h" line="299"/>
         <source>Choose save path</source>
         <translation type="unfinished">저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="455"/>
+        <location filename="../feeddownloader.h" line="459"/>
         <source>Filter testing error</source>
         <translation>핕터 테스트 오류</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="455"/>
+        <location filename="../feeddownloader.h" line="459"/>
         <source>Please specify a test torrent name.</source>
         <translation>시험용 토렌트 이름을 입력하세요.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="462"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>matches</source>
         <translation>해당</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="464"/>
+        <location filename="../feeddownloader.h" line="468"/>
         <source>does not match</source>
         <translation>해당하지 않음</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
+        <location filename="../feeddownloader.h" line="472"/>
         <source>Select file to import</source>
         <translation>가져올 파일을 선택하세요</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
-        <location filename="../feeddownloader.h" line="485"/>
+        <location filename="../feeddownloader.h" line="472"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters Files</source>
         <translation>필터 파일</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="478"/>
+        <location filename="../feeddownloader.h" line="482"/>
         <source>Import successful</source>
         <translation>가져오기 성공</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="478"/>
+        <location filename="../feeddownloader.h" line="482"/>
         <source>Filters import was successful.</source>
         <translation>필터 가져오기가 성공적으로 이루어졌습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Import failure</source>
         <translation>가져오기 실패</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>I/O 에러에 의하여 필터를 가져 올수 없었습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="485"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Select destination file</source>
         <translation>저장경로를 선택하세요</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Overwriting confirmation</source>
         <translation>덮어쓰기 확인</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Are you sure you want to overwrite existing file?</source>
         <translation>현재 시스템에 존재하는 파일에 덮어쓰기를 하려고 합니다 괜찬습니까?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="495"/>
+        <location filename="../feeddownloader.h" line="499"/>
         <source>Export successful</source>
         <translation>내보내기 성공</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="495"/>
+        <location filename="../feeddownloader.h" line="499"/>
         <source>Filters export was successful.</source>
         <translation>핕터 내보내기가 성공적으로 이루어졌습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Export failure</source>
         <translation>내보내기 실패</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>I/O 에러에 의하여 필터 내보내기가 실패하였습니다.</translation>
     </message>
@@ -4597,7 +4602,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="337"/>
+        <location filename="../searchengine.cpp" line="338"/>
         <source>Results</source>
         <translation>결과</translation>
     </message>
@@ -4670,33 +4675,33 @@ Changelog:
         <translation>완료 내역 지우기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
+        <location filename="../searchengine.cpp" line="446"/>
         <source>Search Engine</source>
         <translation>검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
-        <location filename="../searchengine.cpp" line="453"/>
+        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="457"/>
         <source>Search has finished</source>
         <translation>검색 완료</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="445"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>An error occured during search...</source>
         <translation>검색 중 오류 발생...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="448"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>Search aborted</source>
         <translation>검색이 중단됨</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="451"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search returned no results</source>
         <translation>검색 결과가 없음</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="458"/>
+        <location filename="../searchengine.cpp" line="462"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>결과</translation>
@@ -4710,8 +4715,8 @@ Changelog:
         <translation type="obsolete">다음 url에서 검색 플러그인 (Plugin)을 다운로드 할수 없습니다: %1, 이유: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="485"/>
-        <location filename="../searchengine.cpp" line="491"/>
+        <location filename="../searchengine.cpp" line="497"/>
+        <location filename="../searchengine.cpp" line="503"/>
         <source>Unknown</source>
         <translation>알려지지 않음</translation>
     </message>
@@ -4926,14 +4931,49 @@ Changelog:
 <context>
     <name>TrackersAdditionDlg</name>
     <message>
-        <location filename="../ui/trackersadditiondlg.ui" line="13"/>
+        <location filename="../ui/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
         <translation>Tracker 입력창</translation>
     </message>
     <message>
-        <location filename="../ui/trackersadditiondlg.ui" line="19"/>
+        <location filename="../ui/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
         <translation>Tracker 입력 (한줄에 하나씩):</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../ui/trackersadditiondlg.ui" line="44"/>
+        <source>µTorrent compatible list URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="77"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="77"/>
+        <source>Error while trying to open the downloaded file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="115"/>
+        <source>No change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="115"/>
+        <source>No additional trackers were found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="122"/>
+        <source>Download error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="122"/>
+        <source>The trackers list could not be downloaded, reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6696,8 +6736,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">환경설정이 성공적으로 저장되었습니다.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1340"/>
         <location filename="../options_imp.cpp" line="1342"/>
-        <location filename="../options_imp.cpp" line="1344"/>
         <source>Choose scan directory</source>
         <translation>스켄할 곳을 선택해주세요</translation>
     </message>
@@ -6706,10 +6746,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1369"/>
         <location filename="../options_imp.cpp" line="1371"/>
-        <location filename="../options_imp.cpp" line="1373"/>
+        <location filename="../options_imp.cpp" line="1383"/>
         <location filename="../options_imp.cpp" line="1385"/>
-        <location filename="../options_imp.cpp" line="1387"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
@@ -6723,14 +6763,14 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">%1을 읽기전용 모드로 열수 없습니다.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1354"/>
         <location filename="../options_imp.cpp" line="1356"/>
-        <location filename="../options_imp.cpp" line="1358"/>
         <source>Choose an ip filter file</source>
         <translation>ip filter 파일 선택</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1354"/>
         <location filename="../options_imp.cpp" line="1356"/>
-        <location filename="../options_imp.cpp" line="1358"/>
         <source>Filters</source>
         <translation>필터</translation>
     </message>

@@ -516,7 +516,7 @@ bool Bittorrent::initWebUi(QString username, QString password, int port) {
   if(!httpServer->isListening()) {
     success = httpServer->listen(QHostAddress::Any, port);
     if (success)
-      qDebug("Web UI listening on port %d", port);
+      addConsoleMessage(tr("The Web UI is listening on port %1").arg(port));
     else
       addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), QColor("red"));
   }

@@ -198,139 +198,144 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="368"/>
+        <location filename="../bittorrent.cpp" line="370"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Suport per a DHT [Encesa], port: UPD/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="370"/>
-        <location filename="../bittorrent.cpp" line="374"/>
+        <location filename="../bittorrent.cpp" line="372"/>
+        <location filename="../bittorrent.cpp" line="376"/>
         <source>DHT support [OFF]</source>
         <translation>Suport per a DHT [Apagat]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="378"/>
+        <location filename="../bittorrent.cpp" line="380"/>
         <source>PeX support [ON]</source>
         <translation>Suport per a PeX [Encesa]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="380"/>
+        <location filename="../bittorrent.cpp" line="382"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="383"/>
+        <location filename="../bittorrent.cpp" line="385"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="388"/>
+        <location filename="../bittorrent.cpp" line="390"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Estat local de Parells [Encesa]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="391"/>
+        <location filename="../bittorrent.cpp" line="393"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Suport per a estat local de Parells[Apagat]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="403"/>
+        <location filename="../bittorrent.cpp" line="405"/>
         <source>Encryption support [ON]</source>
         <translation>Suport per a encriptat [Encesa]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="408"/>
+        <location filename="../bittorrent.cpp" line="410"/>
         <source>Encryption support [FORCED]</source>
         <translation>Suport per a encriptat [forçat]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="413"/>
+        <location filename="../bittorrent.cpp" line="415"/>
         <source>Encryption support [OFF]</source>
         <translation>Suport per a encriptat [Apagat]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="514"/>
+        <location filename="../bittorrent.cpp" line="519"/>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="521"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Error interfície d&apos;Usuari Web - No es pot enllaçar al port %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="631"/>
+        <location filename="../bittorrent.cpp" line="639"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; Va ser eliminat de la llista de transferència i del disc.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="633"/>
+        <location filename="../bittorrent.cpp" line="641"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; Va ser eliminat de la llista de transferència.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="683"/>
+        <location filename="../bittorrent.cpp" line="691"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; no és una URI vàlida.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="708"/>
-        <location filename="../bittorrent.cpp" line="844"/>
-        <location filename="../bittorrent.cpp" line="847"/>
+        <location filename="../bittorrent.cpp" line="716"/>
+        <location filename="../bittorrent.cpp" line="852"/>
+        <location filename="../bittorrent.cpp" line="855"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; ja està en la llista de descàrregues.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="782"/>
-        <location filename="../bittorrent.cpp" line="972"/>
-        <location filename="../bittorrent.cpp" line="977"/>
+        <location filename="../bittorrent.cpp" line="790"/>
+        <location filename="../bittorrent.cpp" line="980"/>
+        <location filename="../bittorrent.cpp" line="985"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; reiniciat. (reinici ràpid)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="784"/>
-        <location filename="../bittorrent.cpp" line="974"/>
-        <location filename="../bittorrent.cpp" line="979"/>
+        <location filename="../bittorrent.cpp" line="792"/>
+        <location filename="../bittorrent.cpp" line="982"/>
+        <location filename="../bittorrent.cpp" line="987"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; agregat a la llista de descàrregues.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="818"/>
-        <location filename="../bittorrent.cpp" line="822"/>
+        <location filename="../bittorrent.cpp" line="826"/>
+        <location filename="../bittorrent.cpp" line="830"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossible descodificar l&apos;arxiu torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="825"/>
+        <location filename="../bittorrent.cpp" line="833"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Aquest arxiu pot ser corrupte, o no ser un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1226"/>
+        <location filename="../bittorrent.cpp" line="1234"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;va ser bloquejat a causa del filtre IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1228"/>
+        <location filename="../bittorrent.cpp" line="1236"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;Va ser bloquejat a causa de fragments corruptes&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1592"/>
+        <location filename="../bittorrent.cpp" line="1602"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Descàrrega recursiva d&apos;arxiu %1 incrustada en Torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1603"/>
+        <location filename="../bittorrent.cpp" line="1613"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>No es pot descodificar %1 arxiu torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1677"/>
+        <location filename="../bittorrent.cpp" line="1687"/>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
         <translation>Impossible escoltar el port %1, usant al seu lloc %2.</translation>
     </message>
@@ -339,27 +344,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">No se pudo escuchar en ninguno de los puertos brindados.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1745"/>
+        <location filename="../bittorrent.cpp" line="1755"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Va fallar el mapatge del port, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1750"/>
+        <location filename="../bittorrent.cpp" line="1760"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapatge del port reeixit, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1765"/>
+        <location filename="../bittorrent.cpp" line="1775"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Es van negar les dades per a reinici ràpid del torrent: %1, verificant de nou... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1770"/>
+        <location filename="../bittorrent.cpp" line="1780"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Va fallar la recerca de llavor per Url per a l&apos;Url: %1, missatge: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1857"/>
+        <location filename="../bittorrent.cpp" line="1868"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descarregant &apos;%1&apos;, si us plau esperi...</translation>
@@ -1517,126 +1522,126 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="398"/>
+        <location filename="../feeddownloader.h" line="402"/>
         <source>New filter</source>
         <translation>Nou filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="405"/>
+        <location filename="../feeddownloader.h" line="409"/>
         <source>Please choose a name for this filter</source>
         <translation>Si us plau, elegeixi un nom per a aquest filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="405"/>
+        <location filename="../feeddownloader.h" line="409"/>
         <source>Filter name:</source>
         <translation>Nom del filtre:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="374"/>
-        <location filename="../feeddownloader.h" line="413"/>
-        <location filename="../feeddownloader.h" line="429"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="417"/>
+        <location filename="../feeddownloader.h" line="433"/>
         <source>Invalid filter name</source>
         <translation>Nom no valgut per al filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="417"/>
         <source>The filter name cannot be left empty.</source>
         <translation>El nom del filtre no pot quedar buid.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="374"/>
-        <location filename="../feeddownloader.h" line="429"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="433"/>
         <source>This filter name is already in use.</source>
         <translation>Aquest nom de filtre ja s&apos;està usant.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="295"/>
+        <location filename="../feeddownloader.h" line="299"/>
         <source>Choose save path</source>
         <translation>Selecciona la ruta on guardar-lo</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="455"/>
+        <location filename="../feeddownloader.h" line="459"/>
         <source>Filter testing error</source>
         <translation>Error en la verificació del filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="455"/>
+        <location filename="../feeddownloader.h" line="459"/>
         <source>Please specify a test torrent name.</source>
         <translation>Si us plau, especifiqui el nom del torrent a verificar.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="462"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>matches</source>
         <translation>Conté</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="464"/>
+        <location filename="../feeddownloader.h" line="468"/>
         <source>does not match</source>
         <translation>no conté</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
+        <location filename="../feeddownloader.h" line="472"/>
         <source>Select file to import</source>
         <translation>Seleccioni l&apos;arxiu a importar</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
-        <location filename="../feeddownloader.h" line="485"/>
+        <location filename="../feeddownloader.h" line="472"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters Files</source>
         <translation>Filtre d&apos;arxius</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="478"/>
+        <location filename="../feeddownloader.h" line="482"/>
         <source>Import successful</source>
         <translation>Importació satisfactòria</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="478"/>
+        <location filename="../feeddownloader.h" line="482"/>
         <source>Filters import was successful.</source>
         <translation>Filtres importats satisfactòriament.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Import failure</source>
         <translation>Importació fallida</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="480"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>Els filtres no poden ser importats a causa d&apos;un I/O error.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="485"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Select destination file</source>
         <translation>Seleccioni la ruta de l&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Overwriting confirmation</source>
         <translation>confirmar sobreescriptura</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="495"/>
         <source>Are you sure you want to overwrite existing file?</source>
         <translation>Estàs segur que desitja sobreescriure l&apos;arxiu existent?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="495"/>
+        <location filename="../feeddownloader.h" line="499"/>
         <source>Export successful</source>
         <translation>Exportació satisfactòria</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="495"/>
+        <location filename="../feeddownloader.h" line="499"/>
         <source>Filters export was successful.</source>
         <translation>Filtres exportats satisfactòriament.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Export failure</source>
         <translation>Exportació fallida</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Els filtres no poden ser exportats a causa d&apos;un I/O error.</translation>
     </message>
@@ -4536,7 +4541,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="337"/>
+        <location filename="../searchengine.cpp" line="338"/>
         <source>Results</source>
         <translation>Resultats</translation>
     </message>
@@ -4609,33 +4614,33 @@ Log:
         <translation>Netejar historial de recerques</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
+        <location filename="../searchengine.cpp" line="446"/>
         <source>Search Engine</source>
         <translation>Motor de cerca</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
-        <location filename="../searchengine.cpp" line="453"/>
+        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="457"/>
         <source>Search has finished</source>
         <translation>Recerca acabada</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="445"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>An error occured during search...</source>
         <translation>Va ocórrer un error durant la recerca...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="448"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>Search aborted</source>
         <translation>Recerca avortada</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="451"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search returned no results</source>
         <translation>La recerca no va tornar resultats</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="458"/>
+        <location filename="../searchengine.cpp" line="462"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Resultats</translation>
@@ -4649,8 +4654,8 @@ Log:
         <translation type="obsolete">No se pudo descargar la actualización del plugin de búsqueda en la url: %1, razón: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="485"/>
-        <location filename="../searchengine.cpp" line="491"/>
+        <location filename="../searchengine.cpp" line="497"/>
+        <location filename="../searchengine.cpp" line="503"/>
         <source>Unknown</source>
         <translation>Desconegut</translation>
     </message>
@@ -4865,14 +4870,49 @@ Log:
 <context>
     <name>TrackersAdditionDlg</name>
     <message>
-        <location filename="../ui/trackersadditiondlg.ui" line="13"/>
+        <location filename="../ui/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
         <translation>Diàleg per afegir trackers</translation>
     </message>
     <message>
-        <location filename="../ui/trackersadditiondlg.ui" line="19"/>
+        <location filename="../ui/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
         <translation>Llista de trackers a afegir (un per línia):</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../ui/trackersadditiondlg.ui" line="44"/>
+        <source>µTorrent compatible list URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="77"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="77"/>
+        <source>Error while trying to open the downloaded file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="115"/>
+        <source>No change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="115"/>
+        <source>No additional trackers were found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="122"/>
+        <source>Download error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trackersadditiondlg.h" line="122"/>
+        <source>The trackers list could not be downloaded, reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6601,8 +6641,8 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation type="obsolete">Opciones guardadas exitosamente.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1340"/>
         <location filename="../options_imp.cpp" line="1342"/>
-        <location filename="../options_imp.cpp" line="1344"/>
         <source>Choose scan directory</source>
         <translation>Selecciona un directorio a inspeccionar</translation>
     </message>
@@ -6611,10 +6651,10 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation type="obsolete">Selecciona un archivo ipfilter.dat</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1369"/>
         <location filename="../options_imp.cpp" line="1371"/>
-        <location filename="../options_imp.cpp" line="1373"/>
+        <location filename="../options_imp.cpp" line="1383"/>
         <location filename="../options_imp.cpp" line="1385"/>
-        <location filename="../options_imp.cpp" line="1387"/>
         <source>Choose a save directory</source>
         <translation>Selecciona un directori per guardar</translation>
     </message>
@@ -6628,14 +6668,14 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation type="obsolete">No se pudo abrir %1 en modo lectura.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1354"/>
         <location filename="../options_imp.cpp" line="1356"/>
-        <location filename="../options_imp.cpp" line="1358"/>
         <source>Choose an ip filter file</source>
         <translation>Selecciona un arxiu de filtre d&apos;ip</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1354"/>
         <location filename="../options_imp.cpp" line="1356"/>
-        <location filename="../options_imp.cpp" line="1358"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
