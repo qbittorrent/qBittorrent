@@ -162,6 +162,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkRatioRemove,  SIGNAL(toggled(bool)), this, SLOT(enableDeleteRatio(bool)));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableDHTSettings(bool)));
   connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableDHTPortSettings(bool)));
+  connect(comboPeerID, SIGNAL(currentIndexChanged(int)), this, SLOT(enableSpoofingSettings(int)));
   // Proxy tab
   connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)),this, SLOT(enableHTTPProxy(int)));
   connect(checkProxyAuth_http,  SIGNAL(toggled(bool)), this, SLOT(enableHTTPProxyAuth(bool)));
@@ -221,7 +222,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkAzureusSpoof, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(comboPeerID, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(client_version, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(client_build, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkRatioLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkRatioRemove, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -434,7 +437,20 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("sameDHTPortAsBT"), isDHTPortSameAsBT());
   settings.setValue(QString::fromUtf8("DHTPort"), getDHTPort());
   settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
-  settings.setValue(QString::fromUtf8("utorrentSpoof"), isUtorrentSpoofingEnabled());
+  // Peer ID usurpation
+  switch(comboPeerID->currentIndex()) {
+  case 2: // uTorrent
+    Preferences::setPeerID("UT");
+    Preferences::setClientVersion(client_version->text());
+    Preferences::setClientBuild(client_build->text());
+    break;
+  case 1: // Vuze
+    Preferences::setPeerID("AZ");
+    Preferences::setClientVersion(client_version->text());
+    break;
+  default: //qBittorrent
+    Preferences::setPeerID("qB");
+  }
   settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
   settings.setValue(QString::fromUtf8("DesiredRatio"), getDesiredRatio());
   settings.setValue(QString::fromUtf8("MaxRatio"), getDeleteRatio());
@@ -478,10 +494,6 @@ void options_imp::saveOptions(){
   settings.endGroup();
   // End preferences
   settings.endGroup();
-}
-
-bool options_imp::isUtorrentSpoofingEnabled() const {
-  return checkAzureusSpoof->isChecked();
 }
 
 bool options_imp::isFilteringEnabled() const{
@@ -698,7 +710,26 @@ void options_imp::loadOptions(){
   spinDHTPort->setValue(Preferences::getDHTPort());
   checkPeX->setChecked(Preferences::isPeXEnabled());
   checkLSD->setChecked(Preferences::isLSDEnabled());
-  checkAzureusSpoof->setChecked(Preferences::isUtorrentSpoofingEnabled());
+  // Peer ID usurpation
+  QString peer_id = Preferences::getPeerID();
+  if(peer_id == "UT") {
+    // uTorrent
+    comboPeerID->setCurrentIndex(2);
+    enableSpoofingSettings(2);
+    client_version->setText(Preferences::getClientVersion());
+    client_build->setText(Preferences::getClientBuild());
+  } else {
+    if(peer_id == "AZ") {
+      // Vuze
+      comboPeerID->setCurrentIndex(1);
+      enableSpoofingSettings(1);
+      client_version->setText(Preferences::getClientVersion());
+    } else {
+      // qBittorrent
+      comboPeerID->setCurrentIndex(0);
+      enableSpoofingSettings(0);
+    }
+  }
   comboEncryption->setCurrentIndex(Preferences::getEncryptionSetting());
   floatValue = Preferences::getDesiredRatio();
   if(floatValue >= 1.) {
@@ -757,6 +788,34 @@ void options_imp::loadOptions(){
 // [min, max]
 int options_imp::getPort() const{
   return spinPort->value();
+}
+
+void options_imp::enableSpoofingSettings(int index) {
+  switch(index) {
+  case 0: // qBittorrent
+    version_label->setEnabled(false);
+    client_version->setEnabled(false);
+    client_version->clear();
+    build_label->setEnabled(false);
+    client_build->setEnabled(false);
+    client_build->clear();
+    break;
+  case 1: // Vuze
+    version_label->setEnabled(true);
+    client_version->setEnabled(true);
+    client_version->setText(Preferences::getDefaultClientVersion("AZ"));
+    build_label->setEnabled(false);
+    client_build->setEnabled(false);
+    client_build->clear();
+    break;
+  case 2: // uTorrent
+    version_label->setEnabled(true);
+    client_version->setEnabled(true);
+    client_version->setText(Preferences::getDefaultClientVersion("UT"));
+    build_label->setEnabled(true);
+    client_build->setEnabled(true);
+    client_build->setText(Preferences::getDefaultClientBuild("UT"));
+  }
 }
 
 void options_imp::on_randomButton_clicked() {

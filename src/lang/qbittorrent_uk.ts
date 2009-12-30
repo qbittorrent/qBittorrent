@@ -323,6 +323,10 @@ p, li { white-space: pre-wrap; }
         <source>The Web UI is listening on port %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>HTTP user agent is %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -3074,10 +3078,6 @@ QGroupBox {
         <source>Enable Local Peer Discovery</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Encryption:</source>
         <translation type="unfinished"></translation>
@@ -3192,6 +3192,35 @@ QGroupBox {
     </message>
     <message>
         <source>SOCKS4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client whitelisting workaround</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identify as:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vuze</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>µTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build:</source>
+        <extracomment>Software Build nulmber:</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

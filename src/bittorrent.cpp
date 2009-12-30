@@ -69,16 +69,30 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
   fs::path::default_name_check(fs::no_check);
   // Creating Bittorrent session
   // Check if we should spoof utorrent
-  if(Preferences::isUtorrentSpoofingEnabled()) {
-    s = new session(fingerprint("UT", 1, 8, 5, 0), 0);
-    qDebug("Peer ID: %s", fingerprint("UT", 1, 8, 5, 0).to_string().c_str());
-  } else {
-    s = new session(fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0), 0);
-    qDebug("Peer ID: %s", fingerprint("qB", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, 0).to_string().c_str());
+  QList<int> version;
+  version << VERSION_MAJOR;
+  version << VERSION_MINOR;
+  version << VERSION_BUGFIX;
+  version << 0;
+  QString peer_id = Preferences::getPeerID();
+  if(peer_id.size() != 2) peer_id = "qB";
+  if(peer_id != "qB") {
+    QStringList peer_ver = Preferences::getClientVersion().split('.');
+    while(peer_ver.size() < 3) {
+      peer_ver << "0";
+    }
+    for(int i=0; i<peer_ver.size(); ++i) {
+      QString ver = peer_ver.at(i);
+      if(ver.size() != 1) break;
+      version.replace(i, ver.toInt());
+    }
   }
+  // Construct session
+  s = new session(fingerprint(peer_id.toLocal8Bit().data(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
+  std::cout << "Peer ID: " << fingerprint(peer_id.toLocal8Bit().data(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string() << std::endl;
+  addConsoleMessage("Peer ID: "+misc::toQString(fingerprint(peer_id.toLocal8Bit().data(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
 
   // Set severity level of libtorrent session
-  //s->set_alert_mask(alert::all_categories & ~alert::progress_notification);
   s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification);
   // Load previous state
   loadSessionState();
@@ -315,11 +329,27 @@ void Bittorrent::configureSession() {
   }
   // * Session settings
   session_settings sessionSettings;
-  if(Preferences::isUtorrentSpoofingEnabled()) {
-    sessionSettings.user_agent = "uTorrent/1850(17414)";
+  QString peer_id = Preferences::getPeerID();
+  if(peer_id.size() != 2) peer_id = "qB";
+  if(peer_id == "UT") {
+    QString version = Preferences::getClientVersion().replace(".", "");
+    while(version.size() < 4)
+      version.append("0");
+    QString build = Preferences::getClientBuild();
+    sessionSettings.user_agent = QString("uTorrent/"+version+"("+build+")").toStdString();
   } else {
-    sessionSettings.user_agent = "qBittorrent "VERSION;
+    if(peer_id == "AZ") {
+      QStringList version = Preferences::getClientVersion().split(".");
+      while(version.size() < 4)
+        version << "0";
+      sessionSettings.user_agent = QString("Azureus "+version.join(".")).toStdString();
+    } else {
+      sessionSettings.user_agent = "qBittorrent "VERSION;
+    }
   }
+  std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
+  addConsoleMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
+
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
   // To prevent ISPs from blocking seeding

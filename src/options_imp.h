@@ -99,7 +99,6 @@ protected:
   int getDHTPort() const;
   bool isLSDEnabled() const;
   bool isRSSEnabled() const;
-  bool isUtorrentSpoofingEnabled() const;
   int getEncryptionSetting() const;
   float getDesiredRatio() const;
   float getDeleteRatio() const;
@@ -150,6 +149,7 @@ protected slots:
   void enableDHTSettings(bool checked);
   void enableDHTPortSettings(bool checked);
   void enableQueueingSystem(bool checked);
+  void enableSpoofingSettings(int index);
   void setStyle(int style);
   void on_buttonBox_accepted();
   void closeEvent(QCloseEvent *e);

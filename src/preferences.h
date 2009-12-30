@@ -448,6 +448,66 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Bittorrent/MaxUploadsPerTorrent"), val);
   }
 
+  static QString getPeerID() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Bittorrent/PeerID"), "qB").toString();
+  }
+
+  static void setPeerID(QString peer_id) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/PeerID"), peer_id);
+  }
+
+  static QString getDefaultClientVersion(QString peer_id) {
+    // Azureus
+    if(peer_id == "AZ") {
+      return "4.3.0.4";
+    }
+    // uTorrent
+    return "1.8.5";
+  }
+
+  static QString getDefaultClientBuild(QString peer_id) {
+    if(peer_id == "UT") {
+      return "17414";
+    }
+    return "";
+  }
+
+  static QString getClientVersion() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    QString peer_id = getPeerID();
+    if(peer_id == "qB")
+      return QString(VERSION);
+    QString version = settings.value(QString::fromUtf8("Preferences/Bittorrent/PeerVersion"), QString()).toString();
+    if(version.isEmpty()) {
+      version = getDefaultClientVersion(peer_id);
+    }
+    return version;
+  }
+
+  static void setClientVersion(QString version) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/PeerVersion"), version);
+  }
+
+  static QString getClientBuild() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    QString peer_id = getPeerID();
+    if(peer_id != "UT")
+      return "";
+    QString build = settings.value(QString::fromUtf8("Preferences/Bittorrent/PeerBuild"), QString()).toString();
+    if(build.isEmpty()) {
+      build = getDefaultClientBuild(peer_id);
+    }
+    return build;
+  }
+
+  static void setClientBuild(QString build) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/PeerBuild"), build);
+  }
+
   static bool isDHTEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/DHT"), true).toBool();
@@ -486,11 +546,6 @@ public:
   static void setLSDEnabled(bool enabled) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Bittorrent/LSD"), enabled);
-  }
-
-  static bool isUtorrentSpoofingEnabled() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Bittorrent/utorrentSpoof"), false).toBool();
   }
 
   static int getEncryptionSetting() {

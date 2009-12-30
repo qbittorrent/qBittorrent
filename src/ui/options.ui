@@ -1538,7 +1538,7 @@ QGroupBox {
               <height>495</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_19">
+            <layout class="QVBoxLayout" name="verticalLayout_20">
              <item>
               <widget class="QGroupBox" name="AddBTFeaturesBox">
                <property name="title">
@@ -1645,13 +1645,6 @@ QGroupBox {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkAzureusSpoof">
-                  <property name="text">
-                   <string>Spoof µtorrent to avoid ban (requires restart)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <layout class="QHBoxLayout">
                   <item>
                    <widget class="QLabel" name="lbl_encryption">
@@ -1691,6 +1684,79 @@ QGroupBox {
                      </size>
                     </property>
                    </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_5">
+               <property name="title">
+                <string>Client whitelisting workaround</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_19">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_11">
+                  <item>
+                   <widget class="QLabel" name="label_9">
+                    <property name="text">
+                     <string>Identify as:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="comboPeerID">
+                    <item>
+                     <property name="text">
+                      <string>qBittorrent</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Vuze</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>µTorrent</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="version_label">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Version:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="client_version">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="build_label">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string extracomment="Software Build nulmber:">Build:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="client_build">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -1845,8 +1911,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>484</width>
+              <height>312</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2263,8 +2329,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>290</width>
+              <height>124</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2360,8 +2426,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>219</width>
+              <height>221</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2524,8 +2590,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>452</width>
+              <height>192</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
