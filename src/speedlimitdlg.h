@@ -57,9 +57,10 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
     }
 
     // -2: if cancel
-    static long askSpeedLimit(bool *ok, QString title, long default_value) {
+    static long askSpeedLimit(bool *ok, QString title, long default_value, long max_value=1024000) {
       SpeedLimitDialog dlg;
       dlg.setWindowTitle(title);
+      dlg.setMaxValue(max_value/1024.);
       dlg.setDefaultValue(default_value/1024.);
       if(dlg.exec() == QDialog::Accepted) {
         *ok = true;
@@ -102,8 +103,16 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
       return -1;
     }
 
+    void setMaxValue(long val) const {
+      if(val > 0) {
+        bandwidthSlider->setMaximum(val);
+        spinBandwidth->setMaximum(val);
+      }
+    }
+
     void setDefaultValue(long val) const {
       if(val < 0) val = 0;
+      if(val > bandwidthSlider->maximum()) val = bandwidthSlider->maximum();
       bandwidthSlider->setValue(val);
       updateSpinValue(val);
     }
