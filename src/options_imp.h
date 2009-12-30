@@ -34,7 +34,7 @@
 #include "ui_options.h"
 #include <libtorrent/ip_filter.hpp>
 
-enum ProxyType {HTTP, SOCKS4, SOCKS5, HTTP_PW, SOCKS5_PW};
+enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 
 // actions on double-click on torrents
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST};

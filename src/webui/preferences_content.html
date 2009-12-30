@@ -135,8 +135,39 @@
 </div>
 
 <div id="ProxyTab" class="PrefTab invisible">
-  Not implemented yet.
-  <!-- TODO -->
+<fieldset>
+  <legend><b>_(HTTP Communications (trackers, Web seeds, search engine))</b></legend>
+  <div style="padding-left: 30px;">
+    _(Type:) <select id ="http_proxy_type_select" onchange="updateHTTPProxySettings();">
+      <option value="none">_((None))</option>
+      <option value="http">_(HTTP)</option>
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+    _(Host:) <input type="text" id="http_proxy_host_text" />&nbsp;&nbsp;&nbsp;&nbsp;
+    _(Port:) <input type="text" id="http_proxy_port_value" style="width: 4em;"/><br/><br/>
+    <input type="checkbox" id="http_proxy_auth_checkbox" onclick="updateHTTPProxyAuthSettings();" />&nbsp;&nbsp;_(Authentication)<br/>
+    <table>
+    <tr><td style="padding-left: 10px;">_(Username:)</td><td><input type="text" id="http_proxy_username_text" /></td></tr>
+    <tr><td style="padding-left: 10px;">_(Password:)</td><td><input type="password" id="http_proxy_password_text" /></td></tr>
+    </table>
+  </div>
+</fieldset>
+<fieldset>
+  <legend><b>_(Peer Communications)</b></legend>
+  <div style="padding-left: 30px;">
+    _(Type:) <select id ="peer_proxy_type_select" onchange="updatePeerProxySettings();">
+      <option value="none">_((None))</option>
+      <option value="socks4">_(SOCKS4)</option>
+      <option value="socks5">_(SOCKS5)</option>
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+    _(Host:) <input type="text" id="peer_proxy_host_text" />&nbsp;&nbsp;&nbsp;&nbsp;
+    _(Port:) <input type="text" id="peer_proxy_port_value" style="width: 4em;"/><br/><br/>
+    <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();" />&nbsp;&nbsp;_(Authentication)<br/>
+    <table>
+    <tr><td style="padding-left: 10px;">_(Username:)</td><td><input type="text" id="peer_proxy_username_text" /></td></tr>
+    <tr><td style="padding-left: 10px;">_(Password:)</td><td><input type="password" id="peer_proxy_password_text" /></td></tr>
+    </table>
+  </div>
+</fieldset>
 </div>
 
 <div id="WebUITab" class="PrefTab invisible">
@@ -308,6 +339,42 @@
   if($defined($('ipfilter_enabled_checkbox').get('checked')) && $('ipfilter_enabled_checkbox').get('checked'))
     ip_filter_enabled = 1;
   var ip_filter_path = $('ipfilter_text').get('value');
+  // HTTP Proxy
+  var http_proxy_type_str = $('http_proxy_type_select').get('value');
+  var http_proxy_type = -1;
+  var http_proxy_auth_enabled = 0;
+  if(http_proxy_type_str == "http") {
+    if($defined($('http_proxy_auth_checkbox').get('checked')) && $('http_proxy_auth_checkbox').get('checked')) {
+      http_proxy_type = 3;
+      http_proxy_auth_enabled = 1;
+    } else {
+      http_proxy_type = 1;
+    }
+  }
+  var http_proxy_ip = $('http_proxy_host_text').get('value');
+  var http_proxy_port = $('http_proxy_port_value').get('value');
+  var http_proxy_username = $('http_proxy_username_text').get('value');
+  var http_proxy_password = $('http_proxy_password_text').get('value');
+  // Peer Proxy
+  var proxy_type_str = $('peer_proxy_type_select').get('value');
+  var proxy_type = -1;
+  var proxy_auth_enabled = 0;
+  if(proxy_type_str == "socks5") {
+    if($defined($('peer_proxy_auth_checkbox').get('checked')) && $('peer_proxy_auth_checkbox').get('checked')) {
+      proxy_type = 4;
+      proxy_auth_enabled = 1;
+    } else {
+      proxy_type = 2;
+    }
+  } else {
+    if(proxy_type_str == "socks4") {
+      proxy_type = 5;
+    }
+  }
+  var proxy_ip = $('peer_proxy_host_text').get('value');
+  var proxy_port = $('peer_proxy_port_value').get('value');
+  var proxy_username = $('peer_proxy_username_text').get('value');
+  var proxy_password = $('peer_proxy_password_text').get('value');
   // Web UI
   var webui_port = $('webui_port_value').get('value').toInt();
   if(webui_port <= 1024 || webui_port > 65535) {
@@ -359,6 +426,19 @@
   // IP Filter
   dict.set('ip_filter_enabled', ip_filter_enabled);
   dict.set('ip_filter_path', ip_filter_path);
+  // Proxy
+  dict.set('proxy_type', proxy_type);
+  dict.set('proxy_ip', proxy_ip);
+  dict.set('proxy_port', proxy_port);
+  dict.set('proxy_auth_enabled', proxy_auth_enabled);
+  dict.set('proxy_username', proxy_username);
+  dict.set('proxy_password', proxy_password);
+  dict.set('http_proxy_type', http_proxy_type);
+  dict.set('http_proxy_ip', http_proxy_ip);
+  dict.set('http_proxy_port', http_proxy_port);
+  dict.set('http_proxy_auth_enabled', http_proxy_auth_enabled);
+  dict.set('http_proxy_username', http_proxy_username);
+  dict.set('http_proxy_password', http_proxy_password);
   // Web UI
   dict.set('web_ui_port', webui_port);
   dict.set('web_ui_username', webui_username);
@@ -455,6 +535,59 @@ updateFilterSettings = function() {
     $('ipfilter_text').removeProperty('disabled');
   } else {
     $('ipfilter_text').set('disabled', 'true');
+  }
+}
+
+updateHTTPProxySettings = function() {
+  if($('http_proxy_type_select').get('value') != "none") {
+    $('http_proxy_host_text').removeProperty('disabled');
+    $('http_proxy_port_value').removeProperty('disabled');
+    $('http_proxy_auth_checkbox').removeProperty('disabled');
+  } else {
+    $('http_proxy_host_text').set('disabled', 'true');
+    $('http_proxy_port_value').set('disabled', 'true');
+    $('http_proxy_auth_checkbox').set('disabled', 'true');
+    $('http_proxy_auth_checkbox').removeProperty('checked');
+  }
+}
+
+updateHTTPProxyAuthSettings = function() {
+  if($defined($('http_proxy_auth_checkbox').get('checked')) && $('http_proxy_auth_checkbox').get('checked')) {
+    $('http_proxy_username_text').removeProperty('disabled');
+    $('http_proxy_password_text').removeProperty('disabled');
+  } else {
+    $('http_proxy_username_text').set('disabled', 'true');
+    $('http_proxy_password_text').set('disabled', 'true');
+  }
+}
+
+updatePeerProxySettings = function() {
+  if($('peer_proxy_type_select').get('value') != "none") {
+    $('peer_proxy_host_text').removeProperty('disabled');
+    $('peer_proxy_port_value').removeProperty('disabled');
+    if($('peer_proxy_type_select').get('value') != "socks5") {
+      $('peer_proxy_auth_checkbox').removeProperty('checked');
+      $('peer_proxy_auth_checkbox').set('disabled', 'true');
+      updatePeerProxyAuthSettings();
+    } else {
+      $('peer_proxy_auth_checkbox').removeProperty('disabled');
+    }
+  } else {
+    $('peer_proxy_host_text').set('disabled', 'true');
+    $('peer_proxy_port_value').set('disabled', 'true');
+    $('peer_proxy_auth_checkbox').set('disabled', 'true');
+    $('peer_proxy_auth_checkbox').removeProperty('checked');
+    updatePeerProxyAuthSettings();
+  }
+}
+
+updatePeerProxyAuthSettings = function() {
+  if($defined($('peer_proxy_auth_checkbox').get('checked')) && $('peer_proxy_auth_checkbox').get('checked')) {
+    $('peer_proxy_username_text').removeProperty('disabled');
+    $('peer_proxy_password_text').removeProperty('disabled');
+  } else {
+    $('peer_proxy_username_text').set('disabled', 'true');
+    $('peer_proxy_password_text').set('disabled', 'true');
   }
 }
 
@@ -600,6 +733,49 @@ loadPreferences = function() {
                     }
                     $('ipfilter_text').set('value', pref.ip_filter_path);
                     updateFilterSettings();
+                    // PEER Proxy
+                    switch(pref.proxy_type.toInt()) {
+                      case 5: //SOCKS4
+                        $('peer_proxy_type_select').set('value', 'socks4');
+                        break;
+                      case 2: // SOCKS5
+                      case 4: // SOCKS5_PW
+                        $('peer_proxy_type_select').set('value', 'socks5');
+                        break;
+                      default: // NONE
+                      $('peer_proxy_type_select').set('value', 'none');
+                    }
+                    updatePeerProxySettings();
+                    $('peer_proxy_host_text').set('value', pref.proxy_ip);
+                    $('peer_proxy_port_value').set('value', pref.proxy_port);
+                    if(pref.proxy_auth_enabled) {
+                      $('peer_proxy_auth_checkbox').set('checked', 'checked');
+                    } else {
+                      $('peer_proxy_auth_checkbox').removeProperty('checked');
+                    }
+                    updatePeerProxyAuthSettings();
+                    $('peer_proxy_username_text').set('value', pref.proxy_username);
+                    $('peer_proxy_password_text').set('value', pref.proxy_password);
+                    // HTTP PROXY
+                    switch(pref.http_proxy_type.toInt()) {
+                      case 1: //HTTP
+                      case 3: // HTTP_PW
+                        $('http_proxy_type_select').set('value', 'http');
+                        break;
+                      default: // NONE
+                      $('http_proxy_type_select').set('value', 'none');
+                    }
+                    updateHTTPProxySettings();
+                    $('http_proxy_host_text').set('value', pref.http_proxy_ip);
+                    $('http_proxy_port_value').set('value', pref.http_proxy_port);
+                    if(pref.http_proxy_auth_enabled) {
+                      $('http_proxy_auth_checkbox').set('checked', 'checked');
+                    } else {
+                      $('http_proxy_auth_checkbox').removeProperty('checked');
+                    }
+                    updateHTTPProxyAuthSettings();
+                    $('http_proxy_username_text').set('value', pref.http_proxy_username);
+                    $('http_proxy_password_text').set('value', pref.http_proxy_password);
                     // Web UI
                     $('webui_port_value').set('value', pref.web_ui_port);
                     $('webui_username_text').set('value', pref.web_ui_username);

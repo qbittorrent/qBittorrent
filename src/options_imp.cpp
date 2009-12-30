@@ -1201,7 +1201,6 @@ void options_imp::enablePeerProxy(int index){
     lblProxyPort->setEnabled(false);
     spinProxyPort->setEnabled(false);
     checkProxyAuth->setEnabled(false);
-    checkProxyAuth->setEnabled(false);
     checkProxyAuth->setChecked(false);
   }
 }
@@ -1221,7 +1220,7 @@ void options_imp::enableHTTPProxy(int index){
     lblProxyPort_http->setEnabled(false);
     spinProxyPort_http->setEnabled(false);
     checkProxyAuth_http->setEnabled(false);
-    checkProxyAuth_http->setEnabled(false);
+    checkProxyAuth_http->setChecked(false);
   }
 }
 

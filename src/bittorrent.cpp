@@ -60,7 +60,7 @@
 
 #define MAX_TRACKER_ERRORS 2
 #define MAX_RATIO 100.
-enum ProxyType {HTTP, SOCKS4, SOCKS5, HTTP_PW, SOCKS5_PW};
+enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 
 // Main constructor
 Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), geoipDBLoaded(false), exiting(false) {

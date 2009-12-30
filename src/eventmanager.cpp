@@ -198,9 +198,9 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
   if(m.contains("http_proxy_auth_enabled"))
     Preferences::setHTTPProxyAuthEnabled(m["http_proxy_auth_enabled"].toBool());
   if(m.contains("http_proxy_username"))
-    Preferences::setHTTPProxyUsername(m["proxy_username"].toString());
+    Preferences::setHTTPProxyUsername(m["http_proxy_username"].toString());
   if(m.contains("http_proxy_password"))
-    Preferences::setHTTPProxyPassword(m["proxy_password"].toString());
+    Preferences::setHTTPProxyPassword(m["http_proxy_password"].toString());
   // IP Filter
   if(m.contains("ip_filter_enabled"))
     Preferences::setFilteringEnabled(m["ip_filter_enabled"].toBool());
