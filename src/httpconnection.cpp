@@ -46,7 +46,7 @@
 #include <QTemporaryFile>
 
 HttpConnection::HttpConnection(QTcpSocket *socket, Bittorrent *BTSession, HttpServer *parent)
-    : QObject(parent), socket(socket), parent(parent), BTSession(BTSession)
+  : QObject(parent), socket(socket), parent(parent), BTSession(BTSession)
 {
   socket->setParent(this);
   connect(socket, SIGNAL(readyRead()), this, SLOT(read()));
@@ -345,6 +345,18 @@ void HttpConnection::respondCommand(QString command)
     if(h.is_valid() && h.has_metadata() && !h.get_torrent_handle().is_seed()) {
       h.file_priority(file_id, priority);
     }
+  }
+  if(command == "getGlobalUpLimit") {
+    generator.setStatusLine(200, "OK");
+    generator.setContentTypeByExt("html");
+    generator.setMessage(QString::number(BTSession->getSession()->upload_rate_limit()));
+    write();
+  }
+  if(command == "getGlobalDlLimit") {
+    generator.setStatusLine(200, "OK");
+    generator.setContentTypeByExt("html");
+    generator.setMessage(QString::number(BTSession->getSession()->download_rate_limit()));
+    write();
   }
   if(command == "getTorrentUpLimit") {
     QString hash = parser.post("hash");

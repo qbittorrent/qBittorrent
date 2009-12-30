@@ -19,6 +19,23 @@ MochaUI.extend({
 		if ($('uplimitSliderarea')) {
 			var windowOptions = MochaUI.Windows.windowOptions;
 			var sliderFirst = true;
+			// Get global upload limit
+			var maximum = 500;
+			var req = new Request({
+				url: '/command/getGlobalUpLimit',
+				method: 'post',
+				data: {},
+				onSuccess: function(data) {
+					if(data){
+						var tmp = data.toInt();
+						if(tmp > 0) {
+							maximum = tmp / 1024.
+						}
+					}
+				}
+			}).send();
+			// Get torrent upload limit
+			// And create slider
 			var req = new Request({
 				url: '/command/getTorrentUpLimit',
 				method: 'post',
@@ -28,7 +45,7 @@ MochaUI.extend({
 						var up_limit = data.toInt();
 						if(up_limit < 0) up_limit = 0;
 						var mochaSlide = new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
-							steps: 500,
+							steps: maximum,
 							offset: 0,
 							initialStep: (up_limit/1024.).round(),
 							onChange: function(pos){
@@ -59,6 +76,23 @@ MochaUI.extend({
 		if ($('dllimitSliderarea')) {
 			var windowOptions = MochaUI.Windows.windowOptions;
 			var sliderFirst = true;
+			// Get global upload limit
+			var maximum = 500;
+			var req = new Request({
+				url: '/command/getGlobalDlLimit',
+				method: 'post',
+				data: {},
+				onSuccess: function(data) {
+					if(data){
+						var tmp = data.toInt();
+						if(tmp > 0) {
+							maximum = tmp / 1024.
+						}
+					}
+				}
+			}).send();
+			// Get torrent download limit
+			// And create slider
 			var req = new Request({
 				url: '/command/getTorrentDlLimit',
 				method: 'post',
@@ -68,7 +102,7 @@ MochaUI.extend({
 						var dl_limit = data.toInt();
 						if(dl_limit < 0) dl_limit = 0;
 						var mochaSlide = new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
-							steps: 500,
+							steps: maximum,
 							offset: 0,
 							initialStep: (dl_limit/1024.).round(),
 							onChange: function(pos){
