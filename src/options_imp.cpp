@@ -805,7 +805,7 @@ void options_imp::enableSpoofingSettings(int index) {
     resetPeerVersion_button->setEnabled(true);
     version_label->setEnabled(true);
     client_version->setEnabled(true);
-    client_version->setText(Preferences::getClientVersion());
+    client_version->setText(Preferences::getDefaultClientVersion("AZ"));
     build_label->setEnabled(false);
     client_build->setEnabled(false);
     client_build->clear();
@@ -814,10 +814,10 @@ void options_imp::enableSpoofingSettings(int index) {
     resetPeerVersion_button->setEnabled(true);
     version_label->setEnabled(true);
     client_version->setEnabled(true);
-    client_version->setText(Preferences::getClientVersion());
+    client_version->setText(Preferences::getDefaultClientVersion("UT"));
     build_label->setEnabled(true);
     client_build->setEnabled(true);
-    client_build->setText(Preferences::getClientBuild());
+    client_build->setText(Preferences::getDefaultClientBuild("UT"));
     break;
   }
 }
