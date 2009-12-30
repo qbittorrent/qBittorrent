@@ -94,7 +94,6 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
     void setMaxValue(long val) const {
       if(val > 0) {
         bandwidthSlider->setMaximum(val);
-        spinBandwidth->setMaximum(val);
       }
     }
 
