@@ -793,6 +793,7 @@ int options_imp::getPort() const{
 void options_imp::enableSpoofingSettings(int index) {
   switch(index) {
   case 0: // qBittorrent
+    resetPeerVersion_button->setEnabled(false);
     version_label->setEnabled(false);
     client_version->setEnabled(false);
     client_version->clear();
@@ -801,20 +802,35 @@ void options_imp::enableSpoofingSettings(int index) {
     client_build->clear();
     break;
   case 1: // Vuze
+    resetPeerVersion_button->setEnabled(true);
     version_label->setEnabled(true);
     client_version->setEnabled(true);
-    client_version->setText(Preferences::getDefaultClientVersion("AZ"));
+    client_version->setText(Preferences::getClientVersion());
     build_label->setEnabled(false);
     client_build->setEnabled(false);
     client_build->clear();
     break;
   case 2: // uTorrent
+    resetPeerVersion_button->setEnabled(true);
     version_label->setEnabled(true);
     client_version->setEnabled(true);
-    client_version->setText(Preferences::getDefaultClientVersion("UT"));
+    client_version->setText(Preferences::getClientVersion());
     build_label->setEnabled(true);
     client_build->setEnabled(true);
+    client_build->setText(Preferences::getClientBuild());
+    break;
+  }
+}
+
+void options_imp::on_resetPeerVersion_button_clicked() {
+  switch(comboPeerID->currentIndex()) {
+  case 1: // Vuze
+    client_version->setText(Preferences::getDefaultClientVersion("AZ"));
+    break;
+  case 2: // uTorrent
+    client_version->setText(Preferences::getDefaultClientVersion("UT"));
     client_build->setText(Preferences::getDefaultClientBuild("UT"));
+    break;
   }
 }
 

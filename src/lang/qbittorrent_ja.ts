@@ -2562,7 +2562,7 @@ qBittorrent を終了してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="200"/>
-        <location filename="../ui/options.ui" line="2601"/>
+        <location filename="../ui/options.ui" line="2630"/>
         <source>RSS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2948,44 +2948,49 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1769"/>
+        <location filename="../ui/options.ui" line="1779"/>
+        <source>Reset to latest software version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1798"/>
         <source>Share ratio settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1777"/>
+        <location filename="../ui/options.ui" line="1806"/>
         <source>Desired ratio:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1831"/>
+        <location filename="../ui/options.ui" line="1860"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1922"/>
+        <location filename="../ui/options.ui" line="1951"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1954"/>
-        <location filename="../ui/options.ui" line="2149"/>
+        <location filename="../ui/options.ui" line="1983"/>
+        <location filename="../ui/options.ui" line="2178"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2112"/>
+        <location filename="../ui/options.ui" line="2141"/>
         <source>Peer Communications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2133"/>
+        <location filename="../ui/options.ui" line="2162"/>
         <source>SOCKS4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1930"/>
-        <location filename="../ui/options.ui" line="2120"/>
+        <location filename="../ui/options.ui" line="1959"/>
+        <location filename="../ui/options.ui" line="2149"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3026,96 +3031,96 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1938"/>
-        <location filename="../ui/options.ui" line="2128"/>
+        <location filename="../ui/options.ui" line="1967"/>
+        <location filename="../ui/options.ui" line="2157"/>
         <source>(None)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1943"/>
+        <location filename="../ui/options.ui" line="1972"/>
         <source>HTTP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1980"/>
-        <location filename="../ui/options.ui" line="2175"/>
-        <location filename="../ui/options.ui" line="2459"/>
+        <location filename="../ui/options.ui" line="2009"/>
+        <location filename="../ui/options.ui" line="2204"/>
+        <location filename="../ui/options.ui" line="2488"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2020"/>
-        <location filename="../ui/options.ui" line="2215"/>
-        <location filename="../ui/options.ui" line="2495"/>
+        <location filename="../ui/options.ui" line="2049"/>
+        <location filename="../ui/options.ui" line="2244"/>
+        <location filename="../ui/options.ui" line="2524"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2034"/>
-        <location filename="../ui/options.ui" line="2229"/>
-        <location filename="../ui/options.ui" line="2503"/>
+        <location filename="../ui/options.ui" line="2063"/>
+        <location filename="../ui/options.ui" line="2258"/>
+        <location filename="../ui/options.ui" line="2532"/>
         <source>Username:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2044"/>
-        <location filename="../ui/options.ui" line="2239"/>
-        <location filename="../ui/options.ui" line="2510"/>
+        <location filename="../ui/options.ui" line="2073"/>
+        <location filename="../ui/options.ui" line="2268"/>
+        <location filename="../ui/options.ui" line="2539"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2138"/>
+        <location filename="../ui/options.ui" line="2167"/>
         <source>SOCKS5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2343"/>
+        <location filename="../ui/options.ui" line="2372"/>
         <source>Filter Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2349"/>
+        <location filename="../ui/options.ui" line="2378"/>
         <source>Activate IP Filtering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2365"/>
+        <location filename="../ui/options.ui" line="2394"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2440"/>
+        <location filename="../ui/options.ui" line="2469"/>
         <source>Enable Web User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2453"/>
+        <location filename="../ui/options.ui" line="2482"/>
         <source>HTTP Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2607"/>
+        <location filename="../ui/options.ui" line="2636"/>
         <source>Enable RSS support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2617"/>
+        <location filename="../ui/options.ui" line="2646"/>
         <source>RSS settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2654"/>
+        <location filename="../ui/options.ui" line="2683"/>
         <source>RSS feeds refresh interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2674"/>
+        <location filename="../ui/options.ui" line="2703"/>
         <source>minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2698"/>
+        <location filename="../ui/options.ui" line="2727"/>
         <source>Maximum number of articles per feed:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5866,8 +5871,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">オプションの保存に成功しました。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1368"/>
-        <location filename="../options_imp.cpp" line="1370"/>
+        <location filename="../options_imp.cpp" line="1384"/>
+        <location filename="../options_imp.cpp" line="1386"/>
         <source>Choose scan directory</source>
         <translation>スキャンするディレクトリを選択します</translation>
     </message>
@@ -5876,10 +5881,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat ファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1397"/>
-        <location filename="../options_imp.cpp" line="1399"/>
-        <location filename="../options_imp.cpp" line="1411"/>
         <location filename="../options_imp.cpp" line="1413"/>
+        <location filename="../options_imp.cpp" line="1415"/>
+        <location filename="../options_imp.cpp" line="1427"/>
+        <location filename="../options_imp.cpp" line="1429"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリを選択します</translation>
     </message>
@@ -5893,14 +5898,14 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">読み込みモードで %1 を開くことができませんでした。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
-        <location filename="../options_imp.cpp" line="1384"/>
+        <location filename="../options_imp.cpp" line="1398"/>
+        <location filename="../options_imp.cpp" line="1400"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
-        <location filename="../options_imp.cpp" line="1384"/>
+        <location filename="../options_imp.cpp" line="1398"/>
+        <location filename="../options_imp.cpp" line="1400"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>

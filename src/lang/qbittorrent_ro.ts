@@ -3324,6 +3324,10 @@ QGroupBox {
         <extracomment>Software Build nulmber:</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset to latest software version</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>

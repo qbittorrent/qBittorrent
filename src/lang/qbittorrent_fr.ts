@@ -3519,7 +3519,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="200"/>
-        <location filename="../ui/options.ui" line="2601"/>
+        <location filename="../ui/options.ui" line="2630"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -3945,38 +3945,43 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1769"/>
+        <location filename="../ui/options.ui" line="1779"/>
+        <source>Reset to latest software version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1798"/>
         <source>Share ratio settings</source>
         <translation>Paramètres du ratio de partage</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1777"/>
+        <location filename="../ui/options.ui" line="1806"/>
         <source>Desired ratio:</source>
         <translation>Ratio désiré :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1831"/>
+        <location filename="../ui/options.ui" line="1860"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Supprimer les torrents terminés lorsque leur ratio atteint :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1922"/>
+        <location filename="../ui/options.ui" line="1951"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1954"/>
-        <location filename="../ui/options.ui" line="2149"/>
+        <location filename="../ui/options.ui" line="1983"/>
+        <location filename="../ui/options.ui" line="2178"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2112"/>
+        <location filename="../ui/options.ui" line="2141"/>
         <source>Peer Communications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2133"/>
+        <location filename="../ui/options.ui" line="2162"/>
         <source>SOCKS4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3985,19 +3990,19 @@ QGroupBox {
         <translation type="obsolete">Paramètres du serveur mandataire (moteur de recherche)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1930"/>
-        <location filename="../ui/options.ui" line="2120"/>
+        <location filename="../ui/options.ui" line="1959"/>
+        <location filename="../ui/options.ui" line="2149"/>
         <source>Type:</source>
         <translation>Type :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1938"/>
-        <location filename="../ui/options.ui" line="2128"/>
+        <location filename="../ui/options.ui" line="1967"/>
+        <location filename="../ui/options.ui" line="2157"/>
         <source>(None)</source>
         <translation>(Aucun)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1943"/>
+        <location filename="../ui/options.ui" line="1972"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
@@ -4006,30 +4011,30 @@ QGroupBox {
         <translation type="obsolete">Serveur mandataire (proxy) :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1980"/>
-        <location filename="../ui/options.ui" line="2175"/>
-        <location filename="../ui/options.ui" line="2459"/>
+        <location filename="../ui/options.ui" line="2009"/>
+        <location filename="../ui/options.ui" line="2204"/>
+        <location filename="../ui/options.ui" line="2488"/>
         <source>Port:</source>
         <translation>Port :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2020"/>
-        <location filename="../ui/options.ui" line="2215"/>
-        <location filename="../ui/options.ui" line="2495"/>
+        <location filename="../ui/options.ui" line="2049"/>
+        <location filename="../ui/options.ui" line="2244"/>
+        <location filename="../ui/options.ui" line="2524"/>
         <source>Authentication</source>
         <translation>Authentification</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2034"/>
-        <location filename="../ui/options.ui" line="2229"/>
-        <location filename="../ui/options.ui" line="2503"/>
+        <location filename="../ui/options.ui" line="2063"/>
+        <location filename="../ui/options.ui" line="2258"/>
+        <location filename="../ui/options.ui" line="2532"/>
         <source>Username:</source>
         <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2044"/>
-        <location filename="../ui/options.ui" line="2239"/>
-        <location filename="../ui/options.ui" line="2510"/>
+        <location filename="../ui/options.ui" line="2073"/>
+        <location filename="../ui/options.ui" line="2268"/>
+        <location filename="../ui/options.ui" line="2539"/>
         <source>Password:</source>
         <translation>Mot de passe :</translation>
     </message>
@@ -4038,7 +4043,7 @@ QGroupBox {
         <translation type="obsolete">Paramètres du serveur mandataire (Bittorrent)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2138"/>
+        <location filename="../ui/options.ui" line="2167"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
@@ -4063,17 +4068,17 @@ QGroupBox {
         <translation type="obsolete">Connexions aux sources web</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2343"/>
+        <location filename="../ui/options.ui" line="2372"/>
         <source>Filter Settings</source>
         <translation>Paramètres de filtrage</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2349"/>
+        <location filename="../ui/options.ui" line="2378"/>
         <source>Activate IP Filtering</source>
         <translation>Activer le filtrage d&apos;IP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2365"/>
+        <location filename="../ui/options.ui" line="2394"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Chemin du filtre (.dat, .p2p, .p2b) :</translation>
     </message>
@@ -4082,37 +4087,37 @@ QGroupBox {
         <translation type="obsolete">Chemin vers le fichier de filtrage :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2440"/>
+        <location filename="../ui/options.ui" line="2469"/>
         <source>Enable Web User Interface</source>
         <translation>Activer l&apos;interface Web</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2453"/>
+        <location filename="../ui/options.ui" line="2482"/>
         <source>HTTP Server</source>
         <translation>Serveur HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2607"/>
+        <location filename="../ui/options.ui" line="2636"/>
         <source>Enable RSS support</source>
         <translation>Activer le module RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2617"/>
+        <location filename="../ui/options.ui" line="2646"/>
         <source>RSS settings</source>
         <translation>Paramètres RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2654"/>
+        <location filename="../ui/options.ui" line="2683"/>
         <source>RSS feeds refresh interval:</source>
         <translation>Intervalle de rafraîchissement des flux RSS :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2674"/>
+        <location filename="../ui/options.ui" line="2703"/>
         <source>minutes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2698"/>
+        <location filename="../ui/options.ui" line="2727"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Numbre maximum d&apos;articles par flux :</translation>
     </message>
@@ -7066,8 +7071,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Préférences sauvegardées avec succès.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1368"/>
-        <location filename="../options_imp.cpp" line="1370"/>
+        <location filename="../options_imp.cpp" line="1384"/>
+        <location filename="../options_imp.cpp" line="1386"/>
         <source>Choose scan directory</source>
         <translation>Choisir le dossier à surveiller</translation>
     </message>
@@ -7076,10 +7081,10 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1397"/>
-        <location filename="../options_imp.cpp" line="1399"/>
-        <location filename="../options_imp.cpp" line="1411"/>
         <location filename="../options_imp.cpp" line="1413"/>
+        <location filename="../options_imp.cpp" line="1415"/>
+        <location filename="../options_imp.cpp" line="1427"/>
+        <location filename="../options_imp.cpp" line="1429"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
@@ -7093,8 +7098,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
-        <location filename="../options_imp.cpp" line="1384"/>
+        <location filename="../options_imp.cpp" line="1398"/>
+        <location filename="../options_imp.cpp" line="1400"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
@@ -7103,8 +7108,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Filtres (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
-        <location filename="../options_imp.cpp" line="1384"/>
+        <location filename="../options_imp.cpp" line="1398"/>
+        <location filename="../options_imp.cpp" line="1400"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>

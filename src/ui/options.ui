@@ -1758,6 +1758,41 @@ QGroupBox {
                     </property>
                    </widget>
                   </item>
+                  <item>
+                   <widget class="QPushButton" name="resetPeerVersion_button">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>27</width>
+                      <height>27</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>27</width>
+                      <height>27</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Reset to latest software version</string>
+                    </property>
+                    <property name="text">
+                     <string notr="true"/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../icons.qrc">
+                      <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>22</width>
+                      <height>22</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </item>
                </layout>

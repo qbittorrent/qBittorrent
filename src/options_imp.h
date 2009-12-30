@@ -172,6 +172,7 @@ protected slots:
 public slots:
   void setLocale(QString locale);
   void useStyle();
+  void on_resetPeerVersion_button_clicked();
 
 signals:
   void status_changed() const;
