@@ -3300,10 +3300,6 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine proxy settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3313,10 +3309,6 @@ QGroupBox {
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proxy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3336,31 +3328,7 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bittorrent proxy settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Affected connections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to trackers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to regular peers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use proxy for DHT messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to web seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3401,6 +3369,22 @@ QGroupBox {
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peer Communications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SOCKS4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
