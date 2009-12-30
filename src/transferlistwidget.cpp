@@ -36,6 +36,7 @@
 #include "speedlimitdlg.h"
 #include "options_imp.h"
 #include "GUI.h"
+#include "preferences.h"
 #include "deletionconfirmationdlg.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -665,7 +666,7 @@ void TransferListWidget::setDlLimitSelectedTorrents() {
   int default_limit = -1;
   if(all_same_limit)
     default_limit = selected_torrents.first().download_limit();
-  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit);
+  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences::getGlobalDownloadLimit()*1024.);
   if(ok) {
     foreach(QTorrentHandle h, selected_torrents) {
       qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().data());
@@ -701,7 +702,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   int default_limit = -1;
   if(all_same_limit)
     default_limit = selected_torrents.first().upload_limit();
-  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit);
+  long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences::getGlobalUploadLimit()*1024.);
   if(ok) {
     foreach(QTorrentHandle h, selected_torrents) {
       qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().data());
