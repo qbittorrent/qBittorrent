@@ -1705,18 +1705,6 @@ void Bittorrent::readAlerts() {
       }
     }
 #endif
-    else if (listen_failed_alert* p = dynamic_cast<listen_failed_alert*>(a.get())) {
-      // Level: fatal
-      int tried_port = p->endpoint.port();
-      srand(time(0));
-      int fallback_port = tried_port;
-      do {
-        fallback_port = rand() % 64512 + 1024;
-      } while(fallback_port == tried_port);
-      addConsoleMessage(tr("Couldn't listen on port %1, using %2 instead.").arg(QString::number(tried_port)).arg(QString::number(fallback_port)), QString::fromUtf8("red"));
-      setListeningPort(fallback_port);
-      //emit portListeningFailure();
-    }
     /*else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
       qDebug("Received a torrent_paused_alert for %s", h.hash().toLocal8Bit().data());
