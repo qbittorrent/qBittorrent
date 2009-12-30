@@ -176,6 +176,12 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     Preferences::setLSDEnabled(m["lsd"].toBool());
   if(m.contains("encryption"))
     Preferences::setEncryptionSetting(m["encryption"].toInt());
+  if(m.contains("peer_id"))
+    Preferences::setPeerID(m["peer_id"].toString());
+  if(m.contains("peer_version"))
+    Preferences::setClientVersion(m["peer_version"].toString());
+  if(m.contains("peer_build"))
+    Preferences::setClientBuild(m["peer_build"].toString());
   // Proxy
   if(m.contains("proxy_type"))
     Preferences::setPeerProxyType(m["proxy_type"].toInt());
@@ -249,6 +255,9 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["pex"] = Preferences::isPeXEnabled();
   data["lsd"] = Preferences::isLSDEnabled();
   data["encryption"] = Preferences::getEncryptionSetting();
+  data["peer_id"] = Preferences::getPeerID();
+  data["peer_version"] = Preferences::getClientVersion();
+  data["peer_build"] = Preferences::getClientBuild();
   // Proxy
   data["proxy_type"] = Preferences::getPeerProxyType();
   data["proxy_ip"] = Preferences::getPeerProxyIp();

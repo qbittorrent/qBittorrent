@@ -322,6 +322,9 @@
   var lsd = 0;
   if($defined($('lsd_checkbox').get('checked')) && $('lsd_checkbox').get('checked'))
     lsd = 1;
+  var peer_id = $('peer_id_select').get('value');
+  var peer_version = $('peer_version_text').get('value');
+  var peer_build = $('peer_build_text').get('value');
   // Downloads
   var save_path = $("savepath_text").get('value');
   var temp_path_enabled = 0
@@ -424,6 +427,9 @@
   dict.set('pex', pex);
   dict.set('lsd', lsd);
   dict.set('encryption', $('encryption_select').get('value'));
+  dict.set('peer_id', peer_id);
+  dict.set('peer_version', peer_version);
+  dict.set('peer_build', peer_build);
   // Downloads
   dict.set('save_path', save_path);
   dict.set('temp_path_enabled', temp_path_enabled);
@@ -501,7 +507,7 @@ updateSpoofingSettings = function() {
     $('peer_build_text').removeProperty('disabled');
     $('peer_build_text').set('value', '17414');
   } else {
-    if(peer_id = "AZ") {
+    if(peer_id == "AZ") {
       // Vuze
       $('peer_version_text').removeProperty('disabled');
       $('peer_version_text').set('value', '4.3.0.4');
@@ -721,6 +727,10 @@ loadPreferences = function() {
                     }
                     var encryption = pref.encryption.toInt();
                     $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
+                    $('peer_id_select').set('value', pref.peer_id);
+                    updateSpoofingSettings();
+                    $('peer_version_text').set('value', pref.peer_version);
+                    $('peer_build_text').set('value', pref.peer_build);
                     // Downloads
                     var save_path = pref.save_path;
                     $("savepath_text").set('value', save_path);
