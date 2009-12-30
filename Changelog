@@ -5,6 +5,8 @@
     - BUGFIX: Fix possible DHT port saving issue
     - BUGFIX: Fix communication between qBittorrent and Web UI (Qt 4.6)
     - BUGFIX: Use Wildcard matching instead of full regex in RSS feed downloader
+    - BUGFIX: Fix code for listening on a random port whenever it failed to listen on the one defined
+    - COSMETIC: Display a disconnected icon in status bar whenever qBittorrent failed to listen on the port defined
 
 * Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
     - BUGFIX: Minor cosmetic fix to program preferences

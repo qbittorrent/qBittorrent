@@ -269,10 +269,6 @@ p, li { white-space: pre-wrap; }
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>下載 &apos;%1&apos; 中, 請稍候...</translation>
     </message>
-    <message>
-        <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -2617,6 +2613,10 @@ p, li { white-space: pre-wrap; }
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>上傳速度: %1 B/s - 已傳輸: %2</translation>
+    </message>
+    <message>
+        <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

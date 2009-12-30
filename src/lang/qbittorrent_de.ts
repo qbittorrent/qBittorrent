@@ -198,158 +198,153 @@ p, li { white-space: pre-wrap; }
         <translation>NAT-PMP Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="353"/>
+        <location filename="../bittorrent.cpp" line="355"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT Unterstützung [EIN], Port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="355"/>
-        <location filename="../bittorrent.cpp" line="359"/>
+        <location filename="../bittorrent.cpp" line="357"/>
+        <location filename="../bittorrent.cpp" line="361"/>
         <source>DHT support [OFF]</source>
         <translation>DHT Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="362"/>
+        <location filename="../bittorrent.cpp" line="364"/>
         <source>PeX support [ON]</source>
         <translation>PeX Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="366"/>
+        <location filename="../bittorrent.cpp" line="368"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Lokale Peer Auffindung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="369"/>
+        <location filename="../bittorrent.cpp" line="371"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Unterstützung für Lokale Peer Auffindung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="381"/>
+        <location filename="../bittorrent.cpp" line="383"/>
         <source>Encryption support [ON]</source>
         <translation>Verschlüsselung Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="386"/>
+        <location filename="../bittorrent.cpp" line="388"/>
         <source>Encryption support [FORCED]</source>
         <translation>Unterstützung für Verschlüsselung [Erzwungen]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="391"/>
+        <location filename="../bittorrent.cpp" line="393"/>
         <source>Encryption support [OFF]</source>
         <translation>Verschlüsselungs-Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="492"/>
+        <location filename="../bittorrent.cpp" line="494"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Web User Interface Fehler - Web UI Port &apos;%1&apos; ist nicht erreichbar</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="609"/>
+        <location filename="../bittorrent.cpp" line="611"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; wurde von der Transfer-Liste und von der Festplatte entfernt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="613"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; wurde von der Transfer-Liste entfernt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="661"/>
+        <location filename="../bittorrent.cpp" line="663"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; ist keine gültige Magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="686"/>
-        <location filename="../bittorrent.cpp" line="822"/>
-        <location filename="../bittorrent.cpp" line="825"/>
+        <location filename="../bittorrent.cpp" line="688"/>
+        <location filename="../bittorrent.cpp" line="824"/>
+        <location filename="../bittorrent.cpp" line="827"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; befindet sich bereits in der Download-Liste.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="760"/>
-        <location filename="../bittorrent.cpp" line="940"/>
-        <location filename="../bittorrent.cpp" line="945"/>
+        <location filename="../bittorrent.cpp" line="762"/>
+        <location filename="../bittorrent.cpp" line="942"/>
+        <location filename="../bittorrent.cpp" line="947"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; wird fortgesetzt. (Schnelles Fortsetzen)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="942"/>
-        <location filename="../bittorrent.cpp" line="947"/>
+        <location filename="../bittorrent.cpp" line="764"/>
+        <location filename="../bittorrent.cpp" line="944"/>
+        <location filename="../bittorrent.cpp" line="949"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; wurde der Download-Liste hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="796"/>
-        <location filename="../bittorrent.cpp" line="800"/>
+        <location filename="../bittorrent.cpp" line="798"/>
+        <location filename="../bittorrent.cpp" line="802"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Konnte Torrent-Datei nicht dekodieren: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="803"/>
+        <location filename="../bittorrent.cpp" line="805"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Diese Datei ist entweder fehlerhaft oder kein Torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1194"/>
+        <location filename="../bittorrent.cpp" line="1196"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;wurde aufgrund Ihrer IP Filter geblockt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1196"/>
+        <location filename="../bittorrent.cpp" line="1198"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;wurde aufgrund von beschädigten Teilen gebannt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1456"/>
+        <location filename="../bittorrent.cpp" line="1460"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiver Download von Datei %1, eingebettet in Torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1467"/>
+        <location filename="../bittorrent.cpp" line="1471"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Konnte Torrent-Datei %1 nicht dekodieren.</translation>
-    </message>
-    <message>
-        <location filename="../bittorrent.cpp" line="1523"/>
-        <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Couldn&apos;t listen on any of the given ports.</source>
         <translation type="obsolete">Konnte auf keinem der angegebenen Ports lauschen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1591"/>
+        <location filename="../bittorrent.cpp" line="1583"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port Mapping Fehler, Fehlermeldung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1596"/>
+        <location filename="../bittorrent.cpp" line="1588"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port Mapping Fehler, Meldung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1611"/>
+        <location filename="../bittorrent.cpp" line="1603"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Fast-Resume Daten für den Torrent %1 wurden zurückgewiesen, prüfe erneut...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1616"/>
+        <location filename="../bittorrent.cpp" line="1608"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>URL Seed Lookup für die URL &apos;%1&apos; ist fehlgeschlagen, Begründung: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1686"/>
+        <location filename="../bittorrent.cpp" line="1679"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Lade &apos;%1&apos;, bitte warten...</translation>
@@ -4062,7 +4057,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="337"/>
+        <location filename="../searchengine.cpp" line="338"/>
         <source>Results</source>
         <translation>Ergebnisse</translation>
     </message>
@@ -4135,33 +4130,33 @@ Changelog:
         <translation>Vervollständigungshistorie löschen</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
+        <location filename="../searchengine.cpp" line="446"/>
         <source>Search Engine</source>
         <translation>Suchmaschine</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="442"/>
-        <location filename="../searchengine.cpp" line="453"/>
+        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="457"/>
         <source>Search has finished</source>
         <translation>Suche abgeschlossen</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="445"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>An error occured during search...</source>
         <translation>Während der Suche ist ein Fehler aufgetreten ...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="448"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>Search aborted</source>
         <translation>Suche abgebrochen</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="451"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search returned no results</source>
         <translation>Suche lieferte keine Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="458"/>
+        <location filename="../searchengine.cpp" line="462"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Ergebnisse</translation>
@@ -4175,8 +4170,8 @@ Changelog:
         <translation type="obsolete">Konnte Such-Plugin Update nicht von URL: %1 laden, Begründung: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="485"/>
-        <location filename="../searchengine.cpp" line="491"/>
+        <location filename="../searchengine.cpp" line="497"/>
+        <location filename="../searchengine.cpp" line="503"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
@@ -4225,13 +4220,13 @@ Changelog:
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="75"/>
-        <location filename="../statusbar.h" line="151"/>
+        <location filename="../statusbar.h" line="155"/>
         <source>Connection status:</source>
         <translation>Verbindungs-Status:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="75"/>
-        <location filename="../statusbar.h" line="151"/>
+        <location filename="../statusbar.h" line="155"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Keine direkten Verbindungen. Möglicherweise gibt es Probleme mit Ihrer Netzwerkkonfiguration.</translation>
     </message>
@@ -4249,39 +4244,45 @@ Changelog:
     </message>
     <message>
         <location filename="../statusbar.h" line="84"/>
-        <location filename="../statusbar.h" line="157"/>
+        <location filename="../statusbar.h" line="162"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 Nodes</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="148"/>
+        <location filename="../statusbar.h" line="147"/>
+        <location filename="../statusbar.h" line="152"/>
         <source>Connection Status:</source>
         <translation>Verbindungs-Status:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="148"/>
+        <location filename="../statusbar.h" line="147"/>
+        <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../statusbar.h" line="152"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="163"/>
+        <location filename="../statusbar.h" line="168"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="164"/>
+        <location filename="../statusbar.h" line="169"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="169"/>
+        <location filename="../statusbar.h" line="174"/>
         <source>Global Download Speed Limit</source>
         <translation>Begrenzung der globalen Download-Geschwindigkeit</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="185"/>
+        <location filename="../statusbar.h" line="190"/>
         <source>Global Upload Speed Limit</source>
         <translation>Begrenzung der globalen Upload-Geschwindigkeit</translation>
     </message>
@@ -6075,8 +6076,8 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Optionen wurden erfolgreich gespeichert.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1318"/>
         <location filename="../options_imp.cpp" line="1320"/>
-        <location filename="../options_imp.cpp" line="1322"/>
         <source>Choose scan directory</source>
         <translation>Verzeichnis zum scannen auswählen</translation>
     </message>
@@ -6085,10 +6086,10 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">ipfilter.dat Datei auswählen</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1347"/>
         <location filename="../options_imp.cpp" line="1349"/>
-        <location filename="../options_imp.cpp" line="1351"/>
+        <location filename="../options_imp.cpp" line="1361"/>
         <location filename="../options_imp.cpp" line="1363"/>
-        <location filename="../options_imp.cpp" line="1365"/>
         <source>Choose a save directory</source>
         <translation>Verzeichnis zum Speichern auswählen</translation>
     </message>
@@ -6097,14 +6098,14 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Kein Lesezugriff auf %1.</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1332"/>
         <location filename="../options_imp.cpp" line="1334"/>
-        <location filename="../options_imp.cpp" line="1336"/>
         <source>Choose an ip filter file</source>
         <translation>IP-Filter-Datei wählen</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1332"/>
         <location filename="../options_imp.cpp" line="1334"/>
-        <location filename="../options_imp.cpp" line="1336"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
