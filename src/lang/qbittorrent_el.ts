@@ -239,124 +239,124 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation>Υποστήριξη NAT-PMP [OXI]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="355"/>
+        <location filename="../bittorrent.cpp" line="356"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Υποστήριξη DHT [NAI], θύρα: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="357"/>
-        <location filename="../bittorrent.cpp" line="361"/>
+        <location filename="../bittorrent.cpp" line="358"/>
+        <location filename="../bittorrent.cpp" line="362"/>
         <source>DHT support [OFF]</source>
         <translation>Υποστήριξη DHT [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="364"/>
+        <location filename="../bittorrent.cpp" line="365"/>
         <source>PeX support [ON]</source>
         <translation>Υποστήριξη PeX [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="368"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Ανακάλυψη Τοπικών Συνδέσεων [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="371"/>
+        <location filename="../bittorrent.cpp" line="372"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Ανακάλυψη Τοπικών Συνδέσεων [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="383"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>Encryption support [ON]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="388"/>
+        <location filename="../bittorrent.cpp" line="389"/>
         <source>Encryption support [FORCED]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΕΞΑΝΑΓΚΑΣΤΜΕΝΗ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="394"/>
         <source>Encryption support [OFF]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="494"/>
+        <location filename="../bittorrent.cpp" line="495"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Σφάλμα Web User Interface - Αδύνατο να συνδεθεί το Web UI στην θύρα %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="612"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>To &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων και τον σκληρό δίσκο.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="613"/>
+        <location filename="../bittorrent.cpp" line="614"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>Το &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="663"/>
+        <location filename="../bittorrent.cpp" line="664"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>Το &apos;%1&apos; δεν είναι ένα έγκυρο magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="688"/>
-        <location filename="../bittorrent.cpp" line="824"/>
-        <location filename="../bittorrent.cpp" line="827"/>
+        <location filename="../bittorrent.cpp" line="689"/>
+        <location filename="../bittorrent.cpp" line="825"/>
+        <location filename="../bittorrent.cpp" line="828"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>Το &apos;%1&apos; είναι ήδη στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="942"/>
-        <location filename="../bittorrent.cpp" line="947"/>
+        <location filename="../bittorrent.cpp" line="763"/>
+        <location filename="../bittorrent.cpp" line="943"/>
+        <location filename="../bittorrent.cpp" line="948"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Το &apos;%1&apos; ξανάρχισε. (γρήγορη επανασύνδεση)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="764"/>
-        <location filename="../bittorrent.cpp" line="944"/>
-        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="765"/>
+        <location filename="../bittorrent.cpp" line="945"/>
+        <location filename="../bittorrent.cpp" line="950"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>Το &apos;%1&apos; προστέθηκε στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="798"/>
-        <location filename="../bittorrent.cpp" line="802"/>
+        <location filename="../bittorrent.cpp" line="799"/>
+        <location filename="../bittorrent.cpp" line="803"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="805"/>
+        <location filename="../bittorrent.cpp" line="806"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Το αρχείο είναι είτε κατεστραμμένο ή δεν είναι torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1196"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του φίλτρου IP σας&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1199"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1460"/>
+        <location filename="../bittorrent.cpp" line="1461"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1472"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent %1.</translation>
     </message>
@@ -365,27 +365,27 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Αδύνατη η επικοινωνία με καμία από της δεδομένες θύρες.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1583"/>
+        <location filename="../bittorrent.cpp" line="1584"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1588"/>
+        <location filename="../bittorrent.cpp" line="1589"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1603"/>
+        <location filename="../bittorrent.cpp" line="1604"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη επανεκκίνηση αρχείων απορρίφθηκε για το torrent %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1608"/>
+        <location filename="../bittorrent.cpp" line="1609"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url διαμοιρασμού για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1679"/>
+        <location filename="../bittorrent.cpp" line="1680"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
@@ -4311,7 +4311,7 @@ Changelog:
 <context>
     <name>SpeedLimitDialog</name>
     <message>
-        <location filename="../speedlimitdlg.h" line="82"/>
+        <location filename="../speedlimitdlg.h" line="83"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -4606,13 +4606,13 @@ Changelog:
         <translation type="obsolete">UP Ταχύτητα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="74"/>
+        <location filename="../transferlistwidget.cpp" line="75"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Ταχύτητα Λήψης</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="76"/>
+        <location filename="../transferlistwidget.cpp" line="77"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Ταχύτητα Αποστολής</translation>
@@ -4627,7 +4627,7 @@ Changelog:
         <translation type="obsolete">Αναλογία</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="80"/>
+        <location filename="../transferlistwidget.cpp" line="81"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>Χρόνος που απομένει</translation>
@@ -4641,27 +4641,27 @@ Changelog:
         <translation type="obsolete">&amp;Όχι</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="762"/>
+        <location filename="../transferlistwidget.cpp" line="763"/>
         <source>Column visibility</source>
         <translation>Εμφανισημότητα Κολώνας</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="825"/>
+        <location filename="../transferlistwidget.cpp" line="826"/>
         <source>Start</source>
         <translation>Έναρξη</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="827"/>
+        <location filename="../transferlistwidget.cpp" line="828"/>
         <source>Pause</source>
         <translation>Παύση</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="829"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="831"/>
+        <location filename="../transferlistwidget.cpp" line="832"/>
         <source>Preview file</source>
         <translation>Προεπισκόπηση αρχείου</translation>
     </message>
@@ -4678,109 +4678,109 @@ Changelog:
         <translation type="obsolete">Οριστική Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="62"/>
+        <location filename="../transferlistwidget.cpp" line="63"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="65"/>
+        <location filename="../transferlistwidget.cpp" line="66"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="67"/>
+        <location filename="../transferlistwidget.cpp" line="68"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>Έγινε</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="69"/>
+        <location filename="../transferlistwidget.cpp" line="70"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>Κατάσταση</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="70"/>
+        <location filename="../transferlistwidget.cpp" line="71"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>Διαμοιραστές</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="72"/>
+        <location filename="../transferlistwidget.cpp" line="73"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>Συνδέσεις</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="78"/>
+        <location filename="../transferlistwidget.cpp" line="79"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>Αναλογία</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="668"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Περιορισμός Ταχύτητας Λήψης torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="704"/>
+        <location filename="../transferlistwidget.cpp" line="705"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Περιορισμός Ταχύτητας Αποστολής torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="833"/>
+        <location filename="../transferlistwidget.cpp" line="834"/>
         <source>Limit upload rate</source>
         <translation>Περιορισμός ορίου αποστολής</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="835"/>
+        <location filename="../transferlistwidget.cpp" line="836"/>
         <source>Limit download rate</source>
         <translation>Περιορισμός ορίου λήψης</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="837"/>
+        <location filename="../transferlistwidget.cpp" line="838"/>
         <source>Open destination folder</source>
         <translation>Άνοιγμα φακέλου προορισμού</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="839"/>
+        <location filename="../transferlistwidget.cpp" line="840"/>
         <source>Buy it</source>
         <translation>Αγόρασέ το</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="841"/>
+        <location filename="../transferlistwidget.cpp" line="842"/>
         <source>Increase priority</source>
         <translation>Αύξησς προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="843"/>
+        <location filename="../transferlistwidget.cpp" line="844"/>
         <source>Decrease priority</source>
         <translation>Μείωσε προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="845"/>
+        <location filename="../transferlistwidget.cpp" line="846"/>
         <source>Force recheck</source>
         <translation>Αναγκαστικός επανέλεγχος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="847"/>
+        <location filename="../transferlistwidget.cpp" line="848"/>
         <source>Copy magnet link</source>
         <translation>Αντιγραφή magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="850"/>
+        <location filename="../transferlistwidget.cpp" line="851"/>
         <source>Super seeding mode</source>
         <translation>Λειτουργία ενισχυμένου διαμοιράσματος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="853"/>
+        <location filename="../transferlistwidget.cpp" line="854"/>
         <source>Download in sequential order</source>
         <translation>Κατέβασμα σε συνεχή σειρά</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="855"/>
+        <location filename="../transferlistwidget.cpp" line="856"/>
         <source>Download first and last piece first</source>
         <translation>Κατέβασμα πρώτου και τελευταίου κομματιού στην αρχή</translation>
     </message>

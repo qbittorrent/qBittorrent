@@ -161,124 +161,124 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>NAT-PMP understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="355"/>
+        <location filename="../bittorrent.cpp" line="356"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT understøttelse [ON], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="357"/>
-        <location filename="../bittorrent.cpp" line="361"/>
+        <location filename="../bittorrent.cpp" line="358"/>
+        <location filename="../bittorrent.cpp" line="362"/>
         <source>DHT support [OFF]</source>
         <translation>DHT understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="364"/>
+        <location filename="../bittorrent.cpp" line="365"/>
         <source>PeX support [ON]</source>
         <translation>PEX understøttelse [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="368"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Lokal Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="371"/>
+        <location filename="../bittorrent.cpp" line="372"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Lokal Peer Discovery understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="383"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>Encryption support [ON]</source>
         <translation>Understøttelse af kryptering [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="388"/>
+        <location filename="../bittorrent.cpp" line="389"/>
         <source>Encryption support [FORCED]</source>
         <translation>Understøttelse af kryptering [FORCED]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="394"/>
         <source>Encryption support [OFF]</source>
         <translation>Understøttelse af kryptering [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="494"/>
+        <location filename="../bittorrent.cpp" line="495"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Web User Interface fejl - Ikke i stand til at binde Web UI til port %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="612"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; blev fjernet fra listen og harddisken.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="613"/>
+        <location filename="../bittorrent.cpp" line="614"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; blev fjernet fra listen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="663"/>
+        <location filename="../bittorrent.cpp" line="664"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; er ikke en gyldig magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="688"/>
-        <location filename="../bittorrent.cpp" line="824"/>
-        <location filename="../bittorrent.cpp" line="827"/>
+        <location filename="../bittorrent.cpp" line="689"/>
+        <location filename="../bittorrent.cpp" line="825"/>
+        <location filename="../bittorrent.cpp" line="828"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; findes allerede i download listen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="942"/>
-        <location filename="../bittorrent.cpp" line="947"/>
+        <location filename="../bittorrent.cpp" line="763"/>
+        <location filename="../bittorrent.cpp" line="943"/>
+        <location filename="../bittorrent.cpp" line="948"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; fortsat. (hurtig fortsættelse)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="764"/>
-        <location filename="../bittorrent.cpp" line="944"/>
-        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="765"/>
+        <location filename="../bittorrent.cpp" line="945"/>
+        <location filename="../bittorrent.cpp" line="950"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; lagt til download listen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="798"/>
-        <location filename="../bittorrent.cpp" line="802"/>
+        <location filename="../bittorrent.cpp" line="799"/>
+        <location filename="../bittorrent.cpp" line="803"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Kan ikke dekode torrent filen: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="805"/>
+        <location filename="../bittorrent.cpp" line="806"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Denne fil er enten fejlbehæftet eller ikke en torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1196"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blev blokeret af dit IP filter&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1199"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blev bandlyst pga. fejlbehæftede stykker&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1460"/>
+        <location filename="../bittorrent.cpp" line="1461"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiv download af filen %1 indlejret i torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1472"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Kan ikke dekode %1 torrent fil.</translation>
     </message>
@@ -287,27 +287,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Kunne ikke lytte på de opgivne porte.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1583"/>
+        <location filename="../bittorrent.cpp" line="1584"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping fejlede, besked: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1588"/>
+        <location filename="../bittorrent.cpp" line="1589"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping lykkedes, besked: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1603"/>
+        <location filename="../bittorrent.cpp" line="1604"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Der blev fundet fejl i data for hurtig genstart af torrent %1, tjekker igen...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1608"/>
+        <location filename="../bittorrent.cpp" line="1609"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url seed lookup fejlede for url: %1, besked: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1679"/>
+        <location filename="../bittorrent.cpp" line="1680"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Downloader &apos;%1&apos;, vent venligst...</translation>
@@ -3258,7 +3258,7 @@ Changelog:
 <context>
     <name>SpeedLimitDialog</name>
     <message>
-        <location filename="../speedlimitdlg.h" line="82"/>
+        <location filename="../speedlimitdlg.h" line="83"/>
         <source>KiB/s</source>
         <translation>KB/s</translation>
     </message>
@@ -3558,19 +3558,19 @@ Changelog:
         <translation type="obsolete">UP hastighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="74"/>
+        <location filename="../transferlistwidget.cpp" line="75"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Down Hastighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="76"/>
+        <location filename="../transferlistwidget.cpp" line="77"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Up Hastighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="80"/>
+        <location filename="../transferlistwidget.cpp" line="81"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>Tid Tilbage</translation>
@@ -3584,27 +3584,27 @@ Changelog:
         <translation type="obsolete">&amp;Nej</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="762"/>
+        <location filename="../transferlistwidget.cpp" line="763"/>
         <source>Column visibility</source>
         <translation>Kolonne synlighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="825"/>
+        <location filename="../transferlistwidget.cpp" line="826"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="827"/>
+        <location filename="../transferlistwidget.cpp" line="828"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="829"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Delete</source>
         <translation>Slet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="831"/>
+        <location filename="../transferlistwidget.cpp" line="832"/>
         <source>Preview file</source>
         <translation>Smugkig fil</translation>
     </message>
@@ -3613,109 +3613,109 @@ Changelog:
         <translation type="obsolete">Slet Permanent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="62"/>
+        <location filename="../transferlistwidget.cpp" line="63"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>Navn</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="65"/>
+        <location filename="../transferlistwidget.cpp" line="66"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Størrelse</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="67"/>
+        <location filename="../transferlistwidget.cpp" line="68"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>Færdig</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="69"/>
+        <location filename="../transferlistwidget.cpp" line="70"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="70"/>
+        <location filename="../transferlistwidget.cpp" line="71"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="72"/>
+        <location filename="../transferlistwidget.cpp" line="73"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="78"/>
+        <location filename="../transferlistwidget.cpp" line="79"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="668"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Begrænsning af Torrent Download Hastighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="704"/>
+        <location filename="../transferlistwidget.cpp" line="705"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Begrænsning af Torrent Upload Hastighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="833"/>
+        <location filename="../transferlistwidget.cpp" line="834"/>
         <source>Limit upload rate</source>
         <translation>Begræns upload</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="835"/>
+        <location filename="../transferlistwidget.cpp" line="836"/>
         <source>Limit download rate</source>
         <translation>Begræns download</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="837"/>
+        <location filename="../transferlistwidget.cpp" line="838"/>
         <source>Open destination folder</source>
         <translation>Åben destinationsmappe</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="839"/>
+        <location filename="../transferlistwidget.cpp" line="840"/>
         <source>Buy it</source>
         <translation>Køb det</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="841"/>
+        <location filename="../transferlistwidget.cpp" line="842"/>
         <source>Increase priority</source>
         <translation>Forøg prioritet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="843"/>
+        <location filename="../transferlistwidget.cpp" line="844"/>
         <source>Decrease priority</source>
         <translation>Formindsk prioritet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="845"/>
+        <location filename="../transferlistwidget.cpp" line="846"/>
         <source>Force recheck</source>
         <translation>Tvungen tjek</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="847"/>
+        <location filename="../transferlistwidget.cpp" line="848"/>
         <source>Copy magnet link</source>
         <translation>Kopier magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="850"/>
+        <location filename="../transferlistwidget.cpp" line="851"/>
         <source>Super seeding mode</source>
         <translation>Super seeding tilstand</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="853"/>
+        <location filename="../transferlistwidget.cpp" line="854"/>
         <source>Download in sequential order</source>
         <translation>Downlad i rækkefølge</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="855"/>
+        <location filename="../transferlistwidget.cpp" line="856"/>
         <source>Download first and last piece first</source>
         <translation>Download første og sidste stykke først</translation>
     </message>

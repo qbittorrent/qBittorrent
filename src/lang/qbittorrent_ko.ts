@@ -202,124 +202,124 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>NAT-PMP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="355"/>
+        <location filename="../bittorrent.cpp" line="356"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT 지원 [사용], 포트:&apos;UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="357"/>
-        <location filename="../bittorrent.cpp" line="361"/>
+        <location filename="../bittorrent.cpp" line="358"/>
+        <location filename="../bittorrent.cpp" line="362"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="364"/>
+        <location filename="../bittorrent.cpp" line="365"/>
         <source>PeX support [ON]</source>
         <translation>Pes 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="368"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="371"/>
+        <location filename="../bittorrent.cpp" line="372"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="383"/>
+        <location filename="../bittorrent.cpp" line="384"/>
         <source>Encryption support [ON]</source>
         <translation>암호화 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="388"/>
+        <location filename="../bittorrent.cpp" line="389"/>
         <source>Encryption support [FORCED]</source>
         <translation>암호화 지원 [강제사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="393"/>
+        <location filename="../bittorrent.cpp" line="394"/>
         <source>Encryption support [OFF]</source>
         <translation>암호화 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="494"/>
+        <location filename="../bittorrent.cpp" line="495"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>웹 유저 인터페이스 에러 - 웹 유저 인터페이스를 다음 포트에 연결 할수 없습니다:%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="612"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록과 디스크에서 &apos;%1&apos; 를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="613"/>
+        <location filename="../bittorrent.cpp" line="614"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록에서 &apos;%1&apos;를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="663"/>
+        <location filename="../bittorrent.cpp" line="664"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos;는 유효한 마그넷 URI (magnet URI)가 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="688"/>
-        <location filename="../bittorrent.cpp" line="824"/>
-        <location filename="../bittorrent.cpp" line="827"/>
+        <location filename="../bittorrent.cpp" line="689"/>
+        <location filename="../bittorrent.cpp" line="825"/>
+        <location filename="../bittorrent.cpp" line="828"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 전송목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="762"/>
-        <location filename="../bittorrent.cpp" line="942"/>
-        <location filename="../bittorrent.cpp" line="947"/>
+        <location filename="../bittorrent.cpp" line="763"/>
+        <location filename="../bittorrent.cpp" line="943"/>
+        <location filename="../bittorrent.cpp" line="948"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="764"/>
-        <location filename="../bittorrent.cpp" line="944"/>
-        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="765"/>
+        <location filename="../bittorrent.cpp" line="945"/>
+        <location filename="../bittorrent.cpp" line="950"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="798"/>
-        <location filename="../bittorrent.cpp" line="802"/>
+        <location filename="../bittorrent.cpp" line="799"/>
+        <location filename="../bittorrent.cpp" line="803"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>토렌트 파일을 해독할수 없음: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="805"/>
+        <location filename="../bittorrent.cpp" line="806"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>파일에 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1196"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1198"/>
+        <location filename="../bittorrent.cpp" line="1199"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1460"/>
+        <location filename="../bittorrent.cpp" line="1461"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1471"/>
+        <location filename="../bittorrent.cpp" line="1472"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
@@ -328,27 +328,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트을 사용할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1583"/>
+        <location filename="../bittorrent.cpp" line="1584"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1588"/>
+        <location filename="../bittorrent.cpp" line="1589"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1603"/>
+        <location filename="../bittorrent.cpp" line="1604"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1608"/>
+        <location filename="../bittorrent.cpp" line="1609"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1679"/>
+        <location filename="../bittorrent.cpp" line="1680"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -4227,7 +4227,7 @@ Changelog:
 <context>
     <name>SpeedLimitDialog</name>
     <message>
-        <location filename="../speedlimitdlg.h" line="82"/>
+        <location filename="../speedlimitdlg.h" line="83"/>
         <source>KiB/s</source>
         <translation></translation>
     </message>
@@ -4513,13 +4513,13 @@ Changelog:
         <translation type="obsolete">업로드 속도</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="74"/>
+        <location filename="../transferlistwidget.cpp" line="75"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>다운로드 속도</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="76"/>
+        <location filename="../transferlistwidget.cpp" line="77"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>업로드 속도</translation>
@@ -4534,7 +4534,7 @@ Changelog:
         <translation type="obsolete">비율</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="80"/>
+        <location filename="../transferlistwidget.cpp" line="81"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>남은시간</translation>
@@ -4548,27 +4548,27 @@ Changelog:
         <translation type="obsolete">&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="762"/>
+        <location filename="../transferlistwidget.cpp" line="763"/>
         <source>Column visibility</source>
         <translation>세로행 숨기기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="825"/>
+        <location filename="../transferlistwidget.cpp" line="826"/>
         <source>Start</source>
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="827"/>
+        <location filename="../transferlistwidget.cpp" line="828"/>
         <source>Pause</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="829"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="831"/>
+        <location filename="../transferlistwidget.cpp" line="832"/>
         <source>Preview file</source>
         <translation>미리보기</translation>
     </message>
@@ -4585,109 +4585,109 @@ Changelog:
         <translation type="obsolete">영구 삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="62"/>
+        <location filename="../transferlistwidget.cpp" line="63"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>토렌트 이름</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="65"/>
+        <location filename="../transferlistwidget.cpp" line="66"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="67"/>
+        <location filename="../transferlistwidget.cpp" line="68"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>완료</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="69"/>
+        <location filename="../transferlistwidget.cpp" line="70"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>상태</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="70"/>
+        <location filename="../transferlistwidget.cpp" line="71"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>완전체</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="72"/>
+        <location filename="../transferlistwidget.cpp" line="73"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>공유자(Peers)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="78"/>
+        <location filename="../transferlistwidget.cpp" line="79"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>비율</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="668"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>토렌트 다운로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="704"/>
+        <location filename="../transferlistwidget.cpp" line="705"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>토렌트 업로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="833"/>
+        <location filename="../transferlistwidget.cpp" line="834"/>
         <source>Limit upload rate</source>
         <translation>업로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="835"/>
+        <location filename="../transferlistwidget.cpp" line="836"/>
         <source>Limit download rate</source>
         <translation>다운로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="837"/>
+        <location filename="../transferlistwidget.cpp" line="838"/>
         <source>Open destination folder</source>
         <translation>저장 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="839"/>
+        <location filename="../transferlistwidget.cpp" line="840"/>
         <source>Buy it</source>
         <translation>구입하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="841"/>
+        <location filename="../transferlistwidget.cpp" line="842"/>
         <source>Increase priority</source>
         <translation>우선순위(priority)를 높이기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="843"/>
+        <location filename="../transferlistwidget.cpp" line="844"/>
         <source>Decrease priority</source>
         <translation>우선순위(priority)를 낮추기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="845"/>
+        <location filename="../transferlistwidget.cpp" line="846"/>
         <source>Force recheck</source>
         <translation>강제로 재확인하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="847"/>
+        <location filename="../transferlistwidget.cpp" line="848"/>
         <source>Copy magnet link</source>
         <translation>마그넷 링크 (Copy magnet link) 복사하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="850"/>
+        <location filename="../transferlistwidget.cpp" line="851"/>
         <source>Super seeding mode</source>
         <translation>수퍼 공유 모드 (Super seeding mode)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="853"/>
+        <location filename="../transferlistwidget.cpp" line="854"/>
         <source>Download in sequential order</source>
         <translation>차레대로 다운받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="855"/>
+        <location filename="../transferlistwidget.cpp" line="856"/>
         <source>Download first and last piece first</source>
         <translation>첫번째 조각과 마지막 조각을 먼저 다운받기</translation>
     </message>
