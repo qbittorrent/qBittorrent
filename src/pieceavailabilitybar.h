@@ -54,21 +54,22 @@ public:
     double average = 0;
     if(avail.empty()) {
       // Empty bar
-      pixmap = QPixmap(1, 1);
-      QPainter painter(&pixmap);
-      painter.setPen(Qt::white);
-      painter.drawPoint(0,0);
+      QPixmap pix = QPixmap(1, 1);
+      pix.fill();
+      pixmap = pix;
     } else {
       // Look for maximum value
       average = std::accumulate(avail.begin(), avail.end(), 0)/(double)avail.size();
       uint nb_pieces = avail.size();
-      pixmap = QPixmap(nb_pieces, 1);
-      QPainter painter(&pixmap);
+      QPixmap pix = QPixmap(nb_pieces, 1);
+      pix.fill();
+      QPainter painter(&pix);
       std::vector<int>::iterator it;
       for(uint i=0; i < nb_pieces; ++i) {
         painter.setPen(getPieceColor(avail[i], average));
         painter.drawPoint(i,0);
       }
+      pixmap = pix;
     }
     update();
     return average;
