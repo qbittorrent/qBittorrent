@@ -55,13 +55,13 @@ public:
   void setProgress(bitfield pieces) {
     if(pieces.empty()) {
       // Empty bar
-      pixmap = QPixmap(1, 1);
-      QPainter painter(&pixmap);
-      painter.setPen(Qt::white);
-      painter.drawPoint(0,0);
+      QPixmap pix = QPixmap(1, 1);
+      pix.fill();
+      pixmap = pix;
     } else {
-      pixmap = QPixmap(pieces.size(), 1);
-      QPainter painter(&pixmap);
+      QPixmap pix = QPixmap(pieces.size(), 1);
+      pix.fill();
+      QPainter painter(&pix);
       for(uint i=0; i<pieces.size(); ++i) {
         if(pieces[i])
           painter.setPen(Qt::blue);
@@ -69,6 +69,7 @@ public:
           painter.setPen(Qt::white);
         painter.drawPoint(i,0);
       }
+      pixmap = pix;
     }
     update();
   }
