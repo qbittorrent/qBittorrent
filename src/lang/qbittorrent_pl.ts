@@ -321,7 +321,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
-        <translation>Nie można nasłuchiwać na porcie %1, zostanie użyty port %2.</translation>
+        <translation type="obsolete">Nie można nasłuchiwać na porcie %1, zostanie użyty port %2.</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
@@ -4350,6 +4350,10 @@ Zmiany:
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>Wysyłanie: %1/s - Wysłano: %2</translation>
+    </message>
+    <message>
+        <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

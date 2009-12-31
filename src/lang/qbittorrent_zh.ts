@@ -285,10 +285,6 @@ p, li { white-space: pre-wrap; }
         <translation>&apos;%1&apos;下载中,请等待...</translation>
     </message>
     <message>
-        <source>Couldn&apos;t listen on port %1, using %2 instead.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Using a disk cache size of %1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4451,6 +4447,10 @@ reason: %2.</source>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>上传:%1B/s -传输:%2</translation>
+    </message>
+    <message>
+        <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
