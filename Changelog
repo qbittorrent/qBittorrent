@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.5
+* Web Dec 31 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.5
     - BUGFIX: Fix crash with downloaded/availability bars when the torrent has too many pieces
 
 * Wed Dec 30 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.4

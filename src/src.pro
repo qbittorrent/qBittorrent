@@ -12,10 +12,10 @@ CONFIG += qt \
     thread
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v2.0.4\\\"
+DEFINES += VERSION=\\\"v2.0.5\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=0
-DEFINES += VERSION_BUGFIX=4
+DEFINES += VERSION_BUGFIX=5
 
 # !mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
