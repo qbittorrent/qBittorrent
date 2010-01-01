@@ -246,16 +246,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="813"/>
-        <location filename="../bittorrent.cpp" line="1003"/>
-        <location filename="../bittorrent.cpp" line="1008"/>
+        <location filename="../bittorrent.cpp" line="1011"/>
+        <location filename="../bittorrent.cpp" line="1016"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; настави. (брзо настави)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="815"/>
-        <location filename="../bittorrent.cpp" line="1005"/>
-        <location filename="../bittorrent.cpp" line="1010"/>
+        <location filename="../bittorrent.cpp" line="1013"/>
+        <location filename="../bittorrent.cpp" line="1018"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; додат на листу за преузимање.</translation>
@@ -273,25 +273,25 @@ p, li { white-space: pre-wrap; }
         <translation>Овај фајл је оштећен или ово није торент.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1257"/>
+        <location filename="../bittorrent.cpp" line="1265"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1259"/>
+        <location filename="../bittorrent.cpp" line="1267"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1632"/>
+        <location filename="../bittorrent.cpp" line="1640"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Поновно преузимање фајла %1 омогућено у торенту %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1643"/>
+        <location filename="../bittorrent.cpp" line="1651"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Није у стању да декодира %1 торент фајл.</translation>
     </message>
@@ -300,27 +300,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Не могу да ослушкујем порт %1, користећи %2 уместо тога.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1773"/>
+        <location filename="../bittorrent.cpp" line="1781"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1778"/>
+        <location filename="../bittorrent.cpp" line="1786"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1793"/>
+        <location filename="../bittorrent.cpp" line="1801"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1798"/>
+        <location filename="../bittorrent.cpp" line="1806"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url преглед донора , грешка url: %1, порука: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1886"/>
+        <location filename="../bittorrent.cpp" line="1894"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Преузимање &apos;%1&apos;, молим сачекајте...</translation>
@@ -2496,7 +2496,7 @@ QGroupBox {
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="489"/>
-        <source>Rename torrent file</source>
+        <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3345,22 +3345,22 @@ p, li { white-space: pre-wrap; }
         <translation>Прегледност колона</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="892"/>
+        <location filename="../transferlistwidget.cpp" line="910"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="894"/>
+        <location filename="../transferlistwidget.cpp" line="912"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="896"/>
+        <location filename="../transferlistwidget.cpp" line="914"/>
         <source>Delete</source>
         <translation>Обриши</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="898"/>
+        <location filename="../transferlistwidget.cpp" line="916"/>
         <source>Preview file</source>
         <translation>Приказ датотеке</translation>
     </message>
@@ -3408,7 +3408,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="999"/>
+        <location filename="../transferlistwidget.cpp" line="1021"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3433,69 +3433,84 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="900"/>
+        <location filename="../transferlistwidget.cpp" line="878"/>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="878"/>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="918"/>
         <source>Limit upload rate</source>
         <translation>Ограничење брзине слања</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="902"/>
+        <location filename="../transferlistwidget.cpp" line="920"/>
         <source>Limit download rate</source>
         <translation>Ограничење брзине преузимања</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="904"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>Open destination folder</source>
         <translatorcomment>фасцикла-фолдер</translatorcomment>
         <translation>Отвори одредишну фасциклу</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="906"/>
+        <location filename="../transferlistwidget.cpp" line="924"/>
         <source>Buy it</source>
         <translation>Купи</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="908"/>
+        <location filename="../transferlistwidget.cpp" line="926"/>
         <source>Increase priority</source>
         <translation>Повећај приоритет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="910"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Decrease priority</source>
         <translation>Снизи приоритет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="912"/>
+        <location filename="../transferlistwidget.cpp" line="930"/>
         <source>Force recheck</source>
         <translation>Форсирано провери</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="914"/>
+        <location filename="../transferlistwidget.cpp" line="932"/>
         <source>Copy magnet link</source>
         <translation>Копирај магнет линк</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="917"/>
+        <location filename="../transferlistwidget.cpp" line="935"/>
         <source>Super seeding mode</source>
         <translation>Супер seeding (донирајући) мод</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="920"/>
+        <location filename="../transferlistwidget.cpp" line="938"/>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="940"/>
         <source>Download in sequential order</source>
         <translation>Преузимање у сријском редоследу</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="922"/>
+        <location filename="../transferlistwidget.cpp" line="942"/>
         <source>Download first and last piece first</source>
         <translation>Преузимање почетних и крајњих делова</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1022"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1001"/>
+        <location filename="../transferlistwidget.cpp" line="1023"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
@@ -4474,66 +4489,97 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.h" line="161"/>
         <location filename="../torrentadditiondlg.h" line="164"/>
+        <location filename="../torrentadditiondlg.h" line="167"/>
         <source>Unable to decode torrent file:</source>
         <translation>Не могу да декодирам Торент фајл:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="221"/>
+        <location filename="../torrentadditiondlg.h" line="215"/>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentadditiondlg.h" line="235"/>
+        <source>Rename the file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentadditiondlg.h" line="236"/>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentadditiondlg.h" line="260"/>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentadditiondlg.h" line="261"/>
+        <location filename="../torrentadditiondlg.h" line="293"/>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentadditiondlg.h" line="292"/>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentadditiondlg.h" line="330"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 остало након преузетог Торента)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="224"/>
+        <location filename="../torrentadditiondlg.h" line="333"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 више је потребно ради преузимања)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="237"/>
-        <location filename="../torrentadditiondlg.h" line="239"/>
+        <location filename="../torrentadditiondlg.h" line="346"/>
+        <location filename="../torrentadditiondlg.h" line="348"/>
         <source>Choose save path</source>
         <translation>Изабери путању чувања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="262"/>
+        <location filename="../torrentadditiondlg.h" line="371"/>
         <source>Empty save path</source>
         <translation>Празна путања чувања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="262"/>
+        <location filename="../torrentadditiondlg.h" line="371"/>
         <source>Please enter a save path</source>
         <translation>Молим унесите путању чувања фајла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="269"/>
+        <location filename="../torrentadditiondlg.h" line="378"/>
         <source>Save path creation error</source>
         <translation>Грешка креирања путање чувања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="269"/>
+        <location filename="../torrentadditiondlg.h" line="378"/>
         <source>Could not create the save path</source>
         <translation>Не могу да креирам путању за чување фајла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="411"/>
         <source>Seeding mode error</source>
         <translation>Грешка у режиму донирања</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
+        <location filename="../torrentadditiondlg.h" line="411"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Висте изабрали да прескочите проверу датотеке. Међутим, локални фајлови изгледа не постоје у одредишном директоријуму. Молим онемогућите ову функцију или ажурирајте путању фајла.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="293"/>
+        <location filename="../torrentadditiondlg.h" line="418"/>
         <source>Invalid file selection</source>
         <translation>Погрешан избор датотеке</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="293"/>
+        <location filename="../torrentadditiondlg.h" line="418"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Морате изабрати бар једну датотеку за Торенту</translation>
     </message>

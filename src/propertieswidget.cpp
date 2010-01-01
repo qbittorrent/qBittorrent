@@ -486,7 +486,7 @@ void PropertiesWidget::renameSelectedFile() {
   QModelIndex index = selectedIndexes.first();
   // Ask for new name
   bool ok;
-  QString new_name_last = QInputDialog::getText(this, tr("Rename torrent file"),
+  QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
                                                 tr("New name:"), QLineEdit::Normal,
                                                 index.data().toString(), &ok);
   if (ok && !new_name_last.isEmpty()) {

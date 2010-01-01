@@ -2587,10 +2587,6 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rename torrent file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2604,6 +2600,10 @@ QGroupBox {
     </message>
     <message>
         <source>The folder could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3467,6 +3467,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Reset</source>
         <comment>Reset label</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4953,6 +4965,30 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Du valde att hoppa över filkontroll. Dock verkar lokala filerna inte finnas i den aktuella destinationsmappen. Inaktivera denna funktion eller uppdatera sökvägen.</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
