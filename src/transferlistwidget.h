@@ -117,6 +117,7 @@ public slots:
   void applyLabelFilter(QString label);
   void previewFile(QString filePath);
   void removeLabelFromRows(QString label);
+  void renameSelectedTorrent();
 
 signals:
   void currentTorrentChanged(QTorrentHandle &h);

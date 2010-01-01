@@ -257,6 +257,16 @@ public:
     settings.setValue("torrents", all_data);
   }
 
+  static void saveName(QString hash, QString name) {
+    Q_ASSERT(!hash.isEmpty());
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    data["name"] = name;
+    all_data[hash] = data;
+    settings.setValue("torrents", all_data);
+  }
+
   static void savePriority(QTorrentHandle h) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
@@ -289,6 +299,13 @@ public:
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
     return data.value("label", "").toString();
+  }
+
+  static QString getName(QString hash) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    return data.value("name", "").toString();
   }
 
   static int getPriority(QString hash) {

@@ -866,6 +866,24 @@ void TransferListWidget::askNewLabelForSelection() {
   }
 }
 
+void TransferListWidget::renameSelectedTorrent() {
+   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+   if(selectedIndexes.size() != 1) return;
+   if(!selectedIndexes.first().isValid()) return;
+   QString hash = getHashFromRow(mapToSource(selectedIndexes.first()).row());
+   QTorrentHandle h = BTSession->getTorrentHandle(hash);
+   if(!h.is_valid()) return;
+   // Ask for a new Name
+   bool ok;
+   QString name = QInputDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, h.name(), &ok);
+   if (ok && !name.isEmpty()) {
+     // Remember the name
+     TorrentPersistentData::saveName(hash, name);
+     // Visually change the name
+     proxyModel->setData(selectedIndexes.first(), name);
+   }
+}
+
 void TransferListWidget::setSelectionLabel(QString label) {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
@@ -917,6 +935,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
 #endif
+  QAction actionRename(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."), 0);
+  connect(&actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedTorrent()));
   QAction actionSequential_download(tr("Download in sequential order"), 0);
   connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
   QAction actionFirstLastPiece_prio(tr("Download first and last piece first"), 0);
@@ -993,6 +1013,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addSeparator();
   listMenu.addAction(&actionDelete);
   listMenu.addSeparator();
+  if(selectedIndexes.size() == 1)
+    listMenu.addAction(&actionRename);
   // Label Menu
   QStringList customLabels = getCustomLabels();
   QList<QAction*> labelActions;

@@ -36,6 +36,7 @@
 #include <math.h>
 #include "misc.h"
 #include "qtorrenthandle.h"
+#include "torrentpersistentdata.h"
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/torrent_info.hpp>
 
@@ -62,7 +63,11 @@ QString QTorrentHandle::hash() const {
 
 QString QTorrentHandle::name() const {
   Q_ASSERT(h.is_valid());
-  return misc::toQString(h.name());
+  QString name = TorrentPersistentData::getName(hash());
+  if(name.isEmpty()) {
+    name = misc::toQString(h.name());
+  }
+  return name;
 }
 
 QString QTorrentHandle::creation_date() const {
