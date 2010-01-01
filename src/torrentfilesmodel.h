@@ -475,7 +475,7 @@ public:
       current_parent = root_folder;
       QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
       // Iterate of parts of the path to create necessary folders
-      QStringList pathFolders = path.split('/');
+      QStringList pathFolders = path.split(QDir::separator());
       Q_ASSERT(pathFolders.size() >= 2);
       QString fileName = pathFolders.takeLast();
       QString currentFolderName = pathFolders.takeFirst();
