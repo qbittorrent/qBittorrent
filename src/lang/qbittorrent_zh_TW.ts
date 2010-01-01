@@ -2440,6 +2440,10 @@ QGroupBox {
         <source>Reset to latest software version</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>KTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
