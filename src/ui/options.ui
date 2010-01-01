@@ -1722,6 +1722,11 @@ QGroupBox {
                       <string>µTorrent</string>
                      </property>
                     </item>
+                    <item>
+                     <property name="text">
+                      <string>KTorrent</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item>

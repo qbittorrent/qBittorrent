@@ -76,6 +76,7 @@
     <option value="qB">_(qBittorrent)</option>
     <option value="AZ">_(Vuze)</option>
     <option value="UT">_(µTorrent)</option>
+    <option value="KT">_(KTorrent)</option>
   </select>
   &nbsp;&nbsp;
   _(Version:) <input type="text" id="peer_version_text" style="width: 7em;" />
@@ -514,11 +515,19 @@ updateSpoofingSettings = function() {
       $('peer_build_text').set('disabled', 'true');
       $('peer_build_text').set('value', '');
     } else {
-      // qBittorrent
-      $('peer_version_text').set('disabled', 'true');
-      $('peer_version_text').set('value', '');
-      $('peer_build_text').set('disabled', 'true');
-      $('peer_build_text').set('value', '');
+      if(peer_id == "KT") {
+        // KTorrent
+        $('peer_version_text').removeProperty('disabled');
+        $('peer_version_text').set('value', '3.3.2');
+        $('peer_build_text').set('disabled', 'true');
+        $('peer_build_text').set('value', '');
+      } else {
+        // qBittorrent
+        $('peer_version_text').set('disabled', 'true');
+        $('peer_version_text').set('value', '');
+        $('peer_build_text').set('disabled', 'true');
+        $('peer_build_text').set('value', '');
+      }
     }
   }
 }

@@ -62,6 +62,8 @@
 #define MAX_RATIO 100.
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 
+enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
+
 // Main constructor
 Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), geoipDBLoaded(false), exiting(false) {
   resolve_countries = false;
@@ -73,17 +75,19 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
   version << VERSION_MAJOR;
   version << VERSION_MINOR;
   version << VERSION_BUGFIX;
-  version << 0;
+  version << VERSION_TYPE;
   QString peer_id = Preferences::getPeerID();
   if(peer_id.size() != 2) peer_id = "qB";
   if(peer_id != "qB") {
     QStringList peer_ver = Preferences::getClientVersion().split('.');
-    while(peer_ver.size() < 3) {
+    while(peer_ver.size() < 4) {
       peer_ver << "0";
     }
     for(int i=0; i<peer_ver.size(); ++i) {
       QString ver = peer_ver.at(i);
-      if(ver.size() != 1) break;
+      if(ver.size() != 1) {
+        ver.truncate(1);
+      }
       version.replace(i, ver.toInt());
     }
   }
@@ -344,7 +348,11 @@ void Bittorrent::configureSession() {
         version << "0";
       sessionSettings.user_agent = QString("Azureus "+version.join(".")).toStdString();
     } else {
-      sessionSettings.user_agent = "qBittorrent "VERSION;
+      if(peer_id == "KT") {
+        sessionSettings.user_agent = QString("KTorrent/"+Preferences::getClientVersion()).toStdString();
+      } else {
+        sessionSettings.user_agent = "qBittorrent "VERSION;
+      }
     }
   }
   std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;

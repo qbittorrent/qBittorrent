@@ -439,6 +439,10 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
   // Peer ID usurpation
   switch(comboPeerID->currentIndex()) {
+  case 3: // KTorrent
+    Preferences::setPeerID("KT");
+    Preferences::setClientVersion(client_version->text());
+    break;
   case 2: // uTorrent
     Preferences::setPeerID("UT");
     Preferences::setClientVersion(client_version->text());
@@ -725,9 +729,15 @@ void options_imp::loadOptions(){
       enableSpoofingSettings(1);
       client_version->setText(Preferences::getClientVersion());
     } else {
-      // qBittorrent
-      comboPeerID->setCurrentIndex(0);
-      enableSpoofingSettings(0);
+      if(peer_id == "KT") {
+        comboPeerID->setCurrentIndex(3);
+        enableSpoofingSettings(3);
+        client_version->setText(Preferences::getClientVersion());
+      } else {
+        // qBittorrent
+        comboPeerID->setCurrentIndex(0);
+        enableSpoofingSettings(0);
+      }
     }
   }
   comboEncryption->setCurrentIndex(Preferences::getEncryptionSetting());
@@ -819,6 +829,15 @@ void options_imp::enableSpoofingSettings(int index) {
     client_build->setEnabled(true);
     client_build->setText(Preferences::getDefaultClientBuild("UT"));
     break;
+  case 3: // KTorrent
+    resetPeerVersion_button->setEnabled(true);
+    version_label->setEnabled(true);
+    client_version->setEnabled(true);
+    client_version->setText(Preferences::getDefaultClientVersion("KT"));
+    build_label->setEnabled(false);
+    client_build->setEnabled(false);
+    client_build->clear();
+    break;
   }
 }
 
@@ -826,6 +845,9 @@ void options_imp::on_resetPeerVersion_button_clicked() {
   switch(comboPeerID->currentIndex()) {
   case 1: // Vuze
     client_version->setText(Preferences::getDefaultClientVersion("AZ"));
+    break;
+  case 3: // KTorrent
+    client_version->setText(Preferences::getDefaultClientVersion("KT"));
     break;
   case 2: // uTorrent
     client_version->setText(Preferences::getDefaultClientVersion("UT"));

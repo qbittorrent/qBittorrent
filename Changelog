@@ -7,7 +7,7 @@
     - FEATURE: Torrent files/folders can be renamed (torrent addition dialog or files properties)
     - FEATURE: uTorrent compatible tracker list support (use torrentz.com url as a default)
     - FEATURE: Better proxy support and preferences remodeling
-    - FEATURE: qBittorrent can identify itself as uTorrent or Vuze (Any version)
+    - FEATURE: qBittorrent can identify itself as uTorrent, Vuze or KTorrent (Any stable version)
     - FEATURE: Torrents can be renamed in transfer list
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)

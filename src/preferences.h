@@ -462,14 +462,17 @@ public:
     if(peer_id == "UT") {
       // uTorrent
       return "1.8.5";
-    } else {
-      // Azureus
-      if(peer_id == "AZ") {
-        return "4.3.0.4";
-      } else {
-        return QString(VERSION);
-      }
     }
+    // Azureus
+    if(peer_id == "AZ") {
+      return "4.3.0.4";
+    }
+    // KTorrent
+    if(peer_id == "KT") {
+      return "3.3.2";
+    }
+    // qBittorrent
+    return QString(VERSION);
   }
 
   static QString getDefaultClientBuild(QString peer_id) {
