@@ -960,6 +960,14 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       qDebug("addTorrent: Setting download as sequential (from tmp data)");
       h.prioritize_files(TorrentTempData::getFilesPriority(hash));
       h.set_sequential_download(TorrentTempData::isSequential(hash));
+      // Import Files names from torrent addition dialog
+      QStringList files_path = TorrentTempData::getFilesPath(hash);
+      if(files_path.size() == h.num_files()) {
+        for(int i=0; i<h.num_files(); ++i) {
+          QString path = files_path.at(i);
+          h.rename_file(i, path);
+        }
+      }
     }
     QString label = TorrentTempData::getLabel(hash);
     // Save persistent data for new torrent

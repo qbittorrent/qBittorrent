@@ -4,7 +4,7 @@
     - FEATURE: Disk cache size can be set from preferences
     - FEATURE: Peer Exchange (PeX) can be disabled from preferences
     - FEATURE: Append !.qB extension to incomplete files option (libtorrent >= v0.15 only)
-    - FEATURE: Torrent files/folders can be renamed
+    - FEATURE: Torrent files/folders can be renamed (torrent addition dialog or files properties)
     - FEATURE: uTorrent compatible tracker list support (use torrentz.com url as a default)
     - FEATURE: Better proxy support and preferences remodeling
     - FEATURE: qBittorrent can identify itself as uTorrent or Vuze (Any version)

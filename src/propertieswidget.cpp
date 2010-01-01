@@ -467,7 +467,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   QAction *actRename = 0;
   if(selectedRows.size() == 1) {
     actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
-    myFilesLlistMenu.addSeparator();
+    //myFilesLlistMenu.addSeparator();
   } else {
     return;
   }

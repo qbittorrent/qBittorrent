@@ -78,6 +78,15 @@ public:
     settings.setValue("torrents-tmp", all_data);
   }
 
+  static void setFilesPath(QString hash, QStringList path_list) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    data["files_path"] = path_list;
+    all_data[hash] = data;
+    settings.setValue("torrents-tmp", all_data);
+  }
+
   static void setSavePath(QString hash, QString save_path) {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
@@ -144,6 +153,15 @@ public:
       return data["save_path"].toString();
     qDebug("Warning Temp::getSavePath returns null string!");
     return QString::null;
+  }
+
+  static QStringList getFilesPath(QString hash) {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    if(data.contains("files_path"))
+      return data["files_path"].toStringList();
+    return QStringList();
   }
 
   static QString getLabel(QString hash) {
