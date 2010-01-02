@@ -41,7 +41,9 @@
 #include "downloadthread.h"
 #include "filterparserthread.h"
 #include "preferences.h"
-#include "geoip.h"
+#ifndef DISABLE_GUI
+  #include "geoip.h"
+#endif
 #include "torrentpersistentdata.h"
 #include "httpserver.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
@@ -65,8 +67,11 @@ enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
-Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), geoipDBLoaded(false), exiting(false) {
+Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), exiting(false) {
+#ifndef DISABLE_GUI
+  geoipDBLoaded = false;
   resolve_countries = false;
+#endif
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // For backward compatibility
@@ -299,6 +304,7 @@ void Bittorrent::configureSession() {
     // Enabled
     setUploadRateLimit(up_limit*1024);
   }
+#ifndef DISABLE_GUI
   // Resolve countries
   qDebug("Loading country resolution settings");
   bool new_resolv_countries = Preferences::resolvePeerCountries();
@@ -319,6 +325,7 @@ void Bittorrent::configureSession() {
         h.resolve_countries(resolve_countries);
     }
   }
+#endif
   // * UPnP
   if(Preferences::isUPnPEnabled()) {
     enableUPnP(true);
@@ -553,7 +560,7 @@ bool Bittorrent::initWebUi(QString username, QString password, int port) {
     if (success)
       addConsoleMessage(tr("The Web UI is listening on port %1").arg(port));
     else
-      addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), QColor("red"));
+      addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), "red");
   }
   return success; 
 }
@@ -788,8 +795,10 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
   h.set_max_uploads(Preferences::getMaxUploadsPerTorrent());
+#ifndef DISABLE_GUI
   // Resolve countries
   h.resolve_countries(resolve_countries);
+#endif
   // Load filtered files
   if(!resumed) {
     // Sequential download
@@ -955,9 +964,11 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
   h.set_max_uploads(Preferences::getMaxUploadsPerTorrent());
+#ifndef DISABLE_GUI
   // Resolve countries
   qDebug("AddTorrent: Resolve_countries: %d", (int)resolve_countries);
   h.resolve_countries(resolve_countries);
+#endif
   if(!resumed) {
     // Sequential download
     if(TorrentTempData::hasTempData(hash)) {
@@ -1254,11 +1265,16 @@ QStringList Bittorrent::getPeerBanMessages() const {
   return peerBanMessages;
 }
 
+#ifdef DISABLE_GUI
+void Bittorrent::addConsoleMessage(QString msg, QString) {
+#else
 void Bittorrent::addConsoleMessage(QString msg, QColor color) {
   if(consoleMessages.size() > 100) {
     consoleMessages.removeFirst();
   }
   consoleMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + msg + QString::fromUtf8("</i></font>"));
+#endif
+  emit newConsoleMessage(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss") + " - " + msg);
 }
 
 void Bittorrent::addPeerBanMessage(QString ip, bool from_ipfilter) {
@@ -1782,12 +1798,12 @@ void Bittorrent::readAlerts() {
       }
     }
     else if (portmap_error_alert* p = dynamic_cast<portmap_error_alert*>(a.get())) {
-      addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString(p->message().c_str())), QColor("red"));
+      addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString(p->message().c_str())), "red");
       //emit UPnPError(QString(p->msg().c_str()));
     }
     else if (portmap_alert* p = dynamic_cast<portmap_alert*>(a.get())) {
       qDebug("UPnP Success, msg: %s", p->message().c_str());
-      addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString(p->message().c_str())), QColor("blue"));
+      addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString(p->message().c_str())), "blue");
       //emit UPnPSuccess(QString(p->msg().c_str()));
     }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())) {
@@ -1895,7 +1911,11 @@ QString Bittorrent::getSavePath(QString hash) {
 // download the torrent file to a tmp location, then
 // add it to download list
 void Bittorrent::downloadFromUrl(QString url) {
-  addConsoleMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url), QPalette::WindowText);
+  addConsoleMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url)
+#ifndef DISABLE_GUI
+                    , QPalette::WindowText
+#endif
+                    );
   //emit aboutToDownloadFromUrl(url);
   // Launch downloader thread
   downloader->downloadUrl(url);

@@ -34,8 +34,12 @@
 #include <QMap>
 #include <QUrl>
 #include <QStringList>
-#include <QApplication>
-#include <QPalette>
+#ifdef DISABLE_GUI
+  #include <QCoreApplication>
+#else
+  #include <QApplication>
+  #include <QPalette>
+#endif
 #include <QPointer>
 
 #include <libtorrent/session.hpp>
@@ -117,8 +121,10 @@ private:
   QString defaultSavePath;
   QString defaultTempPath;
   // GeoIP
+#ifndef DISABLE_GUI
   bool resolve_countries;
   bool geoipDBLoaded;
+#endif
   // ETA Computation
   QPointer<QTimer> timerETA;
   QHash<QString, QList<int> > ETA_samples;
@@ -219,7 +225,11 @@ public slots:
   void enableNATPMP(bool b);
   void enableLSD(bool b);
   bool enableDHT(bool b);
+#ifdef DISABLE_GUI
+  void addConsoleMessage(QString msg, QString color=QString::null);
+#else
   void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
+#endif
   void addPeerBanMessage(QString msg, bool from_ipfilter);
   void processDownloadedFile(QString, QString);
   void addMagnetSkipAddDlg(QString uri);
@@ -248,6 +258,7 @@ signals:
   void torrentFinishedChecking(QTorrentHandle& h);
   void metadataReceived(QTorrentHandle &h);
   void savePathChanged(QTorrentHandle &h);
+  void newConsoleMessage(QString msg);
 };
 
 #endif

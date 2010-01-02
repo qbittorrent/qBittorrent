@@ -28,25 +28,34 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 #include <QFile>
-#include <QSplashScreen>
+
+#ifndef DISABLE_GUI
+  #include <QApplication>
+  #include <QSplashScreen>
+  #include <QPlastiqueStyle>
+  #include "qgnomelook.h"
+  #include <QMotifStyle>
+  #include <QCDEStyle>
+  #ifdef Q_WS_WIN
+    #include <QWindowsXPStyle>
+  #endif
+  #ifdef Q_WS_MAC
+    #include <QMacStyle>
+  #endif
+  #include "GUI.h"
+  #include "ico.h"
+#else
+  #include <QCoreApplication>
+  #include "headlessloader.h"
+#endif
+
 #include <QSettings>
 #include <QLocalSocket>
 #include <unistd.h>
 #include <sys/types.h>
-#include <QPlastiqueStyle>
-#include "qgnomelook.h"
-#include <QMotifStyle>
-#include <QCDEStyle>
-#ifdef Q_WS_WIN
-#include <QWindowsXPStyle>
-#endif
-#ifdef Q_WS_MAC
-#include <QMacStyle>
-#endif
 #ifndef Q_WS_WIN
 #include <signal.h>
 #include <execinfo.h>
@@ -54,12 +63,14 @@
 #endif
 
 #include <stdlib.h>
-#include "GUI.h"
 #include "misc.h"
 #include "preferences.h"
-#include "ico.h"
 
-QApplication *app;
+#ifdef DISABLE_GUI
+  QCoreApplication *app;
+#else
+  QApplication *app;
+#endif
 
 #ifndef Q_WS_WIN
 void sigtermHandler(int) {
@@ -82,6 +93,7 @@ void sigabrtHandler(int) {
 }
 #endif
 
+#ifndef DISABLE_GUI
 void useStyle(QApplication *app, int style){
   switch(style) {
   case 1:
@@ -114,13 +126,16 @@ void useStyle(QApplication *app, int style){
     }
   }
 }
+#endif
 
 // Main
 int main(int argc, char *argv[]){
   QFile file;
   QString locale;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+#ifndef DISABLE_GUI
   bool no_splash = false;
+#endif
   if(argc > 1){
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
@@ -129,16 +144,21 @@ int main(int argc, char *argv[]){
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--help")){
       std::cout << "Usage: \n";
       std::cout << '\t' << argv[0] << " --version : displays program version\n";
+#ifndef DISABLE_GUI
       std::cout << '\t' << argv[0] << " --no-splash : disable splash screen\n";
+#endif
       std::cout << '\t' << argv[0] << " --help : displays this help message\n";
       std::cout << '\t' << argv[0] << " --webui-port=x : changes the webui port (default: 8080)\n";
       std::cout << '\t' << argv[0] << " [files or urls] : starts program and download given parameters (optional)\n";
       return 0;
     }
+
     for(int i=1; i<argc; ++i) {
+#ifndef DISABLE_GUI
       if(QString::fromUtf8(argv[i]) == QString::fromUtf8("--no-splash")) {
         no_splash = true;
       } else {
+#endif
         if(QString::fromUtf8(argv[i]).startsWith("--webui-port=")) {
           QStringList parts = QString::fromUtf8(argv[i]).split("=");
           if(parts.size() == 2) {
@@ -149,12 +169,17 @@ int main(int argc, char *argv[]){
             }
           }
         }
+#ifndef DISABLE_GUI
       }
+#endif
     }
   }
+
+#ifndef DISABLE_GUI
   if(settings.value(QString::fromUtf8("Preferences/General/NoSplashScreen"), false).toBool()) {
     no_splash = true;
   }
+#endif
   // Set environment variable
   if(putenv((char*)"QBITTORRENT="VERSION)) {
     std::cerr << "Couldn't set environment variable...\n";
@@ -187,7 +212,12 @@ int main(int argc, char *argv[]){
     localSocket.close();
     return 0;
   }
+#ifdef DISABLE_GUI
+  app = new QCoreApplication(argc, argv);
+#else
   app = new QApplication(argc, argv);
+#endif
+#ifndef DISABLE_GUI
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
   QSplashScreen *splash = 0;
@@ -195,6 +225,7 @@ int main(int argc, char *argv[]){
     splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
     splash->show();
   }
+#endif
   // Open options file to read locale
   locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
   QTranslator translator;
@@ -209,24 +240,36 @@ int main(int argc, char *argv[]){
   }
   app->installTranslator(&translator);
   app->setApplicationName(QString::fromUtf8("qBittorrent"));
+#ifndef DISABLE_GUI
   app->setQuitOnLastWindowClosed(false);
+#endif
 #ifndef Q_WS_WIN
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
+  signal(SIGINT, sigtermHandler);
   signal(SIGSEGV, sigsegvHandler);
 #endif
   // Read torrents given on command line
   QStringList torrentCmdLine = app->arguments();
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
+#ifndef DISABLE_GUI
   GUI *window = new GUI(0, torrentCmdLine);
   if(!no_splash) {
     splash->finish(window);
     delete splash;
   }
+#else
+  // Load Headless class
+  HeadlessLoader *loader = new HeadlessLoader(torrentCmdLine);
+#endif
   int ret =  app->exec();
+#ifndef DISABLE_GUI
   delete window;
   qDebug("GUI was deleted!");
+#else
+  delete loader;
+#endif
   qDebug("Deleting app...");
   delete app;
   qDebug("App was deleted! All good.");

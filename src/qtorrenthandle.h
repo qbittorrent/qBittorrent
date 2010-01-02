@@ -121,7 +121,9 @@ class QTorrentHandle {
 #endif
     QString creation_date() const;
     void get_peer_info(std::vector<peer_info>&) const;
+#ifndef DISABLE_GUI
     bool resolve_countries() const;
+#endif
     bool priv() const;
     bool first_last_piece_first() const;
 
@@ -152,7 +154,9 @@ class QTorrentHandle {
  #ifdef LIBTORRENT_0_15
     void super_seeding(bool on) const;
 #endif
+#ifndef DISABLE_GUI
     void resolve_countries(bool r);
+#endif
     void connect_peer(libtorrent::asio::ip::tcp::endpoint const& adr, int source = 0) const;
     void set_peer_upload_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
     void set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;

@@ -34,7 +34,8 @@
 #include <QThread>
 #include <QFile>
 #include <QDataStream>
-#include <QMessageBox>
+#include <QRegExp>
+#include <QStringList>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -103,7 +104,7 @@ class FilterParserThread : public QThread  {
       QFile file(filePath);
       if (file.exists()){
         if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("Couldn't open %1 in read mode.").arg(filePath));
+          std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
           return;
         }
         unsigned int nbLine = 0;
@@ -224,7 +225,7 @@ class FilterParserThread : public QThread  {
       QStringList IP;
       if (file.exists()){
         if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("Couldn't open %1 in read mode.").arg(filePath));
+          std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
           return;
         }
         unsigned int nbLine = 0;
@@ -292,7 +293,7 @@ class FilterParserThread : public QThread  {
       QFile file(filePath);
       if (file.exists()){
         if(!file.open(QIODevice::ReadOnly)){
-          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("Couldn't open %1 in read mode.").arg(filePath));
+          std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
           return;
         }
         QDataStream stream(&file);
@@ -304,7 +305,7 @@ class FilterParserThread : public QThread  {
                 memcmp(buf, "\xFF\xFF\xFF\xFFP2B", 7) ||
                 !stream.readRawData((char*)&version, sizeof(version))
         ) {
-          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+          std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
           return;
         }
     
@@ -318,7 +319,7 @@ class FilterParserThread : public QThread  {
               !stream.readRawData((char*)&start, sizeof(start)) ||
               !stream.readRawData((char*)&end, sizeof(end))
             ) {
-              QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+              std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
               return;
             }
             // Network byte order to Host byte order
@@ -334,7 +335,7 @@ class FilterParserThread : public QThread  {
           qDebug ("p2b version 3");
           unsigned int namecount;
           if(!stream.readRawData((char*)&namecount, sizeof(namecount))) {
-            QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+            std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
             return;
           }
           namecount=ntohl(namecount);
@@ -342,7 +343,7 @@ class FilterParserThread : public QThread  {
           for(unsigned int i=0; i<namecount; i++) {
             string name;
             if(!getlineInStream(stream, name, '\0')) {
-              QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+              std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
               return;
             }
             if(abort) return;
@@ -350,7 +351,7 @@ class FilterParserThread : public QThread  {
           // Reading the ranges
           unsigned int rangecount;
           if(!stream.readRawData((char*)&rangecount, sizeof(rangecount))) {
-            QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+            std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
             return;
           }
           rangecount=ntohl(rangecount);
@@ -363,7 +364,7 @@ class FilterParserThread : public QThread  {
               !stream.readRawData((char*)&start, sizeof(start)) ||
               !stream.readRawData((char*)&end, sizeof(end))
             ) {
-              QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+              std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
               return;
             }
             // Network byte order to Host byte order
@@ -376,7 +377,7 @@ class FilterParserThread : public QThread  {
             if(abort) return;
           }
         } else {
-          QMessageBox::critical(0, tr("I/O Error", "Input/Output Error"), tr("%1 is not a valid PeerGuardian P2B file.").arg(filePath));
+          std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
           return;
         }
         file.close();

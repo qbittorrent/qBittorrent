@@ -417,10 +417,12 @@ bool QTorrentHandle::is_sequential_download() const {
   return h.is_sequential_download();
 }
 
+#ifndef DISABLE_GUI
 bool QTorrentHandle::resolve_countries() const {
   Q_ASSERT(h.is_valid());
   return h.resolve_countries();
 }
+#endif
 
 bool QTorrentHandle::priv() const {
   Q_ASSERT(h.is_valid());
@@ -547,10 +549,12 @@ void QTorrentHandle::super_seeding(bool on) const {
 }
 #endif
 
+#ifndef DISABLE_GUI
 void QTorrentHandle::resolve_countries(bool r) {
   Q_ASSERT(h.is_valid());
   h.resolve_countries(r);
 }
+#endif
 
 void QTorrentHandle::connect_peer(libtorrent::asio::ip::tcp::endpoint const& adr, int source) const {
   Q_ASSERT(h.is_valid());

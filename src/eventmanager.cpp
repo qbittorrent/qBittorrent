@@ -33,7 +33,7 @@
 #include "bittorrent.h"
 #include "misc.h"
 #include "preferences.h"
-#include "proplistdelegate.h"
+//#include "proplistdelegate.h"
 #include "torrentpersistentdata.h"
 #include <QDebug>
 

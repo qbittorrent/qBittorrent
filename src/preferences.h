@@ -676,6 +676,11 @@ public:
     return settings.value("Preferences/WebUI/Enabled", false).toBool();
   }
 
+  static void setWebUiEnabled(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue("Preferences/WebUI/Enabled", enabled);
+  }
+
   static quint16 getWebUiPort() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value("Preferences/WebUI/Port", 8080).toInt();

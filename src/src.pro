@@ -172,28 +172,10 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
     $$LANG_PATH/qbittorrent_sr.ts
 
 # Source code
-HEADERS += GUI.h \
-    misc.h \
-    options_imp.h \
-    about_imp.h \
-    createtorrent_imp.h \
-    searchlistdelegate.h \
-    proplistdelegate.h \
-    previewselect.h \
-    previewlistdelegate.h \
-    trackerlogin.h \
+HEADERS += misc.h \
     downloadthread.h \
-    downloadfromurldlg.h \
-    torrentadditiondlg.h \
     bittorrent.h \
-    searchEngine.h \
-    rss.h \
-    rss_imp.h \
-    speedlimitdlg.h \
     qtorrenthandle.h \
-    engineselectdlg.h \
-    pluginsource.h \
-    qgnomelook.h \
     httpserver.h \
     httpconnection.h \
     httprequestparser.h \
@@ -201,70 +183,102 @@ HEADERS += GUI.h \
     json.h \
     eventmanager.h \
     filterparserthread.h \
-    trackersadditiondlg.h \
-    searchtab.h \
-    console_imp.h \
-    ico.h \
     stacktrace.h \
     torrentpersistentdata.h \
-    feeddownloader.h \
-    feedList.h \
-    supportedengines.h \
-    transferlistwidget.h \
-    transferlistdelegate.h \
-    transferlistfilterswidget.h \
-    propertieswidget.h \
-    torrentfilesmodel.h \
     filesystemwatcher.h \
-    peerlistwidget.h \
-    peerlistdelegate.h \
-    reverseresolution.h \
-    preferences.h \
-    geoip.h \
-    peeraddition.h \
-    deletionconfirmationdlg.h \
-    statusbar.h \
-    trackerlist.h \
-    downloadedpiecesbar.h \
-    pieceavailabilitybar.h
-FORMS += ui/mainwindow.ui \
-    ui/options.ui \
-    ui/about.ui \
-    ui/createtorrent.ui \
-    ui/preview.ui \
-    ui/login.ui \
-    ui/downloadfromurldlg.ui \
-    ui/torrentadditiondlg.ui \
-    ui/search.ui \
-    ui/rss.ui \
-    ui/bandwidth_limit.ui \
-    ui/engineselect.ui \
-    ui/pluginsource.ui \
-    ui/trackersadditiondlg.ui \
-    ui/console.ui \
-    ui/feeddownloader.ui \
-    ui/propertieswidget.ui \
-    ui/peer.ui \
-    ui/confirmdeletiondlg.ui
-SOURCES += GUI.cpp \
-    main.cpp \
-    options_imp.cpp \
-    createtorrent_imp.cpp \
+    preferences.h
+
+contains(DEFINES, DISABLE_GUI) {
+    HEADERS += headlessloader.h
+} else {
+	HEADERS += GUI.h \
+                 feedList.h \
+                 supportedengines.h \
+                 transferlistwidget.h \
+                 transferlistdelegate.h \
+                 transferlistfilterswidget.h \
+                 propertieswidget.h \
+                 torrentfilesmodel.h \
+                 geoip.h \
+                 peeraddition.h \
+                 deletionconfirmationdlg.h \
+                 statusbar.h \
+                 trackerlist.h \
+                 downloadedpiecesbar.h \
+                 peerlistwidget.h \
+                 peerlistdelegate.h \
+                 reverseresolution.h \
+                 feeddownloader.h \
+                 trackersadditiondlg.h \
+                 searchtab.h \
+                 console_imp.h \
+                 ico.h \
+                 engineselectdlg.h \
+                 pluginsource.h \
+                 qgnomelook.h \
+                 searchEngine.h \
+                 rss.h \
+                 rss_imp.h \
+                 speedlimitdlg.h \
+                 options_imp.h \
+                 about_imp.h \
+                 createtorrent_imp.h \
+                 searchlistdelegate.h \
+                 proplistdelegate.h \
+                 previewselect.h \
+                 previewlistdelegate.h \
+                 downloadfromurldlg.h \
+                 torrentadditiondlg.h \
+                 trackerlogin.h \
+                 pieceavailabilitybar.h
+}
+
+!contains(DEFINES, DISABLE_GUI) {
+        message(adding forms)
+	FORMS += ui/mainwindow.ui \
+	    ui/options.ui \
+	    ui/about.ui \
+	    ui/createtorrent.ui \
+	    ui/preview.ui \
+	    ui/login.ui \
+	    ui/downloadfromurldlg.ui \
+	    ui/torrentadditiondlg.ui \
+	    ui/search.ui \
+	    ui/rss.ui \
+	    ui/bandwidth_limit.ui \
+	    ui/engineselect.ui \
+	    ui/pluginsource.ui \
+	    ui/trackersadditiondlg.ui \
+	    ui/console.ui \
+	    ui/feeddownloader.ui \
+	    ui/propertieswidget.ui \
+	    ui/peer.ui \
+	    ui/confirmdeletiondlg.ui
+}
+
+SOURCES += main.cpp \ 
     bittorrent.cpp \
-    searchengine.cpp \
-    rss_imp.cpp \
     qtorrenthandle.cpp \
-    engineselectdlg.cpp \
     downloadthread.cpp \
     httpserver.cpp \
     httpconnection.cpp \
     httprequestparser.cpp \
     httpresponsegenerator.cpp \
-    eventmanager.cpp \
-    searchtab.cpp \
-    ico.cpp \
-    rss.cpp \
-    transferlistwidget.cpp \
-    propertieswidget.cpp \
-    peerlistwidget.cpp
+    eventmanager.cpp
+
+!contains(DEFINES, DISABLE_GUI) {
+	SOURCES += GUI.cpp \
+                   options_imp.cpp \
+                   createtorrent_imp.cpp \
+                   searchengine.cpp \
+                   rss_imp.cpp \
+                   engineselectdlg.cpp \
+                   searchtab.cpp \
+                   ico.cpp \
+		   rss.cpp \
+                   transferlistwidget.cpp \
+                   propertieswidget.cpp \
+                   peerlistwidget.cpp
+}
+
 DESTDIR = .

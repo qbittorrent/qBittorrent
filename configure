@@ -18,6 +18,8 @@ Main options:
   --help              This help text.
 
 Dependency options:
+  --disable-gui                      Disable qBittorrent Graphical user
+                                    interface for headless running
   --with-libboost-inc=[path]         Path to libboost include files
   --disable-libnotify               Disable use of libnotify
   --disable-geoip-database          Disable use of geoip-database
@@ -140,6 +142,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--disable-gui)
+			QC_DISABLE_GUI="Y"
+			shift
+			;;
+
 		--with-libboost-inc=*)
 			QC_WITH_LIBBOOST_INC=$optarg
 			shift
@@ -181,6 +188,7 @@ echo PREFIX=$PREFIX
 echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
+echo QC_DISABLE_GUI=$QC_DISABLE_GUI
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_DISABLE_libnotify=$QC_DISABLE_libnotify
 echo QC_DISABLE_geoip_database=$QC_DISABLE_geoip_database
@@ -290,6 +298,7 @@ cat >$1/modules.cpp <<EOT
 /*
 -----BEGIN QCMOD-----
 name: Qt >= 4.4
+arg: disable-gui, Disable qBittorrent Graphical user interface for headless running
 -----END QCMOD-----
 */
 class qc_qt4 : public ConfObj
@@ -300,6 +309,9 @@ public:
 	QString shortname() const { return "Qt 4.4"; }
 	bool exec()
 	{
+		if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+			conf->addDefine("DISABLE_GUI");
+		}	
 		if(QT_VERSION >= 0x040500) {
                         conf->addDefine("QT_4_5");
                 }
@@ -410,6 +422,10 @@ public:
 	QString name() const { return "libnotify >= 0.4.2 (optional)"; }
 	QString shortname() const { return "libnotify"; }
 	bool exec(){
+		if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+			printf("\nNot Required");
+			return true;
+		}
 		QStringList incs;
 		QString req_ver = "0.4.2";
 		QString version, libs, other;
@@ -453,6 +469,10 @@ public:
 	QString name() const { return "GeoIP Database (optional)"; }
 	QString shortname() const { return "GeoIP Database"; }
 	bool exec() {
+	if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+		printf("\nNot Required");
+		return true;
+	}
 #ifdef Q_WS_X11
 		if(!conf->getenv("QC_WITH_GEOIP_DATABASE_EMBEDDED").isEmpty()) {
 #endif
@@ -1431,6 +1451,7 @@ export PREFIX
 export BINDIR
 export DATADIR
 export EX_QTDIR
+export QC_DISABLE_GUI
 export QC_WITH_LIBBOOST_INC
 export QC_DISABLE_libnotify
 export QC_DISABLE_geoip_database
