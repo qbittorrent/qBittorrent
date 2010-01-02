@@ -1588,15 +1588,15 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation>Błąd We/Wy</translation>
+        <translation type="obsolete">Błąd We/Wy</translation>
     </message>
     <message>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation>Nie można otworzyć %1 w trybie odczytu.</translation>
+        <translation type="obsolete">Nie można otworzyć %1 w trybie odczytu.</translation>
     </message>
     <message>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
-        <translation>%1 nie jest poprawnym plikiem PeerGuardian.</translation>
+        <translation type="obsolete">%1 nie jest poprawnym plikiem PeerGuardian.</translation>
     </message>
 </context>
 <context>
@@ -2571,6 +2571,29 @@ Czy napewno zamknąć qBittorrent?</translation>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Pobieranie: %2/s, Wysyłanie: %3/s)</translation>
+    </message>
+</context>
+<context>
+    <name>HeadlessLoader</name>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI administrator user name is: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI administrator password is still the default one: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is a security risk, please consider changing your password from program preferences.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4837,6 +4860,33 @@ Zmiany:
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation type="obsolete">Proszę o kontakt, jeżeli chcesz pomóc w tłumaczeniu qBittorrent.</translation>
+    </message>
+</context>
+<context>
+    <name>UsageDisplay</name>
+    <message>
+        <source>Usage:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --version : displays program version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --no-splash : disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --help : displays this help message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --webui-port=x : changes the webui port (current: %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> [files or urls] : downloads the torrents passed by the user (optional)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

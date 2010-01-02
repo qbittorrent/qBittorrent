@@ -72,6 +72,24 @@ QCoreApplication *app;
 QApplication *app;
 #endif
 
+class UsageDisplay: public QObject {
+    Q_OBJECT
+
+public:
+  static void displayUsage(char* prg_name) {
+    std::cout << tr("Usage:").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << tr(" --version : displays program version").toLocal8Bit().data() << std::endl;
+#ifndef DISABLE_GUI
+    std::cout << '\t' << prg_name << tr(" --no-splash : disable splash screen").toLocal8Bit().data() << std::endl;
+#endif
+    std::cout << '\t' << prg_name << tr(" --help : displays this help message").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << tr(" --webui-port=x : changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << tr(" [files or urls] : downloads the torrents passed by the user (optional)").toLocal8Bit().data() << std::endl;
+  }
+};
+
+#include "main.moc"
+
 #ifndef Q_WS_WIN
 void sigintHandler(int) {
   qDebug("Catching SIGINT, exiting cleanly");
@@ -147,14 +165,7 @@ int main(int argc, char *argv[]){
       return 0;
     }
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--help")){
-      std::cout << "Usage: \n";
-      std::cout << '\t' << argv[0] << " --version : displays program version\n";
-#ifndef DISABLE_GUI
-      std::cout << '\t' << argv[0] << " --no-splash : disable splash screen\n";
-#endif
-      std::cout << '\t' << argv[0] << " --help : displays this help message\n";
-      std::cout << '\t' << argv[0] << " --webui-port=x : changes the webui port (default: 8080)\n";
-      std::cout << '\t' << argv[0] << " [files or urls] : starts program and download given parameters (optional)\n";
+      UsageDisplay::displayUsage(argv[0]);
       return 0;
     }
 

@@ -1649,15 +1649,15 @@ wait...</comment>
     <message>
         <source>I/O Error</source>
         <comment>Input/Output Error</comment>
-        <translation>输入/输出错误</translation>
+        <translation type="obsolete">输入/输出错误</translation>
     </message>
     <message>
         <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation>无法在读状态下打开%1.</translation>
+        <translation type="obsolete">无法在读状态下打开%1.</translation>
     </message>
     <message>
         <source>%1 is not a valid PeerGuardian P2B file.</source>
-        <translation>%1不是有效的 PeerGuardian P2B 文件.</translation>
+        <translation type="obsolete">%1不是有效的 PeerGuardian P2B 文件.</translation>
     </message>
 </context>
 <context>
@@ -2676,6 +2676,29 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下载: %2/s, 上传: %3/s)</translation>
+    </message>
+</context>
+<context>
+    <name>HeadlessLoader</name>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI administrator user name is: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI administrator password is still the default one: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is a security risk, please consider changing your password from program preferences.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4946,6 +4969,33 @@ Fernandez (developer@jefferyfernandez.id.au), RPM packager,
         <source>Please contact me if you would like to translate qBittorrent 
 into your own language.</source>
         <translation type="obsolete">如果你想为qBittorrent提供翻译请与我联系.</translation>
+    </message>
+</context>
+<context>
+    <name>UsageDisplay</name>
+    <message>
+        <source>Usage:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --version : displays program version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --no-splash : disable splash screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --help : displays this help message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --webui-port=x : changes the webui port (current: %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> [files or urls] : downloads the torrents passed by the user (optional)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

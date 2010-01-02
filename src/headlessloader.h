@@ -71,12 +71,12 @@ class HeadlessLoader: QObject {
       }
       connect(localServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
       // Display some information to the user
-      std::cout << std::endl << "******** " << tr("Information").toStdString() << " ********" << std::endl;
-      std::cout << tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(Preferences::getWebUiPort())).toStdString() << std::endl;
-      std::cout << tr("The Web UI administrator user name is: %1").arg(Preferences::getWebUiUsername()).toStdString() << std::endl;
+      std::cout << std::endl << "******** " << tr("Information").toLocal8Bit().data() << " ********" << std::endl;
+      std::cout << tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
+      std::cout << tr("The Web UI administrator user name is: %1").arg(Preferences::getWebUiUsername()).toLocal8Bit().data() << std::endl;
       if(Preferences::getWebUiPassword() == "f6fdffe48c908deb0f4c3bd36c032e72") {
-        std::cout << tr("The Web UI administrator password is still the default one: %1").arg("adminadmin").toStdString() << std::endl;
-        std::cout << tr("This is a security risk, please consider changing your password from program preferences").toStdString() << std::endl;
+        std::cout << tr("The Web UI administrator password is still the default one: %1").arg("adminadmin").toLocal8Bit().data() << std::endl;
+        std::cout << tr("This is a security risk, please consider changing your password from program preferences.").toLocal8Bit().data() << std::endl;
       }
     }
 
