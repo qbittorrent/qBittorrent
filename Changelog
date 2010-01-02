@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
+    - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)
     - FEATURE: Torrents can be labeled/categorized
     - FEATURE: Labeled torrent can be downloaded corresponding subfolders
     - FEATURE: Disk cache size can be set from preferences
