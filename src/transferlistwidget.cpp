@@ -899,9 +899,10 @@ void TransferListWidget::setSelectionLabel(QString label) {
 
 void TransferListWidget::removeLabelFromRows(QString label) {
   for(int i=0; i<listModel->rowCount(); ++i) {
-    if(label == listModel->data(listModel->index(i, TR_LABEL), Qt::DisplayRole))
+    if(listModel->data(listModel->index(i, TR_LABEL)) == label) {
       listModel->setData(listModel->index(i, TR_LABEL), "", Qt::DisplayRole);
       emit torrentChangedLabel(label, "");
+    }
   }
 }
 

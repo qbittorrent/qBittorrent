@@ -278,11 +278,13 @@ protected slots:
     Q_ASSERT(row > 1);
     QString label = customLabels.takeAt(row - 2);
     labelCounters.removeAt(row-2);
-    labelFilters->removeItemWidget(labelFilters->selectedItems().first());
     transferList->removeLabelFromRows(label);
     // Select first label
+    labelFilters->setCurrentItem(labelFilters->item(0));
     labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
     applyLabelFilter(0);
+    // Un display filter
+    delete labelFilters->takeItem(row);
   }
 
   void applyLabelFilter(int row) {
@@ -302,10 +304,12 @@ protected slots:
     qDebug("Torrent label changed from %s to %s", old_label.toLocal8Bit().data(), new_label.toLocal8Bit().data());
     if(!old_label.isEmpty()) {
       int i = customLabels.indexOf(old_label);
-      int new_count = labelCounters[i]-1;
-      Q_ASSERT(new_count >= 0);
-      labelCounters.replace(i, new_count);
-      labelFilters->item(i+2)->setText(old_label + " ("+ QString::number(new_count) +")");
+      if(i >= 0) {
+        int new_count = labelCounters[i]-1;
+        Q_ASSERT(new_count >= 0);
+        labelCounters.replace(i, new_count);
+        labelFilters->item(i+2)->setText(old_label + " ("+ QString::number(new_count) +")");
+      }
       --nb_labeled;
     }
     if(!new_label.isEmpty()) {

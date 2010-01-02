@@ -68,7 +68,7 @@ public:
     foreach(const QString& token, match_tokens) {
       if(token.isEmpty() || token == "")
         continue;
-      qDebug("Token: %s", token.toLocal8Bit().data());
+      //qDebug("Token: %s", token.toLocal8Bit().data());
       QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
       //reg.setMinimal(false);
       if(reg.indexIn(s) < 0) return false;
