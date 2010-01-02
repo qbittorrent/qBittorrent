@@ -35,10 +35,10 @@
 #include <QUrl>
 #include <QStringList>
 #ifdef DISABLE_GUI
-  #include <QCoreApplication>
+#include <QCoreApplication>
 #else
-  #include <QApplication>
-  #include <QPalette>
+#include <QApplication>
+#include <QPalette>
 #endif
 #include <QPointer>
 

@@ -33,23 +33,23 @@
 #include <QFile>
 
 #ifndef DISABLE_GUI
-  #include <QApplication>
-  #include <QSplashScreen>
-  #include <QPlastiqueStyle>
-  #include "qgnomelook.h"
-  #include <QMotifStyle>
-  #include <QCDEStyle>
-  #ifdef Q_WS_WIN
-    #include <QWindowsXPStyle>
-  #endif
-  #ifdef Q_WS_MAC
-    #include <QMacStyle>
-  #endif
-  #include "GUI.h"
-  #include "ico.h"
+#include <QApplication>
+#include <QSplashScreen>
+#include <QPlastiqueStyle>
+#include "qgnomelook.h"
+#include <QMotifStyle>
+#include <QCDEStyle>
+#ifdef Q_WS_WIN
+#include <QWindowsXPStyle>
+#endif
+#ifdef Q_WS_MAC
+#include <QMacStyle>
+#endif
+#include "GUI.h"
+#include "ico.h"
 #else
-  #include <QCoreApplication>
-  #include "headlessloader.h"
+#include <QCoreApplication>
+#include "headlessloader.h"
 #endif
 
 #include <QSettings>
@@ -67,12 +67,17 @@
 #include "preferences.h"
 
 #ifdef DISABLE_GUI
-  QCoreApplication *app;
+QCoreApplication *app;
 #else
-  QApplication *app;
+QApplication *app;
 #endif
 
 #ifndef Q_WS_WIN
+void sigintHandler(int) {
+  qDebug("Catching SIGINT, exiting cleanly");
+  app->exit();
+}
+
 void sigtermHandler(int) {
   qDebug("Catching SIGTERM, exiting cleanly");
   app->exit();
@@ -246,7 +251,7 @@ int main(int argc, char *argv[]){
 #ifndef Q_WS_WIN
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
-  signal(SIGINT, sigtermHandler);
+  signal(SIGINT, sigintHandler);
   signal(SIGSEGV, sigsegvHandler);
 #endif
   // Read torrents given on command line
@@ -264,6 +269,13 @@ int main(int argc, char *argv[]){
   HeadlessLoader *loader = new HeadlessLoader(torrentCmdLine);
 #endif
   int ret =  app->exec();
+
+#ifndef Q_WS_WIN
+  // Application has exited, stop catching SIGINT and SIGTERM
+  signal(SIGINT, 0);
+  signal(SIGTERM, 0);
+#endif
+
 #ifndef DISABLE_GUI
   delete window;
   qDebug("GUI was deleted!");

@@ -47,9 +47,9 @@
 #include <boost/date_time/posix_time/conversion.hpp>
 
 #ifdef DISABLE_GUI
-  #include <QCoreApplication>
+#include <QCoreApplication>
 #else
-  #include <QApplication>
+#include <QApplication>
 #endif
 
 #ifdef Q_WS_WIN
@@ -183,68 +183,68 @@ public:
   }
 
 #ifdef Q_WS_MAC
-static QString getFullPath(const FSRef &ref)
-{
+  static QString getFullPath(const FSRef &ref)
+  {
     QByteArray ba(2048, 0);
     if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-        return QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
+      return QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
     return QString();
-}
+  }
 #endif
 
-static QString QDesktopServicesDataLocation() {
+  static QString QDesktopServicesDataLocation() {
 #ifdef Q_WS_WIN
 #if defined Q_WS_WINCE
-        if (SHGetSpecialFolderPath(0, path, CSIDL_APPDATA, FALSE))
+    if (SHGetSpecialFolderPath(0, path, CSIDL_APPDATA, FALSE))
 #else
-        if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
+      if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
 #endif
-            result = QString::fromWCharArray(path);
-        if (!QCoreApplication::applicationName().isEmpty())
-            result = result + QLatin1String("\\") + qApp->applicationName();
+        result = QString::fromWCharArray(path);
+    if (!QCoreApplication::applicationName().isEmpty())
+      result = result + QLatin1String("\\") + qApp->applicationName();
 #else
 #ifdef Q_WS_MAC
-     // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
-     FSRef ref;
-     OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
-     if (err)
-        return QString();
-     QString path = getFullPath(ref);
-     path += QLatin1Char('/') + qApp->applicationName();
-     return path;
+    // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
+    FSRef ref;
+    OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
+    if (err)
+      return QString();
+    QString path = getFullPath(ref);
+    path += QLatin1Char('/') + qApp->applicationName();
+    return path;
 #else
-        QString xdgDataHome = QLatin1String(qgetenv("XDG_DATA_HOME"));
-        if (xdgDataHome.isEmpty())
-            xdgDataHome = QDir::homePath() + QLatin1String("/.local/share");
-        xdgDataHome += QLatin1String("/data/")
-                    + qApp->applicationName();
-        return xdgDataHome;
+    QString xdgDataHome = QLatin1String(qgetenv("XDG_DATA_HOME"));
+    if (xdgDataHome.isEmpty())
+      xdgDataHome = QDir::homePath() + QLatin1String("/.local/share");
+    xdgDataHome += QLatin1String("/data/")
+                   + qApp->applicationName();
+    return xdgDataHome;
 #endif
 #endif
-}
+  }
 
-static QString QDesktopServicesCacheLocation() {
+  static QString QDesktopServicesCacheLocation() {
 #ifdef Q_WS_WIN
-        return QDesktopServicesDataLocation() + QLatin1String("\\cache");
+    return QDesktopServicesDataLocation() + QLatin1String("\\cache");
 #else
 #ifdef Q_WS_MAC
-     // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
-     FSRef ref;
-     OSErr err = FSFindFolder(kUserDomain, kCachedDataFolderType, false, &ref);
-     if (err)
-        return QString();
-     QString path = getFullPath(ref);
-     path += QLatin1Char('/') + qApp->applicationName();
-     return path;
+    // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
+    FSRef ref;
+    OSErr err = FSFindFolder(kUserDomain, kCachedDataFolderType, false, &ref);
+    if (err)
+      return QString();
+    QString path = getFullPath(ref);
+    path += QLatin1Char('/') + qApp->applicationName();
+    return path;
 #else
-        QString xdgCacheHome = QLatin1String(qgetenv("XDG_CACHE_HOME"));
-        if (xdgCacheHome.isEmpty())
-            xdgCacheHome = QDir::homePath() + QLatin1String("/.cache");
-        xdgCacheHome += QLatin1Char('/') + QCoreApplication::applicationName();
-        return xdgCacheHome;
+    QString xdgCacheHome = QLatin1String(qgetenv("XDG_CACHE_HOME"));
+    if (xdgCacheHome.isEmpty())
+      xdgCacheHome = QDir::homePath() + QLatin1String("/.cache");
+    xdgCacheHome += QLatin1Char('/') + QCoreApplication::applicationName();
+    return xdgCacheHome;
 #endif
 #endif
-}
+  }
 
   static QString searchEngineLocation() {
     QString location = QDir::cleanPath(QDesktopServicesDataLocation()
