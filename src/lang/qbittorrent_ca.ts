@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="es_ES" sourcelanguage="ca_ES">
+<TS version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -2870,17 +2870,17 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="133"/>
         <source>Exit</source>
-        <translation>Salir</translation>
+        <translation>Sortir</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="138"/>
         <source>Preferences</source>
-        <translation>Preferencias</translation>
+        <translation>Preferències</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="143"/>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="148"/>
@@ -2910,17 +2910,17 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="173"/>
         <source>Visit Website</source>
-        <translation>Visite el sitio Web</translation>
+        <translation>Visiti el lloc Web</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="213"/>
         <source>Documentation</source>
-        <translation>Documentación</translation>
+        <translation>Documentació</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="259"/>
         <source>Log Window</source>
-        <translation>Ventana de registro</translation>
+        <translation>Finestra de registre</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -2985,7 +2985,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="178"/>
         <source>Download from URL</source>
-        <translation>Descargar de URL</translation>
+        <translation type="unfinished">Descarregar de URL</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3023,7 +3023,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="188"/>
         <source>Preview file</source>
-        <translation>Previsualizar archivo</translation>
+        <translation>Previsualitzar arxiu</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="193"/>
