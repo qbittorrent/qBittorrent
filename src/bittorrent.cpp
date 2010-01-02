@@ -69,6 +69,10 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
   resolve_countries = false;
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
+  // For backward compatibility
+  // Move .qBittorrent content to XDG folder
+  // TODO: Remove after some releases (introduced in v2.1.0)
+  misc::moveToXDGFolders();
   // Creating Bittorrent session
   // Check if we should spoof utorrent
   QList<int> version;
@@ -656,7 +660,7 @@ void Bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
   else
     s->remove_torrent(h.get_torrent_handle());
   // Remove it from torrent backup directory
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QDir torrentBackup(misc::BTBackupLocation());
   QStringList filters;
   filters << hash+".*";
   QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
@@ -730,15 +734,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
 
   bool fastResume=false;
   Q_ASSERT(magnet_uri.startsWith("magnet:"));
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  // Checking if BT_backup Dir exists
-  // create it if it is not
-  if(! torrentBackup.exists()) {
-    if(! torrentBackup.mkpath(torrentBackup.path())) {
-      std::cerr << "Couldn't create the directory: '" << torrentBackup.path().toLocal8Bit().data() << "'\n";
-      exit(1);
-    }
-  }
+  QDir torrentBackup(misc::BTBackupLocation());
 
   // Check if torrent is already in download list
   if(s->find_torrent(sha1_hash(hash.toLocal8Bit().data())).is_valid()) {
@@ -829,8 +825,8 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
 QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
   QTorrentHandle h;
   bool fastResume=false;
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QString file, dest_file, hash;
+  QDir torrentBackup(misc::BTBackupLocation());
+  QString file, hash;
   boost::intrusive_ptr<torrent_info> t;
 
   // Checking if BT_backup Dir exists
@@ -926,9 +922,9 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   }
 #endif
   // TODO: Remove in v1.6.0: For backward compatibility only
-  if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished")) {
+  if(QFile::exists(misc::BTBackupLocation()+QDir::separator()+hash+".finished")) {
     p.save_path = savePath.toLocal8Bit().data();
-    QFile::remove(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".finished");
+    QFile::remove(misc::BTBackupLocation()+QDir::separator()+hash+".finished");
   }
   p.ti = t;
   // Preallocate all?
@@ -1120,7 +1116,7 @@ void Bittorrent::enableLSD(bool b) {
 }
 
 void Bittorrent::loadSessionState() {
-  boost::filesystem::ifstream ses_state_file((misc::qBittorrentPath()+QString::fromUtf8("ses_state")).toLocal8Bit().data()
+  boost::filesystem::ifstream ses_state_file((misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state")).toLocal8Bit().data()
                                              , std::ios_base::binary);
   ses_state_file.unsetf(std::ios_base::skipws);
   s->load_state(bdecode(
@@ -1131,7 +1127,7 @@ void Bittorrent::loadSessionState() {
 void Bittorrent::saveSessionState() {
   qDebug("Saving session state to disk...");
   entry session_state = s->state();
-  boost::filesystem::ofstream out((misc::qBittorrentPath()+QString::fromUtf8("ses_state")).toLocal8Bit().data()
+  boost::filesystem::ofstream out((misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state")).toLocal8Bit().data()
                                   , std::ios_base::binary);
   out.unsetf(std::ios_base::skipws);
   bencode(std::ostream_iterator<char>(out), session_state);
@@ -1142,7 +1138,7 @@ bool Bittorrent::enableDHT(bool b) {
   if(b) {
     if(!DHTEnabled) {
       entry dht_state;
-      QString dht_state_path = misc::qBittorrentPath()+QString::fromUtf8("dht_state");
+      QString dht_state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
       if(QFile::exists(dht_state_path)) {
         boost::filesystem::ifstream dht_state_file(dht_state_path.toLocal8Bit().data(), std::ios_base::binary);
         dht_state_file.unsetf(std::ios_base::skipws);
@@ -1235,7 +1231,7 @@ void Bittorrent::saveFastResumeData() {
     // Saving fast resume data was successful
     --num_resume_data;
     if (!rd->resume_data) continue;
-    QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+    QDir torrentBackup(misc::BTBackupLocation());
     QTorrentHandle h(rd->handle);
     if(!h.is_valid()) continue;
     // Remove old fastresume file if it exists
@@ -1664,7 +1660,7 @@ void Bittorrent::readAlerts() {
       }
     }
     else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
-      QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+      QDir torrentBackup(misc::BTBackupLocation());
       QTorrentHandle h(p->handle);
       if(h.is_valid()) {
         QString file = h.hash()+".fastresume";
@@ -1959,7 +1955,7 @@ void Bittorrent::saveDHTEntry() {
   if(DHTEnabled) {
     try{
       entry dht_state = s->dht_state();
-      boost::filesystem::ofstream out((misc::qBittorrentPath()+QString::fromUtf8("dht_state")).toLocal8Bit().data(), std::ios_base::binary);
+      boost::filesystem::ofstream out((misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state")).toLocal8Bit().data(), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), dht_state);
       qDebug("DHT entry saved");
@@ -1979,8 +1975,7 @@ void Bittorrent::applyEncryptionSettings(pe_settings se) {
 void Bittorrent::startUpTorrents() {
   qDebug("Resuming unfinished torrents");
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
-  QStringList fileNames;
+  QDir torrentBackup(misc::BTBackupLocation());
   QStringList known_torrents = TorrentPersistentData::knownTorrents();
 
   if(known_torrents.empty() && !settings.value("v1_4_x_torrent_imported", false).toBool()) {
@@ -2041,7 +2036,7 @@ void Bittorrent::startUpTorrents() {
 }
 
 // Import torrents temp data from v1.4.0 or earlier: save_path, filtered pieces
-// TODO: Remove in qBittorrent v1.6.0
+// TODO: Remove in qBittorrent v2.2.0
 void Bittorrent::importOldTempData(QString torrent_path) {
   // Create torrent hash
   boost::intrusive_ptr<torrent_info> t;
@@ -2049,7 +2044,7 @@ void Bittorrent::importOldTempData(QString torrent_path) {
     t = new torrent_info(torrent_path.toLocal8Bit().data());
     QString hash = misc::toQString(t->info_hash());
     // Load save path
-    QFile savepath_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".savepath");
+    QFile savepath_file(misc::BTBackupLocation()+QDir::separator()+hash+".savepath");
     QByteArray line;
     QString savePath;
     if(savepath_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -2061,7 +2056,7 @@ void Bittorrent::importOldTempData(QString torrent_path) {
       TorrentTempData::setSavePath(hash, savePath);
     }
     // Load pieces priority
-    QFile pieces_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".priorities");
+    QFile pieces_file(misc::BTBackupLocation()+QDir::separator()+hash+".priorities");
     if(pieces_file.exists()){
       // Read saved file
       if(pieces_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -2082,7 +2077,7 @@ void Bittorrent::importOldTempData(QString torrent_path) {
       }
     }
     // Load sequential
-    if(QFile::exists(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+hash+".incremental")) {
+    if(QFile::exists(misc::BTBackupLocation()+QDir::separator()+hash+".incremental")) {
       qDebug("Imported torrent was sequential");
       TorrentTempData::setSequential(hash, true);
     }
@@ -2091,10 +2086,10 @@ void Bittorrent::importOldTempData(QString torrent_path) {
 }
 
 // Trackers, web seeds, speed limits
-// TODO: Remove in qBittorrent v1.6.0
+// TODO: Remove in qBittorrent v2.2.0
 void Bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
   // Load trackers
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QDir torrentBackup(misc::BTBackupLocation());
   QFile tracker_file(torrentBackup.path()+QDir::separator()+ h.hash() + ".trackers");
   if(tracker_file.exists()) {
     if(tracker_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -2114,7 +2109,7 @@ void Bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
     }
   }
   // Load Web seeds
-  QFile urlseeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".urlseeds");
+  QFile urlseeds_file(misc::BTBackupLocation()+QDir::separator()+h.hash()+".urlseeds");
   if(urlseeds_file.exists()) {
     if(urlseeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
       QByteArray urlseeds_lines = urlseeds_file.readAll();
@@ -2143,7 +2138,7 @@ void Bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
     }
   }
   // Load speed limits
-  QFile speeds_file(misc::qBittorrentPath()+"BT_backup"+QDir::separator()+h.hash()+".speedLimits");
+  QFile speeds_file(misc::BTBackupLocation()+QDir::separator()+h.hash()+".speedLimits");
   if(speeds_file.exists()) {
     if(speeds_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
       QByteArray speed_limits = speeds_file.readAll();
@@ -2160,12 +2155,12 @@ void Bittorrent::applyFormerAttributeFiles(QTorrentHandle h) {
 }
 
 // Import torrents from v1.4.0 or earlier
-// TODO: Remove in qBittorrent v1.6.0
+// TODO: Remove in qBittorrent v2.2.0
 void Bittorrent::importOldTorrents() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   Q_ASSERT(!settings.value("v1_4_x_torrent_imported", false).toBool());
   // Import old torrent
-  QDir torrentBackup(misc::qBittorrentPath() + "BT_backup");
+  QDir torrentBackup(misc::BTBackupLocation());
   QStringList fileNames;
   QStringList filters;
   filters << "*.torrent";

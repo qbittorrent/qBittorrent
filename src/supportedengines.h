@@ -139,7 +139,7 @@ public slots:
   void update() {
     QProcess nova;
     QStringList params;
-    params << misc::qBittorrentPath()+"search_engine"+QDir::separator()+"nova2.py";
+    params << misc::searchEngineLocation()+QDir::separator()+"nova2.py";
     params << "--capabilities";
     nova.start("python", params, QIODevice::ReadOnly);
     nova.waitForStarted();

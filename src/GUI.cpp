@@ -78,6 +78,8 @@ using namespace libtorrent;
 // Constructor
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false) {
   setupUi(this);
+  qDebug("Data Location: %s", QDesktopServices::storageLocation(QDesktopServices::CacheLocation).toLocal8Bit().data());
+  qDebug("Data Location: %s", QDesktopServices::storageLocation(QDesktopServices::DataLocation).toLocal8Bit().data());
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));

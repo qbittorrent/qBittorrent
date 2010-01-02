@@ -43,6 +43,7 @@
 #include <QThread>
 #include <ctime>
 #include <QDateTime>
+#include <QDesktopServices>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/date_time/posix_time/conversion.hpp>
 
@@ -107,6 +108,91 @@ public:
     return x;
   }
 
+  static void copyDir(QString src_path, QString dst_path) {
+    QDir sourceDir(src_path);
+    if(!sourceDir.exists()) return;
+    // Create destination directory
+    QDir destDir(dst_path);
+    if(!destDir.exists()) {
+      if(!destDir.mkpath(destDir.absolutePath())) return;
+    }
+    // List source directory
+    QFileInfoList content = sourceDir.entryInfoList();
+    foreach(const QFileInfo& child, content) {
+      if(child.fileName()[0] == '.') continue;
+      if(child.isDir()) {
+        copyDir(child.absoluteFilePath(), dst_path+QDir::separator()+QDir(child.absoluteFilePath()).dirName());
+        continue;
+      }
+      QString src_child_path = child.absoluteFilePath();
+      QString dest_child_path = destDir.absoluteFilePath(child.fileName());
+      // Copy the file from src to dest
+      QFile::copy(src_child_path, dest_child_path);
+      // Remove source file
+      QFile::remove(src_child_path);
+    }
+    // Remove source folder
+    QString dir_name = sourceDir.dirName();
+    if(sourceDir.cdUp()) {
+      sourceDir.rmdir(dir_name);
+    }
+  }
+
+  // Introduced in v2.1.0
+  // For backward compatibility
+  // Remove after some releases
+  static void moveToXDGFolders() {
+    QString old_qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();
+    if(QDir(old_qBtPath).exists()) {
+      // Copy BT_backup folder
+      QString old_BTBackupPath = old_qBtPath + "BT_backup";
+      if(QDir(old_BTBackupPath).exists()) {
+        copyDir(old_BTBackupPath, BTBackupLocation());
+      }
+      // Copy search engine folder
+      QString old_searchPath = old_qBtPath + "search_engine";
+      if(QDir(old_searchPath).exists()) {
+        copyDir(old_searchPath, searchEngineLocation());
+      }
+      // Copy *_state files
+      if(QFile::exists(old_qBtPath+"dht_state")) {
+        QFile::copy(old_qBtPath+"dht_state", cacheLocation()+QDir::separator()+"dht_state");
+        QFile::remove(old_qBtPath+"dht_state");
+      }
+      if(QFile::exists(old_qBtPath+"ses_state")) {
+        QFile::copy(old_qBtPath+"ses_state", cacheLocation()+QDir::separator()+"ses_state");
+        QFile::remove(old_qBtPath+"ses_state");
+      }
+      // Remove .qbittorrent folder if empty
+      QDir::home().rmdir(".qbittorrent");
+    }
+  }
+
+  static QString searchEngineLocation() {
+    QString location = QDir::cleanPath(QDesktopServices::storageLocation(QDesktopServices::DataLocation)
+                                       + QDir::separator() + "search_engine");
+    QDir locationDir(location);
+    if(!locationDir.exists())
+      locationDir.mkpath(locationDir.absolutePath());
+    return location;
+  }
+
+  static QString BTBackupLocation() {
+    QString location = QDir::cleanPath(QDesktopServices::storageLocation(QDesktopServices::DataLocation)
+                                       + QDir::separator() + "BT_backup");
+    QDir locationDir(location);
+    if(!locationDir.exists())
+      locationDir.mkpath(locationDir.absolutePath());
+    return location;
+  }
+
+  static QString cacheLocation() {
+    QString location = QDir::cleanPath(QDesktopServices::storageLocation(QDesktopServices::CacheLocation));
+    QDir locationDir(location);
+    if(!locationDir.exists())
+      locationDir.mkpath(locationDir.absolutePath());
+    return location;
+  }
 
   static long long freeDiskSpaceOnPath(QString path) {
     if(path.isEmpty()) return -1;
@@ -210,17 +296,6 @@ public:
     if(extension == "MPC") return true;
     if(extension == "MPP") return true;
     return false;
-  }
-
-  // return qBittorrent config path
-  static QString qBittorrentPath() {
-    QString qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();
-    // Create dir if it does not exist
-    if(!QFile::exists(qBtPath)){
-      QDir dir(qBtPath);
-      dir.mkpath(qBtPath);
-    }
-    return qBtPath;
   }
 
   // Insertion sort, used instead of bubble sort because it is

@@ -170,7 +170,7 @@ void engineSelectDlg::on_actionUninstall_triggered() {
     }else {
       // Proceed with uninstall
       // remove it from hard drive
-      QDir enginesFolder(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines");
+      QDir enginesFolder(misc::searchEngineLocation()+QDir::separator()+"engines");
       QStringList filters;
       filters << id+".*";
       QStringList files = enginesFolder.entryList(filters, QDir::Files, QDir::Unsorted);
@@ -245,7 +245,7 @@ QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id){
 }
 
 bool engineSelectDlg::isUpdateNeeded(QString plugin_name, float new_version) const {
-  float old_version = SearchEngine::getPluginVersion(misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py");
+  float old_version = SearchEngine::getPluginVersion(misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py");
   qDebug("IsUpdate needed? tobeinstalled: %.2f, alreadyinstalled: %.2f", new_version, old_version);
   return (new_version > old_version);
 }
@@ -260,7 +260,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
     return;
   }
   // Process with install
-  QString dest_path = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py";
+  QString dest_path = misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py";
   bool update = false;
   if(QFile::exists(dest_path)) {
     // Backup in case install fails
@@ -324,12 +324,12 @@ void engineSelectDlg::addNewEngine(QString engine_name) {
     setRowColor(pluginsTree->indexOfTopLevelItem(item), "red");
   }
   // Handle icon
-  QString iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+engine->getName()+".png";
+  QString iconPath = misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+engine->getName()+".png";
   if(QFile::exists(iconPath)) {
     // Good, we already have the icon
     item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
   } else {
-    iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+engine->getName()+".ico";
+    iconPath = misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+engine->getName()+".ico";
     if(QFile::exists(iconPath)) { // ICO support
       item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
     } else {
@@ -427,9 +427,9 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
         QFile icon(filePath);
         icon.open(QIODevice::ReadOnly);
         if(ICOHandler::canRead(&icon))
-          iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".ico";
+          iconPath = misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+id+".ico";
         else
-          iconPath = misc::qBittorrentPath()+"search_engine"+QDir::separator()+"engines"+QDir::separator()+id+".png";
+          iconPath = misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+id+".png";
         QFile::copy(filePath, iconPath);
         item->setData(ENGINE_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
       }
