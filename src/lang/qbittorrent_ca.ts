@@ -2177,7 +2177,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="137"/>
         <source>Transfers</source>
-        <translation>Transferidos</translation>
+        <translation>Transferència</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -2273,14 +2273,14 @@ Por favor cierra el otro antes.</translation>
         <location filename="../GUI.cpp" line="796"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Velocitat de Bai: %1 KiB/s</translation>
+        <translation>Vel. de Baixada: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="790"/>
         <location filename="../GUI.cpp" line="799"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Velocitat de Puj: %1 KiB/s</translation>
+        <translation>Vel. de Pujada: %1 KiB/s</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -2993,7 +2993,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="178"/>
         <source>Download from URL</source>
-        <translation type="unfinished">Descarregar de URL</translation>
+        <translation>Descarregar de URL</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3256,7 +3256,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../ui/options.ui" line="116"/>
         <source>Downloads</source>
-        <translation>Baixats</translation>
+        <translation>Descàrregues</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="131"/>
@@ -3673,7 +3673,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1727"/>
         <source>KTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1784"/>
@@ -3933,7 +3933,7 @@ QGroupBox {
         <location filename="../ui/propertieswidget.ui" line="82"/>
         <location filename="../ui/propertieswidget.ui" line="206"/>
         <source>Downloaded:</source>
-        <translation>Baixat:</translation>
+        <translation>Progrés:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="136"/>
@@ -3948,7 +3948,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="196"/>
         <source>Uploaded:</source>
-        <translation>Pujada:</translation>
+        <translation>Pujat:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="216"/>
@@ -3973,7 +3973,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="350"/>
         <source>Connections:</source>
-        <translation>Connexions:</translation>
+        <translation>Nombre Connexions:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="412"/>
@@ -4750,13 +4750,13 @@ Log:
         <location filename="../statusbar.h" line="76"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>B: %1 B/s - T: %2</translation>
+        <translation>Baix: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="80"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>P: %1 B/s - T: %2</translation>
+        <translation>Puj: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="84"/>
@@ -4784,13 +4784,13 @@ Log:
         <location filename="../statusbar.h" line="168"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>B: %1/s - T: %2</translation>
+        <translation>Bai: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="169"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>P: %1/s - T: %2</translation>
+        <translation>Puj: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="174"/>
@@ -5301,7 +5301,7 @@ Log:
         <location filename="../transferlistwidget.cpp" line="1023"/>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation>Nou...</translation>
+        <translation type="unfinished">Nova...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1024"/>

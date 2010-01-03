@@ -2177,7 +2177,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="137"/>
         <source>Transfers</source>
-        <translation>Transferiencia</translation>
+        <translation>Transferencia</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -2273,14 +2273,14 @@ Por favor cierra el otro antes.</translation>
         <location filename="../GUI.cpp" line="796"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Velocidad de Baja: %1 KiB/s</translation>
+        <translation>Vel. de Bajada: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="790"/>
         <location filename="../GUI.cpp" line="799"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Velocidad de Suba: %1 KiB/s</translation>
+        <translation>Vel. de Subida: %1 KiB/s</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -3256,7 +3256,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/options.ui" line="116"/>
         <source>Downloads</source>
-        <translation>Bajados</translation>
+        <translation>Descargas</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="131"/>
@@ -3302,7 +3302,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/options.ui" line="283"/>
         <source>(Requires restart)</source>
-        <translation>(Se necesita reiniciar qBittorrent)</translation>
+        <translation>(Es necesario reiniciar qBittorrent)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="310"/>
@@ -3337,7 +3337,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../ui/options.ui" line="361"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>Confirmar salida si la lista de descarga no está vacía</translation>
+        <translation>Confirmar cerrar qBittorrent, si la lista de descarga no está vacía</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
@@ -3458,7 +3458,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="694"/>
         <source>Append the torrent&apos;s label</source>
-        <translation>Poner etiquetas a los archivos Torrents</translation>
+        <translation>Poner Etiquetas a los archivos Torrents</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="704"/>
@@ -3698,7 +3698,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1727"/>
         <source>KTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1738"/>
@@ -3734,7 +3734,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1962"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>Comunicaciones HTTP (Trackers, Semillas de Web, Motores de búsqueda)</translation>
+        <translation>Comunicaciones HTTP (Trackers, Semillas Web, Motores de búsqueda)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1970"/>
@@ -3810,7 +3810,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2389"/>
         <source>Activate IP Filtering</source>
-        <translation>Activar Filtro de IP</translation>
+        <translation>Activar Filtro IP</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2405"/>
@@ -3973,7 +3973,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="350"/>
         <source>Connections:</source>
-        <translation>Número de Conexiones:</translation>
+        <translation>Número Conexiones:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="412"/>
@@ -4093,7 +4093,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="489"/>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Renombrar archivo</translation>
     </message>
     <message>
         <source>Rename torrent file</source>
@@ -4754,13 +4754,13 @@ Log:
         <location filename="../statusbar.h" line="76"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>Baj: %1 B/s - T: %2</translation>
+        <translation>Baj: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="80"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>Sub: %1 B/s - T: %2</translation>
+        <translation>Sub: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="84"/>
@@ -4788,13 +4788,13 @@ Log:
         <location filename="../statusbar.h" line="168"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Baj: %1/s - T: %2</translation>
+        <translation>Baj: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="169"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Sub: %1/s - T: %2</translation>
+        <translation>Sub: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="174"/>
@@ -5010,7 +5010,7 @@ Log:
         <location filename="../transferlistfilterswidget.h" line="146"/>
         <location filename="../transferlistfilterswidget.h" line="224"/>
         <source>All</source>
-        <translation>Todo</translation>
+        <translation>Todos</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="149"/>
@@ -5022,31 +5022,31 @@ Log:
         <location filename="../transferlistfilterswidget.h" line="152"/>
         <location filename="../transferlistfilterswidget.h" line="226"/>
         <source>Completed</source>
-        <translation>Completado</translation>
+        <translation>Completados</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="155"/>
         <location filename="../transferlistfilterswidget.h" line="227"/>
         <source>Active</source>
-        <translation>Activo</translation>
+        <translation>Activos</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="158"/>
         <location filename="../transferlistfilterswidget.h" line="228"/>
         <source>Inactive</source>
-        <translation>Inactivo</translation>
+        <translation>Inactivos</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="175"/>
         <location filename="../transferlistfilterswidget.h" line="369"/>
         <source>All labels</source>
-        <translation>Todas las etiquetas</translation>
+        <translation>Todas las Etiquetas</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="178"/>
         <location filename="../transferlistfilterswidget.h" line="370"/>
         <source>Unlabeled</source>
-        <translation>Sin etiqueta</translation>
+        <translation>Sin Etiquetar</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="256"/>
@@ -5234,12 +5234,12 @@ Log:
     <message>
         <location filename="../transferlistwidget.cpp" line="878"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Renombrar</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="878"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo nombre:</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="919"/>
@@ -5289,7 +5289,7 @@ Log:
     <message>
         <location filename="../transferlistwidget.cpp" line="939"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Renombrar...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="941"/>
@@ -7450,33 +7450,33 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="215"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Renombrar...</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="235"/>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Renombrar archivo</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="236"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo nombre:</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="260"/>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede cambiar el nombre de archivo</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="261"/>
         <location filename="../torrentadditiondlg.h" line="293"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este nombre ya está en uso. Por favor, use un nombre diferente.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="292"/>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede cambiar el nombre de archivo</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="330"/>
