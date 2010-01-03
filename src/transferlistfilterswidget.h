@@ -332,8 +332,8 @@ protected slots:
   }
 
   void torrentAdded(QModelIndex index) {
+    Q_ASSERT(index.isValid());
     if(!index.isValid()) return;
-    //Q_ASSERT(index.isValid());
     QString label = transferList->getSourceModel()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
     qDebug("New torrent was added with label: %s", label.toLocal8Bit().data());
     if(!label.isEmpty()) {
@@ -357,6 +357,7 @@ protected slots:
   }
 
   void torrentAboutToBeDeleted(QModelIndex index) {
+    if(!index.isValid()) return;
     Q_ASSERT(index.isValid());
     QString label = transferList->model()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
     if(!label.isEmpty()) {
