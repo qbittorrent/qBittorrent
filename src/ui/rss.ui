@@ -25,7 +25,7 @@
         <string>New subscription</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/subscribe.png</normaloff>:/Icons/oxygen/subscribe.png</iconset>
        </property>
        <property name="toolButtonStyle">
@@ -39,7 +39,7 @@
         <string>Mark items read</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/button_ok.png</normaloff>:/Icons/oxygen/button_ok.png</iconset>
        </property>
        <property name="toolButtonStyle">
@@ -62,7 +62,7 @@
         <string>Update all</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
        </property>
        <property name="iconSize">
@@ -144,7 +144,7 @@ p, li { white-space: pre-wrap; }
           </attribute>
           <column>
            <property name="text">
-            <string>Bullet</string>
+            <string notr="true">Bullet</string>
            </property>
           </column>
           <column>
@@ -168,7 +168,7 @@ p, li { white-space: pre-wrap; }
   </layout>
   <action name="actionDelete">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/remove.png</normaloff>:/Icons/oxygen/remove.png</iconset>
    </property>
    <property name="text">
@@ -180,7 +180,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionRename">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/edit_clear.png</normaloff>:/Icons/oxygen/edit_clear.png</iconset>
    </property>
    <property name="text">
@@ -192,7 +192,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionUpdate">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
    </property>
    <property name="text">
@@ -204,7 +204,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionNew_subscription">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/subscribe16.png</normaloff>:/Icons/oxygen/subscribe16.png</iconset>
    </property>
    <property name="text">
@@ -213,7 +213,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionUpdate_all_feeds">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
    </property>
    <property name="text">
@@ -225,7 +225,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionMark_items_read">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/button_ok.png</normaloff>:/Icons/oxygen/button_ok.png</iconset>
    </property>
    <property name="text">
@@ -237,7 +237,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionDownload_torrent">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
    </property>
    <property name="text">
@@ -246,7 +246,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionOpen_news_URL">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/url.png</normaloff>:/Icons/url.png</iconset>
    </property>
    <property name="text">
@@ -255,7 +255,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionCopy_feed_URL">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/edit-copy.png</normaloff>:/Icons/oxygen/edit-copy.png</iconset>
    </property>
    <property name="text">
@@ -264,7 +264,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionRSS_feed_downloader">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
    </property>
    <property name="text">
@@ -273,7 +273,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionNew_folder">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/folder-new.png</normaloff>:/Icons/oxygen/folder-new.png</iconset>
    </property>
    <property name="text">
@@ -282,7 +282,7 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="../icons.qrc"/>
  </resources>
  <connections/>
 </ui>

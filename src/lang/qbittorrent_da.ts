@@ -3337,11 +3337,6 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="147"/>
-        <source>Bullet</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../ui/rss.ui" line="152"/>
         <source>Article title</source>
         <translation>Artiklens titel</translation>

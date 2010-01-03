@@ -3875,10 +3875,6 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Alles markeren als gelezen</translation>
     </message>
     <message>
-        <source>Bullet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Article title</source>
         <translation type="unfinished"></translation>
     </message>

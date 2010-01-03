@@ -2853,7 +2853,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bullet</source>
-        <translation>項目</translation>
+        <translation type="obsolete">項目</translation>
     </message>
     <message>
         <source>Article title</source>

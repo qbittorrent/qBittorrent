@@ -3937,10 +3937,6 @@ p, li { white-space: pre-wrap; }
         <translation>URL канала</translation>
     </message>
     <message>
-        <source>Bullet</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Article title</source>
         <translation>Заголовок статьи</translation>
     </message>

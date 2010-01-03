@@ -3834,7 +3834,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bullet</source>
-        <translation>Odrážka</translation>
+        <translation type="obsolete">Odrážka</translation>
     </message>
     <message>
         <source>Article title</source>

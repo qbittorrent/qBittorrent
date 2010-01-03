@@ -3822,7 +3822,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bullet</source>
-        <translation>Bullet</translation>
+        <translation type="obsolete">Bullet</translation>
     </message>
     <message>
         <source>Article title</source>

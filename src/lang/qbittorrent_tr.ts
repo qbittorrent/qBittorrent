@@ -3915,7 +3915,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bullet</source>
-        <translation>Madde imi</translation>
+        <translation type="obsolete">Madde imi</translation>
     </message>
     <message>
         <source>Article title</source>

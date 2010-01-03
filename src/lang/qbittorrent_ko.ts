@@ -4285,10 +4285,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;토렌트:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(다운로드하려면 더블 클릭하세요)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="147"/>
         <source>Bullet</source>
         <translatorcomment>I don&apos;t know what the &apos;Bullet&apos; means.I guess it&apos;s like &quot;certain point&quot; in article summary.</translatorcomment>
-        <translation type="unfinished">요점</translation>
+        <translation type="obsolete">요점</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="152"/>

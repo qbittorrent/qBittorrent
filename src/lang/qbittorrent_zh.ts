@@ -4053,7 +4053,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Bullet</source>
-        <translation>项目</translation>
+        <translation type="obsolete">项目</translation>
     </message>
     <message>
         <source>Article title</source>

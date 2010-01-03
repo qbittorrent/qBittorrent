@@ -3698,9 +3698,8 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dupla katt a letöltéshez)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="147"/>
         <source>Bullet</source>
-        <translation>Célpont</translation>
+        <translation type="obsolete">Célpont</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="152"/>
