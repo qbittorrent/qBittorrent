@@ -285,6 +285,8 @@ protected slots:
     applyLabelFilter(0);
     // Un display filter
     delete labelFilters->takeItem(row);
+    // Save custom labels to remember it was deleted
+    saveCustomLabels();
   }
 
   void applyLabelFilter(int row) {

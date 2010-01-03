@@ -900,7 +900,9 @@ void TransferListWidget::setSelectionLabel(QString label) {
 void TransferListWidget::removeLabelFromRows(QString label) {
   for(int i=0; i<listModel->rowCount(); ++i) {
     if(listModel->data(listModel->index(i, TR_LABEL)) == label) {
+      QString hash = getHashFromRow(i);
       listModel->setData(listModel->index(i, TR_LABEL), "", Qt::DisplayRole);
+      TorrentPersistentData::saveLabel(hash, "");
       emit torrentChangedLabel(label, "");
     }
   }
