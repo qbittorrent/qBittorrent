@@ -92,17 +92,19 @@ public:
 
 #ifndef Q_WS_WIN
 void sigintHandler(int) {
+  signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
   app->exit();
 }
 
 void sigtermHandler(int) {
+  signal(SIGTERM, 0);
   qDebug("Catching SIGTERM, exiting cleanly");
   app->exit();
 }
 void sigsegvHandler(int) {
   signal(SIGABRT, 0);
-  signal(SIGTERM, 0);
+  signal(SIGSEGV, 0);
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   print_stacktrace();
@@ -111,7 +113,7 @@ void sigsegvHandler(int) {
 }
 void sigabrtHandler(int) {
   signal(SIGABRT, 0);
-  signal(SIGTERM, 0);
+  signal(SIGSEGV, 0);
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   print_stacktrace();
