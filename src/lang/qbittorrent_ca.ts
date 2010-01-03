@@ -195,7 +195,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="370"/>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP d&apos;usuari es %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="387"/>
@@ -2177,7 +2177,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="137"/>
         <source>Transfers</source>
-        <translation>Transferència</translation>
+        <translation>Transferidos</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -2660,27 +2660,27 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../headlessloader.h" line="74"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informació</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="75"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Control qBittorrent, accés a interfície d&apos;usuari Web a http://localhost:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="76"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;usuari de l&apos;administrador Web: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="78"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>La contrasenya de l&apos;administrador d&apos;interfície d&apos;usuari web continua sent per defecto:%1 </translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="79"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Això és un risc de seguretat, si us plau consideri canviar la seva contrasenya de les preferències del programa.</translation>
     </message>
 </context>
 <context>
@@ -3256,7 +3256,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../ui/options.ui" line="116"/>
         <source>Downloads</source>
-        <translation>Descàrregues</translation>
+        <translation>Baixats</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="131"/>
@@ -3379,7 +3379,7 @@ Està segur que vol sortir?</translation>
         <location filename="../ui/options.ui" line="470"/>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Acció a realitzar amb un Doble-click</translation>
+        <translation>Acció a realitzar amb un Doble-click:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="478"/>
@@ -3448,7 +3448,7 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="654"/>
@@ -3471,7 +3471,7 @@ QGroupBox {
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="756"/>
@@ -3933,7 +3933,7 @@ QGroupBox {
         <location filename="../ui/propertieswidget.ui" line="82"/>
         <location filename="../ui/propertieswidget.ui" line="206"/>
         <source>Downloaded:</source>
-        <translation>Progrés:</translation>
+        <translation>Baixat:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="136"/>
@@ -3948,7 +3948,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="196"/>
         <source>Uploaded:</source>
-        <translation>Pujat:</translation>
+        <translation>Pujada:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="216"/>
@@ -3973,7 +3973,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="350"/>
         <source>Connections:</source>
-        <translation>Nombre Connexions:</translation>
+        <translation>Connexions:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="412"/>
@@ -4222,7 +4222,11 @@ QGroupBox {
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click per iniciar la descàrrega)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="152"/>
@@ -4745,13 +4749,13 @@ Log:
         <location filename="../statusbar.h" line="76"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>Baix: %1 B/s - Total: %2</translation>
+        <translation>Baixada: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="80"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>Puj: %1 B/s - Total: %2</translation>
+        <translation>Pujada: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="84"/>
@@ -4779,13 +4783,13 @@ Log:
         <location filename="../statusbar.h" line="168"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Bai: %1/s - Total: %2</translation>
+        <translation>Baixada: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="169"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Puj: %1/s - Total: %2</translation>
+        <translation>Pujada: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="174"/>
@@ -5296,7 +5300,7 @@ Log:
         <location filename="../transferlistwidget.cpp" line="1023"/>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation type="unfinished">Nova...</translation>
+        <translation>Nou...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1024"/>
@@ -5377,32 +5381,32 @@ Log:
     <message>
         <location filename="../main.cpp" line="80"/>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Us:</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="81"/>
         <source> --version : displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation> --versió : mostra la versió del programa</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="83"/>
         <source> --no-splash : disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation> --no-splash : Desactivar pantalla d&apos;inici</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="85"/>
         <source> --help : displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation> --Ajuda : mostra missatge d&apos;ajuda</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="86"/>
         <source> --webui-port=x : changes the webui port (current: %1)</source>
-        <translation type="unfinished"></translation>
+        <translation> --IU Web-port = x: canviar el port d&apos;IU Web (actual:%1)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="87"/>
         <source> [files or urls] : downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation> [arxius o URLs] : la descàrrega de torrents necessita aprovació per l&apos;usuari (opcional) </translation>
     </message>
 </context>
 <context>

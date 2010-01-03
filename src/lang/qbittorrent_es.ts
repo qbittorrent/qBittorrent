@@ -195,7 +195,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="370"/>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP de usuario es %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="387"/>
@@ -1622,7 +1622,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="495"/>
         <source>Overwriting confirmation</source>
-        <translation>confirmar sobrescritura</translation>
+        <translation>Confirmar sobrescritura</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="495"/>
@@ -2177,7 +2177,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="137"/>
         <source>Transfers</source>
-        <translation>Transferencia</translation>
+        <translation>Transferiencia</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -2660,27 +2660,27 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../headlessloader.h" line="74"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Información</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="75"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Control qBittorrent, acceso a interfaz de usuario Web a http://localhost:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="76"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de usuario del administrador Web: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="78"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>La contraseña del administrador de interfaz de usuario web sigue siendo por defecto:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="79"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esto es un riesgo de seguridad, por favor considere cambiar su contraseña de las preferencias del programa.</translation>
     </message>
 </context>
 <context>
@@ -3379,7 +3379,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../ui/options.ui" line="470"/>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Acción a realizar con un Doble-click</translation>
+        <translation>Acción a realizar con un Doble-click:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="478"/>
@@ -3448,7 +3448,7 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="654"/>
@@ -3458,7 +3458,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="694"/>
         <source>Append the torrent&apos;s label</source>
-        <translation>Poner Etiquetas a los archivos Torrents</translation>
+        <translation>Poner etiquetas a los archivos Torrents</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="704"/>
@@ -3471,7 +3471,7 @@ QGroupBox {
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="756"/>
@@ -4226,7 +4226,11 @@ QGroupBox {
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click para iniciar la descarga)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="152"/>
@@ -5005,7 +5009,7 @@ Log:
         <location filename="../transferlistfilterswidget.h" line="146"/>
         <location filename="../transferlistfilterswidget.h" line="224"/>
         <source>All</source>
-        <translation>Todos</translation>
+        <translation>Todo</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="149"/>
@@ -5046,12 +5050,12 @@ Log:
     <message>
         <location filename="../transferlistfilterswidget.h" line="256"/>
         <source>Remove label</source>
-        <translation>Eliminar etiqueta</translation>
+        <translation>Eliminar Etiqueta</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="257"/>
         <source>Add label</source>
-        <translation>Añadir etiqueta</translation>
+        <translation>Añadir Etiqueta</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="267"/>
@@ -5381,32 +5385,32 @@ Log:
     <message>
         <location filename="../main.cpp" line="80"/>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uso:</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="81"/>
         <source> --version : displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation> --versión : muestra la versión del programa</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="83"/>
         <source> --no-splash : disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation> --no-splash : Desactivar pantalla de inicio</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="85"/>
         <source> --help : displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation> --Ayuda : muestra mensaje de ayuda</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="86"/>
         <source> --webui-port=x : changes the webui port (current: %1)</source>
-        <translation type="unfinished"></translation>
+        <translation> --IU Web-puerto = x: cambiar el puerto de IU Web (actual:%1)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="87"/>
         <source> [files or urls] : downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation> [archivos o URLs] : la descarga de torrents necesita aprobación por el usuario (opcional)</translation>
     </message>
 </context>
 <context>
