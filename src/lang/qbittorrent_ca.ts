@@ -5386,27 +5386,27 @@ Log:
     <message>
         <location filename="../main.cpp" line="81"/>
         <source>displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra la versió del programa</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="83"/>
         <source>disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar pantalla d&apos;inici</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="85"/>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra missatge d&apos;ajuda</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="86"/>
         <source>changes the webui port (current: %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Canviar el port d&apos;IU Web (actual:%1)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="87"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>[arxius o URLs] : la descàrrega de torrents necessita aprovació per l&apos;usuari (opcional)</translation>
     </message>
     <message>
         <source> --version : displays program version</source>

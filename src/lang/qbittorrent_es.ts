@@ -5390,27 +5390,27 @@ Log:
     <message>
         <location filename="../main.cpp" line="81"/>
         <source>displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra la versión del programa</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="83"/>
         <source>disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar pantalla de inicio</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="85"/>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra mensaje de ayuda</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="86"/>
         <source>changes the webui port (current: %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar el puerto de IU Web (actual:%1)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="87"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>[archivos o URLs] : la descarga de torrents necesita aprobación por el usuario (opcional)</translation>
     </message>
     <message>
         <source> --version : displays program version</source>
