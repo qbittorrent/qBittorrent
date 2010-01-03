@@ -174,11 +174,6 @@ public:
     QListWidgetItem *noLabel = new QListWidgetItem(labelFilters);
     noLabel->setData(Qt::DisplayRole, tr("Unlabeled") + " (0)");
     noLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
-    foreach(const QString& label, customLabels) {
-      QListWidgetItem *newLabel = new QListWidgetItem(labelFilters);
-      newLabel->setText(label + " (0)");
-      newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
-    }
 
     // Load settings
     loadSettings();
@@ -216,6 +211,11 @@ public:
     customLabels = settings.value("customLabels", QStringList()).toStringList();
     for(int i=0; i<customLabels.size(); ++i) {
       labelCounters << 0;
+    }
+    foreach(const QString& label, customLabels) {
+      QListWidgetItem *newLabel = new QListWidgetItem(labelFilters);
+      newLabel->setText(label + " (0)");
+      newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     }
     labelFilters->setCurrentRow(settings.value("selectedLabelIndex", 0).toInt());
     //labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
@@ -339,8 +339,10 @@ protected slots:
       }
       // Update label counter
       int i = customLabels.indexOf(label);
+      Q_ASSERT(i >= 0);
       int new_count = labelCounters[i]+1;
       labelCounters.replace(i, new_count);
+      Q_ASSERT(labelFilters->item(i+2));
       labelFilters->item(i+2)->setText(label + " ("+ QString::number(new_count) +")");
       ++nb_labeled;
     }
