@@ -769,6 +769,14 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   } else {
     p.save_path = defaultTempPath.toLocal8Bit().data();
   }
+#ifdef LIBTORRENT_0_15
+  // Skip checking and directly start seeding (new in libtorrent v0.15)
+  if(TorrentTempData::isSeedingMode(hash)){
+    p.seed_mode=true;
+  } else {
+    p.seed_mode=false;
+  }
+#endif
   // Preallocate all?
   if(preAllocateAll)
     p.storage_mode = storage_mode_allocate;
@@ -803,17 +811,19 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   if(!resumed) {
     // Sequential download
     if(TorrentTempData::hasTempData(hash)) {
-      qDebug("addMagnetUri: Setting download as sequential (from tmp data)");
+      qDebug("addMagnetURI Setting download as sequential (from tmp data)");
       h.set_sequential_download(TorrentTempData::isSequential(hash));
     }
+    QString label = TorrentTempData::getLabel(hash);
     // Save persistent data for new torrent
-    Q_ASSERT(h.is_valid());
-    qDebug("addMagnetUri: hash: %s", h.hash().toLocal8Bit().data());
-    TorrentPersistentData::saveTorrentPersistentData(h, true);
-    qDebug("Persistent data saved");
+    TorrentPersistentData::saveTorrentPersistentData(h);
+    // Save Label
+    if(!label.isEmpty()) {
+      TorrentPersistentData::saveLabel(hash, label);
+    }
     // Save save_path
     if(!defaultTempPath.isEmpty()) {
-      qDebug("addMagnetUri: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
+      qDebug("addTorrent: Saving save_path in persistent data: %s", savePath.toLocal8Bit().data());
       TorrentPersistentData::saveSavePath(hash, savePath);
     }
   }

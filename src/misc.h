@@ -41,6 +41,7 @@
 #include <QList>
 #include <QPair>
 #include <QThread>
+#include <QUrl>
 #include <ctime>
 #include <QDateTime>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
@@ -433,6 +434,18 @@ public:
       return dir.rmdir(dir_name);
     }
     return false;
+  }
+
+  static QString magnetUriToName(QString magnet_uri) {
+    QString name = "";
+    QRegExp regHex("dn=([^&]+)");
+    int pos = regHex.indexIn(magnet_uri);
+    if(pos > -1) {
+      QString found = regHex.cap(1);
+      // URL decode
+      name = QUrl::fromPercentEncoding(found.toLocal8Bit()).replace("+", " ");
+    }
+    return name;
   }
 
   static QString magnetUriToHash(QString magnet_uri) {

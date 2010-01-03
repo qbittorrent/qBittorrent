@@ -69,6 +69,7 @@ private:
   unsigned int nbFiles;
   boost::intrusive_ptr<torrent_info> t;
   QStringList files_path;
+  bool is_magnet;
 
 public:
   torrentAdditionDialog(QWidget *parent, Bittorrent* _BTSession) : QDialog(parent) {
@@ -148,7 +149,39 @@ public:
     settings.setValue("TorrentAdditionDlg/pos", pos());
   }
 
+  void showLoadMagnetURI(QString magnet_uri) {
+    is_magnet = true;
+    this->from_url = magnet_uri;
+    // Disable useless widgets
+    torrentContentList->setVisible(false);
+    torrentContentLbl->setVisible(false);
+    collapseAllButton->setVisible(false);
+    expandAllButton->setVisible(false);
+    // Get torrent hash
+    hash = misc::magnetUriToHash(magnet_uri);
+    if(hash.isEmpty()) {
+      BTSession->addConsoleMessage(tr("Unable to decode magnet link:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
+      return;
+    }
+    fileName = misc::magnetUriToName(magnet_uri);
+    if(fileName.isEmpty()) fileName = tr("Magnet Link");
+    fileNameLbl->setText(QString::fromUtf8("<center><b>")+fileName+QString::fromUtf8("</b></center>"));
+    // Update display
+    updateDiskSpaceLabels();
+    // Load custom labels
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    settings.beginGroup(QString::fromUtf8("TransferListFilters"));
+    QStringList customLabels = settings.value("customLabels", QStringList()).toStringList();
+    comboLabel->addItem("");
+    foreach(const QString& label, customLabels) {
+      comboLabel->addItem(label);
+    }
+    // Show dialog
+    show();
+  }
+
   void showLoad(QString filePath, QString from_url=QString::null){
+    is_magnet = false;
     if(!QFile::exists(filePath)) {
       close();
       return;
@@ -314,29 +347,31 @@ public slots:
       void updateDiskSpaceLabels() {
         long long available = misc::freeDiskSpaceOnPath(misc::expandPath(savePathTxt->text()));
         lbl_disk_space->setText(misc::friendlyUnit(available));
+        if(!is_magnet) {
+          // Determine torrent size
+          qulonglong torrent_size = 0;
+          unsigned int nbFiles = t->num_files();
+          std::vector<int> priorities = PropListModel->getFilesPriorities(nbFiles);
 
-        // Determine torrent size
-        qulonglong torrent_size = 0;
-        unsigned int nbFiles = t->num_files();
-        std::vector<int> priorities = PropListModel->getFilesPriorities(nbFiles);
-
-        for(unsigned int i=0; i<nbFiles; ++i) {
-          if(priorities[i] > 0)
-            torrent_size += t->file_at(i).size;
-        }
-        lbl_torrent_size->setText(misc::friendlyUnit(torrent_size));
-        // Check if free space is sufficient
-        if(available > 0) {
-          if((unsigned long long)available > torrent_size) {
-            // Space is sufficient
-            label_space_msg->setText(tr("(%1 left after torrent download)", "e.g. (100MiB left after torrent download)").arg(misc::friendlyUnit(available-torrent_size)));
-          } else {
-            // Space is unsufficient
-            label_space_msg->setText("<font color=\"red\">"+tr("(%1 more are required to download)", "e.g. (100MiB more are required to download)").arg(misc::friendlyUnit(torrent_size-available))+"</font>");
+          for(unsigned int i=0; i<nbFiles; ++i) {
+            if(priorities[i] > 0)
+              torrent_size += t->file_at(i).size;
           }
-        } else {
-          // Available disk space is unknown
-          label_space_msg->setText("");
+          lbl_torrent_size->setText(misc::friendlyUnit(torrent_size));
+
+          // Check if free space is sufficient
+          if(available > 0) {
+            if((unsigned long long)available > torrent_size) {
+              // Space is sufficient
+              label_space_msg->setText(tr("(%1 left after torrent download)", "e.g. (100MiB left after torrent download)").arg(misc::friendlyUnit(available-torrent_size)));
+            } else {
+              // Space is unsufficient
+              label_space_msg->setText("<font color=\"red\">"+tr("(%1 more are required to download)", "e.g. (100MiB more are required to download)").arg(misc::friendlyUnit(torrent_size-available))+"</font>");
+            }
+          } else {
+            // Available disk space is unknown
+            label_space_msg->setText("");
+          }
         }
       }
 
@@ -389,25 +424,27 @@ public slots:
         TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
         // Save files path
         // Loads files path in the torrent
-        bool path_changed = false;
-        for(uint i=0; i<nbFiles; ++i) {
+        if(!is_magnet) {
+          bool path_changed = false;
+          for(uint i=0; i<nbFiles; ++i) {
 #ifdef Q_WS_WIN
-          if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseInsensitive) != 0) {
+            if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseInsensitive) != 0) {
 #else
-            if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseSensitive) != 0) {
+              if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseSensitive) != 0) {
 #endif
-              path_changed = true;
-              break;
+                path_changed = true;
+                break;
+              }
             }
-          }
-          if(path_changed) {
-            TorrentTempData::setFilesPath(hash, files_path);
+            if(path_changed) {
+              TorrentTempData::setFilesPath(hash, files_path);
+            }
           }
 #ifdef LIBTORRENT_0_15
           // Skip file checking and directly start seeding
           if(addInSeed->isChecked()) {
             // Check if local file(s) actually exist
-            if(savePath.exists(misc::toQString(t->name()))) {
+            if(is_magnet || savePath.exists(misc::toQString(t->name()))) {
               TorrentTempData::setSeedingMode(hash, true);
             } else {
               QMessageBox::warning(0, tr("Seeding mode error"), tr("You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path."));
@@ -416,14 +453,19 @@ public slots:
           }
 #endif
           // Check if there is at least one selected file
-          if(allFiltered()){
+          if(!is_magnet && allFiltered()){
             QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
             return;
           }
           // save filtered files
-          savePiecesPriorities();
+          if(!is_magnet)
+            savePiecesPriorities();
           // Add to download list
-          QTorrentHandle h = BTSession->addTorrent(filePath, false, from_url);
+          QTorrentHandle h;
+          if(is_magnet)
+            h = BTSession->addMagnetUri(from_url, false);
+          else
+            h = BTSession->addTorrent(filePath, false, from_url);
           if(addInPause->isChecked() && h.is_valid())
             h.pause();
           close();

@@ -651,8 +651,12 @@ void GUI::processParams(const QStringList& params) {
       BTSession->downloadFromUrl(param);
     }else{
       if(param.startsWith("magnet:", Qt::CaseInsensitive)) {
-        // FIXME: Possibily skipped torrent addition dialog
-        BTSession->addMagnetUri(param);
+        if(useTorrentAdditionDialog) {
+          torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+          dialog->showLoadMagnetURI(param);
+        } else {
+          BTSession->addMagnetUri(param);
+        }
       } else {
         if(useTorrentAdditionDialog) {
           torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
@@ -833,9 +837,16 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
  *****************************************************/
 
 void GUI::downloadFromURLList(const QStringList& url_list) {
+  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(const QString url, url_list) {
     if(url.startsWith("magnet:", Qt::CaseInsensitive)) {
-      BTSession->addMagnetUri(url);
+      if(useTorrentAdditionDialog) {
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+        dialog->showLoadMagnetURI(url);
+      } else {
+        BTSession->addMagnetUri(url);
+      }
     } else {
       BTSession->downloadFromUrl(url);
     }
