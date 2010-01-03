@@ -160,6 +160,8 @@ QPoint screenCenter() const{
     // Getting torrent file informations
     try {
       t = new torrent_info(filePath.toLocal8Bit().data());
+      if(!t->is_valid())
+        throw std::exception();
     } catch(std::exception&) {
       qDebug("Caught error loading torrent");
       if(!from_url.isNull()){

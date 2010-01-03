@@ -794,6 +794,8 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   try {
     // Getting torrent file informations
     t = new torrent_info(file.toLocal8Bit().data());
+    if(!t->is_valid())
+      throw std::exception();
   } catch(std::exception&) {
     if(!from_url.isNull()) {
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
