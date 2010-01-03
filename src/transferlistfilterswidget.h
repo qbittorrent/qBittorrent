@@ -40,6 +40,7 @@
 #include <QMenu>
 #include <QInputDialog>
 #include <QDragMoveEvent>
+#include <QStandardItemModel>
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
@@ -178,6 +179,9 @@ public:
     // Load settings
     loadSettings();
 
+    labelFilters->setCurrentRow(0);
+    //labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
+
     // Label menu
     labelFilters->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(labelFilters, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showLabelMenu(QPoint)));
@@ -217,8 +221,7 @@ public:
       newLabel->setText(label + " (0)");
       newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     }
-    labelFilters->setCurrentRow(settings.value("selectedLabelIndex", 0).toInt());
-    //labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
+
   }
 
 protected slots:
@@ -331,7 +334,7 @@ protected slots:
   void torrentAdded(QModelIndex index) {
     if(!index.isValid()) return;
     //Q_ASSERT(index.isValid());
-    QString label = transferList->model()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
+    QString label = transferList->getSourceModel()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
     qDebug("New torrent was added with label: %s", label.toLocal8Bit().data());
     if(!label.isEmpty()) {
       if(!customLabels.contains(label)) {

@@ -192,13 +192,17 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     if(listModel->rowCount() == 1)
       selectionModel()->setCurrentIndex(proxyModel->index(row, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
     // Emit signal
-    emit torrentAdded(mapFromSource(listModel->index(row, 0)));
+    emit torrentAdded(listModel->index(row, 0));
     // Refresh the list
     refreshList();
   } catch(invalid_handle e) {
     // Remove added torrent
     listModel->removeRow(row);
   }
+}
+
+QStandardItemModel* TransferListWidget::getSourceModel() const {
+  return listModel;
 }
 
 void TransferListWidget::setRowColor(int row, QColor color) {

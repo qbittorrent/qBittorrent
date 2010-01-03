@@ -59,6 +59,7 @@ public:
   TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent* BTSession);
   ~TransferListWidget();
   int getNbTorrents() const;
+  QStandardItemModel* getSourceModel() const;
 
 protected:
   int getRowFromHash(QString hash) const;
