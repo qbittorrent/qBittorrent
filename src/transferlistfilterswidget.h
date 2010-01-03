@@ -198,7 +198,7 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     settings.setValue("selectedFilterIndex", QVariant(statusFilters->currentRow()));
-    settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
+    //settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
     settings.setValue("customLabels", customLabels);
   }
 
