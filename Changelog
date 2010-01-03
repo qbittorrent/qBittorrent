@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.6
     - BUGFIX: Fix detection of invalid torrent files
+    - BUGFIX: Stop catching signals once one has been caught to avoid possible infinite loop
 
 * Web Dec 31 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.5
     - BUGFIX: Fix crash with downloaded/availability bars when the torrent has too many pieces
