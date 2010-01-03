@@ -329,6 +329,7 @@ protected slots:
   void torrentAdded(QModelIndex index) {
     Q_ASSERT(index.isValid());
     QString label = transferList->model()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
+    qDebug("New torrent was added with label: %s", label.toLocal8Bit().data());
     if(!label.isEmpty()) {
       if(!customLabels.contains(label)) {
         addLabel(label);

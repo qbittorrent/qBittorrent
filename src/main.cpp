@@ -101,6 +101,8 @@ void sigtermHandler(int) {
   app->exit();
 }
 void sigsegvHandler(int) {
+  signal(SIGABRT, 0);
+  signal(SIGTERM, 0);
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   print_stacktrace();
@@ -108,6 +110,8 @@ void sigsegvHandler(int) {
   std::abort();
 }
 void sigabrtHandler(int) {
+  signal(SIGABRT, 0);
+  signal(SIGTERM, 0);
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   print_stacktrace();

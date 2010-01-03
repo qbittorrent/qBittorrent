@@ -64,6 +64,7 @@ protected:
   int getRowFromHash(QString hash) const;
   QString getHashFromRow(int row) const;
   QModelIndex mapToSource(QModelIndex index) const;
+  QModelIndex mapFromSource(QModelIndex index) const;
   QStringList getCustomLabels() const;
   void saveColWidthList();
   bool loadColWidthList();

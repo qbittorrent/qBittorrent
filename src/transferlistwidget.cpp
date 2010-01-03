@@ -192,7 +192,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     if(listModel->rowCount() == 1)
       selectionModel()->setCurrentIndex(proxyModel->index(row, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
     // Emit signal
-    emit torrentAdded(listModel->index(row, 0));
+    emit torrentAdded(mapFromSource(listModel->index(row, 0)));
     // Refresh the list
     refreshList();
   } catch(invalid_handle e) {
@@ -489,6 +489,11 @@ QString TransferListWidget::getHashFromRow(int row) const {
 QModelIndex TransferListWidget::mapToSource(QModelIndex index) const {
   return labelFilterModel->mapToSource(proxyModel->mapToSource(index));
 }
+
+QModelIndex TransferListWidget::mapFromSource(QModelIndex index) const {
+  return proxyModel->mapFromSource(labelFilterModel->mapFromSource(index));
+}
+
 
 QStringList TransferListWidget::getCustomLabels() const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
