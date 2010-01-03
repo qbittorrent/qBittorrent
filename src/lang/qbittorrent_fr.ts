@@ -5712,28 +5712,48 @@ Changements:
     </message>
     <message>
         <location filename="../main.cpp" line="81"/>
-        <source> --version : displays program version</source>
-        <translation> --version : Affichage la version du programme</translation>
+        <source>displays program version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="83"/>
-        <source> --no-splash : disable splash screen</source>
-        <translation> --no-splash : Désactive l&apos;écran de démarrage</translation>
+        <source>disable splash screen</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="85"/>
-        <source> --help : displays this help message</source>
-        <translation> --help : affiche ce message d&apos;aide</translation>
+        <source>displays this help message</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="86"/>
-        <source> --webui-port=x : changes the webui port (current: %1)</source>
-        <translation> --webui-port=x : change le port de l&apos;interface Web (actuel : %1)</translation>
+        <source>changes the webui port (current: %1)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="87"/>
+        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> --version : displays program version</source>
+        <translation type="obsolete"> --version : Affichage la version du programme</translation>
+    </message>
+    <message>
+        <source> --no-splash : disable splash screen</source>
+        <translation type="obsolete"> --no-splash : Désactive l&apos;écran de démarrage</translation>
+    </message>
+    <message>
+        <source> --help : displays this help message</source>
+        <translation type="obsolete"> --help : affiche ce message d&apos;aide</translation>
+    </message>
+    <message>
+        <source> --webui-port=x : changes the webui port (current: %1)</source>
+        <translation type="obsolete"> --webui-port=x : change le port de l&apos;interface Web (actuel : %1)</translation>
+    </message>
+    <message>
         <source> [files or urls] : downloads the torrents passed by the user (optional)</source>
-        <translation> [Fichiers ou URLs] : télécharge les torrents passés en paramètre (optionnel)</translation>
+        <translation type="obsolete"> [Fichiers ou URLs] : télécharge les torrents passés en paramètre (optionnel)</translation>
     </message>
     <message>
         <source> [files or urls] : starts program and download given parameters (optional)</source>

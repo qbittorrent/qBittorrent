@@ -4978,23 +4978,23 @@ into your own language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> --version : displays program version</source>
+        <source>displays program version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> --no-splash : disable splash screen</source>
+        <source>disable splash screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> --help : displays this help message</source>
+        <source>displays this help message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> --webui-port=x : changes the webui port (current: %1)</source>
+        <source>changes the webui port (current: %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> [files or urls] : downloads the torrents passed by the user (optional)</source>
+        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

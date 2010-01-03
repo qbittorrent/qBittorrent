@@ -78,13 +78,13 @@ class UsageDisplay: public QObject {
 public:
   static void displayUsage(char* prg_name) {
     std::cout << tr("Usage:").toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << tr(" --version : displays program version").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << "--version: " << tr("displays program version").toLocal8Bit().data() << std::endl;
 #ifndef DISABLE_GUI
-    std::cout << '\t' << prg_name << tr(" --no-splash : disable splash screen").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << "--no-splash: " << tr("disable splash screen").toLocal8Bit().data() << std::endl;
 #endif
-    std::cout << '\t' << prg_name << tr(" --help : displays this help message").toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << tr(" --webui-port=x : changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << tr(" [files or urls] : downloads the torrents passed by the user (optional)").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << "--help: " << tr("displays this help message").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << "--webui-port=x: " << tr("changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << tr("[files or urls]: downloads the torrents passed by the user (optional)").toLocal8Bit().data() << std::endl;
   }
 };
 
