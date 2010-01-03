@@ -10,6 +10,7 @@
     - FEATURE: Better proxy support and preferences remodeling
     - FEATURE: qBittorrent can identify itself as uTorrent, Vuze or KTorrent (Any stable version)
     - FEATURE: Torrents can be renamed in transfer list
+    - FEATURE: Display torrent addition dialog for magnet links too
     - BUGFIX: Use XDG folders (.cache, .local) instead of .qbittorrent
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)

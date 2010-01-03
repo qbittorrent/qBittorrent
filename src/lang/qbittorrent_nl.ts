@@ -6761,5 +6761,13 @@ selecteer alstublieft een er van:</translation>
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unable to decode magnet link:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet Link</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

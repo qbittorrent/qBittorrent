@@ -6763,5 +6763,13 @@ Por favor desabilite este recurso ou atualize o caminho de salvamento.</translat
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unable to decode magnet link:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet Link</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
