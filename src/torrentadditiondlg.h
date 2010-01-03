@@ -95,7 +95,7 @@ public:
       addInPause->setEnabled(false);
     }
 #ifndef LIBTORRENT_0_15
-    addInSeed->setEnabled(false);
+    addInSeed->setVisible(false);
 #endif
   }
 
@@ -138,6 +138,7 @@ public:
   }
 
   void saveSettings() {
+    if(is_magnet) return;
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     QVariantList contentColsWidths;
     // -1 because we hid PROGRESS column
@@ -150,11 +151,16 @@ public:
   }
 
   void showLoadMagnetURI(QString magnet_uri) {
+    show();
     is_magnet = true;
     this->from_url = magnet_uri;
+    int hidden_height = 0;
     // Disable useless widgets
+    hidden_height += torrentContentList->height();
     torrentContentList->setVisible(false);
+    hidden_height += torrentContentLbl->height();
     torrentContentLbl->setVisible(false);
+    hidden_height += collapseAllButton->height();
     collapseAllButton->setVisible(false);
     expandAllButton->setVisible(false);
     // Get torrent hash
@@ -177,7 +183,9 @@ public:
       comboLabel->addItem(label);
     }
     // Show dialog
-    show();
+    //show();
+    setMinimumSize(0, 0);
+    resize(width(), height()-hidden_height);
   }
 
   void showLoad(QString filePath, QString from_url=QString::null){
