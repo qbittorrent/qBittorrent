@@ -167,9 +167,6 @@ public:
     connect(transferList, SIGNAL(torrentAboutToBeRemoved(QModelIndex)), this, SLOT(torrentAboutToBeDeleted(QModelIndex)));
     connect(transferList, SIGNAL(torrentChangedLabel(QString,QString)), this, SLOT(torrentChangedLabel(QString, QString)));
 
-    // Load settings
-    loadSettings();
-
     // Add Label filters
     QListWidgetItem *allLabels = new QListWidgetItem(labelFilters);
     allLabels->setData(Qt::DisplayRole, tr("All labels") + " (0)");
@@ -182,8 +179,10 @@ public:
       newLabel->setText(label + " (0)");
       newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     }
-    labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
-    labelFilters->setCurrentItem(labelFilters->item(0));
+
+    // Load settings
+    loadSettings();
+
     // Label menu
     labelFilters->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(labelFilters, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showLabelMenu(QPoint)));
@@ -200,6 +199,7 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     settings.setValue("selectedFilterIndex", QVariant(statusFilters->currentRow()));
+    settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
     settings.setValue("customLabels", customLabels);
   }
 
@@ -217,6 +217,8 @@ public:
     for(int i=0; i<customLabels.size(); ++i) {
       labelCounters << 0;
     }
+    labelFilters->setCurrentRow(settings.value("selectedLabelIndex", 0).toInt());
+    //labelFilters->selectionModel()->select(labelFilters->model()->index(0,0), QItemSelectionModel::Select);
   }
 
 protected slots:
@@ -327,7 +329,8 @@ protected slots:
   }
 
   void torrentAdded(QModelIndex index) {
-    Q_ASSERT(index.isValid());
+    if(!index.isValid()) return;
+    //Q_ASSERT(index.isValid());
     QString label = transferList->model()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
     qDebug("New torrent was added with label: %s", label.toLocal8Bit().data());
     if(!label.isEmpty()) {
