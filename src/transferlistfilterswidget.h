@@ -359,7 +359,7 @@ protected slots:
   void torrentAboutToBeDeleted(QModelIndex index) {
     Q_ASSERT(index.isValid());
     if(!index.isValid()) return;
-    QString label = transferList->model()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
+    QString label = transferList->getSourceModel()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
     if(!label.isEmpty()) {
       // Update label counter
       int i = customLabels.indexOf(label);
