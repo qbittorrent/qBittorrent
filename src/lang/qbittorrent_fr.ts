@@ -5320,64 +5320,64 @@ Changements:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="146"/>
-        <location filename="../transferlistfilterswidget.h" line="224"/>
+        <location filename="../transferlistfilterswidget.h" line="147"/>
+        <location filename="../transferlistfilterswidget.h" line="229"/>
         <source>All</source>
         <translation>Tous</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="149"/>
-        <location filename="../transferlistfilterswidget.h" line="225"/>
+        <location filename="../transferlistfilterswidget.h" line="150"/>
+        <location filename="../transferlistfilterswidget.h" line="230"/>
         <source>Downloading</source>
         <translation>En téléchargement</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="152"/>
-        <location filename="../transferlistfilterswidget.h" line="226"/>
+        <location filename="../transferlistfilterswidget.h" line="153"/>
+        <location filename="../transferlistfilterswidget.h" line="231"/>
         <source>Completed</source>
         <translation>Complet</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="155"/>
-        <location filename="../transferlistfilterswidget.h" line="227"/>
+        <location filename="../transferlistfilterswidget.h" line="156"/>
+        <location filename="../transferlistfilterswidget.h" line="232"/>
         <source>Active</source>
         <translation>Actif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="158"/>
-        <location filename="../transferlistfilterswidget.h" line="228"/>
+        <location filename="../transferlistfilterswidget.h" line="159"/>
+        <location filename="../transferlistfilterswidget.h" line="233"/>
         <source>Inactive</source>
         <translation>Inactif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="175"/>
-        <location filename="../transferlistfilterswidget.h" line="372"/>
+        <location filename="../transferlistfilterswidget.h" line="173"/>
+        <location filename="../transferlistfilterswidget.h" line="381"/>
         <source>All labels</source>
         <translation>Toutes catégories</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="178"/>
-        <location filename="../transferlistfilterswidget.h" line="373"/>
+        <location filename="../transferlistfilterswidget.h" line="176"/>
+        <location filename="../transferlistfilterswidget.h" line="382"/>
         <source>Unlabeled</source>
         <translation>Sans catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="256"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Remove label</source>
         <translation>Supprimer catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="257"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Add label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="267"/>
+        <location filename="../transferlistfilterswidget.h" line="272"/>
         <source>New Label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="267"/>
+        <location filename="../transferlistfilterswidget.h" line="272"/>
         <source>Label:</source>
         <translation>Catégorie :</translation>
     </message>
@@ -5445,27 +5445,27 @@ Changements:
         <translation type="obsolete">&amp;Non</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="803"/>
+        <location filename="../transferlistwidget.cpp" line="807"/>
         <source>Column visibility</source>
         <translation>Visibilité des colonnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="918"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="920"/>
+        <location filename="../transferlistwidget.cpp" line="924"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="922"/>
+        <location filename="../transferlistwidget.cpp" line="926"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="924"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Preview file</source>
         <translation>Prévisualiser fichier</translation>
     </message>
@@ -5525,108 +5525,108 @@ Changements:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1029"/>
+        <location filename="../transferlistwidget.cpp" line="1033"/>
         <source>Label</source>
         <translation>Catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="709"/>
+        <location filename="../transferlistwidget.cpp" line="713"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limitation de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="745"/>
+        <location filename="../transferlistwidget.cpp" line="749"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limitation de la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="867"/>
+        <location filename="../transferlistwidget.cpp" line="871"/>
         <source>New Label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="867"/>
+        <location filename="../transferlistwidget.cpp" line="871"/>
         <source>Label:</source>
         <translation>Catégorie :</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="883"/>
+        <location filename="../transferlistwidget.cpp" line="887"/>
         <source>Rename</source>
         <translation>Renommer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="883"/>
+        <location filename="../transferlistwidget.cpp" line="887"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="930"/>
         <source>Limit upload rate</source>
         <translation>Limiter la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="928"/>
+        <location filename="../transferlistwidget.cpp" line="932"/>
         <source>Limit download rate</source>
         <translation>Limiter la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="930"/>
+        <location filename="../transferlistwidget.cpp" line="934"/>
         <source>Open destination folder</source>
         <translation>Ouvrir le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="932"/>
+        <location filename="../transferlistwidget.cpp" line="936"/>
         <source>Buy it</source>
         <translation>Acheter</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="934"/>
+        <location filename="../transferlistwidget.cpp" line="938"/>
         <source>Increase priority</source>
         <translation>Augmenter la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="936"/>
+        <location filename="../transferlistwidget.cpp" line="940"/>
         <source>Decrease priority</source>
         <translation>Diminuer la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="942"/>
         <source>Force recheck</source>
         <translation>Forcer revérification</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="940"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>Copy magnet link</source>
         <translation>Copier le lien magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="947"/>
         <source>Super seeding mode</source>
         <translation>Mode de super partage</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="946"/>
+        <location filename="../transferlistwidget.cpp" line="950"/>
         <source>Rename...</source>
         <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="948"/>
+        <location filename="../transferlistwidget.cpp" line="952"/>
         <source>Download in sequential order</source>
         <translation>Téléchargement séquentiel</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="950"/>
+        <location filename="../transferlistwidget.cpp" line="954"/>
         <source>Download first and last piece first</source>
         <translation>Téléchargement prioritaire du début et de la fin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1030"/>
+        <location filename="../transferlistwidget.cpp" line="1034"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nouvelle catégorie...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1031"/>
+        <location filename="../transferlistwidget.cpp" line="1035"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Réinitialiser catégorie</translation>

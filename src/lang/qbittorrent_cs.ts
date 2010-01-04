@@ -3931,64 +3931,64 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="146"/>
-        <location filename="../transferlistfilterswidget.h" line="224"/>
+        <location filename="../transferlistfilterswidget.h" line="147"/>
+        <location filename="../transferlistfilterswidget.h" line="229"/>
         <source>All</source>
         <translation>Vše</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="149"/>
-        <location filename="../transferlistfilterswidget.h" line="225"/>
+        <location filename="../transferlistfilterswidget.h" line="150"/>
+        <location filename="../transferlistfilterswidget.h" line="230"/>
         <source>Downloading</source>
         <translation>Stahováno</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="152"/>
-        <location filename="../transferlistfilterswidget.h" line="226"/>
+        <location filename="../transferlistfilterswidget.h" line="153"/>
+        <location filename="../transferlistfilterswidget.h" line="231"/>
         <source>Completed</source>
         <translation>Dokončeno</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="155"/>
-        <location filename="../transferlistfilterswidget.h" line="227"/>
+        <location filename="../transferlistfilterswidget.h" line="156"/>
+        <location filename="../transferlistfilterswidget.h" line="232"/>
         <source>Active</source>
         <translation>Aktivní</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="158"/>
-        <location filename="../transferlistfilterswidget.h" line="228"/>
+        <location filename="../transferlistfilterswidget.h" line="159"/>
+        <location filename="../transferlistfilterswidget.h" line="233"/>
         <source>Inactive</source>
         <translation>Neaktivní</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="175"/>
-        <location filename="../transferlistfilterswidget.h" line="372"/>
+        <location filename="../transferlistfilterswidget.h" line="173"/>
+        <location filename="../transferlistfilterswidget.h" line="381"/>
         <source>All labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="178"/>
-        <location filename="../transferlistfilterswidget.h" line="373"/>
+        <location filename="../transferlistfilterswidget.h" line="176"/>
+        <location filename="../transferlistfilterswidget.h" line="382"/>
         <source>Unlabeled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="256"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Remove label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="257"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Add label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="267"/>
+        <location filename="../transferlistfilterswidget.h" line="272"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="267"/>
+        <location filename="../transferlistfilterswidget.h" line="272"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4056,27 +4056,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="803"/>
+        <location filename="../transferlistwidget.cpp" line="807"/>
         <source>Column visibility</source>
         <translation>Zobrazení sloupců</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="918"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>Start</source>
         <translation>Spustit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="920"/>
+        <location filename="../transferlistwidget.cpp" line="924"/>
         <source>Pause</source>
         <translation>Pozastavit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="922"/>
+        <location filename="../transferlistwidget.cpp" line="926"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="924"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Preview file</source>
         <translation>Náhled souboru</translation>
     </message>
@@ -4136,108 +4136,108 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1029"/>
+        <location filename="../transferlistwidget.cpp" line="1033"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="709"/>
+        <location filename="../transferlistwidget.cpp" line="713"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limit rychlosti stahování torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="745"/>
+        <location filename="../transferlistwidget.cpp" line="749"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limit rychlosti nahrávání torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="867"/>
+        <location filename="../transferlistwidget.cpp" line="871"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="867"/>
+        <location filename="../transferlistwidget.cpp" line="871"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="883"/>
+        <location filename="../transferlistwidget.cpp" line="887"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="883"/>
+        <location filename="../transferlistwidget.cpp" line="887"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="930"/>
         <source>Limit upload rate</source>
         <translation>Omezit rychlost nahrávání</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="928"/>
+        <location filename="../transferlistwidget.cpp" line="932"/>
         <source>Limit download rate</source>
         <translation>Omezit rychlost stahování</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="930"/>
+        <location filename="../transferlistwidget.cpp" line="934"/>
         <source>Open destination folder</source>
         <translation>Otevřít cílový adresář</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="932"/>
+        <location filename="../transferlistwidget.cpp" line="936"/>
         <source>Buy it</source>
         <translation>Koupit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="934"/>
+        <location filename="../transferlistwidget.cpp" line="938"/>
         <source>Increase priority</source>
         <translation>Zvýšit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="936"/>
+        <location filename="../transferlistwidget.cpp" line="940"/>
         <source>Decrease priority</source>
         <translation>Snížit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="942"/>
         <source>Force recheck</source>
         <translation>Překontrolovat platnost</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="940"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>Copy magnet link</source>
         <translation>Kopírovat odkaz Magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="947"/>
         <source>Super seeding mode</source>
         <translation>Super seeding mód</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="946"/>
+        <location filename="../transferlistwidget.cpp" line="950"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="948"/>
+        <location filename="../transferlistwidget.cpp" line="952"/>
         <source>Download in sequential order</source>
         <translation>Stahovat v souvislém pořadí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="950"/>
+        <location filename="../transferlistwidget.cpp" line="954"/>
         <source>Download first and last piece first</source>
         <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1030"/>
+        <location filename="../transferlistwidget.cpp" line="1034"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1031"/>
+        <location filename="../transferlistwidget.cpp" line="1035"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
