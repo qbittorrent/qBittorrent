@@ -7,7 +7,6 @@ DEBUG_MODE = 1
 
 # Global
 TEMPLATE = app
-TARGET = qbittorrent
 CONFIG += qt \
     thread
 
@@ -44,7 +43,11 @@ contains(DEBUG_MODE, 0) {
     }
     
     # Man page
+contains(DEFINES, DISABLE_GUI) {
+    man.files = ../doc/qbittorrent-nox.1
+} else {
     man.files = ../doc/qbittorrent.1
+}
     man.path = $$PREFIX/share/man/man1/
     INSTALLS += man
     
@@ -85,6 +88,12 @@ contains(DEBUG_MODE, 0) {
         icon96 \
         icon128 \
         icon192
+}
+
+contains(DEFINES, DISABLE_GUI) {
+  TARGET = qbittorrent-nox
+} else {
+  TARGET = qbittorrent
 }
 
 # QMAKE_CXXFLAGS_RELEASE += -fwrapv
