@@ -763,12 +763,15 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     }
   }
   QString savePath = getSavePath(hash);
-  qDebug("addMagnetURI: using save_path: %s", savePath.toLocal8Bit().data());
-  if(defaultTempPath.isEmpty() || (resumed && TorrentPersistentData::isSeed(hash))) {
-    p.save_path = savePath.toLocal8Bit().data();
-  } else {
+  if(!defaultTempPath.isEmpty() && resumed && !TorrentPersistentData::isSeed(hash)) {
+    qDebug("addMagnetURI: Temp folder is enabled.");
     p.save_path = defaultTempPath.toLocal8Bit().data();
+    qDebug("addMagnetURI: using save_path: %s", defaultTempPath.toLocal8Bit().data());
+  } else {
+    p.save_path = savePath.toLocal8Bit().data();
+    qDebug("addMagnetURI: using save_path: %s", savePath.toLocal8Bit().data());
   }
+
 #ifdef LIBTORRENT_0_15
   // Skip checking and directly start seeding (new in libtorrent v0.15)
   if(TorrentTempData::isSeedingMode(hash)){
@@ -799,6 +802,13 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     return h;
   }
   Q_ASSERT(h.hash() == hash);
+
+  // If temp path is enabled, move torrent
+  if(!defaultTempPath.isEmpty() && !resumed) {
+    qDebug("Temp folder is enabled, moving new torrent to temp folder");
+    h.move_storage(defaultTempPath);
+  }
+
   // Connections limit per torrent
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
   // Uploads limit per torrent
@@ -927,11 +937,13 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash);
   }
-  qDebug("addTorrent: using save_path: %s", savePath.toLocal8Bit().data());
-  if(defaultTempPath.isEmpty() || (resumed && TorrentPersistentData::isSeed(hash))) {
-    p.save_path = savePath.toLocal8Bit().data();
-  } else {
+  if(!defaultTempPath.isEmpty() && resumed && !TorrentPersistentData::isSeed(hash)) {
+    qDebug("addTorrent::Temp folder is enabled.");
     p.save_path = defaultTempPath.toLocal8Bit().data();
+    qDebug("addTorrent: using save_path: %s", defaultTempPath.toLocal8Bit().data());
+  } else {
+    p.save_path = savePath.toLocal8Bit().data();
+    qDebug("addTorrent: using save_path: %s", savePath.toLocal8Bit().data());
   }
 
 #ifdef LIBTORRENT_0_15
@@ -970,6 +982,12 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     // If download from url, remove temp file
     if(!from_url.isNull()) QFile::remove(file);
     return h;
+  }
+
+  // If temp path is enabled, move torrent
+  if(!defaultTempPath.isEmpty() && !resumed) {
+    qDebug("Temp folder is enabled, moving new torrent to temp folder");
+    h.move_storage(defaultTempPath);
   }
 
   // Connections limit per torrent
@@ -1703,6 +1721,11 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             bencode(std::ostream_iterator<char>(out), *p->resume_data);
           }
         }
+      }
+      else if (storage_moved_alert* p = dynamic_cast<storage_moved_alert*>(a.get())) {
+        QTorrentHandle h(p->handle);
+        if(h.is_valid())
+          h.force_recheck(); //XXX: Required by libtorrent for now
       }
       else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
