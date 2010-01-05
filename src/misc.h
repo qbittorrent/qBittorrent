@@ -183,6 +183,20 @@ public:
     }
   }
 
+  static QString toValidFileSystemName(QString filename) {
+    filename = filename.replace("\\", "/");
+    QRegExp regex("[/:!?\"*<>|]");
+    return filename.replace(regex, " ");
+  }
+
+  static bool isValidFileSystemName(QString filename) {
+    filename = filename.replace("\\", "/");
+    QRegExp regex("[/:!?\"*<>|]");
+    if(filename.contains(regex))
+      return false;
+    return true;
+  }
+
 #ifdef Q_WS_MAC
   static QString getFullPath(const FSRef &ref)
   {

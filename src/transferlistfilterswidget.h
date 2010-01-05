@@ -41,6 +41,7 @@
 #include <QInputDialog>
 #include <QDragMoveEvent>
 #include <QStandardItemModel>
+#include <QMessageBox>
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
@@ -244,8 +245,8 @@ protected slots:
   }
 
   void addLabel(QString label) {
-    if(label.trimmed().isEmpty()) return;
-    if(customLabels.contains(label)) return;
+    label = misc::toValidFileSystemName(label.trimmed());
+    if(label.isEmpty() || customLabels.contains(label)) return;
     QListWidgetItem *newLabel = new QListWidgetItem(labelFilters);
     newLabel->setText(label + " (0)");
     newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
@@ -269,10 +270,20 @@ protected slots:
       }
       if(act == addAct) {
         bool ok;
-        QString label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok);
-        if (ok && !label.isEmpty()) {
-          addLabel(label);
-        }
+        QString label = "";
+        bool invalid;
+        do {
+          invalid = false;
+          label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
+          if (ok && !label.isEmpty()) {
+            if(misc::isValidFileSystemName(label)) {
+              addLabel(label);
+            } else {
+              QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
+              invalid = true;
+            }
+          }
+        }while(invalid);
         return;
       }
     }

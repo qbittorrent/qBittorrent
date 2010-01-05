@@ -424,6 +424,10 @@ public slots:
             return;
           }
         }
+        if (!misc::isValidFileSystemName(comboLabel->currentText().trimmed())) {
+          QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
+          return;
+        }
         // Save savepath
         TorrentTempData::setSavePath(hash, savePath.path());
         qDebug("Torrent label is: %s", comboLabel->currentText().trimmed().toLocal8Bit().data());

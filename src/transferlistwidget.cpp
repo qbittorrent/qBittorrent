@@ -868,11 +868,20 @@ void TransferListWidget::toggleSelectedFirstLastPiecePrio() {
 void TransferListWidget::askNewLabelForSelection() {
   // Ask for label
   bool ok;
-  QString label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok);
-  if (ok && !label.isEmpty()) {
-    // Assign label to selection
-    setSelectionLabel(label);
-  }
+  QString label = "";
+  bool invalid;
+  do {
+    invalid = false;
+    label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
+    if (ok && !label.isEmpty()) {
+      if(misc::isValidFileSystemName(label)) {
+        setSelectionLabel(label);
+      } else {
+        QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
+        invalid = true;
+      }
+    }
+  }while(invalid);
 }
 
 void TransferListWidget::renameSelectedTorrent() {
