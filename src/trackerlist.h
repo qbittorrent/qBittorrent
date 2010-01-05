@@ -112,6 +112,80 @@ public slots:
     }
   }
 
+#ifndef LIBTORRENT_0_15
+  void moveSelectionUp() {
+    QTorrentHandle h = properties->getCurrentTorrent();
+    if(!h.is_valid()) {
+      clear();
+      return;
+    }
+    QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
+    if(selected_items.isEmpty()) return;
+    bool change = false;
+    foreach(QTreeWidgetItem *item, selected_items){
+      int index = indexOfTopLevelItem(item);
+      if(index > NB_STICKY_ITEM) {
+        insertTopLevelItem(index-1, takeTopLevelItem(index));
+        change = true;
+      }
+    }
+    if(!change) return;
+    // Restore selection
+    QItemSelectionModel *selection = selectionModel();
+    foreach(QTreeWidgetItem *item, selected_items) {
+      selection->select(indexFromItem(item), QItemSelectionModel::Rows|QItemSelectionModel::Select);
+    }
+    setSelectionModel(selection);
+    // Update torrent trackers
+    std::vector<announce_entry> trackers;
+    for(int i=NB_STICKY_ITEM; i<topLevelItemCount(); ++i) {
+      QString tracker_url = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
+      announce_entry e(tracker_url.toStdString());
+      e.tier = i-NB_STICKY_ITEM;
+      trackers.push_back(e);
+    }
+    h.replace_trackers(trackers);
+    // Reannounce
+    h.force_reannounce();
+  }
+
+  void moveSelectionDown() {
+    QTorrentHandle h = properties->getCurrentTorrent();
+    if(!h.is_valid()) {
+      clear();
+      return;
+    }
+    QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
+    if(selected_items.isEmpty()) return;
+    bool change = false;
+    for(int i=selectedItems().length()-1; i>= 0; --i) {
+      int index = indexOfTopLevelItem(selected_items.at(i));
+      if(index < topLevelItemCount()-1) {
+        insertTopLevelItem(index+1, takeTopLevelItem(index));
+        change = true;
+      }
+    }
+    if(!change) return;
+    // Restore selection
+    QItemSelectionModel *selection = selectionModel();
+    foreach(QTreeWidgetItem *item, selected_items) {
+      selection->select(indexFromItem(item), QItemSelectionModel::Rows|QItemSelectionModel::Select);
+    }
+    setSelectionModel(selection);
+    // Update torrent trackers
+    std::vector<announce_entry> trackers;
+    for(int i=NB_STICKY_ITEM; i<topLevelItemCount(); ++i) { 
+      QString tracker_url = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
+      announce_entry e(tracker_url.toStdString());
+      e.tier = i-NB_STICKY_ITEM;
+      trackers.push_back(e);
+    }
+    h.replace_trackers(trackers);
+    // Reannounce
+    h.force_reannounce();
+  }
+#endif
+
   void clear() {
     qDeleteAll(tracker_items.values());
     tracker_items.clear();

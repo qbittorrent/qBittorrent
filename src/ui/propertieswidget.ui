@@ -53,9 +53,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-81</y>
+            <y>0</y>
             <width>518</width>
-            <height>371</height>
+            <height>359</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -621,7 +621,112 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
      <widget class="QWidget" name="page_trackers">
-      <layout class="QVBoxLayout" name="verticalLayout_trackers"/>
+      <layout class="QHBoxLayout" name="horizontalLayout_trackers">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="trackerUpButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>31</horstretch>
+             <verstretch>27</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string notr="true"/>
+           </property>
+           <property name="icon">
+            <iconset resource="../icons.qrc">
+             <normaloff>:/Icons/uparrow.png</normaloff>:/Icons/uparrow.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>28</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="trackerDownButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>31</horstretch>
+             <verstretch>27</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string notr="true"/>
+           </property>
+           <property name="icon">
+            <iconset resource="../icons.qrc">
+             <normaloff>:/Icons/downarrow.png</normaloff>:/Icons/downarrow.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="page_5">
       <layout class="QVBoxLayout" name="peerpage_layout"/>
@@ -664,7 +769,7 @@ p, li { white-space: pre-wrap; }
             <string/>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="../icons.qrc">
              <normaloff>:/Icons/oxygen/list-remove.png</normaloff>:/Icons/oxygen/list-remove.png</iconset>
            </property>
           </widget>
@@ -681,7 +786,7 @@ p, li { white-space: pre-wrap; }
             <string/>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="../icons.qrc">
              <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
            </property>
           </widget>
@@ -796,7 +901,7 @@ p, li { white-space: pre-wrap; }
         <string>General</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/help-about.png</normaloff>:/Icons/oxygen/help-about.png</iconset>
        </property>
        <property name="iconSize">
@@ -813,7 +918,7 @@ p, li { white-space: pre-wrap; }
         <string>Trackers</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/network-server.png</normaloff>:/Icons/oxygen/network-server.png</iconset>
        </property>
        <property name="iconSize">
@@ -836,7 +941,7 @@ p, li { white-space: pre-wrap; }
         <string>Peers</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/peer.png</normaloff>:/Icons/oxygen/peer.png</iconset>
        </property>
        <property name="iconSize">
@@ -853,7 +958,7 @@ p, li { white-space: pre-wrap; }
         <string>URL seeds</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/urlseed.png</normaloff>:/Icons/oxygen/urlseed.png</iconset>
        </property>
        <property name="iconSize">
@@ -870,7 +975,7 @@ p, li { white-space: pre-wrap; }
         <string>Files</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/folder.png</normaloff>:/Icons/oxygen/folder.png</iconset>
        </property>
        <property name="iconSize">
@@ -898,6 +1003,8 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

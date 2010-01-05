@@ -99,7 +99,14 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   ProgressHLayout_2->insertWidget(1, pieces_availability);
   // Tracker list
   trackerList = new TrackerList(this);
-  verticalLayout_trackers->addWidget(trackerList);
+#ifdef LIBTORRENT_0_15
+  trackerUpButton->setVisible(false);
+  trackerDownButton->setVisible(false);
+#else
+  connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
+  connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
+#endif
+  horizontalLayout_trackers->insertWidget(0, trackerList);
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
@@ -118,7 +125,6 @@ PropertiesWidget::~PropertiesWidget() {
   delete PropListModel;
   delete PropDelegate;
 }
-
 
 void PropertiesWidget::showPiecesAvailability(bool show) {
   avail_pieces_lbl->setVisible(show);
