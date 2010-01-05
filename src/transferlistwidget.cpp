@@ -919,12 +919,11 @@ void TransferListWidget::removeLabelFromRows(QString label) {
   for(int i=0; i<listModel->rowCount(); ++i) {
     if(listModel->data(listModel->index(i, TR_LABEL)) == label) {
       QString hash = getHashFromRow(i);
-      QString old_label = proxyModel->data(listModel->index(i, TR_LABEL)).toString();
       listModel->setData(listModel->index(i, TR_LABEL), "", Qt::DisplayRole);
       TorrentPersistentData::saveLabel(hash, "");
       emit torrentChangedLabel(label, "");
       // Update save path if necessary
-      BTSession->changeLabelInTorrentSavePath(BTSession->getTorrentHandle(hash), old_label, label);
+      BTSession->changeLabelInTorrentSavePath(BTSession->getTorrentHandle(hash), label, "");
     }
   }
 }
