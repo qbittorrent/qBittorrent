@@ -236,7 +236,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="443"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Suport per a estat local de Parells[Apagat]</translation>
+        <translation>Suport per a estat local de Parells [Apagat]</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="455"/>
@@ -3172,7 +3172,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../peerlistwidget.cpp" line="131"/>
         <source>Add a new peer</source>
-        <translation>Afegir nou parell</translation>
+        <translation>Afegir nou Parell</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="140"/>
@@ -3187,7 +3187,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
         <source>Ban peer permanently</source>
-        <translation>Proporció permanent de parells</translation>
+        <translation>Prohibició permanent de Parells</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="152"/>
@@ -3213,7 +3213,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../peerlistwidget.cpp" line="177"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Segur que desitja prohibir de manera permanent els parells seleccionats?</translation>
+        <translation>Segur que desitja prohibir-li la compartició permanent de Parells?</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="178"/>
@@ -3228,7 +3228,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../peerlistwidget.cpp" line="183"/>
         <source>Manually banning peer %1...</source>
-        <translation>Prohibir manualment els parells %1...</translation>
+        <translation>Prohibir manualment els Parells %1...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="194"/>
@@ -3608,17 +3608,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1480"/>
         <source>Peer connections</source>
-        <translation>Connexions Parelles</translation>
+        <translation>Connexions Parells</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1486"/>
         <source>Resolve peer countries</source>
-        <translation>Resoldre parells per països</translation>
+        <translation>Mostrar Parells per Països</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1496"/>
         <source>Resolve peer host names</source>
-        <translation>Resoldre parells per nom de host</translation>
+        <translation>Mostrar Parells per nom de Host</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1545"/>
@@ -3648,7 +3648,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1640"/>
         <source>Enable Local Peer Discovery</source>
-        <translation>Habilitar la font de recerca local de parells</translation>
+        <translation>Habilitar la font de recerca local de Parells</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1652"/>
@@ -4109,7 +4109,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="495"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>El nom introduït conté caràcters prohibits, si us plau n&apos;elegeixi un altre.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="525"/>
@@ -5072,12 +5072,12 @@ Log:
     <message>
         <location filename="../transferlistfilterswidget.h" line="282"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="282"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
 </context>
 <context>
@@ -5245,12 +5245,12 @@ Log:
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="896"/>
@@ -7491,12 +7491,12 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="169"/>
         <source>Unable to decode magnet link:</source>
-        <translation type="unfinished"></translation>
+        <translation>No es pot descodificar l&apos;enllaç magnet:</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="173"/>
         <source>Magnet Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Enllaç magnet</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="258"/>
@@ -7522,7 +7522,7 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="284"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>El nom introduït conté caràcters prohibits, si us plau n&apos;elegeixi un altre.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="310"/>
@@ -7570,12 +7570,12 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="434"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="434"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="468"/>

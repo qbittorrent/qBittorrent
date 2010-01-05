@@ -2177,7 +2177,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="137"/>
         <source>Transfers</source>
-        <translation>Transferiencia</translation>
+        <translation>Transferencia</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -3187,7 +3187,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
         <source>Ban peer permanently</source>
-        <translation>Proporción permanente de pares</translation>
+        <translation>Prohibición permanente de Pares</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="152"/>
@@ -3198,12 +3198,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="152"/>
         <source>The peer was added to this torrent.</source>
-        <translation>Los pares se agregaron al torrent.</translation>
+        <translation>Los Pares se agregaron al torrent.</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="154"/>
         <source>The peer could not be added to this torrent.</source>
-        <translation>Los pares no se han podido agregar al torrent.</translation>
+        <translation>Los Pares no se han podido agregar al torrent.</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="177"/>
@@ -3213,7 +3213,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="177"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>¿Estás seguro de que desea prohibir de manera permanente los pares seleccionados?</translation>
+        <translation>¿Seguro que desea prohibirle la compartición permanente de Pares?</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="178"/>
@@ -3228,7 +3228,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="183"/>
         <source>Manually banning peer %1...</source>
-        <translation>Prohibir manualmente los pares %1...</translation>
+        <translation>Prohibir manualmente los Pares %1...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="194"/>
@@ -3458,7 +3458,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="694"/>
         <source>Append the torrent&apos;s label</source>
-        <translation>Poner etiquetas a los archivos Torrents</translation>
+        <translation>Permitir Etiquetar los archivos Torrents (Crerará carpetas según Etiquetas)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="704"/>
@@ -3613,12 +3613,12 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1486"/>
         <source>Resolve peer countries</source>
-        <translation>Resolver pares por Paises</translation>
+        <translation>Mostrar Pares por Países</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1496"/>
         <source>Resolve peer host names</source>
-        <translation>Resolver pares por nombre de host</translation>
+        <translation>Mostrar Pares por nombre de Host</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1545"/>
@@ -3648,7 +3648,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1640"/>
         <source>Enable Local Peer Discovery</source>
-        <translation>Habilitar la fuente de búsqueda local de pares</translation>
+        <translation>Habilitar la fuente de búsqueda local de Pares</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1652"/>
@@ -4113,7 +4113,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="495"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>El nombre introducido contiene caracteres prohibidos, por favor elija otro.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="525"/>
@@ -5076,12 +5076,12 @@ Log:
     <message>
         <location filename="../transferlistfilterswidget.h" line="282"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de Etiqueta no válido</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="282"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, no utilice caracteres especiales para el nombre de la Etiqueta.</translation>
     </message>
 </context>
 <context>
@@ -5249,12 +5249,12 @@ Log:
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de Etiqueta no válido</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, no utilice caracteres especiales para el nombre de la Etiqueta.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="896"/>
@@ -5336,7 +5336,7 @@ Log:
         <location filename="../transferlistwidget.cpp" line="1044"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Resetear</translation>
+        <translation>Borrar Etiquetas</translation>
     </message>
 </context>
 <context>
@@ -7495,12 +7495,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="169"/>
         <source>Unable to decode magnet link:</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede descodificar el enlace magnet:</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="173"/>
         <source>Magnet Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlace magnet</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="258"/>
@@ -7526,7 +7526,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="284"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este nombre de archivo contiene caracteres prohibidos, por favor, elija uno otro.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="310"/>
@@ -7574,12 +7574,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="434"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de Etiqueta no válido</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="434"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, no utilice caracteres especiales para el nombre de la Etiqueta.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="468"/>
