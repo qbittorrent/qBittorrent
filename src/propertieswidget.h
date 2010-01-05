@@ -100,6 +100,7 @@ public slots:
   void readSettings();
   void saveSettings();
   void reloadPreferences();
+  void openDoubleClickedFile(QModelIndex);
 
 public:
   PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, Bittorrent* BTSession);

@@ -357,11 +357,11 @@ size_type QTorrentHandle::total_payload_upload() {
 // to all files in a torrent
 QStringList QTorrentHandle::files_path() const {
   Q_ASSERT(h.is_valid());
-  QString saveDir = misc::toQString(h.save_path().string()) + QDir::separator();
+  QDir saveDir(misc::toQString(h.save_path().string()));
   QStringList res;
   torrent_info::file_iterator fi = h.get_torrent_info().begin_files();
   while(fi != h.get_torrent_info().end_files()) {
-    res << QDir::cleanPath(saveDir + misc::toQString(fi->path.string()));
+    res << QDir::cleanPath(saveDir.absoluteFilePath(misc::toQString(fi->path.string())));
     fi++;
   }
   return res;

@@ -38,6 +38,7 @@
 #include <QMessageBox>
 #include <QMenu>
 #include <QFileDialog>
+#include <QDesktopServices>
 #include <QInputDialog>
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
@@ -83,6 +84,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   connect(collapseAllButton, SIGNAL(clicked()), filesList, SLOT(collapseAll()));
   connect(expandAllButton, SIGNAL(clicked()), filesList, SLOT(expandAll()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
+  connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
   connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
@@ -464,6 +466,22 @@ void PropertiesWidget::on_files_button_clicked() {
     getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
     stackedProperties->setCurrentIndex(FILES_TAB);
     files_button->setStyleSheet(SELECTED_BUTTON_CSS);
+  }
+}
+
+void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
+  if(!index.isValid()) return;
+  if(!h.is_valid() || !h.has_metadata()) return;
+  if(PropListModel->getType(index) == TFILE) {
+    int i = PropListModel->getFileIndex(index);
+    QDir saveDir(h.save_path());
+    QString filename = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+    QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    qDebug("Trying to open file at %s", file_path.toLocal8Bit().data());
+    if(QFile::exists(file_path))
+      QDesktopServices::openUrl("file://"+file_path);
+    else
+      QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
   }
 }
 
