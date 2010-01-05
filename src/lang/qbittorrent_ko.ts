@@ -338,13 +338,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1690"/>
+        <location filename="../bittorrent.cpp" line="1691"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1701"/>
+        <location filename="../bittorrent.cpp" line="1702"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
@@ -353,27 +353,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트을 사용할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1836"/>
+        <location filename="../bittorrent.cpp" line="1837"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1841"/>
+        <location filename="../bittorrent.cpp" line="1842"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1856"/>
+        <location filename="../bittorrent.cpp" line="1857"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1861"/>
+        <location filename="../bittorrent.cpp" line="1862"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1949"/>
+        <location filename="../bittorrent.cpp" line="1950"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -4054,37 +4054,37 @@ QGroupBox {
         <translation type="obsolete">현재 트레커:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="742"/>
+        <location filename="../ui/propertieswidget.ui" line="847"/>
         <source>Collapse all</source>
         <translation>모두 접기</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="749"/>
+        <location filename="../ui/propertieswidget.ui" line="854"/>
         <source>Expand all</source>
         <translation>모두 펴기</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="796"/>
+        <location filename="../ui/propertieswidget.ui" line="901"/>
         <source>General</source>
         <translation>일반</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="813"/>
+        <location filename="../ui/propertieswidget.ui" line="918"/>
         <source>Trackers</source>
         <translation>트렉커(Trackers)</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="836"/>
+        <location filename="../ui/propertieswidget.ui" line="941"/>
         <source>Peers</source>
         <translation>공유자(Peers)</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="853"/>
+        <location filename="../ui/propertieswidget.ui" line="958"/>
         <source>URL seeds</source>
         <translation>웹 완전체(Url Seeds)</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="870"/>
+        <location filename="../ui/propertieswidget.ui" line="975"/>
         <source>Files</source>
         <translation>파일</translation>
     </message>
@@ -4117,64 +4117,74 @@ QGroupBox {
         <translation type="obsolete">높음</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="299"/>
-        <location filename="../propertieswidget.cpp" line="300"/>
+        <location filename="../propertieswidget.cpp" line="307"/>
+        <location filename="../propertieswidget.cpp" line="308"/>
         <source>this session</source>
         <translation>이 세션</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="304"/>
-        <location filename="../propertieswidget.cpp" line="308"/>
+        <location filename="../propertieswidget.cpp" line="312"/>
+        <location filename="../propertieswidget.cpp" line="316"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/초</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="311"/>
+        <location filename="../propertieswidget.cpp" line="319"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>완전체 공유한지: %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="315"/>
+        <location filename="../propertieswidget.cpp" line="323"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>최고 %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="469"/>
+        <location filename="../propertieswidget.cpp" line="484"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="484"/>
+        <source>This file does not exist yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="493"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="489"/>
+        <location filename="../propertieswidget.cpp" line="513"/>
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="490"/>
+        <location filename="../propertieswidget.cpp" line="514"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="494"/>
-        <location filename="../propertieswidget.cpp" line="524"/>
+        <location filename="../propertieswidget.cpp" line="518"/>
+        <location filename="../propertieswidget.cpp" line="548"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="495"/>
+        <location filename="../propertieswidget.cpp" line="519"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="525"/>
-        <location filename="../propertieswidget.cpp" line="559"/>
+        <location filename="../propertieswidget.cpp" line="549"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="558"/>
+        <location filename="../propertieswidget.cpp" line="582"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4183,23 +4193,23 @@ QGroupBox {
         <translation type="obsolete">없음 - 접근할수 없습니까?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="587"/>
+        <location filename="../propertieswidget.cpp" line="611"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 웹 완전체(Url seed)</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="588"/>
+        <location filename="../propertieswidget.cpp" line="612"/>
         <source>New url seed:</source>
         <translation>새 웹 완전체(Url seed):</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="593"/>
+        <location filename="../propertieswidget.cpp" line="617"/>
         <source>qBittorrent</source>
         <translation>큐비토렌트</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="594"/>
+        <location filename="../propertieswidget.cpp" line="618"/>
         <source>This url seed is already in the list.</source>
         <translation>이 웹완전체(Url seed)는 이미 목록에 포함되어 있습니다.</translation>
     </message>
@@ -4208,18 +4218,18 @@ QGroupBox {
         <translation type="obsolete">트렉커 리스트(Trackers List)를 비울수 없습니다. </translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="639"/>
-        <location filename="../propertieswidget.cpp" line="641"/>
+        <location filename="../propertieswidget.cpp" line="663"/>
+        <location filename="../propertieswidget.cpp" line="665"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="648"/>
+        <location filename="../propertieswidget.cpp" line="672"/>
         <source>Save path creation error</source>
         <translation>저장 경로에 설정 오류</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="648"/>
+        <location filename="../propertieswidget.cpp" line="672"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
@@ -4925,44 +4935,44 @@ Changelog:
         <translation></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="146"/>
-        <location filename="../trackerlist.h" line="155"/>
-        <location filename="../trackerlist.h" line="159"/>
-        <location filename="../trackerlist.h" line="191"/>
-        <location filename="../trackerlist.h" line="205"/>
+        <location filename="../trackerlist.h" line="220"/>
+        <location filename="../trackerlist.h" line="229"/>
+        <location filename="../trackerlist.h" line="233"/>
+        <location filename="../trackerlist.h" line="265"/>
+        <location filename="../trackerlist.h" line="279"/>
         <source>Working</source>
         <translation>작동중</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="148"/>
-        <location filename="../trackerlist.h" line="161"/>
+        <location filename="../trackerlist.h" line="222"/>
+        <location filename="../trackerlist.h" line="235"/>
         <source>Disabled</source>
         <translation>사용하지 않기</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="152"/>
+        <location filename="../trackerlist.h" line="226"/>
         <source>This torrent is private</source>
         <translation>이 토렌트 파일은 개인용입니다</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="194"/>
+        <location filename="../trackerlist.h" line="268"/>
         <source>Updating...</source>
         <translation>업데이트중...</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="197"/>
-        <location filename="../trackerlist.h" line="208"/>
+        <location filename="../trackerlist.h" line="271"/>
+        <location filename="../trackerlist.h" line="282"/>
         <source>Not working</source>
         <translation>작동안됨</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="199"/>
-        <location filename="../trackerlist.h" line="210"/>
+        <location filename="../trackerlist.h" line="273"/>
+        <location filename="../trackerlist.h" line="284"/>
         <source>Not contacted yet</source>
         <translation>아직 접속되지 않음</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="283"/>
+        <location filename="../trackerlist.h" line="357"/>
         <source>Add a new tracker</source>
         <translation>새 트렉커 추가</translation>
     </message>
@@ -5061,74 +5071,74 @@ Changelog:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="148"/>
-        <location filename="../transferlistfilterswidget.h" line="230"/>
+        <location filename="../transferlistfilterswidget.h" line="149"/>
+        <location filename="../transferlistfilterswidget.h" line="231"/>
         <source>All</source>
         <translation>모두</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="151"/>
-        <location filename="../transferlistfilterswidget.h" line="231"/>
+        <location filename="../transferlistfilterswidget.h" line="152"/>
+        <location filename="../transferlistfilterswidget.h" line="232"/>
         <source>Downloading</source>
         <translation>다운로딩 중</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="154"/>
-        <location filename="../transferlistfilterswidget.h" line="232"/>
+        <location filename="../transferlistfilterswidget.h" line="155"/>
+        <location filename="../transferlistfilterswidget.h" line="233"/>
         <source>Completed</source>
         <translation>전송 완료</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="157"/>
-        <location filename="../transferlistfilterswidget.h" line="233"/>
+        <location filename="../transferlistfilterswidget.h" line="158"/>
+        <location filename="../transferlistfilterswidget.h" line="234"/>
         <source>Active</source>
         <translation>활성</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="160"/>
-        <location filename="../transferlistfilterswidget.h" line="234"/>
+        <location filename="../transferlistfilterswidget.h" line="161"/>
+        <location filename="../transferlistfilterswidget.h" line="235"/>
         <source>Inactive</source>
         <translation>비활성</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="174"/>
-        <location filename="../transferlistfilterswidget.h" line="392"/>
+        <location filename="../transferlistfilterswidget.h" line="175"/>
+        <location filename="../transferlistfilterswidget.h" line="393"/>
         <source>All labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="177"/>
-        <location filename="../transferlistfilterswidget.h" line="393"/>
+        <location filename="../transferlistfilterswidget.h" line="178"/>
+        <location filename="../transferlistfilterswidget.h" line="394"/>
         <source>Unlabeled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Remove label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Add label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="277"/>
+        <location filename="../transferlistfilterswidget.h" line="278"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="277"/>
+        <location filename="../transferlistfilterswidget.h" line="278"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="282"/>
+        <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="282"/>
+        <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5191,22 +5201,22 @@ Changelog:
         <translation>세로행 숨기기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="931"/>
+        <location filename="../transferlistwidget.cpp" line="933"/>
         <source>Start</source>
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="933"/>
+        <location filename="../transferlistwidget.cpp" line="935"/>
         <source>Pause</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="935"/>
+        <location filename="../transferlistwidget.cpp" line="937"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="937"/>
+        <location filename="../transferlistwidget.cpp" line="939"/>
         <source>Preview file</source>
         <translation>미리보기</translation>
     </message>
@@ -5266,7 +5276,7 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1042"/>
+        <location filename="../transferlistwidget.cpp" line="1044"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5311,73 +5321,73 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="939"/>
+        <location filename="../transferlistwidget.cpp" line="941"/>
         <source>Limit upload rate</source>
         <translation>업로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="941"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>Limit download rate</source>
         <translation>다운로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="945"/>
         <source>Open destination folder</source>
         <translation>저장 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="945"/>
+        <location filename="../transferlistwidget.cpp" line="947"/>
         <source>Buy it</source>
         <translation>구입하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="947"/>
+        <location filename="../transferlistwidget.cpp" line="949"/>
         <source>Increase priority</source>
         <translation>우선순위(priority)를 높이기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="949"/>
+        <location filename="../transferlistwidget.cpp" line="951"/>
         <source>Decrease priority</source>
         <translation>우선순위(priority)를 낮추기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="951"/>
+        <location filename="../transferlistwidget.cpp" line="953"/>
         <source>Force recheck</source>
         <translation>강제로 재확인하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="953"/>
+        <location filename="../transferlistwidget.cpp" line="955"/>
         <source>Copy magnet link</source>
         <translation>마그넷 링크 (Copy magnet link) 복사하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="956"/>
+        <location filename="../transferlistwidget.cpp" line="958"/>
         <source>Super seeding mode</source>
         <translation>수퍼 공유 모드 (Super seeding mode)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="961"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="961"/>
+        <location filename="../transferlistwidget.cpp" line="963"/>
         <source>Download in sequential order</source>
         <translation>차레대로 다운받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="963"/>
+        <location filename="../transferlistwidget.cpp" line="965"/>
         <source>Download first and last piece first</source>
         <translation>첫번째 조각과 마지막 조각을 먼저 다운받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1043"/>
+        <location filename="../transferlistwidget.cpp" line="1045"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1044"/>
+        <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>

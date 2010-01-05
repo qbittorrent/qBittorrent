@@ -418,13 +418,13 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1690"/>
+        <location filename="../bittorrent.cpp" line="1691"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Téléchargement récursif du fichier %1 au sein du torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1701"/>
+        <location filename="../bittorrent.cpp" line="1702"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossible de décoder le torrent %1.</translation>
     </message>
@@ -437,27 +437,27 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1836"/>
+        <location filename="../bittorrent.cpp" line="1837"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1841"/>
+        <location filename="../bittorrent.cpp" line="1842"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1856"/>
+        <location filename="../bittorrent.cpp" line="1857"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1861"/>
+        <location filename="../bittorrent.cpp" line="1862"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1949"/>
+        <location filename="../bittorrent.cpp" line="1950"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -4284,37 +4284,37 @@ Comment:</source>
         <translation type="obsolete">Tracker actuel :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="742"/>
+        <location filename="../ui/propertieswidget.ui" line="847"/>
         <source>Collapse all</source>
         <translation>Tout réduire</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="749"/>
+        <location filename="../ui/propertieswidget.ui" line="854"/>
         <source>Expand all</source>
         <translation>Tout développer</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="796"/>
+        <location filename="../ui/propertieswidget.ui" line="901"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="813"/>
+        <location filename="../ui/propertieswidget.ui" line="918"/>
         <source>Trackers</source>
         <translation>Trackers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="836"/>
+        <location filename="../ui/propertieswidget.ui" line="941"/>
         <source>Peers</source>
         <translation>Peers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="853"/>
+        <location filename="../ui/propertieswidget.ui" line="958"/>
         <source>URL seeds</source>
         <translation>Sources HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="870"/>
+        <location filename="../ui/propertieswidget.ui" line="975"/>
         <source>Files</source>
         <translation>Fichiers</translation>
     </message>
@@ -4351,37 +4351,47 @@ Comment:</source>
         <translation type="obsolete">Haute</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="299"/>
-        <location filename="../propertieswidget.cpp" line="300"/>
+        <location filename="../propertieswidget.cpp" line="307"/>
+        <location filename="../propertieswidget.cpp" line="308"/>
         <source>this session</source>
         <translation>cette session</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="304"/>
-        <location filename="../propertieswidget.cpp" line="308"/>
+        <location filename="../propertieswidget.cpp" line="312"/>
+        <location filename="../propertieswidget.cpp" line="316"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="311"/>
+        <location filename="../propertieswidget.cpp" line="319"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Complet depuis %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="315"/>
+        <location filename="../propertieswidget.cpp" line="323"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="469"/>
+        <location filename="../propertieswidget.cpp" line="484"/>
+        <source>I/O Error</source>
+        <translation>Erreur E/S</translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="484"/>
+        <source>This file does not exist yet.</source>
+        <translation>Ce fichier n&apos;existe pas encore.</translation>
+    </message>
+    <message>
+        <location filename="../propertieswidget.cpp" line="493"/>
         <source>Rename...</source>
         <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="489"/>
+        <location filename="../propertieswidget.cpp" line="513"/>
         <source>Rename the file</source>
         <translation>Renommer le fichier</translation>
     </message>
@@ -4390,29 +4400,29 @@ Comment:</source>
         <translation type="obsolete">Renommer le fichier</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="490"/>
+        <location filename="../propertieswidget.cpp" line="514"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="494"/>
-        <location filename="../propertieswidget.cpp" line="524"/>
+        <location filename="../propertieswidget.cpp" line="518"/>
+        <location filename="../propertieswidget.cpp" line="548"/>
         <source>The file could not be renamed</source>
         <translation>Le fichier n&apos;a pas pu être renommé</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="495"/>
+        <location filename="../propertieswidget.cpp" line="519"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ce nom de fichier contient des caractères interdits, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="525"/>
-        <location filename="../propertieswidget.cpp" line="559"/>
+        <location filename="../propertieswidget.cpp" line="549"/>
+        <location filename="../propertieswidget.cpp" line="583"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ce nom est déjà utilisé au sein de ce dossier. Veuillez choisir un nom différent.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="558"/>
+        <location filename="../propertieswidget.cpp" line="582"/>
         <source>The folder could not be renamed</source>
         <translation>Le dossier n&apos;a pas pu être renommé</translation>
     </message>
@@ -4421,23 +4431,23 @@ Comment:</source>
         <translation type="obsolete">Aucun - indisponible ?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="587"/>
+        <location filename="../propertieswidget.cpp" line="611"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nouvelle source HTTP</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="588"/>
+        <location filename="../propertieswidget.cpp" line="612"/>
         <source>New url seed:</source>
         <translation>Nouvelle source HTTP :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="593"/>
+        <location filename="../propertieswidget.cpp" line="617"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="594"/>
+        <location filename="../propertieswidget.cpp" line="618"/>
         <source>This url seed is already in the list.</source>
         <translation>Cette source HTTP est déjà dans la liste.</translation>
     </message>
@@ -4446,18 +4456,18 @@ Comment:</source>
         <translation type="obsolete">La liste des trackers ne peut pas être vide.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="639"/>
-        <location filename="../propertieswidget.cpp" line="641"/>
+        <location filename="../propertieswidget.cpp" line="663"/>
+        <location filename="../propertieswidget.cpp" line="665"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="648"/>
+        <location filename="../propertieswidget.cpp" line="672"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="648"/>
+        <location filename="../propertieswidget.cpp" line="672"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
@@ -5186,44 +5196,44 @@ Changements:
         <translation></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="146"/>
-        <location filename="../trackerlist.h" line="155"/>
-        <location filename="../trackerlist.h" line="159"/>
-        <location filename="../trackerlist.h" line="191"/>
-        <location filename="../trackerlist.h" line="205"/>
+        <location filename="../trackerlist.h" line="220"/>
+        <location filename="../trackerlist.h" line="229"/>
+        <location filename="../trackerlist.h" line="233"/>
+        <location filename="../trackerlist.h" line="265"/>
+        <location filename="../trackerlist.h" line="279"/>
         <source>Working</source>
         <translation>Fonctionne</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="148"/>
-        <location filename="../trackerlist.h" line="161"/>
+        <location filename="../trackerlist.h" line="222"/>
+        <location filename="../trackerlist.h" line="235"/>
         <source>Disabled</source>
         <translation>Désactivé</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="152"/>
+        <location filename="../trackerlist.h" line="226"/>
         <source>This torrent is private</source>
         <translation>Ce torrent est privé</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="194"/>
+        <location filename="../trackerlist.h" line="268"/>
         <source>Updating...</source>
         <translation>Mise à jour...</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="197"/>
-        <location filename="../trackerlist.h" line="208"/>
+        <location filename="../trackerlist.h" line="271"/>
+        <location filename="../trackerlist.h" line="282"/>
         <source>Not working</source>
         <translation>Indisponible</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="199"/>
-        <location filename="../trackerlist.h" line="210"/>
+        <location filename="../trackerlist.h" line="273"/>
+        <location filename="../trackerlist.h" line="284"/>
         <source>Not contacted yet</source>
         <translation>Pas encore contacté</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="283"/>
+        <location filename="../trackerlist.h" line="357"/>
         <source>Add a new tracker</source>
         <translation>Ajouter un nouveau tracker</translation>
     </message>
@@ -5326,74 +5336,74 @@ Changements:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="148"/>
-        <location filename="../transferlistfilterswidget.h" line="230"/>
+        <location filename="../transferlistfilterswidget.h" line="149"/>
+        <location filename="../transferlistfilterswidget.h" line="231"/>
         <source>All</source>
         <translation>Tous</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="151"/>
-        <location filename="../transferlistfilterswidget.h" line="231"/>
+        <location filename="../transferlistfilterswidget.h" line="152"/>
+        <location filename="../transferlistfilterswidget.h" line="232"/>
         <source>Downloading</source>
         <translation>En téléchargement</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="154"/>
-        <location filename="../transferlistfilterswidget.h" line="232"/>
+        <location filename="../transferlistfilterswidget.h" line="155"/>
+        <location filename="../transferlistfilterswidget.h" line="233"/>
         <source>Completed</source>
         <translation>Complet</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="157"/>
-        <location filename="../transferlistfilterswidget.h" line="233"/>
+        <location filename="../transferlistfilterswidget.h" line="158"/>
+        <location filename="../transferlistfilterswidget.h" line="234"/>
         <source>Active</source>
         <translation>Actif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="160"/>
-        <location filename="../transferlistfilterswidget.h" line="234"/>
+        <location filename="../transferlistfilterswidget.h" line="161"/>
+        <location filename="../transferlistfilterswidget.h" line="235"/>
         <source>Inactive</source>
         <translation>Inactif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="174"/>
-        <location filename="../transferlistfilterswidget.h" line="392"/>
+        <location filename="../transferlistfilterswidget.h" line="175"/>
+        <location filename="../transferlistfilterswidget.h" line="393"/>
         <source>All labels</source>
         <translation>Toutes catégories</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="177"/>
-        <location filename="../transferlistfilterswidget.h" line="393"/>
+        <location filename="../transferlistfilterswidget.h" line="178"/>
+        <location filename="../transferlistfilterswidget.h" line="394"/>
         <source>Unlabeled</source>
         <translation>Sans catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Remove label</source>
         <translation>Supprimer catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Add label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="277"/>
+        <location filename="../transferlistfilterswidget.h" line="278"/>
         <source>New Label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="277"/>
+        <location filename="../transferlistfilterswidget.h" line="278"/>
         <source>Label:</source>
         <translation>Catégorie :</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="282"/>
+        <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Invalid label name</source>
         <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="282"/>
+        <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
@@ -5466,22 +5476,22 @@ Changements:
         <translation>Visibilité des colonnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="931"/>
+        <location filename="../transferlistwidget.cpp" line="933"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="933"/>
+        <location filename="../transferlistwidget.cpp" line="935"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="935"/>
+        <location filename="../transferlistwidget.cpp" line="937"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="937"/>
+        <location filename="../transferlistwidget.cpp" line="939"/>
         <source>Preview file</source>
         <translation>Prévisualiser fichier</translation>
     </message>
@@ -5541,7 +5551,7 @@ Changements:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1042"/>
+        <location filename="../transferlistwidget.cpp" line="1044"/>
         <source>Label</source>
         <translation>Catégorie</translation>
     </message>
@@ -5586,73 +5596,73 @@ Changements:
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="939"/>
+        <location filename="../transferlistwidget.cpp" line="941"/>
         <source>Limit upload rate</source>
         <translation>Limiter la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="941"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>Limit download rate</source>
         <translation>Limiter la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="945"/>
         <source>Open destination folder</source>
         <translation>Ouvrir le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="945"/>
+        <location filename="../transferlistwidget.cpp" line="947"/>
         <source>Buy it</source>
         <translation>Acheter</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="947"/>
+        <location filename="../transferlistwidget.cpp" line="949"/>
         <source>Increase priority</source>
         <translation>Augmenter la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="949"/>
+        <location filename="../transferlistwidget.cpp" line="951"/>
         <source>Decrease priority</source>
         <translation>Diminuer la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="951"/>
+        <location filename="../transferlistwidget.cpp" line="953"/>
         <source>Force recheck</source>
         <translation>Forcer revérification</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="953"/>
+        <location filename="../transferlistwidget.cpp" line="955"/>
         <source>Copy magnet link</source>
         <translation>Copier le lien magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="956"/>
+        <location filename="../transferlistwidget.cpp" line="958"/>
         <source>Super seeding mode</source>
         <translation>Mode de super partage</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="961"/>
         <source>Rename...</source>
         <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="961"/>
+        <location filename="../transferlistwidget.cpp" line="963"/>
         <source>Download in sequential order</source>
         <translation>Téléchargement séquentiel</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="963"/>
+        <location filename="../transferlistwidget.cpp" line="965"/>
         <source>Download first and last piece first</source>
         <translation>Téléchargement prioritaire du début et de la fin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1043"/>
+        <location filename="../transferlistwidget.cpp" line="1045"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nouvelle catégorie...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1044"/>
+        <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Réinitialiser catégorie</translation>

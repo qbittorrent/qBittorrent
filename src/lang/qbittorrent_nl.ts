@@ -3748,6 +3748,14 @@ QGroupBox {
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This file does not exist yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QTextEdit</name>
