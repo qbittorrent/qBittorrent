@@ -4403,7 +4403,7 @@ Comment:</source>
     <message>
         <location filename="../propertieswidget.cpp" line="495"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce nom de fichier contient des caractères interdits, veuillez en choisir un autre.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="525"/>
@@ -5390,12 +5390,12 @@ Changements:
     <message>
         <location filename="../transferlistfilterswidget.h" line="282"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="282"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
 </context>
 <context>
@@ -5568,12 +5568,12 @@ Changements:
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="896"/>
@@ -7972,7 +7972,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="284"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce nom de fichier contient des caractères interdits, veuillez en choisir un autre.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="310"/>
@@ -8020,12 +8020,12 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="434"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="434"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="468"/>
