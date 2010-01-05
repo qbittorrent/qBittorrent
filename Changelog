@@ -1,11 +1,11 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.6
+* Tue Jan 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.6
     - BUGFIX: Fix detection of invalid torrent files
     - BUGFIX: Stop catching signals once one has been caught to avoid possible infinite loop
     - BUGFIX: Force data recheck whenever a torrent is moved
     - BUGFIX: Detect existing torrent data even if incomplete torrents are saved to a different folder
     - COSMETIC: Improve torrent deletion confirmation dialog so that the text that not get truncated
 
-* Web Dec 31 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.5
+* Thu Dec 31 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.5
     - BUGFIX: Fix crash with downloaded/availability bars when the torrent has too many pieces
 
 * Wed Dec 30 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.4
