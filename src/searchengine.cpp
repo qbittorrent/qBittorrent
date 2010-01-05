@@ -301,15 +301,21 @@ void SearchEngine::saveResultsColumnsWidth() {
 }
 
 void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
-  QProcess *downloadProcess = new QProcess(this);
-  connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
-  downloaders << downloadProcess;
-  QStringList params;
-  params << misc::searchEngineLocation()+QDir::separator()+"nova2dl.py";
-  params << engine_url;
-  params << torrent_url;
-  // Launch search
-  downloadProcess->start("python", params, QIODevice::ReadOnly);
+  if(torrent_url.startsWith("magnet:")) {
+    QStringList urls;
+    urls << torrent_url;
+    parent->downloadFromURLList(urls);
+  } else {
+    QProcess *downloadProcess = new QProcess(this);
+    connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
+    downloaders << downloadProcess;
+    QStringList params;
+    params << misc::searchEngineLocation()+QDir::separator()+"nova2dl.py";
+    params << engine_url;
+    params << torrent_url;
+    // Launch search
+    downloadProcess->start("python", params, QIODevice::ReadOnly);
+  }
 }
 
 void SearchEngine::searchStarted(){

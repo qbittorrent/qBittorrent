@@ -59,104 +59,104 @@ class StatusBar;
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
 
-  private:
-    // Bittorrent
-    Bittorrent *BTSession;
-    QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?
-    // GUI related
-    QTimer *guiUpdater;
-    QTabWidget *tabs;
-    StatusBar *status_bar;
-    QPointer<options_imp> options;
-    QPointer<QSystemTrayIcon> systrayIcon;
-    QPointer<QTimer> systrayCreator;
-    QMenu *myTrayIconMenu;
-    TransferListWidget *transferList;
-    TransferListFiltersWidget *transferListFilters;
-    PropertiesWidget *properties;
-    bool displaySpeedInTitle;
-    bool force_exit;
-    // Keyboard shortcuts
-    QShortcut *switchSearchShortcut;
-    QShortcut *switchSearchShortcut2;
-    QShortcut *switchTransferShortcut;
-    QShortcut *switchRSSShortcut;
-    // Widgets
-    QAction *prioSeparator;
-    QAction *prioSeparator2;
-    QSplitter *hSplitter;
-    QSplitter *vSplitter;
-    // Search
-    SearchEngine *searchEngine;
-    // RSS
-    QPointer<RSSImp> rssWidget;
-    // Misc
-    QLocalServer *localServer;
+private:
+  // Bittorrent
+  Bittorrent *BTSession;
+  QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?
+  // GUI related
+  QTimer *guiUpdater;
+  QTabWidget *tabs;
+  StatusBar *status_bar;
+  QPointer<options_imp> options;
+  QPointer<QSystemTrayIcon> systrayIcon;
+  QPointer<QTimer> systrayCreator;
+  QMenu *myTrayIconMenu;
+  TransferListWidget *transferList;
+  TransferListFiltersWidget *transferListFilters;
+  PropertiesWidget *properties;
+  bool displaySpeedInTitle;
+  bool force_exit;
+  // Keyboard shortcuts
+  QShortcut *switchSearchShortcut;
+  QShortcut *switchSearchShortcut2;
+  QShortcut *switchTransferShortcut;
+  QShortcut *switchRSSShortcut;
+  // Widgets
+  QAction *prioSeparator;
+  QAction *prioSeparator2;
+  QSplitter *hSplitter;
+  QSplitter *vSplitter;
+  // Search
+  SearchEngine *searchEngine;
+  // RSS
+  QPointer<RSSImp> rssWidget;
+  // Misc
+  QLocalServer *localServer;
 
-  protected slots:
-    // GUI related slots
-    void dropEvent(QDropEvent *event);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void toggleVisibility(QSystemTrayIcon::ActivationReason e);
-    void on_actionAbout_triggered();
-    void on_actionCreate_torrent_triggered();
-    void on_actionWebsite_triggered() const;
-    void on_actionBugReport_triggered() const;
-    void on_actionShow_console_triggered();
-    void readParamsOnSocket();
-    void acceptConnection();
-    void balloonClicked();
-    void writeSettings();
-    void readSettings();
-    void on_actionExit_triggered();
-    void createTrayIcon();
-    void fullDiskError(QTorrentHandle& h, QString msg) const;
-    void handleDownloadFromUrlFailure(QString, QString) const;
-    void createSystrayDelayed();
-    void tab_changed(int);
-    // Keyboard shortcuts
-    void createKeyboardShortcuts();
-    void displayTransferTab() const;
-    void displaySearchTab() const;
-    void displayRSSTab() const;
-    // Torrent actions
-    void on_actionSet_global_upload_limit_triggered();
-    void on_actionSet_global_download_limit_triggered();
-    void on_actionDocumentation_triggered() const;
-    void on_actionOpen_triggered();
-    void updateGUI();
-    void loadPreferences(bool configure_session=true);
-    void processParams(const QStringList& params);
-    void addTorrent(QString path);
-    void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
-    void processDownloadedFiles(QString path, QString url);
-    void downloadFromURLList(const QStringList& urls);
-    void finishedTorrent(QTorrentHandle& h) const;
-    // Options slots
-    void on_actionOptions_triggered();
-    void optionsSaved();
-    // HTTP slots
-    void on_actionDownload_from_URL_triggered();
+protected slots:
+  // GUI related slots
+  void dropEvent(QDropEvent *event);
+  void dragEnterEvent(QDragEnterEvent *event);
+  void toggleVisibility(QSystemTrayIcon::ActivationReason e);
+  void on_actionAbout_triggered();
+  void on_actionCreate_torrent_triggered();
+  void on_actionWebsite_triggered() const;
+  void on_actionBugReport_triggered() const;
+  void on_actionShow_console_triggered();
+  void readParamsOnSocket();
+  void acceptConnection();
+  void balloonClicked();
+  void writeSettings();
+  void readSettings();
+  void on_actionExit_triggered();
+  void createTrayIcon();
+  void fullDiskError(QTorrentHandle& h, QString msg) const;
+  void handleDownloadFromUrlFailure(QString, QString) const;
+  void createSystrayDelayed();
+  void tab_changed(int);
+  // Keyboard shortcuts
+  void createKeyboardShortcuts();
+  void displayTransferTab() const;
+  void displaySearchTab() const;
+  void displayRSSTab() const;
+  // Torrent actions
+  void on_actionSet_global_upload_limit_triggered();
+  void on_actionSet_global_download_limit_triggered();
+  void on_actionDocumentation_triggered() const;
+  void on_actionOpen_triggered();
+  void updateGUI();
+  void loadPreferences(bool configure_session=true);
+  void processParams(const QStringList& params);
+  void addTorrent(QString path);
+  void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
+  void processDownloadedFiles(QString path, QString url);
+  void finishedTorrent(QTorrentHandle& h) const;
+  // Options slots
+  void on_actionOptions_triggered();
+  void optionsSaved();
+  // HTTP slots
+  void on_actionDownload_from_URL_triggered();
 
 
-  public slots:
-    void trackerAuthenticationRequired(QTorrentHandle& h);
-    void setTabText(int index, QString text) const;
-    void showNotificationBaloon(QString title, QString msg) const;
+public slots:
+  void trackerAuthenticationRequired(QTorrentHandle& h);
+  void setTabText(int index, QString text) const;
+  void showNotificationBaloon(QString title, QString msg) const;
+  void downloadFromURLList(const QStringList& urls);
 
-  protected:
-    void closeEvent(QCloseEvent *);
-    void showEvent(QShowEvent *);
-    bool event(QEvent * event);
-    void displayRSSTab(bool enable);
+protected:
+  void closeEvent(QCloseEvent *);
+  void showEvent(QShowEvent *);
+  bool event(QEvent * event);
+  void displayRSSTab(bool enable);
 
-  public:
-    // Construct / Destruct
-    GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
-    ~GUI();
-    // Methods
-    int getCurrentTabIndex() const;
-    QPoint screenCenter() const;
+public:
+  // Construct / Destruct
+  GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
+  ~GUI();
+  // Methods
+  int getCurrentTabIndex() const;
+  QPoint screenCenter() const;
 };
 
 #endif
