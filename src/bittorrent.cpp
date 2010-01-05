@@ -1426,10 +1426,11 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       old_dir = QDir(path_items.join(QDir::separator()));
     }
     QString new_save_path;
-    if(new_label.isEmpty())
+    if(new_label.isEmpty()) {
       new_save_path = old_dir.absolutePath();
-    else
+    } else {
       new_save_path = old_dir.absoluteFilePath(new_label);
+    }
     TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
     if(move_storage) {
       // Move storage
