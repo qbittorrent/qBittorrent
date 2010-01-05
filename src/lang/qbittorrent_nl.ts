@@ -3744,6 +3744,10 @@ QGroupBox {
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QTextEdit</name>
@@ -4491,6 +4495,14 @@ Changelog:
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Invalid label name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please don&apos;t use any special characters in the label name.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -4702,6 +4714,14 @@ Changelog:
     </message>
     <message>
         <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid label name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6767,6 +6787,18 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid label name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please don&apos;t use any special characters in the label name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

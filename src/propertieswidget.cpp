@@ -490,6 +490,12 @@ void PropertiesWidget::renameSelectedFile() {
                                                 tr("New name:"), QLineEdit::Normal,
                                                 index.data().toString(), &ok);
   if (ok && !new_name_last.isEmpty()) {
+    if(!misc::isValidFileSystemName(new_name_last)) {
+      QMessageBox::warning(this, tr("The file could not be renamed"),
+                           tr("This file name contains forbidden characters, please choose a different one."),
+                           QMessageBox::Ok);
+      return;
+    }
     if(PropListModel->getType(index)==TFILE) {
       // File renaming
       int file_index = PropListModel->getFileIndex(index);

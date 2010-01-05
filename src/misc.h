@@ -191,7 +191,7 @@ public:
 
   static bool isValidFileSystemName(QString filename) {
     filename = filename.replace("\\", "/");
-    QRegExp regex("[/:!?\"*<>|]");
+    QRegExp regex("[/:?\"*<>|]");
     if(filename.contains(regex))
       return false;
     return true;
