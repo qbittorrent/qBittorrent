@@ -1612,7 +1612,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="484"/>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>Els filtres no poden ser importats a causa d&apos;un I/O error.</translation>
+        <translation>Els filtres no poden ser importats a causa d&apos;un Error d&apos;Entrada/Sortida.</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="489"/>
@@ -1647,7 +1647,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="501"/>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>Els filtres no poden ser exportats a causa d&apos;un I/O error.</translation>
+        <translation>Els filtres no poden ser exportats a causa d&apos;un Error d&apos;Entrada/Sortida.</translation>
     </message>
 </context>
 <context>
@@ -2177,7 +2177,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="137"/>
         <source>Transfers</source>
-        <translation>Transferidos</translation>
+        <translation>Transferint</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -2440,7 +2440,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="293"/>
         <source>Download completion</source>
-        <translation>Completar descàrrega</translation>
+        <translation>Descàrrega completada</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="299"/>
@@ -2448,7 +2448,7 @@ Por favor cierra el otro antes.</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>I/O es va produir un errro  de torrent %1.
+        <translation>Es va produir un Error d&apos;Entrada/Sortida, torrent %1.
 Raó: %2</translation>
     </message>
     <message>
@@ -3458,7 +3458,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="694"/>
         <source>Append the torrent&apos;s label</source>
-        <translation>Posar etiquetes als arxius Torrents</translation>
+        <translation>Permetre Etiquetar els arxius Torrents (Crearà carpetes de descàrrega segons Etiquetes)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="704"/>
@@ -4088,12 +4088,12 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="484"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="484"/>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aquest arxiu encara no existeix.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="493"/>
@@ -4588,12 +4588,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="338"/>
+        <location filename="../searchengine.cpp" line="344"/>
         <source>Results</source>
         <translation>Resultats</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="317"/>
+        <location filename="../searchengine.cpp" line="323"/>
         <source>Searching...</source>
         <translation>Buscant...</translation>
     </message>
@@ -4661,33 +4661,33 @@ Log:
         <translation>Netejar historial de recerques</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>Search Engine</source>
         <translation>Motor de cerca</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
-        <location filename="../searchengine.cpp" line="454"/>
+        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="460"/>
         <source>Search has finished</source>
         <translation>Recerca acabada</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>An error occured during search...</source>
         <translation>Va ocórrer un error durant la recerca...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search aborted</source>
         <translation>Recerca avortada</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="452"/>
+        <location filename="../searchengine.cpp" line="458"/>
         <source>Search returned no results</source>
         <translation>La recerca no va tornar resultats</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="459"/>
+        <location filename="../searchengine.cpp" line="465"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Resultats</translation>
@@ -4701,8 +4701,8 @@ Log:
         <translation type="obsolete">No se pudo descargar la actualización del plugin de búsqueda en la url: %1, razón: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="494"/>
         <location filename="../searchengine.cpp" line="500"/>
+        <location filename="../searchengine.cpp" line="506"/>
         <source>Unknown</source>
         <translation>Desconegut</translation>
     </message>
@@ -4940,7 +4940,7 @@ Log:
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
         <source>I/O Error</source>
-        <translation></translation>
+        <translation>Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
@@ -5021,7 +5021,7 @@ Log:
         <location filename="../transferlistfilterswidget.h" line="149"/>
         <location filename="../transferlistfilterswidget.h" line="231"/>
         <source>All</source>
-        <translation>Tot</translation>
+        <translation>Tots</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="152"/>
@@ -5033,31 +5033,31 @@ Log:
         <location filename="../transferlistfilterswidget.h" line="155"/>
         <location filename="../transferlistfilterswidget.h" line="233"/>
         <source>Completed</source>
-        <translation>Completat</translation>
+        <translation>Completats</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="158"/>
         <location filename="../transferlistfilterswidget.h" line="234"/>
         <source>Active</source>
-        <translation>Actiu</translation>
+        <translation>Actius</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="161"/>
         <location filename="../transferlistfilterswidget.h" line="235"/>
         <source>Inactive</source>
-        <translation>Inactiu</translation>
+        <translation>Inactius</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="175"/>
         <location filename="../transferlistfilterswidget.h" line="393"/>
         <source>All labels</source>
-        <translation>Totes les etiquetes</translation>
+        <translation>Etiquetades</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="178"/>
         <location filename="../transferlistfilterswidget.h" line="394"/>
         <source>Unlabeled</source>
-        <translation>Sense etiqueta</translation>
+        <translation>Sense Etiquetar</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="263"/>
@@ -5342,7 +5342,7 @@ Log:
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Reset Etiqueta</translation>
+        <translation>Reset Etiquetas</translation>
     </message>
 </context>
 <context>
@@ -6141,7 +6141,7 @@ Log:
         <location filename="../downloadthread.cpp" line="73"/>
         <location filename="../downloadthread.cpp" line="76"/>
         <source>I/O Error</source>
-        <translation></translation>
+        <translation>Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="132"/>

@@ -4645,12 +4645,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="338"/>
+        <location filename="../searchengine.cpp" line="344"/>
         <source>Results</source>
         <translation>결과</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="317"/>
+        <location filename="../searchengine.cpp" line="323"/>
         <source>Searching...</source>
         <translation>검색중...</translation>
     </message>
@@ -4718,33 +4718,33 @@ Changelog:
         <translation>완료 내역 지우기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>Search Engine</source>
         <translation>검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
-        <location filename="../searchengine.cpp" line="454"/>
+        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="460"/>
         <source>Search has finished</source>
         <translation>검색 완료</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>An error occured during search...</source>
         <translation>검색 중 오류 발생...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search aborted</source>
         <translation>검색이 중단됨</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="452"/>
+        <location filename="../searchengine.cpp" line="458"/>
         <source>Search returned no results</source>
         <translation>검색 결과가 없음</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="459"/>
+        <location filename="../searchengine.cpp" line="465"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>결과</translation>
@@ -4758,8 +4758,8 @@ Changelog:
         <translation type="obsolete">다음 url에서 검색 플러그인 (Plugin)을 다운로드 할수 없습니다: %1, 이유: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="494"/>
         <location filename="../searchengine.cpp" line="500"/>
+        <location filename="../searchengine.cpp" line="506"/>
         <source>Unknown</source>
         <translation>알려지지 않음</translation>
     </message>

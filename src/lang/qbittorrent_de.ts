@@ -4645,12 +4645,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="338"/>
+        <location filename="../searchengine.cpp" line="344"/>
         <source>Results</source>
         <translation>Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="317"/>
+        <location filename="../searchengine.cpp" line="323"/>
         <source>Searching...</source>
         <translation>Suche...</translation>
     </message>
@@ -4718,33 +4718,33 @@ Changelog:
         <translation>Vervollständigungshistorie löschen</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>Search Engine</source>
         <translation>Suchmaschine</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
-        <location filename="../searchengine.cpp" line="454"/>
+        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="460"/>
         <source>Search has finished</source>
         <translation>Suche abgeschlossen</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>An error occured during search...</source>
         <translation>Während der Suche ist ein Fehler aufgetreten ...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search aborted</source>
         <translation>Suche abgebrochen</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="452"/>
+        <location filename="../searchengine.cpp" line="458"/>
         <source>Search returned no results</source>
         <translation>Suche lieferte keine Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="459"/>
+        <location filename="../searchengine.cpp" line="465"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Ergebnisse</translation>
@@ -4758,8 +4758,8 @@ Changelog:
         <translation type="obsolete">Konnte Such-Plugin Update nicht von URL: %1 laden, Begründung: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="494"/>
         <location filename="../searchengine.cpp" line="500"/>
+        <location filename="../searchengine.cpp" line="506"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>

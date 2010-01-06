@@ -4745,12 +4745,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="338"/>
+        <location filename="../searchengine.cpp" line="344"/>
         <source>Results</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="317"/>
+        <location filename="../searchengine.cpp" line="323"/>
         <source>Searching...</source>
         <translation>Αναζήτηση...</translation>
     </message>
@@ -4818,33 +4818,33 @@ Changelog:
         <translation>Εκκαθάριση ιστορικού φόρμας</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>Search Engine</source>
         <translation>Μηχανή Αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
-        <location filename="../searchengine.cpp" line="454"/>
+        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="460"/>
         <source>Search has finished</source>
         <translation>Η αναζήτηση τελείωσε</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>An error occured during search...</source>
         <translation>Σφάλμα κατά την εύρεση...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search aborted</source>
         <translation>Αναζήτηση διεκόπη</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="452"/>
+        <location filename="../searchengine.cpp" line="458"/>
         <source>Search returned no results</source>
         <translation>Η αναζήτηση δεν έφερε αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="459"/>
+        <location filename="../searchengine.cpp" line="465"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Αποτελέσματα</translation>
@@ -4858,8 +4858,8 @@ Changelog:
         <translation type="obsolete">Αδυναμία λήψης plugin αναζήτησης από το url: %1,αιτία: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="494"/>
         <location filename="../searchengine.cpp" line="500"/>
+        <location filename="../searchengine.cpp" line="506"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>

@@ -184,12 +184,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="370"/>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-agentti on %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="387"/>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytetään %1 MiB levyvälimuistia</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="420"/>
@@ -210,12 +210,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="432"/>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>PeX-tuki [EI KÄYTÖSSÄ]</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="435"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished"></translation>
+        <translation>PeX-tuen tilan muuttaminen vaatii uudelleenkäynnistyksen</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="440"/>
@@ -245,12 +245,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="561"/>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-käyttöliittymä kuuntelee porttia %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="563"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Web-käyttöliittymävirhe - Ei voida liittää Web-liittymää porttiin %1</translation>
+        <translation>Web-käyttöliittymävirhe - web-liittymää ei voitu liittää porttiin %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="681"/>
@@ -1446,7 +1446,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="299"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Valitse tallennuskansio</translation>
+        <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="459"/>
@@ -2399,27 +2399,27 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../headlessloader.h" line="74"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="75"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä web-käyttöliittymää osoitteessa http://localhost:%1 ohjataksesi qBittorrenttia</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="76"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-käyttöliittymän ylläpitäjän käyttäjätunnus on: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="78"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-käyttöliittymän ylläpitäjän salasana on edelleen oletus: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="79"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä on turvallisuusriski, harkitse salasanasi vaihtamista ohjelman asetuksista.</translation>
     </message>
 </context>
 <context>
@@ -2482,63 +2482,63 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../httpserver.cpp" line="73"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Latauksen rajan pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="74"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetyksen rajan pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="75"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhteyksien enimmäismäärän pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="76"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhteyksien torrenttikohtaisen maksimimäärän pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="77"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetyslohkojen torrenttikohtaisen enimmäismäärän pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="78"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetuksia ei voitu tallentaa, qBittorrenttiin ei todennäköisesti saada yhteyttä.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="79"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Kieli</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="80"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ladattu</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="81"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisääntuleville yhteyksille tarkoitetun portin numeron pitää olla suurempi kuin 1024 ja pienempi kuin 65535.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="82"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-käyttöliittymälle varatun portin pitää olla suurempi kuin 1024 ja pienempi kuin 65535.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="83"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-käyttöliittymän käyttäjätunnuksen pitää olla vähintään kolme merkkiä pitkä.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="84"/>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-käyttöliittymän salasanan pitää olla vähintään kolme merkkiä pitkä.</translation>
     </message>
 </context>
 <context>
@@ -2917,198 +2917,198 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="101"/>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Käyttöliittymä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="116"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="131"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhteys</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="146"/>
         <source>Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="161"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Välityspalvelin</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="170"/>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-suodatin</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="185"/>
         <source>Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-käyttöliittymä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="200"/>
         <location filename="../ui/options.ui" line="2641"/>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="246"/>
         <source>User interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Käyttöliittymäasetukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="254"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kieli:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="283"/>
         <source>(Requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Vaatii uudelleenkäynnistyksen)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="310"/>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulkoasu:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="318"/>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation>Järjestelmän oletus</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="323"/>
         <source>Plastique style (KDE like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plastique-tyyli (KDE)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="328"/>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cleanlooks-tyyli (Gnome)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="333"/>
         <source>Motif style (Unix like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Motif-tyyli (Unix)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="338"/>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="unfinished"></translation>
+        <translation>CDE-tyyli (Common Dekstop Environment)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="361"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Kysy varmistusta, jos latauslista ei ole poistuttaessa tyhjä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä ylätyökalupalkki</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="381"/>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista aloituskuva</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="388"/>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä nopeus otsikkorivillä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="395"/>
         <source>Transfer list</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrot</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="403"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivitystiheys:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="423"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="445"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Käytä vaihtelevia rivivärejä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="470"/>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Toiminta tuplanapsautuksella:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="478"/>
         <source>Downloading:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladataan:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="495"/>
         <location filename="../ui/options.ui" line="529"/>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita/lopeta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="500"/>
         <location filename="../ui/options.ui" line="534"/>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa kansio</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="521"/>
         <source>Completed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valmiina:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="552"/>
         <source>System tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoitusalueen kuvake</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="558"/>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä näytä kuvaketta ilmoitusalueella</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="565"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sulje ilmoitusalueen kuvakkeeseen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="572"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Pienennä ilmoitusalueen kuvakkeeseen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="582"/>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita minimoituna</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="589"/>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä ilmoitukset ilmoitusalueen kuvakkeesta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="636"/>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostojärjestelmä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="645"/>
@@ -3119,22 +3119,28 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation>QGroupBox::title {
+font-weight: normal;
+margin-left: -3px;
+}
+QGroupBox {
+  border-width: 0;
+}</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="654"/>
         <source>Destination Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kohdekansio:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="694"/>
         <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää torrentin nimike</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="704"/>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä eri kansiota keskeneräisille latauksille:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="716"/>
@@ -3142,386 +3148,388 @@ QGroupBox {
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation>QLineEdit {
+  margin-left: 23px;
+}</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="756"/>
         <source>Automatically load .torrent files from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataa torrentit tästä kansiosta automaattisesti:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="808"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää .!qB-pääte keskeneräisiin tiedostoihin</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="815"/>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Varaa tila kaikille tiedostoille</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="824"/>
         <source>Disk cache:</source>
-        <translation type="unfinished"></translation>
+        <translation>Levyvälimuisti:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="844"/>
         <source>MiB (advanced)</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB (edistyneet)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="871"/>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenttien jonotus</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="877"/>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä jonotusjärjestelmää</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="889"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiivisia latauksia enintään:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="932"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiivisia lähetettäviä torrentteja enintään:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="975"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiivisia torrentteja enintään:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1024"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Kun lisätään torrent-tiedostoa</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1032"/>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä torrentin sisältö ja joitakin asetuksia</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1059"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Älä aloita lataamista automaattisesti</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1126"/>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuuntele porttia</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1134"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Portti sisääntuleville yhteyksille:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1154"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Satunnainen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1176"/>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä UPnP-porttivarausta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1186"/>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä NAT-PMP-porttivarausta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1201"/>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhteyksien enimmäismäärä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1209"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikkien yhteyksien enimmäismäärä:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1257"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhteyksien enimmäismäärä torrenttia kohden:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1302"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetyspaikkoja torrentia kohden:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1345"/>
         <source>Global bandwidth limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaistankäyttörajoitukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1361"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetys:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1377"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataus:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1415"/>
         <location filename="../ui/options.ui" line="1451"/>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1480"/>
         <source>Peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Asiakasyhteydet</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1486"/>
         <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Selvitä asiakkaiden kotimaat</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1496"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Selvitä asiakkaiden palvelinnimet</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1545"/>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent-piirteet</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1551"/>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä hajautettua DHT-verkkoa</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1561"/>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä eri porttia DHT:lle ja Bittorrentille</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1592"/>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT-portti:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1630"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ota PeX käyttöön (vaatii uudelleenkäynnistyksen)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1640"/>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä paikallista käyttäjien löytämistä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1652"/>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Salaus:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1660"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytössä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1665"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakotettu</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1670"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistettu käytöstä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1727"/>
         <source>KTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>KTorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1784"/>
         <source>Reset to latest software version</source>
-        <translation type="unfinished"></translation>
+        <translation>Palauta viimeiseen ohjelmistoversioon</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1809"/>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakosuhteen asetukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1817"/>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tavoiteltu suhde:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1871"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista valmistuneet torrentit, kun jakosuhde saa arvon:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1962"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-yhteydet (seurantapalvelimet, web-syötteet, hakukone)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1994"/>
         <location filename="../ui/options.ui" line="2189"/>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Isäntä:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2152"/>
         <source>Peer Communications</source>
-        <translation type="unfinished"></translation>
+        <translation>Asiakastietoliikenne</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2173"/>
         <source>SOCKS4</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1970"/>
         <location filename="../ui/options.ui" line="2160"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyyppi:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1696"/>
         <source>Client whitelisting workaround</source>
-        <translation type="unfinished"></translation>
+        <translation>Asiakkaan sallittujen listan korjaus</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1704"/>
         <source>Identify as:</source>
-        <translation type="unfinished"></translation>
+        <translation>Esitä:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1712"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation> qBittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1717"/>
         <source>Vuze</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuze</translation>
     </message>
     <message utf8="true">
         <location filename="../ui/options.ui" line="1722"/>
         <source>µTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>µTorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1738"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versio:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1755"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Aliversio:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1978"/>
         <location filename="../ui/options.ui" line="2168"/>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Ei mikään)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1983"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2020"/>
         <location filename="../ui/options.ui" line="2215"/>
         <location filename="../ui/options.ui" line="2499"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Portti:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2060"/>
         <location filename="../ui/options.ui" line="2255"/>
         <location filename="../ui/options.ui" line="2535"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisäänkirjautuminen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2074"/>
         <location filename="../ui/options.ui" line="2269"/>
         <location filename="../ui/options.ui" line="2543"/>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnus:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2084"/>
         <location filename="../ui/options.ui" line="2279"/>
         <location filename="../ui/options.ui" line="2550"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Salasana:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2178"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2383"/>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Suotimen asetukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2389"/>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä IP-suodatusta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2405"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished"></translation>
+        <translation>Suodatustiedoston sijainti (.dat, .p2p, p2b):</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2480"/>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä web-käyttöliittymää</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2493"/>
         <source>HTTP Server</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP-palvelin</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2647"/>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation>Ota RSS-tuki käyttöön</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2657"/>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-asetukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2694"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-syötteen päivitystiheys:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2714"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minuuttia</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2738"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Artikkeleiden enimmäismäärä syötettä kohden:</translation>
     </message>
 </context>
 <context>
@@ -3773,23 +3781,23 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="493"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="513"/>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="514"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi nimi:</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="518"/>
         <location filename="../propertieswidget.cpp" line="548"/>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="519"/>
@@ -3800,12 +3808,12 @@ QGroupBox {
         <location filename="../propertieswidget.cpp" line="549"/>
         <location filename="../propertieswidget.cpp" line="583"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="582"/>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiota ei voitu nimetä uudelleen</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -4260,12 +4268,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="338"/>
+        <location filename="../searchengine.cpp" line="344"/>
         <source>Results</source>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="317"/>
+        <location filename="../searchengine.cpp" line="323"/>
         <source>Searching...</source>
         <translation>Etsitään...</translation>
     </message>
@@ -4325,40 +4333,40 @@ Muutoshistoria:
         <translation>Tyhjennä hakuhistoria</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>Search Engine</source>
         <translation>Hakupalvelu</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
-        <location filename="../searchengine.cpp" line="454"/>
+        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="460"/>
         <source>Search has finished</source>
         <translation>Haku on päättynyt</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>An error occured during search...</source>
         <translation>Haun aikana tapahtui virhe...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search aborted</source>
         <translation>Haku keskeytetty</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="452"/>
+        <location filename="../searchengine.cpp" line="458"/>
         <source>Search returned no results</source>
         <translation>Haku ei palauttanut tuloksia</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="459"/>
+        <location filename="../searchengine.cpp" line="465"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="494"/>
         <location filename="../searchengine.cpp" line="500"/>
+        <location filename="../searchengine.cpp" line="506"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
@@ -4444,7 +4452,7 @@ Muutoshistoria:
     <message>
         <location filename="../statusbar.h" line="147"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei yhteyttä. Yleensä tämä tarkoittaa, että qBittorrent ei pystynyt kuuntelemaan sisääntulevien yhteyksien porttia.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="152"/>
@@ -4591,37 +4599,37 @@ Muutoshistoria:
     <message utf8="true">
         <location filename="../ui/trackersadditiondlg.ui" line="44"/>
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>µTorrent-yhteensopivan listan URL:</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O-virhe</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
         <source>Error while trying to open the downloaded file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe avattaessa ladattua tiedostoa.</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="115"/>
         <source>No change</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei muutosta</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="115"/>
         <source>No additional trackers were found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää seurantapalvelimia ei löytynyt.</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="122"/>
         <source>Download error</source>
-        <translation type="unfinished"></translation>
+        <translation>Latausvirhe</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="122"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seurantapalvelinlistaa ei voitu ladata, syy: %1</translation>
     </message>
 </context>
 <context>
@@ -4707,33 +4715,33 @@ Muutoshistoria:
         <location filename="../transferlistfilterswidget.h" line="175"/>
         <location filename="../transferlistfilterswidget.h" line="393"/>
         <source>All labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki nimikkeet</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="178"/>
         <location filename="../transferlistfilterswidget.h" line="394"/>
         <source>Unlabeled</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimikkeetön</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Remove label</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista nimike</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Add label</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää nimike</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="278"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi nimike</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="278"/>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimike:</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="283"/>
@@ -4891,7 +4899,7 @@ Muutoshistoria:
         <location filename="../transferlistwidget.cpp" line="82"/>
         <location filename="../transferlistwidget.cpp" line="1044"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimike</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="713"/>
@@ -4906,12 +4914,12 @@ Muutoshistoria:
     <message>
         <location filename="../transferlistwidget.cpp" line="875"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi nimike</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="875"/>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimike:</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
@@ -4926,12 +4934,12 @@ Muutoshistoria:
     <message>
         <location filename="../transferlistwidget.cpp" line="896"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä uudelleen</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="896"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi nimi:</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="941"/>
@@ -4981,7 +4989,7 @@ Muutoshistoria:
     <message>
         <location filename="../transferlistwidget.cpp" line="961"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="963"/>
@@ -4997,13 +5005,13 @@ Muutoshistoria:
         <location filename="../transferlistwidget.cpp" line="1045"/>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uusi...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation type="unfinished"></translation>
+        <translation>Palauta</translation>
     </message>
 </context>
 <context>
@@ -5054,32 +5062,32 @@ Muutoshistoria:
     <message>
         <location filename="../main.cpp" line="80"/>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Käyttö:</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="81"/>
         <source>displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation>näyttää ohjelman version</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="83"/>
         <source>disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>poista aloituskuva käytöstä</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="85"/>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>näyttää tämän avusteen</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="86"/>
         <source>changes the webui port (current: %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>vaihtaa web-äyttöliittymän portin (nykyinen: %1)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="87"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>[tiedostot tai URL:it]: lataa käyttäjän antamat torrentit (valinnainen)</translation>
     </message>
 </context>
 <context>
@@ -5144,7 +5152,7 @@ Muutoshistoria:
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="128"/>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimike:</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="264"/>
@@ -6040,7 +6048,7 @@ Muutoshistoria:
     <message>
         <location filename="../ui/engineselect.ui" line="78"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Voit hakea uusia hakukoneliitännäisiä täältä: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../ui/engineselect.ui" line="93"/>
@@ -7094,12 +7102,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="169"/>
         <source>Unable to decode magnet link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet-linkin purkaminen ei onnistunut:</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="173"/>
         <source>Magnet Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet-linkki</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="207"/>
@@ -7110,23 +7118,23 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="258"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="278"/>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="279"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi nimi:</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="283"/>
         <location filename="../torrentadditiondlg.h" line="309"/>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="284"/>
@@ -7137,12 +7145,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <location filename="../torrentadditiondlg.h" line="310"/>
         <location filename="../torrentadditiondlg.h" line="342"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="341"/>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiota ei voitu nimetä uudelleen</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="434"/>

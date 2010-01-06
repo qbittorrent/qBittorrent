@@ -1347,7 +1347,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../eventmanager.cpp" line="64"/>
         <location filename="../eventmanager.cpp" line="78"/>
         <source>Working</source>
-        <translation>trabajando</translation>
+        <translation>Trabajando</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="67"/>
@@ -1612,7 +1612,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="484"/>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>Los filtros no pueden ser importados debido a un I/O error.</translation>
+        <translation>Los filtros no pueden ser importados debido a un Error de Entrada/Salida.</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="489"/>
@@ -1647,7 +1647,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="501"/>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>Los filtros no pueden ser exportados debido a un I/O error.</translation>
+        <translation>Los filtros no pueden ser exportados debido a un Error de Entrada/Salida.</translation>
     </message>
 </context>
 <context>
@@ -2425,7 +2425,7 @@ Por favor cierra el otro antes.</translation>
         <location filename="../GUI.cpp" line="303"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Un error ocurrió (¿Disco lleno?), &apos;%1&apos; pausado.</translation>
+        <translation>Ha ocurrido un error (¿Disco lleno?), &apos;%1&apos; pausado.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="151"/>
@@ -2440,7 +2440,7 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="293"/>
         <source>Download completion</source>
-        <translation>Completar descarga</translation>
+        <translation>Descarga completada</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="299"/>
@@ -2448,7 +2448,7 @@ Por favor cierra el otro antes.</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>I/O se produjo un errro de torrent %1.
+        <translation>Se produjo un Error de Entrada/Salida, torrent %1.
  Razón: %2</translation>
     </message>
     <message>
@@ -3458,7 +3458,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="694"/>
         <source>Append the torrent&apos;s label</source>
-        <translation>Permitir Etiquetar los archivos Torrents (Crerará carpetas según Etiquetas)</translation>
+        <translation>Permitir Etiquetar los archivos Torrents (Creará carpetas de descarga según Etiquetas)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="704"/>
@@ -4088,12 +4088,12 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="484"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de Entrada/Salida</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="484"/>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ese archivo todavía no existe.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="493"/>
@@ -4592,12 +4592,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="253"/>
-        <location filename="../searchengine.cpp" line="338"/>
+        <location filename="../searchengine.cpp" line="344"/>
         <source>Results</source>
         <translation>Resultados</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="317"/>
+        <location filename="../searchengine.cpp" line="323"/>
         <source>Searching...</source>
         <translation>Buscando...</translation>
     </message>
@@ -4665,33 +4665,33 @@ Log:
         <translation>Limpiar historial de búsquedas</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
+        <location filename="../searchengine.cpp" line="449"/>
         <source>Search Engine</source>
         <translation>Motor de Búsqueda</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="443"/>
-        <location filename="../searchengine.cpp" line="454"/>
+        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="460"/>
         <source>Search has finished</source>
         <translation>Búsqueda terminada</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="446"/>
+        <location filename="../searchengine.cpp" line="452"/>
         <source>An error occured during search...</source>
         <translation>Ocurrió un error durante la búsqueda...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="449"/>
+        <location filename="../searchengine.cpp" line="455"/>
         <source>Search aborted</source>
         <translation>Búsqueda abortada</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="452"/>
+        <location filename="../searchengine.cpp" line="458"/>
         <source>Search returned no results</source>
         <translation>La búsqueda no devolvió resultados</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="459"/>
+        <location filename="../searchengine.cpp" line="465"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Resultados</translation>
@@ -4705,8 +4705,8 @@ Log:
         <translation type="obsolete">No se pudo descargar la actualización del plugin de búsqueda en la url: %1, razón: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="494"/>
         <location filename="../searchengine.cpp" line="500"/>
+        <location filename="../searchengine.cpp" line="506"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -4769,13 +4769,13 @@ Log:
         <location filename="../statusbar.h" line="76"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>Baj: %1 B/s - Total: %2</translation>
+        <translation>Bajada: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="80"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>Sub: %1 B/s - Total: %2</translation>
+        <translation>Subida: %1 B/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="84"/>
@@ -4803,13 +4803,13 @@ Log:
         <location filename="../statusbar.h" line="168"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Baj: %1/s - Total: %2</translation>
+        <translation>Bajada: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="169"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Sub: %1/s - Total: %2</translation>
+        <translation>Subida: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="174"/>
@@ -4944,7 +4944,7 @@ Log:
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
         <source>I/O Error</source>
-        <translation></translation>
+        <translation>Error de Entrada/Salida</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
@@ -5025,7 +5025,7 @@ Log:
         <location filename="../transferlistfilterswidget.h" line="149"/>
         <location filename="../transferlistfilterswidget.h" line="231"/>
         <source>All</source>
-        <translation>Todo</translation>
+        <translation>Todos</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="152"/>
@@ -5055,13 +5055,13 @@ Log:
         <location filename="../transferlistfilterswidget.h" line="175"/>
         <location filename="../transferlistfilterswidget.h" line="393"/>
         <source>All labels</source>
-        <translation>Todas las Etiquetas</translation>
+        <translation>Etiquetados</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="178"/>
         <location filename="../transferlistfilterswidget.h" line="394"/>
         <source>Unlabeled</source>
-        <translation>Sin Etiquetar</translation>
+        <translation>No Etiquetados</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="263"/>
@@ -5346,7 +5346,7 @@ Log:
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Borrar Etiquetas</translation>
+        <translation>Borrar todas las Etiquetas</translation>
     </message>
 </context>
 <context>
@@ -6145,7 +6145,7 @@ Log:
         <location filename="../downloadthread.cpp" line="73"/>
         <location filename="../downloadthread.cpp" line="76"/>
         <source>I/O Error</source>
-        <translation></translation>
+        <translation>Error de Entrada/Salida</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="132"/>
