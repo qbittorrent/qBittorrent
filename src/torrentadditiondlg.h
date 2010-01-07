@@ -52,6 +52,8 @@
 #include "torrentpersistentdata.h"
 #include "torrentfilesmodel.h"
 #include "preferences.h"
+#include "GUI.h"
+#include "transferlistwidget.h"
 
 using namespace libtorrent;
 
@@ -72,9 +74,10 @@ private:
   bool is_magnet;
 
 public:
-  torrentAdditionDialog(QWidget *parent, Bittorrent* _BTSession) : QDialog(parent) {
+  torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent) {
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+    connect(this, SIGNAL(torrentPaused(QTorrentHandle&)), parent->getTransferList(), SLOT(pauseTorrent(QTorrentHandle&)));
     BTSession = _BTSession;
     // Set Properties list model
     PropListModel = new TorrentFilesModel();
@@ -484,10 +487,15 @@ public slots:
             h = BTSession->addMagnetUri(from_url, false);
           else
             h = BTSession->addTorrent(filePath, false, from_url);
-          if(addInPause->isChecked() && h.is_valid())
+          if(addInPause->isChecked() && h.is_valid()) {
             h.pause();
+            emit torrentPaused(h);
+          }
           close();
         }
+
+      signals:
+        void torrentPaused(QTorrentHandle &h);
       };
 
 #endif

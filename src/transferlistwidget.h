@@ -83,7 +83,6 @@ protected slots:
   void displayListMenu(const QPoint&);
   void updateMetadata(QTorrentHandle &h);
   void currentChanged(const QModelIndex& current, const QModelIndex&);
-  void pauseTorrent(QTorrentHandle &h);
   void resumeTorrent(QTorrentHandle &h);
 #ifdef LIBTORRENT_0_15
   void toggleSelectedTorrentsSuperSeeding();
@@ -96,6 +95,7 @@ protected slots:
 public slots:
   void refreshList();
   void addTorrent(QTorrentHandle& h);
+  void pauseTorrent(QTorrentHandle &h);
   void setFinished(QTorrentHandle &h);
   void setSelectionLabel(QString label);
   void setRefreshInterval(int t);
