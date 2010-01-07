@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.7
+    - BUGFIX: Fix 'Add in pause' setting in torrent addition dialog
+
 * Tue Jan 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.6
     - BUGFIX: Fix detection of invalid torrent files
     - BUGFIX: Stop catching signals once one has been caught to avoid possible infinite loop

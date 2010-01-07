@@ -157,6 +157,7 @@ class GUI : public QMainWindow, private Ui::MainWindow{
     // Methods
     int getCurrentTabIndex() const;
     QPoint screenCenter() const;
+  TransferListWidget* getTransferList() const { return transferList; }
 };
 
 #endif
