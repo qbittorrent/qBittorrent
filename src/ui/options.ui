@@ -1951,8 +1951,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>484</width>
-              <height>312</height>
+              <width>620</width>
+              <height>495</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -1981,6 +1981,11 @@ QGroupBox {
                     <item>
                      <property name="text">
                       <string>HTTP</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>SOCKS5</string>
                      </property>
                     </item>
                    </widget>

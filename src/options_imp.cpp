@@ -520,13 +520,22 @@ int options_imp::getPeerProxyType() const{
 }
 
 int options_imp::getHTTPProxyType() const {
-  if(comboProxyType_http->currentIndex() > 0){
-    if(isHTTPProxyAuthEnabled()){
-      return HTTP_PW;
+  switch(comboProxyType_http->currentIndex()) {
+  case 1: {
+      if(isHTTPProxyAuthEnabled()){
+        return HTTP_PW;
+      }
+      return HTTP;
     }
-    return HTTP;
+  case 2: {
+      if(isHTTPProxyAuthEnabled()) {
+        return SOCKS5_PW;
+      }
+      return SOCKS5;
+    }
+  default:
+    return -1; // Disabled
   }
-  return -1; // disabled
 }
 
 int options_imp::getStyle() const{
@@ -637,17 +646,18 @@ void options_imp::loadOptions(){
   checkResolveHosts->setChecked(Preferences::resolvePeerHostNames());
 
   intValue = Preferences::getPeerProxyType();
-  if(intValue <= 0) {
-    intValue = 0;
-  } else {
-    if(intValue%2 == 0) {
-      intValue = 2;
-    }else {
-      intValue = 1;
-    }
+  switch(intValue) {
+  case SOCKS4:
+    comboProxyType->setCurrentIndex(1);
+    break;
+  case SOCKS5:
+  case SOCKS5_PW:
+    comboProxyType->setCurrentIndex(2);
+    break;
+  default:
+    comboProxyType->setCurrentIndex(0);
   }
-  comboProxyType->setCurrentIndex(intValue);
-  enablePeerProxy(intValue);
+  enablePeerProxy(comboProxyType->currentIndex());
   //if(isProxyEnabled()) {
   // Proxy is enabled, save settings
   textProxyIP->setText(Preferences::getPeerProxyIp());
@@ -658,13 +668,18 @@ void options_imp::loadOptions(){
   enablePeerProxyAuth(checkProxyAuth->isChecked());
   //}
   intValue = Preferences::getHTTPProxyType();
-  if(intValue <= 0) {
-    intValue = 0;
-  } else {
-    intValue = 1;
+  switch(intValue) {
+  case HTTP:
+    comboProxyType_http->setCurrentIndex(1);
+    break;
+  case SOCKS5:
+  case SOCKS5_PW:
+    comboProxyType_http->setCurrentIndex(2);
+    break;
+  default:
+    comboProxyType_http->setCurrentIndex(0);
   }
-  comboProxyType_http->setCurrentIndex(intValue);
-  enableHTTPProxy(intValue);
+  enableHTTPProxy(comboProxyType_http->currentIndex());
   textProxyUsername_http->setText(Preferences::getHTTPProxyUsername());
   textProxyPassword_http->setText(Preferences::getHTTPProxyPassword());
   textProxyIP_http->setText(Preferences::getHTTPProxyIp());

@@ -538,6 +538,18 @@ void Bittorrent::configureSession() {
     http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
     http_proxySettings.port = Preferences::getHTTPProxyPort();
     break;
+  case SOCKS5:
+    http_proxySettings.type = proxy_settings::socks5;
+    http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
+    http_proxySettings.port = Preferences::getHTTPProxyPort();
+    break;
+  case SOCKS5_PW:
+    http_proxySettings.type = proxy_settings::socks5_pw;
+    http_proxySettings.username = Preferences::getHTTPProxyUsername().toStdString();
+    http_proxySettings.password = Preferences::getHTTPProxyPassword().toStdString();
+    http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
+    http_proxySettings.port = Preferences::getHTTPProxyPort();
+    break;
   default:
     http_proxySettings.type = proxy_settings::none;
   }
