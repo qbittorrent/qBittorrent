@@ -13,6 +13,7 @@
     - FEATURE: Display torrent addition dialog for magnet links too
     - FEATURE: Files contained in a torrent are opened on double click (files panel)
     - FEATURE: Added support for magnet links in search engine
+    - FEATURE: Added vertor.com and torrentdownloads.net search plugins
     - BUGFIX: Use XDG folders (.cache, .local) instead of .qbittorrent
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)
