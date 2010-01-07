@@ -219,7 +219,7 @@ void RSSImp::deleteSelectedItems() {
       }
       RssFile *rss_item = listStreams->getRSSItem(item);
       // Notify TreeWidget
-      listStreams->itemRemoved(item);
+      listStreams->itemAboutToBeRemoved(item);
       // Actually delete the item
       rss_item->getParent()->removeFile(rss_item->getID());
       delete item;

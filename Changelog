@@ -1,6 +1,9 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.0.7
     - BUGFIX: Fix 'Add in pause' setting in torrent addition dialog
     - BUGFIX: Update RSS feed as soon as feed downloader is enabled
+    - BUGFIX: RSS Feed downloader ignores articles above maximum number of articles
+    - BUGFIX: Fix possible bug when deleting a RSS folder
+    - BUGFIX: Remove persistant data when a RSS feed is deleted
 
 * Tue Jan 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.6
     - BUGFIX: Fix detection of invalid torrent files

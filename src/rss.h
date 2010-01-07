@@ -97,11 +97,13 @@ public:
   virtual FileType getType() const = 0;
   virtual QString getName() const = 0;
   virtual QString getID() const = 0;
+  virtual void removeAllItems() = 0;
   virtual void rename(QString new_name) = 0;
   virtual void markAllAsRead() = 0;
   virtual RssFolder* getParent() const = 0;
   virtual void setParent(RssFolder*) = 0;
   virtual void refresh() = 0;
+  virtual void removeAllSettings() = 0;
   virtual QList<RssItem*> getNewsList() const = 0;
   virtual QList<RssItem*> getUnreadNewsList() const = 0;
   QStringList getPath() const {
@@ -225,11 +227,11 @@ protected:
           negOffset = true;    // military zone: RFC 2822 treats as '-0000'
         else if (zone != "UT" && zone != "GMT") {    // treated as '+0000'
           offset = (zone == "EDT")                  ? -4*3600
-                   : (zone == "EST" || zone == "CDT") ? -5*3600
-                   : (zone == "CST" || zone == "MDT") ? -6*3600
-                   : (zone == "MST" || zone == "PDT") ? -7*3600
-                   : (zone == "PST")                  ? -8*3600
-                   : 0;
+            : (zone == "EST" || zone == "CDT") ? -5*3600
+              : (zone == "CST" || zone == "MDT") ? -6*3600
+                : (zone == "MST" || zone == "PDT") ? -7*3600
+                  : (zone == "PST")                  ? -8*3600
+                    : 0;
           if (!offset) {
             // Check for any other alphabetic time zone
             bool nonalpha = false;
@@ -408,6 +410,7 @@ public:
   void refresh();
   QString getID() const { return url; }
   void removeAllItems();
+  void removeAllSettings();
   bool itemAlreadyExists(QString hash);
   void setLoading(bool val);
   bool isLoading();
@@ -464,6 +467,19 @@ public:
   bool hasChild(QString ID) { return this->contains(ID); }
   QList<RssItem*> getNewsList() const;
   QList<RssItem*> getUnreadNewsList() const;
+  void removeAllSettings() {
+    foreach(RssFile* child, values()) {
+      child->removeAllSettings();
+    }
+  }
+
+  void removeAllItems() {
+    foreach(RssFile* child, values()) {
+      child->removeAllItems();
+    }
+    qDeleteAll(values());
+    clear();
+  }
 
 public slots:
   void refreshAll();

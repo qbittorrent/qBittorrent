@@ -90,8 +90,12 @@ void RssFolder::refreshAll(){
 }
 
 void RssFolder::removeFile(QString ID) {
-  if(this->contains(ID))
-    delete this->take(ID);
+  if(this->contains(ID)) {
+    RssFile* child = this->take(ID);
+    child->removeAllSettings();
+    child->removeAllItems();
+    delete child;
+  }
 }
 
 RssFolder* RssFolder::addFolder(QString name) {
@@ -427,6 +431,20 @@ void RssStream::removeAllItems() {
   this->clear();
 }
 
+void RssStream::removeAllSettings() {
+  QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+  QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on", QHash<QString, QVariant>()).toHash();
+  if(feeds_w_downloader.contains(url)) {
+    feeds_w_downloader.remove(url);
+    qBTRSS.setValue("downloader_on", feeds_w_downloader);
+  }
+  QHash<QString, QVariant> all_feeds_filters = qBTRSS.value("feed_filters", QHash<QString, QVariant>()).toHash();
+  if(all_feeds_filters.contains(url)) {
+    all_feeds_filters.remove(url);
+    qBTRSS.setValue("feed_filters", all_feeds_filters);
+  }
+}
+
 bool RssStream::itemAlreadyExists(QString name) {
   return this->contains(name);
 }
@@ -579,36 +597,7 @@ short RssStream::readDoc(const QDomDocument& doc) {
               (*this)[title] = item;
             } else {
               delete item;
-              item = this->value(title);
             }
-            QString torrent_url;
-            if(item->has_attachment())
-              torrent_url = item->getTorrentUrl();
-            else
-              torrent_url = item->getLink();
-            // Check if the item should be automatically downloaded
-            if(!already_exists || !(*this)[item->getTitle()]->isRead()) {
-              FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
-              if(matching_filter != 0) {
-                // Download the torrent
-                BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
-                if(matching_filter->isValid()) {
-                  QString save_path = matching_filter->getSavePath();
-                  if(save_path.isEmpty())
-                    BTSession->downloadUrlAndSkipDialog(torrent_url);
-                  else
-                    BTSession->downloadUrlAndSkipDialog(torrent_url, save_path);
-                } else {
-                  // All torrents are downloaded from this feed
-                  BTSession->downloadUrlAndSkipDialog(torrent_url);
-                }
-                // Item was downloaded, consider it as Read
-                (*this)[item->getTitle()]->setRead();
-                // Clean up
-                delete matching_filter;
-              }
-            }
-
           } else {
             delete item;
           }
@@ -619,6 +608,35 @@ short RssStream::readDoc(const QDomDocument& doc) {
     channel = channel.nextSibling().toElement();
   }
   resizeList();
+  // RSS Feed Downloader
+  foreach(RssItem* item, values()) {
+    if(item->isRead()) continue;
+    QString torrent_url;
+    if(item->has_attachment())
+      torrent_url = item->getTorrentUrl();
+    else
+      torrent_url = item->getLink();
+    // Check if the item should be automatically downloaded
+    FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
+    if(matching_filter != 0) {
+      // Download the torrent
+      BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
+      if(matching_filter->isValid()) {
+        QString save_path = matching_filter->getSavePath();
+        if(save_path.isEmpty())
+          BTSession->downloadUrlAndSkipDialog(torrent_url);
+        else
+          BTSession->downloadUrlAndSkipDialog(torrent_url, save_path);
+      } else {
+        // All torrents are downloaded from this feed
+        BTSession->downloadUrlAndSkipDialog(torrent_url);
+      }
+      // Item was downloaded, consider it as Read
+      item->setRead();
+      // Clean up
+      delete matching_filter;
+    }
+  }
   return 0;
 }
 

@@ -47,10 +47,16 @@ public:
     }
   }
 
-  void itemRemoved(QTreeWidgetItem *item) {
+  void itemAboutToBeRemoved(QTreeWidgetItem *item) {
     RssFile* file = mapping.take(item);
-    if(file->getType() == RssFile::STREAM)
+    if(file->getType() == RssFile::STREAM) {
       feeds_items.remove(file->getID());
+    } else {
+      QList<RssStream*> feeds = ((RssFolder*)file)->getAllFeeds();
+      foreach(RssStream* feed, feeds) {
+        feeds_items.remove(feed->getID());
+      }
+    }
   }
 
   bool hasFeed(QString url) const {
