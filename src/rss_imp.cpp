@@ -374,8 +374,10 @@ void RSSImp::copySelectedFeedsURL() {
 void RSSImp::showFeedDownloader() {
   QTreeWidgetItem* item = listStreams->selectedItems()[0];
   RssFile* rss_item = listStreams->getRSSItem(item);
-  if(rss_item->getType() == RssFile::STREAM)
-    new FeedDownloaderDlg(this, listStreams->getItemID(item), rss_item->getName(), BTSession);
+  if(rss_item->getType() == RssFile::STREAM) {
+    FeedDownloaderDlg* feedDownloader = new FeedDownloaderDlg(this, listStreams->getItemID(item), rss_item->getName(), BTSession);
+    connect(feedDownloader, SIGNAL(filteringEnabled()), this, SLOT(on_updateAllButton_clicked()));
+  }
 }
 
 void RSSImp::on_markReadButton_clicked() {

@@ -267,6 +267,8 @@ public:
   }
 
   ~FeedDownloaderDlg() {
+    if(enableDl_cb->isChecked())
+      emit filteringEnabled();
     // Make sure we save everything
     saveCurrentFilterSettings();
     filters.save();
@@ -496,6 +498,9 @@ protected slots:
     else
       QMessageBox::warning(0, tr("Export failure"), tr("Filters could not be exported due to an I/O error."));
   }
+
+signals:
+  void filteringEnabled();
 
 };
 
