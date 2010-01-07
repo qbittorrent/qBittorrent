@@ -478,10 +478,29 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     QString filename = misc::toQString(h.get_torrent_info().file_at(i).path.string());
     QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", file_path.toLocal8Bit().data());
+    // TODO: Flush data (when libtorrent supports it)
     if(QFile::exists(file_path))
       QDesktopServices::openUrl("file://"+file_path);
     else
       QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
+  } else {
+    // FOLDER
+    QStringList path_items;
+    path_items << index.data().toString();
+    QModelIndex parent = PropListModel->parent(index);
+    while(parent.isValid()) {
+      path_items.prepend(parent.data().toString());
+      parent = PropListModel->parent(parent);
+    }
+    QDir saveDir(h.save_path());
+    QString filename = path_items.join(QDir::separator());
+    QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    qDebug("Trying to open folder at %s", file_path.toLocal8Bit().data());
+    // TODO: Flush data (when libtorrent supports it)
+    if(QFile::exists(file_path))
+      QDesktopServices::openUrl("file://"+file_path);
+    else
+      QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
   }
 }
 
