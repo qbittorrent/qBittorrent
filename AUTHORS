@@ -12,6 +12,10 @@ Code from other projects:
   copyright: Malte Starostik <malte@kde.org>
   license: LGPL
 
+* files src/search_engine/socks.py
+  copyright: Dan Haim <negativeiq@users.sourceforge.net>
+  license: BSD
+
 Images Authors:
 * files: src/Icons/*.png
   copyright: Gnome Icon Theme
