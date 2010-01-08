@@ -3716,6 +3716,10 @@ QGroupBox {
         <source>This file does not exist yet.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This folder does not exist yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QTextEdit</name>

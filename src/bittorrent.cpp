@@ -525,6 +525,7 @@ void Bittorrent::configureSession() {
   setPeerProxySettings(proxySettings);
   // HTTP Proxy
   proxy_settings http_proxySettings;
+  qDebug("HTTP Communications proxy type: %d", Preferences::getHTTPProxyType());
   switch(Preferences::getHTTPProxyType()) {
   case HTTP_PW:
     http_proxySettings.type = proxy_settings::http_pw;
@@ -1650,27 +1651,43 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     s->set_web_seed_proxy(proxySettings);
     QString proxy_str;
     switch(proxySettings.type) {
-    case proxy_settings::http:
-      proxy_str = "http://"+misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
     case proxy_settings::http_pw:
+      proxy_str = "http://"+misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+      break;
+    case proxy_settings::http:
       proxy_str = "http://"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+      break;
+    case proxy_settings::socks5:
+      proxy_str = misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+      break;
+    case proxy_settings::socks5_pw:
+      proxy_str = misc::toQString(proxySettings.username)+":"+misc::toQString(proxySettings.password)+"@"+misc::toQString(proxySettings.hostname)+":"+QString::number(proxySettings.port);
+      break;
     default:
-      qDebug("Disabling search proxy");
+      qDebug("Disabling HTTP communications proxy");
 #ifdef Q_WS_WIN
       putenv("http_proxy=");
+      putenv("sock_proxy=")
 #else
       unsetenv("http_proxy");
+      unsetenv("sock_proxy");
 #endif
       return;
     }
     // We need this for urllib in search engine plugins
 #ifdef Q_WS_WIN
     char proxystr[512];
-    snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().data());
+    if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
+      snprintf(proxystr, 512, "sock_proxy=%s", proxy_str.toLocal8Bit().data());
+    else
+      snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().data());
     putenv(proxystr);
 #else
-    qDebug("HTTP: proxy string: %s", proxy_str.toLocal8Bit().data());
-    setenv("http_proxy", proxy_str.toLocal8Bit().data(), 1);
+    qDebug("HTTP communications proxy string: %s", proxy_str.toLocal8Bit().data());
+    if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
+      setenv("sock_proxy", proxy_str.toLocal8Bit().data(), 1);
+    else
+      setenv("http_proxy", proxy_str.toLocal8Bit().data(), 1);
 #endif
   }
 

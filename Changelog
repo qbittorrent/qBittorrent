@@ -14,6 +14,8 @@
     - FEATURE: Files contained in a torrent are opened on double click (files panel)
     - FEATURE: Added support for magnet links in search engine
     - FEATURE: Added vertor.com and torrentdownloads.net search plugins
+    - FEATURE: Search engine can now use a SOCKS5 proxy
+    - BUGFIX: Search engine loads new proxy settings without program restart
     - BUGFIX: Use XDG folders (.cache, .local) instead of .qbittorrent
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)

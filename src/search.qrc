@@ -3,6 +3,7 @@
   <file>search_engine/novaprinter.py</file>
   <file>search_engine/nova2dl.py</file>
   <file>search_engine/helpers.py</file>
+  <file>search_engine/socks.py</file>
   <file>search_engine/nova2.py</file>
   <file>search_engine/engines/isohunt.py</file>
   <file>search_engine/engines/isohunt.png</file>

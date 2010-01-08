@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.2
+#VERSION: 1.3
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -31,6 +31,17 @@ import re, htmlentitydefs
 import tempfile
 import os
 import StringIO, gzip, urllib2
+import socket
+import socks
+import re
+
+# SOCKS5 Proxy support
+if os.environ.has_key("sock_proxy") and len(os.environ["sock_proxy"].strip()) > 0:
+    proxy_str = os.environ["sock_proxy"].strip()
+    m=re.match(r"^(?:(?P<username>[^:]+):(?P<password>[^@]+)@)?(?P<host>[^:]+):(?P<port>\w+)$", proxy_str)
+    if m is not None:
+        socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, m.group('host'), int(m.group('port')), True, m.group('username'), m.group('password'))
+        socket.socket = socks.socksocket
 
 def htmlentitydecode(s):
     # First convert alpha entities (such as &eacute;)

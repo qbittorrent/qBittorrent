@@ -670,6 +670,7 @@ void options_imp::loadOptions(){
   intValue = Preferences::getHTTPProxyType();
   switch(intValue) {
   case HTTP:
+  case HTTP_PW:
     comboProxyType_http->setCurrentIndex(1);
     break;
   case SOCKS5:

@@ -210,6 +210,9 @@ void SearchEngine::on_search_button_clicked(){
     search_button->setText("Search");
     return;
   }
+  // Reload environment variables (proxy)
+  searchProcess->setEnvironment(QProcess::systemEnvironment());
+
   QString pattern = search_pattern->text().trimmed();
   // No search pattern entered
   if(pattern.isEmpty()){
@@ -408,7 +411,11 @@ void SearchEngine::updateNova() {
     }
     QFile::copy(":/search_engine/helpers.py", filePath);
   }
-  QFile(misc::searchEngineLocation()+QDir::separator()+"helpers.py").setPermissions(perm);
+  QFile(misc::searchEngineLocation()+QDir::separator()+"socks.py").setPermissions(perm);
+  filePath = misc::searchEngineLocation()+QDir::separator()+"socks.py";
+  if(!QFile::exists(filePath)) {
+    QFile::copy(":/search_engine/socks.py", filePath);
+  }
   QString destDir = misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator();
   QDir shipped_subDir(":/search_engine/engines/");
   QStringList files = shipped_subDir.entryList();
