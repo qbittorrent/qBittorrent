@@ -11,7 +11,7 @@ CONFIG += qt \
     thread
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v2.1.0rc3\\\"
+DEFINES += VERSION=\\\"v2.1.0rc4\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=1
 DEFINES += VERSION_BUGFIX=0
@@ -38,7 +38,8 @@ contains(DEBUG_MODE, 0) {
         include(../conf.pri)
         
         # Target
-        target.path = $$BINDIR
+        #target.path = $$BINDIR
+        target.path = $$PREFIX/bin/
         INSTALLS += target
     }
     
@@ -117,40 +118,43 @@ win32:LIBS += -lssl32 \
     -ladvapi32 \
     -lwinmm
 
-win32 {
-  DEFINES += WITH_GEOIP_EMBEDDED
-  message("On Windows, GeoIP database must be embedded.")
-}
+!contains(DEFINES, DISABLE_GUI) {
+  win32 {
+    DEFINES += WITH_GEOIP_EMBEDDED
+    message("On Windows, GeoIP database must be embedded.")
+  }
 
-macx {
-  DEFINES += WITH_GEOIP_EMBEDDED
-  message("On Mac OS X, GeoIP database must be embedded.")
-}
+  macx {
+    DEFINES += WITH_GEOIP_EMBEDDED
+    message("On Mac OS X, GeoIP database must be embedded.")
+  }
 
-unix:!macx {
+  unix:!macx {
+    contains(DEFINES, WITH_GEOIP_EMBEDDED) {
+      message("You chose to embed GeoIP database in qBittorrent executable.")
+    }
+  }
+
+  # Add GeoIP resource file if the GeoIP database
+  # should be embedded in qBittorrent executable
   contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-    message("You chose to embed GeoIP database in qBittorrent executable.")
+      exists("geoip/GeoIP.dat") {
+         message("GeoIP.dat was found in src/geoip/.")
+         RESOURCES += geoip.qrc
+      } else {
+        DEFINES -= WITH_GEOIP_EMBEDDED
+        error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
+      }
+  } else {
+    message("GeoIP database will not be embedded in qBittorrent executable.")
   }
 }
 
+# Resource files
 RESOURCES = icons.qrc \
     lang.qrc \
     search.qrc \
     webui.qrc
-
-# Add GeoIP resource file if the GeoIP database
-# should be embedded in qBittorrent executable
-contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-    exists("geoip/GeoIP.dat") {
-       message("GeoIP.dat was found in src/geoip/.")
-       RESOURCES += geoip.qrc
-    } else {
-      DEFINES -= WITH_GEOIP_EMBEDDED
-      error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
-    }
-} else {
-  message("GeoIP database will not be embedded in qBittorrent executable.")
-}
 
 # Translations
 TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
@@ -245,7 +249,6 @@ contains(DEFINES, DISABLE_GUI) {
 }
 
 !contains(DEFINES, DISABLE_GUI) {
-        message(adding forms)
 	FORMS += ui/mainwindow.ui \
 	    ui/options.ui \
 	    ui/about.ui \
