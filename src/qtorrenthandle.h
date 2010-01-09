@@ -153,6 +153,7 @@ class QTorrentHandle {
     void move_storage(QString path) const;
  #ifdef LIBTORRENT_0_15
     void super_seeding(bool on) const;
+    void flush_cache() const;
 #endif
 #ifndef DISABLE_GUI
     void resolve_countries(bool r);

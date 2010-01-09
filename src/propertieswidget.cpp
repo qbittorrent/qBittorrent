@@ -478,7 +478,10 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     QString filename = misc::toQString(h.get_torrent_info().file_at(i).path.string());
     QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", file_path.toLocal8Bit().data());
-    // TODO: Flush data (when libtorrent supports it)
+#ifdef LIBTORRENT_0_15
+    // Flush data
+    h.flush_cache();
+#endif
     if(QFile::exists(file_path))
       QDesktopServices::openUrl("file://"+file_path);
     else
@@ -496,7 +499,10 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     QString filename = path_items.join(QDir::separator());
     QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open folder at %s", file_path.toLocal8Bit().data());
-    // TODO: Flush data (when libtorrent supports it)
+#ifdef LIBTORRENT_0_15
+    // Flush data
+    h.flush_cache();
+#endif
     if(QFile::exists(file_path))
       QDesktopServices::openUrl("file://"+file_path);
     else

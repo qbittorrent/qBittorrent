@@ -547,6 +547,11 @@ void QTorrentHandle::super_seeding(bool on) const {
   Q_ASSERT(h.is_valid());
   h.super_seeding(on);
 }
+
+void QTorrentHandle::flush_cache() const {
+  Q_ASSERT(h.is_valid());
+  h.flush_cache();
+}
 #endif
 
 #ifndef DISABLE_GUI

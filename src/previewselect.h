@@ -64,6 +64,10 @@ protected slots:
     QModelIndex index;
     QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(NAME);
     if(selectedIndexes.size() == 0) return;
+#ifdef LIBTORRENT_0_15
+    // Flush data
+    h.flush_cache();
+#endif
     QString path;
     foreach(index, selectedIndexes){
       path = h.files_path().at(indexes.at(index.row()));
