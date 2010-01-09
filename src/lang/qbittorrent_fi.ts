@@ -2546,7 +2546,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../main.cpp" line="103"/>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikeudellinen huomautus</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
@@ -2554,27 +2554,29 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent on tiedostonjako-ohjelma. Suorittaessasi torrenttia sen tiedot ovat muiden ladattavissa. Ja, luonollisesti, olet vastuussa jakamastasi sisällöstä.
+
+Todennäköisesti tiesit tämän jo, joten emme toista asiaa.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Paina mitä tahansa näppäintä hyväksyäksesi ja jatkaaksesi...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="113"/>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikeudellinen huomautus</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="114"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="115"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Hyväksyn</translation>
     </message>
 </context>
 <context>
@@ -3809,17 +3811,17 @@ QGroupBox {
         <location filename="../propertieswidget.cpp" line="485"/>
         <location filename="../propertieswidget.cpp" line="503"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O-virhe</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="485"/>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostoa ei ole vielä.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="503"/>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiota ei ole vielä.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="512"/>
@@ -3845,7 +3847,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="538"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="568"/>
@@ -4709,7 +4711,7 @@ Muutoshistoria:
         <location filename="../transferlistdelegate.h" line="106"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation>Tarkastetaan...</translation>
+        <translation>Tarkastetaan</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="117"/>
@@ -4789,12 +4791,12 @@ Muutoshistoria:
     <message>
         <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen nimike</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
 </context>
 <context>
@@ -4967,12 +4969,12 @@ Muutoshistoria:
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen nimike</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="896"/>
@@ -7182,7 +7184,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="287"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="313"/>
@@ -7198,12 +7200,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="437"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen nimike</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="437"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="471"/>
