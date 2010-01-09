@@ -34,6 +34,7 @@
 
 #ifndef DISABLE_GUI
 #include <QApplication>
+#include <QMessageBox>
 #include <QSplashScreen>
 #include <QPlastiqueStyle>
 #include "qgnomelook.h"
@@ -49,6 +50,8 @@
 #include "ico.h"
 #else
 #include <QCoreApplication>
+#include <iostream>
+#include <stdio.h>
 #include "headlessloader.h"
 #endif
 
@@ -73,7 +76,7 @@ QApplication *app;
 #endif
 
 class UsageDisplay: public QObject {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
   static void displayUsage(char* prg_name) {
@@ -85,6 +88,39 @@ public:
     std::cout << '\t' << prg_name << "--help: " << tr("displays this help message").toLocal8Bit().data() << std::endl;
     std::cout << '\t' << prg_name << "--webui-port=x: " << tr("changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
     std::cout << '\t' << prg_name << tr("[files or urls]: downloads the torrents passed by the user (optional)").toLocal8Bit().data() << std::endl;
+  }
+};
+
+class LegalNotice: public QObject {
+  Q_OBJECT
+
+public:
+  static bool userAgreesWithNotice() {
+    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    if(settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
+      return true;
+#ifdef DISABLE_GUI
+    std::cout << std::endl << "*** " << tr("Legal Notice").toLocal8Bit().data() << " ***" << std::endl;
+    std::cout << tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.\n\nYou probably knew this, so we won't tell you again.").toLocal8Bit().data() << std::endl << std::endl;
+    std::cout << tr("Press any key to accept and continue...").toLocal8Bit().data() << std::endl;
+    getchar(); // Read pressed key
+    // Save the answer
+    settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
+    return true;
+#else
+    QMessageBox msgBox;
+    msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.\n\nYou probably knew this, so we won't tell you again."));
+    msgBox.setWindowTitle(tr("Legal notice"));
+    msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);
+    QAbstractButton *agree_button =(QAbstractButton*)msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);
+    msgBox.exec();
+    if(msgBox.clickedButton() == agree_button) {
+      // Save the answer
+      settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
+      return true;
+    }
+    return false;
+#endif
   }
 };
 
@@ -262,6 +298,13 @@ int main(int argc, char *argv[]){
   }
   app->installTranslator(&translator);
   app->setApplicationName(QString::fromUtf8("qBittorrent"));
+  if(!LegalNotice::userAgreesWithNotice()) {
+#ifndef DISABLE_GUI
+    delete splash;
+#endif
+    delete app;
+    return 0;
+  }
 #ifndef DISABLE_GUI
   app->setQuitOnLastWindowClosed(false);
 #endif

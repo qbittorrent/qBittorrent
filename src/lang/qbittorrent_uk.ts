@@ -2385,6 +2385,35 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>LegalNotice</name>
+    <message>
+        <source>Legal Notice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
+
+You probably knew this, so we won&apos;t tell you again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press any key to accept and continue...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Legal notice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I Agree</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Log:</source>
