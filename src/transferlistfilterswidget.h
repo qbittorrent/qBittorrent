@@ -59,6 +59,18 @@ public:
     setAcceptDrops(true);
   }
 
+  // Redefine addItem() to make sure the list stays sorted
+  void addItem(QListWidgetItem *it) {
+    Q_ASSERT(count() >= 2);
+    for(int i=2; i<count(); ++i) {
+      if(item(i)->text().localeAwareCompare(it->text()) >= 0) {
+        insertItem(i, it);
+        return;
+      }
+    }
+    QListWidget::addItem(it);
+  }
+
 signals:
   void torrentDropped(int label_row);
 
@@ -121,8 +133,7 @@ class TransferListFiltersWidget: public QFrame {
   Q_OBJECT
 
 private:
-  QStringList customLabels;
-  QList<int> labelCounters;
+  QHash<QString, int> customLabels;
   QListWidget* statusFilters;
   LabelFiltersList* labelFilters;
   QVBoxLayout* vLayout;
@@ -201,29 +212,45 @@ public:
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     settings.setValue("selectedFilterIndex", QVariant(statusFilters->currentRow()));
     //settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
-    settings.setValue("customLabels", customLabels);
+    settings.setValue("customLabels", QVariant(customLabels.keys()));
   }
 
   void saveCustomLabels() const {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
-    settings.setValue("customLabels", customLabels);
+    settings.setValue("customLabels", QVariant(customLabels.keys()));
   }
 
   void loadSettings() {
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     statusFilters->setCurrentRow(settings.value("selectedFilterIndex", 0).toInt());
-    customLabels = settings.value("customLabels", QStringList()).toStringList();
-    for(int i=0; i<customLabels.size(); ++i) {
-      labelCounters << 0;
-    }
-    foreach(const QString& label, customLabels) {
-      QListWidgetItem *newLabel = new QListWidgetItem(labelFilters);
+    QStringList label_list = settings.value("customLabels", QStringList()).toStringList();
+    foreach(const QString &label, label_list) {
+      customLabels.insert(label, 0);
+      qDebug("Creating label QListWidgetItem: %s", label.toLocal8Bit().data());
+      QListWidgetItem *newLabel = new QListWidgetItem();
       newLabel->setText(label + " (0)");
       newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
+      labelFilters->addItem(newLabel);
     }
+  }
 
+  QString labelFromRow(int row) const {
+    Q_ASSERT(row > 1);
+    QString label = labelFilters->item(row)->text();
+    QStringList parts = label.split(" ");
+    Q_ASSERT(parts.size() >= 2);
+    parts.removeLast(); // Remove trailing number
+    return parts.join(" ");
+  }
+
+  int rowFromLabel(QString label) const {
+    Q_ASSERT(!label.isEmpty());
+    for(int i=2; i<labelFilters->count(); ++i) {
+      if(label == labelFromRow(i)) return i;
+    }
+    return -1;
   }
 
 protected slots:
@@ -240,19 +267,18 @@ protected slots:
     if(row == 1) {
       transferList->setSelectionLabel("");
     } else {
-      QString label = customLabels.at(row-2);
-      transferList->setSelectionLabel(label);
+      transferList->setSelectionLabel(labelFromRow(row));
     }
   }
 
   void addLabel(QString label) {
     label = misc::toValidFileSystemName(label.trimmed());
     if(label.isEmpty() || customLabels.contains(label)) return;
-    QListWidgetItem *newLabel = new QListWidgetItem(labelFilters);
+    QListWidgetItem *newLabel = new QListWidgetItem();
     newLabel->setText(label + " (0)");
     newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
-    customLabels << label;
-    labelCounters << 0;
+    labelFilters->addItem(newLabel);
+    customLabels.insert(label, 0);
     saveCustomLabels();
   }
 
@@ -284,7 +310,7 @@ protected slots:
               invalid = true;
             }
           }
-        }while(invalid);
+        } while(invalid);
         return;
       }
     }
@@ -293,8 +319,9 @@ protected slots:
   void removeSelectedLabel() {
     int row = labelFilters->row(labelFilters->selectedItems().first());
     Q_ASSERT(row > 1);
-    QString label = customLabels.takeAt(row - 2);
-    labelCounters.removeAt(row-2);
+    QString label = labelFromRow(row);
+    Q_ASSERT(customLabels.contains(label));
+    customLabels.remove(label);
     transferList->removeLabelFromRows(label);
     // Select first label
     labelFilters->setCurrentItem(labelFilters->item(0));
@@ -315,29 +342,32 @@ protected slots:
       transferList->applyLabelFilter("none");
       break;
     default:
-      transferList->applyLabelFilter(customLabels.at(row-2));
+      transferList->applyLabelFilter(labelFromRow(row));
     }
   }
 
   void torrentChangedLabel(QString old_label, QString new_label) {
     qDebug("Torrent label changed from %s to %s", old_label.toLocal8Bit().data(), new_label.toLocal8Bit().data());
     if(!old_label.isEmpty()) {
-      int i = customLabels.indexOf(old_label);
-      if(i >= 0) {
-        int new_count = labelCounters[i]-1;
+      if(customLabels.contains(old_label)) {
+        int new_count = customLabels.value(old_label, 0) - 1;
         Q_ASSERT(new_count >= 0);
-        labelCounters.replace(i, new_count);
-        labelFilters->item(i+2)->setText(old_label + " ("+ QString::number(new_count) +")");
+        customLabels.insert(old_label, new_count);
+        int row = rowFromLabel(old_label);
+        Q_ASSERT(row >= 2);
+        labelFilters->item(row)->setText(old_label + " ("+ QString::number(new_count) +")");
       }
       --nb_labeled;
     }
     if(!new_label.isEmpty()) {
       if(!customLabels.contains(new_label))
         addLabel(new_label);
-      int i = customLabels.indexOf(new_label);
-      int new_count = labelCounters[i]+1;
-      labelCounters.replace(i, new_count);
-      labelFilters->item(i+2)->setText(new_label + " ("+ QString::number(new_count) +")");
+      int new_count = customLabels.value(new_label, 0) + 1;
+      Q_ASSERT(new_count >= 1);
+      customLabels.insert(new_label, new_count);
+      int row = rowFromLabel(new_label);
+      Q_ASSERT(row >= 2);
+      labelFilters->item(row)->setText(new_label + " ("+ QString::number(new_count) +")");
       ++nb_labeled;
     }
     updateStickyLabelCounters();
@@ -353,12 +383,14 @@ protected slots:
         addLabel(label);
       }
       // Update label counter
-      int i = customLabels.indexOf(label);
-      Q_ASSERT(i >= 0);
-      int new_count = labelCounters[i]+1;
-      labelCounters.replace(i, new_count);
-      Q_ASSERT(labelFilters->item(i+2));
-      labelFilters->item(i+2)->setText(label + " ("+ QString::number(new_count) +")");
+      Q_ASSERT(customLabels.contains(label));
+      int new_count = customLabels.value(label, 0) + 1;
+      customLabels.insert(label, new_count);
+      int row = rowFromLabel(label);
+      qDebug("torrentAdded, Row: %d", row);
+      Q_ASSERT(row >= 2);
+      Q_ASSERT(labelFilters->item(row));
+      labelFilters->item(row)->setText(label + " ("+ QString::number(new_count) +")");
       ++nb_labeled;
     }
     ++nb_torrents;
@@ -374,11 +406,11 @@ protected slots:
     QString label = transferList->getSourceModel()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
     if(!label.isEmpty()) {
       // Update label counter
-      int i = customLabels.indexOf(label);
-      Q_ASSERT(i >= 0);
-      int new_count = labelCounters[i]-1;
-      labelCounters.replace(i, new_count);
-      labelFilters->item(i+2)->setText(label + " ("+ QString::number(new_count) +")");
+      int new_count = customLabels.value(label, 0) - 1;
+      customLabels.insert(label, new_count);
+      int row = rowFromLabel(label);
+      Q_ASSERT(row >= 2);
+      labelFilters->item(row)->setText(label + " ("+ QString::number(new_count) +")");
       --nb_labeled;
     }
     --nb_torrents;
