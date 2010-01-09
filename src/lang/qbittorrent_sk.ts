@@ -2598,29 +2598,31 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Právny oznam</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent je program na zdieľanie súborov. Keď spustíte torrent, jeho údaje sa sprístupnia iným na stiahnutie. A samozrejme, akýkoľvek obsah, ktorý zdieľate je jedine na vašu vlastnú zodpovednosť.
+
+Pravdepodobne ste to už vedelí, tak to už nebudeme opakovať.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokračujte stlačením wubovoľného klávesu...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Právne upozornenie</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušiť</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Súhlasím</translation>
     </message>
 </context>
 <context>
@@ -3735,19 +3737,19 @@ QGroupBox {
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento názov súboru obsahuje nepovolené znaky, preto zvoľte iný.</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>V/V chyba</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento súbor zatiaľ neexistuje.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento priečinok zatiaľ neexistuje.</translation>
     </message>
 </context>
 <context>
@@ -4503,11 +4505,11 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný názov označenia</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, nepoužívajte v názve označenia špeciálne znaky.</translation>
     </message>
 </context>
 <context>
@@ -4704,11 +4706,11 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný názov označenia</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, nepoužívajte v názve označenia špeciálne znaky.</translation>
     </message>
 </context>
 <context>
@@ -6838,15 +6840,15 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný názov označenia</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, nepoužívajte v názve označenia špeciálne znaky.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento názov súboru obsahuje nepovolené znaky, preto zvoľte iný.</translation>
     </message>
 </context>
 </TS>
