@@ -184,13 +184,17 @@ public:
   }
 
   static QString toValidFileSystemName(QString filename) {
-    filename = filename.replace("\\", "/");
-    QRegExp regex("[/:!?\"*<>|]");
-    return filename.replace(regex, " ");
+    qDebug("toValidFSName: %s", filename.toLocal8Bit().data());
+    filename = filename.replace("\\", "/").trimmed();
+    QRegExp regex("[/:?\"*<>|]");
+    filename = filename.replace(regex, " ").trimmed();
+    qDebug("toValidFSName, result: %s", filename.toLocal8Bit().data());
+    return filename;
   }
 
   static bool isValidFileSystemName(QString filename) {
-    filename = filename.replace("\\", "/");
+    filename = filename.replace("\\", "/").trimmed();
+    if(filename.isEmpty()) return false;
     QRegExp regex("[/:?\"*<>|]");
     if(filename.contains(regex))
       return false;
