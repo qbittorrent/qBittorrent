@@ -2807,7 +2807,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../main.cpp" line="103"/>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Aviso Legal</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
@@ -2815,27 +2815,29 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent es un programa para compartir archivos. Cuando se ejecuta un torrente, sus datos se pondrán a disposición de los demás por medio de subida. Y, por supuesto, cualquier contenido que usted comparte es bajo su responsabilidad.
+
+Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulse cualquier tecla para aceptar y continuar ...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="113"/>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Aviso Legal</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="114"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="115"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Estoy de acuerdo</translation>
     </message>
 </context>
 <context>
@@ -4136,7 +4138,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="503"/>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ese archivo todavía no existe.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="512"/>
@@ -4289,7 +4291,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click para iniciar la descarga)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(doble-click para iniciar la descarga)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="152"/>
