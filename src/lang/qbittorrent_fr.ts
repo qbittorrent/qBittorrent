@@ -3056,7 +3056,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../main.cpp" line="103"/>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Information légale</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
@@ -3064,27 +3064,29 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent est un logiciel de partage de fichiers. Lorsque de l&apos;ajout d&apos;un torrent, ses données seront mises à la disposition des autres utilisateurs par le biais de leur envoi (&quot;upload&quot;). Bien entendu, vous seul pourrez être tenu responsable du contenu que vous partagez.
+
+Vous le saviez probablement déjà alors nous ne vous l&apos;indiquerons plus.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Appuyer sur une touche pour accepter et continuer...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="113"/>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Information légale</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="114"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="115"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>J&apos;accepte</translation>
     </message>
 </context>
 <context>
