@@ -2536,17 +2536,17 @@ QGroupBox {
         <location filename="../propertieswidget.cpp" line="485"/>
         <location filename="../propertieswidget.cpp" line="503"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>И/О Грешка</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="485"/>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Овај фајл више не постоји.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="503"/>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Овај директоријум више не постоји.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="512"/>
@@ -2572,7 +2572,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="538"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ово име фајла садржи недозвољене карактере, молим изаберите неко друго.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="568"/>
@@ -3387,12 +3387,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Погрешно име ознаке</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="283"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Молимо Вас да не користите специјалне карактере у имену ознаке.</translation>
     </message>
 </context>
 <context>
@@ -3513,12 +3513,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Погрешно име ознаке</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="880"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Молимо Вас да не користите специјалне карактере у имену ознаке.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="896"/>
@@ -4651,7 +4651,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../torrentadditiondlg.h" line="287"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ово име фајла садржи недозвољене карактере, молим изаберите неко друго.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="313"/>
@@ -4705,12 +4705,12 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../torrentadditiondlg.h" line="437"/>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Погрешно име ознаке</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="437"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Молимо Вас да не користите специјалне карактере у имену ознаке.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="471"/>
