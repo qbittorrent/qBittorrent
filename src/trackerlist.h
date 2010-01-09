@@ -158,7 +158,7 @@ public slots:
     QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
     if(selected_items.isEmpty()) return;
     bool change = false;
-    for(int i=selectedItems().length()-1; i>= 0; --i) {
+    for(int i=selectedItems().size()-1; i>= 0; --i) {
       int index = indexOfTopLevelItem(selected_items.at(i));
       if(index < topLevelItemCount()-1) {
         insertTopLevelItem(index+1, takeTopLevelItem(index));
