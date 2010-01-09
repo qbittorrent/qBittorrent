@@ -94,6 +94,7 @@ contains(DEFINES, DISABLE_GUI) {
 }
 
 contains(DEFINES, DISABLE_GUI) {
+  QT=core
   TARGET = qbittorrent-nox
 } else {
   TARGET = qbittorrent
