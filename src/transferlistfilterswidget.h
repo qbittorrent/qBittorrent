@@ -71,6 +71,23 @@ public:
     QListWidget::addItem(it);
   }
 
+  QString labelFromRow(int row) const {
+    Q_ASSERT(row > 1);
+    QString label = item(row)->text();
+    QStringList parts = label.split(" ");
+    Q_ASSERT(parts.size() >= 2);
+    parts.removeLast(); // Remove trailing number
+    return parts.join(" ");
+  }
+
+  int rowFromLabel(QString label) const {
+    Q_ASSERT(!label.isEmpty());
+    for(int i=2; i<count(); ++i) {
+      if(label == labelFromRow(i)) return i;
+    }
+    return -1;
+  }
+
 signals:
   void torrentDropped(int label_row);
 
@@ -236,23 +253,6 @@ public:
     }
   }
 
-  QString labelFromRow(int row) const {
-    Q_ASSERT(row > 1);
-    QString label = labelFilters->item(row)->text();
-    QStringList parts = label.split(" ");
-    Q_ASSERT(parts.size() >= 2);
-    parts.removeLast(); // Remove trailing number
-    return parts.join(" ");
-  }
-
-  int rowFromLabel(QString label) const {
-    Q_ASSERT(!label.isEmpty());
-    for(int i=2; i<labelFilters->count(); ++i) {
-      if(label == labelFromRow(i)) return i;
-    }
-    return -1;
-  }
-
 protected slots:
   void updateTorrentNumbers(uint nb_downloading, uint nb_seeding, uint nb_active, uint nb_inactive) {
     statusFilters->item(FILTER_ALL)->setData(Qt::DisplayRole, tr("All")+" ("+QString::number(nb_active+nb_inactive)+")");
@@ -267,7 +267,7 @@ protected slots:
     if(row == 1) {
       transferList->setSelectionLabel("");
     } else {
-      transferList->setSelectionLabel(labelFromRow(row));
+      transferList->setSelectionLabel(labelFilters->labelFromRow(row));
     }
   }
 
@@ -319,7 +319,7 @@ protected slots:
   void removeSelectedLabel() {
     int row = labelFilters->row(labelFilters->selectedItems().first());
     Q_ASSERT(row > 1);
-    QString label = labelFromRow(row);
+    QString label = labelFilters->labelFromRow(row);
     Q_ASSERT(customLabels.contains(label));
     customLabels.remove(label);
     transferList->removeLabelFromRows(label);
@@ -342,7 +342,7 @@ protected slots:
       transferList->applyLabelFilter("none");
       break;
     default:
-      transferList->applyLabelFilter(labelFromRow(row));
+      transferList->applyLabelFilter(labelFilters->labelFromRow(row));
     }
   }
 
@@ -353,7 +353,7 @@ protected slots:
         int new_count = customLabels.value(old_label, 0) - 1;
         Q_ASSERT(new_count >= 0);
         customLabels.insert(old_label, new_count);
-        int row = rowFromLabel(old_label);
+        int row = labelFilters->rowFromLabel(old_label);
         Q_ASSERT(row >= 2);
         labelFilters->item(row)->setText(old_label + " ("+ QString::number(new_count) +")");
       }
@@ -365,7 +365,7 @@ protected slots:
       int new_count = customLabels.value(new_label, 0) + 1;
       Q_ASSERT(new_count >= 1);
       customLabels.insert(new_label, new_count);
-      int row = rowFromLabel(new_label);
+      int row = labelFilters->rowFromLabel(new_label);
       Q_ASSERT(row >= 2);
       labelFilters->item(row)->setText(new_label + " ("+ QString::number(new_count) +")");
       ++nb_labeled;
@@ -386,7 +386,7 @@ protected slots:
       Q_ASSERT(customLabels.contains(label));
       int new_count = customLabels.value(label, 0) + 1;
       customLabels.insert(label, new_count);
-      int row = rowFromLabel(label);
+      int row = labelFilters->rowFromLabel(label);
       qDebug("torrentAdded, Row: %d", row);
       Q_ASSERT(row >= 2);
       Q_ASSERT(labelFilters->item(row));
@@ -408,7 +408,7 @@ protected slots:
       // Update label counter
       int new_count = customLabels.value(label, 0) - 1;
       customLabels.insert(label, new_count);
-      int row = rowFromLabel(label);
+      int row = labelFilters->rowFromLabel(label);
       Q_ASSERT(row >= 2);
       labelFilters->item(row)->setText(label + " ("+ QString::number(new_count) +")");
       --nb_labeled;
