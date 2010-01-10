@@ -1440,7 +1440,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../main.cpp" line="103"/>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Правно Обавештење</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
@@ -1448,27 +1448,30 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent је програм за дељење датотека. Када покренете Торент, дељене датотеке ће бити доступне другима за преузимање. И наравно, било који садржај који делите је Ваша лична одговорност.
+
+Ви вероватно то знате, тако да Вам то нећемо понављати.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Притисните било који тастер да ово прихватите и наставите...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="113"/>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Правно обавештење</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="114"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Откажи</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="115"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Слажем се , Прихватам</translatorcomment>
+        <translation>Сагласан сам</translation>
     </message>
 </context>
 <context>
