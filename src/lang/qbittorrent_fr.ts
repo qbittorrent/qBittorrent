@@ -4415,28 +4415,28 @@ Comment:</source>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
-        <location filename="../propertieswidget.cpp" line="503"/>
+        <location filename="../propertieswidget.cpp" line="488"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>I/O Error</source>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
+        <location filename="../propertieswidget.cpp" line="488"/>
         <source>This file does not exist yet.</source>
         <translation>Ce fichier n&apos;existe pas encore.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="503"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>This folder does not exist yet.</source>
         <translation>Ce dossier n&apos;existe pas encore.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="512"/>
+        <location filename="../propertieswidget.cpp" line="518"/>
         <source>Rename...</source>
         <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="532"/>
+        <location filename="../propertieswidget.cpp" line="538"/>
         <source>Rename the file</source>
         <translation>Renommer le fichier</translation>
     </message>
@@ -4445,29 +4445,29 @@ Comment:</source>
         <translation type="obsolete">Renommer le fichier</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="533"/>
+        <location filename="../propertieswidget.cpp" line="539"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="537"/>
-        <location filename="../propertieswidget.cpp" line="567"/>
+        <location filename="../propertieswidget.cpp" line="543"/>
+        <location filename="../propertieswidget.cpp" line="573"/>
         <source>The file could not be renamed</source>
         <translation>Le fichier n&apos;a pas pu être renommé</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="538"/>
+        <location filename="../propertieswidget.cpp" line="544"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ce nom de fichier contient des caractères interdits, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="568"/>
-        <location filename="../propertieswidget.cpp" line="602"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ce nom est déjà utilisé au sein de ce dossier. Veuillez choisir un nom différent.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="601"/>
+        <location filename="../propertieswidget.cpp" line="607"/>
         <source>The folder could not be renamed</source>
         <translation>Le dossier n&apos;a pas pu être renommé</translation>
     </message>
@@ -4476,23 +4476,23 @@ Comment:</source>
         <translation type="obsolete">Aucun - indisponible ?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="630"/>
+        <location filename="../propertieswidget.cpp" line="636"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nouvelle source HTTP</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="631"/>
+        <location filename="../propertieswidget.cpp" line="637"/>
         <source>New url seed:</source>
         <translation>Nouvelle source HTTP :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="636"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="637"/>
+        <location filename="../propertieswidget.cpp" line="643"/>
         <source>This url seed is already in the list.</source>
         <translation>Cette source HTTP est déjà dans la liste.</translation>
     </message>
@@ -4501,18 +4501,18 @@ Comment:</source>
         <translation type="obsolete">La liste des trackers ne peut pas être vide.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="682"/>
-        <location filename="../propertieswidget.cpp" line="684"/>
+        <location filename="../propertieswidget.cpp" line="688"/>
+        <location filename="../propertieswidget.cpp" line="690"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="697"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="697"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
@@ -5381,74 +5381,74 @@ Changements:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="149"/>
-        <location filename="../transferlistfilterswidget.h" line="231"/>
+        <location filename="../transferlistfilterswidget.h" line="177"/>
+        <location filename="../transferlistfilterswidget.h" line="258"/>
         <source>All</source>
         <translation>Tous</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="152"/>
-        <location filename="../transferlistfilterswidget.h" line="232"/>
+        <location filename="../transferlistfilterswidget.h" line="180"/>
+        <location filename="../transferlistfilterswidget.h" line="259"/>
         <source>Downloading</source>
         <translation>En téléchargement</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="155"/>
-        <location filename="../transferlistfilterswidget.h" line="233"/>
+        <location filename="../transferlistfilterswidget.h" line="183"/>
+        <location filename="../transferlistfilterswidget.h" line="260"/>
         <source>Completed</source>
         <translation>Complet</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="158"/>
-        <location filename="../transferlistfilterswidget.h" line="234"/>
+        <location filename="../transferlistfilterswidget.h" line="186"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Active</source>
         <translation>Actif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="161"/>
-        <location filename="../transferlistfilterswidget.h" line="235"/>
+        <location filename="../transferlistfilterswidget.h" line="189"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Inactive</source>
         <translation>Inactif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="175"/>
-        <location filename="../transferlistfilterswidget.h" line="393"/>
+        <location filename="../transferlistfilterswidget.h" line="203"/>
+        <location filename="../transferlistfilterswidget.h" line="425"/>
         <source>All labels</source>
         <translation>Toutes catégories</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="178"/>
-        <location filename="../transferlistfilterswidget.h" line="394"/>
+        <location filename="../transferlistfilterswidget.h" line="206"/>
+        <location filename="../transferlistfilterswidget.h" line="426"/>
         <source>Unlabeled</source>
         <translation>Sans catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="289"/>
         <source>Remove label</source>
         <translation>Supprimer catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="290"/>
         <source>Add label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="278"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>New Label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="278"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>Label:</source>
         <translation>Catégorie :</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="283"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Invalid label name</source>
         <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="283"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
@@ -7063,31 +7063,31 @@ Cependant, les greffons en question ont été désactivés.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>o</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>Ko</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>Mo</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>Go</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>To</translation>
@@ -7108,7 +7108,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete"> j</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="495"/>
+        <location filename="../misc.h" line="499"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -7123,31 +7123,31 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">j</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="341"/>
+        <location filename="../misc.h" line="345"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Inconnue</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="524"/>
+        <location filename="../misc.h" line="528"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="528"/>
+        <location filename="../misc.h" line="532"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="533"/>
+        <location filename="../misc.h" line="537"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="538"/>
+        <location filename="../misc.h" line="542"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1j%2h%3min</translation>
@@ -7346,31 +7346,31 @@ Cependant, les greffons en question ont été désactivés.</translation>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewselect.h" line="74"/>
-        <location filename="../previewselect.h" line="80"/>
-        <location filename="../previewselect.h" line="121"/>
+        <location filename="../previewselect.h" line="78"/>
+        <location filename="../previewselect.h" line="84"/>
+        <location filename="../previewselect.h" line="125"/>
         <source>Preview impossible</source>
         <translation>Prévisualisation impossible</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="74"/>
-        <location filename="../previewselect.h" line="80"/>
-        <location filename="../previewselect.h" line="121"/>
+        <location filename="../previewselect.h" line="78"/>
+        <location filename="../previewselect.h" line="84"/>
+        <location filename="../previewselect.h" line="125"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Désolé, il est impossible de prévisualiser ce fichier</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="94"/>
+        <location filename="../previewselect.h" line="98"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="95"/>
+        <location filename="../previewselect.h" line="99"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="96"/>
+        <location filename="../previewselect.h" line="100"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>

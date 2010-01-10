@@ -4284,55 +4284,55 @@ QGroupBox {
         <translation>μέγιστο %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
-        <location filename="../propertieswidget.cpp" line="503"/>
+        <location filename="../propertieswidget.cpp" line="488"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>I/O Error</source>
         <translation>I/O Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
+        <location filename="../propertieswidget.cpp" line="488"/>
         <source>This file does not exist yet.</source>
         <translation>Αυτό το αρχείο δεν υπάρχει ακόμα.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="503"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>This folder does not exist yet.</source>
         <translation>Αυτός ο φάκελος δεν υπάρχει ακόμα.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="512"/>
+        <location filename="../propertieswidget.cpp" line="518"/>
         <source>Rename...</source>
         <translation>Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="532"/>
+        <location filename="../propertieswidget.cpp" line="538"/>
         <source>Rename the file</source>
         <translation>Μετονομασία αρχείου</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="533"/>
+        <location filename="../propertieswidget.cpp" line="539"/>
         <source>New name:</source>
         <translation>Νέο όνομα:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="537"/>
-        <location filename="../propertieswidget.cpp" line="567"/>
+        <location filename="../propertieswidget.cpp" line="543"/>
+        <location filename="../propertieswidget.cpp" line="573"/>
         <source>The file could not be renamed</source>
         <translation>Αυτό το αρχείο δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="538"/>
+        <location filename="../propertieswidget.cpp" line="544"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Αυτό το όνομα αρχείου περιέχει απαγορευμένους χαρακτήρες, παρακαλώ επιλέξτε ένα διαφορετικό.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="568"/>
-        <location filename="../propertieswidget.cpp" line="602"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται σ&apos;αυτό το φάκελο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="601"/>
+        <location filename="../propertieswidget.cpp" line="607"/>
         <source>The folder could not be renamed</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
@@ -4341,23 +4341,23 @@ QGroupBox {
         <translation type="obsolete">Κανένα - Απροσπέλαστο?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="630"/>
+        <location filename="../propertieswidget.cpp" line="636"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Νέο url διαμοιρασμού</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="631"/>
+        <location filename="../propertieswidget.cpp" line="637"/>
         <source>New url seed:</source>
         <translation>Νέο url διαμοιρασμού:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="636"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="637"/>
+        <location filename="../propertieswidget.cpp" line="643"/>
         <source>This url seed is already in the list.</source>
         <translation>Αυτό το url διαμοιρασμού είναι ήδη στη λίστα.</translation>
     </message>
@@ -4366,18 +4366,18 @@ QGroupBox {
         <translation type="obsolete">Η λίστα των ιχνηλατών δεν γίνεται να είναι άδειο.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="682"/>
-        <location filename="../propertieswidget.cpp" line="684"/>
+        <location filename="../propertieswidget.cpp" line="688"/>
+        <location filename="../propertieswidget.cpp" line="690"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="697"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="697"/>
         <source>Could not create the save path</source>
         <translation>Αδύνατο να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
@@ -5231,74 +5231,74 @@ Changelog:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="149"/>
-        <location filename="../transferlistfilterswidget.h" line="231"/>
+        <location filename="../transferlistfilterswidget.h" line="177"/>
+        <location filename="../transferlistfilterswidget.h" line="258"/>
         <source>All</source>
         <translation>Όλα</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="152"/>
-        <location filename="../transferlistfilterswidget.h" line="232"/>
+        <location filename="../transferlistfilterswidget.h" line="180"/>
+        <location filename="../transferlistfilterswidget.h" line="259"/>
         <source>Downloading</source>
         <translation>Λαμβάνει</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="155"/>
-        <location filename="../transferlistfilterswidget.h" line="233"/>
+        <location filename="../transferlistfilterswidget.h" line="183"/>
+        <location filename="../transferlistfilterswidget.h" line="260"/>
         <source>Completed</source>
         <translation>Τελείωσαν</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="158"/>
-        <location filename="../transferlistfilterswidget.h" line="234"/>
+        <location filename="../transferlistfilterswidget.h" line="186"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Active</source>
         <translation>Ενεργά</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="161"/>
-        <location filename="../transferlistfilterswidget.h" line="235"/>
+        <location filename="../transferlistfilterswidget.h" line="189"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Inactive</source>
         <translation>Ανενεργά</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="175"/>
-        <location filename="../transferlistfilterswidget.h" line="393"/>
+        <location filename="../transferlistfilterswidget.h" line="203"/>
+        <location filename="../transferlistfilterswidget.h" line="425"/>
         <source>All labels</source>
         <translation>Όλες οι ετικέτες</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="178"/>
-        <location filename="../transferlistfilterswidget.h" line="394"/>
+        <location filename="../transferlistfilterswidget.h" line="206"/>
+        <location filename="../transferlistfilterswidget.h" line="426"/>
         <source>Unlabeled</source>
         <translation>Χωρίς ετικέτα</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="289"/>
         <source>Remove label</source>
         <translation>Αφαίρεση ετικέτας</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="290"/>
         <source>Add label</source>
         <translation>Προσθήκη ετικέτας</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="278"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>New Label</source>
         <translation>Νέα Ετικέτα</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="278"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>Label:</source>
         <translation>Ετικέτα:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="283"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Invalid label name</source>
         <translation>Άκυρο όνομα ετικέτας</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="283"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Παρακαλώ μην χρισιμοποιείτε ειδικούς χαρακτήρες στο όνομα της ετικέτας.</translation>
     </message>
@@ -6860,31 +6860,31 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
@@ -6905,7 +6905,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> μ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="495"/>
+        <location filename="../misc.h" line="499"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -6920,31 +6920,31 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">μ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="341"/>
+        <location filename="../misc.h" line="345"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="524"/>
+        <location filename="../misc.h" line="528"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="528"/>
+        <location filename="../misc.h" line="532"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="533"/>
+        <location filename="../misc.h" line="537"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ώ%2λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="538"/>
+        <location filename="../misc.h" line="542"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1μ%2ώ%3λ</translation>
@@ -7139,31 +7139,31 @@ However, those plugins were disabled.</source>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewselect.h" line="74"/>
-        <location filename="../previewselect.h" line="80"/>
-        <location filename="../previewselect.h" line="121"/>
+        <location filename="../previewselect.h" line="78"/>
+        <location filename="../previewselect.h" line="84"/>
+        <location filename="../previewselect.h" line="125"/>
         <source>Preview impossible</source>
         <translation>Αδύνατη η προεπισκόπηση</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="74"/>
-        <location filename="../previewselect.h" line="80"/>
-        <location filename="../previewselect.h" line="121"/>
+        <location filename="../previewselect.h" line="78"/>
+        <location filename="../previewselect.h" line="84"/>
+        <location filename="../previewselect.h" line="125"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Λυπούμαστε, δεν μπορεί να προεσκοπηθεί αυτό το αρχείο</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="94"/>
+        <location filename="../previewselect.h" line="98"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="95"/>
+        <location filename="../previewselect.h" line="99"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="96"/>
+        <location filename="../previewselect.h" line="100"/>
         <source>Progress</source>
         <translation>Πρόοδος</translation>
     </message>

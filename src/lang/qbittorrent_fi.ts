@@ -3808,55 +3808,55 @@ QGroupBox {
         <translation>korkeintaan %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
-        <location filename="../propertieswidget.cpp" line="503"/>
+        <location filename="../propertieswidget.cpp" line="488"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>I/O Error</source>
         <translation>I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
+        <location filename="../propertieswidget.cpp" line="488"/>
         <source>This file does not exist yet.</source>
         <translation>Tiedostoa ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="503"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>This folder does not exist yet.</source>
         <translation>Kansiota ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="512"/>
+        <location filename="../propertieswidget.cpp" line="518"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="532"/>
+        <location filename="../propertieswidget.cpp" line="538"/>
         <source>Rename the file</source>
         <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="533"/>
+        <location filename="../propertieswidget.cpp" line="539"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="537"/>
-        <location filename="../propertieswidget.cpp" line="567"/>
+        <location filename="../propertieswidget.cpp" line="543"/>
+        <location filename="../propertieswidget.cpp" line="573"/>
         <source>The file could not be renamed</source>
         <translation>Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="538"/>
+        <location filename="../propertieswidget.cpp" line="544"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="568"/>
-        <location filename="../propertieswidget.cpp" line="602"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
+        <location filename="../propertieswidget.cpp" line="608"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="601"/>
+        <location filename="../propertieswidget.cpp" line="607"/>
         <source>The folder could not be renamed</source>
         <translation>Kansiota ei voitu nimetä uudelleen</translation>
     </message>
@@ -3865,23 +3865,23 @@ QGroupBox {
         <translation type="obsolete">Ei yhtään - tavoittamattomissa?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="630"/>
+        <location filename="../propertieswidget.cpp" line="636"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi URL-lähde</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="631"/>
+        <location filename="../propertieswidget.cpp" line="637"/>
         <source>New url seed:</source>
         <translation>Uusi URL-lähde:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="636"/>
+        <location filename="../propertieswidget.cpp" line="642"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="637"/>
+        <location filename="../propertieswidget.cpp" line="643"/>
         <source>This url seed is already in the list.</source>
         <translation>URL-jakaja on jo listalla.</translation>
     </message>
@@ -3890,18 +3890,18 @@ QGroupBox {
         <translation type="obsolete">Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="682"/>
-        <location filename="../propertieswidget.cpp" line="684"/>
+        <location filename="../propertieswidget.cpp" line="688"/>
+        <location filename="../propertieswidget.cpp" line="690"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="697"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="697"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
@@ -4727,74 +4727,74 @@ Muutoshistoria:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="149"/>
-        <location filename="../transferlistfilterswidget.h" line="231"/>
+        <location filename="../transferlistfilterswidget.h" line="177"/>
+        <location filename="../transferlistfilterswidget.h" line="258"/>
         <source>All</source>
         <translation>Kaikki</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="152"/>
-        <location filename="../transferlistfilterswidget.h" line="232"/>
+        <location filename="../transferlistfilterswidget.h" line="180"/>
+        <location filename="../transferlistfilterswidget.h" line="259"/>
         <source>Downloading</source>
         <translation>Ladataan</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="155"/>
-        <location filename="../transferlistfilterswidget.h" line="233"/>
+        <location filename="../transferlistfilterswidget.h" line="183"/>
+        <location filename="../transferlistfilterswidget.h" line="260"/>
         <source>Completed</source>
         <translation>Valmiina</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="158"/>
-        <location filename="../transferlistfilterswidget.h" line="234"/>
+        <location filename="../transferlistfilterswidget.h" line="186"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Active</source>
         <translation>Aktiivinen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="161"/>
-        <location filename="../transferlistfilterswidget.h" line="235"/>
+        <location filename="../transferlistfilterswidget.h" line="189"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Inactive</source>
         <translation>Epäaktiivinen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="175"/>
-        <location filename="../transferlistfilterswidget.h" line="393"/>
+        <location filename="../transferlistfilterswidget.h" line="203"/>
+        <location filename="../transferlistfilterswidget.h" line="425"/>
         <source>All labels</source>
         <translation>Kaikki nimikkeet</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="178"/>
-        <location filename="../transferlistfilterswidget.h" line="394"/>
+        <location filename="../transferlistfilterswidget.h" line="206"/>
+        <location filename="../transferlistfilterswidget.h" line="426"/>
         <source>Unlabeled</source>
         <translation>Nimikkeetön</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="289"/>
         <source>Remove label</source>
         <translation>Poista nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="290"/>
         <source>Add label</source>
         <translation>Lisää nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="278"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>New Label</source>
         <translation>Uusi nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="278"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>Label:</source>
         <translation>Nimike:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="283"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Invalid label name</source>
         <translation>Virheellinen nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="283"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
@@ -6280,7 +6280,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
@@ -6291,7 +6291,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
@@ -6307,7 +6307,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete"> h</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
@@ -6318,48 +6318,48 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="342"/>
+        <location filename="../misc.h" line="346"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="495"/>
+        <location filename="../misc.h" line="499"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="341"/>
+        <location filename="../misc.h" line="345"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="524"/>
+        <location filename="../misc.h" line="528"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>alle minuutti</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="528"/>
+        <location filename="../misc.h" line="532"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="533"/>
+        <location filename="../misc.h" line="537"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 h %2 min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="538"/>
+        <location filename="../misc.h" line="542"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1 d %2 h %3 min</translation>
@@ -6542,31 +6542,31 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewselect.h" line="74"/>
-        <location filename="../previewselect.h" line="80"/>
-        <location filename="../previewselect.h" line="121"/>
+        <location filename="../previewselect.h" line="78"/>
+        <location filename="../previewselect.h" line="84"/>
+        <location filename="../previewselect.h" line="125"/>
         <source>Preview impossible</source>
         <translation>Esikatselu ei ole mahdollista</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="74"/>
-        <location filename="../previewselect.h" line="80"/>
-        <location filename="../previewselect.h" line="121"/>
+        <location filename="../previewselect.h" line="78"/>
+        <location filename="../previewselect.h" line="84"/>
+        <location filename="../previewselect.h" line="125"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Tätä tiedostoa ei voi esikatsella</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="94"/>
+        <location filename="../previewselect.h" line="98"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="95"/>
+        <location filename="../previewselect.h" line="99"/>
         <source>Size</source>
         <translation>Koko</translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="96"/>
+        <location filename="../previewselect.h" line="100"/>
         <source>Progress</source>
         <translation>Edistyminen</translation>
     </message>

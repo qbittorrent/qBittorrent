@@ -1750,29 +1750,31 @@ Are you sure you want to quit qBittorrent?</source>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>法律聲明</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent 是一個檔案分享程式。當你執行一個 torrent 時, 它的資料會上傳給其他人。所以, 你分享的任何內容, 你都負有完全的責任。
+
+你可能已經知道了, 所以我們不會再跟你講。</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>按任意鍵接受並繼續...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>法律聲明</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>我同意</translation>
     </message>
 </context>
 <context>
@@ -2775,15 +2777,15 @@ QGroupBox {
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O 錯誤</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案不存在。</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>資料夾不存在。</translation>
     </message>
 </context>
 <context>
