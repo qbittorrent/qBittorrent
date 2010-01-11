@@ -433,14 +433,16 @@ public slots:
             return;
           }
         }
-        if (!misc::isValidFileSystemName(comboLabel->currentText().trimmed())) {
+        QString current_label = comboLabel->currentText().trimmed();
+        if (!current_label.isEmpty() && !misc::isValidFileSystemName(current_label)) {
           QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
           return;
         }
         // Save savepath
         TorrentTempData::setSavePath(hash, savePath.path());
         qDebug("Torrent label is: %s", comboLabel->currentText().trimmed().toLocal8Bit().data());
-        TorrentTempData::setLabel(hash, comboLabel->currentText().trimmed());
+        if(!current_label.isEmpty())
+          TorrentTempData::setLabel(hash, current_label);
         // Is download sequential?
         TorrentTempData::setSequential(hash, checkIncrementalDL->isChecked());
         // Save files path
