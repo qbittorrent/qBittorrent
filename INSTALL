@@ -12,7 +12,7 @@ qBittorrent - A BitTorrent client in C++ / Qt4
   Dependencies:
     - Qt >= 4.4.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
 
-    - libtorrent-rasterbar by Arvid Norberg (>= 0.14.0 REQUIRED, >= v0.15.0 ADVISED)
+    - libtorrent-rasterbar by Arvid Norberg (>= 0.14.4 REQUIRED, >= v0.15.0 ADVISED)
         -> http://www.libtorrent.net
         Be careful: another library (the one used by rTorrent) uses a similar name.
 
