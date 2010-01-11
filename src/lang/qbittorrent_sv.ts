@@ -1655,29 +1655,31 @@ Are you sure you want to quit qBittorrent?</source>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Juridisk information</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent är ett fildelarprogram. När du kör en torrent så kommer dess data att göras tillgängligt för andra. Och så klart, allt innehåll som du delar ut är fullständigt på ditt ansvar.
+
+Du visste antagligen redan detta så vi kommer inte att berätta det igen.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryck på en tangent för att acceptera och fortsätta...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Juridisk information</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Jag godkänner</translation>
     </message>
 </context>
 <context>
@@ -2672,19 +2674,19 @@ QGroupBox {
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>In/Ut-fel</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Denna fil finns ännu inte.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Denna mapp finns inte ännu.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta filnamn innehåller förbjudna tecken. Välj ett annat filnamn.</translation>
     </message>
 </context>
 <context>
@@ -3350,11 +3352,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt etikettnamn</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd inte några specialtecken i etikettnamnet.</translation>
     </message>
 </context>
 <context>
@@ -3571,11 +3573,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt etikettnamn</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd inte några specialtecken i etikettnamnet.</translation>
     </message>
 </context>
 <context>
@@ -5123,15 +5125,15 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta filnamn innehåller förbjudna tecken. Välj ett annat filnamn.</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt etikettnamn</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd inte några specialtecken i etikettnamnet.</translation>
     </message>
 </context>
 </TS>
