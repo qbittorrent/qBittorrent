@@ -474,8 +474,7 @@ public:
     if(pos > -1) {
       QString found = regHex.cap(1);
       if(found.length() == 40) {
-        sha1_hash sha1;
-        sha1.assign(QString(QByteArray::fromHex(regHex.cap(1).toLocal8Bit())).toStdString());
+        sha1_hash sha1(QString(QByteArray::fromHex(regHex.cap(1).toLocal8Bit())).toStdString());
         qDebug("magnetUriToHash (Hex): hash: %s", misc::toString(sha1).c_str());
         return misc::toQString(sha1);
       }
@@ -486,8 +485,7 @@ public:
     if(pos > -1) {
       QString found = regBase32.cap(1);
       if(found.length() > 20 && (found.length()*5)%40 == 0) {
-        sha1_hash sha1;
-        sha1.assign(base32decode(regBase32.cap(1).toStdString()));
+        sha1_hash sha1(base32decode(regBase32.cap(1).toStdString()));
         hash = misc::toQString(sha1);
       }
     }
