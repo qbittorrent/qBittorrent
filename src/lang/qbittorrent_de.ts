@@ -2862,7 +2862,7 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
     <message>
         <location filename="../main.cpp" line="103"/>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechtshinweis</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
@@ -2870,27 +2870,30 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>The english source is a bit bumpy and has typos</translatorcomment>
+        <translation>qBittorrent ist ein Filesharing Programm. Sobald ein Torrent bei Ihnen läuft, stellen Sie den Inhalt auch anderen zurVerfügung. Selbstverständlich geschieht das Teilen jeglicher Inhalte auf Ihre eigene Verantwortung.
+
+Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch nicht wieder darauf hinweisen.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Drücken Sie eine beliebige Taste um fortzufahren...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="113"/>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechtshinweis</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="114"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="115"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Ich stimme zu</translation>
     </message>
 </context>
 <context>
@@ -4165,17 +4168,17 @@ QGroupBox {
         <location filename="../propertieswidget.cpp" line="488"/>
         <location filename="../propertieswidget.cpp" line="509"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="488"/>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Datei existiert noch nicht.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="509"/>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dieses Verzeichnis existiert noch nicht.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="518"/>
