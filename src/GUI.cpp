@@ -60,6 +60,8 @@
 #include "speedlimitdlg.h"
 #include "preferences.h"
 #include "console_imp.h"
+#include "trackerlist.h"
+#include "peerlistwidget.h"
 #include "torrentpersistentdata.h"
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
@@ -730,6 +732,9 @@ void GUI::loadPreferences(bool configure_session) {
   unsigned int new_refreshInterval = Preferences::getRefreshInterval();
   transferList->setRefreshInterval(new_refreshInterval);
   transferList->setAlternatingRowColors(Preferences::useAlternatingRowColors());
+  properties->getFilesList()->setAlternatingRowColors(Preferences::useAlternatingRowColors());
+  properties->getTrackerList()->setAlternatingRowColors(Preferences::useAlternatingRowColors());
+  properties->getPeerList()->setAlternatingRowColors(Preferences::useAlternatingRowColors());
   // Queueing System
   if(Preferences::isQueueingSystemEnabled()) {
     if(!configure_session || !BTSession->isQueueingEnabled()) {

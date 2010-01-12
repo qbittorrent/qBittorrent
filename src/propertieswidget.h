@@ -70,6 +70,15 @@ private:
   DownloadedPiecesBar *downloaded_pieces;
   PieceAvailabilityBar *pieces_availability;
 
+public:
+  PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, Bittorrent* BTSession);
+  ~PropertiesWidget();
+  const QTorrentHandle& getCurrentTorrent() const;
+  Bittorrent* getBTSession() const;
+  TrackerList* getTrackerList() const { return trackerList; }
+  PeerListWidget* getPeerList() const { return peersList; }
+  QTreeView* getFilesList() const { return filesList; }
+
 protected:
   QPushButton* getButtonFromIndex(int index);
   bool applyPriorities();
@@ -102,11 +111,6 @@ public slots:
   void reloadPreferences();
   void openDoubleClickedFile(QModelIndex);
 
-public:
-  PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, Bittorrent* BTSession);
-  ~PropertiesWidget();
-  const QTorrentHandle& getCurrentTorrent() const;
-  Bittorrent* getBTSession() const;
 };
 
 #endif // PROPERTIESWIDGET_H
