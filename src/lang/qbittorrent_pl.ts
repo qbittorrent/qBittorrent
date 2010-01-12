@@ -1549,11 +1549,11 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Potwierdzenie nadpisania</translation>
+        <translation type="obsolete">Potwierdzenie nadpisania</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Czy chcesz nadpisać istniejący plik?</translation>
+        <translation type="obsolete">Czy chcesz nadpisać istniejący plik?</translation>
     </message>
     <message>
         <source>Export successful</source>

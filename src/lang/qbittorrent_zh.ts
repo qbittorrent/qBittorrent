@@ -1610,11 +1610,11 @@ wait...</comment>
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>确认覆盖</translation>
+        <translation type="obsolete">确认覆盖</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>确定要覆盖已有文件吗?</translation>
+        <translation type="obsolete">确定要覆盖已有文件吗?</translation>
     </message>
     <message>
         <source>Export successful</source>

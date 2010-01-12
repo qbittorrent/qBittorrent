@@ -1473,11 +1473,11 @@ qBittorrent irá procurar no diretório e baixará automaticamente torrents pres
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Confirma sobescrever</translation>
+        <translation type="obsolete">Confirma sobescrever</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Tem certeza que deseja sobescrever o arquivo existente ?</translation>
+        <translation type="obsolete">Tem certeza que deseja sobescrever o arquivo existente ?</translation>
     </message>
     <message>
         <source>Export successful</source>

@@ -1214,126 +1214,124 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="404"/>
+        <location filename="../feeddownloader.h" line="408"/>
         <source>New filter</source>
         <translation>Nový filtr</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="411"/>
+        <location filename="../feeddownloader.h" line="415"/>
         <source>Please choose a name for this filter</source>
         <translation>Vyberte název pro tento filter</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="411"/>
+        <location filename="../feeddownloader.h" line="415"/>
         <source>Filter name:</source>
         <translation>Název filtru:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="380"/>
-        <location filename="../feeddownloader.h" line="419"/>
-        <location filename="../feeddownloader.h" line="435"/>
+        <location filename="../feeddownloader.h" line="381"/>
+        <location filename="../feeddownloader.h" line="423"/>
+        <location filename="../feeddownloader.h" line="439"/>
         <source>Invalid filter name</source>
         <translation>Neplatný název filtru</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="419"/>
+        <location filename="../feeddownloader.h" line="423"/>
         <source>The filter name cannot be left empty.</source>
         <translation>Název filtru nesmí být prázdný.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="380"/>
-        <location filename="../feeddownloader.h" line="435"/>
+        <location filename="../feeddownloader.h" line="381"/>
+        <location filename="../feeddownloader.h" line="439"/>
         <source>This filter name is already in use.</source>
         <translation>Tento název filtru již existuje.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="301"/>
+        <location filename="../feeddownloader.h" line="302"/>
         <source>Choose save path</source>
         <translation type="unfinished">Vyberte cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="461"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>Filter testing error</source>
         <translation>Chyba testu filtru</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="461"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>Please specify a test torrent name.</source>
         <translation>Prosím zadejte název torrentu pro test.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
+        <location filename="../feeddownloader.h" line="473"/>
         <source>matches</source>
         <translation>shody</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="470"/>
+        <location filename="../feeddownloader.h" line="475"/>
         <source>does not match</source>
         <translation>neshoduje se</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="474"/>
+        <location filename="../feeddownloader.h" line="479"/>
         <source>Select file to import</source>
         <translation>Označit soubory k importu</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="474"/>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="479"/>
+        <location filename="../feeddownloader.h" line="496"/>
         <source>Filters Files</source>
         <translation>Soubory s filtry</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="484"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Import successful</source>
         <translation>Import úspěšný</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="484"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters import was successful.</source>
         <translation>Import filtrů nebyl úspěšný.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="486"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Import failure</source>
         <translation>Import selhal</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="486"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>Filtry nemohou být importovány kvůli chybě I/O.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="496"/>
         <source>Select destination file</source>
         <translation>Vybrat cílový soubor</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
         <source>Overwriting confirmation</source>
-        <translation>Potvrzení o přepsání</translation>
+        <translation type="obsolete">Potvrzení o přepsání</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Jste si jist, že chcete přepsat existující soubor?</translation>
+        <translation type="obsolete">Jste si jist, že chcete přepsat existující soubor?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="501"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Export successful</source>
         <translation>Export byl úspěšný</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="501"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Filters export was successful.</source>
         <translation>Export filtrů byl úspěšný.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="503"/>
+        <location filename="../feeddownloader.h" line="508"/>
         <source>Export failure</source>
         <translation>Export selhal</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="503"/>
+        <location filename="../feeddownloader.h" line="508"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Filtry nemohou být exportovány kvůli chybě I/O.</translation>
     </message>
@@ -5440,30 +5438,30 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation>Neznámý</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="499"/>
+        <location filename="../misc.h" line="497"/>
         <source>Unknown</source>
         <translation>Neznámý</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="528"/>
+        <location filename="../misc.h" line="526"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="532"/>
+        <location filename="../misc.h" line="530"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="537"/>
+        <location filename="../misc.h" line="535"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="542"/>
+        <location filename="../misc.h" line="540"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>
@@ -6082,32 +6080,32 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="437"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="437"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="471"/>
+        <location filename="../torrentadditiondlg.h" line="473"/>
         <source>Seeding mode error</source>
         <translation>Chyba sdílení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="471"/>
+        <location filename="../torrentadditiondlg.h" line="473"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Rozhodl jste se přeskočit kontrolu souborů. Nicméně místní soubory v zadaném cílovém adresáři neexistují. Vypněte prosím tuto funkci nebo zaktualizujte cestu pro uložení.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="478"/>
+        <location filename="../torrentadditiondlg.h" line="480"/>
         <source>Invalid file selection</source>
         <translation>Neplatný výběr souboru</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="478"/>
+        <location filename="../torrentadditiondlg.h" line="480"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musíte v torrentu vybrat alespoň jeden soubor</translation>
     </message>

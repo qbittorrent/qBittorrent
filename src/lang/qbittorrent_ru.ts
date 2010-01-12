@@ -1533,11 +1533,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Предупреждение о перезаписи</translation>
+        <translation type="obsolete">Предупреждение о перезаписи</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Вы уверены что хотите перезаписать существующий файл?</translation>
+        <translation type="obsolete">Вы уверены что хотите перезаписать существующий файл?</translation>
     </message>
     <message>
         <source>Export successful</source>

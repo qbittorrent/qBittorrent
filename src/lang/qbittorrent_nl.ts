@@ -1527,11 +1527,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Overschrijvingsbevestiging</translation>
+        <translation type="obsolete">Overschrijvingsbevestiging</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Weer u zeker dat u het bestaande bestand wil overschrijven?</translation>
+        <translation type="obsolete">Weer u zeker dat u het bestaande bestand wil overschrijven?</translation>
     </message>
     <message>
         <source>Export successful</source>

@@ -1454,126 +1454,124 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="404"/>
+        <location filename="../feeddownloader.h" line="408"/>
         <source>New filter</source>
         <translation>Új szűrő</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="411"/>
+        <location filename="../feeddownloader.h" line="415"/>
         <source>Please choose a name for this filter</source>
         <translation>Kérlek válassz nevet a szűrőnek</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="411"/>
+        <location filename="../feeddownloader.h" line="415"/>
         <source>Filter name:</source>
         <translation>Filter név:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="380"/>
-        <location filename="../feeddownloader.h" line="419"/>
-        <location filename="../feeddownloader.h" line="435"/>
+        <location filename="../feeddownloader.h" line="381"/>
+        <location filename="../feeddownloader.h" line="423"/>
+        <location filename="../feeddownloader.h" line="439"/>
         <source>Invalid filter name</source>
         <translation>Érvénytelen szűrő név</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="419"/>
+        <location filename="../feeddownloader.h" line="423"/>
         <source>The filter name cannot be left empty.</source>
         <translation>A szűrő név mindenképpen szükséges.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="380"/>
-        <location filename="../feeddownloader.h" line="435"/>
+        <location filename="../feeddownloader.h" line="381"/>
+        <location filename="../feeddownloader.h" line="439"/>
         <source>This filter name is already in use.</source>
         <translation>A szűrő név már használatban.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="301"/>
+        <location filename="../feeddownloader.h" line="302"/>
         <source>Choose save path</source>
         <translation type="unfinished">Mentés helye</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="461"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>Filter testing error</source>
         <translation>Szűrő teszt hiba</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="461"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>Please specify a test torrent name.</source>
         <translation>Kérlek válassz teszt torrentet.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
+        <location filename="../feeddownloader.h" line="473"/>
         <source>matches</source>
         <translation>egyezés</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="470"/>
+        <location filename="../feeddownloader.h" line="475"/>
         <source>does not match</source>
         <translation>nincs egyezés</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="474"/>
+        <location filename="../feeddownloader.h" line="479"/>
         <source>Select file to import</source>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="474"/>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="479"/>
+        <location filename="../feeddownloader.h" line="496"/>
         <source>Filters Files</source>
         <translation>Szűrő fájlok</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="484"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Import successful</source>
         <translation>Importálás sikeres</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="484"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters import was successful.</source>
         <translation>Szűrő importálás sikeres.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="486"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Import failure</source>
         <translation>Importálás sikertelen</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="486"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>A szűrőt nem sikerült importálni I/O hiba miatt.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="496"/>
         <source>Select destination file</source>
         <translation>Szűrő fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
         <source>Overwriting confirmation</source>
-        <translation>Felülírás megerősítése</translation>
+        <translation type="obsolete">Felülírás megerősítése</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Biztosan felül akarod írni a már létező fájlt?</translation>
+        <translation type="obsolete">Biztosan felül akarod írni a már létező fájlt?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="501"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Export successful</source>
         <translation>Exportálás sikeres</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="501"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Filters export was successful.</source>
         <translation>Szűrő exportálás sikeres.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="503"/>
+        <location filename="../feeddownloader.h" line="508"/>
         <source>Export failure</source>
         <translation>Exportálás sikertelen</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="503"/>
+        <location filename="../feeddownloader.h" line="508"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>A szűrőt nem sikerült exportálni I/O hiba miatt.</translation>
     </message>
@@ -6038,7 +6036,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="499"/>
+        <location filename="../misc.h" line="497"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -6049,25 +6047,25 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Ismeretlen</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="528"/>
+        <location filename="../misc.h" line="526"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1perc</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="532"/>
+        <location filename="../misc.h" line="530"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1perc</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="537"/>
+        <location filename="../misc.h" line="535"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1óra%2perc</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="542"/>
+        <location filename="../misc.h" line="540"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1nap%2óra%3perc</translation>
@@ -6797,32 +6795,32 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="437"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="437"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="471"/>
+        <location filename="../torrentadditiondlg.h" line="473"/>
         <source>Seeding mode error</source>
         <translation>Seed mód hiba</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="471"/>
+        <location filename="../torrentadditiondlg.h" line="473"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Ellenőrzés kihagyását kérted. Viszont a megadott helyen nincsenek a megadott fájlok. Kapcsold ki ezt a funkciót, vagy adj meg másik letöltési helyet.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="478"/>
+        <location filename="../torrentadditiondlg.h" line="480"/>
         <source>Invalid file selection</source>
         <translation>Választás hiánya</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="478"/>
+        <location filename="../torrentadditiondlg.h" line="480"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Legalább egy fájlt ki kell választanod</translation>
     </message>

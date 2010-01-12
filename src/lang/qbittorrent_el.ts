@@ -1616,126 +1616,124 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="404"/>
+        <location filename="../feeddownloader.h" line="408"/>
         <source>New filter</source>
         <translation>Νέο φίλτρο</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="411"/>
+        <location filename="../feeddownloader.h" line="415"/>
         <source>Please choose a name for this filter</source>
         <translation>Παρακαλώ επιλέξτε ένα όνομα για αυτό το φίλτρο</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="411"/>
+        <location filename="../feeddownloader.h" line="415"/>
         <source>Filter name:</source>
         <translation>Όνομα φίλτρου:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="380"/>
-        <location filename="../feeddownloader.h" line="419"/>
-        <location filename="../feeddownloader.h" line="435"/>
+        <location filename="../feeddownloader.h" line="381"/>
+        <location filename="../feeddownloader.h" line="423"/>
+        <location filename="../feeddownloader.h" line="439"/>
         <source>Invalid filter name</source>
         <translation>Άκυρο όνομα φίλτρου</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="419"/>
+        <location filename="../feeddownloader.h" line="423"/>
         <source>The filter name cannot be left empty.</source>
         <translation>Το όνομα του φίλτρου δεν μπορεί να μείνει κενό.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="380"/>
-        <location filename="../feeddownloader.h" line="435"/>
+        <location filename="../feeddownloader.h" line="381"/>
+        <location filename="../feeddownloader.h" line="439"/>
         <source>This filter name is already in use.</source>
         <translation>Αυτό το όνομα φίλτρου ήδη χρησιμοποιείται.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="301"/>
+        <location filename="../feeddownloader.h" line="302"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="461"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>Filter testing error</source>
         <translation>Σφάλμα δοκιμής φίλτρου</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="461"/>
+        <location filename="../feeddownloader.h" line="466"/>
         <source>Please specify a test torrent name.</source>
         <translation>Παρακαλώ διευκρινήστε ένα δοκιμαστικό όνομα torrent.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="468"/>
+        <location filename="../feeddownloader.h" line="473"/>
         <source>matches</source>
         <translation>αντιστοιχίες</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="470"/>
+        <location filename="../feeddownloader.h" line="475"/>
         <source>does not match</source>
         <translation>δεν αντιστοιχεί</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="474"/>
+        <location filename="../feeddownloader.h" line="479"/>
         <source>Select file to import</source>
         <translation>Επιλέξτε αρχείο για είσαγωγή</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="474"/>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="479"/>
+        <location filename="../feeddownloader.h" line="496"/>
         <source>Filters Files</source>
         <translation>Αρχεία Φίλτρων</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="484"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Import successful</source>
         <translation>Επιτυχής εισαγωγή</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="484"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters import was successful.</source>
         <translation>Η εισαγωγή των φίλτρων ήταν επιτυχής.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="486"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Import failure</source>
         <translation>Σφάλμα εισαγωγής</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="486"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>Τα φίλτρα δεν ήταν δυνατό να εισαχθούν εξαιτίας ενός σφάλματος I/O.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="496"/>
         <source>Select destination file</source>
         <translation>Επιλογή αρχείου προορισμού</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
         <source>Overwriting confirmation</source>
-        <translation>Επιβεβαίωση επανεγγραφής</translation>
+        <translation type="obsolete">Επιβεβαίωση επανεγγραφής</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="497"/>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Είστε σίγουρος οτι θέλετε να επανεγγράψετε το υπάρχον αρχείο?</translation>
+        <translation type="obsolete">Είστε σίγουρος οτι θέλετε να επανεγγράψετε το υπάρχον αρχείο?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="501"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Export successful</source>
         <translation>Εξαγωγή επιτυχής</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="501"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Filters export was successful.</source>
         <translation>Η εξαγωγή των φίλτρων ήταν επιτυχής.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="503"/>
+        <location filename="../feeddownloader.h" line="508"/>
         <source>Export failure</source>
         <translation>Αποτυχία εξαγωγής</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="503"/>
+        <location filename="../feeddownloader.h" line="508"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Τα φίλτρα δεν ήταν δυνατό να εξαχθούν εξαιτίας ενός σφάλματος I/O.</translation>
     </message>
@@ -6905,7 +6903,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> μ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="499"/>
+        <location filename="../misc.h" line="497"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -6926,25 +6924,25 @@ However, those plugins were disabled.</source>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="528"/>
+        <location filename="../misc.h" line="526"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="532"/>
+        <location filename="../misc.h" line="530"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="537"/>
+        <location filename="../misc.h" line="535"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ώ%2λ</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="542"/>
+        <location filename="../misc.h" line="540"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1μ%2ώ%3λ</translation>
@@ -7854,32 +7852,32 @@ However, those plugins were disabled.</source>
         <translation>Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="437"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Invalid label name</source>
         <translation>Άκυρο όνομα ετικέτας</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="437"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Παρακαλώ μην χρισιμοποιείτε ειδικούς χαρακτήρες στο όνομα της ετικέτας.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="471"/>
+        <location filename="../torrentadditiondlg.h" line="473"/>
         <source>Seeding mode error</source>
         <translation>Σφάλμα λειτουργίας μοιράσματος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="471"/>
+        <location filename="../torrentadditiondlg.h" line="473"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Επιλέξατε προσπέλαση του ελέγχου αρχείων. Ωστόσο, τα τοπικά αρχεία δεν φαίνεται να υπάρχουν στον τρέχον φάκελο προορισμού. Παρακαλούμε απενεργοποιήστε αυτή τη λειτουργία ή ανανεώστε την διαδρομή αποθήκευσης.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="478"/>
+        <location filename="../torrentadditiondlg.h" line="480"/>
         <source>Invalid file selection</source>
         <translation>Άκυρη επιλογή αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="478"/>
+        <location filename="../torrentadditiondlg.h" line="480"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Πρέπει να επιλέξετε τουλάχιστο ένα αρχείο του torrent</translation>
     </message>

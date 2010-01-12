@@ -1514,11 +1514,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Açıklama üzerine yazılıyor</translation>
+        <translation type="obsolete">Açıklama üzerine yazılıyor</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Dosyanın üzerine yazmak istediğinize emin misiniz?</translation>
+        <translation type="obsolete">Dosyanın üzerine yazmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Export successful</source>

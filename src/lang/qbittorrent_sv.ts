@@ -1117,11 +1117,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Bekräfta överskrivning</translation>
+        <translation type="obsolete">Bekräfta överskrivning</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Är du säker på att du vill skriva över den befintliga filen?</translation>
+        <translation type="obsolete">Är du säker på att du vill skriva över den befintliga filen?</translation>
     </message>
     <message>
         <source>Export successful</source>

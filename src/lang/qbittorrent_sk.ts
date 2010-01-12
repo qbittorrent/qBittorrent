@@ -1490,11 +1490,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Potvrdenie prepísania</translation>
+        <translation type="obsolete">Potvrdenie prepísania</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Ste si istý, že chcete prepísať existujúci súbor?</translation>
+        <translation type="obsolete">Ste si istý, že chcete prepísať existujúci súbor?</translation>
     </message>
     <message>
         <source>Export successful</source>

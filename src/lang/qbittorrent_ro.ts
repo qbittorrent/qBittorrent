@@ -1482,11 +1482,11 @@ qBittorrent va monitoriza directoriul și va adăuga în lista de descărcare a 
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>Configmă rescrierea</translation>
+        <translation type="obsolete">Configmă rescrierea</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>Doriți să rescriți fișierul existent?</translation>
+        <translation type="obsolete">Doriți să rescriți fișierul existent?</translation>
     </message>
     <message>
         <source>Export successful</source>

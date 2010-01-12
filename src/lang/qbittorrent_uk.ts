@@ -1301,14 +1301,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Overwriting confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Export successful</source>
         <translation type="unfinished"></translation>
     </message>

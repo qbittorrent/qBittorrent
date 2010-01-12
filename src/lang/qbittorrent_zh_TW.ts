@@ -1179,11 +1179,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Overwriting confirmation</source>
-        <translation>確認複寫</translation>
+        <translation type="obsolete">確認複寫</translation>
     </message>
     <message>
         <source>Are you sure you want to overwrite existing file?</source>
-        <translation>你確定要複寫已存在的檔案嗎?</translation>
+        <translation type="obsolete">你確定要複寫已存在的檔案嗎?</translation>
     </message>
     <message>
         <source>Export successful</source>
