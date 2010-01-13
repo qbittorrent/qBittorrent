@@ -343,6 +343,10 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <source>HTTP user agent is %1</source>
         <translation type="unfinished">HTTP user agent: %1</translation>
     </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -2209,7 +2213,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Czy na pewno chcesz zakończyć aplikację?</translation>
+        <translation>Czy na pewno zakończyć aplikację?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2581,7 +2585,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="unfinished">Aby uzyskać dostęp do qBittorrent należy przejść pod adres http://localhost:%1</translation>
+        <translation type="unfinished">Aby uzyskać dostęp do qBittorrent należy przejść w przeglądarce pod adres http://localhost:%1</translation>
     </message>
     <message>
         <source>The Web UI administrator user name is: %1</source>
@@ -2696,29 +2700,34 @@ Czy napewno zamknąć qBittorrent?</translation>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notka o legalności</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</translatorcomment>
+        <translation type="unfinished">qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.
+
+W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nacisnij dowolny klawisz aby akceptować i kontynuować...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notka o legalności</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anuluj</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zgadzam się</translation>
     </message>
 </context>
 <context>
@@ -3262,7 +3271,7 @@ You probably knew this, so we won&apos;t tell you again.</source>
     </message>
     <message>
         <source>File system</source>
-        <translation type="unfinished">Katalogi</translation>
+        <translation>Katalogi</translation>
     </message>
     <message>
         <source>QGroupBox::title {
@@ -3280,7 +3289,7 @@ QGroupBox {
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished">Dodaj etykietę torrenta</translation>
+        <translation type="unfinished">Dodaje etykietę torrenta do nazwy katalogu</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
@@ -3407,7 +3416,7 @@ QGroupBox {
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation></translation>
+        <translation>Odczytuje nazwy hostów partnerów</translation>
     </message>
     <message>
         <source>Bittorrent features</source>
@@ -3861,15 +3870,15 @@ QGroupBox {
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd We/Wy</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Plik jeszcze nie istnieje.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Katalog jeszcze nie istnieje.</translation>
     </message>
 </context>
 <context>
@@ -4350,12 +4359,12 @@ Zmiany:
     <message>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">Pełnych</translation>
+        <translation>Pełnych</translation>
     </message>
     <message>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">Częściowych</translation>
+        <translation>Częściowych</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -4605,7 +4614,7 @@ Zmiany:
     </message>
     <message>
         <source>All labels</source>
-        <translation>Z etykietą</translation>
+        <translation>Wszystkie</translation>
     </message>
     <message>
         <source>Unlabeled</source>
@@ -4769,12 +4778,12 @@ Zmiany:
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Pełnych</translation>
+        <translation>Pełnych</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished">Częściowych</translation>
+        <translation>Częściowych</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -4803,11 +4812,11 @@ Zmiany:
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished">Pobierz w kolejności sekwencyjnej</translation>
+        <translation>Pobierz w kolejności sekwencyjnej</translation>
     </message>
     <message>
         <source>Download first and last piece first</source>
-        <translation type="unfinished">Pobierz najpierw część pierwszą i ostatnią</translation>
+        <translation>Pobierz najpierw część pierwszą i ostatnią</translation>
     </message>
     <message>
         <source>Label</source>
@@ -4923,27 +4932,27 @@ Zmiany:
     <name>UsageDisplay</name>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished">Opcje:</translation>
+        <translation>Użycie:</translation>
     </message>
     <message>
         <source>displays program version</source>
-        <translation type="unfinished">wyświetlenie wersji programu</translation>
+        <translation>wyświetlenie wersji programu</translation>
     </message>
     <message>
         <source>disable splash screen</source>
-        <translation type="unfinished">wyłączenie ekranu startowego</translation>
+        <translation>wyłączenie ekranu startowego</translation>
     </message>
     <message>
         <source>displays this help message</source>
-        <translation type="unfinished">wyświetlenie tego opisu</translation>
+        <translation>wyświetlenie tego opisu</translation>
     </message>
     <message>
         <source>changes the webui port (current: %1)</source>
-        <translation type="unfinished">zmiana portu na którym działa interfejs www (obecnie: %1)</translation>
+        <translation>zmiana portu na którym działa interfejs www (obecnie: %1)</translation>
     </message>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished">[pliki lub adresy URL]: pobieranie plików torrent podanych przez użytkownika (opcjonalnie)</translation>
+        <translation>[pliki lub adresy URL]: pobieranie plików torrent podanych przez użytkownika (opcjonalnie)</translation>
     </message>
 </context>
 <context>
@@ -5560,19 +5569,19 @@ Zmiany:
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie odnaleziono nazwy zdalnego hosta (nieprawidłowa nazwa hosta)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Operacja została anulowana</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zdalny serwer przedwcześnie zakończył połączenie, zanim otrzymano i przetworzono odpowiedź</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przekroczono czas oczekiwania na połącznie ze zdalnym serwerem</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
@@ -5580,19 +5589,19 @@ Zmiany:
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zdalny serwer odrzucił połączenie</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Połączenie z serwerem proxy zostało odrzucone</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Serwer proxy przedwcześnie zakończył połączenie</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie znaleziono nazwy hosta serwera proxy</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
@@ -5644,7 +5653,7 @@ Zmiany:
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Nieznany błąd</translation>
+        <translation>Nieznany błąd</translation>
     </message>
 </context>
 <context>

@@ -327,12 +327,17 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Der blev fundet fejl i data for hurtig genstart af torrent %1, tjekker igen...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1891"/>
+        <location filename="../bittorrent.cpp" line="1887"/>
+        <source>Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1892"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url seed lookup fejlede for url: %1, besked: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1979"/>
+        <location filename="../bittorrent.cpp" line="1980"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Downloader &apos;%1&apos;, vent venligst...</translation>
@@ -1418,7 +1423,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="620"/>
+        <location filename="../GUI.cpp" line="622"/>
         <source>Open Torrent Files</source>
         <translation>Åbn Torrent Filer</translation>
     </message>
@@ -1427,12 +1432,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Denne fil er enten korrupt eller ikke en torrent.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
+        <location filename="../GUI.cpp" line="520"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
+        <location filename="../GUI.cpp" line="520"/>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
     </message>
@@ -1449,7 +1454,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Downloader...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="621"/>
+        <location filename="../GUI.cpp" line="623"/>
         <source>Torrent Files</source>
         <translation>Torrent Filer</translation>
     </message>
@@ -1538,7 +1543,7 @@ Please close the other one first.</source>
 Luk venglist denne først.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="137"/>
+        <location filename="../GUI.cpp" line="139"/>
         <source>Transfers</source>
         <translation>Overførsler</translation>
     </message>
@@ -1559,7 +1564,7 @@ Luk venglist denne først.</translation>
         <translation type="obsolete">Er du sikker på at du vil slette de markerede elementer i download listen og på harddisken?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="82"/>
+        <location filename="../GUI.cpp" line="84"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1627,27 +1632,27 @@ Luk venglist denne først.</translation>
         <translation type="obsolete">qBittorrent %1 startet.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="516"/>
-        <location filename="../GUI.cpp" line="797"/>
+        <location filename="../GUI.cpp" line="518"/>
+        <location filename="../GUI.cpp" line="802"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="721"/>
+        <location filename="../GUI.cpp" line="723"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="792"/>
-        <location filename="../GUI.cpp" line="800"/>
+        <location filename="../GUI.cpp" line="797"/>
+        <location filename="../GUI.cpp" line="805"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL hastighed: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="794"/>
-        <location filename="../GUI.cpp" line="803"/>
+        <location filename="../GUI.cpp" line="799"/>
+        <location filename="../GUI.cpp" line="808"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP hastighed: %1 KB/s</translation>
@@ -1668,7 +1673,7 @@ Luk venglist denne først.</translation>
         <translation type="obsolete">Gået i stå</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="516"/>
+        <location filename="../GUI.cpp" line="518"/>
         <source>Are you sure you want to quit?</source>
         <translation>Er du sikker på at du vil afslutte?</translation>
     </message>
@@ -1731,13 +1736,13 @@ Luk venglist denne først.</translation>
         <translation type="obsolete">&apos;%1&apos; fortsat.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="293"/>
+        <location filename="../GUI.cpp" line="295"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 er hentet færdig.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="299"/>
+        <location filename="../GUI.cpp" line="301"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Fejl</translation>
@@ -1787,18 +1792,18 @@ Luk venglist denne først.</translation>
         <translation type="obsolete">Downloader &apos;%1&apos;, vent venligst...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="303"/>
+        <location filename="../GUI.cpp" line="305"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Der opstod en fejl (fuld disk?), &apos;%1&apos; sat på pause.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="151"/>
+        <location filename="../GUI.cpp" line="153"/>
         <source>Search</source>
         <translation>Søg</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="247"/>
+        <location filename="../GUI.cpp" line="249"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -1807,23 +1812,23 @@ Luk venglist denne først.</translation>
         <translation type="obsolete">Færdig</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="310"/>
+        <location filename="../GUI.cpp" line="312"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="395"/>
+        <location filename="../GUI.cpp" line="397"/>
         <source>Url download error</source>
         <translation>Url download fejl</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="395"/>
+        <location filename="../GUI.cpp" line="397"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Kunne ikke downloade filen via url: %1, begrundelse: %2.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="299"/>
+        <location filename="../GUI.cpp" line="301"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1832,53 +1837,53 @@ Luk venglist denne først.</translation>
 Begrundelse: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="293"/>
+        <location filename="../GUI.cpp" line="295"/>
         <source>Download completion</source>
         <translation>Download færdig</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="312"/>
+        <location filename="../GUI.cpp" line="314"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="314"/>
+        <location filename="../GUI.cpp" line="316"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="316"/>
+        <location filename="../GUI.cpp" line="318"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="401"/>
+        <location filename="../GUI.cpp" line="403"/>
         <source>Global Upload Speed Limit</source>
         <translation>Global Upload Hastighedsbegrænsning</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="419"/>
+        <location filename="../GUI.cpp" line="421"/>
         <source>Global Download Speed Limit</source>
         <translation>Global Download Hastighedsbegrænsning</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="517"/>
+        <location filename="../GUI.cpp" line="519"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Nogen filer er stadig ved at bliver overført.
 Er du sikker på at du vil afslutte qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="809"/>
+        <location filename="../GUI.cpp" line="814"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="693"/>
+        <location filename="../GUI.cpp" line="695"/>
         <source>Options were saved successfully.</source>
         <translation>Indstillingerne blev gemt.</translation>
     </message>

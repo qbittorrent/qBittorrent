@@ -293,6 +293,10 @@ p, li { white-space: pre-wrap; }(new line)
         <source>HTTP user agent is %1</source>
         <translation>HTTP agentul este %1</translation>
     </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>

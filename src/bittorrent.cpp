@@ -1884,6 +1884,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(h.is_valid()){
           qDebug("/!\\ Fast resume failed for %s, reason: %s", h.name().toLocal8Bit().data(), p->message().c_str());
           addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
+          addConsoleMessage(tr("Reason: %1").arg(QString::fromUtf8(p->message().c_str())));
           //emit fastResumeDataRejected(h.name());
         }
       }
