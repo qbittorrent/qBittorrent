@@ -140,6 +140,21 @@ void HttpConnection::respond()
     return;
   }
   QString url  = parser.url();
+  // Favicon
+  if(url.endsWith("favicon.ico")) {
+    qDebug("Returning favicon");
+    QFile favicon(":/Icons/skin/qbittorrent16.png");
+    if(favicon.open(QIODevice::ReadOnly)) {
+      QByteArray data = favicon.readAll();
+      generator.setStatusLine(200, "OK");
+      generator.setContentTypeByExt("png");
+      generator.setMessage(data);
+      write();
+    } else {
+      respondNotFound();
+    }
+    return;
+  }
   QStringList list = url.split('/', QString::SkipEmptyParts);
   if (list.contains(".") || list.contains(".."))
   {
