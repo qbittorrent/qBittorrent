@@ -2523,6 +2523,13 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
 </context>
 <context>
+    <name>HttpConnection</name>
+    <message>
+        <source>Your IP address has been banned after too many failed authentication attempts.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HttpServer</name>
     <message>
         <source>File</source>

@@ -454,7 +454,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1887"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Raison : %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1892"/>
@@ -2924,6 +2924,14 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
 </context>
 <context>
+    <name>HttpConnection</name>
+    <message>
+        <location filename="../httpconnection.cpp" line="136"/>
+        <source>Your IP address has been banned after too many failed authentication attempts.</source>
+        <translation>Votre addresse IP a été bloquée car vous avez dépassé le nombre de tentative d&apos;authentification autorisé.</translation>
+    </message>
+</context>
+<context>
     <name>HttpServer</name>
     <message>
         <location filename="../httpserver.cpp" line="62"/>
@@ -3571,7 +3579,7 @@ Vous le saviez probablement déjà alors nous ne vous l&apos;indiquerons plus.</
     </message>
     <message>
         <location filename="../ui/options.ui" line="200"/>
-        <location filename="../ui/options.ui" line="2646"/>
+        <location filename="../ui/options.ui" line="2631"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -3861,78 +3869,78 @@ QGroupBox {
         <translation>Nombre global maximum de connexions :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1257"/>
+        <location filename="../ui/options.ui" line="1252"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Nombre maximum de connexions par torrent :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1302"/>
+        <location filename="../ui/options.ui" line="1292"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Nombre maximum de slots d&apos;envoi par torrent :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1345"/>
+        <location filename="../ui/options.ui" line="1330"/>
         <source>Global bandwidth limiting</source>
         <translation>Limitation globale de bande passante</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1361"/>
+        <location filename="../ui/options.ui" line="1346"/>
         <source>Upload:</source>
         <translation>Envoi :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1377"/>
+        <location filename="../ui/options.ui" line="1362"/>
         <source>Download:</source>
         <translation>Réception :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1415"/>
-        <location filename="../ui/options.ui" line="1451"/>
+        <location filename="../ui/options.ui" line="1400"/>
+        <location filename="../ui/options.ui" line="1436"/>
         <source>KiB/s</source>
         <translation>Ko/s</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1480"/>
+        <location filename="../ui/options.ui" line="1465"/>
         <source>Peer connections</source>
         <translation>Connexion aux peers</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1486"/>
+        <location filename="../ui/options.ui" line="1471"/>
         <source>Resolve peer countries</source>
         <translation>Afficher le pays des peers</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1496"/>
+        <location filename="../ui/options.ui" line="1481"/>
         <source>Resolve peer host names</source>
         <translation>Afficher le nom d&apos;hôte des peers</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1545"/>
+        <location filename="../ui/options.ui" line="1530"/>
         <source>Bittorrent features</source>
         <translation>Fonctionnalités Bittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1551"/>
+        <location filename="../ui/options.ui" line="1536"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Activer le réseau DHT (décentralisé)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1561"/>
+        <location filename="../ui/options.ui" line="1546"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Utiliser un port différent pour le DHT et Bittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1592"/>
+        <location filename="../ui/options.ui" line="1577"/>
         <source>DHT port:</source>
         <translation>Port DHT :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1630"/>
+        <location filename="../ui/options.ui" line="1615"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation>Activer l&apos;échange de sources / PeX (redémarrage nécessaire)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1640"/>
+        <location filename="../ui/options.ui" line="1625"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Activer la recherche locale de sources</translation>
     </message>
@@ -3941,104 +3949,104 @@ QGroupBox {
         <translation type="obsolete">Se faire passer pour µtorrent pour éviter le blocage (redémarrage requis)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1652"/>
+        <location filename="../ui/options.ui" line="1637"/>
         <source>Encryption:</source>
         <translation>Brouillage :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1660"/>
+        <location filename="../ui/options.ui" line="1645"/>
         <source>Enabled</source>
         <translation>Activé</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1665"/>
+        <location filename="../ui/options.ui" line="1650"/>
         <source>Forced</source>
         <translation>Forcé</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1670"/>
+        <location filename="../ui/options.ui" line="1655"/>
         <source>Disabled</source>
         <translation>Désactivé</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1696"/>
+        <location filename="../ui/options.ui" line="1681"/>
         <source>Client whitelisting workaround</source>
         <translation>Anti-whitelisting par les trackers</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1704"/>
+        <location filename="../ui/options.ui" line="1689"/>
         <source>Identify as:</source>
         <translation>Se faire passer pour :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1712"/>
+        <location filename="../ui/options.ui" line="1697"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1717"/>
+        <location filename="../ui/options.ui" line="1702"/>
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1722"/>
+        <location filename="../ui/options.ui" line="1707"/>
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1727"/>
+        <location filename="../ui/options.ui" line="1712"/>
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1738"/>
+        <location filename="../ui/options.ui" line="1723"/>
         <source>Version:</source>
         <translation>Version :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1755"/>
+        <location filename="../ui/options.ui" line="1740"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translation>Build :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1784"/>
+        <location filename="../ui/options.ui" line="1769"/>
         <source>Reset to latest software version</source>
         <translation>Réinitialiser à la dernière version du logiciel</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1809"/>
+        <location filename="../ui/options.ui" line="1794"/>
         <source>Share ratio settings</source>
         <translation>Paramètres du ratio de partage</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1817"/>
+        <location filename="../ui/options.ui" line="1802"/>
         <source>Desired ratio:</source>
         <translation>Ratio désiré :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1871"/>
+        <location filename="../ui/options.ui" line="1856"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Supprimer les torrents terminés lorsque leur ratio atteint :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1962"/>
+        <location filename="../ui/options.ui" line="1947"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>Communications HTTP (trackers, sources HTTP, moteur de recherche)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1999"/>
-        <location filename="../ui/options.ui" line="2194"/>
+        <location filename="../ui/options.ui" line="1984"/>
+        <location filename="../ui/options.ui" line="2179"/>
         <source>Host:</source>
         <translation>Hôte :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2157"/>
+        <location filename="../ui/options.ui" line="2142"/>
         <source>Peer Communications</source>
         <translation>Communications avec les peers</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2178"/>
+        <location filename="../ui/options.ui" line="2163"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -4047,19 +4055,19 @@ QGroupBox {
         <translation type="obsolete">Paramètres du serveur mandataire (moteur de recherche)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1970"/>
-        <location filename="../ui/options.ui" line="2165"/>
+        <location filename="../ui/options.ui" line="1955"/>
+        <location filename="../ui/options.ui" line="2150"/>
         <source>Type:</source>
         <translation>Type :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1978"/>
-        <location filename="../ui/options.ui" line="2173"/>
+        <location filename="../ui/options.ui" line="1963"/>
+        <location filename="../ui/options.ui" line="2158"/>
         <source>(None)</source>
         <translation>(Aucun)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1983"/>
+        <location filename="../ui/options.ui" line="1968"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
@@ -4068,30 +4076,30 @@ QGroupBox {
         <translation type="obsolete">Serveur mandataire (proxy) :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2025"/>
-        <location filename="../ui/options.ui" line="2220"/>
-        <location filename="../ui/options.ui" line="2504"/>
+        <location filename="../ui/options.ui" line="2010"/>
+        <location filename="../ui/options.ui" line="2205"/>
+        <location filename="../ui/options.ui" line="2489"/>
         <source>Port:</source>
         <translation>Port :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2065"/>
-        <location filename="../ui/options.ui" line="2260"/>
-        <location filename="../ui/options.ui" line="2540"/>
+        <location filename="../ui/options.ui" line="2050"/>
+        <location filename="../ui/options.ui" line="2245"/>
+        <location filename="../ui/options.ui" line="2525"/>
         <source>Authentication</source>
         <translation>Authentification</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2079"/>
-        <location filename="../ui/options.ui" line="2274"/>
-        <location filename="../ui/options.ui" line="2548"/>
+        <location filename="../ui/options.ui" line="2064"/>
+        <location filename="../ui/options.ui" line="2259"/>
+        <location filename="../ui/options.ui" line="2533"/>
         <source>Username:</source>
         <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2089"/>
-        <location filename="../ui/options.ui" line="2284"/>
-        <location filename="../ui/options.ui" line="2555"/>
+        <location filename="../ui/options.ui" line="2074"/>
+        <location filename="../ui/options.ui" line="2269"/>
+        <location filename="../ui/options.ui" line="2540"/>
         <source>Password:</source>
         <translation>Mot de passe :</translation>
     </message>
@@ -4100,8 +4108,8 @@ QGroupBox {
         <translation type="obsolete">Paramètres du serveur mandataire (Bittorrent)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1988"/>
-        <location filename="../ui/options.ui" line="2183"/>
+        <location filename="../ui/options.ui" line="1973"/>
+        <location filename="../ui/options.ui" line="2168"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
@@ -4126,17 +4134,17 @@ QGroupBox {
         <translation type="obsolete">Connexions aux sources web</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2388"/>
+        <location filename="../ui/options.ui" line="2373"/>
         <source>Filter Settings</source>
         <translation>Paramètres de filtrage</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2394"/>
+        <location filename="../ui/options.ui" line="2379"/>
         <source>Activate IP Filtering</source>
         <translation>Activer le filtrage d&apos;IP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2410"/>
+        <location filename="../ui/options.ui" line="2395"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Chemin du filtre (.dat, .p2p, .p2b) :</translation>
     </message>
@@ -4145,37 +4153,37 @@ QGroupBox {
         <translation type="obsolete">Chemin vers le fichier de filtrage :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2485"/>
+        <location filename="../ui/options.ui" line="2470"/>
         <source>Enable Web User Interface</source>
         <translation>Activer l&apos;interface Web</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2498"/>
+        <location filename="../ui/options.ui" line="2483"/>
         <source>HTTP Server</source>
         <translation>Serveur HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2652"/>
+        <location filename="../ui/options.ui" line="2637"/>
         <source>Enable RSS support</source>
         <translation>Activer le module RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2662"/>
+        <location filename="../ui/options.ui" line="2647"/>
         <source>RSS settings</source>
         <translation>Paramètres RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2699"/>
+        <location filename="../ui/options.ui" line="2684"/>
         <source>RSS feeds refresh interval:</source>
         <translation>Intervalle de rafraîchissement des flux RSS :</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2719"/>
+        <location filename="../ui/options.ui" line="2704"/>
         <source>minutes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2743"/>
+        <location filename="../ui/options.ui" line="2728"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Numbre maximum d&apos;articles par flux :</translation>
     </message>
@@ -5384,74 +5392,74 @@ Changements:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="177"/>
-        <location filename="../transferlistfilterswidget.h" line="258"/>
+        <location filename="../transferlistfilterswidget.h" line="179"/>
+        <location filename="../transferlistfilterswidget.h" line="260"/>
         <source>All</source>
         <translation>Tous</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="180"/>
-        <location filename="../transferlistfilterswidget.h" line="259"/>
+        <location filename="../transferlistfilterswidget.h" line="182"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Downloading</source>
         <translation>En téléchargement</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="183"/>
-        <location filename="../transferlistfilterswidget.h" line="260"/>
+        <location filename="../transferlistfilterswidget.h" line="185"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Completed</source>
         <translation>Complet</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="186"/>
-        <location filename="../transferlistfilterswidget.h" line="261"/>
+        <location filename="../transferlistfilterswidget.h" line="188"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Active</source>
         <translation>Actif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="189"/>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="191"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Inactive</source>
         <translation>Inactif</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="203"/>
-        <location filename="../transferlistfilterswidget.h" line="425"/>
+        <location filename="../transferlistfilterswidget.h" line="205"/>
+        <location filename="../transferlistfilterswidget.h" line="427"/>
         <source>All labels</source>
         <translation>Toutes catégories</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="206"/>
-        <location filename="../transferlistfilterswidget.h" line="426"/>
+        <location filename="../transferlistfilterswidget.h" line="208"/>
+        <location filename="../transferlistfilterswidget.h" line="428"/>
         <source>Unlabeled</source>
         <translation>Sans catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="289"/>
+        <location filename="../transferlistfilterswidget.h" line="291"/>
         <source>Remove label</source>
         <translation>Supprimer catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="290"/>
+        <location filename="../transferlistfilterswidget.h" line="292"/>
         <source>Add label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="304"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>New Label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="304"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>Label:</source>
         <translation>Catégorie :</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="309"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Invalid label name</source>
         <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="309"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
