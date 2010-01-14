@@ -365,7 +365,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1887"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Raó: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1892"/>
@@ -4779,7 +4779,7 @@ Log:
         <location filename="../searchtab.cpp" line="64"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>Incomplets</translation>
+        <translation>Leechers</translation>
     </message>
     <message>
         <location filename="../searchtab.cpp" line="65"/>
