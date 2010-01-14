@@ -235,8 +235,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>602</width>
-              <height>590</height>
+              <width>621</width>
+              <height>569</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -619,8 +619,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>644</width>
-              <height>504</height>
+              <width>640</width>
+              <height>517</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1113,8 +1113,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>602</width>
-              <height>505</height>
+              <width>640</width>
+              <height>511</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -1218,11 +1218,6 @@ QGroupBox {
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
-                    <property name="font">
-                     <font>
-                      <pointsize>8</pointsize>
-                     </font>
-                    </property>
                     <property name="minimum">
                      <number>2</number>
                     </property>
@@ -1263,11 +1258,6 @@ QGroupBox {
                   </item>
                   <item>
                    <widget class="QSpinBox" name="spinMaxConnecPerTorrent">
-                    <property name="font">
-                     <font>
-                      <pointsize>8</pointsize>
-                     </font>
-                    </property>
                     <property name="minimum">
                      <number>2</number>
                     </property>
@@ -1308,11 +1298,6 @@ QGroupBox {
                   </item>
                   <item>
                    <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
-                    <property name="font">
-                     <font>
-                      <pointsize>8</pointsize>
-                     </font>
-                    </property>
                     <property name="maximum">
                      <number>500</number>
                     </property>
@@ -1534,8 +1519,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>388</width>
+              <height>400</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1951,8 +1936,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>495</height>
+              <width>357</width>
+              <height>294</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2374,8 +2359,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>290</width>
-              <height>124</height>
+              <width>230</width>
+              <height>109</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2471,8 +2456,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>219</width>
-              <height>221</height>
+              <width>180</width>
+              <height>214</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2635,8 +2620,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>452</width>
-              <height>192</height>
+              <width>640</width>
+              <height>517</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
