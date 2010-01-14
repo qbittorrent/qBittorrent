@@ -498,7 +498,14 @@ public:
     files_index = new TreeItem*[t.num_files()];
 
     TreeItem *parent = this->rootItem;
-    if(t.num_files() ==1) {
+    if(t.num_files() == 1) {
+      // Create possible parent folder
+      QStringList path_parts = misc::toQString(t.file_at(0).path.string()).split(QDir::separator());
+      path_parts.removeLast();
+      foreach(const QString &part, path_parts) {
+        TreeItem *folder = new TreeItem(part, parent);
+        parent = folder;
+      }
       TreeItem *f = new TreeItem(t.file_at(0), parent, 0);
       //parent->appendChild(f);
       files_index[0] = f;
