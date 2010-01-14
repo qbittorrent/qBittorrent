@@ -170,6 +170,8 @@ public:
     // Limit status filters list height
     statusFilters->setFixedHeight(100);
     statusFilters->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    statusFilters->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    statusFilters->setSpacing(0);
     setContentsMargins(0,0,0,0);
     vLayout->setSpacing(2);
     // Add status filters
