@@ -18,6 +18,7 @@
     - BUGFIX: Search engine loads new proxy settings without program restart
     - BUGFIX: Use XDG folders (.cache, .local) instead of .qbittorrent
     - BUGFIX: Added legal notice on startup that the user must accept
+    - BUGFIX: Protect Web UI authentication against brute forcing
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)
     - COSMETIC: Added a spin box to speed limiting dialog for manual input
