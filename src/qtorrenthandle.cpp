@@ -538,7 +538,6 @@ void QTorrentHandle::move_storage(QString new_path) const {
 
 void QTorrentHandle::file_priority(int index, int priority) const {
   Q_ASSERT(h.is_valid());
-  if(is_seed()) return;
   h.file_priority(index, priority);
 }
 

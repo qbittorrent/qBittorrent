@@ -357,7 +357,7 @@ void HttpConnection::respondCommand(QString command)
     int file_id = parser.post("id").toInt();
     int priority = parser.post("priority").toInt();
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && h.has_metadata() && !h.get_torrent_handle().is_seed()) {
+    if(h.is_valid() && h.has_metadata()) {
       h.file_priority(file_id, priority);
     }
   }
