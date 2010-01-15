@@ -365,33 +365,33 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="295"/>
-        <location filename="../eventmanager.cpp" line="296"/>
+        <location filename="../eventmanager.cpp" line="291"/>
+        <location filename="../eventmanager.cpp" line="292"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../eventmanager.cpp" line="296"/>
         <location filename="../eventmanager.cpp" line="300"/>
-        <location filename="../eventmanager.cpp" line="304"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="307"/>
+        <location filename="../eventmanager.cpp" line="303"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="310"/>
+        <location filename="../eventmanager.cpp" line="306"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="385"/>
-        <location filename="../eventmanager.cpp" line="394"/>
+        <location filename="../eventmanager.cpp" line="381"/>
+        <location filename="../eventmanager.cpp" line="390"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
