@@ -137,14 +137,14 @@ void HttpConnection::respond() {
     write();
     return;
   }
-  QStringList auth = parser.value("Authorization").split(" ", QString::SkipEmptyParts);
-  if (auth.size() != 2 || QString::compare(auth[0], "Basic", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth[1].toLocal8Bit())) {
+  QString auth = parser.value("Authorization");
+  if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth.toLocal8Bit(), parser.method())) {
     // Update failed attempt counter
     parent->client_failed_attempts.insert(socket->peerAddress().toString(), nb_fail+1);
     qDebug("client IP: %s (%d failed attempts)", socket->peerAddress().toString().toLocal8Bit().data(), nb_fail);
     // Return unauthorized header
     generator.setStatusLine(401, "Unauthorized");
-    generator.setValue("WWW-Authenticate",  "Basic realm=\"you know what\"");
+    generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+parent->generateNonce()+"\", algorithm=\"MD5\", qop=\"auth\"");
     write();
     return;
   }

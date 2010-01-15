@@ -33,13 +33,14 @@
 #include "httpconnection.h"
 #include "eventmanager.h"
 #include "bittorrent.h"
-#include "preferences.h"
 #include <QTimer>
 #include <QCryptographicHash>
+#include <QTime>
+#include <QRegExp>
 
 HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent) {
   username = Preferences::getWebUiUsername().toLocal8Bit();
-  password_md5 = Preferences::getWebUiPassword().toLocal8Bit();
+  password_ha1 = Preferences::getWebUiPassword().toLocal8Bit();
   connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
   BTSession = _BTSession;
   manager = new EventManager(this, BTSession);
@@ -118,21 +119,110 @@ void HttpServer::onTimer() {
   }
 }
 
-void HttpServer::setAuthorization(QString _username, QString _password_md5) {
-  username = _username.toLocal8Bit();
-  password_md5 = _password_md5.toLocal8Bit();
+QString HttpServer::generateNonce() const {
+  QCryptographicHash md5(QCryptographicHash::Md5);
+  md5.addData(QTime::currentTime().toString("hhmmsszzz").toLocal8Bit());
+  md5.addData(":");
+  md5.addData(QBT_REALM);
+  return md5.result().toHex();
 }
 
-bool HttpServer::isAuthorized(QByteArray auth) const {
-  // Decode Auth
-  QByteArray decoded = QByteArray::fromBase64(auth);
-  QList<QByteArray> creds = decoded.split(':');
-  if(creds.size() != 2) return false;
-  QByteArray prop_username = creds.first();
-  if(prop_username != username) return false;
-  QCryptographicHash md5(QCryptographicHash::Md5);
-  md5.addData(creds.last());
-  return (password_md5 == md5.result().toHex());
+void HttpServer::setAuthorization(QString _username, QString _password_ha1) {
+  username = _username.toLocal8Bit();
+  password_ha1 = _password_ha1.toLocal8Bit();
+}
+
+// AUTH string is: Digest username="chris",
+// realm="Web UI Access",
+// nonce="570d04de93444b7fd3eaeaecb00e635e",
+// uri="/", algorithm=MD5,
+// response="ba886766d19b45313c0e2195e4344264",
+// qop=auth, nc=00000001, cnonce="e8ac970779c17075"
+bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
+  qDebug("AUTH string is %s", auth.data());
+  // Get user name
+  QRegExp regex_user(".*username=\"([^\"]+)\".*");
+  if(regex_user.indexIn(auth) < 0) return false;
+  QString prop_user = regex_user.cap(1);
+  qDebug("AUTH: Proposed username is %s, real username is %s", prop_user.toLocal8Bit().data(), username.data());
+  if(prop_user != username) {
+    // User name is invalid, we can reject already
+    qDebug("AUTH-PROB: Username is invalid");
+    return false;
+  }
+  // Get realm
+  QRegExp regex_realm(".*realm=\"([^\"]+)\".*");
+  if(regex_realm.indexIn(auth) < 0) {
+    qDebug("AUTH-PROB: Missing realm");
+    return false;
+  }
+  QByteArray prop_realm = regex_realm.cap(1).toLocal8Bit();
+  if(prop_realm != QBT_REALM) {
+    qDebug("AUTH-PROB: Wrong realm");
+    return false;
+  }
+  // get nonce
+  QRegExp regex_nonce(".*nonce=\"([^\"]+)\".*");
+  if(regex_nonce.indexIn(auth) < 0) {
+    qDebug("AUTH-PROB: missing nonce");
+    return false;
+  }
+  QByteArray prop_nonce = regex_nonce.cap(1).toLocal8Bit();
+  qDebug("prop nonce is: %s", prop_nonce.data());
+  // get uri
+  QRegExp regex_uri(".*uri=\"([^\"]+)\".*");
+  if(regex_uri.indexIn(auth) < 0) {
+    qDebug("AUTH-PROB: Missing uri");
+    return false;
+  }
+  QByteArray prop_uri = regex_uri.cap(1).toLocal8Bit();
+  qDebug("prop uri is: %s", prop_uri.data());
+  // get response
+  QRegExp regex_response(".*response=\"([^\"]+)\".*");
+  if(regex_response.indexIn(auth) < 0) {
+    qDebug("AUTH-PROB: Missing response");
+    return false;
+  }
+  QByteArray prop_response = regex_response.cap(1).toLocal8Bit();
+  qDebug("prop response is: %s", prop_response.data());
+  // Compute correct reponse
+  QCryptographicHash md5_ha2(QCryptographicHash::Md5);
+  md5_ha2.addData(method.toLocal8Bit() + ":" + prop_uri);
+  QByteArray ha2 = md5_ha2.result().toHex();
+  QByteArray response = "";
+  if(auth.contains("qop=")) {
+    QCryptographicHash md5_ha(QCryptographicHash::Md5);
+    // Get nc
+    QRegExp regex_nc(".*nc=(\\w+).*");
+    if(regex_nc.indexIn(auth) < 0) {
+      qDebug("AUTH-PROB: qop but missing nc");
+      return false;
+    }
+    QByteArray prop_nc = regex_nc.cap(1).toLocal8Bit();
+    qDebug("prop nc is: %s", prop_nc.data());
+    QRegExp regex_cnonce(".*cnonce=\"([^\"]+)\".*");
+    if(regex_cnonce.indexIn(auth) < 0) {
+      qDebug("AUTH-PROB: qop but missing cnonce");
+      return false;
+    }
+    QByteArray prop_cnonce = regex_cnonce.cap(1).toLocal8Bit();
+    qDebug("prop cnonce is: %s", prop_cnonce.data());
+    QRegExp regex_qop(".*qop=(\\w+).*");
+    if(regex_qop.indexIn(auth) < 0) {
+      qDebug("AUTH-PROB: missing qop");
+      return false;
+    }
+    QByteArray prop_qop = regex_qop.cap(1).toLocal8Bit();
+    qDebug("prop qop is: %s", prop_qop.data());
+    md5_ha.addData(password_ha1+":"+prop_nonce+":"+prop_nc+":"+prop_cnonce+":"+prop_qop+":"+ha2);
+    response = md5_ha.result().toHex();
+  } else {
+    QCryptographicHash md5_ha(QCryptographicHash::Md5);
+    md5_ha.addData(password_ha1+":"+prop_nonce+":"+ha2);
+    response = md5_ha.result().toHex();
+  }
+  qDebug("AUTH: comparing reponses");
+  return prop_response == response;
 }
 
 EventManager* HttpServer::eventManager() const
