@@ -514,6 +514,11 @@ int options_imp::getPeerProxyType() const{
       return SOCKS5_PW;
     }
     return SOCKS5;
+  case 3:
+    if(isPeerProxyAuthEnabled()){
+      return HTTP_PW;
+    }
+    return HTTP;
   default:
     return -1;
   }
@@ -653,6 +658,10 @@ void options_imp::loadOptions(){
   case SOCKS5:
   case SOCKS5_PW:
     comboProxyType->setCurrentIndex(2);
+    break;
+  case HTTP:
+  case HTTP_PW:
+    comboProxyType->setCurrentIndex(3);
     break;
   default:
     comboProxyType->setCurrentIndex(0);

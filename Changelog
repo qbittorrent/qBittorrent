@@ -15,6 +15,7 @@
     - FEATURE: Added support for magnet links in search engine
     - FEATURE: Added vertor.com and torrentdownloads.net search plugins
     - FEATURE: Search engine can now use a SOCKS5 proxy
+    - FEATURE: HTTP proxy support for peer communication
     - BUGFIX: Search engine loads new proxy settings without program restart
     - BUGFIX: Use XDG folders (.cache, .local) instead of .qbittorrent
     - BUGFIX: Added legal notice on startup that the user must accept
