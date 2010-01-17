@@ -328,7 +328,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1887"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Разлог: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1892"/>
@@ -1114,22 +1114,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="622"/>
+        <location filename="../GUI.cpp" line="631"/>
         <source>Open Torrent Files</source>
         <translation>Отвори Торент фајлове</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="520"/>
+        <location filename="../GUI.cpp" line="529"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="520"/>
+        <location filename="../GUI.cpp" line="529"/>
         <source>&amp;No</source>
         <translation>&amp;Не</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="623"/>
+        <location filename="../GUI.cpp" line="632"/>
         <source>Torrent Files</source>
         <translation>Торент Фајлови</translation>
     </message>
@@ -1141,54 +1141,54 @@ p, li { white-space: pre-wrap; }
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
-        <location filename="../GUI.cpp" line="802"/>
+        <location filename="../GUI.cpp" line="527"/>
+        <location filename="../GUI.cpp" line="811"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="723"/>
+        <location filename="../GUI.cpp" line="732"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="797"/>
-        <location filename="../GUI.cpp" line="805"/>
+        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="814"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translatorcomment>н.пр.: Брзина преузимања: 10 KiB/s</translatorcomment>
         <translation>ПР брзина: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="799"/>
         <location filename="../GUI.cpp" line="808"/>
+        <location filename="../GUI.cpp" line="817"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translatorcomment>н.пр.: Брзина слања: 10 KiB/s</translatorcomment>
         <translation>СЛ брзина: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
+        <location filename="../GUI.cpp" line="527"/>
         <source>Are you sure you want to quit?</source>
         <translation>Да ли сте сигурни да желите да прекинете?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="295"/>
+        <location filename="../GUI.cpp" line="304"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translatorcomment>н.пр.: xxx.avi је завршио преузимање.</translatorcomment>
         <translation>%1 је завршио преузимање.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="301"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translatorcomment>н.пр.: Улазно/Излазна грешка</translatorcomment>
         <translation>И/О Грешка</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="305"/>
+        <location filename="../GUI.cpp" line="314"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Десила се нека грешка (диск је пун?), &apos;%1&apos; паузирано.</translation>
@@ -1199,30 +1199,30 @@ p, li { white-space: pre-wrap; }
         <translation>Претраживање</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="249"/>
+        <location filename="../GUI.cpp" line="258"/>
         <source>RSS</source>
         <translatorcomment>RSS је породица веб формата који се користе за објављивање садржаја који се често мењају, као што су новински наслови. RSS документ садржи или сажетак садржаја са придружене веб стране, или читав текст. RSS вам омогућава да будете у току са изменама и новостима са неког веб сајта потпуно аутоматски, а тај садржај се може увести у RSS апликацију на вашој страни.</translatorcomment>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="312"/>
+        <location filename="../GUI.cpp" line="321"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translatorcomment>пречица за пребацивање на прво поље</translatorcomment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="397"/>
+        <location filename="../GUI.cpp" line="406"/>
         <source>Url download error</source>
         <translation>Url грешка преузимања</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="397"/>
+        <location filename="../GUI.cpp" line="406"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Немогуће преузети фајл са url: %1, разлог: %2.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="301"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1238,54 +1238,54 @@ p, li { white-space: pre-wrap; }
         <translation>Трансфери</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="295"/>
+        <location filename="../GUI.cpp" line="304"/>
         <source>Download completion</source>
         <translation>Комплетно преузет</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="314"/>
+        <location filename="../GUI.cpp" line="323"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="316"/>
+        <location filename="../GUI.cpp" line="325"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translatorcomment>пречица за пребацивање на поље претраживања</translatorcomment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="318"/>
+        <location filename="../GUI.cpp" line="327"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="403"/>
+        <location filename="../GUI.cpp" line="412"/>
         <source>Global Upload Speed Limit</source>
         <translation>Општи лимит брзине слања</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="421"/>
+        <location filename="../GUI.cpp" line="430"/>
         <source>Global Download Speed Limit</source>
         <translation>Општи лимит брзине преузимања</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="519"/>
+        <location filename="../GUI.cpp" line="528"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Неки фајлови се тренутно преносе.
 Да ли сте сигурни да желите да прекинете qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
+        <location filename="../GUI.cpp" line="823"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Преуз: %2/s, Сл: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="695"/>
+        <location filename="../GUI.cpp" line="704"/>
         <source>Options were saved successfully.</source>
         <translation>Опције када је сачуван успешно.</translation>
     </message>
@@ -1323,7 +1323,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../httpconnection.cpp" line="136"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваша IP адреса је одбијена после више покушаја аутентификације.</translation>
     </message>
 </context>
 <context>
@@ -3373,75 +3373,75 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="179"/>
-        <location filename="../transferlistfilterswidget.h" line="260"/>
+        <location filename="../transferlistfilterswidget.h" line="177"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>All</source>
         <translation>Сви</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="182"/>
-        <location filename="../transferlistfilterswidget.h" line="261"/>
+        <location filename="../transferlistfilterswidget.h" line="180"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Downloading</source>
         <translation>Преузимање</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="185"/>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="183"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Completed</source>
         <translation>Комплетирани</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="188"/>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="186"/>
+        <location filename="../transferlistfilterswidget.h" line="265"/>
         <source>Active</source>
         <translation>Активни</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="191"/>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="189"/>
+        <location filename="../transferlistfilterswidget.h" line="266"/>
         <source>Inactive</source>
         <translation>Неактивни</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="205"/>
-        <location filename="../transferlistfilterswidget.h" line="427"/>
+        <location filename="../transferlistfilterswidget.h" line="203"/>
+        <location filename="../transferlistfilterswidget.h" line="429"/>
         <source>All labels</source>
         <translation>Све ознаке</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="208"/>
-        <location filename="../transferlistfilterswidget.h" line="428"/>
+        <location filename="../transferlistfilterswidget.h" line="206"/>
+        <location filename="../transferlistfilterswidget.h" line="430"/>
         <source>Unlabeled</source>
         <translation>Неозначено</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="291"/>
+        <location filename="../transferlistfilterswidget.h" line="293"/>
         <source>Remove label</source>
         <translation>Уклони ознаку</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="292"/>
+        <location filename="../transferlistfilterswidget.h" line="294"/>
         <source>Add label</source>
         <translation>Додај ознаку</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>New Label</source>
         <translation>Нова ознака</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>Label:</source>
         <translatorcomment>Label-Ознака,Маркер</translatorcomment>
         <translation>Ознака:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="311"/>
+        <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Invalid label name</source>
         <translation>Погрешно име ознаке</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="311"/>
+        <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Молимо Вас да не користите специјалне карактере у имену ознаке.</translation>
     </message>

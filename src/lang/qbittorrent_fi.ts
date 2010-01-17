@@ -1805,7 +1805,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nimi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="520"/>
+        <location filename="../GUI.cpp" line="529"/>
         <source>&amp;No</source>
         <translation>&amp;Ei</translation>
     </message>
@@ -1818,7 +1818,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Hakupalvelua ei ole valittu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="622"/>
+        <location filename="../GUI.cpp" line="631"/>
         <source>Open Torrent Files</source>
         <translation>Avaa torrent-tiedostoja</translation>
     </message>
@@ -1948,7 +1948,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tiedosto ei ole kelvollinen torrent-tiedosto.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="623"/>
+        <location filename="../GUI.cpp" line="632"/>
         <source>Torrent Files</source>
         <translation>Torrent-tiedostot</translation>
     </message>
@@ -1970,7 +1970,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Lähetysnopeus: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="520"/>
+        <location filename="../GUI.cpp" line="529"/>
         <source>&amp;Yes</source>
         <translation>&amp;Kyllä</translation>
     </message>
@@ -2045,55 +2045,55 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Lataajia</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="314"/>
+        <location filename="../GUI.cpp" line="323"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="318"/>
+        <location filename="../GUI.cpp" line="327"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="403"/>
+        <location filename="../GUI.cpp" line="412"/>
         <source>Global Upload Speed Limit</source>
         <translation>Yleinen lähetysnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="421"/>
+        <location filename="../GUI.cpp" line="430"/>
         <source>Global Download Speed Limit</source>
         <translation>Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
-        <location filename="../GUI.cpp" line="802"/>
+        <location filename="../GUI.cpp" line="527"/>
+        <location filename="../GUI.cpp" line="811"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="723"/>
+        <location filename="../GUI.cpp" line="732"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation> qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="797"/>
-        <location filename="../GUI.cpp" line="805"/>
+        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="814"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Latausnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="799"/>
         <location filename="../GUI.cpp" line="808"/>
+        <location filename="../GUI.cpp" line="817"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Lähetysnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
+        <location filename="../GUI.cpp" line="823"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Lataus: %2/s, lähetys: %3/s)</translation>
@@ -2114,7 +2114,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Seisahtunut</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
+        <location filename="../GUI.cpp" line="527"/>
         <source>Are you sure you want to quit?</source>
         <translation>Haluatko varmasti poistua?</translation>
     </message>
@@ -2152,13 +2152,13 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Torrentin ”%1” lataamista jatkettiin.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="295"/>
+        <location filename="../GUI.cpp" line="304"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Lataus ”%1” tuli valmiiksi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="301"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O-virhe</translation>
@@ -2191,7 +2191,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tulokset</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="305"/>
+        <location filename="../GUI.cpp" line="314"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Tapahtui virhe (levy on täynnä?). Lataus ”%1” pysäytettiin.</translation>
@@ -2202,7 +2202,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="249"/>
+        <location filename="../GUI.cpp" line="258"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -2258,18 +2258,18 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Salaus [EI KÄYTÖSSÄ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="312"/>
+        <location filename="../GUI.cpp" line="321"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="295"/>
+        <location filename="../GUI.cpp" line="304"/>
         <source>Download completion</source>
         <translation>Latauksen valmistuminen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="301"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2288,12 +2288,12 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="397"/>
+        <location filename="../GUI.cpp" line="406"/>
         <source>Url download error</source>
         <translation>Latausvirhe</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="397"/>
+        <location filename="../GUI.cpp" line="406"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Tiedoston lataaminen osoitteesta %1 epäonnistui: %2.</translation>
     </message>
@@ -2316,13 +2316,13 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="316"/>
+        <location filename="../GUI.cpp" line="325"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="519"/>
+        <location filename="../GUI.cpp" line="528"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Tiedostoja on siirrotta.
@@ -2392,7 +2392,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Lähetykset</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="695"/>
+        <location filename="../GUI.cpp" line="704"/>
         <source>Options were saved successfully.</source>
         <translation>Asetukset tallennettiin.</translation>
     </message>
@@ -4739,74 +4739,74 @@ Muutoshistoria:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="179"/>
-        <location filename="../transferlistfilterswidget.h" line="260"/>
+        <location filename="../transferlistfilterswidget.h" line="177"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>All</source>
         <translation>Kaikki</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="182"/>
-        <location filename="../transferlistfilterswidget.h" line="261"/>
+        <location filename="../transferlistfilterswidget.h" line="180"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Downloading</source>
         <translation>Ladataan</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="185"/>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="183"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Completed</source>
         <translation>Valmiina</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="188"/>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="186"/>
+        <location filename="../transferlistfilterswidget.h" line="265"/>
         <source>Active</source>
         <translation>Aktiivinen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="191"/>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="189"/>
+        <location filename="../transferlistfilterswidget.h" line="266"/>
         <source>Inactive</source>
         <translation>Epäaktiivinen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="205"/>
-        <location filename="../transferlistfilterswidget.h" line="427"/>
+        <location filename="../transferlistfilterswidget.h" line="203"/>
+        <location filename="../transferlistfilterswidget.h" line="429"/>
         <source>All labels</source>
         <translation>Kaikki nimikkeet</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="208"/>
-        <location filename="../transferlistfilterswidget.h" line="428"/>
+        <location filename="../transferlistfilterswidget.h" line="206"/>
+        <location filename="../transferlistfilterswidget.h" line="430"/>
         <source>Unlabeled</source>
         <translation>Nimikkeetön</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="291"/>
+        <location filename="../transferlistfilterswidget.h" line="293"/>
         <source>Remove label</source>
         <translation>Poista nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="292"/>
+        <location filename="../transferlistfilterswidget.h" line="294"/>
         <source>Add label</source>
         <translation>Lisää nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>New Label</source>
         <translation>Uusi nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>Label:</source>
         <translation>Nimike:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="311"/>
+        <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Invalid label name</source>
         <translation>Virheellinen nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="311"/>
+        <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>

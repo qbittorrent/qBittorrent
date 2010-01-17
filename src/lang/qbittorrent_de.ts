@@ -1801,8 +1801,8 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete"> :: By Christophe Dumez :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
-        <location filename="../GUI.cpp" line="802"/>
+        <location filename="../GUI.cpp" line="527"/>
+        <location filename="../GUI.cpp" line="811"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1823,12 +1823,12 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete">UP Geschwindigkeit:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="622"/>
+        <location filename="../GUI.cpp" line="631"/>
         <source>Open Torrent Files</source>
         <translation>Öffne Torrent-Dateien</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="623"/>
+        <location filename="../GUI.cpp" line="632"/>
         <source>Torrent Files</source>
         <translation>Torrent-Dateien</translation>
     </message>
@@ -1878,12 +1878,12 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete">Wollen Sie wirklich alle Dateien aus der Download Liste löschen?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="520"/>
+        <location filename="../GUI.cpp" line="529"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="520"/>
+        <location filename="../GUI.cpp" line="529"/>
         <source>&amp;No</source>
         <translation>&amp;Nein</translation>
     </message>
@@ -2293,15 +2293,15 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">qBittorrent %1 gestartet.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="797"/>
-        <location filename="../GUI.cpp" line="805"/>
+        <location filename="../GUI.cpp" line="806"/>
+        <location filename="../GUI.cpp" line="814"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Geschwindigkeit: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="799"/>
         <location filename="../GUI.cpp" line="808"/>
+        <location filename="../GUI.cpp" line="817"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP Geschwindigkeit: %1 KiB/s</translation>
@@ -2322,7 +2322,7 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">Angehalten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="518"/>
+        <location filename="../GUI.cpp" line="527"/>
         <source>Are you sure you want to quit?</source>
         <translation>Wollen Sie wirklich beenden?</translation>
     </message>
@@ -2385,13 +2385,13 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">&apos;%1&apos; fortgesetzt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="295"/>
+        <location filename="../GUI.cpp" line="304"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 vollständig heruntergeladen.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="301"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Error</translation>
@@ -2446,7 +2446,7 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">Lade &apos;%1&apos;, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="305"/>
+        <location filename="../GUI.cpp" line="314"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>Ein Fehler ist aufgetreten (Festplatte voll?), &apos;%1&apos; angehalten.</translation>
@@ -2457,17 +2457,17 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="249"/>
+        <location filename="../GUI.cpp" line="258"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="295"/>
+        <location filename="../GUI.cpp" line="304"/>
         <source>Download completion</source>
         <translation>Beendigung des Download</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="301"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2475,19 +2475,19 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>Ein I/O Fehler ist aufegtreten für die Torrent Datei %1. Ursache: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="314"/>
+        <location filename="../GUI.cpp" line="323"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="723"/>
+        <location filename="../GUI.cpp" line="732"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="814"/>
+        <location filename="../GUI.cpp" line="823"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation></translation>
@@ -2561,7 +2561,7 @@ Möchten sie qBittorrent wirklich beenden?</translation>
         <translation type="obsolete">Verhältnis</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="312"/>
+        <location filename="../GUI.cpp" line="321"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -2582,12 +2582,12 @@ Möchten sie qBittorrent wirklich beenden?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="397"/>
+        <location filename="../GUI.cpp" line="406"/>
         <source>Url download error</source>
         <translation>URL Download Fehler</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="397"/>
+        <location filename="../GUI.cpp" line="406"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Konnte Datei von URL: %1 nicht laden, Begründung: %2.</translation>
     </message>
@@ -2618,29 +2618,29 @@ Möchten sie qBittorrent wirklich beenden?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="316"/>
+        <location filename="../GUI.cpp" line="325"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Strg+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="318"/>
+        <location filename="../GUI.cpp" line="327"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="403"/>
+        <location filename="../GUI.cpp" line="412"/>
         <source>Global Upload Speed Limit</source>
         <translation>Globale Upload-Geschwindigkeit</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="421"/>
+        <location filename="../GUI.cpp" line="430"/>
         <source>Global Download Speed Limit</source>
         <translation>Globale Download-Geschwindigkeit</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="519"/>
+        <location filename="../GUI.cpp" line="528"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Zur Zeit werden Dateien übertragen.
@@ -2710,7 +2710,7 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
         <translation type="obsolete">Uploads</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="695"/>
+        <location filename="../GUI.cpp" line="704"/>
         <source>Options were saved successfully.</source>
         <translation>Optionen wurden erfolgreich gespeichert.</translation>
     </message>
@@ -5129,74 +5129,74 @@ Changelog:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="179"/>
-        <location filename="../transferlistfilterswidget.h" line="260"/>
+        <location filename="../transferlistfilterswidget.h" line="177"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>All</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="182"/>
-        <location filename="../transferlistfilterswidget.h" line="261"/>
+        <location filename="../transferlistfilterswidget.h" line="180"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Downloading</source>
         <translation>Lade</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="185"/>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="183"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Completed</source>
         <translation>Vollständig</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="188"/>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="186"/>
+        <location filename="../transferlistfilterswidget.h" line="265"/>
         <source>Active</source>
         <translation>Aktiv</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="191"/>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="189"/>
+        <location filename="../transferlistfilterswidget.h" line="266"/>
         <source>Inactive</source>
         <translation>Inaktiv</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="205"/>
-        <location filename="../transferlistfilterswidget.h" line="427"/>
+        <location filename="../transferlistfilterswidget.h" line="203"/>
+        <location filename="../transferlistfilterswidget.h" line="429"/>
         <source>All labels</source>
         <translation>Alle Label</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="208"/>
-        <location filename="../transferlistfilterswidget.h" line="428"/>
+        <location filename="../transferlistfilterswidget.h" line="206"/>
+        <location filename="../transferlistfilterswidget.h" line="430"/>
         <source>Unlabeled</source>
         <translation>Ohne Label</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="291"/>
+        <location filename="../transferlistfilterswidget.h" line="293"/>
         <source>Remove label</source>
         <translation>Label entfernen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="292"/>
+        <location filename="../transferlistfilterswidget.h" line="294"/>
         <source>Add label</source>
         <translation>Label hinzufügen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>New Label</source>
         <translation>Neues Label</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>Label:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="311"/>
+        <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Invalid label name</source>
         <translation>Ungültiger Labelname</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="311"/>
+        <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Bitte keine Sonderzeichen im Labelname verwenden.</translation>
     </message>
