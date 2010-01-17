@@ -2436,118 +2436,118 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../httpserver.cpp" line="62"/>
+        <location filename="../httpserver.cpp" line="63"/>
         <source>File</source>
         <translation>Tiedosto</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="63"/>
+        <location filename="../httpserver.cpp" line="64"/>
         <source>Edit</source>
         <translation>Muokkaa</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="64"/>
+        <location filename="../httpserver.cpp" line="65"/>
         <source>Help</source>
         <translation>Opaste</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="65"/>
+        <location filename="../httpserver.cpp" line="66"/>
         <source>Delete from HD</source>
         <translation>Poista kovalevyltä</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="66"/>
+        <location filename="../httpserver.cpp" line="67"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Lataa torrentit URL:ista tai magnetic linkistä</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="67"/>
+        <location filename="../httpserver.cpp" line="68"/>
         <source>Only one link per line</source>
         <translation>Yksi linkki riville</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="68"/>
+        <location filename="../httpserver.cpp" line="69"/>
         <source>Download local torrent</source>
         <translation>Lataa paikallinen torrentti</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="69"/>
+        <location filename="../httpserver.cpp" line="70"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>Torrentti-tiedostojen lisäys latauslistalle onnistui.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="70"/>
+        <location filename="../httpserver.cpp" line="71"/>
         <source>Point to torrent file</source>
         <translation>Osoita torrenttitiedosto</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="71"/>
+        <location filename="../httpserver.cpp" line="72"/>
         <source>Download</source>
         <translation>Lataa</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="72"/>
+        <location filename="../httpserver.cpp" line="73"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Haluatko poistaa valitut torrentit siirtolistalta ja kovalevyltä?</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="73"/>
+        <location filename="../httpserver.cpp" line="74"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>Latauksen rajan pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="74"/>
+        <location filename="../httpserver.cpp" line="75"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>Lähetyksen rajan pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="75"/>
+        <location filename="../httpserver.cpp" line="76"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Yhteyksien enimmäismäärän pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="76"/>
+        <location filename="../httpserver.cpp" line="77"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Yhteyksien torrenttikohtaisen maksimimäärän pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="77"/>
+        <location filename="../httpserver.cpp" line="78"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Lähetyslohkojen torrenttikohtaisen enimmäismäärän pitää olla suurempi kuin 0 tai poistettu käytöstä.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="78"/>
+        <location filename="../httpserver.cpp" line="79"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Asetuksia ei voitu tallentaa, qBittorrenttiin ei todennäköisesti saada yhteyttä.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="79"/>
+        <location filename="../httpserver.cpp" line="80"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="80"/>
+        <location filename="../httpserver.cpp" line="81"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Ladattu</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="81"/>
+        <location filename="../httpserver.cpp" line="82"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>Sisääntuleville yhteyksille tarkoitetun portin numeron pitää olla suurempi kuin 1024 ja pienempi kuin 65535.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="82"/>
+        <location filename="../httpserver.cpp" line="83"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>Web-käyttöliittymälle varatun portin pitää olla suurempi kuin 1024 ja pienempi kuin 65535.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="83"/>
+        <location filename="../httpserver.cpp" line="84"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Web-käyttöliittymän käyttäjätunnuksen pitää olla vähintään kolme merkkiä pitkä.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="84"/>
+        <location filename="../httpserver.cpp" line="85"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Web-käyttöliittymän salasanan pitää olla vähintään kolme merkkiä pitkä.</translation>
     </message>
@@ -3005,7 +3005,7 @@ Todennäköisesti tiesit tämän jo, joten emme toista asiaa.</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="200"/>
-        <location filename="../ui/options.ui" line="2631"/>
+        <location filename="../ui/options.ui" line="2636"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -3430,7 +3430,7 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/options.ui" line="1984"/>
-        <location filename="../ui/options.ui" line="2179"/>
+        <location filename="../ui/options.ui" line="2184"/>
         <source>Host:</source>
         <translation>Isäntä:</translation>
     </message>
@@ -3494,34 +3494,35 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/options.ui" line="1968"/>
+        <location filename="../ui/options.ui" line="2173"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2010"/>
-        <location filename="../ui/options.ui" line="2205"/>
-        <location filename="../ui/options.ui" line="2489"/>
+        <location filename="../ui/options.ui" line="2210"/>
+        <location filename="../ui/options.ui" line="2494"/>
         <source>Port:</source>
         <translation>Portti:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2050"/>
-        <location filename="../ui/options.ui" line="2245"/>
-        <location filename="../ui/options.ui" line="2525"/>
+        <location filename="../ui/options.ui" line="2250"/>
+        <location filename="../ui/options.ui" line="2530"/>
         <source>Authentication</source>
         <translation>Sisäänkirjautuminen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2064"/>
-        <location filename="../ui/options.ui" line="2259"/>
-        <location filename="../ui/options.ui" line="2533"/>
+        <location filename="../ui/options.ui" line="2264"/>
+        <location filename="../ui/options.ui" line="2538"/>
         <source>Username:</source>
         <translation>Tunnus:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2074"/>
-        <location filename="../ui/options.ui" line="2269"/>
-        <location filename="../ui/options.ui" line="2540"/>
+        <location filename="../ui/options.ui" line="2274"/>
+        <location filename="../ui/options.ui" line="2545"/>
         <source>Password:</source>
         <translation>Salasana:</translation>
     </message>
@@ -3532,52 +3533,52 @@ QGroupBox {
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2373"/>
+        <location filename="../ui/options.ui" line="2378"/>
         <source>Filter Settings</source>
         <translation>Suotimen asetukset</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2379"/>
+        <location filename="../ui/options.ui" line="2384"/>
         <source>Activate IP Filtering</source>
         <translation>Käytä IP-suodatusta</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2395"/>
+        <location filename="../ui/options.ui" line="2400"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Suodatustiedoston sijainti (.dat, .p2p, p2b):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2470"/>
+        <location filename="../ui/options.ui" line="2475"/>
         <source>Enable Web User Interface</source>
         <translation>Käytä web-käyttöliittymää</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2483"/>
+        <location filename="../ui/options.ui" line="2488"/>
         <source>HTTP Server</source>
         <translation>HTTP-palvelin</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2637"/>
+        <location filename="../ui/options.ui" line="2642"/>
         <source>Enable RSS support</source>
         <translation>Ota RSS-tuki käyttöön</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2647"/>
+        <location filename="../ui/options.ui" line="2652"/>
         <source>RSS settings</source>
         <translation>RSS-asetukset</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2684"/>
+        <location filename="../ui/options.ui" line="2689"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS-syötteen päivitystiheys:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2704"/>
+        <location filename="../ui/options.ui" line="2709"/>
         <source>minutes</source>
         <translation>minuuttia</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2728"/>
+        <location filename="../ui/options.ui" line="2733"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Artikkeleiden enimmäismäärä syötettä kohden:</translation>
     </message>
@@ -6460,8 +6461,8 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Asetukset tallennettiin.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1421"/>
-        <location filename="../options_imp.cpp" line="1423"/>
+        <location filename="../options_imp.cpp" line="1430"/>
+        <location filename="../options_imp.cpp" line="1432"/>
         <source>Choose scan directory</source>
         <translation>Valitse hakukansio</translation>
     </message>
@@ -6470,10 +6471,10 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Valitse ipfilter.dat-tiedosto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1450"/>
-        <location filename="../options_imp.cpp" line="1452"/>
-        <location filename="../options_imp.cpp" line="1464"/>
-        <location filename="../options_imp.cpp" line="1466"/>
+        <location filename="../options_imp.cpp" line="1459"/>
+        <location filename="../options_imp.cpp" line="1461"/>
+        <location filename="../options_imp.cpp" line="1473"/>
+        <location filename="../options_imp.cpp" line="1475"/>
         <source>Choose a save directory</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
@@ -6487,14 +6488,14 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Tiedoston %1 avaaminen lukutilassa epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1435"/>
-        <location filename="../options_imp.cpp" line="1437"/>
+        <location filename="../options_imp.cpp" line="1444"/>
+        <location filename="../options_imp.cpp" line="1446"/>
         <source>Choose an ip filter file</source>
         <translation>Valitse IP-suodatintiedosto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1435"/>
-        <location filename="../options_imp.cpp" line="1437"/>
+        <location filename="../options_imp.cpp" line="1444"/>
+        <location filename="../options_imp.cpp" line="1446"/>
         <source>Filters</source>
         <translation>Suotimet</translation>
     </message>
