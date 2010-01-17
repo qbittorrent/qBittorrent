@@ -2882,7 +2882,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../main.cpp" line="103"/>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>이용 약관</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
@@ -2890,27 +2890,29 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation type="unfinished"></translation>
+        <translation>큐비토렌트는 파일 공유 프로그램으로 사용자가 토렌트를 사용시 관련 데이타는 다른 사용자들에게 공유됩니다.공유되는 데이타에 대한 법적 책임은 사용자에게 있습니다.
+
+이미 사용자께서는 이 사실을 알고 있다고 예상하며 다시는 이것에 대해 언급하지 않겠습니다.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>진행을 위해 아무키나 누르십시오...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="113"/>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>이용 약관</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="114"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="115"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>동의</translation>
     </message>
 </context>
 <context>
@@ -4202,17 +4204,17 @@ margin-left: -3px;
         <location filename="../propertieswidget.cpp" line="488"/>
         <location filename="../propertieswidget.cpp" line="509"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O 에러</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="488"/>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>이 파일은 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="509"/>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>이 폴더는 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="518"/>
