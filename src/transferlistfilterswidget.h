@@ -167,10 +167,8 @@ public:
     labelFilters = new LabelFiltersList(this);
     vLayout->addWidget(labelFilters);
     setLayout(vLayout);
-    // Limit status filters list height
-    statusFilters->setFixedHeight(100);
+    labelFilters->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     statusFilters->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    statusFilters->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     statusFilters->setSpacing(0);
     setContentsMargins(0,0,0,0);
     vLayout->setSpacing(2);
@@ -224,6 +222,10 @@ public:
     delete statusFilters;
     delete labelFilters;
     delete vLayout;
+  }
+
+  QListWidget* getStatusFilters() const {
+    return statusFilters;
   }
 
   void saveSettings() const {
