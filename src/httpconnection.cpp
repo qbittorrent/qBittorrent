@@ -131,7 +131,7 @@ QString HttpConnection::translateDocument(QString data) {
 void HttpConnection::respond() {
   //qDebug("Respond called");
   int nb_fail = parent->client_failed_attempts.value(socket->peerAddress().toString(), 0);
-  if(nb_fail > 2) {
+  if(nb_fail > 4) {
     generator.setStatusLine(403, "Forbidden");
     generator.setMessage(tr("Your IP address has been banned after too many failed authentication attempts."));
     write();
