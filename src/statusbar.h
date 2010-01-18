@@ -84,15 +84,15 @@ public:
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
     DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     statusSep1 = new QFrame();
-    statusSep1->setFixedSize(3, 18);
+    statusSep1->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep1->setFrameStyle(QFrame::VLine);
     statusSep1->setFrameShadow(QFrame::Raised);
     statusSep2 = new QFrame();
-    statusSep2->setFixedSize(3, 18);
+    statusSep2->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep2->setFrameStyle(QFrame::VLine);
     statusSep2->setFrameShadow(QFrame::Raised);
     statusSep3 = new QFrame();
-    statusSep3->setFixedSize(3, 18);
+    statusSep3->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep3->setFrameStyle(QFrame::VLine);
     statusSep3->setFrameShadow(QFrame::Raised);
     layout->addWidget(DHTLbl, 0, 0, Qt::AlignLeft);
@@ -115,9 +115,9 @@ public:
     //bar->setStyleSheet("QWidget {padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;}\n");
     container->setContentsMargins(0, 0, 0, 1);
     bar->setContentsMargins(0, 0, 0, 0);
-    container->setFixedHeight(24);
+    container->setFixedHeight(dlSpeedLbl->fontMetrics().height()+7);
     bar->setContentsMargins(12, 0, 12, 0);
-    bar->setFixedHeight(26);
+    bar->setFixedHeight(dlSpeedLbl->fontMetrics().height()+9);
     // Is DHT enabled
     DHTLbl->setVisible(Preferences::isDHTEnabled());
     refreshTimer = new QTimer(bar);
