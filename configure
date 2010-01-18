@@ -330,11 +330,11 @@ class qc_libtorrent_rasterbar : public ConfObj
 {
 public:
 	qc_libtorrent_rasterbar(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libtorrent-rasterbar >= 0.14.0 (>= 0.15.0 advised)"; }
+	QString name() const { return "libtorrent-rasterbar >= 0.14.4"; }
 	QString shortname() const { return "libtorrent-rasterbar"; }
 	bool exec(){
 		QStringList incs;
-		QString req_ver = "0.14.0";
+		QString req_ver = "0.14.4";
 		QString adv_ver = "0.15.0";
 		QString version, libs, other;
 		VersionMode mode = VersionMin;
@@ -345,7 +345,7 @@ public:
 		if(!libs.isEmpty())
 			conf->addLib(libs);
 		if(!conf->findPkgConfig("libtorrent-rasterbar", mode, adv_ver, &version, &incs, &libs, &other))
-                        printf("\nWarning: libtorrent-rasterbar v%s was detected.\nAlthough it will compile and run, you will be missing some features. Please consider updating to v%s.\n", version.toLocal8Bit().data(), adv_ver.toUtf8().data());
+                        printf("\nWarning: libtorrent-rasterbar v%s was detected.\nSome feature will be disabled because they require v%s.\n", version.toLocal8Bit().data(), adv_ver.toUtf8().data());
 		else
 			conf->addDefine("LIBTORRENT_0_15");
 		return true;
