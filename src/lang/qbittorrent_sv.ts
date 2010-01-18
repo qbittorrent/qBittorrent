@@ -1672,13 +1672,13 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation>qBittorrent är ett fildelarprogram. När du kör en torrent så kommer dess data att göras tillgängligt för andra. Och så klart, allt innehåll som du delar ut är fullständigt på ditt ansvar.
+        <translation type="obsolete">qBittorrent är ett fildelarprogram. När du kör en torrent så kommer dess data att göras tillgängligt för andra. Och så klart, allt innehåll som du delar ut är fullständigt på ditt ansvar.
 
 Du visste antagligen redan detta så vi kommer inte att berätta det igen.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation>Tryck på en tangent för att acceptera och fortsätta...</translation>
+        <translation type="obsolete">Tryck på en tangent för att acceptera och fortsätta...</translation>
     </message>
     <message>
         <source>Legal notice</source>
@@ -1691,6 +1691,16 @@ Du visste antagligen redan detta så vi kommer inte att berätta det igen.</tran
     <message>
         <source>I Agree</source>
         <translation>Jag godkänner</translation>
+    </message>
+    <message>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press %1 key to accept and continue...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

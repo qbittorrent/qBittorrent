@@ -2821,32 +2821,42 @@ Està segur que vol sortir?</translation>
         <translation>Avís Legal</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="104"/>
-        <location filename="../main.cpp" line="112"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation>qBittorrent és un programa per compartir arxius. Quan s&apos;executa un torrent, les seves dades es posaran a disposició dels altres per mitjà de pujada. I, sens dubte, qualsevol contingut que vostè comparteix és sota la seva responsabilitat.
+        <translation type="obsolete">qBittorrent és un programa per compartir arxius. Quan s&apos;executa un torrent, les seves dades es posaran a disposició dels altres per mitjà de pujada. I, sens dubte, qualsevol contingut que vostè comparteix és sota la seva responsabilitat.
 
 Probablement això és una cosa que ja sabia, així que no li dirà cap altra vegada. </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation>Premi qualsevol tecla per acceptar i continuar...</translation>
+        <translation type="obsolete">Premi qualsevol tecla per acceptar i continuar...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="113"/>
+        <location filename="../main.cpp" line="104"/>
+        <location filename="../main.cpp" line="114"/>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="105"/>
+        <source>Press %1 key to accept and continue...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="115"/>
         <source>Legal notice</source>
         <translation>Avís Legal</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="114"/>
+        <location filename="../main.cpp" line="116"/>
         <source>Cancel</source>
         <translation>Cancel-lar</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="115"/>
+        <location filename="../main.cpp" line="117"/>
         <source>I Agree</source>
         <translation>Estic d&apos;acord</translation>
     </message>

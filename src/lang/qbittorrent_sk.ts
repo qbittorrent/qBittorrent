@@ -2615,13 +2615,13 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation>qBittorrent je program na zdieľanie súborov. Keď spustíte torrent, jeho údaje sa sprístupnia iným na stiahnutie. A samozrejme, akýkoľvek obsah, ktorý zdieľate je jedine na vašu vlastnú zodpovednosť.
+        <translation type="obsolete">qBittorrent je program na zdieľanie súborov. Keď spustíte torrent, jeho údaje sa sprístupnia iným na stiahnutie. A samozrejme, akýkoľvek obsah, ktorý zdieľate je jedine na vašu vlastnú zodpovednosť.
 
 Pravdepodobne ste to už vedelí, tak to už nebudeme opakovať.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation>Pokračujte stlačením wubovoľného klávesu...</translation>
+        <translation type="obsolete">Pokračujte stlačením wubovoľného klávesu...</translation>
     </message>
     <message>
         <source>Legal notice</source>
@@ -2634,6 +2634,16 @@ Pravdepodobne ste to už vedelí, tak to už nebudeme opakovať.</translation>
     <message>
         <source>I Agree</source>
         <translation>Súhlasím</translation>
+    </message>
+    <message>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press %1 key to accept and continue...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -2716,13 +2716,13 @@ You probably knew this, so we won&apos;t tell you again.</source>
         <translatorcomment>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</translatorcomment>
-        <translation type="unfinished">qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.
+        <translation type="obsolete">qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.
 
 W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished">Nacisnij dowolny klawisz aby akceptować i kontynuować...</translation>
+        <translation type="obsolete">Nacisnij dowolny klawisz aby akceptować i kontynuować...</translation>
     </message>
     <message>
         <source>Legal notice</source>
@@ -2735,6 +2735,16 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <message>
         <source>I Agree</source>
         <translation type="unfinished">Zgadzam się</translation>
+    </message>
+    <message>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press %1 key to accept and continue...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

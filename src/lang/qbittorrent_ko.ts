@@ -2885,32 +2885,42 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>이용 약관</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="104"/>
-        <location filename="../main.cpp" line="112"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation>큐비토렌트는 파일 공유 프로그램으로 사용자가 토렌트를 사용시 관련 데이타는 다른 사용자들에게 공유됩니다.공유되는 데이타에 대한 법적 책임은 사용자에게 있습니다.
+        <translation type="obsolete">큐비토렌트는 파일 공유 프로그램으로 사용자가 토렌트를 사용시 관련 데이타는 다른 사용자들에게 공유됩니다.공유되는 데이타에 대한 법적 책임은 사용자에게 있습니다.
 
 이미 사용자께서는 이 사실을 알고 있다고 예상하며 다시는 이것에 대해 언급하지 않겠습니다.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="105"/>
         <source>Press any key to accept and continue...</source>
-        <translation>진행을 위해 아무키나 누르십시오...</translation>
+        <translation type="obsolete">진행을 위해 아무키나 누르십시오...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="113"/>
+        <location filename="../main.cpp" line="104"/>
+        <location filename="../main.cpp" line="114"/>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="105"/>
+        <source>Press %1 key to accept and continue...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="115"/>
         <source>Legal notice</source>
         <translation>이용 약관</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="114"/>
+        <location filename="../main.cpp" line="116"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="115"/>
+        <location filename="../main.cpp" line="117"/>
         <source>I Agree</source>
         <translation>동의</translation>
     </message>

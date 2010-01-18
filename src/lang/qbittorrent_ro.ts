@@ -2527,13 +2527,13 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
 
 You probably knew this, so we won&apos;t tell you again.</source>
-        <translation>qBittorrent este o aplicație pentru shimb de fișiere. Când rulați acest client, datele sunt publicate la alți - aceasta înseamnă upload. Conținutul publicat este pe propria răspundere.
+        <translation type="obsolete">qBittorrent este o aplicație pentru shimb de fișiere. Când rulați acest client, datele sunt publicate la alți - aceasta înseamnă upload. Conținutul publicat este pe propria răspundere.
 
 Probabil cunoașteți aceasta, deci noi nu vă vom mai aminti.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation>Acționați orice tastă pentru a acepta și continua...</translation>
+        <translation type="obsolete">Acționați orice tastă pentru a acepta și continua...</translation>
     </message>
     <message>
         <source>Legal notice</source>
@@ -2546,6 +2546,16 @@ Probabil cunoașteți aceasta, deci noi nu vă vom mai aminti.</translation>
     <message>
         <source>I Agree</source>
         <translation>Acceptare</translation>
+    </message>
+    <message>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press %1 key to accept and continue...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
