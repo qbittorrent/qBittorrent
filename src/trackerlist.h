@@ -36,7 +36,13 @@
 #include <QStringList>
 #include <QMenu>
 #include <QSettings>
+#ifdef QT_4_5
 #include <QHash>
+#else
+#include <QMap>
+#define QHash QMap
+#define toHash toMap
+#endif
 #include <QAction>
 #include <QColor>
 #include "propertieswidget.h"
