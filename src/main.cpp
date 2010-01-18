@@ -109,6 +109,7 @@ public:
       settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
       return true;
     }
+    return false;
 #else
     QMessageBox msgBox;
     msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
