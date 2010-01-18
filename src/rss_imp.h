@@ -86,4 +86,9 @@ public:
 
 };
 
+#ifndef QT_4_5
+#undef QHash
+#undef toHash
+#endif
+
 #endif
