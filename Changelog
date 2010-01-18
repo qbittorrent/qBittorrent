@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
+* Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)
     - FEATURE: Torrents can be labeled/categorized
     - FEATURE: Labeled torrent can be downloaded corresponding subfolders
@@ -22,9 +22,67 @@
     - BUGFIX: Protect Web UI authentication against brute forcing
     - BUGFIX: Use HTTP digest mode for Web UI authentication (instead of Basic)
     - BUGFIX: Properly display torrents with one file in subfolder(s)
+    - BUGFIX: Display Web UI favicon
+    - BUGFIX: File priority can be set for finished torrents that have filtered files
     - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
     - COSMETIC: Use alternating row colors in transfer list (set in program preferences)
     - COSMETIC: Added a spin box to speed limiting dialog for manual input
+
+* Mon Jan 11 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.0.7
+    - BUGFIX: Fix 'Add in pause' setting in torrent addition dialog
+    - BUGFIX: Update RSS feed as soon as feed downloader is enabled
+    - BUGFIX: RSS Feed downloader ignores articles above maximum number of articles
+    - BUGFIX: Fix possible bug when deleting a RSS folder
+    - BUGFIX: Remove persistant data when a RSS feed is deleted
+    - BUGFIX: RSS filters are now alphabetically sorted
+    - BUGFIX: Fix crash when renaming currently displayed RSS filter
+    - BUGFIX: Remove overwriting confirmation when exporting RSS filters since Qt takes care of it
+
+* Tue Jan 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.0.6
+    - BUGFIX: Fix detection of invalid torrent files
+    - BUGFIX: Stop catching signals once one has been caught to avoid possible infinite loop
+    - BUGFIX: Force data recheck whenever a torrent is moved
+    - BUGFIX: Detect existing torrent data even if incomplete torrents are saved to a different folder
+    - COSMETIC: Improve torrent deletion confirmation dialog so that the text that not get truncated
+
+* Thu Dec 31 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.5
+    - BUGFIX: Fix crash with downloaded/availability bars when the torrent has too many pieces
+
+* Wed Dec 30 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.4
+    - BUGFIX: Fix PeerGuardian .p2b binary filter support
+    - BUGFIX: Fix possible crash when closing a search engine tab
+    - BUGFIX: Make sure service port does not change
+    - BUGFIX: Fix possible DHT port saving issue
+    - BUGFIX: Fix communication between qBittorrent and Web UI (Qt 4.6)
+    - BUGFIX: Use Wildcard matching instead of full regex in RSS feed downloader
+    - BUGFIX: Fix code for listening on a random port whenever it failed to listen on the one defined
+    - BUGFIX: Use global maximum transfer rates as maximum values in per-torrent speed limiting dialogs
+    - BUGFIX: Fix global download rate limiting from Web UI
+    - COSMETIC: Display a disconnected icon in status bar whenever qBittorrent failed to listen on the port defined
+
+* Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
+    - BUGFIX: Minor cosmetic fix to program preferences
+    - BUGFIX: Fix "Temp path" button in program preferences
+    - BUGFIX: Handle paths with [~, ., ..] properly
+    - BUGFIX: Trackers are now displayed for torrents without metadata
+    - BUGFIX: Fix issue with speed limiting (unlimited was not handled properly)
+    - BUGFIX: Use the save path set in program preferences as a default in torrent addition dialog
+
+* Fri Dec 18 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
+    - BUGFIX: Fix .qbittorrent folder not being created (critical bug introduced in v2.0.1 that makes qBittorrent unusuable for new users)
+    - BUGFIX: Fix RSS Feed downloader for some feeds
+    - BUGFIX: Do not use home folder as a fallback when the save path is not accessible
+    - BUGFIX: Fix Mininova, ThePirateBay search engine plugins
+    - BUGFIX: Read RSS articles are remembered on restart for feeds with no torrents attached
+
+* Sun Dec 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.1
+    - BUGFIX: µTorrent user-agent is now spoofed correctly
+    - BUGFIX: Fix column hiding behavior when queueing system is disabled
+    - BUGFIX: Fix link to plugins.qbittorrent.org in plugins dialog
+    - BUGFIX: ~/qBT_dir is created only when it is actually used
+    - BUGFIX: Fix possible missing slot message (toggleSelectedTorrentsSuperSeeding)
+    - BUGFIX: Fix possible crash in torrent properties (files)
+    - BUGFIX: Added Hex Magnet Links support (Thanks Haypo)
 
 * Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
     - FEATURE: Added program option to disable splash screen
