@@ -102,11 +102,13 @@ public:
 #ifdef DISABLE_GUI
     std::cout << std::endl << "*** " << tr("Legal Notice").toLocal8Bit().data() << " ***" << std::endl;
     std::cout << tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.").toLocal8Bit().data() << std::endl << std::endl;
-    std::cout << tr("Press any key to accept and continue...").toLocal8Bit().data() << std::endl;
-    getchar(); // Read pressed key
-    // Save the answer
-    settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
-    return true;
+    std::cout << tr("Press %1 key to accept and continue...").arg("'y'").toLocal8Bit().data() << std::endl;
+    char ret = getchar(); // Read pressed key
+    if(ret == 'y' || ret == 'Y') {
+      // Save the answer
+      settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
+      return true;
+    }
 #else
     QMessageBox msgBox;
     msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
