@@ -6,6 +6,9 @@
   <dep type='qt4'>
     <required/>
   </dep>
+  <dep type='pkg-config'>
+    <required/>
+  </dep>
   <dep type='libtorrent-rasterbar'>
     <required/>
   </dep>
