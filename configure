@@ -319,6 +319,23 @@ public:
 		
 	}
 };
+#line 1 "pkg-config.qcm"
+/*
+-----BEGIN QCMOD-----
+name: pkg-config
+-----END QCMOD-----
+*/
+#include <QProcess>
+class qc_pkg_config : public ConfObj
+{
+public:
+	qc_pkg_config(Conf *c) : ConfObj(c) {}
+	QString name() const { return "pkg-config executable"; }
+	QString shortname() const { return "pkg-config"; }
+	bool exec(){
+		return !conf->findProgram("pkg-config").isEmpty();
+	}
+};
 #line 1 "libtorrent-rasterbar.qcm"
 /*
 -----BEGIN QCMOD-----
@@ -492,6 +509,9 @@ public:
 EOT
 cat >$1/modules_new.cpp <<EOT
     o = new qc_qt4(conf);
+    o->required = true;
+    o->disabled = false;
+    o = new qc_pkg_config(conf);
     o->required = true;
     o->disabled = false;
     o = new qc_libtorrent_rasterbar(conf);

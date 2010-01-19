@@ -3,6 +3,7 @@
     - BUGFIX: Save torrent metadata so that it does not have to be re-downloaded on restart (Magnet links)
     - BUGFIX: Fix folder renaming in a torrent (would rename children under certain conditions)
     - BUGFIX: Nox version no longer requires libQtXml
+    - BUGFIX: Configure file now checks for pkg-config executable which is required
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)
