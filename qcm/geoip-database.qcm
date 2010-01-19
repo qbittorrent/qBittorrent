@@ -11,10 +11,14 @@ public:
 	qc_geoip_database(Conf *c) : ConfObj(c) {}
 	QString name() const { return "GeoIP Database (optional)"; }
 	QString shortname() const { return "GeoIP Database"; }
+        QString checkString() const {
+                if(!conf->getenv("QC_DISABLE_geoip_database").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+                        return "";
+                return ConfObj::checkString();
+        }
 	bool exec() {
-	if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
-		printf("\nNot Required");
-		return true;
+	if(!conf->getenv("QC_DISABLE_geoip_database").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+		return false;
 	}
 #ifdef Q_WS_X11
 		if(!conf->getenv("QC_WITH_GEOIP_DATABASE_EMBEDDED").isEmpty()) {

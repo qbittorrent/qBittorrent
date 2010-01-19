@@ -10,10 +10,14 @@ public:
 	qc_libnotify(Conf *c) : ConfObj(c) {}
 	QString name() const { return "libnotify >= 0.4.2 (optional)"; }
 	QString shortname() const { return "libnotify"; }
+        QString checkString() const {
+                if(!conf->getenv("QC_DISABLE_libnotify").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+                        return "";
+                return ConfObj::checkString();
+        }
 	bool exec(){
-		if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
-			printf("\nNot Required");
-			return true;
+		if(!conf->getenv("QC_DISABLE_libnotify").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+			return false;
 		}
 		QStringList incs;
 		QString req_ver = "0.4.2";
