@@ -409,7 +409,7 @@ QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
     return url_seeds_button;
   case FILES_TAB:
     return files_button;
-      default:
+  default:
     return main_infos_button;
   }
 }
@@ -613,9 +613,12 @@ void PropertiesWidget::renameSelectedFile() {
           // Replace path in all files
           for(int i=0; i<num_files; ++i) {
             QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
-            QString new_name = current_name.replace(old_path, new_path);
-            qDebug("Rename %s to %s", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
-            h.rename_file(i, new_name);
+            if(current_name.startsWith(old_path)) {
+              QString new_name = current_name;
+              new_name.replace(0, old_path.length(), new_path);
+              qDebug("Rename %s to %s", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+              h.rename_file(i, new_name);
+            }
           }
           // Rename folder in torrent files model too
           PropListModel->setData(index, new_name_last);
