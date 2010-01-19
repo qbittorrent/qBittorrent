@@ -842,7 +842,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     }
     QString label = TorrentTempData::getLabel(hash);
     // Save persistent data for new torrent
-    TorrentPersistentData::saveTorrentPersistentData(h);
+    TorrentPersistentData::saveTorrentPersistentData(h, true);
     // Save Label
     if(!label.isEmpty()) {
       TorrentPersistentData::saveLabel(hash, label);
