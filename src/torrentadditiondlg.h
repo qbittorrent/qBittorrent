@@ -350,10 +350,13 @@ public slots:
             // Replace path in all files
             for(uint i=0; i<nbFiles; ++i) {
               QString current_name = files_path.at(i);
-              QString new_name = current_name.replace(old_path, new_path);
-              qDebug("Rename %s to %s", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
-              // Rename in files_path
-              files_path.replace(i, new_name);
+              if(current_name.startsWith(old_path)) {
+                QString new_name = current_name;
+                new_name.replace(0, old_path.length(), new_path);
+                qDebug("Rename %s to %s", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+                // Rename in files_path
+                files_path.replace(i, new_name);
+              }
             }
             // Rename folder in torrent files model too
             PropListModel->setData(index, new_name_last);
