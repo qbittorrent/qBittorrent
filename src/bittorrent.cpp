@@ -746,15 +746,18 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     addConsoleMessage(tr("'%1' is not a valid magnet URI.").arg(magnet_uri));
     return h;
   }
+  QDir torrentBackup(misc::BTBackupLocation());
   if(resumed) {
     qDebug("Resuming magnet URI: %s", hash.toLocal8Bit().data());
+    // Load metadata
+    if(QFile::exists(torrentBackup.path()+QDir::separator()+hash+QString(".torrent")))
+      return addTorrent(torrentBackup.path()+QDir::separator()+hash+QString(".torrent"), false, false, true);
   } else {
     qDebug("Adding new magnet URI");
   }
 
   bool fastResume=false;
   Q_ASSERT(magnet_uri.startsWith("magnet:"));
-  QDir torrentBackup(misc::BTBackupLocation());
 
   // Check if torrent is already in download list
   if(s->find_torrent(sha1_hash(hash.toLocal8Bit().data())).is_valid()) {
@@ -1667,7 +1670,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       qDebug("Disabling HTTP communications proxy");
 #ifdef Q_WS_WIN
       putenv("http_proxy=");
-      putenv("sock_proxy=")
+      putenv("sock_proxy=");
 #else
       unsetenv("http_proxy");
       unsetenv("sock_proxy");
@@ -1767,6 +1770,10 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             appendqBextensionToTorrent(h, true);
 #endif
           emit metadataReceived(h);
+          // Save metadata
+          QDir torrentBackup(misc::BTBackupLocation());
+          if(!QFile::exists(torrentBackup.path()+QDir::separator()+h.hash()+QString(".torrent")))
+            h.save_torrent_file(torrentBackup.path()+QDir::separator()+h.hash()+QString(".torrent"));
           if(h.is_paused()) {
             // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
             // and the torrent can be paused when metadata is received

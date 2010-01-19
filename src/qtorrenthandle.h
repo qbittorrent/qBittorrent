@@ -164,6 +164,7 @@ class QTorrentHandle {
     void add_tracker(announce_entry const& url);
     void prioritize_first_last_piece(bool b);
     void rename_file(int index, QString name);
+    bool save_torrent_file(QString path);
 
     //
     // Operators

@@ -39,6 +39,9 @@
 #include "torrentpersistentdata.h"
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/bencode.hpp>
+#include <libtorrent/entry.hpp>
+#include <boost/filesystem/fstream.hpp>
 
 QTorrentHandle::QTorrentHandle(torrent_handle h): h(h) {}
 
@@ -143,7 +146,7 @@ void QTorrentHandle::get_peer_info(std::vector<peer_info>& v) const {
 
 bool QTorrentHandle::first_last_piece_first() const {
   Q_ASSERT(h.is_valid());
-    // Detect main file
+  // Detect main file
   int rank=0;
   int main_file_index = 0;
   file_entry main_file = h.get_torrent_info().file_at(0);
@@ -568,6 +571,23 @@ void QTorrentHandle::connect_peer(libtorrent::asio::ip::tcp::endpoint const& adr
 void QTorrentHandle::set_peer_upload_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const {
   Q_ASSERT(h.is_valid());
   h.set_peer_upload_limit(ip, limit);
+}
+
+bool QTorrentHandle::save_torrent_file(QString path) {
+  if(!h.has_metadata()) return false;
+  QFile met_file(path);
+  if(met_file.open(QIODevice::WriteOnly)) {
+    entry meta = bdecode(h.get_torrent_info().metadata().get(), h.get_torrent_info().metadata().get()+h.get_torrent_info().metadata_size());
+    entry torrent_file(entry::dictionary_t);
+    torrent_file["info"] = meta;
+    if(!h.trackers().empty())
+      torrent_file["announce"] = h.trackers().front().url;
+    boost::filesystem::ofstream out(path.toLocal8Bit().data(), std::ios_base::binary);
+    out.unsetf(std::ios_base::skipws);
+    bencode(std::ostream_iterator<char>(out), torrent_file);
+    return true;
+  }
+  return false;
 }
 
 void QTorrentHandle::set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const {
