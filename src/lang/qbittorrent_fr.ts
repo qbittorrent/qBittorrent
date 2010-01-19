@@ -3083,7 +3083,7 @@ Vous le saviez probablement déjà alors nous ne vous l&apos;indiquerons plus.</
     </message>
     <message>
         <location filename="../main.cpp" line="104"/>
-        <location filename="../main.cpp" line="114"/>
+        <location filename="../main.cpp" line="115"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -3097,17 +3097,17 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation>Appuyez sur la touche %1 pour accepter et continuer...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="115"/>
+        <location filename="../main.cpp" line="116"/>
         <source>Legal notice</source>
         <translation>Information légale</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="116"/>
+        <location filename="../main.cpp" line="117"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="117"/>
+        <location filename="../main.cpp" line="118"/>
         <source>I Agree</source>
         <translation>J&apos;accepte</translation>
     </message>
