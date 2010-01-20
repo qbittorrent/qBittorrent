@@ -456,8 +456,8 @@ void HttpConnection::respondCommand(QString command)
 
 void HttpConnection::recheckTorrent(QString hash) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
-  if(h.is_valid() && !h.is_paused()){
-    h.force_recheck();
+  if(h.is_valid()){
+    BTSession->recheckTorrent(h.hash());
   }
 }
 
@@ -466,7 +466,7 @@ void HttpConnection::recheckAllTorrents() {
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(h.is_valid() && !h.is_paused())
-      h.force_recheck();
+    if(h.is_valid())
+      BTSession->recheckTorrent(h.hash());
   }
 }

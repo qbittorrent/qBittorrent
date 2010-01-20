@@ -1915,9 +1915,27 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           }
           emit torrentFinishedChecking(h);
           emit metadataReceived(h);
+          if(torrentsToPausedAfterChecking.contains(hash)) {
+            torrentsToPausedAfterChecking.removeOne(hash);
+            h.pause();
+            emit pausedTorrent(h);
+          }
         }
       }
       a = s->pop_alert();
+    }
+  }
+
+  void Bittorrent::recheckTorrent(QString hash) {
+    QTorrentHandle h = getTorrentHandle(hash);
+    if(h.is_valid() && h.has_metadata()) {
+      if(h.is_paused()) {
+        if(!torrentsToPausedAfterChecking.contains(h.hash())) {
+          torrentsToPausedAfterChecking << h.hash();
+          h.resume();
+        }
+      }
+      h.force_recheck();
     }
   }
 

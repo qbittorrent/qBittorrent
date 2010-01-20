@@ -314,23 +314,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>Используется дисковый кеш размером %1 МиБ</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержка PeX [Выкл]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished"></translation>
+        <translation>Необходимо перезапустить qBittorrent для включения настройки PeX</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web интерфейс прослушивает пор %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Браузер %1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
@@ -2560,23 +2560,23 @@ Are you sure you want to quit qBittorrent?</source>
     <name>HeadlessLoader</name>
     <message>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация</translation>
     </message>
     <message>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Чтобы управлять qBittorrent откройте браузер по адресу http://localhost:%1</translation>
     </message>
     <message>
         <source>The Web UI administrator user name is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Администратор Web интерфейса: %1</translation>
     </message>
     <message>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль администратора Web интерфейса все еще пароль по умолчанию: %1</translation>
     </message>
     <message>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Риск безопасности, пожалуйста, смените ваш пароль в настройках программы.</translation>
     </message>
 </context>
 <context>
@@ -2658,51 +2658,59 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Язык</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт для входящих соединений должен быть больше чем 1024 и меньше 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт для Web интерфейса должен быть больше 1024 и меньше 65535.</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя пользователя Web интерфейса должно быть длинее 3 символов.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль Web интерфейса должно быть длинее 3 символов.</translation>
     </message>
     <message>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Скачано</translation>
     </message>
 </context>
 <context>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Официальное уведомление</translation>
+    </message>
+    <message>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
+
+You probably knew this, so we won&apos;t tell you again.</source>
+        <translation type="obsolete">qBittorrent - программа для обмена файлами. Когда вы запускаете торрент, данные становятся доступными другим участникам обмена для отдачи. Конечно, любые данные которые вы отдаете на обмен только ваша ответственность.
+
+Скорее всего вы знали это, так что мы более не будем вам об этом говорить.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите любую клавишу для того чтобы принять это и продолжить...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Официальное уведомление</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Я согласен</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
@@ -3093,158 +3101,158 @@ No further notices will be issued.</source>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Интерфейс</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Закачки</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Соединение</translation>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокси</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтр по IP</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Web интерфейс</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки интерфейса пользователя</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Язык:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Требует перезагрузки)</translation>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Визуальный стиль:</translation>
     </message>
     <message>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation>Системная тема</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль пластик (как KDE)</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Свободный стиль (как в GNOME)</translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль  Motif (на Unix-подобных системах)</translation>
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль CDE (как Окружение Общего Рабочего Стола)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Спрашивать о подтверждении выхода, если список закачек не пустой</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать верхнюю панель</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Отключить заставку при загрузке</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображать текущую скорость в полосе заголовка</translation>
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished"></translation>
+        <translation>Список передач</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Интервал обновления:</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>мс</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Использовать альтернативные цвета строк</translation>
     </message>
     <message>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
+        <translation>Действие по двойному щелчку:</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачивание:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Начать/Остановить</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть папку</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation type="unfinished"></translation>
+        <translation> Завершено:</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Значок в системном лотке</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Убрать значок из системного лотка</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Свернуть в значок при закрытии</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Сворачивать в значок</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Запускать свернутым</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать всплывающие сообщения в  системном лотке</translation>
     </message>
     <message>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation>Файловая система</translation>
     </message>
     <message>
         <source>QGroupBox::title {
@@ -3254,319 +3262,319 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Destination Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка назначения:</translation>
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить метку для торрента</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать другую папку для незаконченых загрузок:</translation>
     </message>
     <message>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Automatically load .torrent files from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически загружать торренты из:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить расширение .!qB к незаконченым файлам</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Резервировать место для всего файла</translation>
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дисковый кеш:</translation>
     </message>
     <message>
         <source>MiB (advanced)</source>
-        <translation type="unfinished"></translation>
+        <translation>МиБ (расширеный)</translation>
     </message>
     <message>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Очереди Torrent</translation>
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить очереди torrent</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число активных закачек:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число активных раздач:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число активных torrent:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>При добавлении торента</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображать содержимое torrentа и некоторые настройки</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не начинать загрузку автоматически</translation>
     </message>
     <message>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation>Прослушивание порта</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт, используемый для входящих соединений:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Случайно</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить распределение портов UPnP</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить распределение портов NAT-PMP</translation>
     </message>
     <message>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение соединений</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Общее ограничение на число соединений:</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число соединений на torrent:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное количество слотов отдачи на torrent:</translation>
     </message>
     <message>
         <source>Global bandwidth limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Общее ограничение канала</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Отдача:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>КиБ/с</translation>
     </message>
     <message>
         <source>Peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Соединения с пирами</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Определить страну пира</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Определить имя хоста пира</translation>
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation>Возможности Bittorrent</translation>
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить DHT сеть (децентрализованную)</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать разные  порты для DHT и Bittorrent</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт DHT:</translation>
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить Обмен пирами / (PeX) (требует перезагрузки)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить обнаружение локальных пиров</translation>
     </message>
     <message>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Шифрование:</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Включено</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation>Принудительно</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Выключено</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки коэффициента раздачи</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпочитаемое соотношение:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалять законченные torrentы когда их соотношение раздачи достигнет:</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation>(нет)</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт:</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Аутентификация</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя пользователя:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль:</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер SOCKS5</translation>
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки фильтра</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить фильтр по IP</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить Web интерфейс</translation>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP сервер</translation>
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить поддержку RSS</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Интервал обновления RSS каналов:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>минут</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное число статей на канал:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь к фильтрам (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP Связи (трекеры, раздающие Web, поисковые движки)</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Хост:</translation>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation type="unfinished"></translation>
+        <translation>Связи с пирами</translation>
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер SOCKS4</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation type="unfinished"></translation>
+        <translation>Белый список клиентов</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation type="unfinished"></translation>
+        <translation>Представляться как:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Версия:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Сборка:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation type="unfinished"></translation>
+        <translation>Вернуться к последней версии программы</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3824,43 +3832,43 @@ QGroupBox {
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Новое имя:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не может быть переименован</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл с таким именем уже существует в этой папке. Используйте другое имя.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка не может быть переименована</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать файл</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя файла содержит недопустимые символы. Пожалуйста, выберите другое.</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Этот файл пока не существует.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Эта папка пока не существует.</translation>
     </message>
 </context>
 <context>
@@ -4413,7 +4421,7 @@ Changelog:
     </message>
     <message>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation type="unfinished"></translation>
+        <translation>Отключен. Обычно это означает, что qBittorrent не может прослушивать выбранный порт для входящих соединений.</translation>
     </message>
 </context>
 <context>
@@ -4506,31 +4514,31 @@ Changelog:
     </message>
     <message utf8="true">
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL списка совместимого с µTorrent:</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
         <source>Error while trying to open the downloaded file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибеп при открытии скачанного файла.</translation>
     </message>
     <message>
         <source>No change</source>
-        <translation type="unfinished"></translation>
+        <translation>Без изменений</translation>
     </message>
     <message>
         <source>No additional trackers were found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительных трекеров не найдено.</translation>
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при скачивании</translation>
     </message>
     <message>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Список трекеров не может быть скачан. Причина: %1</translation>
     </message>
 </context>
 <context>
@@ -4597,35 +4605,35 @@ Changelog:
     </message>
     <message>
         <source>All labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Все метки</translation>
     </message>
     <message>
         <source>Unlabeled</source>
-        <translation type="unfinished"></translation>
+        <translation>Без метки</translation>
     </message>
     <message>
         <source>Remove label</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить метку</translation>
     </message>
     <message>
         <source>Add label</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить метку</translation>
     </message>
     <message>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая метка</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Метка:</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильное имя метки</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, не используйте специальные символы в имени метки.</translation>
     </message>
 </context>
 <context>
@@ -4790,45 +4798,45 @@ Changelog:
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая метка</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Метка:</translation>
     </message>
     <message>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Новая...</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation type="unfinished"></translation>
+        <translation>Восстановить метку</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Новое имя:</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать...</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильное имя метки</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, не используйте специальные символы в имени метки.</translation>
     </message>
 </context>
 <context>
@@ -4898,27 +4906,27 @@ Changelog:
     <name>UsageDisplay</name>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Использование:</translation>
     </message>
     <message>
         <source>displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation>показать версию программы</translation>
     </message>
     <message>
         <source>disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>показать заставку при загрузке</translation>
     </message>
     <message>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>показать эту справку</translation>
     </message>
     <message>
         <source>changes the webui port (current: %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить порт Web интерфейса (сейчас: %1)</translation>
     </message>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>[файлы или ссылки]: скачать торренты указанные пользователем (опционально)</translation>
     </message>
 </context>
 <context>
@@ -5055,7 +5063,7 @@ Changelog:
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Метка:</translation>
     </message>
 </context>
 <context>
@@ -5528,7 +5536,7 @@ Changelog:
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation>Толко один URL в строке</translation>
+        <translation>Только один URL в строке</translation>
     </message>
     <message>
         <source>Download</source>
@@ -6885,47 +6893,47 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Новое имя:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не может быть переименован</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл с таким именем уже существует в этой папке. Используйте другое имя.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка не может быть переименована</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать файл</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно декодировать ссылку magnet:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Ссылка magnet</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильное имя метки</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, не используйте специальные символы в имени метки.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя файла содержит недопустимые символы. Пожалуйста, выберите другое.</translation>
     </message>
 </context>
 </TS>
