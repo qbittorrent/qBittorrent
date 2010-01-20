@@ -370,61 +370,61 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation>&apos;%1&apos; n&apos;est pas un lien magnet valide.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="763"/>
-        <location filename="../bittorrent.cpp" line="923"/>
+        <location filename="../bittorrent.cpp" line="766"/>
         <location filename="../bittorrent.cpp" line="926"/>
+        <location filename="../bittorrent.cpp" line="929"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="859"/>
-        <location filename="../bittorrent.cpp" line="1069"/>
-        <location filename="../bittorrent.cpp" line="1074"/>
+        <location filename="../bittorrent.cpp" line="862"/>
+        <location filename="../bittorrent.cpp" line="1072"/>
+        <location filename="../bittorrent.cpp" line="1077"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="861"/>
-        <location filename="../bittorrent.cpp" line="1071"/>
-        <location filename="../bittorrent.cpp" line="1076"/>
+        <location filename="../bittorrent.cpp" line="864"/>
+        <location filename="../bittorrent.cpp" line="1074"/>
+        <location filename="../bittorrent.cpp" line="1079"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="897"/>
-        <location filename="../bittorrent.cpp" line="901"/>
+        <location filename="../bittorrent.cpp" line="900"/>
+        <location filename="../bittorrent.cpp" line="904"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossible de décoder le torrent : &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="904"/>
+        <location filename="../bittorrent.cpp" line="907"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1328"/>
+        <location filename="../bittorrent.cpp" line="1331"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1330"/>
+        <location filename="../bittorrent.cpp" line="1333"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1720"/>
+        <location filename="../bittorrent.cpp" line="1723"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Téléchargement récursif du fichier %1 au sein du torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1731"/>
+        <location filename="../bittorrent.cpp" line="1734"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossible de décoder le torrent %1.</translation>
     </message>
@@ -437,32 +437,32 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1866"/>
+        <location filename="../bittorrent.cpp" line="1873"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1871"/>
+        <location filename="../bittorrent.cpp" line="1878"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1886"/>
+        <location filename="../bittorrent.cpp" line="1893"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1887"/>
+        <location filename="../bittorrent.cpp" line="1894"/>
         <source>Reason: %1</source>
         <translation>Raison : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1892"/>
+        <location filename="../bittorrent.cpp" line="1899"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1980"/>
+        <location filename="../bittorrent.cpp" line="1987"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -4500,23 +4500,23 @@ Comment:</source>
         <translation type="obsolete">Aucun - indisponible ?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="636"/>
+        <location filename="../propertieswidget.cpp" line="639"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nouvelle source HTTP</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="637"/>
+        <location filename="../propertieswidget.cpp" line="640"/>
         <source>New url seed:</source>
         <translation>Nouvelle source HTTP :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="642"/>
+        <location filename="../propertieswidget.cpp" line="645"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="643"/>
+        <location filename="../propertieswidget.cpp" line="646"/>
         <source>This url seed is already in the list.</source>
         <translation>Cette source HTTP est déjà dans la liste.</translation>
     </message>
@@ -4525,18 +4525,18 @@ Comment:</source>
         <translation type="obsolete">La liste des trackers ne peut pas être vide.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="688"/>
-        <location filename="../propertieswidget.cpp" line="690"/>
+        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="693"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="697"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="697"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
@@ -8000,8 +8000,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="400"/>
-        <location filename="../torrentadditiondlg.h" line="402"/>
+        <location filename="../torrentadditiondlg.h" line="403"/>
+        <location filename="../torrentadditiondlg.h" line="405"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
@@ -8065,64 +8065,64 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Renommage du dossier impossible</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="383"/>
+        <location filename="../torrentadditiondlg.h" line="386"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 disponible after téléchargement)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="386"/>
+        <location filename="../torrentadditiondlg.h" line="389"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 de plus sont nécessaires)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="425"/>
+        <location filename="../torrentadditiondlg.h" line="428"/>
         <source>Empty save path</source>
         <translation>Chemin de destination vide</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="425"/>
+        <location filename="../torrentadditiondlg.h" line="428"/>
         <source>Please enter a save path</source>
         <translation>Veuillez entrer un répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="432"/>
+        <location filename="../torrentadditiondlg.h" line="435"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="432"/>
+        <location filename="../torrentadditiondlg.h" line="435"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="438"/>
+        <location filename="../torrentadditiondlg.h" line="441"/>
         <source>Invalid label name</source>
         <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="438"/>
+        <location filename="../torrentadditiondlg.h" line="441"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="473"/>
+        <location filename="../torrentadditiondlg.h" line="476"/>
         <source>Seeding mode error</source>
         <translation>Erreur du mode partage</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="473"/>
+        <location filename="../torrentadditiondlg.h" line="476"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Vous avez choisir de ne pas vérifier les fichiers locaux. Cependant, les fichiers locaux n&apos;ont pas été trouvé dans le répertoire de destination actuel. Veuillez désactiver cette fonctionnalité ou alors changer de répertoire de destination.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="480"/>
+        <location filename="../torrentadditiondlg.h" line="483"/>
         <source>Invalid file selection</source>
         <translation>Sélection de fichiers invalide</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="480"/>
+        <location filename="../torrentadditiondlg.h" line="483"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Veuillez sélectionner au moins un fichier dans le torrent</translation>
     </message>

@@ -306,7 +306,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>原因:</translation>
     </message>
 </context>
 <context>
@@ -2709,7 +2709,7 @@ Are you sure you want to quit qBittorrent?</source>
     <name>HttpConnection</name>
     <message>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>由于过多的身份验证失败,您的IP地址被禁止.</translation>
     </message>
 </context>
 <context>
@@ -2812,25 +2812,29 @@ Are you sure you want to quit qBittorrent?</source>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>法律声明</translation>
+    </message>
+    <message>
+        <source>Press any key to accept and continue...</source>
+        <translation type="obsolete">按任意键以接受并继续...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>法律声明</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>同意</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent是一个分享文件程序.当您运行一个torrent时,其数据可通过上传形式被他人获得.您对您分享的任何内容承担全部责任.</translation>
     </message>
     <message>
         <source>Press %1 key to accept and continue...</source>
@@ -3965,15 +3969,15 @@ QGroupBox {
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>输入/输出错误</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>该文件尚未存在.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>该文件夹尚未存在.</translation>
     </message>
 </context>
 <context>
