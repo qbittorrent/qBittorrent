@@ -529,7 +529,7 @@ void TransferListWidget::torrentDoubleClicked(QModelIndex index) {
     }
     break;
   case OPEN_DEST:
-    QDesktopServices::openUrl(QUrl(h.save_path()));
+    QDesktopServices::openUrl("file://" + h.save_path());
     break;
   }
 }
