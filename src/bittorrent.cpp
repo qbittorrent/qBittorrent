@@ -1602,9 +1602,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     }
   }
 
-  // Set DHT port (>= 1000 or 0 if same as BT)
+  // Set DHT port (>= 1 or 0 if same as BT)
   void Bittorrent::setDHTPort(int dht_port) {
-    if(dht_port == 0 || dht_port >= 1000) {
+    if(dht_port >= 0) {
       if(dht_port == current_dht_port) return;
       struct dht_settings DHTSettings;
       DHTSettings.service_port = dht_port;

@@ -545,7 +545,7 @@ public:
 
   static int getDHTPort() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), 6882).toInt();
+    return settings.value(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), 6881).toInt();
   }
 
   static bool isLSDEnabled() {

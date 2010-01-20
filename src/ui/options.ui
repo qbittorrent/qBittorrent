@@ -1138,7 +1138,7 @@ QGroupBox {
                     <item>
                      <widget class="QSpinBox" name="spinPort">
                       <property name="minimum">
-                       <number>1000</number>
+                       <number>1</number>
                       </property>
                       <property name="maximum">
                        <number>65535</number>
@@ -1520,7 +1520,7 @@ QGroupBox {
               <x>0</x>
               <y>0</y>
               <width>620</width>
-              <height>495</height>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1584,13 +1584,13 @@ QGroupBox {
                      <bool>false</bool>
                     </property>
                     <property name="minimum">
-                     <number>1024</number>
+                     <number>1</number>
                     </property>
                     <property name="maximum">
                      <number>65525</number>
                     </property>
                     <property name="value">
-                     <number>6882</number>
+                     <number>6881</number>
                     </property>
                    </widget>
                   </item>
@@ -1937,7 +1937,7 @@ QGroupBox {
               <x>0</x>
               <y>0</y>
               <width>620</width>
-              <height>495</height>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2015,6 +2015,9 @@ QGroupBox {
                    <widget class="QSpinBox" name="spinProxyPort_http">
                     <property name="enabled">
                      <bool>false</bool>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
                     </property>
                     <property name="maximum">
                      <number>65535</number>
@@ -2216,6 +2219,9 @@ QGroupBox {
                     <property name="enabled">
                      <bool>false</bool>
                     </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
                     <property name="maximum">
                      <number>65535</number>
                     </property>
@@ -2365,7 +2371,7 @@ QGroupBox {
               <x>0</x>
               <y>0</y>
               <width>620</width>
-              <height>495</height>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2462,7 +2468,7 @@ QGroupBox {
               <x>0</x>
               <y>0</y>
               <width>620</width>
-              <height>495</height>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2497,11 +2503,14 @@ QGroupBox {
                 </item>
                 <item>
                  <widget class="QSpinBox" name="spinWebUiPort">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
                   <property name="maximum">
                    <number>65535</number>
                   </property>
                   <property name="value">
-                   <number>80</number>
+                   <number>8080</number>
                   </property>
                  </widget>
                 </item>
@@ -2626,7 +2635,7 @@ QGroupBox {
               <x>0</x>
               <y>0</y>
               <width>620</width>
-              <height>495</height>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
