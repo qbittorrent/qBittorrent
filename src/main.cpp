@@ -101,7 +101,7 @@ public:
       return true;
 #ifdef DISABLE_GUI
     std::cout << std::endl << "*** " << tr("Legal Notice").toLocal8Bit().data() << " ***" << std::endl;
-    std::cout << tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.\n\nYou probably knew this, so we won't tell you again.").toLocal8Bit().data() << std::endl << std::endl;
+    std::cout << tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.").toLocal8Bit().data() << std::endl << std::endl;
     std::cout << tr("Press any key to accept and continue...").toLocal8Bit().data() << std::endl;
     getchar(); // Read pressed key
     // Save the answer
@@ -109,7 +109,7 @@ public:
     return true;
 #else
     QMessageBox msgBox;
-    msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.\n\nYou probably knew this, so we won't tell you again."));
+    msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
     msgBox.setWindowTitle(tr("Legal notice"));
     msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);
     QAbstractButton *agree_button =(QAbstractButton*)msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);

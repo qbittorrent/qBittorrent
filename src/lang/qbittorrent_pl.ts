@@ -333,15 +333,15 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished">Zmiana statusu PeX wymaga ponownego uruchomienia</translation>
+        <translation>Zmiana statusu PeX wymaga ponownego uruchomienia</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished">Interfejs www nasłuchuje na porcie: %1</translation>
+        <translation>Interfejs www nasłuchuje na porcie: %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">HTTP user agent: %1</translation>
+        <translation>HTTP user agent: %1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
@@ -2540,7 +2540,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished">Zakończenie pobierania</translation>
+        <translation>Zakończenie pobierania</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
@@ -2585,19 +2585,19 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="unfinished">Aby uzyskać dostęp do qBittorrent należy przejść w przeglądarce pod adres http://localhost:%1</translation>
+        <translation>Aby uzyskać dostęp do qBittorrent należy przejść w przeglądarce pod adres http://localhost:%1</translation>
     </message>
     <message>
         <source>The Web UI administrator user name is: %1</source>
-        <translation type="unfinished">Nazwa administratora interfejsu www to: %1</translation>
+        <translation>Nazwa administratora interfejsu www to: %1</translation>
     </message>
     <message>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation type="unfinished">Hasło administratora interfejsu www ustawione nadal na domyślne: %1</translation>
+        <translation>Hasło administratora interfejsu www ustawione nadal na domyślne: %1</translation>
     </message>
     <message>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation type="unfinished">Proszę rozważyć zmianę hasła w ustawieniach programu.</translation>
+        <translation>Proszę rozważyć zmianę hasła w ustawieniach programu.</translation>
     </message>
 </context>
 <context>
@@ -2627,7 +2627,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation type="unfinished">Pobierz pliki torrent z adresu www lub magnet</translation>
+        <translation>Pobierz pliki torrent z adresu www lub magnet</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -2700,14 +2700,14 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation type="unfinished">Pobrano</translation>
+        <translation>Pobrano</translation>
     </message>
 </context>
 <context>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished">Notka o legalności</translation>
+        <translation>Notka o legalności</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by mean of upload. And of course, any content you share if your sole responsatibility.
@@ -2716,25 +2716,33 @@ You probably knew this, so we won&apos;t tell you again.</source>
         <translatorcomment>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</translatorcomment>
-        <translation type="unfinished">qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.
+        <translation type="obsolete">qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.
 
 W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished">Nacisnij dowolny klawisz aby akceptować i kontynuować...</translation>
+        <translation>Nacisnij dowolny klawisz aby akceptować i kontynuować...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished">Notka o legalności</translation>
+        <translation>Notka o legalności</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Anuluj</translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished">Zgadzam się</translation>
+        <translation>Zgadzam się</translation>
+    </message>
+    <message>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation>qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.
+
+W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
 </context>
 <context>
@@ -3288,7 +3296,7 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Destination Folder:</source>
@@ -3296,17 +3304,17 @@ QGroupBox {
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished">Dodaje etykietę torrenta do nazwy katalogu</translation>
+        <translation>Dodaje etykietę torrenta do nazwy katalogu</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation type="unfinished">Katalog dla niekompletnych pobierań:</translation>
+        <translation>Katalog dla niekompletnych pobierań:</translation>
     </message>
     <message>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Automatically load .torrent files from:</source>
@@ -3314,7 +3322,7 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished">Dodaje rozszerzenie .!qB dla niekompletnych plików</translation>
+        <translation>Dodaje rozszerzenie .!qB dla niekompletnych plików</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
@@ -3322,11 +3330,11 @@ QGroupBox {
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished">Pamięć podręczna na dysku:</translation>
+        <translation>Pamięć podręczna na dysku:</translation>
     </message>
     <message>
         <source>MiB (advanced)</source>
-        <translation type="unfinished">MiB (zaawansowane)</translation>
+        <translation>MiB (zaawansowane)</translation>
     </message>
     <message>
         <source>Torrent queueing</source>
@@ -3350,7 +3358,7 @@ QGroupBox {
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished">Podczas dodawania torrenta</translation>
+        <translation>Podczas dodawania torrenta</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
@@ -3471,7 +3479,7 @@ QGroupBox {
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation type="unfinished">Żądany współczynnik:</translation>
+        <translation>Żądany współczynnik:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
@@ -3495,7 +3503,7 @@ QGroupBox {
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished">Autentykacja</translation>
+        <translation>Autentykacja</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -3539,19 +3547,19 @@ QGroupBox {
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">minut</translation>
+        <translation>minut</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Maksymalna ilość wiadomości na kanał RSS:</translation>
+        <translation>Maksymalna ilość wiadomości na kanał RSS:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished">Plik filtra (.dat, .p2p, .p2b):</translation>
+        <translation>Plik filtra (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="unfinished">Połączenia HTTP (trackery, seedy www, wtyczki wyszukiwania)</translation>
+        <translation>Połączenia HTTP (trackery, seedy www, wtyczki wyszukiwania)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -3559,19 +3567,19 @@ QGroupBox {
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation type="unfinished">Połączenia z partnerami</translation>
+        <translation>Połączenia z partnerami</translation>
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished">SOCKS4</translation>
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation type="unfinished">Naśladowanie innych klientów w celu ominięcia blokad</translation>
+        <translation>Naśladowanie innych klientów w celu ominięcia blokad</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation type="unfinished">Identyfikuj się jako:</translation>
+        <translation>Identyfikuj się jako:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
@@ -3592,11 +3600,11 @@ QGroupBox {
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation type="unfinished">Wydanie:</translation>
+        <translation>Wydanie:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation type="unfinished">Przywraca ostatnią wersję programu</translation>
+        <translation>Przywraca ostatnią wersję programu</translation>
     </message>
     <message>
         <source>KTorrent</source>
@@ -3881,11 +3889,11 @@ QGroupBox {
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished">Plik jeszcze nie istnieje.</translation>
+        <translation>Plik jeszcze nie istnieje.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished">Katalog jeszcze nie istnieje.</translation>
+        <translation>Katalog jeszcze nie istnieje.</translation>
     </message>
 </context>
 <context>
@@ -3903,7 +3911,7 @@ QGroupBox {
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished">Nowy kanał RSS</translation>
+        <translation>Nowy kanał RSS</translation>
     </message>
     <message>
         <source>Mark items read</source>
@@ -3911,19 +3919,19 @@ QGroupBox {
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished">Odśwież wszystkie</translation>
+        <translation>Odśwież wszystkie</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation type="unfinished">Adres kanału RSS</translation>
+        <translation>Adres kanału RSS</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished">Nowy katalog</translation>
+        <translation>Nowy katalog</translation>
     </message>
     <message>
         <source>RSS feeds</source>
@@ -3935,7 +3943,7 @@ QGroupBox {
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -3943,11 +3951,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Article title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished">Odśwież wszystkie kanały RSS</translation>
+        <translation>Odśwież wszystkie kanały RSS</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3963,19 +3971,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished">Pobierz torrenta</translation>
+        <translation>Pobierz torrenta</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished">Otwórz URL wiadomości</translation>
+        <translation>Otwórz URL wiadomości</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished">Kopiuj adres kanału RSS</translation>
+        <translation>Kopiuj adres kanału RSS</translation>
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation type="unfinished">Pobieranie z kanałów RSS</translation>
+        <translation>Pobieranie z kanałów RSS</translation>
     </message>
     <message>
         <source>Create</source>
@@ -3987,7 +3995,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Refresh RSS streams</source>
-        <translation type="unfinished">Odśwież strumienie RSS</translation>
+        <translation>Odśwież strumienie RSS</translation>
     </message>
     <message>
         <source>Add a new RSS stream</source>
@@ -4026,7 +4034,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Stream URL:</source>
-        <translation type="unfinished">URL dla nowego kanału RSS:</translation>
+        <translation>URL dla nowego kanału RSS:</translation>
     </message>
     <message>
         <source>Please choose a new name for this stream</source>
@@ -4078,24 +4086,24 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished">Wprowadź nazwę katalogu</translation>
+        <translation>Wprowadź nazwę katalogu</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished">Nazwa dla nowego katalogu:</translation>
+        <translation>Nazwa dla nowego katalogu:</translation>
     </message>
     <message>
         <source>New folder</source>
-        <translation type="unfinished">Nowy katalog</translation>
+        <translation>Nowy katalog</translation>
     </message>
     <message>
         <source>Overwrite attempt</source>
-        <translation type="unfinished">Próba nadpisania</translation>
+        <translation>Próba nadpisania</translation>
     </message>
     <message>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="unfinished">Nie mozna nadpisać katalogu %1.</translation>
+        <translation>Nie mozna nadpisać katalogu %1.</translation>
     </message>
     <message>
         <source>qBittorrent</source>
@@ -4107,11 +4115,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation type="unfinished">Czy chcesz usunąć wybrane elementy z listy?</translation>
+        <translation>Czy chcesz usunąć wybrane elementy z listy?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation type="unfinished">Czy chcesz usunąć wybrany element z listy?</translation>
+        <translation>Czy chcesz usunąć wybrany element z listy?</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -4530,7 +4538,7 @@ Zmiany:
     </message>
     <message utf8="true">
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished">Adres kompatybilny z µTorrent:</translation>
+        <translation>Adres kompatybilny z µTorrent:</translation>
     </message>
     <message>
         <source>I/O Error</source>
@@ -5580,15 +5588,15 @@ Zmiany:
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operacja została anulowana</translation>
+        <translation>Operacja została anulowana</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Zdalny serwer przedwcześnie zakończył połączenie, zanim otrzymano i przetworzono odpowiedź</translation>
+        <translation>Zdalny serwer przedwcześnie zakończył połączenie, zanim otrzymano i przetworzono odpowiedź</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Przekroczono czas oczekiwania na połącznie ze zdalnym serwerem</translation>
+        <translation>Przekroczono czas oczekiwania na połącznie ze zdalnym serwerem</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
@@ -5596,19 +5604,19 @@ Zmiany:
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Zdalny serwer odrzucił połączenie</translation>
+        <translation>Zdalny serwer odrzucił połączenie</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Połączenie z serwerem proxy zostało odrzucone</translation>
+        <translation>Połączenie z serwerem proxy zostało odrzucone</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Serwer proxy przedwcześnie zakończył połączenie</translation>
+        <translation>Serwer proxy przedwcześnie zakończył połączenie</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Nie znaleziono nazwy hosta serwera proxy</translation>
+        <translation>Nie znaleziono nazwy hosta serwera proxy</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
@@ -5935,22 +5943,22 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished">Nie można zaktualizować wtyczki wyszukiwania %1, pozostaje stara wersja.</translation>
+        <translation>Nie można zaktualizować wtyczki wyszukiwania %1, pozostaje stara wersja.</translation>
     </message>
     <message>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished">Wtyczka wyszukiwania %1 nie może być zainstalowana.</translation>
+        <translation>Wtyczka wyszukiwania %1 nie może być zainstalowana.</translation>
     </message>
     <message>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished">Pomyślnie zaktualizowano wtyczkę wyszukiwania %1.</translation>
+        <translation>Pomyślnie zaktualizowano wtyczkę wyszukiwania %1.</translation>
     </message>
     <message>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished">Pomyślnie zainstalowano wtyczkę wyszukiwania %1.</translation>
+        <translation>Pomyślnie zainstalowano wtyczkę wyszukiwania %1.</translation>
     </message>
     <message>
         <source>Search engine plugin archive could not be read.</source>
@@ -5963,7 +5971,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">URL nowej wtyczki wyszukiwania</translation>
+        <translation>URL nowej wtyczki wyszukiwania</translation>
     </message>
     <message>
         <source>URL:</source>
@@ -6890,7 +6898,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation type="unfinished">Nie można odczytać adresu magnet:</translation>
+        <translation>Nie można odczytać adresu magnet:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
