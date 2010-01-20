@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="zh">
+<!DOCTYPE TS><TS version="1.1" language="zh">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDlg</name>
     <message>
@@ -59,7 +59,7 @@
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation></translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in 
 C++.&lt;br&gt;
 &lt;br&gt;
@@ -103,7 +103,7 @@ Copyright © 2006 by Christophe Dumez
         <source>Thanks to</source>
         <translation>感谢</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
@@ -113,7 +113,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 Copyright © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;主页:&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -306,7 +306,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>原因:</translation>
     </message>
 </context>
 <context>
@@ -1159,7 +1159,7 @@ folder:</source>
         <source>Maximum active uploads:</source>
         <translation type="obsolete">使激活的上传最大化:</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
         <translation type="obsolete">假借µtorrent名义避免被阻止(需重启)</translation>
     </message>
@@ -2709,7 +2709,7 @@ Are you sure you want to quit qBittorrent?</source>
     <name>HttpConnection</name>
     <message>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>由于过多的身份验证失败,您的IP地址被禁止.</translation>
     </message>
 </context>
 <context>
@@ -2812,29 +2812,29 @@ Are you sure you want to quit qBittorrent?</source>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>法律声明</translation>
     </message>
     <message>
         <source>Press any key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>按任意键以接受并继续...</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>法律声明</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>同意</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent是一个分享文件程序.当您运行一个torrent时,其数据可通过上传形式被他人获得.您对您分享的任何内容承担全部责任.</translation>
     </message>
 </context>
 <context>
@@ -3315,7 +3315,6 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>使用交替的行颜色</translation>
     </message>
     <message>
@@ -3669,7 +3668,7 @@ QGroupBox {
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
@@ -3679,7 +3678,6 @@ QGroupBox {
     </message>
     <message>
         <source>Build:</source>
-        <extracomment>Software Build nulmber:</extracomment>
         <translation>Build:</translation>
     </message>
     <message>
@@ -3965,15 +3963,15 @@ QGroupBox {
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>输入/输出错误</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>该文件尚未存在.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>该文件夹尚未存在.</translation>
     </message>
 </context>
 <context>
@@ -4624,7 +4622,7 @@ reason: %2.</source>
         <source>List of trackers to add (one per line):</source>
         <translation>要添加的trackers列表(每行一个):</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>µTorrent compatible list URL:</source>
         <translation>µTorrent兼容的URL列表:</translation>
     </message>
