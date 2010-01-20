@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="zh">
-<defaultcodec></defaultcodec>
+<!DOCTYPE TS>
+<TS version="2.0" language="zh">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -59,7 +59,7 @@
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in 
 C++.&lt;br&gt;
 &lt;br&gt;
@@ -103,7 +103,7 @@ Copyright © 2006 by Christophe Dumez
         <source>Thanks to</source>
         <translation>感谢</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
 &lt;br&gt;
 Copyright © 2006 by Christophe Dumez&lt;br&gt;
@@ -113,7 +113,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 Copyright © 2006 Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;主页:&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1159,7 +1159,7 @@ folder:</source>
         <source>Maximum active uploads:</source>
         <translation type="obsolete">使激活的上传最大化:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Spoof µtorrent to avoid ban (requires restart)</source>
         <translation type="obsolete">假借µtorrent名义避免被阻止(需重启)</translation>
     </message>
@@ -3315,6 +3315,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>使用交替的行颜色</translation>
     </message>
     <message>
@@ -3668,7 +3669,7 @@ QGroupBox {
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
@@ -3678,6 +3679,7 @@ QGroupBox {
     </message>
     <message>
         <source>Build:</source>
+        <extracomment>Software Build nulmber:</extracomment>
         <translation>Build:</translation>
     </message>
     <message>
@@ -4622,7 +4624,7 @@ reason: %2.</source>
         <source>List of trackers to add (one per line):</source>
         <translation>要添加的trackers列表(每行一个):</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>µTorrent compatible list URL:</source>
         <translation>µTorrent兼容的URL列表:</translation>
     </message>

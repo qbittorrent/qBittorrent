@@ -3402,7 +3402,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/options.ui" line="200"/>
-        <location filename="../ui/options.ui" line="2636"/>
+        <location filename="../ui/options.ui" line="2645"/>
         <source>RSS</source>
         <translation></translation>
     </message>
@@ -3827,23 +3827,23 @@ margin-left: -3px;
     </message>
     <message>
         <location filename="../ui/options.ui" line="1984"/>
-        <location filename="../ui/options.ui" line="2184"/>
+        <location filename="../ui/options.ui" line="2187"/>
         <source>Host:</source>
         <translation>호스트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2142"/>
+        <location filename="../ui/options.ui" line="2145"/>
         <source>Peer Communications</source>
         <translation>사용자간 대화</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2163"/>
+        <location filename="../ui/options.ui" line="2166"/>
         <source>SOCKS4</source>
         <translation>소켓4</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1955"/>
-        <location filename="../ui/options.ui" line="2150"/>
+        <location filename="../ui/options.ui" line="2153"/>
         <source>Type:</source>
         <translation>종류:</translation>
     </message>
@@ -3885,97 +3885,97 @@ margin-left: -3px;
     </message>
     <message>
         <location filename="../ui/options.ui" line="1963"/>
-        <location filename="../ui/options.ui" line="2158"/>
+        <location filename="../ui/options.ui" line="2161"/>
         <source>(None)</source>
         <translation>(없음)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1968"/>
-        <location filename="../ui/options.ui" line="2173"/>
+        <location filename="../ui/options.ui" line="2176"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2010"/>
-        <location filename="../ui/options.ui" line="2210"/>
-        <location filename="../ui/options.ui" line="2494"/>
+        <location filename="../ui/options.ui" line="2213"/>
+        <location filename="../ui/options.ui" line="2500"/>
         <source>Port:</source>
         <translation>포트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2050"/>
-        <location filename="../ui/options.ui" line="2250"/>
-        <location filename="../ui/options.ui" line="2530"/>
+        <location filename="../ui/options.ui" line="2053"/>
+        <location filename="../ui/options.ui" line="2256"/>
+        <location filename="../ui/options.ui" line="2539"/>
         <source>Authentication</source>
         <translation>인증</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2064"/>
-        <location filename="../ui/options.ui" line="2264"/>
-        <location filename="../ui/options.ui" line="2538"/>
+        <location filename="../ui/options.ui" line="2067"/>
+        <location filename="../ui/options.ui" line="2270"/>
+        <location filename="../ui/options.ui" line="2547"/>
         <source>Username:</source>
         <translation>아이디:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2074"/>
-        <location filename="../ui/options.ui" line="2274"/>
-        <location filename="../ui/options.ui" line="2545"/>
+        <location filename="../ui/options.ui" line="2077"/>
+        <location filename="../ui/options.ui" line="2280"/>
+        <location filename="../ui/options.ui" line="2554"/>
         <source>Password:</source>
         <translation>비밀번호:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1973"/>
-        <location filename="../ui/options.ui" line="2168"/>
+        <location filename="../ui/options.ui" line="2171"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2378"/>
+        <location filename="../ui/options.ui" line="2384"/>
         <source>Filter Settings</source>
         <translation>필터 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2384"/>
+        <location filename="../ui/options.ui" line="2390"/>
         <source>Activate IP Filtering</source>
         <translation>IP 필터링 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2400"/>
+        <location filename="../ui/options.ui" line="2406"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>필터 경로(.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2475"/>
+        <location filename="../ui/options.ui" line="2481"/>
         <source>Enable Web User Interface</source>
         <translation>웹사용자인터페이스 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2488"/>
+        <location filename="../ui/options.ui" line="2494"/>
         <source>HTTP Server</source>
         <translation>HTTP 서버</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2642"/>
+        <location filename="../ui/options.ui" line="2651"/>
         <source>Enable RSS support</source>
         <translation>RSS 지원을 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2652"/>
+        <location filename="../ui/options.ui" line="2661"/>
         <source>RSS settings</source>
         <translation>RSS 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2689"/>
+        <location filename="../ui/options.ui" line="2698"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS 새로보가 간격:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2709"/>
+        <location filename="../ui/options.ui" line="2718"/>
         <source>minutes</source>
         <translation>분</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2733"/>
+        <location filename="../ui/options.ui" line="2742"/>
         <source>Maximum number of articles per feed:</source>
         <translation>피그당 최대 글수:</translation>
     </message>
