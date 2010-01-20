@@ -652,7 +652,7 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) {
 }
 
 void QTorrentHandle::rename_file(int index, QString name) {
-  h.rename_file(index, name.toStdString());
+  h.rename_file(index, std::string(name.toLocal8Bit().data()));
 }
 
 //
