@@ -5,6 +5,7 @@
     - BUGFIX: Nox version no longer requires libQtXml
     - BUGFIX: Configure file now checks for pkg-config executable which is required
     - BUGFIX: Torrents added from magnet links were not remembered on restart
+    - BUGFIX: "Add in pause" setting can be ignored from torrent addition dialog
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)

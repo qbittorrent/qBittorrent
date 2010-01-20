@@ -802,7 +802,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   else
     p.storage_mode = storage_mode_sparse;
   // Start in pause
-  p.paused = false;
+  p.paused = true;
   p.duplicate_is_error = false; // Already checked
   p.auto_managed = false; // Because it is added in paused state
   // Adding torrent to Bittorrent session
@@ -853,7 +853,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
       TorrentPersistentData::saveSavePath(hash, savePath);
     }
   }
-  if(!addInPause && !fastResume) {
+  if(!fastResume && (!addInPause || Preferences::useAdditionDialog())) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -1056,7 +1056,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     // Copy it to torrentBackup directory
     QFile::copy(file, newFile);
   }
-  if(!addInPause && !fastResume) {
+  if(!fastResume && (!addInPause || Preferences::useAdditionDialog())) {
     // Start torrent because it was added in paused state
     h.resume();
   }
