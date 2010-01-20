@@ -10,7 +10,8 @@
     - BUGFIX: Fix typo in legal notice (startup)
     - BUGFIX: Can listen on ports < 1024 (must be root)
     - BUGFIX: Paused torrents can now be rechecked
-    - I18N: Updated translations (Hungarian, Chinese)
+    - BUGFIX: Fix "open torrent destination" feature when path contains spaces
+    - I18N: Updated translations (Hungarian, Chinese, Russian)
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)
