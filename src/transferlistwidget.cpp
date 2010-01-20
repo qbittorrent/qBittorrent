@@ -760,8 +760,9 @@ void TransferListWidget::recheckSelectedTorrents() {
   foreach(const QModelIndex &index, selectedIndexes){
     QString hash = getHashFromRow(mapToSource(index).row());
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && h.has_metadata())
-      h.force_recheck();
+    if(h.is_valid()) {
+      BTSession->recheckTorrent(h.hash());
+    }
   }
 }
 

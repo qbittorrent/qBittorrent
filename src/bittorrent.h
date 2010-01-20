@@ -94,6 +94,7 @@ private:
   QPointer<QTimer> timerAlerts;
   QMap<QUrl, QString> savepath_fromurl;
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
+  QStringList torrentsToPausedAfterChecking;
   // Ratio
   QPointer<QTimer> BigRatioTimer;
   // HTTP
@@ -180,6 +181,7 @@ public slots:
   void deleteTorrent(QString hash, bool delete_local_files = false);
   void startUpTorrents();
   session_proxy asyncDeletion();
+  void recheckTorrent(QString hash);
   /* Needed by Web UI */
   void pauseAllTorrents();
   void pauseTorrent(QString hash);
