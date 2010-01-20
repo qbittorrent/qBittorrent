@@ -225,7 +225,7 @@ int main(int argc, char *argv[]){
           if(parts.size() == 2) {
             bool ok = false;
             int new_port = parts.last().toInt(&ok);
-            if(ok && new_port > 1024 && new_port <= 65535) {
+            if(ok && new_port > 0 && new_port <= 65535) {
               Preferences::setWebUiPort(new_port);
             }
           }
