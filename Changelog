@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.1
+* Wed Jan 20 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.1
     - BUGFIX: Fix compilation with Qt4.4
     - BUGFIX: Save torrent metadata so that it does not have to be re-downloaded on restart (Magnet links)
     - BUGFIX: Fix folder renaming in a torrent (would rename children under certain conditions)
