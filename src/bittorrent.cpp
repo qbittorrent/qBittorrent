@@ -853,7 +853,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
       TorrentPersistentData::saveSavePath(hash, savePath);
     }
   }
-  if(!fastResume && (!addInPause || Preferences::useAdditionDialog())) {
+  if(!fastResume && (!addInPause || (Preferences::useAdditionDialog()))) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -1056,7 +1056,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     // Copy it to torrentBackup directory
     QFile::copy(file, newFile);
   }
-  if(!fastResume && (!addInPause || Preferences::useAdditionDialog())) {
+  if(!fastResume && (!addInPause || (Preferences::useAdditionDialog() && !fromScanDir))) {
     // Start torrent because it was added in paused state
     h.resume();
   }
