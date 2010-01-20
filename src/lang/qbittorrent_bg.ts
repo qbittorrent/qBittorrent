@@ -395,7 +395,7 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <translation>Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1987"/>
+        <location filename="../bittorrent.cpp" line="2005"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
@@ -5295,27 +5295,27 @@ Changelog:
         <translation type="obsolete">&amp;Не</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="807"/>
+        <location filename="../transferlistwidget.cpp" line="808"/>
         <source>Column visibility</source>
         <translation>Видимост на колона</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="933"/>
+        <location filename="../transferlistwidget.cpp" line="934"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="935"/>
+        <location filename="../transferlistwidget.cpp" line="936"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="937"/>
+        <location filename="../transferlistwidget.cpp" line="938"/>
         <source>Delete</source>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="939"/>
+        <location filename="../transferlistwidget.cpp" line="940"/>
         <source>Preview file</source>
         <translation>Огледай файла</translation>
     </message>
@@ -5375,7 +5375,7 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1044"/>
+        <location filename="../transferlistwidget.cpp" line="1045"/>
         <source>Label</source>
         <translation>Етикет</translation>
     </message>
@@ -5390,103 +5390,103 @@ Changelog:
         <translation>Ограничаване Скорост на качване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="875"/>
+        <location filename="../transferlistwidget.cpp" line="876"/>
         <source>New Label</source>
         <translation>Нов етикет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="875"/>
+        <location filename="../transferlistwidget.cpp" line="876"/>
         <source>Label:</source>
         <translation>Етикет:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="880"/>
+        <location filename="../transferlistwidget.cpp" line="881"/>
         <source>Invalid label name</source>
         <translation>Невалидно име на етикет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="880"/>
+        <location filename="../transferlistwidget.cpp" line="881"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Моля, не ползвайте специални символи в името на етикета.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="896"/>
+        <location filename="../transferlistwidget.cpp" line="897"/>
         <source>Rename</source>
         <translation>Преименувай</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="896"/>
+        <location filename="../transferlistwidget.cpp" line="897"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="941"/>
+        <location filename="../transferlistwidget.cpp" line="942"/>
         <source>Limit upload rate</source>
         <translation>Ограничи процент качване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>Limit download rate</source>
         <translation>Ограничи процент сваляне</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="945"/>
+        <location filename="../transferlistwidget.cpp" line="946"/>
         <source>Open destination folder</source>
         <translation>Отвори папка получател</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="947"/>
+        <location filename="../transferlistwidget.cpp" line="948"/>
         <source>Buy it</source>
         <translation>Купи го</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="949"/>
+        <location filename="../transferlistwidget.cpp" line="950"/>
         <source>Increase priority</source>
         <translation>Увеличи предимството</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="951"/>
+        <location filename="../transferlistwidget.cpp" line="952"/>
         <source>Decrease priority</source>
         <translation>Намали предимството</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="953"/>
+        <location filename="../transferlistwidget.cpp" line="954"/>
         <source>Force recheck</source>
         <translation>Включени проверки за промени</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="955"/>
+        <location filename="../transferlistwidget.cpp" line="956"/>
         <source>Copy magnet link</source>
         <translation>Копирай връзка magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="958"/>
+        <location filename="../transferlistwidget.cpp" line="959"/>
         <source>Super seeding mode</source>
         <translation>Режим на супер-даване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="961"/>
+        <location filename="../transferlistwidget.cpp" line="962"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="963"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>Download in sequential order</source>
         <translation>Сваляне по азбучен ред</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="965"/>
+        <location filename="../transferlistwidget.cpp" line="966"/>
         <source>Download first and last piece first</source>
         <translation>Свали първо и последно парче първо</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1045"/>
+        <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Ново...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1046"/>
+        <location filename="../transferlistwidget.cpp" line="1047"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Нулирай</translation>
