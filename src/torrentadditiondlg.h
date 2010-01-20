@@ -95,7 +95,7 @@ public:
     savePathTxt->setText(Preferences::getSavePath());
     if(Preferences::addTorrentsInPause()) {
       addInPause->setChecked(true);
-      addInPause->setEnabled(false);
+      //addInPause->setEnabled(false);
     }
 #ifndef LIBTORRENT_0_15
     addInSeed->setVisible(false);
