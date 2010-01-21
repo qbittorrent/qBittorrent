@@ -1023,13 +1023,16 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       h.set_sequential_download(TorrentTempData::isSequential(hash));
       // Import Files names from torrent addition dialog
       QStringList files_path = TorrentTempData::getFilesPath(hash);
+      bool force_recheck = false;
       if(files_path.size() == h.num_files()) {
         for(int i=0; i<h.num_files(); ++i) {
           QString path = files_path.at(i);
+          if(!force_recheck && QFile::exists(h.save_path()+QDir::separator()+path))
+            force_recheck = true;
           h.rename_file(i, path);
         }
         // Force recheck
-        h.force_recheck();
+        if(force_recheck) h.force_recheck();
       }
     }
     QString label = TorrentTempData::getLabel(hash);
