@@ -35,7 +35,6 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QDesktopWidget>
 #include <QTimer>
 #include <QDesktopServices>
 #include <QStatusBar>
@@ -356,7 +355,7 @@ void GUI::readSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   resize(settings.value(QString::fromUtf8("size"), size()).toSize());
-  move(settings.value(QString::fromUtf8("pos"), screenCenter()).toPoint());
+  move(settings.value(QString::fromUtf8("pos"), misc::screenCenter(this)).toPoint());
   QStringList sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
   // Splitter size
   QList<int> sizes;
@@ -473,22 +472,6 @@ void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
       hide();
     }
   }
-}
-
-// Center window
-QPoint GUI::screenCenter() const{
-  int scrn = 0;
-  QWidget *w = this->topLevelWidget();
-
-  if(w)
-    scrn = QApplication::desktop()->screenNumber(w);
-  else if(QApplication::desktop()->isVirtualDesktop())
-    scrn = QApplication::desktop()->screenNumber(QCursor::pos());
-  else
-    scrn = QApplication::desktop()->screenNumber(this);
-
-  QRect desk(QApplication::desktop()->availableGeometry(scrn));
-  return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
 }
 
 // Display About Dialog

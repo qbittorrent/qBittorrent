@@ -112,7 +112,7 @@ public:
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     // Restore size and position
     resize(settings.value(QString::fromUtf8("TorrentAdditionDlg/size"), size()).toSize());
-    move(settings.value(QString::fromUtf8("TorrentAdditionDlg/pos"), screenCenter()).toPoint());
+    move(settings.value(QString::fromUtf8("TorrentAdditionDlg/pos"), misc::screenCenter(this)).toPoint());
     // Restore column width
     QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), QVariantList()).toList();
     if(contentColsWidths.empty()) {
@@ -122,22 +122,6 @@ public:
         torrentContentList->setColumnWidth(i, contentColsWidths.at(i).toInt());
       }
     }
-  }
-
-  // Screen center point
-  QPoint screenCenter() const{
-    int scrn = 0;
-    QWidget *w = this->topLevelWidget();
-
-    if(w)
-      scrn = QApplication::desktop()->screenNumber(w);
-    else if(QApplication::desktop()->isVirtualDesktop())
-      scrn = QApplication::desktop()->screenNumber(QCursor::pos());
-    else
-      scrn = QApplication::desktop()->screenNumber(this);
-
-    QRect desk(QApplication::desktop()->availableGeometry(scrn));
-    return QPoint((desk.width() - this->frameGeometry().width()) / 2, (desk.height() - this->frameGeometry().height()) / 2);
   }
 
   void saveSettings() {
