@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.2
     - BUGFIX: Fix overwrite check when renaming a folder in a torrent
+    - BUGFIX: Force a recheck after renaming files to avoid overwriting
 
 * Wed Jan 20 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.1
     - BUGFIX: Fix compilation with Qt4.4

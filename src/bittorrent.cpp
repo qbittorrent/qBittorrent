@@ -1028,6 +1028,8 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
           QString path = files_path.at(i);
           h.rename_file(i, path);
         }
+        // Force recheck
+        h.force_recheck();
       }
     }
     QString label = TorrentTempData::getLabel(hash);
