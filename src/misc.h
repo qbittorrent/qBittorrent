@@ -44,6 +44,7 @@
 #include <QUrl>
 #include <ctime>
 #include <QDateTime>
+#include <QDesktopWidget>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/date_time/posix_time/conversion.hpp>
 
@@ -263,6 +264,22 @@ public:
     return xdgCacheHome;
 #endif
 #endif
+  }
+
+  // Get screen center
+  static QPoint screenCenter(QWidget *win) {
+    int scrn = 0;
+    QWidget *w = win->window();
+
+    if(w)
+      scrn = QApplication::desktop()->screenNumber(w);
+    else if(QApplication::desktop()->isVirtualDesktop())
+      scrn = QApplication::desktop()->screenNumber(QCursor::pos());
+    else
+      scrn = QApplication::desktop()->screenNumber(win);
+
+    QRect desk(QApplication::desktop()->availableGeometry(scrn));
+    return QPoint((desk.width() - win->frameGeometry().width()) / 2, (desk.height() - win->frameGeometry().height()) / 2);
   }
 
   static QString searchEngineLocation() {

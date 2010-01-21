@@ -33,6 +33,7 @@
 
 #include <QDialog>
 #include "ui_confirmdeletiondlg.h"
+#include "misc.h"
 
 class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
   Q_OBJECT
@@ -40,6 +41,7 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
   public:
   DeletionConfirmationDlg(QWidget *parent=0): QDialog(parent) {
     setupUi(this);
+    move(misc::screenCenter(this));
   }
 
   bool shouldDeleteLocalFiles() const {

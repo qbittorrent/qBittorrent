@@ -156,7 +156,6 @@ public:
   ~GUI();
   // Methods
   int getCurrentTabIndex() const;
-  QPoint screenCenter() const;
   TransferListWidget* getTransferList() const { return transferList; }
 };
 
