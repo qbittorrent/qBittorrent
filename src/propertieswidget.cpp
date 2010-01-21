@@ -595,14 +595,15 @@ void PropertiesWidget::renameSelectedFile() {
         path_items.removeLast();
         path_items << new_name_last;
         QString new_path = path_items.join(QDir::separator());
+        if(!new_path.endsWith(QDir::separator())) new_path += QDir::separator();
         // Check for overwriting
         int num_files = h.num_files();
         for(int i=0; i<num_files; ++i) {
           QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
 #ifdef Q_WS_WIN
-          if(current_name.contains(new_path, Qt::CaseInsensitive)) {
+          if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
 #else
-            if(current_name.contains(new_path, Qt::CaseSensitive)) {
+            if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #endif
               QMessageBox::warning(this, tr("The folder could not be renamed"),
                                    tr("This name is already in use in this folder. Please use a different name."),
