@@ -578,6 +578,8 @@ void PropertiesWidget::renameSelectedFile() {
         }
         qDebug("Renaming %s to %s", old_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
         h.rename_file(file_index, new_name);
+        // Force recheck
+        h.force_recheck();
         // Rename if torrent files model too
         if(new_name_last.endsWith(".!qB"))
           new_name_last.chop(4);
@@ -621,6 +623,8 @@ void PropertiesWidget::renameSelectedFile() {
               h.rename_file(i, new_name);
             }
           }
+          // Force recheck
+          h.force_recheck();
           // Rename folder in torrent files model too
           PropListModel->setData(index, new_name_last);
           // Remove old folder
