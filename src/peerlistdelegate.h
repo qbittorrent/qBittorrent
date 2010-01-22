@@ -56,7 +56,8 @@ public:
         case UP_SPEED:{
             QItemDelegate::drawBackground(painter, opt, index);
             double speed = index.data().toDouble();
-            QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(speed/1024., 'f', 1)+" "+tr("KiB/s"));
+            if (speed > 0.0)
+              QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
             break;
           }
         case PROGRESS:{
