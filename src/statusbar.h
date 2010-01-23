@@ -54,7 +54,9 @@ private:
   QFrame *statusSep1;
   QFrame *statusSep2;
   QFrame *statusSep3;
+  QFrame *statusSep4;
   QLabel *connecStatusLblIcon;
+  QPushButton *altSpeedsBtn;
   QTimer *refreshTimer;
   QWidget *container;
   QGridLayout *layout;
@@ -77,6 +79,14 @@ public:
     //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     dlSpeedLbl->setFlat(true);
+
+    altSpeedsBtn = new QPushButton();
+    altSpeedsBtn->setFixedWidth(22);
+    updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
+
+    connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
+    altSpeedsBtn->setFlat(true);
+
     upSpeedLbl = new QPushButton(tr("U: %1 B/s - T: %2", "Upload speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
     //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
@@ -95,6 +105,10 @@ public:
     statusSep3->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep3->setFrameStyle(QFrame::VLine);
     statusSep3->setFrameShadow(QFrame::Raised);
+    statusSep4 = new QFrame();
+    statusSep4->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
+    statusSep4->setFrameStyle(QFrame::VLine);
+    statusSep4->setFrameShadow(QFrame::Raised);
     layout->addWidget(DHTLbl, 0, 0, Qt::AlignLeft);
     //layout->setColumnStretch(0, 10);
     layout->addWidget(statusSep1, 0, 1, Qt::AlignRight);
@@ -105,9 +119,11 @@ public:
     //layout->setColumnStretch(3, 1);
     layout->addWidget(dlSpeedLbl, 0, 4, Qt::AlignLeft);
     //layout->setColumnStretch(4, 10);
-    layout->addWidget(statusSep3, 0, 5, Qt::AlignLeft);
+    layout->addWidget(statusSep3, 0, 5, Qt::AlignRight);
+    layout->addWidget(altSpeedsBtn, 0, 6);
+    layout->addWidget(statusSep4, 0, 7, Qt::AlignLeft);
     //layout->setColumnStretch(5, 10);
-    layout->addWidget(upSpeedLbl, 0, 6, Qt::AlignLeft);
+    layout->addWidget(upSpeedLbl, 0, 8, Qt::AlignLeft);
     //layout->setColumnStretch(6, 10);
 
     bar->addPermanentWidget(container);
@@ -133,7 +149,9 @@ public:
     delete statusSep1;
     delete statusSep2;
     delete statusSep3;
+    delete statusSep4;
     delete connecStatusLblIcon;
+    delete altSpeedsBtn;
     delete layout;
     delete container;
   }
@@ -169,17 +187,44 @@ public slots:
     upSpeedLbl->setText(tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload)));
   }
 
+  void updateAltSpeedsBtn(bool alternative) {
+    if(alternative) {
+      altSpeedsBtn->setIcon(QIcon(":/Icons/slow.png"));
+      altSpeedsBtn->setToolTip(tr("Click to disable alternative speed limits"));
+    } else {
+      altSpeedsBtn->setIcon(QIcon(":/Icons/slow_off.png"));
+      altSpeedsBtn->setToolTip(tr("Click to enable alternative speed limits"));
+    }
+  }
+
+  void toggleAlternativeSpeeds() {
+    bool alt = !Preferences::isAltBandwidthEnabled();
+    Preferences::setAltBandwidthEnabled(alt);
+    if(alt) {
+      BTSession->getSession()->set_download_rate_limit(Preferences::getAltGlobalDownloadLimit()*1024);
+      BTSession->getSession()->set_upload_rate_limit(Preferences::getAltGlobalUploadLimit()*1024);
+    } else {
+      BTSession->getSession()->set_download_rate_limit(Preferences::getGlobalDownloadLimit()*1024);
+      BTSession->getSession()->set_upload_rate_limit(Preferences::getGlobalUploadLimit()*1024);
+    }
+    updateAltSpeedsBtn(alt);
+    emit alternativeSpeedsToggled(alt);
+  }
+
   void capDownloadSpeed() {
     bool ok = false;
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), BTSession->getSession()->download_rate_limit());
     if(ok) {
+      bool alt = Preferences::isAltBandwidthEnabled();
       if(new_limit <= 0) {
         qDebug("Setting global download rate limit to Unlimited");
-        BTSession->getSession()->set_download_rate_limit(-1);
+        if(!alt)
+          BTSession->getSession()->set_download_rate_limit(-1);
         Preferences::setGlobalDownloadLimit(-1);
       } else {
         qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
-        BTSession->getSession()->set_download_rate_limit(new_limit);
+        if(!alt)
+          BTSession->getSession()->set_download_rate_limit(new_limit);
         Preferences::setGlobalDownloadLimit(new_limit/1024.);
       }
     }
@@ -200,6 +245,9 @@ public slots:
       }
     }
   }
+
+signals:
+  void alternativeSpeedsToggled(bool alternative);
 };
 
 #endif // STATUSBAR_H

@@ -180,6 +180,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   createKeyboardShortcuts();
   // Create status bar
   status_bar = new StatusBar(QMainWindow::statusBar(), BTSession);
+  connect(actionUse_alternative_speed_limits, SIGNAL(triggered()), status_bar, SLOT(toggleAlternativeSpeeds()));
+  connect(status_bar, SIGNAL(alternativeSpeedsToggled(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
 
   show();
 
@@ -879,6 +881,16 @@ void GUI::createSystrayDelayed() {
   }
 }
 
+void GUI::updateAltSpeedsBtn(bool alternative) {
+  if(alternative) {
+    actionUse_alternative_speed_limits->setIcon(QIcon(":/Icons/slow.png"));
+    actionUse_alternative_speed_limits->setText(tr("Use normal speed limits"));
+  } else {
+    actionUse_alternative_speed_limits->setIcon(QIcon(":/Icons/slow_off.png"));
+    actionUse_alternative_speed_limits->setText(tr("Use alternative speed limits"));
+  }
+}
+
 void GUI::createTrayIcon() {
   // Tray icon
 #ifdef Q_WS_WIN
@@ -892,6 +904,8 @@ void GUI::createTrayIcon() {
   myTrayIconMenu->addAction(actionOpen);
   myTrayIconMenu->addAction(actionDownload_from_URL);
   myTrayIconMenu->addSeparator();
+  updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
+  myTrayIconMenu->addAction(actionUse_alternative_speed_limits);
   myTrayIconMenu->addAction(actionSet_global_download_limit);
   myTrayIconMenu->addAction(actionSet_global_upload_limit);
   myTrayIconMenu->addSeparator();

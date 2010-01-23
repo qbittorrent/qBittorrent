@@ -35,8 +35,10 @@
 #include <QCryptographicHash>
 #include <QPair>
 #include <QDir>
+#include <QTime>
 
 #define QBT_REALM "Web UI Access"
+enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
 
 class Preferences {
 public:
@@ -266,7 +268,7 @@ public:
 
   static int getGlobalUploadLimit() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/GlobalUPLimit"), -1).toInt();
+    return settings.value(QString::fromUtf8("Preferences/Connection/GlobalUPLimit"), 50).toInt();
   }
 
   static void setGlobalUploadLimit(int limit) {
@@ -274,6 +276,79 @@ public:
     if(limit <= 0) limit = -1;
     settings.setValue("Preferences/Connection/GlobalUPLimit", limit);
   }
+
+  static int getAltGlobalDownloadLimit() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Connection/GlobalDLLimitAlt"), 10).toInt();
+  }
+
+  static void setAltGlobalDownloadLimit(int limit) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    if(limit <= 0) limit = -1;
+    settings.setValue("Preferences/Connection/GlobalDLLimitAlt", limit);
+  }
+
+  static int getAltGlobalUploadLimit() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Connection/GlobalUPLimitAlt"), 10).toInt();
+  }
+
+  static void setAltGlobalUploadLimit(int limit) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    if(limit <= 0) limit = -1;
+    settings.setValue("Preferences/Connection/GlobalUPLimit", limit);
+  }
+
+  static bool isAltBandwidthEnabled() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("Preferences/Connection/alt_speeds_on", false).toBool();
+  }
+
+  static void setAltBandwidthEnabled(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue("Preferences/Connection/alt_speeds_on", enabled);
+  }
+
+  static void setSchedulerEnabled(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Scheduler/Enabled"), enabled);
+  }
+
+  static bool isSchedulerEnabled() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Scheduler/Enabled"), false).toBool();
+  }
+
+  static QTime getSchedulerStartTime() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Scheduler/start_time"), QTime(8,0)).toTime();
+  }
+
+  static void setSchedulerStartTime(QTime time) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Scheduler/start_time"), time);
+  }
+
+  static QTime getSchedulerEndTime() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Scheduler/end_time"), QTime(20,0)).toTime();
+  }
+
+  static void setSchedulerEndTime(QTime time) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Scheduler/end_time"), time);
+  }
+
+  static scheduler_days getSchedulerDays() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return (scheduler_days)settings.value(QString::fromUtf8("Preferences/Scheduler/days"), EVERY_DAY).toInt();
+  }
+
+  static void setSchedulerDays(scheduler_days days) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Scheduler/days"), (int)days);
+  }
+
 
   static bool resolvePeerCountries() {
     QSettings settings("qBittorrent", "qBittorrent");

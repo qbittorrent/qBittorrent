@@ -143,6 +143,7 @@ public slots:
   void setTabText(int index, QString text) const;
   void showNotificationBaloon(QString title, QString msg) const;
   void downloadFromURLList(const QStringList& urls);
+  void updateAltSpeedsBtn(bool alternative);
 
 protected:
   void closeEvent(QCloseEvent *);

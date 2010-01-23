@@ -259,6 +259,15 @@
     <string>Log Window</string>
    </property>
   </action>
+  <action name="actionUse_alternative_speed_limits">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Icons/slow_off.png</normaloff>:/Icons/slow_off.png</iconset>
+   </property>
+   <property name="text">
+    <string>Use alternative speed limits</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../icons.qrc"/>

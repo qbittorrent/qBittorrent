@@ -142,6 +142,7 @@ protected slots:
   void enableMaxConnecsLimit(bool checked);
   void enableMaxConnecsLimitPerTorrent(bool checked);
   void enableMaxUploadsLimitPerTorrent(bool checked);
+  void enableSchedulerFields(bool checked);
   void enableShareRatio(bool checked);
   void enableDeleteRatio(bool checked);
   void enableFilter(bool checked);

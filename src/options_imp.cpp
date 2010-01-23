@@ -136,6 +136,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/south_korea.png"))), QString::fromUtf8("한글"));
   locales << "ko_KR";
 
+  // Load week days (scheduler)
+  for(uint i=1; i<=7; ++i) {
+    schedule_days->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
+  }
+
   // Load options
   loadOptions();
   // Disable systray integration if it is not supported by the system
@@ -154,6 +159,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Connection tab
   connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableUploadLimit(bool)));
   connect(checkDownloadLimit,  SIGNAL(toggled(bool)), this, SLOT(enableDownloadLimit(bool)));
+  connect(check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableSchedulerFields(bool)));
   // Bittorrent tab
   connect(checkMaxConnecs,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimit(bool)));
   connect(checkMaxConnecsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimitPerTorrent(bool)));
@@ -210,6 +216,10 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkResolveCountries, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkResolveHosts, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(schedule_from, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
+  connect(schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
+  connect(schedule_days, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   // Bittorrent tab
   connect(checkMaxConnecs, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMaxConnecsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -395,6 +405,12 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("NAT-PMP"), isNATPMPEnabled());
   settings.setValue(QString::fromUtf8("GlobalDLLimit"), getGlobalBandwidthLimits().first);
   settings.setValue(QString::fromUtf8("GlobalUPLimit"), getGlobalBandwidthLimits().second);
+  Preferences::setAltGlobalDownloadLimit(spinDownloadLimitAlt->value());
+  Preferences::setAltGlobalUploadLimit(spinUploadLimitAlt->value());
+  Preferences::setSchedulerEnabled(check_schedule->isChecked());
+  Preferences::setSchedulerStartTime(schedule_from->time());
+  Preferences::setSchedulerEndTime(schedule_to->time());
+  Preferences::setSchedulerDays((scheduler_days)schedule_days->currentIndex());
   settings.setValue("ResolvePeerCountries", checkResolveCountries->isChecked());
   settings.setValue("ResolvePeerHostNames", checkResolveHosts->isChecked());
   settings.setValue(QString::fromUtf8("ProxyType"), getPeerProxyType());
@@ -646,6 +662,14 @@ void options_imp::loadOptions(){
     checkUploadLimit->setChecked(false);
     spinUploadLimit->setEnabled(false);
   }
+  spinUploadLimitAlt->setValue(Preferences::getAltGlobalUploadLimit());
+  spinDownloadLimitAlt->setValue(Preferences::getAltGlobalDownloadLimit());
+  // Scheduler
+  check_schedule->setChecked(Preferences::isSchedulerEnabled());
+  enableSchedulerFields(check_schedule->isChecked());
+  schedule_from->setTime(Preferences::getSchedulerStartTime());
+  schedule_to->setTime(Preferences::getSchedulerEndTime());
+  schedule_days->setCurrentIndex((int)Preferences::getSchedulerDays());
   // Peer connections
   checkResolveCountries->setChecked(Preferences::resolvePeerCountries());
   checkResolveHosts->setChecked(Preferences::resolvePeerHostNames());
@@ -1095,38 +1119,27 @@ bool options_imp::useAdditionDialog() const{
   return checkAdditionDialog->isChecked();
 }
 
+void options_imp::enableSchedulerFields(bool checked) {
+  schedule_from->setEnabled(checked);
+  schedule_to->setEnabled(checked);
+  schedule_days->setEnabled(checked);
+}
+
 void options_imp::enableMaxConnecsLimit(bool checked){
-  if(checked) {
-    spinMaxConnec->setEnabled(true);
-  }else{
-    spinMaxConnec->setEnabled(false);
-  }
+  spinMaxConnec->setEnabled(checked);
 }
 
 void options_imp::enableQueueingSystem(bool checked) {
-  if(checked) {
-    spinMaxActiveDownloads->setEnabled(true);
-    spinMaxActiveUploads->setEnabled(true);
-    label_max_active_dl->setEnabled(true);
-    label_max_active_up->setEnabled(true);
-    maxActiveTorrents_lbl->setEnabled(true);
-    spinMaxActiveTorrents->setEnabled(true);
-  }else{
-    spinMaxActiveDownloads->setEnabled(false);
-    spinMaxActiveUploads->setEnabled(false);
-    label_max_active_dl->setEnabled(false);
-    label_max_active_up->setEnabled(false);
-    maxActiveTorrents_lbl->setEnabled(false);
-    spinMaxActiveTorrents->setEnabled(false);
-  }
+  spinMaxActiveDownloads->setEnabled(checked);
+  spinMaxActiveUploads->setEnabled(checked);
+  label_max_active_dl->setEnabled(checked);
+  label_max_active_up->setEnabled(checked);
+  maxActiveTorrents_lbl->setEnabled(checked);
+  spinMaxActiveTorrents->setEnabled(checked);
 }
 
 void options_imp::enableMaxConnecsLimitPerTorrent(bool checked){
-  if(checked) {
-    spinMaxConnecPerTorrent->setEnabled(true);
-  }else{
-    spinMaxConnecPerTorrent->setEnabled(false);
-  }
+  spinMaxConnecPerTorrent->setEnabled(checked);
 }
 
 void options_imp::enableSystrayOptions() {
@@ -1158,55 +1171,30 @@ void options_imp::enableMaxUploadsLimitPerTorrent(bool checked){
 }
 
 void options_imp::enableFilter(bool checked){
-  if(checked){
-    lblFilterPath->setEnabled(true);
-    textFilterPath->setEnabled(true);
-    browseFilterButton->setEnabled(true);
-  }else{
-    lblFilterPath->setEnabled(false);
-    textFilterPath->setEnabled(false);
-    browseFilterButton->setEnabled(false);
-  }
+  lblFilterPath->setEnabled(checked);
+  textFilterPath->setEnabled(checked);
+  browseFilterButton->setEnabled(checked);
 }
 
 void options_imp::enableRSS(bool checked) {
-  if(checked){
-    groupRSSSettings->setEnabled(true);
-  }else{
-    groupRSSSettings->setEnabled(false);
-  }
+  groupRSSSettings->setEnabled(checked);
 }
 
 void options_imp::enableUploadLimit(bool checked){
-  if(checked){
-    spinUploadLimit->setEnabled(true);
-  }else{
-    spinUploadLimit->setEnabled(false);
-  }
+  spinUploadLimit->setEnabled(checked);
 }
 
 void options_imp::enableApplyButton(){
-  if(!applyButton->isEnabled()){
-    applyButton->setEnabled(true);
-  }
+  applyButton->setEnabled(true);
 }
 
 void options_imp::enableShareRatio(bool checked){
-  if(checked){
-    spinRatio->setEnabled(true);
-  }else{
-    spinRatio->setEnabled(false);
-  }
+  spinRatio->setEnabled(checked);
 }
 
 void options_imp::enableDHTPortSettings(bool checked) {
-  if(checked){
-    spinDHTPort->setEnabled(true);
-    dh_port_lbl->setEnabled(true);
-  }else{
-    spinDHTPort->setEnabled(false);
-    dh_port_lbl->setEnabled(false);
-  }
+  spinDHTPort->setEnabled(checked);
+  dh_port_lbl->setEnabled(checked);
 }
 
 void options_imp::enableDHTSettings(bool checked) {
@@ -1221,11 +1209,7 @@ void options_imp::enableDHTSettings(bool checked) {
 
 
 void options_imp::enableDeleteRatio(bool checked){
-  if(checked){
-    spinMaxRatio->setEnabled(true);
-  }else{
-    spinMaxRatio->setEnabled(false);
-  }
+  spinMaxRatio->setEnabled(checked);
 }
 
 void options_imp::enablePeerProxy(int index){
@@ -1253,60 +1237,34 @@ void options_imp::enablePeerProxy(int index){
 }
 
 void options_imp::enableHTTPProxy(int index){
-  if(index){
-    //enable
-    lblProxyIP_http->setEnabled(true);
-    textProxyIP_http->setEnabled(true);
-    lblProxyPort_http->setEnabled(true);
-    spinProxyPort_http->setEnabled(true);
-    checkProxyAuth_http->setEnabled(true);
-  }else{
-    //disable
-    lblProxyIP_http->setEnabled(false);
-    textProxyIP_http->setEnabled(false);
-    lblProxyPort_http->setEnabled(false);
-    spinProxyPort_http->setEnabled(false);
-    checkProxyAuth_http->setEnabled(false);
+  bool enable = (index > 0);
+  lblProxyIP_http->setEnabled(enable);
+  textProxyIP_http->setEnabled(enable);
+  lblProxyPort_http->setEnabled(enable);
+  spinProxyPort_http->setEnabled(enable);
+  checkProxyAuth_http->setEnabled(enable);
+
+  if(!enable)
     checkProxyAuth_http->setChecked(false);
-  }
 }
 
 void options_imp::enablePeerProxyAuth(bool checked){
-  if(checked){
-    lblProxyUsername->setEnabled(true);
-    lblProxyPassword->setEnabled(true);
-    textProxyUsername->setEnabled(true);
-    textProxyPassword->setEnabled(true);
-  }else{
-    lblProxyUsername->setEnabled(false);
-    lblProxyPassword->setEnabled(false);
-    textProxyUsername->setEnabled(false);
-    textProxyPassword->setEnabled(false);
-  }
+  lblProxyUsername->setEnabled(checked);
+  lblProxyPassword->setEnabled(checked);
+  textProxyUsername->setEnabled(checked);
+  textProxyPassword->setEnabled(checked);
 }
 
 void options_imp::enableHTTPProxyAuth(bool checked){
-  if(checked){
-    lblProxyUsername_http->setEnabled(true);
-    lblProxyPassword_http->setEnabled(true);
-    textProxyUsername_http->setEnabled(true);
-    textProxyPassword_http->setEnabled(true);
-  }else{
-    lblProxyUsername_http->setEnabled(false);
-    lblProxyPassword_http->setEnabled(false);
-    textProxyUsername_http->setEnabled(false);
-    textProxyPassword_http->setEnabled(false);
-  }
+  lblProxyUsername_http->setEnabled(checked);
+  lblProxyPassword_http->setEnabled(checked);
+  textProxyUsername_http->setEnabled(checked);
+  textProxyPassword_http->setEnabled(checked);
 }
 
 void options_imp::enableDirScan(bool checked){
-  if(checked){
-    textScanDir->setEnabled(true);
-    browseScanDirButton->setEnabled(true);
-  }else{
-    textScanDir->setEnabled(false);
-    browseScanDirButton->setEnabled(false);
-  }
+  textScanDir->setEnabled(checked);
+  browseScanDirButton->setEnabled(checked);
 }
 
 bool options_imp::isSlashScreenDisabled() const {

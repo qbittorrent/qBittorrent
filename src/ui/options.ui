@@ -143,6 +143,15 @@
        </item>
        <item>
         <property name="text">
+         <string>Speed</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/Icons/oxygen/chronometer.png</normaloff>:/Icons/oxygen/chronometer.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>Bittorrent</string>
         </property>
         <property name="textAlignment">
@@ -1113,11 +1122,11 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>602</width>
-              <height>514</height>
+              <width>620</width>
+              <height>482</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_18">
+            <layout class="QVBoxLayout" name="verticalLayout_28">
              <item>
               <layout class="QHBoxLayout">
                <item>
@@ -1325,15 +1334,80 @@ QGroupBox {
               </widget>
              </item>
              <item>
+              <widget class="QGroupBox" name="groupBox_2">
+               <property name="title">
+                <string>Peer connections</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_25">
+                <item>
+                 <widget class="QCheckBox" name="checkResolveCountries">
+                  <property name="text">
+                   <string>Resolve peer countries</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkResolveHosts">
+                  <property name="text">
+                   <string>Resolve peer host names</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_2">
+        <layout class="QVBoxLayout" name="verticalLayout_34">
+         <item>
+          <widget class="QScrollArea" name="scrollArea_9">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_9">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>620</width>
+              <height>490</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_33">
+             <item>
               <widget class="QGroupBox" name="bandwidthBox">
                <property name="title">
-                <string>Global bandwidth limiting</string>
+                <string>Global speed limits</string>
                </property>
-               <layout class="QVBoxLayout">
+               <layout class="QVBoxLayout" name="verticalLayout_18">
                 <item>
-                 <layout class="QHBoxLayout">
+                 <layout class="QHBoxLayout" name="_3">
                   <item>
-                   <layout class="QVBoxLayout">
+                   <layout class="QVBoxLayout" name="_5">
                     <item>
                      <widget class="QCheckBox" name="checkUploadLimit">
                       <property name="minimumSize">
@@ -1366,9 +1440,9 @@ QGroupBox {
                    </layout>
                   </item>
                   <item>
-                   <layout class="QVBoxLayout">
+                   <layout class="QVBoxLayout" name="_18">
                     <item>
-                     <layout class="QHBoxLayout">
+                     <layout class="QHBoxLayout" name="_19">
                       <item>
                        <widget class="QSpinBox" name="spinUploadLimit">
                         <property name="enabled">
@@ -1404,7 +1478,7 @@ QGroupBox {
                      </layout>
                     </item>
                     <item>
-                     <layout class="QHBoxLayout">
+                     <layout class="QHBoxLayout" name="_20">
                       <item>
                        <widget class="QSpinBox" name="spinDownloadLimit">
                         <property name="enabled">
@@ -1460,40 +1534,239 @@ QGroupBox {
               </widget>
              </item>
              <item>
-              <widget class="QGroupBox" name="groupBox_2">
+              <widget class="QGroupBox" name="groupBox_6">
                <property name="title">
-                <string>Peer connections</string>
+                <string>Alternative global speed limits</string>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_25">
+               <layout class="QVBoxLayout" name="verticalLayout_32">
                 <item>
-                 <widget class="QCheckBox" name="checkResolveCountries">
-                  <property name="text">
-                   <string>Resolve peer countries</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_12">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_31">
+                    <item>
+                     <widget class="QLabel" name="label_11">
+                      <property name="text">
+                       <string>Upload:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_12">
+                      <property name="text">
+                       <string>Download:</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_30">
+                    <item>
+                     <widget class="QSpinBox" name="spinUploadLimitAlt">
+                      <property name="minimum">
+                       <number>1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>1000000</number>
+                      </property>
+                      <property name="value">
+                       <number>10</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinDownloadLimitAlt">
+                      <property name="minimum">
+                       <number>1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>1000000</number>
+                      </property>
+                      <property name="value">
+                       <number>10</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_29">
+                    <item>
+                     <widget class="QLabel" name="label_14">
+                      <property name="text">
+                       <string>KiB/s</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_15">
+                      <property name="text">
+                       <string>KiB/s</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_16">
+                    <property name="minimumSize">
+                     <size>
+                      <width>48</width>
+                      <height>48</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>48</width>
+                      <height>48</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="pixmap">
+                     <pixmap resource="../icons.qrc">:/Icons/slow48.png</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkResolveHosts">
-                  <property name="text">
-                   <string>Resolve peer host names</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_13">
+                  <item>
+                   <widget class="QCheckBox" name="check_schedule">
+                    <property name="text">
+                     <string>Scheduled times:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTimeEdit" name="schedule_from">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="time">
+                     <time>
+                      <hour>8</hour>
+                      <minute>0</minute>
+                      <second>0</second>
+                     </time>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_17">
+                    <property name="text">
+                     <string extracomment="time1 to time2">to</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTimeEdit" name="schedule_to">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="time">
+                     <time>
+                      <hour>20</hour>
+                      <minute>0</minute>
+                      <second>0</second>
+                     </time>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_9">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_14">
+                  <item>
+                   <widget class="QLabel" name="label_18">
+                    <property name="text">
+                     <string>On days:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="schedule_days">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Every day</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Week days</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Week ends</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_10">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </widget>
              </item>
              <item>
-              <spacer name="verticalSpacer_7">
+              <spacer name="verticalSpacer_2">
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
                  <width>20</width>
-                 <height>40</height>
+                 <height>58</height>
                 </size>
                </property>
               </spacer>
@@ -1501,9 +1774,6 @@ QGroupBox {
             </layout>
            </widget>
           </widget>
-         </item>
-         <item>
-          <layout class="QVBoxLayout"/>
          </item>
         </layout>
        </widget>
@@ -1936,8 +2206,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>484</width>
+              <height>312</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2370,8 +2640,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>290</width>
+              <height>124</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2467,8 +2737,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>219</width>
+              <height>221</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2634,8 +2904,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>452</width>
+              <height>192</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
