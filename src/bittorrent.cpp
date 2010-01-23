@@ -287,7 +287,12 @@ void Bittorrent::configureSession() {
     addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg( misc::toQString(new_listenPort)));
   }
   // * Global download limit
-  int down_limit = Preferences::getGlobalDownloadLimit();
+  bool alternative_speeds = Preferences::isAltBandwidthEnabled();
+  int down_limit;
+  if(alternative_speeds)
+    down_limit = Preferences::getAltGlobalDownloadLimit();
+  else
+    down_limit = Preferences::getGlobalDownloadLimit();
   if(down_limit <= 0) {
     // Download limit disabled
     setDownloadRateLimit(-1);
@@ -295,7 +300,11 @@ void Bittorrent::configureSession() {
     // Enabled
     setDownloadRateLimit(down_limit*1024);
   }
-  int up_limit = Preferences::getGlobalUploadLimit();
+  int up_limit;
+  if(alternative_speeds)
+    up_limit = Preferences::getAltGlobalUploadLimit();
+  else
+    up_limit = Preferences::getGlobalUploadLimit();
   // * Global Upload limit
   if(up_limit <= 0) {
     // Upload limit disabled
