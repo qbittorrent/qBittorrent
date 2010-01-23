@@ -459,6 +459,7 @@ void TransferListWidget::refreshList() {
     }
 
   }
+  QStringList bad_hashes;
   for(int i=0; i<listModel->rowCount(); ++i) {
     int s = updateTorrent(i);
     switch(s) {
@@ -484,10 +485,18 @@ void TransferListWidget::refreshList() {
       ++nb_seeding;
       ++nb_inactive;
       break;
+    case STATE_INVALID:
+      bad_hashes << getHashFromRow(i);
+      break;
     default:
       break;
     }
   }
+  // Remove bad torrents from list
+  foreach(QString hash, bad_hashes) {
+    deleteTorrent(getRowFromHash(hash), false);
+  }
+  // Update status filters counters
   emit torrentStatusUpdate(nb_downloading, nb_seeding, nb_active, nb_inactive);
   repaint();
 }
