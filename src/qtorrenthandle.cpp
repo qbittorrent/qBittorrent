@@ -432,6 +432,15 @@ bool QTorrentHandle::priv() const {
   return h.get_torrent_info().priv();
 }
 
+QString QTorrentHandle::root_path() const {
+  Q_ASSERT(h.is_valid());
+  if(num_files() == 0) return "";
+  QStringList path_list = misc::toQString(h.get_torrent_info().file_at(0).path.string()).split(QDir::separator());
+  if(path_list.size() > 1)
+    return save_path()+QDir::separator()+path_list.first();
+  return save_path();
+}
+
 //
 // Setters
 //

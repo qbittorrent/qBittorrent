@@ -529,7 +529,7 @@ void TransferListWidget::torrentDoubleClicked(QModelIndex index) {
     }
     break;
   case OPEN_DEST:
-    QDesktopServices::openUrl("file://" + h.save_path());
+    QDesktopServices::openUrl("file://" + h.root_path());
     break;
   }
 }
@@ -663,7 +663,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
   foreach(const QModelIndex &index, selectedIndexes) {
     QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(mapToSource(index).row()));
     if(h.is_valid()) {
-      QString savePath = h.save_path();
+      QString savePath = h.root_path();
       if(!pathsList.contains(savePath)) {
         pathsList.append(savePath);
         QDesktopServices::openUrl(QUrl(QString("file://")+savePath));

@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.2
     - BUGFIX: Fix overwrite check when renaming a folder in a torrent
     - BUGFIX: Force a recheck after renaming files to avoid overwriting
+    - BUGFIX: Improve "Open destination folder" behavior
     - COSMETIC: Improved transfer speed display in peers list
 
 * Wed Jan 20 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.1
