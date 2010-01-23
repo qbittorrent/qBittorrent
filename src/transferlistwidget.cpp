@@ -446,6 +446,19 @@ void TransferListWidget::refreshList() {
   // Refresh only if displayed
   if(main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
   unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0;
+  if(BTSession->getSession()->get_torrents().size() != (uint)listModel->rowCount()) {
+    // Oups, we have torrents that are not displayed, fix that
+    std::vector<torrent_handle> torrents = BTSession->getSession()->get_torrents();
+    std::vector<torrent_handle>::iterator itr = torrents.begin();
+    while(itr != torrents.end()) {
+      QTorrentHandle h(*itr);
+      if(h.is_valid() && getRowFromHash(h.hash()) < 0) {
+        addTorrent(h);
+      }
+      itr++;
+    }
+
+  }
   for(int i=0; i<listModel->rowCount(); ++i) {
     int s = updateTorrent(i);
     switch(s) {
