@@ -137,7 +137,7 @@ protected:
   QDateTime parseDate(const QString &string) {
     QString str = string.trimmed();
     if (str.isEmpty())
-      return QDateTime();
+      return QDateTime::currentDateTime();
 
     int nyear  = 6;   // indexes within string to values
     int nmonth = 4;
@@ -155,12 +155,12 @@ protected:
       bool h1 = (parts[3] == QLatin1String("-"));
       bool h2 = (parts[5] == QLatin1String("-"));
       if (h1 != h2)
-        return QDateTime();
+        return QDateTime::currentDateTime();
     } else {
       // Check for the obsolete form "Wdy Mon DD HH:MM:SS YYYY"
       rx = QRegExp("^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$");
       if (str.indexOf(rx))
-        return QDateTime();
+        return QDateTime::currentDateTime();
       nyear  = 7;
       nmonth = 2;
       nday   = 3;
@@ -176,12 +176,12 @@ protected:
     int hour   = parts[nhour].toInt(&ok[2]);
     int minute = parts[nmin].toInt(&ok[3]);
     if (!ok[0] || !ok[1] || !ok[2] || !ok[3])
-      return QDateTime();
+      return QDateTime::currentDateTime();
     int second = 0;
     if (!parts[nsec].isEmpty()) {
       second = parts[nsec].toInt(&ok[0]);
       if (!ok[0])
-        return QDateTime();
+        return QDateTime::currentDateTime();
     }
     bool leapSecond = (second == 60);
     if (leapSecond)
@@ -247,11 +247,11 @@ protected:
     }
     QDate qdate(year, month+1, day);   // convert date, and check for out-of-range
     if (!qdate.isValid())
-      return QDateTime();
+      return QDateTime::currentDateTime();
     QDateTime result(qdate, QTime(hour, minute, second));
     if (!result.isValid()
       ||  (dayOfWeek >= 0  &&  result.date().dayOfWeek() != dayOfWeek+1))
-      return QDateTime();    // invalid date/time, or weekday doesn't correspond with date
+      return QDateTime::currentDateTime();    // invalid date/time, or weekday doesn't correspond with date
     if (!offset) {
       result.setTimeSpec(Qt::UTC);
     }
@@ -259,7 +259,7 @@ protected:
       // Validate a leap second time. Leap seconds are inserted after 23:59:59 UTC.
       // Convert the time to UTC and check that it is 00:00:00.
       if ((hour*3600 + minute*60 + 60 - offset + 86400*5) % 86400)   // (max abs(offset) is 100 hours)
-        return QDateTime();    // the time isn't the last second of the day
+        return QDateTime::currentDateTime();    // the time isn't the last second of the day
     }
     return result;
   }

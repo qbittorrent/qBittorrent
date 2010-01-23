@@ -37,7 +37,7 @@ public:
   }
 
   ~FeedList() {
-    delete unread_item;
+    //delete unread_item;
   }
 
   void itemAdded(QTreeWidgetItem *item, RssFile* file) {
