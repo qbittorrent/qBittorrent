@@ -41,9 +41,8 @@
 #include "misc.h"
 using namespace libtorrent;
 
+enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7};
 enum TreeItemType {TFILE, FOLDER, ROOT};
-#define IGNORED 0
-#define NORMAL 1
 
 class TreeItem {
 private:
@@ -71,7 +70,7 @@ public:
     itemData << QVariant((qulonglong)f.size);
     total_done = 0;
     itemData << 0.; // Progress;
-    itemData << 1; // Priority
+    itemData << NORMAL; // Priority
     if(parent) {
       parent->appendChild(this);
       parent->updateSize();
@@ -89,7 +88,7 @@ public:
     itemData << 0.; // Size
     itemData << 0.; // Progress;
     total_done = 0;
-    itemData << 1; // Priority
+    itemData << NORMAL; // Priority
     if(parent) {
       parent->appendChild(this);
     }
@@ -308,7 +307,7 @@ public:
   TorrentFilesModel(QObject *parent=0): QAbstractItemModel(parent) {
     files_index = 0;
     QList<QVariant> rootData;
-    rootData << tr("Name") << tr("Size") << tr("Progress");
+    rootData << tr("Name") << tr("Size") << tr("Progress") << tr("Priority");
     rootItem = new TreeItem(rootData);
   }
 
@@ -360,9 +359,9 @@ public:
       TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
       if(item->getPriority() != value.toInt()) {
         if(value.toInt() == Qt::Checked)
-          item->setPriority(1);
+          item->setPriority(NORMAL);
         else
-          item->setPriority(0);
+          item->setPriority(IGNORED);
         emit filteredFilesChanged();
         emit dataChanged(this->index(0,0), this->index(rowCount(), 0));
       }
@@ -379,6 +378,9 @@ public:
         break;
       case 2:
         item->setProgress(value.toDouble());
+        break;
+      case 3:
+        item->setPriority(value.toInt());
         break;
       default:
         return false;
@@ -410,7 +412,7 @@ public:
         return QIcon(":/Icons/oxygen/file.png");
     }
     if(role == Qt::CheckStateRole) {
-      if(item->data(3).toInt() == 0)
+      if(item->data(3).toInt() == IGNORED)
         return Qt::Unchecked;
       return Qt::Checked;
     }
