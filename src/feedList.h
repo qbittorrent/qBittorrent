@@ -154,7 +154,9 @@ signals:
 
 protected slots:
   void updateCurrentFeed(QTreeWidgetItem* new_item) {
-    if((new_item && getItemType(new_item) == RssFile::STREAM) || new_item == unread_item)
+    if(!new_item) return;
+    if(!mapping.contains(new_item)) return;
+    if((getItemType(new_item) == RssFile::STREAM) || new_item == unread_item)
       current_feed = new_item;
   }
 
