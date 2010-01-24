@@ -171,180 +171,180 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="207"/>
+        <location filename="../bittorrent.cpp" line="209"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>&apos;%1&apos; 는 설정된 최대 공유 비율에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="287"/>
+        <location filename="../bittorrent.cpp" line="289"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>큐비토런트는 다음 포트을  사용하고 있습니다: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="332"/>
+        <location filename="../bittorrent.cpp" line="352"/>
         <source>UPnP support [ON]</source>
         <translation>UPnp 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="335"/>
+        <location filename="../bittorrent.cpp" line="355"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="340"/>
+        <location filename="../bittorrent.cpp" line="360"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="343"/>
+        <location filename="../bittorrent.cpp" line="363"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="370"/>
+        <location filename="../bittorrent.cpp" line="390"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP 사용자 에이전트: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="387"/>
+        <location filename="../bittorrent.cpp" line="407"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>사용중인 디스크 케쉬 용량: %1 MiB</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="420"/>
+        <location filename="../bittorrent.cpp" line="440"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT 지원 [사용], 포트:&apos;UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="422"/>
-        <location filename="../bittorrent.cpp" line="426"/>
+        <location filename="../bittorrent.cpp" line="442"/>
+        <location filename="../bittorrent.cpp" line="446"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="430"/>
+        <location filename="../bittorrent.cpp" line="450"/>
         <source>PeX support [ON]</source>
         <translation>PeX 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="432"/>
+        <location filename="../bittorrent.cpp" line="452"/>
         <source>PeX support [OFF]</source>
         <translation>PeX 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="435"/>
+        <location filename="../bittorrent.cpp" line="455"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Pex 기능을 재설정하기 위해서 프로그램을 다시 시작해야 합니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="440"/>
+        <location filename="../bittorrent.cpp" line="460"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="443"/>
+        <location filename="../bittorrent.cpp" line="463"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="455"/>
+        <location filename="../bittorrent.cpp" line="475"/>
         <source>Encryption support [ON]</source>
         <translation>암호화 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="460"/>
+        <location filename="../bittorrent.cpp" line="480"/>
         <source>Encryption support [FORCED]</source>
         <translation>암호화 지원 [강제사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="465"/>
+        <location filename="../bittorrent.cpp" line="485"/>
         <source>Encryption support [OFF]</source>
         <translation>암호화 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="574"/>
+        <location filename="../bittorrent.cpp" line="594"/>
         <source>The Web UI is listening on port %1</source>
         <translation>웹 사용자 인터페이스는 포트 %1 를 사용하고 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="576"/>
+        <location filename="../bittorrent.cpp" line="596"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>웹 유저 인터페이스 에러 - 웹 유저 인터페이스를 다음 포트에 연결 할수 없습니다:%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="694"/>
+        <location filename="../bittorrent.cpp" line="728"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록과 디스크에서 &apos;%1&apos; 를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="696"/>
+        <location filename="../bittorrent.cpp" line="730"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록에서 &apos;%1&apos;를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="746"/>
+        <location filename="../bittorrent.cpp" line="780"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos;는 유효한 마그넷 URI (magnet URI)가 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="766"/>
-        <location filename="../bittorrent.cpp" line="926"/>
-        <location filename="../bittorrent.cpp" line="929"/>
+        <location filename="../bittorrent.cpp" line="800"/>
+        <location filename="../bittorrent.cpp" line="960"/>
+        <location filename="../bittorrent.cpp" line="963"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 전송목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="862"/>
-        <location filename="../bittorrent.cpp" line="1072"/>
-        <location filename="../bittorrent.cpp" line="1077"/>
+        <location filename="../bittorrent.cpp" line="896"/>
+        <location filename="../bittorrent.cpp" line="1111"/>
+        <location filename="../bittorrent.cpp" line="1116"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="864"/>
-        <location filename="../bittorrent.cpp" line="1074"/>
-        <location filename="../bittorrent.cpp" line="1079"/>
+        <location filename="../bittorrent.cpp" line="898"/>
+        <location filename="../bittorrent.cpp" line="1113"/>
+        <location filename="../bittorrent.cpp" line="1118"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="900"/>
-        <location filename="../bittorrent.cpp" line="904"/>
+        <location filename="../bittorrent.cpp" line="934"/>
+        <location filename="../bittorrent.cpp" line="938"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>토렌트 파일을 해독할수 없음: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="907"/>
+        <location filename="../bittorrent.cpp" line="941"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>파일에 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1331"/>
+        <location filename="../bittorrent.cpp" line="1370"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1333"/>
+        <location filename="../bittorrent.cpp" line="1372"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1723"/>
+        <location filename="../bittorrent.cpp" line="1762"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1734"/>
+        <location filename="../bittorrent.cpp" line="1773"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
@@ -353,32 +353,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트을 사용할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1873"/>
+        <location filename="../bittorrent.cpp" line="1912"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1878"/>
+        <location filename="../bittorrent.cpp" line="1917"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1893"/>
+        <location filename="../bittorrent.cpp" line="1932"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1894"/>
+        <location filename="../bittorrent.cpp" line="1933"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1899"/>
+        <location filename="../bittorrent.cpp" line="1938"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2005"/>
+        <location filename="../bittorrent.cpp" line="2044"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -1808,12 +1808,12 @@ list:</source>
         <translation type="obsolete"> 업로딩 속도:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="631"/>
+        <location filename="../GUI.cpp" line="616"/>
         <source>Open Torrent Files</source>
         <translation>토런트  파일 열기</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="632"/>
+        <location filename="../GUI.cpp" line="617"/>
         <source>Torrent Files</source>
         <translation>토런트 파일</translation>
     </message>
@@ -1867,12 +1867,12 @@ list?</source>
 파일을 지우고 싶으세요?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="529"/>
+        <location filename="../GUI.cpp" line="514"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="529"/>
+        <location filename="../GUI.cpp" line="514"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
@@ -1978,8 +1978,8 @@ download list?</source>
         <translation type="obsolete"> 개발자: 크리스토프 두메스 :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="527"/>
-        <location filename="../GUI.cpp" line="811"/>
+        <location filename="../GUI.cpp" line="512"/>
+        <location filename="../GUI.cpp" line="796"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
@@ -2256,7 +2256,7 @@ Please close the other one first.</source>
         <translation type="obsolete">검색 엔진</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="84"/>
+        <location filename="../GUI.cpp" line="83"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>큐비토런트 %1</translation>
@@ -2324,15 +2324,15 @@ Please close the other one first.</source>
         <translation type="obsolete">큐비토런트 %1가 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="806"/>
-        <location filename="../GUI.cpp" line="814"/>
+        <location filename="../GUI.cpp" line="791"/>
+        <location filename="../GUI.cpp" line="799"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="808"/>
-        <location filename="../GUI.cpp" line="817"/>
+        <location filename="../GUI.cpp" line="793"/>
+        <location filename="../GUI.cpp" line="802"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>업로딩 속도: %1 KiB/s</translation>
@@ -2353,7 +2353,7 @@ Please close the other one first.</source>
         <translation type="obsolete">대기중</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="527"/>
+        <location filename="../GUI.cpp" line="512"/>
         <source>Are you sure you want to quit?</source>
         <translation>정말로 종료하시겠습니까?</translation>
     </message>
@@ -2416,13 +2416,13 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="305"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1가 다운로드를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="310"/>
+        <location filename="../GUI.cpp" line="311"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O 에러</translation>
@@ -2477,7 +2477,7 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos;을 다운 중입니다, 잠시 기다려 주세요...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="314"/>
+        <location filename="../GUI.cpp" line="315"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation>오류 발생 (디스크가 꽉찼습니까?), &apos;%1&apos;가 정지 되었습니다.</translation>
@@ -2488,17 +2488,17 @@ Please close the other one first.</source>
         <translation>검색</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="258"/>
+        <location filename="../GUI.cpp" line="259"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="305"/>
         <source>Download completion</source>
         <translation>다운 완료</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="310"/>
+        <location filename="../GUI.cpp" line="311"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2507,22 +2507,32 @@ Please close the other one first.</source>
  이유: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="323"/>
+        <location filename="../GUI.cpp" line="324"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="732"/>
+        <location filename="../GUI.cpp" line="717"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>큐비토런트 %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="823"/>
+        <location filename="../GUI.cpp" line="808"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>큐비토렌트 %1 (다운:%2/초, 업:%3/초)</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="887"/>
+        <source>Use normal speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="890"/>
+        <source>Use alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -2589,18 +2599,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">비율</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="321"/>
+        <location filename="../GUI.cpp" line="322"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="406"/>
+        <location filename="../GUI.cpp" line="407"/>
         <source>Url download error</source>
         <translation>Url 다운로드 오류</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="406"/>
+        <location filename="../GUI.cpp" line="407"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>다음 주소(Url)에서 파일을 다운로드할수 없습니다: %1, 이유:%2.</translation>
     </message>
@@ -2626,29 +2636,29 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="325"/>
+        <location filename="../GUI.cpp" line="326"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="327"/>
+        <location filename="../GUI.cpp" line="328"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="412"/>
+        <location filename="../GUI.cpp" line="413"/>
         <source>Global Upload Speed Limit</source>
         <translation>전체 업로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="430"/>
+        <location filename="../GUI.cpp" line="431"/>
         <source>Global Download Speed Limit</source>
         <translation>전체 다운 속도 제한</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="528"/>
+        <location filename="../GUI.cpp" line="513"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>현재 몇몇 파일은 아직 전송 중에 있습니다. 큐비토렌트를 종료하시겠습니까?</translation>
@@ -2717,7 +2727,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">업로드</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="704"/>
+        <location filename="../GUI.cpp" line="689"/>
         <source>Options were saved successfully.</source>
         <translation>설정이 성공적으로 저장되었습니다.</translation>
     </message>
@@ -3054,6 +3064,11 @@ No further notices will be issued.</source>
         <translation>로그 창</translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="268"/>
+        <source>Use alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Connexion Status</source>
         <translation type="obsolete">연결 상태</translation>
     </message>
@@ -3240,9 +3255,10 @@ No further notices will be issued.</source>
 <context>
     <name>PeerListDelegate</name>
     <message>
-        <location filename="../peerlistdelegate.h" line="59"/>
-        <source>KiB/s</source>
-        <translation></translation>
+        <location filename="../peerlistdelegate.h" line="60"/>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3384,182 +3400,187 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/options.ui" line="146"/>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="155"/>
         <source>Bittorrent</source>
         <translation>비트토렌트</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="161"/>
+        <location filename="../ui/options.ui" line="170"/>
         <source>Proxy</source>
         <translation>프럭시 (Proxy)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="170"/>
+        <location filename="../ui/options.ui" line="179"/>
         <source>IP Filter</source>
         <translation>IP 필터</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="185"/>
+        <location filename="../ui/options.ui" line="194"/>
         <source>Web UI</source>
         <translation>웹 유저 인터페이스</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="200"/>
-        <location filename="../ui/options.ui" line="2645"/>
+        <location filename="../ui/options.ui" line="209"/>
+        <location filename="../ui/options.ui" line="2924"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="246"/>
+        <location filename="../ui/options.ui" line="255"/>
         <source>User interface</source>
         <translation>사용자 인터페이스</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="254"/>
+        <location filename="../ui/options.ui" line="263"/>
         <source>Language:</source>
         <translation>언어:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="283"/>
+        <location filename="../ui/options.ui" line="292"/>
         <source>(Requires restart)</source>
         <translation>(재시작해야함)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="310"/>
+        <location filename="../ui/options.ui" line="319"/>
         <source>Visual style:</source>
         <translation>시각 효과:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="318"/>
+        <location filename="../ui/options.ui" line="327"/>
         <source>System default</source>
         <translation>시스템  기본 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="323"/>
+        <location filename="../ui/options.ui" line="332"/>
         <source>Plastique style (KDE like)</source>
         <translation>플라스티큐 스타일 (KDE 스타일)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="328"/>
+        <location filename="../ui/options.ui" line="337"/>
         <source>Cleanlooks style (Gnome like)</source>
         <translation>깨끗한 스타일 (GNOME)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="333"/>
+        <location filename="../ui/options.ui" line="342"/>
         <source>Motif style (Unix like)</source>
         <translation>모티프 스타일(유닉스 스타일)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="338"/>
+        <location filename="../ui/options.ui" line="347"/>
         <source>CDE style (Common Desktop Environment like)</source>
         <translation>CDE 스타일(Common Desktop Environment)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="361"/>
+        <location filename="../ui/options.ui" line="370"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
         <translation>종료시 다운로드 목록에 파일이 남아있다면 종료 확인하기 </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="371"/>
+        <location filename="../ui/options.ui" line="380"/>
         <source>Display top toolbar</source>
         <translation>상위 도구메뉴 보이기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="381"/>
+        <location filename="../ui/options.ui" line="390"/>
         <source>Disable splash screen</source>
         <translation>시작시 팝업 화면 숨기기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="388"/>
+        <location filename="../ui/options.ui" line="397"/>
         <source>Display current speed in title bar</source>
         <translation>현재 속도를 타이틀 바에 표시하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="395"/>
+        <location filename="../ui/options.ui" line="404"/>
         <source>Transfer list</source>
         <translation>전송 목록</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="403"/>
+        <location filename="../ui/options.ui" line="412"/>
         <source>Refresh interval:</source>
         <translation>새로보기 간격:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="423"/>
+        <location filename="../ui/options.ui" line="432"/>
         <source>ms</source>
         <translation>밀리세컨드</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="445"/>
+        <location filename="../ui/options.ui" line="454"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>각 행마다 구별하기 쉽게 색입히기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="470"/>
+        <location filename="../ui/options.ui" line="479"/>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
         <translation>더블 클릭시:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="478"/>
+        <location filename="../ui/options.ui" line="487"/>
         <source>Downloading:</source>
         <translation>다운로딩중:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="495"/>
-        <location filename="../ui/options.ui" line="529"/>
+        <location filename="../ui/options.ui" line="504"/>
+        <location filename="../ui/options.ui" line="538"/>
         <source>Start/Stop</source>
         <translation>시작/멈춤</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="500"/>
-        <location filename="../ui/options.ui" line="534"/>
+        <location filename="../ui/options.ui" line="509"/>
+        <location filename="../ui/options.ui" line="543"/>
         <source>Open folder</source>
         <translation>폴더 열기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="521"/>
+        <location filename="../ui/options.ui" line="530"/>
         <source>Completed:</source>
         <translation>완료됨:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="552"/>
+        <location filename="../ui/options.ui" line="561"/>
         <source>System tray icon</source>
         <translation>시스템 트레이 이이콘</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="558"/>
+        <location filename="../ui/options.ui" line="567"/>
         <source>Disable system tray icon</source>
         <translation>시스템 트레이 아이템 보이기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="565"/>
+        <location filename="../ui/options.ui" line="574"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>창을 닫은 후 시스템 트레이 이이콘으로</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="572"/>
+        <location filename="../ui/options.ui" line="581"/>
         <source>Minimize to tray</source>
         <translation>최소화후 시스템 트레이 이이콘으로</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="582"/>
+        <location filename="../ui/options.ui" line="591"/>
         <source>Start minimized</source>
         <translation>최소화하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="589"/>
+        <location filename="../ui/options.ui" line="598"/>
         <source>Show notification balloons in tray</source>
         <translation>트레이에서 알림창 띄우기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="636"/>
+        <location filename="../ui/options.ui" line="645"/>
         <source>File system</source>
         <translation>파일 시스템</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="645"/>
+        <location filename="../ui/options.ui" line="654"/>
         <source>QGroupBox::title {
 font-weight: normal;
 margin-left: -3px;
@@ -3576,23 +3597,23 @@ margin-left: -3px;
 }</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="654"/>
+        <location filename="../ui/options.ui" line="663"/>
         <source>Destination Folder:</source>
         <translation>저장 폴더:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="694"/>
+        <location filename="../ui/options.ui" line="703"/>
         <source>Append the torrent&apos;s label</source>
         <translation>토렌트 라벨 붙이기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="704"/>
+        <location filename="../ui/options.ui" line="713"/>
         <source>Use a different folder for incomplete downloads:</source>
         <translation>다운 중인 파일은 다른 폴더에 저장하기:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="716"/>
-        <location filename="../ui/options.ui" line="774"/>
+        <location filename="../ui/options.ui" line="725"/>
+        <location filename="../ui/options.ui" line="783"/>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
@@ -3601,383 +3622,433 @@ margin-left: -3px;
 }</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="756"/>
+        <location filename="../ui/options.ui" line="765"/>
         <source>Automatically load .torrent files from:</source>
         <translation>토렌트 자동으로 로드하기:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="808"/>
+        <location filename="../ui/options.ui" line="817"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>불완전 파일에 .!qB 확장자 붙이기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="815"/>
+        <location filename="../ui/options.ui" line="824"/>
         <source>Pre-allocate all files</source>
         <translation>파일 받기전 디스크에 자리잡아 놓기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="824"/>
+        <location filename="../ui/options.ui" line="833"/>
         <source>Disk cache:</source>
         <translation>디스그케쉬:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="844"/>
+        <location filename="../ui/options.ui" line="853"/>
         <source>MiB (advanced)</source>
         <translation>메가바이트(전문)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="871"/>
+        <location filename="../ui/options.ui" line="880"/>
         <source>Torrent queueing</source>
         <translation>토렌트 나열하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="877"/>
+        <location filename="../ui/options.ui" line="886"/>
         <source>Enable queueing system</source>
         <translation>우선 순위 배열 시스템 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="889"/>
+        <location filename="../ui/options.ui" line="898"/>
         <source>Maximum active downloads:</source>
         <translation>최대 활성 다운로드:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="932"/>
+        <location filename="../ui/options.ui" line="941"/>
         <source>Maximum active uploads:</source>
         <translation>최대 활성 업로드:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="975"/>
+        <location filename="../ui/options.ui" line="984"/>
         <source>Maximum active torrents:</source>
         <translation>최대 활성 토렌트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1024"/>
+        <location filename="../ui/options.ui" line="1033"/>
         <source>When adding a torrent</source>
         <translation>토렌트 추가시</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1032"/>
+        <location filename="../ui/options.ui" line="1041"/>
         <source>Display torrent content and some options</source>
         <translation>토렌트 내용과 선택사항을 보이기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1059"/>
+        <location filename="../ui/options.ui" line="1068"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>자동 다운로드 시작 사용하기 않기 </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1126"/>
+        <location filename="../ui/options.ui" line="1135"/>
         <source>Listening port</source>
         <translation>포토듣기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1134"/>
+        <location filename="../ui/options.ui" line="1143"/>
         <source>Port used for incoming connections:</source>
         <translation>송신 연결 포트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1154"/>
+        <location filename="../ui/options.ui" line="1163"/>
         <source>Random</source>
         <translation>무작위</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1176"/>
+        <location filename="../ui/options.ui" line="1185"/>
         <source>Enable UPnP port mapping</source>
         <translation>UPnP 포트 맵핑 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1186"/>
+        <location filename="../ui/options.ui" line="1195"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>NAT-PMP 포트 맵핑 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1201"/>
+        <location filename="../ui/options.ui" line="1210"/>
         <source>Connections limit</source>
         <translation>연결 제한</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1209"/>
+        <location filename="../ui/options.ui" line="1218"/>
         <source>Global maximum number of connections:</source>
         <translation>최대 전체 연결수:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1252"/>
+        <location filename="../ui/options.ui" line="1261"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>토렌트당 최대 연결수:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1292"/>
+        <location filename="../ui/options.ui" line="1301"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>토렌트당 최대 업로드수:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1330"/>
         <source>Global bandwidth limiting</source>
-        <translation>전제 속도 제한하기</translation>
+        <translation type="obsolete">전제 속도 제한하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1346"/>
+        <location filename="../ui/options.ui" line="1420"/>
+        <location filename="../ui/options.ui" line="1549"/>
         <source>Upload:</source>
         <translation>업로드:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1362"/>
+        <location filename="../ui/options.ui" line="1436"/>
+        <location filename="../ui/options.ui" line="1556"/>
         <source>Download:</source>
         <translation>다운로드:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1400"/>
-        <location filename="../ui/options.ui" line="1436"/>
+        <location filename="../ui/options.ui" line="1474"/>
+        <location filename="../ui/options.ui" line="1510"/>
+        <location filename="../ui/options.ui" line="1597"/>
+        <location filename="../ui/options.ui" line="1604"/>
         <source>KiB/s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1465"/>
+        <location filename="../ui/options.ui" line="1339"/>
         <source>Peer connections</source>
         <translation>사용자간 연결</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1471"/>
+        <location filename="../ui/options.ui" line="1345"/>
         <source>Resolve peer countries</source>
         <translation>사용자 국가 재설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1481"/>
+        <location filename="../ui/options.ui" line="1355"/>
         <source>Resolve peer host names</source>
         <translation>사용자 호스트 재설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1530"/>
+        <location filename="../ui/options.ui" line="1404"/>
+        <source>Global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1539"/>
+        <source>Alternative global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1655"/>
+        <source>Scheduled times:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1665"/>
+        <location filename="../ui/options.ui" line="1695"/>
+        <source>hh:mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1682"/>
+        <source>to</source>
+        <extracomment>time1 to time2</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1726"/>
+        <source>On days:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1737"/>
+        <source>Every day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1742"/>
+        <source>Week days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1747"/>
+        <source>Week ends</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1809"/>
         <source>Bittorrent features</source>
         <translation>비토렌트 기능</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1536"/>
+        <location filename="../ui/options.ui" line="1815"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>DHT 네트웍크 사용하기  (Decentralized)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1546"/>
+        <location filename="../ui/options.ui" line="1825"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>비토렌트와 DHT에 다른 포트 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1577"/>
+        <location filename="../ui/options.ui" line="1856"/>
         <source>DHT port:</source>
         <translation>DHT 포트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1615"/>
+        <location filename="../ui/options.ui" line="1894"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation>피어 익스체인지(Pex) 사용하기(재시작해야함)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1625"/>
+        <location filename="../ui/options.ui" line="1904"/>
         <source>Enable Local Peer Discovery</source>
         <translation>로컬 네트웍크내 공유자 찾기 (Local Peer Discovery) 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1637"/>
+        <location filename="../ui/options.ui" line="1916"/>
         <source>Encryption:</source>
         <translation>암호화(Encryption):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1645"/>
+        <location filename="../ui/options.ui" line="1924"/>
         <source>Enabled</source>
         <translation>사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1650"/>
+        <location filename="../ui/options.ui" line="1929"/>
         <source>Forced</source>
         <translation>강제</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1655"/>
+        <location filename="../ui/options.ui" line="1934"/>
         <source>Disabled</source>
         <translation>사용하지 않기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1712"/>
+        <location filename="../ui/options.ui" line="1991"/>
         <source>KTorrent</source>
         <translation>케이토렌트(KTorrent)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1769"/>
+        <location filename="../ui/options.ui" line="2048"/>
         <source>Reset to latest software version</source>
         <translation>최신 버전으로 재설정하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1794"/>
+        <location filename="../ui/options.ui" line="2073"/>
         <source>Share ratio settings</source>
         <translation>공유 비율(Radio) 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1802"/>
+        <location filename="../ui/options.ui" line="2081"/>
         <source>Desired ratio:</source>
         <translation>원하는 할당비(Ratio):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1856"/>
+        <location filename="../ui/options.ui" line="2135"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>공유비율 도달시 완료파일을 목록에서 지우기:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1947"/>
+        <location filename="../ui/options.ui" line="2226"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>HTTP 통신(트렉커, 웹 시드, 검색엔진)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1984"/>
-        <location filename="../ui/options.ui" line="2187"/>
+        <location filename="../ui/options.ui" line="2263"/>
+        <location filename="../ui/options.ui" line="2466"/>
         <source>Host:</source>
         <translation>호스트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2145"/>
+        <location filename="../ui/options.ui" line="2424"/>
         <source>Peer Communications</source>
         <translation>사용자간 대화</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2166"/>
+        <location filename="../ui/options.ui" line="2445"/>
         <source>SOCKS4</source>
         <translation>소켓4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1955"/>
-        <location filename="../ui/options.ui" line="2153"/>
+        <location filename="../ui/options.ui" line="2234"/>
+        <location filename="../ui/options.ui" line="2432"/>
         <source>Type:</source>
         <translation>종류:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1681"/>
+        <location filename="../ui/options.ui" line="1960"/>
         <source>Client whitelisting workaround</source>
         <translation>사용자 희망사항 차안</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1689"/>
+        <location filename="../ui/options.ui" line="1968"/>
         <source>Identify as:</source>
         <translation>확인되어질 사용자:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1697"/>
+        <location filename="../ui/options.ui" line="1976"/>
         <source>qBittorrent</source>
         <translation>큐비토렌트</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1702"/>
+        <location filename="../ui/options.ui" line="1981"/>
         <source>Vuze</source>
         <translation>뷰즈(Vuze)</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1707"/>
+        <location filename="../ui/options.ui" line="1986"/>
         <source>µTorrent</source>
         <translation>뮤토렌트(µTorrent)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1723"/>
+        <location filename="../ui/options.ui" line="2002"/>
         <source>Version:</source>
         <translation>버젼:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1740"/>
+        <location filename="../ui/options.ui" line="2019"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translation>빌드:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1963"/>
-        <location filename="../ui/options.ui" line="2161"/>
+        <location filename="../ui/options.ui" line="2242"/>
+        <location filename="../ui/options.ui" line="2440"/>
         <source>(None)</source>
         <translation>(없음)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1968"/>
-        <location filename="../ui/options.ui" line="2176"/>
+        <location filename="../ui/options.ui" line="2247"/>
+        <location filename="../ui/options.ui" line="2455"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2010"/>
-        <location filename="../ui/options.ui" line="2213"/>
-        <location filename="../ui/options.ui" line="2500"/>
+        <location filename="../ui/options.ui" line="2289"/>
+        <location filename="../ui/options.ui" line="2492"/>
+        <location filename="../ui/options.ui" line="2779"/>
         <source>Port:</source>
         <translation>포트:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2053"/>
-        <location filename="../ui/options.ui" line="2256"/>
-        <location filename="../ui/options.ui" line="2539"/>
+        <location filename="../ui/options.ui" line="2332"/>
+        <location filename="../ui/options.ui" line="2535"/>
+        <location filename="../ui/options.ui" line="2818"/>
         <source>Authentication</source>
         <translation>인증</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2067"/>
-        <location filename="../ui/options.ui" line="2270"/>
-        <location filename="../ui/options.ui" line="2547"/>
+        <location filename="../ui/options.ui" line="2346"/>
+        <location filename="../ui/options.ui" line="2549"/>
+        <location filename="../ui/options.ui" line="2826"/>
         <source>Username:</source>
         <translation>아이디:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2077"/>
-        <location filename="../ui/options.ui" line="2280"/>
-        <location filename="../ui/options.ui" line="2554"/>
+        <location filename="../ui/options.ui" line="2356"/>
+        <location filename="../ui/options.ui" line="2559"/>
+        <location filename="../ui/options.ui" line="2833"/>
         <source>Password:</source>
         <translation>비밀번호:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1973"/>
-        <location filename="../ui/options.ui" line="2171"/>
+        <location filename="../ui/options.ui" line="2252"/>
+        <location filename="../ui/options.ui" line="2450"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2384"/>
+        <location filename="../ui/options.ui" line="2663"/>
         <source>Filter Settings</source>
         <translation>필터 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2390"/>
+        <location filename="../ui/options.ui" line="2669"/>
         <source>Activate IP Filtering</source>
         <translation>IP 필터링 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2406"/>
+        <location filename="../ui/options.ui" line="2685"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>필터 경로(.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2481"/>
+        <location filename="../ui/options.ui" line="2760"/>
         <source>Enable Web User Interface</source>
         <translation>웹사용자인터페이스 사용</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2494"/>
+        <location filename="../ui/options.ui" line="2773"/>
         <source>HTTP Server</source>
         <translation>HTTP 서버</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2651"/>
+        <location filename="../ui/options.ui" line="2930"/>
         <source>Enable RSS support</source>
         <translation>RSS 지원을 사용하기</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2661"/>
+        <location filename="../ui/options.ui" line="2940"/>
         <source>RSS settings</source>
         <translation>RSS 설정</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2698"/>
+        <location filename="../ui/options.ui" line="2977"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS 새로보가 간격:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2718"/>
+        <location filename="../ui/options.ui" line="2997"/>
         <source>minutes</source>
         <translation>분</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2742"/>
+        <location filename="../ui/options.ui" line="3021"/>
         <source>Maximum number of articles per feed:</source>
         <translation>피그당 최대 글수:</translation>
     </message>
@@ -3997,19 +4068,45 @@ margin-left: -3px;
         <translation type="obsolete">무시</translation>
     </message>
     <message>
+        <location filename="../proplistdelegate.h" line="89"/>
+        <source>Not downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../proplistdelegate.h" line="92"/>
+        <source>High</source>
+        <comment>High priority</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../proplistdelegate.h" line="95"/>
+        <source>Maximum</source>
+        <comment>Maximum priority</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../proplistdelegate.h" line="98"/>
+        <source>Normal</source>
+        <comment>Normal priority</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../proplistdelegate.h" line="148"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">보통</translation>
+        <translation type="unfinished">보통</translation>
     </message>
     <message>
+        <location filename="../proplistdelegate.h" line="149"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">높음</translation>
+        <translation type="unfinished">높음</translation>
     </message>
     <message>
+        <location filename="../proplistdelegate.h" line="150"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">최고</translation>
+        <translation type="unfinished">최고</translation>
     </message>
 </context>
 <context>
@@ -4254,12 +4351,12 @@ margin-left: -3px;
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="574"/>
-        <location filename="../propertieswidget.cpp" line="608"/>
+        <location filename="../propertieswidget.cpp" line="612"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>이 이름은 이 폴더에서 이미 사용중에 있습니다. 다른 이름을 입력해 주십시오.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="607"/>
+        <location filename="../propertieswidget.cpp" line="611"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 변경할수 없습니다</translation>
     </message>
@@ -4268,23 +4365,23 @@ margin-left: -3px;
         <translation type="obsolete">없음 - 접근할수 없습니까?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="639"/>
+        <location filename="../propertieswidget.cpp" line="648"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 웹 완전체(Url seed)</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="640"/>
+        <location filename="../propertieswidget.cpp" line="649"/>
         <source>New url seed:</source>
         <translation>새 웹 완전체(Url seed):</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="645"/>
+        <location filename="../propertieswidget.cpp" line="654"/>
         <source>qBittorrent</source>
         <translation>큐비토렌트</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="646"/>
+        <location filename="../propertieswidget.cpp" line="655"/>
         <source>This url seed is already in the list.</source>
         <translation>이 웹완전체(Url seed)는 이미 목록에 포함되어 있습니다.</translation>
     </message>
@@ -4293,18 +4390,18 @@ margin-left: -3px;
         <translation type="obsolete">트렉커 리스트(Trackers List)를 비울수 없습니다. </translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
-        <location filename="../propertieswidget.cpp" line="693"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
+        <location filename="../propertieswidget.cpp" line="702"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
+        <location filename="../propertieswidget.cpp" line="709"/>
         <source>Save path creation error</source>
         <translation>저장 경로에 설정 오류</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
+        <location filename="../propertieswidget.cpp" line="709"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
@@ -4882,70 +4979,80 @@ Changelog:
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../statusbar.h" line="75"/>
-        <location filename="../statusbar.h" line="155"/>
+        <location filename="../statusbar.h" line="78"/>
+        <location filename="../statusbar.h" line="174"/>
         <source>Connection status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="75"/>
-        <location filename="../statusbar.h" line="155"/>
+        <location filename="../statusbar.h" line="78"/>
+        <location filename="../statusbar.h" line="174"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>직접적으로  연결되지 않음. 네트워크 설정에 오류가 있어 보입니다.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="76"/>
+        <location filename="../statusbar.h" line="79"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
         <translation>다운: &apos;%1&apos; B/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="80"/>
+        <location filename="../statusbar.h" line="91"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>업: %1 B/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="84"/>
-        <location filename="../statusbar.h" line="162"/>
+        <location filename="../statusbar.h" line="95"/>
+        <location filename="../statusbar.h" line="181"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 노드</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="147"/>
-        <location filename="../statusbar.h" line="152"/>
+        <location filename="../statusbar.h" line="166"/>
+        <location filename="../statusbar.h" line="171"/>
         <source>Connection Status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="147"/>
+        <location filename="../statusbar.h" line="166"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>오프라인(Offline)은 선택된 포트의 수신용 연결 오류로 발생할수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="152"/>
+        <location filename="../statusbar.h" line="171"/>
         <source>Online</source>
         <translation>온라인</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="168"/>
+        <location filename="../statusbar.h" line="187"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>다운: &apos;%1&apos;/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="169"/>
+        <location filename="../statusbar.h" line="188"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>업: %1/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="174"/>
+        <location filename="../statusbar.h" line="194"/>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../statusbar.h" line="197"/>
+        <source>Click to enable alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../statusbar.h" line="207"/>
         <source>Global Download Speed Limit</source>
         <translation>전체 다운 속도 제한</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="190"/>
+        <location filename="../statusbar.h" line="226"/>
         <source>Global Upload Speed Limit</source>
         <translation>전체 업로드 속도 제한</translation>
     </message>
@@ -4953,23 +5060,24 @@ Changelog:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="311"/>
+        <location filename="../torrentfilesmodel.h" line="310"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="311"/>
+        <location filename="../torrentfilesmodel.h" line="310"/>
         <source>Size</source>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="311"/>
+        <location filename="../torrentfilesmodel.h" line="310"/>
         <source>Progress</source>
         <translation>진행상황</translation>
     </message>
     <message>
+        <location filename="../torrentfilesmodel.h" line="310"/>
         <source>Priority</source>
-        <translation type="obsolete">우선순위</translation>
+        <translation type="unfinished">우선순위</translation>
     </message>
 </context>
 <context>
@@ -5271,27 +5379,27 @@ Changelog:
         <translation type="obsolete">&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="808"/>
+        <location filename="../transferlistwidget.cpp" line="830"/>
         <source>Column visibility</source>
         <translation>세로행 숨기기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="934"/>
+        <location filename="../transferlistwidget.cpp" line="956"/>
         <source>Start</source>
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="936"/>
+        <location filename="../transferlistwidget.cpp" line="958"/>
         <source>Pause</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="960"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="940"/>
+        <location filename="../transferlistwidget.cpp" line="962"/>
         <source>Preview file</source>
         <translation>미리보기</translation>
     </message>
@@ -5351,118 +5459,118 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1045"/>
+        <location filename="../transferlistwidget.cpp" line="1067"/>
         <source>Label</source>
         <translation>라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="713"/>
+        <location filename="../transferlistwidget.cpp" line="735"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>토렌트 다운로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="749"/>
+        <location filename="../transferlistwidget.cpp" line="771"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>토렌트 업로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="876"/>
+        <location filename="../transferlistwidget.cpp" line="898"/>
         <source>New Label</source>
         <translation>새 라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="876"/>
+        <location filename="../transferlistwidget.cpp" line="898"/>
         <source>Label:</source>
         <translation>라벨:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="881"/>
+        <location filename="../transferlistwidget.cpp" line="903"/>
         <source>Invalid label name</source>
         <translation>잘못된 라벨 이름</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="881"/>
+        <location filename="../transferlistwidget.cpp" line="903"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 이름에 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="897"/>
+        <location filename="../transferlistwidget.cpp" line="919"/>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="897"/>
+        <location filename="../transferlistwidget.cpp" line="919"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="942"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>Limit upload rate</source>
         <translation>업로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="944"/>
+        <location filename="../transferlistwidget.cpp" line="966"/>
         <source>Limit download rate</source>
         <translation>다운로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="946"/>
+        <location filename="../transferlistwidget.cpp" line="968"/>
         <source>Open destination folder</source>
         <translation>저장 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="948"/>
+        <location filename="../transferlistwidget.cpp" line="970"/>
         <source>Buy it</source>
         <translation>구입하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="950"/>
+        <location filename="../transferlistwidget.cpp" line="972"/>
         <source>Increase priority</source>
         <translation>우선순위(priority)를 높이기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="952"/>
+        <location filename="../transferlistwidget.cpp" line="974"/>
         <source>Decrease priority</source>
         <translation>우선순위(priority)를 낮추기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="954"/>
+        <location filename="../transferlistwidget.cpp" line="976"/>
         <source>Force recheck</source>
         <translation>강제로 재확인하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="956"/>
+        <location filename="../transferlistwidget.cpp" line="978"/>
         <source>Copy magnet link</source>
         <translation>마그넷 링크 (Copy magnet link) 복사하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="981"/>
         <source>Super seeding mode</source>
         <translation>수퍼 공유 모드 (Super seeding mode)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="962"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="964"/>
+        <location filename="../transferlistwidget.cpp" line="986"/>
         <source>Download in sequential order</source>
         <translation>차레대로 다운받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="966"/>
+        <location filename="../transferlistwidget.cpp" line="988"/>
         <source>Download first and last piece first</source>
         <translation>첫번째 조각과 마지막 조각을 먼저 다운받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1046"/>
+        <location filename="../transferlistwidget.cpp" line="1068"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>새라벨...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1047"/>
+        <location filename="../transferlistwidget.cpp" line="1069"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>재설정</translation>
@@ -6742,31 +6850,31 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="346"/>
+        <location filename="../misc.h" line="365"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>바이트</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="346"/>
+        <location filename="../misc.h" line="365"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>킬로바이트</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="346"/>
+        <location filename="../misc.h" line="365"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>메가바이트</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="346"/>
+        <location filename="../misc.h" line="365"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>기가바이트</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="346"/>
+        <location filename="../misc.h" line="365"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>테라바이트</translation>
@@ -6787,7 +6895,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">일</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="497"/>
+        <location filename="../misc.h" line="516"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
@@ -6802,31 +6910,31 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">일</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="345"/>
+        <location filename="../misc.h" line="364"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>알수 없음</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="526"/>
+        <location filename="../misc.h" line="545"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="530"/>
+        <location filename="../misc.h" line="549"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="535"/>
+        <location filename="../misc.h" line="554"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1시간%2분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="540"/>
+        <location filename="../misc.h" line="559"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1일%2시간%3분</translation>
@@ -6928,8 +7036,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">환경설정이 성공적으로 저장되었습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1430"/>
-        <location filename="../options_imp.cpp" line="1432"/>
+        <location filename="../options_imp.cpp" line="1388"/>
+        <location filename="../options_imp.cpp" line="1390"/>
         <source>Choose scan directory</source>
         <translation>스켄할 곳을 선택해주세요</translation>
     </message>
@@ -6938,10 +7046,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1459"/>
-        <location filename="../options_imp.cpp" line="1461"/>
-        <location filename="../options_imp.cpp" line="1473"/>
-        <location filename="../options_imp.cpp" line="1475"/>
+        <location filename="../options_imp.cpp" line="1417"/>
+        <location filename="../options_imp.cpp" line="1419"/>
+        <location filename="../options_imp.cpp" line="1431"/>
+        <location filename="../options_imp.cpp" line="1433"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
@@ -6955,14 +7063,14 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">%1을 읽기전용 모드로 열수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1444"/>
-        <location filename="../options_imp.cpp" line="1446"/>
+        <location filename="../options_imp.cpp" line="1402"/>
+        <location filename="../options_imp.cpp" line="1404"/>
         <source>Choose an ip filter file</source>
         <translation>ip filter 파일 선택</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1444"/>
-        <location filename="../options_imp.cpp" line="1446"/>
+        <location filename="../options_imp.cpp" line="1402"/>
+        <location filename="../options_imp.cpp" line="1404"/>
         <source>Filters</source>
         <translation>필터</translation>
     </message>
@@ -7642,8 +7750,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">맞음</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="210"/>
-        <location filename="../torrentadditiondlg.h" line="213"/>
+        <location filename="../torrentadditiondlg.h" line="194"/>
+        <location filename="../torrentadditiondlg.h" line="197"/>
         <source>Unable to decode torrent file:</source>
         <translation>토런트 파일을 해독 할 수가 없습니다:</translation>
     </message>
@@ -7652,8 +7760,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="403"/>
-        <location filename="../torrentadditiondlg.h" line="405"/>
+        <location filename="../torrentadditiondlg.h" line="388"/>
+        <location filename="../torrentadditiondlg.h" line="390"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
@@ -7666,111 +7774,111 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">알려지지 않음</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="172"/>
+        <location filename="../torrentadditiondlg.h" line="156"/>
         <source>Unable to decode magnet link:</source>
         <translation>마그넷 링크를 읽을 수 없음:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="176"/>
+        <location filename="../torrentadditiondlg.h" line="160"/>
         <source>Magnet Link</source>
         <translation>마그넷 링크</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="261"/>
+        <location filename="../torrentadditiondlg.h" line="245"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="281"/>
+        <location filename="../torrentadditiondlg.h" line="265"/>
         <source>Rename the file</source>
         <translation>파일 이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="282"/>
+        <location filename="../torrentadditiondlg.h" line="266"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="286"/>
-        <location filename="../torrentadditiondlg.h" line="312"/>
+        <location filename="../torrentadditiondlg.h" line="270"/>
+        <location filename="../torrentadditiondlg.h" line="296"/>
         <source>The file could not be renamed</source>
         <translation>이 파일의 이름을 바꿀수 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="287"/>
+        <location filename="../torrentadditiondlg.h" line="271"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>파일 이름에 특수문자가 있습니다. 다른 이름을 입력해주십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="313"/>
-        <location filename="../torrentadditiondlg.h" line="345"/>
+        <location filename="../torrentadditiondlg.h" line="297"/>
+        <location filename="../torrentadditiondlg.h" line="330"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>같은 이름의 파일이 있습니다. 다른 이름을 사용해 주세요.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="344"/>
+        <location filename="../torrentadditiondlg.h" line="329"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 바꿀수 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="386"/>
+        <location filename="../torrentadditiondlg.h" line="371"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(자료를 다운 후에는 %1 의 디스크 공간이 남습니다.)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="389"/>
+        <location filename="../torrentadditiondlg.h" line="374"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(자료를 다운받기 위해서는 %1 의 디스크 공간이 필요합니다)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="428"/>
+        <location filename="../torrentadditiondlg.h" line="413"/>
         <source>Empty save path</source>
         <translation>저장 경로 지우기</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="428"/>
+        <location filename="../torrentadditiondlg.h" line="413"/>
         <source>Please enter a save path</source>
         <translation>저장 경로를 지정해주십시오</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="435"/>
+        <location filename="../torrentadditiondlg.h" line="420"/>
         <source>Save path creation error</source>
         <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="435"/>
+        <location filename="../torrentadditiondlg.h" line="420"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="441"/>
+        <location filename="../torrentadditiondlg.h" line="426"/>
         <source>Invalid label name</source>
         <translation>적절치 않은 라벨 이름입니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="441"/>
+        <location filename="../torrentadditiondlg.h" line="426"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 이름에 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="476"/>
+        <location filename="../torrentadditiondlg.h" line="461"/>
         <source>Seeding mode error</source>
         <translation>공유 모트 오류</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="476"/>
+        <location filename="../torrentadditiondlg.h" line="461"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>파일 검사를 옵션을 선택하셨지만 지정된 폴더에는 로컬 파일이 존재하지 않습니다. 파일 검사 옵션을 비활성화 하시거나 폴더를 재지정하십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="483"/>
+        <location filename="../torrentadditiondlg.h" line="468"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="483"/>
+        <location filename="../torrentadditiondlg.h" line="468"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>

@@ -2390,6 +2390,14 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
     </message>
+    <message>
+        <source>Use normal speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>
@@ -2812,6 +2820,10 @@ No further notices will be issued.</source>
         <source>Visit Website</source>
         <translation>Vizitează Website</translation>
     </message>
+    <message>
+        <source>Use alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -2828,7 +2840,12 @@ No further notices will be issued.</source>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3208,7 +3225,7 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Global bandwidth limiting</source>
-        <translation>Global bandwidth limiting</translation>
+        <translation type="obsolete">Global bandwidth limiting</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -3411,6 +3428,47 @@ QGroupBox {(new line)
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scheduled times:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hh:mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to</source>
+        <extracomment>time1 to time2</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On days:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Week days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Week ends</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -3429,17 +3487,36 @@ QGroupBox {(new line)
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Înaltă</translation>
+        <translation type="unfinished">Înaltă</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Maximală</translation>
+        <translation type="unfinished">Maximală</translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <comment>High priority</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <comment>Maximum priority</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <comment>Normal priority</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4247,6 +4324,14 @@ Changelog:
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</translation>
     </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to enable alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>
@@ -4264,7 +4349,7 @@ Changelog:
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioritate</translation>
+        <translation type="unfinished">Prioritate</translation>
     </message>
 </context>
 <context>

@@ -2478,6 +2478,14 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
     </message>
+    <message>
+        <source>Use normal speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>
@@ -2904,6 +2912,10 @@ No further notices will be issued.</source>
         <source>Visit Website</source>
         <translation>Navštíviť webstránku</translation>
     </message>
+    <message>
+        <source>Use alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -2920,7 +2932,12 @@ No further notices will be issued.</source>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3292,7 +3309,7 @@ QGroupBox {
     </message>
     <message>
         <source>Global bandwidth limiting</source>
-        <translation>Globálny limit pásma</translation>
+        <translation type="obsolete">Globálny limit pásma</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -3495,6 +3512,47 @@ QGroupBox {
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scheduled times:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hh:mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to</source>
+        <extracomment>time1 to time2</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On days:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Week days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Week ends</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -3513,17 +3571,36 @@ QGroupBox {
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Normálna</translation>
+        <translation type="unfinished">Normálna</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Vysoká</translation>
+        <translation type="unfinished">Vysoká</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Maximálna</translation>
+        <translation type="unfinished">Maximálna</translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <comment>High priority</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <comment>Maximum priority</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <comment>Normal priority</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4320,6 +4397,14 @@ Záznam zmien:</translation>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Odpojený. To zvyčajne znamená, že qBittorrent nedokázal počúvať prichádzajúce spojenia na zvolenom porte.</translation>
     </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to enable alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>
@@ -4337,7 +4422,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorita</translation>
+        <translation type="unfinished">Priorita</translation>
     </message>
 </context>
 <context>
