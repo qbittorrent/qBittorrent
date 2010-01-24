@@ -1662,7 +1662,7 @@ QGroupBox {
                      <bool>false</bool>
                     </property>
                     <property name="displayFormat">
-                     <string>hh:mm</string>
+                     <string notr="true">hh:mm</string>
                     </property>
                     <property name="calendarPopup">
                      <bool>false</bool>
@@ -1692,7 +1692,7 @@ QGroupBox {
                      <bool>false</bool>
                     </property>
                     <property name="displayFormat">
-                     <string>hh:mm</string>
+                     <string notr="true">hh:mm</string>
                     </property>
                     <property name="time">
                      <time>
@@ -1798,8 +1798,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>466</width>
-              <height>415</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2913,8 +2913,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>452</width>
-              <height>192</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
