@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.2
+    - FEATURE: Added back file prioritizing in a torrent
     - BUGFIX: Fix issue causing torrents not to be displayed in the list
     - BUGFIX: Make sure invalid torrent are removed from the transfer list
     - BUGFIX: Fix overwrite check when renaming a folder in a torrent

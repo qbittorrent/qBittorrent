@@ -44,7 +44,7 @@
 #include "propertieswidget.h"
 
 // Defines for properties list columns
-enum PropColumn {NAME, SIZE, PROGRESS};
+enum PropColumn {NAME, SIZE, PROGRESS, PRIORITY};
 
 class PropListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -64,26 +64,47 @@ public:
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()){
-        case SIZE:
+    case SIZE:
       QItemDelegate::drawBackground(painter, opt, index);
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
       break;
-        case PROGRESS:{
-            QStyleOptionProgressBarV2 newopt;
-            float progress = index.data().toDouble()*100.;
-            newopt.rect = opt.rect;
-            newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
-            newopt.progress = (int)progress;
-            newopt.maximum = 100;
-            newopt.minimum = 0;
-            newopt.state |= QStyle::State_Enabled;
-            newopt.textVisible = true;
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-            break;
-          }
+    case PROGRESS:{
+        QStyleOptionProgressBarV2 newopt;
+        float progress = index.data().toDouble()*100.;
+        newopt.rect = opt.rect;
+        newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
+        newopt.progress = (int)progress;
+        newopt.maximum = 100;
+        newopt.minimum = 0;
+        newopt.state |= QStyle::State_Enabled;
+        newopt.textVisible = true;
+        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+        break;
+      }
+    case PRIORITY: {
+        QItemDelegate::drawBackground(painter, opt, index);
+        QString text = "";
+        switch(index.data().toInt()) {
+        case 0:
+          text = tr("Ignored");
+          break;
+        case 2:
+          text = tr("High", "High (priority)");
+          break;
+        case 7:
+          text = tr("Maximum", "Maximum (priority)");
+          break;
         default:
-          QItemDelegate::paint(painter, option, index);
+          text = tr("Normal", "Normal (priority)");
+          break;
         }
+        QItemDelegate::drawDisplay(painter, opt, option.rect, text);
+        break;
+      }
+    default:
+      QItemDelegate::paint(painter, option, index);
+      break;
+    }
   }
 
   QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
@@ -96,8 +117,59 @@ public:
     return textRect.size();
   }
 
-  QWidget* createEditor(QWidget *, const QStyleOptionViewItem &/* option */, const QModelIndex &) const {
-    return 0;
+  void setEditorData(QWidget *editor, const QModelIndex &index) const {
+    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    // Set combobox index
+    switch(index.data().toInt()) {
+    case 2:
+      combobox->setCurrentIndex(1);
+      break;
+    case 7:
+      combobox->setCurrentIndex(2);
+      break;
+    default:
+      combobox->setCurrentIndex(0);
+      break;
+    }
+  }
+
+  QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &/* option */, const QModelIndex &index) const {
+    if(index.column() != PRIORITY) return 0;
+    if(properties) {
+      QTorrentHandle h = properties->getCurrentTorrent();
+      if(!h.is_valid() || h.get_torrent_handle().is_seed() || !h.has_metadata()) return 0;
+    }
+    if(index.data().toInt() == 0) {
+      // IGNORED
+      return 0;
+    }
+    QComboBox* editor = new QComboBox(parent);
+    editor->setFocusPolicy(Qt::StrongFocus);
+    editor->addItem(tr("Normal", "Normal (priority)"));
+    editor->addItem(tr("High", "High (priority)"));
+    editor->addItem(tr("Maximum", "Maximum (priority)"));
+    return editor;
+  }
+
+public slots:
+  void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
+    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    int value = combobox->currentIndex();
+    switch(value)  {
+    case 1:
+      model->setData(index, 2); // HIGH
+      break;
+    case 2:
+      model->setData(index, 7); // MAX
+      break;
+    default:
+      model->setData(index, 1); // NORMAL
+    }
+  }
+
+  void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
+    qDebug("UpdateEditor Geometry called");
+    editor->setGeometry(option.rect);
   }
 
 };
