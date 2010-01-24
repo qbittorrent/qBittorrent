@@ -443,6 +443,8 @@ void TransferListWidget::setRefreshInterval(int t) {
 }
 
 void TransferListWidget::refreshList() {
+  // Stop updating the display
+  setUpdatesEnabled(false);
   // Refresh only if displayed
   if(main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
   unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0;
@@ -498,6 +500,8 @@ void TransferListWidget::refreshList() {
   }
   // Update status filters counters
   emit torrentStatusUpdate(nb_downloading, nb_seeding, nb_active, nb_inactive);
+  // Start updating the display
+  setUpdatesEnabled(true);
 }
 
 int TransferListWidget::getRowFromHash(QString hash) const{

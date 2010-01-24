@@ -6,6 +6,8 @@
     - BUGFIX: Force a recheck after renaming files to avoid overwriting
     - BUGFIX: Improve "Open destination folder" behavior
     - BUGFIX: Fix race condition in RSS that could cause a crash on startup
+    - BUGFIX: Improved user friendlyness of size units
+    - BUGFIX: Optimized transfer list repainting
     - COSMETIC: Improved transfer speed display in peers list
 
 * Wed Jan 20 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.1
