@@ -89,13 +89,13 @@ public:
           text = tr("Not downloaded");
           break;
         case 2:
-          text = tr("High", "High priority");
+          text = tr("High", "High (priority)");
           break;
         case 7:
-          text = tr("Maximum", "Maximum priority");
+          text = tr("Maximum", "Maximum (priority)");
           break;
         default:
-          text = tr("Normal", "Normal priority");
+          text = tr("Normal", "Normal (priority)");
           break;
         }
         QItemDelegate::drawDisplay(painter, opt, option.rect, text);
