@@ -1661,6 +1661,12 @@ QGroupBox {
                     <property name="enabled">
                      <bool>false</bool>
                     </property>
+                    <property name="displayFormat">
+                     <string>hh:mm</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>false</bool>
+                    </property>
                     <property name="time">
                      <time>
                       <hour>8</hour>
@@ -1684,6 +1690,9 @@ QGroupBox {
                    <widget class="QTimeEdit" name="schedule_to">
                     <property name="enabled">
                      <bool>false</bool>
+                    </property>
+                    <property name="displayFormat">
+                     <string>hh:mm</string>
                     </property>
                     <property name="time">
                      <time>
@@ -1789,8 +1798,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>466</width>
+              <height>415</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">

@@ -55,6 +55,7 @@ class QTimer;
 class FileSystemWatcher;
 class FilterParserThread;
 class HttpServer;
+class BandwidthScheduler;
 
 class TrackerInfos {
 public:
@@ -92,6 +93,7 @@ private:
   // Bittorrent
   session *s;
   QPointer<QTimer> timerAlerts;
+  QPointer<BandwidthScheduler> bd_scheduler;
   QMap<QUrl, QString> savepath_fromurl;
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
   QStringList torrentsToPausedAfterChecking;
@@ -182,6 +184,7 @@ public slots:
   void startUpTorrents();
   session_proxy asyncDeletion();
   void recheckTorrent(QString hash);
+  void useAlternativeSpeedsLimit(bool alternative);
   /* Needed by Web UI */
   void pauseAllTorrents();
   void pauseTorrent(QString hash);
@@ -261,6 +264,7 @@ signals:
   void metadataReceived(QTorrentHandle &h);
   void savePathChanged(QTorrentHandle &h);
   void newConsoleMessage(QString msg);
+  void alternativeSpeedsModeChanged(bool alternative);
 };
 
 #endif

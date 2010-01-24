@@ -46,6 +46,7 @@
 #endif
 #include "torrentpersistentdata.h"
 #include "httpserver.h"
+#include "bandwidthscheduler.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
 #ifdef LIBTORRENT_0_15
 #include <libtorrent/extensions/lt_trackers.hpp>
@@ -173,9 +174,10 @@ Bittorrent::~Bittorrent() {
   if(filterParser)
     delete filterParser;
   delete downloader;
-  if(FSWatcher) {
+  if(FSWatcher)
     delete FSWatcher;
-  }
+  if(bd_scheduler)
+    delete bd_scheduler;
   // HTTP Server
   if(httpServer)
     delete httpServer;
@@ -312,6 +314,15 @@ void Bittorrent::configureSession() {
   } else {
     // Enabled
     setUploadRateLimit(up_limit*1024);
+  }
+  if(Preferences::isSchedulerEnabled()) {
+    if(!bd_scheduler) {
+      bd_scheduler = new BandwidthScheduler(this);
+      connect(bd_scheduler, SIGNAL(switchToAlternativeMode(bool)), this, SLOT(useAlternativeSpeedsLimit(bool)));
+    }
+    bd_scheduler->start();
+  } else {
+    if(bd_scheduler) delete bd_scheduler;
   }
 #ifndef DISABLE_GUI
   // Resolve countries
@@ -585,6 +596,20 @@ bool Bittorrent::initWebUi(QString username, QString password, int port) {
       addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), "red");
   }
   return success; 
+}
+
+void Bittorrent::useAlternativeSpeedsLimit(bool alternative) {
+  // Save new state to remember it on startup
+  Preferences::setAltBandwidthEnabled(alternative);
+  // Apply settings to the bittorrent session
+  if(alternative) {
+    s->set_download_rate_limit(Preferences::getAltGlobalDownloadLimit()*1024);
+    s->set_upload_rate_limit(Preferences::getAltGlobalUploadLimit()*1024);
+  } else {
+    s->set_download_rate_limit(Preferences::getGlobalDownloadLimit()*1024);
+    s->set_upload_rate_limit(Preferences::getGlobalUploadLimit()*1024);
+  }
+  emit alternativeSpeedsModeChanged(alternative);
 }
 
 void Bittorrent::takeETASamples() {

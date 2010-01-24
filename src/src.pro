@@ -204,7 +204,8 @@ HEADERS += misc.h \
     stacktrace.h \
     torrentpersistentdata.h \
     filesystemwatcher.h \
-    preferences.h
+    preferences.h \
+    bandwidthscheduler.h
 
 contains(DEFINES, DISABLE_GUI) {
     HEADERS += headlessloader.h

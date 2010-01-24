@@ -64,6 +64,7 @@ private:
 
 public:
   StatusBar(QStatusBar *bar, Bittorrent *BTSession): bar(bar), BTSession(BTSession) {
+    connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     container = new QWidget();
     layout = new QGridLayout(container);
     layout->setVerticalSpacing(0);
@@ -198,17 +199,7 @@ public slots:
   }
 
   void toggleAlternativeSpeeds() {
-    bool alt = !Preferences::isAltBandwidthEnabled();
-    Preferences::setAltBandwidthEnabled(alt);
-    if(alt) {
-      BTSession->getSession()->set_download_rate_limit(Preferences::getAltGlobalDownloadLimit()*1024);
-      BTSession->getSession()->set_upload_rate_limit(Preferences::getAltGlobalUploadLimit()*1024);
-    } else {
-      BTSession->getSession()->set_download_rate_limit(Preferences::getGlobalDownloadLimit()*1024);
-      BTSession->getSession()->set_upload_rate_limit(Preferences::getGlobalUploadLimit()*1024);
-    }
-    updateAltSpeedsBtn(alt);
-    emit alternativeSpeedsToggled(alt);
+    BTSession->useAlternativeSpeedsLimit(!Preferences::isAltBandwidthEnabled());
   }
 
   void capDownloadSpeed() {
@@ -246,8 +237,6 @@ public slots:
     }
   }
 
-signals:
-  void alternativeSpeedsToggled(bool alternative);
 };
 
 #endif // STATUSBAR_H
