@@ -44,7 +44,6 @@
 #include <QUrl>
 #include <ctime>
 #include <QDateTime>
-#include <QDesktopWidget>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/date_time/posix_time/conversion.hpp>
 
@@ -52,6 +51,7 @@
 #include <QCoreApplication>
 #else
 #include <QApplication>
+#include <QDesktopWidget>
 #endif
 
 #ifdef Q_WS_WIN
@@ -266,6 +266,7 @@ public:
 #endif
   }
 
+#ifndef DISABLE_GUI
   // Get screen center
   static QPoint screenCenter(QWidget *win) {
     int scrn = 0;
@@ -281,6 +282,7 @@ public:
     QRect desk(QApplication::desktop()->availableGeometry(scrn));
     return QPoint((desk.width() - win->frameGeometry().width()) / 2, (desk.height() - win->frameGeometry().height()) / 2);
   }
+#endif
 
   static QString searchEngineLocation() {
     QString location = QDir::cleanPath(QDesktopServicesDataLocation()
