@@ -2918,7 +2918,12 @@ Pravdepodobne ste to už vedelí, tak to už nebudeme opakovať.</translation>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3506,22 +3511,22 @@ QGroupBox {
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="obsolete">Ignorovaný</translation>
+        <translation type="unfinished">Ignorovaný</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Normálna</translation>
+        <translation type="unfinished">Normálna</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Vysoká</translation>
+        <translation type="unfinished">Vysoká</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Maximálna</translation>
+        <translation type="unfinished">Maximálna</translation>
     </message>
 </context>
 <context>
@@ -4335,7 +4340,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorita</translation>
+        <translation type="unfinished">Priorita</translation>
     </message>
 </context>
 <context>

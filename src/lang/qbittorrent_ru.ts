@@ -3003,7 +3003,12 @@ No further notices will be issued.</source>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>КиБ/с</translation>
+        <translation type="obsolete">КиБ/с</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3591,22 +3596,22 @@ QGroupBox {
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="obsolete">Игнорировано</translation>
+        <translation type="unfinished">Игнорировано</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Обычный</translation>
+        <translation type="unfinished">Обычный</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Высокий</translation>
+        <translation type="unfinished">Высокий</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Максимальный</translation>
+        <translation type="unfinished">Максимальный</translation>
     </message>
 </context>
 <context>
@@ -4442,7 +4447,7 @@ Changelog:
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Приоритет</translation>
+        <translation type="unfinished">Приоритет</translation>
     </message>
 </context>
 <context>

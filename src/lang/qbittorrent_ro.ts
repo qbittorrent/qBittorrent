@@ -2826,7 +2826,12 @@ Probabil cunoașteți aceasta, deci noi nu vă vom mai aminti.</translation>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3422,22 +3427,22 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="obsolete">Ignorat</translation>
+        <translation type="unfinished">Ignorat</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Înaltă</translation>
+        <translation type="unfinished">Înaltă</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Maximală</translation>
+        <translation type="unfinished">Maximală</translation>
     </message>
 </context>
 <context>
@@ -4262,7 +4267,7 @@ Changelog:
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioritate</translation>
+        <translation type="unfinished">Prioritate</translation>
     </message>
 </context>
 <context>

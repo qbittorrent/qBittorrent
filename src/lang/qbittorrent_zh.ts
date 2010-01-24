@@ -3115,7 +3115,12 @@ No further notices will be issued.</source>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3703,22 +3708,22 @@ QGroupBox {
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="obsolete">忽略</translation>
+        <translation type="unfinished">忽略</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">正常</translation>
+        <translation type="unfinished">正常</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">高</translation>
+        <translation type="unfinished">高</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">最大</translation>
+        <translation type="unfinished">最大</translation>
     </message>
 </context>
 <context>
@@ -4552,7 +4557,7 @@ reason: %2.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">优先</translation>
+        <translation type="unfinished">优先</translation>
     </message>
 </context>
 <context>

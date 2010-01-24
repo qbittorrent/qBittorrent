@@ -3035,7 +3035,12 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3623,22 +3628,22 @@ QGroupBox {
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="obsolete">Ignorowany</translation>
+        <translation type="unfinished">Ignorowany</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Normalny</translation>
+        <translation type="unfinished">Normalny</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Wysoki</translation>
+        <translation type="unfinished">Wysoki</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Maksymalny</translation>
+        <translation type="unfinished">Maksymalny</translation>
     </message>
 </context>
 <context>
@@ -4464,7 +4469,7 @@ Zmiany:
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorytet</translation>
+        <translation type="unfinished">Priorytet</translation>
     </message>
 </context>
 <context>

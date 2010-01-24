@@ -1847,7 +1847,12 @@ Du visste antagligen redan detta så vi kommer inte att berätta det igen.</tran
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2435,22 +2440,22 @@ QGroupBox {
     <name>PropListDelegate</name>
     <message>
         <source>Ignored</source>
-        <translation type="obsolete">Ignoreras</translation>
+        <translation type="unfinished">Ignoreras</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Hög</translation>
+        <translation type="unfinished">Hög</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Maximal</translation>
+        <translation type="unfinished">Maximal</translation>
     </message>
 </context>
 <context>
@@ -3182,7 +3187,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioritet</translation>
+        <translation type="unfinished">Prioritet</translation>
     </message>
 </context>
 <context>

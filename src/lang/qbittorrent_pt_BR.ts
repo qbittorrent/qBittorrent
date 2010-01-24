@@ -2896,7 +2896,12 @@ Você com certeza sabe disso e não vamos falar isso novamente.</translation>
     <name>PeerListDelegate</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>/second (i.e. per second)</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3492,22 +3497,22 @@ QGroupBox {
     </message>
     <message>
         <source>Ignored</source>
-        <translation type="obsolete">Ignorado</translation>
+        <translation type="unfinished">Ignorado</translation>
     </message>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="obsolete">Alta</translation>
+        <translation type="unfinished">Alta</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="obsolete">Máxima</translation>
+        <translation type="unfinished">Máxima</translation>
     </message>
 </context>
 <context>
@@ -4410,7 +4415,7 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioridade</translation>
+        <translation type="unfinished">Prioridade</translation>
     </message>
 </context>
 <context>
