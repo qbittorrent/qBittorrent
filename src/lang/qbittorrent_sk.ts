@@ -3583,21 +3583,6 @@ QGroupBox {
         <source>Not downloaded</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>High</source>
-        <comment>High priority</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <comment>Maximum priority</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <comment>Normal priority</comment>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>
