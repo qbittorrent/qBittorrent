@@ -296,7 +296,7 @@ public:
   static void setAltGlobalUploadLimit(int limit) {
     QSettings settings("qBittorrent", "qBittorrent");
     if(limit <= 0) limit = -1;
-    settings.setValue("Preferences/Connection/GlobalUPLimit", limit);
+    settings.setValue("Preferences/Connection/GlobalUPLimitAlt", limit);
   }
 
   static bool isAltBandwidthEnabled() {
