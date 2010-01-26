@@ -1711,6 +1711,11 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           QString hash = h.hash();
           // Remember finished state
           TorrentPersistentData::saveSeedStatus(h);
+#ifdef LIBTORRENT_0_15
+           // Remove .!qB extension if necessary
+          if(appendqBExtension)
+            appendqBextensionToTorrent(h, false);
+#endif
           // Move to download directory if necessary
           if(!defaultTempPath.isEmpty()) {
             // Check if directory is different
