@@ -50,6 +50,7 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
       // Connect to slots
       connect(bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateSpinValue(int)));
       connect(spinBandwidth, SIGNAL(valueChanged(int)), this, SLOT(updateSliderValue(int)));
+      move(misc::screenCenter(this));
     }
 
     ~SpeedLimitDialog(){

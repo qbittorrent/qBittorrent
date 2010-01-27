@@ -379,22 +379,13 @@ void PropertiesWidget::loadDynamicData() {
 }
 
 void PropertiesWidget::loadUrlSeeds(){
-  QStringList already_added;
   listWebSeeds->clear();
-  QStringList url_seeds = h.url_seeds();
-  foreach(const QString &url_seed, url_seeds){
-    if(!url_seed.isEmpty()) {
-      new QListWidgetItem(url_seed, listWebSeeds);
-      already_added << url_seed;
-    }
-  }
-  // Load the hard-coded url seeds
+  qDebug("Loading URL seeds");
   QStringList hc_seeds = h.url_seeds();
-  // Add hard coded url seeds
+  // Add url seeds
   foreach(const QString &hc_seed, hc_seeds){
-    if(!already_added.contains(hc_seed)){
-      new QListWidgetItem(hc_seed, listWebSeeds);
-    }
+    qDebug("Loading URL seed: %s", hc_seed.toLocal8Bit().data());
+    new QListWidgetItem(hc_seed, listWebSeeds);
   }
 }
 
