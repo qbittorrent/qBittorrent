@@ -665,8 +665,11 @@ short RssStream::openRss(){
     }
     return -1;
   }
-  if(!doc.setContent(&fileRss)) {
-    qDebug("can't read temp file, might be empty");
+  QString error_msg = "";
+  int line=-1;
+  int col = -1;
+  if(!doc.setContent(&fileRss, &error_msg, &line, &col)) {
+    qDebug("Error when parsing XML at line %d (col: %d): %s", line, col, error_msg.toLocal8Bit().data());
     fileRss.close();
     if(QFile::exists(filePath)) {
       fileRss.remove();

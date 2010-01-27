@@ -1882,7 +1882,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       else if (tracker_reply_alert* p = dynamic_cast<tracker_reply_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
         if(h.is_valid()){
-          qDebug("Received a tracker reply from %s", p->url.c_str());
+          qDebug("Received a tracker reply from %s (Num_peers=%d)", p->url.c_str(), p->num_peers);
           // Connection was successful now. Remove possible old errors
           QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
           QString tracker_url = misc::toQString(p->url);
