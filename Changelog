@@ -2,6 +2,7 @@
     - BUGFIX: Fix "Append .!qB extension to complete files" (libtorrent v0.15)
     - BUGFIX: Make sure bandwidth limiting dialogs are centered on screen
     - BUGFIX: Added support for HTTP redirection
+    - BUGFIX: Fix compilation error when geoip database is embedded
 
 * Sun Jan 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.2
     - FEATURE: Added back file prioritizing in a torrent

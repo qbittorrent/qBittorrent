@@ -46,7 +46,7 @@ protected:
   static QString geoipFolder(bool embedded=false) {
     if(embedded)
       return ":/geoip/";
-    return misc::qBittorrentPath()+"geoip"+QDir::separator();
+    return misc::QDesktopServicesDataLocation()+"geoip"+QDir::separator();
 #else
   static QString geoipFolder(bool) {
     if(QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))
