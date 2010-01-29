@@ -33,6 +33,7 @@
 
 #include <QNetworkReply>
 #include <QObject>
+#include <QHash>
 
 class QNetworkAccessManager;
 
@@ -41,6 +42,7 @@ class downloadThread : public QObject {
 
 private:
   QNetworkAccessManager *networkManager;
+  QHash<QString, QString> redirect_mapping;
 
 signals:
   void downloadFinished(QString url, QString file_path);
