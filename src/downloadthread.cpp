@@ -56,6 +56,18 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
     // Failure
     emit downloadFailure(url, errorCodeToString(reply->error()));
   } else {
+    QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if(redirection.isValid()) {
+      // We should redirect
+      qDebug("Redirecting from %s to %s", url.toLocal8Bit().data(), redirection.toUrl().toString().toLocal8Bit().data());
+      redirect_mapping.insert(redirection.toUrl().toString(), url);
+      downloadUrl(redirection.toUrl().toString());
+      return;
+    }
+    // Checking if it was redirecting, restoring initial URL
+    if(redirect_mapping.contains(url)) {
+      url = redirect_mapping.take(url);
+    }
     // Success
     QString filePath;
     QTemporaryFile tmpfile;
