@@ -42,7 +42,7 @@
 
 // Defines for download list list columns
 enum TorrentState {STATE_DOWNLOADING, STATE_STALLED_DL, STATE_STALLED_UP, STATE_SEEDING, STATE_PAUSED_DL, STATE_PAUSED_UP, STATE_QUEUED_DL, STATE_QUEUED_UP, STATE_CHECKING_UP, STATE_CHECKING_DL, STATE_INVALID};
-enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_HASH};
+enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_DLLIMIT, TR_UPLIMIT, TR_HASH};
 
 class TransferListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -117,6 +117,17 @@ public:
         QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
         break;
       }
+    case TR_UPLIMIT:
+    case TR_DLLIMIT:{
+      QItemDelegate::drawBackground(painter, opt, index);
+      qlonglong limit = index.data().toLongLong();
+      opt.displayAlignment = Qt::AlignRight;
+      if(limit > 0)
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(limit/1024., 'f', 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)"));
+      else
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
+      break;
+    }
     case TR_ADD_DATE:
     case TR_SEED_DATE:
       QItemDelegate::drawBackground(painter, opt, index);
