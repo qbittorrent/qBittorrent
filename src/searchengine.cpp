@@ -88,6 +88,7 @@ SearchEngine::SearchEngine(GUI *parent, Bittorrent *BTSession) : QWidget(parent)
   // Fill in category combobox
   fillCatCombobox();
   connect(search_pattern, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(displayPatternContextMenu(QPoint)));
+  connect(search_pattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
 }
 
 void SearchEngine::fillCatCombobox() {
@@ -199,6 +200,11 @@ void SearchEngine::saveSearchHistory() {
   settings.setValue("Search/searchHistory",searchHistory.stringList());
 }
 
+void SearchEngine::searchTextEdited(QString) {
+  // Enable search button
+  search_button->setText(tr("Search"));
+}
+
 // Function called when we click on search button
 void SearchEngine::on_search_button_clicked(){
   if(searchProcess->state() != QProcess::NotRunning){
@@ -207,8 +213,12 @@ void SearchEngine::on_search_button_clicked(){
     if(searchTimeout->isActive()) {
       searchTimeout->stop();
     }
-    search_button->setText("Search");
-    return;
+    if(search_button->text() != tr("Search")) {
+      search_button->setText(tr("Search"));
+      return;
+    } else {
+      searchProcess->waitForFinished(1000);
+    }
   }
   // Reload environment variables (proxy)
   searchProcess->setEnvironment(QProcess::systemEnvironment());

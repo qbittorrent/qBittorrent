@@ -125,6 +125,7 @@ protected slots:
   void displayPatternContextMenu(QPoint);
   void createCompleter();
   void fillCatCombobox();
+  void searchTextEdited(QString);
 };
 
 #endif
