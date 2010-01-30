@@ -318,13 +318,13 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;on estetty korruptuneiden osien takia&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1728"/>
+        <location filename="../bittorrent.cpp" line="1733"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiivinen tiedoston %1 lataus torrentissa %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1739"/>
+        <location filename="../bittorrent.cpp" line="1744"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Torrent-tiedostoa %1 ei voitu tulkita.</translation>
     </message>
@@ -333,32 +333,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Minkään annetun portin käyttäminen ei onnistunut.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1878"/>
+        <location filename="../bittorrent.cpp" line="1883"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: portin määritys epäonnistui virhe: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1883"/>
+        <location filename="../bittorrent.cpp" line="1888"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PP: portin määritys onnistui, viesti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1898"/>
+        <location filename="../bittorrent.cpp" line="1903"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Nopean jatkamisen tiedot eivät kelpaa torrentille %1. Tarkistetaan uudestaan...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1899"/>
+        <location filename="../bittorrent.cpp" line="1904"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1904"/>
+        <location filename="../bittorrent.cpp" line="1909"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Jakajien haku osoitteesta %1 epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2010"/>
+        <location filename="../bittorrent.cpp" line="2015"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Ladataan torrenttia ”%1”. Odota...</translation>
@@ -3840,55 +3840,55 @@ QGroupBox {
         <translation>korkeintaan %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="488"/>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="479"/>
+        <location filename="../propertieswidget.cpp" line="500"/>
         <source>I/O Error</source>
         <translation>I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="488"/>
+        <location filename="../propertieswidget.cpp" line="479"/>
         <source>This file does not exist yet.</source>
         <translation>Tiedostoa ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="500"/>
         <source>This folder does not exist yet.</source>
         <translation>Kansiota ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="518"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="538"/>
+        <location filename="../propertieswidget.cpp" line="529"/>
         <source>Rename the file</source>
         <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="539"/>
+        <location filename="../propertieswidget.cpp" line="530"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="543"/>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="534"/>
+        <location filename="../propertieswidget.cpp" line="564"/>
         <source>The file could not be renamed</source>
         <translation>Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="535"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="574"/>
-        <location filename="../propertieswidget.cpp" line="612"/>
+        <location filename="../propertieswidget.cpp" line="565"/>
+        <location filename="../propertieswidget.cpp" line="603"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="611"/>
+        <location filename="../propertieswidget.cpp" line="602"/>
         <source>The folder could not be renamed</source>
         <translation>Kansiota ei voitu nimetä uudelleen</translation>
     </message>
@@ -3897,23 +3897,23 @@ QGroupBox {
         <translation type="obsolete">Ei yhtään - tavoittamattomissa?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="648"/>
+        <location filename="../propertieswidget.cpp" line="639"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi URL-lähde</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="649"/>
+        <location filename="../propertieswidget.cpp" line="640"/>
         <source>New url seed:</source>
         <translation>Uusi URL-lähde:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="654"/>
+        <location filename="../propertieswidget.cpp" line="645"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="655"/>
+        <location filename="../propertieswidget.cpp" line="646"/>
         <source>This url seed is already in the list.</source>
         <translation>URL-jakaja on jo listalla.</translation>
     </message>
@@ -3922,18 +3922,18 @@ QGroupBox {
         <translation type="obsolete">Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
-        <location filename="../propertieswidget.cpp" line="702"/>
+        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="693"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="709"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="709"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
@@ -4483,7 +4483,7 @@ Muutoshistoria:
 <context>
     <name>SpeedLimitDialog</name>
     <message>
-        <location filename="../speedlimitdlg.h" line="86"/>
+        <location filename="../speedlimitdlg.h" line="87"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -4895,27 +4895,27 @@ Muutoshistoria:
         <translation type="obsolete">&amp;Ei</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="830"/>
+        <location filename="../transferlistwidget.cpp" line="833"/>
         <source>Column visibility</source>
         <translation>Sarakkeen näkyvyys</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="956"/>
+        <location filename="../transferlistwidget.cpp" line="959"/>
         <source>Start</source>
         <translation>Käynnistä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="958"/>
+        <location filename="../transferlistwidget.cpp" line="961"/>
         <source>Pause</source>
         <translation>Pysäytä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="960"/>
+        <location filename="../transferlistwidget.cpp" line="963"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="962"/>
+        <location filename="../transferlistwidget.cpp" line="965"/>
         <source>Preview file</source>
         <translation>Esikatsele</translation>
     </message>
@@ -4975,118 +4975,118 @@ Muutoshistoria:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1067"/>
+        <location filename="../transferlistwidget.cpp" line="1070"/>
         <source>Label</source>
         <translation>Nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="735"/>
+        <location filename="../transferlistwidget.cpp" line="738"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrentin latausnopeuden rajoitus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="771"/>
+        <location filename="../transferlistwidget.cpp" line="774"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrentin lähetysnopeuden rajoitin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="898"/>
+        <location filename="../transferlistwidget.cpp" line="901"/>
         <source>New Label</source>
         <translation>Uusi nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="898"/>
+        <location filename="../transferlistwidget.cpp" line="901"/>
         <source>Label:</source>
         <translation>Nimike:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="903"/>
+        <location filename="../transferlistwidget.cpp" line="906"/>
         <source>Invalid label name</source>
         <translation>Virheellinen nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="903"/>
+        <location filename="../transferlistwidget.cpp" line="906"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="919"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>Rename</source>
         <translation>Nimeä uudelleen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="919"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="964"/>
+        <location filename="../transferlistwidget.cpp" line="967"/>
         <source>Limit upload rate</source>
         <translation>Rajoita lähetysnopeus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="966"/>
+        <location filename="../transferlistwidget.cpp" line="969"/>
         <source>Limit download rate</source>
         <translation>Rajoita latausnopeus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="968"/>
+        <location filename="../transferlistwidget.cpp" line="971"/>
         <source>Open destination folder</source>
         <translation>Avaa kohdekansio</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="970"/>
+        <location filename="../transferlistwidget.cpp" line="973"/>
         <source>Buy it</source>
         <translation>Osta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="972"/>
+        <location filename="../transferlistwidget.cpp" line="975"/>
         <source>Increase priority</source>
         <translation>Nosta prioriteettia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="974"/>
+        <location filename="../transferlistwidget.cpp" line="977"/>
         <source>Decrease priority</source>
         <translation>Laske prioriteettia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="976"/>
+        <location filename="../transferlistwidget.cpp" line="979"/>
         <source>Force recheck</source>
         <translation>Pakota tarkistamaan uudelleen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="978"/>
+        <location filename="../transferlistwidget.cpp" line="981"/>
         <source>Copy magnet link</source>
         <translation>Kopioi magnet-linkki</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="981"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Super seeding mode</source>
         <translation>super seed -tila</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="987"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="989"/>
         <source>Download in sequential order</source>
         <translation>Lataa järjestyksessä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="991"/>
         <source>Download first and last piece first</source>
         <translation>Lataa ensin ensimmäinen ja viimeinen osa</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1068"/>
+        <location filename="../transferlistwidget.cpp" line="1071"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Uusi...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1069"/>
+        <location filename="../transferlistwidget.cpp" line="1072"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Palauta</translation>
@@ -5849,118 +5849,118 @@ Muutoshistoria:
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="75"/>
-        <location filename="../downloadthread.cpp" line="78"/>
+        <location filename="../downloadthread.cpp" line="87"/>
+        <location filename="../downloadthread.cpp" line="90"/>
         <source>I/O Error</source>
         <translation>I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="134"/>
+        <location filename="../downloadthread.cpp" line="146"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Kohdekoneen nimeä ei löytynyt (epäkelpo palvelinnimi)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="136"/>
+        <location filename="../downloadthread.cpp" line="148"/>
         <source>The operation was canceled</source>
         <translation>Toiminto peruttiin</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="138"/>
+        <location filename="../downloadthread.cpp" line="150"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Vastapää katkaisi yhteyden ennenaikaisesti, ennenkuin vastaus saatiin eheänä ja käsiteltiin</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="140"/>
+        <location filename="../downloadthread.cpp" line="152"/>
         <source>The connection to the remote server timed out</source>
         <translation>Yhteys vastapäähän aikakatkaistiin</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="142"/>
+        <location filename="../downloadthread.cpp" line="154"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS-kättely epäonnistui</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="144"/>
+        <location filename="../downloadthread.cpp" line="156"/>
         <source>The remote server refused the connection</source>
         <translation>Vastapää ei hyväksynyt yhteyttä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="146"/>
+        <location filename="../downloadthread.cpp" line="158"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Välityspalvelin ei hyväksynyt yhteyttä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="148"/>
+        <location filename="../downloadthread.cpp" line="160"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Välityspalvelin sulki yhteyden ennenaikaisesti</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="150"/>
+        <location filename="../downloadthread.cpp" line="162"/>
         <source>The proxy host name was not found</source>
         <translation>Välityspalvelimen nimeä ei voitu ratkaista</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="152"/>
+        <location filename="../downloadthread.cpp" line="164"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Yhteys välityspalvelimeen aikakatkaistiin tai välityspalvlein ei vastannut ajoissa lähetettyyn pyyntöön</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="154"/>
+        <location filename="../downloadthread.cpp" line="166"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Välityspalvelin vaatii autentikoinnin vastatakseen pyyntöön mutta ei hyväksynyt annettuja tietoja</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="156"/>
+        <location filename="../downloadthread.cpp" line="168"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Pääsy sisältöön estettiin (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="158"/>
+        <location filename="../downloadthread.cpp" line="170"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Sisältöön pyydetty toiminto ei ole sallittu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="160"/>
+        <location filename="../downloadthread.cpp" line="172"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Sisältöä ei löytynyt palvelimelta (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="162"/>
+        <location filename="../downloadthread.cpp" line="174"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Palvelin vaatii autentikoinnin tarjotakseen sisältöä mutta annettuja tietoja ei hyyväksytty</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="164"/>
+        <location filename="../downloadthread.cpp" line="176"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Verkkoyhteys-API ei palvele koska yhteyskäytäntöä ei tunneta</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="166"/>
+        <location filename="../downloadthread.cpp" line="178"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Pyydetty toiminto ei käy tällä yhteyskäytännöllä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="168"/>
+        <location filename="../downloadthread.cpp" line="180"/>
         <source>An unknown network-related error was detected</source>
         <translation>Tuntematon verkko-ongelma</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="170"/>
+        <location filename="../downloadthread.cpp" line="182"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Tuntematon välityspalvelinongelma</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="172"/>
+        <location filename="../downloadthread.cpp" line="184"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Tuntematon sisältöongelma</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="174"/>
+        <location filename="../downloadthread.cpp" line="186"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Virhe yhteyskäytännössä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="176"/>
+        <location filename="../downloadthread.cpp" line="188"/>
         <source>Unknown error</source>
         <translation>Tuntematon virhe</translation>
     </message>

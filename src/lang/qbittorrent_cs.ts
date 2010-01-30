@@ -314,13 +314,13 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1728"/>
+        <location filename="../bittorrent.cpp" line="1733"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1739"/>
+        <location filename="../bittorrent.cpp" line="1744"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nelze dekódovat soubor torrentu %1.</translation>
     </message>
@@ -329,32 +329,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nelze naslouchat na žádném z udaných portů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1878"/>
+        <location filename="../bittorrent.cpp" line="1883"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1883"/>
+        <location filename="../bittorrent.cpp" line="1888"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1898"/>
+        <location filename="../bittorrent.cpp" line="1903"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1899"/>
+        <location filename="../bittorrent.cpp" line="1904"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1904"/>
+        <location filename="../bittorrent.cpp" line="1909"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2010"/>
+        <location filename="../bittorrent.cpp" line="2015"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
@@ -3175,55 +3175,55 @@ QGroupBox {
         <translation></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="488"/>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="479"/>
+        <location filename="../propertieswidget.cpp" line="500"/>
         <source>I/O Error</source>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="488"/>
+        <location filename="../propertieswidget.cpp" line="479"/>
         <source>This file does not exist yet.</source>
         <translation>Tento soubor dosud neexistuje.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="500"/>
         <source>This folder does not exist yet.</source>
         <translation>Tento adresář dosud neexistuje.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="518"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>Rename...</source>
         <translation>Přejmenovat...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="538"/>
+        <location filename="../propertieswidget.cpp" line="529"/>
         <source>Rename the file</source>
         <translation>Přejmenovat soubor</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="539"/>
+        <location filename="../propertieswidget.cpp" line="530"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="543"/>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="534"/>
+        <location filename="../propertieswidget.cpp" line="564"/>
         <source>The file could not be renamed</source>
         <translation>Soubor nelze přejmenovat</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="535"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Název souboru obsahuje nepovolené znaky, zvolte prosím jiný.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="574"/>
-        <location filename="../propertieswidget.cpp" line="612"/>
+        <location filename="../propertieswidget.cpp" line="565"/>
+        <location filename="../propertieswidget.cpp" line="603"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Tento název je již v tomto adresáři použit. Vyberte prosím jiný. název.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="611"/>
+        <location filename="../propertieswidget.cpp" line="602"/>
         <source>The folder could not be renamed</source>
         <translation>Adresář nelze přejmenovat</translation>
     </message>
@@ -3232,23 +3232,23 @@ QGroupBox {
         <translation type="obsolete">Žádné - nedostupné?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="648"/>
+        <location filename="../propertieswidget.cpp" line="639"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nový URL seed</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="649"/>
+        <location filename="../propertieswidget.cpp" line="640"/>
         <source>New url seed:</source>
         <translation>Nový URL seed:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="654"/>
+        <location filename="../propertieswidget.cpp" line="645"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="655"/>
+        <location filename="../propertieswidget.cpp" line="646"/>
         <source>This url seed is already in the list.</source>
         <translation>Tento URL seed už v seznamu existuje.</translation>
     </message>
@@ -3257,18 +3257,18 @@ QGroupBox {
         <translation type="obsolete">Seznam trackerů nesmí být prázdný.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
-        <location filename="../propertieswidget.cpp" line="702"/>
+        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="693"/>
         <source>Choose save path</source>
         <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="709"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Save path creation error</source>
         <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="709"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Could not create the save path</source>
         <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
@@ -3756,7 +3756,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SpeedLimitDialog</name>
     <message>
-        <location filename="../speedlimitdlg.h" line="86"/>
+        <location filename="../speedlimitdlg.h" line="87"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -4168,27 +4168,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="830"/>
+        <location filename="../transferlistwidget.cpp" line="833"/>
         <source>Column visibility</source>
         <translation>Zobrazení sloupců</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="956"/>
+        <location filename="../transferlistwidget.cpp" line="959"/>
         <source>Start</source>
         <translation>Spustit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="958"/>
+        <location filename="../transferlistwidget.cpp" line="961"/>
         <source>Pause</source>
         <translation>Pozastavit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="960"/>
+        <location filename="../transferlistwidget.cpp" line="963"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="962"/>
+        <location filename="../transferlistwidget.cpp" line="965"/>
         <source>Preview file</source>
         <translation>Náhled souboru</translation>
     </message>
@@ -4248,118 +4248,118 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1067"/>
+        <location filename="../transferlistwidget.cpp" line="1070"/>
         <source>Label</source>
         <translation>Štítek</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="735"/>
+        <location filename="../transferlistwidget.cpp" line="738"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limit rychlosti stahování torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="771"/>
+        <location filename="../transferlistwidget.cpp" line="774"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limit rychlosti nahrávání torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="898"/>
+        <location filename="../transferlistwidget.cpp" line="901"/>
         <source>New Label</source>
         <translation>Nový štítek</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="898"/>
+        <location filename="../transferlistwidget.cpp" line="901"/>
         <source>Label:</source>
         <translation>Štítek:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="903"/>
+        <location filename="../transferlistwidget.cpp" line="906"/>
         <source>Invalid label name</source>
         <translation>Neplatný název štítku</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="903"/>
+        <location filename="../transferlistwidget.cpp" line="906"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Nepoužívejte prosím v názvu štítku žádné speciální znaky.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="919"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="919"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="964"/>
+        <location filename="../transferlistwidget.cpp" line="967"/>
         <source>Limit upload rate</source>
         <translation>Omezit rychlost nahrávání</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="966"/>
+        <location filename="../transferlistwidget.cpp" line="969"/>
         <source>Limit download rate</source>
         <translation>Omezit rychlost stahování</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="968"/>
+        <location filename="../transferlistwidget.cpp" line="971"/>
         <source>Open destination folder</source>
         <translation>Otevřít cílový adresář</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="970"/>
+        <location filename="../transferlistwidget.cpp" line="973"/>
         <source>Buy it</source>
         <translation>Koupit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="972"/>
+        <location filename="../transferlistwidget.cpp" line="975"/>
         <source>Increase priority</source>
         <translation>Zvýšit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="974"/>
+        <location filename="../transferlistwidget.cpp" line="977"/>
         <source>Decrease priority</source>
         <translation>Snížit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="976"/>
+        <location filename="../transferlistwidget.cpp" line="979"/>
         <source>Force recheck</source>
         <translation>Překontrolovat platnost</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="978"/>
+        <location filename="../transferlistwidget.cpp" line="981"/>
         <source>Copy magnet link</source>
         <translation>Kopírovat odkaz Magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="981"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Super seeding mode</source>
         <translation>Super seeding mód</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="987"/>
         <source>Rename...</source>
         <translation>Přejmenovat...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="989"/>
         <source>Download in sequential order</source>
         <translation>Stahovat v souvislém pořadí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="991"/>
         <source>Download first and last piece first</source>
         <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1068"/>
+        <location filename="../transferlistwidget.cpp" line="1071"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nový...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1069"/>
+        <location filename="../transferlistwidget.cpp" line="1072"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Reset</translation>
@@ -4999,118 +4999,118 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="75"/>
-        <location filename="../downloadthread.cpp" line="78"/>
+        <location filename="../downloadthread.cpp" line="87"/>
+        <location filename="../downloadthread.cpp" line="90"/>
         <source>I/O Error</source>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="134"/>
+        <location filename="../downloadthread.cpp" line="146"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="136"/>
+        <location filename="../downloadthread.cpp" line="148"/>
         <source>The operation was canceled</source>
         <translation>Operace byla zrušena</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="138"/>
+        <location filename="../downloadthread.cpp" line="150"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Vzdálený server předčasně ukončil připojení, dříve než byla celá odpověď přijata a zpracována</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="140"/>
+        <location filename="../downloadthread.cpp" line="152"/>
         <source>The connection to the remote server timed out</source>
         <translation>Připojení k vzdálenému serveru vypršelo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="142"/>
+        <location filename="../downloadthread.cpp" line="154"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS handshake selhalo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="144"/>
+        <location filename="../downloadthread.cpp" line="156"/>
         <source>The remote server refused the connection</source>
         <translation>Vzdálený server odmítl připojení</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="146"/>
+        <location filename="../downloadthread.cpp" line="158"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Připojení k proxy serveru bylo odmítnuto</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="148"/>
+        <location filename="../downloadthread.cpp" line="160"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Proxy server předčasně ukončil připojení</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="150"/>
+        <location filename="../downloadthread.cpp" line="162"/>
         <source>The proxy host name was not found</source>
         <translation>Název proxy serveru nebyl nalezen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="152"/>
+        <location filename="../downloadthread.cpp" line="164"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="154"/>
+        <location filename="../downloadthread.cpp" line="166"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Proxy vyžaduje ověření, ale neakceptovala žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="156"/>
+        <location filename="../downloadthread.cpp" line="168"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Přístup ke vzdálenému obsahu byl odepřen (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="158"/>
+        <location filename="../downloadthread.cpp" line="170"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Požadovaná operace na vzdáleném obsahu není dovolena</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="160"/>
+        <location filename="../downloadthread.cpp" line="172"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Vzdálený obsah nebyl na serveru nalezen (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="162"/>
+        <location filename="../downloadthread.cpp" line="174"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Vzdálený server vyžaduje ověření, ale neakceptoval žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="164"/>
+        <location filename="../downloadthread.cpp" line="176"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="166"/>
+        <location filename="../downloadthread.cpp" line="178"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Požadovaná operace není pro tento protokol platná</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="168"/>
+        <location filename="../downloadthread.cpp" line="180"/>
         <source>An unknown network-related error was detected</source>
         <translation>Byla detekována neznámá chyba sítě</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="170"/>
+        <location filename="../downloadthread.cpp" line="182"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Byla detekována neznámá chyba související s proxy</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="172"/>
+        <location filename="../downloadthread.cpp" line="184"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Byla detekována neznámá chyba související se vzdáleným obsahem</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="174"/>
+        <location filename="../downloadthread.cpp" line="186"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Byla detekována chyba v protokolu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="176"/>
+        <location filename="../downloadthread.cpp" line="188"/>
         <source>Unknown error</source>
         <translation>Neznámá chyba</translation>
     </message>

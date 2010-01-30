@@ -329,13 +329,13 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;Va ser bloquejat a causa de fragments corruptes&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1728"/>
+        <location filename="../bittorrent.cpp" line="1733"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Descàrrega recursiva d&apos;arxiu %1 incrustada en Torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1739"/>
+        <location filename="../bittorrent.cpp" line="1744"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>No es pot descodificar %1 arxiu torrent.</translation>
     </message>
@@ -348,32 +348,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">No se pudo escuchar en ninguno de los puertos brindados.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1878"/>
+        <location filename="../bittorrent.cpp" line="1883"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Va fallar el mapatge del port, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1883"/>
+        <location filename="../bittorrent.cpp" line="1888"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapatge del port reeixit, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1898"/>
+        <location filename="../bittorrent.cpp" line="1903"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Es van negar les dades per a reinici ràpid del torrent: %1, verificant de nou... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1899"/>
+        <location filename="../bittorrent.cpp" line="1904"/>
         <source>Reason: %1</source>
         <translation>Raó: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1904"/>
+        <location filename="../bittorrent.cpp" line="1909"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Va fallar la recerca de llavor per Url per a l&apos;Url: %1, missatge: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2010"/>
+        <location filename="../bittorrent.cpp" line="2015"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descarregant &apos;%1&apos;, si us plau esperi...</translation>
@@ -4157,55 +4157,55 @@ QGroupBox {
         <translation></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="488"/>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="479"/>
+        <location filename="../propertieswidget.cpp" line="500"/>
         <source>I/O Error</source>
         <translation>Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="488"/>
+        <location filename="../propertieswidget.cpp" line="479"/>
         <source>This file does not exist yet.</source>
         <translation>Aquest arxiu encara no existeix.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="500"/>
         <source>This folder does not exist yet.</source>
         <translation>Aquest arxiu encara no existeix.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="518"/>
+        <location filename="../propertieswidget.cpp" line="509"/>
         <source>Rename...</source>
         <translation>Rebatejar...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="538"/>
+        <location filename="../propertieswidget.cpp" line="529"/>
         <source>Rename the file</source>
         <translation>Rebatejar arxiu Torrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="539"/>
+        <location filename="../propertieswidget.cpp" line="530"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="543"/>
-        <location filename="../propertieswidget.cpp" line="573"/>
+        <location filename="../propertieswidget.cpp" line="534"/>
+        <location filename="../propertieswidget.cpp" line="564"/>
         <source>The file could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="544"/>
+        <location filename="../propertieswidget.cpp" line="535"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>El nom introduït conté caràcters prohibits, si us plau n&apos;elegeixi un altre.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="574"/>
-        <location filename="../propertieswidget.cpp" line="612"/>
+        <location filename="../propertieswidget.cpp" line="565"/>
+        <location filename="../propertieswidget.cpp" line="603"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Aquest nom ja està en ús. Si us plau, usi un nom diferent.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="611"/>
+        <location filename="../propertieswidget.cpp" line="602"/>
         <source>The folder could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
@@ -4214,23 +4214,23 @@ QGroupBox {
         <translation type="obsolete">Nada - ¿Inaccesible?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="648"/>
+        <location filename="../propertieswidget.cpp" line="639"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nova llavor url</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="649"/>
+        <location filename="../propertieswidget.cpp" line="640"/>
         <source>New url seed:</source>
         <translation>Nova llavor url:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="654"/>
+        <location filename="../propertieswidget.cpp" line="645"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="655"/>
+        <location filename="../propertieswidget.cpp" line="646"/>
         <source>This url seed is already in the list.</source>
         <translation>Aquesta llavor url ja està en la llista.</translation>
     </message>
@@ -4239,18 +4239,18 @@ QGroupBox {
         <translation type="obsolete">La lista de trackers no puede estar vacía.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
-        <location filename="../propertieswidget.cpp" line="702"/>
+        <location filename="../propertieswidget.cpp" line="691"/>
+        <location filename="../propertieswidget.cpp" line="693"/>
         <source>Choose save path</source>
         <translation>Seleccioni un directori de destinació</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="709"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Save path creation error</source>
         <translation>Error en la creació del directori de destí</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="709"/>
+        <location filename="../propertieswidget.cpp" line="700"/>
         <source>Could not create the save path</source>
         <translation>No es va poder crear el directori de destí</translation>
     </message>
@@ -4819,7 +4819,7 @@ Log:
 <context>
     <name>SpeedLimitDialog</name>
     <message>
-        <location filename="../speedlimitdlg.h" line="86"/>
+        <location filename="../speedlimitdlg.h" line="87"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -5226,27 +5226,27 @@ Log:
         <translation type="obsolete">&amp;No</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="830"/>
+        <location filename="../transferlistwidget.cpp" line="833"/>
         <source>Column visibility</source>
         <translation>Visibilitat de columnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="956"/>
+        <location filename="../transferlistwidget.cpp" line="959"/>
         <source>Start</source>
         <translation>Començar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="958"/>
+        <location filename="../transferlistwidget.cpp" line="961"/>
         <source>Pause</source>
         <translation>Interrompre</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="960"/>
+        <location filename="../transferlistwidget.cpp" line="963"/>
         <source>Delete</source>
         <translation>Esborrar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="962"/>
+        <location filename="../transferlistwidget.cpp" line="965"/>
         <source>Preview file</source>
         <translation>Vista prèvia</translation>
     </message>
@@ -5306,118 +5306,118 @@ Log:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1067"/>
+        <location filename="../transferlistwidget.cpp" line="1070"/>
         <source>Label</source>
         <translation>Etiqueta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="735"/>
+        <location filename="../transferlistwidget.cpp" line="738"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Límit de velocitat de Baixada Torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="771"/>
+        <location filename="../transferlistwidget.cpp" line="774"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Límit de velocitat de Pujada Torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="898"/>
+        <location filename="../transferlistwidget.cpp" line="901"/>
         <source>New Label</source>
         <translation>Nova Etiqueta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="898"/>
+        <location filename="../transferlistwidget.cpp" line="901"/>
         <source>Label:</source>
         <translation>Etiqueta:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="903"/>
+        <location filename="../transferlistwidget.cpp" line="906"/>
         <source>Invalid label name</source>
         <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="903"/>
+        <location filename="../transferlistwidget.cpp" line="906"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="919"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>Rename</source>
         <translation>Rebatejar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="919"/>
+        <location filename="../transferlistwidget.cpp" line="922"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="964"/>
+        <location filename="../transferlistwidget.cpp" line="967"/>
         <source>Limit upload rate</source>
         <translation>Taxa límit de Pujada</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="966"/>
+        <location filename="../transferlistwidget.cpp" line="969"/>
         <source>Limit download rate</source>
         <translation>Taxa límit de Baixada</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="968"/>
+        <location filename="../transferlistwidget.cpp" line="971"/>
         <source>Open destination folder</source>
         <translation>Obrir carpeta destí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="970"/>
+        <location filename="../transferlistwidget.cpp" line="973"/>
         <source>Buy it</source>
         <translation>Comprar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="972"/>
+        <location filename="../transferlistwidget.cpp" line="975"/>
         <source>Increase priority</source>
         <translation>Augmentar prioritat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="974"/>
+        <location filename="../transferlistwidget.cpp" line="977"/>
         <source>Decrease priority</source>
         <translation>Disminuir prioritat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="976"/>
+        <location filename="../transferlistwidget.cpp" line="979"/>
         <source>Force recheck</source>
         <translation>Forçar verificació de arxiu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="978"/>
+        <location filename="../transferlistwidget.cpp" line="981"/>
         <source>Copy magnet link</source>
         <translation>Copiar magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="981"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Super seeding mode</source>
         <translation>Mode de SuperSembra</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="987"/>
         <source>Rename...</source>
         <translation>Rebatejar...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="989"/>
         <source>Download in sequential order</source>
         <translation>Descarregar en ordre seqüencial</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="991"/>
         <source>Download first and last piece first</source>
         <translation>Descarregar primer, primeres i últimes parts</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1068"/>
+        <location filename="../transferlistwidget.cpp" line="1071"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nou...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1069"/>
+        <location filename="../transferlistwidget.cpp" line="1072"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Reset Etiquetas</translation>
@@ -6216,118 +6216,118 @@ Log:
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="75"/>
-        <location filename="../downloadthread.cpp" line="78"/>
+        <location filename="../downloadthread.cpp" line="87"/>
+        <location filename="../downloadthread.cpp" line="90"/>
         <source>I/O Error</source>
         <translation>Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="134"/>
+        <location filename="../downloadthread.cpp" line="146"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>El nom host no s&apos;ha trobat (nom host no vàlid)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="136"/>
+        <location filename="../downloadthread.cpp" line="148"/>
         <source>The operation was canceled</source>
         <translation>L&apos;operació va ser cancel-lada</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="138"/>
+        <location filename="../downloadthread.cpp" line="150"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>El servidor remot va tancar la connexió abans de temps, abans que fos rebut i processat</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="140"/>
+        <location filename="../downloadthread.cpp" line="152"/>
         <source>The connection to the remote server timed out</source>
         <translation>Connexió amb el servidor remot fallida, Temps d&apos;espera esgotat</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="142"/>
+        <location filename="../downloadthread.cpp" line="154"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS handshake fallida</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="144"/>
+        <location filename="../downloadthread.cpp" line="156"/>
         <source>The remote server refused the connection</source>
         <translation>El servidor remot va rebutjar la connexió</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="146"/>
+        <location filename="../downloadthread.cpp" line="158"/>
         <source>The connection to the proxy server was refused</source>
         <translation>La connexió amb el servidor proxy va ser rebutjada</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="148"/>
+        <location filename="../downloadthread.cpp" line="160"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Connexió tancada abans de temps pel servidor proxy</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="150"/>
+        <location filename="../downloadthread.cpp" line="162"/>
         <source>The proxy host name was not found</source>
         <translation>El nom host del proxy  no s&apos;ha trobat</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="152"/>
+        <location filename="../downloadthread.cpp" line="164"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>La connexió amb el servidor proxy  s&apos;ha esgotat, o el proxy no va respondre a temps a la sol-licitud enviada</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="154"/>
+        <location filename="../downloadthread.cpp" line="166"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>El proxy requereix autenticació a fi d&apos;atendre la sol-licitud, però no va acceptar les credencials que va oferir</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="156"/>
+        <location filename="../downloadthread.cpp" line="168"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>L&apos;accés al contingut remot ha estat rebutjat (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="158"/>
+        <location filename="../downloadthread.cpp" line="170"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>L&apos;operació sol-licitada en el contingut remot no està permesa</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="160"/>
+        <location filename="../downloadthread.cpp" line="172"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>El contingut remot no es troba al servidor (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="162"/>
+        <location filename="../downloadthread.cpp" line="174"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>El servidor remot requereix autenticació per servir el contingut, però les credencials proporcionades no són correctes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="164"/>
+        <location filename="../downloadthread.cpp" line="176"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Protocol desconegut</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="166"/>
+        <location filename="../downloadthread.cpp" line="178"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>L&apos;operació sol-licitada no és vàlida per a aquest protocol</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="168"/>
+        <location filename="../downloadthread.cpp" line="180"/>
         <source>An unknown network-related error was detected</source>
         <translation>Error de Xarxa desconegut</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="170"/>
+        <location filename="../downloadthread.cpp" line="182"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Error de Proxy desconegut</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="172"/>
+        <location filename="../downloadthread.cpp" line="184"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Error desconegut al servidor remot</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="174"/>
+        <location filename="../downloadthread.cpp" line="186"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Error de protocol</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="176"/>
+        <location filename="../downloadthread.cpp" line="188"/>
         <source>Unknown error</source>
         <translation>Error desconegut</translation>
     </message>
