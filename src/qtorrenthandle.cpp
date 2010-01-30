@@ -494,6 +494,8 @@ void QTorrentHandle::prioritize_files(std::vector<int> v) {
   if(v.size() != (unsigned int)h.get_torrent_info().num_files())
     return;
   h.prioritize_files(v);
+  // Save seed status
+  TorrentPersistentData::saveSeedStatus(*this);
 }
 
 void QTorrentHandle::set_ratio(float ratio) const {
@@ -551,6 +553,8 @@ void QTorrentHandle::move_storage(QString new_path) const {
 void QTorrentHandle::file_priority(int index, int priority) const {
   Q_ASSERT(h.is_valid());
   h.file_priority(index, priority);
+  // Save seed status
+  TorrentPersistentData::saveSeedStatus(*this);
 }
 
 #ifdef LIBTORRENT_0_15

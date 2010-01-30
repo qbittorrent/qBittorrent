@@ -1948,6 +1948,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(h.is_valid()){
           QString hash = h.hash();
           qDebug("%s have just finished checking", hash.toLocal8Bit().data());
+          // Save seed status
+          TorrentPersistentData::saveSeedStatus(h);
           // Move to temp directory if necessary
           if(!h.is_seed() && !defaultTempPath.isEmpty()) {
             // Check if directory is different

@@ -42,7 +42,7 @@
 
 // Defines for download list list columns
 enum TorrentState {STATE_DOWNLOADING, STATE_STALLED_DL, STATE_STALLED_UP, STATE_SEEDING, STATE_PAUSED_DL, STATE_PAUSED_UP, STATE_QUEUED_DL, STATE_QUEUED_UP, STATE_CHECKING_UP, STATE_CHECKING_DL, STATE_INVALID};
-enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_HASH};
+enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_HASH};
 
 class TransferListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -83,78 +83,83 @@ public:
         int state = index.data().toInt();
         QString display = "";
         switch(state) {
-            case STATE_DOWNLOADING:
+        case STATE_DOWNLOADING:
           display = tr("Downloading");
           break;
-            case STATE_PAUSED_DL:
-            case STATE_PAUSED_UP:
+        case STATE_PAUSED_DL:
+        case STATE_PAUSED_UP:
           display = tr("Paused");
           break;
-            case STATE_QUEUED_DL:
-            case STATE_QUEUED_UP:
+        case STATE_QUEUED_DL:
+        case STATE_QUEUED_UP:
           display = tr("Queued", "i.e. torrent is queued");
           break;
-            case STATE_SEEDING:
-            case STATE_STALLED_UP:
+        case STATE_SEEDING:
+        case STATE_STALLED_UP:
           display = tr("Seeding", "Torrent is complete and in upload-only mode");
           break;
-            case STATE_STALLED_DL:
+        case STATE_STALLED_DL:
           display = tr("Stalled", "Torrent is waiting for download to begin");
           break;
-            case STATE_CHECKING_DL:
-            case STATE_CHECKING_UP:
+        case STATE_CHECKING_DL:
+        case STATE_CHECKING_UP:
           display = tr("Checking", "Torrent local data is being checked");
         }
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
       }
-        case TR_UPSPEED:
-        case TR_DLSPEED:{
-            QItemDelegate::drawBackground(painter, opt, index);
-            qulonglong speed = index.data().toULongLong();
-            opt.displayAlignment = Qt::AlignRight;
-            QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
-            break;
-          }
-        case TR_RATIO:{
-            QItemDelegate::drawBackground(painter, opt, index);
-            opt.displayAlignment = Qt::AlignRight;
-            double ratio = index.data().toDouble();
-            if(ratio > 100.)
-              QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
-            else
-              QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 1));
-            break;
-          }
-        case TR_PRIORITY: {
-            int priority = index.data().toInt();
-            if(priority >= 0) {
-              opt.displayAlignment = Qt::AlignRight;
-              QItemDelegate::paint(painter, opt, index);
-            } else {
-              QItemDelegate::drawBackground(painter, opt, index);
-              opt.displayAlignment = Qt::AlignRight;
-              QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
-            }
-            break;
-          }
-        case TR_PROGRESS:{
-            QStyleOptionProgressBarV2 newopt;
-            double progress = index.data().toDouble()*100.;
-            newopt.rect = opt.rect;
-            newopt.text = QString::number(progress, 'f', 1)+"%";
-            newopt.progress = (int)progress;
-            newopt.maximum = 100;
-            newopt.minimum = 0;
-            newopt.state |= QStyle::State_Enabled;
-            newopt.textVisible = true;
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-            break;
-          }
-        default:
-          QItemDelegate::paint(painter, option, index);
+    case TR_UPSPEED:
+    case TR_DLSPEED:{
+        QItemDelegate::drawBackground(painter, opt, index);
+        qulonglong speed = index.data().toULongLong();
+        opt.displayAlignment = Qt::AlignRight;
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
+        break;
+      }
+    case TR_ADD_DATE:
+    case TR_SEED_DATE:
+      QItemDelegate::drawBackground(painter, opt, index);
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
+      break;
+    case TR_RATIO:{
+        QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight;
+        double ratio = index.data().toDouble();
+        if(ratio > 100.)
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
+        else
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 1));
+        break;
+      }
+    case TR_PRIORITY: {
+        int priority = index.data().toInt();
+        if(priority >= 0) {
+          opt.displayAlignment = Qt::AlignRight;
+          QItemDelegate::paint(painter, opt, index);
+        } else {
+          QItemDelegate::drawBackground(painter, opt, index);
+          opt.displayAlignment = Qt::AlignRight;
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
         }
+        break;
+      }
+    case TR_PROGRESS:{
+        QStyleOptionProgressBarV2 newopt;
+        double progress = index.data().toDouble()*100.;
+        newopt.rect = opt.rect;
+        newopt.text = QString::number(progress, 'f', 1)+"%";
+        newopt.progress = (int)progress;
+        newopt.maximum = 100;
+        newopt.minimum = 0;
+        newopt.state |= QStyle::State_Enabled;
+        newopt.textVisible = true;
+        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+        break;
+      }
+    default:
+      QItemDelegate::paint(painter, option, index);
+    }
   }
 
   QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {

@@ -59,7 +59,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittor
   setItemDelegate(listDelegate);
 
   // Create transfer list model
-  listModel = new QStandardItemModel(0,13);
+  listModel = new QStandardItemModel(0,15);
   listModel->setHeaderData(TR_NAME, Qt::Horizontal, tr("Name", "i.e: torrent name"));
   listModel->setHeaderData(TR_PRIORITY, Qt::Horizontal, "#");
   listModel->horizontalHeaderItem(TR_PRIORITY)->setTextAlignment(Qt::AlignRight);
@@ -80,6 +80,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittor
   listModel->horizontalHeaderItem(TR_RATIO)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(TR_ETA, Qt::Horizontal, tr("ETA", "i.e: Estimated Time of Arrival / Time left"));
   listModel->setHeaderData(TR_LABEL, Qt::Horizontal, tr("Label"));
+  listModel->setHeaderData(TR_ADD_DATE, Qt::Horizontal, tr("Added on", "Torrent was added to transfer list on 01/01/2010 08:00"));
+  listModel->setHeaderData(TR_SEED_DATE, Qt::Horizontal, tr("Completed on", "Torrent was completed on 01/01/2010 08:00"));
+
 
   // Set Sort/Filter proxy
   labelFilterModel = new QSortFilterProxyModel();
@@ -163,6 +166,8 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
     listModel->setData(listModel->index(row, TR_SEEDS), QVariant((double)0.0));
     listModel->setData(listModel->index(row, TR_PEERS), QVariant((double)0.0));
+    listModel->setData(listModel->index(row, TR_ADD_DATE), QVariant(TorrentPersistentData::getAddedDate(h.hash())));
+    listModel->setData(listModel->index(row, TR_SEED_DATE), QVariant(TorrentPersistentData::getSeedDate(h.hash())));
     QString label = TorrentPersistentData::getLabel(h.hash());
     listModel->setData(listModel->index(row, TR_LABEL), QVariant(label));
     if(BTSession->isQueueingEnabled())
@@ -429,6 +434,7 @@ void TransferListWidget::setFinished(QTorrentHandle &h) {
       listModel->setData(listModel->index(row, TR_DLSPEED), QVariant((double)0.));
       listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)1.));
       listModel->setData(listModel->index(row, TR_PRIORITY), QVariant((int)-1));
+      listModel->setData(listModel->index(row, TR_SEED_DATE), QVariant(TorrentPersistentData::getSeedDate(h.hash())));
     }
   } catch(invalid_handle e) {
     if(row >= 0) {
@@ -799,6 +805,7 @@ void TransferListWidget::saveHiddenColumns() {
 
   for(short i=0; i<nbColumns; ++i){
     if(isColumnHidden(i)) {
+      qDebug("Column named %s is hidden.", listModel->headerData(i, Qt::Horizontal).toString().toLocal8Bit().data());
       ishidden_list << "0";
     } else {
       ishidden_list << "1";
@@ -810,8 +817,7 @@ void TransferListWidget::saveHiddenColumns() {
 // load the previous settings, and hide the columns
 bool TransferListWidget::loadHiddenColumns() {
   QSettings settings("qBittorrent", "qBittorrent");
-  QString line = settings.value("TransferListColsHoS", QString()).toString();
-  if(line.isEmpty()) return false;
+  QString line = settings.value("TransferListColsHoS", "").toString();
   bool loaded = false;
   QStringList ishidden_list;
   ishidden_list = line.split(' ');
@@ -823,6 +829,11 @@ bool TransferListWidget::loadHiddenColumns() {
       }
     }
     loaded = true;
+  }
+  // As a default, hide date columns
+  if(!loaded) {
+    setColumnHidden(TR_ADD_DATE, true);
+    setColumnHidden(TR_SEED_DATE, true);
   }
   return loaded;
 }
