@@ -127,6 +127,7 @@ class QTorrentHandle {
     bool priv() const;
     bool first_last_piece_first() const;
     QString root_path() const;
+    bool has_error() const;
 
     //
     // Setters
