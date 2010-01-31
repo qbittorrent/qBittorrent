@@ -34,20 +34,11 @@
 #include <QSystemTrayIcon>
 #include <QApplication>
 #include <QSettings>
-#include <QPlastiqueStyle>
 #include "qgnomelook.h"
-#include <QMotifStyle>
-#include <QCDEStyle>
 #include <QDialogButtonBox>
 #include <QCloseEvent>
 #include <QDesktopWidget>
-#ifdef Q_WS_WIN
-#include <QWindowsXPStyle>
-#endif
-
-#ifdef Q_WS_MAC
-#include <QMacStyle>
-#endif
+#include <QStyleFactory>
 
 #include <time.h>
 #include <stdlib.h>
@@ -72,12 +63,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     }
   }
   connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
-#ifdef Q_WS_WIN
-  comboStyle->addItem("Windows XP Style (Windows Only)");
-#endif
-#ifdef Q_WS_MAC
-  comboStyle->addItem("MacOS Style (MacOS Only)");
-#endif
+  comboStyle->addItems(QStyleFactory::keys());
   // Languages supported
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/united_kingdom.png"))), QString::fromUtf8("English"));
   locales << "en_GB";
@@ -304,31 +290,16 @@ void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous
   tabOption->setCurrentIndex(tabSelection->row(current));
 }
 
-void options_imp::useStyle(){
-  int style = getStyle();
-  switch(style) {
-  case 1:
-    QApplication::setStyle(new QPlastiqueStyle());
-    break;
-  case 2:
+void options_imp::useStyle() {
+  if(comboStyle->currentIndex() == 0) {
+    QApplication::setStyle(Preferences::getDefaultStyle());
+  } else {
+    QApplication::setStyle(QStyleFactory::create(comboStyle->itemText(comboStyle->currentIndex())));
+  }
+  if(QApplication::style()->objectName() == "cleanlooks") {
+    // Force our own cleanlooks style
+    qDebug("Forcing our own cleanlooks style");
     QApplication::setStyle(new QGnomeLookStyle());
-    break;
-  case 3:
-    QApplication::setStyle(new QMotifStyle());
-    break;
-  case 4:
-    QApplication::setStyle(new QCDEStyle());
-    break;
-#ifdef Q_WS_MAC
-  case 5:
-    QApplication::setStyle(new QMacStyle());
-    break;
-#endif
-#ifdef Q_WS_WIN
-  case 6:
-    QApplication::setStyle(new QWindowsXPStyle());
-    break;
-#endif
   }
 }
 
@@ -567,14 +538,19 @@ int options_imp::getHTTPProxyType() const {
   }
 }
 
-int options_imp::getStyle() const{
-  return comboStyle->currentIndex();
+QString options_imp::getStyle() const{
+  if(comboStyle->currentIndex() == 0)
+    return "default";
+  else
+    return comboStyle->itemText(comboStyle->currentIndex());
 }
 
-void options_imp::setStyle(int style){
-  if(style >= comboStyle->count() || style < 0)
-    style = 0;
-  comboStyle->setCurrentIndex(style);
+void options_imp::setStyle(QString style) {
+  if(style != "default") {
+    int index = comboStyle->findText(style);
+    if(index > 0)
+      comboStyle->setCurrentIndex(index);
+  }
 }
 
 bool options_imp::isHTTPProxyAuthEnabled() const{

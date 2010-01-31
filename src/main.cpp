@@ -35,17 +35,9 @@
 #ifndef DISABLE_GUI
 #include <QApplication>
 #include <QMessageBox>
+#include <QStyleFactory>
 #include <QSplashScreen>
-#include <QPlastiqueStyle>
 #include "qgnomelook.h"
-#include <QMotifStyle>
-#include <QCDEStyle>
-#ifdef Q_WS_WIN
-#include <QWindowsXPStyle>
-#endif
-#ifdef Q_WS_MAC
-#include <QMacStyle>
-#endif
 #include "GUI.h"
 #include "ico.h"
 #else
@@ -162,36 +154,14 @@ void sigabrtHandler(int) {
 #endif
 
 #ifndef DISABLE_GUI
-void useStyle(QApplication *app, int style){
-  switch(style) {
-  case 1:
-    app->setStyle(new QPlastiqueStyle());
-    break;
-  case 2:
+void useStyle(QApplication *app, QString style){
+  if(style != "default") {
+    QApplication::setStyle(QStyleFactory::create(style));
+  }
+  if(app->style()->objectName() == "cleanlooks") {
+    // Force our own cleanlooks style
+    qDebug("Forcing our own cleanlooks style");
     app->setStyle(new QGnomeLookStyle());
-    break;
-  case 3:
-    app->setStyle(new QMotifStyle());
-    break;
-  case 4:
-    app->setStyle(new QCDEStyle());
-    break;
-#ifdef Q_WS_MAC
-  case 5:
-    app->setStyle(new QMacStyle());
-    break;
-#endif
-#ifdef Q_WS_WIN
-  case 6:
-    app->setStyle(new QWindowsXPStyle());
-    break;
-#endif
-  default:
-    if(app->style()->objectName() == "cleanlooks") {
-      // Force our own cleanlooks style
-      qDebug("Forcing our own cleanlooks style");
-      app->setStyle(new QGnomeLookStyle());
-    }
   }
 }
 #endif
@@ -279,7 +249,8 @@ int main(int argc, char *argv[]){
   app = new QApplication(argc, argv);
 #endif
 #ifndef DISABLE_GUI
-  useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
+  Preferences::setDefaultStyle(app->style()->objectName());
+  useStyle(app, settings.value("Preferences/General/Style", "default").toString());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
   QSplashScreen *splash = 0;
   if(!no_splash) {

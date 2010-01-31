@@ -65,7 +65,7 @@ protected:
   void loadOptions();
   // General options
   QString getLocale() const;
-  int getStyle() const;
+  QString getStyle() const;
   bool confirmOnExit() const;
   bool speedInTitleBar() const;
   bool systrayIntegration() const;
@@ -154,7 +154,7 @@ protected slots:
   void enableDHTPortSettings(bool checked);
   void enableQueueingSystem(bool checked);
   void enableSpoofingSettings(int index);
-  void setStyle(int style);
+  void setStyle(QString style);
   void on_buttonBox_accepted();
   void closeEvent(QCloseEvent *e);
   void on_buttonBox_rejected();

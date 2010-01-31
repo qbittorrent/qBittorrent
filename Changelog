@@ -8,6 +8,7 @@
     - FEATURE: User can choose to apply transfer limits on LAN too
     - FEATURE: User can choose to include the protocol overhead in transfer limits
     - FEATURE: Torrents can be automatically rechecked on completion
+    - COSMETIC: Improved style management
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)

@@ -336,26 +336,6 @@
                       <string>System default</string>
                      </property>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>Plastique style (KDE like)</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Cleanlooks style (Gnome like)</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Motif style (Unix like)</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>CDE style (Common Desktop Environment like)</string>
-                     </property>
-                    </item>
                    </widget>
                   </item>
                   <item>
