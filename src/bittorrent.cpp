@@ -432,6 +432,8 @@ void Bittorrent::configureSession() {
   setSessionSettings(sessionSettings);
   // Ignore limits on LAN
   sessionSettings.ignore_limits_on_local_network = Preferences::ignoreLimitsOnLAN();
+  // Include overhead in transfer limits
+  sessionSettings.rate_limit_ip_overhead = Preferences::includeOverheadInLimits();
   // Bittorrent
   // * Max connections limit
   setMaxConnections(Preferences::getMaxConnecs());

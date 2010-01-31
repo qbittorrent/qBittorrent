@@ -868,6 +868,16 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Advanced/IgnoreLimitsLAN"), ignore);
   }
 
+  static bool includeOverheadInLimits() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/IncludeOverhead"), false).toBool();
+  }
+
+  static void includeOverheadInLimits(bool include) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/IncludeOverhead"), include);
+  }
+
 };
 
 #endif // PREFERENCES_H

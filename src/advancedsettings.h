@@ -8,15 +8,15 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN };
-#define ROW_COUNT 4
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD };
+#define ROW_COUNT 5
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max;
-  QCheckBox *cb_ignore_limits_lan;
+  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead;
 
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
@@ -38,6 +38,7 @@ public:
     delete outgoing_ports_min;
     delete outgoing_ports_max;
     delete cb_ignore_limits_lan;
+    delete cb_count_overhead;
   }
 
   public slots:
@@ -49,6 +50,8 @@ public:
     Preferences::setOutgoingPortsMax(outgoing_ports_max->value());
     // Ignore limits on LAN
     Preferences::ignoreLimitsOnLAN(cb_ignore_limits_lan->isChecked());
+    // Include protocol overhead in transfer limits
+    Preferences::includeOverheadInLimits(cb_count_overhead->isChecked());
   }
 
 protected slots:
@@ -83,6 +86,12 @@ protected slots:
     connect(cb_ignore_limits_lan, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
     cb_ignore_limits_lan->setChecked(Preferences::ignoreLimitsOnLAN());
     setCellWidget(IGNORE_LIMIT_LAN, VALUE, cb_ignore_limits_lan);
+    // Consider protocol overhead in transfer limits
+    setItem(COUNT_OVERHEAD, PROPERTY, new QTableWidgetItem(tr("Include TCP/IP overhead in transfer limits")));
+    cb_count_overhead = new QCheckBox();
+    connect(cb_count_overhead, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_count_overhead->setChecked(Preferences::includeOverheadInLimits());
+    setCellWidget(COUNT_OVERHEAD, VALUE, cb_count_overhead);
   }
 
   void emitSettingsChanged() {
