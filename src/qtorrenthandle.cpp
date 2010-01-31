@@ -441,6 +441,11 @@ QString QTorrentHandle::root_path() const {
   return save_path();
 }
 
+bool QTorrentHandle::has_error() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().error.empty();
+}
+
 //
 // Setters
 //
@@ -464,6 +469,7 @@ void QTorrentHandle::pause() {
 
 void QTorrentHandle::resume() {
   Q_ASSERT(h.is_valid());
+  if(has_error()) h.clear_error();
   h.auto_managed(true);
   h.resume();
 }
