@@ -106,6 +106,12 @@
   <tr>
   <td style="vertical-align: bottom; text-align: right;"></td><td><input type="text" id="scandir_text"/></td>
   </tr>
+  <tr>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/></td><td>_(Copy .torrent files to:)</td>
+  </tr>
+  <tr>
+  <td style="vertical-align: bottom; text-align: right;"></td><td><input type="text" id="exportdir_text"/></td>
+  </tr>
   <tr id="appendexttr">
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="appendext_checkbox"/></td><td>_(Append .!qB extension to incomplete files)</td>
   </tr>
@@ -340,6 +346,12 @@
   var scandir_path = '';
   if(scandir_enabled)
     scandir_path = $('scandir_text').get('value');
+  var exportdir_enabled = 0;
+  if($defined($('exportdir_checkbox').get('checked')) && $('exportdir_checkbox').get('checked'))
+    exportdir_enabled = 1;
+  var exportdir_path = '';
+  if(exportdir_enabled)
+    exportdir_path = $('exportdir_text').get('value');
   var preallocate_all = 0;
   if($defined($('preallocateall_checkbox').get('checked')) && $('preallocateall_checkbox').get('checked'))
     preallocate_all = 1;
@@ -456,6 +468,7 @@
   dict.set('temp_path_enabled', temp_path_enabled);
   dict.set('temp_path', temp_path);
   dict.set('scan_dir', scandir_path);
+  dict.set('export_dir', exportdir_path);
   dict.set('preallocate_all', preallocate_all);
   if(!$('appendexttr').hasClass('invisible')) {
     dict.set('incomplete_files_ext', incomplete_files_ext);
@@ -589,6 +602,14 @@ updateScanDirEnabled = function() {
     $('scandir_text').removeProperty('disabled');
   } else {
     $('scandir_text').set('disabled', 'true');
+  }
+}
+
+updateExportDirEnabled = function() {
+  if($defined($('exportdir_checkbox').get('checked')) && $('exportdir_checkbox').get('checked')) {
+    $('exportdir_text').removeProperty('disabled');
+  } else {
+    $('exportdir_text').set('disabled', 'true');
   }
 }
 
@@ -775,10 +796,21 @@ loadPreferences = function() {
                     var scan_dir_enabled = pref.scan_dir_enabled;
                     if(scan_dir_enabled) {
                       $('scandir_text').set('value', pref.scan_dir);
+                      $('scandir_checkbox').set('checked', 'checked');
                     } else {
                       $('scandir_text').set('value', '');
+                      $('scandir_checkbox').removeProperty('checked');
                     }
                     updateScanDirEnabled();
+                    var export_dir_enabled = pref.export_dir_enabled;
+                    if(export_dir_enabled) {
+                      $('exportdir_text').set('value', pref.export_dir);
+                      $('exportdir_checkbox').set('checked', 'checked');
+                    } else {
+                      $('exportdir_text').set('value', '');
+                      $('exportdir_checkbox').removeProperty('checked');
+                    }
+                    updateExportDirEnabled();
                     if(pref.preallocate_all) {
                       $('preallocateall_checkbox').set('checked', 'checked');
                     } else {

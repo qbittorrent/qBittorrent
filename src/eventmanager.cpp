@@ -131,6 +131,8 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     Preferences::setTempPath(m["temp_path"].toString());
   if(m.contains("scan_dir"))
     Preferences::setScanDir(m["scan_dir"].toString());
+  if(m.contains("export_dir"))
+    Preferences::setExportDir(m["export_dir"].toString());
   if(m.contains("preallocate_all"))
     Preferences::preAllocateAllFiles(m["preallocate_all"].toBool());
   if(m.contains("queueing_enabled"))
@@ -229,6 +231,8 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["temp_path"] = Preferences::getTempPath();
   data["scan_dir_enabled"] = Preferences::isDirScanEnabled();
   data["scan_dir"] = Preferences::getScanDir();
+  data["export_dir_enabled"] = Preferences::isTorrentExportEnabled();
+  data["export_dir"] = Preferences::getExportDir();
   data["preallocate_all"] = Preferences::preAllocateAllFiles();
   data["queueing_enabled"] = Preferences::isQueueingSystemEnabled();
   data["max_active_downloads"] = Preferences::getMaxActiveDownloads();
