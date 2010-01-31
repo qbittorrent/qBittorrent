@@ -219,6 +219,15 @@
          <set>ItemIsSelectable|ItemIsEnabled</set>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Advanced</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/Icons/oxygen/gear32.png</normaloff>:/Icons/oxygen/gear32.png</iconset>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -629,7 +638,7 @@ QGroupBox {
               <x>0</x>
               <y>0</y>
               <width>644</width>
-              <height>583</height>
+              <height>548</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -867,50 +876,6 @@ QGroupBox {
                    <string>Pre-allocate all files</string>
                   </property>
                  </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_9">
-                  <item>
-                   <widget class="QLabel" name="label_7">
-                    <property name="text">
-                     <string>Disk cache:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="spinCache">
-                    <property name="minimum">
-                     <number>1</number>
-                    </property>
-                    <property name="maximum">
-                     <number>9999</number>
-                    </property>
-                    <property name="value">
-                     <number>16</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_8">
-                    <property name="text">
-                     <string>MiB (advanced)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_6">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
                 </item>
                </layout>
               </widget>
@@ -1436,8 +1401,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>366</width>
-              <height>332</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1841,8 +1806,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>466</width>
-              <height>415</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2258,8 +2223,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>484</width>
-              <height>312</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2692,8 +2657,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>290</width>
-              <height>124</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -3111,6 +3076,49 @@ QGroupBox {
                  </spacer>
                 </item>
                </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_3">
+        <layout class="QVBoxLayout" name="verticalLayout_35">
+         <item>
+          <widget class="QScrollArea" name="scrollArea_advanced">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_10">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>620</width>
+              <height>490</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_36">
+             <item>
+              <widget class="QTableWidget" name="tableWidget">
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>Parameter</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Value</string>
+                </property>
+               </column>
               </widget>
              </item>
             </layout>

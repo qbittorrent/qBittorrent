@@ -181,9 +181,14 @@ public:
     return settings.setValue(QString::fromUtf8("Preferences/Downloads/PreAllocation"), enabled);
   }
 
-  static int diskCacheSize() {
+  static uint diskCacheSize() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toInt();
+    return settings.value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toUInt();
+  }
+
+  static void setDiskCacheSize(uint size) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/DiskCache"), size);
   }
 
   static bool useAdditionDialog() {

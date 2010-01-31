@@ -249,7 +249,8 @@ contains(DEFINES, DISABLE_GUI) {
                  downloadfromurldlg.h \
                  torrentadditiondlg.h \
                  trackerlogin.h \
-                 pieceavailabilitybar.h
+                 pieceavailabilitybar.h \
+                 advancedsettings.h
 }
 
 !contains(DEFINES, DISABLE_GUI) {

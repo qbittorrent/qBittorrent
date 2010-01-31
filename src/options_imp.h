@@ -42,6 +42,7 @@ enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST};
 using namespace libtorrent;
 
 class QCloseEvent;
+class AdvancedSettings;
 
 class options_imp : public QDialog, private Ui_Preferences {
   Q_OBJECT
@@ -50,6 +51,7 @@ private:
   QButtonGroup choiceLanguage;
   QStringList locales;
   QAbstractButton *applyButton;
+  AdvancedSettings *advancedSettings;
 
 public:
   // Contructor / Destructor

@@ -55,6 +55,7 @@
 #include "options_imp.h"
 #include "preferences.h"
 #include "misc.h"
+#include "advancedsettings.h"
 
 // Constructor
 options_imp::options_imp(QWidget *parent):QDialog(parent){
@@ -199,7 +200,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkAppendLabel, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(spinCache, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkScanDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -283,6 +283,12 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 #ifndef LIBTORRENT_0_15
   checkAppendqB->setVisible(false);
 #endif
+  // Load Advanced settings
+  QVBoxLayout *adv_layout = new QVBoxLayout();
+  advancedSettings = new AdvancedSettings();
+  adv_layout->addWidget(advancedSettings);
+  scrollArea_advanced->setLayout(adv_layout);
+  connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
   // Adapt size
   loadWindowState();
   show();
@@ -291,6 +297,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 // Main destructor
 options_imp::~options_imp(){
   qDebug("-> destructing Options");
+  delete scrollArea_advanced->layout();
+  delete advancedSettings;
 }
 
 void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous) {
@@ -393,7 +401,6 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("UseIncompleteExtension"), checkAppendqB->isChecked());
 #endif
   settings.setValue(QString::fromUtf8("PreAllocation"), preAllocateAllFiles());
-  settings.setValue(QString::fromUtf8("DiskCache"), spinCache->value());
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
   settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
@@ -518,6 +525,9 @@ void options_imp::saveOptions(){
   settings.endGroup();
   // End preferences
   settings.endGroup();
+
+  // Save advanced settings
+  advancedSettings->saveAdvancedSettings();
 }
 
 bool options_imp::isFilteringEnabled() const{
@@ -617,7 +627,6 @@ void options_imp::loadOptions(){
   checkAppendqB->setChecked(Preferences::useIncompleteFilesExtension());
 #endif
   checkPreallocateAll->setChecked(Preferences::preAllocateAllFiles());
-  spinCache->setValue(Preferences::diskCacheSize());
   checkAdditionDialog->setChecked(Preferences::useAdditionDialog());
   checkStartPaused->setChecked(Preferences::addTorrentsInPause());
   strValue = Preferences::getScanDir();
