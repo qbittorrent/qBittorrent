@@ -4,6 +4,7 @@
     - BUGFIX: Added support for HTTP redirection
     - BUGFIX: Fix compilation error when geoip database is embedded
     - BUGFIX: Fix crash when double-clicking on a torrent that has no metadata to open its save path
+    - BUGFIX: Fix Scan directory preferences in Web UI
 
 * Sun Jan 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.2
     - FEATURE: Added back file prioritizing in a torrent

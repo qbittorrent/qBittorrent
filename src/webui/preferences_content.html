@@ -775,8 +775,10 @@ loadPreferences = function() {
                     var scan_dir_enabled = pref.scan_dir_enabled;
                     if(scan_dir_enabled) {
                       $('scandir_text').set('value', pref.scan_dir);
+                      $('scandir_checkbox').set('checked', 'checked');
                     } else {
                       $('scandir_text').set('value', '');
+                      $('scandir_checkbox').removeProperty('checked');
                     }
                     updateScanDirEnabled();
                     if(pref.preallocate_all) {
