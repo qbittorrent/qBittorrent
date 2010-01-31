@@ -427,6 +427,8 @@ void Bittorrent::configureSession() {
     sessionSettings.active_limit = -1;
     setQueueingEnabled(false);
   }
+  // Outgoing ports
+  sessionSettings.outgoing_ports = std::make_pair(Preferences::outgoingPortsMin(), Preferences::outgoingPortsMax());
   setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max connections limit

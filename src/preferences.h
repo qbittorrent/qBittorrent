@@ -181,16 +181,6 @@ public:
     return settings.setValue(QString::fromUtf8("Preferences/Downloads/PreAllocation"), enabled);
   }
 
-  static uint diskCacheSize() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toUInt();
-  }
-
-  static void setDiskCacheSize(uint size) {
-    QSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/Downloads/DiskCache"), size);
-  }
-
   static bool useAdditionDialog() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
@@ -835,6 +825,37 @@ public:
       pass_ha1 = md5.result().toHex();
     }
     return pass_ha1;
+  }
+
+  // Advanced settings
+  static uint diskCacheSize() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toUInt();
+  }
+
+  static void setDiskCacheSize(uint size) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/DiskCache"), size);
+  }
+
+  static uint outgoingPortsMin() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMin"), 0).toUInt();
+  }
+
+  static void setOutgoingPortsMin(uint val) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMin"), val);
+  }
+
+  static uint outgoingPortsMax() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMax"), 0).toUInt();
+  }
+
+  static void setOutgoingPortsMax(uint val) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMax"), val);
   }
 
 };
