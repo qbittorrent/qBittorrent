@@ -430,6 +430,8 @@ void Bittorrent::configureSession() {
   // Outgoing ports
   sessionSettings.outgoing_ports = std::make_pair(Preferences::outgoingPortsMin(), Preferences::outgoingPortsMax());
   setSessionSettings(sessionSettings);
+  // Ignore limits on LAN
+  sessionSettings.ignore_limits_on_local_network = Preferences::ignoreLimitsOnLAN();
   // Bittorrent
   // * Max connections limit
   setMaxConnections(Preferences::getMaxConnecs());

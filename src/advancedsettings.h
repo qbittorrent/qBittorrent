@@ -4,17 +4,19 @@
 #include <QTableWidget>
 #include <QHeaderView>
 #include <QSpinBox>
+#include <QCheckBox>
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX };
-#define ROW_COUNT 3
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN };
+#define ROW_COUNT 4
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max;
+  QCheckBox *cb_ignore_limits_lan;
 
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
@@ -35,6 +37,7 @@ public:
     delete spin_cache;
     delete outgoing_ports_min;
     delete outgoing_ports_max;
+    delete cb_ignore_limits_lan;
   }
 
   public slots:
@@ -44,6 +47,8 @@ public:
     // Outgoing ports
     Preferences::setOutgoingPortsMin(outgoing_ports_min->value());
     Preferences::setOutgoingPortsMax(outgoing_ports_max->value());
+    // Ignore limits on LAN
+    Preferences::ignoreLimitsOnLAN(cb_ignore_limits_lan->isChecked());
   }
 
 protected slots:
@@ -72,6 +77,12 @@ protected slots:
     outgoing_ports_max->setMaximum(65535);
     outgoing_ports_max->setValue(Preferences::outgoingPortsMax());
     setCellWidget(OUTGOING_PORT_MAX, VALUE, outgoing_ports_max);
+    // Ignore transfer limits on local network
+    setItem(IGNORE_LIMIT_LAN, PROPERTY, new QTableWidgetItem(tr("Ignore transfer limits on local network")));
+    cb_ignore_limits_lan = new QCheckBox();
+    connect(cb_ignore_limits_lan, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_ignore_limits_lan->setChecked(Preferences::ignoreLimitsOnLAN());
+    setCellWidget(IGNORE_LIMIT_LAN, VALUE, cb_ignore_limits_lan);
   }
 
   void emitSettingsChanged() {

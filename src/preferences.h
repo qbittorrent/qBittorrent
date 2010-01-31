@@ -858,6 +858,16 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMax"), val);
   }
 
+  static bool ignoreLimitsOnLAN() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/IgnoreLimitsLAN"), true).toBool();
+  }
+
+  static void ignoreLimitsOnLAN(bool ignore) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/IgnoreLimitsLAN"), ignore);
+  }
+
 };
 
 #endif // PREFERENCES_H
