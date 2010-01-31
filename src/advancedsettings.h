@@ -19,6 +19,7 @@ private:
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
     // Set visual appearance
+    setEditTriggers(QAbstractItemView::NoEditTriggers);
     setColumnCount(2);
     QStringList header;
     header << tr("Property") << tr("Value");
