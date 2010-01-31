@@ -254,7 +254,7 @@
               <x>0</x>
               <y>0</y>
               <width>602</width>
-              <height>590</height>
+              <height>555</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -413,50 +413,6 @@
                    <string>Transfer list</string>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_27">
-                   <item>
-                    <layout class="QHBoxLayout">
-                     <item>
-                      <widget class="QLabel" name="label_5">
-                       <property name="text">
-                        <string>Refresh interval:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QSpinBox" name="spinRefreshInterval">
-                       <property name="minimum">
-                        <number>30</number>
-                       </property>
-                       <property name="maximum">
-                        <number>99999</number>
-                       </property>
-                       <property name="value">
-                        <number>1500</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_6">
-                       <property name="text">
-                        <string>ms</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer>
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                    </layout>
-                   </item>
                    <item>
                     <widget class="QCheckBox" name="checkAltRowColors">
                      <property name="text">
@@ -3169,7 +3125,6 @@ QGroupBox {
   <tabstop>comboStyle</tabstop>
   <tabstop>checkConfirmExit</tabstop>
   <tabstop>checkSpeedInTitle</tabstop>
-  <tabstop>spinRefreshInterval</tabstop>
   <tabstop>checkNoSystray</tabstop>
   <tabstop>checkCloseToSystray</tabstop>
   <tabstop>checkMinimizeToSysTray</tabstop>

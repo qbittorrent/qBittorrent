@@ -186,7 +186,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(comboStyle, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkConfirmExit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkSpeedInTitle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(spinRefreshInterval, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkNoSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -380,7 +379,6 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("Style"), getStyle());
   settings.setValue(QString::fromUtf8("ExitConfirm"), confirmOnExit());
   settings.setValue(QString::fromUtf8("SpeedInTitleBar"), speedInTitleBar());
-  settings.setValue(QString::fromUtf8("RefreshInterval"), getRefreshInterval());
   settings.setValue(QString::fromUtf8("AlternatingRowColors"), checkAltRowColors->isChecked());
   settings.setValue(QString::fromUtf8("SystrayEnabled"), systrayIntegration());
   settings.setValue(QString::fromUtf8("CloseToTray"), closeToTray());
@@ -596,7 +594,6 @@ void options_imp::loadOptions(){
   setStyle(Preferences::getStyle());
   checkConfirmExit->setChecked(Preferences::confirmOnExit());
   checkSpeedInTitle->setChecked(Preferences::speedInTitleBar());
-  spinRefreshInterval->setValue(Preferences::getRefreshInterval());
   checkAltRowColors->setChecked(Preferences::useAlternatingRowColors());
   checkNoSystray->setChecked(!Preferences::systrayIntegration());
   checkDisplayToolbar->setChecked(Preferences::isToolbarDisplayed());
@@ -960,10 +957,6 @@ bool options_imp::minimizeToTray() const{
 bool options_imp::closeToTray() const{
   if(checkNoSystray->isChecked()) return false;
   return checkCloseToSystray->isChecked();
-}
-
-unsigned int options_imp::getRefreshInterval() const {
-  return spinRefreshInterval->value();
 }
 
 bool options_imp::confirmOnExit() const{

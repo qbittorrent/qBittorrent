@@ -8,14 +8,14 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED };
-#define ROW_COUNT 6
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH };
+#define ROW_COUNT 7
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
-  QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max;
+  QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh;
   QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed;
 
 public:
@@ -40,6 +40,7 @@ public:
     delete cb_ignore_limits_lan;
     delete cb_count_overhead;
     delete cb_recheck_completed;
+    delete spin_list_refresh;
   }
 
 public slots:
@@ -55,6 +56,8 @@ public slots:
     Preferences::includeOverheadInLimits(cb_count_overhead->isChecked());
     // Recheck torrents on completion
     Preferences::recheckTorrentsOnCompletion(cb_recheck_completed->isChecked());
+    // Transfer list refresh interval
+    Preferences::setRefreshInterval(spin_list_refresh->value());
   }
 
 protected slots:
@@ -101,6 +104,14 @@ protected slots:
     connect(cb_recheck_completed, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
     cb_recheck_completed->setChecked(Preferences::recheckTorrentsOnCompletion());
     setCellWidget(RECHECK_COMPLETED, VALUE, cb_recheck_completed);
+    // Transfer list refresh interval
+    setItem(LIST_REFRESH, PROPERTY, new QTableWidgetItem(tr("Transfer list refresh interval (ms)")));
+    spin_list_refresh = new QSpinBox();
+    connect(spin_list_refresh, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
+    spin_list_refresh->setMinimum(30);
+    spin_list_refresh->setMaximum(99999);
+    spin_list_refresh->setValue(Preferences::getRefreshInterval());
+    setCellWidget(LIST_REFRESH, VALUE, spin_list_refresh);
   }
 
   void emitSettingsChanged() {

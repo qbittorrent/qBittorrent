@@ -68,7 +68,6 @@ protected:
   int getStyle() const;
   bool confirmOnExit() const;
   bool speedInTitleBar() const;
-  unsigned int getRefreshInterval() const;
   bool systrayIntegration() const;
   bool minimizeToTray() const;
   bool closeToTray() const;

@@ -68,11 +68,6 @@ public:
     return settings.value(QString::fromUtf8("Preferences/General/SpeedInTitleBar"), false).toBool();
   }
 
-  static unsigned int getRefreshInterval() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/General/RefreshInterval"), 1500).toUInt();
-  }
-
   static bool useAlternatingRowColors() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/General/AlternatingRowColors"), true).toBool();
@@ -886,6 +881,16 @@ public:
   static void recheckTorrentsOnCompletion(bool recheck) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Advanced/RecheckOnCompletion"), recheck);
+  }
+
+  static unsigned int getRefreshInterval() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/General/RefreshInterval"), 1500).toUInt();
+  }
+
+  static void setRefreshInterval(uint interval) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/RefreshInterval"), interval);
   }
 
 };
