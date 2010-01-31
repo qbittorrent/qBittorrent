@@ -878,6 +878,16 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Advanced/IncludeOverhead"), include);
   }
 
+  static bool recheckTorrentsOnCompletion() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/RecheckOnCompletion"), false).toBool();
+  }
+
+  static void recheckTorrentsOnCompletion(bool recheck) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/RecheckOnCompletion"), recheck);
+  }
+
 };
 
 #endif // PREFERENCES_H

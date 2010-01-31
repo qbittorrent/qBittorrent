@@ -1845,6 +1845,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               }
             }
           }
+          // Recheck if the user asked to
+          if(Preferences::recheckTorrentsOnCompletion())
+            h.force_recheck();
           qDebug("Received finished alert for %s", h.name().toLocal8Bit().data());
         }
       }

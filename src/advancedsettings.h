@@ -8,15 +8,15 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD };
-#define ROW_COUNT 5
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED };
+#define ROW_COUNT 6
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max;
-  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead;
+  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed;
 
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
@@ -39,9 +39,10 @@ public:
     delete outgoing_ports_max;
     delete cb_ignore_limits_lan;
     delete cb_count_overhead;
+    delete cb_recheck_completed;
   }
 
-  public slots:
+public slots:
   void saveAdvancedSettings() {
     // Disk write cache
     Preferences::setDiskCacheSize(spin_cache->value());
@@ -52,6 +53,8 @@ public:
     Preferences::ignoreLimitsOnLAN(cb_ignore_limits_lan->isChecked());
     // Include protocol overhead in transfer limits
     Preferences::includeOverheadInLimits(cb_count_overhead->isChecked());
+    // Recheck torrents on completion
+    Preferences::recheckTorrentsOnCompletion(cb_recheck_completed->isChecked());
   }
 
 protected slots:
@@ -92,6 +95,12 @@ protected slots:
     connect(cb_count_overhead, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
     cb_count_overhead->setChecked(Preferences::includeOverheadInLimits());
     setCellWidget(COUNT_OVERHEAD, VALUE, cb_count_overhead);
+    // Recheck completed torrents
+    setItem(RECHECK_COMPLETED, PROPERTY, new QTableWidgetItem(tr("Recheck torrents on completion")));
+    cb_recheck_completed = new QCheckBox();
+    connect(cb_recheck_completed, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_recheck_completed->setChecked(Preferences::recheckTorrentsOnCompletion());
+    setCellWidget(RECHECK_COMPLETED, VALUE, cb_recheck_completed);
   }
 
   void emitSettingsChanged() {
