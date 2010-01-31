@@ -330,13 +330,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="comboStyle">
-                    <item>
-                     <property name="text">
-                      <string>System default</string>
-                     </property>
-                    </item>
-                   </widget>
+                   <widget class="QComboBox" name="comboStyle"/>
                   </item>
                   <item>
                    <spacer>

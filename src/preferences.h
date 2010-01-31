@@ -53,19 +53,14 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
   }
 
-  static QString getDefaultStyle() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/General/DefaultStyle"), "").toString();
-  }
-
-  static void setDefaultStyle(QString style) {
-    QSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/General/DefaultStyle"), style);
-  }
-
   static QString getStyle() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/General/Style"), "default").toString();
+    return settings.value(QString::fromUtf8("Preferences/General/Style"), "").toString();
+  }
+
+  static void setStyle(QString style) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/Style"), style);
   }
 
   static bool confirmOnExit() {

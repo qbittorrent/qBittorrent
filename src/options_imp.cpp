@@ -291,11 +291,7 @@ void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous
 }
 
 void options_imp::useStyle() {
-  if(comboStyle->currentIndex() == 0) {
-    QApplication::setStyle(Preferences::getDefaultStyle());
-  } else {
-    QApplication::setStyle(QStyleFactory::create(comboStyle->itemText(comboStyle->currentIndex())));
-  }
+  QApplication::setStyle(QStyleFactory::create(comboStyle->itemText(comboStyle->currentIndex())));
   if(QApplication::style()->objectName() == "cleanlooks") {
     // Force our own cleanlooks style
     qDebug("Forcing our own cleanlooks style");
@@ -539,18 +535,13 @@ int options_imp::getHTTPProxyType() const {
 }
 
 QString options_imp::getStyle() const{
-  if(comboStyle->currentIndex() == 0)
-    return "default";
-  else
-    return comboStyle->itemText(comboStyle->currentIndex());
+  return comboStyle->itemText(comboStyle->currentIndex());
 }
 
 void options_imp::setStyle(QString style) {
-  if(style != "default") {
-    int index = comboStyle->findText(style);
-    if(index > 0)
-      comboStyle->setCurrentIndex(index);
-  }
+  int index = comboStyle->findText(style, Qt::MatchFixedString);
+  if(index > 0)
+    comboStyle->setCurrentIndex(index);
 }
 
 bool options_imp::isHTTPProxyAuthEnabled() const{

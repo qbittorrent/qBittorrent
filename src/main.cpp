@@ -155,7 +155,7 @@ void sigabrtHandler(int) {
 
 #ifndef DISABLE_GUI
 void useStyle(QApplication *app, QString style){
-  if(style != "default") {
+  if(!style.isEmpty()) {
     QApplication::setStyle(QStyleFactory::create(style));
   }
   if(app->style()->objectName() == "cleanlooks") {
@@ -163,6 +163,7 @@ void useStyle(QApplication *app, QString style){
     qDebug("Forcing our own cleanlooks style");
     app->setStyle(new QGnomeLookStyle());
   }
+  Preferences::setStyle(app->style()->objectName());
 }
 #endif
 
@@ -249,8 +250,7 @@ int main(int argc, char *argv[]){
   app = new QApplication(argc, argv);
 #endif
 #ifndef DISABLE_GUI
-  Preferences::setDefaultStyle(app->style()->objectName());
-  useStyle(app, settings.value("Preferences/General/Style", "default").toString());
+  useStyle(app, settings.value("Preferences/General/Style", "").toString());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
   QSplashScreen *splash = 0;
   if(!no_splash) {
