@@ -118,6 +118,7 @@ private:
   bool PeXEnabled;
   bool queueingEnabled;
   bool appendLabelToSavePath;
+  bool torrentExport;
 #ifdef LIBTORRENT_0_15
   bool appendqBExtension;
 #endif
@@ -247,6 +248,7 @@ protected slots:
   void readAlerts();
   void deleteBigRatios();
   void takeETASamples();
+  void exportTorrentFiles(QString path);
 
 signals:
   void addedTorrent(QTorrentHandle& h);

@@ -153,9 +153,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Downloads tab
   connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableTempPathInput(bool)));
   connect(checkScanDir, SIGNAL(toggled(bool)), this, SLOT(enableDirScan(bool)));
-  connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-  connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableTorrentExport(bool)));
   // Connection tab
   connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableUploadLimit(bool)));
   connect(checkDownloadLimit,  SIGNAL(toggled(bool)), this, SLOT(enableDownloadLimit(bool)));
@@ -206,6 +204,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkScanDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textScanDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -394,6 +397,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
   settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
+  Preferences::setExportDir(getExportDir());
   settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
   settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
   // End Downloads preferences
@@ -627,6 +631,19 @@ void options_imp::loadOptions(){
     textScanDir->setText(strValue);
     enableDirScan(checkScanDir->isChecked());
   }
+
+  strValue = Preferences::getExportDir();
+  if(strValue.isEmpty()) {
+    // Disable
+    checkExportDir->setChecked(false);
+    enableTorrentExport(checkExportDir->isChecked());
+  } else {
+    // enable
+    checkExportDir->setChecked(true);
+    textExportDir->setText(strValue);
+    enableTorrentExport(checkExportDir->isChecked());
+  }
+
   intValue = Preferences::getActionOnDblClOnTorrentDl();
   if(intValue >= actionTorrentDlOnDblClBox->count())
     intValue = 0;
@@ -1267,6 +1284,11 @@ void options_imp::enableDirScan(bool checked){
   browseScanDirButton->setEnabled(checked);
 }
 
+void options_imp::enableTorrentExport(bool checked) {
+  textExportDir->setEnabled(checked);
+  browseExportDirButton->setEnabled(checked);
+}
+
 bool options_imp::isSlashScreenDisabled() const {
   return checkNoSplash->isChecked();
 }
@@ -1360,6 +1382,14 @@ void options_imp::setLocale(QString locale){
 QString options_imp::getScanDir() const {
   if(checkScanDir->isChecked()){
     return misc::expandPath(textScanDir->text());
+  }else{
+    return QString::null;
+  }
+}
+
+QString options_imp::getExportDir() const {
+  if(checkExportDir->isChecked()){
+    return misc::expandPath(textExportDir->text());
   }else{
     return QString::null;
   }

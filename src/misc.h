@@ -124,6 +124,27 @@ public:
     return x;
   }
 
+  static bool sameFiles(QString path1, QString path2) {
+    QFile f1(path1);
+    if(!f1.exists()) return false;
+    QFile f2(path2);
+    if(!f2.exists()) return false;
+    QByteArray content1, content2;
+    if(f1.open(QIODevice::ReadOnly)) {
+      content1 = f1.readAll();
+      f1.close();
+    } else {
+      return false;
+    }
+    if(f2.open(QIODevice::ReadOnly)) {
+      content1 = f2.readAll();
+      f2.close();
+    } else {
+      return false;
+    }
+    return content1 == content2;
+  }
+
   static void copyDir(QString src_path, QString dst_path) {
     QDir sourceDir(src_path);
     if(!sourceDir.exists()) return;

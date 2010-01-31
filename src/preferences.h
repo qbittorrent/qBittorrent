@@ -214,6 +214,24 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Downloads/ScanDir"), path);
   }
 
+  static bool isTorrentExportEnabled() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return !settings.value(QString::fromUtf8("Preferences/Downloads/TorrentExport"), QString()).toString().isEmpty();
+  }
+
+  static QString getExportDir() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Downloads/TorrentExport"), QString()).toString();
+  }
+
+  static void setExportDir(QString path) {
+    path = path.trimmed();
+    if(path.isEmpty())
+      path = QString();
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/TorrentExport"), path);
+  }
+
   static int getActionOnDblClOnTorrentDl() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorDl"), 0).toInt();

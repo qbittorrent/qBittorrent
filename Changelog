@@ -3,6 +3,7 @@
     - FEATURE: Bandwidth scheduler (automatically use alternative speed limits for a given period)
     - FEATURE: Added "Added/Completed On" columns to transfer list
     - FEATURE: Added "Upload/Download limit" columns to transfer list
+    - FEATURE: Torrent files can be exported to a given directory
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
     - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)

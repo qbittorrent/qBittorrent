@@ -629,7 +629,7 @@ QGroupBox {
               <x>0</x>
               <y>0</y>
               <width>644</width>
-              <height>504</height>
+              <height>583</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -645,9 +645,6 @@ QGroupBox {
                 <string>File system</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
-                <property name="spacing">
-                 <number>3</number>
-                </property>
                 <item>
                  <widget class="QGroupBox" name="groupBox_3">
                   <property name="styleSheet">
@@ -788,6 +785,52 @@ QGroupBox {
                   </item>
                   <item>
                    <widget class="QToolButton" name="browseScanDirButton">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>22</width>
+                      <height>22</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>27</height>
+                     </size>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../icons.qrc">
+                      <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkExportDir">
+                  <property name="text">
+                   <string>Copy .torrent files to:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_15">
+                  <item>
+                   <widget class="QLineEdit" name="textExportDir">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string>QLineEdit {
+  margin-left: 23px;
+}</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="browseExportDirButton">
                     <property name="enabled">
                      <bool>false</bool>
                     </property>
@@ -1393,8 +1436,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>366</width>
+              <height>332</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1798,8 +1841,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>466</width>
+              <height>415</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2746,8 +2789,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>219</width>
-              <height>221</height>
+              <width>620</width>
+              <height>490</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">

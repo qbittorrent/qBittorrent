@@ -68,7 +68,7 @@ enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
-Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), exiting(false) {
+Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), torrentExport(false), exiting(false) {
 #ifndef DISABLE_GUI
   geoipDBLoaded = false;
   resolve_countries = false;
@@ -279,6 +279,15 @@ void Bittorrent::configureSession() {
   }else{
     //Interval first
     enableDirectoryScanning(scan_dir);
+  }
+  // * Export Dir
+  bool newTorrentExport = Preferences::isTorrentExportEnabled();
+  if(torrentExport != newTorrentExport) {
+    torrentExport = newTorrentExport;
+    if(torrentExport) {
+      qDebug("Torrent export is enabled, exporting the current torrents");
+      exportTorrentFiles(Preferences::getExportDir());
+    }
   }
   // Connection
   // * Ports binding
@@ -1086,14 +1095,28 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     if(appendqBExtension)
       appendqBextensionToTorrent(h, true);
 #endif
-  }
-  QString newFile = torrentBackup.path() + QDir::separator() + hash + ".torrent";
-  if(file != newFile) {
-    // Delete file from torrentBackup directory in case it exists because
-    // QFile::copy() do not overwrite
-    QFile::remove(newFile);
-    // Copy it to torrentBackup directory
-    QFile::copy(file, newFile);
+    // Backup torrent file
+    QString newFile = torrentBackup.absoluteFilePath(hash + ".torrent");
+    if(file != newFile) {
+      // Delete file from torrentBackup directory in case it exists because
+      // QFile::copy() do not overwrite
+      QFile::remove(newFile);
+      // Copy it to torrentBackup directory
+      QFile::copy(file, newFile);
+    }
+    // Copy the torrent file to the export folder
+    if(torrentExport) {
+      QDir exportPath(Preferences::getExportDir());
+      if(exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
+        QString torrent_path = exportPath.absoluteFilePath(h.name()+".torrent");
+        if(QFile::exists(torrent_path) && misc::sameFiles(file, torrent_path)) {
+          // Append hash to torrent name to make it unique
+          torrent_path = exportPath.absoluteFilePath(h.name()+"-"+h.hash()+".torrent");
+        }
+        QFile::copy(file, torrent_path);
+        //h.save_torrent_file(torrent_path);
+      }
+    }
   }
   if(!fastResume && (!addInPause || (Preferences::useAdditionDialog() && !fromScanDir))) {
     // Start torrent because it was added in paused state
@@ -1119,6 +1142,43 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   }
   emit addedTorrent(h);
   return h;
+}
+
+void Bittorrent::exportTorrentFiles(QString path) {
+  Q_ASSERT(torrentExport);
+  QDir exportDir(path);
+  if(!exportDir.exists()) {
+    if(!exportDir.mkpath(exportDir.absolutePath())) {
+      std::cerr << "Error: Could not create torrent export directory: " << exportDir.absolutePath().toLocal8Bit().data() << std::endl;
+      return;
+    }
+  }
+  QDir torrentBackup(misc::BTBackupLocation());
+  std::vector<torrent_handle> handles = s->get_torrents();
+  std::vector<torrent_handle>::iterator itr;
+  for(itr=handles.begin(); itr != handles.end(); itr++) {
+    QTorrentHandle h(*itr);
+    if(!h.is_valid()) {
+      std::cerr << "Torrent Export: torrent is invalid, skipping..." << std::endl;
+      continue;
+    }
+    QString src_path = torrentBackup.absoluteFilePath(h.hash()+".torrent");
+    if(QFile::exists(src_path)) {
+      QString dst_path = exportDir.absoluteFilePath(h.name()+".torrent");
+      if(QFile::exists(dst_path)) {
+        if(!misc::sameFiles(src_path, dst_path)) {
+          dst_path = exportDir.absoluteFilePath(h.name()+"-"+h.hash()+".torrent");
+        } else {
+          qDebug("Torrent Export: Destination file exists, skipping...");
+          continue;
+        }
+      }
+      qDebug("Export Torrent: %s -> %s", src_path.toLocal8Bit().data(), dst_path.toLocal8Bit().data());
+      QFile::copy(src_path, dst_path);
+    } else {
+      std::cerr << "Error: could not export torrent "<< h.hash().toLocal8Bit().data() << ", maybe it has not metadata yet." <<std::endl;
+    }
+  }
 }
 
 // Set the maximum number of opened connections
@@ -1746,7 +1806,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           // Remember finished state
           TorrentPersistentData::saveSeedStatus(h);
 #ifdef LIBTORRENT_0_15
-           // Remove .!qB extension if necessary
+          // Remove .!qB extension if necessary
           if(appendqBExtension)
             appendqBextensionToTorrent(h, false);
 #endif
@@ -1791,8 +1851,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           if(QFile::exists(file))
             QFile::remove(file);
           qDebug("Saving fastresume data in %s", file.toLocal8Bit().data());
-          if (p->resume_data)
-          {
+          if (p->resume_data) {
             boost::filesystem::ofstream out(fs::path(torrentBackup.path().toLocal8Bit().data()) / file.toLocal8Bit().data(), std::ios_base::binary);
             out.unsetf(std::ios_base::skipws);
             bencode(std::ostream_iterator<char>(out), *p->resume_data);
@@ -1818,6 +1877,26 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           QDir torrentBackup(misc::BTBackupLocation());
           if(!QFile::exists(torrentBackup.path()+QDir::separator()+h.hash()+QString(".torrent")))
             h.save_torrent_file(torrentBackup.path()+QDir::separator()+h.hash()+QString(".torrent"));
+          // Copy the torrent file to the export folder
+          if(torrentExport) {
+            QDir exportPath(Preferences::getExportDir());
+            if(exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
+              QString torrent_path = exportPath.absoluteFilePath(h.name()+".torrent");
+              bool duplicate = false;
+              if(QFile::exists(torrent_path)) {
+                // Append hash to torrent name to make it unique
+                torrent_path = exportPath.absoluteFilePath(h.name()+"-"+h.hash()+".torrent");
+                duplicate = true;
+              }
+              h.save_torrent_file(torrent_path);
+              if(duplicate) {
+                // Remove duplicate file if indentical
+                if(misc::sameFiles(exportPath.absoluteFilePath(h.name()+".torrent"), torrent_path)) {
+                  QFile::remove(torrent_path);
+                }
+              }
+            }
+          }
           if(h.is_paused()) {
             // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
             // and the torrent can be paused when metadata is received

@@ -83,6 +83,7 @@ protected:
   bool addTorrentsInPause() const;
   bool isDirScanEnabled() const;
   QString getScanDir() const;
+  QString getExportDir() const;
   int getActionOnDblClOnTorrentDl() const;
   int getActionOnDblClOnTorrentFn() const;
   // Connection options
@@ -135,6 +136,7 @@ protected slots:
   void enableDownloadLimit(bool checked);
   void enableTempPathInput(bool checked);
   void enableDirScan(bool checked);
+  void enableTorrentExport(bool checked);
   void enablePeerProxy(int comboIndex);
   void enablePeerProxyAuth(bool checked);
   void enableHTTPProxy(int comboIndex);
