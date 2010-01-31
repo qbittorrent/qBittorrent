@@ -357,17 +357,6 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Scheduler/days"), (int)days);
   }
 
-
-  static bool resolvePeerCountries() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerCountries"), true).toBool();
-  }
-
-  static bool resolvePeerHostNames() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerHostNames"), false).toBool();
-  }
-
   // Proxy options
   static bool isHTTPProxyEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
@@ -891,6 +880,26 @@ public:
   static void setRefreshInterval(uint interval) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/General/RefreshInterval"), interval);
+  }
+
+  static bool resolvePeerCountries() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerCountries"), true).toBool();
+  }
+
+  static void resolvePeerCountries(bool resolve) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/ResolvePeerCountries"), resolve);
+  }
+
+  static bool resolvePeerHostNames() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Connection/ResolvePeerHostNames"), false).toBool();
+  }
+
+  static void resolvePeerHostNames(bool resolve) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/ResolvePeerHostNames"), resolve);
   }
 
 };

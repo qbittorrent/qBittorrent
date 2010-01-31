@@ -8,20 +8,21 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH };
-#define ROW_COUNT 7
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS };
+#define ROW_COUNT 9
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh;
-  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed;
+  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts;
 
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
     // Set visual appearance
     setEditTriggers(QAbstractItemView::NoEditTriggers);
+    setAlternatingRowColors(true);
     setColumnCount(2);
     QStringList header;
     header << tr("Property") << tr("Value");
@@ -42,6 +43,8 @@ public:
     delete cb_count_overhead;
     delete cb_recheck_completed;
     delete spin_list_refresh;
+    delete cb_resolve_countries;
+    delete cb_resolve_hosts;
   }
 
 public slots:
@@ -59,6 +62,9 @@ public slots:
     Preferences::recheckTorrentsOnCompletion(cb_recheck_completed->isChecked());
     // Transfer list refresh interval
     Preferences::setRefreshInterval(spin_list_refresh->value());
+    // Peer resolution
+    Preferences::resolvePeerCountries(cb_resolve_countries->isChecked());
+    Preferences::resolvePeerHostNames(cb_resolve_hosts->isChecked());
   }
 
 protected slots:
@@ -115,6 +121,18 @@ protected slots:
     spin_list_refresh->setValue(Preferences::getRefreshInterval());
     spin_list_refresh->setSuffix(tr(" ms", " milliseconds"));
     setCellWidget(LIST_REFRESH, VALUE, spin_list_refresh);
+    // Resolve Peer countries
+    setItem(RESOLVE_COUNTRIES, PROPERTY, new QTableWidgetItem(tr("Resolve peer countries (GeoIP)")));
+    cb_resolve_countries = new QCheckBox();
+    connect(cb_resolve_countries, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_resolve_countries->setChecked(Preferences::resolvePeerCountries());
+    setCellWidget(RESOLVE_COUNTRIES, VALUE, cb_resolve_countries);
+    // Resolve peer hosts
+    setItem(RESOLVE_HOSTS, PROPERTY, new QTableWidgetItem(tr("Resolve peer host names")));
+    cb_resolve_hosts = new QCheckBox();
+    connect(cb_resolve_hosts, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_resolve_hosts->setChecked(Preferences::resolvePeerHostNames());
+    setCellWidget(RESOLVE_HOSTS, VALUE, cb_resolve_hosts);
   }
 
   void emitSettingsChanged() {

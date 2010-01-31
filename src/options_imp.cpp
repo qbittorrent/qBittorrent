@@ -216,8 +216,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-  connect(checkResolveCountries, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkResolveHosts, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(schedule_from, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
   connect(schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
@@ -420,8 +418,6 @@ void options_imp::saveOptions(){
   Preferences::setSchedulerStartTime(schedule_from->time());
   Preferences::setSchedulerEndTime(schedule_to->time());
   Preferences::setSchedulerDays((scheduler_days)schedule_days->currentIndex());
-  settings.setValue("ResolvePeerCountries", checkResolveCountries->isChecked());
-  settings.setValue("ResolvePeerHostNames", checkResolveHosts->isChecked());
   settings.setValue(QString::fromUtf8("ProxyType"), getPeerProxyType());
   //if(isProxyEnabled()) {
   settings.beginGroup("Proxy");
@@ -693,9 +689,6 @@ void options_imp::loadOptions(){
   schedule_from->setTime(Preferences::getSchedulerStartTime());
   schedule_to->setTime(Preferences::getSchedulerEndTime());
   schedule_days->setCurrentIndex((int)Preferences::getSchedulerDays());
-  // Peer connections
-  checkResolveCountries->setChecked(Preferences::resolvePeerCountries());
-  checkResolveHosts->setChecked(Preferences::resolvePeerHostNames());
 
   intValue = Preferences::getPeerProxyType();
   switch(intValue) {

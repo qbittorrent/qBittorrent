@@ -1298,32 +1298,6 @@ QGroupBox {
               </widget>
              </item>
              <item>
-              <widget class="QGroupBox" name="groupBox_2">
-               <property name="title">
-                <string>Peer connections</string>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_25">
-                <item>
-                 <widget class="QCheckBox" name="checkResolveCountries">
-                  <property name="text">
-                   <string>Resolve peer countries</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="checkResolveHosts">
-                  <property name="text">
-                   <string>Resolve peer host names</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
               <spacer name="verticalSpacer_7">
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
