@@ -592,7 +592,7 @@ QGroupBox {
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>0</y>
+              <y>-76</y>
               <width>644</width>
               <height>548</height>
              </rect>
@@ -3056,28 +3056,7 @@ QGroupBox {
               <height>490</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_36">
-             <item>
-              <widget class="QTableWidget" name="tableWidget">
-               <attribute name="horizontalHeaderStretchLastSection">
-                <bool>true</bool>
-               </attribute>
-               <attribute name="horizontalHeaderStretchLastSection">
-                <bool>true</bool>
-               </attribute>
-               <column>
-                <property name="text">
-                 <string>Parameter</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Value</string>
-                </property>
-               </column>
-              </widget>
-             </item>
-            </layout>
+            <layout class="QVBoxLayout" name="verticalLayout_36"/>
            </widget>
           </widget>
          </item>
