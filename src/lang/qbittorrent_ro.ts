@@ -119,23 +119,40 @@ p, li { white-space: pre-wrap; }(new line)
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disk write cache size (MiB)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Min)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ignore transfer limits on local network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Include TCP/IP overhead in transfer limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk write cache size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: Disabled]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: Disabled]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recheck torrents on completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer list refresh interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3068,11 +3085,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation>Refresh interval:</translation>
+        <translation type="obsolete">Refresh interval:</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation>ms</translation>
+        <translation type="obsolete">ms</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
@@ -3502,14 +3519,6 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Parameter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

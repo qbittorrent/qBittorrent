@@ -28,6 +28,7 @@ public:
     setHorizontalHeaderLabels(header);
     setColumnWidth(0, width()/2);
     horizontalHeader()->setStretchLastSection(true);
+    verticalHeader()->setVisible(false);
     setRowCount(ROW_COUNT);
     // Load settings
     loadAdvancedSettings();
@@ -63,15 +64,16 @@ public slots:
 protected slots:
   void loadAdvancedSettings() {
     // Disk write cache
-    setItem(DISK_CACHE, PROPERTY, new QTableWidgetItem(tr("Disk write cache size (MiB)")));
+    setItem(DISK_CACHE, PROPERTY, new QTableWidgetItem(tr("Disk write cache size")));
     spin_cache = new QSpinBox();
     connect(spin_cache, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     spin_cache->setMinimum(1);
     spin_cache->setMaximum(200);
     spin_cache->setValue(Preferences::diskCacheSize());
+    spin_cache->setSuffix(tr(" MiB"));
     setCellWidget(DISK_CACHE, VALUE, spin_cache);
     // Outgoing port Min
-    setItem(OUTGOING_PORT_MIN, PROPERTY, new QTableWidgetItem(tr("Outgoing ports (Min)")));
+    setItem(OUTGOING_PORT_MIN, PROPERTY, new QTableWidgetItem(tr("Outgoing ports (Min) [0: Disabled]")));
     outgoing_ports_min = new QSpinBox();
     connect(outgoing_ports_min, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     outgoing_ports_min->setMinimum(0);
@@ -79,7 +81,7 @@ protected slots:
     outgoing_ports_min->setValue(Preferences::outgoingPortsMin());
     setCellWidget(OUTGOING_PORT_MIN, VALUE, outgoing_ports_min);
     // Outgoing port Min
-    setItem(OUTGOING_PORT_MAX, PROPERTY, new QTableWidgetItem(tr("Outgoing ports (Max)")));
+    setItem(OUTGOING_PORT_MAX, PROPERTY, new QTableWidgetItem(tr("Outgoing ports (Max) [0: Disabled]")));
     outgoing_ports_max = new QSpinBox();
     connect(outgoing_ports_max, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     outgoing_ports_max->setMinimum(0);
@@ -105,12 +107,13 @@ protected slots:
     cb_recheck_completed->setChecked(Preferences::recheckTorrentsOnCompletion());
     setCellWidget(RECHECK_COMPLETED, VALUE, cb_recheck_completed);
     // Transfer list refresh interval
-    setItem(LIST_REFRESH, PROPERTY, new QTableWidgetItem(tr("Transfer list refresh interval (ms)")));
+    setItem(LIST_REFRESH, PROPERTY, new QTableWidgetItem(tr("Transfer list refresh interval")));
     spin_list_refresh = new QSpinBox();
     connect(spin_list_refresh, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     spin_list_refresh->setMinimum(30);
     spin_list_refresh->setMaximum(99999);
     spin_list_refresh->setValue(Preferences::getRefreshInterval());
+    spin_list_refresh->setSuffix(tr(" ms", " milliseconds"));
     setCellWidget(LIST_REFRESH, VALUE, spin_list_refresh);
   }
 
