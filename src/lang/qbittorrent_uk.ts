@@ -2738,12 +2738,12 @@ No further notices will be issued.</source>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Шв. завантаження</translation>
+        <translation>Шв. завант.</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Шв. вивантаження</translation>
+        <translation>Шв. вивант.</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -3007,7 +3007,7 @@ QGroupBox {
     </message>
     <message>
         <source>Automatically load .torrent files from:</source>
-        <translation>Автоатично завантажувати .torrent файли з:</translation>
+        <translation>Автоматично завантажувати .torrent файли з:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -3035,15 +3035,15 @@ QGroupBox {
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Найбільше активних завантажень:</translation>
+        <translation>Макс. активних завантажень:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>Найбільше активних вивантажень:</translation>
+        <translation>Макс. активних вивантажень:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Найбільше активних торрентів:</translation>
+        <translation>Макс. активних торрентів:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -3342,7 +3342,7 @@ QGroupBox {
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation>Хеш torrent&apos;у:</translation>
+        <translation>Хеш:</translation>
     </message>
     <message>
         <source>Comment:</source>
@@ -3511,12 +3511,12 @@ QGroupBox {
     </message>
     <message>
         <source>this session</source>
-        <translation>ця сесія</translation>
+        <translation>цієї сесії</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>максимально %1</translation>
+        <translation>макс. %1</translation>
     </message>
     <message>
         <source>Availability:</source>
@@ -4445,7 +4445,7 @@ Changelog:
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Коефіцієнт роздачі</translation>
+        <translation>Коефіцієнт</translation>
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
