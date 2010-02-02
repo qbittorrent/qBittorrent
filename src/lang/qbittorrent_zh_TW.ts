@@ -151,6 +151,14 @@ p, li { white-space: pre-wrap; }
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -2161,23 +2169,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>System default</source>
-        <translation>系統預設</translation>
+        <translation type="obsolete">系統預設</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastique 樣式 (像 KDE)</translation>
+        <translation type="obsolete">Plastique 樣式 (像 KDE)</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Cleanlooks 樣式 (像 Gnome)</translation>
+        <translation type="obsolete">Cleanlooks 樣式 (像 Gnome)</translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation>Motif 樣式 (像 Unix)</translation>
+        <translation type="obsolete">Motif 樣式 (像 Unix)</translation>
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>CDE 樣式 (像 CDE)</translation>
+        <translation type="obsolete">CDE 樣式 (像 CDE)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -2405,15 +2413,15 @@ QGroupBox {
     </message>
     <message>
         <source>Peer connections</source>
-        <translation>下載者連接</translation>
+        <translation type="obsolete">下載者連接</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation>解析下載者的國家</translation>
+        <translation type="obsolete">解析下載者的國家</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation>解析下載者的主機名</translation>
+        <translation type="obsolete">解析下載者的主機名</translation>
     </message>
     <message>
         <source>Bittorrent features</source>

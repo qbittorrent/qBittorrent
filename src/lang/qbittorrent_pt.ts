@@ -155,6 +155,14 @@ p, li { white-space: pre-wrap; }
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3115,23 +3123,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>System default</source>
-        <translation>Padrão do sistema</translation>
+        <translation type="obsolete">Padrão do sistema</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation>Estilo plástico (tipo KDE)</translation>
+        <translation type="obsolete">Estilo plástico (tipo KDE)</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Estilo Cleanlooks (tipo Gnome)</translation>
+        <translation type="obsolete">Estilo Cleanlooks (tipo Gnome)</translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation>Estilo Motif (tipo Unix)</translation>
+        <translation type="obsolete">Estilo Motif (tipo Unix)</translation>
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>Estilo CDE (tipo Common Desktop Environment)</translation>
+        <translation type="obsolete">Estilo CDE (tipo Common Desktop Environment)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -3359,15 +3367,15 @@ QGroupBox {
     </message>
     <message>
         <source>Peer connections</source>
-        <translation>Conexões de Peer</translation>
+        <translation type="obsolete">Conexões de Peer</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation>Resolver países de peer</translation>
+        <translation type="obsolete">Resolver países de peer</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation>Resolver nomes dos peers</translation>
+        <translation type="obsolete">Resolver nomes dos peers</translation>
     </message>
     <message>
         <source>Bittorrent features</source>

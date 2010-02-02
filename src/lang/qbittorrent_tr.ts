@@ -212,6 +212,14 @@ p, li { white-space: pre-wrap; }
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3191,26 +3199,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Plastique style (KDE like)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cleanlooks style (Gnome like)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Motif style (Unix like)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3404,18 +3392,6 @@ QGroupBox {
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Peer connections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -155,6 +155,14 @@ p, li { white-space: pre-wrap; }
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3137,23 +3145,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>System default</source>
-        <translation>Štandardné nastavenie systému</translation>
+        <translation type="obsolete">Štandardné nastavenie systému</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastický štýl (ako KDE)</translation>
+        <translation type="obsolete">Plastický štýl (ako KDE)</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Čistý vzhľad (ako GNOME)</translation>
+        <translation type="obsolete">Čistý vzhľad (ako GNOME)</translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation>Štýl Motif (ako Unix)</translation>
+        <translation type="obsolete">Štýl Motif (ako Unix)</translation>
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>Štýl CDE (ako Common Desktop Environment)</translation>
+        <translation type="obsolete">Štýl CDE (ako Common Desktop Environment)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -3373,15 +3381,15 @@ QGroupBox {
     </message>
     <message>
         <source>Peer connections</source>
-        <translation>Pripojení</translation>
+        <translation type="obsolete">Pripojení</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation>Prekladať krajiny rovesníkov</translation>
+        <translation type="obsolete">Prekladať krajiny rovesníkov</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation>Prekladať názvy počítačov rovesníkov</translation>
+        <translation type="obsolete">Prekladať názvy počítačov rovesníkov</translation>
     </message>
     <message>
         <source>Bittorrent features</source>

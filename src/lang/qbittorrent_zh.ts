@@ -170,6 +170,14 @@ p, li { white-space: pre-wrap; }
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3336,23 +3344,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>System default</source>
-        <translation>系统默认</translation>
+        <translation type="obsolete">系统默认</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastique 外观 （如KDE）</translation>
+        <translation type="obsolete">Plastique 外观 （如KDE）</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Cleanlooks 外观 （如Gnome） </translation>
+        <translation type="obsolete">Cleanlooks 外观 （如Gnome） </translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation>Motif 外观 （如Uinx） </translation>
+        <translation type="obsolete">Motif 外观 （如Uinx） </translation>
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>CDE 外观（如Common Desktop Environment)</translation>
+        <translation type="obsolete">CDE 外观（如Common Desktop Environment)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -3572,15 +3580,15 @@ QGroupBox {
     </message>
     <message>
         <source>Peer connections</source>
-        <translation>用户连接</translation>
+        <translation type="obsolete">用户连接</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation>显示用户国家</translation>
+        <translation type="obsolete">显示用户国家</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation>显示用户主机名</translation>
+        <translation type="obsolete">显示用户主机名</translation>
     </message>
     <message>
         <source>Bittorrent features</source>

@@ -155,6 +155,14 @@ p, li { white-space: pre-wrap; }(new line)
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3045,23 +3053,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>System default</source>
-        <translation>Implicit</translation>
+        <translation type="obsolete">Implicit</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastique style (KDE like)</translation>
+        <translation type="obsolete">Plastique style (KDE like)</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Cleanlooks style (Gnome like)</translation>
+        <translation type="obsolete">Cleanlooks style (Gnome like)</translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation>Motif style (Unix like)</translation>
+        <translation type="obsolete">Motif style (Unix like)</translation>
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>CDE style (Common Desktop Environment like)</translation>
+        <translation type="obsolete">CDE style (Common Desktop Environment like)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -3289,15 +3297,15 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Peer connections</source>
-        <translation>Peer connections</translation>
+        <translation type="obsolete">Peer connections</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation>Resolve peer countries</translation>
+        <translation type="obsolete">Resolve peer countries</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation>Resolve peer host names</translation>
+        <translation type="obsolete">Resolve peer host names</translation>
     </message>
     <message>
         <source>Bittorrent features</source>

@@ -118,58 +118,68 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../advancedsettings.h" line="27"/>
+        <location filename="../advancedsettings.h" line="28"/>
         <source>Property</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="27"/>
+        <location filename="../advancedsettings.h" line="28"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="67"/>
+        <location filename="../advancedsettings.h" line="73"/>
         <source>Disk write cache size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="73"/>
+        <location filename="../advancedsettings.h" line="79"/>
         <source> MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="76"/>
+        <location filename="../advancedsettings.h" line="82"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="84"/>
+        <location filename="../advancedsettings.h" line="90"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="104"/>
+        <location filename="../advancedsettings.h" line="110"/>
         <source>Recheck torrents on completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="110"/>
+        <location filename="../advancedsettings.h" line="116"/>
         <source>Transfer list refresh interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="116"/>
+        <location filename="../advancedsettings.h" line="122"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../advancedsettings.h" line="92"/>
-        <source>Ignore transfer limits on local network</source>
+        <location filename="../advancedsettings.h" line="125"/>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../advancedsettings.h" line="131"/>
+        <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="98"/>
+        <source>Ignore transfer limits on local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../advancedsettings.h" line="104"/>
         <source>Include TCP/IP overhead in transfer limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1518,7 +1528,7 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="103"/>
+        <location filename="../main.cpp" line="95"/>
         <source>Legal Notice</source>
         <translation>Правно Обавештење</translation>
     </message>
@@ -1535,30 +1545,30 @@ You probably knew this, so we won&apos;t tell you again.</source>
         <translation type="obsolete">Притисните било који тастер да ово прихватите и наставите...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="104"/>
-        <location filename="../main.cpp" line="115"/>
+        <location filename="../main.cpp" line="96"/>
+        <location filename="../main.cpp" line="107"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="105"/>
+        <location filename="../main.cpp" line="97"/>
         <source>Press %1 key to accept and continue...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="116"/>
+        <location filename="../main.cpp" line="108"/>
         <source>Legal notice</source>
         <translation>Правно обавештење</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="117"/>
+        <location filename="../main.cpp" line="109"/>
         <source>Cancel</source>
         <translation>Откажи</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="118"/>
+        <location filename="../main.cpp" line="110"/>
         <source>I Agree</source>
         <translatorcomment>Слажем се , Прихватам</translatorcomment>
         <translation>Сагласан сам</translation>
@@ -1912,7 +1922,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/options.ui" line="209"/>
-        <location filename="../ui/options.ui" line="2888"/>
+        <location filename="../ui/options.ui" line="2836"/>
         <source>RSS</source>
         <translatorcomment>RSS је породица веб формата који се користе за објављивање садржаја који се често мењају, као што су новински наслови. RSS документ садржи или сажетак садржаја са придружене веб стране, или читав текст. RSS вам омогућава да будете у току са изменама и новостима са неког веб сајта потпуно аутоматски, а тај садржај се може увести у RSS апликацију на вашој страни.</translatorcomment>
         <translation>RSS</translation>
@@ -1943,52 +1953,47 @@ No further notices will be issued.</source>
         <translation>Изглед:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="336"/>
         <source>System default</source>
-        <translation>Системски подразумевано</translation>
+        <translation type="obsolete">Системски подразумевано</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="341"/>
         <source>Plastique style (KDE like)</source>
-        <translation>Plastique стил (као KDE)</translation>
+        <translation type="obsolete">Plastique стил (као KDE)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="346"/>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Cleanlooks стил (као Gnome)</translation>
+        <translation type="obsolete">Cleanlooks стил (као Gnome)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="351"/>
         <source>Motif style (Unix like)</source>
-        <translation>Motif стил (као Unix)</translation>
+        <translation type="obsolete">Motif стил (као Unix)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="356"/>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>CDE стил (као Common Desktop Environment)</translation>
+        <translation type="obsolete">CDE стил (као Common Desktop Environment)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="379"/>
+        <location filename="../ui/options.ui" line="353"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
         <translation>Питај за потврду при изласку, када листа преузимања није празна</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="389"/>
+        <location filename="../ui/options.ui" line="363"/>
         <source>Display top toolbar</source>
         <translation>Прикажи горњу траку алата</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="399"/>
+        <location filename="../ui/options.ui" line="373"/>
         <source>Disable splash screen</source>
         <translation>Онемогући уводни екран</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="406"/>
+        <location filename="../ui/options.ui" line="380"/>
         <source>Display current speed in title bar</source>
         <translation>Прикажи тренутну брзину на насловној траци</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="413"/>
+        <location filename="../ui/options.ui" line="387"/>
         <source>Transfer list</source>
         <translation>Трансфер листа</translation>
     </message>
@@ -2001,77 +2006,77 @@ No further notices will be issued.</source>
         <translation type="obsolete">ms</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="419"/>
+        <location filename="../ui/options.ui" line="393"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Користи различите боје за приказ редова</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="444"/>
+        <location filename="../ui/options.ui" line="418"/>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
         <translation>Дејства са дуплим кликом:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="452"/>
+        <location filename="../ui/options.ui" line="426"/>
         <source>Downloading:</source>
         <translation>Преузимање:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="469"/>
-        <location filename="../ui/options.ui" line="503"/>
+        <location filename="../ui/options.ui" line="443"/>
+        <location filename="../ui/options.ui" line="477"/>
         <source>Start/Stop</source>
         <translation>Старт/Стоп</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="474"/>
-        <location filename="../ui/options.ui" line="508"/>
+        <location filename="../ui/options.ui" line="448"/>
+        <location filename="../ui/options.ui" line="482"/>
         <source>Open folder</source>
         <translation>Отвори фасциклу</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="495"/>
+        <location filename="../ui/options.ui" line="469"/>
         <source>Completed:</source>
         <translation>Комплетирани:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="526"/>
+        <location filename="../ui/options.ui" line="500"/>
         <source>System tray icon</source>
         <translation>Икона системске палете</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="532"/>
+        <location filename="../ui/options.ui" line="506"/>
         <source>Disable system tray icon</source>
         <translation>Онемогући икону на системској палети</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="539"/>
+        <location filename="../ui/options.ui" line="513"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>Затвори на системску палету</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="546"/>
+        <location filename="../ui/options.ui" line="520"/>
         <source>Minimize to tray</source>
         <translation>Минимизуј на палету</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="556"/>
+        <location filename="../ui/options.ui" line="530"/>
         <source>Start minimized</source>
         <translation>Стартуј минимизовано</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="563"/>
+        <location filename="../ui/options.ui" line="537"/>
         <source>Show notification balloons in tray</source>
         <translation>Прикажи балоне са коментарима на палети</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="610"/>
+        <location filename="../ui/options.ui" line="584"/>
         <source>File system</source>
         <translation>Фајл систем</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="616"/>
+        <location filename="../ui/options.ui" line="590"/>
         <source>QGroupBox::title {
 font-weight: normal;
 margin-left: -3px;
@@ -2088,24 +2093,24 @@ QGroupBox {
 }</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="625"/>
+        <location filename="../ui/options.ui" line="599"/>
         <source>Destination Folder:</source>
         <translation>Одредишна Фасцикла:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="665"/>
+        <location filename="../ui/options.ui" line="639"/>
         <source>Append the torrent&apos;s label</source>
         <translation>Додељивање ознака Торентима</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="675"/>
+        <location filename="../ui/options.ui" line="649"/>
         <source>Use a different folder for incomplete downloads:</source>
         <translation>Користи различиту фасциклу за недовршени пренос:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="687"/>
-        <location filename="../ui/options.ui" line="745"/>
-        <location filename="../ui/options.ui" line="791"/>
+        <location filename="../ui/options.ui" line="661"/>
+        <location filename="../ui/options.ui" line="719"/>
+        <location filename="../ui/options.ui" line="765"/>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
@@ -2114,22 +2119,22 @@ QGroupBox {
 }</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="727"/>
+        <location filename="../ui/options.ui" line="701"/>
         <source>Automatically load .torrent files from:</source>
         <translation>Аутоматски учитај Торент фајлове из:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="779"/>
+        <location filename="../ui/options.ui" line="753"/>
         <source>Copy .torrent files to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="825"/>
+        <location filename="../ui/options.ui" line="799"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Додај .!qB екстензију у некомплетне фајлове</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="832"/>
+        <location filename="../ui/options.ui" line="806"/>
         <source>Pre-allocate all files</source>
         <translation>Прераспореди све фајлове</translation>
     </message>
@@ -2142,88 +2147,88 @@ QGroupBox {
         <translation type="obsolete">MiB (напредна опц.)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="844"/>
+        <location filename="../ui/options.ui" line="818"/>
         <source>Torrent queueing</source>
         <translation>Торент опслуживање</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="850"/>
+        <location filename="../ui/options.ui" line="824"/>
         <source>Enable queueing system</source>
         <translation>Омогући системско опслуживање</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="862"/>
+        <location filename="../ui/options.ui" line="836"/>
         <source>Maximum active downloads:</source>
         <translation>Максимум активних преузимања:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="905"/>
+        <location filename="../ui/options.ui" line="879"/>
         <source>Maximum active uploads:</source>
         <translation>Максимум активних слања:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="948"/>
+        <location filename="../ui/options.ui" line="922"/>
         <source>Maximum active torrents:</source>
         <translation>Максимум активних торента:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="997"/>
+        <location filename="../ui/options.ui" line="971"/>
         <source>When adding a torrent</source>
         <translation>Када додајете неки торент</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1005"/>
+        <location filename="../ui/options.ui" line="979"/>
         <source>Display torrent content and some options</source>
         <translation>Прикажи садржај торента и неке опције</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1032"/>
+        <location filename="../ui/options.ui" line="1006"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Немој аутоматски да стартујеш преузимање</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1099"/>
+        <location filename="../ui/options.ui" line="1073"/>
         <source>Listening port</source>
         <translation>Надгледај порт</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1107"/>
+        <location filename="../ui/options.ui" line="1081"/>
         <source>Port used for incoming connections:</source>
         <translation>Порт коришћен за долазеће конекције:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1127"/>
+        <location filename="../ui/options.ui" line="1101"/>
         <source>Random</source>
         <translation>Случајан</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1149"/>
+        <location filename="../ui/options.ui" line="1123"/>
         <source>Enable UPnP port mapping</source>
         <translation>Омогући UPnP мапирање порта</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1159"/>
+        <location filename="../ui/options.ui" line="1133"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>Омогући NAT-PMP мапирање порта</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1174"/>
+        <location filename="../ui/options.ui" line="1148"/>
         <source>Connections limit</source>
         <translation>Конекциона ограничења</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1182"/>
+        <location filename="../ui/options.ui" line="1156"/>
         <source>Global maximum number of connections:</source>
         <translation>Општи максимални број конекција:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1225"/>
+        <location filename="../ui/options.ui" line="1199"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Максимални број конекција по торенту:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1265"/>
+        <location filename="../ui/options.ui" line="1239"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Максимални број слотова за слање по торенту:</translation>
     </message>
@@ -2232,313 +2237,310 @@ QGroupBox {
         <translation type="obsolete">Опште ограничење протока</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1384"/>
-        <location filename="../ui/options.ui" line="1513"/>
+        <location filename="../ui/options.ui" line="1332"/>
+        <location filename="../ui/options.ui" line="1461"/>
         <source>Upload:</source>
         <translation>Слање:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1400"/>
-        <location filename="../ui/options.ui" line="1520"/>
+        <location filename="../ui/options.ui" line="1348"/>
+        <location filename="../ui/options.ui" line="1468"/>
         <source>Download:</source>
         <translation>Преузимање:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1438"/>
-        <location filename="../ui/options.ui" line="1474"/>
-        <location filename="../ui/options.ui" line="1561"/>
-        <location filename="../ui/options.ui" line="1568"/>
+        <location filename="../ui/options.ui" line="1386"/>
+        <location filename="../ui/options.ui" line="1422"/>
+        <location filename="../ui/options.ui" line="1509"/>
+        <location filename="../ui/options.ui" line="1516"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1303"/>
         <source>Peer connections</source>
-        <translation>Peer (учесничке) конекције</translation>
+        <translation type="obsolete">Peer (учесничке) конекције</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1309"/>
         <source>Resolve peer countries</source>
-        <translation>Одреди земљу peer-а (учесника)</translation>
+        <translation type="obsolete">Одреди земљу peer-а (учесника)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1319"/>
         <source>Resolve peer host names</source>
-        <translation>Одреди име хоста peer-а (учесника)</translation>
+        <translation type="obsolete">Одреди име хоста peer-а (учесника)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1368"/>
+        <location filename="../ui/options.ui" line="1316"/>
         <source>Global speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1503"/>
+        <location filename="../ui/options.ui" line="1451"/>
         <source>Alternative global speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1619"/>
+        <location filename="../ui/options.ui" line="1567"/>
         <source>Scheduled times:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1646"/>
+        <location filename="../ui/options.ui" line="1594"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1690"/>
+        <location filename="../ui/options.ui" line="1638"/>
         <source>On days:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1701"/>
+        <location filename="../ui/options.ui" line="1649"/>
         <source>Every day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1706"/>
+        <location filename="../ui/options.ui" line="1654"/>
         <source>Week days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1711"/>
+        <location filename="../ui/options.ui" line="1659"/>
         <source>Week ends</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1773"/>
+        <location filename="../ui/options.ui" line="1721"/>
         <source>Bittorrent features</source>
         <translation>Бит-торент карактеристике</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1779"/>
+        <location filename="../ui/options.ui" line="1727"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Омогући DHT мрежу (децентализовано)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1789"/>
+        <location filename="../ui/options.ui" line="1737"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Користи различит порт за DHT и Бит-торент</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1820"/>
+        <location filename="../ui/options.ui" line="1768"/>
         <source>DHT port:</source>
         <translation>DHT порт:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1858"/>
+        <location filename="../ui/options.ui" line="1806"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translatorcomment>Рестарт је потребан за старт PeX подршке</translatorcomment>
         <translation>Омогући Peer Exchange / PeX (захтева рестарт)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1868"/>
+        <location filename="../ui/options.ui" line="1816"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Омогући откривање локалних веза Peer (учесника)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1880"/>
+        <location filename="../ui/options.ui" line="1828"/>
         <source>Encryption:</source>
         <translation>Шифровање:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1888"/>
+        <location filename="../ui/options.ui" line="1836"/>
         <source>Enabled</source>
         <translation>Омогући</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1893"/>
+        <location filename="../ui/options.ui" line="1841"/>
         <source>Forced</source>
         <translation>Форсирано</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1898"/>
+        <location filename="../ui/options.ui" line="1846"/>
         <source>Disabled</source>
         <translation>Онемогући</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1955"/>
+        <location filename="../ui/options.ui" line="1903"/>
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2012"/>
+        <location filename="../ui/options.ui" line="1960"/>
         <source>Reset to latest software version</source>
         <translation>Подеси на последњу верзију софтвера</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2037"/>
+        <location filename="../ui/options.ui" line="1985"/>
         <source>Share ratio settings</source>
         <translation>Подешавање идекса дељења</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2045"/>
+        <location filename="../ui/options.ui" line="1993"/>
         <source>Desired ratio:</source>
         <translation>Жељени индекс:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2099"/>
+        <location filename="../ui/options.ui" line="2047"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Премести завршене торенте када је овај индекс достигнут:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2190"/>
+        <location filename="../ui/options.ui" line="2138"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>HTTP Комуникације (пратиоци, Веб донори, претраживачки модул)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2227"/>
-        <location filename="../ui/options.ui" line="2430"/>
+        <location filename="../ui/options.ui" line="2175"/>
+        <location filename="../ui/options.ui" line="2378"/>
         <source>Host:</source>
         <translation>Домаћин:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2388"/>
+        <location filename="../ui/options.ui" line="2336"/>
         <source>Peer Communications</source>
         <translation>Peer (учесничке) Комуникације</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2409"/>
+        <location filename="../ui/options.ui" line="2357"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2198"/>
-        <location filename="../ui/options.ui" line="2396"/>
+        <location filename="../ui/options.ui" line="2146"/>
+        <location filename="../ui/options.ui" line="2344"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1924"/>
+        <location filename="../ui/options.ui" line="1872"/>
         <source>Client whitelisting workaround</source>
         <translation>Примени белу-листу клијената</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1932"/>
+        <location filename="../ui/options.ui" line="1880"/>
         <source>Identify as:</source>
         <translation>Идентификуј се као:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1940"/>
+        <location filename="../ui/options.ui" line="1888"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1945"/>
+        <location filename="../ui/options.ui" line="1893"/>
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1950"/>
+        <location filename="../ui/options.ui" line="1898"/>
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1966"/>
+        <location filename="../ui/options.ui" line="1914"/>
         <source>Version:</source>
         <translation>Верзија:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1983"/>
+        <location filename="../ui/options.ui" line="1931"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translation>Build:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2206"/>
-        <location filename="../ui/options.ui" line="2404"/>
+        <location filename="../ui/options.ui" line="2154"/>
+        <location filename="../ui/options.ui" line="2352"/>
         <source>(None)</source>
         <translation>(Ниједан)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2211"/>
-        <location filename="../ui/options.ui" line="2419"/>
+        <location filename="../ui/options.ui" line="2159"/>
+        <location filename="../ui/options.ui" line="2367"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2253"/>
-        <location filename="../ui/options.ui" line="2456"/>
-        <location filename="../ui/options.ui" line="2743"/>
+        <location filename="../ui/options.ui" line="2201"/>
+        <location filename="../ui/options.ui" line="2404"/>
+        <location filename="../ui/options.ui" line="2691"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2296"/>
-        <location filename="../ui/options.ui" line="2499"/>
-        <location filename="../ui/options.ui" line="2782"/>
+        <location filename="../ui/options.ui" line="2244"/>
+        <location filename="../ui/options.ui" line="2447"/>
+        <location filename="../ui/options.ui" line="2730"/>
         <source>Authentication</source>
         <translation>Аутентификација</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2310"/>
-        <location filename="../ui/options.ui" line="2513"/>
-        <location filename="../ui/options.ui" line="2790"/>
+        <location filename="../ui/options.ui" line="2258"/>
+        <location filename="../ui/options.ui" line="2461"/>
+        <location filename="../ui/options.ui" line="2738"/>
         <source>Username:</source>
         <translation>Корисничко име:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2320"/>
-        <location filename="../ui/options.ui" line="2523"/>
-        <location filename="../ui/options.ui" line="2797"/>
+        <location filename="../ui/options.ui" line="2268"/>
+        <location filename="../ui/options.ui" line="2471"/>
+        <location filename="../ui/options.ui" line="2745"/>
         <source>Password:</source>
         <translation>Лозинка:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2216"/>
-        <location filename="../ui/options.ui" line="2414"/>
+        <location filename="../ui/options.ui" line="2164"/>
+        <location filename="../ui/options.ui" line="2362"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2627"/>
+        <location filename="../ui/options.ui" line="2575"/>
         <source>Filter Settings</source>
         <translation>Подешавање Филтера</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2633"/>
+        <location filename="../ui/options.ui" line="2581"/>
         <source>Activate IP Filtering</source>
         <translation>Активирање IP Филтрирања</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2649"/>
+        <location filename="../ui/options.ui" line="2597"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Филтер, путања фајла (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2724"/>
+        <location filename="../ui/options.ui" line="2672"/>
         <source>Enable Web User Interface</source>
         <translation>Омогући Веб Кориснички Интерфејс</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2737"/>
+        <location filename="../ui/options.ui" line="2685"/>
         <source>HTTP Server</source>
         <translation>HTTP Сервер</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2894"/>
+        <location filename="../ui/options.ui" line="2842"/>
         <source>Enable RSS support</source>
         <translation>Омогући RSS подршку</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2904"/>
+        <location filename="../ui/options.ui" line="2852"/>
         <source>RSS settings</source>
         <translation>RSS подешавање</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2941"/>
+        <location filename="../ui/options.ui" line="2889"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS поруке интервал освежавања:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2961"/>
+        <location filename="../ui/options.ui" line="2909"/>
         <source>minutes</source>
         <translation>минута</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2985"/>
+        <location filename="../ui/options.ui" line="2933"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Максимални број чланака по допису:</translation>
     </message>
@@ -3863,32 +3865,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="83"/>
+        <location filename="../main.cpp" line="75"/>
         <source>Usage:</source>
         <translation>Начин употребе:</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="84"/>
+        <location filename="../main.cpp" line="76"/>
         <source>displays program version</source>
         <translation>прикажи верзију програма</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="86"/>
+        <location filename="../main.cpp" line="78"/>
         <source>disable splash screen</source>
         <translation>онемогући уводни екран</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="80"/>
         <source>displays this help message</source>
         <translation>прикажи ову поруку о помоћи</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="81"/>
         <source>changes the webui port (current: %1)</source>
         <translation>промени Веб КИ порт (тренутно: %1)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="82"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[фајлови или urls]:преузимање торента које чини корисник (опционо)</translation>
     </message>
@@ -4724,28 +4726,28 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1420"/>
-        <location filename="../options_imp.cpp" line="1422"/>
+        <location filename="../options_imp.cpp" line="1380"/>
+        <location filename="../options_imp.cpp" line="1382"/>
         <source>Choose scan directory</source>
         <translation>Изаберите директоријум за скенирање</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1449"/>
-        <location filename="../options_imp.cpp" line="1451"/>
-        <location filename="../options_imp.cpp" line="1463"/>
-        <location filename="../options_imp.cpp" line="1465"/>
+        <location filename="../options_imp.cpp" line="1409"/>
+        <location filename="../options_imp.cpp" line="1411"/>
+        <location filename="../options_imp.cpp" line="1423"/>
+        <location filename="../options_imp.cpp" line="1425"/>
         <source>Choose a save directory</source>
         <translation>Изаберите директоријум за чување</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1434"/>
-        <location filename="../options_imp.cpp" line="1436"/>
+        <location filename="../options_imp.cpp" line="1394"/>
+        <location filename="../options_imp.cpp" line="1396"/>
         <source>Choose an ip filter file</source>
         <translation>Изаберите неки ip филтер фајл</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1434"/>
-        <location filename="../options_imp.cpp" line="1436"/>
+        <location filename="../options_imp.cpp" line="1394"/>
+        <location filename="../options_imp.cpp" line="1396"/>
         <source>Filters</source>
         <translation>Филтери</translation>
     </message>

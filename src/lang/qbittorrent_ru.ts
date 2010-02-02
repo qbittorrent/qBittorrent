@@ -190,6 +190,14 @@ p, li { white-space: pre-wrap; }
         <comment> milliseconds</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resolve peer countries (GeoIP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolve peer host names</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3224,23 +3232,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>System default</source>
-        <translation>Системная тема</translation>
+        <translation type="obsolete">Системная тема</translation>
     </message>
     <message>
         <source>Plastique style (KDE like)</source>
-        <translation>Стиль пластик (как KDE)</translation>
+        <translation type="obsolete">Стиль пластик (как KDE)</translation>
     </message>
     <message>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation>Свободный стиль (как в GNOME)</translation>
+        <translation type="obsolete">Свободный стиль (как в GNOME)</translation>
     </message>
     <message>
         <source>Motif style (Unix like)</source>
-        <translation>Стиль  Motif (на Unix-подобных системах)</translation>
+        <translation type="obsolete">Стиль  Motif (на Unix-подобных системах)</translation>
     </message>
     <message>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation>Стиль CDE (как Окружение Общего Рабочего Стола)</translation>
+        <translation type="obsolete">Стиль CDE (как Окружение Общего Рабочего Стола)</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -3460,15 +3468,15 @@ QGroupBox {
     </message>
     <message>
         <source>Peer connections</source>
-        <translation>Соединения с пирами</translation>
+        <translation type="obsolete">Соединения с пирами</translation>
     </message>
     <message>
         <source>Resolve peer countries</source>
-        <translation>Определить страну пира</translation>
+        <translation type="obsolete">Определить страну пира</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation>Определить имя хоста пира</translation>
+        <translation type="obsolete">Определить имя хоста пира</translation>
     </message>
     <message>
         <source>Bittorrent features</source>
