@@ -1747,7 +1747,7 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">vorraussichtliche Ankunftszeit</translation>
+        <translation type="obsolete">ETA</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -2632,12 +2632,12 @@ Möchten sie qBittorrent wirklich beenden?</translation>
     <message>
         <location filename="../GUI.cpp" line="411"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Globale Upload-Geschwindigkeit</translation>
+        <translation>Globale UL-Rate</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="429"/>
         <source>Global Download Speed Limit</source>
-        <translation>Globale Download-Geschwindigkeit</translation>
+        <translation>Globale DL-Rate</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="511"/>
@@ -2847,7 +2847,7 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
         <location filename="../httpserver.cpp" line="81"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation>Downgeloaded</translation>
+        <translation>Runtergeladen</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="82"/>
@@ -3253,25 +3253,25 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
         <location filename="../peerlistwidget.cpp" line="58"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Download Geschwindigkeit</translation>
+        <translation>DL-Rate</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="59"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Upload Geschwindigkeit</translation>
+        <translation>UL-Rate</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="60"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation>Downgeloaded</translation>
+        <translation>Runtergeladen</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="61"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Upgeloaded</translation>
+        <translation>Hochgeladen</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="131"/>
@@ -4050,7 +4050,7 @@ QGroupBox {
         <location filename="../ui/propertieswidget.ui" line="82"/>
         <location filename="../ui/propertieswidget.ui" line="206"/>
         <source>Downloaded:</source>
-        <translation>Downgeloaded:</translation>
+        <translation>Runtergeladen:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="136"/>
@@ -4065,7 +4065,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="196"/>
         <source>Uploaded:</source>
-        <translation>Upgeloaded:</translation>
+        <translation>Hochgeladen:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="216"/>
@@ -4075,12 +4075,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="268"/>
         <source>UP limit:</source>
-        <translation>UP Begrenzung:</translation>
+        <translation>UL-Limit:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="278"/>
         <source>DL limit:</source>
-        <translation>DL Begrenzung:</translation>
+        <translation>DL-Limit:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="288"/>
@@ -4941,12 +4941,12 @@ Changelog:
     <message>
         <location filename="../statusbar.h" line="174"/>
         <source>Global Download Speed Limit</source>
-        <translation>Begrenzung der globalen Download-Geschwindigkeit</translation>
+        <translation>Begrenzung der globalen DL-Rate</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="190"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Begrenzung der globalen Upload-Geschwindigkeit</translation>
+        <translation>Begrenzung der globalen UL-Rate</translation>
     </message>
 </context>
 <context>
@@ -5234,13 +5234,13 @@ Changelog:
         <location filename="../transferlistwidget.cpp" line="75"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Download-Geschwindigkeit</translation>
+        <translation>DL-Rate</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="77"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Upload-Geschwindigkeit</translation>
+        <translation>UL-Rate</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -5250,7 +5250,7 @@ Changelog:
         <location filename="../transferlistwidget.cpp" line="81"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>voraussichtliche Ankunftszeit</translation>
+        <translation type="unfinished">ETA</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -5340,12 +5340,12 @@ Changelog:
     <message>
         <location filename="../transferlistwidget.cpp" line="741"/>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Begrenzung der Torrent-Download-Geschwindigkeit</translation>
+        <translation>Begrenzung der Torrent-DL-Rate</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="777"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Begrenzung der Torrent-Upload-Geschwindigkeit</translation>
+        <translation>Begrenzung der Torrent-UL-Rate</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="904"/>
@@ -7533,7 +7533,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation type="obsolete">Upload-Geschwindigkeit</translation>
+        <translation type="obsolete">UL-Rate</translation>
     </message>
     <message>
         <source>Connected peers</source>
