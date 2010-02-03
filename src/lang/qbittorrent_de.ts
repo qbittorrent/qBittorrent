@@ -177,6 +177,16 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../advancedsettings.h" line="98"/>
+        <source>Ignore transfer limits on local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../advancedsettings.h" line="104"/>
+        <source>Include TCP/IP overhead in transfer limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../advancedsettings.h" line="110"/>
         <source>Recheck torrents on completion</source>
         <translation type="unfinished"></translation>
@@ -200,16 +210,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="131"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../advancedsettings.h" line="98"/>
-        <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../advancedsettings.h" line="104"/>
-        <source>Include TCP/IP overhead in transfer limits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1816,7 +1816,7 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">vorraussichtliche Ankunftszeit</translation>
+        <translation type="obsolete">ETA</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -2711,12 +2711,12 @@ Möchten sie qBittorrent wirklich beenden?</translation>
     <message>
         <location filename="../GUI.cpp" line="413"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Globale Upload-Geschwindigkeit</translation>
+        <translation>Globale UL-Rate</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="431"/>
         <source>Global Download Speed Limit</source>
-        <translation>Globale Download-Geschwindigkeit</translation>
+        <translation>Globale DL-Rate</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="513"/>
@@ -2926,7 +2926,7 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
         <location filename="../httpserver.cpp" line="81"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation>Downgeloaded</translation>
+        <translation>Runtergeladen</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="82"/>
@@ -2966,16 +2966,18 @@ You probably knew this, so we won&apos;t tell you again.</source>
 Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch nicht wieder darauf hinweisen.</translation>
     </message>
     <message>
-        <source>Press any key to accept and continue...</source>
-        <translation type="obsolete">Drücken Sie eine beliebige Taste um fortzufahren...</translation>
-    </message>
-    <message>
         <location filename="../main.cpp" line="96"/>
         <location filename="../main.cpp" line="107"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ist ein Filesharing Programm. Sobald ein Torrent bei Ihnen läuft, stellen Sie den Inhalt auch anderen zurVerfügung. Selbstverständlich geschieht das Teilen jeglicher Inhalte auf Ihre eigene Verantwortung.
+
+Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch nicht wieder darauf hinweisen.</translation>
+    </message>
+    <message>
+        <source>Press any key to accept and continue...</source>
+        <translation type="obsolete">Drücken Sie eine beliebige Taste um fortzufahren...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="97"/>
@@ -3339,25 +3341,25 @@ No further notices will be issued.</source>
         <location filename="../peerlistwidget.cpp" line="58"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Download Geschwindigkeit</translation>
+        <translation>DL-Rate</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="59"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Upload Geschwindigkeit</translation>
+        <translation>UL-Rate</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="60"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation>Downgeloaded</translation>
+        <translation>Runtergeladen</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="61"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Upgeloaded</translation>
+        <translation>Hochgeladen</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="131"/>
@@ -3454,11 +3456,6 @@ No further notices will be issued.</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="146"/>
-        <source>Speed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="155"/>
         <source>Bittorrent</source>
         <translation></translation>
@@ -3483,11 +3480,6 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="2836"/>
         <source>RSS</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="224"/>
-        <source>Advanced</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="264"/>
@@ -3814,47 +3806,6 @@ QGroupBox {
         <translation type="obsolete">Hostnamen der Peers auflösen</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1316"/>
-        <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1451"/>
-        <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1567"/>
-        <source>Scheduled times:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1594"/>
-        <source>to</source>
-        <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1638"/>
-        <source>On days:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1649"/>
-        <source>Every day</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1654"/>
-        <source>Week days</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/options.ui" line="1659"/>
-        <source>Week ends</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1721"/>
         <source>Bittorrent features</source>
         <translation>Bittorrent Funktionen</translation>
@@ -3955,6 +3906,57 @@ QGroupBox {
         <location filename="../ui/options.ui" line="2344"/>
         <source>Type:</source>
         <translation>Typ:</translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="146"/>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="224"/>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1316"/>
+        <source>Global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1451"/>
+        <source>Alternative global speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1567"/>
+        <source>Scheduled times:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1594"/>
+        <source>to</source>
+        <extracomment>time1 to time2</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1638"/>
+        <source>On days:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1649"/>
+        <source>Every day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1654"/>
+        <source>Week days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1659"/>
+        <source>Week ends</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1872"/>
@@ -4104,11 +4106,6 @@ QGroupBox {
         <translation type="obsolete">Ignoriert</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="89"/>
-        <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../proplistdelegate.h" line="98"/>
         <location filename="../proplistdelegate.h" line="148"/>
         <source>Normal</source>
@@ -4121,6 +4118,11 @@ QGroupBox {
         <source>High</source>
         <comment>High (priority)</comment>
         <translation type="unfinished">Hoch</translation>
+    </message>
+    <message>
+        <location filename="../proplistdelegate.h" line="89"/>
+        <source>Not downloaded</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="95"/>
@@ -4184,7 +4186,7 @@ QGroupBox {
         <location filename="../ui/propertieswidget.ui" line="82"/>
         <location filename="../ui/propertieswidget.ui" line="206"/>
         <source>Downloaded:</source>
-        <translation>Downgeloaded:</translation>
+        <translation>Runtergeladen:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="136"/>
@@ -4199,7 +4201,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="196"/>
         <source>Uploaded:</source>
-        <translation>Upgeloaded:</translation>
+        <translation>Hochgeladen:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="216"/>
@@ -4209,12 +4211,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="268"/>
         <source>UP limit:</source>
-        <translation>UP Begrenzung:</translation>
+        <translation>UL-Limit:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="278"/>
         <source>DL limit:</source>
-        <translation>DL Begrenzung:</translation>
+        <translation>DL-Limit:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="288"/>
@@ -5092,12 +5094,12 @@ Changelog:
     <message>
         <location filename="../statusbar.h" line="207"/>
         <source>Global Download Speed Limit</source>
-        <translation>Begrenzung der globalen Download-Geschwindigkeit</translation>
+        <translation>Begrenzung der globalen DL-Rate</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="226"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Begrenzung der globalen Upload-Geschwindigkeit</translation>
+        <translation>Begrenzung der globalen UL-Rate</translation>
     </message>
 </context>
 <context>
@@ -5391,13 +5393,13 @@ Changelog:
         <location filename="../transferlistwidget.cpp" line="75"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Download-Geschwindigkeit</translation>
+        <translation>DL-Rate</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="77"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Upload-Geschwindigkeit</translation>
+        <translation>UL-Rate</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -5407,7 +5409,7 @@ Changelog:
         <location filename="../transferlistwidget.cpp" line="81"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>voraussichtliche Ankunftszeit</translation>
+        <translation type="unfinished">ETA</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -5521,12 +5523,12 @@ Changelog:
     <message>
         <location filename="../transferlistwidget.cpp" line="768"/>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Begrenzung der Torrent-Download-Geschwindigkeit</translation>
+        <translation>Begrenzung der Torrent-DL-Rate</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="804"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Begrenzung der Torrent-Upload-Geschwindigkeit</translation>
+        <translation>Begrenzung der Torrent-UL-Rate</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="938"/>
@@ -7714,7 +7716,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     </message>
     <message>
         <source>Upload Speed</source>
-        <translation type="obsolete">Upload-Geschwindigkeit</translation>
+        <translation type="obsolete">UL-Rate</translation>
     </message>
     <message>
         <source>Connected peers</source>
