@@ -1820,7 +1820,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           if(!defaultTempPath.isEmpty()) {
             // Check if directory is different
             QDir current_dir(h.save_path());
-            QDir save_dir(getSavePath(h.hash()));
+            QDir save_dir(getSavePath(hash));
             if(current_dir != save_dir) {
               h.move_storage(save_dir.path());
             }
@@ -2048,7 +2048,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             }
           }
           emit torrentFinishedChecking(h);
-          emit metadataReceived(h);
           if(torrentsToPausedAfterChecking.contains(hash)) {
             torrentsToPausedAfterChecking.removeOne(hash);
             h.pause();
