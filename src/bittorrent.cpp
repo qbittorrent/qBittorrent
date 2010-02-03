@@ -1809,8 +1809,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(h.is_valid()) {
           emit finishedTorrent(h);
           QString hash = h.hash();
-          // Remember finished state
-          TorrentPersistentData::saveSeedStatus(h);
 #ifdef LIBTORRENT_0_15
           // Remove .!qB extension if necessary
           if(appendqBExtension)
@@ -1846,8 +1844,14 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             }
           }
           // Recheck if the user asked to
-          if(Preferences::recheckTorrentsOnCompletion())
+          if(Preferences::recheckTorrentsOnCompletion() && !TorrentPersistentData::isSeed(hash)) {
+            // Remember finished state
+            TorrentPersistentData::saveSeedStatus(h);
             h.force_recheck();
+          } else {
+            // Remember finished state
+            TorrentPersistentData::saveSeedStatus(h);
+          }
           qDebug("Received finished alert for %s", h.name().toLocal8Bit().data());
         }
       }
