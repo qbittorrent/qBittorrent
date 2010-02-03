@@ -159,7 +159,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="79"/>
         <source> MiB</source>
-        <translation>MiB</translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="82"/>
@@ -185,7 +185,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../advancedsettings.h" line="122"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="125"/>
@@ -439,7 +439,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="2031"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Va fallar la recerca de llavor per Url per a l&apos;Url: %1, missatge: %2</translation>
+        <translation>Va fallar la recerca de llavor per l&apos;Url: %1, missatge: %2</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2139"/>

@@ -159,7 +159,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="79"/>
         <source> MiB</source>
-        <translation>MiB</translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="82"/>
@@ -179,13 +179,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="116"/>
         <source>Transfer list refresh interval</source>
-        <translation>Intervalo de actualización de listas de transferencia</translation>
+        <translation>Intervalo de actualización de las listas de transferencia</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="122"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="125"/>
@@ -1470,7 +1470,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../eventmanager.cpp" line="304"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="307"/>
@@ -4761,7 +4761,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../supportedengines.h" line="55"/>
         <source>Software</source>
-        <translation>Programas</translation>
+        <translation>Programas Pc</translation>
     </message>
     <message>
         <location filename="../supportedengines.h" line="56"/>
