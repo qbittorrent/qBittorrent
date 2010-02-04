@@ -422,6 +422,7 @@ int TransferListWidget::updateTorrent(int row) {
         listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledUP.png"))), Qt::DecorationRole);
         setRowColor(row, QApplication::palette().color(QPalette::WindowText));
       }
+      listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)1.));
     }
     // Common to both downloads and uploads
     listModel->setData(listModel->index(row, TR_STATUS), s);
