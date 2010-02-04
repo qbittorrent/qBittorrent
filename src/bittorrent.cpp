@@ -1823,7 +1823,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               h.move_storage(save_dir.path());
             }
           }
-          h.save_resume_data();
+          bool was_already_seeded = TorrentPersistentData::isSeed(hash);
+          if(!was_already_seeded)
+            h.save_resume_data();
           // Check if there are torrent files inside
           for(int i=0; i<h.get_torrent_info().num_files(); ++i) {
             QString torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path);
@@ -1844,7 +1846,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             }
           }
           // Recheck if the user asked to
-          if(Preferences::recheckTorrentsOnCompletion() && !TorrentPersistentData::isSeed(hash)) {
+          if(Preferences::recheckTorrentsOnCompletion() && !was_already_seeded) {
             // Remember finished state
             TorrentPersistentData::saveSeedStatus(h);
             h.force_recheck();
