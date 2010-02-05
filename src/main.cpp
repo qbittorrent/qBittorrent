@@ -81,13 +81,13 @@ class UsageDisplay: public QObject {
 public:
   static void displayUsage(char* prg_name) {
     std::cout << tr("Usage:").toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << "--version: " << tr("displays program version").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " --version: " << tr("displays program version").toLocal8Bit().data() << std::endl;
 #ifndef DISABLE_GUI
-    std::cout << '\t' << prg_name << "--no-splash: " << tr("disable splash screen").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " --no-splash: " << tr("disable splash screen").toLocal8Bit().data() << std::endl;
 #endif
-    std::cout << '\t' << prg_name << "--help: " << tr("displays this help message").toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << "--webui-port=x: " << tr("changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << tr("[files or urls]: downloads the torrents passed by the user (optional)").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " --help: " << tr("displays this help message").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " --webui-port=x: " << tr("changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " " << tr("[files or urls]: downloads the torrents passed by the user (optional)").toLocal8Bit().data() << std::endl;
   }
 };
 
@@ -201,13 +201,68 @@ int main(int argc, char *argv[]){
 #ifndef DISABLE_GUI
   bool no_splash = false;
 #endif
+
+  //Check if there is another instance running
+  QLocalSocket localSocket;
+  QString uid = QString::number(getuid());
+  localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
+  if (localSocket.waitForConnected(1000)){
+    std::cout << "Another qBittorrent instance is already running...\n";
+    // Send parameters
+    if(argc > 1){
+      QStringList params;
+      for(int i=1;i<argc;++i){
+        params << QString::fromLocal8Bit(argv[i]);
+        std::cout << argv[i] << '\n';
+      }
+      QByteArray block = params.join("\n").toLocal8Bit();
+      std::cout << "writting: " << block.data() << '\n';
+      std::cout << "size: " << block.size() << '\n';
+      uint val = localSocket.write(block);
+      if(localSocket.waitForBytesWritten(5000)){
+        std::cout << "written(" <<val<<"): " << block.data() << '\n';
+      }else{
+        std::cerr << "Writing to the socket timed out\n";
+      }
+      localSocket.disconnectFromServer();
+      std::cout << "disconnected\n";
+    }
+    localSocket.close();
+    return 0;
+  }
+
+  // Create Application
+#ifdef DISABLE_GUI
+  app = new QCoreApplication(argc, argv);
+#else
+  app = new QApplication(argc, argv);
+#endif
+
+  // Load translation
+  locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
+  QTranslator translator;
+  if(locale.isEmpty()){
+    locale = QLocale::system().name();
+    settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
+  }
+  if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
+    qDebug("%s locale recognized, using translation.", (const char*)locale.toLocal8Bit());
+  }else{
+    qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toLocal8Bit());
+  }
+  app->installTranslator(&translator);
+  app->setApplicationName(QString::fromUtf8("qBittorrent"));
+
+  // Check for executable parameters
   if(argc > 1){
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
+      delete app;
       return 0;
     }
     if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--help")){
       UsageDisplay::displayUsage(argv[0]);
+      delete app;
       return 0;
     }
 
@@ -242,39 +297,7 @@ int main(int argc, char *argv[]){
   if(putenv((char*)"QBITTORRENT="VERSION)) {
     std::cerr << "Couldn't set environment variable...\n";
   }
-  //Check if there is another instance running
-  QLocalSocket localSocket;
-  QString uid = QString::number(getuid());
-  localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
-  if (localSocket.waitForConnected(1000)){
-    std::cout << "Another qBittorrent instance is already running...\n";
-    // Send parameters
-    if(argc > 1){
-      QStringList params;
-      for(int i=1;i<argc;++i){
-        params << QString::fromLocal8Bit(argv[i]);
-        std::cout << argv[i] << '\n';
-      }
-      QByteArray block = params.join("\n").toLocal8Bit();
-      std::cout << "writting: " << block.data() << '\n';
-      std::cout << "size: " << block.size() << '\n';
-      uint val = localSocket.write(block);
-      if(localSocket.waitForBytesWritten(5000)){
-        std::cout << "written(" <<val<<"): " << block.data() << '\n';
-      }else{
-        std::cerr << "Writing to the socket timed out\n";
-      }
-      localSocket.disconnectFromServer();
-      std::cout << "disconnected\n";
-    }
-    localSocket.close();
-    return 0;
-  }
-#ifdef DISABLE_GUI
-  app = new QCoreApplication(argc, argv);
-#else
-  app = new QApplication(argc, argv);
-#endif
+
 #ifndef DISABLE_GUI
   useStyle(app, settings.value("Preferences/General/Style", 0).toInt());
   app->setStyleSheet("QStatusBar::item { border-width: 0; }");
@@ -284,20 +307,7 @@ int main(int argc, char *argv[]){
     splash->show();
   }
 #endif
-  // Open options file to read locale
-  locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
-  QTranslator translator;
-  if(locale.isEmpty()){
-    locale = QLocale::system().name();
-    settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
-  }
-  if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
-    qDebug("%s locale recognized, using translation.", (const char*)locale.toLocal8Bit());
-  }else{
-    qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toLocal8Bit());
-  }
-  app->installTranslator(&translator);
-  app->setApplicationName(QString::fromUtf8("qBittorrent"));
+
   if(!LegalNotice::userAgreesWithNotice()) {
 #ifndef DISABLE_GUI
     delete splash;

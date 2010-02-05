@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.4
     - BUGFIX: Make sure seeding torrents display a progress of 100%
+    - BUGFIX: Usage display was improved and localized (--help)
 
 * Sun Jan 31 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.3
     - BUGFIX: Fix "Append .!qB extension to complete files" (libtorrent v0.15)
