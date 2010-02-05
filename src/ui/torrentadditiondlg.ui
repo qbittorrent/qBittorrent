@@ -215,11 +215,6 @@
          <height>21</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>8</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>Collapse all</string>
        </property>
@@ -232,11 +227,6 @@
          <width>16777215</width>
          <height>21</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>8</pointsize>
-        </font>
        </property>
        <property name="text">
         <string>Expand all</string>
