@@ -2901,7 +2901,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
@@ -3503,7 +3503,7 @@ QGroupBox {(new line)
     <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">la</translation>
     </message>
     <message>
         <source>On days:</source>
@@ -4282,7 +4282,7 @@ Changelog:
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Caută</translation>
     </message>
 </context>
 <context>
@@ -4541,7 +4541,7 @@ Changelog:
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
 </context>
 <context>

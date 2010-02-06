@@ -382,7 +382,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">PeX ondersteuning [UIT]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
@@ -2665,7 +2665,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Taal</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
@@ -2701,7 +2701,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuleren</translation>
     </message>
     <message>
         <source>I Agree</source>
@@ -3009,7 +3009,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
@@ -3109,7 +3109,7 @@ No further notices will be issued.</source>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voorkeuren</translation>
     </message>
     <message>
         <source>UI</source>
@@ -3117,31 +3117,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Downloads</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verbinding</translation>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bittorrent</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Proxy</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP Filter</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Web UI</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3149,7 +3149,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Taal:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -3157,15 +3157,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visuele stijl:</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toestemming vragen tijdens afsluiten als de downloadlijst niet leeg is</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Werkbalk boven weergeven</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
@@ -3173,7 +3173,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Huidige snelheid weergeven in titelbalk</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -3195,11 +3195,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start/Stop</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Open map</translation>
     </message>
     <message>
         <source>Completed:</source>
@@ -3207,32 +3207,32 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Systeemvakicoon</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Systeemvakicon uitschakelen</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sluiten naar systeemvak</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minimaliseren naar systeemvak</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start geminimaliseerd</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notificaties weergeven in systeemvak</translation>
     </message>
     <message>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bestandssysteem</translation>
     </message>
     <message>
         <source>QGroupBox::title {
@@ -3272,88 +3272,88 @@ QGroupBox {
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schijfruimte vooraf toewijzen voor alle bestanden</translation>
     </message>
     <message>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent wachtrij</translation>
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wachtrij inschakelen</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximum actieve downloads:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximum actieve uploads:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximum actieve torrents:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tijdens torrent toevoegen</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrentinhoud en enkele opties weergeven</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Download niet automatisch starten</translation>
     </message>
     <message>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luisterpoort</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poort voor inkomende verbindingen:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Willekeurig</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">UPnP port mapping inschakelen</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NAT-PMP port mapping inschakelen</translation>
     </message>
     <message>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verbindingslimiet</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Globaal verbindingslimiet:</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verbindingslimiet per torrent:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximum aantal uploads per torrent:</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Upload:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Download:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
     <message>
         <source>Bittorrent features</source>
@@ -3361,7 +3361,7 @@ QGroupBox {
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT (gedecentraliseerd) netwerk inschakelen</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
@@ -3369,7 +3369,7 @@ QGroupBox {
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT poort:</translation>
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
@@ -3377,103 +3377,103 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Local Peer Discovery inschakelen</translation>
     </message>
     <message>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Encryptie:</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ingeschakeld</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Geforceerd</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uitgeschakeld</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deel ratio instellingen</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gewenste ratio:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Complete torrents verwijderen bij een ratio van:</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Type:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">(Geen)</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTTP</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poort:</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Authenticatie</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gebruikersnaam:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wachtwoord:</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filterinstellingen</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP filteren activeren</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Web Gebruikers Interface inschakelen</translation>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTTP Server</translation>
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS ondersteuning inschakelen</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS instellingen</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS feeds vernieuwingsinterval:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">minuten</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximum aantal artikelen per feed:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -3505,7 +3505,7 @@ QGroupBox {
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
@@ -3860,7 +3860,7 @@ QGroupBox {
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I/O Fout</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
@@ -4326,7 +4326,7 @@ Changelog:
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zoeken</translation>
     </message>
 </context>
 <context>
@@ -4520,7 +4520,7 @@ Changelog:
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I/O Fout</translation>
     </message>
     <message>
         <source>Error while trying to open the downloaded file.</source>
@@ -4585,7 +4585,7 @@ Changelog:
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -4845,7 +4845,7 @@ Changelog:
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hernoemen</translation>
     </message>
     <message>
         <source>New name:</source>

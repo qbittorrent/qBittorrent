@@ -190,12 +190,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="125"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Parells per Països (GeoIP)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="131"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Parells per nom de Host</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="98"/>
@@ -417,32 +417,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">No se pudo escuchar en ninguno de los puertos brindados.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2005"/>
+        <location filename="../bittorrent.cpp" line="2012"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Va fallar el mapatge del port, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2010"/>
+        <location filename="../bittorrent.cpp" line="2017"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapatge del port reeixit, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2025"/>
+        <location filename="../bittorrent.cpp" line="2032"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Es van negar les dades per a reinici ràpid del torrent: %1, verificant de nou... </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2026"/>
+        <location filename="../bittorrent.cpp" line="2033"/>
         <source>Reason: %1</source>
         <translation>Raó: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2031"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Va fallar la recerca de llavor per l&apos;Url: %1, missatge: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2139"/>
+        <location filename="../bittorrent.cpp" line="2145"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descarregant &apos;%1&apos;, si us plau esperi...</translation>
@@ -5400,27 +5400,27 @@ Log:
         <translation type="obsolete">&amp;No</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="870"/>
+        <location filename="../transferlistwidget.cpp" line="875"/>
         <source>Column visibility</source>
         <translation>Visibilitat de columnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="1002"/>
         <source>Start</source>
         <translation>Començar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1004"/>
         <source>Pause</source>
         <translation>Interrompre</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1006"/>
         <source>Delete</source>
         <translation>Esborrar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1008"/>
         <source>Preview file</source>
         <translation>Vista prèvia</translation>
     </message>
@@ -5480,7 +5480,7 @@ Log:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1107"/>
+        <location filename="../transferlistwidget.cpp" line="1113"/>
         <source>Label</source>
         <translation>Etiqueta</translation>
     </message>
@@ -5509,113 +5509,113 @@ Log:
         <translation>Límit Pujada</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="773"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Límit de velocitat de Baixada Torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="804"/>
+        <location filename="../transferlistwidget.cpp" line="809"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Límit de velocitat de Pujada Torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>New Label</source>
         <translation>Nova Etiqueta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>Label:</source>
         <translation>Etiqueta:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="948"/>
         <source>Invalid label name</source>
         <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="948"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>Rename</source>
         <translation>Rebatejar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1004"/>
+        <location filename="../transferlistwidget.cpp" line="1010"/>
         <source>Limit upload rate</source>
         <translation>Taxa límit de Pujada</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1006"/>
+        <location filename="../transferlistwidget.cpp" line="1012"/>
         <source>Limit download rate</source>
         <translation>Taxa límit de Baixada</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1014"/>
         <source>Open destination folder</source>
         <translation>Obrir carpeta destí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1016"/>
         <source>Buy it</source>
         <translation>Comprar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1018"/>
         <source>Increase priority</source>
         <translation>Augmentar prioritat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1014"/>
+        <location filename="../transferlistwidget.cpp" line="1020"/>
         <source>Decrease priority</source>
         <translation>Disminuir prioritat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1016"/>
+        <location filename="../transferlistwidget.cpp" line="1022"/>
         <source>Force recheck</source>
         <translation>Forçar verificació de arxiu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1018"/>
+        <location filename="../transferlistwidget.cpp" line="1024"/>
         <source>Copy magnet link</source>
         <translation>Copiar magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1021"/>
+        <location filename="../transferlistwidget.cpp" line="1027"/>
         <source>Super seeding mode</source>
         <translation>Mode de SuperSembra</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1024"/>
+        <location filename="../transferlistwidget.cpp" line="1030"/>
         <source>Rename...</source>
         <translation>Rebatejar...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1026"/>
+        <location filename="../transferlistwidget.cpp" line="1032"/>
         <source>Download in sequential order</source>
         <translation>Descarregar en ordre seqüencial</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1028"/>
+        <location filename="../transferlistwidget.cpp" line="1034"/>
         <source>Download first and last piece first</source>
         <translation>Descarregar primer, primeres i últimes parts</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1108"/>
+        <location filename="../transferlistwidget.cpp" line="1114"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nou...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1109"/>
+        <location filename="../transferlistwidget.cpp" line="1115"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Reset Etiquetas</translation>
@@ -5821,12 +5821,12 @@ Log:
         <translation>Contingut del torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="264"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="254"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Descarregar en ordre seqüencial (més lent, però millor per a la vista prèvia)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="271"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="261"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Anul-lar verificació i començar a sembrar tot seguit</translation>
     </message>
@@ -5847,17 +5847,17 @@ Log:
         <translation type="obsolete">Descargar por orden (mas lento pero mejor para previsualizar)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="278"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="268"/>
         <source>Add to download list in paused state</source>
         <translation>Agregar la llista de descàrregues en estat pausat</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="319"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="309"/>
         <source>Add</source>
         <translation>Agregar</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="326"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="316"/>
         <source>Cancel</source>
         <translation>Cancel-lar</translation>
     </message>
@@ -5890,12 +5890,12 @@ Log:
         <translation type="obsolete">Màxima</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="219"/>
         <source>Collapse all</source>
         <translation>Ocultar tot</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="242"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="232"/>
         <source>Expand all</source>
         <translation>Mostrar tot</translation>
     </message>

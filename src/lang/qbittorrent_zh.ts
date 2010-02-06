@@ -176,7 +176,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示用户主机名</translation>
     </message>
 </context>
 <context>
@@ -3192,7 +3192,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
@@ -3786,7 +3786,7 @@ QGroupBox {
     <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">到</translation>
     </message>
     <message>
         <source>On days:</source>
@@ -4574,7 +4574,7 @@ reason: %2.</source>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索</translation>
     </message>
 </context>
 <context>
@@ -4833,7 +4833,7 @@ reason: %2.</source>
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
 </context>
 <context>

@@ -218,7 +218,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ana makina adı eşlerini çöz</translation>
     </message>
 </context>
 <context>
@@ -392,7 +392,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">EşD desteği [KAPALI]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
@@ -2606,7 +2606,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <name>HeadlessLoader</name>
     <message>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bilgi</translation>
     </message>
     <message>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
@@ -2704,7 +2704,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dil</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
@@ -2725,7 +2725,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndirilen</translation>
     </message>
 </context>
 <context>
@@ -3048,7 +3048,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
@@ -3148,11 +3148,11 @@ No further notices will be issued.</source>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yeğlenenler</translation>
     </message>
     <message>
         <source>UI</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arabirim</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -3160,27 +3160,27 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bağlantı</translation>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bittorrent</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vekil</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP Süzgeci</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Web KA</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3188,7 +3188,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dil:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -3196,23 +3196,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Görsel biçem:</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndirme listesi boş değilse çıkışta onay iste</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Üst araç çubuğunu göster</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ön ekranı etkisizleştir</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Başlık çubuğunda şimdiki hızı göster</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -3230,48 +3230,48 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndiriliyor:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Başlat/Durdur</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klasör aç</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlandı:</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistem tepsisi simgesi</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistem tepsisi simgesini etkisizleştir</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistem tepsisine kapat</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistem tepsisine küçült</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Küçültülmüş başlat</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistem tepsisinde bildiri balonları göster</translation>
     </message>
     <message>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosya sistemi</translation>
     </message>
     <message>
         <source>QGroupBox::title {
@@ -3311,84 +3311,84 @@ QGroupBox {
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bütün dosyalar için alan tahsisi yap</translation>
     </message>
     <message>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent kuyruğu</translation>
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sıralama sistemini etkinleştir</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Azami etkin indirilen:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Azami etkin gönderimler:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Azami etkin torrent:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bir torrent eklerken</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent içeriğini ve bazı seçenekleri göster</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndirmeyi otomatik olarak başlatma</translation>
     </message>
     <message>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kullanılan kapı</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gelen bağlantılar için kullanılacak port:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rastgele</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">UPnP kapı haritalamayı etkinleştir</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NAT-PMP kapı haritalamayı etkinleştir</translation>
     </message>
     <message>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bağlantıların sınırı</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Genel azami bağlantı sayısı:</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent başına azami bağlantı sayısı:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent başına azami gönderme yuvası sayısı:</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gönderme:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndirme:</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -3396,19 +3396,19 @@ QGroupBox {
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bittorrent özellikleri</translation>
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT ağını etkinleştir (dağıtılmış)</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT ve Bittorrent için farklı bir port kullan</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT portu:</translation>
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
@@ -3416,11 +3416,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yerel Eş Keşfini Etkinleştir</translation>
     </message>
     <message>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Şifreleme:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -3428,91 +3428,91 @@ QGroupBox {
     </message>
     <message>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zorlandı</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Etkisiz</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oran ayarlarını paylaş</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İstenen oran:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlanan torrentleri oranları erişince kaldır:</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tip:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">(Hiçbiri)</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTTP</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kapı:</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kimlik Denetimi</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kullanıcı adı:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Parola:</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Süzgeç Ayarları</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP Süzgeçlemeyi Etkinleştir</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Web Kullanıcı Arayüzünü Etkinleştir</translation>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTTP Sunucu</translation>
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS desteğini etkinleştir</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS ayarları</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS beslemeleri yenileme süresi:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">dakika</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Besleme başına azami makale sayısı:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -3544,7 +3544,7 @@ QGroupBox {
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
@@ -4857,7 +4857,7 @@ Changelog:
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yeniden adlandır</translation>
     </message>
     <message>
         <source>New name:</source>

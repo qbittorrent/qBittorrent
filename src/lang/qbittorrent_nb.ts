@@ -384,32 +384,32 @@ Copyright © 2006 av Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Klarte ikke å lytte på noen av de oppgitte portene.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2005"/>
+        <location filename="../bittorrent.cpp" line="2012"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2010"/>
+        <location filename="../bittorrent.cpp" line="2017"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2025"/>
+        <location filename="../bittorrent.cpp" line="2032"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2026"/>
+        <location filename="../bittorrent.cpp" line="2033"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2031"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2139"/>
+        <location filename="../bittorrent.cpp" line="2145"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Laster ned &apos;%1&apos;...</translation>
@@ -1957,7 +1957,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../httpserver.cpp" line="80"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Språk</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="81"/>
@@ -2014,7 +2014,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../main.cpp" line="109"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avbryt</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="110"/>
@@ -2408,7 +2408,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Innstillinger</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="101"/>
@@ -2438,12 +2438,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="170"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mellomtjener</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="179"/>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP filter</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="194"/>
@@ -2469,7 +2469,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="272"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Språk:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="301"/>
@@ -2735,7 +2735,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1509"/>
         <location filename="../ui/options.ui" line="1516"/>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1316"/>
@@ -2756,7 +2756,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1594"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">til</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1638"/>
@@ -2796,7 +2796,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1768"/>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT port:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1806"/>
@@ -2893,7 +2893,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1888"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1893"/>
@@ -2933,28 +2933,28 @@ QGroupBox {
         <location filename="../ui/options.ui" line="2404"/>
         <location filename="../ui/options.ui" line="2691"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2244"/>
         <location filename="../ui/options.ui" line="2447"/>
         <location filename="../ui/options.ui" line="2730"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Autentisering</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2258"/>
         <location filename="../ui/options.ui" line="2461"/>
         <location filename="../ui/options.ui" line="2738"/>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brukernavn:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2268"/>
         <location filename="../ui/options.ui" line="2471"/>
         <location filename="../ui/options.ui" line="2745"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Passord:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2164"/>
@@ -2965,12 +2965,12 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2575"/>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filteroppsett</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2581"/>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktiver IP filtrering</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2597"/>
@@ -3224,7 +3224,7 @@ QGroupBox {
         <location filename="../propertieswidget.cpp" line="479"/>
         <location filename="../propertieswidget.cpp" line="500"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lese/Skrive feil</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="479"/>
@@ -3721,7 +3721,7 @@ Endringer:</translation>
         <location filename="../searchengine.cpp" line="216"/>
         <location filename="../searchengine.cpp" line="217"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Søk</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="466"/>
@@ -4006,7 +4006,7 @@ Endringer:</translation>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lese/Skrive feil</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
@@ -4080,7 +4080,7 @@ Endringer:</translation>
         <location filename="../transferlistdelegate.h" line="126"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -4211,27 +4211,27 @@ Endringer:</translation>
         <translation type="obsolete">&amp;Nei</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="870"/>
+        <location filename="../transferlistwidget.cpp" line="875"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="1002"/>
         <source>Start</source>
         <translation type="unfinished">Start</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1004"/>
         <source>Pause</source>
         <translation type="unfinished">Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1006"/>
         <source>Delete</source>
         <translation type="unfinished">Slett</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1008"/>
         <source>Preview file</source>
         <translation type="unfinished">Forhåndsvis filen</translation>
     </message>
@@ -4283,7 +4283,7 @@ Endringer:</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1107"/>
+        <location filename="../transferlistwidget.cpp" line="1113"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4312,113 +4312,113 @@ Endringer:</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="773"/>
         <source>Torrent Download Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="804"/>
+        <location filename="../transferlistwidget.cpp" line="809"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="948"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="948"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1004"/>
+        <location filename="../transferlistwidget.cpp" line="1010"/>
         <source>Limit upload rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1006"/>
+        <location filename="../transferlistwidget.cpp" line="1012"/>
         <source>Limit download rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1014"/>
         <source>Open destination folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1016"/>
         <source>Buy it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1018"/>
         <source>Increase priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1014"/>
+        <location filename="../transferlistwidget.cpp" line="1020"/>
         <source>Decrease priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1016"/>
+        <location filename="../transferlistwidget.cpp" line="1022"/>
         <source>Force recheck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1018"/>
+        <location filename="../transferlistwidget.cpp" line="1024"/>
         <source>Copy magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1021"/>
+        <location filename="../transferlistwidget.cpp" line="1027"/>
         <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1024"/>
+        <location filename="../transferlistwidget.cpp" line="1030"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1026"/>
+        <location filename="../transferlistwidget.cpp" line="1032"/>
         <source>Download in sequential order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1028"/>
+        <location filename="../transferlistwidget.cpp" line="1034"/>
         <source>Download first and last piece first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1108"/>
+        <location filename="../transferlistwidget.cpp" line="1114"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1109"/>
+        <location filename="../transferlistwidget.cpp" line="1115"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
@@ -4588,12 +4588,12 @@ Endringer:</translation>
         <translation>Torrent innhold:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="264"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="254"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="271"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="261"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4614,17 +4614,17 @@ Endringer:</translation>
         <translation type="obsolete">Last ned i riktig rekkefølge (tregere, men tilpasset forhåndsvisningen)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="278"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="268"/>
         <source>Add to download list in paused state</source>
         <translation>Legg til i nedlastningslisten som pauset</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="319"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="309"/>
         <source>Add</source>
         <translation>Legg til</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="326"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="316"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
@@ -4641,12 +4641,12 @@ Endringer:</translation>
         <translation type="obsolete">velg</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="219"/>
         <source>Collapse all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="242"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="232"/>
         <source>Expand all</source>
         <translation type="unfinished"></translation>
     </message>

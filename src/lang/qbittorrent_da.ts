@@ -176,7 +176,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../advancedsettings.h" line="131"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Opdage hostnames for peers</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="98"/>
@@ -381,32 +381,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Kunne ikke lytte på de opgivne porte.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2005"/>
+        <location filename="../bittorrent.cpp" line="2012"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping fejlede, besked: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2010"/>
+        <location filename="../bittorrent.cpp" line="2017"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping lykkedes, besked: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2025"/>
+        <location filename="../bittorrent.cpp" line="2032"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Der blev fundet fejl i data for hurtig genstart af torrent %1, tjekker igen...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2026"/>
+        <location filename="../bittorrent.cpp" line="2033"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2031"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url seed lookup fejlede for url: %1, besked: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2139"/>
+        <location filename="../bittorrent.cpp" line="2145"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Downloader &apos;%1&apos;, vent venligst...</translation>
@@ -2093,7 +2093,7 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
     <message>
         <location filename="../httpserver.cpp" line="80"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sprog</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="81"/>
@@ -2150,7 +2150,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../main.cpp" line="109"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuller</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="110"/>
@@ -2537,7 +2537,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indstillinger</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="101"/>
@@ -2547,12 +2547,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="116"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Downloads</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="131"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forbindelse</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="146"/>
@@ -2567,12 +2567,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="170"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Proxy</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="179"/>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP Filter</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="194"/>
@@ -2583,7 +2583,7 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="209"/>
         <location filename="../ui/options.ui" line="2836"/>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="224"/>
@@ -2598,7 +2598,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="272"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sprog:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="301"/>
@@ -2608,27 +2608,27 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="328"/>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Udseende:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="353"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bed om bekræftelse for at lukke når downloadlisten ikke er tom</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="363"/>
         <source>Display top toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vis værktøjslinje i toppen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="373"/>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vis ikke splash screen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="380"/>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vis hastighed i titlebar</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="387"/>
@@ -2650,24 +2650,24 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="426"/>
         <source>Downloading:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Downloader:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="443"/>
         <location filename="../ui/options.ui" line="477"/>
         <source>Start/Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start/Stop</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="448"/>
         <location filename="../ui/options.ui" line="482"/>
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Åben mappe</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="469"/>
         <source>Completed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Færdig:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="500"/>
@@ -2677,33 +2677,33 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="506"/>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slå system tray icon fra</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="513"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luk til tray</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="520"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minimer til tray</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="530"/>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start minimeret</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="537"/>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vis notification balloons i tray</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="584"/>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fil system</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="590"/>
@@ -2758,105 +2758,105 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="806"/>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pre-allokér alle filer</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="818"/>
         <source>Torrent queueing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent kø</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="824"/>
         <source>Enable queueing system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brug kø system</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="836"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimale antal aktive downloads:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="879"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimale antal aktive uploads:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="922"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimale antal aktive torrents:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="971"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Når en torrent tilføjes</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="979"/>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vis indhold af torrent og nogle indstillinger</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1006"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start ikke download automatisk</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1073"/>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1081"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port til indkommende forbindelser:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1101"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tilfældig</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1123"/>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tænd for UPnP port mapping</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1133"/>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tænd for NAT-PMP port mapping</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1148"/>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grænse for forbindelser</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1156"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Global grænse for det maksimale antal forbindelser:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1199"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimale antal forbindelser per torrent:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1239"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimale antal upload slots per torrent:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1332"/>
         <location filename="../ui/options.ui" line="1461"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Upload:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1348"/>
         <location filename="../ui/options.ui" line="1468"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Download:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1386"/>
@@ -2864,7 +2864,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1509"/>
         <location filename="../ui/options.ui" line="1516"/>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KB/s</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1316"/>
@@ -2885,7 +2885,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1594"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">til</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1638"/>
@@ -2915,17 +2915,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1727"/>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brug DHT netværk (decentraliseret)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1737"/>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brug en anden port til DHT og Bittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1768"/>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT port:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1806"/>
@@ -2935,22 +2935,22 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1816"/>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brug lokal Peer Discovery</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1828"/>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kryptering:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1836"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slået til</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1841"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tvungen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1846"/>
@@ -2970,17 +2970,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1985"/>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indstillinger for delings ratio</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1993"/>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ønsket ratio:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2047"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fjern færdige torrents når de når deres ratio:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2138"/>
@@ -3022,7 +3022,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1888"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1893"/>
@@ -3049,57 +3049,57 @@ QGroupBox {
         <location filename="../ui/options.ui" line="2154"/>
         <location filename="../ui/options.ui" line="2352"/>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">(Ingen)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2159"/>
         <location filename="../ui/options.ui" line="2367"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTTP</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2201"/>
         <location filename="../ui/options.ui" line="2404"/>
         <location filename="../ui/options.ui" line="2691"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2244"/>
         <location filename="../ui/options.ui" line="2447"/>
         <location filename="../ui/options.ui" line="2730"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Godkendelse</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2258"/>
         <location filename="../ui/options.ui" line="2461"/>
         <location filename="../ui/options.ui" line="2738"/>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brugernavn:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2268"/>
         <location filename="../ui/options.ui" line="2471"/>
         <location filename="../ui/options.ui" line="2745"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kodeord:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2164"/>
         <location filename="../ui/options.ui" line="2362"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2575"/>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filter Indstillinger</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2581"/>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktiver IP Filtrering</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2597"/>
@@ -3109,7 +3109,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2672"/>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slå Web User Interface til</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2685"/>
@@ -3119,27 +3119,27 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2842"/>
         <source>Enable RSS support</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Understøt RSS</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2852"/>
         <source>RSS settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS indstillinger</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2889"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS feeds opdaterings interval:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2909"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">minutter</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2933"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimalt antal artikler per feed:</translation>
     </message>
 </context>
 <context>
@@ -3377,7 +3377,7 @@ QGroupBox {
         <location filename="../propertieswidget.cpp" line="479"/>
         <location filename="../propertieswidget.cpp" line="500"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I/O Fejl</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="479"/>
@@ -3876,7 +3876,7 @@ Changelog:
         <location filename="../searchengine.cpp" line="216"/>
         <location filename="../searchengine.cpp" line="217"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Søg</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="466"/>
@@ -4161,7 +4161,7 @@ Changelog:
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I/O Fejl</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
@@ -4235,7 +4235,7 @@ Changelog:
         <location filename="../transferlistdelegate.h" line="126"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KB/s</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -4371,27 +4371,27 @@ Changelog:
         <translation type="obsolete">&amp;Nej</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="870"/>
+        <location filename="../transferlistwidget.cpp" line="875"/>
         <source>Column visibility</source>
         <translation>Kolonne synlighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="1002"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1004"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1006"/>
         <source>Delete</source>
         <translation>Slet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1008"/>
         <source>Preview file</source>
         <translation>Smugkig fil</translation>
     </message>
@@ -4443,7 +4443,7 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1107"/>
+        <location filename="../transferlistwidget.cpp" line="1113"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4472,113 +4472,113 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="773"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Begrænsning af Torrent Download Hastighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="804"/>
+        <location filename="../transferlistwidget.cpp" line="809"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Begrænsning af Torrent Upload Hastighed</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="938"/>
+        <location filename="../transferlistwidget.cpp" line="943"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="948"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="943"/>
+        <location filename="../transferlistwidget.cpp" line="948"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Omdøb</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="959"/>
+        <location filename="../transferlistwidget.cpp" line="964"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1004"/>
+        <location filename="../transferlistwidget.cpp" line="1010"/>
         <source>Limit upload rate</source>
         <translation>Begræns upload</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1006"/>
+        <location filename="../transferlistwidget.cpp" line="1012"/>
         <source>Limit download rate</source>
         <translation>Begræns download</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1014"/>
         <source>Open destination folder</source>
         <translation>Åben destinationsmappe</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1016"/>
         <source>Buy it</source>
         <translation>Køb det</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1018"/>
         <source>Increase priority</source>
         <translation>Forøg prioritet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1014"/>
+        <location filename="../transferlistwidget.cpp" line="1020"/>
         <source>Decrease priority</source>
         <translation>Formindsk prioritet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1016"/>
+        <location filename="../transferlistwidget.cpp" line="1022"/>
         <source>Force recheck</source>
         <translation>Tvungen tjek</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1018"/>
+        <location filename="../transferlistwidget.cpp" line="1024"/>
         <source>Copy magnet link</source>
         <translation>Kopier magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1021"/>
+        <location filename="../transferlistwidget.cpp" line="1027"/>
         <source>Super seeding mode</source>
         <translation>Super seeding tilstand</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1024"/>
+        <location filename="../transferlistwidget.cpp" line="1030"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1026"/>
+        <location filename="../transferlistwidget.cpp" line="1032"/>
         <source>Download in sequential order</source>
         <translation>Downlad i rækkefølge</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1028"/>
+        <location filename="../transferlistwidget.cpp" line="1034"/>
         <source>Download first and last piece first</source>
         <translation>Download første og sidste stykke først</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1108"/>
+        <location filename="../transferlistwidget.cpp" line="1114"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1109"/>
+        <location filename="../transferlistwidget.cpp" line="1115"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
@@ -4740,12 +4740,12 @@ Changelog:
         <translation>Indhold af torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="264"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="254"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Download i fra start til slut (langsommere, men godt for smugkig)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="271"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="261"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Spring filtjek over og påbegynd seed med det samme</translation>
     </message>
@@ -4766,17 +4766,17 @@ Changelog:
         <translation type="obsolete">Download i korrekt rækkefølge (langsommere, men godt for smugkig)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="278"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="268"/>
         <source>Add to download list in paused state</source>
         <translation>Tilføj til download listen som sat på pause</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="319"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="309"/>
         <source>Add</source>
         <translation>Tilføj</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="326"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="316"/>
         <source>Cancel</source>
         <translation>Annuller</translation>
     </message>
@@ -4801,12 +4801,12 @@ Changelog:
         <translation type="obsolete">Maksimal</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="219"/>
         <source>Collapse all</source>
         <translation>Kollaps alle</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="242"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="232"/>
         <source>Expand all</source>
         <translation>Ufold alle</translation>
     </message>

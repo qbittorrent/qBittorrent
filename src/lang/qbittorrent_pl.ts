@@ -207,7 +207,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Odczytuje nazwy hostów partnerów</translation>
     </message>
 </context>
 <context>
@@ -3110,7 +3110,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
@@ -3704,7 +3704,7 @@ QGroupBox {
     <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">do</translation>
     </message>
     <message>
         <source>On days:</source>
@@ -4484,7 +4484,7 @@ Zmiany:
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Szukaj</translation>
     </message>
 </context>
 <context>
@@ -4743,7 +4743,7 @@ Zmiany:
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
 </context>
 <context>

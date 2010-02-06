@@ -161,7 +161,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prekladať názvy počítačov rovesníkov</translation>
     </message>
 </context>
 <context>
@@ -2993,7 +2993,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
@@ -4355,7 +4355,7 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vyhľadávanie</translation>
     </message>
 </context>
 <context>
@@ -4614,7 +4614,7 @@ Záznam zmien:</translation>
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
 </context>
 <context>

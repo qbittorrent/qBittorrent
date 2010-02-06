@@ -154,7 +154,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slå upp klienternas värdnamn</translation>
     </message>
 </context>
 <context>
@@ -1922,7 +1922,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
@@ -2524,7 +2524,7 @@ QGroupBox {
     <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">till</translation>
     </message>
     <message>
         <source>On days:</source>
@@ -3202,7 +3202,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sök</translation>
     </message>
 </context>
 <context>
@@ -3461,7 +3461,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
 </context>
 <context>

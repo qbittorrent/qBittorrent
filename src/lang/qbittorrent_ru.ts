@@ -196,7 +196,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Определить имя хоста пира</translation>
     </message>
 </context>
 <context>
@@ -3080,7 +3080,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/с</translation>
     </message>
 </context>
 <context>
@@ -4454,7 +4454,7 @@ Changelog:
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Поиск</translation>
     </message>
 </context>
 <context>
@@ -4723,7 +4723,7 @@ Changelog:
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">КиБ/с</translation>
     </message>
 </context>
 <context>
