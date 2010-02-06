@@ -213,7 +213,11 @@ void TransferListWidget::setRowColor(int row, QColor color) {
 }
 
 void TransferListWidget::deleteTorrent(int row, bool refresh_list) {
-  emit torrentAboutToBeRemoved(listModel->index(row, 0));
+  Q_ASSERT(row >= 0);
+  QModelIndex index = listModel->index(row, 0);
+  Q_ASSERT(index.isValid());
+  if(!index.isValid()) return;
+  emit torrentAboutToBeRemoved(index);
   listModel->removeRow(row);
   if(refresh_list)
     refreshList();
@@ -288,8 +292,7 @@ int TransferListWidget::updateTorrent(int row) {
   QString hash = getHashFromRow(row);
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   if(!h.is_valid()) {
-    // Delete torrent
-    deleteTorrent(row, false);
+    // Torrent will be deleted from list by caller
     return s;
   }
   try {
@@ -404,10 +407,9 @@ int TransferListWidget::updateTorrent(int row) {
     listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)h.upload_payload_rate()));
     // Share ratio
     listModel->setData(listModel->index(row, TR_RATIO), QVariant(BTSession->getRealRatio(hash)));
-  }catch(invalid_handle e) {
-    deleteTorrent(row, false);
+  }catch(invalid_handle) {
+    // Torrent will be deleted by caller
     s = STATE_INVALID;
-    qDebug("Caught Invalid handle exception, lucky us.");
   }
   return s;
 }
@@ -497,7 +499,9 @@ void TransferListWidget::refreshList() {
   }
   // Remove bad torrents from list
   foreach(QString hash, bad_hashes) {
-    deleteTorrent(getRowFromHash(hash), false);
+    int row = getRowFromHash(hash);
+    if(row >= 0)
+      deleteTorrent(row, false);
   }
   // Update status filters counters
   emit torrentStatusUpdate(nb_downloading, nb_seeding, nb_active, nb_inactive);
@@ -936,6 +940,7 @@ void TransferListWidget::setSelectionLabel(QString label) {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   foreach(const QModelIndex &index, selectedIndexes) {
     QString hash = getHashFromRow(mapToSource(index).row());
+    Q_ASSERT(!hash.isEmpty());
     QString old_label = proxyModel->data(proxyModel->index(index.row(), TR_LABEL)).toString();
     proxyModel->setData(proxyModel->index(index.row(), TR_LABEL), QVariant(label));
     TorrentPersistentData::saveLabel(hash, label);
