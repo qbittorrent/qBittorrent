@@ -938,11 +938,15 @@ void TransferListWidget::renameSelectedTorrent() {
 
 void TransferListWidget::setSelectionLabel(QString label) {
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  QStringList hashes;
   foreach(const QModelIndex &index, selectedIndexes) {
-    QString hash = getHashFromRow(mapToSource(index).row());
+    hashes << getHashFromRow(mapToSource(index).row());
+  }
+  foreach(const QString& hash, hashes) {
     Q_ASSERT(!hash.isEmpty());
-    QString old_label = proxyModel->data(proxyModel->index(index.row(), TR_LABEL)).toString();
-    proxyModel->setData(proxyModel->index(index.row(), TR_LABEL), QVariant(label));
+    int row = getRowFromHash(hash);
+    QString old_label = listModel->data(listModel->index(row, TR_LABEL)).toString();
+    listModel->setData(listModel->index(row, TR_LABEL), QVariant(label));
     TorrentPersistentData::saveLabel(hash, label);
     emit torrentChangedLabel(old_label, label);
     // Update save path if necessary
