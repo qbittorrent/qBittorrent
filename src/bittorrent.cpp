@@ -978,6 +978,32 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
         addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(file));
         //emit duplicateTorrent(file);
       }
+      // Check if the torrent contains trackers we don't know about
+      // and add them
+      QTorrentHandle h_ex = getTorrentHandle(hash);
+      if(h_ex.is_valid()) {
+        std::vector<announce_entry> old_trackers = h.trackers();
+        std::vector<announce_entry> new_trackers = t->trackers();
+        bool trackers_added = false;
+        for(std::vector<announce_entry>::iterator it=new_trackers.begin();it!=new_trackers.end();it++) {
+          std::string tracker_url = it->url;
+          bool found = false;
+          for(std::vector<announce_entry>::iterator itold=old_trackers.begin();itold!=old_trackers.end();itold++) {
+            if(tracker_url == itold->url) {
+              found = true;
+              break;
+            }
+          }
+          if(!found) {
+            trackers_added = true;
+            announce_entry entry(tracker_url);
+            h.add_tracker(entry);
+          }
+        }
+        if(trackers_added) {
+          addConsoleMessage(tr("However, new trackers were added to the existing torrent."));
+        }
+      }
     }else{
       // Delete torrent from scan dir
       QFile::remove(file);
