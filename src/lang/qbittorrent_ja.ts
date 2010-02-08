@@ -205,7 +205,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="432"/>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">PeX サポート [オフ]</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="435"/>
@@ -2160,7 +2160,7 @@ qBittorrent を終了してもよろしいですか?</translation>
     <message>
         <location filename="../httpserver.cpp" line="80"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">言語</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="81"/>
@@ -2217,7 +2217,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../main.cpp" line="114"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">キャンセル</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="115"/>
@@ -2566,7 +2566,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">環境設定</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="101"/>
@@ -2576,27 +2576,27 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="116"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ダウンロード</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="131"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">接続</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="146"/>
         <source>Bittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="161"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">プロキシ</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="170"/>
         <source>IP Filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP フィルタ</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="185"/>
@@ -2607,7 +2607,7 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="200"/>
         <location filename="../ui/options.ui" line="2645"/>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="246"/>
@@ -2617,7 +2617,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="254"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">言語:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="283"/>
@@ -2627,37 +2627,37 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="310"/>
         <source>Visual style:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">視覚スタイル:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="318"/>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">システム既定</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="323"/>
         <source>Plastique style (KDE like)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">プラスチック スタイル (KDE 風)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="328"/>
         <source>Cleanlooks style (Gnome like)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">クリーンルック スタイル (Gnome 風)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="333"/>
         <source>Motif style (Unix like)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">モチーフ スタイル (Unix 風)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="338"/>
         <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">CDE スタイル (Common Desktop Environment 風)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="361"/>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ダウンロードの一覧が空ではないときの終了時の確認を質問する</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
@@ -2672,7 +2672,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="388"/>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">タイトル バーに現在の速度を表示する</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="395"/>
@@ -2687,7 +2687,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="423"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ms</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="445"/>
@@ -2726,38 +2726,38 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="552"/>
         <source>System tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">システム トレイ アイコン</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="558"/>
         <source>Disable system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">システム トレイ アイコンを無効にする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="565"/>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">トレイへ閉じる</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="572"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">トレイへ最小化する</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="582"/>
         <source>Start minimized</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最小化して起動する</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="589"/>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">トレイに通知バルーンを表示する</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="636"/>
         <source>File system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ファイル システム</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="645"/>
@@ -2806,7 +2806,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="815"/>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">すべてのファイルを前割り当てする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="824"/>
@@ -2846,23 +2846,23 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1024"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent の追加時</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1032"/>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent の内容といくつかのオプションを表示する</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1059"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自動的にダウンロードを開始しない</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1126"/>
         <source>Listening port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">傾聴するポート</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1134"/>
@@ -2877,53 +2877,53 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1176"/>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">UPnP ポート マップを有効にする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1186"/>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NAT-PMP ポート マップを有効にする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1201"/>
         <source>Connections limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">接続制限</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1209"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">グローバル最大接続数:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1252"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent あたりの最大接続数:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1292"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent あたりの最大アップロード スロット数:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1330"/>
         <source>Global bandwidth limiting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">グローバル大域幅制限</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1346"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">アップロード:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1362"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ダウンロード:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1400"/>
         <location filename="../ui/options.ui" line="1436"/>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KiB/s</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1465"/>
@@ -2948,7 +2948,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1536"/>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT ネットワーク (分散) を有効にする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1546"/>
@@ -2958,7 +2958,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1577"/>
         <source>DHT port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT ポート:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1615"/>
@@ -2968,27 +2968,27 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1625"/>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ローカル ピア ディスカバリを有効にする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1637"/>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">暗号化:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1645"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">有効</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1650"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">強制済み</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1655"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">無効</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1712"/>
@@ -3003,17 +3003,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1794"/>
         <source>Share ratio settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">共有率の設定</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1802"/>
         <source>Desired ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">希望率:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1856"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">率の達成時に完了済み torrent を削除する:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1947"/>
@@ -3040,7 +3040,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1955"/>
         <location filename="../ui/options.ui" line="2153"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">種類:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1681"/>
@@ -3055,7 +3055,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1697"/>
         <source>qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1702"/>
@@ -3082,57 +3082,57 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1963"/>
         <location filename="../ui/options.ui" line="2161"/>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">(なし)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1968"/>
         <location filename="../ui/options.ui" line="2176"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTTP</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2010"/>
         <location filename="../ui/options.ui" line="2213"/>
         <location filename="../ui/options.ui" line="2500"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ポート:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2053"/>
         <location filename="../ui/options.ui" line="2256"/>
         <location filename="../ui/options.ui" line="2539"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">認証</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2067"/>
         <location filename="../ui/options.ui" line="2270"/>
         <location filename="../ui/options.ui" line="2547"/>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ユーザー名:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2077"/>
         <location filename="../ui/options.ui" line="2280"/>
         <location filename="../ui/options.ui" line="2554"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">パスワード:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1973"/>
         <location filename="../ui/options.ui" line="2171"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2384"/>
         <source>Filter Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">フィルタの設定</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2390"/>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP フィルタをアクティブにする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2406"/>
@@ -3162,17 +3162,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2698"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">RSS フィードの更新の間隔:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2718"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">分</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2742"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">フィードあたりの最大記事数:</translation>
     </message>
 </context>
 <context>
@@ -3422,7 +3422,7 @@ QGroupBox {
         <location filename="../propertieswidget.cpp" line="479"/>
         <location filename="../propertieswidget.cpp" line="500"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I/O エラー</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="479"/>
@@ -4289,7 +4289,7 @@ Changelog:
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">I/O エラー</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
@@ -4497,27 +4497,27 @@ Changelog:
         <translation type="obsolete">いいえ(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="836"/>
+        <location filename="../transferlistwidget.cpp" line="841"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="962"/>
+        <location filename="../transferlistwidget.cpp" line="972"/>
         <source>Start</source>
         <translation type="unfinished">開始</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="964"/>
+        <location filename="../transferlistwidget.cpp" line="974"/>
         <source>Pause</source>
         <translation type="unfinished">一時停止</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="966"/>
+        <location filename="../transferlistwidget.cpp" line="976"/>
         <source>Delete</source>
         <translation type="unfinished">削除</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="968"/>
+        <location filename="../transferlistwidget.cpp" line="978"/>
         <source>Preview file</source>
         <translation type="unfinished">ファイルのプレビュー</translation>
     </message>
@@ -4577,118 +4577,118 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1073"/>
+        <location filename="../transferlistwidget.cpp" line="1083"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="741"/>
+        <location filename="../transferlistwidget.cpp" line="746"/>
         <source>Torrent Download Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="777"/>
+        <location filename="../transferlistwidget.cpp" line="782"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="904"/>
+        <location filename="../transferlistwidget.cpp" line="909"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="904"/>
+        <location filename="../transferlistwidget.cpp" line="909"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="909"/>
+        <location filename="../transferlistwidget.cpp" line="914"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="909"/>
+        <location filename="../transferlistwidget.cpp" line="914"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="925"/>
+        <location filename="../transferlistwidget.cpp" line="930"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">名前の変更</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="925"/>
+        <location filename="../transferlistwidget.cpp" line="930"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="970"/>
+        <location filename="../transferlistwidget.cpp" line="980"/>
         <source>Limit upload rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="972"/>
+        <location filename="../transferlistwidget.cpp" line="982"/>
         <source>Limit download rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="974"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Open destination folder</source>
         <translation type="unfinished">作成先のフォルダを開く</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="976"/>
+        <location filename="../transferlistwidget.cpp" line="986"/>
         <source>Buy it</source>
         <translation type="unfinished">購入</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="978"/>
+        <location filename="../transferlistwidget.cpp" line="988"/>
         <source>Increase priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="980"/>
+        <location filename="../transferlistwidget.cpp" line="990"/>
         <source>Decrease priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="982"/>
+        <location filename="../transferlistwidget.cpp" line="992"/>
         <source>Force recheck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="994"/>
         <source>Copy magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="987"/>
+        <location filename="../transferlistwidget.cpp" line="997"/>
         <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="990"/>
+        <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="992"/>
+        <location filename="../transferlistwidget.cpp" line="1002"/>
         <source>Download in sequential order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="1004"/>
         <source>Download first and last piece first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1074"/>
+        <location filename="../transferlistwidget.cpp" line="1084"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1075"/>
+        <location filename="../transferlistwidget.cpp" line="1085"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
@@ -4850,12 +4850,12 @@ Changelog:
         <translation>Torrent の内容:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="264"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="254"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="271"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="261"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4876,17 +4876,17 @@ Changelog:
         <translation type="obsolete">正しい順にダウンロードする (より遅いがプレビューにはふさわしい)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="278"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="268"/>
         <source>Add to download list in paused state</source>
         <translation>一時停止済み状態でダウンロードの一覧に追加する</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="319"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="309"/>
         <source>Add</source>
         <translation>追加</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="326"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="316"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -4915,12 +4915,12 @@ Changelog:
         <translation type="obsolete">最大</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="219"/>
         <source>Collapse all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="242"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="232"/>
         <source>Expand all</source>
         <translation type="unfinished"></translation>
     </message>

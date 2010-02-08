@@ -2923,7 +2923,7 @@ Pravdepodobne ste to už vedelí, tak to už nebudeme opakovať.</translation>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>

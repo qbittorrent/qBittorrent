@@ -3040,7 +3040,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>

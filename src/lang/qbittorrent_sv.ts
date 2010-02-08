@@ -1852,7 +1852,7 @@ Du visste antagligen redan detta så vi kommer inte att berätta det igen.</tran
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/s</translation>
     </message>
 </context>
 <context>
