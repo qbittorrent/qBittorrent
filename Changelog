@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.4
+    - BUGFIX: Fix file prioritizing in a torrent
     - BUGFIX: Make sure seeding torrents display a progress of 100%
     - BUGFIX: Usage display was improved and localized (--help)
     - BUGFIX: Fix possible crash when deleting a torrent

@@ -155,6 +155,7 @@ public slots:
   void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
     QComboBox *combobox = static_cast<QComboBox*>(editor);
     int value = combobox->currentIndex();
+    qDebug("PropListDelegate: setModelData(%d)", value);
     switch(value)  {
     case 1:
       model->setData(index, 2); // HIGH
@@ -165,6 +166,7 @@ public slots:
     default:
       model->setData(index, 1); // NORMAL
     }
+    emit filteredFilesChanged();
   }
 
   void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const {
