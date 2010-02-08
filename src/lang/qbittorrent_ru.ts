@@ -392,6 +392,10 @@ p, li { white-space: pre-wrap; }
         <source>Reason: %1</source>
         <translation>Причина: %1</translation>
     </message>
+    <message>
+        <source>However, new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>

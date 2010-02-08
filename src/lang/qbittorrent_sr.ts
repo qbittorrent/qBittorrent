@@ -321,8 +321,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="911"/>
-        <location filename="../bittorrent.cpp" line="1140"/>
-        <location filename="../bittorrent.cpp" line="1145"/>
+        <location filename="../bittorrent.cpp" line="1166"/>
+        <location filename="../bittorrent.cpp" line="1171"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translatorcomment>&apos;/home/y/xxx.torrent&apos; је наставио. (брзи наставак)</translatorcomment>
@@ -330,8 +330,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="913"/>
-        <location filename="../bittorrent.cpp" line="1142"/>
-        <location filename="../bittorrent.cpp" line="1147"/>
+        <location filename="../bittorrent.cpp" line="1168"/>
+        <location filename="../bittorrent.cpp" line="1173"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translatorcomment>&apos;/home/y/xxx.torrent&apos; је додат на листу преузимања.</translatorcomment>
@@ -351,27 +351,32 @@ p, li { white-space: pre-wrap; }
         <translation>Овај фајл је оштећен или ово није торент.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1436"/>
+        <location filename="../bittorrent.cpp" line="1004"/>
+        <source>However, new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1462"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translatorcomment>x.y.z.w је блокиран</translatorcomment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1438"/>
+        <location filename="../bittorrent.cpp" line="1464"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translatorcomment>x.y.z.w је одбачен</translatorcomment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1833"/>
+        <location filename="../bittorrent.cpp" line="1859"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Поновно преузимање фајла %1 омогућено у торенту %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1844"/>
+        <location filename="../bittorrent.cpp" line="1870"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Није у стању да декодира %1 торент фајл.</translation>
     </message>
@@ -380,32 +385,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Не могу да ослушкујем порт %1, користећи %2 уместо тога.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2012"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2017"/>
+        <location filename="../bittorrent.cpp" line="2043"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2032"/>
+        <location filename="../bittorrent.cpp" line="2058"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2033"/>
+        <location filename="../bittorrent.cpp" line="2059"/>
         <source>Reason: %1</source>
         <translation>Разлог: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2038"/>
+        <location filename="../bittorrent.cpp" line="2064"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url преглед донора , грешка url: %1, порука: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2145"/>
+        <location filename="../bittorrent.cpp" line="2171"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translatorcomment>н.пр.: Преузимам &apos;xxx.torrent&apos;, молим сачекајте...</translatorcomment>
@@ -3655,22 +3660,22 @@ p, li { white-space: pre-wrap; }
         <translation>Прегледност колона</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1006"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1004"/>
+        <location filename="../transferlistwidget.cpp" line="1008"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1006"/>
+        <location filename="../transferlistwidget.cpp" line="1010"/>
         <source>Delete</source>
         <translation>Обриши</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1012"/>
         <source>Preview file</source>
         <translation>Приказ датотеке</translation>
     </message>
@@ -3718,7 +3723,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1113"/>
+        <location filename="../transferlistwidget.cpp" line="1117"/>
         <source>Label</source>
         <translatorcomment>Label-Ознака,Маркер</translatorcomment>
         <translation>Ознака</translation>
@@ -3788,74 +3793,74 @@ p, li { white-space: pre-wrap; }
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1014"/>
         <source>Limit upload rate</source>
         <translation>Ограничење брзине слања</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1016"/>
         <source>Limit download rate</source>
         <translation>Ограничење брзине преузимања</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1014"/>
+        <location filename="../transferlistwidget.cpp" line="1018"/>
         <source>Open destination folder</source>
         <translatorcomment>фасцикла-фолдер</translatorcomment>
         <translation>Отвори одредишну фасциклу</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1016"/>
+        <location filename="../transferlistwidget.cpp" line="1020"/>
         <source>Buy it</source>
         <translation>Купи</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1018"/>
+        <location filename="../transferlistwidget.cpp" line="1022"/>
         <source>Increase priority</source>
         <translation>Повиси приоритет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1020"/>
+        <location filename="../transferlistwidget.cpp" line="1024"/>
         <source>Decrease priority</source>
         <translation>Снизи приоритет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1022"/>
+        <location filename="../transferlistwidget.cpp" line="1026"/>
         <source>Force recheck</source>
         <translation>Форсирано провери</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1024"/>
+        <location filename="../transferlistwidget.cpp" line="1028"/>
         <source>Copy magnet link</source>
         <translation>Копирај магнет линк</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1027"/>
+        <location filename="../transferlistwidget.cpp" line="1031"/>
         <source>Super seeding mode</source>
         <translation>Супер seeding (донирајући) мод</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1030"/>
+        <location filename="../transferlistwidget.cpp" line="1034"/>
         <source>Rename...</source>
         <translation>Преименуј...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1032"/>
+        <location filename="../transferlistwidget.cpp" line="1036"/>
         <source>Download in sequential order</source>
         <translation>Преузимање у сријском редоследу</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1034"/>
+        <location filename="../transferlistwidget.cpp" line="1038"/>
         <source>Download first and last piece first</source>
         <translation>Преузимање почетних и крајњих делова</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1114"/>
+        <location filename="../transferlistwidget.cpp" line="1118"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Нова...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1115"/>
+        <location filename="../transferlistwidget.cpp" line="1119"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translatorcomment>Поништи ознаке</translatorcomment>
