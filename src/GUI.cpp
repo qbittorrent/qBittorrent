@@ -922,8 +922,10 @@ void GUI::createTrayIcon() {
 
 // Display Program Options
 void GUI::on_actionOptions_triggered() {
-  options = new options_imp(this);
-  connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
+  if(!options) {
+    options = new options_imp(this);
+    connect(options, SIGNAL(status_changed()), this, SLOT(optionsSaved()));
+  }
 }
 
 /*****************************************************
