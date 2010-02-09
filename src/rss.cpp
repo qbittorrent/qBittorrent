@@ -391,6 +391,8 @@ RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, Bittorrent *BTSe
     RssItem *rss_item = RssItem::fromHash(this, item);
     if(rss_item->isValid()) {
       (*this)[rss_item->getTitle()] = rss_item;
+    } else {
+      delete rss_item;
     }
   }
 }
