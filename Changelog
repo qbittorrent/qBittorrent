@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.5
     - BUGFIX: Fix actions on selected torrents (non-selected torrents could be affected)
     - BUGFIX: Link against boost and ssl to fix issues with gold linker
+    - BUGFIX: Fix memory leak in RSS
 
 * Mon Feb 8 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.4
     - BUGFIX: Fix file prioritizing in a torrent
