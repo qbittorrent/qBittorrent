@@ -994,10 +994,10 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
               break;
             }
           }
-          if(!found) {
+          if(found) {
             trackers_added = true;
             announce_entry entry(tracker_url);
-            h.add_tracker(entry);
+            h_ex.add_tracker(entry);
           }
         }
         if(trackers_added) {
