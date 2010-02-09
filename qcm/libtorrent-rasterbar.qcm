@@ -20,12 +20,18 @@ public:
 			return false;
 		for(int n = 0; n < incs.count(); ++n)
 			conf->addIncludePath(incs[n]);
-		if(!libs.isEmpty())
-			conf->addLib(libs);
+		//if(!libs.isEmpty())
+		//	conf->addLib(libs);
 		if(!conf->findPkgConfig("libtorrent-rasterbar", mode, adv_ver, &version, &incs, &libs, &other))
                         printf("\nWarning: libtorrent-rasterbar v%s was detected. Some feature will be disabled because they require v%s.\n", version.toLocal8Bit().data(), adv_ver.toUtf8().data());
 		else
 			conf->addDefine("LIBTORRENT_0_15");
+		// Get linking parameters
+		QStringList params;
+		QByteArray staticlibs;
+		params << "--static" << "--libs" << "libtorrent-rasterbar";
+		conf->doCommand("pkg-config", params, &staticlibs);
+		conf->addLib(staticlibs.trimmed());
 		return true;
 	}
 };
