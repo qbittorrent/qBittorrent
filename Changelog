@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.5
     - BUGFIX: Fix actions on selected torrents (non-selected torrents could be affected)
+    - BUGFIX: Only one program preferences dialog is allowed at a time
     - BUGFIX: Link against boost and ssl to fix issues with gold linker
     - BUGFIX: Fix memory leak in RSS
 
