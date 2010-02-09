@@ -982,7 +982,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       // and add them
       QTorrentHandle h_ex = getTorrentHandle(hash);
       if(h_ex.is_valid()) {
-        std::vector<announce_entry> old_trackers = h.trackers();
+        std::vector<announce_entry> old_trackers = h_ex.trackers();
         std::vector<announce_entry> new_trackers = t->trackers();
         bool trackers_added = false;
         for(std::vector<announce_entry>::iterator it=new_trackers.begin();it!=new_trackers.end();it++) {
