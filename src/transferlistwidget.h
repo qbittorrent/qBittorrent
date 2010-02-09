@@ -71,6 +71,7 @@ protected:
   bool loadColWidthList();
   void saveLastSortedColumn();
   void loadLastSortedColumn();
+  QStringList getSelectedTorrentsHashes() const;
 
 protected slots:
   int updateTorrent(int row);
