@@ -210,6 +210,7 @@ void SearchEngine::on_search_button_clicked(){
     search_button->setText("Search");
     return;
   }
+  searchProcess->waitForFinished();
   // Reload environment variables (proxy)
   searchProcess->setEnvironment(QProcess::systemEnvironment());
 
