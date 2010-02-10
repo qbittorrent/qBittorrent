@@ -76,6 +76,7 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
       filePath = tmpfile.fileName();
       qDebug("Temporary filename is: %s", filePath.toLocal8Bit().data());
       if(reply->open(QIODevice::ReadOnly)) {
+        // TODO: Support GZIP compression
         tmpfile.write(reply->readAll());
         reply->close();
         tmpfile.close();

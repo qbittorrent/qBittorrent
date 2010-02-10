@@ -103,8 +103,8 @@ contains(DEFINES, DISABLE_GUI) {
 # QMAKE_CXXFLAGS_RELEASE += -fwrapv
 # QMAKE_CXXFLAGS_DEBUG += -fwrapv
 unix:QMAKE_LFLAGS_SHAPP += -rdynamic
-#CONFIG += link_pkgconfig
-#PKGCONFIG += "libtorrent-rasterbar"
+CONFIG += link_pkgconfig
+PKGCONFIG += "libtorrent-rasterbar"
 QT += network
 !contains(DEFINES, DISABLE_GUI) {
     QT += xml
