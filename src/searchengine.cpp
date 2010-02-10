@@ -216,10 +216,9 @@ void SearchEngine::on_search_button_clicked(){
     if(search_button->text() != tr("Search")) {
       search_button->setText(tr("Search"));
       return;
-    } else {
-      searchProcess->waitForFinished(1000);
     }
   }
+  searchProcess->waitForFinished();
   // Reload environment variables (proxy)
   searchProcess->setEnvironment(QProcess::systemEnvironment());
 
