@@ -3,6 +3,7 @@
     - BUGFIX: Only one program preferences dialog is allowed at a time
     - BUGFIX: Link against boost and ssl to fix issues with gold linker
     - BUGFIX: Fix memory leak in RSS
+    - BUGFIX: Improved HTTP gzip compression detection in downloader
 
 * Mon Feb 8 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.4
     - BUGFIX: Fix file prioritizing in a torrent
