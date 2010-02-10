@@ -105,6 +105,8 @@ contains(DEFINES, DISABLE_GUI) {
 unix:QMAKE_LFLAGS_SHAPP += -rdynamic
 CONFIG += link_pkgconfig
 PKGCONFIG += "libtorrent-rasterbar"
+LIBS += -L/usr/lib64
+
 QT += network
 !contains(DEFINES, DISABLE_GUI) {
     QT += xml
