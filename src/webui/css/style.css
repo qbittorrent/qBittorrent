@@ -120,6 +120,11 @@ hr {
 	height:100%;
 }
 
+#trackersUrls {
+	width:90%;
+	height:100%;
+}
+
 #Filters ul {
 	list-style-type: none;
 }

@@ -103,7 +103,7 @@ void HttpConnection::write()
 }
 
 QString HttpConnection::translateDocument(QString data) {
-  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel", "options_imp", "Preferences"};
+  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "GUI", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel", "options_imp", "Preferences", "TrackersAdditionDlg"};
   int i=0;
   bool found = false;
   do {
@@ -118,7 +118,7 @@ QString HttpConnection::translateDocument(QString data) {
       do {
         translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().data(), 0, QCoreApplication::UnicodeUTF8, 1);
         ++context_index;
-      }while(translation == word && context_index < 11);
+      }while(translation == word && context_index < 12);
       //qDebug("Translation is %s", translation.toUtf8().data());
       data = data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
@@ -316,6 +316,20 @@ void HttpConnection::respondCommand(QString command)
       }
     }
     return;
+  }
+  if(command == "addTrackers") {
+    QString hash = parser.post("hash");
+    if(!hash.isEmpty()) {
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      if(h.is_valid() && h.has_metadata()) {
+        QString urls = parser.post("urls");
+        QStringList list = urls.split('\n');
+        foreach(QString url, list) {
+          announce_entry e(url.toStdString());
+          h.add_tracker(e);
+        }
+      }
+    }
   }
   if(command == "upload")
   {

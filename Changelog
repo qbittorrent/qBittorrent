@@ -9,6 +9,7 @@
     - FEATURE: User can choose to include the protocol overhead in transfer limits
     - FEATURE: Torrents can be automatically rechecked on completion
     - FEATURE: If 2 torrents have the same hash, add new trackers to the existing torrent
+    - FEATURE: Trackers can be added from Web UI
     - COSMETIC: Improved style management
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0

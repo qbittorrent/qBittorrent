@@ -2,6 +2,7 @@
 <qresource>
   <file>webui/index.html</file>
   <file>webui/download.html</file>
+  <file>webui/addtrackers.html</file>
   <file>webui/upload.html</file>
   <file>webui/uploadframe.html</file>
   <file>webui/about.html</file>
