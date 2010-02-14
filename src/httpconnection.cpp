@@ -138,6 +138,7 @@ void HttpConnection::respond() {
     return;
   }
   QString auth = parser.value("Authorization");
+  qDebug("Auth: %s", auth.split(" ").first().toLocal8Bit().data());
   if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth.toLocal8Bit(), parser.method())) {
     // Update failed attempt counter
     parent->client_failed_attempts.insert(socket->peerAddress().toString(), nb_fail+1);

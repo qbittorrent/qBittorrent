@@ -1,3 +1,7 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.1.6
+    - BUGFIX: Fix Web UI authentication with Konqueror
+    - BUGFIX: Fix save path display in properties
+
 * Web Feb 10 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.5
     - BUGFIX: Fix actions on selected torrents (non-selected torrents could be affected)
     - BUGFIX: Only one program preferences dialog is allowed at a time

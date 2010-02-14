@@ -208,7 +208,10 @@ Bittorrent* PropertiesWidget::getBTSession() const {
 
 void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
   if(h.is_valid() && h == _h) {
-    save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
+    QString p = TorrentPersistentData::getSavePath(h.hash());
+    if(p.isEmpty())
+      p = h.save_path();
+    save_path->setText(p);
   }
 }
 
@@ -223,7 +226,10 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
 
   try {
     // Save path
-    save_path->setText(TorrentPersistentData::getSavePath(h.hash()));
+    QString p = TorrentPersistentData::getSavePath(h.hash());
+    if(p.isEmpty())
+      p = h.save_path();
+    save_path->setText(p);
     // Creation date
     lbl_creationDate->setText(h.creation_date());
     // Hash

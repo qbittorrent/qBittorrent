@@ -207,7 +207,7 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
     }
     QByteArray prop_cnonce = regex_cnonce.cap(1).toLocal8Bit();
     qDebug("prop cnonce is: %s", prop_cnonce.data());
-    QRegExp regex_qop(".*qop=(\\w+).*");
+    QRegExp regex_qop(".*qop=[\"]?(\\w+)[\"]?.*");
     if(regex_qop.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: missing qop");
       return false;
