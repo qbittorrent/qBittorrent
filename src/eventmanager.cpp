@@ -286,7 +286,9 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   if(h.is_valid() && h.has_metadata()) {
     // Save path
-    data["save_path"] = TorrentPersistentData::getSavePath(hash);
+    QString p = TorrentPersistentData::getSavePath(hash);
+    if(p.isEmpty()) p = h.save_path();
+    data["save_path"] = p;
     // Creation date
     data["creation_date"] = h.creation_date();
     // Comment
