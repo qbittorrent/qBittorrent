@@ -60,6 +60,7 @@ class HttpConnection : public QObject
                 void respondTrackersPropertiesJson(QString hash);
                 void respondFilesPropertiesJson(QString hash);
                 void respondPreferencesJson();
+                void respondGlobalTransferInfoJson();
 		void respondCommand(QString command);
 		void respondNotFound();
 		void processDownloadedFile(QString, QString);

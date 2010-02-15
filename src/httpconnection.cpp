@@ -35,6 +35,7 @@
 #include "preferences.h"
 #include "json.h"
 #include "bittorrent.h"
+#include "misc.h"
 #include <QTcpSocket>
 #include <QDateTime>
 #include <QStringList>
@@ -203,6 +204,10 @@ void HttpConnection::respond() {
       } else {
         if(list[1] == "preferences") {
           respondPreferencesJson();
+        } else {
+          if(list[1] == "transferInfo") {
+            respondGlobalTransferInfoJson();
+          }
         }
       }
     }
@@ -292,6 +297,18 @@ void HttpConnection::respondFilesPropertiesJson(QString hash) {
 void HttpConnection::respondPreferencesJson() {
   EventManager* manager =  parent->eventManager();
   QString string = json::toJson(manager->getGlobalPreferences());
+  generator.setStatusLine(200, "OK");
+  generator.setContentTypeByExt("js");
+  generator.setMessage(string);
+  write();
+}
+
+void HttpConnection::respondGlobalTransferInfoJson() {
+  QVariantMap info;
+  session_status sessionStatus = parent->getBTSession()->getSessionStatus();
+  info["DlInfos"] = tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_download));
+  info["UpInfos"] = tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload));
+  QString string = json::toJson(info);
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt("js");
   generator.setMessage(string);

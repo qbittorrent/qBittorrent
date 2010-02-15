@@ -60,6 +60,7 @@ class HttpServer : public QTcpServer {
 		EventManager *eventManager() const;
                 QString generateNonce() const;
                 QHash<QString, int> client_failed_attempts;
+                Bittorrent *getBTSession() const { return BTSession; }
 
 	private slots:
 		void newHttpConnection();
