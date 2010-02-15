@@ -978,7 +978,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
         addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(file));
         //emit duplicateTorrent(file);
       }
-      // Check if the torrent contains trackers we don't know about
+      // Check if the torrent contains trackers or url seeds we don't know about
       // and add them
       QTorrentHandle h_ex = getTorrentHandle(hash);
       if(h_ex.is_valid()) {
@@ -1001,7 +1001,20 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
           }
         }
         if(trackers_added) {
-          addConsoleMessage(tr("However, new trackers were added to the existing torrent."));
+          addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
+        }
+        bool urlseeds_added = false;
+        QStringList old_urlseeds = h_ex.url_seeds();
+        std::vector<std::string> new_urlseeds = t->url_seeds();
+        for(std::vector<std::string>::iterator it = new_urlseeds.begin(); it != new_urlseeds.end(); it++) {
+          QString new_url = misc::toQString(it->c_str());
+          if(!old_urlseeds.contains(new_url)) {
+            urlseeds_added = true;
+            h_ex.add_url_seed(new_url);
+          }
+        }
+        if(urlseeds_added) {
+          addConsoleMessage(tr("Note: new URL seeds were added to the existing torrent."));
         }
       }
     }else{

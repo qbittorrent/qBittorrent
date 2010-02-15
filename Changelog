@@ -8,7 +8,7 @@
     - FEATURE: User can choose to apply transfer limits on LAN too
     - FEATURE: User can choose to include the protocol overhead in transfer limits
     - FEATURE: Torrents can be automatically rechecked on completion
-    - FEATURE: If 2 torrents have the same hash, add new trackers to the existing torrent
+    - FEATURE: If 2 torrents have the same hash, add new trackers/URL seeds to the existing torrent
     - FEATURE: Trackers can be added from Web UI
     - COSMETIC: Improved style management
 
