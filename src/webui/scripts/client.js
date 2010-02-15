@@ -135,6 +135,9 @@ window.addEvent('load', function(){
                   }).send();
     }
   };
+  $('DlInfos').addEvent('click', globalDownloadLimitFN);
+  $('UpInfos').addEvent('click', globalUploadLimitFN);
+  
 	var ajaxfn = function(){
 		var queueing_enabled = false;
 		var url = 'json/events';

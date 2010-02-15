@@ -305,7 +305,7 @@ void HttpConnection::respondPreferencesJson() {
 
 void HttpConnection::respondGlobalTransferInfoJson() {
   QVariantMap info;
-  session_status sessionStatus = parent->getBTSession()->getSessionStatus();
+  session_status sessionStatus = BTSession->getSessionStatus();
   info["DlInfos"] = tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_download));
   info["UpInfos"] = tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload));
   QString string = json::toJson(info);
@@ -453,6 +453,18 @@ void HttpConnection::respondCommand(QString command)
     if(h.is_valid()) {
       h.set_download_limit(limit);
     }
+  }
+  if(command == "setGlobalUpLimit") {
+    qlonglong limit = parser.post("limit").toLongLong();
+    if(limit == 0) limit = -1;
+    BTSession->getSession()->set_upload_rate_limit(limit);
+    Preferences::setGlobalUploadLimit(limit/1024.);
+  }
+  if(command == "setGlobalDlLimit") {
+    qlonglong limit = parser.post("limit").toLongLong();
+    if(limit == 0) limit = -1;
+    BTSession->getSession()->set_download_rate_limit(limit);
+    Preferences::setGlobalDownloadLimit(limit/1024.);
   }
   if(command == "pause") {
     emit pauseTorrent(parser.post("hash"));

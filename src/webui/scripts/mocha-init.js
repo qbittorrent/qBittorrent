@@ -76,6 +76,22 @@ initializeWindows = function(){
 		});
 	});
 	
+	globalUploadLimitFN = function() {
+		new MochaUI.Window({
+				id: 'uploadLimitPage',
+				title: "_(Global Upload Speed Limiting)",
+				loadMethod: 'iframe',
+				contentURL:'uploadlimit.html?hash=global',
+				scrollbars: false,
+				resizable: false,
+				maximizable: false,
+				paddingVertical: 0,
+				paddingHorizontal: 0,
+				width: 424,
+				height: 80
+			});
+	}
+	
 	uploadLimitFN = function() {
 		var h = myTable.selectedIds();
 		if(h.length){
@@ -95,6 +111,22 @@ initializeWindows = function(){
 			});
 		}
 	};
+	
+	globalDownloadLimitFN = function() {
+		new MochaUI.Window({
+				id: 'downloadLimitPage',
+				title: "_(Global Download Speed Limiting)",
+				loadMethod: 'iframe',
+				contentURL:'downloadlimit.html?hash=global',
+				scrollbars: false,
+				resizable: false,
+				maximizable: false,
+				paddingVertical: 0,
+				paddingHorizontal: 0,
+				width: 424,
+				height: 80
+			});
+	}
 	
 	downloadLimitFN = function() {
 		var h = myTable.selectedIds();

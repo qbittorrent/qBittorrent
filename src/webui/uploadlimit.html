@@ -24,13 +24,23 @@
 	var hash = new URI().getData('hash');
 	setUpLimit = function() {
 		var limit = $("uplimitUpdatevalue").get('html').toInt() * 1024;
-		new Request({url: '/command/setTorrentUpLimit',
-			    method: 'post',
-			    data: {'hash': hash, 'limit': limit},
-			    onComplete: function() {
-				window.parent.closeWindows();
-			    }
-		}).send();
+		if(hash == "global") {
+			new Request({url: '/command/setGlobalUpLimit',
+				    method: 'post',
+				    data: {'limit': limit},
+				    onComplete: function() {
+					window.parent.closeWindows();
+				    }
+			}).send();
+		}else {
+			new Request({url: '/command/setTorrentUpLimit',
+				    method: 'post',
+				    data: {'hash': hash, 'limit': limit},
+				    onComplete: function() {
+					window.parent.closeWindows();
+				    }
+			}).send();
+		}
 	}
 </script>
 <input type="button" value="_(Apply)" onclick="setUpLimit()"/>
