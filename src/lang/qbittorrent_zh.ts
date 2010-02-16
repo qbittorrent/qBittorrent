@@ -365,7 +365,11 @@ p, li { white-space: pre-wrap; }
         <translation>原因:</translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2779,6 +2783,16 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>由于过多的身份验证失败,您的IP地址被禁止.</translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">下载:%1/s -传输:%2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">上传:%1/s -传输:%2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -3943,7 +3957,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">优先</translation>
+        <translation type="unfinished">优先</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -4032,15 +4046,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">正常</translation>
+        <translation type="unfinished">正常</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">最大</translation>
+        <translation type="unfinished">最大</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">高</translation>
+        <translation type="unfinished">高</translation>
     </message>
     <message>
         <source>this session</source>
@@ -5342,15 +5356,15 @@ previewing)</source>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">正常</translation>
+        <translation type="unfinished">正常</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">高</translation>
+        <translation type="unfinished">高</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">最大</translation>
+        <translation type="unfinished">最大</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -6490,6 +6504,10 @@ However, those plugins were disabled.</source>
         <source>Filters</source>
         <translation>过滤器</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -7261,7 +7279,7 @@ torrent.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">优先</translation>
+        <translation type="unfinished">优先</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>

@@ -448,16 +448,16 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="911"/>
-        <location filename="../bittorrent.cpp" line="1166"/>
-        <location filename="../bittorrent.cpp" line="1171"/>
+        <location filename="../bittorrent.cpp" line="1179"/>
+        <location filename="../bittorrent.cpp" line="1184"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="913"/>
-        <location filename="../bittorrent.cpp" line="1168"/>
-        <location filename="../bittorrent.cpp" line="1173"/>
+        <location filename="../bittorrent.cpp" line="1181"/>
+        <location filename="../bittorrent.cpp" line="1186"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
@@ -476,29 +476,38 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1004"/>
-        <source>However, new trackers were added to the existing torrent.</source>
-        <translation>Cependant, les nouveaux trackers ont été ajoutés au torrent existant.</translation>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1462"/>
+        <location filename="../bittorrent.cpp" line="1017"/>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>However, new trackers were added to the existing torrent.</source>
+        <translation type="obsolete">Cependant, les nouveaux trackers ont été ajoutés au torrent existant.</translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1475"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1464"/>
+        <location filename="../bittorrent.cpp" line="1477"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1859"/>
+        <location filename="../bittorrent.cpp" line="1872"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Téléchargement récursif du fichier %1 au sein du torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1870"/>
+        <location filename="../bittorrent.cpp" line="1883"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossible de décoder le torrent %1.</translation>
     </message>
@@ -511,32 +520,32 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2038"/>
+        <location filename="../bittorrent.cpp" line="2051"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2043"/>
+        <location filename="../bittorrent.cpp" line="2056"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2058"/>
+        <location filename="../bittorrent.cpp" line="2071"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2059"/>
+        <location filename="../bittorrent.cpp" line="2072"/>
         <source>Reason: %1</source>
         <translation>Raison : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2064"/>
+        <location filename="../bittorrent.cpp" line="2077"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2171"/>
+        <location filename="../bittorrent.cpp" line="2184"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -1597,33 +1606,33 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Maximale</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="295"/>
-        <location filename="../eventmanager.cpp" line="296"/>
+        <location filename="../eventmanager.cpp" line="297"/>
+        <location filename="../eventmanager.cpp" line="298"/>
         <source>this session</source>
         <translation>cette session</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="300"/>
-        <location filename="../eventmanager.cpp" line="304"/>
+        <location filename="../eventmanager.cpp" line="302"/>
+        <location filename="../eventmanager.cpp" line="306"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="307"/>
+        <location filename="../eventmanager.cpp" line="309"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Complet depuis %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="310"/>
+        <location filename="../eventmanager.cpp" line="312"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="385"/>
-        <location filename="../eventmanager.cpp" line="394"/>
+        <location filename="../eventmanager.cpp" line="387"/>
+        <location filename="../eventmanager.cpp" line="396"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -3010,9 +3019,21 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../httpconnection.cpp" line="136"/>
+        <location filename="../httpconnection.cpp" line="137"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Votre addresse IP a été bloquée car vous avez dépassé le nombre de tentative d&apos;authentification autorisé.</translation>
+    </message>
+    <message>
+        <location filename="../httpconnection.cpp" line="309"/>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">R : %1/s - T : %2</translation>
+    </message>
+    <message>
+        <location filename="../httpconnection.cpp" line="310"/>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">E : %1/s - T : %2</translation>
     </message>
 </context>
 <context>
@@ -4547,73 +4568,77 @@ Comment:</source>
         <translation type="obsolete">Progression</translation>
     </message>
     <message>
+        <location filename="../propertieswidget.cpp" line="519"/>
         <source>Priority</source>
-        <translation type="obsolete">Priorité</translation>
+        <translation type="unfinished">Priorité</translation>
     </message>
     <message>
         <source>Ignored</source>
         <translation type="obsolete">Ignoré</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="1007"/>
         <source>Normal</source>
-        <translation type="obsolete">Normale</translation>
+        <translation type="unfinished">Normale</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="1017"/>
         <source>Maximum</source>
-        <translation type="obsolete">Maximale</translation>
+        <translation type="unfinished">Maximale</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="1012"/>
         <source>High</source>
-        <translation type="obsolete">Haute</translation>
+        <translation type="unfinished">Haute</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="307"/>
-        <location filename="../propertieswidget.cpp" line="308"/>
+        <location filename="../propertieswidget.cpp" line="313"/>
+        <location filename="../propertieswidget.cpp" line="314"/>
         <source>this session</source>
         <translation>cette session</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="312"/>
-        <location filename="../propertieswidget.cpp" line="316"/>
+        <location filename="../propertieswidget.cpp" line="318"/>
+        <location filename="../propertieswidget.cpp" line="322"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="319"/>
+        <location filename="../propertieswidget.cpp" line="325"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Complet depuis %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="323"/>
+        <location filename="../propertieswidget.cpp" line="329"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="479"/>
-        <location filename="../propertieswidget.cpp" line="500"/>
+        <location filename="../propertieswidget.cpp" line="485"/>
+        <location filename="../propertieswidget.cpp" line="506"/>
         <source>I/O Error</source>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="479"/>
+        <location filename="../propertieswidget.cpp" line="485"/>
         <source>This file does not exist yet.</source>
         <translation>Ce fichier n&apos;existe pas encore.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="500"/>
+        <location filename="../propertieswidget.cpp" line="506"/>
         <source>This folder does not exist yet.</source>
         <translation>Ce dossier n&apos;existe pas encore.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="515"/>
         <source>Rename...</source>
         <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="529"/>
+        <location filename="../propertieswidget.cpp" line="555"/>
         <source>Rename the file</source>
         <translation>Renommer le fichier</translation>
     </message>
@@ -4622,29 +4647,29 @@ Comment:</source>
         <translation type="obsolete">Renommer le fichier</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="530"/>
+        <location filename="../propertieswidget.cpp" line="556"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="534"/>
-        <location filename="../propertieswidget.cpp" line="564"/>
+        <location filename="../propertieswidget.cpp" line="560"/>
+        <location filename="../propertieswidget.cpp" line="590"/>
         <source>The file could not be renamed</source>
         <translation>Le fichier n&apos;a pas pu être renommé</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="535"/>
+        <location filename="../propertieswidget.cpp" line="561"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ce nom de fichier contient des caractères interdits, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="565"/>
-        <location filename="../propertieswidget.cpp" line="603"/>
+        <location filename="../propertieswidget.cpp" line="591"/>
+        <location filename="../propertieswidget.cpp" line="629"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ce nom est déjà utilisé au sein de ce dossier. Veuillez choisir un nom différent.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="602"/>
+        <location filename="../propertieswidget.cpp" line="628"/>
         <source>The folder could not be renamed</source>
         <translation>Le dossier n&apos;a pas pu être renommé</translation>
     </message>
@@ -4653,23 +4678,23 @@ Comment:</source>
         <translation type="obsolete">Aucun - indisponible ?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="639"/>
+        <location filename="../propertieswidget.cpp" line="665"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nouvelle source HTTP</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="640"/>
+        <location filename="../propertieswidget.cpp" line="666"/>
         <source>New url seed:</source>
         <translation>Nouvelle source HTTP :</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="645"/>
+        <location filename="../propertieswidget.cpp" line="671"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="646"/>
+        <location filename="../propertieswidget.cpp" line="672"/>
         <source>This url seed is already in the list.</source>
         <translation>Cette source HTTP est déjà dans la liste.</translation>
     </message>
@@ -4678,18 +4703,18 @@ Comment:</source>
         <translation type="obsolete">La liste des trackers ne peut pas être vide.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
-        <location filename="../propertieswidget.cpp" line="693"/>
+        <location filename="../propertieswidget.cpp" line="717"/>
+        <location filename="../propertieswidget.cpp" line="719"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
+        <location filename="../propertieswidget.cpp" line="726"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
+        <location filename="../propertieswidget.cpp" line="726"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
@@ -6203,16 +6228,19 @@ Changements:
         <translation type="obsolete">Ignoré</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="338"/>
         <source>Normal</source>
-        <translation type="obsolete">Normale</translation>
+        <translation type="unfinished">Normale</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="343"/>
         <source>High</source>
-        <translation type="obsolete">Haute</translation>
+        <translation type="unfinished">Haute</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="348"/>
         <source>Maximum</source>
-        <translation type="obsolete">Maximale</translation>
+        <translation type="unfinished">Maximale</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="219"/>
@@ -7480,14 +7508,20 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Choisir le dossier à surveiller</translation>
     </message>
     <message>
+        <location filename="../options_imp.cpp" line="1394"/>
+        <location filename="../options_imp.cpp" line="1396"/>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Choose an ipfilter.dat file</source>
         <translation type="obsolete">Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1409"/>
-        <location filename="../options_imp.cpp" line="1411"/>
         <location filename="../options_imp.cpp" line="1423"/>
         <location filename="../options_imp.cpp" line="1425"/>
+        <location filename="../options_imp.cpp" line="1437"/>
+        <location filename="../options_imp.cpp" line="1439"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
@@ -7501,8 +7535,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1394"/>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1408"/>
+        <location filename="../options_imp.cpp" line="1410"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
@@ -7511,8 +7545,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Filtres (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1394"/>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1408"/>
+        <location filename="../options_imp.cpp" line="1410"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
@@ -8201,8 +8235,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="388"/>
-        <location filename="../torrentadditiondlg.h" line="390"/>
+        <location filename="../torrentadditiondlg.h" line="406"/>
+        <location filename="../torrentadditiondlg.h" line="408"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
@@ -8234,96 +8268,96 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation>Lien Magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="265"/>
+        <location filename="../torrentadditiondlg.h" line="283"/>
         <source>Rename the file</source>
         <translation>Renommer le fichier</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="266"/>
+        <location filename="../torrentadditiondlg.h" line="284"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="270"/>
-        <location filename="../torrentadditiondlg.h" line="296"/>
+        <location filename="../torrentadditiondlg.h" line="288"/>
+        <location filename="../torrentadditiondlg.h" line="314"/>
         <source>The file could not be renamed</source>
         <translation>Renommage impossible</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="271"/>
+        <location filename="../torrentadditiondlg.h" line="289"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ce nom de fichier contient des caractères interdits, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="297"/>
-        <location filename="../torrentadditiondlg.h" line="330"/>
+        <location filename="../torrentadditiondlg.h" line="315"/>
+        <location filename="../torrentadditiondlg.h" line="348"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ce nom est déjà utilisé au sein de ce dossier. Veuillez choisir un autre nom.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="329"/>
+        <location filename="../torrentadditiondlg.h" line="347"/>
         <source>The folder could not be renamed</source>
         <translation>Renommage du dossier impossible</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="371"/>
+        <location filename="../torrentadditiondlg.h" line="389"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 disponible after téléchargement)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="374"/>
+        <location filename="../torrentadditiondlg.h" line="392"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 de plus sont nécessaires)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="413"/>
+        <location filename="../torrentadditiondlg.h" line="431"/>
         <source>Empty save path</source>
         <translation>Chemin de destination vide</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="413"/>
+        <location filename="../torrentadditiondlg.h" line="431"/>
         <source>Please enter a save path</source>
         <translation>Veuillez entrer un répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="420"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="420"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="426"/>
+        <location filename="../torrentadditiondlg.h" line="444"/>
         <source>Invalid label name</source>
         <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="426"/>
+        <location filename="../torrentadditiondlg.h" line="444"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="461"/>
+        <location filename="../torrentadditiondlg.h" line="479"/>
         <source>Seeding mode error</source>
         <translation>Erreur du mode partage</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="461"/>
+        <location filename="../torrentadditiondlg.h" line="479"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Vous avez choisir de ne pas vérifier les fichiers locaux. Cependant, les fichiers locaux n&apos;ont pas été trouvé dans le répertoire de destination actuel. Veuillez désactiver cette fonctionnalité ou alors changer de répertoire de destination.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="468"/>
+        <location filename="../torrentadditiondlg.h" line="486"/>
         <source>Invalid file selection</source>
         <translation>Sélection de fichiers invalide</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="468"/>
+        <location filename="../torrentadditiondlg.h" line="486"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Veuillez sélectionner au moins un fichier dans le torrent</translation>
     </message>
@@ -8340,8 +8374,9 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Progression</translation>
     </message>
     <message>
+        <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Priority</source>
-        <translation type="obsolete">Priorité</translation>
+        <translation type="unfinished">Priorité</translation>
     </message>
 </context>
 </TS>

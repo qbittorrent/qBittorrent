@@ -354,7 +354,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2576,6 +2580,16 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Sťah.: %1/s - Pren.: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Nahr.: %1/s - Pren.: %2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -3732,7 +3746,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorita</translation>
+        <translation type="unfinished">Priorita</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -3821,15 +3835,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normálna</translation>
+        <translation type="unfinished">Normálna</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximálna</translation>
+        <translation type="unfinished">Maximálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Vysoká</translation>
+        <translation type="unfinished">Vysoká</translation>
     </message>
     <message>
         <source>this session</source>
@@ -5077,15 +5091,15 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normálna</translation>
+        <translation type="unfinished">Normálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Vysoká</translation>
+        <translation type="unfinished">Vysoká</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximálna</translation>
+        <translation type="unfinished">Maximálna</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6270,6 +6284,10 @@ Tieto moduly však boli vypnuté.</translation>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -6966,7 +6984,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorita</translation>
+        <translation type="unfinished">Priorita</translation>
     </message>
     <message>
         <source>Unknown</source>

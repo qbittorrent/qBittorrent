@@ -243,15 +243,33 @@ public slots:
     QAction *actRename = 0;
     if(selectedRows.size() == 1) {
       actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
-      //myFilesLlistMenu.addSeparator();
-    } else {
-      return;
+      myFilesLlistMenu.addSeparator();
     }
+    QMenu subMenu;
+    subMenu.setTitle(tr("Priority"));
+    subMenu.addAction(actionNormal);
+    subMenu.addAction(actionHigh);
+    subMenu.addAction(actionMaximum);
+    myFilesLlistMenu.addMenu(&subMenu);
     // Call menu
     QAction *act = myFilesLlistMenu.exec(QCursor::pos());
     if(act) {
       if(act == actRename) {
         renameSelectedFile();
+      } else {
+        int prio = 1;
+        if(act == actionHigh) {
+          prio = HIGH;
+        } else {
+          if(act == actionMaximum) {
+            prio = MAXIMUM;
+          }
+        }
+        qDebug("Setting files priority");
+        foreach(QModelIndex index, selectedRows) {
+          qDebug("Setting priority(%d) for file at row %d", prio, index.row());
+          PropListModel->setData(PropListModel->index(index.row(), PRIORITY, index.parent()), prio);
+        }
       }
     }
   }

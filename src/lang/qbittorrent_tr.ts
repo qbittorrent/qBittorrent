@@ -411,7 +411,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2635,6 +2639,16 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">İND: %1/s - Top: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">GÖN: %1/s - Top: %2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -3747,7 +3761,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Öncelik</translation>
+        <translation type="unfinished">Öncelik</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3840,15 +3854,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">En Yüksek</translation>
+        <translation type="unfinished">En Yüksek</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Yüksek</translation>
+        <translation type="unfinished">Yüksek</translation>
     </message>
     <message>
         <source>this session</source>
@@ -5088,15 +5102,15 @@ Changelog:
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Yüksek</translation>
+        <translation type="unfinished">Yüksek</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">En Yüksek</translation>
+        <translation type="unfinished">En Yüksek</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6202,6 +6216,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <source>Filters</source>
         <translation>Süzgeçler</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -6894,7 +6912,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Öncelik</translation>
+        <translation type="unfinished">Öncelik</translation>
     </message>
     <message>
         <source>Unknown</source>

@@ -404,7 +404,11 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2674,6 +2678,16 @@ Czy napewno zamknąć qBittorrent?</translation>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Pobieranie: %1/s - Pobrano: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Wysyłanie: %1/s - Wysłano: %2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -3857,7 +3871,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorytet</translation>
+        <translation type="unfinished">Priorytet</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3950,15 +3964,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normalny</translation>
+        <translation type="unfinished">Normalny</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maksymalny</translation>
+        <translation type="unfinished">Maksymalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Wysoki</translation>
+        <translation type="unfinished">Wysoki</translation>
     </message>
     <message>
         <source>this session</source>
@@ -5245,15 +5259,15 @@ Zmiany:
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normalny</translation>
+        <translation type="unfinished">Normalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Wysoki</translation>
+        <translation type="unfinished">Wysoki</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maksymalny</translation>
+        <translation type="unfinished">Maksymalny</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6353,6 +6367,10 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -7027,7 +7045,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Priorytet</translation>
+        <translation type="unfinished">Priorytet</translation>
     </message>
     <message>
         <source>Seeding mode error</source>

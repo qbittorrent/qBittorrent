@@ -354,7 +354,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2550,6 +2554,16 @@ Está certo que quer sair do qBittorrent?</translation>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">D: %1/s - T: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">U: %1/s - T: %2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -3726,7 +3740,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioridade</translation>
+        <translation type="unfinished">Prioridade</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3819,15 +3833,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Máximo</translation>
+        <translation type="unfinished">Máximo</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Forte</translation>
+        <translation type="unfinished">Forte</translation>
     </message>
     <message>
         <source>this session</source>
@@ -5164,15 +5178,15 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Alto</translation>
+        <translation type="unfinished">Alto</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Máximo</translation>
+        <translation type="unfinished">Máximo</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6285,6 +6299,10 @@ Portanto os plugins foram desabilitados.</translation>
         <source>Filters</source>
         <translation>Filtros</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -6969,7 +6987,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioridade</translation>
+        <translation type="unfinished">Prioridade</translation>
     </message>
     <message>
         <source>Unknown</source>

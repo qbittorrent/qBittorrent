@@ -11,6 +11,7 @@
     - FEATURE: If 2 torrents have the same hash, add new trackers/URL seeds to the existing torrent
     - FEATURE: Trackers can be added from Web UI
     - FEATURE: Global transfer information are displayed in the new Web UI status bar
+    - FEATURE: Allow to change the priority of several files at once
     - COSMETIC: Improved style management
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0

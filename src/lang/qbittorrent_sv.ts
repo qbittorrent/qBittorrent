@@ -347,7 +347,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1633,6 +1637,16 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">H: %1/s - Ö: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">S: %1/s - Ö: %2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -2673,7 +2687,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioritet</translation>
+        <translation type="unfinished">Prioritet</translation>
     </message>
     <message>
         <source>None - Unreachable?</source>
@@ -2762,15 +2776,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximal</translation>
+        <translation type="unfinished">Maximal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Hög</translation>
+        <translation type="unfinished">Hög</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3861,15 +3875,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Hög</translation>
+        <translation type="unfinished">Hög</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximal</translation>
+        <translation type="unfinished">Maximal</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -4748,6 +4762,10 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -5251,7 +5269,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioritet</translation>
+        <translation type="unfinished">Prioritet</translation>
     </message>
     <message>
         <source>Unknown</source>

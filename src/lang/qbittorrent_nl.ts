@@ -401,7 +401,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2596,6 +2600,16 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -3708,7 +3722,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioriteit</translation>
+        <translation type="unfinished">Prioriteit</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3801,15 +3815,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normaal</translation>
+        <translation type="unfinished">Normaal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximum</translation>
+        <translation type="unfinished">Maximum</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Hoog</translation>
+        <translation type="unfinished">Hoog</translation>
     </message>
     <message>
         <source>this session</source>
@@ -5080,15 +5094,15 @@ Changelog:
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normaal</translation>
+        <translation type="unfinished">Normaal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Hoog</translation>
+        <translation type="unfinished">Hoog</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximum</translation>
+        <translation type="unfinished">Maximum</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6207,6 +6221,10 @@ De plugins zijn uitgeschakeld.</translation>
         <source>Filters</source>
         <translation>Filters</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -6910,7 +6928,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioriteit</translation>
+        <translation type="unfinished">Prioriteit</translation>
     </message>
     <message>
         <source>Seeding mode error</source>

@@ -354,7 +354,11 @@ p, li { white-space: pre-wrap; }(new line)
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2488,6 +2492,16 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">D: %1/s - T: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">U: %1/s - T: %2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -3660,7 +3674,7 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioritate</translation>
+        <translation type="unfinished">Prioritate</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3753,15 +3767,15 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximum</translation>
+        <translation type="unfinished">Maximum</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Mare</translation>
+        <translation type="unfinished">Mare</translation>
     </message>
     <message>
         <source>this session</source>
@@ -5004,15 +5018,15 @@ Changelog:
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">Înalt</translation>
+        <translation type="unfinished">Înalt</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">Maximal</translation>
+        <translation type="unfinished">Maximal</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6125,6 +6139,10 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -6817,7 +6835,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">Prioritate</translation>
+        <translation type="unfinished">Prioritate</translation>
     </message>
     <message>
         <source>Unknown</source>

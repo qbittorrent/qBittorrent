@@ -350,7 +350,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1728,6 +1732,16 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">下載速度: %1/s - 已傳輸: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">上傳速度: %1/s - 已傳輸: %2</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -2768,7 +2782,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">優先度</translation>
+        <translation type="unfinished">優先度</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2861,15 +2875,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">一般</translation>
+        <translation type="unfinished">一般</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">最高</translation>
+        <translation type="unfinished">最高</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">高</translation>
+        <translation type="unfinished">高</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3960,15 +3974,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Normal</source>
-        <translation type="obsolete">一般</translation>
+        <translation type="unfinished">一般</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="obsolete">高</translation>
+        <translation type="unfinished">高</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="obsolete">最高</translation>
+        <translation type="unfinished">最高</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -4863,6 +4877,10 @@ However, those plugins were disabled.</source>
         <source>Filters</source>
         <translation>過濾器</translation>
     </message>
+    <message>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -5370,7 +5388,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="obsolete">優先度</translation>
+        <translation type="unfinished">優先度</translation>
     </message>
     <message>
         <source>Unknown</source>

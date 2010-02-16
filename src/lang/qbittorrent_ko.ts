@@ -368,16 +368,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="911"/>
-        <location filename="../bittorrent.cpp" line="1166"/>
-        <location filename="../bittorrent.cpp" line="1171"/>
+        <location filename="../bittorrent.cpp" line="1179"/>
+        <location filename="../bittorrent.cpp" line="1184"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="913"/>
-        <location filename="../bittorrent.cpp" line="1168"/>
-        <location filename="../bittorrent.cpp" line="1173"/>
+        <location filename="../bittorrent.cpp" line="1181"/>
+        <location filename="../bittorrent.cpp" line="1186"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
@@ -396,29 +396,34 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1004"/>
-        <source>However, new trackers were added to the existing torrent.</source>
+        <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1462"/>
+        <location filename="../bittorrent.cpp" line="1017"/>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1475"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1464"/>
+        <location filename="../bittorrent.cpp" line="1477"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1859"/>
+        <location filename="../bittorrent.cpp" line="1872"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1870"/>
+        <location filename="../bittorrent.cpp" line="1883"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
@@ -427,32 +432,32 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트을 사용할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2038"/>
+        <location filename="../bittorrent.cpp" line="2051"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2043"/>
+        <location filename="../bittorrent.cpp" line="2056"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2058"/>
+        <location filename="../bittorrent.cpp" line="2071"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2059"/>
+        <location filename="../bittorrent.cpp" line="2072"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2064"/>
+        <location filename="../bittorrent.cpp" line="2077"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2171"/>
+        <location filename="../bittorrent.cpp" line="2184"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -1488,33 +1493,33 @@ list:</source>
         <translation type="obsolete">최고</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="295"/>
-        <location filename="../eventmanager.cpp" line="296"/>
+        <location filename="../eventmanager.cpp" line="297"/>
+        <location filename="../eventmanager.cpp" line="298"/>
         <source>this session</source>
         <translation>이 세션</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="300"/>
-        <location filename="../eventmanager.cpp" line="304"/>
+        <location filename="../eventmanager.cpp" line="302"/>
+        <location filename="../eventmanager.cpp" line="306"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/초</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="307"/>
+        <location filename="../eventmanager.cpp" line="309"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>완전체 공유한 시간: %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="310"/>
+        <location filename="../eventmanager.cpp" line="312"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>최고 %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="385"/>
-        <location filename="../eventmanager.cpp" line="394"/>
+        <location filename="../eventmanager.cpp" line="387"/>
+        <location filename="../eventmanager.cpp" line="396"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/초</translation>
@@ -2837,9 +2842,21 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../httpconnection.cpp" line="136"/>
+        <location filename="../httpconnection.cpp" line="137"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../httpconnection.cpp" line="309"/>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">다운: &apos;%1&apos;/s - 전송: %2</translation>
+    </message>
+    <message>
+        <location filename="../httpconnection.cpp" line="310"/>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">업: %1/s - 전송: %2</translation>
     </message>
 </context>
 <context>
@@ -4315,100 +4332,104 @@ margin-left: -3px;
         <translation type="obsolete">크기</translation>
     </message>
     <message>
+        <location filename="../propertieswidget.cpp" line="519"/>
         <source>Priority</source>
-        <translation type="obsolete">우선순위</translation>
+        <translation type="unfinished">우선순위</translation>
     </message>
     <message>
         <source>Ignored</source>
         <translation type="obsolete">무시됨</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="1007"/>
         <source>Normal</source>
-        <translation type="obsolete">보통</translation>
+        <translation type="unfinished">보통</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="1017"/>
         <source>Maximum</source>
-        <translation type="obsolete">최고</translation>
+        <translation type="unfinished">최고</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="1012"/>
         <source>High</source>
-        <translation type="obsolete">높음</translation>
+        <translation type="unfinished">높음</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="307"/>
-        <location filename="../propertieswidget.cpp" line="308"/>
+        <location filename="../propertieswidget.cpp" line="313"/>
+        <location filename="../propertieswidget.cpp" line="314"/>
         <source>this session</source>
         <translation>이 세션</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="312"/>
-        <location filename="../propertieswidget.cpp" line="316"/>
+        <location filename="../propertieswidget.cpp" line="318"/>
+        <location filename="../propertieswidget.cpp" line="322"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/초</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="319"/>
+        <location filename="../propertieswidget.cpp" line="325"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>완전체 공유한지: %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="323"/>
+        <location filename="../propertieswidget.cpp" line="329"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>최고 %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="479"/>
-        <location filename="../propertieswidget.cpp" line="500"/>
+        <location filename="../propertieswidget.cpp" line="485"/>
+        <location filename="../propertieswidget.cpp" line="506"/>
         <source>I/O Error</source>
         <translation>I/O 에러</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="479"/>
+        <location filename="../propertieswidget.cpp" line="485"/>
         <source>This file does not exist yet.</source>
         <translation>이 파일은 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="500"/>
+        <location filename="../propertieswidget.cpp" line="506"/>
         <source>This folder does not exist yet.</source>
         <translation>이 폴더는 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="515"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="529"/>
+        <location filename="../propertieswidget.cpp" line="555"/>
         <source>Rename the file</source>
         <translation>파일 이름바꾸기</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="530"/>
+        <location filename="../propertieswidget.cpp" line="556"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="534"/>
-        <location filename="../propertieswidget.cpp" line="564"/>
+        <location filename="../propertieswidget.cpp" line="560"/>
+        <location filename="../propertieswidget.cpp" line="590"/>
         <source>The file could not be renamed</source>
         <translation>이 파일의 이름을 변경할수 없음</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="535"/>
+        <location filename="../propertieswidget.cpp" line="561"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>파일 이름에 특수문자가 들어가 있습니다, 다른 이름을 입력해주십시오.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="565"/>
-        <location filename="../propertieswidget.cpp" line="603"/>
+        <location filename="../propertieswidget.cpp" line="591"/>
+        <location filename="../propertieswidget.cpp" line="629"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>이 이름은 이 폴더에서 이미 사용중에 있습니다. 다른 이름을 입력해 주십시오.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="602"/>
+        <location filename="../propertieswidget.cpp" line="628"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 변경할수 없습니다</translation>
     </message>
@@ -4417,23 +4438,23 @@ margin-left: -3px;
         <translation type="obsolete">없음 - 접근할수 없습니까?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="639"/>
+        <location filename="../propertieswidget.cpp" line="665"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 웹 완전체(Url seed)</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="640"/>
+        <location filename="../propertieswidget.cpp" line="666"/>
         <source>New url seed:</source>
         <translation>새 웹 완전체(Url seed):</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="645"/>
+        <location filename="../propertieswidget.cpp" line="671"/>
         <source>qBittorrent</source>
         <translation>큐비토렌트</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="646"/>
+        <location filename="../propertieswidget.cpp" line="672"/>
         <source>This url seed is already in the list.</source>
         <translation>이 웹완전체(Url seed)는 이미 목록에 포함되어 있습니다.</translation>
     </message>
@@ -4442,18 +4463,18 @@ margin-left: -3px;
         <translation type="obsolete">트렉커 리스트(Trackers List)를 비울수 없습니다. </translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="691"/>
-        <location filename="../propertieswidget.cpp" line="693"/>
+        <location filename="../propertieswidget.cpp" line="717"/>
+        <location filename="../propertieswidget.cpp" line="719"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
+        <location filename="../propertieswidget.cpp" line="726"/>
         <source>Save path creation error</source>
         <translation>저장 경로에 설정 오류</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="700"/>
+        <location filename="../propertieswidget.cpp" line="726"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
@@ -5902,16 +5923,19 @@ Changelog:
         <translation type="obsolete">무시</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="338"/>
         <source>Normal</source>
-        <translation type="obsolete">보통</translation>
+        <translation type="unfinished">보통</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="343"/>
         <source>High</source>
-        <translation type="obsolete">높음</translation>
+        <translation type="unfinished">높음</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="348"/>
         <source>Maximum</source>
-        <translation type="obsolete">최고</translation>
+        <translation type="unfinished">최고</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="219"/>
@@ -7135,10 +7159,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat의 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1409"/>
-        <location filename="../options_imp.cpp" line="1411"/>
         <location filename="../options_imp.cpp" line="1423"/>
         <location filename="../options_imp.cpp" line="1425"/>
+        <location filename="../options_imp.cpp" line="1437"/>
+        <location filename="../options_imp.cpp" line="1439"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
@@ -7154,12 +7178,18 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../options_imp.cpp" line="1394"/>
         <location filename="../options_imp.cpp" line="1396"/>
+        <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="1408"/>
+        <location filename="../options_imp.cpp" line="1410"/>
         <source>Choose an ip filter file</source>
         <translation>ip filter 파일 선택</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1394"/>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1408"/>
+        <location filename="../options_imp.cpp" line="1410"/>
         <source>Filters</source>
         <translation>필터</translation>
     </message>
@@ -7849,8 +7879,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">이 파일은 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="388"/>
-        <location filename="../torrentadditiondlg.h" line="390"/>
+        <location filename="../torrentadditiondlg.h" line="406"/>
+        <location filename="../torrentadditiondlg.h" line="408"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
@@ -7878,96 +7908,96 @@ However, those plugins were disabled.</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="265"/>
+        <location filename="../torrentadditiondlg.h" line="283"/>
         <source>Rename the file</source>
         <translation>파일 이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="266"/>
+        <location filename="../torrentadditiondlg.h" line="284"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="270"/>
-        <location filename="../torrentadditiondlg.h" line="296"/>
+        <location filename="../torrentadditiondlg.h" line="288"/>
+        <location filename="../torrentadditiondlg.h" line="314"/>
         <source>The file could not be renamed</source>
         <translation>이 파일의 이름을 바꿀수 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="271"/>
+        <location filename="../torrentadditiondlg.h" line="289"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>파일 이름에 특수문자가 있습니다. 다른 이름을 입력해주십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="297"/>
-        <location filename="../torrentadditiondlg.h" line="330"/>
+        <location filename="../torrentadditiondlg.h" line="315"/>
+        <location filename="../torrentadditiondlg.h" line="348"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>같은 이름의 파일이 있습니다. 다른 이름을 사용해 주세요.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="329"/>
+        <location filename="../torrentadditiondlg.h" line="347"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 바꿀수 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="371"/>
+        <location filename="../torrentadditiondlg.h" line="389"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(자료를 다운 후에는 %1 의 디스크 공간이 남습니다.)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="374"/>
+        <location filename="../torrentadditiondlg.h" line="392"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(자료를 다운받기 위해서는 %1 의 디스크 공간이 필요합니다)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="413"/>
+        <location filename="../torrentadditiondlg.h" line="431"/>
         <source>Empty save path</source>
         <translation>저장 경로 지우기</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="413"/>
+        <location filename="../torrentadditiondlg.h" line="431"/>
         <source>Please enter a save path</source>
         <translation>저장 경로를 지정해주십시오</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="420"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Save path creation error</source>
         <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="420"/>
+        <location filename="../torrentadditiondlg.h" line="438"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="426"/>
+        <location filename="../torrentadditiondlg.h" line="444"/>
         <source>Invalid label name</source>
         <translation>적절치 않은 라벨 이름입니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="426"/>
+        <location filename="../torrentadditiondlg.h" line="444"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 이름에 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="461"/>
+        <location filename="../torrentadditiondlg.h" line="479"/>
         <source>Seeding mode error</source>
         <translation>공유 모트 오류</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="461"/>
+        <location filename="../torrentadditiondlg.h" line="479"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>파일 검사를 옵션을 선택하셨지만 지정된 폴더에는 로컬 파일이 존재하지 않습니다. 파일 검사 옵션을 비활성화 하시거나 폴더를 재지정하십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="468"/>
+        <location filename="../torrentadditiondlg.h" line="486"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="468"/>
+        <location filename="../torrentadditiondlg.h" line="486"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>
@@ -7984,8 +8014,9 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">진행상황</translation>
     </message>
     <message>
+        <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Priority</source>
-        <translation type="obsolete">우선순위</translation>
+        <translation type="unfinished">우선순위</translation>
     </message>
 </context>
 </TS>
