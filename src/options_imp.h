@@ -160,6 +160,7 @@ protected slots:
   void on_buttonBox_rejected();
   void applySettings(QAbstractButton* button);
   void on_browseScanDirButton_clicked();
+  void on_browseExportDirButton_clicked();
   void on_browseFilterButton_clicked();
   void on_browseSaveDirButton_clicked();
   void on_browseTempDirButton_clicked();

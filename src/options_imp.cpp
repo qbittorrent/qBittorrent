@@ -1386,6 +1386,20 @@ void options_imp::on_browseScanDirButton_clicked() {
   }
 }
 
+void options_imp::on_browseExportDirButton_clicked() {
+  QString export_path = misc::expandPath(textExportDir->text());
+  QDir exportDir(export_path);
+  QString dir;
+  if(!export_path.isEmpty() && exportDir.exists()) {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), exportDir.absolutePath());
+  } else {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
+  }
+  if(!dir.isNull()){
+    textExportDir->setText(dir);
+  }
+}
+
 void options_imp::on_browseFilterButton_clicked() {
   QString filter_path = misc::expandPath(textFilterPath->text());
   QDir filterDir(filter_path);
