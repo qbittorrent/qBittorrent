@@ -1371,14 +1371,14 @@ bool Bittorrent::enableDHT(bool b) {
 
 float Bittorrent::getRealRatio(QString hash) const{
   QTorrentHandle h = getTorrentHandle(hash);
-  Q_ASSERT(h.all_time_download() >= 0);
+  Q_ASSERT(h.total_done() >= 0);
   Q_ASSERT(h.all_time_upload() >= 0);
-  if(h.all_time_download() == 0) {
+  if(h.total_done() == 0) {
     if(h.all_time_upload() == 0)
       return 0;
     return 101;
   }
-  float ratio = (float)h.all_time_upload()/(float)h.all_time_download();
+  float ratio = (float)h.all_time_upload()/(float)h.total_done();
   Q_ASSERT(ratio >= 0.);
   if(ratio > 100.)
     ratio = 100.;

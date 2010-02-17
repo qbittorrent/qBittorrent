@@ -336,6 +336,11 @@ bool QTorrentHandle::is_checking() const {
   return h.status().state == torrent_status::checking_files || h.status().state == torrent_status::checking_resume_data;
 }
 
+size_type QTorrentHandle::total_done() {
+  Q_ASSERT(h.is_valid());
+  return h.status().total_done;
+}
+
 size_type QTorrentHandle::all_time_download() {
   Q_ASSERT(h.is_valid());
   return h.status().all_time_download;

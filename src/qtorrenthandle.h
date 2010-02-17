@@ -107,6 +107,7 @@ class QTorrentHandle {
     size_type total_payload_upload();
     size_type all_time_upload();
     size_type all_time_download();
+    size_type total_done();
     QStringList files_path() const;
     int num_uploads() const;
     bool is_seed() const;
