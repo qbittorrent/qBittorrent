@@ -1964,6 +1964,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(h.is_valid()) {
           h.auto_managed(false);
           std::cerr << "File Error: " << p->message().c_str() << std::endl;
+          addConsoleMessage(tr("An I/O error occured, '%1' paused.").arg(h.name()));
+          addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
           if(h.is_valid()) {
             emit fullDiskError(h, misc::toQString(p->message()));
             h.pause();

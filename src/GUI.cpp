@@ -307,12 +307,8 @@ void GUI::finishedTorrent(QTorrentHandle& h) const {
 
 // Notification when disk is full
 void GUI::fullDiskError(QTorrentHandle& h, QString msg) const {
-  if(!h.is_valid()) return;
-  showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occured for torrent %1.\n Reason: %2", "e.g: An error occured for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
-  // Download will be paused by libtorrent. Updating GUI information accordingly
-  QString hash = h.hash();
-  qDebug("Full disk error, pausing torrent %s", hash.toLocal8Bit().data());
-  BTSession->addConsoleMessage(tr("An error occured (full disk?), '%1' paused.", "e.g: An error occured (full disk?), 'xxx.avi' paused.").arg(h.name()));
+  if(!h.is_valid()) return;  showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occured for torrent %1.\n Reason: %2", "e.g: An error occured for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
+
 }
 
 void GUI::createKeyboardShortcuts() {
