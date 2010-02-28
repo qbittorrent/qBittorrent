@@ -220,190 +220,190 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="209"/>
+        <location filename="../bittorrent.cpp" line="213"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 elérte a megengedett arányt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="298"/>
+        <location filename="../bittorrent.cpp" line="303"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>qBittorrent ezen a porton figyel: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="361"/>
+        <location filename="../bittorrent.cpp" line="366"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP támogatás [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="364"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="369"/>
+        <location filename="../bittorrent.cpp" line="374"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP támogatás [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="372"/>
+        <location filename="../bittorrent.cpp" line="377"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="399"/>
+        <location filename="../bittorrent.cpp" line="404"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP user agent %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="416"/>
+        <location filename="../bittorrent.cpp" line="421"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>Lemez gyorsítótr: %1 MiB</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="455"/>
+        <location filename="../bittorrent.cpp" line="460"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT támogatás [ON], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="457"/>
-        <location filename="../bittorrent.cpp" line="461"/>
+        <location filename="../bittorrent.cpp" line="462"/>
+        <location filename="../bittorrent.cpp" line="466"/>
         <source>DHT support [OFF]</source>
         <translation>DHT funkció [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="465"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>PeX support [ON]</source>
         <translation>PeX [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="467"/>
+        <location filename="../bittorrent.cpp" line="472"/>
         <source>PeX support [OFF]</source>
         <translation>PeX támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="470"/>
+        <location filename="../bittorrent.cpp" line="475"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>A PeX támogatás bekapcsolása újraindítást igényel</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="475"/>
+        <location filename="../bittorrent.cpp" line="480"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="478"/>
+        <location filename="../bittorrent.cpp" line="483"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="490"/>
+        <location filename="../bittorrent.cpp" line="495"/>
         <source>Encryption support [ON]</source>
         <translation>Titkosítás [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="495"/>
+        <location filename="../bittorrent.cpp" line="500"/>
         <source>Encryption support [FORCED]</source>
         <translation>Titkosítás [KÉNYSZERÍTVE]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="500"/>
+        <location filename="../bittorrent.cpp" line="505"/>
         <source>Encryption support [OFF]</source>
         <translation>Titkosítás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="609"/>
+        <location filename="../bittorrent.cpp" line="614"/>
         <source>The Web UI is listening on port %1</source>
         <translation>A Web UI ezen a porton figyel: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="616"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Webes felület hiba - port használata sikertelen: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="743"/>
+        <location filename="../bittorrent.cpp" line="748"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról és a merevlemezről.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="745"/>
+        <location filename="../bittorrent.cpp" line="750"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="795"/>
+        <location filename="../bittorrent.cpp" line="800"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; nem hiteles magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="815"/>
-        <location filename="../bittorrent.cpp" line="975"/>
-        <location filename="../bittorrent.cpp" line="978"/>
+        <location filename="../bittorrent.cpp" line="820"/>
+        <location filename="../bittorrent.cpp" line="980"/>
+        <location filename="../bittorrent.cpp" line="983"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; már letöltés alatt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="911"/>
-        <location filename="../bittorrent.cpp" line="1179"/>
+        <location filename="../bittorrent.cpp" line="916"/>
         <location filename="../bittorrent.cpp" line="1184"/>
+        <location filename="../bittorrent.cpp" line="1189"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="913"/>
-        <location filename="../bittorrent.cpp" line="1181"/>
+        <location filename="../bittorrent.cpp" line="918"/>
         <location filename="../bittorrent.cpp" line="1186"/>
+        <location filename="../bittorrent.cpp" line="1191"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; felvéve a letöltési listára.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="949"/>
-        <location filename="../bittorrent.cpp" line="953"/>
+        <location filename="../bittorrent.cpp" line="954"/>
+        <location filename="../bittorrent.cpp" line="958"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Megfejthetetlen torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="956"/>
+        <location filename="../bittorrent.cpp" line="961"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1004"/>
+        <location filename="../bittorrent.cpp" line="1009"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1017"/>
+        <location filename="../bittorrent.cpp" line="1022"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1475"/>
+        <location filename="../bittorrent.cpp" line="1480"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;letiltva IP szűrés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1477"/>
+        <location filename="../bittorrent.cpp" line="1482"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;kitiltva hibás adatküldés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1872"/>
+        <location filename="../bittorrent.cpp" line="1843"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Fájl ismételt letöltése %1 beágyazva a torrentbe %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1883"/>
+        <location filename="../bittorrent.cpp" line="1854"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Megfejthetetlen torrent: %1.</translation>
     </message>
@@ -412,32 +412,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">A megadott porok zártak.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2051"/>
+        <location filename="../bittorrent.cpp" line="2024"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikertelen, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2056"/>
+        <location filename="../bittorrent.cpp" line="2029"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikeres, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2071"/>
+        <location filename="../bittorrent.cpp" line="2044"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2072"/>
+        <location filename="../bittorrent.cpp" line="1939"/>
+        <location filename="../bittorrent.cpp" line="2045"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2077"/>
+        <location filename="../bittorrent.cpp" line="1938"/>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="2050"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2184"/>
+        <location filename="../bittorrent.cpp" line="2162"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
@@ -1398,33 +1404,33 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Maximális</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="297"/>
-        <location filename="../eventmanager.cpp" line="298"/>
+        <location filename="../eventmanager.cpp" line="299"/>
+        <location filename="../eventmanager.cpp" line="300"/>
         <source>this session</source>
         <translation>ezen folyamat</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="302"/>
-        <location filename="../eventmanager.cpp" line="306"/>
+        <location filename="../eventmanager.cpp" line="304"/>
+        <location filename="../eventmanager.cpp" line="308"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="309"/>
+        <location filename="../eventmanager.cpp" line="311"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Feltöltési idő: %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="312"/>
+        <location filename="../eventmanager.cpp" line="314"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="387"/>
-        <location filename="../eventmanager.cpp" line="396"/>
+        <location filename="../eventmanager.cpp" line="389"/>
+        <location filename="../eventmanager.cpp" line="398"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -1788,7 +1794,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="616"/>
+        <location filename="../GUI.cpp" line="612"/>
         <source>Open Torrent Files</source>
         <translation>Torrent fájl megnyitása</translation>
     </message>
@@ -1797,12 +1803,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="514"/>
+        <location filename="../GUI.cpp" line="510"/>
         <source>&amp;Yes</source>
         <translation>&amp;Igen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="514"/>
+        <location filename="../GUI.cpp" line="510"/>
         <source>&amp;No</source>
         <translation>&amp;Nem</translation>
     </message>
@@ -1819,7 +1825,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Letöltés...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="617"/>
+        <location filename="../GUI.cpp" line="613"/>
         <source>Torrent Files</source>
         <translation>Torrentek</translation>
     </message>
@@ -1916,27 +1922,27 @@ Kérlek előbb azt zárd be.</translation>
         <translation type="obsolete">qBittorrent %1 elindítva.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="512"/>
-        <location filename="../GUI.cpp" line="796"/>
+        <location filename="../GUI.cpp" line="508"/>
+        <location filename="../GUI.cpp" line="792"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="717"/>
+        <location filename="../GUI.cpp" line="713"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="791"/>
-        <location filename="../GUI.cpp" line="799"/>
+        <location filename="../GUI.cpp" line="787"/>
+        <location filename="../GUI.cpp" line="795"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Letöltés: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="793"/>
-        <location filename="../GUI.cpp" line="802"/>
+        <location filename="../GUI.cpp" line="789"/>
+        <location filename="../GUI.cpp" line="798"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Feltöltés: %1 KiB/s</translation>
@@ -1952,7 +1958,7 @@ Kérlek előbb azt zárd be.</translation>
         <translation type="obsolete">Elakadt</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="512"/>
+        <location filename="../GUI.cpp" line="508"/>
         <source>Are you sure you want to quit?</source>
         <translation>Egészen biztos, hogy kilépsz?</translation>
     </message>
@@ -2016,7 +2022,7 @@ Kérlek előbb azt zárd be.</translation>
         <translation>%1 letöltve.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="311"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Hiba</translation>
@@ -2049,10 +2055,9 @@ Kérlek előbb azt zárd be.</translation>
         <translation type="obsolete">Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="315"/>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Hiba történt (megtelt a merevlemez?), &apos;%1&apos; megállítva.</translation>
+        <translation type="obsolete">Hiba történt (megtelt a merevlemez?), &apos;%1&apos; megállítva.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="153"/>
@@ -2075,7 +2080,7 @@ Kérlek előbb azt zárd be.</translation>
         <translation>Elkészült letöltés</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="311"/>
+        <location filename="../GUI.cpp" line="310"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2083,24 +2088,24 @@ Kérlek előbb azt zárd be.</translation>
         <translation>I/O hiba történt ennél a torrentnél %1. Oka: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="324"/>
+        <location filename="../GUI.cpp" line="320"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="808"/>
+        <location filename="../GUI.cpp" line="804"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Letöltés: %2/s, Feltöltés: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="887"/>
+        <location filename="../GUI.cpp" line="883"/>
         <source>Use normal speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="890"/>
+        <location filename="../GUI.cpp" line="886"/>
         <source>Use alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2177,7 +2182,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">Arány</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="322"/>
+        <location filename="../GUI.cpp" line="318"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -2198,12 +2203,12 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="407"/>
+        <location filename="../GUI.cpp" line="403"/>
         <source>Url download error</source>
         <translation>Url letöltés hiba</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="407"/>
+        <location filename="../GUI.cpp" line="403"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Nem sikerült letölteni url címről: %1, mert: %2.</translation>
     </message>
@@ -2234,29 +2239,29 @@ Mégis leállítod a qBittorrentet?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="326"/>
+        <location filename="../GUI.cpp" line="322"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="328"/>
+        <location filename="../GUI.cpp" line="324"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="413"/>
+        <location filename="../GUI.cpp" line="409"/>
         <source>Global Upload Speed Limit</source>
         <translation>Teljes feltöltési sebesség limit</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
+        <location filename="../GUI.cpp" line="427"/>
         <source>Global Download Speed Limit</source>
         <translation>Teljes letöltési sebesség limit</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="513"/>
+        <location filename="../GUI.cpp" line="509"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Néhány letöltés még folyamatban van.
@@ -2326,7 +2331,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <translation type="obsolete">Feltöltések</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="689"/>
+        <location filename="../GUI.cpp" line="685"/>
         <source>Options were saved successfully.</source>
         <translation>Beállítások sikeresen elmentve.</translation>
     </message>
@@ -2936,7 +2941,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/options.ui" line="209"/>
-        <location filename="../ui/options.ui" line="2836"/>
+        <location filename="../ui/options.ui" line="2899"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -3122,8 +3127,7 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/options.ui" line="661"/>
-        <location filename="../ui/options.ui" line="719"/>
-        <location filename="../ui/options.ui" line="765"/>
+        <location filename="../ui/options.ui" line="828"/>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
@@ -3132,22 +3136,21 @@ QGroupBox {
 }</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="701"/>
         <source>Automatically load .torrent files from:</source>
-        <translation>.torrent automatikus letöltése ebből a könyvtárból:</translation>
+        <translation type="obsolete">.torrent automatikus letöltése ebből a könyvtárból:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="753"/>
+        <location filename="../ui/options.ui" line="816"/>
         <source>Copy .torrent files to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="799"/>
+        <location filename="../ui/options.ui" line="862"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>.!qB kiterjesztés használata a félkász fájlokhoz</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="806"/>
+        <location filename="../ui/options.ui" line="869"/>
         <source>Pre-allocate all files</source>
         <translation>Fájlok helyének lefoglalása</translation>
     </message>
@@ -3160,88 +3163,88 @@ QGroupBox {
         <translation type="obsolete">MiB</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="818"/>
+        <location filename="../ui/options.ui" line="881"/>
         <source>Torrent queueing</source>
         <translation>Torrent korlátozások</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="824"/>
+        <location filename="../ui/options.ui" line="887"/>
         <source>Enable queueing system</source>
         <translation>Korlátozások engedélyezése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="836"/>
+        <location filename="../ui/options.ui" line="899"/>
         <source>Maximum active downloads:</source>
         <translation>Aktív letöltések maximási száma:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="879"/>
+        <location filename="../ui/options.ui" line="942"/>
         <source>Maximum active uploads:</source>
         <translation>Maximális aktív feltöltés:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="922"/>
+        <location filename="../ui/options.ui" line="985"/>
         <source>Maximum active torrents:</source>
         <translation>Torrentek maximális száma:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="971"/>
+        <location filename="../ui/options.ui" line="1034"/>
         <source>When adding a torrent</source>
         <translation>Torrent hozzáadása</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="979"/>
+        <location filename="../ui/options.ui" line="1042"/>
         <source>Display torrent content and some options</source>
         <translation>Torrent részleteinek és az opciók megjelenítése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1006"/>
+        <location filename="../ui/options.ui" line="1069"/>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Letöltés nélkül add a listához</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1073"/>
+        <location filename="../ui/options.ui" line="1136"/>
         <source>Listening port</source>
         <translation>Port beállítása</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1081"/>
+        <location filename="../ui/options.ui" line="1144"/>
         <source>Port used for incoming connections:</source>
         <translation>Port a bejövő kapcsoaltokhoz:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1101"/>
+        <location filename="../ui/options.ui" line="1164"/>
         <source>Random</source>
         <translation>Random</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1123"/>
+        <location filename="../ui/options.ui" line="1186"/>
         <source>Enable UPnP port mapping</source>
         <translation>UPnP port átirányítás engedélyezése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1133"/>
+        <location filename="../ui/options.ui" line="1196"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>NAT-PMP port átirányítás engedélyezése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1148"/>
+        <location filename="../ui/options.ui" line="1211"/>
         <source>Connections limit</source>
         <translation>Kapcsolatok korlátozása</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1156"/>
+        <location filename="../ui/options.ui" line="1219"/>
         <source>Global maximum number of connections:</source>
         <translation>Kapcsolatok maximális száma:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1199"/>
+        <location filename="../ui/options.ui" line="1262"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Kapcsolatok maximális száma torrentenként:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1239"/>
+        <location filename="../ui/options.ui" line="1302"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Feltöltési szálak száma torrentenként:</translation>
     </message>
@@ -3250,22 +3253,22 @@ QGroupBox {
         <translation type="obsolete">Sávszélesség korlátozása</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1332"/>
-        <location filename="../ui/options.ui" line="1461"/>
+        <location filename="../ui/options.ui" line="1395"/>
+        <location filename="../ui/options.ui" line="1524"/>
         <source>Upload:</source>
         <translation>Feltöltés:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1348"/>
-        <location filename="../ui/options.ui" line="1468"/>
+        <location filename="../ui/options.ui" line="1411"/>
+        <location filename="../ui/options.ui" line="1531"/>
         <source>Download:</source>
         <translation>Letöltés:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1386"/>
-        <location filename="../ui/options.ui" line="1422"/>
-        <location filename="../ui/options.ui" line="1509"/>
-        <location filename="../ui/options.ui" line="1516"/>
+        <location filename="../ui/options.ui" line="1449"/>
+        <location filename="../ui/options.ui" line="1485"/>
+        <location filename="../ui/options.ui" line="1572"/>
+        <location filename="../ui/options.ui" line="1579"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -3282,277 +3285,292 @@ QGroupBox {
         <translation type="obsolete">Host név megjelenítése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1316"/>
+        <location filename="../ui/options.ui" line="1379"/>
         <source>Global speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1451"/>
+        <location filename="../ui/options.ui" line="1514"/>
         <source>Alternative global speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1567"/>
+        <location filename="../ui/options.ui" line="1630"/>
         <source>Scheduled times:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1594"/>
+        <location filename="../ui/options.ui" line="1657"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation type="unfinished"> - </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1638"/>
+        <location filename="../ui/options.ui" line="1701"/>
         <source>On days:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1649"/>
+        <location filename="../ui/options.ui" line="1712"/>
         <source>Every day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1654"/>
+        <location filename="../ui/options.ui" line="1717"/>
         <source>Week days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1659"/>
+        <location filename="../ui/options.ui" line="1722"/>
         <source>Week ends</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1721"/>
+        <location filename="../ui/options.ui" line="1784"/>
         <source>Bittorrent features</source>
         <translation>Bittorrent funkciók</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1727"/>
+        <location filename="../ui/options.ui" line="1790"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>DHT hálózati működés engedélyezése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1737"/>
+        <location filename="../ui/options.ui" line="1800"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Használj külön porot DHT-hoz és torrenthez</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1768"/>
+        <location filename="../ui/options.ui" line="1831"/>
         <source>DHT port:</source>
         <translation>DHT port:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1806"/>
+        <location filename="../ui/options.ui" line="1869"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation>Ügyfél csere (PeX) engedélyezése (újraindítást igényel)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1816"/>
+        <location filename="../ui/options.ui" line="1879"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Local Peer Discovery engedélyezése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1828"/>
+        <location filename="../ui/options.ui" line="1891"/>
         <source>Encryption:</source>
         <translation>Titkosítás:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1836"/>
+        <location filename="../ui/options.ui" line="1899"/>
         <source>Enabled</source>
         <translation>Engedélyez</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1841"/>
+        <location filename="../ui/options.ui" line="1904"/>
         <source>Forced</source>
         <translation>Kényszerít</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1846"/>
+        <location filename="../ui/options.ui" line="1909"/>
         <source>Disabled</source>
         <translation>Tilt</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1903"/>
+        <location filename="../ui/options.ui" line="1966"/>
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1960"/>
+        <location filename="../ui/options.ui" line="2023"/>
         <source>Reset to latest software version</source>
         <translation>A legfrissebb verziószám visszaállítása</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1985"/>
+        <location filename="../ui/options.ui" line="2048"/>
         <source>Share ratio settings</source>
         <translation>Megosztási arányok</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1993"/>
+        <location filename="../ui/options.ui" line="2056"/>
         <source>Desired ratio:</source>
         <translation>Elérendő arány:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2047"/>
+        <location filename="../ui/options.ui" line="2110"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation>Torrent eltávolítása, ha elérte ezt az arányt:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2138"/>
+        <location filename="../ui/options.ui" line="2201"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>HTTP Kapcsolatok (trackerek, web seed, kereső motor)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2175"/>
-        <location filename="../ui/options.ui" line="2378"/>
+        <location filename="../ui/options.ui" line="2238"/>
+        <location filename="../ui/options.ui" line="2441"/>
         <source>Host:</source>
         <translation>Host:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2336"/>
+        <location filename="../ui/options.ui" line="2399"/>
         <source>Peer Communications</source>
         <translation>Ügyfél kapcsolatok</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2357"/>
+        <location filename="../ui/options.ui" line="2420"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2146"/>
-        <location filename="../ui/options.ui" line="2344"/>
+        <location filename="../ui/options.ui" line="2209"/>
+        <location filename="../ui/options.ui" line="2407"/>
         <source>Type:</source>
         <translation>Típus:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1872"/>
+        <location filename="../ui/options.ui" line="701"/>
+        <source>Check Folders for .torrent Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="763"/>
+        <source>Add folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="773"/>
+        <source>Remove folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1935"/>
         <source>Client whitelisting workaround</source>
         <translation>Kliens álcázása</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1880"/>
+        <location filename="../ui/options.ui" line="1943"/>
         <source>Identify as:</source>
         <translation>Kliens azonosítás mint:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1888"/>
+        <location filename="../ui/options.ui" line="1951"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1893"/>
+        <location filename="../ui/options.ui" line="1956"/>
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1898"/>
+        <location filename="../ui/options.ui" line="1961"/>
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1914"/>
+        <location filename="../ui/options.ui" line="1977"/>
         <source>Version:</source>
         <translation>Verzió:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1931"/>
+        <location filename="../ui/options.ui" line="1994"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translation>Build:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2154"/>
-        <location filename="../ui/options.ui" line="2352"/>
+        <location filename="../ui/options.ui" line="2217"/>
+        <location filename="../ui/options.ui" line="2415"/>
         <source>(None)</source>
         <translation>(Nincs)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2159"/>
-        <location filename="../ui/options.ui" line="2367"/>
+        <location filename="../ui/options.ui" line="2222"/>
+        <location filename="../ui/options.ui" line="2430"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2201"/>
-        <location filename="../ui/options.ui" line="2404"/>
-        <location filename="../ui/options.ui" line="2691"/>
+        <location filename="../ui/options.ui" line="2264"/>
+        <location filename="../ui/options.ui" line="2467"/>
+        <location filename="../ui/options.ui" line="2754"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2244"/>
-        <location filename="../ui/options.ui" line="2447"/>
-        <location filename="../ui/options.ui" line="2730"/>
+        <location filename="../ui/options.ui" line="2307"/>
+        <location filename="../ui/options.ui" line="2510"/>
+        <location filename="../ui/options.ui" line="2793"/>
         <source>Authentication</source>
         <translation>Felhasználó</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2258"/>
-        <location filename="../ui/options.ui" line="2461"/>
-        <location filename="../ui/options.ui" line="2738"/>
+        <location filename="../ui/options.ui" line="2321"/>
+        <location filename="../ui/options.ui" line="2524"/>
+        <location filename="../ui/options.ui" line="2801"/>
         <source>Username:</source>
         <translation>Felhasználónév:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2268"/>
-        <location filename="../ui/options.ui" line="2471"/>
-        <location filename="../ui/options.ui" line="2745"/>
+        <location filename="../ui/options.ui" line="2331"/>
+        <location filename="../ui/options.ui" line="2534"/>
+        <location filename="../ui/options.ui" line="2808"/>
         <source>Password:</source>
         <translation>Jelszó:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2164"/>
-        <location filename="../ui/options.ui" line="2362"/>
+        <location filename="../ui/options.ui" line="2227"/>
+        <location filename="../ui/options.ui" line="2425"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2575"/>
+        <location filename="../ui/options.ui" line="2638"/>
         <source>Filter Settings</source>
         <translation>Szűrő beállításai</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2581"/>
+        <location filename="../ui/options.ui" line="2644"/>
         <source>Activate IP Filtering</source>
         <translation>IP-szűrő használata</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2597"/>
+        <location filename="../ui/options.ui" line="2660"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Ip szűrő fájl helye (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2672"/>
+        <location filename="../ui/options.ui" line="2735"/>
         <source>Enable Web User Interface</source>
         <translation>Webes felület engedélyezése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2685"/>
+        <location filename="../ui/options.ui" line="2748"/>
         <source>HTTP Server</source>
         <translation>HTTP Szerver</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2842"/>
+        <location filename="../ui/options.ui" line="2905"/>
         <source>Enable RSS support</source>
         <translation>RSS engedélyezése</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2852"/>
+        <location filename="../ui/options.ui" line="2915"/>
         <source>RSS settings</source>
         <translation>RSS beállítások</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2889"/>
+        <location filename="../ui/options.ui" line="2952"/>
         <source>RSS feeds refresh interval:</source>
         <translation>RSS csatornák firssítésének időköze:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2909"/>
+        <location filename="../ui/options.ui" line="2972"/>
         <source>minutes</source>
         <translation>perc</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2933"/>
+        <location filename="../ui/options.ui" line="2996"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Hírek maximális száma csatornánként:</translation>
     </message>
@@ -4222,6 +4240,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Never</source>
         <translation type="obsolete">Soha</translation>
+    </message>
+</context>
+<context>
+    <name>ScanFoldersModel</name>
+    <message>
+        <location filename="../scannedfoldersmodel.cpp" line="92"/>
+        <source>Watched Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scannedfoldersmodel.cpp" line="93"/>
+        <source>Download here</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6378,20 +6409,18 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">Beállítások sikeresen elmentve.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1380"/>
-        <location filename="../options_imp.cpp" line="1382"/>
         <source>Choose scan directory</source>
-        <translation>Megfigyelt könyvtár beállítása</translation>
+        <translation type="obsolete">Megfigyelt könyvtár beállítása</translation>
     </message>
     <message>
         <source>Choose an ipfilter.dat file</source>
         <translation type="obsolete">Ipfilter.dat fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1423"/>
         <location filename="../options_imp.cpp" line="1425"/>
-        <location filename="../options_imp.cpp" line="1437"/>
+        <location filename="../options_imp.cpp" line="1427"/>
         <location filename="../options_imp.cpp" line="1439"/>
+        <location filename="../options_imp.cpp" line="1441"/>
         <source>Choose a save directory</source>
         <translation>Letöltési könyvtár megadása</translation>
     </message>
@@ -6405,20 +6434,50 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation type="obsolete">%1 olvasása sikertelen.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1394"/>
+        <location filename="../options_imp.cpp" line="1353"/>
+        <source>Add directory to scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="1359"/>
+        <source>Folder is already being watched.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="1362"/>
+        <source>Folder does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="1365"/>
+        <source>Folder is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="1373"/>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../options_imp.cpp" line="1373"/>
+        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1408"/>
         <location filename="../options_imp.cpp" line="1410"/>
+        <location filename="../options_imp.cpp" line="1412"/>
         <source>Choose an ip filter file</source>
         <translation>Válassz egy ip szűrő fájlt</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1408"/>
         <location filename="../options_imp.cpp" line="1410"/>
+        <location filename="../options_imp.cpp" line="1412"/>
         <source>Filters</source>
         <translation>Szűrők</translation>
     </message>

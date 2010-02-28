@@ -408,6 +408,10 @@ p, li { white-space: pre-wrap; }
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -2344,7 +2348,7 @@ Stop het eerste proccess eerst.
     <message>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Er is een fout opgetreden (schijf vol?), &apos;%1&apos; gepauzeerd.</translation>
+        <translation type="obsolete">Er is een fout opgetreden (schijf vol?), &apos;%1&apos; gepauzeerd.</translation>
     </message>
     <message>
         <source>Search</source>
@@ -3281,10 +3285,6 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically load .torrent files from:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Append .!qB extension to incomplete files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3511,7 +3511,7 @@ QGroupBox {
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SOCKS4</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
@@ -3593,6 +3593,18 @@ QGroupBox {
     </message>
     <message>
         <source>Copy .torrent files to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Folders for .torrent Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4156,6 +4168,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Never</source>
         <translation type="obsolete">Nooit</translation>
+    </message>
+</context>
+<context>
+    <name>ScanFoldersModel</name>
+    <message>
+        <source>Watched Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download here</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6194,7 +6217,7 @@ De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <source>Choose scan directory</source>
-        <translation>Kies scanmap</translation>
+        <translation type="obsolete">Kies scanmap</translation>
     </message>
     <message>
         <source>Choose an ipfilter.dat file</source>
@@ -6223,6 +6246,30 @@ De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add directory to scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is already being watched.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

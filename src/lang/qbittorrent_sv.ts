@@ -354,6 +354,10 @@ p, li { white-space: pre-wrap; }
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -1381,7 +1385,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Ett fel inträffade (full disk?), &quot;%1&quot; har pausats.</translation>
+        <translation type="obsolete">Ett fel inträffade (full disk?), &quot;%1&quot; har pausats.</translation>
     </message>
     <message>
         <source>Search</source>
@@ -2231,7 +2235,7 @@ QGroupBox {
     </message>
     <message>
         <source>Automatically load .torrent files from:</source>
-        <translation>Läs automatiskt in .torrent-filer från:</translation>
+        <translation type="obsolete">Läs automatiskt in .torrent-filer från:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -2566,6 +2570,18 @@ QGroupBox {
     </message>
     <message>
         <source>Copy .torrent files to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Folders for .torrent Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3110,6 +3126,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Hämtar automatiskt torrentfilen %1 från RSS-kanalen %2...</translation>
+    </message>
+</context>
+<context>
+    <name>ScanFoldersModel</name>
+    <message>
+        <source>Watched Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download here</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4748,7 +4775,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <name>options_imp</name>
     <message>
         <source>Choose scan directory</source>
-        <translation>Välj en avsökningskatalog</translation>
+        <translation type="obsolete">Välj en avsökningskatalog</translation>
     </message>
     <message>
         <source>Choose a save directory</source>
@@ -4764,6 +4791,30 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add directory to scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is already being watched.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

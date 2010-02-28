@@ -418,6 +418,10 @@ p, li { white-space: pre-wrap; }
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -2380,7 +2384,7 @@ Lütfen önce diğerini kapatın.</translation>
     <message>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Bir hata oluştu (disk dolu mu?), &apos;%1&apos; duraklatıldı.</translation>
+        <translation type="obsolete">Bir hata oluştu (disk dolu mu?), &apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
         <source>Search</source>
@@ -3320,10 +3324,6 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically load .torrent files from:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Append .!qB extension to incomplete files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3550,7 +3550,7 @@ QGroupBox {
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SOCKS4</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
@@ -3632,6 +3632,18 @@ QGroupBox {
     </message>
     <message>
         <source>Copy .torrent files to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Folders for .torrent Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4199,6 +4211,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>%2 beslemesinden %1 torent kendiliğinden indiriliyor...</translation>
+    </message>
+</context>
+<context>
+    <name>ScanFoldersModel</name>
+    <message>
+        <source>Watched Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download here</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6189,7 +6212,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Choose scan directory</source>
-        <translation>Tarama dizinini seçin</translation>
+        <translation type="obsolete">Tarama dizinini seçin</translation>
     </message>
     <message>
         <source>Choose an ipfilter.dat file</source>
@@ -6218,6 +6241,30 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add directory to scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is already being watched.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

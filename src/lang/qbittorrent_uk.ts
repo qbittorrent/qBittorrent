@@ -396,6 +396,10 @@ p, li { white-space: pre-wrap; }
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -2118,7 +2122,7 @@ Please close the other one first.</source>
     <message>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
+        <translation type="obsolete">Сталася помилка (заповнено диск?), &apos;%1&apos; призупинено.</translation>
     </message>
     <message>
         <source>Search</source>
@@ -3097,7 +3101,7 @@ QGroupBox {
     </message>
     <message>
         <source>Automatically load .torrent files from:</source>
-        <translation>Автоматично завантажувати .torrent файли з:</translation>
+        <translation type="obsolete">Автоматично завантажувати .torrent файли з:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -3432,6 +3436,18 @@ QGroupBox {
     </message>
     <message>
         <source>Week ends</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Folders for .torrent Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3983,6 +3999,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Автоматично завантажую торрент %1 з RSS-подачі %2...</translation>
+    </message>
+</context>
+<context>
+    <name>ScanFoldersModel</name>
+    <message>
+        <source>Watched Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download here</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5898,7 +5925,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Choose scan directory</source>
-        <translation>Виберіть директорію для сканування</translation>
+        <translation type="obsolete">Виберіть директорію для сканування</translation>
     </message>
     <message>
         <source>Choose an ipfilter.dat file</source>
@@ -5927,6 +5954,30 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Choose export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add directory to scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is already being watched.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
