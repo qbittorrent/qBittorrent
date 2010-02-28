@@ -132,7 +132,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 
   // Load week days (scheduler)
   for(uint i=1; i<=7; ++i) {
+#ifdef QT_4_5
     schedule_days->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
+#else
+    schedule_days->addItem(QDate::longDayName(i));
+#endif
   }
 
   // Load options
