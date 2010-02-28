@@ -76,7 +76,7 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const {
   if (!index.isValid() || index.row() >= rowCount())
     return QVariant();
 
-  const QSharedPointer<PathData> &pathData = m_pathList.at(index.row());
+  const PathData* pathData = m_pathList.at(index.row());
   if (index.column() == PathColumn && role == Qt::DisplayRole)
     return pathData->path;
   if (index.column() == DownloadAtTorrentColumn && role == Qt::CheckStateRole)
@@ -122,7 +122,7 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path) {
     connect(m_fsWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SIGNAL(torrentsAdded(QStringList&)));
   }
   beginInsertRows(QModelIndex(), rowCount(), rowCount());
-  m_pathList << QSharedPointer<PathData>(new PathData(canonicalPath));
+  m_pathList << new PathData(canonicalPath);
   endInsertRows();
   m_fsWatcher->addPath(canonicalPath);
   return Ok;
@@ -169,7 +169,7 @@ bool ScanFoldersModel::downloadInTorrentFolder(const QString &filePath) const {
 
 int ScanFoldersModel::findPathData(const QString &path) const {
   for (int i = 0; i < m_pathList.count(); ++i) {
-    const QSharedPointer<PathData> &pathData = m_pathList.at(i);
+    const PathData* pathData = m_pathList.at(i);
     if (pathData->path == path)
       return i;
   }
@@ -180,7 +180,7 @@ int ScanFoldersModel::findPathData(const QString &path) const {
 void ScanFoldersModel::makePersistent(QSettings &settings) {
   QStringList paths;
   QList<QVariant> downloadInFolderInfo;
-  foreach (const QSharedPointer<PathData> &pathData, m_pathList) {
+  foreach (const PathData* pathData, m_pathList) {
     paths << pathData->path;
     downloadInFolderInfo << pathData->downloadAtPath;
   }

@@ -33,7 +33,6 @@
 
 #include <QAbstractTableModel>
 #include <QList>
-#include <QSharedPointer>
 #include <QStringList>
 
 class FileSystemWatcher;
@@ -75,7 +74,7 @@ private:
   class PathData;
   int findPathData(const QString &path) const;
 
-  QList<QSharedPointer<PathData> > m_pathList;
+  QList<PathData*> m_pathList;
   FileSystemWatcher *m_fsWatcher;
 };
 
