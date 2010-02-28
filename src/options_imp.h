@@ -52,6 +52,7 @@ private:
   QStringList locales;
   QAbstractButton *applyButton;
   AdvancedSettings *advancedSettings;
+  QList<QString> addedScanDirs;
 
 public:
   // Contructor / Destructor
@@ -82,8 +83,6 @@ protected:
   bool preAllocateAllFiles() const;
   bool useAdditionDialog() const;
   bool addTorrentsInPause() const;
-  bool isDirScanEnabled() const;
-  QString getScanDir() const;
   QString getExportDir() const;
   int getActionOnDblClOnTorrentDl() const;
   int getActionOnDblClOnTorrentFn() const;
@@ -136,7 +135,6 @@ protected slots:
   void enableUploadLimit(bool checked);
   void enableDownloadLimit(bool checked);
   void enableTempPathInput(bool checked);
-  void enableDirScan(bool checked);
   void enableTorrentExport(bool checked);
   void enablePeerProxy(int comboIndex);
   void enablePeerProxyAuth(bool checked);
@@ -159,7 +157,6 @@ protected slots:
   void closeEvent(QCloseEvent *e);
   void on_buttonBox_rejected();
   void applySettings(QAbstractButton* button);
-  void on_browseScanDirButton_clicked();
   void on_browseExportDirButton_clicked();
   void on_browseFilterButton_clicked();
   void on_browseSaveDirButton_clicked();
@@ -173,6 +170,9 @@ protected slots:
   void loadWindowState();
   void saveWindowState() const;
   void on_randomButton_clicked();
+  void on_addScanFolderButton_clicked();
+  void on_removeScanFolderButton_clicked();
+  void handleScanFolderViewSelectionChanged();
 
 public slots:
   void setLocale(QString locale);

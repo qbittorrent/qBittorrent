@@ -565,10 +565,10 @@ QGroupBox {
            <widget class="QWidget" name="scrollAreaWidgetContents_2">
             <property name="geometry">
              <rect>
-              <x>0</x>
-              <y>-76</y>
-              <width>644</width>
-              <height>548</height>
+              <x>-30</x>
+              <y>0</y>
+              <width>632</width>
+              <height>684</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -583,7 +583,7 @@ QGroupBox {
                <property name="title">
                 <string>File system</string>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_12">
+               <layout class="QVBoxLayout" name="verticalLayout_25">
                 <item>
                  <widget class="QGroupBox" name="groupBox_3">
                   <property name="styleSheet">
@@ -696,56 +696,119 @@ QGroupBox {
                  </layout>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkScanDir">
-                  <property name="text">
-                   <string>Automatically load .torrent files from:</string>
+                 <widget class="QGroupBox" name="groupBox_2">
+                  <property name="title">
+                   <string>Check Folders for .torrent Files:</string>
                   </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_38">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_16">
+                     <item>
+                      <widget class="QTableView" name="scanFoldersView">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                         <horstretch>0</horstretch>
+                         <verstretch>1</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>250</width>
+                         <height>150</height>
+                        </size>
+                       </property>
+                       <property name="selectionMode">
+                        <enum>QAbstractItemView::SingleSelection</enum>
+                       </property>
+                       <property name="selectionBehavior">
+                        <enum>QAbstractItemView::SelectRows</enum>
+                       </property>
+                       <property name="showGrid">
+                        <bool>false</bool>
+                       </property>
+                       <property name="sortingEnabled">
+                        <bool>true</bool>
+                       </property>
+                       <attribute name="horizontalHeaderDefaultSectionSize">
+                        <number>80</number>
+                       </attribute>
+                       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                        <bool>false</bool>
+                       </attribute>
+                       <attribute name="horizontalHeaderStretchLastSection">
+                        <bool>true</bool>
+                       </attribute>
+                       <attribute name="verticalHeaderVisible">
+                        <bool>false</bool>
+                       </attribute>
+                       <attribute name="verticalHeaderVisible">
+                        <bool>false</bool>
+                       </attribute>
+                       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                        <bool>false</bool>
+                       </attribute>
+                       <attribute name="horizontalHeaderStretchLastSection">
+                        <bool>true</bool>
+                       </attribute>
+                       <attribute name="horizontalHeaderDefaultSectionSize">
+                        <number>80</number>
+                       </attribute>
+                      </widget>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_37">
+                       <item>
+                        <widget class="QPushButton" name="addScanFolderButton">
+                         <property name="text">
+                          <string>Add folder ...</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="removeScanFolderButton">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="text">
+                          <string>Remove folder</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_6">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeType">
+                        <enum>QSizePolicy::Minimum</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>30</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
                  </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout">
-                  <property name="spacing">
-                   <number>6</number>
-                  </property>
-                  <property name="margin">
-                   <number>0</number>
-                  </property>
-                  <item>
-                   <widget class="QLineEdit" name="textScanDir">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="styleSheet">
-                     <string>QLineEdit {
-  margin-left: 23px;
-}</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QToolButton" name="browseScanDirButton">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>22</width>
-                      <height>22</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>25</width>
-                      <height>27</height>
-                     </size>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../icons.qrc">
-                      <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="checkExportDir">
@@ -1060,8 +1123,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>482</height>
+              <width>447</width>
+              <height>288</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -1305,8 +1368,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>364</width>
+              <height>332</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1710,8 +1773,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>459</width>
+              <height>415</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2127,8 +2190,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>475</width>
+              <height>312</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2561,8 +2624,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>287</width>
+              <height>124</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2658,8 +2721,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>213</width>
+              <height>221</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2825,8 +2888,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>445</width>
+              <height>192</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -3000,8 +3063,8 @@ QGroupBox {
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>620</width>
-              <height>490</height>
+              <width>96</width>
+              <height>26</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -3062,7 +3125,6 @@ QGroupBox {
   <tabstop>checkPreallocateAll</tabstop>
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkStartPaused</tabstop>
-  <tabstop>browseScanDirButton</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
   <tabstop>checkNATPMP</tabstop>

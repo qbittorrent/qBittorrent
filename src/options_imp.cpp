@@ -47,6 +47,7 @@
 #include "preferences.h"
 #include "misc.h"
 #include "advancedsettings.h"
+#include "scannedfoldersmodel.h"
 
 // Constructor
 options_imp::options_imp(QWidget *parent):QDialog(parent){
@@ -62,6 +63,12 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       break;
     }
   }
+
+  scanFoldersView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+  scanFoldersView->setModel(ScanFoldersModel::instance());
+  connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(enableApplyButton()));
+  connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
+
   connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
   comboStyle->addItems(QStyleFactory::keys());
   // Languages supported
@@ -139,7 +146,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkNoSystray, SIGNAL(toggled(bool)), this, SLOT(setSystrayOptionsState(bool)));
   // Downloads tab
   connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableTempPathInput(bool)));
-  connect(checkScanDir, SIGNAL(toggled(bool)), this, SLOT(enableDirScan(bool)));
   connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableTorrentExport(bool)));
   // Connection tab
   connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableUploadLimit(bool)));
@@ -187,8 +193,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkScanDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(textScanDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -280,6 +284,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 // Main destructor
 options_imp::~options_imp(){
   qDebug("-> destructing Options");
+  foreach (const QString &path, addedScanDirs)
+    ScanFoldersModel::instance()->removePath(path);
   delete scrollArea_advanced->layout();
   delete advancedSettings;
 }
@@ -366,7 +372,8 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("PreAllocation"), preAllocateAllFiles());
   settings.setValue(QString::fromUtf8("AdditionDialog"), useAdditionDialog());
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
-  settings.setValue(QString::fromUtf8("ScanDir"), getScanDir());
+  ScanFoldersModel::instance()->makePersistent(settings);
+  addedScanDirs.clear();
   Preferences::setExportDir(getExportDir());
   settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
   settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
@@ -589,17 +596,6 @@ void options_imp::loadOptions(){
   checkPreallocateAll->setChecked(Preferences::preAllocateAllFiles());
   checkAdditionDialog->setChecked(Preferences::useAdditionDialog());
   checkStartPaused->setChecked(Preferences::addTorrentsInPause());
-  strValue = Preferences::getScanDir();
-  if(strValue.isEmpty()) {
-    // Disable
-    checkScanDir->setChecked(false);
-    enableDirScan(checkScanDir->isChecked());
-  } else {
-    // enable
-    checkScanDir->setChecked(true);
-    textScanDir->setText(strValue);
-    enableDirScan(checkScanDir->isChecked());
-  }
 
   strValue = Preferences::getExportDir();
   if(strValue.isEmpty()) {
@@ -923,10 +919,6 @@ bool options_imp::confirmOnExit() const{
   return checkConfirmExit->isChecked();
 }
 
-bool options_imp::isDirScanEnabled() const {
-  return checkScanDir->isChecked();
-}
-
 bool options_imp::isQueueingSystemEnabled() const {
   return checkEnableQueueing->isChecked();
 }
@@ -1241,11 +1233,6 @@ void options_imp::enableHTTPProxyAuth(bool checked){
   textProxyPassword_http->setEnabled(checked);
 }
 
-void options_imp::enableDirScan(bool checked){
-  textScanDir->setEnabled(checked);
-  browseScanDirButton->setEnabled(checked);
-}
-
 void options_imp::enableTorrentExport(bool checked) {
   textExportDir->setEnabled(checked);
   browseExportDirButton->setEnabled(checked);
@@ -1340,15 +1327,6 @@ void options_imp::setLocale(QString locale){
   }
 }
 
-// Return scan dir set in options
-QString options_imp::getScanDir() const {
-  if(checkScanDir->isChecked()){
-    return misc::expandPath(textScanDir->text());
-  }else{
-    return QString::null;
-  }
-}
-
 QString options_imp::getExportDir() const {
   if(checkExportDir->isChecked()){
     return misc::expandPath(textExportDir->text());
@@ -1371,19 +1349,43 @@ int options_imp::getActionOnDblClOnTorrentFn() const {
   return actionTorrentFnOnDblClBox->currentIndex();
 }
 
-// Display dialog to choose scan dir
-void options_imp::on_browseScanDirButton_clicked() {
-  QString scan_path = misc::expandPath(textScanDir->text());
-  QDir scanDir(scan_path);
-  QString dir;
-  if(!scan_path.isEmpty() && scanDir.exists()) {
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), scanDir.absolutePath());
-  } else {
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose scan directory"), QDir::homePath());
+void options_imp::on_addScanFolderButton_clicked() {
+  const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"));
+  if (!dir.isEmpty()) {
+    const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir);
+    QString error;
+    switch (status) {
+    case ScanFoldersModel::AlreadyInList:
+      error = tr("Folder is already being watched.").arg(dir);
+      break;
+    case ScanFoldersModel::DoesNotExist:
+      error = tr("Folder does not exist.");
+      break;
+    case ScanFoldersModel::CannotRead:
+      error = tr("Folder is not readable.");
+      break;
+    default:
+      addedScanDirs << dir;
+      enableApplyButton();
+    }
+
+    if (!error.isEmpty()) {
+      QMessageBox::warning(this, tr("Failure"), tr("Failed to add Scan Folder '%1': %2").arg(dir).arg(error));
+    }
   }
-  if(!dir.isNull()){
-    textScanDir->setText(dir);
-  }
+}
+
+void options_imp::on_removeScanFolderButton_clicked() {
+  const QModelIndexList &selected
+      = scanFoldersView->selectionModel()->selectedIndexes();
+  if (selected.isEmpty())
+    return;
+  Q_ASSERT(selected.count() == ScanFoldersModel::instance()->columnCount());
+  ScanFoldersModel::instance()->removePath(selected.first().row());
+}
+
+void options_imp::handleScanFolderViewSelectionChanged() {
+  removeScanFolderButton->setEnabled(!scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
 }
 
 void options_imp::on_browseExportDirButton_clicked() {

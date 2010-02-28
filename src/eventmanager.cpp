@@ -129,8 +129,10 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     Preferences::setTempPathEnabled(m["temp_path_enabled"].toBool());
   if(m.contains("temp_path"))
     Preferences::setTempPath(m["temp_path"].toString());
-  if(m.contains("scan_dir"))
-    Preferences::setScanDir(m["scan_dir"].toString());
+  if(m.contains("scan_dirs"))
+    Preferences::setScanDirs(m["scan_dirs"].toStringList());
+  if(m.contains("download_in_scan_dirs"))
+    Preferences::setDownloadInScanDirs(m["download_in_scan_dirs"].toList());
   if(m.contains("export_dir"))
     Preferences::setExportDir(m["export_dir"].toString());
   if(m.contains("preallocate_all"))
@@ -229,8 +231,8 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["save_path"] = Preferences::getSavePath();
   data["temp_path_enabled"] = Preferences::isTempPathEnabled();
   data["temp_path"] = Preferences::getTempPath();
-  data["scan_dir_enabled"] = Preferences::isDirScanEnabled();
-  data["scan_dir"] = Preferences::getScanDir();
+  data["scan_dirs"] = Preferences::getScanDirs();
+  data["download_in_scan_dirs"] = Preferences::getDownloadInScanDirs();
   data["export_dir_enabled"] = Preferences::isTorrentExportEnabled();
   data["export_dir"] = Preferences::getExportDir();
   data["preallocate_all"] = Preferences::preAllocateAllFiles();

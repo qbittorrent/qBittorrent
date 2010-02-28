@@ -52,10 +52,10 @@ using namespace libtorrent;
 
 class downloadThread;
 class QTimer;
-class FileSystemWatcher;
 class FilterParserThread;
 class HttpServer;
 class BandwidthScheduler;
+class ScanFoldersModel;
 
 class TrackerInfos {
 public:
@@ -102,7 +102,7 @@ private:
   // HTTP
   QPointer<downloadThread> downloader;
   // File System
-  QPointer<FileSystemWatcher> FSWatcher;
+  ScanFoldersModel *m_scanFolders;
   // Console / Log
   QStringList consoleMessages;
   QStringList peerBanMessages;
@@ -142,7 +142,7 @@ private:
   bool exiting;
 
 protected:
-  QString getSavePath(QString hash);
+  QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString());
   bool initWebUi(QString username, QString password, int port);
 
 public:
@@ -195,8 +195,6 @@ public slots:
   void saveDHTEntry();
   void preAllocateAllFiles(bool b);
   void saveFastResumeData();
-  void enableDirectoryScanning(QString scan_dir);
-  void disableDirectoryScanning();
   void enableIPFilter(QString filter);
   void disableIPFilter();
   void setQueueingEnabled(bool enable);

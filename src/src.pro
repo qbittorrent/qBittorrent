@@ -15,6 +15,7 @@ DEFINES += VERSION=\\\"v2.2.0beta4\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=2
 DEFINES += VERSION_BUGFIX=0
+
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
 DEFINES += VERSION_TYPE=BETA
 
@@ -38,17 +39,14 @@ contains(DEBUG_MODE, 0) {
         include(../conf.pri)
         
         # Target
-        #target.path = $$BINDIR
+        # target.path = $$BINDIR
         target.path = $$PREFIX/bin/
         INSTALLS += target
     }
     
     # Man page
-contains(DEFINES, DISABLE_GUI) {
-    man.files = ../doc/qbittorrent-nox.1
-} else {
-    man.files = ../doc/qbittorrent.1
-}
+    contains(DEFINES, DISABLE_GUI):man.files = ../doc/qbittorrent-nox.1
+    else:man.files = ../doc/qbittorrent.1
     man.path = $$PREFIX/share/man/man1/
     INSTALLS += man
     
@@ -94,11 +92,10 @@ contains(DEFINES, DISABLE_GUI) {
 }
 
 contains(DEFINES, DISABLE_GUI) {
-  QT=core
+  QT = core
   TARGET = qbittorrent-nox
-} else {
-  TARGET = qbittorrent
 }
+else:TARGET = qbittorrent
 
 # QMAKE_CXXFLAGS_RELEASE += -fwrapv
 # QMAKE_CXXFLAGS_DEBUG += -fwrapv
@@ -107,9 +104,8 @@ CONFIG += link_pkgconfig
 PKGCONFIG += "libtorrent-rasterbar"
 
 QT += network
-!contains(DEFINES, DISABLE_GUI) {
-    QT += xml
-}
+!contains(DEFINES, DISABLE_GUI):QT += xml
+
 DEFINES += QT_NO_CAST_TO_ASCII
 
 # Windows
@@ -127,31 +123,25 @@ win32:LIBS += -lssl32 \
     DEFINES += WITH_GEOIP_EMBEDDED
     message("On Windows, GeoIP database must be embedded.")
   }
-
   macx {
     DEFINES += WITH_GEOIP_EMBEDDED
     message("On Mac OS X, GeoIP database must be embedded.")
   }
-
-  unix:!macx {
-    contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-      message("You chose to embed GeoIP database in qBittorrent executable.")
-    }
-  }
+  unix:!macx:contains(DEFINES, WITH_GEOIP_EMBEDDED):message("You chose to embed GeoIP database in qBittorrent executable.")
 
   # Add GeoIP resource file if the GeoIP database
   # should be embedded in qBittorrent executable
   contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-      exists("geoip/GeoIP.dat") {
-         message("GeoIP.dat was found in src/geoip/.")
-         RESOURCES += geoip.qrc
-      } else {
-        DEFINES -= WITH_GEOIP_EMBEDDED
-        error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
-      }
-  } else {
-    message("GeoIP database will not be embedded in qBittorrent executable.")
+    exists("geoip/GeoIP.dat") {
+      message("GeoIP.dat was found in src/geoip/.")
+      RESOURCES += geoip.qrc
+    }
+    else {
+      DEFINES -= WITH_GEOIP_EMBEDDED
+      error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
+    }
   }
+else:message("GeoIP database will not be embedded in qBittorrent executable.")
 }
 
 # Resource files
@@ -206,12 +196,11 @@ HEADERS += misc.h \
     torrentpersistentdata.h \
     filesystemwatcher.h \
     preferences.h \
-    bandwidthscheduler.h
+    bandwidthscheduler.h \
+    scannedfoldersmodel.h
 
-contains(DEFINES, DISABLE_GUI) {
-    HEADERS += headlessloader.h
-} else {
-	HEADERS += GUI.h \
+contains(DEFINES, DISABLE_GUI):HEADERS += headlessloader.h
+else:HEADERS +=  GUI.h \
                  feedList.h \
                  supportedengines.h \
                  transferlistwidget.h \
@@ -252,10 +241,8 @@ contains(DEFINES, DISABLE_GUI) {
                  trackerlogin.h \
                  pieceavailabilitybar.h \
                  advancedsettings.h
-}
 
-!contains(DEFINES, DISABLE_GUI) {
-	FORMS += ui/mainwindow.ui \
+!contains(DEFINES, DISABLE_GUI):FORMS += ui/mainwindow.ui \
 	    ui/options.ui \
 	    ui/about.ui \
 	    ui/createtorrent.ui \
@@ -274,7 +261,6 @@ contains(DEFINES, DISABLE_GUI) {
 	    ui/propertieswidget.ui \
 	    ui/peer.ui \
 	    ui/confirmdeletiondlg.ui
-}
 
 SOURCES += main.cpp \ 
     bittorrent.cpp \
@@ -284,10 +270,10 @@ SOURCES += main.cpp \
     httpconnection.cpp \
     httprequestparser.cpp \
     httpresponsegenerator.cpp \
-    eventmanager.cpp
+    eventmanager.cpp \
+    scannedfoldersmodel.cpp
 
-!contains(DEFINES, DISABLE_GUI) {
-	SOURCES += GUI.cpp \
+!contains(DEFINES, DISABLE_GUI):SOURCES += GUI.cpp \
                    options_imp.cpp \
                    createtorrent_imp.cpp \
                    searchengine.cpp \
@@ -299,6 +285,5 @@ SOURCES += main.cpp \
                    transferlistwidget.cpp \
                    propertieswidget.cpp \
                    peerlistwidget.cpp
-}
 
 DESTDIR = .

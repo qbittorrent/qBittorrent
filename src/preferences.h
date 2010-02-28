@@ -191,22 +191,25 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Downloads/StartInPause"), false).toBool();
   }
 
-  static bool isDirScanEnabled() {
+  static QStringList getScanDirs() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return !settings.value(QString::fromUtf8("Preferences/Downloads/ScanDir"), QString()).toString().isEmpty();
+    return settings.value(QString::fromUtf8("Preferences/Downloads/ScanDirs"), QStringList()).toStringList();
   }
 
-  static QString getScanDir() {
+  // This must be called somewhere with data from the model
+  static void setScanDirs(const QStringList &dirs) {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Downloads/ScanDir"), QString()).toString();
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/ScanDirs"), dirs);
   }
 
-  static void setScanDir(QString path) {
-    path = path.trimmed();
-    if(path.isEmpty())
-      path = QString();
+  static QVariantList getDownloadInScanDirs() {
     QSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/Downloads/ScanDir"), path);
+    return settings.value(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs"), QVariantList()).toList();
+  }
+
+  static void setDownloadInScanDirs(const QVariantList &list) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs"), list);
   }
 
   static bool isTorrentExportEnabled() {

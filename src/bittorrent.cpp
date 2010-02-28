@@ -41,6 +41,7 @@
 #include "downloadthread.h"
 #include "filterparserthread.h"
 #include "preferences.h"
+#include "scannedfoldersmodel.h"
 #ifndef DISABLE_GUI
 #include "geoip.h"
 #endif
@@ -68,7 +69,13 @@ enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
-Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit(-1), UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false), DHTEnabled(false), current_dht_port(0), queueingEnabled(false), torrentExport(false), exiting(false) {
+Bittorrent::Bittorrent()
+  : m_scanFolders(ScanFoldersModel::instance(this)),
+  preAllocateAll(false), addInPause(false), ratio_limit(-1),
+  UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false),
+  DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
+  torrentExport(false), exiting(false)
+{
 #ifndef DISABLE_GUI
   geoipDBLoaded = false;
   resolve_countries = false;
@@ -136,6 +143,7 @@ Bittorrent::Bittorrent() : preAllocateAll(false), addInPause(false), ratio_limit
 #endif
   // Apply user settings to Bittorrent session
   configureSession();
+  connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
   qDebug("* BTSession constructed");
 }
 
@@ -165,8 +173,6 @@ Bittorrent::~Bittorrent() {
     session_proxy sp = s->abort();
     delete s;
   }
-  // Disable directory scanning
-  disableDirectoryScanning();
   // Delete our objects
   delete timerAlerts;
   if(BigRatioTimer)
@@ -174,8 +180,6 @@ Bittorrent::~Bittorrent() {
   if(filterParser)
     delete filterParser;
   delete downloader;
-  if(FSWatcher)
-    delete FSWatcher;
   if(bd_scheduler)
     delete bd_scheduler;
   // HTTP Server
@@ -272,13 +276,14 @@ void Bittorrent::configureSession() {
 #endif
   preAllocateAllFiles(Preferences::preAllocateAllFiles());
   startTorrentsInPause(Preferences::addTorrentsInPause());
-  // * Scan dir
-  QString scan_dir = Preferences::getScanDir();
-  if(scan_dir.isEmpty()) {
-    disableDirectoryScanning();
-  }else{
-    //Interval first
-    enableDirectoryScanning(scan_dir);
+  // * Scan dirs
+  const QStringList &scan_dirs = Preferences::getScanDirs();
+  foreach (const QString &dir, scan_dirs) {
+    m_scanFolders->addPath(dir);
+  }
+  const QVariantList &downloadInDirList = Preferences::getDownloadInScanDirs();
+  for (int i = 0; i < downloadInDirList.count(); ++i) {
+    m_scanFolders->setDownloadAtPath(i, downloadInDirList.at(i).toBool());
   }
   // * Export Dir
   bool newTorrentExport = Preferences::isTorrentExportEnabled();
@@ -1039,7 +1044,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     // Enforcing the save path defined before URL download (from RSS for example)
     savePath = savepath_fromurl.take(QUrl::fromEncoded(from_url.toLocal8Bit()));
   } else {
-    savePath = getSavePath(hash);
+    savePath = getSavePath(hash, fromScanDir, path);
   }
   if(!defaultTempPath.isEmpty() && resumed && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
@@ -1495,14 +1500,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
   }
 
   void Bittorrent::addTorrentsFromScanFolder(QStringList &pathList) {
-    QString dir_path = FSWatcher->directories().first();
     foreach(const QString &file, pathList) {
-      QString fullPath = dir_path+QDir::separator()+file;
+      qDebug("File %s added", qPrintable(file));
       try {
-        torrent_info t(fullPath.toLocal8Bit().data());
-        addTorrent(fullPath, true);
+        torrent_info t(file.toLocal8Bit().data());
+        addTorrent(file, true);
       } catch(std::exception&) {
-        qDebug("Ignoring incomplete torrent file: %s", fullPath.toLocal8Bit().data());
+        qDebug("Ignoring incomplete torrent file: %s", file.toLocal8Bit().data());
       }
     }
   }
@@ -1646,39 +1650,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     }
   }
 #endif
-
-  // Enable directory scanning
-  void Bittorrent::enableDirectoryScanning(QString scan_dir) {
-    if(!scan_dir.isEmpty()) {
-      QDir newDir(scan_dir);
-      if(!newDir.exists()) {
-        qDebug("Scan dir %s does not exist, create it", scan_dir.toUtf8().data());
-        newDir.mkpath(scan_dir);
-      }
-      if(FSWatcher == 0) {
-        // Set up folder watching
-        FSWatcher = new FileSystemWatcher(this);
-        connect(FSWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
-        FSWatcher->addPath(scan_dir);
-      } else {
-        QString old_scan_dir = "";
-        if(!FSWatcher->directories().empty())
-          old_scan_dir = FSWatcher->directories().first();
-        if(QDir(old_scan_dir) != QDir(scan_dir)) {
-          if(!old_scan_dir.isEmpty())
-            FSWatcher->removePath(old_scan_dir);
-          FSWatcher->addPath(scan_dir);
-        }
-      }
-    }
-  }
-
-  // Disable directory scanning
-  void Bittorrent::disableDirectoryScanning() {
-    if(FSWatcher) {
-      delete FSWatcher;
-    }
-  }
 
   // Set the ports range in which is chosen the port the Bittorrent
   // session will listen to
@@ -2133,12 +2104,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     return s->status();
   }
 
-  QString Bittorrent::getSavePath(QString hash) {
+  QString Bittorrent::getSavePath(QString hash, bool fromScanDir, QString filePath) {
     QString savePath;
     if(TorrentTempData::hasTempData(hash)) {
       savePath = TorrentTempData::getSavePath(hash);
-      if(savePath.isEmpty())
-        savePath = defaultSavePath;
+      if(savePath.isEmpty()) {
+          savePath = defaultSavePath;
+      }
       if(appendLabelToSavePath) {
         qDebug("appendLabelToSavePath is true");
         QString label = TorrentTempData::getLabel(hash);
@@ -2152,9 +2124,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       qDebug("getSavePath, got save_path from temp data: %s", savePath.toLocal8Bit().data());
     } else {
       savePath = TorrentPersistentData::getSavePath(hash);
-      if(savePath.isEmpty())
-        savePath = defaultSavePath;
-      if(appendLabelToSavePath) {
+      if(savePath.isEmpty()) {
+        if(fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath))
+          savePath = QFileInfo(filePath).dir().path();
+        else
+          savePath = defaultSavePath;
+      }
+      if(!fromScanDir && appendLabelToSavePath) {
         QString label = TorrentPersistentData::getLabel(hash);
         if(!label.isEmpty()) {
           QDir save_dir(savePath);

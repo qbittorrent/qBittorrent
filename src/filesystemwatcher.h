@@ -34,12 +34,14 @@
 class FileSystemWatcher: public QFileSystemWatcher {
   Q_OBJECT
 
-#ifndef Q_WS_WIN
 private:
-  QDir watched_folder;
+#ifndef Q_WS_WIN
+  QList<QDir> watched_folders;
   QPointer<QTimer> watch_timer;
+#endif
   QStringList filters;
 
+#ifndef Q_WS_WIN
 protected:
   bool isNetworkFileSystem(QString path) {
     QString file = path;
@@ -98,12 +100,12 @@ protected:
 public:
   FileSystemWatcher(QObject *parent): QFileSystemWatcher(parent) {
     filters << "*.torrent";
-    connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanFolder()));
+    connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanLocalFolder(QString)));
   }
 
   FileSystemWatcher(QString path, QObject *parent): QFileSystemWatcher(parent) {
     filters << "*.torrent";
-    connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanFolder()));
+    connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanLocalFolder(QString)));
     addPath(path);
   }
 
@@ -115,33 +117,40 @@ public:
   }
 
   QStringList directories() const {
+    QStringList dirs;
 #ifndef Q_WS_WIN
-    if(watch_timer)
-      return QStringList(watched_folder.path());
+    if(watch_timer) {
+      foreach (const QDir &dir, watched_folders)
+        dirs << dir.canonicalPath();
+    }
 #endif
-    return QFileSystemWatcher::directories();
+    dirs << QFileSystemWatcher::directories();
+    return dirs;
   }
 
   void addPath(const QString & path) {
 #ifndef Q_WS_WIN
-    watched_folder = QDir(path);
-    if(!watched_folder.exists()) return;
+    QDir dir(path);
+    if (!dir.exists())
+      return;
     // Check if the path points to a network file system or not
     if(isNetworkFileSystem(path)) {
       // Network mode
-      Q_ASSERT(!watch_timer);
-      qDebug("Network folder detected: %s", path.toLocal8Bit().data());
+      qDebug("Network folder detected: %s", qPrintable(path));
       qDebug("Using file polling mode instead of inotify...");
+      watched_folders << dir;
       // Set up the watch timer
-      watch_timer = new QTimer(this);
-      connect(watch_timer, SIGNAL(timeout()), this, SLOT(scanFolder()));
-      watch_timer->start(5000); // 5 sec
+      if (!watch_timer) {
+        watch_timer = new QTimer(this);
+        connect(watch_timer, SIGNAL(timeout()), this, SLOT(scanNetworkFolders()));
+        watch_timer->start(5000); // 5 sec
+      }
     } else {
 #endif
       // Normal mode
       qDebug("FS Watching is watching %s in normal mode", path.toLocal8Bit().data());
       QFileSystemWatcher::addPath(path);
-      scanFolder();
+      scanLocalFolder(path);
 #ifndef Q_WS_WIN
     }
 #endif
@@ -149,37 +158,57 @@ public:
 
   void removePath(const QString & path) {
 #ifndef Q_WS_WIN
-    if(watch_timer) {
-      // Network mode
-      if(QDir(path) == watched_folder) {
-        delete watch_timer;
+    QDir dir(path);
+    for (int i = 0; i < watched_folders.count(); ++i) {
+      if (QDir(watched_folders.at(i)) == dir) {
+        watched_folders.removeAt(i);
+        if (watched_folders.isEmpty())
+          delete watch_timer;
+        return;
       }
-    } else {
-#endif
-      // Normal mode
-      QFileSystemWatcher::removePath(path);
-#ifndef Q_WS_WIN
     }
 #endif
+    // Normal mode
+    QFileSystemWatcher::removePath(path);
   }
 
 protected slots:
-  // XXX: Does not detect file size changes to improve performance.
-  void scanFolder() {
-    qDebug("Scan folder was called");
+  void scanLocalFolder(QString path) {
+    qDebug("scanLocalFolder(%s) called", qPrintable(path));
     QStringList torrents;
-    if(watch_timer) {
-      torrents = watched_folder.entryList(filters, QDir::Files, QDir::Unsorted);
-    } else {
-      torrents = QDir(QFileSystemWatcher::directories().first()).entryList(filters, QDir::Files, QDir::Unsorted);
-      qDebug("FSWatcher: Polling manually folder %s", QFileSystemWatcher::directories().first().toLocal8Bit().data());
-    }
-    if(!torrents.empty())
+    // Local folders scan
+    addTorrentsFromDir(QDir(path), torrents);
+    // Report detected torrent files
+    if(!torrents.empty()) {
+      qDebug("The following files are being reported: %s", qPrintable(torrents.join("\n")));
       emit torrentsAdded(torrents);
+    }
+  }
+
+  void scanNetworkFolders() {
+    qDebug("scanNetworkFolders() called");
+    QStringList torrents;
+    // Network folders scan
+    foreach (const QDir &dir, watched_folders) {
+      qDebug("FSWatcher: Polling manually folder %s", qPrintable(dir.path()));
+      addTorrentsFromDir(dir, torrents);
+    }
+    // Report detected torrent files
+    if(!torrents.empty()) {
+      qDebug("The following files are being reported: %s", qPrintable(torrents.join("\n")));
+      emit torrentsAdded(torrents);
+    }
   }
 
 signals:
   void torrentsAdded(QStringList &pathList);
+
+private:
+  void addTorrentsFromDir(const QDir &dir, QStringList &torrents) {
+    const QStringList &files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
+    foreach(const QString &file, files)
+      torrents << dir.canonicalPath() + '/' + file;
+  }
 
 };
 
