@@ -100,12 +100,12 @@
   <tr>
   <td style="vertical-align: bottom; text-align: right;"></td><td><input type="text" id="temppath_text"/></td>
   </tr>
-  <tr>
+  <!-- <tr>
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="scandir_checkbox" onclick="updateScanDirEnabled();"/></td><td>_(Automatically load .torrent files from:)</td>
   </tr>
   <tr>
   <td style="vertical-align: bottom; text-align: right;"></td><td><input type="text" id="scandir_text"/></td>
-  </tr>
+  </tr> -->
   <tr>
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/></td><td>_(Copy .torrent files to:)</td>
   </tr>
@@ -340,12 +340,12 @@
   if($defined($('temppath_checkbox').get('checked')) && $('temppath_checkbox').get('checked'))
     temp_path_enabled = 1;
   var temp_path = $('temppath_text').get('value');
-  var scandir_enabled = 0;
+  /*var scandir_enabled = 0;
   if($defined($('scandir_checkbox').get('checked')) && $('scandir_checkbox').get('checked'))
     scandir_enabled = 1;
   var scandir_path = '';
   if(scandir_enabled)
-    scandir_path = $('scandir_text').get('value');
+    scandir_path = $('scandir_text').get('value');*/
   var exportdir_enabled = 0;
   if($defined($('exportdir_checkbox').get('checked')) && $('exportdir_checkbox').get('checked'))
     exportdir_enabled = 1;
@@ -467,7 +467,7 @@
   dict.set('save_path', save_path);
   dict.set('temp_path_enabled', temp_path_enabled);
   dict.set('temp_path', temp_path);
-  dict.set('scan_dir', scandir_path);
+  //dict.set('scan_dir', scandir_path);
   dict.set('export_dir', exportdir_path);
   dict.set('preallocate_all', preallocate_all);
   if(!$('appendexttr').hasClass('invisible')) {
@@ -597,13 +597,13 @@ updateTempDirEnabled = function() {
   }
 }
 
-updateScanDirEnabled = function() {
+/*updateScanDirEnabled = function() {
   if($defined($('scandir_checkbox').get('checked')) && $('scandir_checkbox').get('checked')) {
     $('scandir_text').removeProperty('disabled');
   } else {
     $('scandir_text').set('disabled', 'true');
   }
-}
+}*/
 
 updateExportDirEnabled = function() {
   if($defined($('exportdir_checkbox').get('checked')) && $('exportdir_checkbox').get('checked')) {
@@ -793,7 +793,7 @@ loadPreferences = function() {
                     var temp_path = pref.temp_path;
                     $('temppath_text').set('value', temp_path);
                     updateTempDirEnabled();
-                    var scan_dir_enabled = pref.scan_dir_enabled;
+                    /*var scan_dir_enabled = pref.scan_dir_enabled;
                     if(scan_dir_enabled) {
                       $('scandir_text').set('value', pref.scan_dir);
                       $('scandir_checkbox').set('checked', 'checked');
@@ -801,7 +801,7 @@ loadPreferences = function() {
                       $('scandir_text').set('value', '');
                       $('scandir_checkbox').removeProperty('checked');
                     }
-                    updateScanDirEnabled();
+                    updateScanDirEnabled();*/
                     var export_dir_enabled = pref.export_dir_enabled;
                     if(export_dir_enabled) {
                       $('exportdir_text').set('value', pref.export_dir);
