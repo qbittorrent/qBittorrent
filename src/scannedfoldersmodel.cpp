@@ -61,7 +61,9 @@ ScanFoldersModel::ScanFoldersModel(QObject *parent) :
     QAbstractTableModel(parent), m_fsWatcher(0)
 { }
 
-ScanFoldersModel::~ScanFoldersModel() { }
+ScanFoldersModel::~ScanFoldersModel() {
+  qDeleteAll(m_pathList);
+}
 
 int ScanFoldersModel::rowCount(const QModelIndex &parent) const {
   return parent.isValid() ? 0 : m_pathList.count();
