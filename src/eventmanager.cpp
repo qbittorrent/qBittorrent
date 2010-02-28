@@ -231,9 +231,8 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["save_path"] = Preferences::getSavePath();
   data["temp_path_enabled"] = Preferences::isTempPathEnabled();
   data["temp_path"] = Preferences::getTempPath();
-  // XXX: json.h does not encode QStringList correctly
-  //data["scan_dirs"] = Preferences::getScanDirs();
-  //data["download_in_scan_dirs"] = Preferences::getDownloadInScanDirs();
+  data["scan_dirs"] = Preferences::getScanDirs();
+  data["download_in_scan_dirs"] = Preferences::getDownloadInScanDirs();
   data["export_dir_enabled"] = Preferences::isTorrentExportEnabled();
   data["export_dir"] = Preferences::getExportDir();
   data["preallocate_all"] = Preferences::preAllocateAllFiles();

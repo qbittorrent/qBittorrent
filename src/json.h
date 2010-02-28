@@ -41,15 +41,23 @@ namespace json {
       return "null";
     switch(v.type())
     {
-                case QVariant::Bool:
-                case QVariant::Double:
-                case QVariant::Int:
-                case QVariant::LongLong:
-                case QVariant::UInt:
-                case QVariant::ULongLong:
-                case QMetaType::Float:
+    case QVariant::Bool:
+    case QVariant::Double:
+    case QVariant::Int:
+    case QVariant::LongLong:
+    case QVariant::UInt:
+    case QVariant::ULongLong:
+    case QMetaType::Float:
       return v.value<QString>();
-                case QVariant::String:
+    case QVariant::StringList:
+    case QVariant::List: {
+        QStringList strList;
+        foreach(const QVariant &var, v.toList()) {
+          strList << toJson(var);
+        }
+        return "["+strList.join(",")+"]";
+      }
+    case QVariant::String:
       {
         QString s = v.value<QString>();
         QString result = "\"";
@@ -58,35 +66,35 @@ namespace json {
           QChar ch = s[i];
           switch(ch.toAscii())
           {
-                                        case '\b':
+          case '\b':
             result += "\\b";
             break;
-                                        case '\f':
+          case '\f':
             result += "\\f";
             break;
-                                        case '\n':
+          case '\n':
             result += "\\n";
             break;
-                                        case '\r':
+          case '\r':
             result += "\\r";
             break;
-                                        case '\t':
+          case '\t':
             result += "\\t";
             break;
-                                        case '\"':
-                                        case '\'':
-                                        case '\\':
-                                        case '&':
+          case '\"':
+          case '\'':
+          case '\\':
+          case '&':
             result += '\\';
-                                        case '\0':
-                                        default:
+          case '\0':
+          default:
             result += ch;
           }
         }
         result += "\"";
         return result;
       }
-            default:
+    default:
       qDebug("Unknown QVariantType: %d", (int)v.type());
       return "undefined";
     }
