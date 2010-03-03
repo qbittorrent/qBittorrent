@@ -89,62 +89,6 @@ public:
 class Bittorrent : public QObject {
   Q_OBJECT
 
-private:
-  // Bittorrent
-  session *s;
-  QPointer<QTimer> timerAlerts;
-  QPointer<BandwidthScheduler> bd_scheduler;
-  QMap<QUrl, QString> savepath_fromurl;
-  QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
-  QStringList torrentsToPausedAfterChecking;
-  // Ratio
-  QPointer<QTimer> BigRatioTimer;
-  // HTTP
-  QPointer<downloadThread> downloader;
-  // File System
-  ScanFoldersModel *m_scanFolders;
-  // Console / Log
-  QStringList consoleMessages;
-  QStringList peerBanMessages;
-  // Settings
-  bool preAllocateAll;
-  bool addInPause;
-  float ratio_limit;
-  bool UPnPEnabled;
-  bool NATPMPEnabled;
-  bool LSDEnabled;
-  bool DHTEnabled;
-  int current_dht_port;
-  bool PeXEnabled;
-  bool queueingEnabled;
-  bool appendLabelToSavePath;
-  bool torrentExport;
-#ifdef LIBTORRENT_0_15
-  bool appendqBExtension;
-#endif
-  QString defaultSavePath;
-  QString defaultTempPath;
-  // ETA Computation
-  QPointer<QTimer> timerETA;
-  QHash<QString, QList<int> > ETA_samples;
-  // IP filtering
-  QPointer<FilterParserThread> filterParser;
-  QString filterPath;
-  // Web UI
-  QPointer<HttpServer> httpServer;
-  QList<QUrl> url_skippingDlg;
-  // Fast exit (async)
-  bool exiting;
-  // GeoIP
-#ifndef DISABLE_GUI
-  bool geoipDBLoaded;
-  bool resolve_countries;
-#endif
-
-protected:
-  QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString());
-  bool initWebUi(QString username, QString password, int port);
-
 public:
   // Constructor / Destructor
   Bittorrent();
@@ -241,6 +185,10 @@ public slots:
   void configureSession();
   void banIP(QString ip);
 
+protected:
+  QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString());
+  bool initWebUi(QString username, QString password, int port);
+
 protected slots:
   void addTorrentsFromScanFolder(QStringList&);
   void readAlerts();
@@ -265,6 +213,59 @@ signals:
   void savePathChanged(QTorrentHandle &h);
   void newConsoleMessage(QString msg);
   void alternativeSpeedsModeChanged(bool alternative);
+
+private:
+  // Bittorrent
+  session *s;
+  QPointer<QTimer> timerAlerts;
+  QPointer<BandwidthScheduler> bd_scheduler;
+  QMap<QUrl, QString> savepath_fromurl;
+  QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
+  QStringList torrentsToPausedAfterChecking;
+  // Ratio
+  QPointer<QTimer> BigRatioTimer;
+  // HTTP
+  QPointer<downloadThread> downloader;
+  // File System
+  ScanFoldersModel *m_scanFolders;
+  // Console / Log
+  QStringList consoleMessages;
+  QStringList peerBanMessages;
+  // Settings
+  bool preAllocateAll;
+  bool addInPause;
+  float ratio_limit;
+  bool UPnPEnabled;
+  bool NATPMPEnabled;
+  bool LSDEnabled;
+  bool DHTEnabled;
+  int current_dht_port;
+  bool PeXEnabled;
+  bool queueingEnabled;
+  bool appendLabelToSavePath;
+  bool torrentExport;
+#ifdef LIBTORRENT_0_15
+  bool appendqBExtension;
+#endif
+  QString defaultSavePath;
+  QString defaultTempPath;
+  // ETA Computation
+  QPointer<QTimer> timerETA;
+  QHash<QString, QList<int> > ETA_samples;
+  // IP filtering
+  QPointer<FilterParserThread> filterParser;
+  QString filterPath;
+  // Web UI
+  QPointer<HttpServer> httpServer;
+  QList<QUrl> url_skippingDlg;
+  // Fast exit (async)
+  bool exiting;
+  // GeoIP
+#ifndef DISABLE_GUI
+  bool geoipDBLoaded;
+  bool resolve_countries;
+#endif
+
 };
 
 #endif
