@@ -47,6 +47,7 @@
 #include "headlessloader.h"
 #endif
 
+#include <QPushButton>
 #include <QSettings>
 #include <QLocalSocket>
 #include <unistd.h>
@@ -107,7 +108,7 @@ public:
     msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
     msgBox.setWindowTitle(tr("Legal notice"));
     msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);
-    QAbstractButton *agree_button =(QAbstractButton*)msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);
+    QAbstractButton *agree_button = msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.exec();
     if(msgBox.clickedButton() == agree_button) {
       // Save the answer
