@@ -560,56 +560,80 @@ QString RssStream::getIconUrl() {
 }
 
 // read and create items from a rss document
-short RssStream::readDoc(const QDomDocument& doc) {
+short RssStream::readDoc(QIODevice* device) {
+  qDebug("Parsing RSS file...");
+  QXmlStreamReader xml(device);
   // is it a rss file ?
-  QDomElement root = doc.documentElement();
-  if(root.tagName() == QString::fromUtf8("html")){
-    qDebug("the file is empty, maybe the url is invalid or the server is too busy");
+  if (xml.atEnd()) {
+    qDebug("ERROR: Could not parse RSS file");
     return -1;
   }
-  else if(root.tagName() != QString::fromUtf8("rss")){
-    qDebug("the file is not a rss stream, <rss> omitted: %s", root.tagName().toLocal8Bit().data());
-    return -1;
-  }
-  QDomNode rss = root.firstChild();
-  QDomElement channel = root.firstChild().toElement();
-
-  while(!channel.isNull()) {
-    // we are reading the rss'main info
-    if (channel.tagName() == "channel") {
-      QDomElement property = channel.firstChild().toElement();
-      while(!property.isNull()) {
-        if (property.tagName() == "title") {
-          title = property.text();
-          if(alias==getUrl())
-            rename(title);
-        }
-        else if (property.tagName() == "link")
-          link = property.text();
-        else if (property.tagName() == "description")
-          description = property.text();
-        else if (property.tagName() == "image")
-          image = property.text();
-        else if(property.tagName() == "item") {
-          RssItem * item = new RssItem(this, property);
-          if(item->isValid()) {
-            QString title = item->getTitle();
-            bool already_exists = itemAlreadyExists(title);
-            if(!already_exists) {
-              (*this)[title] = item;
-            } else {
-              delete item;
-            }
-          } else {
-            delete item;
-          }
-        }
-        property = property.nextSibling().toElement();
+  while (!xml.atEnd()) {
+    xml.readNext();
+    if(xml.isStartElement()) {
+      if(xml.name() != "rss") {
+        qDebug("ERROR: this is not a rss file, root tag is <%s>", qPrintable(xml.name().toString()));
+        return -1;
+      } else {
+        break;
       }
     }
-    channel = channel.nextSibling().toElement();
   }
+  // Read channels
+  while(!xml.atEnd()) {
+    xml.readNext();
+
+    if(xml.isEndElement())
+      break;
+
+    if(xml.isStartElement()) {
+      //qDebug("xml.name() == %s", qPrintable(xml.name().toString()));
+      if(xml.name() == "channel") {
+        qDebug("in channel");
+
+        // Parse channel content
+        while(!xml.atEnd()) {
+          xml.readNext();
+
+          if(xml.isEndElement() && xml.name() == "channel") {
+            break;
+          }
+
+          if(xml.isStartElement()) {
+            //qDebug("xml.name() == %s", qPrintable(xml.name().toString()));
+            if(xml.name() == "title") {
+              title = xml.readElementText();
+              if(alias == getUrl())
+                rename(title);
+            }
+            else if(xml.name() == "link") {
+              link = xml.readElementText();
+            }
+            else if(xml.name() == "description") {
+              description = xml.readElementText();
+            }
+            else if(xml.name() == "image") {
+              image = xml.attributes().value("url").toString();
+            }
+            else if(xml.name() == "item") {
+              RssItem * item = new RssItem(this, xml);
+              if(item->isValid() && !itemAlreadyExists(item->getTitle())) {
+                this->insert(item->getTitle(), item);
+              } else {
+                delete item;
+              }
+            }
+          }
+        }
+        return 0;
+      }
+    }
+  }
+  qDebug("XML Error: This is not a valid RSS document");
+  return -1;
+
   resizeList();
+
   // RSS Feed Downloader
   foreach(RssItem* item, values()) {
     if(item->isRead()) continue;
@@ -658,7 +682,6 @@ void RssStream::resizeList() {
 // existing and opening test after download
 short RssStream::openRss(){
   qDebug("openRss() called");
-  QDomDocument doc("Rss Seed");
   QFile fileRss(filePath);
   if(!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
     qDebug("openRss error: open failed, no file or locked, %s", (const char*)filePath.toLocal8Bit());
@@ -667,19 +690,9 @@ short RssStream::openRss(){
     }
     return -1;
   }
-  QString error_msg = "";
-  int line=-1;
-  int col = -1;
-  if(!doc.setContent(&fileRss, &error_msg, &line, &col)) {
-    qDebug("Error when parsing XML at line %d (col: %d): %s", line, col, error_msg.toLocal8Bit().data());
-    fileRss.close();
-    if(QFile::exists(filePath)) {
-      fileRss.remove();
-    }
-    return -1;
-  }
+
   // start reading the xml
-  short return_lecture = readDoc(doc);
+  short return_lecture = readDoc(&fileRss);
   fileRss.close();
   if(QFile::exists(filePath)) {
     fileRss.remove();

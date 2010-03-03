@@ -35,7 +35,7 @@
 #include <QList>
 #include <QTemporaryFile>
 #include <QSettings>
-#include <QDomDocument>
+#include <QXmlStreamReader>
 #include <QTime>
 #include <QUrl>
 #include <QTimer>
@@ -267,36 +267,47 @@ protected:
 
 public:
   // public constructor
-  RssItem(RssStream* parent, const QDomElement& properties): parent(parent), read(false) {
+  RssItem(RssStream* parent, QXmlStreamReader& xml): parent(parent), read(false) {
     is_valid = false;
     torrent_url = QString::null;
     news_link = QString::null;
     title = QString::null;
-    QDomElement property = properties.firstChild().toElement();
-    while(!property.isNull()) {
-      if (property.tagName() == "title") {
-        title = property.text();
-        if(title.isEmpty()) {
-          is_valid = false;
-          return;
+    while(!xml.atEnd()) {
+      xml.readNext();
+
+      if(xml.isEndElement() && xml.name() == "item")
+        break;
+      qDebug("in item: <%s>", qPrintable(xml.name().toString()));
+
+      if(xml.isStartElement()) {
+        if(xml.name() == "title") {
+          title = xml.readElementText();
+          if(title.isEmpty()) {
+            is_valid = false;
+            return;
+          }
+        }
+        else if(xml.name() == "enclosure") {
+          if(xml.attributes().value("type") == "application/x-bittorrent") {
+            torrent_url = xml.attributes().value("url").toString();
+          }
+        }
+        else if(xml.name() == "link") {
+          news_link = xml.readElementText();
+        }
+        else if(xml.name() == "description") {
+          description = xml.readElementText();
+        }
+        else if(xml.name() == "pubDate") {
+          date = parseDate(xml.readElementText());
+        }
+        else if(xml.name() == "author") {
+          author = xml.readElementText();
         }
       }
-      else if (property.tagName() == "enclosure") {
-        if(property.attribute("type", "") == "application/x-bittorrent") {
-          torrent_url = property.attribute("url", QString::null);
-        }
-      }
-      else if (property.tagName() == "link")
-        news_link = property.text();
-      else if (property.tagName() == "description")
-        description = property.text();
-      else if (property.tagName() == "pubDate")
-        date = parseDate(property.text());
-      else if (property.tagName() == "author")
-        author = property.text();
-      property = property.nextSibling().toElement();
     }
-    is_valid = true;
+    if(!title.isEmpty())
+      is_valid = true;
   }
 
   RssItem(RssStream* parent, QString _title, QString _torrent_url, QString _news_link, QString _description, QDateTime _date, QString _author, bool _read):
@@ -435,7 +446,7 @@ public:
   QString getIconUrl();
 
 private:
-  short readDoc(const QDomDocument& doc);
+  short readDoc(QIODevice* device);
   void resizeList();
   short openRss();
 };
