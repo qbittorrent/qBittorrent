@@ -202,6 +202,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(addScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
+  connect(removeScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));

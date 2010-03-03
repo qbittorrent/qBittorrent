@@ -95,7 +95,7 @@ protected slots:
 
 public slots:
   void refreshList();
-  void addTorrent(QTorrentHandle& h);
+  void addTorrent(const QTorrentHandle& h);
   void pauseTorrent(QTorrentHandle &h);
   void setFinished(QTorrentHandle &h);
   void setSelectionLabel(QString label);

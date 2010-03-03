@@ -156,7 +156,7 @@ TransferListWidget::~TransferListWidget() {
   delete listDelegate;
 }
 
-void TransferListWidget::addTorrent(QTorrentHandle& h) {
+void TransferListWidget::addTorrent(const QTorrentHandle& h) {
   if(!h.is_valid()) return;
   // Check that the torrent is not already there
   if(getRowFromHash(h.hash()) >= 0) return;
