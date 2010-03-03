@@ -172,10 +172,10 @@ protected:
       parts = rx.capturedTexts();
     }
     bool ok[4];
-    int day    = parts[nday].toInt(&ok[0]);
+    const int day    = parts[nday].toInt(&ok[0]);
     int year   = parts[nyear].toInt(&ok[1]);
-    int hour   = parts[nhour].toInt(&ok[2]);
-    int minute = parts[nmin].toInt(&ok[3]);
+    const int hour   = parts[nhour].toInt(&ok[2]);
+    const int minute = parts[nmin].toInt(&ok[3]);
     if (!ok[0] || !ok[1] || !ok[2] || !ok[3])
       return QDateTime::currentDateTime();
     int second = 0;
@@ -277,7 +277,6 @@ public:
 
       if(xml.isEndElement() && xml.name() == "item")
         break;
-      qDebug("in item: <%s>", qPrintable(xml.name().toString()));
 
       if(xml.isStartElement()) {
         if(xml.name() == "title") {
@@ -340,9 +339,8 @@ public:
   }
 
   static RssItem* fromHash(RssStream* parent, QHash<QString, QVariant> h) {
-    RssItem * item = new RssItem(parent, h["title"].toString(), h["torrent_url"].toString(), h["news_link"].toString(),
-                                 h["description"].toString(), h["date"].toDateTime(), h["author"].toString(), h["read"].toBool());
-    return item;
+    return new RssItem(parent, h["title"].toString(), h["torrent_url"].toString(), h["news_link"].toString(),
+                       h["description"].toString(), h["date"].toDateTime(), h["author"].toString(), h["read"].toBool());
   }
 
   RssStream* getParent() const {
@@ -536,7 +534,7 @@ public:
     list.insert(i, item);
   }
 
-  static QList<RssItem*> sortNewsList(QList<RssItem*> news_list) {
+  static QList<RssItem*> sortNewsList(const QList<RssItem*>& news_list) {
     QList<RssItem*> new_list;
     foreach(RssItem *item, news_list) {
       insertSortElem(new_list, item);
