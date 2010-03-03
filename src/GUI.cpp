@@ -219,7 +219,10 @@ GUI::~GUI() {
   delete status_bar;
   delete transferList;
   delete guiUpdater;
-
+  if (console)
+    delete console;
+  if(options)
+    delete options;
   if(rssWidget)
     delete rssWidget;
   delete searchEngine;
