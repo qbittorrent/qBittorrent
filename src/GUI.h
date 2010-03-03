@@ -55,6 +55,7 @@ class TransferListFiltersWidget;
 class QSplitter;
 class PropertiesWidget;
 class StatusBar;
+class consoleDlg;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -68,6 +69,7 @@ private:
   QTabWidget *tabs;
   StatusBar *status_bar;
   QPointer<options_imp> options;
+  QPointer<consoleDlg> console;
   QPointer<QSystemTrayIcon> systrayIcon;
   QPointer<QTimer> systrayCreator;
   QMenu *myTrayIconMenu;

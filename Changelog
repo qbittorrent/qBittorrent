@@ -13,6 +13,7 @@
     - FEATURE: Global transfer information are displayed in the new Web UI status bar
     - FEATURE: Allow to change the priority of several files at once
     - FEATURE: Support for multiple scan folders (Patch by Christian Kandeler)
+    - BUGFIX: Only one log window can be opened at a time
     - COSMETIC: Improved style management
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
