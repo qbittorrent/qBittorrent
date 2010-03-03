@@ -326,7 +326,7 @@ size_type QTorrentHandle::total_redundant_bytes() const {
   return h.status().total_redundant_bytes;
 }
 
-void QTorrentHandle::file_progress(std::vector<size_type>& fp) {
+void QTorrentHandle::file_progress(std::vector<size_type>& fp) const {
   Q_ASSERT(h.is_valid());
   return h.file_progress(fp);
 }
@@ -336,27 +336,27 @@ bool QTorrentHandle::is_checking() const {
   return h.status().state == torrent_status::checking_files || h.status().state == torrent_status::checking_resume_data;
 }
 
-size_type QTorrentHandle::total_done() {
+size_type QTorrentHandle::total_done() const {
   Q_ASSERT(h.is_valid());
   return h.status().total_done;
 }
 
-size_type QTorrentHandle::all_time_download() {
+size_type QTorrentHandle::all_time_download() const {
   Q_ASSERT(h.is_valid());
   return h.status().all_time_download;
 }
 
-size_type QTorrentHandle::all_time_upload() {
+size_type QTorrentHandle::all_time_upload() const {
   Q_ASSERT(h.is_valid());
   return h.status().all_time_upload;
 }
 
-size_type QTorrentHandle::total_payload_download() {
+size_type QTorrentHandle::total_payload_download() const {
   Q_ASSERT(h.is_valid());
   return h.status().total_payload_download;
 }
 
-size_type QTorrentHandle::total_payload_upload() {
+size_type QTorrentHandle::total_payload_upload() const {
   Q_ASSERT(h.is_valid());
   return h.status().total_payload_upload;
 }
@@ -481,12 +481,12 @@ void QTorrentHandle::resume() {
 
 void QTorrentHandle::remove_url_seed(QString seed) {
   Q_ASSERT(h.is_valid());
-  h.remove_url_seed(misc::toString((const char*)seed.toLocal8Bit()));
+  h.remove_url_seed(seed.toStdString());
 }
 
 void QTorrentHandle::add_url_seed(QString seed) {
   Q_ASSERT(h.is_valid());
-  h.add_url_seed(misc::toString((const char*)seed.toLocal8Bit()));
+  h.add_url_seed(seed.toStdString());
 }
 
 void QTorrentHandle::set_max_uploads(int val) {

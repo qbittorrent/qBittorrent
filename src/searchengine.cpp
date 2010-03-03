@@ -301,11 +301,11 @@ void SearchEngine::saveResultsColumnsWidth() {
         new_width_list << width_list.at(i);
       } else if(treeview->columnWidth(i)>=1) {
         // usual case, save the current width
-        new_width_list << QString::fromUtf8(misc::toString(treeview->columnWidth(i)).c_str());
+        new_width_list << QString::number(treeview->columnWidth(i));
       } else {
         // default width
         treeview->resizeColumnToContents(i);
-        new_width_list << QString::fromUtf8(misc::toString(treeview->columnWidth(i)).c_str());
+        new_width_list << QString::number(treeview->columnWidth(i));
       }
     }
     settings.setValue("SearchResultsColsWidth", new_width_list.join(" "));
@@ -353,7 +353,7 @@ void SearchEngine::readSearchOutput(){
     appendSearchResult(QString::fromUtf8(line));
   }
   if(currentSearchTab)
-    currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+    currentSearchTab->getCurrentLabel()->setText(tr("Results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
 }
 
 void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
@@ -478,7 +478,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
     }
   }
   if(currentSearchTab)
-    currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+misc::toQString(nb_search_results)+QString::fromUtf8(")</i>:"));
+    currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
   search_button->setText("Search");
 }
 

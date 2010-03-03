@@ -82,47 +82,31 @@ class misc : public QObject{
   Q_OBJECT
 
 public:
-  // Convert any type of variable to C++ String
-  // convert=true will convert -1 to 0
-  template <class T> static std::string toString(const T& x, bool convert=false) {
-    std::ostringstream o;
-    if(!(o<<x)) {
-      throw std::runtime_error("::toString()");
-    }
-    if(o.str() == "-1" && convert)
-      return "0";
-    return o.str();
+  static inline QString toQString(std::string str) {
+    return QString::fromLocal8Bit(str.c_str());
   }
 
-  template <class T> static QString toQString(const T& x, bool convert=false) {
-    std::ostringstream o;
-    if(!(o<<x)) {
-      throw std::runtime_error("::toString()");
-    }
-    if(o.str() == "-1" && convert)
-      return QString::fromUtf8("0");
-    return QString::fromUtf8(o.str().c_str());
+  static inline QString toQString(char* str) {
+    return QString::fromLocal8Bit(str);
   }
 
-  template <class T> static QByteArray toQByteArray(const T& x, bool convert=false) {
+  static inline QString toQString(sha1_hash hash) {
     std::ostringstream o;
-    if(!(o<<x)) {
+    if(!(o<<hash)) {
       throw std::runtime_error("::toString()");
     }
-    if(o.str() == "-1" && convert)
-      return "0";
-    return QByteArray(o.str().c_str());
+    return QString::fromLocal8Bit(o.str().c_str());
+    //return QString::fromLocal8Bit(hash.to_string().c_str());
   }
 
-  // Convert C++ string to any type of variable
-  template <class T> static T fromString(const std::string& s) {
-    T x;
-    std::istringstream i(s);
-    if(!(i>>x)) {
-      throw std::runtime_error("::fromString()");
+  static inline sha1_hash QStringToSha1(const QString& s) {
+      sha1_hash x;
+      std::istringstream i(s.toStdString());
+      if(!(i>>x)) {
+        throw std::runtime_error("::fromString()");
+      }
+      return x;
     }
-    return x;
-  }
 
   static bool sameFiles(QString path1, QString path2) {
     QFile f1(path1);
@@ -515,7 +499,7 @@ public:
       QString found = regHex.cap(1);
       if(found.length() == 40) {
         sha1_hash sha1(QString(QByteArray::fromHex(regHex.cap(1).toLocal8Bit())).toStdString());
-        qDebug("magnetUriToHash (Hex): hash: %s", misc::toString(sha1).c_str());
+        qDebug("magnetUriToHash (Hex): hash: %s", sha1.to_string().c_str());
         return misc::toQString(sha1);
       }
     }
@@ -567,17 +551,17 @@ public:
     }
     int minutes = seconds / 60;
     if(minutes < 60) {
-      return tr("%1m","e.g: 10minutes").arg(QString::QString::fromUtf8(misc::toString(minutes).c_str()));
+      return tr("%1m","e.g: 10minutes").arg(QString::number(minutes));
     }
     int hours = minutes / 60;
     minutes = minutes - hours*60;
     if(hours < 24) {
-      return tr("%1h%2m", "e.g: 3hours 5minutes").arg(QString::fromUtf8(misc::toString(hours).c_str())).arg(QString::fromUtf8(misc::toString(minutes).c_str()));
+      return tr("%1h%2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
     }
     int days = hours / 24;
     hours = hours - days * 24;
     if(days < 100) {
-      return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::fromUtf8(misc::toString(days).c_str())).arg(QString::fromUtf8(misc::toString(hours).c_str())).arg(QString::fromUtf8(misc::toString(minutes).c_str()));
+      return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::number(days)).arg(QString::number(hours)).arg(QString::number(minutes));
     }
     return QString::fromUtf8("∞");
   }

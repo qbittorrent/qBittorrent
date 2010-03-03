@@ -1200,11 +1200,11 @@ void TransferListWidget::saveColWidthList() {
       new_width_list << width_list.at(i);
     } else if(columnWidth(i)>=1) {
       // usual case, save the current width
-      new_width_list << misc::toQString(columnWidth(i));
+      new_width_list << QString::number(columnWidth(i));
     } else {
       // default width
       resizeColumnToContents(i);
-      new_width_list << misc::toQString(columnWidth(i));
+      new_width_list << QString::number(columnWidth(i));
     }
   }
   settings.setValue(QString::fromUtf8("TransferListColsWidth"), new_width_list.join(QString::fromUtf8(" ")));
@@ -1262,7 +1262,7 @@ void TransferListWidget::saveLastSortedColumn() {
   else
     sortOrderLetter = QString::fromUtf8("d");
   int index = header()->sortIndicatorSection();
-  settings.setValue(QString::fromUtf8("TransferListSortedCol"), misc::toQString(index)+sortOrderLetter);
+  settings.setValue(QString::fromUtf8("TransferListSortedCol"), QString::number(index)+sortOrderLetter);
 }
 
 void TransferListWidget::loadLastSortedColumn() {

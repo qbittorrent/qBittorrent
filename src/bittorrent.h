@@ -124,11 +124,6 @@ private:
 #endif
   QString defaultSavePath;
   QString defaultTempPath;
-  // GeoIP
-#ifndef DISABLE_GUI
-  bool resolve_countries;
-  bool geoipDBLoaded;
-#endif
   // ETA Computation
   QPointer<QTimer> timerETA;
   QHash<QString, QList<int> > ETA_samples;
@@ -140,6 +135,11 @@ private:
   QList<QUrl> url_skippingDlg;
   // Fast exit (async)
   bool exiting;
+  // GeoIP
+#ifndef DISABLE_GUI
+  bool geoipDBLoaded;
+  bool resolve_countries;
+#endif
 
 protected:
   QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString());
@@ -210,9 +210,9 @@ public slots:
   void setGlobalRatio(float ratio);
   void setDeleteRatio(float ratio);
   void setDHTPort(int dht_port);
-  void setPeerProxySettings(proxy_settings proxySettings);
-  void setHTTPProxySettings(proxy_settings proxySettings);
-  void setSessionSettings(session_settings sessionSettings);
+  void setPeerProxySettings(const proxy_settings &proxySettings);
+  void setHTTPProxySettings(const proxy_settings &proxySettings);
+  void setSessionSettings(const session_settings &sessionSettings);
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);
   void setAppendLabelToSavePath(bool append);
@@ -256,7 +256,7 @@ signals:
   void finishedTorrent(QTorrentHandle& h);
   void fullDiskError(QTorrentHandle& h, QString msg);
   void trackerError(QString hash, QString time, QString msg);
-  void trackerAuthenticationRequired(QTorrentHandle& h);
+  void trackerAuthenticationRequired(const QTorrentHandle& h);
   void newDownloadedTorrent(QString path, QString url);
   void updateFileSize(QString hash);
   void downloadFromUrlFailure(QString url, QString reason);

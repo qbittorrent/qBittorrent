@@ -102,12 +102,12 @@ class QTorrentHandle {
     QString comment() const;
     size_type total_failed_bytes() const;
     size_type total_redundant_bytes() const;
-    void file_progress(std::vector<size_type>& fp);
-    size_type total_payload_download();
-    size_type total_payload_upload();
-    size_type all_time_upload();
-    size_type all_time_download();
-    size_type total_done();
+    void file_progress(std::vector<size_type>& fp) const;
+    size_type total_payload_download() const;
+    size_type total_payload_upload() const;
+    size_type all_time_upload() const;
+    size_type all_time_download() const;
+    size_type total_done() const;
     QStringList files_path() const;
     int num_uploads() const;
     bool is_seed() const;
