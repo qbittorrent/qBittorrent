@@ -46,58 +46,17 @@ enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_ACT
 class TransferListWidget: public QTreeView {
   Q_OBJECT
 
-private:
-  TransferListDelegate *listDelegate;
-  QStandardItemModel *listModel;
-  QSortFilterProxyModel *proxyModel;
-  QSortFilterProxyModel *labelFilterModel;
-  Bittorrent* BTSession;
-  QTimer *refreshTimer;
-  GUI *main_window;
-
 public:
   TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent* BTSession);
   ~TransferListWidget();
   int getNbTorrents() const;
   QStandardItemModel* getSourceModel() const;
 
-protected:
-  int getRowFromHash(QString hash) const;
-  QString getHashFromRow(int row) const;
-  QModelIndex mapToSource(QModelIndex index) const;
-  QModelIndex mapFromSource(QModelIndex index) const;
-  QStringList getCustomLabels() const;
-  void saveColWidthList();
-  bool loadColWidthList();
-  void saveLastSortedColumn();
-  void loadLastSortedColumn();
-  QStringList getSelectedTorrentsHashes() const;
-
-protected slots:
-  int updateTorrent(int row);
-  void deleteTorrent(int row, bool refresh_list=true);
-  void pauseTorrent(int row, bool refresh_list=true);
-  void resumeTorrent(int row, bool refresh_list=true);
-  void torrentDoubleClicked(QModelIndex index);
-  bool loadHiddenColumns();
-  void saveHiddenColumns();
-  void displayListMenu(const QPoint&);
-  void updateMetadata(QTorrentHandle &h);
-  void currentChanged(const QModelIndex& current, const QModelIndex&);
-  void resumeTorrent(QTorrentHandle &h);
-#ifdef LIBTORRENT_0_15
-  void toggleSelectedTorrentsSuperSeeding();
-#endif
-  void toggleSelectedTorrentsSequentialDownload();
-  void toggleSelectedFirstLastPiecePrio();
-  void askNewLabelForSelection();
-  void setRowColor(int row, QColor color);
-
 public slots:
   void refreshList();
   void addTorrent(const QTorrentHandle& h);
-  void pauseTorrent(QTorrentHandle &h);
-  void setFinished(QTorrentHandle &h);
+  void pauseTorrent(const QTorrentHandle &h);
+  void setFinished(const QTorrentHandle &h);
   void setSelectionLabel(QString label);
   void setRefreshInterval(int t);
   void startSelectedTorrents();
@@ -122,12 +81,53 @@ public slots:
   void removeLabelFromRows(QString label);
   void renameSelectedTorrent();
 
+protected:
+  int getRowFromHash(QString hash) const;
+  QString getHashFromRow(int row) const;
+  QModelIndex mapToSource(const QModelIndex &index) const;
+  QModelIndex mapFromSource(const QModelIndex &index) const;
+  QStringList getCustomLabels() const;
+  void saveColWidthList();
+  bool loadColWidthList();
+  void saveLastSortedColumn();
+  void loadLastSortedColumn();
+  QStringList getSelectedTorrentsHashes() const;
+
+protected slots:
+  int updateTorrent(int row);
+  void deleteTorrent(int row, bool refresh_list=true);
+  void pauseTorrent(int row, bool refresh_list=true);
+  void resumeTorrent(int row, bool refresh_list=true);
+  void torrentDoubleClicked(const QModelIndex& index);
+  bool loadHiddenColumns();
+  void saveHiddenColumns() const;
+  void displayListMenu(const QPoint&);
+  void updateMetadata(const QTorrentHandle &h);
+  void currentChanged(const QModelIndex& current, const QModelIndex&);
+  void resumeTorrent(const QTorrentHandle &h);
+#ifdef LIBTORRENT_0_15
+  void toggleSelectedTorrentsSuperSeeding() const;
+#endif
+  void toggleSelectedTorrentsSequentialDownload() const;
+  void toggleSelectedFirstLastPiecePrio() const;
+  void askNewLabelForSelection();
+  void setRowColor(int row, QColor color);
+
 signals:
   void currentTorrentChanged(QTorrentHandle &h);
   void torrentStatusUpdate(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive);
   void torrentAdded(QModelIndex index);
   void torrentAboutToBeRemoved(QModelIndex index);
   void torrentChangedLabel(QString old_label, QString new_label);
+
+private:
+  TransferListDelegate *listDelegate;
+  QStandardItemModel *listModel;
+  QSortFilterProxyModel *proxyModel;
+  QSortFilterProxyModel *labelFilterModel;
+  Bittorrent* BTSession;
+  QTimer *refreshTimer;
+  GUI *main_window;
 };
 
 #endif // TRANSFERLISTWIDGET_H
