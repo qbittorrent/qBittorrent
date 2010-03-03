@@ -56,6 +56,8 @@ class QSplitter;
 class PropertiesWidget;
 class StatusBar;
 class consoleDlg;
+class about;
+class createtorrent;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -70,6 +72,8 @@ private:
   StatusBar *status_bar;
   QPointer<options_imp> options;
   QPointer<consoleDlg> console;
+  QPointer<about> aboutDlg;
+  QPointer<createtorrent> createTorrentDlg;
   QPointer<QSystemTrayIcon> systrayIcon;
   QPointer<QTimer> systrayCreator;
   QMenu *myTrayIconMenu;
@@ -130,7 +134,7 @@ protected slots:
   void loadPreferences(bool configure_session=true);
   void processParams(const QStringList& params);
   void addTorrent(QString path);
-  void addUnauthenticatedTracker(QPair<QTorrentHandle,QString> tracker);
+  void addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker);
   void processDownloadedFiles(QString path, QString url);
   void finishedTorrent(QTorrentHandle& h) const;
   // Options slots
