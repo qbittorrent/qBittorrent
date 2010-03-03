@@ -73,13 +73,13 @@ class UsageDisplay: public QObject {
 public:
   static void displayUsage(char* prg_name) {
     std::cout << tr("Usage:").toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << " --version: " << tr("displays program version").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " --version: " << qPrintable(tr("displays program version")) << std::endl;
 #ifndef DISABLE_GUI
-    std::cout << '\t' << prg_name << " --no-splash: " << tr("disable splash screen").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(tr("disable splash screen")) << std::endl;
 #endif
-    std::cout << '\t' << prg_name << " --help: " << tr("displays this help message").toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << " --webui-port=x: " << tr("changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort())).toLocal8Bit().data() << std::endl;
-    std::cout << '\t' << prg_name << " " << tr("[files or urls]: downloads the torrents passed by the user (optional)").toLocal8Bit().data() << std::endl;
+    std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
+    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(tr("changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort()))) << std::endl;
+    std::cout << '\t' << prg_name << " " << qPrintable(tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
   }
 };
 
@@ -92,9 +92,9 @@ public:
     if(settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
       return true;
 #ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << tr("Legal Notice").toLocal8Bit().data() << " ***" << std::endl;
-    std::cout << tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.").toLocal8Bit().data() << std::endl << std::endl;
-    std::cout << tr("Press %1 key to accept and continue...").arg("'y'").toLocal8Bit().data() << std::endl;
+    std::cout << std::endl << "*** " << qPrintable(tr("Legal Notice")) << " ***" << std::endl;
+    std::cout << qPrintable(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
+    std::cout << qPrintable(tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
     char ret = getchar(); // Read pressed key
     if(ret == 'y' || ret == 'Y') {
       // Save the answer
@@ -220,21 +220,21 @@ int main(int argc, char *argv[]){
     settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
   }
   if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
-    qDebug("%s locale recognized, using translation.", (const char*)locale.toLocal8Bit());
+    qDebug("%s locale recognized, using translation.", qPrintable(locale));
   }else{
-    qDebug("%s locale unrecognized, using default (en_GB).", (const char*)locale.toLocal8Bit());
+    qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
   }
   app->installTranslator(&translator);
   app->setApplicationName(QString::fromUtf8("qBittorrent"));
 
   // Check for executable parameters
   if(argc > 1){
-    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--version")){
+    if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
       delete app;
       return 0;
     }
-    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--help")){
+    if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")){
       UsageDisplay::displayUsage(argv[0]);
       delete app;
       return 0;
@@ -242,12 +242,12 @@ int main(int argc, char *argv[]){
 
     for(int i=1; i<argc; ++i) {
 #ifndef DISABLE_GUI
-      if(QString::fromUtf8(argv[i]) == QString::fromUtf8("--no-splash")) {
+      if(QString::fromLocal8Bit(argv[i]) == QString::fromUtf8("--no-splash")) {
         no_splash = true;
       } else {
 #endif
-        if(QString::fromUtf8(argv[i]).startsWith("--webui-port=")) {
-          QStringList parts = QString::fromUtf8(argv[i]).split("=");
+        if(QString::fromLocal8Bit(argv[i]).startsWith("--webui-port=")) {
+          QStringList parts = QString::fromLocal8Bit(argv[i]).split("=");
           if(parts.size() == 2) {
             bool ok = false;
             int new_port = parts.last().toInt(&ok);
