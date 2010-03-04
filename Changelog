@@ -4,6 +4,7 @@
     - BUGFIX: Fix ratio calculation for directly seeded torrents (Thanks phorane)
     - BUGFIX: Fix memory leak in RSS parser
     - BUGFIX: Only one log window can be opened at a time
+    - BUGFIX: Command-line parameters are no longer required to be in UTF-8
 
 * Web Feb 10 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.5
     - BUGFIX: Fix actions on selected torrents (non-selected torrents could be affected)

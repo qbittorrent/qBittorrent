@@ -31,6 +31,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QFile>
+#include <QPushButton>
 
 #ifndef DISABLE_GUI
 #include <QApplication>
@@ -112,7 +113,7 @@ public:
     msgBox.setText(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
     msgBox.setWindowTitle(tr("Legal notice"));
     msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);
-    QAbstractButton *agree_button =(QAbstractButton*)msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);
+    QAbstractButton *agree_button =msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.exec();
     if(msgBox.clickedButton() == agree_button) {
       // Save the answer
@@ -255,12 +256,12 @@ int main(int argc, char *argv[]){
 
   // Check for executable parameters
   if(argc > 1){
-    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--version")){
+    if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
       delete app;
       return 0;
     }
-    if(QString::fromUtf8(argv[1]) == QString::fromUtf8("--help")){
+    if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")){
       UsageDisplay::displayUsage(argv[0]);
       delete app;
       return 0;
@@ -268,11 +269,11 @@ int main(int argc, char *argv[]){
 
     for(int i=1; i<argc; ++i) {
 #ifndef DISABLE_GUI
-      if(QString::fromUtf8(argv[i]) == QString::fromUtf8("--no-splash")) {
+      if(QString::fromLocal8Bit(argv[i]) == QString::fromUtf8("--no-splash")) {
         no_splash = true;
       } else {
 #endif
-        if(QString::fromUtf8(argv[i]).startsWith("--webui-port=")) {
+        if(QString::fromLocal8Bit(argv[i]).startsWith("--webui-port=")) {
           QStringList parts = QString::fromUtf8(argv[i]).split("=");
           if(parts.size() == 2) {
             bool ok = false;

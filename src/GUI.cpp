@@ -396,7 +396,7 @@ void GUI::readParamsOnSocket() {
   if(clientConnection) {
     QByteArray params = clientConnection->readAll();
     if(!params.isEmpty()) {
-      processParams(QString::fromUtf8(params.data()).split(QString::fromUtf8("\n")));
+      processParams(QString::fromLocal8Bit(params.constData()).split("\n"));
       qDebug("Received parameters from another instance");
     }
     clientConnection->deleteLater();
