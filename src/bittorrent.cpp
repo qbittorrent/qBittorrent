@@ -1487,7 +1487,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     }
     const unsigned int nbFiles = h.num_files();
     for(unsigned int i=0; i<nbFiles; ++i) {
-      const QString &extension = h.file_at(i).split('.').last();
+      QString extension = h.file_at(i).split('.').last();
       if(misc::isPreviewable(extension))
         return true;
     }
