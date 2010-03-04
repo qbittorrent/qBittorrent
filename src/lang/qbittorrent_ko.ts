@@ -240,190 +240,190 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="210"/>
+        <location filename="../bittorrent.cpp" line="211"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>&apos;%1&apos; 는 설정된 최대 공유 비율에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="300"/>
+        <location filename="../bittorrent.cpp" line="301"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>큐비토런트는 다음 포트을  사용하고 있습니다: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="363"/>
+        <location filename="../bittorrent.cpp" line="364"/>
         <source>UPnP support [ON]</source>
         <translation>UPnp 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="366"/>
+        <location filename="../bittorrent.cpp" line="367"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="371"/>
+        <location filename="../bittorrent.cpp" line="372"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="374"/>
+        <location filename="../bittorrent.cpp" line="375"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="401"/>
+        <location filename="../bittorrent.cpp" line="402"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP 사용자 에이전트: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="418"/>
+        <location filename="../bittorrent.cpp" line="419"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>사용중인 디스크 케쉬 용량: %1 MiB</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="457"/>
+        <location filename="../bittorrent.cpp" line="458"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT 지원 [사용], 포트:&apos;UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="459"/>
-        <location filename="../bittorrent.cpp" line="463"/>
+        <location filename="../bittorrent.cpp" line="460"/>
+        <location filename="../bittorrent.cpp" line="464"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="467"/>
+        <location filename="../bittorrent.cpp" line="468"/>
         <source>PeX support [ON]</source>
         <translation>PeX 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="469"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>PeX support [OFF]</source>
         <translation>PeX 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="472"/>
+        <location filename="../bittorrent.cpp" line="473"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Pex 기능을 재설정하기 위해서 프로그램을 다시 시작해야 합니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="477"/>
+        <location filename="../bittorrent.cpp" line="478"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="480"/>
+        <location filename="../bittorrent.cpp" line="481"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery (로컬 공유자 찾기) [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="492"/>
+        <location filename="../bittorrent.cpp" line="493"/>
         <source>Encryption support [ON]</source>
         <translation>암호화 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="497"/>
+        <location filename="../bittorrent.cpp" line="498"/>
         <source>Encryption support [FORCED]</source>
         <translation>암호화 지원 [강제사용]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="502"/>
+        <location filename="../bittorrent.cpp" line="503"/>
         <source>Encryption support [OFF]</source>
         <translation>암호화 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="612"/>
         <source>The Web UI is listening on port %1</source>
         <translation>웹 사용자 인터페이스는 포트 %1 를 사용하고 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="613"/>
+        <location filename="../bittorrent.cpp" line="614"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>웹 유저 인터페이스 에러 - 웹 유저 인터페이스를 다음 포트에 연결 할수 없습니다:%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="744"/>
+        <location filename="../bittorrent.cpp" line="745"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록과 디스크에서 &apos;%1&apos; 를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="746"/>
+        <location filename="../bittorrent.cpp" line="747"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>전송목록에서 &apos;%1&apos;를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="796"/>
+        <location filename="../bittorrent.cpp" line="797"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos;는 유효한 마그넷 URI (magnet URI)가 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="816"/>
-        <location filename="../bittorrent.cpp" line="977"/>
-        <location filename="../bittorrent.cpp" line="980"/>
+        <location filename="../bittorrent.cpp" line="817"/>
+        <location filename="../bittorrent.cpp" line="978"/>
+        <location filename="../bittorrent.cpp" line="981"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 전송목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="912"/>
-        <location filename="../bittorrent.cpp" line="1181"/>
-        <location filename="../bittorrent.cpp" line="1186"/>
+        <location filename="../bittorrent.cpp" line="913"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="914"/>
-        <location filename="../bittorrent.cpp" line="1183"/>
-        <location filename="../bittorrent.cpp" line="1188"/>
+        <location filename="../bittorrent.cpp" line="915"/>
+        <location filename="../bittorrent.cpp" line="1179"/>
+        <location filename="../bittorrent.cpp" line="1184"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="950"/>
-        <location filename="../bittorrent.cpp" line="954"/>
+        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="955"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>토렌트 파일을 해독할수 없음: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="957"/>
+        <location filename="../bittorrent.cpp" line="958"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>파일에 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1006"/>
+        <location filename="../bittorrent.cpp" line="1007"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1019"/>
+        <location filename="../bittorrent.cpp" line="1020"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1480"/>
+        <location filename="../bittorrent.cpp" line="1476"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1482"/>
+        <location filename="../bittorrent.cpp" line="1478"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1843"/>
+        <location filename="../bittorrent.cpp" line="1839"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1853"/>
+        <location filename="../bittorrent.cpp" line="1849"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
@@ -432,38 +432,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트을 사용할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2023"/>
+        <location filename="../bittorrent.cpp" line="2018"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2028"/>
+        <location filename="../bittorrent.cpp" line="2023"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2043"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1938"/>
-        <location filename="../bittorrent.cpp" line="2044"/>
+        <location filename="../bittorrent.cpp" line="1934"/>
+        <location filename="../bittorrent.cpp" line="2039"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1937"/>
+        <location filename="../bittorrent.cpp" line="1933"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2049"/>
+        <location filename="../bittorrent.cpp" line="2044"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2161"/>
+        <location filename="../bittorrent.cpp" line="2156"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -1639,96 +1639,96 @@ list:</source>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="408"/>
+        <location filename="../feeddownloader.h" line="406"/>
         <source>New filter</source>
         <translation>새 필터</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="415"/>
+        <location filename="../feeddownloader.h" line="413"/>
         <source>Please choose a name for this filter</source>
         <translation>이 필터 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="415"/>
+        <location filename="../feeddownloader.h" line="413"/>
         <source>Filter name:</source>
         <translation>필터 이름:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="381"/>
-        <location filename="../feeddownloader.h" line="423"/>
-        <location filename="../feeddownloader.h" line="439"/>
+        <location filename="../feeddownloader.h" line="379"/>
+        <location filename="../feeddownloader.h" line="421"/>
+        <location filename="../feeddownloader.h" line="437"/>
         <source>Invalid filter name</source>
         <translation>부적당한 필터 이름</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="423"/>
+        <location filename="../feeddownloader.h" line="421"/>
         <source>The filter name cannot be left empty.</source>
         <translation>필터 이름을 꼭 입력하셔야 합니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="381"/>
-        <location filename="../feeddownloader.h" line="439"/>
+        <location filename="../feeddownloader.h" line="379"/>
+        <location filename="../feeddownloader.h" line="437"/>
         <source>This filter name is already in use.</source>
         <translation>이 필터 이름은 벌써 사용되고 있습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="302"/>
+        <location filename="../feeddownloader.h" line="300"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="466"/>
+        <location filename="../feeddownloader.h" line="464"/>
         <source>Filter testing error</source>
         <translation>핕터 테스트 오류</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="466"/>
+        <location filename="../feeddownloader.h" line="464"/>
         <source>Please specify a test torrent name.</source>
         <translation>시험용 토렌트 이름을 입력하세요.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="473"/>
+        <location filename="../feeddownloader.h" line="471"/>
         <source>matches</source>
         <translation>해당</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="475"/>
+        <location filename="../feeddownloader.h" line="473"/>
         <source>does not match</source>
         <translation>해당하지 않음</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="479"/>
+        <location filename="../feeddownloader.h" line="477"/>
         <source>Select file to import</source>
         <translation>가져올 파일을 선택하세요</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="479"/>
-        <location filename="../feeddownloader.h" line="496"/>
+        <location filename="../feeddownloader.h" line="477"/>
+        <location filename="../feeddownloader.h" line="494"/>
         <source>Filters Files</source>
         <translation>필터 파일</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="487"/>
         <source>Import successful</source>
         <translation>가져오기 성공</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="487"/>
         <source>Filters import was successful.</source>
         <translation>필터 가져오기가 성공적으로 이루어졌습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Import failure</source>
         <translation>가져오기 실패</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>I/O 에러에 의하여 필터를 가져 올수 없었습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="496"/>
+        <location filename="../feeddownloader.h" line="494"/>
         <source>Select destination file</source>
         <translation>저장경로를 선택하세요</translation>
     </message>
@@ -1741,22 +1741,22 @@ list:</source>
         <translation type="obsolete">현재 시스템에 존재하는 파일에 덮어쓰기를 하려고 합니다 괜찬습니까?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="504"/>
         <source>Export successful</source>
         <translation>내보내기 성공</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="504"/>
         <source>Filters export was successful.</source>
         <translation>핕터 내보내기가 성공적으로 이루어졌습니다.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="508"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Export failure</source>
         <translation>내보내기 실패</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="508"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>I/O 에러에 의하여 필터 내보내기가 실패하였습니다.</translation>
     </message>
@@ -2819,27 +2819,27 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>HeadlessLoader</name>
     <message>
-        <location filename="../headlessloader.h" line="74"/>
+        <location filename="../headlessloader.h" line="70"/>
         <source>Information</source>
         <translation>정보</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="75"/>
+        <location filename="../headlessloader.h" line="71"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>큐비토렌트를 관리하시려면 다음 주소로 웹인터페이스를 접속하십시오 http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="76"/>
+        <location filename="../headlessloader.h" line="72"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>웹인터페이스 관리자 아이디:%1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="78"/>
+        <location filename="../headlessloader.h" line="74"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>웹인터페이스는 기본 비밀번호를 사용중에 있습니다: %1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="79"/>
+        <location filename="../headlessloader.h" line="75"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>보안상 위험하므로 프로그램 설정에서 비밀번호를 바꾸십시오.</translation>
     </message>
@@ -2852,13 +2852,13 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="309"/>
+        <location filename="../httpconnection.cpp" line="306"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished">다운: &apos;%1&apos;/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="310"/>
+        <location filename="../httpconnection.cpp" line="307"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished">업: %1/s - 전송: %2</translation>
@@ -5171,22 +5171,22 @@ Changelog:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Size</source>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Progress</source>
         <translation>진행상황</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Priority</source>
         <translation type="unfinished">우선순위</translation>
     </message>
@@ -5371,74 +5371,74 @@ Changelog:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="177"/>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="175"/>
+        <location filename="../transferlistfilterswidget.h" line="260"/>
         <source>All</source>
         <translation>모두</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="180"/>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="178"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Downloading</source>
         <translation>다운로딩 중</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="183"/>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="181"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Completed</source>
         <translation>전송 완료</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="186"/>
-        <location filename="../transferlistfilterswidget.h" line="265"/>
+        <location filename="../transferlistfilterswidget.h" line="184"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Active</source>
         <translation>활성</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="189"/>
-        <location filename="../transferlistfilterswidget.h" line="266"/>
+        <location filename="../transferlistfilterswidget.h" line="187"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Inactive</source>
         <translation>비활성</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="203"/>
-        <location filename="../transferlistfilterswidget.h" line="429"/>
+        <location filename="../transferlistfilterswidget.h" line="201"/>
+        <location filename="../transferlistfilterswidget.h" line="427"/>
         <source>All labels</source>
         <translation>모든 라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="206"/>
-        <location filename="../transferlistfilterswidget.h" line="430"/>
+        <location filename="../transferlistfilterswidget.h" line="204"/>
+        <location filename="../transferlistfilterswidget.h" line="428"/>
         <source>Unlabeled</source>
         <translation>라벨 없음</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="293"/>
+        <location filename="../transferlistfilterswidget.h" line="291"/>
         <source>Remove label</source>
         <translation>라벨 지우기</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="294"/>
+        <location filename="../transferlistfilterswidget.h" line="292"/>
         <source>Add label</source>
         <translation>라벨 추가</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>New Label</source>
         <translation>새 라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>Label:</source>
         <translation>라벨:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="313"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Invalid label name</source>
         <translation>부적절한 라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="313"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 설정시 특수문자를 사용하지 마십시오.</translation>
     </message>
@@ -7039,7 +7039,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">일</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="525"/>
+        <location filename="../misc.h" line="479"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
@@ -7060,25 +7060,25 @@ However, those plugins were disabled.</source>
         <translation>알수 없음</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="554"/>
+        <location filename="../misc.h" line="508"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="558"/>
+        <location filename="../misc.h" line="512"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="563"/>
+        <location filename="../misc.h" line="517"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1시간%2분</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="568"/>
+        <location filename="../misc.h" line="522"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1일%2시간%3분</translation>

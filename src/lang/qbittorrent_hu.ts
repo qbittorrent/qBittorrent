@@ -220,190 +220,190 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="210"/>
+        <location filename="../bittorrent.cpp" line="211"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 elérte a megengedett arányt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="300"/>
+        <location filename="../bittorrent.cpp" line="301"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>qBittorrent ezen a porton figyel: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="363"/>
+        <location filename="../bittorrent.cpp" line="364"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP támogatás [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="366"/>
+        <location filename="../bittorrent.cpp" line="367"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="371"/>
+        <location filename="../bittorrent.cpp" line="372"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP támogatás [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="374"/>
+        <location filename="../bittorrent.cpp" line="375"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="401"/>
+        <location filename="../bittorrent.cpp" line="402"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP user agent %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="418"/>
+        <location filename="../bittorrent.cpp" line="419"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>Lemez gyorsítótr: %1 MiB</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="457"/>
+        <location filename="../bittorrent.cpp" line="458"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT támogatás [ON], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="459"/>
-        <location filename="../bittorrent.cpp" line="463"/>
+        <location filename="../bittorrent.cpp" line="460"/>
+        <location filename="../bittorrent.cpp" line="464"/>
         <source>DHT support [OFF]</source>
         <translation>DHT funkció [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="467"/>
+        <location filename="../bittorrent.cpp" line="468"/>
         <source>PeX support [ON]</source>
         <translation>PeX [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="469"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>PeX support [OFF]</source>
         <translation>PeX támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="472"/>
+        <location filename="../bittorrent.cpp" line="473"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>A PeX támogatás bekapcsolása újraindítást igényel</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="477"/>
+        <location filename="../bittorrent.cpp" line="478"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="480"/>
+        <location filename="../bittorrent.cpp" line="481"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="492"/>
+        <location filename="../bittorrent.cpp" line="493"/>
         <source>Encryption support [ON]</source>
         <translation>Titkosítás [ON]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="497"/>
+        <location filename="../bittorrent.cpp" line="498"/>
         <source>Encryption support [FORCED]</source>
         <translation>Titkosítás [KÉNYSZERÍTVE]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="502"/>
+        <location filename="../bittorrent.cpp" line="503"/>
         <source>Encryption support [OFF]</source>
         <translation>Titkosítás [OFF]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="612"/>
         <source>The Web UI is listening on port %1</source>
         <translation>A Web UI ezen a porton figyel: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="613"/>
+        <location filename="../bittorrent.cpp" line="614"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Webes felület hiba - port használata sikertelen: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="744"/>
+        <location filename="../bittorrent.cpp" line="745"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról és a merevlemezről.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="746"/>
+        <location filename="../bittorrent.cpp" line="747"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="796"/>
+        <location filename="../bittorrent.cpp" line="797"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; nem hiteles magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="816"/>
-        <location filename="../bittorrent.cpp" line="977"/>
-        <location filename="../bittorrent.cpp" line="980"/>
+        <location filename="../bittorrent.cpp" line="817"/>
+        <location filename="../bittorrent.cpp" line="978"/>
+        <location filename="../bittorrent.cpp" line="981"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; már letöltés alatt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="912"/>
-        <location filename="../bittorrent.cpp" line="1181"/>
-        <location filename="../bittorrent.cpp" line="1186"/>
+        <location filename="../bittorrent.cpp" line="913"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="914"/>
-        <location filename="../bittorrent.cpp" line="1183"/>
-        <location filename="../bittorrent.cpp" line="1188"/>
+        <location filename="../bittorrent.cpp" line="915"/>
+        <location filename="../bittorrent.cpp" line="1179"/>
+        <location filename="../bittorrent.cpp" line="1184"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; felvéve a letöltési listára.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="950"/>
-        <location filename="../bittorrent.cpp" line="954"/>
+        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="955"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Megfejthetetlen torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="957"/>
+        <location filename="../bittorrent.cpp" line="958"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1006"/>
+        <location filename="../bittorrent.cpp" line="1007"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1019"/>
+        <location filename="../bittorrent.cpp" line="1020"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1480"/>
+        <location filename="../bittorrent.cpp" line="1476"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;letiltva IP szűrés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1482"/>
+        <location filename="../bittorrent.cpp" line="1478"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;kitiltva hibás adatküldés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1843"/>
+        <location filename="../bittorrent.cpp" line="1839"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Fájl ismételt letöltése %1 beágyazva a torrentbe %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1853"/>
+        <location filename="../bittorrent.cpp" line="1849"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Megfejthetetlen torrent: %1.</translation>
     </message>
@@ -412,38 +412,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">A megadott porok zártak.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2023"/>
+        <location filename="../bittorrent.cpp" line="2018"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikertelen, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2028"/>
+        <location filename="../bittorrent.cpp" line="2023"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikeres, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2043"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1938"/>
-        <location filename="../bittorrent.cpp" line="2044"/>
+        <location filename="../bittorrent.cpp" line="1934"/>
+        <location filename="../bittorrent.cpp" line="2039"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1937"/>
+        <location filename="../bittorrent.cpp" line="1933"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2049"/>
+        <location filename="../bittorrent.cpp" line="2044"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2161"/>
+        <location filename="../bittorrent.cpp" line="2156"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
@@ -1544,96 +1544,96 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="408"/>
+        <location filename="../feeddownloader.h" line="406"/>
         <source>New filter</source>
         <translation>Új szűrő</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="415"/>
+        <location filename="../feeddownloader.h" line="413"/>
         <source>Please choose a name for this filter</source>
         <translation>Kérlek válassz nevet a szűrőnek</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="415"/>
+        <location filename="../feeddownloader.h" line="413"/>
         <source>Filter name:</source>
         <translation>Szűrő név:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="381"/>
-        <location filename="../feeddownloader.h" line="423"/>
-        <location filename="../feeddownloader.h" line="439"/>
+        <location filename="../feeddownloader.h" line="379"/>
+        <location filename="../feeddownloader.h" line="421"/>
+        <location filename="../feeddownloader.h" line="437"/>
         <source>Invalid filter name</source>
         <translation>Érvénytelen szűrő név</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="423"/>
+        <location filename="../feeddownloader.h" line="421"/>
         <source>The filter name cannot be left empty.</source>
         <translation>A szűrő név mindenképpen szükséges.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="381"/>
-        <location filename="../feeddownloader.h" line="439"/>
+        <location filename="../feeddownloader.h" line="379"/>
+        <location filename="../feeddownloader.h" line="437"/>
         <source>This filter name is already in use.</source>
         <translation>A szűrő név már használatban.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="302"/>
+        <location filename="../feeddownloader.h" line="300"/>
         <source>Choose save path</source>
         <translation>Mentés helye</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="466"/>
+        <location filename="../feeddownloader.h" line="464"/>
         <source>Filter testing error</source>
         <translation>Szűrő teszt hiba</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="466"/>
+        <location filename="../feeddownloader.h" line="464"/>
         <source>Please specify a test torrent name.</source>
         <translation>Kérlek válassz teszt torrentet.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="473"/>
+        <location filename="../feeddownloader.h" line="471"/>
         <source>matches</source>
         <translation>egyezés</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="475"/>
+        <location filename="../feeddownloader.h" line="473"/>
         <source>does not match</source>
         <translation>nincs egyezés</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="479"/>
+        <location filename="../feeddownloader.h" line="477"/>
         <source>Select file to import</source>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="479"/>
-        <location filename="../feeddownloader.h" line="496"/>
+        <location filename="../feeddownloader.h" line="477"/>
+        <location filename="../feeddownloader.h" line="494"/>
         <source>Filters Files</source>
         <translation>Szűrő fájlok</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="487"/>
         <source>Import successful</source>
         <translation>Importálás sikeres</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="487"/>
         <source>Filters import was successful.</source>
         <translation>Szűrő importálás sikeres.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Import failure</source>
         <translation>Importálás sikertelen</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>A szűrőt nem sikerült importálni I/O hiba miatt.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="496"/>
+        <location filename="../feeddownloader.h" line="494"/>
         <source>Select destination file</source>
         <translation>Szűrő fájl kiválasztása</translation>
     </message>
@@ -1646,22 +1646,22 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Biztosan felül akarod írni a már létező fájlt?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="504"/>
         <source>Export successful</source>
         <translation>Exportálás sikeres</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="504"/>
         <source>Filters export was successful.</source>
         <translation>Szűrő exportálás sikeres.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="508"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Export failure</source>
         <translation>Exportálás sikertelen</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="508"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>A szűrőt nem sikerült exportálni I/O hiba miatt.</translation>
     </message>
@@ -2339,27 +2339,27 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
 <context>
     <name>HeadlessLoader</name>
     <message>
-        <location filename="../headlessloader.h" line="74"/>
+        <location filename="../headlessloader.h" line="70"/>
         <source>Information</source>
         <translation>Információ</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="75"/>
+        <location filename="../headlessloader.h" line="71"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>A qBittorrent irányításához webes felületen nyisd meg ezt a címet: http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="76"/>
+        <location filename="../headlessloader.h" line="72"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Web UI adminisztrátor felhasználó neve: %1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="78"/>
+        <location filename="../headlessloader.h" line="74"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Web UI adminisztrátor jelszó még az alapértelmezett: %1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="79"/>
+        <location filename="../headlessloader.h" line="75"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Ez biztonsági kockázatot jelent. Kérem változtass jelszót a program beállításinál.</translation>
     </message>
@@ -2372,13 +2372,13 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="309"/>
+        <location filename="../httpconnection.cpp" line="306"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished">D: %1/s - T: %2</translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="310"/>
+        <location filename="../httpconnection.cpp" line="307"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished">U: %1/s - T: %2</translation>
@@ -4599,22 +4599,22 @@ Changelog:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Progress</source>
         <translation>Folyamat</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Priority</source>
         <translation type="unfinished">Elsőbbség</translation>
     </message>
@@ -4799,74 +4799,74 @@ Changelog:
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="177"/>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="175"/>
+        <location filename="../transferlistfilterswidget.h" line="260"/>
         <source>All</source>
         <translation>Összes</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="180"/>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="178"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Downloading</source>
         <translation>Letöltés</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="183"/>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="181"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Completed</source>
         <translation>Letöltött</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="186"/>
-        <location filename="../transferlistfilterswidget.h" line="265"/>
+        <location filename="../transferlistfilterswidget.h" line="184"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Active</source>
         <translation>Aktív</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="189"/>
-        <location filename="../transferlistfilterswidget.h" line="266"/>
+        <location filename="../transferlistfilterswidget.h" line="187"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Inactive</source>
         <translation>Inaktív</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="203"/>
-        <location filename="../transferlistfilterswidget.h" line="429"/>
+        <location filename="../transferlistfilterswidget.h" line="201"/>
+        <location filename="../transferlistfilterswidget.h" line="427"/>
         <source>All labels</source>
         <translation>Összes címke</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="206"/>
-        <location filename="../transferlistfilterswidget.h" line="430"/>
+        <location filename="../transferlistfilterswidget.h" line="204"/>
+        <location filename="../transferlistfilterswidget.h" line="428"/>
         <source>Unlabeled</source>
         <translation>Jelöletlen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="293"/>
+        <location filename="../transferlistfilterswidget.h" line="291"/>
         <source>Remove label</source>
         <translation>Címke eltávolítása</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="294"/>
+        <location filename="../transferlistfilterswidget.h" line="292"/>
         <source>Add label</source>
         <translation>Címke hozzáadása</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>New Label</source>
         <translation>Új címke</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>Label:</source>
         <translation>Címke:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="313"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Invalid label name</source>
         <translation>Érvénytelen címke név</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="313"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Kérlek ne használj speciális karaktereket a címke nevében.</translation>
     </message>
@@ -6326,7 +6326,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="525"/>
+        <location filename="../misc.h" line="479"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -6337,25 +6337,25 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <translation>Ismeretlen</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="554"/>
+        <location filename="../misc.h" line="508"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1perc</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="558"/>
+        <location filename="../misc.h" line="512"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1perc</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="563"/>
+        <location filename="../misc.h" line="517"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1óra%2perc</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="568"/>
+        <location filename="../misc.h" line="522"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1nap%2óra%3perc</translation>

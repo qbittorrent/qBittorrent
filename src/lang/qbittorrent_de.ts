@@ -149,68 +149,68 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="28"/>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigenschaft</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="28"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="73"/>
         <source>Disk write cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe des Plattencache zum schreiben</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="79"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="82"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgehende Ports (Min) [0: Deaktiviert]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="90"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgehende Ports (Max) [0: Deaktiviert]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="98"/>
         <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Transferlimits im lokalen Netzwerk ignorieren</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="104"/>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP/IP Overhead in Transferlimits einbeziehen</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="110"/>
         <source>Recheck torrents on completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents nach Abschluss der Übertragung erneut prüfen</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="116"/>
         <source>Transfer list refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall zum Auffrischen der Transfer-Liste</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="122"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="125"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Herkunftsländer der Peers auflösen (GeoIP)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="131"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Hostnamen der Peers auflösen</translation>
     </message>
 </context>
 <context>
@@ -236,190 +236,190 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="210"/>
+        <location filename="../bittorrent.cpp" line="211"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 hat das gesetzte maximale Verhältnis erreicht.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="300"/>
+        <location filename="../bittorrent.cpp" line="301"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>qBittorrent lauscht auf Port: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="363"/>
+        <location filename="../bittorrent.cpp" line="364"/>
         <source>UPnP support [ON]</source>
         <translation>UPNP Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="366"/>
+        <location filename="../bittorrent.cpp" line="367"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="371"/>
+        <location filename="../bittorrent.cpp" line="372"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="374"/>
+        <location filename="../bittorrent.cpp" line="375"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="401"/>
+        <location filename="../bittorrent.cpp" line="402"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP Benutzerprogramm ist %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="418"/>
+        <location filename="../bittorrent.cpp" line="419"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>Verwende eine Plattencachegröße von %1 MiB</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="457"/>
+        <location filename="../bittorrent.cpp" line="458"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT Unterstützung [EIN], Port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="459"/>
-        <location filename="../bittorrent.cpp" line="463"/>
+        <location filename="../bittorrent.cpp" line="460"/>
+        <location filename="../bittorrent.cpp" line="464"/>
         <source>DHT support [OFF]</source>
         <translation>DHT Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="467"/>
+        <location filename="../bittorrent.cpp" line="468"/>
         <source>PeX support [ON]</source>
         <translation>PeX Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="469"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>PeX support [OFF]</source>
         <translation>PeX Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="472"/>
+        <location filename="../bittorrent.cpp" line="473"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Neustart erforderlich um PeX Unterstützung umzuschalten</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="477"/>
+        <location filename="../bittorrent.cpp" line="478"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Lokale Peer Auffindung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="480"/>
+        <location filename="../bittorrent.cpp" line="481"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Unterstützung für Lokale Peer Auffindung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="492"/>
+        <location filename="../bittorrent.cpp" line="493"/>
         <source>Encryption support [ON]</source>
         <translation>Verschlüsselung Unterstützung [EIN]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="497"/>
+        <location filename="../bittorrent.cpp" line="498"/>
         <source>Encryption support [FORCED]</source>
         <translation>Unterstützung für Verschlüsselung [Erzwungen]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="502"/>
+        <location filename="../bittorrent.cpp" line="503"/>
         <source>Encryption support [OFF]</source>
         <translation>Verschlüsselungs-Unterstützung [AUS]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="611"/>
+        <location filename="../bittorrent.cpp" line="612"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Das Webinterface lauscht auf Port %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="613"/>
+        <location filename="../bittorrent.cpp" line="614"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Web User Interface Fehler - Web UI Port &apos;%1&apos; ist nicht erreichbar</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="744"/>
+        <location filename="../bittorrent.cpp" line="745"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; wurde von der Transfer-Liste und von der Festplatte entfernt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="746"/>
+        <location filename="../bittorrent.cpp" line="747"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; wurde von der Transfer-Liste entfernt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="796"/>
+        <location filename="../bittorrent.cpp" line="797"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; ist keine gültige Magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="816"/>
-        <location filename="../bittorrent.cpp" line="977"/>
-        <location filename="../bittorrent.cpp" line="980"/>
+        <location filename="../bittorrent.cpp" line="817"/>
+        <location filename="../bittorrent.cpp" line="978"/>
+        <location filename="../bittorrent.cpp" line="981"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; befindet sich bereits in der Download-Liste.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="912"/>
-        <location filename="../bittorrent.cpp" line="1181"/>
-        <location filename="../bittorrent.cpp" line="1186"/>
+        <location filename="../bittorrent.cpp" line="913"/>
+        <location filename="../bittorrent.cpp" line="1177"/>
+        <location filename="../bittorrent.cpp" line="1182"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; wird fortgesetzt. (Schnelles Fortsetzen)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="914"/>
-        <location filename="../bittorrent.cpp" line="1183"/>
-        <location filename="../bittorrent.cpp" line="1188"/>
+        <location filename="../bittorrent.cpp" line="915"/>
+        <location filename="../bittorrent.cpp" line="1179"/>
+        <location filename="../bittorrent.cpp" line="1184"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; wurde der Download-Liste hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="950"/>
-        <location filename="../bittorrent.cpp" line="954"/>
+        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="955"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Konnte Torrent-Datei nicht dekodieren: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="957"/>
+        <location filename="../bittorrent.cpp" line="958"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Diese Datei ist entweder fehlerhaft oder kein Torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1006"/>
+        <location filename="../bittorrent.cpp" line="1007"/>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bemerkung: Dem Torrent wurde ein neuer Tracker hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1019"/>
+        <location filename="../bittorrent.cpp" line="1020"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bemerkung: Dem Torrent wurden neue URL-Seeds hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1480"/>
+        <location filename="../bittorrent.cpp" line="1476"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;wurde aufgrund Ihrer IP Filter geblockt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1482"/>
+        <location filename="../bittorrent.cpp" line="1478"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;wurde aufgrund von beschädigten Teilen gebannt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1843"/>
+        <location filename="../bittorrent.cpp" line="1839"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiver Download von Datei %1, eingebettet in Torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1853"/>
+        <location filename="../bittorrent.cpp" line="1849"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Konnte Torrent-Datei %1 nicht dekodieren.</translation>
     </message>
@@ -428,38 +428,38 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Konnte auf keinem der angegebenen Ports lauschen.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2023"/>
+        <location filename="../bittorrent.cpp" line="2018"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port Mapping Fehler, Fehlermeldung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2028"/>
+        <location filename="../bittorrent.cpp" line="2023"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port Mapping Fehler, Meldung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2043"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Fast-Resume Daten für den Torrent %1 wurden zurückgewiesen, prüfe erneut...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1938"/>
-        <location filename="../bittorrent.cpp" line="2044"/>
+        <location filename="../bittorrent.cpp" line="1934"/>
+        <location filename="../bittorrent.cpp" line="2039"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Begründung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1937"/>
+        <location filename="../bittorrent.cpp" line="1933"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein I/O Fehler ist aufgetreten, &apos;%1&apos; angehalten.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2049"/>
+        <location filename="../bittorrent.cpp" line="2044"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>URL Seed Lookup für die URL &apos;%1&apos; ist fehlgeschlagen, Begründung: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2161"/>
+        <location filename="../bittorrent.cpp" line="2156"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Lade &apos;%1&apos;, bitte warten...</translation>
@@ -1627,96 +1627,96 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="408"/>
+        <location filename="../feeddownloader.h" line="406"/>
         <source>New filter</source>
         <translation>Neuer Filter</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="415"/>
+        <location filename="../feeddownloader.h" line="413"/>
         <source>Please choose a name for this filter</source>
         <translation>Bitte wählen Sie einen Namen für diesen Filter</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="415"/>
+        <location filename="../feeddownloader.h" line="413"/>
         <source>Filter name:</source>
         <translation>Filter-Name:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="381"/>
-        <location filename="../feeddownloader.h" line="423"/>
-        <location filename="../feeddownloader.h" line="439"/>
+        <location filename="../feeddownloader.h" line="379"/>
+        <location filename="../feeddownloader.h" line="421"/>
+        <location filename="../feeddownloader.h" line="437"/>
         <source>Invalid filter name</source>
         <translation>Ungültiger Filter-Name</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="423"/>
+        <location filename="../feeddownloader.h" line="421"/>
         <source>The filter name cannot be left empty.</source>
         <translation>Der Filter-Name darf nicht leer sein.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="381"/>
-        <location filename="../feeddownloader.h" line="439"/>
+        <location filename="../feeddownloader.h" line="379"/>
+        <location filename="../feeddownloader.h" line="437"/>
         <source>This filter name is already in use.</source>
         <translation>Dieser Filter-Name wird bereits verwendet.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="302"/>
+        <location filename="../feeddownloader.h" line="300"/>
         <source>Choose save path</source>
         <translation>Wählen Sie den Speicher-Pfad</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="466"/>
+        <location filename="../feeddownloader.h" line="464"/>
         <source>Filter testing error</source>
         <translation>Fehler beim testen des Filters</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="466"/>
+        <location filename="../feeddownloader.h" line="464"/>
         <source>Please specify a test torrent name.</source>
         <translation>Bitte geben Sie einen Torrent-Namen zum testen ein.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="473"/>
+        <location filename="../feeddownloader.h" line="471"/>
         <source>matches</source>
         <translation>stimmt überein</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="475"/>
+        <location filename="../feeddownloader.h" line="473"/>
         <source>does not match</source>
         <translation>stimmt nicht überein</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="479"/>
+        <location filename="../feeddownloader.h" line="477"/>
         <source>Select file to import</source>
         <translation>Wählen Sie eine Datei für den Import</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="479"/>
-        <location filename="../feeddownloader.h" line="496"/>
+        <location filename="../feeddownloader.h" line="477"/>
+        <location filename="../feeddownloader.h" line="494"/>
         <source>Filters Files</source>
         <translation>Filter-Dateien</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="487"/>
         <source>Import successful</source>
         <translation>Import erfolgreich</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="487"/>
         <source>Filters import was successful.</source>
         <translation>Filter wurden erfolgreich importiert.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Import failure</source>
         <translation>Fehler beim Import</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="491"/>
+        <location filename="../feeddownloader.h" line="489"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>Filter konnte nicht importiert werden aufgrund eines I/O Fehlers.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="496"/>
+        <location filename="../feeddownloader.h" line="494"/>
         <source>Select destination file</source>
         <translation>Zieldatei auswählen</translation>
     </message>
@@ -1730,22 +1730,22 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete">Sind Sie sicher, daß Sie die bestehende Datei überschreiben möchten?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="504"/>
         <source>Export successful</source>
         <translation>Export erfolgreich</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="504"/>
         <source>Filters export was successful.</source>
         <translation>Filter wurden erfolgreich exportiert.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="508"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Export failure</source>
         <translation>Fehler beim Export</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="508"/>
+        <location filename="../feeddownloader.h" line="506"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Filter konnte nicht exportiert werden aufgrund eines I/O Fehlers.</translation>
     </message>
@@ -2579,12 +2579,12 @@ Bitte schliessen Sie diesen zuerst.</translation>
     <message>
         <location filename="../GUI.cpp" line="901"/>
         <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Normale Geschwindigkeitsbegrenzungen verwenden</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="904"/>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternative Geschwindigkeitsbegrenzungen verwenden</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -2812,27 +2812,27 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
 <context>
     <name>HeadlessLoader</name>
     <message>
-        <location filename="../headlessloader.h" line="74"/>
+        <location filename="../headlessloader.h" line="70"/>
         <source>Information</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="75"/>
+        <location filename="../headlessloader.h" line="71"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Um qBittorrent zu steuern benutzen Sie bitte das Webinterface unter http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="76"/>
+        <location filename="../headlessloader.h" line="72"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Benutzername des Webinterface-Administrators: %1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="78"/>
+        <location filename="../headlessloader.h" line="74"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Das Passwort des Webinterface-Administrators ist immer noch die Standardeinstellung: %1</translation>
     </message>
     <message>
-        <location filename="../headlessloader.h" line="79"/>
+        <location filename="../headlessloader.h" line="75"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Dies ist eine Sicherheitslücke, bitte ändern Sie das Passwort über die Programmvoreinstellungen.</translation>
     </message>
@@ -2842,19 +2842,21 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
     <message>
         <location filename="../httpconnection.cpp" line="137"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre IP Adresse wurde nach zu vielen fehlerhaften Authentisierungversuchen gebannt.</translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="309"/>
+        <location filename="../httpconnection.cpp" line="306"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>How are we supposed to translate this? Do you want the initial letter of a translation of the hint you gave in the developer comments? Are there going to be any tooltips that will help the user understand the abbreviation?</translatorcomment>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="310"/>
+        <location filename="../httpconnection.cpp" line="307"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>see comment on D: %1/s - T: %2</translatorcomment>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3009,7 +3011,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../main.cpp" line="98"/>
         <source>Press %1 key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zum bestätigen und fortfahren bitte %1-Taste drücken...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="109"/>
@@ -3158,7 +3160,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternative Geschwindigkeitsbegrenzungen verwenden</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -3342,7 +3344,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
         <location filename="../peerlistdelegate.h" line="60"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
@@ -3688,7 +3690,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="816"/>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent Datei kopieren nach:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="862"/>
@@ -3935,68 +3937,68 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="146"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="224"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortgeschritten</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="701"/>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis auf .torrent Dateien überprüfen:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="763"/>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis hinzufügen...</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="773"/>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis entfernen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1379"/>
         <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Globale Geschwindigkeitsbegrenzung</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1514"/>
         <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternative globale Geschwindigkeitsbegrenzung</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1630"/>
         <source>Scheduled times:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorgesehene Zeiten:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1657"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>bis</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1701"/>
         <source>On days:</source>
-        <translation type="unfinished"></translation>
+        <translation>An Tagen:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1712"/>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeden Tag</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1717"/>
         <source>Week days</source>
-        <translation type="unfinished"></translation>
+        <translation>Wochentage</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1722"/>
         <source>Week ends</source>
-        <translation type="unfinished"></translation>
+        <translation>Wochenenden</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1935"/>
@@ -4150,26 +4152,26 @@ QGroupBox {
         <location filename="../proplistdelegate.h" line="148"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="92"/>
         <location filename="../proplistdelegate.h" line="149"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="89"/>
         <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht heruntergeladen</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="95"/>
         <location filename="../proplistdelegate.h" line="150"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">Maximum</translation>
+        <translation>Maximum</translation>
     </message>
 </context>
 <context>
@@ -4324,7 +4326,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="519"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorität</translation>
+        <translation>Priorität</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4337,17 +4339,17 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="1007"/>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1017"/>
         <source>Maximum</source>
-        <translation type="unfinished">Maximum</translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1012"/>
         <source>High</source>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="313"/>
@@ -4810,12 +4812,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="94"/>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Beobachtetes Verzeichnis</translation>
     </message>
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Hier herunterladen</translation>
     </message>
 </context>
 <context>
@@ -4989,7 +4991,7 @@ Changelog:
         <location filename="../searchengine.cpp" line="216"/>
         <location filename="../searchengine.cpp" line="217"/>
         <source>Search</source>
-        <translation type="unfinished">Suche</translation>
+        <translation>Suche</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="465"/>
@@ -5141,12 +5143,12 @@ Changelog:
     <message>
         <location filename="../statusbar.h" line="194"/>
         <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicken um alternative Geschwindigkeitsbegrenzungen zu deaktivieren</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="197"/>
         <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicken um alternative Geschwindigkeitsbegrenzungen zu aktivieren</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="207"/>
@@ -5162,24 +5164,24 @@ Changelog:
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Progress</source>
         <translation>Fortschritt</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="310"/>
+        <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorität</translation>
+        <translation>Priorität</translation>
     </message>
 </context>
 <context>
@@ -5356,80 +5358,80 @@ Changelog:
         <location filename="../transferlistdelegate.h" line="126"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="177"/>
-        <location filename="../transferlistfilterswidget.h" line="262"/>
+        <location filename="../transferlistfilterswidget.h" line="175"/>
+        <location filename="../transferlistfilterswidget.h" line="260"/>
         <source>All</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="180"/>
-        <location filename="../transferlistfilterswidget.h" line="263"/>
+        <location filename="../transferlistfilterswidget.h" line="178"/>
+        <location filename="../transferlistfilterswidget.h" line="261"/>
         <source>Downloading</source>
         <translation>Lade</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="183"/>
-        <location filename="../transferlistfilterswidget.h" line="264"/>
+        <location filename="../transferlistfilterswidget.h" line="181"/>
+        <location filename="../transferlistfilterswidget.h" line="262"/>
         <source>Completed</source>
         <translation>Vollständig</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="186"/>
-        <location filename="../transferlistfilterswidget.h" line="265"/>
+        <location filename="../transferlistfilterswidget.h" line="184"/>
+        <location filename="../transferlistfilterswidget.h" line="263"/>
         <source>Active</source>
         <translation>Aktiv</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="189"/>
-        <location filename="../transferlistfilterswidget.h" line="266"/>
+        <location filename="../transferlistfilterswidget.h" line="187"/>
+        <location filename="../transferlistfilterswidget.h" line="264"/>
         <source>Inactive</source>
         <translation>Inaktiv</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="203"/>
-        <location filename="../transferlistfilterswidget.h" line="429"/>
+        <location filename="../transferlistfilterswidget.h" line="201"/>
+        <location filename="../transferlistfilterswidget.h" line="427"/>
         <source>All labels</source>
         <translation>Alle Label</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="206"/>
-        <location filename="../transferlistfilterswidget.h" line="430"/>
+        <location filename="../transferlistfilterswidget.h" line="204"/>
+        <location filename="../transferlistfilterswidget.h" line="428"/>
         <source>Unlabeled</source>
         <translation>Ohne Label</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="293"/>
+        <location filename="../transferlistfilterswidget.h" line="291"/>
         <source>Remove label</source>
         <translation>Label entfernen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="294"/>
+        <location filename="../transferlistfilterswidget.h" line="292"/>
         <source>Add label</source>
         <translation>Label hinzufügen</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>New Label</source>
         <translation>Neues Label</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>Label:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="313"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Invalid label name</source>
         <translation>Ungültiger Labelname</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="313"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Bitte keine Sonderzeichen im Labelname verwenden.</translation>
     </message>
@@ -5466,7 +5468,7 @@ Changelog:
         <location filename="../transferlistwidget.cpp" line="81"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">ETA</translation>
+        <translation>voraussichtliche Dauer</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -5557,25 +5559,25 @@ Changelog:
         <location filename="../transferlistwidget.cpp" line="83"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hinzugefügt am</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="84"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vervollständigt am</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="85"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Download Begrenzung</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="87"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upload Begrenzung</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="765"/>
@@ -5929,17 +5931,17 @@ Changelog:
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="338"/>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="343"/>
         <source>High</source>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="348"/>
         <source>Maximum</source>
-        <translation type="unfinished">Maximum</translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="219"/>
@@ -7018,7 +7020,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete"> d</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="525"/>
+        <location filename="../misc.h" line="479"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
@@ -7029,25 +7031,25 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="554"/>
+        <location filename="../misc.h" line="508"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 Minute</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="558"/>
+        <location filename="../misc.h" line="512"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 Min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="563"/>
+        <location filename="../misc.h" line="517"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 Std %2 Min</translation>
     </message>
     <message>
-        <location filename="../misc.h" line="568"/>
+        <location filename="../misc.h" line="522"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1 Tage %2 Std %3 Min</translation>
@@ -7167,38 +7169,38 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1359"/>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis zum scannen hinzufügen</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1365"/>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis wird bereits beobachtet.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1368"/>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis existiert nicht.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1371"/>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis kann nicht gelesen werden.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1379"/>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1379"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Scan-Verzeichnis &apos;%1&apos; nicht hinzufügen: %2</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1402"/>
         <location filename="../options_imp.cpp" line="1404"/>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Export-Verzeichnis wählen</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1416"/>
@@ -8058,7 +8060,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorität</translation>
+        <translation>Priorität</translation>
     </message>
 </context>
 </TS>
