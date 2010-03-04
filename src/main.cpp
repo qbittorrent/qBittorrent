@@ -37,6 +37,7 @@
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QSplashScreen>
+#include <QPushButton>
 #include "qgnomelook.h"
 #include "GUI.h"
 #include "ico.h"
@@ -47,7 +48,6 @@
 #include "headlessloader.h"
 #endif
 
-#include <QPushButton>
 #include <QSettings>
 #include <QLocalSocket>
 #include <unistd.h>
