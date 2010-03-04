@@ -79,7 +79,7 @@ public:
   static float getPluginVersion(QString filePath) {
     QFile plugin(filePath);
     if(!plugin.exists()){
-      qDebug("%s plugin does not exist, returning 0.0", filePath.toLocal8Bit().data());
+      qDebug("%s plugin does not exist, returning 0.0", qPrintable(filePath));
       return 0.0;
     }
     if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -91,7 +91,7 @@ public:
       if(line.startsWith("#VERSION: ")){
         line = line.split(' ').last().trimmed();
         version = line.toFloat();
-        qDebug("plugin %s version: %.2f", filePath.toLocal8Bit().data(), version);
+        qDebug("plugin %s version: %.2f", qPrintable(filePath), version);
         break;
       }
     }

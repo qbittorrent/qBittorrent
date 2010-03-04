@@ -49,10 +49,10 @@ protected:
       file += QDir::separator();
     file += ".";
     struct statfs buf;
-    if(!statfs(file.toLocal8Bit().data(), &buf)) {
+    if(!statfs(file.toLocal8Bit().constData(), &buf)) {
       return (buf.f_type == (long)CIFS_MAGIC_NUMBER || buf.f_type == (long)NFS_SUPER_MAGIC);
     } else {
-      std::cerr << "Error: statfs() call failed for " << file.toLocal8Bit().data() << ". Supposing it is a local folder..." << std::endl;
+      std::cerr << "Error: statfs() call failed for " << qPrintable(file) << ". Supposing it is a local folder..." << std::endl;
       switch(errno) {
       case EACCES:
         std::cerr << "Search permission is denied for a component of the path prefix of the path" << std::endl;
@@ -148,7 +148,7 @@ public:
     } else {
 #endif
       // Normal mode
-      qDebug("FS Watching is watching %s in normal mode", path.toLocal8Bit().data());
+      qDebug("FS Watching is watching %s in normal mode", qPrintable(path));
       QFileSystemWatcher::addPath(path);
       scanLocalFolder(path);
 #ifndef Q_WS_WIN
@@ -190,7 +190,7 @@ protected slots:
     QStringList torrents;
     // Network folders scan
     foreach (const QDir &dir, watched_folders) {
-      qDebug("FSWatcher: Polling manually folder %s", qPrintable(dir.path()));
+      //qDebug("FSWatcher: Polling manually folder %s", qPrintable(dir.path()));
       addTorrentsFromDir(dir, torrents);
     }
     // Report detected torrent files

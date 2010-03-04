@@ -73,7 +73,7 @@ public:
 
   QString labelFromRow(int row) const {
     Q_ASSERT(row > 1);
-    QString label = item(row)->text();
+    const QString &label = item(row)->text();
     QStringList parts = label.split(" ");
     Q_ASSERT(parts.size() >= 2);
     parts.removeLast(); // Remove trailing number
@@ -93,9 +93,7 @@ signals:
 
 protected:
   void dragMoveEvent(QDragMoveEvent *event) {
-    //qDebug("filters, dragmoveevent");
     if(itemAt(event->pos()) && row(itemAt(event->pos())) > 0) {
-      //qDebug("Name: %s", itemAt(event->pos())->text().toLocal8Bit().data());
       if(itemHover) {
         if(itemHover != itemAt(event->pos())) {
           setItemHover(false);
@@ -249,7 +247,7 @@ public:
     QStringList label_list = settings.value("customLabels", QStringList()).toStringList();
     foreach(const QString &label, label_list) {
       customLabels.insert(label, 0);
-      qDebug("Creating label QListWidgetItem: %s", label.toLocal8Bit().data());
+      qDebug("Creating label QListWidgetItem: %s", qPrintable(label));
       QListWidgetItem *newLabel = new QListWidgetItem();
       newLabel->setText(label + " (0)");
       newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
@@ -321,9 +319,9 @@ protected slots:
   }
 
   void removeSelectedLabel() {
-    int row = labelFilters->row(labelFilters->selectedItems().first());
+    const int row = labelFilters->row(labelFilters->selectedItems().first());
     Q_ASSERT(row > 1);
-    QString label = labelFilters->labelFromRow(row);
+    const QString &label = labelFilters->labelFromRow(row);
     Q_ASSERT(customLabels.contains(label));
     customLabels.remove(label);
     transferList->removeLabelFromRows(label);
@@ -351,13 +349,13 @@ protected slots:
   }
 
   void torrentChangedLabel(QString old_label, QString new_label) {
-    qDebug("Torrent label changed from %s to %s", old_label.toLocal8Bit().data(), new_label.toLocal8Bit().data());
+    qDebug("Torrent label changed from %s to %s", qPrintable(old_label), qPrintable(new_label));
     if(!old_label.isEmpty()) {
       if(customLabels.contains(old_label)) {
-        int new_count = customLabels.value(old_label, 0) - 1;
+        const int new_count = customLabels.value(old_label, 0) - 1;
         Q_ASSERT(new_count >= 0);
         customLabels.insert(old_label, new_count);
-        int row = labelFilters->rowFromLabel(old_label);
+        const int row = labelFilters->rowFromLabel(old_label);
         Q_ASSERT(row >= 2);
         labelFilters->item(row)->setText(old_label + " ("+ QString::number(new_count) +")");
       }
@@ -366,10 +364,10 @@ protected slots:
     if(!new_label.isEmpty()) {
       if(!customLabels.contains(new_label))
         addLabel(new_label);
-      int new_count = customLabels.value(new_label, 0) + 1;
+      const int new_count = customLabels.value(new_label, 0) + 1;
       Q_ASSERT(new_count >= 1);
       customLabels.insert(new_label, new_count);
-      int row = labelFilters->rowFromLabel(new_label);
+      const int row = labelFilters->rowFromLabel(new_label);
       Q_ASSERT(row >= 2);
       labelFilters->item(row)->setText(new_label + " ("+ QString::number(new_count) +")");
       ++nb_labeled;
@@ -380,17 +378,17 @@ protected slots:
   void torrentAdded(QModelIndex index) {
     Q_ASSERT(index.isValid());
     if(!index.isValid()) return;
-    QString label = transferList->getSourceModel()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
-    qDebug("New torrent was added with label: %s", label.toLocal8Bit().data());
+    const QString &label = transferList->getSourceModel()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
+    qDebug("New torrent was added with label: %s", qPrintable(label));
     if(!label.isEmpty()) {
       if(!customLabels.contains(label)) {
         addLabel(label);
       }
       // Update label counter
       Q_ASSERT(customLabels.contains(label));
-      int new_count = customLabels.value(label, 0) + 1;
+      const int new_count = customLabels.value(label, 0) + 1;
       customLabels.insert(label, new_count);
-      int row = labelFilters->rowFromLabel(label);
+      const int row = labelFilters->rowFromLabel(label);
       qDebug("torrentAdded, Row: %d", row);
       Q_ASSERT(row >= 2);
       Q_ASSERT(labelFilters->item(row));
@@ -410,9 +408,9 @@ protected slots:
     QString label = transferList->getSourceModel()->index(index.row(), TR_LABEL).data(Qt::DisplayRole).toString().trimmed();
     if(!label.isEmpty()) {
       // Update label counter
-      int new_count = customLabels.value(label, 0) - 1;
+      const int new_count = customLabels.value(label, 0) - 1;
       customLabels.insert(label, new_count);
-      int row = labelFilters->rowFromLabel(label);
+      const int row = labelFilters->rowFromLabel(label);
       Q_ASSERT(row >= 2);
       labelFilters->item(row)->setText(label + " ("+ QString::number(new_count) +")");
       --nb_labeled;

@@ -96,7 +96,7 @@ void SearchEngine::fillCatCombobox() {
   comboCategory->addItem(full_cat_names["all"], QVariant("all"));
   QStringList supported_cat = supported_engines->supportedCategories();
   foreach(QString cat, supported_cat) {
-    qDebug("Supported category: %s", cat.toLocal8Bit().data());
+    qDebug("Supported category: %s", qPrintable(cat));
     comboCategory->addItem(full_cat_names[cat], QVariant(cat));
   }
 }
@@ -254,7 +254,7 @@ void SearchEngine::on_search_button_clicked(){
   search_stopped = false;
   params << misc::searchEngineLocation()+QDir::separator()+"nova2.py";
   params << supported_engines->enginesEnabled().join(",");
-  qDebug("Search with category: %s", selectedCategory().toLocal8Bit().data());
+  qDebug("Search with category: %s", qPrintable(selectedCategory()));
   params << selectedCategory();
   params << pattern.split(" ");
   // Update SearchEngine widgets
@@ -433,12 +433,12 @@ void SearchEngine::updateNova() {
     // Copy python classes
     if(file.endsWith(".py")) {
       if(getPluginVersion(shipped_file) > getPluginVersion(destDir+file) ) {
-        qDebug("shippped %s is more recent then local plugin, updating", file.toLocal8Bit().data());
+        qDebug("shippped %s is more recent then local plugin, updating", qPrintable(file));
         if(QFile::exists(destDir+file)) {
-          qDebug("Removing old %s", (destDir+file).toLocal8Bit().data());
+          qDebug("Removing old %s", qPrintable(destDir+file));
           QFile::remove(destDir+file);
         }
-        qDebug("%s copied to %s", shipped_file.toLocal8Bit().data(), (destDir+file).toLocal8Bit().data());
+        qDebug("%s copied to %s", qPrintable(shipped_file), qPrintable(destDir+file));
         QFile::copy(shipped_file, destDir+file);
       }
     } else {

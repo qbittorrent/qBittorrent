@@ -73,7 +73,7 @@ class UsageDisplay: public QObject {
 
 public:
   static void displayUsage(char* prg_name) {
-    std::cout << tr("Usage:").toLocal8Bit().data() << std::endl;
+    std::cout << qPrintable(tr("Usage:")) << std::endl;
     std::cout << '\t' << prg_name << " --version: " << qPrintable(tr("displays program version")) << std::endl;
 #ifndef DISABLE_GUI
     std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(tr("disable splash screen")) << std::endl;

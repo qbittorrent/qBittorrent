@@ -117,7 +117,7 @@ QString HttpConnection::translateDocument(QString data) {
       QString translation = word;
       int context_index= 0;
       do {
-        translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().data(), 0, QCoreApplication::UnicodeUTF8, 1);
+        translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().constData(), 0, QCoreApplication::UnicodeUTF8, 1);
         ++context_index;
       }while(translation == word && context_index < 12);
       //qDebug("Translation is %s", translation.toUtf8().data());
@@ -139,11 +139,11 @@ void HttpConnection::respond() {
     return;
   }
   QString auth = parser.value("Authorization");
-  qDebug("Auth: %s", auth.split(" ").first().toLocal8Bit().data());
+  qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
   if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth.toLocal8Bit(), parser.method())) {
     // Update failed attempt counter
     parent->client_failed_attempts.insert(socket->peerAddress().toString(), nb_fail+1);
-    qDebug("client IP: %s (%d failed attempts)", socket->peerAddress().toString().toLocal8Bit().data(), nb_fail);
+    qDebug("client IP: %s (%d failed attempts)", qPrintable(socket->peerAddress().toString()), nb_fail);
     // Return unauthorized header
     generator.setStatusLine(401, "Unauthorized");
     generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+parent->generateNonce()+"\", algorithm=\"MD5\", qop=\"auth\"");
@@ -225,7 +225,6 @@ void HttpConnection::respond() {
   else
     list.prepend("webui");
   url = ":/" + list.join("/");
-  //qDebug("Resource URL: %s", url.toLocal8Bit().data());
   QFile file(url);
   if(!file.open(QIODevice::ReadOnly))
   {
@@ -261,7 +260,6 @@ void HttpConnection::respondJson()
   QString string = json::toJson(manager->getEventList());
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt("js");
-  //qDebug("JSON: %s", string.toLocal8Bit().data());
   generator.setMessage(string);
   write();
 }
@@ -290,7 +288,6 @@ void HttpConnection::respondFilesPropertiesJson(QString hash) {
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt("js");
   generator.setMessage(string);
-  //qDebug("JSON: %s", string.toLocal8Bit().data());
   write();
 }
 
@@ -391,7 +388,6 @@ void HttpConnection::respondCommand(QString command)
   }
   if(command == "setPreferences") {
     QString json_str = parser.post("json");
-    //qDebug("setPreferences, json: %s", json_str.toLocal8Bit().data());
     EventManager* manager =  parent->eventManager();
     manager->setGlobalPreferences(json::fromJson(json_str));
   }

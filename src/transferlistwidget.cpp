@@ -765,7 +765,7 @@ void TransferListWidget::setDlLimitSelectedTorrents() {
   const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences::getGlobalDownloadLimit()*1024.);
   if(ok) {
     foreach(const QTorrentHandle &h, selected_torrents) {
-      qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().constData());
+      qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));
       BTSession->setDownloadLimit(h.hash(), new_limit);
     }
   }
@@ -798,7 +798,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences::getGlobalUploadLimit()*1024.);
   if(ok) {
     foreach(const QTorrentHandle &h, selected_torrents) {
-      qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().constData());
+      qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));
       BTSession->setUploadLimit(h.hash(), new_limit);
     }
   }
@@ -1296,7 +1296,7 @@ void TransferListWidget::applyLabelFilter(QString label) {
     labelFilterModel->setFilterRegExp(QRegExp("^$"));
     return;
   }
-  qDebug("Applying Label filter: %s", label.toLocal8Bit().data());
+  qDebug("Applying Label filter: %s", qPrintable(label));
   labelFilterModel->setFilterRegExp(QRegExp("^"+label+"$", Qt::CaseSensitive));
 }
 
