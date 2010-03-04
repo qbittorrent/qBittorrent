@@ -156,7 +156,7 @@ TransferListWidget::~TransferListWidget() {
   delete listDelegate;
 }
 
-void TransferListWidget::addTorrent(const QTorrentHandle& h) {
+void TransferListWidget::addTorrent(QTorrentHandle& h) {
   if(!h.is_valid()) return;
   // Check that the torrent is not already there
   if(getRowFromHash(h.hash()) >= 0) return;
@@ -235,7 +235,7 @@ void TransferListWidget::deleteTorrent(int row, bool refresh_list) {
 }
 
 // Wrapper slot for bittorrent signal
-void TransferListWidget::pauseTorrent(const QTorrentHandle &h) {
+void TransferListWidget::pauseTorrent(QTorrentHandle &h) {
   pauseTorrent(getRowFromHash(h.hash()));
 }
 
@@ -264,7 +264,7 @@ int TransferListWidget::getNbTorrents() const {
 }
 
 // Wrapper slot for bittorrent signal
-void TransferListWidget::resumeTorrent(const QTorrentHandle &h) {
+void TransferListWidget::resumeTorrent(QTorrentHandle &h) {
   resumeTorrent(getRowFromHash(h.hash()));
 }
 
@@ -283,7 +283,7 @@ void TransferListWidget::resumeTorrent(int row, bool refresh_list) {
     refreshList();
 }
 
-void TransferListWidget::updateMetadata(const QTorrentHandle &h) {
+void TransferListWidget::updateMetadata(QTorrentHandle &h) {
   const QString &hash = h.hash();
   const int row = getRowFromHash(hash);
   if(row != -1) {
@@ -440,7 +440,7 @@ int TransferListWidget::updateTorrent(int row) {
   return s;
 }
 
-void TransferListWidget::setFinished(const QTorrentHandle &h) {
+void TransferListWidget::setFinished(QTorrentHandle &h) {
   const int row = getRowFromHash(h.hash());
   try {
     if(row >= 0) {
@@ -482,7 +482,7 @@ void TransferListWidget::refreshList() {
     std::vector<torrent_handle> torrents = BTSession->getSession()->get_torrents();
     std::vector<torrent_handle>::iterator itr;
     for(itr = torrents.begin(); itr != torrents.end(); itr++) {
-      const QTorrentHandle &h(*itr);
+      QTorrentHandle h(*itr);
       if(h.is_valid() && getRowFromHash(h.hash()) < 0) {
         addTorrent(h);
       }
