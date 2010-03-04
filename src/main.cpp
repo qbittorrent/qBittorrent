@@ -31,7 +31,6 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QFile>
-#include <QPushButton>
 
 #ifndef DISABLE_GUI
 #include <QApplication>
@@ -41,6 +40,7 @@
 #include "qgnomelook.h"
 #include <QMotifStyle>
 #include <QCDEStyle>
+#include <QPushButton>
 #ifdef Q_WS_WIN
 #include <QWindowsXPStyle>
 #endif
