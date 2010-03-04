@@ -46,7 +46,7 @@
 #include "bittorrent.h"
 #include "ui_feeddownloader.h"
 
-#ifdef QT_4_5
+#if QT_VERSION >= 0x040500
 #include <QHash>
 #else
 #include <QMap>

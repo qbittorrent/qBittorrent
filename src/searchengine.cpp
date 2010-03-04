@@ -58,7 +58,7 @@ SearchEngine::SearchEngine(GUI *parent, Bittorrent *BTSession) : QWidget(parent)
   // new qCompleter to the search pattern
   startSearchHistory();
   createCompleter();
-#ifdef QT_4_5
+#if QT_VERSION >= 0x040500
   tabWidget->setTabsClosable(true);
   connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 #else
@@ -119,7 +119,7 @@ SearchEngine::~SearchEngine(){
     downloader->waitForFinished();
     delete downloader;
   }
-#ifndef QT_4_5
+#if QT_VERSION < 0x040500
   delete closeTab_button;
 #endif
   delete searchTimeout;
@@ -234,7 +234,7 @@ void SearchEngine::on_search_button_clicked(){
   all_tab.append(currentSearchTab);
   tabWidget->addTab(currentSearchTab, pattern);
   tabWidget->setCurrentWidget(currentSearchTab);
-#ifndef QT_4_5
+#if QT_VERSION < 0x040500
   closeTab_button->setEnabled(true);
 #endif
   // if the pattern is not in the pattern
@@ -531,7 +531,7 @@ void SearchEngine::appendSearchResult(QString line){
   download_button->setEnabled(true);
 }
 
-#ifdef QT_4_5
+#if QT_VERSION >= 0x040500
 void SearchEngine::closeTab(int index) {
   if(index == tabWidget->indexOf(currentSearchTab)) {
     qDebug("Deleted current search Tab");

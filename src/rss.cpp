@@ -31,12 +31,12 @@
 #include "rss.h"
 #include "preferences.h"
 
-#ifdef QT_4_5
-#include <QHash>
-#else
+#if QT_VERSION < 0x040500
 #include <QMap>
 #define QHash QMap
 #define toHash toMap
+#else
+#include <QHash>
 #endif
 
 /** RssFolder **/

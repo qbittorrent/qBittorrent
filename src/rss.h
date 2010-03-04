@@ -49,7 +49,7 @@
 #include "bittorrent.h"
 #include "downloadthread.h"
 
-#ifdef QT_4_5
+#if QT_VERSION >= 0x040500
 #include <QHash>
 #else
 #include <QMap>
