@@ -438,7 +438,7 @@ public:
 
   static QString magnetUriToName(QString magnet_uri) {
     QString name = "";
-    const QRegExp regHex("dn=([^&]+)");
+    QRegExp regHex("dn=([^&]+)");
     const int pos = regHex.indexIn(magnet_uri);
     if(pos > -1) {
       const QString &found = regHex.cap(1);
@@ -450,7 +450,7 @@ public:
 
   static QString magnetUriToHash(QString magnet_uri) {
     QString hash = "";
-    const QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
+    QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
     // Hex
     int pos = regHex.indexIn(magnet_uri);
     if(pos > -1) {
@@ -462,7 +462,7 @@ public:
       }
     }
     // Base 32
-    const QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
+    QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
     pos = regBase32.indexIn(magnet_uri);
     if(pos > -1) {
       const QString &found = regBase32.cap(1);
