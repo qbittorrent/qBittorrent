@@ -330,7 +330,7 @@ void PropertiesWidget::loadDynamicData() {
       else
         lbl_connections->setText(QString::number(h.num_connections()));
       // Update ratio info
-      double ratio = BTSession->getRealRatio(h.hash());
+      const double ratio = BTSession->getRealRatio(h.hash());
       if(ratio > 100.)
         shareRatio->setText(QString::fromUtf8("∞"));
       else
@@ -387,10 +387,10 @@ void PropertiesWidget::loadDynamicData() {
 void PropertiesWidget::loadUrlSeeds(){
   listWebSeeds->clear();
   qDebug("Loading URL seeds");
-  QStringList hc_seeds = h.url_seeds();
+  const QStringList &hc_seeds = h.url_seeds();
   // Add url seeds
   foreach(const QString &hc_seed, hc_seeds){
-    qDebug("Loading URL seed: %s", hc_seed.toLocal8Bit().data());
+    qDebug("Loading URL seed: %s", qPrintable(hc_seed));
     new QListWidgetItem(hc_seed, listWebSeeds);
   }
 }
@@ -471,10 +471,10 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   if(!h.is_valid() || !h.has_metadata()) return;
   if(PropListModel->getType(index) == TFILE) {
     int i = PropListModel->getFileIndex(index);
-    QDir saveDir(h.save_path());
-    QString filename = misc::toQString(h.get_torrent_info().file_at(i).path.string());
-    QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open file at %s", file_path.toLocal8Bit().data());
+    const QDir &saveDir(h.save_path());
+    const QString &filename = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+    const QString &file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    qDebug("Trying to open file at %s", qPrintable(file_path));
 #ifdef LIBTORRENT_0_15
     // Flush data
     h.flush_cache();
@@ -492,10 +492,10 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
       path_items.prepend(parent.data().toString());
       parent = PropListModel->parent(parent);
     }
-    QDir saveDir(h.save_path());
-    QString filename = path_items.join(QDir::separator());
-    QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open folder at %s", file_path.toLocal8Bit().data());
+    const QDir &saveDir(h.save_path());
+    const QString &filename = path_items.join(QDir::separator());
+    const QString &file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    qDebug("Trying to open folder at %s", qPrintable(file_path));
 #ifdef LIBTORRENT_0_15
     // Flush data
     h.flush_cache();
@@ -509,7 +509,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&){
   QMenu myFilesLlistMenu;
-  QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
+  const QModelIndexList &selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
   if(selectedRows.size() == 1) {
     actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
@@ -522,7 +522,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   subMenu.addAction(actionMaximum);
   myFilesLlistMenu.addMenu(&subMenu);
   // Call menu
-  QAction *act = myFilesLlistMenu.exec(QCursor::pos());
+  const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
   if(act) {
     if(act == actRename) {
       renameSelectedFile();
@@ -547,9 +547,9 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
 }
 
 void PropertiesWidget::renameSelectedFile() {
-  QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
+  const QModelIndexList &selectedIndexes = filesList->selectionModel()->selectedRows(0);
   Q_ASSERT(selectedIndexes.size() == 1);
-  QModelIndex index = selectedIndexes.first();
+  const QModelIndex &index = selectedIndexes.first();
   // Ask for new name
   bool ok;
   QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
@@ -564,16 +564,16 @@ void PropertiesWidget::renameSelectedFile() {
     }
     if(PropListModel->getType(index)==TFILE) {
       // File renaming
-      int file_index = PropListModel->getFileIndex(index);
+      const int file_index = PropListModel->getFileIndex(index);
       if(!h.is_valid() || !h.has_metadata()) return;
-      QString old_name = misc::toQString(h.get_torrent_info().file_at(file_index).path.string());
+      const QString &old_name = misc::toQString(h.get_torrent_info().file_at(file_index).path.string());
       if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
         new_name_last += ".!qB";
       }
       QStringList path_items = old_name.split(QDir::separator());
       path_items.removeLast();
       path_items << new_name_last;
-      QString new_name = path_items.join(QDir::separator());
+      const QString &new_name = path_items.join(QDir::separator());
       if(old_name == new_name) {
         qDebug("Name did not change");
         return;
@@ -593,8 +593,8 @@ void PropertiesWidget::renameSelectedFile() {
             return;
           }
         }
-        bool force_recheck = QFile::exists(h.save_path()+QDir::separator()+new_name);
-        qDebug("Renaming %s to %s", old_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+        const bool force_recheck = QFile::exists(h.save_path()+QDir::separator()+new_name);
+        qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
         h.rename_file(file_index, new_name);
         // Force recheck
         if(force_recheck) h.force_recheck();
@@ -611,15 +611,15 @@ void PropertiesWidget::renameSelectedFile() {
           path_items.prepend(parent.data().toString());
           parent = PropListModel->parent(parent);
         }
-        QString old_path = path_items.join(QDir::separator());
+        const QString &old_path = path_items.join(QDir::separator());
         path_items.removeLast();
         path_items << new_name_last;
         QString new_path = path_items.join(QDir::separator());
         if(!new_path.endsWith(QDir::separator())) new_path += QDir::separator();
         // Check for overwriting
-        int num_files = h.num_files();
+        const int num_files = h.num_files();
         for(int i=0; i<num_files; ++i) {
-          QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+          const QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
 #ifdef Q_WS_WIN
           if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
 #else
@@ -634,13 +634,13 @@ void PropertiesWidget::renameSelectedFile() {
           bool force_recheck = false;
           // Replace path in all files
           for(int i=0; i<num_files; ++i) {
-            QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+            const QString &current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
             if(current_name.startsWith(old_path)) {
               QString new_name = current_name;
               new_name.replace(0, old_path.length(), new_path);
               if(!force_recheck && QFile::exists(h.save_path()+QDir::separator()+new_name))
                 force_recheck = true;
-              qDebug("Rename %s to %s", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+              qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
               h.rename_file(i, new_name);
             }
           }
@@ -649,7 +649,7 @@ void PropertiesWidget::renameSelectedFile() {
           // Rename folder in torrent files model too
           PropListModel->setData(index, new_name_last);
           // Remove old folder
-          QDir old_folder(h.save_path()+QDir::separator()+old_path);
+          const QDir old_folder(h.save_path()+QDir::separator()+old_path);
           int timeout = 10;
           while(!misc::removeEmptyTree(old_folder.absolutePath()) && timeout > 0) {
             SleeperThread::msleep(100);
@@ -662,11 +662,11 @@ void PropertiesWidget::renameSelectedFile() {
     void PropertiesWidget::askWebSeed(){
       bool ok;
       // Ask user for a new url seed
-      QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
+      const QString &url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
                                                tr("New url seed:"), QLineEdit::Normal,
                                                QString::fromUtf8("http://www."), &ok);
       if(!ok) return;
-      qDebug("Adding %s web seed", url_seed.toLocal8Bit().data());
+      qDebug("Adding %s web seed", qPrintable(url_seed));
       if(!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
         QMessageBox::warning(this, tr("qBittorrent"),
                              tr("This url seed is already in the list."),
@@ -679,9 +679,9 @@ void PropertiesWidget::renameSelectedFile() {
     }
 
     void PropertiesWidget::deleteSelectedUrlSeeds(){
-      QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
+      const QList<QListWidgetItem *> &selectedItems = listWebSeeds->selectedItems();
       bool change = false;
-      foreach(QListWidgetItem *item, selectedItems){
+      foreach(const QListWidgetItem *item, selectedItems){
         QString url_seed = item->text();
         h.remove_url_seed(url_seed);
         change = true;
@@ -694,7 +694,7 @@ void PropertiesWidget::renameSelectedFile() {
 
     bool PropertiesWidget::applyPriorities() {
       qDebug("Saving pieces priorities");
-      std::vector<int> priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
+      const std::vector<int> &priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
       bool first_last_piece_first = false;
       // Save first/last piece first option state
       if(h.first_last_piece_first())
@@ -712,7 +712,7 @@ void PropertiesWidget::renameSelectedFile() {
     void PropertiesWidget::on_changeSavePathButton_clicked() {
       if(!h.is_valid()) return;
       QString dir;
-      QDir saveDir(h.save_path());
+      const QDir saveDir(h.save_path());
       if(saveDir.exists()){
         dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
       }else{

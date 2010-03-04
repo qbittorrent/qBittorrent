@@ -69,7 +69,7 @@ RssFile::FileType RssFolder::getType() const {
 
 void RssFolder::refreshAll(){
   qDebug("Refreshing all rss feeds");
-  QList<RssFile*> items = this->values();
+  const QList<RssFile*> &items = this->values();
   for(int i=0; i<items.size(); ++i) {
     //foreach(RssFile *item, *this){
     RssFile *item = items.at(i);
