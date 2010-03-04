@@ -477,12 +477,12 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1007"/>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Remarque : Les nouveaux trackers ont été ajoutés au torrent existant.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1020"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Remarque : Les nouvelles sources HTTP sont été ajoutées au torrent existant.</translation>
     </message>
     <message>
         <source>However, new trackers were added to the existing torrent.</source>
@@ -543,7 +543,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1933"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une erreur E/S s&apos;est produite, &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2044"/>
@@ -3032,13 +3032,13 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <location filename="../httpconnection.cpp" line="306"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">R : %1/s - T : %2</translation>
+        <translation>R : %1/s - T : %2</translation>
     </message>
     <message>
         <location filename="../httpconnection.cpp" line="307"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">E : %1/s - T : %2</translation>
+        <translation>E : %1/s - T : %2</translation>
     </message>
 </context>
 <context>
@@ -4129,17 +4129,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="701"/>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger les .torrent depuis ces dossiers :</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="763"/>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter dossier...</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="773"/>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer dossier</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1891"/>
@@ -4588,7 +4588,7 @@ Comment:</source>
     <message>
         <location filename="../propertieswidget.cpp" line="519"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
     <message>
         <source>Ignored</source>
@@ -4597,17 +4597,17 @@ Comment:</source>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1007"/>
         <source>Normal</source>
-        <translation type="unfinished">Normale</translation>
+        <translation>Normale</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1017"/>
         <source>Maximum</source>
-        <translation type="unfinished">Maximale</translation>
+        <translation>Maximale</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1012"/>
         <source>High</source>
-        <translation type="unfinished">Haute</translation>
+        <translation>Haute</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="313"/>
@@ -5082,12 +5082,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="94"/>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire surveillé</translation>
     </message>
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Télécharger ici</translation>
     </message>
 </context>
 <context>
@@ -6261,17 +6261,17 @@ Changements:
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="338"/>
         <source>Normal</source>
-        <translation type="unfinished">Normale</translation>
+        <translation>Normale</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="343"/>
         <source>High</source>
-        <translation type="unfinished">Haute</translation>
+        <translation>Haute</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="348"/>
         <source>Maximum</source>
-        <translation type="unfinished">Maximale</translation>
+        <translation>Maximale</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="219"/>
@@ -7539,38 +7539,38 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1359"/>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un dossier à surveiller</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1365"/>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce dossier est déjà surveillé.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1368"/>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce dossier n&apos;existe pas.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1371"/>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce dossier n&apos;est pas accessible en lecture.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1379"/>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Echec</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1379"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;ajouter le dossier surveillé &apos;%1&apos; : %2</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1402"/>
         <location filename="../options_imp.cpp" line="1404"/>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un dossier pour l&apos;export</translation>
     </message>
     <message>
         <source>Choose an ipfilter.dat file</source>
@@ -8435,7 +8435,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
 </context>
 </TS>
