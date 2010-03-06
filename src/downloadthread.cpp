@@ -117,7 +117,7 @@ void downloadThread::applyProxySettings() {
     QString IP = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
     proxy.setHostName(IP);
     QString port = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toString();
-    qDebug("Using proxy: %s", qPrintable(IP+QString(":")+port));
+    qDebug("Using proxy: %s", qPrintable(IP));
     proxy.setPort(port.toUShort());
     // Default proxy type is HTTP, we must change if it is SOCKS5
     if(intValue == SOCKS5 || intValue == SOCKS5_PW) {

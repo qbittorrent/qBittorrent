@@ -329,7 +329,8 @@ public:
 #ifndef Q_WS_WIN
     unsigned long long available;
     struct statfs stats;
-    const int ret = statfs ((dir_path.path()+"/.").toLocal8Bit().data(), &stats) ;
+    const QString &statfs_path = dir_path.path()+"/.";
+    const int ret = statfs (qPrintable(statfs_path), &stats) ;
     if(ret == 0) {
       available = ((unsigned long long)stats.f_bavail) *
                   ((unsigned long long)stats.f_bsize) ;

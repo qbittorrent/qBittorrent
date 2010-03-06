@@ -293,7 +293,7 @@ void PropertiesWidget::saveSettings() {
     sizes = slideSizes;
   qDebug("Sizes: %d", sizes.size());
   if(sizes.size() == 2) {
-    settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString::number(sizes.first())+','+QString::number(sizes.last()));
+    settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
   }
 }
 
@@ -480,7 +480,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     h.flush_cache();
 #endif
     if(QFile::exists(file_path))
-      QDesktopServices::openUrl("file://"+file_path);
+      QDesktopServices::openUrl(QUrl("file://"+file_path));
     else
       QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
   } else {
@@ -501,7 +501,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     h.flush_cache();
 #endif
     if(QFile::exists(file_path))
-      QDesktopServices::openUrl("file://"+file_path);
+      QDesktopServices::openUrl(QUrl("file://"+file_path));
     else
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
   }

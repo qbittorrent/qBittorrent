@@ -432,14 +432,15 @@ void SearchEngine::updateNova() {
     QString shipped_file = shipped_subDir.path()+"/"+file;
     // Copy python classes
     if(file.endsWith(".py")) {
-      if(getPluginVersion(shipped_file) > getPluginVersion(destDir+file) ) {
+      const QString &dest_file = destDir+file;
+      if(getPluginVersion(shipped_file) > getPluginVersion(dest_file) ) {
         qDebug("shippped %s is more recent then local plugin, updating", qPrintable(file));
-        if(QFile::exists(destDir+file)) {
-          qDebug("Removing old %s", qPrintable(destDir+file));
-          QFile::remove(destDir+file);
+        if(QFile::exists(dest_file)) {
+          qDebug("Removing old %s", qPrintable(dest_file));
+          QFile::remove(dest_file);
         }
-        qDebug("%s copied to %s", qPrintable(shipped_file), qPrintable(destDir+file));
-        QFile::copy(shipped_file, destDir+file);
+        qDebug("%s copied to %s", qPrintable(shipped_file), qPrintable(dest_file));
+        QFile::copy(shipped_file, dest_file);
       }
     } else {
       // Copy icons

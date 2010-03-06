@@ -822,8 +822,9 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   //Getting fast resume data if existing
   std::vector<char> buf;
   if(resumed) {
-    qDebug("Trying to load fastresume data: %s", qPrintable(torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")));
-    if (load_file((torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")).toLocal8Bit().constData(), buf) == 0) {
+    const QString &fastresume_path = torrentBackup.path()+QDir::separator()+hash+QString(".fastresume");
+    qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
+    if (load_file(fastresume_path.toLocal8Bit().constData(), buf) == 0) {
       fastResume = true;
       p.resume_data = &buf;
       qDebug("Successfuly loaded");
@@ -1030,8 +1031,9 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   //Getting fast resume data if existing
   std::vector<char> buf;
   if(resumed) {
-    qDebug("Trying to load fastresume data: %s", qPrintable(torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")));
-    if (load_file((torrentBackup.path()+QDir::separator()+hash+QString(".fastresume")).toLocal8Bit().constData(), buf) == 0) {
+    const QString &fastresume_path = torrentBackup.path()+QDir::separator()+hash+QString(".fastresume");
+    qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
+    if (load_file(fastresume_path.toLocal8Bit().constData(), buf) == 0) {
       fastResume = true;
       p.resume_data = &buf;
       qDebug("Successfuly loaded");
@@ -1315,7 +1317,8 @@ void Bittorrent::enableLSD(bool b) {
 }
 
 void Bittorrent::loadSessionState() {
-  boost::filesystem::ifstream ses_state_file((misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state")).toLocal8Bit().constData()
+  const QString &state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+  boost::filesystem::ifstream ses_state_file(state_path.toLocal8Bit().constData()
                                              , std::ios_base::binary);
   ses_state_file.unsetf(std::ios_base::skipws);
   s->load_state(bdecode(
@@ -1326,7 +1329,8 @@ void Bittorrent::loadSessionState() {
 void Bittorrent::saveSessionState() {
   qDebug("Saving session state to disk...");
   entry session_state = s->state();
-  boost::filesystem::ofstream out((misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state")).toLocal8Bit().constData()
+  const QString &state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+  boost::filesystem::ofstream out(state_path.toLocal8Bit().constData()
                                   , std::ios_base::binary);
   out.unsetf(std::ios_base::skipws);
   bencode(std::ostream_iterator<char>(out), session_state);
@@ -2217,7 +2221,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     if(DHTEnabled) {
       try{
         entry dht_state = s->dht_state();
-        boost::filesystem::ofstream out((misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state")).toLocal8Bit().constData(), std::ios_base::binary);
+        const QString &dht_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
+        boost::filesystem::ofstream out(dht_path.toLocal8Bit().constData(), std::ios_base::binary);
         out.unsetf(std::ios_base::skipws);
         bencode(std::ostream_iterator<char>(out), dht_state);
         qDebug("DHT entry saved");

@@ -172,19 +172,19 @@ public:
     vLayout->setSpacing(2);
     // Add status filters
     QListWidgetItem *all = new QListWidgetItem(statusFilters);
-    all->setData(Qt::DisplayRole, tr("All") + " (0)");
+    all->setData(Qt::DisplayRole, QVariant(tr("All") + " (0)"));
     all->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filterall.png"));
     QListWidgetItem *downloading = new QListWidgetItem(statusFilters);
-    downloading->setData(Qt::DisplayRole, tr("Downloading") + " (0)");
+    downloading->setData(Qt::DisplayRole, QVariant(tr("Downloading") + " (0)"));
     downloading->setData(Qt::DecorationRole, QIcon(":/Icons/skin/downloading.png"));
     QListWidgetItem *completed = new QListWidgetItem(statusFilters);
-    completed->setData(Qt::DisplayRole, tr("Completed") + " (0)");
+    completed->setData(Qt::DisplayRole, QVariant(tr("Completed") + " (0)"));
     completed->setData(Qt::DecorationRole, QIcon(":/Icons/skin/uploading.png"));
     QListWidgetItem *active = new QListWidgetItem(statusFilters);
-    active->setData(Qt::DisplayRole, tr("Active") + " (0)");
+    active->setData(Qt::DisplayRole, QVariant(tr("Active") + " (0)"));
     active->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filteractive.png"));
     QListWidgetItem *inactive = new QListWidgetItem(statusFilters);
-    inactive->setData(Qt::DisplayRole, tr("Inactive") + " (0)");
+    inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive") + " (0)"));
     inactive->setData(Qt::DecorationRole, QIcon(":/Icons/skin/filterinactive.png"));
 
     // SIGNAL/SLOT
@@ -198,10 +198,10 @@ public:
 
     // Add Label filters
     QListWidgetItem *allLabels = new QListWidgetItem(labelFilters);
-    allLabels->setData(Qt::DisplayRole, tr("All labels") + " (0)");
+    allLabels->setData(Qt::DisplayRole, QVariant(tr("All labels") + " (0)"));
     allLabels->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     QListWidgetItem *noLabel = new QListWidgetItem(labelFilters);
-    noLabel->setData(Qt::DisplayRole, tr("Unlabeled") + " (0)");
+    noLabel->setData(Qt::DisplayRole, QVariant(tr("Unlabeled") + " (0)"));
     noLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
 
     // Load settings
@@ -257,11 +257,11 @@ public:
 
 protected slots:
   void updateTorrentNumbers(uint nb_downloading, uint nb_seeding, uint nb_active, uint nb_inactive) {
-    statusFilters->item(FILTER_ALL)->setData(Qt::DisplayRole, tr("All")+" ("+QString::number(nb_active+nb_inactive)+")");
-    statusFilters->item(FILTER_DOWNLOADING)->setData(Qt::DisplayRole, tr("Downloading")+" ("+QString::number(nb_downloading)+")");
-    statusFilters->item(FILTER_COMPLETED)->setData(Qt::DisplayRole, tr("Completed")+" ("+QString::number(nb_seeding)+")");
-    statusFilters->item(FILTER_ACTIVE)->setData(Qt::DisplayRole, tr("Active")+" ("+QString::number(nb_active)+")");
-    statusFilters->item(FILTER_INACTIVE)->setData(Qt::DisplayRole, tr("Inactive")+" ("+QString::number(nb_inactive)+")");
+    statusFilters->item(FILTER_ALL)->setData(Qt::DisplayRole, QVariant(tr("All")+" ("+QString::number(nb_active+nb_inactive)+")"));
+    statusFilters->item(FILTER_DOWNLOADING)->setData(Qt::DisplayRole, QVariant(tr("Downloading")+" ("+QString::number(nb_downloading)+")"));
+    statusFilters->item(FILTER_COMPLETED)->setData(Qt::DisplayRole, QVariant(tr("Completed")+" ("+QString::number(nb_seeding)+")"));
+    statusFilters->item(FILTER_ACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Active")+" ("+QString::number(nb_active)+")"));
+    statusFilters->item(FILTER_INACTIVE)->setData(Qt::DisplayRole, QVariant(tr("Inactive")+" ("+QString::number(nb_inactive)+")"));
   }
 
   void torrentDropped(int row) {

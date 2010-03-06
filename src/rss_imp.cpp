@@ -405,7 +405,7 @@ void RSSImp::fillFeedsList(QTreeWidgetItem *parent, RssFolder *rss_parent) {
       item = new QTreeWidgetItem(listStreams);
     else
       item = new QTreeWidgetItem(parent);
-    item->setData(0, Qt::DisplayRole, rss_child->getName()+ QString::fromUtf8("  (")+QString::number(rss_child->getNbUnRead(), 10)+QString(")"));
+    item->setData(0, Qt::DisplayRole, QVariant(rss_child->getName()+ QString::fromUtf8("  (")+QString::number(rss_child->getNbUnRead(), 10)+QString(")")));
     // Notify TreeWidget of item addition
     listStreams->itemAdded(item, rss_child);
     // Set Icon

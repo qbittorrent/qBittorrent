@@ -295,7 +295,7 @@ void TransferListWidget::updateMetadata(QTorrentHandle &h) {
 }
 
 void TransferListWidget::previewFile(QString filePath) {
-  QDesktopServices::openUrl(QString("file://")+filePath);
+  QDesktopServices::openUrl(QUrl(QString("file://")+filePath));
 }
 
 int TransferListWidget::updateTorrent(int row) {
@@ -584,9 +584,9 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
     break;
   case OPEN_DEST:
     if(h.has_metadata())
-      QDesktopServices::openUrl("file://" + h.root_path());
+      QDesktopServices::openUrl(QUrl("file://" + h.root_path()));
     else
-      QDesktopServices::openUrl("file://" + h.save_path());
+      QDesktopServices::openUrl(QUrl("file://" + h.save_path()));
     break;
   }
 }
@@ -693,7 +693,7 @@ void TransferListWidget::buySelectedTorrents() const {
   foreach(const QString &hash, hashes) {
     const QTorrentHandle &h = BTSession->getTorrentHandle(hash);
     if(h.is_valid())
-      QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+h.hash()+"&n="+h.name()+"&cid=33");
+      QDesktopServices::openUrl(QUrl("http://match.sharemonkey.com/?info_hash="+h.hash()+"&n="+h.name()+"&cid=33"));
   }
 }
 
@@ -1257,7 +1257,7 @@ void TransferListWidget::saveLastSortedColumn() {
   else
     sortOrderLetter = QString::fromUtf8("d");
   const int index = header()->sortIndicatorSection();
-  settings.setValue(QString::fromUtf8("TransferListSortedCol"), QString::number(index)+sortOrderLetter);
+  settings.setValue(QString::fromUtf8("TransferListSortedCol"), QVariant(QString::number(index)+sortOrderLetter));
 }
 
 void TransferListWidget::loadLastSortedColumn() {
