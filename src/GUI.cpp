@@ -829,7 +829,7 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
 #ifdef WITH_LIBNOTIFY
     if (notify_init ("summary-body")) {
       NotifyNotification* notification;
-      notification = notify_notification_new (title.toLocal8Bit().data(), msg.toLocal8Bit().data(), "qbittorrent", 0);
+      notification = notify_notification_new (qPrintable(title), qPrintable(msg), "qbittorrent", 0);
       gboolean success = notify_notification_show (notification, NULL);
       g_object_unref(G_OBJECT(notification));
       notify_uninit ();
