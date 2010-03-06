@@ -170,68 +170,68 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../advancedsettings.h" line="28"/>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>Характеристика</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="28"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Стойност</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="73"/>
         <source>Disk write cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер на записан дисков кеш</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="79"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>МБ</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="82"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Изходен порт (Мин) [0: Изключен]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="90"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Изходен порт (Макс) [0: Изключен]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="110"/>
         <source>Recheck torrents on completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Провери торентите при завършване</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="116"/>
         <source>Transfer list refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Интервал на обновяване на списъка за трансфер</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="122"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="125"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Намери държавата на двойката (GeoIP)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="131"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished">Намери имената на получаващата двойка</translation>
+        <translation>Намери имената на получаващата двойка</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="98"/>
         <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Игнорирай ограниченията за сваляне на локалната мрежа </translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="104"/>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Включи в ограниченията за сваляне пиковете на TCP/IP</translation>
     </message>
 </context>
 <context>
@@ -414,12 +414,12 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1007"/>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Внимание: нови тракери бяха добавени към съществуващия торент.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1020"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Внимание: нови даващи URL бяха добавени към съществуващия торент.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1476"/>
@@ -467,12 +467,12 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <location filename="../bittorrent.cpp" line="1934"/>
         <location filename="../bittorrent.cpp" line="2039"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Причина: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1933"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Намерена грешка В/И, &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2044"/>
@@ -2014,12 +2014,12 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="901"/>
         <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Ползвай нормални ограничения за скорост</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="904"/>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Ползвай други ограничения за скорост</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -2873,19 +2873,19 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../httpconnection.cpp" line="137"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вашия IP адрес беше забранен след многократни неуспешни опити за удостоверяване.</translation>
     </message>
     <message>
         <location filename="../httpconnection.cpp" line="306"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Св: %1/с - Пр: %2</translation>
+        <translation>Св: %1/с - Пр: %2</translation>
     </message>
     <message>
         <location filename="../httpconnection.cpp" line="307"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Ка: %1/с - Пр: %2</translation>
+        <translation>Ка: %1/с - Пр: %2</translation>
     </message>
 </context>
 <context>
@@ -3031,12 +3031,14 @@ You probably knew this, so we won&apos;t tell you again.</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent е програма за обмяна на файлове. Когато пускате един торент, данните му ще са достъпни за останалите по подразбиране. Всякакво съдържание което споделяте е за ваша отговорност.
+
+Други съобщения няма да се правят.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="98"/>
         <source>Press %1 key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Натисни %1 клавиш за потвърждение и продължение...</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="109"/>
@@ -3185,7 +3187,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Ползвай други ограничения за скорост</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -3377,7 +3379,7 @@ No further notices will be issued.</source>
         <location filename="../peerlistdelegate.h" line="60"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/с</translation>
+        <translation>/с</translation>
     </message>
 </context>
 <context>
@@ -3520,7 +3522,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="146"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Скорост</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="155"/>
@@ -3551,7 +3553,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="224"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Разширено </translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="264"/>
@@ -3737,7 +3739,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="816"/>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Копирай .торент файловете в:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="862"/>
@@ -3882,43 +3884,43 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1379"/>
         <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Общи ограничения за скоост</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1514"/>
         <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Разширени ограничения за скорост</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1630"/>
         <source>Scheduled times:</source>
-        <translation type="unfinished"></translation>
+        <translation>Планирано време:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1657"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>към</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1701"/>
         <source>On days:</source>
-        <translation type="unfinished"></translation>
+        <translation>В дни:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1712"/>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>Всеки ден</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1717"/>
         <source>Week days</source>
-        <translation type="unfinished"></translation>
+        <translation>Работни дни</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1722"/>
         <source>Week ends</source>
-        <translation type="unfinished"></translation>
+        <translation>Почивни дни</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1784"/>
@@ -4025,17 +4027,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="701"/>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Провери Папки за .торент файлове:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="763"/>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Добави папка...</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="773"/>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Премахни папка</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1935"/>
@@ -4187,28 +4189,28 @@ QGroupBox {
     <message>
         <location filename="../proplistdelegate.h" line="89"/>
         <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Не свалени</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="98"/>
         <location filename="../proplistdelegate.h" line="148"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Нормален</translation>
+        <translation>Нормален</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="92"/>
         <location filename="../proplistdelegate.h" line="149"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Висок</translation>
+        <translation>Висок</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="95"/>
         <location filename="../proplistdelegate.h" line="150"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">Максимален</translation>
+        <translation>Максимален</translation>
     </message>
 </context>
 <context>
@@ -4375,7 +4377,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="519"/>
         <source>Priority</source>
-        <translation type="unfinished">Предимство</translation>
+        <translation>Предимство</translation>
     </message>
     <message>
         <source>Ignored</source>
@@ -4384,17 +4386,17 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="1007"/>
         <source>Normal</source>
-        <translation type="unfinished">Нормален</translation>
+        <translation>Нормален</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1017"/>
         <source>Maximum</source>
-        <translation type="unfinished">Максимален</translation>
+        <translation>Максимален</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1012"/>
         <source>High</source>
-        <translation type="unfinished">Висок</translation>
+        <translation>Висок</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="313"/>
@@ -4845,12 +4847,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="94"/>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Наблюдавана Папка</translation>
     </message>
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Свали тук</translation>
     </message>
 </context>
 <context>
@@ -5024,7 +5026,7 @@ Changelog:
         <location filename="../searchengine.cpp" line="216"/>
         <location filename="../searchengine.cpp" line="217"/>
         <source>Search</source>
-        <translation type="unfinished">Търси</translation>
+        <translation>Търси</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="465"/>
@@ -5168,12 +5170,12 @@ Changelog:
     <message>
         <location filename="../statusbar.h" line="194"/>
         <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Щракни за изключване на други ограничения за скорост</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="197"/>
         <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Щракни за включване на други ограничения за скорост</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="207"/>
@@ -5206,7 +5208,7 @@ Changelog:
     <message>
         <location filename="../torrentfilesmodel.h" line="308"/>
         <source>Priority</source>
-        <translation type="unfinished">Предимство</translation>
+        <translation>Предимство</translation>
     </message>
 </context>
 <context>
@@ -5383,7 +5385,7 @@ Changelog:
         <location filename="../transferlistdelegate.h" line="126"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>KiB/с</translation>
     </message>
 </context>
 <context>
@@ -5612,25 +5614,25 @@ Changelog:
         <location filename="../transferlistwidget.cpp" line="83"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Добавен на</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="84"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Завършен на</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="85"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лимит сваляне</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="87"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лимит качване</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="765"/>
@@ -5984,17 +5986,17 @@ Changelog:
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="338"/>
         <source>Normal</source>
-        <translation type="unfinished">Нормален</translation>
+        <translation>Нормален</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="343"/>
         <source>High</source>
-        <translation type="unfinished">Висок</translation>
+        <translation>Висок</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="348"/>
         <source>Maximum</source>
-        <translation type="unfinished">Максимален</translation>
+        <translation>Максимален</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="219"/>
@@ -7257,38 +7259,38 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../options_imp.cpp" line="1359"/>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Добави директория за сканиране</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1365"/>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Папката вече се наблюдава.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1368"/>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Папката не съществува.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1371"/>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Папката не се чете.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1379"/>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1379"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при добавяне Папка за Сканиране &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1402"/>
         <location filename="../options_imp.cpp" line="1404"/>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Изберете Директория за Експорт</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1416"/>
@@ -8112,7 +8114,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Priority</source>
-        <translation type="unfinished">Предимство</translation>
+        <translation>Предимство</translation>
     </message>
 </context>
 </TS>
