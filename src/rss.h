@@ -108,7 +108,7 @@ public:
   virtual QList<RssItem*> getNewsList() const = 0;
   virtual QList<RssItem*> getUnreadNewsList() const = 0;
   QStringList getPath() const {
-    QStringList path;
+    QStringList path = "";
     if(getParent()) {
       path = ((RssFile*)getParent())->getPath();
       path.append(getID());
