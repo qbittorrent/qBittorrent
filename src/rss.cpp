@@ -364,9 +364,11 @@ void RssManager::saveStreamList(){
   const QList<RssStream*> &streams = getAllFeeds();
   foreach(const RssStream *stream, streams) {
     const QString &stream_path = stream->getPath().join("\\");
-    qDebug("Saving stream path: %s", qPrintable(stream_path));
-    streamsUrl << stream_path;
-    aliases << stream->getName();
+    if(!stream_path.isNull()) {
+      qDebug("Saving stream path: %s", qPrintable(stream_path));
+      streamsUrl << stream_path;
+      aliases << stream->getName();
+    }
   }
   QSettings settings("qBittorrent", "qBittorrent");
   settings.beginGroup("Rss");
