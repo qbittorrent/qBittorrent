@@ -28,15 +28,16 @@ public:
     setColumnCount(1);
     QTreeWidgetItem *___qtreewidgetitem = headerItem();
     ___qtreewidgetitem->setText(0, QApplication::translate("RSS", "RSS feeds", 0, QApplication::UnicodeUTF8));
-    connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(updateCurrentFeed(QTreeWidgetItem*)));
     unread_item = new QTreeWidgetItem(this);
     unread_item->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->getNbUnRead(), 10)+ QString(")"));
     unread_item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/mail-folder-inbox.png")));
     itemAdded(unread_item, rssmanager);
+    connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(updateCurrentFeed(QTreeWidgetItem*)));
     setCurrentItem(unread_item);
   }
 
   ~FeedList() {
+    disconnect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(updateCurrentFeed(QTreeWidgetItem*)));
     delete unread_item;
   }
 
@@ -121,19 +122,19 @@ public:
   }
 
   RssFile* getRSSItem(QTreeWidgetItem *item) const {
-    return mapping[item];
+    return mapping.value(item, 0);
   }
 
   RssFile::FileType getItemType(QTreeWidgetItem *item) const {
-    return mapping[item]->getType();
+    return mapping.value(item)->getType();
   }
 
   QString getItemID(QTreeWidgetItem *item) const {
-    return mapping[item]->getID();
+    return mapping.value(item)->getID();
   }
 
   QTreeWidgetItem* getTreeItemFromUrl(QString url) const{
-    return feeds_items[url];
+    return feeds_items.value(url, 0);
   }
 
   RssStream* getRSSItemFromUrl(QString url) const {

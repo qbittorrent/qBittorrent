@@ -427,6 +427,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   }
 
   RssFile *rss_item = listStreams->getRSSItem(item);
+  if(!rss_item) return;
 
   qDebug("Getting the list of news");
   QList<RssItem*> news;
