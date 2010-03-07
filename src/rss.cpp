@@ -359,13 +359,12 @@ void RssManager::moveFile(RssFile* file, RssFolder* dest_folder) {
 }
 
 void RssManager::saveStreamList(){
-  QList<QPair<QString, QString> > streamsList;
   QStringList streamsUrl;
   QStringList aliases;
-  QList<RssStream*> streams = getAllFeeds();
-  foreach(RssStream *stream, streams) {
-    QString stream_path = stream->getPath().join("\\");
-    qDebug("Saving stream path: %s", stream_path.toLocal8Bit().data());
+  const QList<RssStream*> &streams = getAllFeeds();
+  foreach(const RssStream *stream, streams) {
+    const QString &stream_path = stream->getPath().join("\\");
+    qDebug("Saving stream path: %s", qPrintable(stream_path));
     streamsUrl << stream_path;
     aliases << stream->getName();
   }
