@@ -1669,7 +1669,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation>Olvasatlan</translation>
     </message>
@@ -4202,17 +4202,17 @@ p, li { white-space: pre-wrap; }
         <translation>Ez a név már foglalt, kérlek válassz másikat.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation>Dátum:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation>Szerző:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>Olvasatlan</translation>
     </message>
@@ -4233,7 +4233,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1 előtt</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Automatikus letöltése %1 torrentnek a %2 RSS forrásból...</translation>
     </message>

@@ -1764,7 +1764,7 @@ list:</source>
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation>안 읽음</translation>
     </message>
@@ -4774,17 +4774,17 @@ p, li { white-space: pre-wrap; }
         <translation>이 이름은 이미 다른 아이템이 사용하고 있습니다. 다른 이름을 사용하십시오.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation>날짜: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation>작성자: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>안 읽음</translation>
     </message>
@@ -4805,7 +4805,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1분전</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>RSS 피드(%2)에서 자동으로 자료(%1) 다운하기...</translation>
     </message>

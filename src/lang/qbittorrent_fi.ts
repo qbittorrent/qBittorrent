@@ -1626,7 +1626,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation>Lukematon</translation>
     </message>
@@ -4397,17 +4397,17 @@ p, li { white-space: pre-wrap; }
         <translation>Tämä nimi on jo käytössä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation>Päivä: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation>Tekijä: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>Lukematon</translation>
     </message>
@@ -4428,7 +4428,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1 sitten</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Ladataan automaattisesti %1 torrentti RSS-syötteestä %2...</translation>
     </message>

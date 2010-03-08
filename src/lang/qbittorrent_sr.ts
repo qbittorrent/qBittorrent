@@ -1175,7 +1175,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation>Непрочитане</translation>
     </message>
@@ -3103,17 +3103,17 @@ p, li { white-space: pre-wrap; }
         <translation>Ово име је већ у употреби молим изаберите неко друго.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation>Датум: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation>Аутор: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>Непрочитан</translation>
     </message>
@@ -3129,7 +3129,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translatorcomment>feed-допис,порука</translatorcomment>
         <translation>Аутоматски преузми %1 торент са %2 RSS feed...</translation>

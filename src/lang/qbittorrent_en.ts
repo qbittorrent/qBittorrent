@@ -707,7 +707,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2469,17 +2469,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2495,7 +2495,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssStream</name>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation type="unfinished"></translation>
     </message>

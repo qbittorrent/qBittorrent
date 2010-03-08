@@ -1877,7 +1877,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation>Non lu</translation>
     </message>
@@ -5037,17 +5037,17 @@ p, li { white-space: pre-wrap; }
         <translation>Ce nom est déjà utilisé par un autre élément, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation>Date : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation>Auteur : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>Non lu</translation>
     </message>
@@ -5068,7 +5068,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">il y a %1</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Téléchargement automatique du torrent %1 depuis le flux RSS %2...</translation>
     </message>

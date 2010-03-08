@@ -1831,7 +1831,7 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation>Μη διαβασμένα</translation>
     </message>
@@ -4881,17 +4881,17 @@ p, li { white-space: pre-wrap; }
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται από ένα άλλο αντικείμενο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation> Ημερομηνία:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation> Δημιουργός:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>Μη διαβασμένο</translation>
     </message>
@@ -4912,7 +4912,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1 πριν</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Αυτόματη λήψη του torrent %1 από την παροχή RSS %2...</translation>
     </message>

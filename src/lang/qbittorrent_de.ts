@@ -1753,7 +1753,7 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
 <context>
     <name>FeedList</name>
     <message>
-        <location filename="../feedList.h" line="33"/>
+        <location filename="../feedList.h" line="32"/>
         <source>Unread</source>
         <translation>Ungelesen</translation>
     </message>
@@ -4767,17 +4767,17 @@ p, li { white-space: pre-wrap; }
         <translation>Dieser Name wird bereits von einem anderen Eintrag verwendet, bitte wählen Sie einen anderen Namen.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="478"/>
+        <location filename="../rss_imp.cpp" line="479"/>
         <source>Date: </source>
         <translation> Datum:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="481"/>
+        <location filename="../rss_imp.cpp" line="482"/>
         <source>Author: </source>
         <translation> Autor:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="524"/>
+        <location filename="../rss_imp.cpp" line="525"/>
         <source>Unread</source>
         <translation>Ungelesen</translation>
     </message>
@@ -4798,7 +4798,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">vor %1</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="649"/>
+        <location filename="../rss.cpp" line="651"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Automatisches laden des Torrent %1 von RSS-Feed %2...</translation>
     </message>
