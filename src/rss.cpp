@@ -627,12 +627,9 @@ short RssStream::readDoc(QIODevice* device) {
             }
           }
         }
-        return 0;
       }
     }
   }
-  qDebug("XML Error: This is not a valid RSS document");
-  return -1;
 
   resizeList();
 
