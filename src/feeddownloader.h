@@ -259,7 +259,6 @@ public:
     // Restore saved info
     enableDl_cb->setChecked(filters.isDownloadingEnabled());
     fillFiltersList();
-    filtersList->sortItems(Qt::AscendingOrder);
     if(filters.size() > 0) {
       // Select first filter
       filtersList->setCurrentItem(filtersList->item(0));
@@ -386,7 +385,6 @@ protected slots:
       if(selected_filter == current_name)
         selected_filter = new_name;
       item->setText(new_name);
-      filtersList->sortItems(Qt::AscendingOrder);
     }
   }
 
@@ -440,7 +438,6 @@ protected slots:
       }
     }while(!validated);
     QListWidgetItem *it = new QListWidgetItem(filter_name, filtersList);
-    filtersList->sortItems(Qt::AscendingOrder);
     filtersList->setCurrentItem(it);
     //showFilterSettings(it);
   }
