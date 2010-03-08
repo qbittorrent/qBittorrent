@@ -388,12 +388,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1008"/>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nota: nous Trackers s&apos;han afegit al torrent existent.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1021"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nota: noves llavors URL s&apos;han afegit al Torrent existent.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1480"/>
@@ -450,7 +450,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1937"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error E/S ocorregut, &apos;%1&apos; pausat.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2048"/>
@@ -2791,13 +2791,13 @@ Està segur que vol sortir?</translation>
         <location filename="../httpconnection.cpp" line="306"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Baixada: %1/s - Total: %2</translation>
+        <translation>Baixada: %1/s - Total: %2</translation>
     </message>
     <message>
         <location filename="../httpconnection.cpp" line="307"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Pujada: %1/s - Total: %2</translation>
+        <translation>Pujada: %1/s - Total: %2</translation>
     </message>
 </context>
 <context>
@@ -3944,17 +3944,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="701"/>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Afegir arxius .torrents des de la següent carpeta:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="763"/>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Afegir carpeta ...</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="773"/>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar carpeta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1935"/>
@@ -4301,7 +4301,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="519"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioritat</translation>
+        <translation>Prioritat</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4314,17 +4314,17 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="1007"/>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1017"/>
         <source>Maximum</source>
-        <translation type="unfinished">Màxim</translation>
+        <translation>Màxim</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="1012"/>
         <source>High</source>
-        <translation type="unfinished">Alt</translation>
+        <translation>Alt</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="313"/>
@@ -4771,12 +4771,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="94"/>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca fitxers .torrents</translation>
     </message>
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarregar Torrent aquí</translation>
     </message>
 </context>
 <context>
@@ -5937,17 +5937,17 @@ Log:
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="338"/>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="343"/>
         <source>High</source>
-        <translation type="unfinished">Alt</translation>
+        <translation>Alt</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="348"/>
         <source>Maximum</source>
-        <translation type="unfinished">Màxima</translation>
+        <translation>Màxima</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="219"/>
@@ -7145,38 +7145,38 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1353"/>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Afegir directori per escanejar</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1359"/>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aquesta carpeta ja està seleccionada per escanejar.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1362"/>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>La carpeta no existeix.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1365"/>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>La carpeta no és llegible.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1373"/>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1373"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>No es pot escanejar aquesta carpetes &apos;%1&apos;:%2</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1396"/>
         <location filename="../options_imp.cpp" line="1398"/>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona directori d&apos;exportació</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1410"/>
@@ -7992,7 +7992,7 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioritat</translation>
+        <translation>Prioritat</translation>
     </message>
 </context>
 </TS>
