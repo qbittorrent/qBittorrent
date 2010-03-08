@@ -140,9 +140,9 @@ Bittorrent::Bittorrent()
 #ifdef LIBTORRENT_0_15
   appendqBExtension = Preferences::useIncompleteFilesExtension();
 #endif
+  connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
   // Apply user settings to Bittorrent session
   configureSession();
-  connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
   qDebug("* BTSession constructed");
 }
 

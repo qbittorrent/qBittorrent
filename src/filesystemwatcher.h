@@ -103,12 +103,6 @@ public:
     connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanLocalFolder(QString)));
   }
 
-  FileSystemWatcher(QString path, QObject *parent): QFileSystemWatcher(parent) {
-    filters << "*.torrent";
-    connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanLocalFolder(QString)));
-    addPath(path);
-  }
-
   ~FileSystemWatcher() {
 #ifndef Q_WS_WIN
     if(watch_timer)
