@@ -1541,74 +1541,74 @@ p, li { white-space: pre-wrap; }
         <translation>Filtres:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="213"/>
+        <location filename="../ui/feeddownloader.ui" line="216"/>
         <source>Filter settings</source>
         <translation>Ajusts de filtres</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="232"/>
+        <location filename="../ui/feeddownloader.ui" line="235"/>
         <source>Matches:</source>
         <translation>Concordances:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="248"/>
+        <location filename="../ui/feeddownloader.ui" line="251"/>
         <source>Does not match:</source>
         <translation>No coincideixen amb:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="264"/>
+        <location filename="../ui/feeddownloader.ui" line="267"/>
         <source>Destination folder:</source>
         <translation>Carpeta de destinació:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="306"/>
+        <location filename="../ui/feeddownloader.ui" line="309"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="319"/>
+        <location filename="../ui/feeddownloader.ui" line="322"/>
         <source>Filter testing</source>
         <translation>Verifican filtres</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="341"/>
+        <location filename="../ui/feeddownloader.ui" line="344"/>
         <source>Torrent title:</source>
         <translation>Titol Torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="357"/>
+        <location filename="../ui/feeddownloader.ui" line="360"/>
         <source>Result:</source>
         <translation>Resultad:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="382"/>
+        <location filename="../ui/feeddownloader.ui" line="385"/>
         <source>Test</source>
         <translation>Prova</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="451"/>
+        <location filename="../ui/feeddownloader.ui" line="454"/>
         <source>Import...</source>
         <translation>Importar...</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="458"/>
+        <location filename="../ui/feeddownloader.ui" line="461"/>
         <source>Export...</source>
         <translation>Exportar...</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="481"/>
         <location filename="../ui/feeddownloader.ui" line="484"/>
+        <location filename="../ui/feeddownloader.ui" line="487"/>
         <source>Rename filter</source>
         <translation>Rebatejar filtre</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="493"/>
         <location filename="../ui/feeddownloader.ui" line="496"/>
+        <location filename="../ui/feeddownloader.ui" line="499"/>
         <source>Remove filter</source>
         <translation>Eliminar filtre</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="505"/>
+        <location filename="../ui/feeddownloader.ui" line="508"/>
         <source>Add filter</source>
         <translation>Agregar filtre</translation>
     </message>
@@ -1616,96 +1616,96 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="406"/>
+        <location filename="../feeddownloader.h" line="404"/>
         <source>New filter</source>
         <translation>Nou filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="411"/>
         <source>Please choose a name for this filter</source>
         <translation>Si us plau, elegeixi un nom per a aquest filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="411"/>
         <source>Filter name:</source>
         <translation>Nom del filtre:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="379"/>
-        <location filename="../feeddownloader.h" line="421"/>
-        <location filename="../feeddownloader.h" line="437"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="419"/>
+        <location filename="../feeddownloader.h" line="435"/>
         <source>Invalid filter name</source>
         <translation>Nom no valgut per al filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="421"/>
+        <location filename="../feeddownloader.h" line="419"/>
         <source>The filter name cannot be left empty.</source>
         <translation>El nom del filtre no pot quedar buid.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="379"/>
-        <location filename="../feeddownloader.h" line="437"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="435"/>
         <source>This filter name is already in use.</source>
         <translation>Aquest nom de filtre ja s&apos;està usant.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="300"/>
+        <location filename="../feeddownloader.h" line="299"/>
         <source>Choose save path</source>
         <translation>Selecciona la ruta on guardar-lo</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="464"/>
+        <location filename="../feeddownloader.h" line="461"/>
         <source>Filter testing error</source>
         <translation>Error en la verificació del filtre</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="464"/>
+        <location filename="../feeddownloader.h" line="461"/>
         <source>Please specify a test torrent name.</source>
         <translation>Si us plau, especifiqui el nom del torrent a verificar.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="471"/>
+        <location filename="../feeddownloader.h" line="468"/>
         <source>matches</source>
         <translation>Conté</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="473"/>
+        <location filename="../feeddownloader.h" line="470"/>
         <source>does not match</source>
         <translation>no conté</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="477"/>
+        <location filename="../feeddownloader.h" line="474"/>
         <source>Select file to import</source>
         <translation>Seleccioni l&apos;arxiu a importar</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="477"/>
-        <location filename="../feeddownloader.h" line="494"/>
+        <location filename="../feeddownloader.h" line="474"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Filters Files</source>
         <translation>Filtre d&apos;arxius</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="487"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Import successful</source>
         <translation>Importació satisfactòria</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="487"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Filters import was successful.</source>
         <translation>Filtres importats satisfactòriament.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="486"/>
         <source>Import failure</source>
         <translation>Importació fallida</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="486"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>Els filtres no poden ser importats a causa d&apos;un Error d&apos;Entrada/Sortida.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="494"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Select destination file</source>
         <translation>Seleccioni la ruta de l&apos;arxiu</translation>
     </message>
@@ -1718,22 +1718,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Estàs segur que desitja sobreescriure l&apos;arxiu existent?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="504"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Export successful</source>
         <translation>Exportació satisfactòria</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="504"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Filters export was successful.</source>
         <translation>Filtres exportats satisfactòriament.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="503"/>
         <source>Export failure</source>
         <translation>Exportació fallida</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="503"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Els filtres no poden ser exportats a causa d&apos;un Error d&apos;Entrada/Sortida.</translation>
     </message>
@@ -4757,7 +4757,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Hace %1</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="651"/>
+        <location filename="../rss.cpp" line="648"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Descarregar automàtica %1 Torrent %2 Canal RSS...</translation>
     </message>

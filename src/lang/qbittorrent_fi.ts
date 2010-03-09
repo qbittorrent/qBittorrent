@@ -1426,74 +1426,74 @@ p, li { white-space: pre-wrap; }
         <translation>Suodattimet:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="213"/>
+        <location filename="../ui/feeddownloader.ui" line="216"/>
         <source>Filter settings</source>
         <translation>Suodatusasetukset</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="232"/>
+        <location filename="../ui/feeddownloader.ui" line="235"/>
         <source>Matches:</source>
         <translation>Sopii:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="248"/>
+        <location filename="../ui/feeddownloader.ui" line="251"/>
         <source>Does not match:</source>
         <translation>Ei sovi:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="264"/>
+        <location filename="../ui/feeddownloader.ui" line="267"/>
         <source>Destination folder:</source>
         <translation>Kohdekansio:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="306"/>
+        <location filename="../ui/feeddownloader.ui" line="309"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="319"/>
+        <location filename="../ui/feeddownloader.ui" line="322"/>
         <source>Filter testing</source>
         <translation>Suotimen testaus</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="341"/>
+        <location filename="../ui/feeddownloader.ui" line="344"/>
         <source>Torrent title:</source>
         <translation>Torrentin nimike:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="357"/>
+        <location filename="../ui/feeddownloader.ui" line="360"/>
         <source>Result:</source>
         <translation>Tulos:</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="382"/>
+        <location filename="../ui/feeddownloader.ui" line="385"/>
         <source>Test</source>
         <translation>Testaa</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="451"/>
+        <location filename="../ui/feeddownloader.ui" line="454"/>
         <source>Import...</source>
         <translation>Tuo...</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="458"/>
+        <location filename="../ui/feeddownloader.ui" line="461"/>
         <source>Export...</source>
         <translation>Vie...</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="481"/>
         <location filename="../ui/feeddownloader.ui" line="484"/>
+        <location filename="../ui/feeddownloader.ui" line="487"/>
         <source>Rename filter</source>
         <translation>Nimeä suodatin</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="493"/>
         <location filename="../ui/feeddownloader.ui" line="496"/>
+        <location filename="../ui/feeddownloader.ui" line="499"/>
         <source>Remove filter</source>
         <translation>Poista suodatin</translation>
     </message>
     <message>
-        <location filename="../ui/feeddownloader.ui" line="505"/>
+        <location filename="../ui/feeddownloader.ui" line="508"/>
         <source>Add filter</source>
         <translation>Lisää suodatin</translation>
     </message>
@@ -1501,96 +1501,96 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
-        <location filename="../feeddownloader.h" line="406"/>
+        <location filename="../feeddownloader.h" line="404"/>
         <source>New filter</source>
         <translation>Uusi suodatin</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="411"/>
         <source>Please choose a name for this filter</source>
         <translation> Nimeä suodatin</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="413"/>
+        <location filename="../feeddownloader.h" line="411"/>
         <source>Filter name:</source>
         <translation>Suodattimen nimi:</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="379"/>
-        <location filename="../feeddownloader.h" line="421"/>
-        <location filename="../feeddownloader.h" line="437"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="419"/>
+        <location filename="../feeddownloader.h" line="435"/>
         <source>Invalid filter name</source>
         <translation>Virheellinen suodattimen nimi</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="421"/>
+        <location filename="../feeddownloader.h" line="419"/>
         <source>The filter name cannot be left empty.</source>
         <translation>Nimeä ei voi jättää tyhjäksi.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="379"/>
-        <location filename="../feeddownloader.h" line="437"/>
+        <location filename="../feeddownloader.h" line="378"/>
+        <location filename="../feeddownloader.h" line="435"/>
         <source>This filter name is already in use.</source>
         <translation>Suodatinnimi on jo käytössä.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="300"/>
+        <location filename="../feeddownloader.h" line="299"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="464"/>
+        <location filename="../feeddownloader.h" line="461"/>
         <source>Filter testing error</source>
         <translation>Suodattimen testausvirhe</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="464"/>
+        <location filename="../feeddownloader.h" line="461"/>
         <source>Please specify a test torrent name.</source>
         <translation>Anna testitorrentin nimi.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="471"/>
+        <location filename="../feeddownloader.h" line="468"/>
         <source>matches</source>
         <translation>sopii</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="473"/>
+        <location filename="../feeddownloader.h" line="470"/>
         <source>does not match</source>
         <translation>ei sovi</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="477"/>
+        <location filename="../feeddownloader.h" line="474"/>
         <source>Select file to import</source>
         <translation>Valitse tuotava tiedosto</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="477"/>
-        <location filename="../feeddownloader.h" line="494"/>
+        <location filename="../feeddownloader.h" line="474"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Filters Files</source>
         <translation>Suodatintiedostot</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="487"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Import successful</source>
         <translation>Tuonti onnistui</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="487"/>
+        <location filename="../feeddownloader.h" line="484"/>
         <source>Filters import was successful.</source>
         <translation>Suodattimien tuonti onnistui.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="486"/>
         <source>Import failure</source>
         <translation>Tuonti epäonnistui</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="489"/>
+        <location filename="../feeddownloader.h" line="486"/>
         <source>Filters could not be imported due to an I/O error.</source>
         <translation>Suodattimia ei voitu tuoda I/O-virheen vuoksi.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="494"/>
+        <location filename="../feeddownloader.h" line="491"/>
         <source>Select destination file</source>
         <translation>Valitse kohdetiedosto</translation>
     </message>
@@ -1603,22 +1603,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Kirjoitetaanko olemassaolevan tiedoston päälle?</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="504"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Export successful</source>
         <translation>Vienti onnistui</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="504"/>
+        <location filename="../feeddownloader.h" line="501"/>
         <source>Filters export was successful.</source>
         <translation>Suodattimien viesti onnistui.</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="503"/>
         <source>Export failure</source>
         <translation>Vientivirhe</translation>
     </message>
     <message>
-        <location filename="../feeddownloader.h" line="506"/>
+        <location filename="../feeddownloader.h" line="503"/>
         <source>Filters could not be exported due to an I/O error.</source>
         <translation>Suodattimia ei voitu viedä I/O-virheen vuoksi.</translation>
     </message>
@@ -4428,7 +4428,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1 sitten</translation>
     </message>
     <message>
-        <location filename="../rss.cpp" line="651"/>
+        <location filename="../rss.cpp" line="648"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Ladataan automaattisesti %1 torrentti RSS-syötteestä %2...</translation>
     </message>
