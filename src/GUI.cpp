@@ -251,6 +251,12 @@ GUI::~GUI() {
   delete switchRSSShortcut;
   // Delete BTSession objects
   delete BTSession;
+  // Deleting remaining top level widgets
+  qDebug("Deleting remaining top level widgets");
+  foreach (QWidget *win, QApplication::topLevelWidgets()) {
+    if(win && win != this)
+      delete win;
+  }
   // May freeze for a few seconds after the next line
   // because the Bittorrent session proxy will
   // actually be deleted now and destruction
