@@ -52,6 +52,8 @@
 options_imp::options_imp(QWidget *parent):QDialog(parent){
   qDebug("-> Constructing Options");
   setAttribute(Qt::WA_DeleteOnClose);
+  setModal(true);
+
   QString savePath;
   setupUi(this);
   // Get apply button in button box

@@ -227,6 +227,8 @@ GUI::~GUI() {
     delete aboutDlg;
   if(options)
     delete options;
+  if(downloadFromURLDialog)
+    delete downloadFromURLDialog;
   if(rssWidget)
     delete rssWidget;
   delete searchEngine;
@@ -633,8 +635,8 @@ void GUI::on_actionOpen_triggered() {
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   const QStringList &pathsList = QFileDialog::getOpenFileNames(0,
-                                                        tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
-                                                        tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
+                                                               tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
+                                                               tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!pathsList.empty()) {
     const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
     const uint listSize = pathsList.size();
@@ -960,7 +962,9 @@ void GUI::on_actionOptions_triggered() {
 // Display an input dialog to prompt user for
 // an url
 void GUI::on_actionDownload_from_URL_triggered() {
-  downloadFromURL *downloadFromURLDialog = new downloadFromURL(this);
-  connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
+  if(!downloadFromURLDialog) {
+    downloadFromURLDialog = new downloadFromURL(this);
+    connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
+  }
 }
 

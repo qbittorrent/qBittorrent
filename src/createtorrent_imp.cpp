@@ -65,6 +65,7 @@ bool file_filter(boost::filesystem::path const& filename)
 createtorrent::createtorrent(QWidget *parent): QDialog(parent){
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
+  setModal(true);
   creatorThread = new torrentCreatorThread(this);
   connect(creatorThread, SIGNAL(creationSuccess(QString, const char*)), this, SLOT(handleCreationSuccess(QString, const char*)));
   connect(creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));

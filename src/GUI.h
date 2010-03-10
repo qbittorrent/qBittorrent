@@ -58,6 +58,7 @@ class StatusBar;
 class consoleDlg;
 class about;
 class createtorrent;
+class downloadFromURL;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -139,6 +140,7 @@ private:
   QPointer<consoleDlg> console;
   QPointer<about> aboutDlg;
   QPointer<createtorrent> createTorrentDlg;
+  QPointer<downloadFromURL> downloadFromURLDialog;
   QPointer<QSystemTrayIcon> systrayIcon;
   QPointer<QTimer> systrayCreator;
   QMenu *myTrayIconMenu;
