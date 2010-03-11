@@ -202,7 +202,7 @@ void Bittorrent::deleteBigRatios() {
   std::vector<torrent_handle> torrents = getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    const QTorrentHandle &h(*torrentIT);
+    const QTorrentHandle h(*torrentIT);
     if(!h.is_valid()) continue;
     if(h.is_seed()) {
       const QString hash = h.hash();
@@ -1201,7 +1201,7 @@ void Bittorrent::exportTorrentFiles(QString path) {
   std::vector<torrent_handle> handles = s->get_torrents();
   std::vector<torrent_handle>::iterator itr;
   for(itr=handles.begin(); itr != handles.end(); itr++) {
-    const QTorrentHandle &h(*itr);
+    const QTorrentHandle h(*itr);
     if(!h.is_valid()) {
       std::cerr << "Torrent Export: torrent is invalid, skipping..." << std::endl;
       continue;
@@ -1235,7 +1235,7 @@ void Bittorrent::setMaxConnectionsPerTorrent(int max) {
   std::vector<torrent_handle> handles = s->get_torrents();
   unsigned int nbHandles = handles.size();
   for(unsigned int i=0; i<nbHandles; ++i) {
-    QTorrentHandle h = handles[i];
+    QTorrentHandle h(handles[i]);
     if(!h.is_valid()) {
       qDebug("/!\\ Error: Invalid handle");
       continue;
@@ -1249,7 +1249,7 @@ void Bittorrent::setMaxUploadsPerTorrent(int max) {
   std::vector<torrent_handle> handles = s->get_torrents();
   unsigned int nbHandles = handles.size();
   for(unsigned int i=0; i<nbHandles; ++i) {
-    QTorrentHandle h = handles[i];
+    QTorrentHandle h(handles[i]);
     if(!h.is_valid()) {
       qDebug("/!\\ Error: Invalid handle");
       continue;
@@ -1437,7 +1437,7 @@ void Bittorrent::saveFastResumeData() {
     --num_resume_data;
     if (!rd->resume_data) continue;
     QDir torrentBackup(misc::BTBackupLocation());
-    const QTorrentHandle &h(rd->handle);
+    const QTorrentHandle h(rd->handle);
     if(!h.is_valid()) continue;
     // Remove old fastresume file if it exists
     QFile::remove(torrentBackup.path()+QDir::separator()+ h.hash() + ".fastresume");
@@ -1868,7 +1868,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
       else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
         const QDir &torrentBackup(misc::BTBackupLocation());
-        const QTorrentHandle &h(p->handle);
+        const QTorrentHandle h(p->handle);
         if(h.is_valid()) {
           const QString &file = h.hash()+".fastresume";
           // Delete old fastresume file if necessary
@@ -1984,7 +1984,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         }
       }
       else if (tracker_reply_alert* p = dynamic_cast<tracker_reply_alert*>(a.get())) {
-        const QTorrentHandle &h(p->handle);
+        const QTorrentHandle h(p->handle);
         if(h.is_valid()){
           qDebug("Received a tracker reply from %s (Num_peers=%d)", p->url.c_str(), p->num_peers);
           // Connection was successful now. Remove possible old errors
@@ -2001,7 +2001,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           trackersInfos[h.hash()] = trackers_data;
         }
       } else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a.get())) {
-        const QTorrentHandle &h(p->handle);
+        const QTorrentHandle h(p->handle);
         if(h.is_valid()){
           // Connection was successful now but there is a warning message
           QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
@@ -2035,7 +2035,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         //emit peerBlocked(QString::fromUtf8(p->ip.to_string().c_str()));
       }
       else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
-        const QTorrentHandle &h(p->handle);
+        const QTorrentHandle h(p->handle);
         if(h.is_valid()){
           qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(h.name()), p->message().c_str());
           addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));

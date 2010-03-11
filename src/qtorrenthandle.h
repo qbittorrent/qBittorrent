@@ -53,7 +53,7 @@ class QTorrentHandle {
     //
 
     QTorrentHandle() {}
-    QTorrentHandle(torrent_handle h);
+    explicit QTorrentHandle(torrent_handle h);
 
     //
     // Getters
