@@ -92,19 +92,14 @@ public:
 
   static inline QString toQString(sha1_hash hash) {
     std::ostringstream o;
-    if(!(o<<hash)) {
-      throw std::runtime_error("::toString()");
-    }
-    return QString::fromLocal8Bit(o.str().c_str());
-    //return QString::fromLocal8Bit(hash.to_string().c_str());
+    o << hash;
+    return QString(o.str().c_str());
   }
 
   static inline sha1_hash QStringToSha1(const QString& s) {
-      sha1_hash x;
       std::istringstream i(s.toStdString());
-      if(!(i>>x)) {
-        throw std::runtime_error("::fromString()");
-      }
+      sha1_hash x;
+      i>>x;
       return x;
     }
 
