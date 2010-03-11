@@ -70,13 +70,13 @@ enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
 Bittorrent::Bittorrent()
-  : m_scanFolders(ScanFoldersModel::instance(this)),
-  preAllocateAll(false), addInPause(false), ratio_limit(-1),
-  UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false),
-  DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
-  torrentExport(false), exiting(false)
+    : m_scanFolders(ScanFoldersModel::instance(this)),
+    preAllocateAll(false), addInPause(false), ratio_limit(-1),
+    UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false),
+    DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
+    torrentExport(false), exiting(false)
 #ifndef DISABLE_GUI
-  , geoipDBLoaded(false), resolve_countries(false)
+    , geoipDBLoaded(false), resolve_countries(false)
 #endif
 {
   // To avoid some exceptions
@@ -972,56 +972,55 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   if(s->find_torrent(t->info_hash()).is_valid()) {
     qDebug("/!\\ Torrent is already in download list");
     // Update info Bar
-    if(!fromScanDir) {
-      if(!from_url.isNull()) {
-        // If download from url, remove temp file
-        QFile::remove(file);
-        addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
-        //emit duplicateTorrent(from_url);
-      }else{
-        addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(file));
-        //emit duplicateTorrent(file);
-      }
-      // Check if the torrent contains trackers or url seeds we don't know about
-      // and add them
-      QTorrentHandle h_ex = getTorrentHandle(hash);
-      if(h_ex.is_valid()) {
-        std::vector<announce_entry> old_trackers = h_ex.trackers();
-        std::vector<announce_entry> new_trackers = t->trackers();
-        bool trackers_added = false;
-        for(std::vector<announce_entry>::iterator it=new_trackers.begin();it!=new_trackers.end();it++) {
-          std::string tracker_url = it->url;
-          bool found = false;
-          for(std::vector<announce_entry>::iterator itold=old_trackers.begin();itold!=old_trackers.end();itold++) {
-            if(tracker_url == itold->url) {
-              found = true;
-              break;
-            }
-          }
-          if(found) {
-            trackers_added = true;
-            announce_entry entry(tracker_url);
-            h_ex.add_tracker(entry);
-          }
-        }
-        if(trackers_added) {
-          addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
-        }
-        bool urlseeds_added = false;
-        const QStringList &old_urlseeds = h_ex.url_seeds();
-        std::vector<std::string> new_urlseeds = t->url_seeds();
-        for(std::vector<std::string>::iterator it = new_urlseeds.begin(); it != new_urlseeds.end(); it++) {
-          const QString &new_url = misc::toQString(it->c_str());
-          if(!old_urlseeds.contains(new_url)) {
-            urlseeds_added = true;
-            h_ex.add_url_seed(new_url);
-          }
-        }
-        if(urlseeds_added) {
-          addConsoleMessage(tr("Note: new URL seeds were added to the existing torrent."));
-        }
-      }
+    if(!from_url.isNull()) {
+      // If download from url, remove temp file
+      QFile::remove(file);
+      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
+      //emit duplicateTorrent(from_url);
     }else{
+      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(file));
+      //emit duplicateTorrent(file);
+    }
+    // Check if the torrent contains trackers or url seeds we don't know about
+    // and add them
+    QTorrentHandle h_ex = getTorrentHandle(hash);
+    if(h_ex.is_valid()) {
+      std::vector<announce_entry> old_trackers = h_ex.trackers();
+      std::vector<announce_entry> new_trackers = t->trackers();
+      bool trackers_added = false;
+      for(std::vector<announce_entry>::iterator it=new_trackers.begin();it!=new_trackers.end();it++) {
+        std::string tracker_url = it->url;
+        bool found = false;
+        for(std::vector<announce_entry>::iterator itold=old_trackers.begin();itold!=old_trackers.end();itold++) {
+          if(tracker_url == itold->url) {
+            found = true;
+            break;
+          }
+        }
+        if(found) {
+          trackers_added = true;
+          announce_entry entry(tracker_url);
+          h_ex.add_tracker(entry);
+        }
+      }
+      if(trackers_added) {
+        addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
+      }
+      bool urlseeds_added = false;
+      const QStringList &old_urlseeds = h_ex.url_seeds();
+      std::vector<std::string> new_urlseeds = t->url_seeds();
+      for(std::vector<std::string>::iterator it = new_urlseeds.begin(); it != new_urlseeds.end(); it++) {
+        const QString &new_url = misc::toQString(it->c_str());
+        if(!old_urlseeds.contains(new_url)) {
+          urlseeds_added = true;
+          h_ex.add_url_seed(new_url);
+        }
+      }
+      if(urlseeds_added) {
+        addConsoleMessage(tr("Note: new URL seeds were added to the existing torrent."));
+      }
+    }
+    if(fromScanDir) {
       // Delete torrent from scan dir
       QFile::remove(file);
     }
