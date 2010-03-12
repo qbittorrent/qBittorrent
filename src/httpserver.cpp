@@ -193,7 +193,7 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
   if(auth.contains("qop=")) {
     QCryptographicHash md5_ha(QCryptographicHash::Md5);
     // Get nc
-    QRegExp regex_nc(".*nc=(\\w+).*");
+    QRegExp regex_nc(".*nc=[\"]?(\\w+)[\"]?.*");
     if(regex_nc.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: qop but missing nc");
       return false;
