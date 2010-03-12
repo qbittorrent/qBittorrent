@@ -33,7 +33,7 @@ initializeWindows = function(){
 			paddingVertical: 0,
 			paddingHorizontal: 0,
 			width: 500,
-			height: 280
+			height: 300
 		});
 	});
 	
