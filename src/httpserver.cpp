@@ -132,16 +132,12 @@ void HttpServer::setAuthorization(QString _username, QString _password_ha1) {
   password_ha1 = _password_ha1.toLocal8Bit();
 }
 
-// AUTH string is: Digest username="chris",
-// realm="Web UI Access",
-// nonce="570d04de93444b7fd3eaeaecb00e635e",
-// uri="/", algorithm=MD5,
-// response="ba886766d19b45313c0e2195e4344264",
-// qop=auth, nc=00000001, cnonce="e8ac970779c17075"
+// Parse HTTP AUTH string
+// http://tools.ietf.org/html/rfc2617
 bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
   qDebug("AUTH string is %s", auth.data());
   // Get user name
-  QRegExp regex_user(".*username=\"([^\"]+)\".*");
+  QRegExp regex_user(".*username=\"([^\"]+)\".*"); // Must be a quoted string
   if(regex_user.indexIn(auth) < 0) return false;
   QString prop_user = regex_user.cap(1);
   qDebug("AUTH: Proposed username is %s, real username is %s", prop_user.toLocal8Bit().data(), username.data());
@@ -151,7 +147,7 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
     return false;
   }
   // Get realm
-  QRegExp regex_realm(".*realm=\"([^\"]+)\".*");
+  QRegExp regex_realm(".*realm=\"([^\"]+)\".*"); // Must be a quoted string
   if(regex_realm.indexIn(auth) < 0) {
     qDebug("AUTH-PROB: Missing realm");
     return false;
@@ -162,7 +158,7 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
     return false;
   }
   // get nonce
-  QRegExp regex_nonce(".*nonce=\"([^\"]+)\".*");
+  QRegExp regex_nonce(".*nonce=[\"]?([\\w=]+)[\"]?.*");
   if(regex_nonce.indexIn(auth) < 0) {
     qDebug("AUTH-PROB: missing nonce");
     return false;
@@ -178,7 +174,7 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
   QByteArray prop_uri = regex_uri.cap(1).toLocal8Bit();
   qDebug("prop uri is: %s", prop_uri.data());
   // get response
-  QRegExp regex_response(".*response=\"([^\"]+)\".*");
+  QRegExp regex_response(".*response=[\"]?([\\w=]+)[\"]?.*");
   if(regex_response.indexIn(auth) < 0) {
     qDebug("AUTH-PROB: Missing response");
     return false;
@@ -193,14 +189,14 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
   if(auth.contains("qop=")) {
     QCryptographicHash md5_ha(QCryptographicHash::Md5);
     // Get nc
-    QRegExp regex_nc(".*nc=[\"]?(\\w+)[\"]?.*");
+    QRegExp regex_nc(".*nc=[\"]?([\\w=]+)[\"]?.*");
     if(regex_nc.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: qop but missing nc");
       return false;
     }
     QByteArray prop_nc = regex_nc.cap(1).toLocal8Bit();
     qDebug("prop nc is: %s", prop_nc.data());
-    QRegExp regex_cnonce(".*cnonce=\"([^\"]+)\".*");
+    QRegExp regex_cnonce(".*cnonce=[\"]?([\\w=]+)[\"]?.*");
     if(regex_cnonce.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: qop but missing cnonce");
       return false;
