@@ -2163,7 +2163,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                       );
     //emit aboutToDownloadFromUrl(url);
     // Launch downloader thread
-    downloader->downloadUrl(url);
+    downloader->downloadTorrentUrl(url);
   }
 
   void Bittorrent::downloadFromURLList(const QStringList& urls) {

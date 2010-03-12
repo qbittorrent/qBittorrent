@@ -95,7 +95,12 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
   reply->deleteLater();
 }
 
-void downloadThread::downloadUrl(QString url){
+void downloadThread::downloadTorrentUrl(QString url){
+  QNetworkReply *reply = downloadUrl(url);
+  connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
+}
+
+QNetworkReply* downloadThread::downloadUrl(QString url){
   // Update proxy settings
   applyProxySettings();
   // Process download request
@@ -105,7 +110,26 @@ void downloadThread::downloadUrl(QString url){
   // Web server banning
   request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5");
   qDebug("Downloading %s...", qPrintable(request.url().toString()));
-  networkManager->get(request);
+  return networkManager->get(request);
+}
+
+void downloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) {
+  if(bytesTotal > 0) {
+    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    // Total number of bytes is available
+    if(bytesTotal > 1048576) {
+      // More than 1MB, this is probably not a torrent file, aborting...
+      reply->abort();
+    } else {
+      disconnect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
+    }
+  } else {
+    if(bytesReceived  > 1048576) {
+      // More than 1MB, this is probably not a torrent file, aborting...
+      QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+      reply->abort();
+    }
+  }
 }
 
 void downloadThread::applyProxySettings() {

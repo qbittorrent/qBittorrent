@@ -51,7 +51,8 @@ signals:
 public:
   downloadThread(QObject* parent);
   ~downloadThread();
-  void downloadUrl(QString url);
+  QNetworkReply* downloadUrl(QString url);
+  void downloadTorrentUrl(QString url);
   //void setProxy(QString IP, int port, QString username, QString password);
 
 protected:
@@ -60,6 +61,7 @@ protected:
 
 protected slots:
   void processDlFinished(QNetworkReply* reply);
+  void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
 
 };
 

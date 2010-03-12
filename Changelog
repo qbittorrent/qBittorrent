@@ -15,6 +15,7 @@
     - FEATURE: Support for multiple scan folders (Patch by Christian Kandeler)
     - BUGFIX: Only one log window can be opened at a time
     - BUGFIX: Optimized RSS module memory usage
+    - BUGFIX: Consider HTTP downloads >1MB as invalid .torrent files and abort
     - COSMETIC: Improved style management
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
