@@ -2013,18 +2013,18 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../httpconnection.cpp" line="137"/>
+        <location filename="../httpconnection.cpp" line="138"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="306"/>
+        <location filename="../httpconnection.cpp" line="307"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="307"/>
+        <location filename="../httpconnection.cpp" line="308"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
@@ -2033,118 +2033,118 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../httpserver.cpp" line="63"/>
+        <location filename="../httpserver.cpp" line="105"/>
         <source>File</source>
         <translation>Fil</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="64"/>
+        <location filename="../httpserver.cpp" line="106"/>
         <source>Edit</source>
         <translation>Rediger</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="65"/>
+        <location filename="../httpserver.cpp" line="107"/>
         <source>Help</source>
         <translation>Hjælp</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="66"/>
+        <location filename="../httpserver.cpp" line="108"/>
         <source>Delete from HD</source>
         <translation>Slet fra HD</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="67"/>
+        <location filename="../httpserver.cpp" line="109"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Download Torrents fra deres URL eller Magnet link</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="68"/>
+        <location filename="../httpserver.cpp" line="110"/>
         <source>Only one link per line</source>
         <translation>Kun et link per linje</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="69"/>
+        <location filename="../httpserver.cpp" line="111"/>
         <source>Download local torrent</source>
         <translation>Download lokal torrent</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="70"/>
+        <location filename="../httpserver.cpp" line="112"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>Torrentfiler blev korrekt tilføjet til downloadlisten.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="71"/>
+        <location filename="../httpserver.cpp" line="113"/>
         <source>Point to torrent file</source>
         <translation>Peg på torrentfil</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="72"/>
+        <location filename="../httpserver.cpp" line="114"/>
         <source>Download</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="73"/>
+        <location filename="../httpserver.cpp" line="115"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Er du sikker på at du vil slette de markerede elementer i listen og på harddisken?</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="74"/>
+        <location filename="../httpserver.cpp" line="116"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>Grænse for download hastighed skal være større end 0 eller slået fra.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="75"/>
+        <location filename="../httpserver.cpp" line="117"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>Grænse for upload hastighed skal være større end 0 eller slået fra.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="76"/>
+        <location filename="../httpserver.cpp" line="118"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Grænsen for det maksimale antal forbindelser skal være større end 0 eller slået fra.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="77"/>
+        <location filename="../httpserver.cpp" line="119"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Grænsen for det maksimale antal forbindelser per torrent skal være større end 0 eller slået fra.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="78"/>
+        <location filename="../httpserver.cpp" line="120"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Grænsen for det maksimale antal upload slots per torrent skal være større end 0 eller slået fra.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="79"/>
+        <location filename="../httpserver.cpp" line="121"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Kunne ikke gemme program indstillinger, qBittorrent kan sikkert ikke nåes.</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="80"/>
+        <location filename="../httpserver.cpp" line="122"/>
         <source>Language</source>
         <translation type="unfinished">Sprog</translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="81"/>
+        <location filename="../httpserver.cpp" line="123"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="82"/>
+        <location filename="../httpserver.cpp" line="124"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="83"/>
+        <location filename="../httpserver.cpp" line="125"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="84"/>
+        <location filename="../httpserver.cpp" line="126"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpserver.cpp" line="85"/>
+        <location filename="../httpserver.cpp" line="127"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5278,112 +5278,112 @@ Changelog:
         <translation>I/O Fejl</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="147"/>
+        <location filename="../downloadthread.cpp" line="171"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Remote hostname blev ikke funder (ugyldigt hostname)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="149"/>
+        <location filename="../downloadthread.cpp" line="173"/>
         <source>The operation was canceled</source>
         <translation>Handlingen blev annulleret</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="151"/>
+        <location filename="../downloadthread.cpp" line="175"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Servern lukkede forbindelsen for tidligt, før hele svaret var modtaget og behandlet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="153"/>
+        <location filename="../downloadthread.cpp" line="177"/>
         <source>The connection to the remote server timed out</source>
         <translation>Forbindelsen til serveren fik time-out</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="155"/>
+        <location filename="../downloadthread.cpp" line="179"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS handshake mislykkedes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="157"/>
+        <location filename="../downloadthread.cpp" line="181"/>
         <source>The remote server refused the connection</source>
         <translation>Serveren nægtede at oprette forbindelse</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="159"/>
+        <location filename="../downloadthread.cpp" line="183"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Der blev nægtet at oprette forbindelse til proxy-serveren</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="161"/>
+        <location filename="../downloadthread.cpp" line="185"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Proxy--serveren lukkede forbindelsen for tidligt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="163"/>
+        <location filename="../downloadthread.cpp" line="187"/>
         <source>The proxy host name was not found</source>
         <translation>Proxy hostname ikke fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="165"/>
+        <location filename="../downloadthread.cpp" line="189"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Forbindelsen til proxy fik timeout eller også nåede proxy ikke at svare i tide</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="167"/>
+        <location filename="../downloadthread.cpp" line="191"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Denne proxy kræve autenticering for at acceptere anmodningen, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="169"/>
+        <location filename="../downloadthread.cpp" line="193"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Adgang til indholdet blev nægtet (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="171"/>
+        <location filename="../downloadthread.cpp" line="195"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Handlingen der bliver efterspurgt på det fjerne indhold er ikke tilladt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="173"/>
+        <location filename="../downloadthread.cpp" line="197"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Indholdet blev ikke fundet på serveren (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="175"/>
+        <location filename="../downloadthread.cpp" line="199"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Denne server kræve autenticering for at vise indholdet, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="177"/>
+        <location filename="../downloadthread.cpp" line="201"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Network Access API kan ikke udføre forespørgslen fordi protokollen ikke kan genkendes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="179"/>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Den anmodede handling er ugyldig for denne protokol</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="181"/>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>An unknown network-related error was detected</source>
         <translation>En ukendt netværksrelateret fejl blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="183"/>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>En ukendt proxyrelateret fejl blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="185"/>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>En ukendt fejl relateret til indholdet blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="187"/>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Et nedbrud i protokollen blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="189"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>Unknown error</source>
         <translation>Ukendt fejl</translation>
     </message>
