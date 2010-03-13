@@ -1556,15 +1556,17 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(file_size > 0 && (fp[i]/(double)file_size) < 1.) {
           const QString &name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
           if(!name.endsWith(".!qB")) {
-            qDebug("Renaming %s to %s", qPrintable(name), qPrintable(name+".!qB"));
-            h.rename_file(i, name + ".!qB");
+            const QString &new_name = name+".!qB";
+            qDebug("Renaming %s to %s", qPrintable(name), qPrintable(new_name));
+            h.rename_file(i, new_name);
           }
         }
       } else {
         QString name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
         if(name.endsWith(".!qB")) {
+          const QString old_name = name;
           name.chop(4);
-          qDebug("Renaming %s to %s", qPrintable(name+".!qB"), qPrintable(name));
+          qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(name));
           h.rename_file(i, name);
         }
       }
