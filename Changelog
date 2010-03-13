@@ -17,6 +17,7 @@
     - BUGFIX: Optimized RSS module memory usage
     - BUGFIX: Consider HTTP downloads >1MB as invalid .torrent files and abort
     - BUGFIX: Fix Web UI authentication with some browsers
+    - BUGFIX: Set Web UI ban period to 1 hour
     - COSMETIC: Improved style management
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0

@@ -37,6 +37,48 @@
 #include <QCryptographicHash>
 #include <QTime>
 #include <QRegExp>
+#include <QTimer>
+
+const int BAN_TIME = 3600000; // 1 hour
+
+class UnbanTimer: public QTimer {
+  public:
+  UnbanTimer(QObject *parent, QString peer_ip): QTimer(parent), peer_ip(peer_ip){
+    setSingleShot(true);
+    setInterval(BAN_TIME);
+  }
+  ~UnbanTimer() {
+    qDebug("||||||||||||Deleting ban timer|||||||||||||||");
+  }
+  QString peer_ip;
+};
+
+void HttpServer::UnbanTimerEvent() {
+  UnbanTimer* ubantimer = static_cast<UnbanTimer*>(sender());
+  qDebug("Ban period has expired for %s", qPrintable(ubantimer->peer_ip));
+  client_failed_attempts.remove(ubantimer->peer_ip);
+  ubantimer->deleteLater();
+}
+
+int HttpServer::NbFailedAttemptsForIp(QString ip) const {
+  return client_failed_attempts.value(ip, 0);
+}
+
+void HttpServer::increaseNbFailedAttemptsForIp(QString ip) {
+  const int nb_fail = client_failed_attempts.value(ip, 0);
+  client_failed_attempts.insert(ip, nb_fail+1);
+  if(nb_fail == MAX_AUTH_FAILED_ATTEMPTS-1) {
+    // Max number of failed attempts reached
+    // Start ban period
+    UnbanTimer* ubantimer = new UnbanTimer(this, ip);
+    connect(ubantimer, SIGNAL(timeout()), this, SLOT(UnbanTimerEvent()));
+    ubantimer->start();
+  }
+}
+
+void HttpServer::resetNbFailedAttemptsForIp(QString ip) {
+  client_failed_attempts.remove(ip);
+}
 
 HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent) {
   username = Preferences::getWebUiUsername().toLocal8Bit();
