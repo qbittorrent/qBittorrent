@@ -1950,8 +1950,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(appendqBExtension) {
           QString name = misc::toQString(h.get_torrent_info().file_at(p->index).path.string());
           if(name.endsWith(".!qB")) {
+            const QString old_name = name;
             name.chop(4);
-            qDebug("Renaming %s to %s", qPrintable(name+".!qB"), qPrintable(name));
+            qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(name));
             h.rename_file(p->index, name);
           }
         }
