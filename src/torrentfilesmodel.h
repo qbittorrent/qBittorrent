@@ -65,8 +65,8 @@ public:
     if(name.endsWith(".!qB"))
       name.chop(4);
     itemData << name;
-    qDebug("Created a TreeItem file with name %s", getName().toLocal8Bit().data());
-    qDebug("parent is %s", parent->getName().toLocal8Bit().data());
+    qDebug("Created a TreeItem file with name %s", qPrintable(getName()));
+    qDebug("parent is %s", qPrintable(parent->getName()));
     itemData << QVariant((qulonglong)f.size);
     total_done = 0;
     itemData << 0.; // Progress;
@@ -102,7 +102,7 @@ public:
   }
 
   ~TreeItem() {
-    qDebug("Deleting item: %s", getName().toLocal8Bit().data());
+    qDebug("Deleting item: %s", qPrintable(getName()));
     qDeleteAll(childItems);
   }
 
@@ -168,7 +168,6 @@ public:
     else
       progress = 1.;
     Q_ASSERT(progress >= 0. && progress <= 1.);
-    //qDebug("setProgress(%s): %f", getName().toLocal8Bit().data(), progress);
     itemData.replace(2, progress);
     if(parentItem)
       parentItem->updateProgress();
@@ -189,7 +188,6 @@ public:
     if(type == ROOT) return;
     Q_ASSERT(type == FOLDER);
     total_done = 0;
-    //qDebug("Folder %s is updating its progress", getName().toLocal8Bit().data());
     foreach(TreeItem* child, childItems) {
       if(child->getPriority() > 0)
         total_done += child->getTotalDone();

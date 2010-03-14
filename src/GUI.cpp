@@ -227,6 +227,8 @@ GUI::~GUI() {
     delete aboutDlg;
   if(options)
     delete options;
+  if(downloadFromURLDialog)
+    delete downloadFromURLDialog;
   if(rssWidget)
     delete rssWidget;
   delete searchEngine;
@@ -251,6 +253,12 @@ GUI::~GUI() {
   delete switchRSSShortcut;
   // Delete BTSession objects
   delete BTSession;
+  // Deleting remaining top level widgets
+  qDebug("Deleting remaining top level widgets");
+  foreach (QWidget *win, QApplication::topLevelWidgets()) {
+    if(win && win != this)
+      delete win;
+  }
   // May freeze for a few seconds after the next line
   // because the Bittorrent session proxy will
   // actually be deleted now and destruction
@@ -627,8 +635,8 @@ void GUI::on_actionOpen_triggered() {
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   const QStringList &pathsList = QFileDialog::getOpenFileNames(0,
-                                                        tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
-                                                        tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
+                                                               tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
+                                                               tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!pathsList.empty()) {
     const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
     const uint listSize = pathsList.size();
@@ -829,7 +837,7 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
 #ifdef WITH_LIBNOTIFY
     if (notify_init ("summary-body")) {
       NotifyNotification* notification;
-      notification = notify_notification_new (title.toLocal8Bit().data(), msg.toLocal8Bit().data(), "qbittorrent", 0);
+      notification = notify_notification_new (qPrintable(title), qPrintable(msg), "qbittorrent", 0);
       gboolean success = notify_notification_show (notification, NULL);
       g_object_unref(G_OBJECT(notification));
       notify_uninit ();
@@ -954,7 +962,9 @@ void GUI::on_actionOptions_triggered() {
 // Display an input dialog to prompt user for
 // an url
 void GUI::on_actionDownload_from_URL_triggered() {
-  downloadFromURL *downloadFromURLDialog = new downloadFromURL(this);
-  connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
+  if(!downloadFromURLDialog) {
+    downloadFromURLDialog = new downloadFromURL(this);
+    connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
+  }
 }
 

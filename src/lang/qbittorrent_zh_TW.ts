@@ -108,56 +108,56 @@ p, li { white-space: pre-wrap; }
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>屬性</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>值</translation>
     </message>
     <message>
         <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略本地網路的傳輸限制</translation>
     </message>
     <message>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="unfinished"></translation>
+        <translation>將 TCP/IP 加載包含於傳輸限制中</translation>
     </message>
     <message>
         <source>Disk write cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>磁碟寫入快取大小</translation>
     </message>
     <message>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>連出埠 (最小) [0: 停用]</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>連出埠 (最大) [0: 停用]</translation>
     </message>
     <message>
         <source>Recheck torrents on completion</source>
-        <translation type="unfinished"></translation>
+        <translation>完成後重新檢查 torrent</translation>
     </message>
     <message>
         <source>Transfer list refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>傳輸清單更新間隔</translation>
     </message>
     <message>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>解析下載者的國家 (GeoIP)</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished">解析下載者的主機名</translation>
+        <translation>解析下載者的主機名</translation>
     </message>
 </context>
 <context>
@@ -347,19 +347,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>原因: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>備註: 新 tracker 已增加到現有的 torrent 中。</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>備註: URL 種子已增加到現有 torrent 中。</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>發生 I/O 錯誤, &apos;%1&apos; 已暫停。</translation>
     </message>
 </context>
 <context>
@@ -1700,11 +1700,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>使用一般速度限制</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>使用另外的速度限制</translation>
     </message>
 </context>
 <context>
@@ -1734,17 +1734,17 @@ Are you sure you want to quit qBittorrent?</source>
     <name>HttpConnection</name>
     <message>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>經過多次授權要求失敗之後, 你的 IP 已經被封鎖了。</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">下載速度: %1/s - 已傳輸: %2</translation>
+        <translation>下載速度: %1/s - 已傳輸: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">上傳速度: %1/s - 已傳輸: %2</translation>
+        <translation>上傳速度: %1/s - 已傳輸: %2</translation>
     </message>
 </context>
 <context>
@@ -1877,11 +1877,13 @@ You probably knew this, so we won&apos;t tell you again.</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent 是一個檔案分享程式。當你執行一個 torrent 時, 它的資料會上傳給其他人。所以, 你分享的任何內容, 你都負有完全的責任。
+
+之後不會再有其他提醒。</translation>
     </message>
     <message>
         <source>Press %1 key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>請按 %1 來接受並繼續...</translation>
     </message>
 </context>
 <context>
@@ -2016,7 +2018,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>使用另外的速度限制</translation>
     </message>
 </context>
 <context>
@@ -2039,7 +2041,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
@@ -2624,60 +2626,60 @@ QGroupBox {
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>速度</translation>
     </message>
     <message>
         <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>全域速度限制</translation>
     </message>
     <message>
         <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>另外的全域速度限制</translation>
     </message>
     <message>
         <source>Scheduled times:</source>
-        <translation type="unfinished"></translation>
+        <translation>排程的時間:</translation>
     </message>
     <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished">到</translation>
+        <translation>到</translation>
     </message>
     <message>
         <source>On days:</source>
-        <translation type="unfinished"></translation>
+        <translation>在哪幾天:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>每天</translation>
     </message>
     <message>
         <source>Week days</source>
-        <translation type="unfinished"></translation>
+        <translation>工作天</translation>
     </message>
     <message>
         <source>Week ends</source>
-        <translation type="unfinished"></translation>
+        <translation>假日</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>進階</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>複製 torrent 檔案到:</translation>
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查資料夾裡的 torrent 檔案:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>增加資料夾...</translation>
     </message>
     <message>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>移除資料夾</translation>
     </message>
 </context>
 <context>
@@ -2689,21 +2691,21 @@ QGroupBox {
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">高</translation>
+        <translation>高</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">最高</translation>
+        <translation>最高</translation>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>沒有下載</translation>
     </message>
 </context>
 <context>
@@ -2798,7 +2800,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">優先度</translation>
+        <translation>優先度</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2891,15 +2893,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">最高</translation>
+        <translation>最高</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">高</translation>
+        <translation>高</translation>
     </message>
     <message>
         <source>this session</source>
@@ -3231,11 +3233,11 @@ p, li { white-space: pre-wrap; }
     <name>ScanFoldersModel</name>
     <message>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>監視資料夾</translation>
     </message>
     <message>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>下載到此</translation>
     </message>
 </context>
 <context>
@@ -3346,7 +3348,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">搜尋</translation>
+        <translation>搜尋</translation>
     </message>
 </context>
 <context>
@@ -3439,11 +3441,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>點選來停用另外的速度限制</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>點選來啟用另外的速度限制</translation>
     </message>
 </context>
 <context>
@@ -3462,7 +3464,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">優先度</translation>
+        <translation>優先度</translation>
     </message>
 </context>
 <context>
@@ -3605,7 +3607,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -3886,22 +3888,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>增加於</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>完成於</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>下載限制</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>上傳限制</translation>
     </message>
 </context>
 <context>
@@ -4001,15 +4003,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">高</translation>
+        <translation>高</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">最高</translation>
+        <translation>最高</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -4906,31 +4908,31 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇輸出目錄</translation>
     </message>
     <message>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>增加要掃描的目錄</translation>
     </message>
     <message>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>資料夾已在監視中。</translation>
     </message>
     <message>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>資料夾不存在。</translation>
     </message>
     <message>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>資料夾不可讀取。</translation>
     </message>
     <message>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>失敗</translation>
     </message>
     <message>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>增加掃描資料夾: &apos;%1&apos;: %2 失敗</translation>
     </message>
 </context>
 <context>
@@ -5439,7 +5441,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">優先度</translation>
+        <translation>優先度</translation>
     </message>
     <message>
         <source>Unknown</source>

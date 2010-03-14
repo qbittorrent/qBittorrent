@@ -548,7 +548,7 @@ void QTorrentHandle::set_sequential_download(bool b) {
 
 void QTorrentHandle::set_tracker_login(QString username, QString password) {
   Q_ASSERT(h.is_valid());
-  h.set_tracker_login(std::string(username.toLocal8Bit().data()), std::string(password.toLocal8Bit().data()));
+  h.set_tracker_login(std::string(username.toLocal8Bit().constData()), std::string(password.toLocal8Bit().constData()));
 }
 
 void QTorrentHandle::force_recheck() const {
@@ -558,7 +558,7 @@ void QTorrentHandle::force_recheck() const {
 
 void QTorrentHandle::move_storage(QString new_path) const {
   Q_ASSERT(h.is_valid());
-  h.move_storage(new_path.toLocal8Bit().data());
+  h.move_storage(new_path.toLocal8Bit().constData());
 }
 
 void QTorrentHandle::file_priority(int index, int priority) const {
@@ -606,7 +606,7 @@ bool QTorrentHandle::save_torrent_file(QString path) {
     torrent_file["info"] = meta;
     if(!h.trackers().empty())
       torrent_file["announce"] = h.trackers().front().url;
-    boost::filesystem::ofstream out(path.toLocal8Bit().data(), std::ios_base::binary);
+    boost::filesystem::ofstream out(path.toLocal8Bit().constData(), std::ios_base::binary);
     out.unsetf(std::ios_base::skipws);
     bencode(std::ostream_iterator<char>(out), torrent_file);
     return true;
@@ -676,7 +676,7 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) {
 }
 
 void QTorrentHandle::rename_file(int index, QString name) {
-  h.rename_file(index, std::string(name.toLocal8Bit().data()));
+  h.rename_file(index, std::string(name.toLocal8Bit().constData()));
 }
 
 //

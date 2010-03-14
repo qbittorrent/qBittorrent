@@ -54,9 +54,9 @@ public:
 
 public slots:
   void refreshList();
-  void addTorrent(const QTorrentHandle& h);
-  void pauseTorrent(const QTorrentHandle &h);
-  void setFinished(const QTorrentHandle &h);
+  void addTorrent(QTorrentHandle& h);
+  void pauseTorrent(QTorrentHandle &h);
+  void setFinished(QTorrentHandle &h);
   void setSelectionLabel(QString label);
   void setRefreshInterval(int t);
   void startSelectedTorrents();
@@ -102,9 +102,9 @@ protected slots:
   bool loadHiddenColumns();
   void saveHiddenColumns() const;
   void displayListMenu(const QPoint&);
-  void updateMetadata(const QTorrentHandle &h);
+  void updateMetadata(QTorrentHandle &h);
   void currentChanged(const QModelIndex& current, const QModelIndex&);
-  void resumeTorrent(const QTorrentHandle &h);
+  void resumeTorrent(QTorrentHandle &h);
 #ifdef LIBTORRENT_0_15
   void toggleSelectedTorrentsSuperSeeding() const;
 #endif

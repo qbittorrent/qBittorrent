@@ -114,7 +114,7 @@ public:
     resize(settings.value(QString::fromUtf8("TorrentAdditionDlg/size"), size()).toSize());
     move(settings.value(QString::fromUtf8("TorrentAdditionDlg/pos"), misc::screenCenter(this)).toPoint());
     // Restore column width
-    QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), QVariantList()).toList();
+    const QVariantList &contentColsWidths = settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), QVariantList()).toList();
     if(contentColsWidths.empty()) {
       torrentContentList->header()->resizeSection(0, 200);
     } else {
@@ -175,7 +175,7 @@ public:
     resize(width(), height()-hidden_height);
   }
 
-  void showLoad(QString filePath, QString from_url=QString::null){
+  void showLoad(QString filePath, QString from_url=QString::null) {
     is_magnet = false;
     if(!QFile::exists(filePath)) {
       close();
@@ -222,7 +222,7 @@ public:
     // Load custom labels
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
-    QStringList customLabels = settings.value("customLabels", QStringList()).toStringList();
+    const QStringList &customLabels = settings.value("customLabels", QStringList()).toStringList();
     comboLabel->addItem("");
     foreach(const QString& label, customLabels) {
       comboLabel->addItem(label);
@@ -239,7 +239,7 @@ public slots:
 
   void displayContentListMenu(const QPoint&) {
     QMenu myFilesLlistMenu;
-    QModelIndexList selectedRows = torrentContentList->selectionModel()->selectedRows(0);
+    const QModelIndexList &selectedRows = torrentContentList->selectionModel()->selectedRows(0);
     QAction *actRename = 0;
     if(selectedRows.size() == 1) {
       actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
@@ -266,7 +266,7 @@ public slots:
           }
         }
         qDebug("Setting files priority");
-        foreach(QModelIndex index, selectedRows) {
+        foreach(const QModelIndex &index, selectedRows) {
           qDebug("Setting priority(%d) for file at row %d", prio, index.row());
           PropListModel->setData(PropListModel->index(index.row(), PRIORITY, index.parent()), prio);
         }
@@ -275,12 +275,12 @@ public slots:
   }
 
   void renameSelectedFile() {
-    QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedRows(0);
+    const QModelIndexList &selectedIndexes = torrentContentList->selectionModel()->selectedRows(0);
     Q_ASSERT(selectedIndexes.size() == 1);
-    QModelIndex index = selectedIndexes.first();
+    const QModelIndex &index = selectedIndexes.first();
     // Ask for new name
     bool ok;
-    QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
+    const QString &new_name_last = QInputDialog::getText(this, tr("Rename the file"),
                                                   tr("New name:"), QLineEdit::Normal,
                                                   index.data().toString(), &ok);
     if (ok && !new_name_last.isEmpty()) {
@@ -292,12 +292,12 @@ public slots:
       }
       if(PropListModel->getType(index)==TFILE) {
         // File renaming
-        uint file_index = PropListModel->getFileIndex(index);
-        QString old_name = files_path.at(file_index);
+        const uint file_index = PropListModel->getFileIndex(index);
+        const QString &old_name = files_path.at(file_index);
         QStringList path_items = old_name.split(QDir::separator());
         path_items.removeLast();
         path_items << new_name_last;
-        QString new_name = path_items.join(QDir::separator());
+        const QString &new_name = path_items.join(QDir::separator());
         if(old_name == new_name) {
           qDebug("Name did not change");
           return;
@@ -317,7 +317,7 @@ public slots:
               return;
             }
           }
-          qDebug("Renaming %s to %s", old_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+          qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
           // Rename file in files_path
           files_path.replace(file_index, new_name);
           // Rename in torrent files model too
@@ -331,14 +331,14 @@ public slots:
             path_items.prepend(parent.data().toString());
             parent = PropListModel->parent(parent);
           }
-          QString old_path = path_items.join(QDir::separator());
+          const QString &old_path = path_items.join(QDir::separator());
           path_items.removeLast();
           path_items << new_name_last;
           QString new_path = path_items.join(QDir::separator());
           if(!new_path.endsWith(QDir::separator())) new_path += QDir::separator();
           // Check for overwriting
           for(uint i=0; i<nbFiles; ++i) {
-            QString current_name = files_path.at(i);
+            const QString &current_name = files_path.at(i);
 #ifdef Q_WS_WIN
             if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
 #else
@@ -352,11 +352,11 @@ public slots:
             }
             // Replace path in all files
             for(uint i=0; i<nbFiles; ++i) {
-              QString current_name = files_path.at(i);
+              const QString &current_name = files_path.at(i);
               if(current_name.startsWith(old_path)) {
                 QString new_name = current_name;
                 new_name.replace(0, old_path.length(), new_path);
-                qDebug("Rename %s to %s", current_name.toLocal8Bit().data(), new_name.toLocal8Bit().data());
+                qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
                 // Rename in files_path
                 files_path.replace(i, new_name);
               }
@@ -368,13 +368,13 @@ public slots:
       }
 
       void updateDiskSpaceLabels() {
-        long long available = misc::freeDiskSpaceOnPath(misc::expandPath(savePathTxt->text()));
+        const long long available = misc::freeDiskSpaceOnPath(misc::expandPath(savePathTxt->text()));
         lbl_disk_space->setText(misc::friendlyUnit(available));
         if(!is_magnet) {
           // Determine torrent size
           qulonglong torrent_size = 0;
-          unsigned int nbFiles = t->num_files();
-          std::vector<int> priorities = PropListModel->getFilesPriorities(nbFiles);
+          const unsigned int nbFiles = t->num_files();
+          const std::vector<int> &priorities = PropListModel->getFilesPriorities(nbFiles);
 
           for(unsigned int i=0; i<nbFiles; ++i) {
             if(priorities[i] > 0)
@@ -400,8 +400,8 @@ public slots:
 
       void on_browseButton_clicked(){
         QString dir;
-        QString save_path = misc::expandPath(savePathTxt->text());
-        QDir saveDir(save_path);
+        const QString &save_path = misc::expandPath(savePathTxt->text());
+        const QDir &saveDir(save_path);
         if(!save_path.isEmpty() && saveDir.exists()){
           dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath());
         }else{
@@ -422,7 +422,7 @@ public slots:
 
       void savePiecesPriorities(){
         qDebug("Saving pieces priorities");
-        std::vector<int> priorities = PropListModel->getFilesPriorities(t->num_files());
+        const std::vector<int> &priorities = PropListModel->getFilesPriorities(t->num_files());
         TorrentTempData::setFilesPriority(hash, priorities);
       }
 
@@ -439,14 +439,14 @@ public slots:
             return;
           }
         }
-        QString current_label = comboLabel->currentText().trimmed();
+        const QString &current_label = comboLabel->currentText().trimmed();
         if (!current_label.isEmpty() && !misc::isValidFileSystemName(current_label)) {
           QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
           return;
         }
         // Save savepath
         TorrentTempData::setSavePath(hash, savePath.path());
-        qDebug("Torrent label is: %s", comboLabel->currentText().trimmed().toLocal8Bit().data());
+        qDebug("Torrent label is: %s", qPrintable(comboLabel->currentText().trimmed()));
         if(!current_label.isEmpty())
           TorrentTempData::setLabel(hash, current_label);
         // Is download sequential?

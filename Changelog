@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
+* Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling
     - FEATURE: Bandwidth scheduler (automatically use alternative speed limits for a given period)
     - FEATURE: Added "Added/Completed On" columns to transfer list
@@ -15,6 +15,9 @@
     - FEATURE: Support for multiple scan folders (Patch by Christian Kandeler)
     - BUGFIX: Only one log window can be opened at a time
     - BUGFIX: Optimized RSS module memory usage
+    - BUGFIX: Consider HTTP downloads >1MB as invalid .torrent files and abort
+    - BUGFIX: Fix Web UI authentication with some browsers
+    - BUGFIX: Set Web UI ban period to 1 hour
     - COSMETIC: Improved style management
 
 * Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0

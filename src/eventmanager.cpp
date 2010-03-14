@@ -295,23 +295,23 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
     data["creation_date"] = h.creation_date();
     // Comment
     data["comment"] = h.comment();
-    data["total_wasted"] = misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes());
-    data["total_uploaded"] = misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")";
-    data["total_downloaded"] = misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")";
+    data["total_wasted"] = QVariant(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
+    data["total_uploaded"] = QVariant(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
+    data["total_downloaded"] = QVariant(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
     if(h.upload_limit() <= 0)
       data["up_limit"] = QString::fromUtf8("∞");
     else
-      data["up_limit"] = misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)");
+      data["up_limit"] = QVariant(misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
     if(h.download_limit() <= 0)
       data["dl_limit"] = QString::fromUtf8("∞");
     else
-      data["dl_limit"] =  misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)");
+      data["dl_limit"] =  QVariant(misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
     QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
     if(h.is_seed()) {
       elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
     }
     data["time_elapsed"] = elapsed_txt;
-    data["nb_connections"] = QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")";
+    data["nb_connections"] = QVariant(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
     // Update ratio info
     double ratio = BTSession->getRealRatio(h.hash());
     if(ratio > 100.)

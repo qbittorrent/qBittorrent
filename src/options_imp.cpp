@@ -34,7 +34,6 @@
 #include <QSystemTrayIcon>
 #include <QApplication>
 #include <QSettings>
-#include "qgnomelook.h"
 #include <QDialogButtonBox>
 #include <QCloseEvent>
 #include <QDesktopWidget>
@@ -53,8 +52,12 @@
 options_imp::options_imp(QWidget *parent):QDialog(parent){
   qDebug("-> Constructing Options");
   setAttribute(Qt::WA_DeleteOnClose);
+  setModal(true);
+
   QString savePath;
   setupUi(this);
+  hsplitter->setCollapsible(0, false);
+  hsplitter->setCollapsible(1, false);
   // Get apply button in button box
   QList<QAbstractButton *> buttons = buttonBox->buttons();
   foreach(QAbstractButton *button, buttons){
@@ -283,8 +286,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   scrollArea_advanced->setLayout(adv_layout);
   connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
   // Adapt size
-  loadWindowState();
   show();
+  loadWindowState();
 }
 
 // Main destructor
@@ -304,11 +307,6 @@ void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous
 
 void options_imp::useStyle() {
   QApplication::setStyle(QStyleFactory::create(comboStyle->itemText(comboStyle->currentIndex())));
-  if(QApplication::style()->objectName() == "cleanlooks") {
-    // Force our own cleanlooks style
-    qDebug("Forcing our own cleanlooks style");
-    QApplication::setStyle(new QGnomeLookStyle());
-  }
 }
 
 void options_imp::loadWindowState() {
@@ -317,12 +315,29 @@ void options_imp::loadWindowState() {
   QPoint p = settings.value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
   if(!p.isNull())
     move(p);
+  // Load slider size
+  const QStringList &sizes_str = settings.value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
+  // Splitter size
+  QList<int> sizes;
+  if(sizes_str.size() == 2) {
+    sizes << sizes_str.first().toInt();
+    sizes << sizes_str.last().toInt();
+  } else {
+    sizes << 130;
+    sizes << hsplitter->width()-130;
+  }
+  hsplitter->setSizes(sizes);
 }
 
 void options_imp::saveWindowState() const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue(QString::fromUtf8("Preferences/State/size"), size());
   settings.setValue(QString::fromUtf8("Preferences/State/pos"), pos());
+  // Splitter size
+  QStringList sizes_str;
+  sizes_str << QString::number(hsplitter->sizes().first());
+  sizes_str << QString::number(hsplitter->sizes().last());
+  settings.setValue(QString::fromUtf8("Preferences/State/hSplitterSizes"), sizes_str);
 }
 
 QSize options_imp::sizeFittingScreen() {

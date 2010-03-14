@@ -398,15 +398,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Примечание: новые трекеры были добавлены к существующему торренту.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Примечание: новые URL сидов были добавлены к существующему торренту.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
 </context>
 <context>
@@ -2668,12 +2668,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Скач: %1/с - Перед: %2</translation>
+        <translation>Скач: %1/с - Перед: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Отдача: %1/с - Перед: %2</translation>
+        <translation>Отдача: %1/с - Перед: %2</translation>
     </message>
 </context>
 <context>
@@ -3728,15 +3728,15 @@ QGroupBox {
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверить папок на торрент файлы:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить папку...</translation>
     </message>
     <message>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить папку</translation>
     </message>
 </context>
 <context>
@@ -3865,7 +3865,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3958,15 +3958,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Обычный</translation>
+        <translation>Обычный</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Максимальный</translation>
+        <translation>Максимальный</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Высокий</translation>
+        <translation>Высокий</translation>
     </message>
     <message>
         <source>this session</source>
@@ -4310,11 +4310,11 @@ p, li { white-space: pre-wrap; }
     <name>ScanFoldersModel</name>
     <message>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Отслеживаемые папки</translation>
     </message>
     <message>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачивать сюда</translation>
     </message>
 </context>
 <context>
@@ -5237,15 +5237,15 @@ Changelog:
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Обычный</translation>
+        <translation>Обычный</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Высокий</translation>
+        <translation>Высокий</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Максимальный</translation>
+        <translation>Максимальный</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6391,31 +6391,31 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите папку для экспорта</translation>
     </message>
     <message>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить папку для сканирования</translation>
     </message>
     <message>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Папку уже отслеживается.</translation>
     </message>
     <message>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка не существует.</translation>
     </message>
     <message>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка не доступна для чтения.</translation>
     </message>
     <message>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось добавить папку для сканирования &apos;%1&apos;: %2</translation>
     </message>
 </context>
 <context>
@@ -7109,7 +7109,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
     <message>
         <source>Unknown</source>

@@ -90,8 +90,8 @@ void RSSImp::displayItemsListMenu(const QPoint&){
   if(selectedItems.size() > 0) {
     bool has_attachment = false;
     foreach(QTreeWidgetItem *item, selectedItems) {
-      qDebug("text(3) URL: %s", item->text(NEWS_URL_COL).toLocal8Bit().data());
-      qDebug("text(2) TITLE: %s", item->text(NEWS_TITLE_COL).toLocal8Bit().data());
+      qDebug("text(3) URL: %s", qPrintable(item->text(NEWS_URL_COL)));
+      qDebug("text(2) TITLE: %s", qPrintable(item->text(NEWS_TITLE_COL)));
       if(listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_TITLE_COL))->has_attachment()) {
         has_attachment = true;
         break;
@@ -254,7 +254,7 @@ void RSSImp::loadFoldersOpenState() {
         if(listStreams->getRSSItem(child)->getID() == name) {
           parent = child;
           parent->setExpanded(true);
-          qDebug("expanding folder %s", name.toLocal8Bit().data());
+          qDebug("expanding folder %s", qPrintable(name));
           break;
         }  
       }
@@ -267,7 +267,7 @@ void RSSImp::saveFoldersOpenState() {
   QList<QTreeWidgetItem*> items = listStreams->getAllOpenFolders();
   foreach(QTreeWidgetItem* item, items) {
     QString path = listStreams->getItemPath(item).join("\\");
-    qDebug("saving open folder: %s", path.toLocal8Bit().data());
+    qDebug("saving open folder: %s", qPrintable(path));
     open_folders << path;
   }
   QSettings settings("qBittorrent", "qBittorrent");
@@ -405,7 +405,7 @@ void RSSImp::fillFeedsList(QTreeWidgetItem *parent, RssFolder *rss_parent) {
       item = new QTreeWidgetItem(listStreams);
     else
       item = new QTreeWidgetItem(parent);
-    item->setData(0, Qt::DisplayRole, rss_child->getName()+ QString::fromUtf8("  (")+QString::number(rss_child->getNbUnRead(), 10)+QString(")"));
+    item->setData(0, Qt::DisplayRole, QVariant(rss_child->getName()+ QString::fromUtf8("  (")+QString::number(rss_child->getNbUnRead(), 10)+QString(")")));
     // Notify TreeWidget of item addition
     listStreams->itemAdded(item, rss_child);
     // Set Icon
@@ -427,6 +427,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   }
 
   RssFile *rss_item = listStreams->getRSSItem(item);
+  if(!rss_item) return;
 
   qDebug("Getting the list of news");
   QList<RssItem*> news;

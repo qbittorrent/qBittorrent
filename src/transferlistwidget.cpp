@@ -156,7 +156,7 @@ TransferListWidget::~TransferListWidget() {
   delete listDelegate;
 }
 
-void TransferListWidget::addTorrent(const QTorrentHandle& h) {
+void TransferListWidget::addTorrent(QTorrentHandle& h) {
   if(!h.is_valid()) return;
   // Check that the torrent is not already there
   if(getRowFromHash(h.hash()) >= 0) return;
@@ -235,7 +235,7 @@ void TransferListWidget::deleteTorrent(int row, bool refresh_list) {
 }
 
 // Wrapper slot for bittorrent signal
-void TransferListWidget::pauseTorrent(const QTorrentHandle &h) {
+void TransferListWidget::pauseTorrent(QTorrentHandle &h) {
   pauseTorrent(getRowFromHash(h.hash()));
 }
 
@@ -264,7 +264,7 @@ int TransferListWidget::getNbTorrents() const {
 }
 
 // Wrapper slot for bittorrent signal
-void TransferListWidget::resumeTorrent(const QTorrentHandle &h) {
+void TransferListWidget::resumeTorrent(QTorrentHandle &h) {
   resumeTorrent(getRowFromHash(h.hash()));
 }
 
@@ -283,7 +283,7 @@ void TransferListWidget::resumeTorrent(int row, bool refresh_list) {
     refreshList();
 }
 
-void TransferListWidget::updateMetadata(const QTorrentHandle &h) {
+void TransferListWidget::updateMetadata(QTorrentHandle &h) {
   const QString &hash = h.hash();
   const int row = getRowFromHash(hash);
   if(row != -1) {
@@ -295,7 +295,7 @@ void TransferListWidget::updateMetadata(const QTorrentHandle &h) {
 }
 
 void TransferListWidget::previewFile(QString filePath) {
-  QDesktopServices::openUrl(QString("file://")+filePath);
+  QDesktopServices::openUrl(QUrl(QString("file://")+filePath));
 }
 
 int TransferListWidget::updateTorrent(int row) {
@@ -440,7 +440,7 @@ int TransferListWidget::updateTorrent(int row) {
   return s;
 }
 
-void TransferListWidget::setFinished(const QTorrentHandle &h) {
+void TransferListWidget::setFinished(QTorrentHandle &h) {
   const int row = getRowFromHash(h.hash());
   try {
     if(row >= 0) {
@@ -482,7 +482,7 @@ void TransferListWidget::refreshList() {
     std::vector<torrent_handle> torrents = BTSession->getSession()->get_torrents();
     std::vector<torrent_handle>::iterator itr;
     for(itr = torrents.begin(); itr != torrents.end(); itr++) {
-      const QTorrentHandle &h(*itr);
+      QTorrentHandle h(*itr);
       if(h.is_valid() && getRowFromHash(h.hash()) < 0) {
         addTorrent(h);
       }
@@ -584,9 +584,9 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
     break;
   case OPEN_DEST:
     if(h.has_metadata())
-      QDesktopServices::openUrl("file://" + h.root_path());
+      QDesktopServices::openUrl(QUrl("file://" + h.root_path()));
     else
-      QDesktopServices::openUrl("file://" + h.save_path());
+      QDesktopServices::openUrl(QUrl("file://" + h.save_path()));
     break;
   }
 }
@@ -693,7 +693,7 @@ void TransferListWidget::buySelectedTorrents() const {
   foreach(const QString &hash, hashes) {
     const QTorrentHandle &h = BTSession->getTorrentHandle(hash);
     if(h.is_valid())
-      QDesktopServices::openUrl("http://match.sharemonkey.com/?info_hash="+h.hash()+"&n="+h.name()+"&cid=33");
+      QDesktopServices::openUrl(QUrl("http://match.sharemonkey.com/?info_hash="+h.hash()+"&n="+h.name()+"&cid=33"));
   }
 }
 
@@ -765,7 +765,7 @@ void TransferListWidget::setDlLimitSelectedTorrents() {
   const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences::getGlobalDownloadLimit()*1024.);
   if(ok) {
     foreach(const QTorrentHandle &h, selected_torrents) {
-      qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().constData());
+      qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));
       BTSession->setDownloadLimit(h.hash(), new_limit);
     }
   }
@@ -798,7 +798,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences::getGlobalUploadLimit()*1024.);
   if(ok) {
     foreach(const QTorrentHandle &h, selected_torrents) {
-      qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), h.hash().toLocal8Bit().constData());
+      qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));
       BTSession->setUploadLimit(h.hash(), new_limit);
     }
   }
@@ -1257,7 +1257,7 @@ void TransferListWidget::saveLastSortedColumn() {
   else
     sortOrderLetter = QString::fromUtf8("d");
   const int index = header()->sortIndicatorSection();
-  settings.setValue(QString::fromUtf8("TransferListSortedCol"), QString::number(index)+sortOrderLetter);
+  settings.setValue(QString::fromUtf8("TransferListSortedCol"), QVariant(QString::number(index)+sortOrderLetter));
 }
 
 void TransferListWidget::loadLastSortedColumn() {
@@ -1296,7 +1296,7 @@ void TransferListWidget::applyLabelFilter(QString label) {
     labelFilterModel->setFilterRegExp(QRegExp("^$"));
     return;
   }
-  qDebug("Applying Label filter: %s", label.toLocal8Bit().data());
+  qDebug("Applying Label filter: %s", qPrintable(label));
   labelFilterModel->setFilterRegExp(QRegExp("^"+label+"$", Qt::CaseSensitive));
 }
 

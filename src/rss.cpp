@@ -31,12 +31,12 @@
 #include "rss.h"
 #include "preferences.h"
 
-#ifdef QT_4_5
-#include <QHash>
-#else
+#if QT_VERSION < 0x040500
 #include <QMap>
 #define QHash QMap
 #define toHash toMap
+#else
+#include <QHash>
 #endif
 
 /** RssFolder **/
@@ -69,7 +69,7 @@ RssFile::FileType RssFolder::getType() const {
 
 void RssFolder::refreshAll(){
   qDebug("Refreshing all rss feeds");
-  QList<RssFile*> items = this->values();
+  const QList<RssFile*> &items = this->values();
   for(int i=0; i<items.size(); ++i) {
     //foreach(RssFile *item, *this){
     RssFile *item = items.at(i);
@@ -359,13 +359,15 @@ void RssManager::moveFile(RssFile* file, RssFolder* dest_folder) {
 }
 
 void RssManager::saveStreamList(){
-  QList<QPair<QString, QString> > streamsList;
   QStringList streamsUrl;
   QStringList aliases;
-  QList<RssStream*> streams = getAllFeeds();
-  foreach(RssStream *stream, streams) {
+  const QList<RssStream*> &streams = getAllFeeds();
+  foreach(const RssStream *stream, streams) {
     QString stream_path = stream->getPath().join("\\");
-    qDebug("Saving stream path: %s", stream_path.toLocal8Bit().data());
+    if(stream_path.isNull()) {
+      stream_path = "";
+    }
+    qDebug("Saving stream path: %s", qPrintable(stream_path));
     streamsUrl << stream_path;
     aliases << stream->getName();
   }
@@ -625,12 +627,9 @@ short RssStream::readDoc(QIODevice* device) {
             }
           }
         }
-        return 0;
       }
     }
   }
-  qDebug("XML Error: This is not a valid RSS document");
-  return -1;
 
   resizeList();
 

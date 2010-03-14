@@ -81,7 +81,7 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
   QStringList files=event->mimeData()->text().split(QString::fromUtf8("\n"));
   QString file;
   foreach(file, files) {
-    qDebug("dropped %s", file.toLocal8Bit().data());
+    qDebug("dropped %s", qPrintable(file));
     file = file.replace("file://", "");
     if(file.startsWith("http://", Qt::CaseInsensitive) || file.startsWith("https://", Qt::CaseInsensitive) || file.startsWith("ftp://", Qt::CaseInsensitive)) {
       downloader->downloadUrl(file);
@@ -99,7 +99,7 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
 void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
   QString mime;
   foreach(mime, event->mimeData()->formats()){
-    qDebug("mimeData: %s", mime.toLocal8Bit().data());
+    qDebug("mimeData: %s", qPrintable(mime));
   }
   if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
     event->acceptProposedAction();
@@ -251,12 +251,12 @@ bool engineSelectDlg::isUpdateNeeded(QString plugin_name, float new_version) con
 }
 
 void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
-  qDebug("Asked to install plugin at %s", path.toLocal8Bit().data());
+  qDebug("Asked to install plugin at %s", qPrintable(path));
   float new_version = SearchEngine::getPluginVersion(path);
   qDebug("Version to be installed: %.2f", new_version);
   if(!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
-    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
   // Process with install
@@ -280,12 +280,12 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
       // restore backup
       QFile::copy(dest_path+".bak", dest_path);
       QFile::remove(dest_path+".bak");
-      QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be updated, keeping old version.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+      QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be updated, keeping old version.", "%1 is the name of the search engine").arg(plugin_name));
       return;
     } else {
       // Remove broken file
       QFile::remove(dest_path);
-      QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+      QMessageBox::warning(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin could not be installed.", "%1 is the name of the search engine").arg(plugin_name));
       return;
     }
   }
@@ -294,10 +294,10 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
     QFile::remove(dest_path+".bak");
   }
   if(update) {
-    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   } else {
-    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("%1 search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
 }
@@ -390,17 +390,17 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
     plugin_name.chop(1); // remove trailing ':'
     bool ok;
     float version = list.last().toFloat(&ok);
-    qDebug("read line %s: %.2f", plugin_name.toLocal8Bit().data(), version);
+    qDebug("read line %s: %.2f", qPrintable(plugin_name), version);
     if(!ok) continue;
     file_correct = true;
     if(isUpdateNeeded(plugin_name, version)) {
-      qDebug("Plugin: %s is outdated", plugin_name.toLocal8Bit().data());
+      qDebug("Plugin: %s is outdated", qPrintable(plugin_name));
       // Downloading update
       downloader->downloadUrl(UPDATE_URL+plugin_name+".py");
       //downloader->downloadUrl(UPDATE_URL+plugin_name+".png");
       updated = true;
     }else {
-      qDebug("Plugin: %s is up to date", plugin_name.toLocal8Bit().data());
+      qDebug("Plugin: %s is up to date", qPrintable(plugin_name));
     }
   }
   // Close file
@@ -414,7 +414,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
 }
 
 void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
-  qDebug("engineSelectDlg received %s", url.toLocal8Bit().data());
+  qDebug("engineSelectDlg received %s", qPrintable(url));
   if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
     // Icon downloaded
     QImage fileIcon;
@@ -456,7 +456,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
 
 void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
   if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
-    qDebug("Could not download favicon: %s, reason: %s", url.toLocal8Bit().data(), reason.toLocal8Bit().data());
+    qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));
     return;
   }
   if(url.endsWith("versions.txt")) {
@@ -467,6 +467,6 @@ void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
     // a plugin update download has been failed
     QString plugin_name = url.split('/').last();
     plugin_name.replace(".py", "", Qt::CaseInsensitive);
-    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name.toLocal8Bit().data()));
+    QMessageBox::warning(this, tr("Search plugin update")+" -- "+tr("qBittorrent"), tr("Sorry, %1 search plugin install failed.", "%1 is the name of the search engine").arg(plugin_name));
   }
 }

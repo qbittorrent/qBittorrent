@@ -46,7 +46,7 @@
 #include "bittorrent.h"
 #include "ui_feeddownloader.h"
 
-#ifdef QT_4_5
+#if QT_VERSION >= 0x040500
 #include <QHash>
 #else
 #include <QMap>
@@ -64,11 +64,9 @@ public:
 
   bool matches(QString s) {
     QStringList match_tokens = getMatchingTokens();
-    //qDebug("Checking matching tokens: \"%s\"", getMatchingTokens_str().toLocal8Bit().data());
     foreach(const QString& token, match_tokens) {
       if(token.isEmpty() || token == "")
         continue;
-      //qDebug("Token: %s", token.toLocal8Bit().data());
       QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
       //reg.setMinimal(false);
       if(reg.indexIn(s) < 0) return false;
@@ -226,7 +224,7 @@ public:
   void save() {
     QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> all_feeds_filters = qBTRSS.value("feed_filters", QHash<QString, QVariant>()).toHash();
-    qDebug("Saving filters for feed: %s (%d filters)", feed_url.toLocal8Bit().data(), (*this).size());
+    qDebug("Saving filters for feed: %s (%d filters)", qPrintable(feed_url), (*this).size());
     all_feeds_filters[feed_url] = *this;
     qBTRSS.setValue("feed_filters", all_feeds_filters);
   }
@@ -261,7 +259,6 @@ public:
     // Restore saved info
     enableDl_cb->setChecked(filters.isDownloadingEnabled());
     fillFiltersList();
-    filtersList->sortItems(Qt::AscendingOrder);
     if(filters.size() > 0) {
       // Select first filter
       filtersList->setCurrentItem(filtersList->item(0));
@@ -388,7 +385,6 @@ protected slots:
       if(selected_filter == current_name)
         selected_filter = new_name;
       item->setText(new_name);
-      filtersList->sortItems(Qt::AscendingOrder);
     }
   }
 
@@ -442,7 +438,6 @@ protected slots:
       }
     }while(!validated);
     QListWidgetItem *it = new QListWidgetItem(filter_name, filtersList);
-    filtersList->sortItems(Qt::AscendingOrder);
     filtersList->setCurrentItem(it);
     //showFilterSettings(it);
   }
