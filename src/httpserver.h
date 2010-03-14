@@ -42,28 +42,34 @@ class Bittorrent;
 class QTimer;
 class EventManager;
 
+const int MAX_AUTH_FAILED_ATTEMPTS = 5;
+
 class HttpServer : public QTcpServer {
-	Q_OBJECT
+  Q_OBJECT
 
-	private:
-                QByteArray username;
-                QByteArray password_ha1;
-                Bittorrent *BTSession;
-		EventManager *manager;
-		QTimer *timer;
+public:
+  HttpServer(Bittorrent *BTSession, int msec, QObject* parent = 0);
+  ~HttpServer();
+  void setAuthorization(QString username, QString password_ha1);
+  bool isAuthorized(QByteArray auth, QString method) const;
+  EventManager *eventManager() const;
+  QString generateNonce() const;
+  int NbFailedAttemptsForIp(QString ip) const;
+  void increaseNbFailedAttemptsForIp(QString ip);
+  void resetNbFailedAttemptsForIp(QString ip);
 
-	public:
-                HttpServer(Bittorrent *BTSession, int msec, QObject* parent = 0);
-		~HttpServer();
-                void setAuthorization(QString username, QString password_ha1);
-                bool isAuthorized(QByteArray auth, QString method) const;
-		EventManager *eventManager() const;
-                QString generateNonce() const;
-                QHash<QString, int> client_failed_attempts;
+private slots:
+  void newHttpConnection();
+  void onTimer();
+  void UnbanTimerEvent();
 
-	private slots:
-		void newHttpConnection();
-		void onTimer();
+private:
+  QByteArray username;
+  QByteArray password_ha1;
+  Bittorrent *BTSession;
+  EventManager *manager;
+  QTimer *timer;
+  QHash<QString, int> client_failed_attempts;
 };
 
 #endif

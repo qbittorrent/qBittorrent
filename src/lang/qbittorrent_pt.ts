@@ -112,56 +112,56 @@ p, li { white-space: pre-wrap; }
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriedade</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor</translation>
     </message>
     <message>
         <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar limite de transferência na internet local</translation>
     </message>
     <message>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir sobrecarga TCP/IP no limite de transferência</translation>
     </message>
     <message>
         <source>Disk write cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho de cache em disco</translation>
     </message>
     <message>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Portas de saída (Min) [0: Desabilitado]</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Portas de saída (Max) [0: Desabilitado]</translation>
     </message>
     <message>
         <source>Recheck torrents on completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechecar torrents em completação</translation>
     </message>
     <message>
         <source>Transfer list refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo de atualização da lista de transferência</translation>
     </message>
     <message>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Resolver peer dos países (GeoIP)</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished"></translation>
+        <translation>Resolver nomes de peer</translation>
     </message>
 </context>
 <context>
@@ -351,19 +351,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Motivo: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nota: novos trackers foram adicionados no torrent existente.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nota: nova URL de seed foi adicionada ao torrent existente.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um erro de I/O aconteceu, &apos;%1&apos; foi pausado.</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2522,11 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar limite de velocidade normal</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar limite de velocidade alternativo</translation>
     </message>
 </context>
 <context>
@@ -2556,17 +2556,17 @@ Está certo que quer sair do qBittorrent?</translation>
     <name>HttpConnection</name>
     <message>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seu endereço IP fo banido após várias tentativas de autenticação.</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">D: %1/s - T: %2</translation>
+        <translation>D: %1/s - T: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">U: %1/s - T: %2</translation>
+        <translation>U: %1/s - T: %2</translation>
     </message>
 </context>
 <context>
@@ -2699,11 +2699,13 @@ Você com certeza sabe disso e não vamos falar isso novamente.</translation>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent é um programa de compartilhamento de arquivos. Quando você o usa, os dados enviados estarão disponíveis para outros ue fizerem o mesmo upload. Todo conteúdo compartilhado por você é de sua inteira responsabilidade.
+
+Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Press %1 key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pressione a tecla %1 para aceitar e continuar...</translation>
     </message>
 </context>
 <context>
@@ -2970,7 +2972,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar limite de velocidade alternativo</translation>
     </message>
 </context>
 <context>
@@ -2993,7 +2995,7 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
@@ -3578,60 +3580,60 @@ QGroupBox {
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocidade</translation>
     </message>
     <message>
         <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite global de velocidade</translation>
     </message>
     <message>
         <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite alternativo de velocidade global</translation>
     </message>
     <message>
         <source>Scheduled times:</source>
-        <translation type="unfinished"></translation>
+        <translation>Horários programados:</translation>
     </message>
     <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished">a</translation>
+        <translation>para</translation>
     </message>
     <message>
         <source>On days:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nos dias:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>Todo dia</translation>
     </message>
     <message>
         <source>Week days</source>
-        <translation type="unfinished"></translation>
+        <translation>Dias da semana</translation>
     </message>
     <message>
         <source>Week ends</source>
-        <translation type="unfinished"></translation>
+        <translation>Fins de semana</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Avançado</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar arquivos .torrent para:</translation>
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar nas pastas por arquivos .torrent:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar pasta ...</translation>
     </message>
     <message>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover pasta</translation>
     </message>
 </context>
 <context>
@@ -3651,21 +3653,21 @@ QGroupBox {
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Alta</translation>
+        <translation>Alta</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">Máxima</translation>
+        <translation>Máxima</translation>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Não baixado</translation>
     </message>
 </context>
 <context>
@@ -3756,7 +3758,7 @@ QGroupBox {
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioridade</translation>
+        <translation>Prioridade</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3849,15 +3851,15 @@ QGroupBox {
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Máximo</translation>
+        <translation>Máximo</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Forte</translation>
+        <translation>Alto</translation>
     </message>
     <message>
         <source>this session</source>
@@ -4204,11 +4206,11 @@ p, li { white-space: pre-wrap; }
     <name>ScanFoldersModel</name>
     <message>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta visualizada</translation>
     </message>
     <message>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar aqui</translation>
     </message>
 </context>
 <context>
@@ -4396,7 +4398,7 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Busca</translation>
+        <translation>Busca</translation>
     </message>
 </context>
 <context>
@@ -4568,11 +4570,11 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique para desabilitar limite alternativo</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique para habilitar limite alternativo</translation>
     </message>
 </context>
 <context>
@@ -4591,7 +4593,7 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioridade</translation>
+        <translation>Prioridade</translation>
     </message>
 </context>
 <context>
@@ -4730,7 +4732,7 @@ Log de mudanças:</translation>
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -5011,22 +5013,22 @@ Log de mudanças:</translation>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Adicionado em</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Completado em</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Limite de download</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Limite de upload</translation>
     </message>
 </context>
 <context>
@@ -5205,15 +5207,15 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Alto</translation>
+        <translation>Alto</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Máximo</translation>
+        <translation>Máximo</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -6328,31 +6330,31 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha diretório de exportação</translation>
     </message>
     <message>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicione diretório para escanear</translation>
     </message>
     <message>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta já está sendo monitorada.</translation>
     </message>
     <message>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Essa pasta não existe.</translation>
     </message>
     <message>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>A pasta não tem suporte a leitura.</translation>
     </message>
     <message>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Falhou</translation>
     </message>
     <message>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Falhou para adicionar pasta a ser escaneada &apos;%1&apos;: %2</translation>
     </message>
 </context>
 <context>
@@ -7038,7 +7040,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioridade</translation>
+        <translation>Prioridade</translation>
     </message>
     <message>
         <source>Unknown</source>

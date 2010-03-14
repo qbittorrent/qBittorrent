@@ -86,7 +86,7 @@ public:
 
 };
 
-#ifndef QT_4_5
+#if QT_VERSION < 0x040500
 #undef QHash
 #undef toHash
 #endif

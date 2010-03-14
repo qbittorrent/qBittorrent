@@ -120,6 +120,9 @@
             <property name="contextMenuPolicy">
              <enum>Qt::CustomContextMenu</enum>
             </property>
+            <property name="sortingEnabled">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item>
@@ -143,7 +146,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="icons.qrc">
+               <iconset resource="../icons.qrc">
                 <normaloff>:/Icons/oxygen/list-remove.png</normaloff>:/Icons/oxygen/list-remove.png</iconset>
               </property>
              </widget>
@@ -170,7 +173,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="icons.qrc">
+               <iconset resource="../icons.qrc">
                 <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
               </property>
              </widget>
@@ -396,7 +399,7 @@
                        </font>
                       </property>
                       <property name="text">
-                       <string>      </string>
+                       <string/>
                       </property>
                      </widget>
                     </item>
@@ -474,7 +477,7 @@
   </layout>
   <action name="actionRename_filter">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/edit_clear.png</normaloff>:/Icons/oxygen/edit_clear.png</iconset>
    </property>
    <property name="text">
@@ -486,7 +489,7 @@
   </action>
   <action name="actionRemove_filter">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/list-remove.png</normaloff>:/Icons/oxygen/list-remove.png</iconset>
    </property>
    <property name="text">
@@ -498,7 +501,7 @@
   </action>
   <action name="actionAdd_filter">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../icons.qrc">
      <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
    </property>
    <property name="text">
@@ -507,7 +510,7 @@
   </action>
  </widget>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="../icons.qrc"/>
  </resources>
  <connections>
   <connection>

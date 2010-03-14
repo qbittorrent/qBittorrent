@@ -46,6 +46,7 @@ class consoleDlg : public QDialog, private Ui_ConsoleDlg{
     consoleDlg(QWidget *parent, Bittorrent* _BTSession) : QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
+      setModal(true);
       BTSession = _BTSession;
       textConsole->setHtml(BTSession->getConsoleMessages().join("<br>"));
       textBannedPeers->setHtml(BTSession->getPeerBanMessages().join("<br>"));

@@ -86,9 +86,9 @@ public:
     exportEmbeddedDb();
 #endif
     if(QFile::exists(geoipDBpath(false))) {
-      qDebug("Loading GeoIP database from %s...", geoipDBpath(false).toLocal8Bit().data());
-      if(!s->load_country_db(geoipDBpath(false).toLocal8Bit().data())) {
-        std::cerr << "Failed to load Geoip Database at " << geoipDBpath(false).toLocal8Bit().data() << std::endl;
+      qDebug("Loading GeoIP database from %s...", qPrintable(geoipDBpath(false)));
+      if(!s->load_country_db(geoipDBpath(false).toLocal8Bit().constData())) {
+        std::cerr << "Failed to load Geoip Database at " << qPrintable(geoipDBpath(false)) << std::endl;
       }
     } else {
       qDebug("ERROR: Impossible to find local Geoip Database");

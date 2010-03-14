@@ -64,7 +64,7 @@ private:
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
   QPointer<SearchTab> currentSearchTab;
-#ifndef QT_4_5
+#if QT_VERSION < 0x040500
   QPushButton *closeTab_button;
 #endif
   QList<QPointer<SearchTab> > all_tab; // To store all tabs
@@ -79,7 +79,7 @@ public:
   static float getPluginVersion(QString filePath) {
     QFile plugin(filePath);
     if(!plugin.exists()){
-      qDebug("%s plugin does not exist, returning 0.0", filePath.toLocal8Bit().data());
+      qDebug("%s plugin does not exist, returning 0.0", qPrintable(filePath));
       return 0.0;
     }
     if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -91,7 +91,7 @@ public:
       if(line.startsWith("#VERSION: ")){
         line = line.split(' ').last().trimmed();
         version = line.toFloat();
-        qDebug("plugin %s version: %.2f", filePath.toLocal8Bit().data(), version);
+        qDebug("plugin %s version: %.2f", qPrintable(filePath), version);
         break;
       }
     }
@@ -106,10 +106,10 @@ protected slots:
   // Search slots
   void tab_changed(int);//to prevent the use of the download button when the tab is empty
   void on_search_button_clicked();
-#ifdef QT_4_5
-  void closeTab(int index);
-#else
+#if QT_VERSION < 0x040500
   void closeTab_button_clicked();
+#else
+  void closeTab(int index);
 #endif
   void appendSearchResult(QString line);
   void searchFinished(int exitcode,QProcess::ExitStatus);

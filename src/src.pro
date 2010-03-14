@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -11,13 +11,13 @@ CONFIG += qt \
     thread
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v2.2.0beta4\\\"
+DEFINES += VERSION=\\\"v2.2.0\\\"
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=2
 DEFINES += VERSION_BUGFIX=0
 
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
-DEFINES += VERSION_TYPE=BETA
+DEFINES += VERSION_TYPE=NORMAL
 
 # !mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
@@ -107,6 +107,9 @@ QT += network
 !contains(DEFINES, DISABLE_GUI):QT += xml
 
 DEFINES += QT_NO_CAST_TO_ASCII
+
+# Fast concatenation (Qt >= 4.6)
+DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 # Windows
 # usually built as static
@@ -224,7 +227,6 @@ else:HEADERS +=  GUI.h \
                  ico.h \
                  engineselectdlg.h \
                  pluginsource.h \
-                 qgnomelook.h \
                  searchEngine.h \
                  rss.h \
                  rss_imp.h \

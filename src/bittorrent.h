@@ -119,9 +119,6 @@ public:
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
   QTorrentHandle addMagnetUri(QString magnet_uri, bool resumed=false);
-  void importOldTorrents();
-  void applyFormerAttributeFiles(QTorrentHandle h);
-  void importOldTempData(QString torrent_path);
   void loadSessionState();
   void saveSessionState();
   void downloadFromUrl(QString url);
@@ -204,7 +201,7 @@ signals:
   void finishedTorrent(QTorrentHandle& h);
   void fullDiskError(QTorrentHandle& h, QString msg);
   void trackerError(QString hash, QString time, QString msg);
-  void trackerAuthenticationRequired(const QTorrentHandle& h);
+  void trackerAuthenticationRequired(QTorrentHandle& h);
   void newDownloadedTorrent(QString path, QString url);
   void updateFileSize(QString hash);
   void downloadFromUrlFailure(QString url, QString reason);

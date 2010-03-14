@@ -121,11 +121,7 @@ public:
   // Downloads
   static QString getSavePath() {
     QSettings settings("qBittorrent", "qBittorrent");
-    QString home = QDir::homePath();
-    if(home[home.length()-1] != QDir::separator()){
-      home += QDir::separator();
-    }
-    return settings.value(QString::fromUtf8("Preferences/Downloads/SavePath"), home+"qBT_dir").toString();
+    return settings.value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("qBT_dir")).toString();
   }
 
   static void setSavePath(QString save_path) {
@@ -145,8 +141,8 @@ public:
 
   static QString getTempPath() {
     QSettings settings("qBittorrent", "qBittorrent");
-    QString home = QDir::homePath();
-    return settings.value(QString::fromUtf8("Preferences/Downloads/TempPath"), home+"qBT_dir"+QDir::separator()+"temp").toString();
+    QString temp = QDir::home().absoluteFilePath("qBT_dir")+QDir::separator()+"temp";
+    return settings.value(QString::fromUtf8("Preferences/Downloads/TempPath"), temp).toString();
   }
 
   static void setTempPath(QString path) {

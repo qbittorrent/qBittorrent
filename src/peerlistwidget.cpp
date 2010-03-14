@@ -279,7 +279,7 @@ void PeerListWidget::saveSettings() const {
   else
     sortOrderLetter = QString::fromUtf8("d");
   int index = header()->sortIndicatorSection();
-  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/PeerListSortedCol"), QString::number(index)+sortOrderLetter);
+  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/PeerListSortedCol"), QVariant(QString::number(index)+sortOrderLetter));
 }
 
 void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {

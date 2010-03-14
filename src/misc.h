@@ -92,19 +92,14 @@ public:
 
   static inline QString toQString(sha1_hash hash) {
     std::ostringstream o;
-    if(!(o<<hash)) {
-      throw std::runtime_error("::toString()");
-    }
-    return QString::fromLocal8Bit(o.str().c_str());
-    //return QString::fromLocal8Bit(hash.to_string().c_str());
+    o << hash;
+    return QString(o.str().c_str());
   }
 
   static inline sha1_hash QStringToSha1(const QString& s) {
-      sha1_hash x;
       std::istringstream i(s.toStdString());
-      if(!(i>>x)) {
-        throw std::runtime_error("::fromString()");
-      }
+      sha1_hash x;
+      i>>x;
       return x;
     }
 
@@ -329,7 +324,8 @@ public:
 #ifndef Q_WS_WIN
     unsigned long long available;
     struct statfs stats;
-    const int ret = statfs ((dir_path.path()+"/.").toLocal8Bit().data(), &stats) ;
+    const QString &statfs_path = dir_path.path()+"/.";
+    const int ret = statfs (qPrintable(statfs_path), &stats) ;
     if(ret == 0) {
       available = ((unsigned long long)stats.f_bavail) *
                   ((unsigned long long)stats.f_bsize) ;
@@ -423,52 +419,6 @@ public:
     return false;
   }
 
-  // Insertion sort, used instead of bubble sort because it is
-  // approx. 5 times faster.
-  template <class T> static void insertSort(QList<QPair<int, T> > &list, const QPair<int, T>& value, Qt::SortOrder sortOrder) {
-    int i = 0;
-    if(sortOrder == Qt::AscendingOrder) {
-      while(i < list.size() and value.second > list.at(i).second) {
-        ++i;
-      }
-    }else{
-      while(i < list.size() and value.second < list.at(i).second) {
-        ++i;
-      }
-    }
-    list.insert(i, value);
-  }
-
-  template <class T> static void insertSort2(QList<QPair<int, T> > &list, const QPair<int, T>& value, Qt::SortOrder sortOrder=Qt::AscendingOrder) {
-    int i = 0;
-    if(sortOrder == Qt::AscendingOrder) {
-      while(i < list.size() and value.first > list.at(i).first) {
-        ++i;
-      }
-    }else{
-      while(i < list.size() and value.first < list.at(i).first) {
-        ++i;
-      }
-    }
-    list.insert(i, value);
-  }
-
-  // Can't use template class for QString because >,< use unicode code for sorting
-  // which is not what a human would expect when sorting strings.
-  static void insertSortString(QList<QPair<int, QString> > &list, const QPair<int, QString> &value, Qt::SortOrder sortOrder) {
-    int i = 0;
-    if(sortOrder == Qt::AscendingOrder) {
-      while(i < list.size() and QString::localeAwareCompare(value.second, list.at(i).second) > 0) {
-        ++i;
-      }
-    }else{
-      while(i < list.size() and QString::localeAwareCompare(value.second, list.at(i).second) < 0) {
-        ++i;
-      }
-    }
-    list.insert(i, value);
-  }
-
   static bool removeEmptyTree(QString path) {
     QDir dir(path);
     foreach(const QString &child, dir.entryList(QDir::AllDirs)) {
@@ -484,7 +434,7 @@ public:
 
   static QString magnetUriToName(QString magnet_uri) {
     QString name = "";
-    const QRegExp regHex("dn=([^&]+)");
+    QRegExp regHex("dn=([^&]+)");
     const int pos = regHex.indexIn(magnet_uri);
     if(pos > -1) {
       const QString &found = regHex.cap(1);
@@ -496,7 +446,7 @@ public:
 
   static QString magnetUriToHash(QString magnet_uri) {
     QString hash = "";
-    const QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
+    QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
     // Hex
     int pos = regHex.indexIn(magnet_uri);
     if(pos > -1) {
@@ -508,7 +458,7 @@ public:
       }
     }
     // Base 32
-    const QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
+    QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
     pos = regBase32.indexIn(magnet_uri);
     if(pos > -1) {
       const QString &found = regBase32.cap(1);
