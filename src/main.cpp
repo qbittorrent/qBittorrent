@@ -36,6 +36,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include <QStyleFactory>
+#include <QStyle>
 #include <QSplashScreen>
 #include <QPushButton>
 #include "GUI.h"
