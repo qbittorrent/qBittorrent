@@ -2274,10 +2274,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         torrent_queue.push(qMakePair(prio, hash));
       }
       // Resume downloads
-      int prio = -1;
       while(!torrent_queue.empty()) {
-        int new_prio = torrent_queue.top().first;
-        Q_ASSERT(new_prio >= prio);
         const QString &hash = torrent_queue.top().second;
         torrent_queue.pop();
         qDebug("Starting up torrent %s", qPrintable(hash));

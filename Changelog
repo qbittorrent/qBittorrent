@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.1
+    - FEATURE: Fix compilation with Qt 4.4
+
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling
     - FEATURE: Bandwidth scheduler (automatically use alternative speed limits for a given period)
