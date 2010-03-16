@@ -140,6 +140,14 @@ void HttpConnection::respond() {
     return;
   }
   QString auth = parser.value("Authorization");
+  if(auth.isEmpty()) {
+    // Return unauthorized header
+    qDebug("Auth is Empty...");
+    generator.setStatusLine(401, "Unauthorized");
+    generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+parent->generateNonce()+"\", opaque=\""+parent->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
+    write();
+    return;
+  }
   qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
   if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth.toLocal8Bit(), parser.method())) {
     // Update failed attempt counter

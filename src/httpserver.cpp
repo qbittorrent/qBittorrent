@@ -259,7 +259,7 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
     md5_ha.addData(password_ha1+":"+prop_nonce+":"+ha2);
     response = md5_ha.result().toHex();
   }
-  qDebug("AUTH: comparing reponses");
+  qDebug("AUTH: comparing reponses: (%d)", static_cast<int>(prop_response == response));
   return prop_response == response;
 }
 
