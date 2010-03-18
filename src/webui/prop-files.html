@@ -2,10 +2,11 @@
             <table class="torrentTable" cellpadding="0" cellspacing="0">
                     <thead>
                             <tr>
+                                    <th>_(Downloaded)</th>
                                     <th>_(Name)</th>
                                     <th>_(Size)</th>
                                     <th style="width: 90px;">_(Progress)</th>
-                                    <th>_(Downloaded)</th>
+                                    <th>_(Priority)</th>
                             </tr>
                     </thead>
                     <tbody id="filesTable"></tbody>
@@ -32,8 +33,48 @@ var createDownloadedCB = function(id, downloaded) {
       if($defined($('cbPrio'+id).get('checked')) && $('cbPrio'+id).get('checked'))
         checked = 1;
       setFilePriority(id, checked);
+      // Display or add combobox
+      if(checked) {
+        $('comboPrio'+id).set("value", 1);
+        $('comboPrio'+id).removeClass("invisible");
+      } else {
+        $('comboPrio'+id).addClass("invisible");
+      }
     });
     return CB;
+}
+
+var createPriorityCombo = function(id, selected_prio) {
+    var select = new Element('select');
+    select.set('id', 'comboPrio'+id);
+    select.addEvent('change', function(e){
+      var new_prio = $('comboPrio'+id).get('value');
+      setFilePriority(id, new_prio);
+    });
+    var opt = new Element("option");
+    opt.set('value', '1')
+    opt.set('html', "_(Normal)");
+    if(selected_prio <= 1)
+      opt.setAttribute('selected', '');
+    opt.injectInside(select);
+    opt = new Element("option");
+    opt.set('value', '2')
+    opt.set('html', "_(High)");
+    if(selected_prio == 2)
+      opt.setAttribute('selected', '');
+    opt.injectInside(select);
+    opt = new Element("option");
+    opt.set('value', '7')
+    opt.set('html', "_(Maximum)");
+    if(selected_prio == 7)
+      opt.setAttribute('selected', '');
+    opt.injectInside(select);
+    if(selected_prio < 1) {
+      select.addClass("invisible");
+    } else {
+      select.removeClass("invisible");
+    }
+    return select;
 }
 
  var filesDynTable = new Class ({
@@ -65,16 +106,26 @@ var createDownloadedCB = function(id, downloaded) {
         updateRow: function(tr, row, id){
           var tds = tr.getElements('td');
           for(var i=0; i<row.length; i++) {
-            if(i==2) {
+            if(i==3) {
               $('pbf_'+id).setValue(row[i].toFloat());
-	    } else {
-              if(i==3) {
+	          } else {
+              if(i==0) {
                 if(row[i] > 0)
                   tds[i].getChildren('input')[0].set('checked', 'checked');
                 else
                   tds[i].removeProperty('checked')
               } else {
-                tds[i].set('html', row[i]);
+                if(i == 4) {
+                  if(row[i] > 0) {
+                    tds[i].getChildren('select').set('value', row[i]);
+                    $('comboPrio'+id).removeClass("invisible");
+                  } else {
+                    if(!$('comboPrio'+id).hasClass("invisible"))
+                      $('comboPrio'+id).addClass("invisible");
+                  }
+                } else {
+                  tds[i].set('html', row[i]);
+                }
               }
             }
           }
@@ -93,13 +144,17 @@ var createDownloadedCB = function(id, downloaded) {
           for(var i=0; i<row.length; i++)
           {
                   var td = new Element('td');
-                  if(i==2) {
-		    td.adopt(new ProgressBar(row[i].toFloat(), {'id': 'pbf_'+id, 'width':80}));
-		  } else {
-                    if(i == 3) {
+                  if(i==3) {
+		                td.adopt(new ProgressBar(row[i].toFloat(), {'id': 'pbf_'+id, 'width':80}));
+		              } else {
+                    if(i == 0) {
                       td.adopt(createDownloadedCB(id,row[i]));
                     } else {
-                      td.set('html', row[i]);
+                      if(i == 4) {
+                        td.adopt(createPriorityCombo(id,row[i]));
+                      } else {
+                        td.set('html', row[i]);
+                      }
                     }
                   }
                   td.injectInside(tr);
@@ -143,10 +198,11 @@ var createDownloadedCB = function(id, downloaded) {
                           files.each(function(file){
                             var row = new Array();
                             row.length = 4;
-                            row[0] = file.name;
-                            row[1] = file.size;
-                            row[2] = (file.progress*100).round(1);
-                            row[3] = file.priority;
+                            row[0] = file.priority;
+                            row[1] = file.name;
+                            row[2] = file.size;
+                            row[3] = (file.progress*100).round(1);
+                            row[4] = file.priority;
                             fTable.insertRow(i, row);
                             i++;
                           }.bind(this));
