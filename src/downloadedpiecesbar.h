@@ -64,7 +64,7 @@ public:
       // Reduce the number of pieces before creating the pixmap
       // otherwise it can crash when there are too many pieces
       if(nb_pieces > width()) {
-        int ratio = floor(nb_pieces/(double)width());
+        const int ratio = floor(nb_pieces/(double)width());
         std::vector<bool> scaled_pieces;
         std::vector<bool> scaled_downloading;
         for(int i=0; i<nb_pieces; i+= ratio) {
