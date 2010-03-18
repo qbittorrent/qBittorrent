@@ -1,8 +1,9 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.1
+    - FEATURE: Display pieces that are being downloaded
+    - FEATURE: Added back folder watching in Web UI
+    - FEATURE: Added back file prioritizing in Web UI
     - BUGFIX: Fix compilation with Qt 4.4
     - BUGFIX: Fix Web UI compatibility with Safari
-    - BUGFIX: Added back folder watching in Web UI
-    - BUGFIX: Added back file prioritizing in Web UI
 
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling
