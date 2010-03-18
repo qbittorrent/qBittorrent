@@ -100,12 +100,17 @@
   <tr>
   <td style="vertical-align: bottom; text-align: right;"></td><td><input type="text" id="temppath_text"/></td>
   </tr>
-  <!-- <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="scandir_checkbox" onclick="updateScanDirEnabled();"/></td><td>_(Automatically load .torrent files from:)</td>
-  </tr>
+  <tr><td colspan="2">_(Check Folders for .torrent Files:)</td></tr>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"></td><td><input type="text" id="scandir_text"/></td>
-  </tr> -->
+  <td></td>
+  <td>
+    <table style="border: 1px solid black; text-align: center" id="watched_folders_tab">
+    <thead><tr style="border: 1px solid black;"><th>_(Watched Folder)</th><th>_(Download here)</th></tr></thead>
+    <tbody></tbody>
+    <tfoot><tr style="border: 1px solid black;"><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="images/oxygen/list-add.png" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="javascript:addWatchFolder();"/></td></tr></tfoot>
+    </table>
+  </td>
+  </tr>
   <tr>
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();"/></td><td>_(Copy .torrent files to:)</td>
   </tr>
@@ -229,7 +234,7 @@
       <option value="ja_JP" title="Icons/flags/japan.png">日本語</option>
       <option value="zh_CN" title="Icons/flags/china.png">中文 (简体)</option>
       <option value="zh_TW" title="Icons/flags/taiwan.png">中文 (繁體)</option>
-      <option value="ko_KR" title="Icons/flags/south_korea.png">한글"</option>
+      <option value="ko_KR" title="Icons/flags/south_korea.png">한글</option>
     </select>
   </td>
   </tr>
@@ -266,6 +271,8 @@
 <center><input type="button" value="_(Apply)" onclick="applyPreferences();"/></center>
 
 <script type="text/javascript">
+  var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
+
   applyPreferences = function() {
   // Validate form data
   // Connection
@@ -340,12 +347,7 @@
   if($defined($('temppath_checkbox').get('checked')) && $('temppath_checkbox').get('checked'))
     temp_path_enabled = 1;
   var temp_path = $('temppath_text').get('value');
-  /*var scandir_enabled = 0;
-  if($defined($('scandir_checkbox').get('checked')) && $('scandir_checkbox').get('checked'))
-    scandir_enabled = 1;
-  var scandir_path = '';
-  if(scandir_enabled)
-    scandir_path = $('scandir_text').get('value');*/
+  var watched_folders = getWatchedFolders();
   var exportdir_enabled = 0;
   if($defined($('exportdir_checkbox').get('checked')) && $('exportdir_checkbox').get('checked'))
     exportdir_enabled = 1;
@@ -467,7 +469,8 @@
   dict.set('save_path', save_path);
   dict.set('temp_path_enabled', temp_path_enabled);
   dict.set('temp_path', temp_path);
-  //dict.set('scan_dir', scandir_path);
+  dict.set('scan_dirs', watched_folders[0]);
+  dict.set('download_in_scan_dirs', watched_folders[1]);
   dict.set('export_dir', exportdir_path);
   dict.set('preallocate_all', preallocate_all);
   if(!$('appendexttr').hasClass('invisible')) {
@@ -686,6 +689,47 @@ updatePeerProxyAuthSettings = function() {
   }
 }
 
+getWatchedFolders = function() {
+  var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+  var folders = Array();
+  var download_in_place = Array();
+  for(var i=0; i<nb_folders; i+=1) {
+    var folder_path = $('text_watch_'+i).get('value').trim();
+    if(folder_path.length > 0) {
+      folders[folders.length] = folder_path;
+      if($defined($("cb_watch_"+i).get('checked')) && $("cb_watch_"+i).get('checked')) {
+        download_in_place[download_in_place.length] = 1;
+      } else {
+        download_in_place[download_in_place.length] = 0;
+      }
+    }
+  }
+  return [folders, download_in_place];
+}
+
+addWatchFolder = function() {
+  var new_folder = $("new_watch_folder_txt").get('value').trim();
+  if(new_folder.length <= 0) return;
+  var download_here = ($defined($("new_watch_folder_dl").get('checked')) && $("new_watch_folder_dl").get('checked'));
+  var myinput = new Element("input");
+  var i = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+  myinput.set('id', 'text_watch_'+i);
+  myinput.set('type', 'text');
+  myinput.set('value', new_folder);
+  var mycb = new Element("input");
+  mycb.set("type", "checkbox");
+  mycb.set("id", "cb_watch_"+i);
+  if(download_here) {
+    mycb.set("checked", "checked");
+  } else {
+    mycb.removeProperty('checked');
+  }
+  WatchedFoldersTable.push([myinput, mycb]);
+  // Clear fields
+  $("new_watch_folder_txt").set('value', '');
+  $("new_watch_folder_dl").removeProperty('checked');
+}
+
 loadPreferences = function() {
   var url = 'json/preferences';
   var request = new Request.JSON({
@@ -793,15 +837,23 @@ loadPreferences = function() {
                     var temp_path = pref.temp_path;
                     $('temppath_text').set('value', temp_path);
                     updateTempDirEnabled();
-                    /*var scan_dir_enabled = pref.scan_dir_enabled;
-                    if(scan_dir_enabled) {
-                      $('scandir_text').set('value', pref.scan_dir);
-                      $('scandir_checkbox').set('checked', 'checked');
-                    } else {
-                      $('scandir_text').set('value', '');
-                      $('scandir_checkbox').removeProperty('checked');
+                    var i = 0;
+                    for(i=0; i<pref.scan_dirs.length; i+=1) {
+                      var myinput = new Element("input");
+                      myinput.set('id', 'text_watch_'+i);
+                      myinput.set('type', 'text');
+                      myinput.set('value', pref.scan_dirs[i]);
+                      var mycb = new Element("input");
+                      mycb.set("type", "checkbox");
+                      mycb.set("id", "cb_watch_"+i);
+                      if(pref.download_in_scan_dirs[i] == "true" || pref.download_in_scan_dirs[i] == 1) {
+                        mycb.set("checked", "checked");
+                      } else {
+                        mycb.removeProperty('checked');
+                      }
+                      WatchedFoldersTable.push([myinput, mycb]);
                     }
-                    updateScanDirEnabled();*/
+
                     var export_dir_enabled = pref.export_dir_enabled;
                     if(export_dir_enabled) {
                       $('exportdir_text').set('value', pref.export_dir);

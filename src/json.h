@@ -113,7 +113,24 @@ namespace json {
     if(json.startsWith("{") && json.endsWith("}")) {
       json.chop(1);
       json = json.replace(0, 1, "");
-      QStringList couples = json.split(",");
+      QStringList couples;
+      QString tmp = "";
+      bool in_list = false;
+      foreach(QChar c, json) {
+        if(c == ',' && !in_list) {
+          couples << tmp;
+          tmp = "";
+        } else {
+          if(c == '[') {
+            in_list = true;
+          } else {
+            if(c == ']') {
+              in_list = false;
+            }
+          }
+          tmp += c;
+        }
+      }
       foreach(QString couple, couples) {
         QStringList parts = couple.split(":");
         if(parts.size() != 2) continue;
@@ -124,12 +141,29 @@ namespace json {
         }
         QString value_str = parts.last();
         QVariant value;
-        if(value_str.startsWith("\"") && value_str.endsWith("\"")) {
+        if(value_str.startsWith("[") && value_str.endsWith("]")) {
           value_str.chop(1);
-          value_str = value_str.replace(0, 1, "");
-          value = value_str;
+          value_str.replace(0, 1, "");
+          QStringList list_elems = value_str.split(",");
+          QVariantList varlist;
+          foreach(QString list_val, list_elems) {
+            if(list_val.startsWith("\"") && list_val.endsWith("\"")) {
+              list_val.chop(1);
+              list_val = list_val.replace(0, 1, "");
+              varlist << list_val;
+            } else {
+              varlist << list_val.toInt();
+            }
+          }
+          value = varlist;
         } else {
-          value = value_str.toInt();
+          if(value_str.startsWith("\"") && value_str.endsWith("\"")) {
+            value_str.chop(1);
+            value_str = value_str.replace(0, 1, "");
+            value = value_str;
+          } else {
+            value = value_str.toInt();
+          }
         }
         m.insert(key,value);
         qDebug("%s:%s", key.toLocal8Bit().data(), value_str.toLocal8Bit().data());

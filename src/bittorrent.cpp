@@ -197,6 +197,10 @@ void Bittorrent::preAllocateAllFiles(bool b) {
   }
 }
 
+ScanFoldersModel* Bittorrent::getScanFoldersModel() const {
+  return m_scanFolders;
+}
+
 void Bittorrent::deleteBigRatios() {
   if(ratio_limit == -1) return;
   std::vector<torrent_handle> torrents = getTorrents();
