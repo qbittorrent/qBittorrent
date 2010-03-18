@@ -51,7 +51,7 @@ public:
     setFixedHeight(BAR_HEIGHT);
   }
 
-  double setAvailability(std::vector<int>& avail) {
+  double setAvailability(const std::vector<int>& avail) {
     double average = 0;
     if(avail.empty()) {
       // Empty bar
@@ -60,12 +60,12 @@ public:
       pixmap = pix;
     } else {
       // Look for maximum value
-      int nb_pieces = avail.size();
+      const int nb_pieces = avail.size();
       average = std::accumulate(avail.begin(), avail.end(), 0)/(double)nb_pieces;
       // Reduce the number of pieces before creating the pixmap
       // otherwise it can crash when there are too many pieces
       if(nb_pieces > width()) {
-        int ratio = floor(nb_pieces/(double)width());
+        const int ratio = floor(nb_pieces/(double)width());
         std::vector<int> scaled_avail;
         for(int i=0; i<nb_pieces; i+= ratio) {
           int j = i;
