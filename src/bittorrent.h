@@ -115,6 +115,7 @@ public:
   qlonglong getETA(QString hash);
   bool useTemporaryFolder() const;
   QString getDefaultSavePath() const;
+  ScanFoldersModel* getScanFoldersModel() const;
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
