@@ -113,7 +113,7 @@ protected:
   QColor getPieceColor(int avail, double average) {
     if(!avail) return Qt::white;
     //qDebug("avail: %d/%d", avail, max_avail);
-    QColor color = Qt::blue; // average avail
+    const QColor color = Qt::blue; // average avail
     double fraction = 100.*average/avail;
     if(fraction < 100)
       fraction *= 0.9;
