@@ -451,6 +451,16 @@ bool QTorrentHandle::has_error() const {
   return h.status().error.empty();
 }
 
+void QTorrentHandle::downloading_pieces(bitfield &bf) const {
+  Q_ASSERT(h.is_valid());
+  std::vector<partial_piece_info> queue;
+  h.get_download_queue(queue);
+  for(std::vector<partial_piece_info>::iterator it=queue.begin(); it!= queue.end(); it++) {
+    bf.set_bit(it->piece_index);
+  }
+  return;
+}
+
 //
 // Setters
 //

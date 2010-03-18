@@ -53,34 +53,49 @@ public:
     setFixedHeight(BAR_HEIGHT);
   }
 
-  void setProgress(bitfield pieces) {
+  void setProgress(const bitfield &pieces, const bitfield &downloading_pieces) {
     if(pieces.empty()) {
       // Empty bar
       QPixmap pix = QPixmap(1, 1);
       pix.fill();
       pixmap = pix;
     } else {
-      int nb_pieces = pieces.size();
+      const int nb_pieces = pieces.size();
       // Reduce the number of pieces before creating the pixmap
       // otherwise it can crash when there are too many pieces
       if(nb_pieces > width()) {
         int ratio = floor(nb_pieces/(double)width());
-        QVector<bool> scaled_pieces;
+        std::vector<bool> scaled_pieces;
+        std::vector<bool> scaled_downloading;
         for(int i=0; i<nb_pieces; i+= ratio) {
           bool have = true;
           for(int j=i; j<qMin(i+ratio, nb_pieces); ++j) {
             if(!pieces[i]) { have = false; break; }
           }
-          scaled_pieces << have;
+          scaled_pieces.push_back(have);
+          if(have) {
+            scaled_downloading.push_back(false);
+          } else {
+            bool downloading = false;
+            for(int j=i; j<qMin(i+ratio, nb_pieces); ++j) {
+              if(downloading_pieces[i]) { downloading = true; break; }
+            }
+            scaled_downloading.push_back(downloading);
+          }
         }
         QPixmap pix = QPixmap(scaled_pieces.size(), 1);
         pix.fill();
         QPainter painter(&pix);
-        for(int i=0; i<scaled_pieces.size(); ++i) {
-          if(scaled_pieces[i])
+        for(uint i=0; i<scaled_pieces.size(); ++i) {
+          if(scaled_pieces[i]) {
             painter.setPen(Qt::blue);
-          else
-            painter.setPen(Qt::white);
+          } else {
+            if(scaled_downloading[i]) {
+              painter.setPen(Qt::yellow);
+            } else {
+              painter.setPen(Qt::white);
+            }
+          }
           painter.drawPoint(i,0);
         }
         pixmap = pix;
@@ -89,10 +104,15 @@ public:
         pix.fill();
         QPainter painter(&pix);
         for(uint i=0; i<pieces.size(); ++i) {
-          if(pieces[i])
+          if(pieces[i]) {
             painter.setPen(Qt::blue);
-          else
-            painter.setPen(Qt::white);
+          } else {
+            if(downloading_pieces[i]) {
+              painter.setPen(Qt::yellow);
+            } else {
+              painter.setPen(Qt::white);
+            }
+          }
           painter.drawPoint(i,0);
         }
         pixmap = pix;

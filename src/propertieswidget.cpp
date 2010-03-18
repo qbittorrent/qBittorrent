@@ -338,7 +338,9 @@ void PropertiesWidget::loadDynamicData() {
       if(!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
-        downloaded_pieces->setProgress(h.pieces());
+        bitfield bf(h.get_torrent_info().num_pieces(), 0);
+        h.downloading_pieces(bf);
+        downloaded_pieces->setProgress(h.pieces(), bf);
         // Pieces availability
         if(h.has_metadata() && !h.is_paused() && !h.is_queued() && !h.is_checking()) {
           showPiecesAvailability(true);
