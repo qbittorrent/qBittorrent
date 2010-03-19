@@ -97,6 +97,7 @@ public:
   TreeItem(QList<QVariant> data) {
     parentItem = 0;
     type = ROOT;
+    Q_ASSERT(data.size() == 4);
     itemData = data;
     total_done = 0;
   }
@@ -201,12 +202,13 @@ public:
     return itemData.value(3).toInt();
   }
 
-  void setPriority(int new_prio, bool update_children=true) {
+  void setPriority(int new_prio, bool update_children=true, bool update_parent=true) {
     int old_prio = getPriority();
     if(old_prio != new_prio) {
+      qDebug("setPriority(%s, %d)", qPrintable(getName()), new_prio);
       itemData.replace(3, new_prio);
       // Update parent
-      if(parentItem) {
+      if(update_parent && parentItem) {
         parentItem->updateSize();
         parentItem->updateProgress();
         parentItem->updatePriority();
@@ -215,8 +217,12 @@ public:
     // Update children
     if(update_children) {
       foreach(TreeItem* child, childItems) {
-        child->setPriority(new_prio);
+        child->setPriority(new_prio, true, false);
       }
+    }
+    if(type==FOLDER) {
+      updateSize();
+      updateProgress();
     }
   }
 

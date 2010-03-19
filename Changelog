@@ -5,6 +5,7 @@
     - BUGFIX: Fix compilation with Qt 4.4
     - BUGFIX: Fix Web UI compatibility with Safari
     - BUGFIX: Fix progress display with cleanlook style
+    - BUGFIX: Fix file filtering in complex torrents
 
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling
