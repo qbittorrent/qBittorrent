@@ -113,7 +113,7 @@ public:
 
   QStringList enginesEnabled() const {
     QStringList engines;
-    foreach(SupportedEngine *engine, values()) {
+    foreach(const SupportedEngine *engine, values()) {
       if(engine->isEnabled())
         engines << engine->getName();
     }
@@ -122,9 +122,9 @@ public:
 
   QStringList supportedCategories() const {
     QStringList supported_cat;
-    foreach(SupportedEngine *engine, values()) {
+    foreach(const SupportedEngine *engine, values()) {
       if(engine->isEnabled()) {
-        QStringList s = engine->getSupportedCategories();
+        const QStringList &s = engine->getSupportedCategories();
         foreach(QString cat, s) {
           cat = cat.trimmed();
           if(!cat.isEmpty() && !supported_cat.contains(cat))
