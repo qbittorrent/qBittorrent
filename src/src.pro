@@ -227,6 +227,7 @@ else:HEADERS +=  GUI.h \
                  ico.h \
                  engineselectdlg.h \
                  pluginsource.h \
+                 qgnomelook.h \
                  searchEngine.h \
                  rss.h \
                  rss_imp.h \
