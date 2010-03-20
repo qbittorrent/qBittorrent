@@ -59,8 +59,8 @@
 #endif
 
 #ifdef Q_WS_MAC
-#include <Files.h>
-#include <Folders.h>
+#include <CoreServices/CoreServices.h>
+#include <ApplicationServices/ApplicationServices.h>
 #endif
 
 #ifndef Q_WS_WIN
