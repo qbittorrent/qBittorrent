@@ -141,8 +141,7 @@ void sigsegvHandler(int) {
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   print_stacktrace();
-  std::raise(SIGINT);
-  std::abort();
+  std::raise(SIGSEGV);
 }
 void sigabrtHandler(int) {
   signal(SIGABRT, 0);
@@ -150,8 +149,7 @@ void sigabrtHandler(int) {
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   print_stacktrace();
-  std::raise(SIGINT);
-  std::abort();
+  std::raise(SIGABRT);
 }
 #endif
 
