@@ -274,7 +274,8 @@ SOURCES += main.cpp \
     httprequestparser.cpp \
     httpresponsegenerator.cpp \
     eventmanager.cpp \
-    scannedfoldersmodel.cpp
+    scannedfoldersmodel.cpp \
+    misc.cpp
 
 !contains(DEFINES, DISABLE_GUI):SOURCES += GUI.cpp \
                    options_imp.cpp \
