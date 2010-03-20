@@ -364,6 +364,7 @@ bool misc::isPreviewable(QString extension){
   if(extension == "SWA") return true;
   if(extension == "MPC") return true;
   if(extension == "MPP") return true;
+  if(extension == "M3U") return true;
   return false;
 }
 
