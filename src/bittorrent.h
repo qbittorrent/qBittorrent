@@ -41,6 +41,7 @@
 #include <QPalette>
 #endif
 #include <QPointer>
+#include <QTimer>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -194,6 +195,7 @@ protected slots:
   void deleteBigRatios();
   void takeETASamples();
   void exportTorrentFiles(QString path);
+  void saveTempFastResumeData();
 
 signals:
   void addedTorrent(QTorrentHandle& h);
@@ -222,6 +224,7 @@ private:
   QMap<QUrl, QString> savepath_fromurl;
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
   QStringList torrentsToPausedAfterChecking;
+  QTimer resumeDataTimer;
   // Ratio
   QPointer<QTimer> BigRatioTimer;
   // HTTP
