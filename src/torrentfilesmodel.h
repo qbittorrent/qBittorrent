@@ -36,6 +36,7 @@
 #include <QVariant>
 #include <QStringList>
 #include <QString>
+#include <QDir>
 #include <libtorrent/torrent_info.hpp>
 #include "proplistdelegate.h"
 #include "misc.h"

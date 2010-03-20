@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
+    - BUGFIX: Fix Mac compilation
+
 * Sat Mar 20 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.1
     - FEATURE: Display pieces that are being downloaded
     - FEATURE: Added back folder watching in Web UI

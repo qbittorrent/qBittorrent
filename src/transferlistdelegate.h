@@ -38,6 +38,7 @@
 #include <QStyleOptionViewItemV2>
 #include <QApplication>
 #include <QPainter>
+#include <QDateTime>
 #include "misc.h"
 
 // Defines for download list list columns

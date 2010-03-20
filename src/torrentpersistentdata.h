@@ -33,6 +33,7 @@
 
 #include <QSettings>
 #include <QVariant>
+#include <QDateTime>
 #include <libtorrent/magnet_uri.hpp>
 #include "qtorrenthandle.h"
 #include "misc.h"

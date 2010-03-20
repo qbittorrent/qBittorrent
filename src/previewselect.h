@@ -35,6 +35,7 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include <QMessageBox>
+#include <QFile>
 #include <libtorrent/session.hpp>
 #include "ui_preview.h"
 #include "previewlistdelegate.h"

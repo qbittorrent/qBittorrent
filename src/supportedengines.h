@@ -38,6 +38,7 @@
 #include <QDomElement>
 #include <QProcess>
 #include <QSettings>
+#include <QDir>
 
 #include "misc.h"
 
