@@ -358,7 +358,7 @@ var dynamicTable = new Class	({
 			if(!tr.hasClass('selected')) {
 				tr.addClass('selected');
 			}
-		});
+		}, this);
 	},
 
 	updateRow: function(id, row, status){

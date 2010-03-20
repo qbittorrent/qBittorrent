@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.1
+* Sat Mar 20 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.1
     - FEATURE: Display pieces that are being downloaded
     - FEATURE: Added back folder watching in Web UI
     - FEATURE: Added back file prioritizing in Web UI
@@ -8,6 +8,7 @@
     - BUGFIX: Fix file filtering in complex torrents
     - BUGFIX: Ask for user confirmation for recursive torrent download
     - BUGFIX: Fix "add file" dialog in torrent creation tool
+    - BUGFIX: Fix "Ctrl+A" in Web UI
 
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling
