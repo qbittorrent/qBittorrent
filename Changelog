@@ -6,6 +6,8 @@
     - BUGFIX: Fix Web UI compatibility with Safari
     - BUGFIX: Fix progress display with cleanlook style
     - BUGFIX: Fix file filtering in complex torrents
+    - BUGFIX: Ask for user confirmation for recursive torrent download
+    - BUGFIX: Fix "add file" dialog in torrent creation tool
 
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling

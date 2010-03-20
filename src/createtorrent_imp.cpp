@@ -85,7 +85,7 @@ void createtorrent::on_addFolder_button_clicked(){
 }
 
 void createtorrent::on_addFile_button_clicked(){
-  QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), QDir::homePath(), QString(), 0, QFileDialog::ShowDirsOnly);
+  QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), QDir::homePath());
   if(!file.isEmpty())
     textInputPath->setText(file);
 }

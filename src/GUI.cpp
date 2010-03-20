@@ -117,6 +117,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
+  connect(BTSession, SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle&)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle&)));
 
   qDebug("create tabWidget");
   tabs = new QTabWidget();
@@ -410,6 +411,12 @@ void GUI::readParamsOnSocket() {
       qDebug("Received parameters from another instance");
     }
     clientConnection->deleteLater();
+  }
+}
+
+void GUI::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
+  if(QMessageBox::question(this, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()), QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes) {
+    BTSession->recursiveTorrentDownload(h);
   }
 }
 

@@ -70,13 +70,13 @@ enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
 Bittorrent::Bittorrent()
-    : m_scanFolders(ScanFoldersModel::instance(this)),
-    preAllocateAll(false), addInPause(false), ratio_limit(-1),
-    UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false),
-    DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
-    torrentExport(false), exiting(false)
+  : m_scanFolders(ScanFoldersModel::instance(this)),
+  preAllocateAll(false), addInPause(false), ratio_limit(-1),
+  UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false),
+  DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
+  torrentExport(false), exiting(false)
 #ifndef DISABLE_GUI
-    , geoipDBLoaded(false), resolve_countries(false)
+  , geoipDBLoaded(false), resolve_countries(false)
 #endif
 {
   // To avoid some exceptions
@@ -1814,6 +1814,26 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 #endif
   }
 
+  void Bittorrent::recursiveTorrentDownload(const QTorrentHandle &h) {
+    for(int i=0; i<h.get_torrent_info().num_files(); ++i) {
+      const QString &torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+      if(torrent_relpath.endsWith(".torrent")) {
+        addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
+        const QString &torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
+        try {
+          boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toLocal8Bit().constData());
+          const QString &sub_hash = misc::toQString(t->info_hash());
+          // Passing the save path along to the sub torrent file
+          TorrentTempData::setSavePath(sub_hash, h.save_path());
+          addTorrent(torrent_fullpath);
+        } catch(std::exception&) {
+          qDebug("Caught error loading torrent");
+          addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(torrent_fullpath), QString::fromUtf8("red"));
+        }
+      }
+    }
+  }
+
   // Read alerts sent by the Bittorrent session
   void Bittorrent::readAlerts() {
     // look at session alerts and display some infos
@@ -1841,18 +1861,21 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           const bool was_already_seeded = TorrentPersistentData::isSeed(hash);
           if(!was_already_seeded) {
             h.save_resume_data();
+            qDebug("Checking if the torrent contains torrent files to download");
             // Check if there are torrent files inside
             for(int i=0; i<h.get_torrent_info().num_files(); ++i) {
               const QString &torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path.string());
               if(torrent_relpath.endsWith(".torrent")) {
-                addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
+                qDebug("Found possible recursive torrent download.");
                 const QString &torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
+                qDebug("Full subtorrent path is %s", qPrintable(torrent_fullpath));
                 try {
                   boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toLocal8Bit().constData());
-                  const QString &sub_hash = misc::toQString(t->info_hash());
-                  // Passing the save path along to the sub torrent file
-                  TorrentTempData::setSavePath(sub_hash, h.save_path());
-                  addTorrent(torrent_fullpath);
+                  if(t->is_valid()) {
+                    qDebug("emitting recursiveTorrentDownloadPossible()");
+                    emit recursiveTorrentDownloadPossible(h);
+                    break;
+                  }
                 } catch(std::exception&) {
                   qDebug("Caught error loading torrent");
                   addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(torrent_fullpath), QString::fromUtf8("red"));
