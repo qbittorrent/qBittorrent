@@ -134,9 +134,9 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     QVariantList download_at_path = m["download_in_scan_dirs"].toList();
     QStringList old_folders = Preferences::getScanDirs();
     QStringList new_folders = m["scan_dirs"].toStringList();
-    Preferences::setScanDirs(new_folders);
-    Preferences::setDownloadInScanDirs(download_at_path);
     if(download_at_path.size() == new_folders.size()) {
+      Preferences::setScanDirs(new_folders);
+      Preferences::setDownloadInScanDirs(download_at_path);
       foreach(const QString &old_folder, old_folders) {
         // Update deleted folders
         if(!new_folders.contains(old_folder)) {
