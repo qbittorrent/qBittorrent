@@ -181,226 +181,227 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="211"/>
+        <location filename="../bittorrent.cpp" line="216"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="301"/>
+        <location filename="../bittorrent.cpp" line="306"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="364"/>
+        <location filename="../bittorrent.cpp" line="369"/>
         <source>UPnP support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="367"/>
+        <location filename="../bittorrent.cpp" line="372"/>
         <source>UPnP support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="372"/>
+        <location filename="../bittorrent.cpp" line="377"/>
         <source>NAT-PMP support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="375"/>
+        <location filename="../bittorrent.cpp" line="380"/>
         <source>NAT-PMP support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="402"/>
+        <location filename="../bittorrent.cpp" line="407"/>
         <source>HTTP user agent is %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="419"/>
+        <location filename="../bittorrent.cpp" line="424"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="458"/>
+        <location filename="../bittorrent.cpp" line="463"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="460"/>
-        <location filename="../bittorrent.cpp" line="464"/>
+        <location filename="../bittorrent.cpp" line="465"/>
+        <location filename="../bittorrent.cpp" line="469"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="468"/>
+        <location filename="../bittorrent.cpp" line="473"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="470"/>
+        <location filename="../bittorrent.cpp" line="475"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="473"/>
+        <location filename="../bittorrent.cpp" line="478"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="478"/>
+        <location filename="../bittorrent.cpp" line="483"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="481"/>
+        <location filename="../bittorrent.cpp" line="486"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="493"/>
+        <location filename="../bittorrent.cpp" line="498"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="498"/>
+        <location filename="../bittorrent.cpp" line="503"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="503"/>
+        <location filename="../bittorrent.cpp" line="508"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="612"/>
+        <location filename="../bittorrent.cpp" line="617"/>
         <source>The Web UI is listening on port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="614"/>
+        <location filename="../bittorrent.cpp" line="619"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="745"/>
+        <location filename="../bittorrent.cpp" line="750"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="747"/>
+        <location filename="../bittorrent.cpp" line="752"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="797"/>
+        <location filename="../bittorrent.cpp" line="802"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="817"/>
-        <location filename="../bittorrent.cpp" line="978"/>
-        <location filename="../bittorrent.cpp" line="981"/>
+        <location filename="../bittorrent.cpp" line="822"/>
+        <location filename="../bittorrent.cpp" line="983"/>
+        <location filename="../bittorrent.cpp" line="986"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="914"/>
-        <location filename="../bittorrent.cpp" line="1178"/>
+        <location filename="../bittorrent.cpp" line="919"/>
         <location filename="../bittorrent.cpp" line="1183"/>
+        <location filename="../bittorrent.cpp" line="1188"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="916"/>
-        <location filename="../bittorrent.cpp" line="1180"/>
+        <location filename="../bittorrent.cpp" line="921"/>
         <location filename="../bittorrent.cpp" line="1185"/>
+        <location filename="../bittorrent.cpp" line="1190"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="952"/>
-        <location filename="../bittorrent.cpp" line="956"/>
+        <location filename="../bittorrent.cpp" line="957"/>
+        <location filename="../bittorrent.cpp" line="961"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="959"/>
+        <location filename="../bittorrent.cpp" line="964"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1007"/>
+        <location filename="../bittorrent.cpp" line="1012"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1020"/>
+        <location filename="../bittorrent.cpp" line="1025"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1479"/>
+        <location filename="../bittorrent.cpp" line="1497"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1481"/>
+        <location filename="../bittorrent.cpp" line="1499"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1844"/>
+        <location filename="../bittorrent.cpp" line="1835"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1854"/>
+        <location filename="../bittorrent.cpp" line="1845"/>
+        <location filename="../bittorrent.cpp" line="1895"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1938"/>
+        <location filename="../bittorrent.cpp" line="1979"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2024"/>
+        <location filename="../bittorrent.cpp" line="2062"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2029"/>
+        <location filename="../bittorrent.cpp" line="2067"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2044"/>
+        <location filename="../bittorrent.cpp" line="2082"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1939"/>
-        <location filename="../bittorrent.cpp" line="2045"/>
+        <location filename="../bittorrent.cpp" line="1980"/>
+        <location filename="../bittorrent.cpp" line="2083"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2050"/>
+        <location filename="../bittorrent.cpp" line="2088"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2162"/>
+        <location filename="../bittorrent.cpp" line="2200"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished"></translation>
@@ -427,56 +428,56 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../eventmanager.cpp" line="64"/>
-        <location filename="../eventmanager.cpp" line="78"/>
+        <location filename="../eventmanager.cpp" line="65"/>
+        <location filename="../eventmanager.cpp" line="79"/>
         <source>Working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="67"/>
+        <location filename="../eventmanager.cpp" line="68"/>
         <source>Updating...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="70"/>
-        <location filename="../eventmanager.cpp" line="81"/>
+        <location filename="../eventmanager.cpp" line="71"/>
+        <location filename="../eventmanager.cpp" line="82"/>
         <source>Not working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="72"/>
-        <location filename="../eventmanager.cpp" line="83"/>
+        <location filename="../eventmanager.cpp" line="73"/>
+        <location filename="../eventmanager.cpp" line="84"/>
         <source>Not contacted yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="299"/>
-        <location filename="../eventmanager.cpp" line="300"/>
+        <location filename="../eventmanager.cpp" line="315"/>
+        <location filename="../eventmanager.cpp" line="316"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="304"/>
-        <location filename="../eventmanager.cpp" line="308"/>
+        <location filename="../eventmanager.cpp" line="320"/>
+        <location filename="../eventmanager.cpp" line="324"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="311"/>
+        <location filename="../eventmanager.cpp" line="327"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="314"/>
+        <location filename="../eventmanager.cpp" line="330"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="389"/>
-        <location filename="../eventmanager.cpp" line="398"/>
+        <location filename="../eventmanager.cpp" line="405"/>
+        <location filename="../eventmanager.cpp" line="414"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
@@ -715,22 +716,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="638"/>
+        <location filename="../GUI.cpp" line="645"/>
         <source>Open Torrent Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="532"/>
+        <location filename="../GUI.cpp" line="539"/>
         <source>&amp;Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="532"/>
+        <location filename="../GUI.cpp" line="539"/>
         <source>&amp;No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="639"/>
+        <location filename="../GUI.cpp" line="646"/>
         <source>Torrent Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -741,76 +742,76 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="530"/>
-        <location filename="../GUI.cpp" line="818"/>
+        <location filename="../GUI.cpp" line="537"/>
+        <location filename="../GUI.cpp" line="825"/>
         <source>qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="739"/>
+        <location filename="../GUI.cpp" line="746"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="813"/>
-        <location filename="../GUI.cpp" line="821"/>
+        <location filename="../GUI.cpp" line="820"/>
+        <location filename="../GUI.cpp" line="828"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="815"/>
-        <location filename="../GUI.cpp" line="824"/>
+        <location filename="../GUI.cpp" line="822"/>
+        <location filename="../GUI.cpp" line="831"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="530"/>
+        <location filename="../GUI.cpp" line="537"/>
         <source>Are you sure you want to quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="320"/>
+        <location filename="../GUI.cpp" line="321"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="326"/>
+        <location filename="../GUI.cpp" line="327"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="153"/>
+        <location filename="../GUI.cpp" line="154"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="274"/>
+        <location filename="../GUI.cpp" line="275"/>
         <source>RSS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="333"/>
+        <location filename="../GUI.cpp" line="334"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="418"/>
+        <location filename="../GUI.cpp" line="425"/>
         <source>Url download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="418"/>
+        <location filename="../GUI.cpp" line="425"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="326"/>
+        <location filename="../GUI.cpp" line="327"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -818,67 +819,77 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="139"/>
+        <location filename="../GUI.cpp" line="140"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="320"/>
+        <location filename="../GUI.cpp" line="321"/>
         <source>Download completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="335"/>
+        <location filename="../GUI.cpp" line="336"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="337"/>
+        <location filename="../GUI.cpp" line="338"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="339"/>
+        <location filename="../GUI.cpp" line="340"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="424"/>
+        <location filename="../GUI.cpp" line="418"/>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="418"/>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="431"/>
         <source>Global Upload Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="446"/>
+        <location filename="../GUI.cpp" line="453"/>
         <source>Global Download Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="531"/>
+        <location filename="../GUI.cpp" line="538"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="830"/>
+        <location filename="../GUI.cpp" line="837"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="909"/>
+        <location filename="../GUI.cpp" line="916"/>
         <source>Use normal speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="912"/>
+        <location filename="../GUI.cpp" line="919"/>
         <source>Use alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="711"/>
+        <location filename="../GUI.cpp" line="718"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -919,13 +930,13 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="307"/>
+        <location filename="../httpconnection.cpp" line="315"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="308"/>
+        <location filename="../httpconnection.cpp" line="316"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
@@ -1053,35 +1064,35 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="95"/>
+        <location filename="../main.cpp" line="97"/>
         <source>Legal Notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="96"/>
-        <location filename="../main.cpp" line="107"/>
+        <location filename="../main.cpp" line="98"/>
+        <location filename="../main.cpp" line="109"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="97"/>
+        <location filename="../main.cpp" line="99"/>
         <source>Press %1 key to accept and continue...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="108"/>
+        <location filename="../main.cpp" line="110"/>
         <source>Legal notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="109"/>
+        <location filename="../main.cpp" line="111"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="110"/>
+        <location filename="../main.cpp" line="112"/>
         <source>I Agree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2173,97 +2184,97 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
-        <location filename="../propertieswidget.cpp" line="506"/>
+        <location filename="../propertieswidget.cpp" line="487"/>
+        <location filename="../propertieswidget.cpp" line="508"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="485"/>
+        <location filename="../propertieswidget.cpp" line="487"/>
         <source>This file does not exist yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="506"/>
+        <location filename="../propertieswidget.cpp" line="508"/>
         <source>This folder does not exist yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="515"/>
+        <location filename="../propertieswidget.cpp" line="517"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="519"/>
+        <location filename="../propertieswidget.cpp" line="521"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="555"/>
+        <location filename="../propertieswidget.cpp" line="557"/>
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="556"/>
+        <location filename="../propertieswidget.cpp" line="558"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="560"/>
-        <location filename="../propertieswidget.cpp" line="590"/>
+        <location filename="../propertieswidget.cpp" line="562"/>
+        <location filename="../propertieswidget.cpp" line="592"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="561"/>
+        <location filename="../propertieswidget.cpp" line="563"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="591"/>
-        <location filename="../propertieswidget.cpp" line="629"/>
+        <location filename="../propertieswidget.cpp" line="593"/>
+        <location filename="../propertieswidget.cpp" line="631"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="628"/>
+        <location filename="../propertieswidget.cpp" line="630"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="665"/>
+        <location filename="../propertieswidget.cpp" line="667"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="666"/>
+        <location filename="../propertieswidget.cpp" line="668"/>
         <source>New url seed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="671"/>
+        <location filename="../propertieswidget.cpp" line="673"/>
         <source>qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="672"/>
+        <location filename="../propertieswidget.cpp" line="674"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="717"/>
         <location filename="../propertieswidget.cpp" line="719"/>
+        <location filename="../propertieswidget.cpp" line="721"/>
         <source>Choose save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="726"/>
+        <location filename="../propertieswidget.cpp" line="728"/>
         <source>Save path creation error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="726"/>
+        <location filename="../propertieswidget.cpp" line="728"/>
         <source>Could not create the save path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2516,47 +2527,47 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchCategories</name>
     <message>
-        <location filename="../supportedengines.h" line="49"/>
+        <location filename="../supportedengines.h" line="50"/>
         <source>All categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="50"/>
+        <location filename="../supportedengines.h" line="51"/>
         <source>Movies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="51"/>
+        <location filename="../supportedengines.h" line="52"/>
         <source>TV shows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="52"/>
+        <location filename="../supportedengines.h" line="53"/>
         <source>Music</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="53"/>
+        <location filename="../supportedengines.h" line="54"/>
         <source>Games</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="54"/>
+        <location filename="../supportedengines.h" line="55"/>
         <source>Anime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="55"/>
+        <location filename="../supportedengines.h" line="56"/>
         <source>Software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="56"/>
+        <location filename="../supportedengines.h" line="57"/>
         <source>Pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="57"/>
+        <location filename="../supportedengines.h" line="58"/>
         <source>Books</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2779,22 +2790,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="308"/>
+        <location filename="../torrentfilesmodel.h" line="315"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="308"/>
+        <location filename="../torrentfilesmodel.h" line="315"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="308"/>
+        <location filename="../torrentfilesmodel.h" line="315"/>
         <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="308"/>
+        <location filename="../torrentfilesmodel.h" line="315"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2930,47 +2941,47 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transferlistdelegate.h" line="87"/>
+        <location filename="../transferlistdelegate.h" line="88"/>
         <source>Downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="91"/>
+        <location filename="../transferlistdelegate.h" line="92"/>
         <source>Paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="95"/>
+        <location filename="../transferlistdelegate.h" line="96"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="99"/>
+        <location filename="../transferlistdelegate.h" line="100"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="102"/>
+        <location filename="../transferlistdelegate.h" line="103"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="106"/>
+        <location filename="../transferlistdelegate.h" line="107"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="117"/>
+        <location filename="../transferlistdelegate.h" line="118"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="126"/>
+        <location filename="../transferlistdelegate.h" line="127"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation type="unfinished"></translation>
@@ -3284,32 +3295,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="75"/>
+        <location filename="../main.cpp" line="77"/>
         <source>Usage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="76"/>
+        <location filename="../main.cpp" line="78"/>
         <source>displays program version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="78"/>
+        <location filename="../main.cpp" line="80"/>
         <source>disable splash screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="80"/>
+        <location filename="../main.cpp" line="82"/>
         <source>displays this help message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="81"/>
+        <location filename="../main.cpp" line="83"/>
         <source>changes the webui port (current: %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="82"/>
+        <location filename="../main.cpp" line="84"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4050,66 +4061,66 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.h" line="370"/>
+        <location filename="../misc.cpp" line="318"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="370"/>
+        <location filename="../misc.cpp" line="318"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="370"/>
+        <location filename="../misc.cpp" line="318"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="370"/>
+        <location filename="../misc.cpp" line="318"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="370"/>
+        <location filename="../misc.cpp" line="318"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="369"/>
+        <location filename="../misc.cpp" line="317"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="475"/>
+        <location filename="../misc.cpp" line="424"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="504"/>
+        <location filename="../misc.cpp" line="453"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="508"/>
+        <location filename="../misc.cpp" line="457"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="513"/>
+        <location filename="../misc.cpp" line="462"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.h" line="518"/>
+        <location filename="../misc.cpp" line="467"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation type="unfinished"></translation>
@@ -4118,58 +4129,58 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1417"/>
-        <location filename="../options_imp.cpp" line="1419"/>
+        <location filename="../options_imp.cpp" line="1423"/>
+        <location filename="../options_imp.cpp" line="1425"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1446"/>
-        <location filename="../options_imp.cpp" line="1448"/>
-        <location filename="../options_imp.cpp" line="1460"/>
-        <location filename="../options_imp.cpp" line="1462"/>
+        <location filename="../options_imp.cpp" line="1452"/>
+        <location filename="../options_imp.cpp" line="1454"/>
+        <location filename="../options_imp.cpp" line="1466"/>
+        <location filename="../options_imp.cpp" line="1468"/>
         <source>Choose a save directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1431"/>
-        <location filename="../options_imp.cpp" line="1433"/>
+        <location filename="../options_imp.cpp" line="1437"/>
+        <location filename="../options_imp.cpp" line="1439"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1374"/>
+        <location filename="../options_imp.cpp" line="1380"/>
         <source>Add directory to scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1380"/>
+        <location filename="../options_imp.cpp" line="1386"/>
         <source>Folder is already being watched.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1383"/>
+        <location filename="../options_imp.cpp" line="1389"/>
         <source>Folder does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1386"/>
+        <location filename="../options_imp.cpp" line="1392"/>
         <source>Folder is not readable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1394"/>
+        <location filename="../options_imp.cpp" line="1400"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1394"/>
+        <location filename="../options_imp.cpp" line="1400"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1431"/>
-        <location filename="../options_imp.cpp" line="1433"/>
+        <location filename="../options_imp.cpp" line="1437"/>
+        <location filename="../options_imp.cpp" line="1439"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4228,31 +4239,31 @@ However, those plugins were disabled.</source>
 <context>
     <name>previewSelect</name>
     <message>
-        <location filename="../previewselect.h" line="78"/>
-        <location filename="../previewselect.h" line="84"/>
-        <location filename="../previewselect.h" line="125"/>
+        <location filename="../previewselect.h" line="79"/>
+        <location filename="../previewselect.h" line="85"/>
+        <location filename="../previewselect.h" line="126"/>
         <source>Preview impossible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="78"/>
-        <location filename="../previewselect.h" line="84"/>
-        <location filename="../previewselect.h" line="125"/>
+        <location filename="../previewselect.h" line="79"/>
+        <location filename="../previewselect.h" line="85"/>
+        <location filename="../previewselect.h" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="98"/>
+        <location filename="../previewselect.h" line="99"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="99"/>
+        <location filename="../previewselect.h" line="100"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../previewselect.h" line="100"/>
+        <location filename="../previewselect.h" line="101"/>
         <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
