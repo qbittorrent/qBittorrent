@@ -1,6 +1,8 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
+    - BUGFIX: Fix possible crash with folder scanning
     - BUGFIX: Fix Mac compilation
     - BUGFIX: Save fast resume data every 3 minutes (for robustness)
+    - I18N: Updated Polish translation (thanks Szymon Świerkosz)
 
 * Sat Mar 20 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.1
     - FEATURE: Display pieces that are being downloaded
