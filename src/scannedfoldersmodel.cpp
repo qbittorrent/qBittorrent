@@ -46,6 +46,7 @@ namespace {
 class ScanFoldersModel::PathData {
 public:
   PathData(const QString &path) : path(path), downloadAtPath(false) {}
+  PathData(const QString &path, bool download_at_path) : path(path), downloadAtPath(download_at_path) {}
   const QString path;
   bool downloadAtPath;
 };
@@ -124,10 +125,8 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path, bool
     connect(m_fsWatcher, SIGNAL(torrentsAdded(QStringList&)), this, SIGNAL(torrentsAdded(QStringList&)));
   }
   beginInsertRows(QModelIndex(), rowCount(), rowCount());
-  m_pathList << new PathData(canonicalPath);
+  m_pathList << new PathData(canonicalPath, download_at_path);
   endInsertRows();
-  // Set download at path
-  setDownloadAtPath(m_pathList.size()-1, download_at_path);
   // Start scanning
   m_fsWatcher->addPath(canonicalPath);
   return Ok;
