@@ -2757,6 +2757,14 @@ Are you sure you want to quit qBittorrent?</source>
         <source>Use alternative speed limits</source>
         <translation>使用其他速度限制</translation>
     </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>

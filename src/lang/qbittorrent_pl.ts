@@ -158,23 +158,23 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Parametr</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wartość</translation>
     </message>
     <message>
         <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ignoruj limity prędkości w sieciach lokalnych</translation>
     </message>
     <message>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translation>
     </message>
     <message>
         <source>Disk write cache size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rozmiar pamięci podręcznej na zapisy</translation>
     </message>
     <message>
         <source> MiB</source>
@@ -190,24 +190,24 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Recheck torrents on completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sprawdź torrenty po pobraniu</translation>
     </message>
     <message>
         <source>Transfer list refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Okres odświeżania listy transferów</translation>
     </message>
     <message>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">milisekund</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Odczytuj kraje partnerów (GeoIP)</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished">Odczytuje nazwy hostów partnerów</translation>
+        <translation type="unfinished">Odczytuj nazwy hostów partnerów</translation>
     </message>
 </context>
 <context>
@@ -401,11 +401,11 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Powód: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uwaga: nowe trackery zostały dodane do istniejącego torrenta.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
@@ -413,7 +413,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
     </message>
 </context>
 <context>
@@ -2646,10 +2646,18 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Użyj normalnych limitów prędkości</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
+        <translation type="unfinished">Użyj alternatywnych limitów prędkości</translation>
+    </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2680,7 +2688,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     <name>HttpConnection</name>
     <message>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Twój adres IP został zablokowany po zbyt wielu nieudanych próbach uwierzytelnienia.</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -2830,7 +2838,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Press %1 key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nacisnij klawisz %1 aby zaakceptować i kontynuować...</translation>
     </message>
 </context>
 <context>
@@ -3109,7 +3117,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Użyj alternatywnych limitów prędkości</translation>
     </message>
 </context>
 <context>
@@ -3600,7 +3608,7 @@ QGroupBox {
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished">Autentykacja</translation>
+        <translation type="unfinished">Uwierzytelnianie</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -3709,15 +3717,15 @@ QGroupBox {
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prędkość</translation>
     </message>
     <message>
         <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ogólne limity prędkości</translation>
     </message>
     <message>
         <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alternatywne ogólne limity prędkości</translation>
     </message>
     <message>
         <source>Scheduled times:</source>
@@ -3730,11 +3738,11 @@ QGroupBox {
     </message>
     <message>
         <source>On days:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">W dniach:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Codziennie</translation>
     </message>
     <message>
         <source>Week days</source>
@@ -3746,23 +3754,23 @@ QGroupBox {
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zaawansowane</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiuj pliki .torrent do:</translation>
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sprawdź katalogi w poszukowaniu plików .torrent:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dodaj katalog ...</translation>
     </message>
     <message>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usuń katalog</translation>
     </message>
 </context>
 <context>
@@ -4335,11 +4343,11 @@ p, li { white-space: pre-wrap; }
     <name>ScanFoldersModel</name>
     <message>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Obserwowany katalog</translation>
     </message>
     <message>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pobierz tutaj</translation>
     </message>
 </context>
 <context>
@@ -4622,11 +4630,11 @@ Zmiany:
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kliknij, aby wyłączyć alternatywne limity prędkości</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kliknij, aby włączyć alternatywne limity prędkości</translation>
     </message>
 </context>
 <context>
