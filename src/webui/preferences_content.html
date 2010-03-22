@@ -55,6 +55,12 @@
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="dht_checkbox"/></td><td>_(Enable DHT network (decentralized))</td>
   </tr>
   <tr>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="DHTPortDiffThanBT_checkbox" onclick="updateDHTPortSettings();"/></td><td>_(Use a different port for DHT and Bittorrent)</td>
+  </tr>
+  <tr>
+  <td style="vertical-align: bottom; text-align: right;">_(DHT port:)</td><td><input type="text" id="DHTPort_txt" value="6881"/></td>
+  </tr>
+  <tr>
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="pex_checkbox"/></td><td>_(Enable Peer Exchange / PeX (requires restart))</td>
   </tr>
   <tr>
@@ -332,6 +338,10 @@
   var dht = 0;
   if($defined($('dht_checkbox').get('checked')) && $('dht_checkbox').get('checked'))
     dht = 1;
+  var dhtSameAsBT = 1;
+  if($defined($('DHTPortDiffThanBT_checkbox').get('checked')) && $('DHTPortDiffThanBT_checkbox').get('checked'))
+    dhtSameAsBT = 0;
+  var dht_port = $("DHTPort_txt").get('value').toInt();
   var pex = 0;
   if($defined($('pex_checkbox').get('checked')) && $('pex_checkbox').get('checked'))
     pex = 1;
@@ -459,6 +469,8 @@
   dict.set('max_uploads_per_torrent', max_uploads_per_torrent);
   // Bittorrent
   dict.set('dht', dht);
+  dict.set('dhtSameAsBT', dhtSameAsBT);
+  dict.set('dht_port', dht_port);
   dict.set('pex', pex);
   dict.set('lsd', lsd);
   dict.set('encryption', $('encryption_select').get('value'));
@@ -636,6 +648,14 @@ updateFilterSettings = function() {
   }
 }
 
+updateDHTPortSettings = function() {
+  if($defined($('DHTPortDiffThanBT_checkbox').get('checked')) && $('DHTPortDiffThanBT_checkbox').get('checked')) {
+    $('DHTPort_txt').removeProperty('disabled');
+  } else {
+    $('DHTPort_txt').set('disabled', 'true');
+  }
+}
+
 updateHTTPProxySettings = function() {
   if($('http_proxy_type_select').get('value') != "none") {
     $('http_proxy_host_text').removeProperty('disabled');
@@ -807,6 +827,14 @@ loadPreferences = function() {
                     } else {
                       $('dht_checkbox').removeProperty('checked');
                     }
+                    var dhtSameAsBT = pref.dhtSameAsBT;
+                    if(dhtSameAsBT) {
+                      $('DHTPortDiffThanBT_checkbox').removeProperty('checked');
+                    } else {
+                      $('DHTPortDiffThanBT_checkbox').set('checked', 'checked');
+                    }
+                    $("DHTPort_txt").set("value", pref.dht_port);
+                    updateDHTPortSettings();
                     var pex = pref.pex; //bool
                     if(pex) {
                       $('pex_checkbox').set('checked', 'checked');

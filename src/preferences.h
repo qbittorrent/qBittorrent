@@ -619,9 +619,19 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/sameDHTPortAsBT"), true).toBool();
   }
 
+  static void setDHTPortSameAsBT(bool same) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/sameDHTPortAsBT"), same);
+  }
+
   static int getDHTPort() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), 6881).toInt();
+  }
+
+  static void setDHTPort(int port) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), port);
   }
 
   static bool isLSDEnabled() {

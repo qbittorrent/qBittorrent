@@ -189,6 +189,10 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
   // Bittorrent
   if(m.contains("dht"))
     Preferences::setDHTEnabled(m["dht"].toBool());
+  if(m.contains("dhtSameAsBT"))
+    Preferences::setDHTPortSameAsBT(m["dhtSameAsBT"].toBool());
+  if(m.contains("dht_port"))
+    Preferences::setDHTPort(m["dht_port"].toInt());
   if(m.contains("pex"))
     Preferences::setPeXEnabled(m["pex"].toBool());
   qDebug("Pex support: %d", (int)m["pex"].toBool());
@@ -274,6 +278,8 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["max_uploads_per_torrent"] = Preferences::getMaxUploadsPerTorrent();
   // Bittorrent
   data["dht"] = Preferences::isDHTEnabled();
+  data["dhtSameAsBT"] = Preferences::isDHTPortSameAsBT();
+  data["dht_port"] = Preferences::getDHTPort();
   data["pex"] = Preferences::isPeXEnabled();
   data["lsd"] = Preferences::isLSDEnabled();
   data["encryption"] = Preferences::getEncryptionSetting();
