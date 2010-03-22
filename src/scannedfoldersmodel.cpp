@@ -110,7 +110,7 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
   return true;
 }
 
-ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path) {
+ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path, bool download_at_path) {
   QDir dir(path);
   if (!dir.exists())
     return DoesNotExist;
@@ -126,6 +126,9 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &path) {
   beginInsertRows(QModelIndex(), rowCount(), rowCount());
   m_pathList << new PathData(canonicalPath);
   endInsertRows();
+  // Set download at path
+  setDownloadAtPath(m_pathList.size()-1, download_at_path);
+  // Start scanning
   m_fsWatcher->addPath(canonicalPath);
   return Ok;
 }

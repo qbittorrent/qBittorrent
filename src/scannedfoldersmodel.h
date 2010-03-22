@@ -55,7 +55,7 @@ public:
 
   // TODO: removePaths(); singular version becomes private helper functions;
   // also: remove functions should take modelindexes
-  PathStatus addPath(const QString &path);
+  PathStatus addPath(const QString &path, bool download_at_path);
   void removePath(int row);
   bool removePath(const QString &path);
   PathStatus setDownloadAtPath(int row, bool downloadAtPath);

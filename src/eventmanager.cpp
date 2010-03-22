@@ -130,25 +130,29 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     Preferences::setTempPathEnabled(m["temp_path_enabled"].toBool());
   if(m.contains("temp_path"))
     Preferences::setTempPath(m["temp_path"].toString());
-  if(m.contains("scan_dirs")) {
+  if(m.contains("scan_dirs") && m.contains("download_in_scan_dirs")) {
+    QVariantList download_at_path = m["download_in_scan_dirs"].toList();
     QStringList old_folders = Preferences::getScanDirs();
     QStringList new_folders = m["scan_dirs"].toStringList();
-    foreach(const QString &old_folder, old_folders) {
-      // Update deleted folders
-      if(!new_folders.contains(old_folder)) {
-        BTSession->getScanFoldersModel()->removePath(old_folder);
-      }
-    }
-    foreach(const QString &new_folder, new_folders) {
-      // Update new folders
-      if(!old_folders.contains(new_folder)) {
-        BTSession->getScanFoldersModel()->addPath(new_folder);
-      }
-    }
     Preferences::setScanDirs(new_folders);
+    Preferences::setDownloadInScanDirs(download_at_path);
+    if(download_at_path.size() == new_folders.size()) {
+      foreach(const QString &old_folder, old_folders) {
+        // Update deleted folders
+        if(!new_folders.contains(old_folder)) {
+          BTSession->getScanFoldersModel()->removePath(old_folder);
+        }
+      }
+      int i = 0;
+      foreach(const QString &new_folder, new_folders) {
+        // Update new folders
+        if(!old_folders.contains(new_folder)) {
+          BTSession->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i).toBool());
+        }
+        ++i;
+      }
+    }
   }
-  if(m.contains("download_in_scan_dirs"))
-    Preferences::setDownloadInScanDirs(m["download_in_scan_dirs"].toList());
   if(m.contains("export_dir"))
     Preferences::setExportDir(m["export_dir"].toString());
   if(m.contains("preallocate_all"))

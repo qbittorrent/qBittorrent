@@ -281,12 +281,14 @@ void Bittorrent::configureSession() {
   startTorrentsInPause(Preferences::addTorrentsInPause());
   // * Scan dirs
   const QStringList &scan_dirs = Preferences::getScanDirs();
-  foreach (const QString &dir, scan_dirs) {
-    m_scanFolders->addPath(dir);
+  QVariantList downloadInDirList = Preferences::getDownloadInScanDirs();
+  while(scan_dirs.size() > downloadInDirList.size()) {
+    downloadInDirList << QVariant(false);
   }
-  const QVariantList &downloadInDirList = Preferences::getDownloadInScanDirs();
-  for (int i = 0; i < downloadInDirList.count(); ++i) {
-    m_scanFolders->setDownloadAtPath(i, downloadInDirList.at(i).toBool());
+  int i = 0;
+  foreach (const QString &dir, scan_dirs) {
+    m_scanFolders->addPath(dir, downloadInDirList.at(i).toBool());
+    ++i;
   }
   // * Export Dir
   const bool newTorrentExport = Preferences::isTorrentExportEnabled();
