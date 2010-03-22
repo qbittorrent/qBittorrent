@@ -1477,33 +1477,33 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Máxima</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="319"/>
-        <location filename="../eventmanager.cpp" line="320"/>
+        <location filename="../eventmanager.cpp" line="325"/>
+        <location filename="../eventmanager.cpp" line="326"/>
         <source>this session</source>
         <translation>en esta sesión</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="324"/>
-        <location filename="../eventmanager.cpp" line="328"/>
+        <location filename="../eventmanager.cpp" line="330"/>
+        <location filename="../eventmanager.cpp" line="334"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="331"/>
+        <location filename="../eventmanager.cpp" line="337"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Completo desde %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="334"/>
+        <location filename="../eventmanager.cpp" line="340"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="409"/>
-        <location filename="../eventmanager.cpp" line="418"/>
+        <location filename="../eventmanager.cpp" line="415"/>
+        <location filename="../eventmanager.cpp" line="424"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation></translation>
@@ -4784,12 +4784,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="94"/>
+        <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Watched Folder</source>
         <translation>Buscar ficheros .torrents</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="95"/>
+        <location filename="../scannedfoldersmodel.cpp" line="96"/>
         <source>Download here</source>
         <translation>Descargar Torrents aquí</translation>
     </message>

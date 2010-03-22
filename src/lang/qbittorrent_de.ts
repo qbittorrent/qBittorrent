@@ -1488,33 +1488,33 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete">Maximum</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="319"/>
-        <location filename="../eventmanager.cpp" line="320"/>
+        <location filename="../eventmanager.cpp" line="325"/>
+        <location filename="../eventmanager.cpp" line="326"/>
         <source>this session</source>
         <translation>Diese Session</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="324"/>
-        <location filename="../eventmanager.cpp" line="328"/>
+        <location filename="../eventmanager.cpp" line="330"/>
+        <location filename="../eventmanager.cpp" line="334"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="331"/>
+        <location filename="../eventmanager.cpp" line="337"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Geseeded seit %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="334"/>
+        <location filename="../eventmanager.cpp" line="340"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="409"/>
-        <location filename="../eventmanager.cpp" line="418"/>
+        <location filename="../eventmanager.cpp" line="415"/>
+        <location filename="../eventmanager.cpp" line="424"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/Sekunde</translation>
@@ -4821,12 +4821,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="94"/>
+        <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Watched Folder</source>
         <translation>Beobachtetes Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="95"/>
+        <location filename="../scannedfoldersmodel.cpp" line="96"/>
         <source>Download here</source>
         <translation>Hier herunterladen</translation>
     </message>

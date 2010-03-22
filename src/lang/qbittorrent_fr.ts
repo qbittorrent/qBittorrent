@@ -1613,33 +1613,33 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Maximale</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="319"/>
-        <location filename="../eventmanager.cpp" line="320"/>
+        <location filename="../eventmanager.cpp" line="325"/>
+        <location filename="../eventmanager.cpp" line="326"/>
         <source>this session</source>
         <translation>cette session</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="324"/>
-        <location filename="../eventmanager.cpp" line="328"/>
+        <location filename="../eventmanager.cpp" line="330"/>
+        <location filename="../eventmanager.cpp" line="334"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="331"/>
+        <location filename="../eventmanager.cpp" line="337"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Complet depuis %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="334"/>
+        <location filename="../eventmanager.cpp" line="340"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="409"/>
-        <location filename="../eventmanager.cpp" line="418"/>
+        <location filename="../eventmanager.cpp" line="415"/>
+        <location filename="../eventmanager.cpp" line="424"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -2754,12 +2754,12 @@ Raison : %2</translation>
     <message>
         <location filename="../GUI.cpp" line="418"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmation pour téléchargement récursif</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="418"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Le torrent %1 contients des fichiers torrents, desirez-vous les mettre en téléchargement ?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="837"/>
@@ -5091,12 +5091,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="94"/>
+        <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Watched Folder</source>
         <translation>Répertoire surveillé</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="95"/>
+        <location filename="../scannedfoldersmodel.cpp" line="96"/>
         <source>Download here</source>
         <translation>Télécharger ici</translation>
     </message>
