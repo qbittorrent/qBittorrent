@@ -2754,12 +2754,12 @@ Raison : %2</translation>
     <message>
         <location filename="../GUI.cpp" line="418"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmation pour téléchargement récursif</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="418"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Le torrent %1 contients des fichiers torrents, desirez-vous les mettre en téléchargement ?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="837"/>
