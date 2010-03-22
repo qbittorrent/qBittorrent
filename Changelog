@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
+* Mon Mar 22 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
     - BUGFIX: Fix possible crash with folder scanning
     - BUGFIX: Fix Mac compilation
     - BUGFIX: Save fast resume data every 3 minutes (for robustness)
