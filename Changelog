@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.3
+    - BUGFIX: Fix possible crash when deleting a torrent just after pausing it
+
 * Mon Mar 22 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
     - FEATURE: DHT port can be set from Web UI
     - BUGFIX: Fix possible crash with folder scanning
