@@ -2002,7 +2002,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
 #endif
       else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
-        p->handle.save_resume_data();
+        if(p->handle.is_valid()) {
+          p->handle.save_resume_data();
+        }
       }
       else if (tracker_error_alert* p = dynamic_cast<tracker_error_alert*>(a.get())) {
         // Level: fatal
