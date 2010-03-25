@@ -8,15 +8,15 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN };
-#define ROW_COUNT 10
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING };
+#define ROW_COUNT 11
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen;
-  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts;
+  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding;
 
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
@@ -46,6 +46,7 @@ public:
     delete cb_resolve_countries;
     delete cb_resolve_hosts;
     delete spin_maxhalfopen;
+    delete cb_super_seeding;
   }
 
 public slots:
@@ -68,6 +69,10 @@ public slots:
     Preferences::resolvePeerHostNames(cb_resolve_hosts->isChecked());
     // Max Half-Open connections
     Preferences::setMaxHalfOpenConnections(spin_maxhalfopen->value());
+#ifdef LIBTORRENT_0_15
+    // Super seeding
+    Preferences::enableSuperSeeding(cb_super_seeding->isChecked());
+#endif
   }
 
 protected slots:
@@ -143,6 +148,17 @@ protected slots:
     spin_maxhalfopen->setMinimum(0);
     spin_maxhalfopen->setMaximum(99999);
     spin_maxhalfopen->setValue(Preferences::getMaxHalfOpenConnections());
+    setCellWidget(MAX_HALF_OPEN, VALUE, spin_maxhalfopen);
+    // Super seeding
+    setItem(SUPER_SEEDING, PROPERTY, new QTableWidgetItem(tr("Strict super seeding")));
+    cb_super_seeding = new QCheckBox();
+    connect(cb_super_seeding, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+ #ifdef LIBTORRENT_0_15
+    cb_super_seeding->setChecked(Preferences::isSuperSeedingEnabled());
+#else
+    cb_super_seeding->setEnabled(false);
+#endif
+    setCellWidget(SUPER_SEEDING, VALUE, cb_super_seeding);
   }
 
   void emitSettingsChanged() {
