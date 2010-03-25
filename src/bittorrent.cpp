@@ -445,6 +445,8 @@ void Bittorrent::configureSession() {
   // Include overhead in transfer limits
   sessionSettings.rate_limit_ip_overhead = Preferences::includeOverheadInLimits();
   // Bittorrent
+  // * Max Half-open connections
+  s->set_max_half_open_connections(Preferences::getMaxHalfOpenConnections());
   // * Max connections limit
   setMaxConnections(Preferences::getMaxConnecs());
   // * Max connections per torrent limit

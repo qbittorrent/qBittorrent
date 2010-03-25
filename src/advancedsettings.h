@@ -8,14 +8,14 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS };
-#define ROW_COUNT 9
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN };
+#define ROW_COUNT 10
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
-  QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh;
+  QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen;
   QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts;
 
 public:
@@ -45,6 +45,7 @@ public:
     delete spin_list_refresh;
     delete cb_resolve_countries;
     delete cb_resolve_hosts;
+    delete spin_maxhalfopen;
   }
 
 public slots:
@@ -65,6 +66,8 @@ public slots:
     // Peer resolution
     Preferences::resolvePeerCountries(cb_resolve_countries->isChecked());
     Preferences::resolvePeerHostNames(cb_resolve_hosts->isChecked());
+    // Max Half-Open connections
+    Preferences::setMaxHalfOpenConnections(spin_maxhalfopen->value());
   }
 
 protected slots:
@@ -133,6 +136,13 @@ protected slots:
     connect(cb_resolve_hosts, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
     cb_resolve_hosts->setChecked(Preferences::resolvePeerHostNames());
     setCellWidget(RESOLVE_HOSTS, VALUE, cb_resolve_hosts);
+    // Max Half Open connections
+    setItem(MAX_HALF_OPEN, PROPERTY, new QTableWidgetItem(tr("Maximum number of half-open connections [0: Disabled]")));
+    spin_maxhalfopen = new QSpinBox();
+    connect(spin_maxhalfopen, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
+    spin_maxhalfopen->setMinimum(0);
+    spin_maxhalfopen->setMaximum(99999);
+    spin_maxhalfopen->setValue(Preferences::getMaxHalfOpenConnections());
   }
 
   void emitSettingsChanged() {

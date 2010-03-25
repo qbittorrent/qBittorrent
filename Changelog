@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
+    - FEATURE: Max number of half-open connections can now be edited
+
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling
     - FEATURE: Bandwidth scheduler (automatically use alternative speed limits for a given period)

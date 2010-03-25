@@ -916,6 +916,19 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Connection/ResolvePeerHostNames"), resolve);
   }
 
+  static int getMaxHalfOpenConnections() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    const int val = settings.value(QString::fromUtf8("Preferences/Connection/MaxHalfOpenConnec"), 50).toInt();
+    if(val <= 0) return -1;
+    return val;
+  }
+
+  static void setMaxHalfOpenConnections(int value) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    if(value <= 0) value = -1;
+    settings.setValue(QString::fromUtf8("Preferences/Connection/MaxHalfOpenConnec"), value);
+  }
+
 };
 
 #endif // PREFERENCES_H
