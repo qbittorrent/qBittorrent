@@ -68,7 +68,7 @@
 
 #ifdef W_WS_WIN
 #include <windows.h>
-#include <lmcons.h>
+const int UNLEN = 256;
 #endif
 
 using namespace libtorrent;
