@@ -51,7 +51,6 @@
 
 #include <QSettings>
 #include <QLocalSocket>
-#include <unistd.h>
 #include <sys/types.h>
 #ifndef Q_WS_WIN
 #include <signal.h>
