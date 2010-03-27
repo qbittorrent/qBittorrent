@@ -66,6 +66,10 @@
 #include "propertieswidget.h"
 #include "statusbar.h"
 
+#ifdef W_WS_WIN
+#include <windows.h>
+#endif
+
 using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000
@@ -161,7 +165,15 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   processParams(torrentCmdLine);
   // Use a tcp server to allow only one instance of qBittorrent
   localServer = new QLocalServer();
-  QString uid = QString::number(getuid());
+  QString uid = "";
+#ifdef Q_WS_WIN
+  char buffer[255] = {0};
+  DWORD buffer_len;
+  if (!GetUserName(buffer, &buffer_len))
+    uid = QString(buffer)
+#else
+    uid = QString::number(getuid());
+#endif
 #ifdef Q_WS_X11
   if(QFile::exists(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid)) {
     // Socket was not closed cleanly

@@ -57,6 +57,8 @@
 #include <signal.h>
 #include <execinfo.h>
 #include "stacktrace.h"
+#else
+#include <windows.h>
 #endif
 
 #include <stdlib.h>
@@ -169,7 +171,6 @@ void useStyle(QApplication *app, QString style){
 
 // Main
 int main(int argc, char *argv[]){
-  QFile file;
   QString locale;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
 #ifndef DISABLE_GUI
@@ -178,7 +179,15 @@ int main(int argc, char *argv[]){
 
   //Check if there is another instance running
   QLocalSocket localSocket;
-  QString uid = QString::number(getuid());
+  QString uid;
+#ifdef Q_WS_WIN
+  char buffer[255] = {0};
+  DWORD buffer_len;
+  if (!GetUserName(buffer, &buffer_len))
+    uid = QString(buffer)
+#else
+    uid = QString::number(getuid());
+#endif
   localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
   if (localSocket.waitForConnected(1000)){
     std::cout << "Another qBittorrent instance is already running...\n";
