@@ -68,6 +68,7 @@
 
 #ifdef W_WS_WIN
 #include <windows.h>
+#include <lmcons.h>
 #endif
 
 using namespace libtorrent;
@@ -167,8 +168,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   localServer = new QLocalServer();
   QString uid = "";
 #ifdef Q_WS_WIN
-  char buffer[255] = {0};
-  DWORD buffer_len;
+  char buffer[UNLEN+1] = {0};
+  DWORD buffer_len = UNLEN + 1;
   if (!GetUserName(buffer, &buffer_len))
     uid = QString(buffer)
 #else
