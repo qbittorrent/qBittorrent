@@ -66,7 +66,7 @@
 #include "propertieswidget.h"
 #include "statusbar.h"
 
-#ifdef W_WS_WIN
+#ifdef Q_WS_WIN
 #include <windows.h>
 const int UNLEN = 256;
 #endif
