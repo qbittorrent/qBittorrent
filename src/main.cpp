@@ -58,7 +58,7 @@
 #include "stacktrace.h"
 #else
 #include <windows.h>
-#include <lmcons.h>
+const int UNLEN = 256;
 #endif
 
 #include <stdlib.h>
