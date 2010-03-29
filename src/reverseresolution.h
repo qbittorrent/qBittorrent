@@ -84,8 +84,9 @@ protected:
       if(stopped) return;
       libtorrent::asio::ip::tcp::endpoint endpoint = *it;
       emit ip_resolved(misc::toQString(endpoint.address().to_string()), misc::toQString((*it).host_name()));
-    } catch(std::exception &e) {
-      std::cerr << "Hostname resolution failed, reason: " << e.what() << std::endl;
+    } catch(std::exception/* &e*/) {
+      /*std::cerr << "Hostname resolution failed, reason: " << e.what() << std::endl;*/
+      std::cerr << "Hostname resolution error." << std::endl;
     }
   }
 };
