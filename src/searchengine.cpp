@@ -74,6 +74,11 @@ SearchEngine::SearchEngine(GUI *parent, Bittorrent *BTSession) : QWidget(parent)
   // Creating Search Process
   searchProcess = new QProcess(this);
   QStringList env = QProcess::systemEnvironment();
+#ifdef Q_WS_WIN
+  // add qBittorrent executable folder to PATH environment variable
+  qDebug("qBittorrent executable path: %s", qPrintable(qApp->applicationDirPath()));
+  env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1;"+qApp->applicationDirPath());
+#endif
   searchProcess->setEnvironment(env);
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
   connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
