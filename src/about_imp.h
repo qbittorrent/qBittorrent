@@ -92,6 +92,9 @@ class about : public QDialog, private Ui::AboutDlg{
       te_translation->scrollToAnchor(QString::fromUtf8("top"));
       // License
       te_license->append(QString::fromUtf8("<a name='top'></a>"));
+#ifdef Q_WS_WIN
+      te_license->append(QString::fromUtf8("qBittorrent is licensed under the GNU General Public License version 2."));
+#else
       te_license->append(QString::fromUtf8("qBittorrent is licensed under the GNU General Public License version 2 with the\
 addition of the following special exception:\
 <br><br>\
@@ -438,6 +441,7 @@ exception statement from your version.</i>\
           consider it more useful to permit linking proprietary applications with the<br>\
           library.  If this is what you want to do, use the GNU Library General<br>\
           Public License instead of this License.<br>"));
+#endif
           te_license->scrollToAnchor(QString::fromUtf8("top"));
           show();
     }
