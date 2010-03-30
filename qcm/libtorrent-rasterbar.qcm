@@ -27,11 +27,13 @@ public:
 		else
 			conf->addDefine("LIBTORRENT_0_15");
 		// Get linking parameters
-		QStringList params;
-		QByteArray staticlibs;
-		params << "--static" << "--libs" << "libtorrent-rasterbar";
-		conf->doCommand("pkg-config", params, &staticlibs);
-		conf->addLib(staticlibs.trimmed());
+		//QStringList params;
+		//QByteArray staticlibs;
+		//params << "--static" << "--libs" << "libtorrent-rasterbar";
+		//conf->doCommand("pkg-config", params, &staticlibs);
+		//conf->addLib(staticlibs.trimmed());
+		//libcrypto
+		conf->addLib("-lcrypto");
 		return true;
 	}
 };

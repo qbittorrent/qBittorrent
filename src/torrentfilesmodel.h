@@ -507,7 +507,7 @@ public:
     TreeItem *parent = this->rootItem;
     if(t.num_files() == 1) {
       // Create possible parent folder
-      QStringList path_parts = misc::toQString(t.file_at(0).path.string()).split(QDir::separator());
+      QStringList path_parts = misc::toQString(t.file_at(0).path.string()).split("/");
       path_parts.removeLast();
       foreach(const QString &part, path_parts) {
         TreeItem *folder = new TreeItem(part, parent);
@@ -520,7 +520,7 @@ public:
       return;
     }
     // Create parent folder
-    QString root_name = misc::toQString(t.file_at(0).path.string()).split(QDir::separator()).first();
+    QString root_name = misc::toQString(t.file_at(0).path.string()).split("/").first();
     TreeItem *current_parent = new TreeItem(root_name, parent);
     //parent->appendChild(current_parent);
     TreeItem *root_folder = current_parent;
@@ -532,7 +532,7 @@ public:
       current_parent = root_folder;
       QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
       // Iterate of parts of the path to create necessary folders
-      QStringList pathFolders = path.split(QDir::separator());
+      QStringList pathFolders = path.split("/");
       Q_ASSERT(pathFolders.size() >= 2);
       QString fileName = pathFolders.takeLast();
       QString currentFolderName = pathFolders.takeFirst();

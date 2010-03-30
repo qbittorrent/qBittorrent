@@ -1,5 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.3
     - BUGFIX: Fix possible crash when deleting a torrent just after pausing it
+    - BUGFIX: Several compilation and execution fixes for Windows and OS/2
+    - BUGFIX: Cleaner binutils gold linker support
 
 * Mon Mar 22 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
     - FEATURE: DHT port can be set from Web UI

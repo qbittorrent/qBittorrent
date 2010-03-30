@@ -828,12 +828,7 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 void GUI::updateGUI() {
   // update global informations
   if(systrayIcon) {
-#ifdef Q_WS_WIN
-    // Windows does not support html here
-    QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1));
-    html += "\n";
-    html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::number(BTSession->getPayloadUploadRate()/1024., 'f', 1));
-#else
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
     QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
     html += tr("qBittorrent");
     html += "</div>";
@@ -843,6 +838,11 @@ void GUI::updateGUI() {
     html += "<div style='vertical-align: baseline; height: 18px;'>";
     html += "<img src=':/Icons/skin/seeding.png'/>&nbsp;"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::number(BTSession->getPayloadUploadRate()/1024., 'f', 1));
     html += "</div>";
+#else
+    // OSes such as Windows do not support html here
+    QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::number(BTSession->getPayloadDownloadRate()/1024., 'f', 1));
+    html += "\n";
+    html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::number(BTSession->getPayloadUploadRate()/1024., 'f', 1));
 #endif
     systrayIcon->setToolTip(html); // tray icon
   }
