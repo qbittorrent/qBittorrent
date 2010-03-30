@@ -216,6 +216,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinUploadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinDownloadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(schedule_from, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
   connect(schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
