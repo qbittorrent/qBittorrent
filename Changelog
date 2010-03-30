@@ -1,7 +1,8 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.3
     - BUGFIX: Fix possible crash when deleting a torrent just after pausing it
     - BUGFIX: Enable Apply button when alternative rate limits are changed
-    - BUGFIX: Several compilation and execution fixes for Windows and OS/2
+    - BUGFIX: Source compatibility with Windows (Thanks Ishan Arora)
+    - BUGFIX: Source compatibility with eCS (OS/2) (Thanks Silvan Scherrer)
     - BUGFIX: Cleaner binutils gold linker support
 
 * Mon Mar 22 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
