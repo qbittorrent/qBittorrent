@@ -11,7 +11,7 @@ CONFIG += qt \
     thread
 
 # Update this VERSION for each release
-DEFINES += VERSION=\'\"v2.2.2\"\'
+DEFINES += VERSION=\'\"v2.3.0\"\'
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=3
 DEFINES += VERSION_BUGFIX=0
