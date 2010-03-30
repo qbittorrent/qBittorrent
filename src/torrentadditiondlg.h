@@ -305,10 +305,10 @@ public slots:
         // Check if that name is already used
         for(uint i=0; i<nbFiles; ++i) {
           if(i == file_index) continue;
-#ifdef Q_WS_WIN
-          if(files_path.at(i).compare(new_name, Qt::CaseInsensitive) == 0) {
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
+          if(files_path.at(i).compare(new_name, Qt::CaseSensitive) == 0) {
 #else
-            if(files_path.at(i).compare(new_name, Qt::CaseSensitive) == 0) {
+            if(files_path.at(i).compare(new_name, Qt::CaseInsensitive) == 0) {
 #endif
               // Display error message
               QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -339,10 +339,10 @@ public slots:
           // Check for overwriting
           for(uint i=0; i<nbFiles; ++i) {
             const QString &current_name = files_path.at(i);
-#ifdef Q_WS_WIN
-            if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
+            if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
-              if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
+              if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
 #endif
                 QMessageBox::warning(this, tr("The folder could not be renamed"),
                                      tr("This name is already in use in this folder. Please use a different name."),
@@ -456,10 +456,10 @@ public slots:
         if(!is_magnet) {
           bool path_changed = false;
           for(uint i=0; i<nbFiles; ++i) {
-#ifdef Q_WS_WIN
-            if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseInsensitive) != 0) {
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
+            if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseSensitive) != 0) {
 #else
-              if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseSensitive) != 0) {
+              if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseInsensitive) != 0) {
 #endif
                 path_changed = true;
                 break;

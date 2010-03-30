@@ -583,10 +583,10 @@ void PropertiesWidget::renameSelectedFile() {
       // Check if that name is already used
       for(int i=0; i<h.num_files(); ++i) {
         if(i == file_index) continue;
-#ifdef Q_WS_WIN
-        if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseInsensitive) == 0) {
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
+        if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseSensitive) == 0) {
 #else
-          if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseSensitive) == 0) {
+          if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseInsensitive) == 0) {
 #endif
             // Display error message
             QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -622,10 +622,10 @@ void PropertiesWidget::renameSelectedFile() {
         const int num_files = h.num_files();
         for(int i=0; i<num_files; ++i) {
           const QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
-#ifdef Q_WS_WIN
-          if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
+          if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
-            if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
+            if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
 #endif
               QMessageBox::warning(this, tr("The folder could not be renamed"),
                                    tr("This name is already in use in this folder. Please use a different name."),

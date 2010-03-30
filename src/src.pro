@@ -11,7 +11,7 @@ CONFIG += qt \
     thread
 
 # Update this VERSION for each release
-DEFINES += VERSION=\\\"v2.3.0alpha\\\"
+DEFINES += VERSION=\'\"v2.2.2\"\'
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=3
 DEFINES += VERSION_BUGFIX=0
@@ -100,8 +100,10 @@ else:TARGET = qbittorrent
 # QMAKE_CXXFLAGS_RELEASE += -fwrapv
 # QMAKE_CXXFLAGS_DEBUG += -fwrapv
 unix:QMAKE_LFLAGS_SHAPP += -rdynamic
-CONFIG += link_pkgconfig
-PKGCONFIG += "libtorrent-rasterbar"
+unix {
+  CONFIG += link_pkgconfig
+  PKGCONFIG += "libtorrent-rasterbar"
+}
 
 QT += network
 !contains(DEFINES, DISABLE_GUI):QT += xml
@@ -121,10 +123,21 @@ win32:LIBS += -lssl32 \
     -ladvapi32 \
     -lwinmm
 
+os2:LIBS += -ltorrent-rasterbar \
+    -lcurl \
+    -lboost_thread \
+    -lboost_system \
+    -lboost_filesystem \
+    -lssl -lcrypto -lidn -lpthread
+
 !contains(DEFINES, DISABLE_GUI) {
   win32 {
     DEFINES += WITH_GEOIP_EMBEDDED
     message("On Windows, GeoIP database must be embedded.")
+  }
+  os2 {
+    DEFINES += WITH_GEOIP_EMBEDDED
+    message("On eCS(OS/2), GeoIP database must be embedded.")
   }
   macx {
     DEFINES += WITH_GEOIP_EMBEDDED

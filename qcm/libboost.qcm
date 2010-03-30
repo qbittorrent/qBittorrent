@@ -2,6 +2,7 @@
 -----BEGIN QCMOD-----
 name: libboost
 arg: with-libboost-inc=[path], Path to libboost include files
+arg: with-libboost-lib=[path], Path to libboost library files
 -----END QCMOD-----
 */
 class qc_libboost : public ConfObj
@@ -51,6 +52,30 @@ public:
       			}
 		}
 		conf->addIncludePath(s);
+		// Find library
+		s = conf->getenv("QC_WITH_LIBBOOST_LIB");
+                if(!s.isEmpty()) {
+                        if(!conf->checkLibrary(s, "boost_system-mt")) {
+                                return false;
+                        }
+                }else{
+                        QStringList sl;
+                        sl << "/usr/lib/";
+                        sl << "/usr/lib64/";
+                        sl << "/usr/local/lib/";
+                        sl << "/usr/local/lib64/";
+                        bool found = false;
+                        foreach(s, sl){
+                                if(conf->checkLibrary(s, "boost_system-mt")) {
+                                        found = true;
+                                        break;
+                                }
+                        }
+                        if(!found)
+                                return false;
+                }
+                conf->addLib(QString("-L") + s);
+		conf->addLib("-lboost_system-mt -lboost_filesystem-mt -lboost_thread-mt");
 		return true;
 	}
 };

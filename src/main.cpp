@@ -52,11 +52,14 @@
 #include <QSettings>
 #include <QLocalSocket>
 #include <sys/types.h>
-#ifndef Q_WS_WIN
+
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
 #include <signal.h>
 #include <execinfo.h>
 #include "stacktrace.h"
-#else
+#endif
+
+#ifdef Q_WS_WIN
 #include <windows.h>
 const int UNLEN = 256;
 #endif
@@ -125,7 +128,7 @@ public:
 
 #include "main.moc"
 
-#ifndef Q_WS_WIN
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
 void sigintHandler(int) {
   signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
@@ -301,7 +304,7 @@ int main(int argc, char *argv[]){
 #ifndef DISABLE_GUI
   app->setQuitOnLastWindowClosed(false);
 #endif
-#ifndef Q_WS_WIN
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
   signal(SIGINT, sigintHandler);
@@ -323,7 +326,7 @@ int main(int argc, char *argv[]){
 #endif
   int ret =  app->exec();
 
-#ifndef Q_WS_WIN
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
   // Application has exited, stop catching SIGINT and SIGTERM
   signal(SIGINT, 0);
   signal(SIGTERM, 0);
