@@ -4,6 +4,7 @@
     - BUGFIX: Source compatibility with Windows (Thanks Ishan Arora)
     - BUGFIX: Source compatibility with eCS (OS/2) (Thanks Silvan Scherrer)
     - BUGFIX: Cleaner binutils gold linker support
+    - BUGFIX: Clean fix for progress display with cleanlooks style
 
 * Mon Mar 22 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.2
     - FEATURE: DHT port can be set from Web UI

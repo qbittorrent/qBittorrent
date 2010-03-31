@@ -34,7 +34,6 @@
 #include <QSystemTrayIcon>
 #include <QApplication>
 #include <QSettings>
-#include "qgnomelook.h"
 #include <QDialogButtonBox>
 #include <QCloseEvent>
 #include <QDesktopWidget>
@@ -310,11 +309,6 @@ void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous
 
 void options_imp::useStyle() {
   QApplication::setStyle(QStyleFactory::create(comboStyle->itemText(comboStyle->currentIndex())));
-  if(QApplication::style()->objectName() == "cleanlooks") {
-    // Force our own cleanlooks style
-    qDebug("Forcing our own cleanlooks style");
-    QApplication::setStyle(new QGnomeLookStyle());
-  }
 }
 
 void options_imp::loadWindowState() {

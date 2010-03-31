@@ -54,6 +54,7 @@ class PreviewListDelegate: public QItemDelegate {
     ~PreviewListDelegate(){}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
+      painter->save();
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
 
       switch(index.column()){
@@ -77,6 +78,7 @@ class PreviewListDelegate: public QItemDelegate {
         default:
           QItemDelegate::paint(painter, option, index);
       }
+      painter->restore();
     }
 
     QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {

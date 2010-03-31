@@ -62,6 +62,7 @@ public:
   ~PropListDelegate(){}
 
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
+    painter->save();
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()){
     case SIZE:
@@ -105,6 +106,7 @@ public:
       QItemDelegate::paint(painter, option, index);
       break;
     }
+    painter->restore();
   }
 
   QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{

@@ -55,6 +55,7 @@ public:
 
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    painter->save();
     switch(index.column()){
     case TR_SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
@@ -172,6 +173,7 @@ public:
     default:
       QItemDelegate::paint(painter, option, index);
     }
+    painter->restore();
   }
 
   QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
