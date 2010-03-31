@@ -32,6 +32,7 @@
 #define PEERLISTDELEGATE_H
 
 #include <QItemDelegate>
+#include <QPainter>
 #include "misc.h"
 
 enum PeerListColumns {IP, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED, TOT_DOWN, TOT_UP, IP_HIDDEN};
@@ -45,30 +46,32 @@ public:
   ~PeerListDelegate(){}
 
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
+    painter->save();
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()){
-        case TOT_DOWN:
-        case TOT_UP:
+    case TOT_DOWN:
+    case TOT_UP:
       QItemDelegate::drawBackground(painter, opt, index);
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
       break;
-        case DOWN_SPEED:
-        case UP_SPEED:{
-            QItemDelegate::drawBackground(painter, opt, index);
-            double speed = index.data().toDouble();
-            if (speed > 0.0)
-              QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
-            break;
-          }
-        case PROGRESS:{
-            QItemDelegate::drawBackground(painter, opt, index);
-            double progress = index.data().toDouble();
-            QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(progress*100., 'f', 1)+"%");
-            break;
-          }
-        default:
-          QItemDelegate::paint(painter, option, index);
-        }
+    case DOWN_SPEED:
+    case UP_SPEED:{
+        QItemDelegate::drawBackground(painter, opt, index);
+        double speed = index.data().toDouble();
+        if (speed > 0.0)
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
+        break;
+      }
+    case PROGRESS:{
+        QItemDelegate::drawBackground(painter, opt, index);
+        double progress = index.data().toDouble();
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(progress*100., 'f', 1)+"%");
+        break;
+      }
+    default:
+      QItemDelegate::paint(painter, option, index);
+    }
+    painter->restore();
   }
 
   QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {

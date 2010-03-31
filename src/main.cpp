@@ -39,7 +39,6 @@
 #include <QStyle>
 #include <QSplashScreen>
 #include <QPushButton>
-#include "qgnomelook.h"
 #include "GUI.h"
 #include "ico.h"
 #else
@@ -162,11 +161,6 @@ void sigabrtHandler(int) {
 void useStyle(QApplication *app, QString style){
   if(!style.isEmpty()) {
     QApplication::setStyle(QStyleFactory::create(style));
-  }
-  if(app->style()->objectName() == "cleanlooks") {
-    // Force our own cleanlooks style
-    qDebug("Forcing our own cleanlooks style");
-    app->setStyle(new QGnomeLookStyle());
   }
   Preferences::setStyle(app->style()->objectName());
 }
