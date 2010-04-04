@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.3
+* Sun Apr 04 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.3
     - BUGFIX: Fix possible crash when deleting a torrent just after pausing it
     - BUGFIX: Enable Apply button when alternative rate limits are changed
     - BUGFIX: Source compatibility with Windows (Thanks Ishan Arora)
