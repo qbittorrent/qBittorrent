@@ -4,6 +4,7 @@
     - BUGFIX: Fix about dialog in Web UI
     - BUGFIX: Correctly clear trackers error messages once they work
     - BUGFIX: Display correct share ratio for paused torrents
+    - COSMETIC: Improved alternative speed limits icons
 
 * Sun Apr 04 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.3
     - BUGFIX: Fix possible crash when deleting a torrent just after pausing it
