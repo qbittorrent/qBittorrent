@@ -263,29 +263,36 @@ public slots:
 #ifdef LIBTORRENT_0_15
       if(it->verified) {
         item->setText(COL_STATUS, tr("Working"));
+        item->setText(COL_MSG, "");
       } else {
         if(it->updating && it->fails == 0) {
           item->setText(COL_STATUS, tr("Updating..."));
+          item->setText(COL_MSG, "");
         } else {
           if(it->fails > 0) {
             item->setText(COL_STATUS, tr("Not working"));
+            item->setText(COL_MSG, error_message);
           } else {
             item->setText(COL_STATUS, tr("Not contacted yet"));
+            item->setText(COL_MSG, "");
           }
         }
       }
 #else
       if(data.verified) {
         item->setText(COL_STATUS, tr("Working"));
+        item->setText(COL_MSG, "");
       } else {
-        if(data.fail_count > 0)
+        if(data.fail_count > 0) {
           item->setText(COL_STATUS, tr("Not working"));
-        else
+          item->setText(COL_MSG, error_message);
+        } else {
           item->setText(COL_STATUS, tr("Not contacted yet"));
+          item->setText(COL_MSG, "");
+        }
       }
 #endif
       item->setText(COL_PEERS, QString::number(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers));
-      item->setText(COL_MSG, error_message);
     }
     // Remove old trackers
     foreach(const QString &tracker, old_trackers_urls) {
