@@ -437,7 +437,7 @@ void SearchEngine::updateNova() {
     QString shipped_file = shipped_subDir.path()+"/"+file;
     // Copy python classes
     if(file.endsWith(".py")) {
-      const QString &dest_file = destDir+file;
+      const QString dest_file = destDir+file;
       if(getPluginVersion(shipped_file) > getPluginVersion(dest_file) ) {
         qDebug("shippped %s is more recent then local plugin, updating", qPrintable(file));
         if(QFile::exists(dest_file)) {
