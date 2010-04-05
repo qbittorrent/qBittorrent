@@ -174,6 +174,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     listModel->setData(listModel->index(row, TR_SEED_DATE), QVariant(TorrentPersistentData::getSeedDate(h.hash())));
     listModel->setData(listModel->index(row, TR_UPLIMIT), QVariant(h.upload_limit()));
     listModel->setData(listModel->index(row, TR_DLLIMIT), QVariant(h.download_limit()));
+    listModel->setData(listModel->index(row, TR_RATIO), QVariant(BTSession->getRealRatio(h.hash())));
     const QString &label = TorrentPersistentData::getLabel(h.hash());
     listModel->setData(listModel->index(row, TR_LABEL), QVariant(label));
     if(BTSession->isQueueingEnabled())
