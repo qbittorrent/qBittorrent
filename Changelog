@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.4
+* Tue Apr 06 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.4
     - BUGFIX: Fix possible crash when adding a torrent
     - BUGFIX: Fix failure to remember some torrents on startup
     - BUGFIX: Fix torrent addition window layout (torrent content not expanding)
