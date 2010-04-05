@@ -2317,7 +2317,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
       // Resume downloads
       while(!torrent_queue.empty()) {
-        const QString &hash = torrent_queue.top().second;
+        const QString hash = torrent_queue.top().second;
         torrent_queue.pop();
         qDebug("Starting up torrent %s", qPrintable(hash));
         if(TorrentPersistentData::isMagnet(hash)) {
