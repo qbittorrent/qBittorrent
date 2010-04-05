@@ -712,7 +712,7 @@ bool Bittorrent::hasActiveTorrents() const {
   std::vector<torrent_handle> torrents = getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    const QTorrentHandle &h = QTorrentHandle(*torrentIT);
+    const QTorrentHandle h(*torrentIT);
     if(h.is_valid() && !h.is_paused() && !h.is_queued())
       return true;
   }
@@ -806,7 +806,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     addConsoleMessage(tr("'%1' is not a valid magnet URI.").arg(magnet_uri));
     return h;
   }
-  const QDir &torrentBackup(misc::BTBackupLocation());
+  const QDir torrentBackup(misc::BTBackupLocation());
   if(resumed) {
     qDebug("Resuming magnet URI: %s", qPrintable(hash));
     // Load metadata
@@ -831,7 +831,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   //Getting fast resume data if existing
   std::vector<char> buf;
   if(resumed) {
-    const QString &fastresume_path = torrentBackup.path()+QDir::separator()+hash+QString(".fastresume");
+    const QString fastresume_path = torrentBackup.path()+QDir::separator()+hash+QString(".fastresume");
     qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
     if (load_file(fastresume_path.toLocal8Bit().constData(), buf) == 0) {
       fastResume = true;
@@ -931,7 +931,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
 QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
   QTorrentHandle h;
   bool fastResume=false;
-  const QDir &torrentBackup(misc::BTBackupLocation());
+  const QDir torrentBackup(misc::BTBackupLocation());
   QString hash;
   boost::intrusive_ptr<torrent_info> t;
 
@@ -944,7 +944,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     }
   }
   // Processing torrents
-  const QString &file = path.trimmed().replace("file://", "", Qt::CaseInsensitive);
+  const QString file = path.trimmed().replace("file://", "", Qt::CaseInsensitive);
   if(file.isEmpty()) {
     return h;
   }
@@ -1039,7 +1039,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   //Getting fast resume data if existing
   std::vector<char> buf;
   if(resumed) {
-    const QString &fastresume_path = torrentBackup.path()+QDir::separator()+hash+QString(".fastresume");
+    const QString fastresume_path = torrentBackup.path()+QDir::separator()+hash+QString(".fastresume");
     qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
     if (load_file(fastresume_path.toLocal8Bit().constData(), buf) == 0) {
       fastResume = true;
@@ -1349,7 +1349,7 @@ bool Bittorrent::enableDHT(bool b) {
   if(b) {
     if(!DHTEnabled) {
       entry dht_state;
-      const QString &dht_state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
+      const QString dht_state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
       if(QFile::exists(dht_state_path)) {
         boost::filesystem::ifstream dht_state_file(dht_state_path.toLocal8Bit().constData(), std::ios_base::binary);
         dht_state_file.unsetf(std::ios_base::skipws);
@@ -1463,7 +1463,7 @@ void Bittorrent::saveFastResumeData() {
     if(!h.is_valid()) continue;
     // Remove old fastresume file if it exists
     QFile::remove(torrentBackup.path()+QDir::separator()+ h.hash() + ".fastresume");
-    const QString &file = h.hash()+".fastresume";
+    const QString file = h.hash()+".fastresume";
     boost::filesystem::ofstream out(fs::path(torrentBackup.path().toLocal8Bit().constData()) / file.toLocal8Bit().constData(), std::ios_base::binary);
     out.unsetf(std::ios_base::skipws);
     bencode(std::ostream_iterator<char>(out), *rd->resume_data);
@@ -1632,7 +1632,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     if(label.isEmpty()) return;
     // Current save path
     const QString &old_save_path = TorrentPersistentData::getSavePath(h.hash());
-    const QDir &old_dir(old_save_path);
+    const QDir old_dir(old_save_path);
     if(old_dir.dirName() != label) {
       const QString &new_save_path = old_dir.absoluteFilePath(label);
       TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
@@ -1837,7 +1837,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       const QString &torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path.string());
       if(torrent_relpath.endsWith(".torrent")) {
         addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
-        const QString &torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
+        const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
         try {
           boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toLocal8Bit().constData());
           const QString &sub_hash = misc::toQString(t->info_hash());
@@ -1870,8 +1870,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           // Move to download directory if necessary
           if(!defaultTempPath.isEmpty()) {
             // Check if directory is different
-            const QDir &current_dir(h.save_path());
-            const QDir &save_dir(getSavePath(hash));
+            const QDir current_dir(h.save_path());
+            const QDir save_dir(getSavePath(hash));
             if(current_dir != save_dir) {
               h.move_storage(save_dir.path());
             }
@@ -1885,7 +1885,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               const QString &torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path.string());
               if(torrent_relpath.endsWith(".torrent")) {
                 qDebug("Found possible recursive torrent download.");
-                const QString &torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
+                const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
                 qDebug("Full subtorrent path is %s", qPrintable(torrent_fullpath));
                 try {
                   boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toLocal8Bit().constData());
@@ -1914,10 +1914,10 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         }
       }
       else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
-        const QDir &torrentBackup(misc::BTBackupLocation());
+        const QDir torrentBackup(misc::BTBackupLocation());
         const QTorrentHandle h(p->handle);
         if(h.is_valid()) {
-          const QString &file = h.hash()+".fastresume";
+          const QString file = h.hash()+".fastresume";
           // Delete old fastresume file if necessary
           if(QFile::exists(file))
             QFile::remove(file);
@@ -1945,7 +1945,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 #endif
           emit metadataReceived(h);
           // Save metadata
-          const QDir &torrentBackup(misc::BTBackupLocation());
+          const QDir torrentBackup(misc::BTBackupLocation());
           if(!QFile::exists(torrentBackup.path()+QDir::separator()+h.hash()+QString(".torrent")))
             h.save_torrent_file(torrentBackup.path()+QDir::separator()+h.hash()+QString(".torrent"));
           // Copy the torrent file to the export folder
@@ -2104,8 +2104,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           // Move to temp directory if necessary
           if(!h.is_seed() && !defaultTempPath.isEmpty()) {
             // Check if directory is different
-            const QDir &current_dir(h.save_path());
-            const QDir &save_dir(getSavePath(h.hash()));
+            const QDir current_dir(h.save_path());
+            const QDir save_dir(getSavePath(h.hash()));
             if(current_dir == save_dir) {
               h.move_storage(defaultTempPath);
             }
@@ -2159,7 +2159,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         qDebug("appendLabelToSavePath is true");
         const QString &label = TorrentTempData::getLabel(hash);
         if(!label.isEmpty()) {
-          const QDir &save_dir(savePath);
+          const QDir save_dir(savePath);
           if(save_dir.dirName() != label) {
             savePath = save_dir.absoluteFilePath(label);
           }
@@ -2267,7 +2267,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     if(DHTEnabled) {
       try{
         entry dht_state = s->dht_state();
-        const QString &dht_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
+        const QString dht_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
         boost::filesystem::ofstream out(dht_path.toLocal8Bit().constData(), std::ios_base::binary);
         out.unsetf(std::ios_base::skipws);
         bencode(std::ostream_iterator<char>(out), dht_state);
@@ -2287,7 +2287,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
   // backup directory
   void Bittorrent::startUpTorrents() {
     qDebug("Resuming unfinished torrents");
-    const QDir &torrentBackup(misc::BTBackupLocation());
+    const QDir torrentBackup(misc::BTBackupLocation());
     const QStringList &known_torrents = TorrentPersistentData::knownTorrents();
 
     // Safety measure because some people reported torrent loss since
