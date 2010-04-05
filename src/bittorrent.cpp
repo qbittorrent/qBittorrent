@@ -1323,7 +1323,7 @@ void Bittorrent::enableLSD(bool b) {
 }
 
 void Bittorrent::loadSessionState() {
-  const QString &state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+  const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
   boost::filesystem::ifstream ses_state_file(state_path.toLocal8Bit().constData()
                                              , std::ios_base::binary);
   ses_state_file.unsetf(std::ios_base::skipws);
@@ -1335,7 +1335,7 @@ void Bittorrent::loadSessionState() {
 void Bittorrent::saveSessionState() {
   qDebug("Saving session state to disk...");
   entry session_state = s->state();
-  const QString &state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+  const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
   boost::filesystem::ofstream out(state_path.toLocal8Bit().constData()
                                   , std::ios_base::binary);
   out.unsetf(std::ios_base::skipws);
@@ -1576,7 +1576,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(file_size > 0 && (fp[i]/(double)file_size) < 1.) {
           const QString &name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
           if(!name.endsWith(".!qB")) {
-            const QString &new_name = name+".!qB";
+            const QString new_name = name+".!qB";
             qDebug("Renaming %s to %s", qPrintable(name), qPrintable(new_name));
             h.rename_file(i, new_name);
           }
