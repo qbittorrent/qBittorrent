@@ -34,6 +34,7 @@
 #include <QNetworkReply>
 #include <QObject>
 #include <QHash>
+#include <QSslError>
 
 class QNetworkAccessManager;
 
@@ -62,6 +63,7 @@ protected:
 protected slots:
   void processDlFinished(QNetworkReply* reply);
   void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
+  void ignoreSslErrors(QNetworkReply*,QList<QSslError>);
 
 };
 

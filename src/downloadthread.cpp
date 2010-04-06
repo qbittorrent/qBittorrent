@@ -42,6 +42,7 @@ enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 downloadThread::downloadThread(QObject* parent) : QObject(parent) {
   networkManager = new QNetworkAccessManager(this);
   connect(networkManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(processDlFinished(QNetworkReply*)));
+  connect(networkManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply*,QList<QSslError>)));
 }
 
 downloadThread::~downloadThread(){
@@ -212,4 +213,9 @@ QString downloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
   default:
     return tr("Unknown error");
   }
+}
+
+void downloadThread::ignoreSslErrors(QNetworkReply* reply,QList<QSslError> errors) {
+  // Ignore all SSL errors
+  reply->ignoreSslErrors(errors);
 }
