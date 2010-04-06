@@ -135,7 +135,9 @@ public slots:
   void resumeTorrent(QString hash);
   void resumeAllTorrents();
   /* End Web UI */
+#ifndef LIBTORRENT_0_15
   void saveDHTEntry();
+#endif
   void preAllocateAllFiles(bool b);
   void saveFastResumeData();
   void enableIPFilter(QString filter);
