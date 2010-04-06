@@ -210,6 +210,14 @@ p, li { white-space: pre-wrap; }
         <source>Resolve peer host names</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Maximum number of half-open connections [0: Disabled]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strict super seeding</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>

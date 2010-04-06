@@ -151,6 +151,14 @@ p, li { white-space: pre-wrap; }
         <source>Include TCP/IP overhead in transfer limits</source>
         <translation>Укључи TCP/IP прекорачење при ограничењу преноса</translation>
     </message>
+    <message>
+        <source>Maximum number of half-open connections [0: Disabled]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strict super seeding</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
