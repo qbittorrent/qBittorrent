@@ -157,7 +157,14 @@ public:
       return;
     }
     fileName = misc::magnetUriToName(magnet_uri);
-    if(fileName.isEmpty()) fileName = tr("Magnet Link");
+    if(fileName.isEmpty()) {
+      fileName = tr("Magnet Link");
+    } else {
+      QString save_path = savePathTxt->text();
+      if(!save_path.endsWith(QDir::separator()))
+        save_path += QDir::separator();
+      savePathTxt->setText(save_path + fileName);
+    }
     fileNameLbl->setText(QString::fromUtf8("<center><b>")+fileName+QString::fromUtf8("</b></center>"));
     // Update display
     updateDiskSpaceLabels();
@@ -198,6 +205,13 @@ public:
       }
       close();
       return;
+    }
+    QString root_folder = misc::truncateRootFolder(t);
+    if(!root_folder.isEmpty()) {
+      QString save_path = savePathTxt->text();
+      if(!save_path.endsWith(QDir::separator()))
+        save_path += QDir::separator();
+      savePathTxt->setText(save_path + root_folder);
     }
     nbFiles = t->num_files();
     // Setting file name

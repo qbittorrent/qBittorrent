@@ -186,7 +186,7 @@ public slots:
   void recursiveTorrentDownload(const QTorrentHandle &h);
 
 protected:
-  QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString());
+  QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString::null, QString root_folder=QString::null);
   bool initWebUi(QString username, QString password, int port);
 
 protected slots:

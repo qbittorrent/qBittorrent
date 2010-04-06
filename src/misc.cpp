@@ -166,6 +166,37 @@ long long misc::freeDiskSpaceOnPath(QString path) {
 #endif
 }
 
+QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
+  QString root_folder;
+  int i = 0;
+  for(torrent_info::file_iterator it = t->begin_files(); it < t->end_files(); it++) {
+    QString path = QString::fromUtf8(it->path.string().c_str());
+    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
+    if(path_parts.size() > 1) {
+      root_folder = path_parts.takeFirst();
+      t->rename_file(i, std::string(path_parts.join("/").toUtf8()));
+    }
+    ++i;
+  }
+  return root_folder;
+}
+
+QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
+  QString root_folder;
+  int i = 0;
+  torrent_info t = h.get_torrent_info();
+  for(torrent_info::file_iterator it = t.begin_files(); it < t.end_files(); it++) {
+    QString path = QString::fromUtf8(it->path.string().c_str());
+    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
+    if(path_parts.size() > 1) {
+      root_folder = path_parts.takeFirst();
+      h.rename_file(i, std::string(path_parts.join("/").toUtf8()));
+    }
+    ++i;
+  }
+  return root_folder;
+}
+
 bool misc::sameFiles(QString path1, QString path2) {
   QFile f1(path1);
   if(!f1.exists()) return false;

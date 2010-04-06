@@ -40,6 +40,8 @@
 #include <QPoint>
 
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/torrent_handle.hpp>
+
 using namespace libtorrent;
 
 /*  Miscellaneaous functions that can be useful */
@@ -67,6 +69,9 @@ public:
     i>>x;
     return x;
   }
+
+  static QString truncateRootFolder(boost::intrusive_ptr<torrent_info> t);
+  static QString truncateRootFolder(torrent_handle h);
 
   static bool sameFiles(QString path1, QString path2);
   static void copyDir(QString src_path, QString dst_path);

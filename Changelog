@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
+    - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)
     - FEATURE: Max number of half-open connections can now be edited
     - FEATURE: Added support for strict super seeding
 
