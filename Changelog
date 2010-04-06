@@ -3,6 +3,7 @@
     - BUGFIX: Fix HTTPS protocol support in torrent/rss downloader
     - BUGFIX: Fix default width of file name column in torrent content
     - BUGFIX: Fix torrent addition dialog buttons height
+    - BUGFIX: Fix deprecation warnings with libtorrent v0.15
 
 * Tue Apr 06 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.4
     - BUGFIX: Fix possible crash when adding a torrent

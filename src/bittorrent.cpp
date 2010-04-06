@@ -151,7 +151,9 @@ session_proxy Bittorrent::asyncDeletion() {
   qDebug("Bittorrent session async deletion IN");
   exiting = true;
   // Do some BT related saving
+#ifndef LIBTORRENT_0_15
   saveDHTEntry();
+#endif
   saveSessionState();
   saveFastResumeData();
   // Delete session
@@ -166,7 +168,9 @@ Bittorrent::~Bittorrent() {
   qDebug("BTSession destructor IN");
   if(!exiting) {
     // Do some BT related saving
+ #ifndef LIBTORRENT_0_15
     saveDHTEntry();
+#endif
     saveSessionState();
     saveFastResumeData();
     // Delete session
@@ -1324,28 +1328,54 @@ void Bittorrent::enableLSD(bool b) {
 
 void Bittorrent::loadSessionState() {
   const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+#ifdef LIBTORRENT_0_15
+  std::vector<char> in;
+  if (load_file(state_path.toLocal8Bit().constData(), in) == 0)
+  {
+    lazy_entry e;
+    if (lazy_bdecode(&in[0], &in[0] + in.size(), e) == 0)
+      s->load_state(e);
+  }
+#else
   boost::filesystem::ifstream ses_state_file(state_path.toLocal8Bit().constData()
                                              , std::ios_base::binary);
   ses_state_file.unsetf(std::ios_base::skipws);
   s->load_state(bdecode(
       std::istream_iterator<char>(ses_state_file)
       , std::istream_iterator<char>()));
+#endif
 }
 
 void Bittorrent::saveSessionState() {
   qDebug("Saving session state to disk...");
-  entry session_state = s->state();
   const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+#ifdef LIBTORRENT_0_15
+  entry session_state;
+  s->save_state(session_state);
+  std::vector<char> out;
+  bencode(std::back_inserter(out), session_state);
+  file f;
+  error_code ec;
+  if (f.open(state_path.toLocal8Bit().data(), file::write_only, ec)) {
+    if (ec) {
+      file::iovec_t b = {&out[0], out.size()};
+      f.writev(0, &b, 1, ec);
+    }
+  }
+#else
+  entry session_state = s->state();
   boost::filesystem::ofstream out(state_path.toLocal8Bit().constData()
                                   , std::ios_base::binary);
   out.unsetf(std::ios_base::skipws);
   bencode(std::ostream_iterator<char>(out), session_state);
+#endif
 }
 
 // Enable DHT
 bool Bittorrent::enableDHT(bool b) {
   if(b) {
     if(!DHTEnabled) {
+#ifndef LIBTORRENT_0_15
       entry dht_state;
       const QString dht_state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
       if(QFile::exists(dht_state_path)) {
@@ -1355,8 +1385,13 @@ bool Bittorrent::enableDHT(bool b) {
           dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
         }catch (std::exception&) {}
       }
+#endif
       try {
+#ifdef LIBTORRENT_0_15
+        s->start_dht();
+#else
         s->start_dht(dht_state);
+#endif
         s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
         s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
         s->add_dht_router(std::make_pair(std::string("router.bitcomet.com"), 6881));
@@ -2259,6 +2294,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     return sessionStatus.payload_upload_rate;
   }
 
+#ifndef LIBTORRENT_0_15
   // Save DHT entry to hard drive
   void Bittorrent::saveDHTEntry() {
     // Save DHT entry
@@ -2275,6 +2311,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
     }
   }
+#endif
 
   void Bittorrent::applyEncryptionSettings(pe_settings se) {
     qDebug("Applying encryption settings");
