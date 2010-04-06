@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.5
     - BUGFIX: Fix default width of file name column in torrent content
+    - BUGFIX: Fix crash when adding a new torrent label
 
 * Tue Apr 06 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.4
     - BUGFIX: Fix possible crash when adding a torrent

@@ -918,7 +918,7 @@ void TransferListWidget::askNewLabelForSelection() {
   bool invalid;
   do {
     invalid = false;
-    const QString &label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
+    const QString &label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok);
     if (ok && !label.isEmpty()) {
       if(misc::isValidFileSystemName(label)) {
         setSelectionLabel(label);
