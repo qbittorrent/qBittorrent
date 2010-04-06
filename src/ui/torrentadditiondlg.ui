@@ -209,12 +209,6 @@
      </item>
      <item>
       <widget class="QPushButton" name="collapseAllButton">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>21</height>
-        </size>
-       </property>
        <property name="text">
         <string>Collapse all</string>
        </property>
@@ -222,12 +216,6 @@
      </item>
      <item>
       <widget class="QPushButton" name="expandAllButton">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>21</height>
-        </size>
-       </property>
        <property name="text">
         <string>Expand all</string>
        </property>
