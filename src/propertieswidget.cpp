@@ -254,7 +254,7 @@ void PropertiesWidget::readSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/filesColsWidth"), QVariantList()).toList();
   if(contentColsWidths.empty()) {
-    filesList->header()->resizeSection(0, filesList->width()/2.);
+    filesList->header()->resizeSection(0, 300);
   } else {
     for(int i=0; i<contentColsWidths.size(); ++i) {
       filesList->setColumnWidth(i, contentColsWidths.at(i).toInt());
