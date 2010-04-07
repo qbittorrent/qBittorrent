@@ -1370,6 +1370,16 @@ QGroupBox {
                <item>
                 <layout class="QHBoxLayout" name="_3">
                  <item>
+                  <widget class="QLabel" name="label_5">
+                   <property name="text">
+                    <string notr="true"/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="../icons.qrc">:/Icons/slow_off.png</pixmap>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <layout class="QVBoxLayout" name="_5">
                    <item>
                     <widget class="QCheckBox" name="checkUploadLimit">
@@ -1479,16 +1489,6 @@ QGroupBox {
                   </layout>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_5">
-                   <property name="text">
-                    <string notr="true"/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="../icons.qrc">:/Icons/slow_off.png</pixmap>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <spacer>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1514,6 +1514,31 @@ QGroupBox {
               <layout class="QVBoxLayout" name="verticalLayout_32">
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <item>
+                  <widget class="QLabel" name="label_16">
+                   <property name="minimumSize">
+                    <size>
+                     <width>48</width>
+                     <height>48</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>48</width>
+                     <height>48</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="../icons.qrc">:/Icons/slow.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_31">
                    <item>
@@ -1579,31 +1604,6 @@ QGroupBox {
                     </widget>
                    </item>
                   </layout>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_16">
-                   <property name="minimumSize">
-                    <size>
-                     <width>48</width>
-                     <height>48</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>48</width>
-                     <height>48</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="../icons.qrc">:/Icons/slow.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_8">
@@ -3061,8 +3061,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>62</width>
+             <height>18</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
