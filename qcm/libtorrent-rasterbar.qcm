@@ -22,10 +22,11 @@ public:
 			conf->addIncludePath(incs[n]);
 		//if(!libs.isEmpty())
 		//	conf->addLib(libs);
-		if(!conf->findPkgConfig("libtorrent-rasterbar", mode, adv_ver, &version, &incs, &libs, &other))
-                        printf("\nWarning: libtorrent-rasterbar v%s was detected. Some feature will be disabled because they require v%s.\n", version.toLocal8Bit().data(), adv_ver.toUtf8().data());
-		else
+		if(conf->findPkgConfig("libtorrent-rasterbar", mode, adv_ver, &version, &incs, &libs, &other)) {
+                        //printf("\nWarning: libtorrent-rasterbar v%s was detected. Some feature will be disabled because they require v%s.\n", version.toLocal8Bit().data(), adv_ver.toUtf8().data());
+		//else
 			conf->addDefine("LIBTORRENT_0_15");
+		}
 		// Get linking parameters
 		//QStringList params;
 		//QByteArray staticlibs;
