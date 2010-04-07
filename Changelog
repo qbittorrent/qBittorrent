@@ -8,6 +8,7 @@
     - BUGFIX: Fix transparency of speed limits icons
     - BUGFIX: Dropped dependency on Qt gif library
     - BUGFIX: Improved libboost detection by configure file
+    - BUGFIX: Bring back compatibility with boost v1.34
     - COSMETIC: Added icons to menu actions in Web UI
 
 * Tue Apr 06 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.4
