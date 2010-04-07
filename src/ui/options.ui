@@ -1479,6 +1479,16 @@ QGroupBox {
                   </layout>
                  </item>
                  <item>
+                  <widget class="QLabel" name="label_5">
+                   <property name="text">
+                    <string notr="true"/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="../icons.qrc">:/Icons/slow_off.png</pixmap>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <spacer>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1588,7 +1598,7 @@ QGroupBox {
                     <string/>
                    </property>
                    <property name="pixmap">
-                    <pixmap resource="../icons.qrc">:/Icons/slow.gif</pixmap>
+                    <pixmap resource="../icons.qrc">:/Icons/slow.png</pixmap>
                    </property>
                    <property name="scaledContents">
                     <bool>false</bool>
