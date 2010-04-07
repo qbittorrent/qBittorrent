@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.5
+* Wed Apr 07 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.5
     - BUGFIX: Fix crash when adding a new torrent label
     - BUGFIX: Fix HTTPS protocol support in torrent/rss downloader
     - BUGFIX: Fix default width of file name column in torrent content
