@@ -242,4 +242,9 @@ a.propButton img {
         padding: 25px 0 0 14px;
 }
 
+.MyMenuIcon {
+  margin-left: -16px;
+  margin-bottom: -3px;
+  padding-right: 3px;
+}
 
