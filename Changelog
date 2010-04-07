@@ -5,6 +5,8 @@
     - BUGFIX: Fix torrent addition dialog buttons height
     - BUGFIX: Fix deprecation warnings with libtorrent v0.15
     - BUGFIX: Fix "Download from URL" title size in Web UI
+    - BUGFIX: Fix transparency of speed limits icons
+    - BUGFIX: Dropped dependency on Qt gif library
 
 * Tue Apr 06 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.4
     - BUGFIX: Fix possible crash when adding a torrent

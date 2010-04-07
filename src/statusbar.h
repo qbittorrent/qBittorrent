@@ -190,10 +190,10 @@ public slots:
 
   void updateAltSpeedsBtn(bool alternative) {
     if(alternative) {
-      altSpeedsBtn->setIcon(QIcon(":/Icons/slow.gif"));
+      altSpeedsBtn->setIcon(QIcon(":/Icons/slow.png"));
       altSpeedsBtn->setToolTip(tr("Click to disable alternative speed limits"));
     } else {
-      altSpeedsBtn->setIcon(QIcon(":/Icons/slow_off.gif"));
+      altSpeedsBtn->setIcon(QIcon(":/Icons/slow_off.png"));
       altSpeedsBtn->setToolTip(tr("Click to enable alternative speed limits"));
     }
   }
