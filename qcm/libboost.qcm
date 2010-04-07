@@ -11,6 +11,19 @@ public:
 	qc_libboost(Conf *c) : ConfObj(c) {}
 	QString name() const { return "libboost"; }
 	QString shortname() const { return "libboost"; }
+  QString findBoostLib(QString path, QString lib) const {
+    QString name;
+    QDir libDir(path);
+    QStringList filters;
+    filters << "libboost_"+lib+"*-mt.so";
+    QStringList result = libDir.entryList(filters, QDir::Files);
+    if(!result.empty()) {
+      name = result.first().mid(3);
+      // Remove .so
+      name.chop(3);
+    }
+    return name;
+  }
 	bool exec(){
         	QString s;
 		s = conf->getenv("QC_WITH_LIBBOOST_INC");
@@ -54,28 +67,35 @@ public:
 		conf->addIncludePath(s);
 		// Find library
 		s = conf->getenv("QC_WITH_LIBBOOST_LIB");
-                if(!s.isEmpty()) {
-                        if(!conf->checkLibrary(s, "boost_system-mt")) {
-                                return false;
-                        }
-                }else{
-                        QStringList sl;
-                        sl << "/usr/lib/";
-                        sl << "/usr/lib64/";
-                        sl << "/usr/local/lib/";
-                        sl << "/usr/local/lib64/";
-                        bool found = false;
-                        foreach(s, sl){
-                                if(conf->checkLibrary(s, "boost_system-mt")) {
-                                        found = true;
-                                        break;
-                                }
-                        }
-                        if(!found)
-                                return false;
-                }
-                conf->addLib(QString("-L") + s);
-		conf->addLib("-lboost_system-mt -lboost_filesystem-mt -lboost_thread-mt");
+    QStringList required_libs;
+    required_libs << "system" << "filesystem" << "thread";
+    QStringList libDirs;
+    libDirs << "/usr/lib/" << "/usr/lib64/" << "/usr/local/lib/" << "/usr/local/lib64/";
+    foreach(const QString& lib, required_libs) {
+      if(!s.isEmpty()) {
+        QString detected_name = findBoostLib(s, lib);
+        if(detected_name.isEmpty()) {
+          printf("Could not find boost %s library!\n", qPrintable(lib));
+          return false;
+        } else {
+          conf->addLib("-l"+detected_name);
+        }
+      } else {
+        bool found = false;
+        foreach(const QString& libDir, libDirs) {
+          QString detected_name = findBoostLib(libDir, lib);
+          if(!detected_name.isEmpty()) {
+            conf->addLib("-l"+detected_name);
+            found = true;
+            break;
+          }
+        }
+        if(!found) {
+          printf("Could not find boost %s library!\n", qPrintable(lib));
+          return false;
+        }
+      }
+    }
 		return true;
 	}
 };
