@@ -5,6 +5,7 @@ arg: with-libboost-inc=[path], Path to libboost include files
 arg: with-libboost-lib=[path], Path to libboost library files
 -----END QCMOD-----
 */
+#include <boost/version.hpp>
 class qc_libboost : public ConfObj
 {
 public:
@@ -68,7 +69,11 @@ public:
 		// Find library
 		s = conf->getenv("QC_WITH_LIBBOOST_LIB");
     QStringList required_libs;
-    required_libs << "system" << "filesystem" << "thread";
+    required_libs 
+#if BOOST_VERSION >= 103500
+      << "system" 
+#endif
+      << "filesystem" << "thread";
     QStringList libDirs;
     libDirs << "/usr/lib/" << "/usr/lib64/" << "/usr/local/lib/" << "/usr/local/lib64/";
     foreach(const QString& lib, required_libs) {
