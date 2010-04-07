@@ -80,18 +80,21 @@ public:
     //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     dlSpeedLbl->setFlat(true);
+    dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
 
     altSpeedsBtn = new QPushButton();
     altSpeedsBtn->setFixedWidth(22);
+    altSpeedsBtn->setFlat(true);
+    altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
     updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
 
     connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
-    altSpeedsBtn->setFlat(true);
 
     upSpeedLbl = new QPushButton(tr("U: %1 B/s - T: %2", "Upload speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
     //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
     upSpeedLbl->setFlat(true);
+    upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
     DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     statusSep1 = new QFrame();
