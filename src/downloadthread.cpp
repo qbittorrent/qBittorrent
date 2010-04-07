@@ -216,6 +216,7 @@ QString downloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
 }
 
 void downloadThread::ignoreSslErrors(QNetworkReply* reply,QList<QSslError> errors) {
+  Q_UNUSED(errors)
   // Ignore all SSL errors
-  reply->ignoreSslErrors(errors);
+  reply->ignoreSslErrors();
 }
