@@ -398,7 +398,7 @@ public:
     QString name;
     QDir libDir(path);
     QStringList filters;
-    filters << "libboost_"+lib+"*-mt.so";
+    filters << "libboost_"+lib+"*-mt*.so";
     QStringList result = libDir.entryList(filters, QDir::Files);
     if(!result.empty()) {
       name = result.first().mid(3);
