@@ -42,7 +42,7 @@ enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 downloadThread::downloadThread(QObject* parent) : QObject(parent) {
   networkManager = new QNetworkAccessManager(this);
   connect(networkManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(processDlFinished(QNetworkReply*)));
-#if !defined(Q_WS_PM)
+#ifndef QT_NO_OPENSSL
   connect(networkManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply*,QList<QSslError>)));
 #endif
 }
@@ -217,7 +217,7 @@ QString downloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
   }
 }
 
-#if !defined(Q_WS_PM)
+#ifndef QT_NO_OPENSSL
 void downloadThread::ignoreSslErrors(QNetworkReply* reply,QList<QSslError> errors) {
   Q_UNUSED(errors)
   // Ignore all SSL errors
