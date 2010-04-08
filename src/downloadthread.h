@@ -63,7 +63,7 @@ protected:
 protected slots:
   void processDlFinished(QNetworkReply* reply);
   void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
-#if !defined(Q_WS_PM)
+#ifndef QT_NO_OPENSSL
   void ignoreSslErrors(QNetworkReply*,QList<QSslError>);
 #endif
 
