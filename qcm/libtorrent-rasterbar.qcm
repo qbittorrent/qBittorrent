@@ -34,7 +34,9 @@ public:
 		//conf->doCommand("pkg-config", params, &staticlibs);
 		//conf->addLib(staticlibs.trimmed());
 		//libcrypto
-		conf->addLib("-lcrypto");
+		if(conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+  		  conf->addLib("-lcrypto");
+                }
 		return true;
 	}
 };

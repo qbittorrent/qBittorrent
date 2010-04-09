@@ -376,7 +376,9 @@ public:
 		//conf->doCommand("pkg-config", params, &staticlibs);
 		//conf->addLib(staticlibs.trimmed());
 		//libcrypto
-		conf->addLib("-lcrypto");
+		if(conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+  		  conf->addLib("-lcrypto");
+                }
 		return true;
 	}
 };
@@ -452,11 +454,13 @@ public:
 		// Find library
 		s = conf->getenv("QC_WITH_LIBBOOST_LIB");
     QStringList required_libs;
-    required_libs 
 #if BOOST_VERSION >= 103500
-      << "system" 
+      required_libs << "system"; 
 #endif
-      << "filesystem" << "thread";
+    if(conf->getenv("QC_DISABLE_GUI").isEmpty()) {
+      // Not required by nox
+      required_libs << "filesystem" << "thread";
+    }
     QStringList libDirs;
     libDirs << "/usr/lib/" << "/usr/lib64/" << "/usr/local/lib/" << "/usr/local/lib64/";
     foreach(const QString& lib, required_libs) {
