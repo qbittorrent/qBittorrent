@@ -421,6 +421,7 @@ void Bittorrent::configureSession() {
   //sessionSettings.announce_to_all_trackers = true;
   sessionSettings.auto_scrape_interval = 1200; // 20 minutes
 #ifdef LIBTORRENT_0_15
+  sessionSettings.announce_to_all_trackers = true;
   sessionSettings.announce_to_all_tiers = true; //uTorrent behavior
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
 #endif

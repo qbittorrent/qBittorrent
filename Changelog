@@ -1,3 +1,7 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.6
+    - BUGFIX: Announce to all trackers at once
+    - BUGFIX: Added support for single-thread boost
+
 * Wed Apr 07 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.5
     - BUGFIX: Fix crash when adding a new torrent label
     - BUGFIX: Fix HTTPS protocol support in torrent/rss downloader
