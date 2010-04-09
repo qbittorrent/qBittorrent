@@ -22,6 +22,16 @@ public:
       name = result.first().mid(3);
       // Remove .so
       name.chop(3);
+    } else {
+      // Fall back to non -mt boost lib
+      filters.clear();
+      filters << "libboost_"+lib+"*.so";
+      result = libDir.entryList(filters, QDir::Files);
+      if(!result.empty()) {
+        name = result.first().mid(3);
+        // Remove .so
+        name.chop(3);
+      }
     }
     return name;
   }
