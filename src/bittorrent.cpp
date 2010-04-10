@@ -1950,7 +1950,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       else if (storage_moved_alert* p = dynamic_cast<storage_moved_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
         if(h.is_valid()) {
-          TorrentPersistentData::saveSavePath(h.hash(), QString(p->path.c_str()));
+          // Attempt to remove old folder if empty
+          const QString& old_save_path = TorrentPersistentData::getSavePath(h.hash());
+          const QString new_save_path = QString(p->path.c_str());
+          qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
+          qDebug("Attempting to remove %s", qPrintable(old_save_path));
+          QDir().rmpath(old_save_path);
+          TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
           emit savePathChanged(h);
           h.force_recheck(); //XXX: Required by libtorrent for now
         }
