@@ -1958,7 +1958,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           QDir().rmpath(old_save_path);
           TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
           emit savePathChanged(h);
-          h.force_recheck(); //XXX: Required by libtorrent for now
+          //h.force_recheck();
         }
       }
       else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
