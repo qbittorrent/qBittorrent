@@ -248,6 +248,30 @@ void misc::copyDir(QString src_path, QString dst_path) {
   }
 }
 
+QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save_path, const QString old_label, const QString new_label) {
+  if(old_label == new_label) return save_path;
+  if(!save_path.startsWith(defaultSavePath)) return save_path;
+  QString new_save_path = save_path.replace(defaultSavePath, "");
+  QStringList path_parts = new_save_path.split(QDir::separator(), QString::SkipEmptyParts);
+  if(path_parts.empty()) {
+    if(!new_label.isEmpty())
+      path_parts << new_label;
+  } else {
+    if(old_label.isEmpty() || path_parts.first() != old_label) {
+      path_parts.prepend(new_label);
+    } else {
+      if(new_label.isEmpty())
+        path_parts.removeAt(0);
+      else
+        path_parts.replace(0, new_label);
+    }
+  }
+  new_save_path = defaultSavePath;
+  if(!new_save_path.endsWith(QDir::separator())) new_save_path += QDir::separator();
+  new_save_path += path_parts.join(QDir::separator());
+  return new_save_path;
+}
+
 void misc::moveToXDGFolders() {
   const QString &old_qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();
   if(QDir(old_qBtPath).exists()) {

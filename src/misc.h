@@ -73,6 +73,8 @@ public:
   static QString truncateRootFolder(boost::intrusive_ptr<torrent_info> t);
   static QString truncateRootFolder(torrent_handle h);
 
+  static QString updateLabelInSavePath(const QString& defaultSavePath, QString save_path, const QString old_label, const QString new_label);
+
   static bool sameFiles(QString path1, QString path2);
   static void copyDir(QString src_path, QString dst_path);
   // Introduced in v2.1.0 for backward compatibility

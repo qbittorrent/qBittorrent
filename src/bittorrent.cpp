@@ -1637,33 +1637,16 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
   void Bittorrent::changeLabelInTorrentSavePath(QTorrentHandle h, QString old_label, QString new_label) {
     if(!h.is_valid()) return;
     if(!appendLabelToSavePath) return;
-    if(old_label == new_label) return;
     QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
     if(!old_save_path.startsWith(defaultSavePath)) return;
-    QString new_save_path = old_save_path.replace(defaultSavePath, "");
-    QStringList path_parts = new_save_path.split(QDir::separator(), QString::SkipEmptyParts);
-    if(path_parts.empty()) {
-      if(!new_label.isEmpty())
-        path_parts << new_label;
-    } else {
-      if(old_label.isEmpty() || path_parts.first() != old_label) {
-        path_parts.prepend(new_label);
-      } else {
-        if(new_label.isEmpty())
-          path_parts.removeAt(0);
-        else
-          path_parts.replace(0, new_label);
-      }
+    QString new_save_path = misc::updateLabelInSavePath(defaultSavePath, old_save_path, old_label, new_label);
+    if(new_save_path != old_save_path) {
+      // Move storage
+      qDebug("Moving storage to %s", qPrintable(new_save_path));
+      QDir().mkpath(new_save_path);
+      h.move_storage(new_save_path);
+      emit savePathChanged(h);
     }
-    new_save_path = defaultSavePath;
-    if(!new_save_path.endsWith(QDir::separator())) new_save_path += QDir::separator();
-    new_save_path += path_parts.join(QDir::separator());
-    TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
-    // Move storage
-    qDebug("Moving storage to %s", qPrintable(new_save_path));
-    QDir().mkpath(new_save_path);
-    h.move_storage(new_save_path);
-    emit savePathChanged(h);
   }
 
   void Bittorrent::appendLabelToTorrentSavePath(QTorrentHandle h) {
@@ -1671,15 +1654,11 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     const QString &label = TorrentPersistentData::getLabel(h.hash());
     if(label.isEmpty()) return;
     // Current save path
-    const QString &old_save_path = TorrentPersistentData::getSavePath(h.hash());
-    const QDir old_dir(old_save_path);
-    if(old_dir.dirName() != label) {
-      const QString &new_save_path = old_dir.absoluteFilePath(label);
-      TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
-      if(old_dir == QDir(h.save_path())) {
-        // Move storage
-        h.move_storage(new_save_path);
-      }
+    QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
+    QString new_save_path = misc::updateLabelInSavePath(defaultSavePath, old_save_path, "", label);
+    if(old_save_path != new_save_path) {
+      // Move storage
+      h.move_storage(new_save_path);
       emit savePathChanged(h);
     }
   }
@@ -2198,7 +2177,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       if(savePath.isEmpty()) {
         savePath = defaultSavePath;
       }
-      if(appendLabelToSavePath) {
+      if(appendLabelToSavePath && savePath.startsWith(defaultSavePath)) {
         qDebug("appendLabelToSavePath is true");
         const QString &label = TorrentTempData::getLabel(hash);
         if(!label.isEmpty()) {
