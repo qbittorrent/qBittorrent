@@ -1652,12 +1652,10 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     } else {
       new_save_path = old_dir.absoluteFilePath(new_label);
     }
-    TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
     if(move_storage) {
       // Move storage
       h.move_storage(new_save_path);
     }
-    emit savePathChanged(h);
   }
 
   void Bittorrent::appendLabelToTorrentSavePath(QTorrentHandle h) {
@@ -1669,12 +1667,10 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     const QDir old_dir(old_save_path);
     if(old_dir.dirName() != label) {
       const QString &new_save_path = old_dir.absoluteFilePath(label);
-      TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
       if(old_dir == QDir(h.save_path())) {
         // Move storage
         h.move_storage(new_save_path);
       }
-      emit savePathChanged(h);
     }
   }
 
@@ -1965,8 +1961,17 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
       else if (storage_moved_alert* p = dynamic_cast<storage_moved_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
-        if(h.is_valid())
+        if(h.is_valid()) {
+          // Attempt to remove old folder if empty
+          const QString& old_save_path = TorrentPersistentData::getSavePath(h.hash());
+          const QString new_save_path = QString(p->path.c_str());
+          qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
+          qDebug("Attempting to remove %s", qPrintable(old_save_path));
+          QDir().rmpath(old_save_path);
+          TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
+          emit savePathChanged(h);
           h.force_recheck(); //XXX: Required by libtorrent for now
+        }
       }
       else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
