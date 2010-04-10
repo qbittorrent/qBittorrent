@@ -258,12 +258,15 @@ QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save
       path_parts << new_label;
   } else {
     if(old_label.isEmpty() || path_parts.first() != old_label) {
-      path_parts.prepend(new_label);
+      if(path_parts.first() != new_label)
+        path_parts.prepend(new_label);
     } else {
-      if(new_label.isEmpty())
+      if(new_label.isEmpty()) {
         path_parts.removeAt(0);
-      else
-        path_parts.replace(0, new_label);
+      } else {
+        if(path_parts.first() != new_label)
+          path_parts.replace(0, new_label);
+      }
     }
   }
   new_save_path = defaultSavePath;

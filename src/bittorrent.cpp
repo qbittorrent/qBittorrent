@@ -1645,7 +1645,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       qDebug("Moving storage to %s", qPrintable(new_save_path));
       QDir().mkpath(new_save_path);
       h.move_storage(new_save_path);
-      emit savePathChanged(h);
     }
   }
 
@@ -1658,8 +1657,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     QString new_save_path = misc::updateLabelInSavePath(defaultSavePath, old_save_path, "", label);
     if(old_save_path != new_save_path) {
       // Move storage
+      QDir().mkpath(new_save_path);
       h.move_storage(new_save_path);
-      emit savePathChanged(h);
     }
   }
 
@@ -1950,8 +1949,11 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
       else if (storage_moved_alert* p = dynamic_cast<storage_moved_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
-        if(h.is_valid())
+        if(h.is_valid()) {
+          TorrentPersistentData::saveSavePath(h.hash(), QString(p->path.c_str()));
+          emit savePathChanged(h);
           h.force_recheck(); //XXX: Required by libtorrent for now
+        }
       }
       else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
@@ -2177,14 +2179,11 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       if(savePath.isEmpty()) {
         savePath = defaultSavePath;
       }
-      if(appendLabelToSavePath && savePath.startsWith(defaultSavePath)) {
+      if(appendLabelToSavePath) {
         qDebug("appendLabelToSavePath is true");
         const QString &label = TorrentTempData::getLabel(hash);
         if(!label.isEmpty()) {
-          const QDir save_dir(savePath);
-          if(save_dir.dirName() != label) {
-            savePath = save_dir.absoluteFilePath(label);
-          }
+          savePath = misc::updateLabelInSavePath(defaultSavePath, savePath, "", label);
         }
       }
       qDebug("getSavePath, got save_path from temp data: %s", qPrintable(savePath));
@@ -2207,10 +2206,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       if(!fromScanDir && appendLabelToSavePath) {
         const QString &label = TorrentPersistentData::getLabel(hash);
         if(!label.isEmpty()) {
-          QDir save_dir(savePath);
-          if(save_dir.dirName() != label) {
-            savePath = save_dir.absoluteFilePath(label);
-          }
+          savePath = misc::updateLabelInSavePath(defaultSavePath, savePath, "", label);
         }
       }
       if(append_root_folder && !root_folder.isEmpty()) {

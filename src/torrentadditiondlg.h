@@ -66,6 +66,9 @@ private:
   QString hash;
   QString filePath;
   QString from_url;
+  QString defaultSavePath;
+  QString old_label;
+  bool appendLabelToSavePath;
   TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
   unsigned int nbFiles;
@@ -74,7 +77,7 @@ private:
   bool is_magnet;
 
 public:
-  torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent) {
+  torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label("") {
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     connect(this, SIGNAL(torrentPaused(QTorrentHandle&)), parent->getTransferList(), SLOT(pauseTorrent(QTorrentHandle&)));
@@ -89,10 +92,14 @@ public:
     connect(torrentContentList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContentListMenu(const QPoint&)));
     connect(collapseAllButton, SIGNAL(clicked()), torrentContentList, SLOT(collapseAll()));
     connect(expandAllButton, SIGNAL(clicked()), torrentContentList, SLOT(expandAll()));
+    connect(comboLabel, SIGNAL(editTextChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
+    connect(comboLabel, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
     // Remember columns width
     readSettings();
     //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
-    savePathTxt->setText(Preferences::getSavePath());
+    defaultSavePath = Preferences::getSavePath();
+    appendLabelToSavePath = Preferences::appendTorrentLabel();
+    savePathTxt->setText(defaultSavePath);
     if(Preferences::addTorrentsInPause()) {
       addInPause->setChecked(true);
       //addInPause->setEnabled(false);
@@ -295,8 +302,8 @@ public slots:
     // Ask for new name
     bool ok;
     const QString &new_name_last = QInputDialog::getText(this, tr("Rename the file"),
-                                                  tr("New name:"), QLineEdit::Normal,
-                                                  index.data().toString(), &ok);
+                                                         tr("New name:"), QLineEdit::Normal,
+                                                         index.data().toString(), &ok);
     if (ok && !new_name_last.isEmpty()) {
       if(!misc::isValidFileSystemName(new_name_last)) {
         QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -514,6 +521,14 @@ public slots:
             emit torrentPaused(h);
           }
           close();
+        }
+
+      public slots:
+        void updateLabelInSavePath(QString label) {
+          if(appendLabelToSavePath) {
+            savePathTxt->setText(misc::updateLabelInSavePath(defaultSavePath, savePathTxt->text(), old_label, label));
+            old_label = label;
+          }
         }
 
       signals:
