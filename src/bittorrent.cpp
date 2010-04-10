@@ -168,7 +168,7 @@ Bittorrent::~Bittorrent() {
   qDebug("BTSession destructor IN");
   if(!exiting) {
     // Do some BT related saving
- #ifndef LIBTORRENT_0_15
+#ifndef LIBTORRENT_0_15
     saveDHTEntry();
 #endif
     saveSessionState();
@@ -1637,30 +1637,32 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
   void Bittorrent::changeLabelInTorrentSavePath(QTorrentHandle h, QString old_label, QString new_label) {
     if(!h.is_valid()) return;
     if(!appendLabelToSavePath) return;
-    const QString &old_save_path = TorrentPersistentData::getSavePath(h.hash());
-    QDir old_dir(old_save_path);
-    const bool move_storage = (old_dir == QDir(h.save_path()));
-    if(!old_label.isEmpty()) {
-      Q_ASSERT(old_dir.dirName() == old_label);
-      QString path = old_save_path;
-      // Cd UP
-      if(path.endsWith(QDir::separator()))
-        path.chop(1);
-      QStringList path_items = path.split(QDir::separator());
-      path_items.removeLast();
-      old_dir = QDir(path_items.join(QDir::separator()));
-    }
-    QString new_save_path;
-    if(new_label.isEmpty()) {
-      new_save_path = old_dir.absolutePath();
+    if(old_label == new_label) return;
+    QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
+    if(!old_save_path.startsWith(defaultSavePath)) return;
+    QString new_save_path = old_save_path.replace(defaultSavePath, "");
+    QStringList path_parts = new_save_path.split(QDir::separator(), QString::SkipEmptyParts);
+    if(path_parts.empty()) {
+      if(!new_label.isEmpty())
+        path_parts << new_label;
     } else {
-      new_save_path = old_dir.absoluteFilePath(new_label);
+      if(old_label.isEmpty() || path_parts.first() != old_label) {
+        path_parts.prepend(new_label);
+      } else {
+        if(new_label.isEmpty())
+          path_parts.removeAt(0);
+        else
+          path_parts.replace(0, new_label);
+      }
     }
+    new_save_path = defaultSavePath;
+    if(!new_save_path.endsWith(QDir::separator())) new_save_path += QDir::separator();
+    new_save_path += path_parts.join(QDir::separator());
     TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
-    if(move_storage) {
-      // Move storage
-      h.move_storage(new_save_path);
-    }
+    // Move storage
+    qDebug("Moving storage to %s", qPrintable(new_save_path));
+    QDir().mkpath(new_save_path);
+    h.move_storage(new_save_path);
     emit savePathChanged(h);
   }
 
