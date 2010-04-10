@@ -122,8 +122,8 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   QStringList selectedPeerIPs;
   foreach(const QModelIndex &index, selectedIndexes) {
     int row = proxyModel->mapToSource(index).row();
-    QString IP = listModel->data(listModel->index(row, IP_HIDDEN)).toString();
-    selectedPeerIPs << IP;
+    QString myip = listModel->data(listModel->index(row, IP_HIDDEN)).toString();
+    selectedPeerIPs << myip;
   }
   // Add Peer Action
   QAction *addPeerAct = 0;
@@ -326,9 +326,12 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   if(resolver)
     resolver->resolve(peer.ip);
   if(display_flags) {
-    QIcon ico = GeoIP::CountryISOCodeToIcon(peer.country);
+    QString country_name;
+    const QIcon &ico = GeoIP::CountryISOCodeToIcon(peer.country, country_name);
     if(!ico.isNull()) {
       listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
+      Q_ASSERT(!country_name.isEmpty());
+      listModel->setData(listModel->index(row, IP), country_name, Qt::ToolTipRole);
     } else {
       missingFlags.insert(ip);
     }
@@ -346,9 +349,12 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   QStandardItem *item = peerItems.value(ip);
   int row = item->row();
   if(display_flags) {
-    QIcon ico = GeoIP::CountryISOCodeToIcon(peer.country);
+    QString country_name;
+    const QIcon &ico = GeoIP::CountryISOCodeToIcon(peer.country, country_name);
     if(!ico.isNull()) {
       listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
+      Q_ASSERT(!country_name.isEmpty());
+      listModel->setData(listModel->index(row, IP), country_name, Qt::ToolTipRole);
       missingFlags.remove(ip);
     }
   }
