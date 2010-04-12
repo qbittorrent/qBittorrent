@@ -194,7 +194,8 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
     $$LANG_PATH/qbittorrent_hu.ts \
     $$LANG_PATH/qbittorrent_pt_BR.ts \
     $$LANG_PATH/qbittorrent_cs.ts \
-    $$LANG_PATH/qbittorrent_sr.ts
+    $$LANG_PATH/qbittorrent_sr.ts \
+    $$LANG_PATH/qbittorrent_ar.ts 
 
 # Source code
 HEADERS += misc.h \

@@ -215,191 +215,191 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="216"/>
+        <location filename="../bittorrent.cpp" line="220"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="308"/>
+        <location filename="../bittorrent.cpp" line="312"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="371"/>
+        <location filename="../bittorrent.cpp" line="375"/>
         <source>UPnP support [ON]</source>
         <translation type="unfinished">UPnP サポート [オン]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="374"/>
+        <location filename="../bittorrent.cpp" line="378"/>
         <source>UPnP support [OFF]</source>
         <translation type="unfinished">UPnP サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="379"/>
+        <location filename="../bittorrent.cpp" line="383"/>
         <source>NAT-PMP support [ON]</source>
         <translation type="unfinished">NAT-PMP サポート [オン]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="382"/>
+        <location filename="../bittorrent.cpp" line="386"/>
         <source>NAT-PMP support [OFF]</source>
         <translation type="unfinished">NAT-PMP サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="409"/>
+        <location filename="../bittorrent.cpp" line="413"/>
         <source>HTTP user agent is %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="426"/>
+        <location filename="../bittorrent.cpp" line="431"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="465"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="467"/>
-        <location filename="../bittorrent.cpp" line="471"/>
+        <location filename="../bittorrent.cpp" line="472"/>
+        <location filename="../bittorrent.cpp" line="476"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished">DHT サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="475"/>
+        <location filename="../bittorrent.cpp" line="480"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished">PeX サポート [オン]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="477"/>
+        <location filename="../bittorrent.cpp" line="482"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished">PeX サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="480"/>
+        <location filename="../bittorrent.cpp" line="485"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="485"/>
+        <location filename="../bittorrent.cpp" line="490"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished">ローカル ピア ディスカバリ [オン]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="488"/>
+        <location filename="../bittorrent.cpp" line="493"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished">ローカル ピア ディスカバリ [オフ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="500"/>
+        <location filename="../bittorrent.cpp" line="505"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished">暗号化サポート [オン]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="505"/>
+        <location filename="../bittorrent.cpp" line="510"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished">暗号化サポート [強制済み]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="510"/>
+        <location filename="../bittorrent.cpp" line="515"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">暗号化サポート [オフ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="619"/>
+        <location filename="../bittorrent.cpp" line="624"/>
         <source>The Web UI is listening on port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="621"/>
+        <location filename="../bittorrent.cpp" line="626"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="752"/>
+        <location filename="../bittorrent.cpp" line="757"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="754"/>
+        <location filename="../bittorrent.cpp" line="759"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="804"/>
+        <location filename="../bittorrent.cpp" line="809"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="824"/>
-        <location filename="../bittorrent.cpp" line="985"/>
-        <location filename="../bittorrent.cpp" line="988"/>
+        <location filename="../bittorrent.cpp" line="829"/>
+        <location filename="../bittorrent.cpp" line="990"/>
+        <location filename="../bittorrent.cpp" line="993"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos; はすでにダウンロードの一覧にあります。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="921"/>
-        <location filename="../bittorrent.cpp" line="1185"/>
+        <location filename="../bittorrent.cpp" line="926"/>
         <location filename="../bittorrent.cpp" line="1190"/>
+        <location filename="../bittorrent.cpp" line="1195"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; が再開されました。 (高速再開)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="923"/>
-        <location filename="../bittorrent.cpp" line="1187"/>
+        <location filename="../bittorrent.cpp" line="928"/>
         <location filename="../bittorrent.cpp" line="1192"/>
+        <location filename="../bittorrent.cpp" line="1197"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; がダウンロードの一覧に追加されました。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="959"/>
-        <location filename="../bittorrent.cpp" line="963"/>
+        <location filename="../bittorrent.cpp" line="964"/>
+        <location filename="../bittorrent.cpp" line="968"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="966"/>
+        <location filename="../bittorrent.cpp" line="971"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1014"/>
+        <location filename="../bittorrent.cpp" line="1019"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1027"/>
+        <location filename="../bittorrent.cpp" line="1032"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1499"/>
+        <location filename="../bittorrent.cpp" line="1535"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1501"/>
+        <location filename="../bittorrent.cpp" line="1537"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1837"/>
+        <location filename="../bittorrent.cpp" line="1869"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1847"/>
-        <location filename="../bittorrent.cpp" line="1897"/>
+        <location filename="../bittorrent.cpp" line="1879"/>
+        <location filename="../bittorrent.cpp" line="1929"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -408,38 +408,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">所定のポートで記入できませんでした。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2066"/>
+        <location filename="../bittorrent.cpp" line="2107"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2071"/>
+        <location filename="../bittorrent.cpp" line="2112"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2086"/>
+        <location filename="../bittorrent.cpp" line="2127"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1982"/>
-        <location filename="../bittorrent.cpp" line="2087"/>
+        <location filename="../bittorrent.cpp" line="2023"/>
+        <location filename="../bittorrent.cpp" line="2128"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1981"/>
+        <location filename="../bittorrent.cpp" line="2022"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2092"/>
+        <location filename="../bittorrent.cpp" line="2133"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2204"/>
+        <location filename="../bittorrent.cpp" line="2245"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
@@ -2732,7 +2732,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/options.ui" line="199"/>
-        <location filename="../ui/options.ui" line="2887"/>
+        <location filename="../ui/options.ui" line="2897"/>
         <source>RSS</source>
         <translation type="unfinished">RSS</translation>
     </message>
@@ -2992,22 +2992,22 @@ QGroupBox {
         <translation type="unfinished">Torrent あたりの最大アップロード スロット数:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1383"/>
-        <location filename="../ui/options.ui" line="1512"/>
+        <location filename="../ui/options.ui" line="1393"/>
+        <location filename="../ui/options.ui" line="1547"/>
         <source>Upload:</source>
         <translation type="unfinished">アップロード:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1399"/>
-        <location filename="../ui/options.ui" line="1519"/>
+        <location filename="../ui/options.ui" line="1409"/>
+        <location filename="../ui/options.ui" line="1554"/>
         <source>Download:</source>
         <translation type="unfinished">ダウンロード:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1437"/>
-        <location filename="../ui/options.ui" line="1473"/>
-        <location filename="../ui/options.ui" line="1560"/>
-        <location filename="../ui/options.ui" line="1567"/>
+        <location filename="../ui/options.ui" line="1447"/>
+        <location filename="../ui/options.ui" line="1483"/>
+        <location filename="../ui/options.ui" line="1595"/>
+        <location filename="../ui/options.ui" line="1602"/>
         <source>KiB/s</source>
         <translation type="unfinished">KiB/s</translation>
     </message>
@@ -3032,272 +3032,272 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1502"/>
+        <location filename="../ui/options.ui" line="1512"/>
         <source>Alternative global speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1618"/>
+        <location filename="../ui/options.ui" line="1628"/>
         <source>Scheduled times:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1645"/>
+        <location filename="../ui/options.ui" line="1655"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation type="unfinished">から</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1689"/>
+        <location filename="../ui/options.ui" line="1699"/>
         <source>On days:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1700"/>
+        <location filename="../ui/options.ui" line="1710"/>
         <source>Every day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1705"/>
+        <location filename="../ui/options.ui" line="1715"/>
         <source>Week days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1710"/>
+        <location filename="../ui/options.ui" line="1720"/>
         <source>Week ends</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1772"/>
+        <location filename="../ui/options.ui" line="1782"/>
         <source>Bittorrent features</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1778"/>
+        <location filename="../ui/options.ui" line="1788"/>
         <source>Enable DHT network (decentralized)</source>
         <translation type="unfinished">DHT ネットワーク (分散) を有効にする</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1788"/>
+        <location filename="../ui/options.ui" line="1798"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1819"/>
+        <location filename="../ui/options.ui" line="1829"/>
         <source>DHT port:</source>
         <translation type="unfinished">DHT ポート:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1857"/>
+        <location filename="../ui/options.ui" line="1867"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1867"/>
+        <location filename="../ui/options.ui" line="1877"/>
         <source>Enable Local Peer Discovery</source>
         <translation type="unfinished">ローカル ピア ディスカバリを有効にする</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1879"/>
+        <location filename="../ui/options.ui" line="1889"/>
         <source>Encryption:</source>
         <translation type="unfinished">暗号化:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1887"/>
+        <location filename="../ui/options.ui" line="1897"/>
         <source>Enabled</source>
         <translation type="unfinished">有効</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1892"/>
+        <location filename="../ui/options.ui" line="1902"/>
         <source>Forced</source>
         <translation type="unfinished">強制済み</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1897"/>
+        <location filename="../ui/options.ui" line="1907"/>
         <source>Disabled</source>
         <translation type="unfinished">無効</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1954"/>
+        <location filename="../ui/options.ui" line="1964"/>
         <source>KTorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2011"/>
+        <location filename="../ui/options.ui" line="2021"/>
         <source>Reset to latest software version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2036"/>
+        <location filename="../ui/options.ui" line="2046"/>
         <source>Share ratio settings</source>
         <translation type="unfinished">共有率の設定</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2044"/>
+        <location filename="../ui/options.ui" line="2054"/>
         <source>Desired ratio:</source>
         <translation type="unfinished">希望率:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2098"/>
+        <location filename="../ui/options.ui" line="2108"/>
         <source>Remove finished torrents when their ratio reaches:</source>
         <translation type="unfinished">率の達成時に完了済み torrent を削除する:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2189"/>
+        <location filename="../ui/options.ui" line="2199"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2226"/>
-        <location filename="../ui/options.ui" line="2429"/>
+        <location filename="../ui/options.ui" line="2236"/>
+        <location filename="../ui/options.ui" line="2439"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2387"/>
+        <location filename="../ui/options.ui" line="2397"/>
         <source>Peer Communications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2408"/>
+        <location filename="../ui/options.ui" line="2418"/>
         <source>SOCKS4</source>
         <translation type="unfinished">SOCKS4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2197"/>
-        <location filename="../ui/options.ui" line="2395"/>
+        <location filename="../ui/options.ui" line="2207"/>
+        <location filename="../ui/options.ui" line="2405"/>
         <source>Type:</source>
         <translation type="unfinished">種類:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1923"/>
+        <location filename="../ui/options.ui" line="1933"/>
         <source>Client whitelisting workaround</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1931"/>
+        <location filename="../ui/options.ui" line="1941"/>
         <source>Identify as:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1939"/>
+        <location filename="../ui/options.ui" line="1949"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1944"/>
+        <location filename="../ui/options.ui" line="1954"/>
         <source>Vuze</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1949"/>
+        <location filename="../ui/options.ui" line="1959"/>
         <source>µTorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1965"/>
+        <location filename="../ui/options.ui" line="1975"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1982"/>
+        <location filename="../ui/options.ui" line="1992"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2205"/>
-        <location filename="../ui/options.ui" line="2403"/>
+        <location filename="../ui/options.ui" line="2215"/>
+        <location filename="../ui/options.ui" line="2413"/>
         <source>(None)</source>
         <translation type="unfinished">(なし)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2210"/>
-        <location filename="../ui/options.ui" line="2418"/>
+        <location filename="../ui/options.ui" line="2220"/>
+        <location filename="../ui/options.ui" line="2428"/>
         <source>HTTP</source>
         <translation type="unfinished">HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2252"/>
-        <location filename="../ui/options.ui" line="2455"/>
-        <location filename="../ui/options.ui" line="2742"/>
+        <location filename="../ui/options.ui" line="2262"/>
+        <location filename="../ui/options.ui" line="2465"/>
+        <location filename="../ui/options.ui" line="2752"/>
         <source>Port:</source>
         <translation type="unfinished">ポート:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2295"/>
-        <location filename="../ui/options.ui" line="2498"/>
-        <location filename="../ui/options.ui" line="2781"/>
+        <location filename="../ui/options.ui" line="2305"/>
+        <location filename="../ui/options.ui" line="2508"/>
+        <location filename="../ui/options.ui" line="2791"/>
         <source>Authentication</source>
         <translation type="unfinished">認証</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2309"/>
-        <location filename="../ui/options.ui" line="2512"/>
-        <location filename="../ui/options.ui" line="2789"/>
+        <location filename="../ui/options.ui" line="2319"/>
+        <location filename="../ui/options.ui" line="2522"/>
+        <location filename="../ui/options.ui" line="2799"/>
         <source>Username:</source>
         <translation type="unfinished">ユーザー名:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2319"/>
-        <location filename="../ui/options.ui" line="2522"/>
-        <location filename="../ui/options.ui" line="2796"/>
+        <location filename="../ui/options.ui" line="2329"/>
+        <location filename="../ui/options.ui" line="2532"/>
+        <location filename="../ui/options.ui" line="2806"/>
         <source>Password:</source>
         <translation type="unfinished">パスワード:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2215"/>
-        <location filename="../ui/options.ui" line="2413"/>
+        <location filename="../ui/options.ui" line="2225"/>
+        <location filename="../ui/options.ui" line="2423"/>
         <source>SOCKS5</source>
         <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2626"/>
+        <location filename="../ui/options.ui" line="2636"/>
         <source>Filter Settings</source>
         <translation type="unfinished">フィルタの設定</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2632"/>
+        <location filename="../ui/options.ui" line="2642"/>
         <source>Activate IP Filtering</source>
         <translation type="unfinished">IP フィルタをアクティブにする</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2648"/>
+        <location filename="../ui/options.ui" line="2658"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2723"/>
+        <location filename="../ui/options.ui" line="2733"/>
         <source>Enable Web User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2736"/>
+        <location filename="../ui/options.ui" line="2746"/>
         <source>HTTP Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2893"/>
+        <location filename="../ui/options.ui" line="2903"/>
         <source>Enable RSS support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2903"/>
+        <location filename="../ui/options.ui" line="2913"/>
         <source>RSS settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2940"/>
+        <location filename="../ui/options.ui" line="2950"/>
         <source>RSS feeds refresh interval:</source>
         <translation type="unfinished">RSS フィードの更新の間隔:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2960"/>
+        <location filename="../ui/options.ui" line="2970"/>
         <source>minutes</source>
         <translation type="unfinished">分</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2984"/>
+        <location filename="../ui/options.ui" line="2994"/>
         <source>Maximum number of articles per feed:</source>
         <translation type="unfinished">フィードあたりの最大記事数:</translation>
     </message>
@@ -4254,13 +4254,13 @@ Changelog:
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="174"/>
+        <location filename="../statusbar.h" line="177"/>
         <source>Connection status:</source>
         <translation type="unfinished">接続状態:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="174"/>
+        <location filename="../statusbar.h" line="177"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4271,62 +4271,62 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="91"/>
+        <location filename="../statusbar.h" line="93"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="95"/>
-        <location filename="../statusbar.h" line="181"/>
+        <location filename="../statusbar.h" line="98"/>
+        <location filename="../statusbar.h" line="184"/>
         <source>DHT: %1 nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="166"/>
-        <location filename="../statusbar.h" line="171"/>
+        <location filename="../statusbar.h" line="169"/>
+        <location filename="../statusbar.h" line="174"/>
         <source>Connection Status:</source>
         <translation type="unfinished">接続状態:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="166"/>
+        <location filename="../statusbar.h" line="169"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="171"/>
+        <location filename="../statusbar.h" line="174"/>
         <source>Online</source>
         <translation type="unfinished">オンライン</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="187"/>
+        <location filename="../statusbar.h" line="190"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="188"/>
+        <location filename="../statusbar.h" line="191"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="194"/>
+        <location filename="../statusbar.h" line="197"/>
         <source>Click to disable alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="197"/>
+        <location filename="../statusbar.h" line="200"/>
         <source>Click to enable alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="207"/>
+        <location filename="../statusbar.h" line="210"/>
         <source>Global Download Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="229"/>
         <source>Global Upload Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4978,7 +4978,7 @@ Changelog:
         <translation>qBittorrent の翻訳にボランティアしてくださった以下の方々に感謝したいと思います:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="91"/>
+        <location filename="../about_imp.h" line="92"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>qBittorrent を自分の言語に翻訳したいとお思いならご連絡ください。</translation>
     </message>
@@ -5045,12 +5045,12 @@ Changelog:
         <translation>Torrent の内容:</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="254"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="242"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="261"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="249"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5071,17 +5071,17 @@ Changelog:
         <translation type="obsolete">正しい順にダウンロードする (より遅いがプレビューにはふさわしい)</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="268"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="256"/>
         <source>Add to download list in paused state</source>
         <translation>一時停止済み状態でダウンロードの一覧に追加する</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="296"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="284"/>
         <source>Add</source>
         <translation>追加</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="303"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="291"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -5098,27 +5098,27 @@ Changelog:
         <translation type="obsolete">無視済み</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="325"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="313"/>
         <source>Normal</source>
         <translation type="unfinished">通常</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="330"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="318"/>
         <source>High</source>
         <translation type="unfinished">高</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="323"/>
         <source>Maximum</source>
         <translation type="unfinished">最大</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="219"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="213"/>
         <source>Collapse all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="232"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="220"/>
         <source>Expand all</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5633,118 +5633,118 @@ Changelog:
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="88"/>
         <location filename="../downloadthread.cpp" line="91"/>
+        <location filename="../downloadthread.cpp" line="94"/>
         <source>I/O Error</source>
         <translation type="unfinished">I/O エラー</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="171"/>
+        <location filename="../downloadthread.cpp" line="174"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="173"/>
+        <location filename="../downloadthread.cpp" line="176"/>
         <source>The operation was canceled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="175"/>
+        <location filename="../downloadthread.cpp" line="178"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="177"/>
+        <location filename="../downloadthread.cpp" line="180"/>
         <source>The connection to the remote server timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="179"/>
+        <location filename="../downloadthread.cpp" line="182"/>
         <source>SSL/TLS handshake failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="181"/>
+        <location filename="../downloadthread.cpp" line="184"/>
         <source>The remote server refused the connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="183"/>
+        <location filename="../downloadthread.cpp" line="186"/>
         <source>The connection to the proxy server was refused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="185"/>
+        <location filename="../downloadthread.cpp" line="188"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="187"/>
+        <location filename="../downloadthread.cpp" line="190"/>
         <source>The proxy host name was not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="189"/>
+        <location filename="../downloadthread.cpp" line="192"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="191"/>
+        <location filename="../downloadthread.cpp" line="194"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="193"/>
+        <location filename="../downloadthread.cpp" line="196"/>
         <source>The access to the remote content was denied (401)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="195"/>
+        <location filename="../downloadthread.cpp" line="198"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="197"/>
+        <location filename="../downloadthread.cpp" line="200"/>
         <source>The remote content was not found at the server (404)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="199"/>
+        <location filename="../downloadthread.cpp" line="202"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="201"/>
+        <location filename="../downloadthread.cpp" line="204"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="203"/>
+        <location filename="../downloadthread.cpp" line="206"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
+        <location filename="../downloadthread.cpp" line="208"/>
         <source>An unknown network-related error was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
+        <location filename="../downloadthread.cpp" line="210"/>
         <source>An unknown proxy-related error was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
+        <location filename="../downloadthread.cpp" line="212"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
+        <location filename="../downloadthread.cpp" line="214"/>
         <source>A breakdown in protocol was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
+        <location filename="../downloadthread.cpp" line="216"/>
         <source>Unknown error</source>
         <translation type="unfinished">不明なエラーです</translation>
     </message>
@@ -6226,10 +6226,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat ファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1448"/>
         <location filename="../options_imp.cpp" line="1450"/>
-        <location filename="../options_imp.cpp" line="1462"/>
+        <location filename="../options_imp.cpp" line="1452"/>
         <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリを選択します</translation>
     </message>
@@ -6243,50 +6243,50 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">読み込みモードで %1 を開くことができませんでした。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1376"/>
+        <location filename="../options_imp.cpp" line="1378"/>
         <source>Add directory to scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
+        <location filename="../options_imp.cpp" line="1384"/>
         <source>Folder is already being watched.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1385"/>
+        <location filename="../options_imp.cpp" line="1387"/>
         <source>Folder does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1388"/>
+        <location filename="../options_imp.cpp" line="1390"/>
         <source>Folder is not readable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1419"/>
         <location filename="../options_imp.cpp" line="1421"/>
+        <location filename="../options_imp.cpp" line="1423"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>

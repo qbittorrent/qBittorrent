@@ -188,6 +188,7 @@ public:
       if(iso[1] == 'S') return QIcon(":/Icons/flags/serbia.png");
       break;
     case 'S':
+      if(iso[1] == 'A') return QIcon(":/Icons/flags/saoudi_arabia.png");
       if(iso[1] == 'E') return QIcon(":/Icons/flags/sweden.png");
       if(iso[1] == 'K') return QIcon(":/Icons/flags/slovakia.png");
       if(iso[1] == 'G') return QIcon(":/Icons/flags/singapore.png");
