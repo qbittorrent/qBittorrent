@@ -62,7 +62,7 @@ class about : public QDialog, private Ui::AboutDlg{
       te_translation->append(QString::fromUtf8("<a name='top'></a>"));
       te_translation->append(tr("I would like to thank the following people who volunteered to translate qBittorrent:")+QString::fromUtf8("<br>"));
       te_translation->append(QString::fromUtf8(
-          "<i><u>Arabic:</u> Abdulaziz Almadhi (abz.8868@gmail.com)<br>\
+          "<i><u>Arabic:</u> SDERAWI (abz8868@msn.com) and sn51234 (nesseyan@gmail.com)<br>\
           - <u>Brazilian:</u> Nick Marinho (nickmarinho@gmail.com)<br>\
           - <u>Bulgarian:</u> Tsvetan & Boyko Bankoff (emerge_life@users.sourceforge.net)<br>\
           - <u>Catalan:</u> Francisco Luque Contreras (frannoe@ya.com)<br>\
