@@ -108,7 +108,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   locales << "ro_RO";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/turkey.png"))), QString::fromUtf8("Türkçe"));
   locales << "tr_TR";
-comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/saoudi_arabia.png"))), QString::fromUtf8("Arabic"));
+comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/saoudi_arabia.png"))), QString::fromUtf8("عربي"));
   locales << "ar_SA";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/greece.png"))), QString::fromUtf8("Ελληνικά"));
   locales << "el_GR";
