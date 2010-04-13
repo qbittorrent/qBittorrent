@@ -231,6 +231,14 @@ int main(int argc, char *argv[]){
     qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
   }
   app->installTranslator(&translator);
+#ifndef DISABLE_GUI
+  if(locale.startsWith("ar")) {
+    qDebug("Right to Left mode");
+    app->setLayoutDirection(Qt::RightToLeft);
+  } else {
+    app->setLayoutDirection(Qt::LeftToRight);
+  }
+#endif
   app->setApplicationName(QString::fromUtf8("qBittorrent"));
 
   // Check for executable parameters
