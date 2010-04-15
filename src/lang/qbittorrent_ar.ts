@@ -6,7 +6,7 @@
     <message>
         <location filename="../ui/about.ui" line="27"/>
         <source>About qBittorrent</source>
-        <translation>‏عن البرنامج</translation>
+        <translation>معلومات عن البرنامج </translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="89"/>
@@ -46,7 +46,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/about.ui" line="265"/>
         <source>E-mail:</source>
-        <translation>‫الايميل:</translation>
+        <translation>البريد الإلكتروني :</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="283"/>
@@ -91,7 +91,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/about.ui" line="229"/>
         <source>Birthday:</source>
-        <translation>الميلاد:</translation>
+        <translation>تاريخ الميلاد:</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="247"/>
@@ -134,17 +134,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="79"/>
         <source> MiB</source>
-        <translation>ميجا ب</translation>
+        <translation>ميجابايت</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="82"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation>المنفذ الخارجي (أقل) [0: معطل]</translation>
+        <translation>منافذ الخروج (الأدنى) [٠ : معطلة] </translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="90"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation>المنفذ الخارجي (أكثر) [0: معطل]</translation>
+        <translation>منافذ الخروج (الأقصى) [٠ : معطلة] </translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="110"/>
@@ -174,7 +174,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="obsolete">اكبر كمية من الاتصالات النصف مفتوحة</translation>
+        <translation type="obsolete">أكبر كمية من الاتصالات النصف مفتوحة [٠ : معطلة]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
@@ -188,7 +188,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="104"/>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation>ادراج TCP/IP overhead على حدود النقل</translation>
+        <translation>ادراج TCP/IP على حدود النقل</translation>
     </message>
 </context>
 <context>
@@ -444,7 +444,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../eventmanager.cpp" line="65"/>
         <location filename="../eventmanager.cpp" line="79"/>
         <source>Working</source>
-        <translation>يشتغل</translation>
+        <translation>يعمل</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="68"/>
@@ -455,7 +455,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../eventmanager.cpp" line="71"/>
         <location filename="../eventmanager.cpp" line="82"/>
         <source>Not working</source>
-        <translation>لا يشتغل</translation>
+        <translation>لا يعمل</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="73"/>
@@ -576,12 +576,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/feeddownloader.ui" line="454"/>
         <source>Import...</source>
-        <translation>استيراد...</translation>
+        <translation>إدخال...</translation>
     </message>
     <message>
         <location filename="../ui/feeddownloader.ui" line="461"/>
         <source>Export...</source>
-        <translation>تصدير...</translation>
+        <translation>إخراج...</translation>
     </message>
     <message>
         <location filename="../ui/feeddownloader.ui" line="484"/>
@@ -593,12 +593,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../ui/feeddownloader.ui" line="496"/>
         <location filename="../ui/feeddownloader.ui" line="499"/>
         <source>Remove filter</source>
-        <translation>ازالة المنقي</translation>
+        <translation>إزالة المنقي</translation>
     </message>
     <message>
         <location filename="../ui/feeddownloader.ui" line="508"/>
         <source>Add filter</source>
-        <translation>اضافة المنقي</translation>
+        <translation>أضف منقي</translation>
     </message>
 </context>
 <context>
@@ -611,7 +611,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="411"/>
         <source>Please choose a name for this filter</source>
-        <translation>اختر اسما للمنقي</translation>
+        <translation>اختر اسما للمنقي رجاءً</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="411"/>
@@ -675,22 +675,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="484"/>
         <source>Import successful</source>
-        <translation>الاستيراد ناجح</translation>
+        <translation>الإدخال ناجح</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="484"/>
         <source>Filters import was successful.</source>
-        <translation>استيراد المنقي تم بنجاح.</translation>
+        <translation>إدخال المنقي تم بنجاح.</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="486"/>
         <source>Import failure</source>
-        <translation>الاستيراد فاشل</translation>
+        <translation>إدخال فاشل</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="486"/>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>لا يمكن استيراد المنقي نظرا لوجود خطأ في I/O.</translation>
+        <translation>لا يمكن إدخال المنقي نظرا لوجود خطأ في I/O.</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="491"/>
@@ -700,22 +700,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../feeddownloader.h" line="501"/>
         <source>Export successful</source>
-        <translation>التصدير ناجح</translation>
+        <translation>الإخراج ناجح</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="501"/>
         <source>Filters export was successful.</source>
-        <translation>تم تصدير المنقي بنجاح.</translation>
+        <translation>تم إخراج المنقي بنجاح.</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="503"/>
         <source>Export failure</source>
-        <translation>التصدير فاشل</translation>
+        <translation>إخراج فاشل</translation>
     </message>
     <message>
         <location filename="../feeddownloader.h" line="503"/>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>لا يمكن تصدير المنقي نظرا لوجود خطأ في I/O.</translation>
+        <translation>لا يمكن إخراج المنقي نظرا لوجود خطأ في I/O.</translation>
     </message>
 </context>
 <context>
@@ -816,12 +816,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GUI.cpp" line="438"/>
         <source>Url download error</source>
-        <translation>خطأ في التحميل من الرابط</translation>
+        <translation>خطأ في تحميل الرابط</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="438"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>خطأ في التحميل من الرابط: %1, السبب: %2.</translation>
+        <translation>خطأ في تحميل الرابط: %1, السبب: %2.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="340"/>
@@ -873,12 +873,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GUI.cpp" line="444"/>
         <source>Global Upload Speed Limit</source>
-        <translation>حد الرفع العام</translation>
+        <translation>حدود سرعة الرفع العامة</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="466"/>
         <source>Global Download Speed Limit</source>
-        <translation>حد التحميل العام</translation>
+        <translation>حدود سرعة التحميل العامة </translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="551"/>
@@ -1163,17 +1163,17 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../headlessloader.h" line="72"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation>User Name واجهة الويب هو:%1</translation>
+        <translation>إسم المستخدم لواجهة  الويب هو:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="74"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>؛Password واجهة الويب هو:%1</translation>
+        <translation>كلمة السر لواجهة الويب هي:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="75"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>خطر امني غير Password.</translation>
+        <translation>خطر امني غير كلمة السر.</translation>
     </message>
 </context>
 <context>
@@ -1737,7 +1737,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="375"/>
         <source>Transfer list</source>
-        <translation>قائنة النقل</translation>
+        <translation>قائمة النقل</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="381"/>
@@ -2468,7 +2468,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="521"/>
         <source>Priority</source>
-        <translation>الاهمية</translation>
+        <translation>الأفضلية</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="557"/>
@@ -2804,12 +2804,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../supportedengines.h" line="52"/>
         <source>TV shows</source>
-        <translation>مسلسلات</translation>
+        <translation>مسلسلات تلفزيونية</translation>
     </message>
     <message>
         <location filename="../supportedengines.h" line="53"/>
         <source>Music</source>
-        <translation>اغاني</translation>
+        <translation>موسيقى</translation>
     </message>
     <message>
         <location filename="../supportedengines.h" line="54"/>
@@ -2819,7 +2819,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../supportedengines.h" line="55"/>
         <source>Anime</source>
-        <translation>انيمي</translation>
+        <translation>كرتون</translation>
     </message>
     <message>
         <location filename="../supportedengines.h" line="56"/>
@@ -2916,7 +2916,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine.cpp" line="480"/>
         <source>Search returned no results</source>
-        <translation>لا وجد تيجة حث</translation>
+        <translation>لم يجد البحث أية نتيجة</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="487"/>
@@ -2955,7 +2955,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchtab.cpp" line="64"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>ليتشر</translation>
+        <translation>ليتشرز</translation>
     </message>
     <message>
         <location filename="../searchtab.cpp" line="65"/>
@@ -3219,7 +3219,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../transferlistdelegate.h" line="97"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation>في السرا</translation>
+        <translation>في القائمة</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="101"/>
@@ -3370,7 +3370,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../transferlistwidget.cpp" line="986"/>
         <source>Preview file</source>
-        <translation>ملف الإستعراض</translation>
+        <translation>معاينة الملف</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="63"/>
@@ -3400,13 +3400,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../transferlistwidget.cpp" line="71"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>السييد</translation>
+        <translation>الأصول</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="73"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>بيرز</translation>
+        <translation>الأقران</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="79"/>
@@ -3769,7 +3769,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="50"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>هل انت متأكد من حذف ملفات التورنت من قائمت النقل ؟</translation>
+        <translation>هل انت متأكد من حذف ملفات التورنت من قائمة النقل ؟</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="76"/>
@@ -4191,7 +4191,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../engineselectdlg.cpp" line="188"/>
         <source>Uninstall warning</source>
-        <translation>تحذي الإزالة</translation>
+        <translation>تحذير الإزالة</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="188"/>
@@ -4208,7 +4208,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../engineselectdlg.cpp" line="359"/>
         <source>Select search plugins</source>
-        <translation>إختار حث pluginsال</translation>
+        <translation>إختار بحث pluginsال</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="360"/>
@@ -4448,7 +4448,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../options_imp.cpp" line="1398"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>فشلة اضافة المجلد للفحص &apos;%1: %2</translation>
+        <translation>فشل اضافة المجلد للفحص &apos;%1: %2</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1435"/>
@@ -4485,7 +4485,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../ui/preview.ui" line="16"/>
         <source>Preview selection</source>
-        <translation>اختيار الإستعراض</translation>
+        <translation>معاينة الاختيار</translation>
     </message>
     <message>
         <location filename="../ui/preview.ui" line="51"/>
@@ -4622,7 +4622,7 @@ However, those plugins were disabled.</source>
         <location filename="../torrentadditiondlg.h" line="315"/>
         <location filename="../torrentadditiondlg.h" line="348"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>هذا الاسم يستعمل في ملف آخر , الرجاء إختيار اسم آخر.</translation>
+        <translation>هذا الاسم يستعمل في ملف آخر , الرجاء إختيار اسم جديد.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="347"/>
@@ -4639,7 +4639,7 @@ However, those plugins were disabled.</source>
         <location filename="../torrentadditiondlg.h" line="392"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(%1 زياد متبقية على (التنزيل</translation>
+        <translation>(%1 أيضاً متبقية على (التنزيل</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="406"/>
@@ -4650,7 +4650,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../torrentadditiondlg.h" line="431"/>
         <source>Empty save path</source>
-        <translation>فرغ مكان الحفظ</translation>
+        <translation>مكان الحفظ فارغ</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="431"/>
@@ -4675,7 +4675,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../torrentadditiondlg.h" line="444"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>الجاء عدم إستخدام رموز خاصة على اسم الملصق.</translation>
+        <translation>الرجاء عدم إستخدام رموز خاصة على اسم الملصق.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="479"/>
@@ -4685,7 +4685,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../torrentadditiondlg.h" line="479"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>انت اختررت ان تتفادى فحص الملف, لاكن الملفات غير موجودة في مكان الحفظ, الجاء تعطيل هذه ميزة او تغي مكان حفظ الملف.</translation>
+        <translation>انت اختررت ان تتفادى فحص الملف, لكن الملفات غير موجودة في مكان الحفظ, الرجاء تعطيل هذه الميزة  او تعديل مكان حفظ الملف.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.h" line="486"/>
@@ -4695,7 +4695,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../torrentadditiondlg.h" line="486"/>
         <source>You must select at least one file in the torrent</source>
-        <translation>يجب عليك اختيار ملف واحد تورنت على الاقل</translation>
+        <translation>يجب عليك اختيار ملف تورنت واحد على الاقل</translation>
     </message>
 </context>
 </TS>
