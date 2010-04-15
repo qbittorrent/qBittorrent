@@ -2783,6 +2783,10 @@ Está certo que quer sair do qBittorrent?</translation>
         <source>South Africa</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saoudi Arabia</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>

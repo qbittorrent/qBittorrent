@@ -2809,6 +2809,10 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
         <source>South Africa</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saoudi Arabia</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>

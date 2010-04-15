@@ -3261,52 +3261,57 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
-        <source>Sweden</source>
+        <source>Saoudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
-        <source>Slovakia</source>
+        <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
-        <source>Singapore</source>
+        <source>Slovakia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="194"/>
+        <source>Singapore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../geoip.h" line="195"/>
         <source>Slovenia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="197"/>
+        <location filename="../geoip.h" line="198"/>
         <source>Taiwan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="198"/>
+        <location filename="../geoip.h" line="199"/>
         <source>Turkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="199"/>
+        <location filename="../geoip.h" line="200"/>
         <source>Thailand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="202"/>
         <location filename="../geoip.h" line="203"/>
+        <location filename="../geoip.h" line="204"/>
         <source>USA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="204"/>
+        <location filename="../geoip.h" line="205"/>
         <source>Ukraine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="207"/>
+        <location filename="../geoip.h" line="208"/>
         <source>South Africa</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6457,7 +6462,7 @@ Changements:
         <translation>Je tiens à remercier les personnes suivantes pour avoir traduit qBittorrent :</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="91"/>
+        <location filename="../about_imp.h" line="92"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Veuillez me contacter si vous désirez traduire qBittorrent dans votre langue natale.</translation>
     </message>
@@ -7859,38 +7864,38 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir le dossier à surveiller</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1376"/>
+        <location filename="../options_imp.cpp" line="1378"/>
         <source>Add directory to scan</source>
         <translation>Ajouter un dossier à surveiller</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
+        <location filename="../options_imp.cpp" line="1384"/>
         <source>Folder is already being watched.</source>
         <translation>Ce dossier est déjà surveillé.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1385"/>
+        <location filename="../options_imp.cpp" line="1387"/>
         <source>Folder does not exist.</source>
         <translation>Ce dossier n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1388"/>
+        <location filename="../options_imp.cpp" line="1390"/>
         <source>Folder is not readable.</source>
         <translation>Ce dossier n&apos;est pas accessible en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failure</source>
         <translation>Echec</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Impossible d&apos;ajouter le dossier surveillé &apos;%1&apos; : %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1419"/>
         <location filename="../options_imp.cpp" line="1421"/>
+        <location filename="../options_imp.cpp" line="1423"/>
         <source>Choose export directory</source>
         <translation>Choisir un dossier pour l&apos;export</translation>
     </message>
@@ -7899,10 +7904,10 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1448"/>
         <location filename="../options_imp.cpp" line="1450"/>
-        <location filename="../options_imp.cpp" line="1462"/>
+        <location filename="../options_imp.cpp" line="1452"/>
         <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
@@ -7916,8 +7921,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
@@ -7926,8 +7931,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Filtres (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>

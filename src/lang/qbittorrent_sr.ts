@@ -1456,6 +1456,10 @@ Are you sure you want to quit qBittorrent?</source>
         <source>South Africa</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saoudi Arabia</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>

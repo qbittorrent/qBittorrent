@@ -3024,52 +3024,57 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
-        <source>Sweden</source>
+        <source>Saoudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
-        <source>Slovakia</source>
+        <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
-        <source>Singapore</source>
+        <source>Slovakia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="194"/>
+        <source>Singapore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../geoip.h" line="195"/>
         <source>Slovenia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="197"/>
+        <location filename="../geoip.h" line="198"/>
         <source>Taiwan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="198"/>
+        <location filename="../geoip.h" line="199"/>
         <source>Turkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="199"/>
+        <location filename="../geoip.h" line="200"/>
         <source>Thailand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="202"/>
         <location filename="../geoip.h" line="203"/>
+        <location filename="../geoip.h" line="204"/>
         <source>USA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="204"/>
+        <location filename="../geoip.h" line="205"/>
         <source>Ukraine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="207"/>
+        <location filename="../geoip.h" line="208"/>
         <source>South Africa</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6137,7 +6142,7 @@ Log:
         <translation>Quiero agradecer a las siguientes personas que voluntariamente tradujeron qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="91"/>
+        <location filename="../about_imp.h" line="92"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Por favor contáctame si quieres traducir qBittorrent a tu propio idioma.</translation>
     </message>
@@ -7452,10 +7457,10 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Selecciona un archivo ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1448"/>
         <location filename="../options_imp.cpp" line="1450"/>
-        <location filename="../options_imp.cpp" line="1462"/>
+        <location filename="../options_imp.cpp" line="1452"/>
         <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Choose a save directory</source>
         <translation>Seleccione un directorio para guardar</translation>
     </message>
@@ -7469,50 +7474,50 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">No se pudo abrir %1 en modo lectura.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1376"/>
+        <location filename="../options_imp.cpp" line="1378"/>
         <source>Add directory to scan</source>
         <translation>Añadir directorio para escanear</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
+        <location filename="../options_imp.cpp" line="1384"/>
         <source>Folder is already being watched.</source>
         <translation>Esta carpeta ya está en seleccionada para escanear.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1385"/>
+        <location filename="../options_imp.cpp" line="1387"/>
         <source>Folder does not exist.</source>
         <translation>La carpeta no existe.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1388"/>
+        <location filename="../options_imp.cpp" line="1390"/>
         <source>Folder is not readable.</source>
         <translation>La carpeta no es legible.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failure</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>No se puede escanear esta carpetas &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1419"/>
         <location filename="../options_imp.cpp" line="1421"/>
+        <location filename="../options_imp.cpp" line="1423"/>
         <source>Choose export directory</source>
         <translation>Selecciona directorio de exportación</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Choose an ip filter file</source>
         <translation>Seleccione un archivo de filtro de ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Filters</source>
         <translation>Filtros</translation>
     </message>

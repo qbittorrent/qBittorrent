@@ -2721,6 +2721,10 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>South Africa</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Saoudi Arabia</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>

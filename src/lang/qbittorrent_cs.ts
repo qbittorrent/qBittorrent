@@ -2178,52 +2178,57 @@ Opravdu chcete ukončit qBittorrent?</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
-        <source>Sweden</source>
+        <source>Saoudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
-        <source>Slovakia</source>
+        <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
-        <source>Singapore</source>
+        <source>Slovakia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="194"/>
+        <source>Singapore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../geoip.h" line="195"/>
         <source>Slovenia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="197"/>
+        <location filename="../geoip.h" line="198"/>
         <source>Taiwan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="198"/>
+        <location filename="../geoip.h" line="199"/>
         <source>Turkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="199"/>
+        <location filename="../geoip.h" line="200"/>
         <source>Thailand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="202"/>
         <location filename="../geoip.h" line="203"/>
+        <location filename="../geoip.h" line="204"/>
         <source>USA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="204"/>
+        <location filename="../geoip.h" line="205"/>
         <source>Ukraine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="207"/>
+        <location filename="../geoip.h" line="208"/>
         <source>South Africa</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4977,7 +4982,7 @@ p, li { white-space: pre-wrap; }
         <translation>Chtěl bych poděkovat následujícím lidem, kteří dobrovolně přeložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="91"/>
+        <location filename="../about_imp.h" line="92"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Kontaktujte mě, prosím, pokud byste chtěli přeložit qBittorrent do svého jazyka.</translation>
     </message>
@@ -6092,58 +6097,58 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation type="obsolete">Vyberte adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1419"/>
         <location filename="../options_imp.cpp" line="1421"/>
+        <location filename="../options_imp.cpp" line="1423"/>
         <source>Choose export directory</source>
         <translation>Vyberte adresář pro export</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1448"/>
         <location filename="../options_imp.cpp" line="1450"/>
-        <location filename="../options_imp.cpp" line="1462"/>
+        <location filename="../options_imp.cpp" line="1452"/>
         <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresář pro ukládání</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Choose an ip filter file</source>
         <translation>Vyberte soubor IP filtrů</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1376"/>
+        <location filename="../options_imp.cpp" line="1378"/>
         <source>Add directory to scan</source>
         <translation>Přidat adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1382"/>
+        <location filename="../options_imp.cpp" line="1384"/>
         <source>Folder is already being watched.</source>
         <translation>Adresář je již sledován.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1385"/>
+        <location filename="../options_imp.cpp" line="1387"/>
         <source>Folder does not exist.</source>
         <translation>Adresář neexistuje.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1388"/>
+        <location filename="../options_imp.cpp" line="1390"/>
         <source>Folder is not readable.</source>
         <translation>Adresář nelze přečíst.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failure</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1396"/>
+        <location filename="../options_imp.cpp" line="1398"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Nelze přidat adresář ke sledování &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1433"/>
         <location filename="../options_imp.cpp" line="1435"/>
+        <location filename="../options_imp.cpp" line="1437"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>
