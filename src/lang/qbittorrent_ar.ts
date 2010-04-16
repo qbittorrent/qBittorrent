@@ -427,7 +427,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation>qBittorrent console</translation>
+        <translation>سجل أخطاء البرنامج</translation>
     </message>
     <message>
         <location filename="../ui/console.ui" line="26"/>
@@ -1565,7 +1565,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="256"/>
         <source>Console</source>
-        <translation>Console</translation>
+        <translation>سجل الأخطاء</translation>
     </message>
 </context>
 <context>
@@ -2174,7 +2174,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2199"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP Communications (trackers, Web seeds, search engine)</translation>
+        <translation>HTTP إتصالات (تراكرز , Web seeds,محرك البحث)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2236"/>
@@ -3469,13 +3469,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../transferlistwidget.cpp" line="71"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>الأصول</translation>
+        <translation>السييد</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="73"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>الأقران</translation>
+        <translation>البيرز</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="79"/>
