@@ -144,12 +144,32 @@ protected:
   }
 };
 
+class StatusFiltersWidget : public QListWidget {
+public:
+  StatusFiltersWidget(QWidget *parent) : QListWidget(parent) { 
+    setFixedHeight(100);
+  }
+protected:
+void changeEvent(QEvent *e) {
+  QListWidget::changeEvent(e);
+  switch (e->type()) {
+  case QEvent::StyleChange:
+    setSpacing(0);
+    setFixedHeight(100);
+    break;
+  default:
+    break;
+  }
+}
+  
+};
+
 class TransferListFiltersWidget: public QFrame {
   Q_OBJECT
 
 private:
   QHash<QString, int> customLabels;
-  QListWidget* statusFilters;
+  StatusFiltersWidget* statusFilters;
   LabelFiltersList* labelFilters;
   QVBoxLayout* vLayout;
   TransferListWidget *transferList;
@@ -160,7 +180,7 @@ public:
   TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList): QFrame(parent), transferList(transferList), nb_labeled(0), nb_torrents(0) {
     // Construct lists
     vLayout = new QVBoxLayout();
-    statusFilters = new QListWidget(this);
+    statusFilters = new StatusFiltersWidget(this);
     vLayout->addWidget(statusFilters);
     labelFilters = new LabelFiltersList(this);
     vLayout->addWidget(labelFilters);
