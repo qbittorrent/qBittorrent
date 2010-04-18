@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.6
+* Sun Apr 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.6
     - BUGFIX: Announce to all trackers at once
     - BUGFIX: Added support for single-thread boost
     - BUGFIX: Remove old folder when moving a torrent
