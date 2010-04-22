@@ -250,6 +250,7 @@ void misc::copyDir(QString src_path, QString dst_path) {
 
 QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save_path, const QString old_label, const QString new_label) {
   if(old_label == new_label) return save_path;
+  qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(save_path), qPrintable(old_label), qPrintable(new_label));
   if(!save_path.startsWith(defaultSavePath)) return save_path;
   QString new_save_path = save_path.replace(defaultSavePath, "");
   QStringList path_parts = new_save_path.split(QDir::separator(), QString::SkipEmptyParts);
@@ -272,6 +273,7 @@ QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save
   new_save_path = defaultSavePath;
   if(!new_save_path.endsWith(QDir::separator())) new_save_path += QDir::separator();
   new_save_path += path_parts.join(QDir::separator());
+  qDebug("New save path is %s", qPrintable(new_save_path));
   return new_save_path;
 }
 

@@ -1952,7 +1952,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(h.is_valid()) {
           // Attempt to remove old folder if empty
           const QString& old_save_path = TorrentPersistentData::getSavePath(h.hash());
-          const QString new_save_path = QString(p->path.c_str());
+          const QString new_save_path = QString::fromLocal8Bit(p->path.c_str());
           qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
           qDebug("Attempting to remove %s", qPrintable(old_save_path));
           QDir().rmpath(old_save_path);
@@ -2195,6 +2195,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       qDebug("getSavePath, got save_path from temp data: %s", qPrintable(savePath));
     } else {
       savePath = TorrentPersistentData::getSavePath(hash);
+      qDebug("SavePath got from persistant data is %s", qPrintable(savePath));
       bool append_root_folder = false;
       if(savePath.isEmpty()) {
         if(fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath))
@@ -2212,6 +2213,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       if(!fromScanDir && appendLabelToSavePath) {
         const QString &label = TorrentPersistentData::getLabel(hash);
         if(!label.isEmpty()) {
+          qDebug("Torrent label is %s", qPrintable(label));
           savePath = misc::updateLabelInSavePath(defaultSavePath, savePath, "", label);
         }
       }
@@ -2220,6 +2222,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(!savePath.endsWith(QDir::separator()))
           savePath += QDir::separator();
         savePath += root_folder;
+        qDebug("Torrent root folder is %s", qPrintable(root_folder));
         TorrentPersistentData::saveSavePath(hash, savePath);
       }
       qDebug("getSavePath, got save_path from persistent data: %s", qPrintable(savePath));
@@ -2233,6 +2236,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       if(!saveDir.mkpath(saveDir.absolutePath())) {
         std::cerr << "Couldn't create the save directory: " << qPrintable(saveDir.path()) << "\n";
         // XXX: Do something else?
+      } else {
+        qDebug("Created save folder at %s", qPrintable(saveDir.path()));
       }
     }
     return savePath;
