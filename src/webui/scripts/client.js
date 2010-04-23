@@ -184,20 +184,6 @@ window.addEvent('load', function(){
 		column: 'filtersColumn',
 		height: 300
 	});
-    new MochaUI.Panel({
-		id: 'transferList',
-		title: 'Panel',
-		header: false,
-		padding: { top: 0, right: 0, bottom: 0, left: 0 },
-		loadMethod: 'xhr',
-		contentURL: 'transferlist.html',
-    onContentLoaded: function() {
-      ajaxfn();
-    };
-		column: 'mainColumn',
-		onResize: saveColumnSizes,
-		height: null
-	});
     var prop_h = Cookie.read('properties_height');
     if($defined(prop_h))
       prop_h = prop_h.toInt();
@@ -318,6 +304,20 @@ window.addEvent('load', function(){
 			}).send();
 		}
 	};
+  new MochaUI.Panel({
+		id: 'transferList',
+		title: 'Panel',
+		header: false,
+		padding: { top: 0, right: 0, bottom: 0, left: 0 },
+		loadMethod: 'xhr',
+		contentURL: 'transferlist.html',
+    onContentLoaded: function() {
+      ajaxfn();
+    },
+		column: 'mainColumn',
+		onResize: saveColumnSizes,
+		height: null
+	});
 	//ajaxfn();
   if(BrowserDetect.browser != "Safari") {
     // Safari has trouble with this
