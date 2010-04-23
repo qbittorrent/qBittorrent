@@ -184,24 +184,6 @@ window.addEvent('load', function(){
 		column: 'filtersColumn',
 		height: 300
 	});
-    var prop_h = Cookie.read('properties_height');
-    if($defined(prop_h))
-      prop_h = prop_h.toInt();
-    else
-      prop_h = 200;
-    new MochaUI.Panel({
-		id: 'properties',
-		title: 'Panel',
-		header: true,
-		padding: { top: 0, right: 0, bottom: 0, left: 0 },
-		contentURL: 'prop-general.html',
-		require: {
-                  css: ['css/Tabs.css']
-                },
-                tabsURL: 'properties.html',
-		column: 'mainColumn',
-		height: prop_h
-	});
   initializeWindows();
   var r=0;
   var waiting=false;
@@ -317,6 +299,24 @@ window.addEvent('load', function(){
 		column: 'mainColumn',
 		onResize: saveColumnSizes,
 		height: null
+	});
+    var prop_h = Cookie.read('properties_height');
+    if($defined(prop_h))
+      prop_h = prop_h.toInt();
+    else
+      prop_h = 200;
+    new MochaUI.Panel({
+		id: 'properties',
+		title: 'Panel',
+		header: true,
+		padding: { top: 0, right: 0, bottom: 0, left: 0 },
+		contentURL: 'prop-general.html',
+		require: {
+                  css: ['css/Tabs.css']
+                },
+                tabsURL: 'properties.html',
+		column: 'mainColumn',
+		height: prop_h
 	});
 	//ajaxfn();
   if(BrowserDetect.browser != "Safari") {
