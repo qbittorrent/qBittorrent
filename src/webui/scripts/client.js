@@ -191,6 +191,9 @@ window.addEvent('load', function(){
 		padding: { top: 0, right: 0, bottom: 0, left: 0 },
 		loadMethod: 'xhr',
 		contentURL: 'transferlist.html',
+    onContentLoaded: function() {
+      ajaxfn();
+    };
 		column: 'mainColumn',
 		onResize: saveColumnSizes,
 		height: null
@@ -315,7 +318,7 @@ window.addEvent('load', function(){
 			}).send();
 		}
 	};
-	ajaxfn();
+	//ajaxfn();
   if(BrowserDetect.browser != "Safari") {
     // Safari has trouble with this
     loadTransferInfo();
