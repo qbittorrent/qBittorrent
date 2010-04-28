@@ -16,6 +16,16 @@ DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=2
 DEFINES += VERSION_BUGFIX=6
 
+win32 {
+  # Adapt these paths on Windows
+  INCLUDEPATH += $$quote(D:/librarys/boost_1_42_0)
+  INCLUDEPATH += $$quote(D:/librarys/libtorrent-rasterbar-0.14.9/include)
+
+  DEFINES += _WIN32_WINNT=0x0501
+  DEFINES += _WIN32_IE=0x0400
+  DEFINES += _WIN32_WINDOWS
+}
+
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
 DEFINES += VERSION_TYPE=NORMAL
 
@@ -117,11 +127,33 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 # usually built as static
 # win32:LIBS += -ltorrent -lboost_system
 # win32:LIBS += -lz ?
-win32:LIBS += -lssl32 \
-    -lws2_32 \
-    -lwsock32 \
-    -ladvapi32 \
-    -lwinmm
+win32 {
+  LIBS += -lssl \
+          -lws2_32 \
+          -lwsock32 \
+          -ladvapi32 \
+          -lwinmm
+
+  # Adapt these paths on Windows
+  LIBS += C:/boost_1_42_0/lib/libboost_filesystem-mgw44-mt.lib \
+          C:/boost_1_42_0/lib/libboost_program_options-mgw44-mt.lib \
+          C:/boost_1_42_0/lib/libboost_system-mgw44-mt.lib \
+          C:/boost_1_42_0/lib/libboost_thread-mgw44-mt.lib \
+          C:/Qt/2010.02.1/mingw/lib/*.a \
+          C:/Qt/2010.02.1/mingw/lib/libboost_thread.lib \
+          C:/Qt/2010.02.1/mingw/lib/libssl.a \
+          C:/Qt/2010.02.1/mingw/lib/libcrypto.a \
+          C:/Qt/2010.02.1/mingw/lib/libssl.dll.a \
+          C:/Qt/2010.02.1/mingw/lib/libcrypto.dll.a \
+          C:/Qt/2010.02.1/mingw/lib/libws2_32.a \
+          C:/Qt/2010.02.1/mingw/lib/libwsock32.a \
+          C:/Qt/2010.02.1/mingw/lib/libadvapi32.a \
+          C:/Qt/2010.02.1/mingw/lib/libwinmm.a \
+          C:/Qt/2010.02.1/mingw/lib/libgdi32.a \
+          -LC:/Qt/2010.02.1/mingw/lib/
+
+  LIBS += -ltorrent-rasterbar
+}
 
 os2:LIBS += -ltorrent-rasterbar \
     -lcurl \

@@ -64,6 +64,8 @@
 
 QString misc::QDesktopServicesDataLocation() {
 #ifdef Q_WS_WIN
+  LPWSTR path=new WCHAR[256];
+  QString result;
 #if defined Q_WS_WINCE
   if (SHGetSpecialFolderPath(0, path, CSIDL_APPDATA, FALSE))
 #else
@@ -147,16 +149,16 @@ long long misc::freeDiskSpaceOnPath(QString path) {
   GetDiskFreeSpaceEx_t
       pGetDiskFreeSpaceEx = (GetDiskFreeSpaceEx_t)::GetProcAddress
                             (
-                                ::GetModuleHandle(_T("kernel32.dll")),
+                                ::GetModuleHandle(TEXT("kernel32.dll")),
                                 "GetDiskFreeSpaceExW"
                                 );
   if ( pGetDiskFreeSpaceEx )
   {
     ULARGE_INTEGER bytesFree, bytesTotal;
     unsigned long long *ret;
-    if (pGetDiskFreeSpaceEx((LPCTSTR)path.ucs2(), &bytesFree, &bytesTotal, NULL)) {
-      tmp = (unsigned long long*)&bytesFree
-            return ret;
+    if (pGetDiskFreeSpaceEx((LPCTSTR)path.utf16(), &bytesFree, &bytesTotal, NULL)) {
+      ret = (unsigned long long*)&bytesFree;
+      return *ret;
     } else {
       return -1;
     }
