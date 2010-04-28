@@ -180,8 +180,8 @@ int main(int argc, char *argv[]){
 #ifdef Q_WS_WIN
   char buffer[UNLEN+1] = {0};
   DWORD buffer_len = UNLEN + 1;
-  if (!GetUserName(buffer, &buffer_len))
-    uid = QString(buffer)
+  if (!GetUserNameA(buffer, &buffer_len))
+    uid = QString(buffer);
 #else
     uid = QString::number(getuid());
 #endif

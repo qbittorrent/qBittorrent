@@ -2,10 +2,10 @@
 #define FILESYSTEMWATCHER_H
 
 #include <QFileSystemWatcher>
+#include <QDir>
 
 #ifndef Q_WS_WIN
 #include <QTimer>
-#include <QDir>
 #include <QPointer>
 #include <QStringList>
 #include <QSet>
@@ -180,6 +180,7 @@ protected slots:
   }
 
   void scanNetworkFolders() {
+#ifndef Q_WS_WIN
     qDebug("scanNetworkFolders() called");
     QStringList torrents;
     // Network folders scan
@@ -192,6 +193,7 @@ protected slots:
       qDebug("The following files are being reported: %s", qPrintable(torrents.join("\n")));
       emit torrentsAdded(torrents);
     }
+#endif
   }
 
 signals:

@@ -44,7 +44,7 @@
 #include "propertieswidget.h"
 
 // Defines for properties list columns
-enum PropColumn {NAME, SIZE, PROGRESS, PRIORITY};
+enum PropColumn {NAME, PCSIZE, PROGRESS, PRIORITY};
 
 class PropListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -65,7 +65,7 @@ public:
     painter->save();
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()){
-    case SIZE:
+    case PCSIZE:
       QItemDelegate::drawBackground(painter, opt, index);
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
       break;
