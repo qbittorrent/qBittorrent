@@ -392,7 +392,7 @@ RssStream::RssStream(RssFolder* parent, RssManager *rssmanager, Bittorrent *BTSe
     QHash<QString, QVariant> item = var_it.toHash();
     RssItem *rss_item = RssItem::fromHash(this, item);
     if(rss_item->isValid()) {
-      (*this)[rss_item->getTitle()] = rss_item;
+      (*this)[rss_item->getId()] = rss_item;
     } else {
       delete rss_item;
     }
@@ -518,8 +518,8 @@ void RssStream::setIconPath(QString path) {
   iconPath = path;
 }
 
-RssItem* RssStream::getItem(QString name) const{
-  return this->value(name);
+RssItem* RssStream::getItem(QString id) const{
+  return this->value(id);
 }
 
 unsigned int RssStream::getNbNews() const{
@@ -619,8 +619,8 @@ short RssStream::readDoc(QIODevice* device) {
             }
             else if(xml.name() == "item") {
               RssItem * item = new RssItem(this, xml);
-              if(item->isValid() && !itemAlreadyExists(item->getTitle())) {
-                this->insert(item->getTitle(), item);
+              if(item->isValid() && !itemAlreadyExists(item->getId())) {
+                this->insert(item->getId(), item);
               } else {
                 delete item;
               }
@@ -673,7 +673,7 @@ void RssStream::resizeList() {
     int excess = nb_articles - max_articles;
     for(int i=0; i<excess; ++i){
       RssItem *lastItem = listItem.takeLast();
-      delete this->take(lastItem->getTitle());
+      delete this->take(lastItem->getId());
     }
   }
 }

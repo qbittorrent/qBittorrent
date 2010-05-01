@@ -42,8 +42,7 @@
 #include "feedList.h"
 #include "bittorrent.h"
 
-#define NEWS_TITLE_COL 1
-#define NEWS_URL_COL 2
+enum NewsCols { NEWS_ICON, NEWS_TITLE_COL, NEWS_URL_COL, NEWS_ID };
 
 // display a right-click menu
 void RSSImp::displayRSSListMenu(const QPoint& pos){
@@ -92,7 +91,7 @@ void RSSImp::displayItemsListMenu(const QPoint&){
     foreach(QTreeWidgetItem *item, selectedItems) {
       qDebug("text(3) URL: %s", qPrintable(item->text(NEWS_URL_COL)));
       qDebug("text(2) TITLE: %s", qPrintable(item->text(NEWS_TITLE_COL)));
-      if(listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_TITLE_COL))->has_attachment()) {
+      if(listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID))->has_attachment()) {
         has_attachment = true;
         break;
       }
@@ -287,7 +286,7 @@ void RSSImp::on_updateAllButton_clicked() {
 void RSSImp::downloadTorrent() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
-    RssItem* article =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_TITLE_COL));
+    RssItem* article =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
     if(article->has_attachment()) {
       BTSession->downloadFromUrl(article->getTorrentUrl());
     } else {
@@ -300,7 +299,7 @@ void RSSImp::downloadTorrent() {
 void RSSImp::openNewsUrl() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
-    RssItem* news =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_TITLE_COL));
+    RssItem* news =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
     QString link = news->getLink();
     if(!link.isEmpty())
       QDesktopServices::openUrl(QUrl(link));
@@ -444,12 +443,13 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
     QTreeWidgetItem* it = new QTreeWidgetItem(listNews);
     it->setText(NEWS_TITLE_COL, article->getTitle());
     it->setText(NEWS_URL_COL, article->getParent()->getUrl());
+    it->setText(NEWS_ID, article->getId());
     if(article->isRead()){
       it->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("grey")));
-      it->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
+      it->setData(NEWS_ICON, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
     }else{
       it->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("blue")));
-      it->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere2.png")));
+      it->setData(NEWS_ICON, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere2.png")));
     }
   }
   qDebug("Added all news to the GUI");
@@ -471,7 +471,7 @@ void RSSImp::refreshTextBrowser() {
     previous_news = item;
   }
   RssStream *stream = listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL));
-  RssItem* article = stream->getItem(item->text(NEWS_TITLE_COL));
+  RssItem* article = stream->getItem(item->text(NEWS_ID));
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
   html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->getTitle() + "</div>";

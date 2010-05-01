@@ -3,6 +3,7 @@
     - BUGFIX: Fix possible initialization problem in Web UI
     - BUGFIX: Fix torrent moving after completion feature
     - BUGFIX: Improved empty folder removing code
+    - BUGFIX: Use guid or news url as RSS items identifier (instead of title)
     - I18N: Added Croatian translation
 
 * Sun Apr 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.6
