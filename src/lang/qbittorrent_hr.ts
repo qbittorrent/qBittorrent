@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -9,7 +11,7 @@
         <source>About</source>
         <translation>O</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -321,6 +323,10 @@ p, li { white-space: pre-wrap; }
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Preuzimanje &apos;%1&apos;, pričekajte ...</translation>
     </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
@@ -620,7 +626,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
         <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation>Dogodila se greška (pun disk?), &apos;%1&apos; zaustavljeno.</translation>
+        <translation type="obsolete">Dogodila se greška (pun disk?), &apos;%1&apos; zaustavljeno.</translation>
     </message>
     <message>
         <source>Search</source>
@@ -704,6 +710,14 @@ Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
     <message>
         <source>Options were saved successfully.</source>
         <translation>Mogućnosti su uspješno spremljene.</translation>
+    </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1190,6 +1204,7 @@ Neće biti daljnjih napomena.
     </message>
     <message>
         <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Koristi obojene naizmjenične redove</translation>
     </message>
     <message>
@@ -1280,7 +1295,7 @@ QGroupBox {
     </message>
     <message>
         <source>Automatically load .torrent files from:</source>
-        <translation>Automatski učitaj .torrent datoteke iz:</translation>
+        <translation type="obsolete">Automatski učitaj .torrent datoteke iz:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -1389,6 +1404,7 @@ QGroupBox {
     </message>
     <message>
         <source>to</source>
+        <extracomment>time1 to time2</extracomment>
         <translation>do</translation>
     </message>
     <message>
@@ -1503,7 +1519,7 @@ QGroupBox {
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
@@ -1513,6 +1529,7 @@ QGroupBox {
     </message>
     <message>
         <source>Build:</source>
+        <extracomment>Software Build nulmber:</extracomment>
         <translation>Izgrađena:</translation>
     </message>
     <message>
@@ -1582,6 +1599,18 @@ QGroupBox {
     <message>
         <source>Maximum number of articles per feed:</source>
         <translation>Najveći broj članaka po kanalu:</translation>
+    </message>
+    <message>
+        <source>Check Folders for .torrent Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1987,6 +2016,17 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ScanFoldersModel</name>
+    <message>
+        <source>Watched Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download here</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchCategories</name>
     <message>
         <source>All categories</source>
@@ -2282,7 +2322,7 @@ p, li { white-space: pre-wrap; }
         <source>List of trackers to add (one per line):</source>
         <translation>Popis trackera za dodati (jedan po liniji):</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>µTorrent compatible list URL:</source>
         <translation>Popis URL-ova kompatibilan s µTorrentom:</translation>
     </message>
@@ -3258,7 +3298,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <name>options_imp</name>
     <message>
         <source>Choose scan directory</source>
-        <translation>Izaberite direktorij za skeniranje</translation>
+        <translation type="obsolete">Izaberite direktorij za skeniranje</translation>
     </message>
     <message>
         <source>Choose export directory</source>
@@ -3275,6 +3315,30 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <source>Filters</source>
         <translation>Filteri</translation>
+    </message>
+    <message>
+        <source>Add directory to scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is already being watched.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder is not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
