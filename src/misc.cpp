@@ -483,9 +483,15 @@ QString misc::magnetUriToHash(QString magnet_uri) {
 }
 
 QString misc::boostTimeToQString(const boost::optional<boost::posix_time::ptime> boostDate) {
-  if(!boostDate) return tr("Unknown");
+  if(!boostDate || !boostDate.is_initialized() || boostDate->is_not_a_date_time()) return tr("Unknown");
   struct std::tm tm = boost::posix_time::to_tm(*boostDate);
-  return QDateTime::fromTime_t(mktime(&tm)).toString(Qt::DefaultLocaleLongDate);
+  time_t t = mktime(&tm);
+  if(t < 0)
+    return tr("Unknown");
+  QDateTime dt = QDateTime::fromTime_t(t);
+  if(dt.isNull() || !dt.isValid())
+    return tr("Unknown");
+  return dt.toString(Qt::DefaultLocaleLongDate);
 }
 
 // Replace ~ in path
