@@ -122,6 +122,7 @@ class RssItem: public QObject {
   Q_OBJECT
 private:
   RssStream* parent;
+  QString id;
   QString title;
   QString torrent_url;
   QString news_link;
@@ -281,10 +282,6 @@ public:
       if(xml.isStartElement()) {
         if(xml.name() == "title") {
           title = xml.readElementText();
-          if(title.isEmpty()) {
-            is_valid = false;
-            return;
-          }
         }
         else if(xml.name() == "enclosure") {
           if(xml.attributes().value("type") == "application/x-bittorrent") {
@@ -293,6 +290,8 @@ public:
         }
         else if(xml.name() == "link") {
           news_link = xml.readElementText();
+          if(id.isEmpty())
+            id = news_link;
         }
         else if(xml.name() == "description") {
           description = xml.readElementText();
@@ -303,15 +302,20 @@ public:
         else if(xml.name() == "author") {
           author = xml.readElementText();
         }
+        else if(xml.name() == "guid") {
+          id = xml.readElementText();
+        }
       }
     }
-    if(!title.isEmpty())
+    if(!id.isEmpty())
       is_valid = true;
   }
 
-  RssItem(RssStream* parent, QString _title, QString _torrent_url, QString _news_link, QString _description, QDateTime _date, QString _author, bool _read):
-      parent(parent), title(_title), torrent_url(_torrent_url), news_link(_news_link), description(_description), date(_date), author(_author), read(_read){
-    if(!title.isEmpty()) {
+  RssItem(RssStream* parent, QString _id, QString _title, QString _torrent_url, QString _news_link, QString _description, QDateTime _date, QString _author, bool _read):
+      parent(parent), id(_id), title(_title), torrent_url(_torrent_url), news_link(_news_link), description(_description), date(_date), author(_author), read(_read){
+    if(id.isEmpty())
+      id = news_link;
+    if(!id.isEmpty()) {
       is_valid = true;
     } else {
       std::cerr << "ERROR: an invalid RSS item was saved" << std::endl;
@@ -326,9 +330,12 @@ public:
     return !torrent_url.isEmpty();
   }
 
+  QString getId() const { return id; }
+
   QHash<QString, QVariant> toHash() const {
     QHash<QString, QVariant> item;
     item["title"] = title;
+    item["id"] = id;
     item["torrent_url"] = torrent_url;
     item["news_link"] = news_link;
     item["description"] = description;
@@ -339,7 +346,7 @@ public:
   }
 
   static RssItem* fromHash(RssStream* parent, QHash<QString, QVariant> h) {
-    return new RssItem(parent, h["title"].toString(), h["torrent_url"].toString(), h["news_link"].toString(),
+    return new RssItem(parent, h.value("id", "").toString(), h["title"].toString(), h["torrent_url"].toString(), h["news_link"].toString(),
                        h["description"].toString(), h["date"].toDateTime(), h["author"].toString(), h["read"].toBool());
   }
 
