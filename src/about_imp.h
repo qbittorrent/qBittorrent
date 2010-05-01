@@ -68,6 +68,7 @@ class about : public QDialog, private Ui::AboutDlg{
           - <u>Catalan:</u> Francisco Luque Contreras (frannoe@ya.com)<br>\
           - <u>Chinese (Simplified):</u> Guo Yue (yue.guo0418@gmail.com)<br>\
           - <u>Chinese (Traditional):</u> Yi-Shun Wang (dnextstep@gmail.com)<br>\
+          - <u>Croatian:</u> Olivier Delakroa (oliver.untwist@gmail.com)<br>\
           - <u>Czech:</u> Jirka Vilim (web@tets.cz)<br>\
           - <u>Danish:</u> Mathias Nielsen (comoneo@gmail.com)<br>\
           - <u>Dutch:</u> Joost Schipper (heavyjoost@users.sourceforge.net) and Peter Koeleman (peter@peerweb.nl)<br>\
