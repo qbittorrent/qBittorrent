@@ -424,7 +424,12 @@ QString misc::magnetUriToHash(QString magnet_uri) {
 
 QString misc::boostTimeToQString(const boost::optional<boost::posix_time::ptime> boostDate) {
   if(!boostDate || !boostDate.is_initialized() || boostDate->is_not_a_date_time()) return tr("Unknown");
-  struct std::tm tm = boost::posix_time::to_tm(*boostDate);
+  struct std::tm tm;
+  try {
+    tm = boost::posix_time::to_tm(*boostDate);
+  } catch(std::exception e) {
+    return tr("Unknown");
+  }
   time_t t = mktime(&tm);
   if(t < 0)
     return tr("Unknown");
