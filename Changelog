@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.7
     - BUGFIX: Fix unicode problem in torrent moving code
     - BUGFIX: Fix possible initialization problem in Web UI
+    - BUGFIX: Fix torrent moving after completion feature
 
 * Sun Apr 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.6
     - BUGFIX: Announce to all trackers at once
