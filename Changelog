@@ -2,6 +2,7 @@
     - BUGFIX: Fix unicode problem in torrent moving code
     - BUGFIX: Fix possible initialization problem in Web UI
     - BUGFIX: Fix torrent moving after completion feature
+    - BUGFIX: Improved empty folder removing code
 
 * Sun Apr 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.6
     - BUGFIX: Announce to all trackers at once

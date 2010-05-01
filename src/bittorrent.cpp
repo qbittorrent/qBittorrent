@@ -1970,7 +1970,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           const QString new_save_path = QString::fromLocal8Bit(p->path.c_str());
           qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
           qDebug("Attempting to remove %s", qPrintable(old_save_path));
-          QDir().rmpath(old_save_path);
+          if(old_save_path != defaultSavePath && old_save_path != defaultTempPath)
+            QDir().rmdir(old_save_path);
           if(new_save_path != defaultTempPath)
             TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
           emit savePathChanged(h);

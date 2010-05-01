@@ -729,8 +729,6 @@ void PropertiesWidget::renameSelectedFile() {
             return;
           }
         }
-        // Save savepath
-        TorrentPersistentData::saveSavePath(h.hash(), savePath.absolutePath());
         // Actually move storage
         if(!BTSession->useTemporaryFolder() || h.is_seed())
           h.move_storage(savePath.absolutePath());
