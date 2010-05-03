@@ -3939,12 +3939,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Please type a rss stream url</source>
         <translation>Prosím napište URL RSS kanálu</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Stream URL:</source>
         <translation>URL kanálu:</translation>
     </message>
@@ -3957,20 +3957,20 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nový název kanálu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="205"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Jste si jist? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ano</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
@@ -3991,68 +3991,68 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Poslední obnova:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Please choose a folder name</source>
         <translation>Prosím vyberte název adresáře</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Folder name:</source>
         <translation>Název adresáře:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>New folder</source>
         <translation>Nový adresář</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="139"/>
+        <location filename="../rss_imp.cpp" line="138"/>
         <source>Overwrite attempt</source>
         <translation>Pokus o přepsání</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="140"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Nelze přepsat %1.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="177"/>
+        <location filename="../rss_imp.cpp" line="176"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="178"/>
+        <location filename="../rss_imp.cpp" line="177"/>
         <source>This rss feed is already in the list.</source>
         <translation>Tento RSS kanál už v seznamu existuje.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="205"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Jste si jist, že chcete smazat tyto prvky ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Jste si jist, že chcete smazat tento prvek ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Prosím vyberte nový název pro tento RSS kanál</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>New feed name:</source>
         <translation>Název nového kanálu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>Name already in use</source>
         <translation>Název je již používán</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Tento název již používá jiná položka, vyberte prosím jiný.</translation>
     </message>
@@ -4075,7 +4075,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="372"/>
+        <location filename="../rss.h" line="379"/>
         <source>No description available</source>
         <translation>Popis není k dispozici</translation>
     </message>
@@ -6058,29 +6058,32 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="486"/>
+        <location filename="../misc.cpp" line="491"/>
+        <location filename="../misc.cpp" line="495"/>
+        <location filename="../misc.cpp" line="498"/>
         <source>Unknown</source>
         <translation>Neznámý</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="515"/>
+        <location filename="../misc.cpp" line="526"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="519"/>
+        <location filename="../misc.cpp" line="530"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="524"/>
+        <location filename="../misc.cpp" line="535"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="529"/>
+        <location filename="../misc.cpp" line="540"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>

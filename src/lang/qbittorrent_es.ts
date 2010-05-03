@@ -200,12 +200,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="145"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Número máximo de conexiones abiertas [0: Desactivado]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="153"/>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Siembra super estricta</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="106"/>
@@ -2564,12 +2564,12 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="431"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmación descargas recursivas</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="431"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Este torrent %1 contiene archivos torrent, ¿quiere seguir adelante con su descarga?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="444"/>
@@ -2778,305 +2778,305 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../geoip.h" line="108"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="109"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="110"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="111"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="114"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="118"/>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <location filename="../geoip.h" line="147"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="125"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="133"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="134"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="137"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="138"/>
         <source>France</source>
-        <translation type="unfinished">Francia</translation>
+        <translation>Francia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="141"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="142"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="143"/>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="146"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="151"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="152"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="153"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="154"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="155"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="156"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="165"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="168"/>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="169"/>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="170"/>
         <location filename="../geoip.h" line="188"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="171"/>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="174"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="179"/>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="180"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="185"/>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
         <source>Saoudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="194"/>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="195"/>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="203"/>
         <location filename="../geoip.h" line="204"/>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="208"/>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -4939,12 +4939,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Please type a rss stream url</source>
         <translation>Por favor escribe una URL de un Canal RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Stream URL:</source>
         <translation>URL del Canal:</translation>
     </message>
@@ -4957,20 +4957,20 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nuevo nombre del flujo:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="205"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>¿Estás seguro? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sí</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
@@ -4991,68 +4991,68 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Última actualización:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Please choose a folder name</source>
         <translation>Por favor elija un nombre para la carpeta</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Folder name:</source>
         <translation>Nombre de la carpeta:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>New folder</source>
         <translation>Nueva carpeta</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="139"/>
+        <location filename="../rss_imp.cpp" line="138"/>
         <source>Overwrite attempt</source>
         <translation>Intentando sobrescribir</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="140"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Imposible sobrescribir %1 sector.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="177"/>
+        <location filename="../rss_imp.cpp" line="176"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="178"/>
+        <location filename="../rss_imp.cpp" line="177"/>
         <source>This rss feed is already in the list.</source>
         <translation>Esta fuente de RSS ya está en la lista.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="205"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>¿Seguro que quiere eliminar estos elementos de la lista?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>¿Seguro que desea eliminar este elemento de la lista?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Por favor, elija un nuevo nombre para el Canal RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>New feed name:</source>
         <translation>Nombre del nuevo Canal:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>Name already in use</source>
         <translation>Ese nombre ya se encuentra en uso</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Ese nombre ya se está usando, por favor, elija otro.</translation>
     </message>
@@ -5075,7 +5075,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="372"/>
+        <location filename="../rss.h" line="379"/>
         <source>No description available</source>
         <translation>Sin descripción disponible</translation>
     </message>
@@ -7309,6 +7309,9 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="486"/>
+        <location filename="../misc.cpp" line="491"/>
+        <location filename="../misc.cpp" line="495"/>
+        <location filename="../misc.cpp" line="498"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -7329,25 +7332,25 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>Desconocido</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="515"/>
+        <location filename="../misc.cpp" line="526"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt;1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="519"/>
+        <location filename="../misc.cpp" line="530"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="524"/>
+        <location filename="../misc.cpp" line="535"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="529"/>
+        <location filename="../misc.cpp" line="540"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>
