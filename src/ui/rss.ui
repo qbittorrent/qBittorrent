@@ -125,7 +125,10 @@ p, li { white-space: pre-wrap; }
            <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="selectionMode">
-           <enum>QAbstractItemView::ExtendedSelection</enum>
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectItems</enum>
           </property>
           <property name="rootIsDecorated">
            <bool>false</bool>
@@ -136,6 +139,15 @@ p, li { white-space: pre-wrap; }
           <property name="allColumnsShowFocus">
            <bool>true</bool>
           </property>
+          <property name="expandsOnDoubleClick">
+           <bool>false</bool>
+          </property>
+          <attribute name="headerVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="headerStretchLastSection">
+           <bool>true</bool>
+          </attribute>
           <attribute name="headerVisible">
            <bool>false</bool>
           </attribute>
