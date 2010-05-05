@@ -460,13 +460,13 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
 void RSSImp::refreshTextBrowser() {
   QList<QTreeWidgetItem*> selection = listNews->selectedItems();
   if(selection.empty()) return;
+  Q_ASSERT(selection.size() == 1);
   QTreeWidgetItem *item = selection.first();
   if(item == previous_news) return;
   // Stop displaying previous news if necessary
   if(listStreams->currentFeed() == listStreams->getUnreadItem()) {
     if(previous_news) {
-      delete previous_news;
-      previous_news = 0;
+      delete listNews->takeTopLevelItem(listNews->indexOfTopLevelItem(previous_news));
     }
     previous_news = item;
   }
