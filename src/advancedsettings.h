@@ -5,11 +5,13 @@
 #include <QHeaderView>
 #include <QSpinBox>
 #include <QCheckBox>
+#include <QComboBox>
+#include <QNetworkInterface>
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING };
-#define ROW_COUNT 11
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE };
+#define ROW_COUNT 12
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
@@ -17,6 +19,7 @@ class AdvancedSettings: public QTableWidget {
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen;
   QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding;
+  QComboBox *combo_iface;
 
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
@@ -47,6 +50,7 @@ public:
     delete cb_resolve_hosts;
     delete spin_maxhalfopen;
     delete cb_super_seeding;
+    delete combo_iface;
   }
 
 public slots:
@@ -73,6 +77,13 @@ public slots:
     // Super seeding
     Preferences::enableSuperSeeding(cb_super_seeding->isChecked());
 #endif
+    // Network interface
+    if(combo_iface->currentIndex() == 0) {
+      // All interfaces (default)
+      Preferences::setNetworkInterface(QString::null);
+    } else {
+      Preferences::setNetworkInterface(combo_iface->currentText());
+    }
   }
 
 protected slots:
@@ -159,6 +170,21 @@ protected slots:
     cb_super_seeding->setEnabled(false);
 #endif
     setCellWidget(SUPER_SEEDING, VALUE, cb_super_seeding);
+    // Network interface
+    setItem(NETWORK_IFACE, PROPERTY, new QTableWidgetItem(tr("Network Interface (requires restart)")));
+    combo_iface = new QComboBox;
+    combo_iface->addItem(tr("Any interface", "i.e. Any network interface"));
+    const QString &current_iface = Preferences::getNetworkInterface();
+    int i = 1;
+    foreach(const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
+      if(iface.name() == "lo") continue;
+      combo_iface->addItem(iface.name());
+      if(!current_iface.isEmpty() && iface.name() == current_iface)
+        combo_iface->setCurrentIndex(i);
+      ++i;
+    }
+    connect(combo_iface, SIGNAL(currentIndexChanged(int)), this, SLOT(emitSettingsChanged()));
+    setCellWidget(NETWORK_IFACE, VALUE, combo_iface);
   }
 
   void emitSettingsChanged() {

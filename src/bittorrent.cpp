@@ -32,6 +32,9 @@
 #include <QDateTime>
 #include <QString>
 #include <QSettings>
+#include <QNetworkInterface>
+#include <QHostAddress>
+#include <QNetworkAddressEntry>
 #include <stdlib.h>
 
 #include "filesystemwatcher.h"
@@ -1696,7 +1699,22 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
   // session will listen to
   void Bittorrent::setListeningPort(int port) {
     std::pair<int,int> ports(port, port);
-    s->listen_on(ports);
+    const QString& iface_name = Preferences::getNetworkInterface();
+    if(iface_name.isEmpty()) {
+      s->listen_on(ports);
+      return;
+    }
+    QNetworkInterface network_iface = QNetworkInterface::interfaceFromName(iface_name);
+    if(!network_iface.isValid()) {
+      s->listen_on(ports);
+      return;
+    }
+    QString ip = "127.0.0.1";
+    if(!network_iface.addressEntries().isEmpty()) {
+      ip = network_iface.addressEntries().first().ip().toString();
+    }
+    qDebug("Listening on interface %s with ip %s", qPrintable(iface_name), qPrintable(ip));
+    s->listen_on(ports, ip.toLocal8Bit().constData());
   }
 
   // Set download rate limit

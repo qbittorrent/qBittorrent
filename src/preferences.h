@@ -929,6 +929,16 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Connection/MaxHalfOpenConnec"), value);
   }
 
+  static void setNetworkInterface(QString iface) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Connection/Interface"), iface);
+  }
+
+  static QString getNetworkInterface() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Connection/Interface"), QString()).toString();
+  }
+
 #ifdef LIBTORRENT_0_15
   static bool isSuperSeedingEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");

@@ -2,6 +2,7 @@
     - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)
     - FEATURE: Max number of half-open connections can now be edited
     - FEATURE: Added support for strict super seeding
+    - FEATURE: The user can force listening on a particular network interface
     - COSMETIC: Display peers country name in tooltip
 
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
