@@ -1086,7 +1086,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   if(selectedIndexes.size() == 1)
     listMenu.addAction(&actionRename);
   // Label Menu
-  const QStringList &customLabels = getCustomLabels();
+  QStringList customLabels = getCustomLabels();
+  customLabels.sort();
   QList<QAction*> labelActions;
   QMenu *labelMenu = listMenu.addMenu(QIcon(":/Icons/oxygen/feed-subscribe.png"), tr("Label"));
   labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("New...", "New label..."));
