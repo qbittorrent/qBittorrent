@@ -5,6 +5,7 @@
     - BUGFIX: Improved empty folder removing code
     - BUGFIX: Use guid or news url as RSS items identifier (instead of title)
     - BUGFIX: Fix possible crash in RSS item selection code
+    - BUGFIX: Added support for url encoded ampersands in RSS
     - COSMETIC: Sort torrent labels in popup menu
     - I18N: Added Croatian translation
 

@@ -54,7 +54,7 @@ downloadThread::~downloadThread(){
 }
 
 void downloadThread::processDlFinished(QNetworkReply* reply) {
-  QString url = reply->url().toString();
+  QString url = reply->url().toEncoded().data();
   if(reply->error() != QNetworkReply::NoError) {
     // Failure
     emit downloadFailure(url, errorCodeToString(reply->error()));
