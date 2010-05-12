@@ -40,21 +40,15 @@ enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 /** Download Thread **/
 
 downloadThread::downloadThread(QObject* parent) : QObject(parent) {
-  networkManager = new QNetworkAccessManager(this);
-  connect(networkManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(processDlFinished(QNetworkReply*)));
+  connect(&networkManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(processDlFinished(QNetworkReply*)));
 #ifndef QT_NO_OPENSSL
-  connect(networkManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply*,QList<QSslError>)));
+  connect(&networkManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply*,QList<QSslError>)));
 #endif
 }
 
-downloadThread::~downloadThread(){
-  qDebug("Deleting network manager");
-  delete networkManager;
-  qDebug("Deleted network manager");
-}
-
 void downloadThread::processDlFinished(QNetworkReply* reply) {
-  QString url = reply->url().toString();
+  QString url = reply->url().toEncoded().data();
+  qDebug("Download finished: %s", qPrintable(url));
   if(reply->error() != QNetworkReply::NoError) {
     // Failure
     qDebug("Download failure (%s), reason: %s", qPrintable(url), qPrintable(errorCodeToString(reply->error())));
@@ -110,14 +104,14 @@ QNetworkReply* downloadThread::downloadUrl(QString url){
   // Update proxy settings
   applyProxySettings();
   // Process download request
-  QNetworkRequest request;
-  request.setUrl(QUrl::fromEncoded(url.toLocal8Bit()));
+  qDebug("url is %s", qPrintable(url));
+  const QUrl &qurl = QUrl::fromEncoded(url.toLocal8Bit());
+  QNetworkRequest request(qurl);
   // Spoof Firefox 3.5 user agent to avoid
   // Web server banning
   request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5");
   qDebug("Downloading %s...", request.url().toEncoded().data());
-  qDebug("Header: %s", qPrintable(request.header(QNetworkRequest::LocationHeader).toString()));
-  return networkManager->get(request);
+  return networkManager.get(request);
 }
 
 void downloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) {
@@ -169,7 +163,7 @@ void downloadThread::applyProxySettings() {
   } else {
     proxy.setType(QNetworkProxy::NoProxy);
   }
-  networkManager->setProxy(proxy);
+  networkManager.setProxy(proxy);
 }
 
 QString downloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
