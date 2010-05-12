@@ -57,6 +57,7 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
   QString url = reply->url().toString();
   if(reply->error() != QNetworkReply::NoError) {
     // Failure
+    qDebug("Download failure (%s), reason: %s", qPrintable(url), qPrintable(errorCodeToString(reply->error())));
     emit downloadFailure(url, errorCodeToString(reply->error()));
   } else {
     QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
@@ -80,7 +81,9 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
       qDebug("Temporary filename is: %s", qPrintable(filePath));
       if(reply->open(QIODevice::ReadOnly)) {
         // TODO: Support GZIP compression
-        tmpfile.write(reply->readAll());
+        QByteArray content = reply->readAll();
+        //qDebug("Read content: %s", content.data());
+        tmpfile.write(content);
         reply->close();
         tmpfile.close();
         // Send finished signal
@@ -112,7 +115,8 @@ QNetworkReply* downloadThread::downloadUrl(QString url){
   // Spoof Firefox 3.5 user agent to avoid
   // Web server banning
   request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5");
-  qDebug("Downloading %s...", qPrintable(request.url().toString()));
+  qDebug("Downloading %s...", request.url().toEncoded().data());
+  qDebug("Header: %s", qPrintable(request.header(QNetworkRequest::LocationHeader).toString()));
   return networkManager->get(request);
 }
 

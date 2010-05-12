@@ -347,8 +347,11 @@ public:
   }
 
   bool allFiltered() const {
-    if(!rootItem->childCount()) return true;
-    return (rootItem->child(0)->getPriority() == IGNORED);
+    for(int i=0; i<rootItem->childCount(); ++i) {
+      if(rootItem->child(i)->getPriority() != IGNORED)
+        return false;
+    }
+    return true;
   }
 
   int columnCount(const QModelIndex &parent=QModelIndex()) const {
