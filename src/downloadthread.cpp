@@ -99,10 +99,11 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
   reply->deleteLater();
 }
 
-void downloadThread::loadCookies(QString host_name, QString url) {
+void downloadThread::loadCookies(const QString &host_name, QString url) {
   const QList<QByteArray> &raw_cookies = Preferences::getHostNameCookies(host_name);
   QNetworkCookieJar *cookie_jar = networkManager.cookieJar();
   QList<QNetworkCookie> cookies;
+  qDebug("Loading cookies for host name: %s", qPrintable(host_name));
   foreach(const QByteArray& raw_cookie, raw_cookies) {
     QList<QByteArray> cookie_parts = raw_cookie.split('=');
     if(cookie_parts.size() == 2) {
@@ -139,6 +140,11 @@ QNetworkReply* downloadThread::downloadUrl(QString url){
   // Web server banning
   request.setRawHeader("User-Agent", "Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5");
   qDebug("Downloading %s...", request.url().toEncoded().data());
+  qDebug("%d cookies for this URL", networkManager.cookieJar()->cookiesForUrl(url).size());
+  for(int i=0; i<networkManager.cookieJar()->cookiesForUrl(url).size(); ++i) {
+    qDebug("%s=%s", networkManager.cookieJar()->cookiesForUrl(url).at(i).name().data(), networkManager.cookieJar()->cookiesForUrl(url).at(i).value().data());
+    qDebug("Domain: %s, Path: %s", qPrintable(networkManager.cookieJar()->cookiesForUrl(url).at(i).domain()), qPrintable(networkManager.cookieJar()->cookiesForUrl(url).at(i).path()));
+  }
   return networkManager.get(request);
 }
 

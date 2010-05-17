@@ -464,7 +464,7 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <translation type="unfinished">Wartość</translation>
     </message>
     <message>
-        <source>Common keys for cookies are : &apos;%1&apos;&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translation type="unfinished"></translation>
     </message>

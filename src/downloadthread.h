@@ -58,7 +58,7 @@ public:
 protected:
   QString errorCodeToString(QNetworkReply::NetworkError status);
   void applyProxySettings();
-  void loadCookies(QString host_name, QString url);
+  void loadCookies(const QString &host_name, QString url);
 
 protected slots:
   void processDlFinished(QNetworkReply* reply);
