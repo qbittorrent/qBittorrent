@@ -218,6 +218,15 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <source>Strict super seeding</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Network Interface (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any interface</source>
+        <comment>i.e. Any network interface</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -438,6 +447,26 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>Blocked IPs</source>
         <translation>Zablokowane IP</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesDlg</name>
+    <message>
+        <source>Cookies management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished">Wartość</translation>
+    </message>
+    <message>
+        <source>Common keys for cookies are : &apos;%1&apos;&apos;, &apos;%2&apos;.
+You should get this information from your Web browser preferences.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4445,6 +4474,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Mark all as read</source>
         <translation type="obsolete">Zaznacz wszystko do odczytu</translation>
+    </message>
+    <message>
+        <source>Manage cookies</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

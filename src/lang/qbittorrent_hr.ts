@@ -157,6 +157,15 @@ p, li { white-space: pre-wrap; }
         <source>Strict super seeding</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Network Interface (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any interface</source>
+        <comment>i.e. Any network interface</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
@@ -349,6 +358,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Blokirani IP-ovi</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesDlg</name>
+    <message>
+        <source>Cookies management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished">Vrijednost</translation>
+    </message>
+    <message>
+        <source>Common keys for cookies are : &apos;%1&apos;&apos;, &apos;%2&apos;.
+You should get this information from your Web browser preferences.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2162,6 +2191,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Refresh RSS streams</source>
         <translation>Osvježi RSS strujanja</translation>
+    </message>
+    <message>
+        <source>Manage cookies</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

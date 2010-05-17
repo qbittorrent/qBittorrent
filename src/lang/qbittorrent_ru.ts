@@ -206,6 +206,15 @@ p, li { white-space: pre-wrap; }
         <source>Strict super seeding</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Network Interface (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any interface</source>
+        <comment>i.e. Any network interface</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -430,6 +439,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Заблокированные IP</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesDlg</name>
+    <message>
+        <source>Cookies management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished">Значение</translation>
+    </message>
+    <message>
+        <source>Common keys for cookies are : &apos;%1&apos;&apos;, &apos;%2&apos;.
+You should get this information from your Web browser preferences.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4428,6 +4457,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Article title</source>
         <translation>Заголовок статьи</translation>
+    </message>
+    <message>
+        <source>Manage cookies</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
