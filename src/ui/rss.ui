@@ -148,12 +148,6 @@ p, li { white-space: pre-wrap; }
           <attribute name="headerStretchLastSection">
            <bool>true</bool>
           </attribute>
-          <attribute name="headerVisible">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="headerStretchLastSection">
-           <bool>true</bool>
-          </attribute>
           <column>
            <property name="text">
             <string notr="true">Bullet</string>
@@ -290,6 +284,15 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>New folder</string>
+   </property>
+  </action>
+  <action name="actionManage_cookies">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Icons/oxygen/cookies.png</normaloff>:/Icons/oxygen/cookies.png</iconset>
+   </property>
+   <property name="text">
+    <string>Manage cookies</string>
    </property>
   </action>
  </widget>

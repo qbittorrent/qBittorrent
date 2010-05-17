@@ -41,6 +41,8 @@
 #include "feeddownloader.h"
 #include "feedList.h"
 #include "bittorrent.h"
+#include "cookiesdlg.h"
+#include "preferences.h"
 
 enum NewsCols { NEWS_ICON, NEWS_TITLE_COL, NEWS_URL_COL, NEWS_ID };
 
@@ -61,8 +63,11 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
         myRSSListMenu.addAction(actionRename);
         myRSSListMenu.addAction(actionDelete);
         myRSSListMenu.addSeparator();
-        if(listStreams->getItemType(selectedItems.first()) == RssFile::FOLDER)
+        if(listStreams->getItemType(selectedItems.first()) == RssFile::FOLDER) {
           myRSSListMenu.addAction(actionNew_folder);
+        } else {
+          myRSSListMenu.addAction(actionManage_cookies);
+        }
       }
     }
     myRSSListMenu.addAction(actionNew_subscription);
@@ -101,6 +106,20 @@ void RSSImp::displayItemsListMenu(const QPoint&){
     myItemListMenu.addAction(actionOpen_news_URL);
   }
   myItemListMenu.exec(QCursor::pos());
+}
+
+void RSSImp::on_actionManage_cookies_triggered() {
+  Q_ASSERT(!listStreams->selectedItems().empty());
+  // Get feed hostname
+  QString feed_url = listStreams->getItemID(listStreams->selectedItems().first());
+  QString feed_hostname = QUrl::fromEncoded(feed_url.toLocal8Bit()).host();
+  qDebug("RSS Feed hostname is: %s", qPrintable(feed_hostname));
+  Q_ASSERT(!feed_hostname.isEmpty());
+  bool ok = false;
+  QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, Preferences::getHostNameCookies(feed_hostname), &ok);
+  if(ok) {
+    Preferences::setHostNameCookies(feed_hostname, raw_cookies);
+  }
 }
 
 void RSSImp::askNewFolder() {

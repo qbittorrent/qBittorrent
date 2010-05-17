@@ -79,6 +79,7 @@ protected slots:
   void saveFoldersOpenState();
   void loadFoldersOpenState();
   void displayOverwriteError(QString filename);
+  void on_actionManage_cookies_triggered();
 
 public:
   RSSImp(Bittorrent *BTSession);

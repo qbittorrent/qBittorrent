@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,48 +25,34 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : chris@qbittorrent.org arnaud@qbittorrent.org
  */
 
-#ifndef DOWNLOADTHREAD_H
-#define DOWNLOADTHREAD_H
+#ifndef COOKIESDLG_H
+#define COOKIESDLG_H
 
-#include <QNetworkReply>
-#include <QObject>
-#include <QHash>
-#include <QSslError>
+#include <QDialog>
 
-class QNetworkAccessManager;
+namespace Ui {
+    class CookiesDlg;
+}
 
-class downloadThread : public QObject {
-  Q_OBJECT
-
-private:
-  QNetworkAccessManager networkManager;
-  QHash<QString, QString> redirect_mapping;
-
-signals:
-  void downloadFinished(QString url, QString file_path);
-  void downloadFailure(QString url, QString reason);
+class CookiesDlg : public QDialog
+{
+    Q_OBJECT
 
 public:
-  downloadThread(QObject* parent);
-  QNetworkReply* downloadUrl(QString url);
-  void downloadTorrentUrl(QString url);
-  //void setProxy(QString IP, int port, QString username, QString password);
+    explicit CookiesDlg(QWidget *parent = 0, const QList<QByteArray> &raw_cookies = QList<QByteArray>());
+    ~CookiesDlg();
+    QList<QByteArray> getCookies() const;
+    static QList<QByteArray> askForCookies(QWidget *parent, const QList<QByteArray> &raw_cookies, bool *ok);
 
-protected:
-  QString errorCodeToString(QNetworkReply::NetworkError status);
-  void applyProxySettings();
-  void loadCookies(QString host_name, QString url);
+  protected slots:
+    void on_add_btn_clicked();
+    void on_del_btn_clicked();
 
-protected slots:
-  void processDlFinished(QNetworkReply* reply);
-  void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
-#ifndef QT_NO_OPENSSL
-  void ignoreSslErrors(QNetworkReply*,QList<QSslError>);
-#endif
-
+private:
+    Ui::CookiesDlg *ui;
 };
 
-#endif
+#endif // COOKIESDLG_H

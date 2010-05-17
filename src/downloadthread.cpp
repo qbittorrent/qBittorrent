@@ -28,12 +28,16 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "downloadthread.h"
 #include <QTemporaryFile>
 #include <QSettings>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkProxy>
+#include <QNetworkCookie>
+#include <QNetworkCookieJar>
+
+#include "downloadthread.h"
+#include "preferences.h"
 
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 
@@ -95,7 +99,27 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
   reply->deleteLater();
 }
 
+void downloadThread::loadCookies(QString host_name, QString url) {
+  const QList<QByteArray> &raw_cookies = Preferences::getHostNameCookies(host_name);
+  QNetworkCookieJar *cookie_jar = networkManager.cookieJar();
+  QList<QNetworkCookie> cookies;
+  foreach(const QByteArray& raw_cookie, raw_cookies) {
+    QList<QByteArray> cookie_parts = raw_cookie.split('=');
+    if(cookie_parts.size() == 2) {
+      qDebug("Loading cookie: %s", raw_cookie.constData());
+      cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+    }
+  }
+  cookie_jar->setCookiesFromUrl(cookies, url);
+  networkManager.setCookieJar(cookie_jar);
+}
+
 void downloadThread::downloadTorrentUrl(QString url){
+  // Load cookies
+  QString host_name = QUrl::fromEncoded(url.toLocal8Bit()).host();
+  if(!host_name.isEmpty())
+    loadCookies(host_name, url);
+  // Process request
   QNetworkReply *reply = downloadUrl(url);
   connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
 }
@@ -103,6 +127,10 @@ void downloadThread::downloadTorrentUrl(QString url){
 QNetworkReply* downloadThread::downloadUrl(QString url){
   // Update proxy settings
   applyProxySettings();
+  // Load cookies
+  QString host_name = QUrl::fromEncoded(url.toLocal8Bit()).host();
+  if(!host_name.isEmpty())
+    loadCookies(host_name, url);
   // Process download request
   qDebug("url is %s", qPrintable(url));
   const QUrl &qurl = QUrl::fromEncoded(url.toLocal8Bit());

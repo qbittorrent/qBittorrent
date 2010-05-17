@@ -247,7 +247,8 @@ HEADERS += misc.h \
     filesystemwatcher.h \
     preferences.h \
     bandwidthscheduler.h \
-    scannedfoldersmodel.h
+    scannedfoldersmodel.h \
+    cookiesdlg.h
 
 contains(DEFINES, DISABLE_GUI):HEADERS += headlessloader.h
 else:HEADERS +=  GUI.h \
@@ -309,7 +310,8 @@ else:HEADERS +=  GUI.h \
 	    ui/feeddownloader.ui \
 	    ui/propertieswidget.ui \
 	    ui/peer.ui \
-	    ui/confirmdeletiondlg.ui
+            ui/confirmdeletiondlg.ui \
+            ui/cookiesdlg.ui
 
 SOURCES += main.cpp \ 
     bittorrent.cpp \
@@ -321,7 +323,8 @@ SOURCES += main.cpp \
     httpresponsegenerator.cpp \
     eventmanager.cpp \
     scannedfoldersmodel.cpp \
-    misc.cpp
+    misc.cpp \
+    cookiesdlg.cpp
 
 !contains(DEFINES, DISABLE_GUI):SOURCES += GUI.cpp \
                    options_imp.cpp \
@@ -337,3 +340,4 @@ SOURCES += main.cpp \
                    peerlistwidget.cpp
 
 DESTDIR = .
+
