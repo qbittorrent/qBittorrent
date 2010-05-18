@@ -121,6 +121,8 @@ class QTorrentHandle {
     bool super_seeding() const;
 #endif
     QString creation_date() const;
+    QString next_announce() const;
+    qlonglong next_announce_s() const;
     void get_peer_info(std::vector<peer_info>&) const;
 #ifndef DISABLE_GUI
     bool resolve_countries() const;

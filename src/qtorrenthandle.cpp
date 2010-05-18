@@ -79,6 +79,16 @@ QString QTorrentHandle::creation_date() const {
   return misc::boostTimeToQString(boostDate);
 }
 
+QString QTorrentHandle::next_announce() const {
+  Q_ASSERT(h.is_valid());
+  return misc::userFriendlyDuration(h.status().next_announce.total_seconds());
+}
+
+qlonglong QTorrentHandle::next_announce_s() const {
+  Q_ASSERT(h.is_valid());
+  return h.status().next_announce.total_seconds();
+}
+
 float QTorrentHandle::progress() const {
   Q_ASSERT(h.is_valid());
   if(!h.status().total_wanted)

@@ -190,6 +190,7 @@ void PropertiesWidget::clear() {
   lbl_dllimit->clear();
   lbl_elapsed->clear();
   lbl_connections->clear();
+  reannounce_lbl->clear();
   shareRatio->clear();
   listWebSeeds->clear();
   PropListModel->clear();
@@ -212,6 +213,12 @@ void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
     if(p.isEmpty())
       p = h.save_path();
     save_path->setText(p);
+  }
+}
+
+void PropertiesWidget::on_reannounce_btn_clicked() {
+  if(h.is_valid()) {
+    h.force_reannounce();
   }
 }
 
@@ -329,6 +336,8 @@ void PropertiesWidget::loadDynamicData() {
         lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
       else
         lbl_connections->setText(QString::number(h.num_connections()));
+      // Update next announce time
+      reannounce_lbl->setText(h.next_announce());
       // Update ratio info
       const double ratio = BTSession->getRealRatio(h.hash());
       if(ratio > 100.)

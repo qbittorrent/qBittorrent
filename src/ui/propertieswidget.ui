@@ -53,9 +53,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-60</y>
+            <y>0</y>
             <width>520</width>
-            <height>351</height>
+            <height>360</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -310,16 +310,49 @@
               <item row="2" column="4">
                <widget class="QLabel" name="label_10">
                 <property name="text">
-                 <string notr="true"/>
+                 <string>Reannounce in:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
               <item row="2" column="5">
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string notr="true"/>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="reannounce_lbl">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string notr="true"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="reannounce_btn">
+                  <property name="toolTip">
+                   <string>Force reannounce</string>
+                  </property>
+                  <property name="text">
+                   <string notr="true"/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../icons.qrc">
+                    <normaloff>:/Icons/oxygen/run-build.png</normaloff>:/Icons/oxygen/run-build.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>12</width>
+                    <height>12</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </widget>
