@@ -323,8 +323,7 @@ SOURCES += main.cpp \
     httpresponsegenerator.cpp \
     eventmanager.cpp \
     scannedfoldersmodel.cpp \
-    misc.cpp \
-    cookiesdlg.cpp
+    misc.cpp
 
 !contains(DEFINES, DISABLE_GUI):SOURCES += GUI.cpp \
                    options_imp.cpp \
@@ -337,7 +336,8 @@ SOURCES += main.cpp \
 		   rss.cpp \
                    transferlistwidget.cpp \
                    propertieswidget.cpp \
-                   peerlistwidget.cpp
+                   peerlistwidget.cpp \
+                   cookiesdlg.cpp
 
 DESTDIR = .
 
