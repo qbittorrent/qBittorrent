@@ -247,8 +247,7 @@ HEADERS += misc.h \
     filesystemwatcher.h \
     preferences.h \
     bandwidthscheduler.h \
-    scannedfoldersmodel.h \
-    cookiesdlg.h
+    scannedfoldersmodel.h
 
 contains(DEFINES, DISABLE_GUI):HEADERS += headlessloader.h
 else:HEADERS +=  GUI.h \
@@ -290,7 +289,8 @@ else:HEADERS +=  GUI.h \
                  torrentadditiondlg.h \
                  trackerlogin.h \
                  pieceavailabilitybar.h \
-                 advancedsettings.h
+                 advancedsettings.h \
+                 cookiesdlg.h
 
 !contains(DEFINES, DISABLE_GUI):FORMS += ui/mainwindow.ui \
 	    ui/options.ui \
