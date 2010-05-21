@@ -59,6 +59,7 @@ public slots:
   void setFinished(QTorrentHandle &h);
   void setSelectionLabel(QString label);
   void setRefreshInterval(int t);
+  void setSelectedTorrentsLocation();
   void startSelectedTorrents();
   void startAllTorrents();
   void pauseSelectedTorrents();

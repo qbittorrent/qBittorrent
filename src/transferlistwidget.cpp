@@ -49,6 +49,7 @@
 #include <QUrl>
 #include <QMenu>
 #include <QRegExp>
+#include <QFileDialog>
 #include <vector>
 
 TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent *_BTSession):
@@ -602,6 +603,34 @@ QStringList TransferListWidget::getSelectedTorrentsHashes() const {
   return hashes;
 }
 
+void TransferListWidget::setSelectedTorrentsLocation() {
+  const QStringList &hashes = getSelectedTorrentsHashes();
+  if(hashes.isEmpty()) return;
+  QString dir;
+  const QDir saveDir(BTSession->getTorrentHandle(hashes.first()).save_path());
+  if(saveDir.exists()){
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.path());
+  }else{
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+  }
+  if(!dir.isNull()){
+    // Check if savePath exists
+    QDir savePath(misc::expandPath(dir));
+    if(!savePath.exists()){
+      if(!savePath.mkpath(savePath.absolutePath())){
+        QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
+        return;
+      }
+    }
+    foreach(const QString & hash, hashes) {
+    // Actually move storage
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(!BTSession->useTemporaryFolder() || h.is_seed())
+      h.move_storage(savePath.absolutePath());
+    }
+  }
+}
+
 void TransferListWidget::startSelectedTorrents() {
   const QStringList &hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
@@ -992,8 +1021,10 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
   QAction actionOpen_destination_folder(QIcon(QString::fromUtf8(":/Icons/oxygen/folder.png")), tr("Open destination folder"), 0);
   connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
-  QAction actionBuy_it(QIcon(QString::fromUtf8(":/Icons/oxygen/wallet.png")), tr("Buy it"), 0);
-  connect(&actionBuy_it, SIGNAL(triggered()), this, SLOT(buySelectedTorrents()));
+  //QAction actionBuy_it(QIcon(QString::fromUtf8(":/Icons/oxygen/wallet.png")), tr("Buy it"), 0);
+  //connect(&actionBuy_it, SIGNAL(triggered()), this, SLOT(buySelectedTorrents()));
+  QAction actionSetTorrentPath(QIcon(QString::fromUtf8(":/Icons/skin/folder.png")), tr("Set location..."), 0);
+  connect(&actionSetTorrentPath, SIGNAL(triggered()), this, SLOT(setSelectedTorrentsLocation()));
   QAction actionIncreasePriority(QIcon(QString::fromUtf8(":/Icons/skin/increase.png")), tr("Increase priority"), 0);
   connect(&actionIncreasePriority, SIGNAL(triggered()), this, SLOT(increasePrioSelectedTorrents()));
   QAction actionDecreasePriority(QIcon(QString::fromUtf8(":/Icons/skin/decrease.png")), tr("Decrease priority"), 0);
@@ -1084,6 +1115,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addSeparator();
   listMenu.addAction(&actionDelete);
   listMenu.addSeparator();
+  listMenu.addAction(&actionSetTorrentPath);
   if(selectedIndexes.size() == 1)
     listMenu.addAction(&actionRename);
   // Label Menu
@@ -1158,7 +1190,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addSeparator();
   if(one_has_metadata)
     listMenu.addAction(&actionCopy_magnet_link);
-  listMenu.addAction(&actionBuy_it);
+  //listMenu.addAction(&actionBuy_it);
   // Call menu
   QAction *act = 0;
   act = listMenu.exec(QCursor::pos());

@@ -6,6 +6,7 @@
     - FEATURE: Added cookie support for RSS feeds
     - FEATURE: User can force tracker reannounce
     - FEATURE: Added "No action" setting for double-click action
+    - FEATURE: Several torrents can be moved at once
     - COSMETIC: Display peers country name in tooltip
 
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
