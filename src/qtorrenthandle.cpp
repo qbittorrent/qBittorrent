@@ -377,7 +377,9 @@ QStringList QTorrentHandle::files_path() const {
 
 int QTorrentHandle::queue_position() const {
   Q_ASSERT(h.is_valid());
-  return h.queue_position();
+  if(h.queue_position() < 0)
+    return -1;
+  return h.queue_position()+1;
 }
 
 int QTorrentHandle::num_uploads() const {
