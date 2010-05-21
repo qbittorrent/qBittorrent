@@ -185,6 +185,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
       if(h.is_seed()) {
         listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
         listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/pausedUP.png"))), Qt::DecorationRole);
+        listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)0));
       } else {
         listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
         listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/pausedDL.png"))), Qt::DecorationRole);
@@ -194,6 +195,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
       if(h.is_seed()) {
         listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledUP.png"))), Qt::DecorationRole);
         listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_UP);
+        listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)0));
       } else {
         listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledDL.png"))), Qt::DecorationRole);
         listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_DL);
@@ -244,13 +246,13 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
   const QTorrentHandle &h = BTSession->getTorrentHandle(getHashFromRow(row));
   listModel->setData(listModel->index(row, TR_DLSPEED), QVariant((double)0.0));
   listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)0.0));
-  listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
   if(h.is_seed()) {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
     listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedUP.png")), Qt::DecorationRole);
   } else {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
     listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedDL.png")), Qt::DecorationRole);
+    listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
   }
   listModel->setData(listModel->index(row, TR_SEEDS), QVariant(0.0));
   listModel->setData(listModel->index(row, TR_PEERS), QVariant(0.0));
