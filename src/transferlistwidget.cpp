@@ -167,7 +167,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     listModel->insertRow(row);
     listModel->setData(listModel->index(row, TR_NAME), QVariant(h.name()));
     listModel->setData(listModel->index(row, TR_SIZE), QVariant((qlonglong)h.actual_size()));
-    listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
+    listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)MAX_ETA));
     listModel->setData(listModel->index(row, TR_SEEDS), QVariant((double)0.0));
     listModel->setData(listModel->index(row, TR_PEERS), QVariant((double)0.0));
     listModel->setData(listModel->index(row, TR_ADD_DATE), QVariant(TorrentPersistentData::getAddedDate(h.hash())));
@@ -252,7 +252,7 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
   } else {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
     listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedDL.png")), Qt::DecorationRole);
-    listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
+    listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)MAX_ETA));
   }
   listModel->setData(listModel->index(row, TR_SEEDS), QVariant(0.0));
   listModel->setData(listModel->index(row, TR_PEERS), QVariant(0.0));
@@ -351,7 +351,7 @@ int TransferListWidget::updateTorrent(int row) {
           }
           listModel->setData(listModel->index(row, TR_STATUS), s);
         }else {
-          listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
+          listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)MAX_ETA));
           if(h.is_seed()) {
             s = STATE_QUEUED_UP;            
             listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queuedUP.png"))), Qt::DecorationRole);
@@ -396,7 +396,7 @@ int TransferListWidget::updateTorrent(int row) {
       }
       listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
       if(!isColumnHidden(TR_ETA))
-        listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
+        listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)MAX_ETA));
       setRowColor(row, QString::fromUtf8("grey"));
       break;
     case torrent_status::downloading:
@@ -410,7 +410,7 @@ int TransferListWidget::updateTorrent(int row) {
       }else{
         listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/stalledDL.png"))), Qt::DecorationRole);
         if(!isColumnHidden(TR_ETA))
-          listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
+          listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)MAX_ETA));
         s = STATE_STALLED_DL;
         setRowColor(row, QApplication::palette().color(QPalette::WindowText));
       }

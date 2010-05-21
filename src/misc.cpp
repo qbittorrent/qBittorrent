@@ -459,7 +459,7 @@ QString misc::expandPath(QString path) {
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
 QString misc::userFriendlyDuration(qlonglong seconds) {
-  if(seconds < 0) {
+  if(seconds < 0 || seconds >= MAX_ETA) {
     return QString::fromUtf8("∞");
   }
   if(seconds == 0) {
