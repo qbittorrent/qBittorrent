@@ -197,6 +197,7 @@ comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/saoudi_arabia.png")))
   connect(checkSystrayBalloons, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDisplayToolbar, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkNoSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkDeleteTorrentFiles, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkAppendLabel, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -385,6 +386,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("NotificationBaloons"), OSDEnabled());
   settings.setValue(QString::fromUtf8("ToolbarDisplayed"), isToolbarDisplayed());
   settings.setValue(QString::fromUtf8("NoSplashScreen"), isSlashScreenDisabled());
+  Preferences::setDeleteTorrentFilesAsDefault(checkDeleteTorrentFiles->isChecked());
   // End General preferences
   settings.endGroup();
   // Downloads preferences
@@ -595,6 +597,7 @@ void options_imp::loadOptions(){
   checkNoSystray->setChecked(!Preferences::systrayIntegration());
   checkDisplayToolbar->setChecked(Preferences::isToolbarDisplayed());
   checkNoSplash->setChecked(Preferences::isSlashScreenDisabled());
+  checkDeleteTorrentFiles->setChecked(Preferences::deleteTorrentFilesAsDefault());
   if(checkNoSystray->isChecked()) {
     disableSystrayOptions();
   } else {

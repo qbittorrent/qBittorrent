@@ -242,7 +242,7 @@
              <x>0</x>
              <y>0</y>
              <width>506</width>
-             <height>543</height>
+             <height>571</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -366,6 +366,13 @@
                 <widget class="QCheckBox" name="checkSpeedInTitle">
                  <property name="text">
                   <string>Display current speed in title bar</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkDeleteTorrentFiles">
+                 <property name="text">
+                  <string>On torrent deletion, also delete files on hard disk as a default</string>
                  </property>
                 </widget>
                </item>

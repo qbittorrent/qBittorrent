@@ -63,6 +63,16 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/General/Style"), style);
   }
 
+  static bool deleteTorrentFilesAsDefault() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/General/DeleteTorrentsFilesAsDefault"), false).toBool();
+  }
+
+  static void setDeleteTorrentFilesAsDefault(bool del) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/DeleteTorrentsFilesAsDefault"), del);
+  }
+
   static bool confirmOnExit() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool();
