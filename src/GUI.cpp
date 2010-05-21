@@ -143,6 +143,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   vSplitter->setCollapsible(0, true);
   vSplitter->setCollapsible(1, false);
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
+    connect(transferList, SIGNAL(torrentStatusUpdate(uint,uint,uint,uint)), this, SLOT(updateNbTorrents(uint,uint,uint,uint)));
   vboxLayout->addWidget(tabs);
 
   // Transfer list slots
@@ -293,6 +294,12 @@ void GUI::displayRSSTab(bool enable) {
       delete rssWidget;
     }
   }
+}
+
+void GUI::updateNbTorrents(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive) {
+  Q_UNUSED(nb_downloading);
+  Q_UNUSED(nb_seeding);
+  tabs->setTabText(0, tr("Transfers (%1)").arg(QString::number(nb_inactive+nb_active)));
 }
 
 void GUI::on_actionWebsite_triggered() const {

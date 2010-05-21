@@ -77,6 +77,7 @@ public slots:
   void showNotificationBaloon(QString title, QString msg) const;
   void downloadFromURLList(const QStringList& urls);
   void updateAltSpeedsBtn(bool alternative);
+  void updateNbTorrents(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive);
 
 protected slots:
   // GUI related slots

@@ -53,7 +53,7 @@ public:
   QStandardItemModel* getSourceModel() const;
 
 public slots:
-  void refreshList();
+  void refreshList(bool force=false);
   void addTorrent(QTorrentHandle& h);
   void pauseTorrent(QTorrentHandle &h);
   void setFinished(QTorrentHandle &h);

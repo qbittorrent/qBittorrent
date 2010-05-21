@@ -209,7 +209,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     // Emit signal
     emit torrentAdded(listModel->index(row, 0));
     // Refresh the list
-    refreshList();
+    refreshList(true);
   } catch(invalid_handle e) {
     // Remove added torrent
     listModel->removeRow(row);
@@ -235,7 +235,7 @@ void TransferListWidget::deleteTorrent(int row, bool refresh_list) {
   emit torrentAboutToBeRemoved(index);
   listModel->removeRow(row);
   if(refresh_list)
-    refreshList();
+    refreshList(true);
 }
 
 // Wrapper slot for bittorrent signal
@@ -475,11 +475,11 @@ void TransferListWidget::setRefreshInterval(int t) {
   refreshTimer->start(t);
 }
 
-void TransferListWidget::refreshList() {
+void TransferListWidget::refreshList(bool force) {
   // Stop updating the display
   setUpdatesEnabled(false);
   // Refresh only if displayed
-  if(main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
+  if(!force && main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
   unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0;
   if(BTSession->getSession()->get_torrents().size() != (uint)listModel->rowCount()) {
     // Oups, we have torrents that are not displayed, fix that
