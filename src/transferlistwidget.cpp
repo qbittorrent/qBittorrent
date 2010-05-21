@@ -568,11 +568,10 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
   QTorrentHandle h = BTSession->getTorrentHandle(hash);
   if(!h.is_valid()) return;
   int action;
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   if(h.is_seed()) {
-    action =  settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorFN"), 0).toInt();
+    action = Preferences::getActionOnDblClOnTorrentFn();
   } else {
-    action = settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorDl"), 0).toInt();
+    action = Preferences::getActionOnDblClOnTorrentDl();
   }
 
   switch(action) {
