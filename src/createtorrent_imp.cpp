@@ -199,7 +199,7 @@ void createtorrent::handleCreationSuccess(QString path, const char* branch_path)
       return;
     }
     QString hash = misc::toQString(t->info_hash());
-    TorrentTempData::setSavePath(hash, QString(branch_path));
+    TorrentTempData::setSavePath(hash, QString::fromLocal8Bit(branch_path));
 #ifdef LIBTORRENT_0_15
     // Enable seeding mode (do not recheck the files)
     TorrentTempData::setSeedingMode(hash, true);

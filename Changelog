@@ -1,4 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.8
+    - BUGFIX: ETA for finished torrent is now 0 instead of Infinite (closes #583704)
+    - BUGFIX: Fix unicode issue in start seeding after torrent creation code
     - COSMETIC: Fix torrent properties layout
 
 * Wed May 12 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.7
