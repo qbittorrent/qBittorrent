@@ -522,6 +522,9 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
   if(seconds < 0) {
     return QString::fromUtf8("∞");
   }
+  if(seconds == 0) {
+    return "0";
+  }
   if(seconds < 60) {
     return tr("< 1m", "< 1 minute");
   }

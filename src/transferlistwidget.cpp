@@ -454,7 +454,7 @@ void TransferListWidget::setFinished(QTorrentHandle &h) {
         listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_UP);
         setRowColor(row, QApplication::palette().color(QPalette::WindowText));
       }
-      listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)-1));
+      listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)0));
       listModel->setData(listModel->index(row, TR_DLSPEED), QVariant((double)0.));
       listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)1.));
       listModel->setData(listModel->index(row, TR_PRIORITY), QVariant((int)-1));
