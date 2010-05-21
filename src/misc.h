@@ -42,6 +42,8 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
+const qlonglong MAX_ETA = 8640000;
+
 using namespace libtorrent;
 
 /*  Miscellaneaous functions that can be useful */
