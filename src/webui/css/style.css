@@ -248,3 +248,18 @@ a.propButton img {
   padding-right: 3px;
 }
 
+/* Tri-state checkbox */
+a.tristate {
+	background: url(../images/3-state-checkbox.gif) 0 0 no-repeat;
+	display: block;
+	float: left;
+	height: 13px;
+	margin: .15em 8px 5px 0px;
+	overflow: hidden;
+	text-indent: -999em;
+	width: 13px;
+}
+a.checked { background-position: 0 -13px; }
+a.partial { background-position: 0 -26px; }
+
+
