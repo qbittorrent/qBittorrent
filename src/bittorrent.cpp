@@ -2034,7 +2034,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
           if(h.is_valid()) {
             emit fullDiskError(h, misc::toQString(p->message()));
-            h.pause();
+            //h.pause();
             emit pausedTorrent(h);
           }
         }

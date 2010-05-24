@@ -131,6 +131,7 @@ class QTorrentHandle {
     bool first_last_piece_first() const;
     QString root_path() const;
     bool has_error() const;
+    QString error() const;
     void downloading_pieces(bitfield &bf) const;
 
     //

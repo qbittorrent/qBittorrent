@@ -364,10 +364,14 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
   QVariantMap event;
   event["eta"] = QVariant(QString::fromUtf8("∞"));
   if(h.is_paused()) {
-    if(h.is_seed())
-      event["state"] = QVariant("pausedUP");
-    else
-      event["state"] = QVariant("pausedDL");
+    if(h.has_error()) {
+      event["state"] = QVariant("error");
+    } else {
+      if(h.is_seed())
+        event["state"] = QVariant("pausedUP");
+      else
+        event["state"] = QVariant("pausedDL");
+    }
   } else {
     if(BTSession->isQueueingEnabled() && h.is_queued()) {
       if(h.is_seed())

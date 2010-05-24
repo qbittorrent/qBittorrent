@@ -460,7 +460,12 @@ QString QTorrentHandle::root_path() const {
 
 bool QTorrentHandle::has_error() const {
   Q_ASSERT(h.is_valid());
-  return h.status().error.empty();
+  return h.is_paused() && !h.status().error.empty();
+}
+
+QString QTorrentHandle::error() const {
+  Q_ASSERT(h.is_valid());
+  return misc::toQString(h.status().error);
 }
 
 void QTorrentHandle::downloading_pieces(bitfield &bf) const {

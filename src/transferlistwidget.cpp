@@ -249,10 +249,20 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
   listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)0.0));
   if(h.is_seed()) {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
-    listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedUP.png")), Qt::DecorationRole);
+    if(h.has_error()) {
+      listModel->setData(listModel->index(row, TR_NAME), h.error(), Qt::ToolTipRole);
+      listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/error.png")), Qt::DecorationRole);
+    } else {
+      listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedUP.png")), Qt::DecorationRole);
+    }
   } else {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
-    listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedDL.png")), Qt::DecorationRole);
+    if(h.has_error()) {
+      listModel->setData(listModel->index(row, TR_NAME), h.error(), Qt::ToolTipRole);
+      listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/error.png")), Qt::DecorationRole);
+    } else {
+      listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/pausedDL.png")), Qt::DecorationRole);
+    }
     listModel->setData(listModel->index(row, TR_ETA), QVariant((qlonglong)MAX_ETA));
   }
   listModel->setData(listModel->index(row, TR_SEEDS), QVariant(0.0));
@@ -282,6 +292,7 @@ void TransferListWidget::resumeTorrent(int row, bool refresh_list) {
     listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(":/Icons/skin/stalledDL.png")), Qt::DecorationRole);
     listModel->setData(listModel->index(row, TR_STATUS), STATE_STALLED_DL);
   }
+  listModel->setData(listModel->index(row, TR_NAME), "", Qt::ToolTipRole);
   setRowColor(row, QApplication::palette().color(QPalette::WindowText));
   if(refresh_list)
     refreshList();
