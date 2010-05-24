@@ -113,7 +113,7 @@ var createPriorityCombo = function(id, selected_prio) {
                 if(row[i] > 0)
                   tds[i].getChildren('input')[0].set('checked', 'checked');
                 else
-                  tds[i].removeProperty('checked')
+                  tds[i].getChildren('input')[0].removeProperty('checked')
               } else {
                 if(i == 4) {
                   if(row[i] > 0) {

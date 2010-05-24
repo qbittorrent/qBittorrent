@@ -4,6 +4,7 @@
     - BUGFIX: Torrent queue position now starts at 1 (closes #581130)
     - BUGFIX: Fix unicode issue in start seeding after torrent creation code
     - BUGFIX: Fix torrent error state clearance on resuming
+    - BUGFIX: Fix possible checkbox update in Web UI
     - COSMETIC: Fix torrent properties layout
 
 * Wed May 12 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.7
