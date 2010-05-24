@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.8
+* Mon May 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.8
     - BUGFIX: ETA for finished torrent is now 0 instead of Infinite (closes #583704)
     - BUGFIX: Fix sorting of ETA column when having infinite values (closes #583347)
     - BUGFIX: Torrent queue position now starts at 1 (closes #581130)

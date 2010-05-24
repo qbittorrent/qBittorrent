@@ -11,10 +11,10 @@ CONFIG += qt \
     thread
 
 # Update this VERSION for each release
-DEFINES += VERSION=\'\"v2.2.7\"\'
+DEFINES += VERSION=\'\"v2.2.8\"\'
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=2
-DEFINES += VERSION_BUGFIX=7
+DEFINES += VERSION_BUGFIX=8
 
 win32 {
   # Adapt these paths on Windows
