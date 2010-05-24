@@ -8,6 +8,7 @@
     - FEATURE: Added "No action" setting for double-click action
     - FEATURE: Several torrents can be moved at once
     - FEATURE: Added error state for torrents (error is displayed in a tooltip)
+    - FEATURE: Added filter for paused/error torrents
     - COSMETIC: Display peers country name in tooltip
     - COSMETIC: Display number of torrents in transfers tab label
 

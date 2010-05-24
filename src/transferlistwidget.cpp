@@ -485,7 +485,7 @@ void TransferListWidget::refreshList(bool force) {
   setUpdatesEnabled(false);
   // Refresh only if displayed
   if(!force && main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
-  unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0;
+  unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0, nb_paused = 0;
   if(BTSession->getSession()->get_torrents().size() != (uint)listModel->rowCount()) {
     // Oups, we have torrents that are not displayed, fix this
     std::vector<torrent_handle> torrents = BTSession->getSession()->get_torrents();
@@ -509,10 +509,14 @@ void TransferListWidget::refreshList(bool force) {
     case STATE_STALLED_DL:
     case STATE_CHECKING_DL:
     case STATE_PAUSED_DL:
-    case STATE_QUEUED_DL:
+    case STATE_QUEUED_DL: {
+        if(s == STATE_PAUSED_DL) {
+          ++nb_paused;
+        }
       ++nb_inactive;
       ++nb_downloading;
       break;
+    }
     case STATE_SEEDING:
       ++nb_active;
       ++nb_seeding;
@@ -520,10 +524,14 @@ void TransferListWidget::refreshList(bool force) {
     case STATE_STALLED_UP:
     case STATE_CHECKING_UP:
     case STATE_PAUSED_UP:
-    case STATE_QUEUED_UP:
+    case STATE_QUEUED_UP: {
+        if(s == STATE_PAUSED_UP) {
+          ++nb_paused;
+        }
       ++nb_seeding;
       ++nb_inactive;
       break;
+    }
     case STATE_INVALID:
       bad_hashes << getHashFromRow(i);
       break;
@@ -538,7 +546,7 @@ void TransferListWidget::refreshList(bool force) {
       deleteTorrent(row, false);
   }
   // Update status filters counters
-  emit torrentStatusUpdate(nb_downloading, nb_seeding, nb_active, nb_inactive);
+  emit torrentStatusUpdate(nb_downloading, nb_seeding, nb_active, nb_inactive, nb_paused);
   // Start updating the display
   setUpdatesEnabled(true);
 }
@@ -1357,6 +1365,9 @@ void TransferListWidget::applyStatusFilter(int f) {
     break;
   case FILTER_INACTIVE:
     proxyModel->setFilterRegExp(QRegExp("[^"+QString::number(STATE_DOWNLOADING)+QString::number(STATE_SEEDING)+"]", Qt::CaseSensitive));
+    break;
+  case FILTER_PAUSED:
+    proxyModel->setFilterRegExp(QRegExp(QString::number(STATE_PAUSED_UP)+"|"+QString::number(STATE_PAUSED_DL)));
     break;
   default:
     proxyModel->setFilterRegExp(QRegExp());

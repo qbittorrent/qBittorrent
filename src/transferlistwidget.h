@@ -41,7 +41,7 @@ class QTimer;
 class TransferListDelegate;
 class GUI;
 
-enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_ACTIVE, FILTER_INACTIVE};
+enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_PAUSED, FILTER_ACTIVE, FILTER_INACTIVE};
 
 class TransferListWidget: public QTreeView {
   Q_OBJECT
@@ -116,7 +116,7 @@ protected slots:
 
 signals:
   void currentTorrentChanged(QTorrentHandle &h);
-  void torrentStatusUpdate(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive);
+  void torrentStatusUpdate(uint nb_downloading, uint nb_seeding, uint nb_active, uint nb_inactive, uint nb_paused);
   void torrentAdded(QModelIndex index);
   void torrentAboutToBeRemoved(QModelIndex index);
   void torrentChangedLabel(QString old_label, QString new_label);
