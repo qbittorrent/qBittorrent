@@ -113,6 +113,8 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
     else
       file["progress"] = 1.; // Empty file...
     file["priority"] = priorities[i];
+    if(i == 0)
+      file["is_seed"] = h.is_seed();
     files << file;
     ++i;
   }

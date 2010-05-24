@@ -15,6 +15,7 @@
 
 <script type="text/javascript">
     var waitingTorrentFiles=false;
+    var is_seed = true;
     var current_hash = "";
 
 var setCBState = function(state) {
@@ -147,7 +148,7 @@ var createPriorityCombo = function(id, selected_prio) {
     if(selected_prio == 7)
       opt.setAttribute('selected', '');
     opt.injectInside(select);
-    if(selected_prio < 1) {
+    if(is_seed || selected_prio < 1) {
       select.addClass("invisible");
     } else {
       select.removeClass("invisible");
@@ -194,7 +195,7 @@ var createPriorityCombo = function(id, selected_prio) {
                   tds[i].getChildren('input')[0].removeProperty('checked')
               } else {
                 if(i == 4) {
-                  if(row[i] > 0) {
+                  if(!is_seed && row[i] > 0) {
                     tds[i].getChildren('select').set('value', row[i]);
                     $('comboPrio'+id).removeClass("invisible");
                   } else {
@@ -275,6 +276,9 @@ var createPriorityCombo = function(id, selected_prio) {
                           // Update Trackers data
                           var i=0;
                           files.each(function(file){
+                            if(i == 0) {
+                              is_seed = file.is_seed;
+                            }
                             var row = new Array();
                             row.length = 4;
                             row[0] = file.priority;
