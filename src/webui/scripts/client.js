@@ -340,6 +340,7 @@ window.addEvent('load', function(){
 	  $("all_filter").removeClass("selectedFilter");
 	  $("downloading_filter").removeClass("selectedFilter");
 	  $("completed_filter").removeClass("selectedFilter");
+          $("paused_filter").removeClass("selectedFilter");
 	  $("active_filter").removeClass("selectedFilter");
 	  $("inactive_filter").removeClass("selectedFilter");
 	  $(f+"_filter").addClass("selectedFilter");

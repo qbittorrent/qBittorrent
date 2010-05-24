@@ -203,6 +203,13 @@ var dynamicTable = new Class	({
 					tr.addClass("invisible");
 				}
 				break;
+                        case 'paused':
+				if(status == "pausedDL" || status == "pausedUP") {
+					tr.removeClass("invisible");
+				} else {
+					tr.addClass("invisible");
+				}
+				break;
 			case 'active':
 				if(status == "downloading" || status == "uploading") {
 					tr.removeClass("invisible");
