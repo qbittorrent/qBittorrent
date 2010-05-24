@@ -4,7 +4,6 @@
   <file>Icons/sphere2.png</file>
   <file>Icons/downarrow.png</file>
   <file>Icons/url.png</file>
-  <file>Icons/locale.png</file>
   <file>Icons/loading.png</file>
   <file>Icons/slow.png</file>
   <file>Icons/magnet.png</file>
@@ -23,7 +22,6 @@
   <file>Icons/skin/knob.gif</file>
   <file>Icons/skin/url.png</file>
   <file>Icons/skin/stalledUP.png</file>
-  <file>Icons/skin/delete_perm22.png</file>
   <file>Icons/skin/filteractive.png</file>
   <file>Icons/skin/connected.png</file>
   <file>Icons/skin/mascot.png</file>
@@ -49,7 +47,6 @@
   <file>Icons/skin/play_all.png</file>
   <file>Icons/skin/pause.png</file>
   <file>Icons/skin/firewalled.png</file>
-  <file>Icons/skin/properties.png</file>
   <file>Icons/skin/info.png</file>
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/delete_perm.png</file>
@@ -122,7 +119,6 @@
   <file>Icons/flags/japan.png</file>
   <file>Icons/flags/malaysia.png</file>
   <file>Icons/flags/philippines.png</file>
-  <file>Icons/oxygen/mail-queue.png</file>
   <file>Icons/oxygen/view-refresh.png</file>
   <file>Icons/oxygen/file.png</file>
   <file>Icons/oxygen/folder-remote16.png</file>
@@ -160,7 +156,6 @@
   <file>Icons/oxygen/document-new.png</file>
   <file>Icons/oxygen/preferences-desktop.png</file>
   <file>Icons/oxygen/tab-close.png</file>
-  <file>Icons/oxygen/wallet.png</file>
   <file>Icons/oxygen/webui.png</file>
   <file>Icons/oxygen/list-remove.png</file>
   <file>Icons/oxygen/connection.png</file>
