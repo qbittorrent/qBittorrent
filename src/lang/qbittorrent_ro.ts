@@ -2511,6 +2511,10 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -3851,6 +3855,14 @@ QGroupBox {(new line)
         <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No action</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -4143,6 +4155,14 @@ QGroupBox {(new line)
     <message>
         <source>This folder does not exist yet.</source>
         <translation>This folder does not exist yet.</translation>
+    </message>
+    <message>
+        <source>Reannounce in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5015,7 +5035,7 @@ Changelog:
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Buy it</translation>
+        <translation type="obsolete">Buy it</translation>
     </message>
     <message>
         <source>Increase priority</source>
@@ -5166,6 +5186,22 @@ Changelog:
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Alegeţi calea de salvare</translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished">Salvează calea care crează erori</translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished">Nu pot crea calea de salvare</translation>
+    </message>
+    <message>
+        <source>Set location...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

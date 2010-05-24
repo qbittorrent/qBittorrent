@@ -2699,6 +2699,10 @@ Czy napewno zamknąć qBittorrent?</translation>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrent %1 zawiera pliki torrent, rozpocząć ich pobieranie?</translation>
     </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -4056,6 +4060,14 @@ QGroupBox {
         <source>Remove folder</source>
         <translation>Usuń katalog</translation>
     </message>
+    <message>
+        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No action</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -4344,6 +4356,14 @@ QGroupBox {
     <message>
         <source>This folder does not exist yet.</source>
         <translation>Katalog jeszcze nie istnieje.</translation>
+    </message>
+    <message>
+        <source>Reannounce in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5224,7 +5244,7 @@ Zmiany:
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Kup to</translation>
+        <translation type="obsolete">Kup to</translation>
     </message>
     <message>
         <source>Increase priority</source>
@@ -5376,6 +5396,22 @@ Zmiany:
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
         <translation>Limit UP</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Wybierz katalog docelowy</translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished">Błąd tworzenia katalogu docelowego</translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished">Nie można założyć katalogu docelowego</translation>
+    </message>
+    <message>
+        <source>Set location...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

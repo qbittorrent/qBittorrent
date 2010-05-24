@@ -2619,6 +2619,10 @@ Are you sure you want to quit qBittorrent?</source>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -3895,6 +3899,14 @@ QGroupBox {
         <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No action</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -4186,6 +4198,14 @@ QGroupBox {
     </message>
     <message>
         <source>This folder does not exist yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reannounce in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5063,7 +5083,7 @@ Changelog:
     </message>
     <message>
         <source>Buy it</source>
-        <translation type="unfinished">Koop het</translation>
+        <translation type="obsolete">Koop het</translation>
     </message>
     <message>
         <source>Increase priority</source>
@@ -5214,6 +5234,22 @@ Changelog:
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set location...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

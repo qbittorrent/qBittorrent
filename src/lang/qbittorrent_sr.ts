@@ -1246,6 +1246,10 @@ Are you sure you want to quit qBittorrent?</source>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -2466,6 +2470,14 @@ QGroupBox {
         <source>Maximum number of articles per feed:</source>
         <translation>Максимални број чланака по допису:</translation>
     </message>
+    <message>
+        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No action</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -2695,6 +2707,14 @@ QGroupBox {
     <message>
         <source>Could not create the save path</source>
         <translation>Не могу да креирам путању за чување фајла</translation>
+    </message>
+    <message>
+        <source>Reannounce in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3489,7 +3509,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Buy it</source>
-        <translation>Купи</translation>
+        <translation type="obsolete">Купи</translation>
     </message>
     <message>
         <source>Increase priority</source>
@@ -3533,6 +3553,22 @@ p, li { white-space: pre-wrap; }
         <comment>Reset label</comment>
         <translatorcomment>Поништи ознаке</translatorcomment>
         <translation>Поништи</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished">Не могу да креирам путању за чување фајла</translation>
+    </message>
+    <message>
+        <source>Set location...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

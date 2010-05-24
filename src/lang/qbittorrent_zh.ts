@@ -2802,6 +2802,10 @@ Are you sure you want to quit qBittorrent?</source>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -4134,6 +4138,14 @@ QGroupBox {
         <source>Remove folder</source>
         <translation>移除文件夹</translation>
     </message>
+    <message>
+        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No action</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -4422,6 +4434,14 @@ QGroupBox {
     <message>
         <source>This folder does not exist yet.</source>
         <translation>该文件夹尚未存在.</translation>
+    </message>
+    <message>
+        <source>Reannounce in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5315,7 +5335,7 @@ reason: %2.</source>
     </message>
     <message>
         <source>Buy it</source>
-        <translation>购买</translation>
+        <translation type="obsolete">购买</translation>
     </message>
     <message>
         <source>Increase priority</source>
@@ -5467,6 +5487,22 @@ reason: %2.</source>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
         <translation>上传限制</translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">选择保存路径</translation>
+    </message>
+    <message>
+        <source>Save path creation error</source>
+        <translation type="unfinished">创建保存路径时出现错误</translation>
+    </message>
+    <message>
+        <source>Could not create the save path</source>
+        <translation type="unfinished">无法创建保存路径</translation>
+    </message>
+    <message>
+        <source>Set location...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
