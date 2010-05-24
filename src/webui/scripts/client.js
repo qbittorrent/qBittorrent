@@ -190,6 +190,17 @@ window.addEvent('load', function(){
   var waitingTrInfo = false;
   
   var stateToImg = function(state){
+    if(state == "pausedUP" || state == "pausedDL") {
+	state = "paused";
+    } else {
+      if(state == "queuedUP" || state == "queuedDL") {
+        state = "queued";
+      } else {
+        if(state == "checkingUP" || state == "checkingDL") {
+          state = "checking";
+        }
+      }
+    }
     return 'images/skin/'+state+'.png';
   };
   var loadTransferInfo = function() {
