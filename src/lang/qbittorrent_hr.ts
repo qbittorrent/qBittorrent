@@ -760,6 +760,15 @@ Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
         <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Torrent file association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>

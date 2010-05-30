@@ -1999,7 +1999,7 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="665"/>
+        <location filename="../GUI.cpp" line="674"/>
         <source>Open Torrent Files</source>
         <translation>Άνοιγμα Αρχείων torrent</translation>
     </message>
@@ -2020,12 +2020,12 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Σίγουρα θέλετε να διαγράψετε όλα τα αρχεία στην λίστα κατεβάσματος?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="568"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ναι</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="568"/>
         <source>&amp;No</source>
         <translation>&amp;Όχι</translation>
     </message>
@@ -2090,7 +2090,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Δεν μπόρεσε να δημιουργηθεί η κατηγορία:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="666"/>
+        <location filename="../GUI.cpp" line="675"/>
         <source>Torrent Files</source>
         <translation>Αρχεία torrent</translation>
     </message>
@@ -2150,8 +2150,8 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
-        <location filename="../GUI.cpp" line="840"/>
+        <location filename="../GUI.cpp" line="566"/>
+        <location filename="../GUI.cpp" line="849"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -2515,15 +2515,15 @@ Please close the other one first.</source>
         <translation type="obsolete">Εκκινήθηκε το qBittorrent %1.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="843"/>
-        <location filename="../GUI.cpp" line="850"/>
+        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="859"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Λήψης: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="846"/>
-        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="855"/>
+        <location filename="../GUI.cpp" line="861"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Αποστολής: %1 KiB/s</translation>
@@ -2544,7 +2544,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Αποτυχία λειτουργίας</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
+        <location filename="../GUI.cpp" line="566"/>
         <source>Are you sure you want to quit?</source>
         <translation>Είστε σίγουρος/η οτι θέλετε να κλείσετε την εφαρμογή?</translation>
     </message>
@@ -2607,13 +2607,13 @@ Please close the other one first.</source>
         <translation type="obsolete">Το &apos;%1&apos; ξανάρχισε.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="350"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Έχει τελειώσει η λήψη του &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Σφάλμα</translation>
@@ -2678,22 +2678,33 @@ Please close the other one first.</source>
         <translation>Εύρεση</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="289"/>
+        <location filename="../GUI.cpp" line="223"/>
+        <source>Torrent file association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="224"/>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="298"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="302"/>
+        <location filename="../GUI.cpp" line="311"/>
         <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="350"/>
         <source>Download completion</source>
         <translation>Ολοκλήρωση λήψης</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2702,40 +2713,40 @@ Please close the other one first.</source>
  Αιτία: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="356"/>
+        <location filename="../GUI.cpp" line="365"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="766"/>
+        <location filename="../GUI.cpp" line="775"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="857"/>
+        <location filename="../GUI.cpp" line="866"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Κάτ.: %2/s, Αν.: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="945"/>
         <source>Use normal speed limits</source>
         <translation>Χρήση κανονικών ορίων ταχυτήτων</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="939"/>
+        <location filename="../GUI.cpp" line="948"/>
         <source>Use alternative speed limits</source>
         <translation>Χρήση εναλλακτικών ορίων ταχυτήτων</translation>
     </message>
@@ -2804,7 +2815,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Αναλογία</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="354"/>
+        <location filename="../GUI.cpp" line="363"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -2825,12 +2836,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="445"/>
+        <location filename="../GUI.cpp" line="454"/>
         <source>Url download error</source>
         <translation>Σφάλμα λήψης url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="445"/>
+        <location filename="../GUI.cpp" line="454"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Αδυναμία λήψης αρχείου από το url: %1,αιτία: %2.</translation>
     </message>
@@ -2861,29 +2872,29 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="367"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="360"/>
+        <location filename="../GUI.cpp" line="369"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="451"/>
+        <location filename="../GUI.cpp" line="460"/>
         <source>Global Upload Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Αποστολής</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="473"/>
+        <location filename="../GUI.cpp" line="482"/>
         <source>Global Download Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Λήψης</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
+        <location filename="../GUI.cpp" line="567"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Μερικά αρχεία μεταφέρονται τώρα.
@@ -2953,7 +2964,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Αποστολή</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="738"/>
+        <location filename="../GUI.cpp" line="747"/>
         <source>Options were saved successfully.</source>
         <translation>Οι επιλογές αποθηκεύτηκαν επιτυχώς.</translation>
     </message>

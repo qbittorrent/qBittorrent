@@ -289,23 +289,23 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../advancedsettings.h" line="156"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre maximum de connexions à moitié ouvertes [0: Désactivé]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="164"/>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Super seeding strict</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="174"/>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface réseau (redémarrage requis)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="176"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>N&apos;importe laquelle</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="117"/>
@@ -602,23 +602,24 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../ui/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestion des cookies</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="36"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clée</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="41"/>
         <source>Value</source>
-        <translation type="unfinished">Valeur</translation>
+        <translation>Valeur</translation>
     </message>
     <message>
         <location filename="../cookiesdlg.cpp" line="43"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les valeurs habituelles des clées des cookies sont : &apos;%1&apos;, &apos;%2&apos;.
+Vous pouvez récupérer ces informations à partir des préférences de votre navigateur Internet.</translation>
     </message>
 </context>
 <context>
@@ -2056,7 +2057,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Impossible de trouver le dossier : &apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="665"/>
+        <location filename="../GUI.cpp" line="674"/>
         <source>Open Torrent Files</source>
         <translation>Ouvrir fichiers torrent</translation>
     </message>
@@ -2093,12 +2094,12 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Etes-vous sûr de vouloir enlever tous les fichiers de la liste de téléchargement ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="568"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="568"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -2167,7 +2168,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Impossible de créer le dossier :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="666"/>
+        <location filename="../GUI.cpp" line="675"/>
         <source>Torrent Files</source>
         <translation>Fichiers Torrent</translation>
     </message>
@@ -2597,27 +2598,27 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">qBittorrent %1 démarré.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
-        <location filename="../GUI.cpp" line="840"/>
+        <location filename="../GUI.cpp" line="566"/>
+        <location filename="../GUI.cpp" line="849"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="766"/>
+        <location filename="../GUI.cpp" line="775"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="843"/>
-        <location filename="../GUI.cpp" line="850"/>
+        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="859"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Vitesse DL : %1 Ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="846"/>
-        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="855"/>
+        <location filename="../GUI.cpp" line="861"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vitesse UP : %1 Ko/s</translation>
@@ -2638,7 +2639,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">En attente</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
+        <location filename="../GUI.cpp" line="566"/>
         <source>Are you sure you want to quit?</source>
         <translation>Etes vous certain de vouloir quitter ?</translation>
     </message>
@@ -2701,13 +2702,13 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="350"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Le téléchargement de %1 est terminé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Erreur E/S</translation>
@@ -2772,22 +2773,34 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>Recherche</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="289"/>
+        <location filename="../GUI.cpp" line="223"/>
+        <source>Torrent file association</source>
+        <translation>Association aux fichiers Torrent</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="224"/>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation>qBittorrent n&apos;est pas l&apos;application associée aux fichiers Torrent.
+Voulez-vous réaliser cette association ?</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="298"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="302"/>
+        <location filename="../GUI.cpp" line="311"/>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Transferts (%1)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="350"/>
         <source>Download completion</source>
         <translation>Fin du téléchargement</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2796,34 +2809,34 @@ Veuillez d&apos;abord le quitter.</translation>
 Raison : %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="356"/>
+        <location filename="../GUI.cpp" line="365"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+é</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Recursive download confirmation</source>
         <translation>Confirmation pour téléchargement récursif</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Le torrent %1 contients des fichiers torrents, desirez-vous les mettre en téléchargement ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="857"/>
+        <location filename="../GUI.cpp" line="866"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Réception : %2/s, Envoi : %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="945"/>
         <source>Use normal speed limits</source>
         <translation>Utiliser les limites de vitesse normales</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="939"/>
+        <location filename="../GUI.cpp" line="948"/>
         <source>Use alternative speed limits</source>
         <translation>Utiliser les limites de vitesse alternatives</translation>
     </message>
@@ -2896,7 +2909,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Ratio</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="354"/>
+        <location filename="../GUI.cpp" line="363"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+&amp;</translation>
@@ -2917,12 +2930,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Alt+&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="445"/>
+        <location filename="../GUI.cpp" line="454"/>
         <source>Url download error</source>
         <translation>Erreur téléchargement url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="445"/>
+        <location filename="../GUI.cpp" line="454"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Impossible de télécharger le fichier à l&apos;url : %1, raison : %2.</translation>
     </message>
@@ -2953,29 +2966,29 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Alt+&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="367"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="360"/>
+        <location filename="../GUI.cpp" line="369"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="451"/>
+        <location filename="../GUI.cpp" line="460"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limite globale de la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="473"/>
+        <location filename="../GUI.cpp" line="482"/>
         <source>Global Download Speed Limit</source>
         <translation>Limite globale de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
+        <location filename="../GUI.cpp" line="567"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Certains fichiers sont en cours de transfert.
@@ -3045,7 +3058,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Partages</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="738"/>
+        <location filename="../GUI.cpp" line="747"/>
         <source>Options were saved successfully.</source>
         <translation>Préférences sauvegardées avec succès.</translation>
     </message>
@@ -3055,305 +3068,305 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../geoip.h" line="114"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Australie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Argentine</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Autriche</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Emirats Arabes Unis</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="120"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Brésil</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulgarie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Biélorussie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgique</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Bosnie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="127"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Canada</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>République Tchèque</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <location filename="../geoip.h" line="153"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Chine</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Costa Rica</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="131"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Suisse</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="134"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Allemagne</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="135"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Danemark</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="136"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Algérie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="139"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Espagne</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="140"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Egypte</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="143"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Finlande</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="144"/>
         <source>France</source>
-        <translation type="unfinished"></translation>
+        <translation>France</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="147"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Royaume Uni</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Grêce</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="149"/>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Géorgie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="152"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Hongrie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="154"/>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Croatie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="157"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Italie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="158"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Inde</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Israël</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="160"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Irelande</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="161"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Islande</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Indonésie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="165"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Japon</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="168"/>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Corée du Sud</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="171"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Luxembourg</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="174"/>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Malaisie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Mexique</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <location filename="../geoip.h" line="194"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Serbie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="177"/>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Maroc</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="180"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Pays Bas</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Norvège</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle-Zélande</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="185"/>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugal</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Pologne</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../geoip.h" line="188"/>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Philippines</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Russie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Roumanie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>France (île de la réunion)</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="197"/>
         <source>Saoudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Arabie Saoudite</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Suède</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovaquie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Singapour</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="201"/>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovénie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="204"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Taïwan</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Turquie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="206"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Thaïlande</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="209"/>
         <location filename="../geoip.h" line="210"/>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>USA</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="211"/>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukraine</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="214"/>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Afrique du Sud</translation>
     </message>
 </context>
 <context>
@@ -4155,7 +4168,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../ui/options.ui" line="375"/>
         <source>On torrent deletion, also delete files on hard disk as a default</source>
-        <translation type="unfinished"></translation>
+        <translation>A la suppression d&apos;un torrent, supprimer par défaut les fichiers sur le disque également</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="382"/>
@@ -4203,7 +4216,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <location filename="../ui/options.ui" line="448"/>
         <location filename="../ui/options.ui" line="487"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucune action</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="469"/>
@@ -4900,12 +4913,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="313"/>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Annonce dans :</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="338"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Forcer nouvelle annonce</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="363"/>
@@ -5176,7 +5189,7 @@ Comment:</source>
     <message>
         <location filename="../ui/rss.ui" line="295"/>
         <source>Manage cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestion des cookies</translation>
     </message>
     <message>
         <location filename="../feedList.h" line="30"/>
@@ -5627,33 +5640,34 @@ Changements:
     <message>
         <location filename="../searchengine.cpp" line="137"/>
         <source>Failed to locate the Python interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de localiser l&apos;interpréteur Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="137"/>
         <source>The Python interpreter was not found.
 qBittorrent will now ask you to point to its correct location.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;interpréteur Python n&apos;a pas été trouvé.
+qBittorrent va maintenant vous demander d&apos;indiquer son chemin.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="138"/>
         <source>Please point to its location on your hard disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez indiquer son chemin sur le disque.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="139"/>
         <source>Python executable (python.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exécutable Python (python.exe)</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="141"/>
         <source>No Python interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun interpréteur Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="141"/>
         <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Interpréteur Python manquant. Le moteur de recherche ne fonctionnera pas.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="196"/>
@@ -6083,7 +6097,7 @@ qBittorrent will now ask you to point to its correct location.</source>
         <location filename="../transferlistfilterswidget.h" line="204"/>
         <location filename="../transferlistfilterswidget.h" line="286"/>
         <source>Paused</source>
-        <translation type="unfinished">En pause</translation>
+        <translation>En pause</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="207"/>
@@ -6315,17 +6329,17 @@ qBittorrent will now ask you to point to its correct location.</source>
         <location filename="../transferlistwidget.cpp" line="625"/>
         <location filename="../transferlistwidget.cpp" line="627"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Choix du répertoire de destination</translation>
+        <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="634"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Erreur lors de la création du répertoire de destination</translation>
+        <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="634"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Impossible de créer le répertoire de destination</translation>
+        <translation>Impossible de créer le répertoire de destination</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="809"/>
@@ -6385,7 +6399,7 @@ qBittorrent will now ask you to point to its correct location.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="1039"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin de sauvegarde...</translation>
     </message>
     <message>
         <source>Buy it</source>

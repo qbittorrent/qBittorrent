@@ -1881,7 +1881,7 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="665"/>
+        <location filename="../GUI.cpp" line="674"/>
         <source>Open Torrent Files</source>
         <translation>Apri file torrent</translation>
     </message>
@@ -1894,12 +1894,12 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Sei sicuro di voler cancellare tutti i file nella lista di download?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="568"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sì</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="568"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
@@ -1948,7 +1948,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Impossibile creare la directory:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="666"/>
+        <location filename="../GUI.cpp" line="675"/>
         <source>Torrent Files</source>
         <translation>File torrent</translation>
     </message>
@@ -2280,27 +2280,27 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">qBittorrent %1 avviato.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
-        <location filename="../GUI.cpp" line="840"/>
+        <location filename="../GUI.cpp" line="566"/>
+        <location filename="../GUI.cpp" line="849"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="766"/>
+        <location filename="../GUI.cpp" line="775"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="843"/>
-        <location filename="../GUI.cpp" line="850"/>
+        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="859"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Velocità DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="846"/>
-        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="855"/>
+        <location filename="../GUI.cpp" line="861"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Velocità UP: %1 KiB/s</translation>
@@ -2321,7 +2321,7 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">In Stallo</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
+        <location filename="../GUI.cpp" line="566"/>
         <source>Are you sure you want to quit?</source>
         <translation>Sei sicuro di voler uscire?</translation>
     </message>
@@ -2384,13 +2384,13 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation type="obsolete">&apos;%1&apos; ripreso.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="350"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 è stato scaricato.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Errore I/O</translation>
@@ -2450,22 +2450,33 @@ Example: Downloading www.example.com/test.torrent</comment>
         <translation>Ricerca</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="289"/>
+        <location filename="../GUI.cpp" line="223"/>
+        <source>Torrent file association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="224"/>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="298"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="302"/>
+        <location filename="../GUI.cpp" line="311"/>
         <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="350"/>
         <source>Download completion</source>
         <translation>Completamento download</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2474,34 +2485,34 @@ Example: Downloading www.example.com/test.torrent</comment>
 Motivo: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="356"/>
+        <location filename="../GUI.cpp" line="365"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="857"/>
+        <location filename="../GUI.cpp" line="866"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="936"/>
+        <location filename="../GUI.cpp" line="945"/>
         <source>Use normal speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="939"/>
+        <location filename="../GUI.cpp" line="948"/>
         <source>Use alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2570,7 +2581,7 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <translation type="obsolete">Rapporto</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="354"/>
+        <location filename="../GUI.cpp" line="363"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -2591,12 +2602,12 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="445"/>
+        <location filename="../GUI.cpp" line="454"/>
         <source>Url download error</source>
         <translation>Errore download da indirizzo web</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="445"/>
+        <location filename="../GUI.cpp" line="454"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Impossibile scaricare il file all&apos;indirizzo: %1, motivo: %2.</translation>
     </message>
@@ -2627,29 +2638,29 @@ Sei sicuro di voler uscire da qBittorrent?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="367"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="360"/>
+        <location filename="../GUI.cpp" line="369"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="451"/>
+        <location filename="../GUI.cpp" line="460"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limite globale upload</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="473"/>
+        <location filename="../GUI.cpp" line="482"/>
         <source>Global Download Speed Limit</source>
         <translation>Limite globale download</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="558"/>
+        <location filename="../GUI.cpp" line="567"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Alcuni file sono ancora in trasferimento.
@@ -2719,7 +2730,7 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
         <translation type="obsolete">Upload</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="738"/>
+        <location filename="../GUI.cpp" line="747"/>
         <source>Options were saved successfully.</source>
         <translation>Le opzioni sono state salvate.</translation>
     </message>
