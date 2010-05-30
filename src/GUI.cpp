@@ -217,6 +217,15 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   }
 
   qDebug("GUI Built");
+#ifdef Q_WS_WIN
+  if(!Preferences::isFileAssocOk()) {
+      if(QMessageBox::question(0, tr("Torrent file association"),
+                               tr("qBittorrent is not the default application to open torrent files.\nDo you want to associate qBittorrent to torrent files?"),
+                               QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+          Preferences::setFileAssoc();
+      }
+  }
+#endif
 }
 
 // Destructor
