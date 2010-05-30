@@ -74,6 +74,8 @@ QString misc::QDesktopServicesDataLocation() {
       result = QString::fromWCharArray(path);
   if (!QCoreApplication::applicationName().isEmpty())
     result = result + QLatin1String("\\") + qApp->applicationName();
+  if(!result.endsWith("\\"))
+      result += "\\";
   return result;
 #else
 #ifdef Q_WS_MAC

@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 0
+DEBUG_MODE = 1
 
 # Global
 TEMPLATE = app
@@ -177,6 +177,12 @@ os2:LIBS += -ltorrent-rasterbar \
   }
   unix:!macx:contains(DEFINES, WITH_GEOIP_EMBEDDED):message("You chose to embed GeoIP database in qBittorrent executable.")
 
+# Resource files
+RESOURCES = icons.qrc \
+    lang.qrc \
+    search.qrc \
+    webui.qrc
+
   # Add GeoIP resource file if the GeoIP database
   # should be embedded in qBittorrent executable
   contains(DEFINES, WITH_GEOIP_EMBEDDED) {
@@ -191,12 +197,6 @@ os2:LIBS += -ltorrent-rasterbar \
   }
 else:message("GeoIP database will not be embedded in qBittorrent executable.")
 }
-
-# Resource files
-RESOURCES = icons.qrc \
-    lang.qrc \
-    search.qrc \
-    webui.qrc
 
 # Translations
 TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
