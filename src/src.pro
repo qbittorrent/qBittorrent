@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 0
+DEBUG_MODE = 1
 
 # Global
 TEMPLATE = app
@@ -22,7 +22,7 @@ DEFINES += VERSION_BUGFIX=8
 
 win32 {
   # Adapt these paths on Windows
-  INCLUDEPATH += $$quote(C:/qbittorrent/boost_1_40_0)
+  INCLUDEPATH += $$quote(C:/qbittorrent/boost_1_42_0)
   INCLUDEPATH += $$quote(C:/qbittorrent/libtorrent-rasterbar-0.14.10/include)
   INCLUDEPATH += $$quote(C:/qbittorrent/libtorrent-rasterbar-0.14.10/zlib)
 
@@ -133,27 +133,27 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 # win32:LIBS += -ltorrent -lboost_system
 # win32:LIBS += -lz ?
 win32 {
-  LIBS += -lssleay32 \
-          -leay32 \
-          -lws2_32 \
-          -lwsock32 \
-          -ladvapi32 \
-          -lwinmm
 
   # Adapt these paths on Windows
   LIBS += C:/qbittorrent/libs/libtorrent.lib \
-          C:/qbittorrent/libs/libboost_system.lib \
-          C:/qbittorrent/libs/libboost_filesystem.lib \
-          C:/qbittorrent/libs/libboost_thread.lib \
-          C:/Qt/2010.02.1/mingw/lib/*.a \
-          C:/Qt/2010.02.1/mingw/lib/libssleay32.a \
-          C:/Qt/2010.02.1/mingw/lib/libeay32.a \
-          C:/Qt/2010.02.1/mingw/lib/libws2_32.a \
+          C:/qbittorrent/libs/libboost_system-mgw44-mt-s.lib \
+          C:/qbittorrent/libs/libboost_filesystem-mgw44-mt-s.lib \
+          C:/qbittorrent/libs/libboost_thread-mgw44-mt-s.lib \
+          C:/OpenSSL/lib/MinGW/ssleay32.a \
+          C:/OpenSSL/lib/MinGW/libeay32.a \
           C:/Qt/2010.02.1/mingw/lib/libwsock32.a \
-          C:/Qt/2010.02.1/mingw/lib/libadvapi32.a \
-          C:/Qt/2010.02.1/mingw/lib/libwinmm.a \
-          C:/Qt/2010.02.1/mingw/lib/libgdi32.a \
-          -LC:/Qt/2010.02.1/mingw/lib/
+          C:/Qt/2010.02.1/mingw/lib/libws2_32.a #\
+#          -LC:/Qt/2010.02.1/mingw/lib/
+#          C:/Qt/2010.02.1/mingw/lib/libadvapi32.a \
+#          C:/Qt/2010.02.1/mingw/lib/libwinmm.a \
+#          C:/Qt/2010.02.1/mingw/lib/libgdi32.a \
+
+#  LIBS += -lssleay32 \
+#          -leay32 \
+#          -lws2_32 \
+#          -lwsock32 \
+#          -ladvapi32 \
+#          -lwinmm
 }
 
 os2:LIBS += -ltorrent-rasterbar \

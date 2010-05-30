@@ -168,6 +168,13 @@ void useStyle(QApplication *app, QString style){
 
 // Main
 int main(int argc, char *argv[]){
+  // Create Application
+  #ifdef DISABLE_GUI
+    app = new QCoreApplication(argc, argv);
+  #else
+    app = new QApplication(argc, argv);
+  #endif
+
   QString locale;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
 #ifndef DISABLE_GUI
@@ -208,15 +215,9 @@ int main(int argc, char *argv[]){
       std::cout << "disconnected\n";
     }
     localSocket.close();
+    delete app;
     return 0;
   }
-
-  // Create Application
-#ifdef DISABLE_GUI
-  app = new QCoreApplication(argc, argv);
-#else
-  app = new QApplication(argc, argv);
-#endif
 
   // Load translation
   locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
@@ -341,7 +342,10 @@ int main(int argc, char *argv[]){
   delete loader;
 #endif
   qDebug("Deleting app...");
+#ifndef Q_WS_WIN
+  // XXX: Why does it crash on Windows!?
   delete app;
+#endif
   qDebug("App was deleted! All good.");
   return ret;
 }

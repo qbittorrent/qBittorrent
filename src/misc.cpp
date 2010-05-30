@@ -74,6 +74,7 @@ QString misc::QDesktopServicesDataLocation() {
       result = QString::fromWCharArray(path);
   if (!QCoreApplication::applicationName().isEmpty())
     result = result + QLatin1String("\\") + qApp->applicationName();
+  return result;
 #else
 #ifdef Q_WS_MAC
   // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
@@ -300,7 +301,7 @@ QString misc::BTBackupLocation() {
 }
 
 QString misc::cacheLocation() {
-  const QString &location = QDir::cleanPath(QDesktopServicesCacheLocation());
+  QString location = QDir::cleanPath(QDesktopServicesCacheLocation());
   QDir locationDir(location);
   if(!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
