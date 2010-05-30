@@ -37,6 +37,12 @@
 #include <QDir>
 #include <QTime>
 
+#ifndef DISABLE_GUI
+#include <QApplication>
+#else
+#include <QCoreApplication>
+#endif
+
 #define QBT_REALM "Web UI Access"
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
 
@@ -993,6 +999,36 @@ public:
       QSettings settings("qBittorrent", "qBittorrent");
       return settings.value(QString::fromUtf8("Preferences/Win32/PythonPath"), "").toString();
   }
+
+  static bool isFileAssocOk() {
+      QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
+      if(settings.value(".torrent/Default").toString() != "qBittorrent") {
+          qDebug(".torrent != qBittorrent");
+          return false;
+      }
+      qDebug("Checking shell command");
+      QString shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
+      qDebug("Shell command is: %s", qPrintable(shell_command));
+      QRegExp exe_reg("\"([^\"]+)\".*");
+      if(exe_reg.indexIn(shell_command) < 0)
+          return false;
+      QString assoc_exe = exe_reg.cap(1);
+      qDebug("exe: %s", qPrintable(assoc_exe));
+      return (assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) == 0);
+  }
+
+  static void setFileAssoc() {
+    QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
+    settings.setValue(".torrent/Default", "qBittorrent");
+    settings.setValue(".torrent/Content Type", "application/x-bittorrent");
+    settings.setValue("qBittorrent/shell/Default", "open");
+    const QString command_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\" \"%1\"";
+    settings.setValue("qBittorrent/shell/open/command/Default", command_str);
+    settings.setValue("qBittorrent/Content Type/Default", "application/x-bittorrent");
+    const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",0";
+    settings.setValue("qBittorrent/DefaultIcon/Default", icon_str);
+  }
+
 #endif
 
 };

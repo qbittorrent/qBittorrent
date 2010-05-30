@@ -133,6 +133,7 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 # win32:LIBS += -ltorrent -lboost_system
 # win32:LIBS += -lz ?
 win32 {
+  RC_FILE = qbittorrent.rc
 
   # Adapt these paths on Windows
   LIBS += C:/qbittorrent/libs/libtorrent.lib \
