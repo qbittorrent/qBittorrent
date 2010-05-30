@@ -126,6 +126,9 @@ protected slots:
   void createCompleter();
   void fillCatCombobox();
   void searchTextEdited(QString);
+#ifdef Q_WS_WIN
+  void checkForPythonExe();
+#endif
 };
 
 #endif

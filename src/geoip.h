@@ -68,13 +68,19 @@ protected:
       // Create geoip folder is necessary
       QDir gfolder(geoipFolder(false));
       if(!gfolder.exists()) {
-        if(!gfolder.mkpath(geoipFolder(false))) return;
+          if(!gfolder.mkpath(geoipFolder(false))) {
+              std::cerr << "Failed to create geoip folder at " << qPrintable(geoipFolder(false)) << std::endl;
+              return;
+          }
       }
       // Remove destination files
       if(QFile::exists(geoipDBpath(false)))
         QFile::remove(geoipDBpath(false));
       // Copy from executable to hard disk
-      QFile::copy(geoipDBpath(true), geoipDBpath(false));
+      qDebug("%s -> %s", qPrintable(geoipDBpath(true)), qPrintable(geoipDBpath(false)));
+      if(!QFile::copy(geoipDBpath(true), geoipDBpath(false))) {
+          std::cerr << "ERROR: Failed to copy geoip.dat from executable to hard disk" << std::endl;
+      }
       qDebug("Local Geoip database was updated");
     }
   }

@@ -42,11 +42,17 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QSortFilterProxyModel>
+#include <QFileDialog>
+
+#ifdef Q_WS_WIN
+#include <stdlib.h>
+#endif
 
 #include "searchengine.h"
 #include "bittorrent.h"
 #include "downloadthread.h"
 #include "misc.h"
+#include "preferences.h"
 #include "searchlistdelegate.h"
 #include "GUI.h"
 
@@ -72,13 +78,11 @@ SearchEngine::SearchEngine(GUI *parent, Bittorrent *BTSession) : QWidget(parent)
   // Boolean initialization
   search_stopped = false;
   // Creating Search Process
+#ifdef Q_WS_WIN
+  checkForPythonExe();
+#endif
   searchProcess = new QProcess(this);
   QStringList env = QProcess::systemEnvironment();
-#ifdef Q_WS_WIN
-  // add qBittorrent executable folder to PATH environment variable
-  qDebug("qBittorrent executable path: %s", qPrintable(qApp->applicationDirPath()));
-  env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1;"+qApp->applicationDirPath());
-#endif
   searchProcess->setEnvironment(env);
   connect(searchProcess, SIGNAL(started()), this, SLOT(searchStarted()));
   connect(searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
@@ -105,6 +109,59 @@ void SearchEngine::fillCatCombobox() {
     comboCategory->addItem(full_cat_names[cat], QVariant(cat));
   }
 }
+
+#ifdef Q_WS_WIN
+void SearchEngine::checkForPythonExe() {
+    QString python_path = Preferences::getPythonPath();
+    if(python_path.isEmpty() || !QFile::exists(python_path+QDir::separator()+"python.exe")) {
+        // Attempt to detect python in standard location
+        QStringList filters;
+        filters << "Python25" << "Python26";
+        QStringList python_folders = QDir::root().entryList(filters, QDir::Dirs, QDir::Name);
+        if(!python_folders.isEmpty()) {
+            python_path = QDir::root().absoluteFilePath(python_folders.last());
+            qDebug("Detected python folder at %s", qPrintable(python_path));
+        } else {
+            filters.clear();
+            filters << "Python*";
+            python_folders = QDir::root().entryList(filters, QDir::Dirs, QDir::Name);
+            if(!python_folders.isEmpty()) {
+                python_path = QDir::root().absoluteFilePath(python_folders.last());
+                qDebug("Detected python folder at %s", qPrintable(python_path));
+            } else {
+                qDebug("Failed to detect Python folder");
+            }
+        }
+    }
+    if(python_path.isEmpty() || !QFile::exists(python_path+QDir::separator()+"python.exe")) {
+        QMessageBox::warning(0, tr("Failed to locate the Python interpreter"), tr("The Python interpreter was not found.\nqBittorrent will now ask you to point to its correct location."));
+        QString python_exe_path = QFileDialog::getOpenFileName(0, tr("Please point to its location on your hard disk."),
+                                     QDir::root().absolutePath(), tr("Python executable (python.exe)"));
+        if(python_exe_path.isEmpty() || !QFile::exists(python_exe_path)) {
+            QMessageBox::warning(0, tr("No Python interpreter"), tr("The Python interpreter is missing. qBittorrent search engine will not work."));
+            return;
+        }
+        qDebug("Python exe path is: %s", qPrintable(python_exe_path));
+        QStringList tmp_list = python_exe_path.split(QDir::separator());
+        if(tmp_list.size() == 1)
+            tmp_list = tmp_list.first().split("/");
+        tmp_list.removeLast();
+        python_path = tmp_list.join(QDir::separator());
+        qDebug("New Python path is: %s", qPrintable(python_path));
+        // Save python path
+        Preferences::setPythonPath(python_path);
+    }
+    // Add it to PATH envvar
+    QString path_envar = QString::fromLocal8Bit(getenv("PATH"));
+    if(path_envar.isNull()) {
+        path_envar = "";
+    }
+    path_envar = python_path+";"+path_envar;
+    qDebug("New PATH envvar is: %s", qPrintable(path_envar));
+    QString envar = "PATH="+path_envar;
+    putenv(envar.toLocal8Bit().data());
+}
+#endif
 
 QString SearchEngine::selectedCategory() const {
   return comboCategory->itemData(comboCategory->currentIndex()).toString();

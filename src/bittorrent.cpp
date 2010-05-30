@@ -944,6 +944,15 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   QString hash;
   boost::intrusive_ptr<torrent_info> t;
 
+#ifdef Q_WS_WIN
+    // Windows hack
+    if(!path.endsWith(".torrent")) {
+        if(QFile::rename(path, path+".torrent"))
+            path += ".torrent";
+    }
+    qDebug("Downloading torrent at path: %s", qPrintable(path));
+#endif
+
   // Checking if BT_backup Dir exists
   // create it if it is not
   if(! torrentBackup.exists()) {
@@ -2302,6 +2311,19 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     const int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toLocal8Bit()));
     if(index < 0) {
       // Add file to torrent download list
+#ifdef Q_WS_WIN
+      // Windows hack
+      if(!file_path.endsWith(".torrent")) {
+        Q_ASSERT(QFile::exists(file_path));
+        qDebug("Torrent name does not end with .torrent, fixing...");
+        if(QFile::rename(file_path, file_path+".torrent")) {
+          file_path += ".torrent";
+        } else {
+          qDebug("Failed to rename torrent file!");
+        }
+      }
+      qDebug("Downloading torrent at path: %s", qPrintable(file_path));
+#endif
       emit newDownloadedTorrent(file_path, url);
     } else {
       url_skippingDlg.removeAt(index);

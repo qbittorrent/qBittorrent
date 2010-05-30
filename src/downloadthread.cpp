@@ -72,26 +72,27 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
     }
     // Success
     QString filePath;
-    QTemporaryFile tmpfile;
-    tmpfile.setAutoRemove(false);
-    if (tmpfile.open()) {
-      filePath = tmpfile.fileName();
+    QTemporaryFile *tmpfile = new QTemporaryFile;
+    tmpfile->setAutoRemove(false);
+    if (tmpfile->open()) {
+      filePath = tmpfile->fileName();
       qDebug("Temporary filename is: %s", qPrintable(filePath));
       if(reply->open(QIODevice::ReadOnly)) {
         // TODO: Support GZIP compression
-        QByteArray content = reply->readAll();
-        //qDebug("Read content: %s", content.data());
-        tmpfile.write(content);
+        tmpfile->write(reply->readAll());
         reply->close();
-        tmpfile.close();
+        tmpfile->close();
+        delete tmpfile;
         // Send finished signal
         emit downloadFinished(url, filePath);
       } else {
         // Error when reading the request
-        tmpfile.close();
+        tmpfile->close();
+        delete tmpfile;
         emit downloadFailure(url, tr("I/O Error"));
       }
     } else {
+      delete tmpfile;
       emit downloadFailure(url, tr("I/O Error"));
     }
   }
