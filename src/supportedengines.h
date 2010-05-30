@@ -39,6 +39,7 @@
 #include <QProcess>
 #include <QSettings>
 #include <QDir>
+#include <QApplication>
 
 #include "misc.h"
 
@@ -139,6 +140,7 @@ public:
 public slots:
   void update() {
     QProcess nova;
+    nova.setEnvironment(QProcess::systemEnvironment());
     QStringList params;
     params << misc::searchEngineLocation()+QDir::separator()+"nova2.py";
     params << "--capabilities";
@@ -149,6 +151,7 @@ public slots:
     QDomDocument xml_doc;
     if(!xml_doc.setContent(capabilities)) {
       std::cerr << "Could not parse Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data() << std::endl;
+      std::cerr << "Error: " << nova.readAllStandardError().constData() << std::endl;
       return;
     }
     QDomElement root = xml_doc.documentElement();

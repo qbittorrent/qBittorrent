@@ -916,6 +916,18 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Connection/ResolvePeerHostNames"), resolve);
   }
 
+#ifdef Q_WS_WIN
+  static void setPythonPath(QString path) {
+      QSettings settings("qBittorrent", "qBittorrent");
+      settings.setValue(QString::fromUtf8("Preferences/Win32/PythonPath"), path);
+  }
+
+  static QString getPythonPath() {
+      QSettings settings("qBittorrent", "qBittorrent");
+      return settings.value(QString::fromUtf8("Preferences/Win32/PythonPath"), "").toString();
+  }
+#endif
+
 };
 
 #endif // PREFERENCES_H
