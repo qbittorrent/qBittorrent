@@ -155,11 +155,8 @@ void SearchEngine::checkForPythonExe() {
     QString path_envar = QString::fromLocal8Bit(getenv("PATH"));
     if(path_envar.isNull()) {
         path_envar = "";
-    } else {
-        if(!path_envar.endsWith(";"))
-            path_envar += ";";
     }
-    path_envar += python_path+";";
+    path_envar = python_path+";"+path_envar;
     qDebug("New PATH envvar is: %s", qPrintable(path_envar));
     QString envar = "PATH="+path_envar;
     putenv(envar.toLocal8Bit().data());
