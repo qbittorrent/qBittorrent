@@ -1894,12 +1894,12 @@ list:</source>
         <translation type="obsolete"> 업로딩 속도:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="658"/>
+        <location filename="../GUI.cpp" line="667"/>
         <source>Open Torrent Files</source>
         <translation>토런트  파일 열기</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="659"/>
+        <location filename="../GUI.cpp" line="668"/>
         <source>Torrent Files</source>
         <translation>토런트 파일</translation>
     </message>
@@ -1953,12 +1953,12 @@ list?</source>
 파일을 지우고 싶으세요?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="552"/>
+        <location filename="../GUI.cpp" line="561"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="552"/>
+        <location filename="../GUI.cpp" line="561"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
@@ -2064,8 +2064,8 @@ download list?</source>
         <translation type="obsolete"> 개발자: 크리스토프 두메스 :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
-        <location filename="../GUI.cpp" line="833"/>
+        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="842"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
@@ -2410,15 +2410,15 @@ Please close the other one first.</source>
         <translation type="obsolete">큐비토런트 %1가 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="836"/>
-        <location filename="../GUI.cpp" line="843"/>
+        <location filename="../GUI.cpp" line="845"/>
+        <location filename="../GUI.cpp" line="852"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>다운로딩 속도: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="839"/>
-        <location filename="../GUI.cpp" line="845"/>
+        <location filename="../GUI.cpp" line="848"/>
+        <location filename="../GUI.cpp" line="854"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>업로딩 속도: %1 KiB/s</translation>
@@ -2439,7 +2439,7 @@ Please close the other one first.</source>
         <translation type="obsolete">대기중</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
+        <location filename="../GUI.cpp" line="559"/>
         <source>Are you sure you want to quit?</source>
         <translation>정말로 종료하시겠습니까?</translation>
     </message>
@@ -2502,13 +2502,13 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos; 가 다운로드를 다시 시작되었습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="343"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1가 다운로드를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="340"/>
+        <location filename="../GUI.cpp" line="349"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O 에러</translation>
@@ -2573,17 +2573,28 @@ Please close the other one first.</source>
         <translation>검색</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="288"/>
+        <location filename="../GUI.cpp" line="222"/>
+        <source>Torrent file association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="223"/>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="297"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="343"/>
         <source>Download completion</source>
         <translation>다운 완료</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="340"/>
+        <location filename="../GUI.cpp" line="349"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2592,40 +2603,40 @@ Please close the other one first.</source>
  이유: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="358"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
+        <location filename="../GUI.cpp" line="440"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
+        <location filename="../GUI.cpp" line="440"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="759"/>
+        <location filename="../GUI.cpp" line="768"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>큐비토런트 %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="850"/>
+        <location filename="../GUI.cpp" line="859"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>큐비토렌트 %1 (다운:%2/초, 업:%3/초)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="929"/>
+        <location filename="../GUI.cpp" line="938"/>
         <source>Use normal speed limits</source>
         <translation>보통 속도제한 사용하기</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="932"/>
+        <location filename="../GUI.cpp" line="941"/>
         <source>Use alternative speed limits</source>
         <translation>설정한 속도 제한을 사용하기</translation>
     </message>
@@ -2694,18 +2705,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">비율</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Url download error</source>
         <translation>Url 다운로드 오류</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>다음 주소(Url)에서 파일을 다운로드할수 없습니다: %1, 이유:%2.</translation>
     </message>
@@ -2731,29 +2742,29 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">다음 Url 완전체(Url seed)의 검색이 실패하였습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="351"/>
+        <location filename="../GUI.cpp" line="360"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="353"/>
+        <location filename="../GUI.cpp" line="362"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="444"/>
+        <location filename="../GUI.cpp" line="453"/>
         <source>Global Upload Speed Limit</source>
         <translation>전체 업로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="466"/>
+        <location filename="../GUI.cpp" line="475"/>
         <source>Global Download Speed Limit</source>
         <translation>전체 다운 속도 제한</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="551"/>
+        <location filename="../GUI.cpp" line="560"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>현재 몇몇 파일은 아직 전송 중에 있습니다. 큐비토렌트를 종료하시겠습니까?</translation>
@@ -2822,7 +2833,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">업로드</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="731"/>
+        <location filename="../GUI.cpp" line="740"/>
         <source>Options were saved successfully.</source>
         <translation>설정이 성공적으로 저장되었습니다.</translation>
     </message>

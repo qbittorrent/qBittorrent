@@ -1887,8 +1887,8 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete"> :: By Christophe Dumez :: Copyright (c) 2006</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
-        <location filename="../GUI.cpp" line="833"/>
+        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="842"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1909,12 +1909,12 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete">UP Geschwindigkeit:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="658"/>
+        <location filename="../GUI.cpp" line="667"/>
         <source>Open Torrent Files</source>
         <translation>Öffne Torrent-Dateien</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="659"/>
+        <location filename="../GUI.cpp" line="668"/>
         <source>Torrent Files</source>
         <translation>Torrent-Dateien</translation>
     </message>
@@ -1964,12 +1964,12 @@ qBittorrent beobachtet das Verzeichniss und starten den Download von vorhandenen
         <translation type="obsolete">Wollen Sie wirklich alle Dateien aus der Download Liste löschen?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="552"/>
+        <location filename="../GUI.cpp" line="561"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="552"/>
+        <location filename="../GUI.cpp" line="561"/>
         <source>&amp;No</source>
         <translation>&amp;Nein</translation>
     </message>
@@ -2379,15 +2379,15 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">qBittorrent %1 gestartet.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="836"/>
-        <location filename="../GUI.cpp" line="843"/>
+        <location filename="../GUI.cpp" line="845"/>
+        <location filename="../GUI.cpp" line="852"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Geschwindigkeit: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="839"/>
-        <location filename="../GUI.cpp" line="845"/>
+        <location filename="../GUI.cpp" line="848"/>
+        <location filename="../GUI.cpp" line="854"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP Geschwindigkeit: %1 KiB/s</translation>
@@ -2408,7 +2408,7 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">Angehalten</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
+        <location filename="../GUI.cpp" line="559"/>
         <source>Are you sure you want to quit?</source>
         <translation>Wollen Sie wirklich beenden?</translation>
     </message>
@@ -2471,13 +2471,13 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation type="obsolete">&apos;%1&apos; fortgesetzt.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="343"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 vollständig heruntergeladen.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="340"/>
+        <location filename="../GUI.cpp" line="349"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Error</translation>
@@ -2542,17 +2542,28 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="288"/>
+        <location filename="../GUI.cpp" line="222"/>
+        <source>Torrent file association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="223"/>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="297"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="343"/>
         <source>Download completion</source>
         <translation>Beendigung des Download</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="340"/>
+        <location filename="../GUI.cpp" line="349"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2560,40 +2571,40 @@ Bitte schliessen Sie diesen zuerst.</translation>
         <translation>Ein I/O Fehler ist aufegtreten für die Torrent Datei %1. Ursache: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="358"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
+        <location filename="../GUI.cpp" line="440"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
+        <location filename="../GUI.cpp" line="440"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="759"/>
+        <location filename="../GUI.cpp" line="768"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="850"/>
+        <location filename="../GUI.cpp" line="859"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="929"/>
+        <location filename="../GUI.cpp" line="938"/>
         <source>Use normal speed limits</source>
         <translation>Normale Geschwindigkeitsbegrenzungen verwenden</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="932"/>
+        <location filename="../GUI.cpp" line="941"/>
         <source>Use alternative speed limits</source>
         <translation>Alternative Geschwindigkeitsbegrenzungen verwenden</translation>
     </message>
@@ -2666,7 +2677,7 @@ Möchten sie qBittorrent wirklich beenden?</translation>
         <translation type="obsolete">Verhältnis</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -2687,12 +2698,12 @@ Möchten sie qBittorrent wirklich beenden?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Url download error</source>
         <translation>URL Download Fehler</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Konnte Datei von URL: %1 nicht laden, Begründung: %2.</translation>
     </message>
@@ -2723,29 +2734,29 @@ Möchten sie qBittorrent wirklich beenden?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="351"/>
+        <location filename="../GUI.cpp" line="360"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Strg+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="353"/>
+        <location filename="../GUI.cpp" line="362"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="444"/>
+        <location filename="../GUI.cpp" line="453"/>
         <source>Global Upload Speed Limit</source>
         <translation>Globale UL-Rate</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="466"/>
+        <location filename="../GUI.cpp" line="475"/>
         <source>Global Download Speed Limit</source>
         <translation>Globale DL-Rate</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="551"/>
+        <location filename="../GUI.cpp" line="560"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Zur Zeit werden Dateien übertragen.
@@ -2815,7 +2826,7 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
         <translation type="obsolete">Uploads</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="731"/>
+        <location filename="../GUI.cpp" line="740"/>
         <source>Options were saved successfully.</source>
         <translation>Optionen wurden erfolgreich gespeichert.</translation>
     </message>

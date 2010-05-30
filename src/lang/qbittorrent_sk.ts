@@ -2562,6 +2562,15 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Torrent file association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeadlessLoader</name>

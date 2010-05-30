@@ -2011,7 +2011,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible de trouver le dossier : &apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="658"/>
+        <location filename="../GUI.cpp" line="667"/>
         <source>Open Torrent Files</source>
         <translation>Ouvrir fichiers torrent</translation>
     </message>
@@ -2048,12 +2048,12 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Etes-vous sûr de vouloir enlever tous les fichiers de la liste de téléchargement ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="552"/>
+        <location filename="../GUI.cpp" line="561"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="552"/>
+        <location filename="../GUI.cpp" line="561"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -2122,7 +2122,7 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible de créer le dossier :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="659"/>
+        <location filename="../GUI.cpp" line="668"/>
         <source>Torrent Files</source>
         <translation>Fichiers Torrent</translation>
     </message>
@@ -2552,27 +2552,27 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">qBittorrent %1 démarré.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
-        <location filename="../GUI.cpp" line="833"/>
+        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="842"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="759"/>
+        <location filename="../GUI.cpp" line="768"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="836"/>
-        <location filename="../GUI.cpp" line="843"/>
+        <location filename="../GUI.cpp" line="845"/>
+        <location filename="../GUI.cpp" line="852"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Vitesse DL : %1 Ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="839"/>
-        <location filename="../GUI.cpp" line="845"/>
+        <location filename="../GUI.cpp" line="848"/>
+        <location filename="../GUI.cpp" line="854"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vitesse UP : %1 Ko/s</translation>
@@ -2593,7 +2593,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">En attente</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="550"/>
+        <location filename="../GUI.cpp" line="559"/>
         <source>Are you sure you want to quit?</source>
         <translation>Etes vous certain de vouloir quitter ?</translation>
     </message>
@@ -2656,13 +2656,13 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">&apos;%1&apos; a été relancé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="343"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Le téléchargement de %1 est terminé.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="340"/>
+        <location filename="../GUI.cpp" line="349"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Erreur E/S</translation>
@@ -2727,17 +2727,29 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation>Recherche</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="288"/>
+        <location filename="../GUI.cpp" line="222"/>
+        <source>Torrent file association</source>
+        <translation>Association aux fichiers Torrent</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="223"/>
+        <source>qBittorrent is not the default application to open torrent files.
+Do you want to associate qBittorrent to torrent files?</source>
+        <translation>qBittorrent n&apos;est pas l&apos;application par défaut associée au fichiers Torrent.
+Voulez-vous réaliser cette association ?</translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="297"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="343"/>
         <source>Download completion</source>
         <translation>Fin du téléchargement</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="340"/>
+        <location filename="../GUI.cpp" line="349"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2746,34 +2758,34 @@ Veuillez d&apos;abord le quitter.</translation>
 Raison : %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="358"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+é</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
+        <location filename="../GUI.cpp" line="440"/>
         <source>Recursive download confirmation</source>
         <translation>Confirmation pour téléchargement récursif</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
+        <location filename="../GUI.cpp" line="440"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Le torrent %1 contients des fichiers torrents, desirez-vous les mettre en téléchargement ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="850"/>
+        <location filename="../GUI.cpp" line="859"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Réception : %2/s, Envoi : %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="929"/>
+        <location filename="../GUI.cpp" line="938"/>
         <source>Use normal speed limits</source>
         <translation>Utiliser les limites de vitesse normales</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="932"/>
+        <location filename="../GUI.cpp" line="941"/>
         <source>Use alternative speed limits</source>
         <translation>Utiliser les limites de vitesse alternatives</translation>
     </message>
@@ -2846,7 +2858,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Ratio</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="347"/>
+        <location filename="../GUI.cpp" line="356"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+&amp;</translation>
@@ -2867,12 +2879,12 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Alt+&apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Url download error</source>
         <translation>Erreur téléchargement url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="438"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Impossible de télécharger le fichier à l&apos;url : %1, raison : %2.</translation>
     </message>
@@ -2903,29 +2915,29 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Alt+&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="351"/>
+        <location filename="../GUI.cpp" line="360"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="353"/>
+        <location filename="../GUI.cpp" line="362"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+&quot;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="444"/>
+        <location filename="../GUI.cpp" line="453"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limite globale de la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="466"/>
+        <location filename="../GUI.cpp" line="475"/>
         <source>Global Download Speed Limit</source>
         <translation>Limite globale de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="551"/>
+        <location filename="../GUI.cpp" line="560"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Certains fichiers sont en cours de transfert.
@@ -2995,7 +3007,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Partages</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="731"/>
+        <location filename="../GUI.cpp" line="740"/>
         <source>Options were saved successfully.</source>
         <translation>Préférences sauvegardées avec succès.</translation>
     </message>
@@ -5245,33 +5257,34 @@ Changements:
     <message>
         <location filename="../searchengine.cpp" line="137"/>
         <source>Failed to locate the Python interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de localiser l&apos;interpréteur Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="137"/>
         <source>The Python interpreter was not found.
 qBittorrent will now ask you to point to its correct location.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;interpréteur Python n&apos;a pas été trouvé.
+qBittorrent va maintenant vous demander d&apos;indiquer le chemin vers celui-ci.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="138"/>
         <source>Please point to its location on your hard disk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez indiquer son chemin sur votre disque dur.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="139"/>
         <source>Python executable (python.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exécutable Python (python.exe)</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="141"/>
         <source>No Python interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun interpréteur Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="141"/>
         <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;interpréteur Python n&apos;a été trouvé. Le moteur de recherche ne fonctionnera pas.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="196"/>
