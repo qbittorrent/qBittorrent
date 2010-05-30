@@ -336,71 +336,71 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="829"/>
-        <location filename="../bittorrent.cpp" line="990"/>
-        <location filename="../bittorrent.cpp" line="993"/>
+        <location filename="../bittorrent.cpp" line="999"/>
+        <location filename="../bittorrent.cpp" line="1002"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; už je v seznamu stahování.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="926"/>
-        <location filename="../bittorrent.cpp" line="1190"/>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1199"/>
+        <location filename="../bittorrent.cpp" line="1204"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="928"/>
-        <location filename="../bittorrent.cpp" line="1192"/>
-        <location filename="../bittorrent.cpp" line="1197"/>
+        <location filename="../bittorrent.cpp" line="1201"/>
+        <location filename="../bittorrent.cpp" line="1206"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; přidán do seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="964"/>
-        <location filename="../bittorrent.cpp" line="968"/>
+        <location filename="../bittorrent.cpp" line="973"/>
+        <location filename="../bittorrent.cpp" line="977"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nelze dekódovat soubor torrentu: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="971"/>
+        <location filename="../bittorrent.cpp" line="980"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1019"/>
+        <location filename="../bittorrent.cpp" line="1028"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Poznámka: ke stávajícímu torrentu byly přidány nové trackery.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1032"/>
+        <location filename="../bittorrent.cpp" line="1041"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Poznámka: ke stávajícímu torrentu byly přidány nové URL seedy.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1535"/>
+        <location filename="../bittorrent.cpp" line="1544"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1537"/>
+        <location filename="../bittorrent.cpp" line="1546"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1869"/>
+        <location filename="../bittorrent.cpp" line="1878"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1879"/>
-        <location filename="../bittorrent.cpp" line="1932"/>
+        <location filename="../bittorrent.cpp" line="1888"/>
+        <location filename="../bittorrent.cpp" line="1941"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nelze dekódovat soubor torrentu %1.</translation>
     </message>
@@ -409,38 +409,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nelze naslouchat na žádném z udaných portů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2112"/>
+        <location filename="../bittorrent.cpp" line="2121"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2117"/>
+        <location filename="../bittorrent.cpp" line="2126"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2132"/>
+        <location filename="../bittorrent.cpp" line="2141"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2028"/>
-        <location filename="../bittorrent.cpp" line="2133"/>
+        <location filename="../bittorrent.cpp" line="2037"/>
+        <location filename="../bittorrent.cpp" line="2142"/>
         <source>Reason: %1</source>
         <translation>Důvod: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2027"/>
+        <location filename="../bittorrent.cpp" line="2036"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Došlo k chybě I/O, &apos;%1&apos; je pozastaven.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2138"/>
+        <location filename="../bittorrent.cpp" line="2147"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2250"/>
+        <location filename="../bittorrent.cpp" line="2259"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
@@ -3162,7 +3162,7 @@ QGroupBox {
         <translation type="obsolete">Informace o torrentu</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="429"/>
+        <location filename="../ui/propertieswidget.ui" line="342"/>
         <source>Save path:</source>
         <translation>Uložit do:</translation>
     </message>
@@ -3171,12 +3171,12 @@ QGroupBox {
         <translation type="obsolete">Tvůrce:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="461"/>
+        <location filename="../ui/propertieswidget.ui" line="450"/>
         <source>Torrent hash:</source>
         <translation>Kontrolní součet (hash) torrentu:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="471"/>
+        <location filename="../ui/propertieswidget.ui" line="493"/>
         <source>Comment:</source>
         <translation>Komentář:</translation>
     </message>
@@ -3193,7 +3193,7 @@ QGroupBox {
         <translation type="obsolete">Celkově staženo:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="340"/>
+        <location filename="../ui/propertieswidget.ui" line="211"/>
         <source>Share ratio:</source>
         <translation>Poměr sdílení:</translation>
     </message>
@@ -3207,7 +3207,7 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="82"/>
-        <location filename="../ui/propertieswidget.ui" line="206"/>
+        <location filename="../ui/propertieswidget.ui" line="228"/>
         <source>Downloaded:</source>
         <translation>Staženo:</translation>
     </message>
@@ -3217,47 +3217,47 @@ QGroupBox {
         <translation>Dostupnost:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="173"/>
+        <location filename="../ui/propertieswidget.ui" line="171"/>
         <source>Transfer</source>
         <translation>Přenos</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="196"/>
+        <location filename="../ui/propertieswidget.ui" line="177"/>
         <source>Uploaded:</source>
         <translation>Nahráno:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="216"/>
+        <location filename="../ui/propertieswidget.ui" line="279"/>
         <source>Wasted:</source>
         <translation>Zahozeno:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="268"/>
+        <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Limit nahrávání:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="278"/>
+        <location filename="../ui/propertieswidget.ui" line="245"/>
         <source>DL limit:</source>
         <translation>Limit stahování:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="288"/>
+        <location filename="../ui/propertieswidget.ui" line="296"/>
         <source>Time elapsed:</source>
         <translation>Uplynulý čas:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="350"/>
+        <location filename="../ui/propertieswidget.ui" line="262"/>
         <source>Connections:</source>
         <translation>Připojení:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="412"/>
+        <location filename="../ui/propertieswidget.ui" line="330"/>
         <source>Information</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="445"/>
+        <location filename="../ui/propertieswidget.ui" line="404"/>
         <source>Created on:</source>
         <translation>Vytvořeno:</translation>
     </message>
@@ -3270,37 +3270,37 @@ QGroupBox {
         <translation type="obsolete">Aktuální tracker:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="847"/>
+        <location filename="../ui/propertieswidget.ui" line="754"/>
         <source>Collapse all</source>
         <translation>Sbalit vše</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="854"/>
+        <location filename="../ui/propertieswidget.ui" line="761"/>
         <source>Expand all</source>
         <translation>Rozbalit vše</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="901"/>
+        <location filename="../ui/propertieswidget.ui" line="808"/>
         <source>General</source>
         <translation>Obecné</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="918"/>
+        <location filename="../ui/propertieswidget.ui" line="825"/>
         <source>Trackers</source>
         <translation>Trackery</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="941"/>
+        <location filename="../ui/propertieswidget.ui" line="848"/>
         <source>Peers</source>
         <translation>Protějšky</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="958"/>
+        <location filename="../ui/propertieswidget.ui" line="865"/>
         <source>URL seeds</source>
         <translation>URL seedy</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="975"/>
+        <location filename="../ui/propertieswidget.ui" line="882"/>
         <source>Files</source>
         <translation>Soubory</translation>
     </message>
@@ -3330,17 +3330,17 @@ QGroupBox {
         <translation type="obsolete">Ignorovat</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1007"/>
+        <location filename="../ui/propertieswidget.ui" line="914"/>
         <source>Normal</source>
         <translation>Normální</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1017"/>
+        <location filename="../ui/propertieswidget.ui" line="924"/>
         <source>Maximum</source>
         <translation>Maximální</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1012"/>
+        <location filename="../ui/propertieswidget.ui" line="919"/>
         <source>High</source>
         <translation>Vysoká</translation>
     </message>
@@ -3477,14 +3477,14 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/rss.ui" line="25"/>
-        <location filename="../ui/rss.ui" line="211"/>
+        <location filename="../ui/rss.ui" line="223"/>
         <source>New subscription</source>
         <translation>Nové přihlášení k odběru</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="39"/>
-        <location filename="../ui/rss.ui" line="232"/>
-        <location filename="../ui/rss.ui" line="235"/>
+        <location filename="../ui/rss.ui" line="244"/>
+        <location filename="../ui/rss.ui" line="247"/>
         <source>Mark items read</source>
         <translation>Označit jako přečtené</translation>
     </message>
@@ -3498,18 +3498,18 @@ QGroupBox {
         <translation type="obsolete">1</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="157"/>
+        <location filename="../ui/rss.ui" line="169"/>
         <source>Feed URL</source>
         <translation>URL kanálu</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="199"/>
-        <location filename="../ui/rss.ui" line="202"/>
+        <location filename="../ui/rss.ui" line="211"/>
+        <location filename="../ui/rss.ui" line="214"/>
         <source>Update</source>
         <translation>Aktualizovat</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="280"/>
+        <location filename="../ui/rss.ui" line="292"/>
         <source>New folder</source>
         <translation>Nový adresář</translation>
     </message>
@@ -3536,25 +3536,25 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Odrážka</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="152"/>
+        <location filename="../ui/rss.ui" line="164"/>
         <source>Article title</source>
         <translation>Název položky</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="220"/>
-        <location filename="../ui/rss.ui" line="223"/>
+        <location filename="../ui/rss.ui" line="232"/>
+        <location filename="../ui/rss.ui" line="235"/>
         <source>Update all feeds</source>
         <translation>Aktualizovat všechny kanály</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="175"/>
-        <location filename="../ui/rss.ui" line="178"/>
+        <location filename="../ui/rss.ui" line="187"/>
+        <location filename="../ui/rss.ui" line="190"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="187"/>
-        <location filename="../ui/rss.ui" line="190"/>
+        <location filename="../ui/rss.ui" line="199"/>
+        <location filename="../ui/rss.ui" line="202"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
@@ -3563,22 +3563,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Obnovit</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="244"/>
+        <location filename="../ui/rss.ui" line="256"/>
         <source>Download torrent</source>
         <translation>Stáhnout torrent</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="253"/>
+        <location filename="../ui/rss.ui" line="265"/>
         <source>Open news URL</source>
         <translation>Otevřít URL s novinkami</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="262"/>
+        <location filename="../ui/rss.ui" line="274"/>
         <source>Copy feed URL</source>
         <translation>Kopírovat URL kanálu</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="271"/>
+        <location filename="../ui/rss.ui" line="283"/>
         <source>RSS feed downloader</source>
         <translation>Stáhnout z RSS kanálů</translation>
     </message>
@@ -3623,12 +3623,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Please type a rss stream url</source>
         <translation>Prosím napište URL RSS kanálu</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Stream URL:</source>
         <translation>URL kanálu:</translation>
     </message>
@@ -3641,20 +3641,20 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nový název kanálu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="205"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Jste si jist? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ano</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
@@ -3675,68 +3675,68 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Poslední obnova:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Please choose a folder name</source>
         <translation>Prosím vyberte název adresáře</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Folder name:</source>
         <translation>Název adresáře:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>New folder</source>
         <translation>Nový adresář</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="139"/>
+        <location filename="../rss_imp.cpp" line="138"/>
         <source>Overwrite attempt</source>
         <translation>Pokus o přepsání</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="140"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Nelze přepsat %1.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="177"/>
+        <location filename="../rss_imp.cpp" line="176"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="178"/>
+        <location filename="../rss_imp.cpp" line="177"/>
         <source>This rss feed is already in the list.</source>
         <translation>Tento RSS kanál už v seznamu existuje.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="205"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Jste si jist, že chcete smazat tyto prvky ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Jste si jist, že chcete smazat tento prvek ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Prosím vyberte nový název pro tento RSS kanál</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>New feed name:</source>
         <translation>Název nového kanálu:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>Name already in use</source>
         <translation>Název je již používán</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Tento název již používá jiná položka, vyberte prosím jiný.</translation>
     </message>
@@ -3759,7 +3759,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="372"/>
+        <location filename="../rss.h" line="379"/>
         <source>No description available</source>
         <translation>Popis není k dispozici</translation>
     </message>
@@ -3797,47 +3797,47 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchCategories</name>
     <message>
-        <location filename="../supportedengines.h" line="50"/>
+        <location filename="../supportedengines.h" line="51"/>
         <source>All categories</source>
         <translation>Všechny kategorie</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="51"/>
+        <location filename="../supportedengines.h" line="52"/>
         <source>Movies</source>
         <translation>Filmy</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="52"/>
+        <location filename="../supportedengines.h" line="53"/>
         <source>TV shows</source>
         <translation>TV seriály</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="53"/>
+        <location filename="../supportedengines.h" line="54"/>
         <source>Music</source>
         <translation>Hudba</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="54"/>
+        <location filename="../supportedengines.h" line="55"/>
         <source>Games</source>
         <translation>Hry</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="55"/>
+        <location filename="../supportedengines.h" line="56"/>
         <source>Anime</source>
         <translation>Anime</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="56"/>
+        <location filename="../supportedengines.h" line="57"/>
         <source>Software</source>
         <translation>Software</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="57"/>
+        <location filename="../supportedengines.h" line="58"/>
         <source>Pictures</source>
         <translation>Obrázky</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="58"/>
+        <location filename="../supportedengines.h" line="59"/>
         <source>Books</source>
         <translation>Knihy</translation>
     </message>
@@ -3845,93 +3845,124 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchEngine</name>
     <message>
+        <location filename="../searchengine.cpp" line="137"/>
+        <source>Failed to locate the Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="137"/>
+        <source>The Python interpreter was not found.
+qBittorrent will now ask you to point to its correct location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="138"/>
+        <source>Please point to its location on your hard disk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../searchengine.cpp" line="139"/>
+        <source>Python executable (python.exe)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="141"/>
+        <source>No Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="141"/>
+        <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="196"/>
         <source>Cut</source>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="140"/>
+        <location filename="../searchengine.cpp" line="197"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="141"/>
+        <location filename="../searchengine.cpp" line="198"/>
         <source>Paste</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="142"/>
+        <location filename="../searchengine.cpp" line="199"/>
         <source>Clear field</source>
         <translation>Vyprázdnit pole</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="143"/>
+        <location filename="../searchengine.cpp" line="200"/>
         <source>Clear completion history</source>
         <translation>Vymazat historii</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="210"/>
-        <location filename="../searchengine.cpp" line="221"/>
-        <location filename="../searchengine.cpp" line="222"/>
+        <location filename="../searchengine.cpp" line="267"/>
+        <location filename="../searchengine.cpp" line="278"/>
+        <location filename="../searchengine.cpp" line="279"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="233"/>
+        <location filename="../searchengine.cpp" line="290"/>
         <source>Empty search pattern</source>
         <translation>Prázdný hledaný řetězec</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="233"/>
+        <location filename="../searchengine.cpp" line="290"/>
         <source>Please type a search pattern first</source>
         <translation>Nejdříve prosím napište hledaný řetězec</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="270"/>
-        <location filename="../searchengine.cpp" line="361"/>
+        <location filename="../searchengine.cpp" line="327"/>
+        <location filename="../searchengine.cpp" line="418"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="340"/>
+        <location filename="../searchengine.cpp" line="397"/>
         <source>Searching...</source>
         <translation>Hledám...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="471"/>
+        <location filename="../searchengine.cpp" line="528"/>
         <source>Search Engine</source>
         <translation>Vyhledávač</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="471"/>
-        <location filename="../searchengine.cpp" line="482"/>
+        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="539"/>
         <source>Search has finished</source>
         <translation>Hledání ukončeno</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="474"/>
+        <location filename="../searchengine.cpp" line="531"/>
         <source>An error occured during search...</source>
         <translation>Během hledání nastala chyba...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="477"/>
+        <location filename="../searchengine.cpp" line="534"/>
         <source>Search aborted</source>
         <translation>Hledání přerušeno</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="480"/>
+        <location filename="../searchengine.cpp" line="537"/>
         <source>Search returned no results</source>
         <translation>Nebyly nalezeny žádné výsledky</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="487"/>
+        <location filename="../searchengine.cpp" line="544"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="522"/>
-        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="579"/>
+        <location filename="../searchengine.cpp" line="585"/>
         <source>Unknown</source>
         <translation>Neznámý</translation>
     </message>
@@ -4399,27 +4430,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="860"/>
+        <location filename="../transferlistwidget.cpp" line="862"/>
         <source>Column visibility</source>
         <translation>Zobrazení sloupců</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="980"/>
+        <location filename="../transferlistwidget.cpp" line="982"/>
         <source>Start</source>
         <translation>Spustit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="982"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Pause</source>
         <translation>Pozastavit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="986"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="988"/>
         <source>Preview file</source>
         <translation>Náhled souboru</translation>
     </message>
@@ -4479,7 +4510,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1091"/>
+        <location filename="../transferlistwidget.cpp" line="1094"/>
         <source>Label</source>
         <translation>Štítek</translation>
     </message>
@@ -4508,113 +4539,113 @@ p, li { white-space: pre-wrap; }
         <translation>Limit nahrávání</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="766"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limit rychlosti stahování torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="799"/>
+        <location filename="../transferlistwidget.cpp" line="801"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limit rychlosti nahrávání torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="921"/>
+        <location filename="../transferlistwidget.cpp" line="923"/>
         <source>New Label</source>
         <translation>Nový štítek</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="921"/>
+        <location filename="../transferlistwidget.cpp" line="923"/>
         <source>Label:</source>
         <translation>Štítek:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Invalid label name</source>
         <translation>Neplatný název štítku</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Nepoužívejte prosím v názvu štítku žádné speciální znaky.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="942"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="942"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="990"/>
         <source>Limit upload rate</source>
         <translation>Omezit rychlost nahrávání</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="990"/>
+        <location filename="../transferlistwidget.cpp" line="992"/>
         <source>Limit download rate</source>
         <translation>Omezit rychlost stahování</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="992"/>
+        <location filename="../transferlistwidget.cpp" line="994"/>
         <source>Open destination folder</source>
         <translation>Otevřít cílový adresář</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="996"/>
         <source>Buy it</source>
         <translation>Koupit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="998"/>
         <source>Increase priority</source>
         <translation>Zvýšit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Decrease priority</source>
         <translation>Snížit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1002"/>
         <source>Force recheck</source>
         <translation>Překontrolovat platnost</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1004"/>
         <source>Copy magnet link</source>
         <translation>Kopírovat odkaz Magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1005"/>
+        <location filename="../transferlistwidget.cpp" line="1007"/>
         <source>Super seeding mode</source>
         <translation>Super seeding mód</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1010"/>
         <source>Rename...</source>
         <translation>Přejmenovat...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1012"/>
         <source>Download in sequential order</source>
         <translation>Stahovat v souvislém pořadí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1014"/>
         <source>Download first and last piece first</source>
         <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1092"/>
+        <location filename="../transferlistwidget.cpp" line="1095"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nový...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1093"/>
+        <location filename="../transferlistwidget.cpp" line="1096"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Reset</translation>
@@ -5257,118 +5288,118 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="91"/>
-        <location filename="../downloadthread.cpp" line="94"/>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="97"/>
         <source>I/O Error</source>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="174"/>
+        <location filename="../downloadthread.cpp" line="177"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="176"/>
+        <location filename="../downloadthread.cpp" line="179"/>
         <source>The operation was canceled</source>
         <translation>Operace byla zrušena</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="178"/>
+        <location filename="../downloadthread.cpp" line="181"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Vzdálený server předčasně ukončil připojení, dříve než byla celá odpověď přijata a zpracována</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="180"/>
+        <location filename="../downloadthread.cpp" line="183"/>
         <source>The connection to the remote server timed out</source>
         <translation>Připojení k vzdálenému serveru vypršelo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="182"/>
+        <location filename="../downloadthread.cpp" line="185"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS handshake selhalo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="184"/>
+        <location filename="../downloadthread.cpp" line="187"/>
         <source>The remote server refused the connection</source>
         <translation>Vzdálený server odmítl připojení</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="186"/>
+        <location filename="../downloadthread.cpp" line="189"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Připojení k proxy serveru bylo odmítnuto</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="188"/>
+        <location filename="../downloadthread.cpp" line="191"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Proxy server předčasně ukončil připojení</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="190"/>
+        <location filename="../downloadthread.cpp" line="193"/>
         <source>The proxy host name was not found</source>
         <translation>Název proxy serveru nebyl nalezen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="192"/>
+        <location filename="../downloadthread.cpp" line="195"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="194"/>
+        <location filename="../downloadthread.cpp" line="197"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Proxy vyžaduje ověření, ale neakceptovala žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="196"/>
+        <location filename="../downloadthread.cpp" line="199"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Přístup ke vzdálenému obsahu byl odepřen (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="198"/>
+        <location filename="../downloadthread.cpp" line="201"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Požadovaná operace na vzdáleném obsahu není dovolena</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="200"/>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Vzdálený obsah nebyl na serveru nalezen (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="202"/>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Vzdálený server vyžaduje ověření, ale neakceptoval žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="204"/>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="206"/>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Požadovaná operace není pro tento protokol platná</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="208"/>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>An unknown network-related error was detected</source>
         <translation>Byla detekována neznámá chyba sítě</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="210"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Byla detekována neznámá chyba související s proxy</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="212"/>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Byla detekována neznámá chyba související se vzdáleným obsahem</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="214"/>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Byla detekována chyba v protokolu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="216"/>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>Unknown error</source>
         <translation>Neznámá chyba</translation>
     </message>
@@ -5705,66 +5736,69 @@ Nicméně, tyto moduly byly vypnuty.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="319"/>
+        <location filename="../misc.cpp" line="321"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Neznámý</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="426"/>
+        <location filename="../misc.cpp" line="428"/>
+        <location filename="../misc.cpp" line="433"/>
+        <location filename="../misc.cpp" line="437"/>
+        <location filename="../misc.cpp" line="440"/>
         <source>Unknown</source>
         <translation>Neznámý</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="455"/>
+        <location filename="../misc.cpp" line="471"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="459"/>
+        <location filename="../misc.cpp" line="475"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="464"/>
+        <location filename="../misc.cpp" line="480"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="469"/>
+        <location filename="../misc.cpp" line="485"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>

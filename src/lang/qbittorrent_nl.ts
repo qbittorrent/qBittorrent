@@ -4377,6 +4377,31 @@ Changelog:
         <source>Search</source>
         <translation type="unfinished">Zoeken</translation>
     </message>
+    <message>
+        <source>Failed to locate the Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Python interpreter was not found.
+qBittorrent will now ask you to point to its correct location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to its location on your hard disk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python executable (python.exe)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchTab</name>

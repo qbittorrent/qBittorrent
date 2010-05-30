@@ -340,82 +340,82 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="829"/>
-        <location filename="../bittorrent.cpp" line="990"/>
-        <location filename="../bittorrent.cpp" line="993"/>
+        <location filename="../bittorrent.cpp" line="999"/>
+        <location filename="../bittorrent.cpp" line="1002"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; è già nella lista dei download.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="926"/>
-        <location filename="../bittorrent.cpp" line="1190"/>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1199"/>
+        <location filename="../bittorrent.cpp" line="1204"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; ripreso. (recupero veloce)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="928"/>
-        <location filename="../bittorrent.cpp" line="1192"/>
-        <location filename="../bittorrent.cpp" line="1197"/>
+        <location filename="../bittorrent.cpp" line="1201"/>
+        <location filename="../bittorrent.cpp" line="1206"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; è stato aggiunto alla lista dei download.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="964"/>
-        <location filename="../bittorrent.cpp" line="968"/>
+        <location filename="../bittorrent.cpp" line="973"/>
+        <location filename="../bittorrent.cpp" line="977"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossibile decifrare il file torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="971"/>
+        <location filename="../bittorrent.cpp" line="980"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Questo file è corrotto o non è un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1019"/>
+        <location filename="../bittorrent.cpp" line="1028"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1032"/>
+        <location filename="../bittorrent.cpp" line="1041"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1535"/>
+        <location filename="../bittorrent.cpp" line="1544"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bloccato a causa dei tuoi filtri IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1537"/>
+        <location filename="../bittorrent.cpp" line="1546"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bannato a causa di parti corrotte&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1869"/>
+        <location filename="../bittorrent.cpp" line="1878"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Download ricorsivo del file %1 incluso nel torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1879"/>
-        <location filename="../bittorrent.cpp" line="1932"/>
+        <location filename="../bittorrent.cpp" line="1888"/>
+        <location filename="../bittorrent.cpp" line="1941"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossibile decifrare il file torrent %1.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2027"/>
+        <location filename="../bittorrent.cpp" line="2036"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2028"/>
-        <location filename="../bittorrent.cpp" line="2133"/>
+        <location filename="../bittorrent.cpp" line="2037"/>
+        <location filename="../bittorrent.cpp" line="2142"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -424,27 +424,27 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Impossibile mettersi in ascolto sulle porte scelte.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2112"/>
+        <location filename="../bittorrent.cpp" line="2121"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: mappatura porte fallita, messaggio: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2117"/>
+        <location filename="../bittorrent.cpp" line="2126"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: mappatura porte riuscita, messaggio: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2132"/>
+        <location filename="../bittorrent.cpp" line="2141"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Il recupero veloce del torrent %1 è stato rifiutato, altro tentativo in corso...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2138"/>
+        <location filename="../bittorrent.cpp" line="2147"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Ricerca seed web fallita per l&apos;url: %1, messaggio: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2250"/>
+        <location filename="../bittorrent.cpp" line="2259"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Download di &apos;%1&apos; in corso...</translation>
@@ -4001,7 +4001,7 @@ QGroupBox {
         <translation type="obsolete">Informazioni sul torrent</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="429"/>
+        <location filename="../ui/propertieswidget.ui" line="342"/>
         <source>Save path:</source>
         <translation>Directory di salvataggio:</translation>
     </message>
@@ -4010,12 +4010,12 @@ QGroupBox {
         <translation type="obsolete">Creatore:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="461"/>
+        <location filename="../ui/propertieswidget.ui" line="450"/>
         <source>Torrent hash:</source>
         <translation>Hash del torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="471"/>
+        <location filename="../ui/propertieswidget.ui" line="493"/>
         <source>Comment:</source>
         <translation>Commento:</translation>
     </message>
@@ -4032,7 +4032,7 @@ QGroupBox {
         <translation type="obsolete">Download totale:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="340"/>
+        <location filename="../ui/propertieswidget.ui" line="211"/>
         <source>Share ratio:</source>
         <translation>Rapporto di condivisione:</translation>
     </message>
@@ -4046,7 +4046,7 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="82"/>
-        <location filename="../ui/propertieswidget.ui" line="206"/>
+        <location filename="../ui/propertieswidget.ui" line="228"/>
         <source>Downloaded:</source>
         <translation>Scaricati:</translation>
     </message>
@@ -4056,47 +4056,47 @@ QGroupBox {
         <translation>Disponibilità:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="173"/>
+        <location filename="../ui/propertieswidget.ui" line="171"/>
         <source>Transfer</source>
         <translation>Trasferimento</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="196"/>
+        <location filename="../ui/propertieswidget.ui" line="177"/>
         <source>Uploaded:</source>
         <translation>Caricati:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="216"/>
+        <location filename="../ui/propertieswidget.ui" line="279"/>
         <source>Wasted:</source>
         <translation>Sprecati:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="268"/>
+        <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Limite UP:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="278"/>
+        <location filename="../ui/propertieswidget.ui" line="245"/>
         <source>DL limit:</source>
         <translation>Limite DL:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="288"/>
+        <location filename="../ui/propertieswidget.ui" line="296"/>
         <source>Time elapsed:</source>
         <translation>Tempo trascorso:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="350"/>
+        <location filename="../ui/propertieswidget.ui" line="262"/>
         <source>Connections:</source>
         <translation>Connessioni:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="412"/>
+        <location filename="../ui/propertieswidget.ui" line="330"/>
         <source>Information</source>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="445"/>
+        <location filename="../ui/propertieswidget.ui" line="404"/>
         <source>Created on:</source>
         <translation>Creato il:</translation>
     </message>
@@ -4105,37 +4105,37 @@ QGroupBox {
         <translation type="obsolete">Tracker corrente:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="847"/>
+        <location filename="../ui/propertieswidget.ui" line="754"/>
         <source>Collapse all</source>
         <translation>Riduci tutto</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="854"/>
+        <location filename="../ui/propertieswidget.ui" line="761"/>
         <source>Expand all</source>
         <translation>Espandi tutto</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="901"/>
+        <location filename="../ui/propertieswidget.ui" line="808"/>
         <source>General</source>
         <translation>Generali</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="918"/>
+        <location filename="../ui/propertieswidget.ui" line="825"/>
         <source>Trackers</source>
         <translation>Tracker</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="941"/>
+        <location filename="../ui/propertieswidget.ui" line="848"/>
         <source>Peers</source>
         <translation>Peer</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="958"/>
+        <location filename="../ui/propertieswidget.ui" line="865"/>
         <source>URL seeds</source>
         <translation>Seed web</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="975"/>
+        <location filename="../ui/propertieswidget.ui" line="882"/>
         <source>Files</source>
         <translation>File</translation>
     </message>
@@ -4157,17 +4157,17 @@ QGroupBox {
         <translation type="obsolete">Ignora</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1007"/>
+        <location filename="../ui/propertieswidget.ui" line="914"/>
         <source>Normal</source>
         <translation type="unfinished">Normale</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1017"/>
+        <location filename="../ui/propertieswidget.ui" line="924"/>
         <source>Maximum</source>
         <translation type="unfinished">Massima</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1012"/>
+        <location filename="../ui/propertieswidget.ui" line="919"/>
         <source>High</source>
         <translation type="unfinished">Alta</translation>
     </message>
@@ -4304,14 +4304,14 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/rss.ui" line="25"/>
-        <location filename="../ui/rss.ui" line="211"/>
+        <location filename="../ui/rss.ui" line="223"/>
         <source>New subscription</source>
         <translation>Nuova iscrizione</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="39"/>
-        <location filename="../ui/rss.ui" line="232"/>
-        <location filename="../ui/rss.ui" line="235"/>
+        <location filename="../ui/rss.ui" line="244"/>
+        <location filename="../ui/rss.ui" line="247"/>
         <source>Mark items read</source>
         <translation>Segna come letti</translation>
     </message>
@@ -4325,18 +4325,18 @@ QGroupBox {
         <translation type="obsolete">1</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="157"/>
+        <location filename="../ui/rss.ui" line="169"/>
         <source>Feed URL</source>
         <translation>URL del Feed</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="199"/>
-        <location filename="../ui/rss.ui" line="202"/>
+        <location filename="../ui/rss.ui" line="211"/>
+        <location filename="../ui/rss.ui" line="214"/>
         <source>Update</source>
         <translation>Aggiorna</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="280"/>
+        <location filename="../ui/rss.ui" line="292"/>
         <source>New folder</source>
         <translation>Nuova cartella</translation>
     </message>
@@ -4363,25 +4363,25 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Bullet</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="152"/>
+        <location filename="../ui/rss.ui" line="164"/>
         <source>Article title</source>
         <translation>Titolo dell&apos;articolo</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="220"/>
-        <location filename="../ui/rss.ui" line="223"/>
+        <location filename="../ui/rss.ui" line="232"/>
+        <location filename="../ui/rss.ui" line="235"/>
         <source>Update all feeds</source>
         <translation>Aggiorna tutti i Feed</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="175"/>
-        <location filename="../ui/rss.ui" line="178"/>
+        <location filename="../ui/rss.ui" line="187"/>
+        <location filename="../ui/rss.ui" line="190"/>
         <source>Delete</source>
         <translation>Cancella</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="187"/>
-        <location filename="../ui/rss.ui" line="190"/>
+        <location filename="../ui/rss.ui" line="199"/>
+        <location filename="../ui/rss.ui" line="202"/>
         <source>Rename</source>
         <translation>Rinomina</translation>
     </message>
@@ -4390,22 +4390,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Aggiorna</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="244"/>
+        <location filename="../ui/rss.ui" line="256"/>
         <source>Download torrent</source>
         <translation>Scarica torrent</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="253"/>
+        <location filename="../ui/rss.ui" line="265"/>
         <source>Open news URL</source>
         <translation>Apri URL delle notizie</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="262"/>
+        <location filename="../ui/rss.ui" line="274"/>
         <source>Copy feed URL</source>
         <translation>Copia URL del Feed</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="271"/>
+        <location filename="../ui/rss.ui" line="283"/>
         <source>RSS feed downloader</source>
         <translation>Scaricatore di Feed RSS</translation>
     </message>
@@ -4454,12 +4454,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Please type a rss stream url</source>
         <translation>Per favore digitare l&apos;indirizzo di un flusso rss</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Stream URL:</source>
         <translation>Indirizzo del flusso:</translation>
     </message>
@@ -4472,8 +4472,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nuovo nome del flusso:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="205"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Sei sicuro? -- qBittorrent</translation>
     </message>
@@ -4482,14 +4482,14 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Sei sicuro di voler cancellare questo flusso dalla lista ?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sì</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
@@ -4510,68 +4510,68 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ultimo aggiornamento:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Please choose a folder name</source>
         <translation>Per favore scegliere un nome cartella</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Folder name:</source>
         <translation>Nome cartella:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>New folder</source>
         <translation>Nuova cartella</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="139"/>
+        <location filename="../rss_imp.cpp" line="138"/>
         <source>Overwrite attempt</source>
         <translation>Tentativo di sovrascrittura</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="140"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Impossibile sovrascrivere %1.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="177"/>
+        <location filename="../rss_imp.cpp" line="176"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="178"/>
+        <location filename="../rss_imp.cpp" line="177"/>
         <source>This rss feed is already in the list.</source>
         <translation>Questo feed rss è già nella lista.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="205"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Sei sicuro di voler cancellare questi elementi dalla lista?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Sei sicuro di voler cancellare questo elemento dalla lista?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Per favore scegliere un nuovo nome per questo Feed RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>New feed name:</source>
         <translation>Nuovo nome Feed:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>Name already in use</source>
         <translation>Nome già in uso</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Questo nome è già in uso da un altro elemento, per favore sceglierne un altro.</translation>
     </message>
@@ -4594,7 +4594,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="372"/>
+        <location filename="../rss.h" line="379"/>
         <source>No description available</source>
         <translation>Descrizione non disponibile</translation>
     </message>
@@ -4632,47 +4632,47 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchCategories</name>
     <message>
-        <location filename="../supportedengines.h" line="50"/>
+        <location filename="../supportedengines.h" line="51"/>
         <source>All categories</source>
         <translation>Tutte le categorie</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="51"/>
+        <location filename="../supportedengines.h" line="52"/>
         <source>Movies</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="52"/>
+        <location filename="../supportedengines.h" line="53"/>
         <source>TV shows</source>
         <translation>Programmi TV</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="53"/>
+        <location filename="../supportedengines.h" line="54"/>
         <source>Music</source>
         <translation>Musica</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="54"/>
+        <location filename="../supportedengines.h" line="55"/>
         <source>Games</source>
         <translation>Giochi</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="55"/>
+        <location filename="../supportedengines.h" line="56"/>
         <source>Anime</source>
         <translation>Anime</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="56"/>
+        <location filename="../supportedengines.h" line="57"/>
         <source>Software</source>
         <translation>Software</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="57"/>
+        <location filename="../supportedengines.h" line="58"/>
         <source>Pictures</source>
         <translation>Immagini</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="58"/>
+        <location filename="../supportedengines.h" line="59"/>
         <source>Books</source>
         <translation>Libri</translation>
     </message>
@@ -4704,12 +4704,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Motore di ricerca</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="233"/>
+        <location filename="../searchengine.cpp" line="290"/>
         <source>Empty search pattern</source>
         <translation>Campo di ricerca vuoto</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="233"/>
+        <location filename="../searchengine.cpp" line="290"/>
         <source>Please type a search pattern first</source>
         <translation>Per favore inserire prima un campo di ricerca</translation>
     </message>
@@ -4722,13 +4722,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Selezionare almeno un motore di ricerca.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="270"/>
-        <location filename="../searchengine.cpp" line="361"/>
+        <location filename="../searchengine.cpp" line="327"/>
+        <location filename="../searchengine.cpp" line="418"/>
         <source>Results</source>
         <translation>Risultati</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="340"/>
+        <location filename="../searchengine.cpp" line="397"/>
         <source>Searching...</source>
         <translation>Ricerca in corso...</translation>
     </message>
@@ -4771,65 +4771,96 @@ Changelog:
         <translation type="obsolete">Il plugin di ricerca è già aggiornato.</translation>
     </message>
     <message>
+        <location filename="../searchengine.cpp" line="137"/>
+        <source>Failed to locate the Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="137"/>
+        <source>The Python interpreter was not found.
+qBittorrent will now ask you to point to its correct location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="138"/>
+        <source>Please point to its location on your hard disk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../searchengine.cpp" line="139"/>
+        <source>Python executable (python.exe)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="141"/>
+        <source>No Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="141"/>
+        <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="196"/>
         <source>Cut</source>
         <translation>Taglia</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="140"/>
+        <location filename="../searchengine.cpp" line="197"/>
         <source>Copy</source>
         <translation>Copia</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="141"/>
+        <location filename="../searchengine.cpp" line="198"/>
         <source>Paste</source>
         <translation>Incolla</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="142"/>
+        <location filename="../searchengine.cpp" line="199"/>
         <source>Clear field</source>
         <translation>Azzera campo</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="143"/>
+        <location filename="../searchengine.cpp" line="200"/>
         <source>Clear completion history</source>
         <translation>Azzera cronologia completamento</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="210"/>
-        <location filename="../searchengine.cpp" line="221"/>
-        <location filename="../searchengine.cpp" line="222"/>
+        <location filename="../searchengine.cpp" line="267"/>
+        <location filename="../searchengine.cpp" line="278"/>
+        <location filename="../searchengine.cpp" line="279"/>
         <source>Search</source>
         <translation type="unfinished">Ricerca</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="471"/>
+        <location filename="../searchengine.cpp" line="528"/>
         <source>Search Engine</source>
         <translation>Motore di Ricerca</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="471"/>
-        <location filename="../searchengine.cpp" line="482"/>
+        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="539"/>
         <source>Search has finished</source>
         <translation>La ricerca è terminata</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="474"/>
+        <location filename="../searchengine.cpp" line="531"/>
         <source>An error occured during search...</source>
         <translation>Si è verificato un errore durante la ricerca...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="477"/>
+        <location filename="../searchengine.cpp" line="534"/>
         <source>Search aborted</source>
         <translation>Ricerca annullata</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="480"/>
+        <location filename="../searchengine.cpp" line="537"/>
         <source>Search returned no results</source>
         <translation>La ricerca non ha prodotto risultati</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="487"/>
+        <location filename="../searchengine.cpp" line="544"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Risultati</translation>
@@ -4843,8 +4874,8 @@ Changelog:
         <translation type="obsolete">Impossibile aggiornare il plugin all&apos;url: %1, motivo: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="522"/>
-        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="579"/>
+        <location filename="../searchengine.cpp" line="585"/>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
@@ -5297,27 +5328,27 @@ Changelog:
         <translation type="obsolete">&amp;No</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="860"/>
+        <location filename="../transferlistwidget.cpp" line="862"/>
         <source>Column visibility</source>
         <translation>Visibilità colonna</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="980"/>
+        <location filename="../transferlistwidget.cpp" line="982"/>
         <source>Start</source>
         <translation>Avvia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="982"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Pause</source>
         <translation>Ferma</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="986"/>
         <source>Delete</source>
         <translation>Cancella</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="988"/>
         <source>Preview file</source>
         <translation>Anteprima file</translation>
     </message>
@@ -5377,7 +5408,7 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1091"/>
+        <location filename="../transferlistwidget.cpp" line="1094"/>
         <source>Label</source>
         <translation>Etichetta</translation>
     </message>
@@ -5406,113 +5437,113 @@ Changelog:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="766"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limitazione velocità download</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="799"/>
+        <location filename="../transferlistwidget.cpp" line="801"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limitazione velocità upload</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="921"/>
+        <location filename="../transferlistwidget.cpp" line="923"/>
         <source>New Label</source>
         <translation>Nuova etichetta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="921"/>
+        <location filename="../transferlistwidget.cpp" line="923"/>
         <source>Label:</source>
         <translation>Etichetta:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="942"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>Rename</source>
         <translation>Rinomina</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="942"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>New name:</source>
         <translation>Nuovo nome:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="990"/>
         <source>Limit upload rate</source>
         <translation>Limita il rapporto di upload</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="990"/>
+        <location filename="../transferlistwidget.cpp" line="992"/>
         <source>Limit download rate</source>
         <translation>Limita il rapporto di download</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="992"/>
+        <location filename="../transferlistwidget.cpp" line="994"/>
         <source>Open destination folder</source>
         <translation>Apri cartella di destinazione</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="996"/>
         <source>Buy it</source>
         <translation>Acquista</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="998"/>
         <source>Increase priority</source>
         <translation>Aumenta priorità</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Decrease priority</source>
         <translation>Diminuisci priorità</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1002"/>
         <source>Force recheck</source>
         <translation>Forza ricontrollo</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1004"/>
         <source>Copy magnet link</source>
         <translation>Copia link magnetico</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1005"/>
+        <location filename="../transferlistwidget.cpp" line="1007"/>
         <source>Super seeding mode</source>
         <translation>Modalità super seeding</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1010"/>
         <source>Rename...</source>
         <translation>Rinomina...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1012"/>
         <source>Download in sequential order</source>
         <translation>Scarica in ordine sequenziale</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1014"/>
         <source>Download first and last piece first</source>
         <translation>Scarica prima il primo e l&apos;ultimo pezzo</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1092"/>
+        <location filename="../transferlistwidget.cpp" line="1095"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nuova...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1093"/>
+        <location filename="../transferlistwidget.cpp" line="1096"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Azzera</translation>
@@ -6302,118 +6333,118 @@ Changelog:
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="91"/>
-        <location filename="../downloadthread.cpp" line="94"/>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="97"/>
         <source>I/O Error</source>
         <translation>Errore I/O</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="174"/>
+        <location filename="../downloadthread.cpp" line="177"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>L&apos;host remoto non è stato trovato (hostname invalido)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="176"/>
+        <location filename="../downloadthread.cpp" line="179"/>
         <source>The operation was canceled</source>
         <translation>L&apos;operazione è stata annullata</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="178"/>
+        <location filename="../downloadthread.cpp" line="181"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Il server remoto ha interrotto la connessione prematuramente, prima che la risposta completa fosse ricevuta e processata</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="180"/>
+        <location filename="../downloadthread.cpp" line="183"/>
         <source>The connection to the remote server timed out</source>
         <translation>La connessione al server remoto è scaduta</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="182"/>
+        <location filename="../downloadthread.cpp" line="185"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Handshake SSL/TLS fallito</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="184"/>
+        <location filename="../downloadthread.cpp" line="187"/>
         <source>The remote server refused the connection</source>
         <translation>Il server remoto ha rifiutato la connessione</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="186"/>
+        <location filename="../downloadthread.cpp" line="189"/>
         <source>The connection to the proxy server was refused</source>
         <translation>La connessione al server proxy è stata rifiutata</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="188"/>
+        <location filename="../downloadthread.cpp" line="191"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Il server proxy ha interrotto la connessione prematuramente</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="190"/>
+        <location filename="../downloadthread.cpp" line="193"/>
         <source>The proxy host name was not found</source>
         <translation>L&apos;hostname del proxy non è stato trovato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="192"/>
+        <location filename="../downloadthread.cpp" line="195"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>La connessione al proxy è scaduta o il proxy non ha risposto in tempo alla richiesta</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="194"/>
+        <location filename="../downloadthread.cpp" line="197"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Il proxy richiede l&apos;autenticazione per onorare la richiesta ma non ha accettato le credenziali fornite</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="196"/>
+        <location filename="../downloadthread.cpp" line="199"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>L&apos;accesso al contenuto remoto è stato negato (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="198"/>
+        <location filename="../downloadthread.cpp" line="201"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>L&apos;operazione richiesta sul contenuto remoto non è permessa</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="200"/>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Il contenuto remoto non è stato trovato sul server (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="202"/>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Il server remoto richiede l&apos;autenticazione per fornire il contenuto ma le credenziali fornite non sono state accettate</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="204"/>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Le API dell&apos;Accesso Remoto non possono onorare la richiesta perché il protocollo è sconosciuto</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="206"/>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>L&apos;operazione richiesta non è valida per questo protocollo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="208"/>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>An unknown network-related error was detected</source>
         <translation>Un errore di rete sconosciuto è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="210"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Un errore proxy sconosciuto è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="212"/>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Un errore sconosciuto del contenuto remoto è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="214"/>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Un malfunzionamento del protocollo è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="216"/>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>Unknown error</source>
         <translation>Errore sconosciuto</translation>
     </message>
@@ -6795,31 +6826,31 @@ Comunque, quei plugin sono stati disabilitati.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
@@ -6835,7 +6866,10 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <translation type="obsolete">gg</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="426"/>
+        <location filename="../misc.cpp" line="428"/>
+        <location filename="../misc.cpp" line="433"/>
+        <location filename="../misc.cpp" line="437"/>
+        <location filename="../misc.cpp" line="440"/>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
@@ -6850,31 +6884,31 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <translation type="obsolete">h </translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="319"/>
+        <location filename="../misc.cpp" line="321"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Sconosciuta</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="455"/>
+        <location filename="../misc.cpp" line="471"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="459"/>
+        <location filename="../misc.cpp" line="475"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="464"/>
+        <location filename="../misc.cpp" line="480"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="469"/>
+        <location filename="../misc.cpp" line="485"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1d%2h%3m</translation>

@@ -360,71 +360,71 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="829"/>
-        <location filename="../bittorrent.cpp" line="990"/>
-        <location filename="../bittorrent.cpp" line="993"/>
+        <location filename="../bittorrent.cpp" line="999"/>
+        <location filename="../bittorrent.cpp" line="1002"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;는/은 이미 전송목록에 포함되어 있습니다.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="926"/>
-        <location filename="../bittorrent.cpp" line="1190"/>
-        <location filename="../bittorrent.cpp" line="1195"/>
+        <location filename="../bittorrent.cpp" line="1199"/>
+        <location filename="../bittorrent.cpp" line="1204"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="928"/>
-        <location filename="../bittorrent.cpp" line="1192"/>
-        <location filename="../bittorrent.cpp" line="1197"/>
+        <location filename="../bittorrent.cpp" line="1201"/>
+        <location filename="../bittorrent.cpp" line="1206"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="964"/>
-        <location filename="../bittorrent.cpp" line="968"/>
+        <location filename="../bittorrent.cpp" line="973"/>
+        <location filename="../bittorrent.cpp" line="977"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>토렌트 파일을 해독할수 없음: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="971"/>
+        <location filename="../bittorrent.cpp" line="980"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>파일에 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1019"/>
+        <location filename="../bittorrent.cpp" line="1028"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>참고: 새 트렉커가 토렌트에 추가 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1032"/>
+        <location filename="../bittorrent.cpp" line="1041"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>참고: 새 URL 완전체 공유자가 토렌트에 추가 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1535"/>
+        <location filename="../bittorrent.cpp" line="1544"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1537"/>
+        <location filename="../bittorrent.cpp" line="1546"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1869"/>
+        <location filename="../bittorrent.cpp" line="1878"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1879"/>
-        <location filename="../bittorrent.cpp" line="1932"/>
+        <location filename="../bittorrent.cpp" line="1888"/>
+        <location filename="../bittorrent.cpp" line="1941"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트를 해독할수 없습니다.</translation>
     </message>
@@ -433,38 +433,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">설정하신 포트을 사용할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2112"/>
+        <location filename="../bittorrent.cpp" line="2121"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2117"/>
+        <location filename="../bittorrent.cpp" line="2126"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2132"/>
+        <location filename="../bittorrent.cpp" line="2141"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2028"/>
-        <location filename="../bittorrent.cpp" line="2133"/>
+        <location filename="../bittorrent.cpp" line="2037"/>
+        <location filename="../bittorrent.cpp" line="2142"/>
         <source>Reason: %1</source>
         <translation>이유: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2027"/>
+        <location filename="../bittorrent.cpp" line="2036"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>I/O 에러가 있습니다, &apos;%1&apos; 정지.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2138"/>
+        <location filename="../bittorrent.cpp" line="2147"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2250"/>
+        <location filename="../bittorrent.cpp" line="2259"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -4216,7 +4216,7 @@ margin-left: -3px;
         <translation type="obsolete">토렌트 정보</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="429"/>
+        <location filename="../ui/propertieswidget.ui" line="342"/>
         <source>Save path:</source>
         <translation>저장 경로:</translation>
     </message>
@@ -4225,12 +4225,12 @@ margin-left: -3px;
         <translation type="obsolete">생성자:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="461"/>
+        <location filename="../ui/propertieswidget.ui" line="450"/>
         <source>Torrent hash:</source>
         <translation>토렌트 헤쉬(Hash):</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="471"/>
+        <location filename="../ui/propertieswidget.ui" line="493"/>
         <source>Comment:</source>
         <translation>설명:</translation>
     </message>
@@ -4247,7 +4247,7 @@ margin-left: -3px;
         <translation type="obsolete">총 다운로드양:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="340"/>
+        <location filename="../ui/propertieswidget.ui" line="211"/>
         <source>Share ratio:</source>
         <translation>공유비율:</translation>
     </message>
@@ -4261,7 +4261,7 @@ margin-left: -3px;
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="82"/>
-        <location filename="../ui/propertieswidget.ui" line="206"/>
+        <location filename="../ui/propertieswidget.ui" line="228"/>
         <source>Downloaded:</source>
         <translation>전송 받음:</translation>
     </message>
@@ -4271,47 +4271,47 @@ margin-left: -3px;
         <translation>유효성:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="173"/>
+        <location filename="../ui/propertieswidget.ui" line="171"/>
         <source>Transfer</source>
         <translation>전송</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="196"/>
+        <location filename="../ui/propertieswidget.ui" line="177"/>
         <source>Uploaded:</source>
         <translation>보냄:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="216"/>
+        <location filename="../ui/propertieswidget.ui" line="279"/>
         <source>Wasted:</source>
         <translation>낭비됨:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="268"/>
+        <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>업로드 제한:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="278"/>
+        <location filename="../ui/propertieswidget.ui" line="245"/>
         <source>DL limit:</source>
         <translation>다운로드 제한:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="288"/>
+        <location filename="../ui/propertieswidget.ui" line="296"/>
         <source>Time elapsed:</source>
         <translation>지나간 시간:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="350"/>
+        <location filename="../ui/propertieswidget.ui" line="262"/>
         <source>Connections:</source>
         <translation>연결:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="412"/>
+        <location filename="../ui/propertieswidget.ui" line="330"/>
         <source>Information</source>
         <translation>정보</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="445"/>
+        <location filename="../ui/propertieswidget.ui" line="404"/>
         <source>Created on:</source>
         <translation>만든 날:</translation>
     </message>
@@ -4320,37 +4320,37 @@ margin-left: -3px;
         <translation type="obsolete">현재 트레커:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="847"/>
+        <location filename="../ui/propertieswidget.ui" line="754"/>
         <source>Collapse all</source>
         <translation>모두 접기</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="854"/>
+        <location filename="../ui/propertieswidget.ui" line="761"/>
         <source>Expand all</source>
         <translation>모두 펴기</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="901"/>
+        <location filename="../ui/propertieswidget.ui" line="808"/>
         <source>General</source>
         <translation>일반</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="918"/>
+        <location filename="../ui/propertieswidget.ui" line="825"/>
         <source>Trackers</source>
         <translation>트렉커(Trackers)</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="941"/>
+        <location filename="../ui/propertieswidget.ui" line="848"/>
         <source>Peers</source>
         <translation>공유자(Peers)</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="958"/>
+        <location filename="../ui/propertieswidget.ui" line="865"/>
         <source>URL seeds</source>
         <translation>웹 완전체(Url Seeds)</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="975"/>
+        <location filename="../ui/propertieswidget.ui" line="882"/>
         <source>Files</source>
         <translation>파일</translation>
     </message>
@@ -4372,17 +4372,17 @@ margin-left: -3px;
         <translation type="obsolete">무시됨</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1007"/>
+        <location filename="../ui/propertieswidget.ui" line="914"/>
         <source>Normal</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1017"/>
+        <location filename="../ui/propertieswidget.ui" line="924"/>
         <source>Maximum</source>
         <translation>최고</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="1012"/>
+        <location filename="../ui/propertieswidget.ui" line="919"/>
         <source>High</source>
         <translation>높음</translation>
     </message>
@@ -4526,14 +4526,14 @@ margin-left: -3px;
     </message>
     <message>
         <location filename="../ui/rss.ui" line="25"/>
-        <location filename="../ui/rss.ui" line="211"/>
+        <location filename="../ui/rss.ui" line="223"/>
         <source>New subscription</source>
         <translation>새 구독</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="39"/>
-        <location filename="../ui/rss.ui" line="232"/>
-        <location filename="../ui/rss.ui" line="235"/>
+        <location filename="../ui/rss.ui" line="244"/>
+        <location filename="../ui/rss.ui" line="247"/>
         <source>Mark items read</source>
         <translation>읽은 것으로 표시</translation>
     </message>
@@ -4543,18 +4543,18 @@ margin-left: -3px;
         <translation>다 업데이트하기</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="157"/>
+        <location filename="../ui/rss.ui" line="169"/>
         <source>Feed URL</source>
         <translation>피드 주소(url)</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="199"/>
-        <location filename="../ui/rss.ui" line="202"/>
+        <location filename="../ui/rss.ui" line="211"/>
+        <location filename="../ui/rss.ui" line="214"/>
         <source>Update</source>
         <translation>업데이트하기</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="280"/>
+        <location filename="../ui/rss.ui" line="292"/>
         <source>New folder</source>
         <translation>새 폴더</translation>
     </message>
@@ -4582,25 +4582,25 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">요점</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="152"/>
+        <location filename="../ui/rss.ui" line="164"/>
         <source>Article title</source>
         <translation>글 제목</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="220"/>
-        <location filename="../ui/rss.ui" line="223"/>
+        <location filename="../ui/rss.ui" line="232"/>
+        <location filename="../ui/rss.ui" line="235"/>
         <source>Update all feeds</source>
         <translation>모든 피드 업데이트하기</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="175"/>
-        <location filename="../ui/rss.ui" line="178"/>
+        <location filename="../ui/rss.ui" line="187"/>
+        <location filename="../ui/rss.ui" line="190"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="187"/>
-        <location filename="../ui/rss.ui" line="190"/>
+        <location filename="../ui/rss.ui" line="199"/>
+        <location filename="../ui/rss.ui" line="202"/>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
     </message>
@@ -4609,22 +4609,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">새로 고침</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="244"/>
+        <location filename="../ui/rss.ui" line="256"/>
         <source>Download torrent</source>
         <translation>토렌트 다운로드하기</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="253"/>
+        <location filename="../ui/rss.ui" line="265"/>
         <source>Open news URL</source>
         <translation>새 주소(url) 열기</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="262"/>
+        <location filename="../ui/rss.ui" line="274"/>
         <source>Copy feed URL</source>
         <translation>피드 주소(url) 복사</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="271"/>
+        <location filename="../ui/rss.ui" line="283"/>
         <source>RSS feed downloader</source>
         <translation>RSS 피드 다운로더</translation>
     </message>
@@ -4673,12 +4673,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Please type a rss stream url</source>
         <translation>RSS 스트림 주소(url)를 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="172"/>
+        <location filename="../rss_imp.cpp" line="171"/>
         <source>Stream URL:</source>
         <translation>스트림 URL:</translation>
     </message>
@@ -4691,20 +4691,20 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">새 스트림 이름:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="205"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>재확인 해주십시요? -- 큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="207"/>
-        <location filename="../rss_imp.cpp" line="211"/>
+        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="210"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
@@ -4721,68 +4721,68 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">최근 새로고침:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Please choose a folder name</source>
         <translation>폴더 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>Folder name:</source>
         <translation>폴도 이름:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="118"/>
+        <location filename="../rss_imp.cpp" line="117"/>
         <source>New folder</source>
         <translation>새 폴더</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="139"/>
+        <location filename="../rss_imp.cpp" line="138"/>
         <source>Overwrite attempt</source>
         <translation>덮어쓰기 시도</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="140"/>
+        <location filename="../rss_imp.cpp" line="139"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>%1 아이템은 덮어쓸수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="177"/>
+        <location filename="../rss_imp.cpp" line="176"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="178"/>
+        <location filename="../rss_imp.cpp" line="177"/>
         <source>This rss feed is already in the list.</source>
         <translation>이 RSS 피드는 이미 리스트에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="206"/>
+        <location filename="../rss_imp.cpp" line="205"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>이 목록에서 이 자료들을 지우싶으십니까?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="210"/>
+        <location filename="../rss_imp.cpp" line="209"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>이 목록에서 이 자료를 지우싶으십니까?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>RSS 피드에 쓸 새 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="319"/>
+        <location filename="../rss_imp.cpp" line="318"/>
         <source>New feed name:</source>
         <translation>새 피드 이름:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>Name already in use</source>
         <translation>이 이름은 이미 사용중에 있음</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="323"/>
+        <location filename="../rss_imp.cpp" line="322"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>이 이름은 이미 다른 아이템이 사용하고 있습니다. 다른 이름을 사용하십시오.</translation>
     </message>
@@ -4805,7 +4805,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssItem</name>
     <message>
-        <location filename="../rss.h" line="372"/>
+        <location filename="../rss.h" line="379"/>
         <source>No description available</source>
         <translation>관련 자료가 없습니다</translation>
     </message>
@@ -4843,47 +4843,47 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchCategories</name>
     <message>
-        <location filename="../supportedengines.h" line="50"/>
+        <location filename="../supportedengines.h" line="51"/>
         <source>All categories</source>
         <translation>모든 카테고리</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="51"/>
+        <location filename="../supportedengines.h" line="52"/>
         <source>Movies</source>
         <translation>영화</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="52"/>
+        <location filename="../supportedengines.h" line="53"/>
         <source>TV shows</source>
         <translation>텔레비젼 쇼</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="53"/>
+        <location filename="../supportedengines.h" line="54"/>
         <source>Music</source>
         <translation>음악</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="54"/>
+        <location filename="../supportedengines.h" line="55"/>
         <source>Games</source>
         <translation>게임</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="55"/>
+        <location filename="../supportedengines.h" line="56"/>
         <source>Anime</source>
         <translation>애니</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="56"/>
+        <location filename="../supportedengines.h" line="57"/>
         <source>Software</source>
         <translation>유틸</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="57"/>
+        <location filename="../supportedengines.h" line="58"/>
         <source>Pictures</source>
         <translation>사진</translation>
     </message>
     <message>
-        <location filename="../supportedengines.h" line="58"/>
+        <location filename="../supportedengines.h" line="59"/>
         <source>Books</source>
         <translation>책</translation>
     </message>
@@ -4915,12 +4915,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="233"/>
+        <location filename="../searchengine.cpp" line="290"/>
         <source>Empty search pattern</source>
         <translation>검색 양식 지우기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="233"/>
+        <location filename="../searchengine.cpp" line="290"/>
         <source>Please type a search pattern first</source>
         <translation>검색 양식을 작성해주십시오</translation>
     </message>
@@ -4933,13 +4933,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">적어도 하나 이상의 검색 엔진을 선택해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="270"/>
-        <location filename="../searchengine.cpp" line="361"/>
+        <location filename="../searchengine.cpp" line="327"/>
+        <location filename="../searchengine.cpp" line="418"/>
         <source>Results</source>
         <translation>결과</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="340"/>
+        <location filename="../searchengine.cpp" line="397"/>
         <source>Searching...</source>
         <translation>검색중...</translation>
     </message>
@@ -4982,65 +4982,96 @@ Changelog:
         <translation type="obsolete">님은 현재 최신 검색 엔진 플로그인을 사용중입니다.</translation>
     </message>
     <message>
+        <location filename="../searchengine.cpp" line="137"/>
+        <source>Failed to locate the Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="137"/>
+        <source>The Python interpreter was not found.
+qBittorrent will now ask you to point to its correct location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="138"/>
+        <source>Please point to its location on your hard disk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../searchengine.cpp" line="139"/>
+        <source>Python executable (python.exe)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="141"/>
+        <source>No Python interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="141"/>
+        <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="196"/>
         <source>Cut</source>
         <translation>잘라내기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="140"/>
+        <location filename="../searchengine.cpp" line="197"/>
         <source>Copy</source>
         <translation>복사하기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="141"/>
+        <location filename="../searchengine.cpp" line="198"/>
         <source>Paste</source>
         <translation>붙이기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="142"/>
+        <location filename="../searchengine.cpp" line="199"/>
         <source>Clear field</source>
         <translation>내용 지우기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="143"/>
+        <location filename="../searchengine.cpp" line="200"/>
         <source>Clear completion history</source>
         <translation>완료 내역 지우기</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="210"/>
-        <location filename="../searchengine.cpp" line="221"/>
-        <location filename="../searchengine.cpp" line="222"/>
+        <location filename="../searchengine.cpp" line="267"/>
+        <location filename="../searchengine.cpp" line="278"/>
+        <location filename="../searchengine.cpp" line="279"/>
         <source>Search</source>
         <translation>검색</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="471"/>
+        <location filename="../searchengine.cpp" line="528"/>
         <source>Search Engine</source>
         <translation>검색 엔진</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="471"/>
-        <location filename="../searchengine.cpp" line="482"/>
+        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="539"/>
         <source>Search has finished</source>
         <translation>검색 완료</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="474"/>
+        <location filename="../searchengine.cpp" line="531"/>
         <source>An error occured during search...</source>
         <translation>검색 중 오류 발생...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="477"/>
+        <location filename="../searchengine.cpp" line="534"/>
         <source>Search aborted</source>
         <translation>검색이 중단됨</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="480"/>
+        <location filename="../searchengine.cpp" line="537"/>
         <source>Search returned no results</source>
         <translation>검색 결과가 없음</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="487"/>
+        <location filename="../searchengine.cpp" line="544"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>결과</translation>
@@ -5054,8 +5085,8 @@ Changelog:
         <translation type="obsolete">다음 url에서 검색 플러그인 (Plugin)을 다운로드 할수 없습니다: %1, 이유: %2.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="522"/>
-        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="579"/>
+        <location filename="../searchengine.cpp" line="585"/>
         <source>Unknown</source>
         <translation>알려지지 않음</translation>
     </message>
@@ -5509,27 +5540,27 @@ Changelog:
         <translation type="obsolete">&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="860"/>
+        <location filename="../transferlistwidget.cpp" line="862"/>
         <source>Column visibility</source>
         <translation>세로행 숨기기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="980"/>
+        <location filename="../transferlistwidget.cpp" line="982"/>
         <source>Start</source>
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="982"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Pause</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="986"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="988"/>
         <source>Preview file</source>
         <translation>미리보기</translation>
     </message>
@@ -5589,7 +5620,7 @@ Changelog:
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1091"/>
+        <location filename="../transferlistwidget.cpp" line="1094"/>
         <source>Label</source>
         <translation>라벨</translation>
     </message>
@@ -5618,113 +5649,113 @@ Changelog:
         <translation>업 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="766"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>토렌트 다운로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="799"/>
+        <location filename="../transferlistwidget.cpp" line="801"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>토렌트 업로드 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="921"/>
+        <location filename="../transferlistwidget.cpp" line="923"/>
         <source>New Label</source>
         <translation>새 라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="921"/>
+        <location filename="../transferlistwidget.cpp" line="923"/>
         <source>Label:</source>
         <translation>라벨:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Invalid label name</source>
         <translation>잘못된 라벨 이름</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="926"/>
+        <location filename="../transferlistwidget.cpp" line="928"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 이름에 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="942"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="942"/>
+        <location filename="../transferlistwidget.cpp" line="944"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="990"/>
         <source>Limit upload rate</source>
         <translation>업로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="990"/>
+        <location filename="../transferlistwidget.cpp" line="992"/>
         <source>Limit download rate</source>
         <translation>다운로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="992"/>
+        <location filename="../transferlistwidget.cpp" line="994"/>
         <source>Open destination folder</source>
         <translation>저장 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="996"/>
         <source>Buy it</source>
         <translation>구입하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="998"/>
         <source>Increase priority</source>
         <translation>우선순위(priority)를 높이기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Decrease priority</source>
         <translation>우선순위(priority)를 낮추기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1002"/>
         <source>Force recheck</source>
         <translation>강제로 재확인하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1004"/>
         <source>Copy magnet link</source>
         <translation>마그넷 링크 (Copy magnet link) 복사하기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1005"/>
+        <location filename="../transferlistwidget.cpp" line="1007"/>
         <source>Super seeding mode</source>
         <translation>수퍼 공유 모드 (Super seeding mode)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1010"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1012"/>
         <source>Download in sequential order</source>
         <translation>차레대로 다운받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1014"/>
         <source>Download first and last piece first</source>
         <translation>첫번째 조각과 마지막 조각을 먼저 다운받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1092"/>
+        <location filename="../transferlistwidget.cpp" line="1095"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>새라벨...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1093"/>
+        <location filename="../transferlistwidget.cpp" line="1096"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>재설정</translation>
@@ -6538,120 +6569,120 @@ Changelog:
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="91"/>
-        <location filename="../downloadthread.cpp" line="94"/>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="97"/>
         <source>I/O Error</source>
         <translation>I/O 에러</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="174"/>
+        <location filename="../downloadthread.cpp" line="177"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>리모트 호스트(remote host)를 찾을 수 없습니다(잘못된 호스트 이름)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="176"/>
+        <location filename="../downloadthread.cpp" line="179"/>
         <source>The operation was canceled</source>
         <translation>작업 취소됨</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="178"/>
+        <location filename="../downloadthread.cpp" line="181"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>리모트 서버(Remote server)으로 부터 회신을 다 받기 전에 연결이 닫혔습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="180"/>
+        <location filename="../downloadthread.cpp" line="183"/>
         <source>The connection to the remote server timed out</source>
         <translation>리모트 서버(Remote Server) 연결 타임아웃</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="182"/>
+        <location filename="../downloadthread.cpp" line="185"/>
         <source>SSL/TLS handshake failed</source>
         <translatorcomment>I don&apos;t know how to translate handshake in korean.</translatorcomment>
         <translation>SSL/TLS 핸드쉐이크 (handshake) 실패</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="184"/>
+        <location filename="../downloadthread.cpp" line="187"/>
         <source>The remote server refused the connection</source>
         <translation>리모트 서버(Remote Server) 연결 거부</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="186"/>
+        <location filename="../downloadthread.cpp" line="189"/>
         <source>The connection to the proxy server was refused</source>
         <translation>프락시 서버가 연결을 거부하였음</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="188"/>
+        <location filename="../downloadthread.cpp" line="191"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>프락시 서버 연결을 영구적으로 제한하였음</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="190"/>
+        <location filename="../downloadthread.cpp" line="193"/>
         <source>The proxy host name was not found</source>
         <translation>프락시 서버 이름을 찾을 수 없음</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="192"/>
+        <location filename="../downloadthread.cpp" line="195"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>프락시 서버에 요청하신 작업에 대한 회신을 받기 전에 연결이 타임아웃(Timeout) 되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="194"/>
+        <location filename="../downloadthread.cpp" line="197"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>요청하신 작업을 하기 위해선 프락시 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="196"/>
+        <location filename="../downloadthread.cpp" line="199"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>리모트 자료(Remote content) 접속이 거부됨(401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="198"/>
+        <location filename="../downloadthread.cpp" line="201"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>리모트 자료(Remote content)에 요청하신 작업은 허용되지 않습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="200"/>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>리모트 자료(Remote content)가 서버에 없습니다(404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="202"/>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>자료에 접근하기 위해선 리모트 서버읜 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="204"/>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>알려지지 않은 프로토콜 사용으로 인해 네트워크 접촉 API( Network Access API)가 사용하실수 없습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="206"/>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>요청하신 작업은 현재 사용중에 프로토콜에 적당하지 않습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="208"/>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>An unknown network-related error was detected</source>
         <translation>네트웍크 관련 오류가 감지 되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="210"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>프락시 관련 오류가 감지되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="212"/>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>An unknown error related to the remote content was detected</source>
         <translatorcomment>I am not sure what &apos;remote content&apos; means. I translated it as file located in other side.</translatorcomment>
         <translation>리모트 자료(Remote content)관련된 오류가 감지되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="214"/>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>A breakdown in protocol was detected</source>
         <translation>프로토콜 파손이 감지 되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="216"/>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>Unknown error</source>
         <translation>알수 없는 오류</translation>
     </message>
@@ -7007,31 +7038,31 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>킬로바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>메가바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>기가바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="320"/>
+        <location filename="../misc.cpp" line="322"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>테라바이트</translation>
@@ -7052,7 +7083,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">일</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="426"/>
+        <location filename="../misc.cpp" line="428"/>
+        <location filename="../misc.cpp" line="433"/>
+        <location filename="../misc.cpp" line="437"/>
+        <location filename="../misc.cpp" line="440"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
@@ -7067,31 +7101,31 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">일</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="319"/>
+        <location filename="../misc.cpp" line="321"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>알수 없음</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="455"/>
+        <location filename="../misc.cpp" line="471"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1분</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="459"/>
+        <location filename="../misc.cpp" line="475"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1분</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="464"/>
+        <location filename="../misc.cpp" line="480"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1시간%2분</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="469"/>
+        <location filename="../misc.cpp" line="485"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1일%2시간%3분</translation>
