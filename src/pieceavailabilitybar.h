@@ -51,7 +51,7 @@ public:
     setFixedHeight(BAR_HEIGHT);
   }
 
-  double setAvailability(const std::vector<int>& avail) {
+  void setAvailability(const std::vector<int>& avail) {
     double average = 0;
     if(avail.empty()) {
       // Empty bar
@@ -95,7 +95,6 @@ public:
       }
     }
     update();
-    return average;
   }
 
   void clear() {
