@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
     - FEATURE: Official support for Win32 platform
+    - BUGFIX: Fix torrent availability computation (closes #587337)
 
 * Mon May 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.8
     - BUGFIX: ETA for finished torrent is now 0 instead of Infinite (closes #583704)
