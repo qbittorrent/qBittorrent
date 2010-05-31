@@ -991,34 +991,55 @@ public:
 
 #ifdef Q_WS_WIN
   static void setPythonPath(QString path) {
-      QSettings settings("qBittorrent", "qBittorrent");
-      settings.setValue(QString::fromUtf8("Preferences/Win32/PythonPath"), path);
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Win32/PythonPath"), path);
   }
 
   static QString getPythonPath() {
-      QSettings settings("qBittorrent", "qBittorrent");
-      return settings.value(QString::fromUtf8("Preferences/Win32/PythonPath"), "").toString();
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Win32/PythonPath"), "").toString();
+  }
+
+  static bool neverCheckFileAssoc() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Win32/NeverCheckFileAssocation"), false).toBool();
+  }
+
+  static void setNeverCheckFileAssoc(bool check=true) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Win32/NeverCheckFileAssocation"), check);
   }
 
   static bool isFileAssocOk() {
-      QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
-      if(settings.value(".torrent/Default").toString() != "qBittorrent") {
-          qDebug(".torrent != qBittorrent");
-          return false;
-      }
-      qDebug("Checking shell command");
-      QString shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
-      qDebug("Shell command is: %s", qPrintable(shell_command));
-      QRegExp exe_reg("\"([^\"]+)\".*");
-      if(exe_reg.indexIn(shell_command) < 0)
-          return false;
-      QString assoc_exe = exe_reg.cap(1);
-      qDebug("exe: %s", qPrintable(assoc_exe));
-      return (assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) == 0);
+    QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
+    if(settings.value(".torrent/Default").toString() != "qBittorrent") {
+      qDebug(".torrent != qBittorrent");
+      return false;
+    }
+    qDebug("Checking shell command");
+    QString shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
+    qDebug("Shell command is: %s", qPrintable(shell_command));
+    QRegExp exe_reg("\"([^\"]+)\".*");
+    if(exe_reg.indexIn(shell_command) < 0)
+      return false;
+    QString assoc_exe = exe_reg.cap(1);
+    qDebug("exe: %s", qPrintable(assoc_exe));
+    if(assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
+      return false;
+    // Check magnet link assoc
+    shell_command = settings.value("Magnet/shell/open/command/Default", "").toString();
+    if(exe_reg.indexIn(shell_command) < 0)
+      return false;
+    assoc_exe = exe_reg.cap(1);
+    qDebug("exe: %s", qPrintable(assoc_exe));
+    if(assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
+      return false;
+    return true;
   }
 
   static void setFileAssoc() {
     QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
+    // .Torrent association
     settings.setValue(".torrent/Default", "qBittorrent");
     settings.setValue(".torrent/Content Type", "application/x-bittorrent");
     settings.setValue("qBittorrent/shell/Default", "open");
@@ -1027,6 +1048,13 @@ public:
     settings.setValue("qBittorrent/Content Type/Default", "application/x-bittorrent");
     const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",0";
     settings.setValue("qBittorrent/DefaultIcon/Default", icon_str);
+    // Magnet association
+    settings.setValue("Magnet/Default", "Magnet URI");
+    settings.setValue("Magnet/Content Type", "application/x-magnet");
+    settings.setValue("Magnet/URL Protocol", "");
+    settings.setValue("Magnet/DefaultIcon/Default", icon_str);
+    settings.setValue("Magnet/shell/Default", "open");
+    settings.setValue("Magnet/shell/open/command/Default", command_str);
   }
 
 #endif
