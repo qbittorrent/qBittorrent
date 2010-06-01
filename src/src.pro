@@ -25,6 +25,7 @@ win32 {
   INCLUDEPATH += $$quote(C:/qbittorrent/boost_1_42_0)
   INCLUDEPATH += $$quote(C:/qbittorrent/libtorrent-rasterbar-0.14.10/include)
   INCLUDEPATH += $$quote(C:/qbittorrent/libtorrent-rasterbar-0.14.10/zlib)
+  LIBS += -LC:/OpenSSL/
 
   DEFINES += _WIN32_WINNT=0x0601
   DEFINES += _WIN32_IE=0x0400
@@ -140,17 +141,18 @@ win32 {
           C:/qbittorrent/libs/libboost_system-mgw44-mt-s.lib \
           C:/qbittorrent/libs/libboost_filesystem-mgw44-mt-s.lib \
           C:/qbittorrent/libs/libboost_thread-mgw44-mt-s.lib \
-          C:/OpenSSL/lib/MinGW/ssleay32.a \
-          C:/OpenSSL/lib/MinGW/libeay32.a \
           C:/Qt/2010.02.1/mingw/lib/libwsock32.a \
           C:/Qt/2010.02.1/mingw/lib/libws2_32.a #\
+#          C:/OpenSSL/lib/MinGW/ssleay32.a \
+#          C:/OpenSSL/lib/MinGW/libeay32.a \
 #          -LC:/Qt/2010.02.1/mingw/lib/
 #          C:/Qt/2010.02.1/mingw/lib/libadvapi32.a \
 #          C:/Qt/2010.02.1/mingw/lib/libwinmm.a \
 #          C:/Qt/2010.02.1/mingw/lib/libgdi32.a \
 
-#  LIBS += -lssleay32 \
-#          -leay32 \
+# Dynamic linking against SSL since QtNetwork requires it at runtime anyway
+  LIBS += -lssleay32 \
+          -leay32 #\
 #          -lws2_32 \
 #          -lwsock32 \
 #          -ladvapi32 \
