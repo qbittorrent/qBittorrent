@@ -241,7 +241,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>515</width>
+             <width>506</width>
              <height>543</height>
             </rect>
            </property>
@@ -555,7 +555,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>658</width>
+             <width>632</width>
              <height>684</height>
             </rect>
            </property>
@@ -1030,7 +1030,7 @@ QGroupBox {
                         <string>Display torrent content and some options</string>
                        </property>
                        <property name="checked">
-                        <bool>true</bool>
+                        <bool>false</bool>
                        </property>
                       </widget>
                      </item>
@@ -1111,8 +1111,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>524</width>
-             <height>398</height>
+             <width>447</width>
+             <height>288</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -1356,8 +1356,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>524</width>
-             <height>406</height>
+             <width>364</width>
+             <height>328</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1771,7 +1771,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>482</width>
+             <width>459</width>
              <height>407</height>
             </rect>
            </property>
@@ -2188,7 +2188,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>496</width>
+             <width>475</width>
              <height>308</height>
             </rect>
            </property>
@@ -2622,7 +2622,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>296</width>
+             <width>287</width>
              <height>124</height>
             </rect>
            </property>
@@ -2719,7 +2719,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>226</width>
+             <width>213</width>
              <height>221</height>
             </rect>
            </property>
@@ -2886,7 +2886,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>459</width>
+             <width>445</width>
              <height>192</height>
             </rect>
            </property>
@@ -3061,8 +3061,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>62</width>
-             <height>18</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

@@ -185,7 +185,7 @@ public:
 
     static bool useAdditionDialog() {
         QSettings settings("qBittorrent", "qBittorrent");
-        return settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
+        return settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), false).toBool();
     }
 
     static bool addTorrentsInPause() {
