@@ -990,14 +990,30 @@ public:
   }
 
 #ifdef Q_WS_WIN
-  static void setPythonPath(QString path) {
-    QSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/Win32/PythonPath"), path);
-  }
-
   static QString getPythonPath() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Win32/PythonPath"), "").toString();
+    QSettings reg_python("HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\PythonCore", QSettings::NativeFormat);
+    QStringList versions = reg_python.childGroups();
+    qDebug("Python versions nb: %d", versions.size());
+    versions = versions.filter(QRegExp("2\\..*"));
+    versions.sort();
+    while(!versions.empty()) {
+      const QString version = versions.takeLast();
+      qDebug("Detected possible Python v%s location", qPrintable(version));
+      QString path = reg_python.value(version+"/InstallPath/Default", "").toString().replace("/", "\\");
+      if(!path.isEmpty() && QDir(path).exists("python.exe")) {
+        qDebug("Found python.exe at %s", qPrintable(path));
+        return path;
+      }
+    }
+    if(QFile::exists("C:/Python26/python.exe")) {
+      reg_python.setValue("2.6/InstallPath/Default", "C:\\Python26");
+      return "C:\\Python26";
+    }
+    if(QFile::exists("C:/Python25/python.exe")) {
+      reg_python.setValue("2.5/InstallPath/Default", "C:\\Python26");
+      return "C:\\Python25";
+    }
+    return QString::null;
   }
 
   static bool neverCheckFileAssoc() {
