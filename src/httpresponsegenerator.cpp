@@ -39,7 +39,8 @@ void HttpResponseGenerator::setMessage(const QByteArray message)
 
 void HttpResponseGenerator::setMessage(const QString message)
 {
-  setMessage(message.QString::toLocal8Bit());
+  // This must be UTF-8!
+  setMessage(message.toUtf8());
 }
 
 void HttpResponseGenerator::stripMessage()
