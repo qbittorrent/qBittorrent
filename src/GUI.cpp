@@ -87,11 +87,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION))
 #if defined(Q_WS_WIN)
-  +" [Windows]"
+                 +" [Windows]"
 #elif defined(Q_WS_MAC)
-  +" [Mac OS X]"
+                 +" [Mac OS X]"
 #endif
-  );
+                 );
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -179,7 +179,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   if (!GetUserNameA(buffer, &buffer_len))
     uid = QString(buffer);
 #else
-    uid = QString::number(getuid());
+  uid = QString::number(getuid());
 #endif
 #ifdef Q_WS_X11
   if(QFile::exists(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid)) {
@@ -219,19 +219,19 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   transferListFilters->getStatusFilters()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
   if(Preferences::startMinimized()) {
-    setWindowState(Qt::WindowMinimized);
+    showMinimized();
   }
 
   qDebug("GUI Built");
 #ifdef Q_WS_WIN
   if(!Preferences::neverCheckFileAssoc() && !Preferences::isFileAssocOk()) {
-      if(QMessageBox::question(0, tr("Torrent file association"),
-                               tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
-                               QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
-          Preferences::setFileAssoc();
-      } else {
-          Preferences::setNeverCheckFileAssoc();
-      }
+    if(QMessageBox::question(0, tr("Torrent file association"),
+                             tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
+                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+      Preferences::setFileAssoc();
+    } else {
+      Preferences::setNeverCheckFileAssoc();
+    }
   }
 #endif
 }
@@ -400,7 +400,7 @@ void GUI::readSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   resize(settings.value(QString::fromUtf8("size"), size()).toSize());
-    move(settings.value(QString::fromUtf8("pos"), misc::screenCenter(this)).toPoint());
+  move(settings.value(QString::fromUtf8("pos"), misc::screenCenter(this)).toPoint());
   if(settings.value("IsMaximized", false).toBool())
     showMaximized();
   const QStringList &sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
@@ -602,12 +602,16 @@ void GUI::on_actionCreate_torrent_triggered() {
 
 bool GUI::event(QEvent * e) {
   if(e->type() == QEvent::WindowStateChange) {
+    qDebug("Window change event");
     //Now check to see if the window is minimised
     if(isMinimized()) {
       qDebug("minimisation");
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
       if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
-        hide();
+        qDebug("Minimize to Tray enabled, hiding!");
+        e->accept();
+        QTimer::singleShot(0, this, SLOT(hide()));
+        return true;
       }
     }
   }
