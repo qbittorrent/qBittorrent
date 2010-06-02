@@ -919,7 +919,11 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   act = hideshowColumn.exec(QCursor::pos());
   if(act) {
     int col = actions.indexOf(act);
+    Q_ASSERT(col >= 0);
+    qDebug("Toggling column %d visibility", col);
     setColumnHidden(col, !isColumnHidden(col));
+    if(!isColumnHidden(col))
+      setColumnWidth(col, 100);
   }
 }
 
