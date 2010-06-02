@@ -43,6 +43,10 @@
 #include <QCoreApplication>
 #endif
 
+#ifdef Q_WS_WIN
+#include <QDesktopServices>
+#endif
+
 #define QBT_REALM "Web UI Access"
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
 
@@ -127,7 +131,12 @@ public:
   // Downloads
   static QString getSavePath() {
     QSettings settings("qBittorrent", "qBittorrent");
+#ifdef Q_WS_WIN
+    return settings.value(QString::fromUtf8("Preferences/Downloads/SavePath"),
+                          QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath("Downloads")).toString();
+#else
     return settings.value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("qBT_dir")).toString();
+#endif
   }
 
   static void setSavePath(QString save_path) {
