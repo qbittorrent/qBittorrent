@@ -287,7 +287,11 @@ void SearchEngine::on_search_button_clicked(){
   }
 #endif
   if(searchProcess->state() != QProcess::NotRunning){
+#ifdef Q_WS_WIN
+    searchProcess->kill();
+#else
     searchProcess->terminate();
+#endif
     search_stopped = true;
     if(searchTimeout->isActive()) {
       searchTimeout->stop();
@@ -546,7 +550,11 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
     parent->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
   }
   if(exitcode){
+#ifdef Q_WS_WIN
+    search_status->setText(tr("Search aborted"));
+#else
     search_status->setText(tr("An error occured during search..."));
+#endif
   }else{
     if(search_stopped){
       search_status->setText(tr("Search aborted"));
