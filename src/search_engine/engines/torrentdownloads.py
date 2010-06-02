@@ -1,4 +1,4 @@
-#VERSION: 1.01
+#VERSION: 1.03
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,9 +27,11 @@
 
 
 from novaprinter import prettyPrinter
-from helpers import retrieve_url, download_file
+from helpers import retrieve_url
+import StringIO, gzip, urllib2, tempfile
 import sgmllib
 import re
+import os
 
 class torrentdownloads(object):
   url = 'http://www.torrentdownloads.net'
@@ -40,8 +42,27 @@ class torrentdownloads(object):
     self.results = []
     self.parser = self.SimpleSGMLParser(self.results, self.url)
 
-  def download_torrent(self, info):
-    print download_file(info)
+  def download_torrent(self, url):
+    """ Download file at url and write it to a file, return the path to the file and the url """
+    file, path = tempfile.mkstemp()
+    file = os.fdopen(file, "w")
+    # Download url
+    req = urllib2.Request(url)
+    response = urllib2.urlopen(req)
+    dat = response.read()
+    # Check if it is gzipped
+    if dat[:2] == '\037\213':
+        # Data is gzip encoded, decode it
+        compressedstream = StringIO.StringIO(dat)
+        gzipper = gzip.GzipFile(fileobj=compressedstream)
+        extracted_data = gzipper.read()
+        dat = extracted_data
+        
+    # Write it to a file
+    file.write(dat.strip())
+    file.close()
+    # return file path
+    print path+" "+url
 
   class SimpleSGMLParser(sgmllib.SGMLParser):
     def __init__(self, results, url, *args):
