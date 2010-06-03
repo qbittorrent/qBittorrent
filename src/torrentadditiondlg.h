@@ -222,7 +222,7 @@ public:
     }
     nbFiles = t->num_files();
     // Setting file name
-    fileName = misc::toQString(t->name());
+    fileName = misc::toQStringU(t->name());
     hash = misc::toQString(t->info_hash());
     // Use left() to remove .old extension
     QString newFileName;
@@ -250,7 +250,7 @@ public:
     }
     // Loads files path in the torrent
     for(uint i=0; i<nbFiles; ++i) {
-      files_path << misc::toQString(t->file_at(i).path.string());
+      files_path << misc::toQStringU(t->file_at(i).path.string());
     }
     // Show the dialog
     show();
@@ -478,15 +478,16 @@ public slots:
           bool path_changed = false;
           for(uint i=0; i<nbFiles; ++i) {
 #if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
-            if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseSensitive) != 0) {
+            if(files_path.at(i).compare(misc::toQStringU(t->file_at(i).path.string()), Qt::CaseSensitive) != 0) {
 #else
-              if(files_path.at(i).compare(misc::toQString(t->file_at(i).path.string()), Qt::CaseInsensitive) != 0) {
+              if(files_path.at(i).compare(misc::toQStringU(t->file_at(i).path.string()), Qt::CaseInsensitive) != 0) {
 #endif
                 path_changed = true;
                 break;
               }
             }
             if(path_changed) {
+              qDebug("Changing files paths");
               TorrentTempData::setFilesPath(hash, files_path);
             }
           }
@@ -494,7 +495,7 @@ public slots:
           // Skip file checking and directly start seeding
           if(addInSeed->isChecked()) {
             // Check if local file(s) actually exist
-            if(is_magnet || savePath.exists(misc::toQString(t->name()))) {
+            if(is_magnet || savePath.exists(misc::toQStringU(t->name()))) {
               TorrentTempData::setSeedingMode(hash, true);
             } else {
               QMessageBox::warning(0, tr("Seeding mode error"), tr("You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path."));

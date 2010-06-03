@@ -59,6 +59,14 @@ public:
     return QString::fromLocal8Bit(str);
   }
 
+  static inline QString toQStringU(std::string str) {
+    return QString::fromUtf8(str.c_str());
+  }
+
+  static inline QString toQStringU(char* str) {
+    return QString::fromUtf8(str);
+  }
+
   static inline QString toQString(sha1_hash hash) {
     std::ostringstream o;
     o << hash;

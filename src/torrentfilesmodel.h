@@ -61,7 +61,7 @@ public:
     parentItem = parent;
     type = TFILE;
     file_index = _file_index;
-    QString name = misc::toQString(f.path.string()).split("/").last();
+    QString name = misc::toQStringU(f.path.string()).split("/").last();
     // Do not display incomplete extensions
     if(name.endsWith(".!qB"))
       name.chop(4);
@@ -510,7 +510,7 @@ public:
     TreeItem *parent = this->rootItem;
     /*if(t.num_files() == 1) {
       // Create possible parent folder
-      QStringList path_parts = misc::toQString(t.file_at(0).path.string()).split("/");
+      QStringList path_parts = misc::toQStringU(t.file_at(0).path.string()).split("/");
       path_parts.removeLast();
       foreach(const QString &part, path_parts) {
         TreeItem *folder = new TreeItem(part, parent);
@@ -535,7 +535,7 @@ public:
     torrent_info::file_iterator fi = t.begin_files();
     while(fi != t.end_files()) {
       current_parent = root_folder;
-      QString path = QDir::cleanPath(misc::toQString(fi->path.string()));
+      QString path = QDir::cleanPath(misc::toQStringU(fi->path.string()));
       // Iterate of parts of the path to create necessary folders
       QStringList pathFolders = path.split("/");
       //Q_ASSERT(pathFolders.size() >= 2);

@@ -763,9 +763,14 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
     const QTorrentHandle &h = BTSession->getTorrentHandle(hash);
     if(h.is_valid()) {
       const QString &savePath = h.root_path();
+      qDebug("Opening path at %s", qPrintable(savePath));
       if(!pathsList.contains(savePath)) {
         pathsList.append(savePath);
+#ifdef Q_WS_WIN
+        QDesktopServices::openUrl(QUrl(QString("file:///")+savePath));
+#else
         QDesktopServices::openUrl(QUrl(QString("file://")+savePath));
+#endif
       }
     }
   }

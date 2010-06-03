@@ -68,7 +68,7 @@ QString QTorrentHandle::name() const {
   Q_ASSERT(h.is_valid());
   QString name = TorrentPersistentData::getName(hash());
   if(name.isEmpty()) {
-    name = misc::toQString(h.name());
+    name = misc::toQStringU(h.name());
   }
   return name;
 }
@@ -292,7 +292,7 @@ void QTorrentHandle::save_resume_data() const {
 QString QTorrentHandle::file_at(unsigned int index) const {
   Q_ASSERT(h.is_valid());
   Q_ASSERT(index < (unsigned int)h.get_torrent_info().num_files());
-  return misc::toQString(h.get_torrent_info().file_at(index).path.leaf());
+  return misc::toQStringU(h.get_torrent_info().file_at(index).path.leaf());
 }
 
 size_type QTorrentHandle::filesize_at(unsigned int index) const {
@@ -323,7 +323,7 @@ QString QTorrentHandle::creator() const {
 
 QString QTorrentHandle::comment() const {
   Q_ASSERT(h.is_valid());
-  return misc::toQString(h.get_torrent_info().comment());
+  return misc::toQStringU(h.get_torrent_info().comment());
 }
 
 size_type QTorrentHandle::total_failed_bytes() const {
@@ -452,9 +452,9 @@ bool QTorrentHandle::priv() const {
 QString QTorrentHandle::root_path() const {
   Q_ASSERT(h.is_valid());
   if(num_files() == 0) return "";
-  QStringList path_list = misc::toQString(h.get_torrent_info().file_at(0).path.string()).split(QDir::separator());
+  QStringList path_list = misc::toQString(h.get_torrent_info().file_at(0).path.string()).split("/");
   if(path_list.size() > 1)
-    return save_path()+QDir::separator()+path_list.first();
+    return save_path()+"/"+path_list.first();
   return save_path();
 }
 
