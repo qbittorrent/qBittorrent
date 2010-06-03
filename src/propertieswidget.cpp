@@ -474,17 +474,22 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   if(PropListModel->getType(index) == TFILE) {
     int i = PropListModel->getFileIndex(index);
     const QDir &saveDir(h.save_path());
-    const QString &filename = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+    const QString &filename = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
     const QString &file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", qPrintable(file_path));
 #ifdef LIBTORRENT_0_15
     // Flush data
     h.flush_cache();
 #endif
-    if(QFile::exists(file_path))
+    if(QFile::exists(file_path)) {
+#ifdef Q_WS_WIN
+      QDesktopServices::openUrl(QUrl("file:///"+file_path));
+#else
       QDesktopServices::openUrl(QUrl("file://"+file_path));
-    else
+#endif
+    } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
+    }
   } else {
     // FOLDER
     QStringList path_items;
@@ -502,10 +507,15 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     // Flush data
     h.flush_cache();
 #endif
-    if(QFile::exists(file_path))
+    if(QFile::exists(file_path)) {
+#ifdef Q_WS_WIN
+      QDesktopServices::openUrl(QUrl("file:///"+file_path));
+#else
       QDesktopServices::openUrl(QUrl("file://"+file_path));
-    else
+#endif
+    } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
+    }
   }
 }
 

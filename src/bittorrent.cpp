@@ -1133,6 +1133,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
             const QStringList &files_path = TorrentTempData::getFilesPath(hash);
             bool force_recheck = false;
             if(files_path.size() == h.num_files()) {
+                qDebug("Renaming a file");
                 for(int i=0; i<h.num_files(); ++i) {
                     const QString &path = files_path.at(i);
                     if(!force_recheck && QFile::exists(h.save_path()+QDir::separator()+path))
@@ -1619,7 +1620,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             if(append) {
                 const qulonglong file_size = h.filesize_at(i);
                 if(file_size > 0 && (fp[i]/(double)file_size) < 1.) {
-                    const QString &name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+                    const QString &name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
                     if(!name.endsWith(".!qB")) {
                         const QString new_name = name+".!qB";
                         qDebug("Renaming %s to %s", qPrintable(name), qPrintable(new_name));
@@ -1627,7 +1628,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                     }
                 }
             } else {
-                QString name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+                QString name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
                 if(name.endsWith(".!qB")) {
                     const QString old_name = name;
                     name.chop(4);
@@ -1924,7 +1925,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                         qDebug("Checking if the torrent contains torrent files to download");
                         // Check if there are torrent files inside
                         for(int i=0; i<h.get_torrent_info().num_files(); ++i) {
-                            const QString &torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+                            const QString &torrent_relpath = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
                             if(torrent_relpath.endsWith(".torrent")) {
                                 qDebug("Found possible recursive torrent download.");
                                 const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
@@ -1970,6 +1971,22 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                         bencode(std::ostream_iterator<char>(out), *p->resume_data);
                     }
                 }
+            }
+            else if (file_renamed_alert* p = dynamic_cast<file_renamed_alert*>(a.get())) {
+              QTorrentHandle h(p->handle);
+              if(h.is_valid() && h.num_files() > 1) {
+                // Check if folders were renamed
+                QStringList old_path_parts = misc::toQStringU(h.get_torrent_info().orig_files().at(p->index).path.string()).split("/");
+                old_path_parts.removeLast();
+                QString old_path = old_path_parts.join("/");
+                QStringList new_path_parts = misc::toQStringU(p->name).split("/");
+                new_path_parts.removeLast();
+                if(old_path != new_path_parts.join("/")) {
+                  old_path = h.save_path()+"/"+old_path;
+                  qDebug("Detected folder renaming, attempt to delete old folder: %s", qPrintable(old_path));
+                  QDir().rmpath(old_path);
+                }
+              }
             }
             else if (storage_moved_alert* p = dynamic_cast<storage_moved_alert*>(a.get())) {
                 QTorrentHandle h(p->handle);
@@ -2046,7 +2063,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             else if (file_completed_alert* p = dynamic_cast<file_completed_alert*>(a.get())) {
                 QTorrentHandle h(p->handle);
                 if(appendqBExtension) {
-                    QString name = misc::toQString(h.get_torrent_info().file_at(p->index).path.string());
+                    QString name = misc::toQStringU(h.get_torrent_info().file_at(p->index).path.string());
                     if(name.endsWith(".!qB")) {
                         const QString old_name = name;
                         name.chop(4);

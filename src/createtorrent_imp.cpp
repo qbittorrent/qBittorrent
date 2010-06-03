@@ -264,7 +264,7 @@ void torrentCreatorThread::run() {
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
     t.set_creator(creator_str);
-    t.set_comment((const char*)comment.toLocal8Bit());
+    t.set_comment((const char*)comment.toUtf8());
     // Is private ?
     t.set_priv(is_private);
     if(abort) return;
