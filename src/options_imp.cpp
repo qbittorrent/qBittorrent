@@ -90,7 +90,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   locales << "nl_NL";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain.png"))), QString::fromUtf8("Español"));
   locales << "es_ES";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain_catalunya.png"))), QString::fromUtf8("Català"));
+  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain_catalunya.png"))), QString::fromUtf8("Catal� "));
   locales << "ca_ES";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/portugal.png"))), QString::fromUtf8("Português"));
   locales << "pt_PT";
@@ -110,7 +110,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   locales << "ro_RO";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/turkey.png"))), QString::fromUtf8("Türkçe"));
   locales << "tr_TR";
-comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/saoudi_arabia.png"))), QString::fromUtf8("عربي"));
+  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/saoudi_arabia.png"))), QString::fromUtf8("عربي"));
   locales << "ar_SA";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/greece.png"))), QString::fromUtf8("Ελληνικά"));
   locales << "el_GR";
@@ -126,7 +126,7 @@ comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/saoudi_arabia.png")))
   locales << "bg_BG";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/ukraine.png"))), QString::fromUtf8("Українська"));
   locales << "uk_UA";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/russia.png"))), QString::fromUtf8("Русский"));
+  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/russia.png"))), QString::fromUtf8("� усский"));
   locales << "ru_RU";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/japan.png"))), QString::fromUtf8("日本語"));
   locales << "ja_JP";
@@ -391,9 +391,17 @@ void options_imp::saveOptions(){
   settings.endGroup();
   // Downloads preferences
   settings.beginGroup("Downloads");
-  settings.setValue(QString::fromUtf8("SavePath"), getSavePath());
+  QString save_path = getSavePath();
+#ifdef Q_WS_WIN
+  save_path = save_path.replace("\\", "/");
+#endif
+  settings.setValue(QString::fromUtf8("SavePath"), save_path);
   settings.setValue(QString::fromUtf8("TempPathEnabled"), isTempPathEnabled());
-  settings.setValue(QString::fromUtf8("TempPath"), getTempPath());
+  QString temp_path = getTempPath();
+#ifdef Q_WS_WIN
+  temp_path = temp_path.replace("\\", "/");
+#endif
+  settings.setValue(QString::fromUtf8("TempPath"), temp_path);
   settings.setValue(QString::fromUtf8("AppendLabel"), checkAppendLabel->isChecked());
 #ifdef LIBTORRENT_0_15
   settings.setValue(QString::fromUtf8("UseIncompleteExtension"), checkAppendqB->isChecked());
@@ -403,7 +411,11 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("StartInPause"), addTorrentsInPause());
   ScanFoldersModel::instance()->makePersistent(settings);
   addedScanDirs.clear();
-  Preferences::setExportDir(getExportDir());
+  QString export_dir = getExportDir();
+#ifdef Q_WS_WIN
+  export_dir = export_dir.replace("\\", "/");
+#endif
+  Preferences::setExportDir(export_dir);
   settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
   settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
   // End Downloads preferences
@@ -489,7 +501,11 @@ void options_imp::saveOptions(){
   settings.beginGroup("IPFilter");
   settings.setValue(QString::fromUtf8("Enabled"), isFilteringEnabled());
   if(isFilteringEnabled()){
-    settings.setValue(QString::fromUtf8("File"), textFilterPath->text());
+    QString filter_path = textFilterPath->text();
+#ifdef Q_WS_WIN
+    filter_path = filter_path.replace("\\", "/");
+#endif
+    settings.setValue(QString::fromUtf8("File"), filter_path);
   }
   // End IPFilter preferences
   settings.endGroup();
@@ -609,7 +625,11 @@ void options_imp::loadOptions(){
   }
   // End General preferences
   // Downloads preferences
-  textSavePath->setText(Preferences::getSavePath());
+  QString save_path = Preferences::getSavePath();
+#ifdef Q_WS_WIN
+  save_path = save_path.replace("/", "\\");
+#endif
+  textSavePath->setText(save_path);
   if(Preferences::isTempPathEnabled()) {
     // enable
     checkTempFolder->setChecked(true);
@@ -618,7 +638,11 @@ void options_imp::loadOptions(){
     checkTempFolder->setChecked(false);
     enableTempPathInput(checkTempFolder->isChecked());
   }
-  textTempPath->setText(Preferences::getTempPath());
+  QString temp_path = Preferences::getTempPath();
+#ifdef Q_WS_WIN
+  temp_path = temp_path.replace("/", "\\");
+#endif
+  textTempPath->setText(temp_path);
   checkAppendLabel->setChecked(Preferences::appendTorrentLabel());
 #ifdef LIBTORRENT_0_15
   checkAppendqB->setChecked(Preferences::useIncompleteFilesExtension());
@@ -635,6 +659,9 @@ void options_imp::loadOptions(){
   } else {
     // enable
     checkExportDir->setChecked(true);
+#ifdef Q_WS_WIN
+    strValue = strValue.replace("/", "\\");
+#endif
     textExportDir->setText(strValue);
     enableTorrentExport(checkExportDir->isChecked());
   }
@@ -1023,16 +1050,12 @@ float options_imp::getDeleteRatio() const{
 
 // Return Save Path
 QString options_imp::getSavePath() const{
-#ifdef Q_WS_WIN
-  QString home = QDir::rootPath();
-#else
-  QString home = QDir::homePath();
-#endif
-  if(home[home.length()-1] != QDir::separator()){
-    home += QDir::separator();
-  }
   if(textSavePath->text().trimmed().isEmpty()){
-    textSavePath->setText(home+QString::fromUtf8("qBT_dir"));
+    QString save_path = Preferences::getSavePath();
+#ifdef Q_WS_WIN
+    save_path = save_path.replace("/", "\\");
+#endif
+    textSavePath->setText(save_path);
   }
   return misc::expandPath(textSavePath->text());
 }
@@ -1428,6 +1451,9 @@ void options_imp::on_browseExportDirButton_clicked() {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
   }
   if(!dir.isNull()){
+#ifdef Q_WS_WIN
+    dir = dir.replace("/", "\\");
+#endif
     textExportDir->setText(dir);
   }
 }
@@ -1442,6 +1468,9 @@ void options_imp::on_browseFilterButton_clicked() {
     ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
   }
   if(!ipfilter.isNull()){
+#ifdef Q_WS_WIN
+    ipfilter = ipfilter.replace("/", "\\");
+#endif
     textFilterPath->setText(ipfilter);
   }
 }
@@ -1457,6 +1486,9 @@ void options_imp::on_browseSaveDirButton_clicked(){
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if(!dir.isNull()){
+#ifdef Q_WS_WIN
+    dir = dir.replace("/", "\\");
+#endif
     textSavePath->setText(dir);
   }
 }
@@ -1471,6 +1503,9 @@ void options_imp::on_browseTempDirButton_clicked(){
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if(!dir.isNull()){
+#ifdef Q_WS_WIN
+    dir = dir.replace("/", "\\");
+#endif
     textTempPath->setText(dir);
   }
 }
