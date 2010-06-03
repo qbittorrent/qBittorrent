@@ -1532,6 +1532,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(consoleMessages.size() > 100) {
             consoleMessages.removeFirst();
         }
+#ifdef Q_WS_WIN
+        msg = msg.replace("/", "\\");
+#endif
         consoleMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + msg + QString::fromUtf8("</i></font>"));
 #endif
         emit newConsoleMessage(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss") + " - " + msg);

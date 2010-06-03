@@ -92,7 +92,11 @@ public:
     // Remember columns width
     readSettings();
     //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
-    savePathTxt->setText(Preferences::getSavePath());
+    QString display_path = Preferences::getSavePath();
+#ifdef Q_WS_WIN
+    display_path = display_path.replace("/", "\\");
+#endif
+    savePathTxt->setText(display_path);
     if(Preferences::addTorrentsInPause()) {
       addInPause->setChecked(true);
       //addInPause->setEnabled(false);
@@ -400,7 +404,11 @@ public slots:
 
       void on_browseButton_clicked(){
         QString dir;
-        const QString &save_path = misc::expandPath(savePathTxt->text());
+        QString save_path = savePathTxt->text();
+#ifdef Q_WS_WIN
+        save_path = save_path.replace("\\", "/");
+#endif
+        save_path = misc::expandPath(save_path);
         const QDir &saveDir(save_path);
         if(!save_path.isEmpty() && saveDir.exists()){
           dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath());
@@ -408,6 +416,9 @@ public slots:
           dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
         }
         if(!dir.isNull()){
+#ifdef Q_WS_WIN
+          dir = dir.replace("/", "\\");
+#endif
           savePathTxt->setText(dir);
         }
       }
@@ -431,7 +442,11 @@ public slots:
           QMessageBox::critical(0, tr("Empty save path"), tr("Please enter a save path"));
           return;
         }
-        QDir savePath(misc::expandPath(savePathTxt->text()));
+        QString save_path = savePathTxt->text();
+#ifdef Q_WS_WIN
+        save_path = save_path.replace("\\", "/");
+#endif
+        QDir savePath(misc::expandPath(save_path));
         // Check if savePath exists
         if(!savePath.exists()){
           if(!savePath.mkpath(savePath.path())){

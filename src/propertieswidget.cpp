@@ -211,6 +211,9 @@ void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
     QString p = TorrentPersistentData::getSavePath(h.hash());
     if(p.isEmpty())
       p = h.save_path();
+#ifdef Q_WS_WIN
+    p = p.replace("/", "\\");
+#endif
     save_path->setText(p);
   }
 }
@@ -229,6 +232,9 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     QString p = TorrentPersistentData::getSavePath(h.hash());
     if(p.isEmpty())
       p = h.save_path();
+#ifdef Q_WS_WIN
+    p = p.replace("/", "\\");
+#endif
     save_path->setText(p);
     // Creation date
     lbl_creationDate->setText(h.creation_date());
@@ -743,7 +749,11 @@ void PropertiesWidget::renameSelectedFile() {
         if(!BTSession->useTemporaryFolder() || h.is_seed())
           h.move_storage(savePath.absolutePath());
         // Update save_path in dialog
-        save_path->setText(savePath.absolutePath());
+        QString display_path = savePath.absolutePath();
+#ifdef Q_WS_WIN
+        display_path = display_path.replace("/", "\\");
+#endif
+        save_path->setText(display_path);
       }
     }
 
