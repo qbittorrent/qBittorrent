@@ -318,7 +318,7 @@ std::vector<int> QTorrentHandle::file_priorities() const {
 
 QString QTorrentHandle::creator() const {
   Q_ASSERT(h.is_valid());
-  return misc::toQString(h.get_torrent_info().creator());
+  return misc::toQStringU(h.get_torrent_info().creator());
 }
 
 QString QTorrentHandle::comment() const {
@@ -379,7 +379,7 @@ QStringList QTorrentHandle::files_path() const {
   QStringList res;
   torrent_info::file_iterator fi = h.get_torrent_info().begin_files();
   while(fi != h.get_torrent_info().end_files()) {
-    res << QDir::cleanPath(saveDir.absoluteFilePath(misc::toQString(fi->path.string())));
+    res << QDir::cleanPath(saveDir.absoluteFilePath(misc::toQStringU(fi->path.string())));
     fi++;
   }
   return res;
@@ -452,7 +452,7 @@ bool QTorrentHandle::priv() const {
 QString QTorrentHandle::root_path() const {
   Q_ASSERT(h.is_valid());
   if(num_files() == 0) return "";
-  QStringList path_list = misc::toQString(h.get_torrent_info().file_at(0).path.string()).split("/");
+  QStringList path_list = misc::toQStringU(h.get_torrent_info().file_at(0).path.string()).split("/");
   if(path_list.size() > 1)
     return save_path()+"/"+path_list.first();
   return save_path();
@@ -703,7 +703,7 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) {
 }
 
 void QTorrentHandle::rename_file(int index, QString name) {
-  h.rename_file(index, std::string(name.toLocal8Bit().constData()));
+  h.rename_file(index, std::string(name.toUtf8().constData()));
 }
 
 //
