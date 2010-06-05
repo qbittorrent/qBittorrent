@@ -75,7 +75,7 @@ QString misc::QDesktopServicesDataLocation() {
   if (!QCoreApplication::applicationName().isEmpty())
     result = result + QLatin1String("\\") + qApp->applicationName();
   if(!result.endsWith("\\"))
-      result += "\\";
+    result += "\\";
   return result;
 #else
 #ifdef Q_WS_MAC
@@ -543,4 +543,34 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
     return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::number(days)).arg(QString::number(hours)).arg(QString::number(minutes));
   }
   return QString::fromUtf8("∞");
+}
+
+QStringList misc::toStringList(const QList<bool> &l) {
+  QStringList ret;
+  foreach(const bool &b, l) {
+    if(b)
+      ret << "1";
+    else
+      ret << "0";
+  }
+  return ret;
+}
+
+QList<int> misc::intListfromStringList(const QStringList &l) {
+  QList<int> ret;
+  foreach(const QString &s, l) {
+    ret << s.toInt();
+  }
+  return ret;
+}
+
+QList<bool> misc::boolListfromStringList(const QStringList &l) {
+  QList<bool> ret;
+    foreach(const QString &s, l) {
+      if(s == "1")
+        ret << true;
+      else
+        ret << false;
+    }
+    return ret;
 }

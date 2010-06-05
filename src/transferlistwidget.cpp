@@ -52,8 +52,6 @@
 #include <QFileDialog>
 #include <vector>
 
-Q_DECLARE_METATYPE(QList<int>)
-
 TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent *_BTSession):
     QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
   QSettings settings("qBittorrent", "qBittorrent");
@@ -1263,11 +1261,11 @@ void TransferListWidget::saveColWidthList() {
     }
   }
   settings.setValue(QString::fromUtf8("TransferListColsWidth"), new_width_list.join(QString::fromUtf8(" ")));
-  QList<int> visualIndexes;
+  QStringList visualIndexes;
   for(int i=0; i<nbColumns; ++i) {
-    visualIndexes.append(header()->visualIndex(i));
+    visualIndexes << QString::number(header()->visualIndex(i));
   }
-  settings.setValue(QString::fromUtf8("TransferListVisualIndexes"), QVariant::fromValue< QList<int> >(visualIndexes));
+  settings.setValue(QString::fromUtf8("TransferListVisualIndexes"), visualIndexes);
   qDebug("Download list columns width saved");
 }
 
@@ -1287,7 +1285,7 @@ bool TransferListWidget::loadColWidthList() {
   for(unsigned int i=0; i<listSize; ++i) {
     header()->resizeSection(i, width_list.at(i).toInt());
   }
-  const QList<int> visualIndexes = settings.value(QString::fromUtf8("TransferListVisualIndexes")).value<QList<int> >();
+  const QList<int> visualIndexes = misc::intListfromStringList(settings.value(QString::fromUtf8("TransferListVisualIndexes")).toStringList());
   if(visualIndexes.size() != listModel->columnCount()-1) {
     qDebug("Corrupted values for transfer list columns indexes");
     return false;

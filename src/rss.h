@@ -345,7 +345,7 @@ public:
     return item;
   }
 
-  static RssItem* fromHash(RssStream* parent, QHash<QString, QVariant> h) {
+  static RssItem* fromHash(RssStream* parent, const QHash<QString, QVariant> &h) {
     return new RssItem(parent, h.value("id", "").toString(), h["title"].toString(), h["torrent_url"].toString(), h["news_link"].toString(),
                        h["description"].toString(), h["date"].toDateTime(), h["author"].toString(), h["read"].toBool());
   }

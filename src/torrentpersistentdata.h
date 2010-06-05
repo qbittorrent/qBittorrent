@@ -69,9 +69,9 @@ public:
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
     std::vector<int>::const_iterator pp_it = pp.begin();
-    QVariantList pieces_priority;
+    QStringList pieces_priority;
     while(pp_it != pp.end()) {
-      pieces_priority << *pp_it;
+      pieces_priority << QString::number(*pp_it);
       pp_it++;
     }
     data["files_priority"] = pieces_priority;
@@ -179,9 +179,9 @@ public:
     QHash<QString, QVariant> data = all_data[hash].toHash();
     std::vector<int> fp;
     if(data.contains("files_priority")) {
-      QVariantList list_var = data["files_priority"].toList();
-      foreach(const QVariant& var, list_var) {
-        fp.push_back(var.toInt());
+      QList<int> list_var = misc::intListfromStringList(data["files_priority"].toStringList());
+      foreach(int var, list_var) {
+        fp.push_back(var);
       }
     }
     return fp;
