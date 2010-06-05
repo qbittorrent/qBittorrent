@@ -75,8 +75,8 @@ public:
     url = engine_elem.elementsByTagName("url").at(0).toElement().text();
     supported_categories = engine_elem.elementsByTagName("categories").at(0).toElement().text().split(" ");
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    QVariantList disabled_engines = settings.value(QString::fromUtf8("SearchEngines/disabledEngines"), QVariantList()).toList();
-    enabled = !disabled_engines.contains(QVariant(name));
+    QStringList disabled_engines = settings.value(QString::fromUtf8("SearchEngines/disabledEngines"), QStringList()).toStringList();
+    enabled = !disabled_engines.contains(name);
   }
 
   QString getName() const { return name; }
@@ -88,11 +88,11 @@ public:
     enabled = _enabled;
     // Save to Hard disk
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    QVariantList disabled_engines = settings.value(QString::fromUtf8("SearchEngines/disabledEngines"), QVariantList()).toList();
+    QStringList disabled_engines = settings.value(QString::fromUtf8("SearchEngines/disabledEngines"), QStringList()).toStringList();
     if(enabled) {
-      disabled_engines.removeAll(QVariant(name));
+      disabled_engines.removeAll(name);
     } else {
-      disabled_engines.append(QVariant(name));
+      disabled_engines.append(name);
     }
     settings.setValue("SearchEngines/disabledEngines", disabled_engines);
   }

@@ -51,6 +51,8 @@
 #include <QRegExp>
 #include <vector>
 
+Q_DECLARE_METATYPE(QList<int>)
+
 TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent *_BTSession):
     QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
   QSettings settings("qBittorrent", "qBittorrent");
@@ -1198,6 +1200,7 @@ void TransferListWidget::saveColWidthList() {
   QStringList width_list;
   QStringList new_width_list;
   const short nbColumns = listModel->columnCount()-1; // HASH is hidden
+  if(nbColumns <= 0) return;
   const QString &line = settings.value("TransferListColsWidth", QString()).toString();
   if(!line.isEmpty()) {
     width_list = line.split(' ');
@@ -1216,11 +1219,11 @@ void TransferListWidget::saveColWidthList() {
     }
   }
   settings.setValue(QString::fromUtf8("TransferListColsWidth"), new_width_list.join(QString::fromUtf8(" ")));
-  QVariantList visualIndexes;
+  QList<int> visualIndexes;
   for(int i=0; i<nbColumns; ++i) {
     visualIndexes.append(header()->visualIndex(i));
   }
-  settings.setValue(QString::fromUtf8("TransferListVisualIndexes"), visualIndexes);
+  settings.setValue(QString::fromUtf8("TransferListVisualIndexes"), QVariant::fromValue< QList<int> >(visualIndexes));
   qDebug("Download list columns width saved");
 }
 
@@ -1228,10 +1231,10 @@ void TransferListWidget::saveColWidthList() {
 bool TransferListWidget::loadColWidthList() {
   qDebug("Loading columns width for download list");
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const QString &line = settings.value(QString::fromUtf8("TransferListColsWidth"), QString()).toString();
+  QString line = settings.value(QString::fromUtf8("TransferListColsWidth"), QString()).toString();
   if(line.isEmpty())
     return false;
-  const QStringList &width_list = line.split(QString::fromUtf8(" "));
+  const QStringList width_list = line.split(" ");
   if(width_list.size() != listModel->columnCount()-1) {
     qDebug("Corrupted values for transfer list columns sizes");
     return false;
@@ -1240,7 +1243,7 @@ bool TransferListWidget::loadColWidthList() {
   for(unsigned int i=0; i<listSize; ++i) {
     header()->resizeSection(i, width_list.at(i).toInt());
   }
-  const QVariantList& visualIndexes = settings.value(QString::fromUtf8("TransferListVisualIndexes"), QVariantList()).toList();
+  const QList<int> visualIndexes = settings.value(QString::fromUtf8("TransferListVisualIndexes")).value<QList<int> >();
   if(visualIndexes.size() != listModel->columnCount()-1) {
     qDebug("Corrupted values for transfer list columns indexes");
     return false;
@@ -1249,7 +1252,7 @@ bool TransferListWidget::loadColWidthList() {
   do {
     change = false;
     for(int i=0;i<visualIndexes.size(); ++i) {
-      const int new_visual_index = visualIndexes.at(header()->logicalIndex(i)).toInt();
+      const int new_visual_index = visualIndexes.at(header()->logicalIndex(i));
       if(i != new_visual_index) {
         qDebug("Moving column from %d to %d", header()->logicalIndex(i), new_visual_index);
         header()->moveSection(i, new_visual_index);

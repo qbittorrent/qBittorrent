@@ -44,6 +44,8 @@
 #include <QMenu>
 #include <vector>
 
+Q_DECLARE_METATYPE(QList<int>)
+
 PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), display_flags(false) {
   // Visual settings
   setRootIsDecorated(false);
@@ -244,10 +246,10 @@ void PeerListWidget::clear() {
 
 void PeerListWidget::loadSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), QVariantList()).toList();
+  QList<int> contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), QVariantList()).value<QList<int> >();
   if(!contentColsWidths.empty()) {
     for(int i=0; i<contentColsWidths.size(); ++i) {
-      setColumnWidth(i, contentColsWidths.at(i).toInt());
+      setColumnWidth(i, contentColsWidths.at(i));
     }
   }
   // Load sorted column
@@ -266,11 +268,11 @@ void PeerListWidget::loadSettings() {
 
 void PeerListWidget::saveSettings() const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QVariantList contentColsWidths;
+  QList<int> contentColsWidths;
   for(int i=0; i<listModel->columnCount(); ++i) {
     contentColsWidths.append(columnWidth(i));
   }
-  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), contentColsWidths);
+  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), QVariant::fromValue<QList<int> >(contentColsWidths));
   // Save sorted column
   Qt::SortOrder sortOrder = header()->sortIndicatorOrder();
   QString sortOrderLetter;

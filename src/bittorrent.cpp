@@ -1339,6 +1339,7 @@ void Bittorrent::enableLSD(bool b) {
 
 void Bittorrent::loadSessionState() {
     const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+    if(!QFile::exists(state_path)) return;
 #ifdef LIBTORRENT_0_15
     std::vector<char> in;
     if (load_file(state_path.toLocal8Bit().constData(), in) == 0)
@@ -1860,12 +1861,12 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         }
         // We need this for urllib in search engine plugins
 #ifdef Q_WS_WIN
-        char proxystr[512];
+        QString proxyStr;
         if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
-            snprintf(proxystr, 512, "sock_proxy=%s", proxy_str.toLocal8Bit().constData());
+            proxyStr = "sock_proxy=" + proxy_str;
         else
-            snprintf(proxystr, 512, "http_proxy=%s", proxy_str.toLocal8Bit().constData());
-        putenv(proxystr);
+            proxyStr = "http_proxy=" + proxy_str;
+        putenv(proxyStr.toLocal8Bit().constData());
 #else
         qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
         if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)

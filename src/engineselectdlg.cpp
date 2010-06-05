@@ -125,18 +125,17 @@ void engineSelectDlg::toggleEngineState(QTreeWidgetItem *item, int) {
 
 void engineSelectDlg::displayContextMenu(const QPoint&) {
   QMenu myContextMenu(this);
-  QModelIndex index;
   // Enable/disable pause/start action given the DL state
   QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
   bool has_enable = false, has_disable = false;
   QTreeWidgetItem *item;
   foreach(item, items) {
     QString id = item->text(ENGINE_ID);
-    if(supported_engines->value(id)->isEnabled() and !has_disable) {
+    if(supported_engines->value(id)->isEnabled() && !has_disable) {
       myContextMenu.addAction(actionDisable);
       has_disable = true;
     }
-    if(!supported_engines->value(id)->isEnabled() and !has_enable) {
+    if(!supported_engines->value(id)->isEnabled() && !has_enable) {
       myContextMenu.addAction(actionEnable);
       has_enable = true;
     }
