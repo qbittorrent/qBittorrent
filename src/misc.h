@@ -114,6 +114,11 @@ public:
   // Take a number of seconds and return an user-friendly
   // time duration like "1d 2h 10m".
   static QString userFriendlyDuration(qlonglong seconds);
+
+  // Convert functions
+  static QStringList toStringList(const QList<bool> &l);
+  static QList<int> intListfromStringList(const QStringList &l);
+  static QList<bool> boolListfromStringList(const QStringList &l);
 };
 
 //  Trick to get a portable sleep() function

@@ -36,6 +36,7 @@
 #include <QPair>
 #include <QDir>
 #include <QTime>
+#include <QList>
 
 #ifndef DISABLE_GUI
 #include <QApplication>
@@ -46,6 +47,8 @@
 #ifdef Q_WS_WIN
 #include <QDesktopServices>
 #endif
+
+#include "misc.h"
 
 #define QBT_REALM "Web UI Access"
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
@@ -213,14 +216,14 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Downloads/ScanDirs"), dirs);
   }
 
-  static QVariantList getDownloadInScanDirs() {
+  static QList<bool> getDownloadInScanDirs() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs"), QVariantList()).toList();
+    return misc::boolListfromStringList(settings.value(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs")).toStringList());
   }
 
-  static void setDownloadInScanDirs(const QVariantList &list) {
+  static void setDownloadInScanDirs(const QList<bool> &list) {
     QSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs"), list);
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs"), misc::toStringList(list));
   }
 
   static bool isTorrentExportEnabled() {

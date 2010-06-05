@@ -131,7 +131,11 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
   if(m.contains("temp_path"))
     Preferences::setTempPath(m["temp_path"].toString());
   if(m.contains("scan_dirs") && m.contains("download_in_scan_dirs")) {
-    QVariantList download_at_path = m["download_in_scan_dirs"].toList();
+    QVariantList download_at_path_tmp = m["download_in_scan_dirs"].toList();
+    QList<bool> download_at_path;
+    foreach(QVariant var, download_at_path_tmp) {
+      download_at_path << var.toBool();
+    }
     QStringList old_folders = Preferences::getScanDirs();
     QStringList new_folders = m["scan_dirs"].toStringList();
     if(download_at_path.size() == new_folders.size()) {
@@ -147,7 +151,7 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
       foreach(const QString &new_folder, new_folders) {
         // Update new folders
         if(!old_folders.contains(new_folder)) {
-          BTSession->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i).toBool());
+          BTSession->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
         }
         ++i;
       }
@@ -256,7 +260,11 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["temp_path_enabled"] = Preferences::isTempPathEnabled();
   data["temp_path"] = Preferences::getTempPath();
   data["scan_dirs"] = Preferences::getScanDirs();
-  data["download_in_scan_dirs"] = Preferences::getDownloadInScanDirs();
+  QVariantList var_list;
+  foreach(bool b, Preferences::getDownloadInScanDirs()) {
+    var_list << b;
+  }
+  data["download_in_scan_dirs"] = var_list;
   data["export_dir_enabled"] = Preferences::isTorrentExportEnabled();
   data["export_dir"] = Preferences::getExportDir();
   data["preallocate_all"] = Preferences::preAllocateAllFiles();

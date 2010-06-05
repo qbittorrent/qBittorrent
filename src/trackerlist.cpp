@@ -42,8 +42,6 @@
 #include "misc.h"
 #include "bittorrent.h"
 
-Q_DECLARE_METATYPE(QList<int>)
-
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
   // Graphical settings
   setRootIsDecorated(false);
@@ -363,7 +361,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
 
 void TrackerList::loadSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QList<int> contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth")).value<QList<int> >();
+  QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth")).toStringList());
   if(!contentColsWidths.empty()) {
     for(int i=0; i<contentColsWidths.size(); ++i) {
       setColumnWidth(i, contentColsWidths.at(i));
@@ -375,9 +373,9 @@ void TrackerList::loadSettings() {
 
 void TrackerList::saveSettings() const {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QList<int> contentColsWidths;
+  QStringList contentColsWidths;
   for(int i=0; i<columnCount(); ++i) {
-    contentColsWidths.append(columnWidth(i));
+    contentColsWidths << QString::number(columnWidth(i));
   }
-  settings.setValue(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth"), QVariant::fromValue<QList<int> >(contentColsWidths));
+  settings.setValue(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth"), contentColsWidths);
 }

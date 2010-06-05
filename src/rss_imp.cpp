@@ -232,13 +232,12 @@ void RSSImp::deleteSelectedItems() {
 void RSSImp::loadFoldersOpenState() {
   QSettings settings("qBittorrent", "qBittorrent");
   settings.beginGroup("Rss");
-  QVariantList open_folders = settings.value("open_folders", QVariantList()).toList();
+  QStringList open_folders = settings.value("open_folders", QStringList()).toStringList();
   settings.endGroup();
-  foreach(QVariant var_path, open_folders) {
-    QStringList path = var_path.toString().split("\\");
+  foreach(QString var_path, open_folders) {
+    QStringList path = var_path.split("\\");
     QTreeWidgetItem *parent = 0;
     foreach(QString name, path) {
-      QList<QTreeWidgetItem*> children;
       int nbChildren = 0;
       if(parent)
         nbChildren = parent->childCount();
@@ -262,7 +261,7 @@ void RSSImp::loadFoldersOpenState() {
 }
 
 void RSSImp::saveFoldersOpenState() {
-  QVariantList open_folders;
+  QStringList open_folders;
   QList<QTreeWidgetItem*> items = listStreams->getAllOpenFolders();
   foreach(QTreeWidgetItem* item, items) {
     QString path = listStreams->getItemPath(item).join("\\");

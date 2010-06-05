@@ -285,23 +285,23 @@ void Bittorrent::configureSession() {
     startTorrentsInPause(Preferences::addTorrentsInPause());
     // * Scan dirs
     const QStringList &scan_dirs = Preferences::getScanDirs();
-    QVariantList downloadInDirList = Preferences::getDownloadInScanDirs();
+    QList<bool> downloadInDirList = Preferences::getDownloadInScanDirs();
     while(scan_dirs.size() > downloadInDirList.size()) {
-        downloadInDirList << QVariant(false);
+      downloadInDirList << false;
     }
     int i = 0;
     foreach (const QString &dir, scan_dirs) {
-        m_scanFolders->addPath(dir, downloadInDirList.at(i).toBool());
-        ++i;
+      m_scanFolders->addPath(dir, downloadInDirList.at(i));
+      ++i;
     }
     // * Export Dir
     const bool newTorrentExport = Preferences::isTorrentExportEnabled();
     if(torrentExport != newTorrentExport) {
-        torrentExport = newTorrentExport;
-        if(torrentExport) {
-            qDebug("Torrent export is enabled, exporting the current torrents");
-            exportTorrentFiles(Preferences::getExportDir());
-        }
+      torrentExport = newTorrentExport;
+      if(torrentExport) {
+        qDebug("Torrent export is enabled, exporting the current torrents");
+        exportTorrentFiles(Preferences::getExportDir());
+      }
     }
     // Connection
     // * Ports binding
