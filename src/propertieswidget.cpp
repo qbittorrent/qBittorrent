@@ -52,6 +52,8 @@
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
 
+Q_DECLARE_METATYPE(QList<int>)
+
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 8px; margin-right: 8px;}"
 #define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105); margin-left: 8px; margin-right: 8px;}"
@@ -265,12 +267,12 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
 
 void PropertiesWidget::readSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QVariantList contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/filesColsWidth"), QVariantList()).toList();
+  QList<int> contentColsWidths = settings.value(QString::fromUtf8("TorrentProperties/filesColsWidth"), QVariantList()).value<QList<int> >();
   if(contentColsWidths.empty()) {
     filesList->header()->resizeSection(0, 300);
   } else {
     for(int i=0; i<contentColsWidths.size(); ++i) {
-      filesList->setColumnWidth(i, contentColsWidths.at(i).toInt());
+      filesList->setColumnWidth(i, contentColsWidths.at(i));
     }
   }
   // Restore splitter sizes
@@ -292,11 +294,11 @@ void PropertiesWidget::readSettings() {
 void PropertiesWidget::saveSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue("TorrentProperties/Visible", state==VISIBLE);
-  QVariantList contentColsWidths;
+  QList<int> contentColsWidths;
   for(int i=0; i<PropListModel->columnCount(); ++i) {
     contentColsWidths.append(filesList->columnWidth(i));
   }
-  settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
+  settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), QVariant::fromValue<QList<int> >(contentColsWidths));
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
   QList<int> sizes;

@@ -22,14 +22,22 @@ DEFINES += VERSION_BUGFIX=0
 
 win32 {
   # Adapt these paths on Windows
-  INCLUDEPATH += $$quote(C:/qbittorrent/boost_1_42_0)
-  INCLUDEPATH += $$quote(C:/qbittorrent/libtorrent-rasterbar-0.14.10/include)
-  INCLUDEPATH += $$quote(C:/qbittorrent/libtorrent-rasterbar-0.14.10/zlib)
-  LIBS += -LC:/OpenSSL/
+  INCLUDEPATH += $$quote(C:/qbittorrent/msvc/boost_1_42_0)
+  #INCLUDEPATH += $$quote(C:/qbittorrent/msvc/libtorrent-rasterbar-0.14.10/include)
+  #INCLUDEPATH += $$quote(C:/qbittorrent/msvc/libtorrent-rasterbar-0.14.10/zlib)
+  INCLUDEPATH += $$quote(C:/qbittorrent/msvc/RC_0_15/include)
+  INCLUDEPATH += $$quote(C:/qbittorrent/msvc/RC_0_15/zlib)
+  #DEFINES += LIBTORRENT_0_15
+
+  LIBS += -LC:/OpenSSL/lib/VC
+  LIBS += -LC:/qbittorrent/msvc/boost_1_42_0/stage/lib
 
   DEFINES += _WIN32_WINNT=0x0601
   DEFINES += _WIN32_IE=0x0400
   DEFINES += _WIN32_WINDOWS
+
+  QMAKE_CXXFLAGS_STL_ON = -EHa
+  QMAKE_CXXFLAGS_EXCEPTIONS_ON = -EHa
 }
 
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
@@ -136,13 +144,25 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 win32 {
   RC_FILE = qbittorrent.rc
 
+  LIBS += "/nodefaultlib:"msvcrt.lib"
+  LIBS += "/nodefaultlib:"msvcrtd.lib"
+  contains(DEBUG_MODE, 1) {
+    LIBS += "/nodefaultlib:"libcmt.lib"
+  }
+
   # Adapt these paths on Windows
-  LIBS += C:/qbittorrent/libs/libtorrent.lib \
-          C:/qbittorrent/libs/libboost_system-mgw44-mt-s.lib \
-          C:/qbittorrent/libs/libboost_filesystem-mgw44-mt-s.lib \
-          C:/qbittorrent/libs/libboost_thread-mgw44-mt-s.lib \
-          C:/Qt/2010.02.1/mingw/lib/libwsock32.a \
-          C:/Qt/2010.02.1/mingw/lib/libws2_32.a #\
+    contains(DEBUG_MODE, 1) {
+      LIBS += C:/qbittorrent/msvc/libs/libtorrent-0.15d.lib
+    } else {
+      LIBS += C:/qbittorrent/msvc/libs/libtorrent.lib
+    }
+  #LIBS += C:/qbittorrent/msvc/libs/libtorrent.lib #\
+          #C:/qbittorrent/msvc/libs/libboost_system-vc90-mt-s.lib \
+          #C:/qbittorrent/msvc/libs/libboost_filesystem-vc90-mt-s.lib \
+          #C:/qbittorrent/msvc/libs/libboost_thread-vc90-mt-s.lib \
+          #C:/qbittorrent/msvc/libs/libboost_date_time-vc90-mt-s.lib \
+          #C:/Qt/2010.02.1/mingw/lib/libwsock32.a \
+          #C:/Qt/2010.02.1/mingw/lib/libws2_32.a \
 #          C:/OpenSSL/lib/MinGW/ssleay32.a \
 #          C:/OpenSSL/lib/MinGW/libeay32.a \
 #          -LC:/Qt/2010.02.1/mingw/lib/
@@ -151,12 +171,18 @@ win32 {
 #          C:/Qt/2010.02.1/mingw/lib/libgdi32.a \
 
 # Dynamic linking against SSL since QtNetwork requires it at runtime anyway
-  LIBS += -lssleay32 \
-          -leay32 #\
-#          -lws2_32 \
-#          -lwsock32 \
-#          -ladvapi32 \
-#          -lwinmm
+  #LIBS += -lws2_32 \
+  #        -lwsock32 \
+  #        -ladvapi32 \
+  #        -lwinmm \
+  #        -lssleay32MT \
+  #        -llibeay32MT
+  #        -lshell32 \
+
+  #LIBS += gdi32.lib comdlg32.lib oleaut32.lib imm32.lib winmm.lib winspool.lib ws2_32.lib ole32.lib user32.lib advapi32.lib shell32.lib kernel32.lib uuid.lib
+  LIBS += advapi32.lib shell32.lib
+  LIBS += libeay32MT.lib ssleay32MT.lib
+
 }
 
 os2:LIBS += -ltorrent-rasterbar \
@@ -336,11 +362,12 @@ SOURCES += main.cpp \
                    engineselectdlg.cpp \
                    searchtab.cpp \
                    ico.cpp \
-		   rss.cpp \
+                   rss.cpp \
                    transferlistwidget.cpp \
                    propertieswidget.cpp \
                    peerlistwidget.cpp \
-                   cookiesdlg.cpp
+                   cookiesdlg.cpp \
+                   trackerlist.cpp
 
 DESTDIR = .
 

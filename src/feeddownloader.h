@@ -297,7 +297,7 @@ protected slots:
       default_path = QDir::homePath();
     }
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
-    if(!dir.isNull() and QDir(dir).exists()) {
+    if(!dir.isNull() && QDir(dir).exists()) {
       savepath_line->setText(dir);
     }
   }

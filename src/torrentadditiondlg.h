@@ -56,6 +56,7 @@
 #include "transferlistwidget.h"
 
 using namespace libtorrent;
+Q_DECLARE_METATYPE(QList<int>)
 
 class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
   Q_OBJECT
@@ -125,12 +126,12 @@ public:
     resize(settings.value(QString::fromUtf8("TorrentAdditionDlg/size"), size()).toSize());
     move(settings.value(QString::fromUtf8("TorrentAdditionDlg/pos"), misc::screenCenter(this)).toPoint());
     // Restore column width
-    const QVariantList &contentColsWidths = settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), QVariantList()).toList();
+    const QList<int> &contentColsWidths = settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth")).value<QList<int> >();
     if(contentColsWidths.empty()) {
       torrentContentList->header()->resizeSection(0, 200);
     } else {
       for(int i=0; i<contentColsWidths.size(); ++i) {
-        torrentContentList->setColumnWidth(i, contentColsWidths.at(i).toInt());
+        torrentContentList->setColumnWidth(i, contentColsWidths.at(i));
       }
     }
   }
@@ -138,12 +139,12 @@ public:
   void saveSettings() {
     if(is_magnet) return;
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    QVariantList contentColsWidths;
+    QList<int> contentColsWidths;
     // -1 because we hid PROGRESS column
     for(int i=0; i<PropListModel->columnCount()-1; ++i) {
       contentColsWidths.append(torrentContentList->columnWidth(i));
     }
-    settings.setValue(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), contentColsWidths);
+    settings.setValue(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), QVariant::fromValue<QList<int> >(contentColsWidths));
     settings.setValue("TorrentAdditionDlg/size", size());
     settings.setValue("TorrentAdditionDlg/pos", pos());
   }
