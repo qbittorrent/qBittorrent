@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -23,21 +23,32 @@ DEFINES += VERSION_BUGFIX=8
 win32 {
   # Adapt these paths on Windows
   INCLUDEPATH += $$quote(C:/qbittorrent/msvc/boost_1_42_0)
-  #INCLUDEPATH += $$quote(C:/qbittorrent/msvc/libtorrent-rasterbar-0.14.10/include)
-  #INCLUDEPATH += $$quote(C:/qbittorrent/msvc/libtorrent-rasterbar-0.14.10/zlib)
-  INCLUDEPATH += $$quote(C:/qbittorrent/msvc/RC_0_15/include)
-  INCLUDEPATH += $$quote(C:/qbittorrent/msvc/RC_0_15/zlib)
-  #DEFINES += LIBTORRENT_0_15
+  INCLUDEPATH += $$quote(C:/qbittorrent/msvc/libtorrent-rasterbar-0.14.10/include)
+  INCLUDEPATH += $$quote(C:/qbittorrent/msvc/libtorrent-rasterbar-0.14.10/zlib)
 
   LIBS += -LC:/OpenSSL/lib/VC
-  LIBS += -LC:/qbittorrent/msvc/boost_1_42_0/stage/lib
 
-  DEFINES += _WIN32_WINNT=0x0601
-  DEFINES += _WIN32_IE=0x0400
-  DEFINES += _WIN32_WINDOWS
+  #DEFINES += _WIN32_WINNT=0x0601
+  #DEFINES += _WIN32_IE=0x0400
+  #DEFINES += _WIN32_WINDOWS
 
-  QMAKE_CXXFLAGS_STL_ON = -EHa
-  QMAKE_CXXFLAGS_EXCEPTIONS_ON = -EHa
+  #QMAKE_CXXFLAGS_STL_ON = -EHs
+  #QMAKE_CXXFLAGS_EXCEPTIONS_ON = -EHs
+
+  DEFINES += BOOST_ALL_NO_LIB BOOST_ASIO_HASH_MAP_BUCKETS=1021 BOOST_EXCEPTION_DISABLE
+  DEFINES += BOOST_FILESYSTEM_STATIC_LINK=1 BOOST_MULTI_INDEX_DISABLE_SERIALIZATION
+  DEFINES += BOOST_SYSTEM_STATIC_LINK=1 BOOST_THREAD_USE_LIB BOOST_THREAD_USE_LIB=1
+  DEFINES += TORRENT_USE_OPENSSL UNICODE WIN32 WIN32_LEAN_AND_MEAN
+  DEFINES += _CRT_SECURE_NO_DEPRECATE _FILE_OFFSET_BITS=64 _SCL_SECURE_NO_DEPRECATE
+  DEFINES += _UNICODE _WIN32 _WIN32_WINNT=0x0500 __USE_W32_SOCKETS
+
+  contains(DEBUG_MODE, 1) {
+    DEFINES += TORRENT_DEBUG
+  }
+
+  contains(DEBUG_MODE, 0) {
+    DEFINES += NDEBUG
+  }
 }
 
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
@@ -138,50 +149,31 @@ DEFINES += QT_NO_CAST_TO_ASCII
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 # Windows
-# usually built as static
-# win32:LIBS += -ltorrent -lboost_system
-# win32:LIBS += -lz ?
 win32 {
   RC_FILE = qbittorrent.rc
 
-  LIBS += "/nodefaultlib:"msvcrt.lib"
-  LIBS += "/nodefaultlib:"msvcrtd.lib"
-  contains(DEBUG_MODE, 1) {
-    LIBS += "/nodefaultlib:"libcmt.lib"
-  }
+  #LIBS += "/nodefaultlib:"msvcrt.lib"
+  #LIBS += "/nodefaultlib:"msvcrtd.lib"
+  #contains(DEBUG_MODE, 1) {
+  #  LIBS += "/nodefaultlib:"libcmt.lib"
+  #}
 
   # Adapt these paths on Windows
-    contains(DEBUG_MODE, 1) {
-      LIBS += C:/qbittorrent/msvc/libs/libtorrent-0.15d.lib
-    } else {
-      LIBS += C:/qbittorrent/msvc/libs/libtorrent.lib
-    }
-  #LIBS += C:/qbittorrent/msvc/libs/libtorrent.lib #\
-          #C:/qbittorrent/msvc/libs/libboost_system-vc90-mt-s.lib \
-          #C:/qbittorrent/msvc/libs/libboost_filesystem-vc90-mt-s.lib \
-          #C:/qbittorrent/msvc/libs/libboost_thread-vc90-mt-s.lib \
-          #C:/qbittorrent/msvc/libs/libboost_date_time-vc90-mt-s.lib \
-          #C:/Qt/2010.02.1/mingw/lib/libwsock32.a \
-          #C:/Qt/2010.02.1/mingw/lib/libws2_32.a \
-#          C:/OpenSSL/lib/MinGW/ssleay32.a \
-#          C:/OpenSSL/lib/MinGW/libeay32.a \
-#          -LC:/Qt/2010.02.1/mingw/lib/
-#          C:/Qt/2010.02.1/mingw/lib/libadvapi32.a \
-#          C:/Qt/2010.02.1/mingw/lib/libwinmm.a \
-#          C:/Qt/2010.02.1/mingw/lib/libgdi32.a \
+  contains(DEBUG_MODE, 1) {
+    LIBS += C:/qbittorrent/msvc/libs/libtorrentd.lib \
+            C:/qbittorrent/msvc/libs/libboost_system-vc90-mt-gd.lib \
+            C:/qbittorrent/msvc/libs/libboost_filesystem-vc90-mt-gd.lib \
+            C:/qbittorrent/msvc/libs/libboost_thread-vc90-mt-gd.lib
+  }
+  contains(DEBUG_MODE, 0) {
+    LIBS += C:/qbittorrent/msvc/libs/libtorrent.lib \
+            C:/qbittorrent/msvc/libs/libboost_system-vc90-mt.lib \
+            C:/qbittorrent/msvc/libs/libboost_filesystem-vc90-mt.lib \
+            C:/qbittorrent/msvc/libs/libboost_thread-vc90-mt.lib
+  }
 
-# Dynamic linking against SSL since QtNetwork requires it at runtime anyway
-  #LIBS += -lws2_32 \
-  #        -lwsock32 \
-  #        -ladvapi32 \
-  #        -lwinmm \
-  #        -lssleay32MT \
-  #        -llibeay32MT
-  #        -lshell32 \
-
-  #LIBS += gdi32.lib comdlg32.lib oleaut32.lib imm32.lib winmm.lib winspool.lib ws2_32.lib ole32.lib user32.lib advapi32.lib shell32.lib kernel32.lib uuid.lib
   LIBS += advapi32.lib shell32.lib
-  LIBS += libeay32MT.lib ssleay32MT.lib
+  LIBS += libeay32MD.lib ssleay32MD.lib
 
 }
 
