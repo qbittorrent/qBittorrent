@@ -2354,8 +2354,8 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>qBittorrent is not the default application to open torrent files.
-Do you want to associate qBittorrent to torrent files?</source>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4220,28 +4220,21 @@ Changelog:
         <translation>Пошук</translation>
     </message>
     <message>
-        <source>Failed to locate the Python interpreter</source>
+        <source>Download error</source>
+        <translation type="unfinished">Помилка завантаження</translation>
+    </message>
+    <message>
+        <source>Python setup could not be downloaded, reason: %1.
+Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Python interpreter was not found.
-qBittorrent will now ask you to point to its correct location.</source>
+        <source>Missing Python Interpreter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please point to its location on your hard disk.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Python executable (python.exe)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No Python interpreter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
+        <source>Python 2.x is required to use the search engine but it does not seem to be installed.
+Do you want to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

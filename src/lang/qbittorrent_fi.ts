@@ -348,16 +348,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="926"/>
-        <location filename="../bittorrent.cpp" line="1199"/>
-        <location filename="../bittorrent.cpp" line="1204"/>
+        <location filename="../bittorrent.cpp" line="1210"/>
+        <location filename="../bittorrent.cpp" line="1215"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Torrentin &quot;%1” latausta jatkettiin. (nopea palautuminen)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="928"/>
-        <location filename="../bittorrent.cpp" line="1201"/>
-        <location filename="../bittorrent.cpp" line="1206"/>
+        <location filename="../bittorrent.cpp" line="1212"/>
+        <location filename="../bittorrent.cpp" line="1217"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>”%1” lisättiin latauslistalle.</translation>
@@ -385,26 +385,26 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1544"/>
+        <location filename="../bittorrent.cpp" line="1559"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;i&gt;IP-suodatin on estänyt osoitteen&lt;/i&gt; &lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1546"/>
+        <location filename="../bittorrent.cpp" line="1561"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;on estetty korruptuneiden osien takia&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1878"/>
+        <location filename="../bittorrent.cpp" line="1903"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiivinen tiedoston %1 lataus torrentissa %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1888"/>
-        <location filename="../bittorrent.cpp" line="1941"/>
+        <location filename="../bittorrent.cpp" line="1913"/>
+        <location filename="../bittorrent.cpp" line="1966"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Torrent-tiedostoa %1 ei voitu tulkita.</translation>
     </message>
@@ -413,38 +413,38 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Minkään annetun portin käyttäminen ei onnistunut.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2121"/>
+        <location filename="../bittorrent.cpp" line="2162"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: portin määritys epäonnistui virhe: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2126"/>
+        <location filename="../bittorrent.cpp" line="2167"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PP: portin määritys onnistui, viesti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2141"/>
+        <location filename="../bittorrent.cpp" line="2182"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Nopean jatkamisen tiedot eivät kelpaa torrentille %1. Tarkistetaan uudestaan...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2037"/>
-        <location filename="../bittorrent.cpp" line="2142"/>
+        <location filename="../bittorrent.cpp" line="2078"/>
+        <location filename="../bittorrent.cpp" line="2183"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2036"/>
+        <location filename="../bittorrent.cpp" line="2077"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2147"/>
+        <location filename="../bittorrent.cpp" line="2188"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Jakajien haku osoitteesta %1 epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2259"/>
+        <location filename="../bittorrent.cpp" line="2300"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Ladataan torrenttia ”%1”. Odota...</translation>
@@ -1362,33 +1362,33 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Korkein</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="325"/>
-        <location filename="../eventmanager.cpp" line="326"/>
+        <location filename="../eventmanager.cpp" line="333"/>
+        <location filename="../eventmanager.cpp" line="334"/>
         <source>this session</source>
         <translation>tämä istunto</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="330"/>
-        <location filename="../eventmanager.cpp" line="334"/>
+        <location filename="../eventmanager.cpp" line="338"/>
+        <location filename="../eventmanager.cpp" line="342"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="337"/>
+        <location filename="../eventmanager.cpp" line="345"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>jaettu %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="340"/>
+        <location filename="../eventmanager.cpp" line="348"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>korkeintaan %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="415"/>
-        <location filename="../eventmanager.cpp" line="424"/>
+        <location filename="../eventmanager.cpp" line="423"/>
+        <location filename="../eventmanager.cpp" line="432"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -1891,7 +1891,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nimi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="561"/>
+        <location filename="../GUI.cpp" line="572"/>
         <source>&amp;No</source>
         <translation>&amp;Ei</translation>
     </message>
@@ -1904,7 +1904,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Hakupalvelua ei ole valittu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="667"/>
+        <location filename="../GUI.cpp" line="682"/>
         <source>Open Torrent Files</source>
         <translation>Avaa torrent-tiedostoja</translation>
     </message>
@@ -2034,12 +2034,12 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tiedosto ei ole kelvollinen torrent-tiedosto.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="668"/>
+        <location filename="../GUI.cpp" line="683"/>
         <source>Torrent Files</source>
         <translation>Torrent-tiedostot</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="145"/>
+        <location filename="../GUI.cpp" line="151"/>
         <source>Transfers</source>
         <translation>Siirrot</translation>
     </message>
@@ -2056,7 +2056,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Lähetysnopeus: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="561"/>
+        <location filename="../GUI.cpp" line="572"/>
         <source>&amp;Yes</source>
         <translation>&amp;Kyllä</translation>
     </message>
@@ -2131,76 +2131,76 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Lataajia</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="367"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="362"/>
+        <location filename="../GUI.cpp" line="371"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="440"/>
+        <location filename="../GUI.cpp" line="451"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="440"/>
+        <location filename="../GUI.cpp" line="451"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="453"/>
+        <location filename="../GUI.cpp" line="464"/>
         <source>Global Upload Speed Limit</source>
         <translation>Yleinen lähetysnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="475"/>
+        <location filename="../GUI.cpp" line="486"/>
         <source>Global Download Speed Limit</source>
         <translation>Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
-        <location filename="../GUI.cpp" line="842"/>
+        <location filename="../GUI.cpp" line="570"/>
+        <location filename="../GUI.cpp" line="857"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="768"/>
+        <location filename="../GUI.cpp" line="783"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation> qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="845"/>
-        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="860"/>
+        <location filename="../GUI.cpp" line="867"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Latausnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="848"/>
-        <location filename="../GUI.cpp" line="854"/>
+        <location filename="../GUI.cpp" line="863"/>
+        <location filename="../GUI.cpp" line="869"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Lähetysnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="859"/>
+        <location filename="../GUI.cpp" line="874"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Lataus: %2/s, lähetys: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="938"/>
+        <location filename="../GUI.cpp" line="953"/>
         <source>Use normal speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="941"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>Use alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2220,7 +2220,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Seisahtunut</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="570"/>
         <source>Are you sure you want to quit?</source>
         <translation>Haluatko varmasti poistua?</translation>
     </message>
@@ -2258,13 +2258,13 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Torrentin ”%1” lataamista jatkettiin.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="343"/>
+        <location filename="../GUI.cpp" line="352"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Lataus ”%1” tuli valmiiksi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="358"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O-virhe</translation>
@@ -2302,23 +2302,17 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tapahtui virhe (levy on täynnä?). Lataus ”%1” pysäytettiin.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="159"/>
+        <location filename="../GUI.cpp" line="165"/>
         <source>Search</source>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="222"/>
+        <location filename="../GUI.cpp" line="228"/>
         <source>Torrent file association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="223"/>
-        <source>qBittorrent is not the default application to open torrent files.
-Do you want to associate qBittorrent to torrent files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="297"/>
+        <location filename="../GUI.cpp" line="305"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -2374,18 +2368,24 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Salaus [EI KÄYTÖSSÄ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="356"/>
+        <location filename="../GUI.cpp" line="365"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="343"/>
+        <location filename="../GUI.cpp" line="352"/>
         <source>Download completion</source>
         <translation>Latauksen valmistuminen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="229"/>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="358"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2404,12 +2404,12 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="458"/>
         <source>Url download error</source>
         <translation>Latausvirhe</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="458"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Tiedoston lataaminen osoitteesta %1 epäonnistui: %2.</translation>
     </message>
@@ -2432,13 +2432,13 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="360"/>
+        <location filename="../GUI.cpp" line="369"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="560"/>
+        <location filename="../GUI.cpp" line="571"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Tiedostoja on siirrotta.
@@ -2508,7 +2508,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Lähetykset</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="740"/>
+        <location filename="../GUI.cpp" line="755"/>
         <source>Options were saved successfully.</source>
         <translation>Asetukset tallennettiin.</translation>
     </message>
@@ -3995,7 +3995,7 @@ QGroupBox {
         <translation type="obsolete">Edistyminen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="521"/>
+        <location filename="../propertieswidget.cpp" line="537"/>
         <source>Priority</source>
         <translation type="unfinished">Prioriteetti</translation>
     </message>
@@ -4019,80 +4019,80 @@ QGroupBox {
         <translation type="unfinished">Korkea</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="313"/>
-        <location filename="../propertieswidget.cpp" line="314"/>
+        <location filename="../propertieswidget.cpp" line="319"/>
+        <location filename="../propertieswidget.cpp" line="320"/>
         <source>this session</source>
         <translation>tämä istunto</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="318"/>
-        <location filename="../propertieswidget.cpp" line="322"/>
+        <location filename="../propertieswidget.cpp" line="324"/>
+        <location filename="../propertieswidget.cpp" line="328"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="325"/>
+        <location filename="../propertieswidget.cpp" line="331"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Jaettu %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="329"/>
+        <location filename="../propertieswidget.cpp" line="335"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>korkeintaan %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="487"/>
-        <location filename="../propertieswidget.cpp" line="508"/>
+        <location filename="../propertieswidget.cpp" line="497"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>I/O Error</source>
         <translation>I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="487"/>
+        <location filename="../propertieswidget.cpp" line="497"/>
         <source>This file does not exist yet.</source>
         <translation>Tiedostoa ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="508"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>This folder does not exist yet.</source>
         <translation>Kansiota ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="517"/>
+        <location filename="../propertieswidget.cpp" line="533"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="557"/>
+        <location filename="../propertieswidget.cpp" line="573"/>
         <source>Rename the file</source>
         <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="558"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="562"/>
-        <location filename="../propertieswidget.cpp" line="592"/>
+        <location filename="../propertieswidget.cpp" line="578"/>
+        <location filename="../propertieswidget.cpp" line="610"/>
         <source>The file could not be renamed</source>
         <translation>Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="563"/>
+        <location filename="../propertieswidget.cpp" line="579"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="593"/>
-        <location filename="../propertieswidget.cpp" line="631"/>
+        <location filename="../propertieswidget.cpp" line="611"/>
+        <location filename="../propertieswidget.cpp" line="649"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="630"/>
+        <location filename="../propertieswidget.cpp" line="648"/>
         <source>The folder could not be renamed</source>
         <translation>Kansiota ei voitu nimetä uudelleen</translation>
     </message>
@@ -4101,23 +4101,23 @@ QGroupBox {
         <translation type="obsolete">Ei yhtään - tavoittamattomissa?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="667"/>
+        <location filename="../propertieswidget.cpp" line="686"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi URL-lähde</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="668"/>
+        <location filename="../propertieswidget.cpp" line="687"/>
         <source>New url seed:</source>
         <translation>Uusi URL-lähde:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="673"/>
+        <location filename="../propertieswidget.cpp" line="692"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="674"/>
+        <location filename="../propertieswidget.cpp" line="693"/>
         <source>This url seed is already in the list.</source>
         <translation>URL-jakaja on jo listalla.</translation>
     </message>
@@ -4126,18 +4126,18 @@ QGroupBox {
         <translation type="obsolete">Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="719"/>
-        <location filename="../propertieswidget.cpp" line="721"/>
+        <location filename="../propertieswidget.cpp" line="738"/>
+        <location filename="../propertieswidget.cpp" line="740"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="728"/>
+        <location filename="../propertieswidget.cpp" line="747"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="728"/>
+        <location filename="../propertieswidget.cpp" line="747"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
@@ -4399,37 +4399,37 @@ p, li { white-space: pre-wrap; }
         <translation>Haluatko poistaa tämän listasta?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="317"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Valitse uusi nimi tälle RSS-syötteelle</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="317"/>
         <source>New feed name:</source>
         <translation>Uusi syötteen nimi:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="322"/>
+        <location filename="../rss_imp.cpp" line="321"/>
         <source>Name already in use</source>
         <translation>Nimi on jo käytössä</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="322"/>
+        <location filename="../rss_imp.cpp" line="321"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Tämä nimi on jo käytössä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="479"/>
+        <location filename="../rss_imp.cpp" line="478"/>
         <source>Date: </source>
         <translation>Päivä: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="482"/>
+        <location filename="../rss_imp.cpp" line="481"/>
         <source>Author: </source>
         <translation>Tekijä: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="525"/>
+        <location filename="../rss_imp.cpp" line="524"/>
         <source>Unread</source>
         <translation>Lukematon</translation>
     </message>
@@ -4547,12 +4547,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Hakupalvelu</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="290"/>
+        <location filename="../searchengine.cpp" line="315"/>
         <source>Empty search pattern</source>
         <translation>Tyhjä hakulauseke</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="290"/>
+        <location filename="../searchengine.cpp" line="315"/>
         <source>Please type a search pattern first</source>
         <translation>Kirjoita ensin hakulauseke</translation>
     </message>
@@ -4561,13 +4561,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Valitse ensin ainakin yksi hakupalvelu.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="327"/>
-        <location filename="../searchengine.cpp" line="418"/>
+        <location filename="../searchengine.cpp" line="352"/>
+        <location filename="../searchengine.cpp" line="444"/>
         <source>Results</source>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="397"/>
+        <location filename="../searchengine.cpp" line="423"/>
         <source>Searching...</source>
         <translation>Etsitään...</translation>
     </message>
@@ -4602,103 +4602,95 @@ Muutoshistoria:
         <translation type="obsolete">Hakuliitännäinen on ajan tasalla.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="137"/>
-        <source>Failed to locate the Python interpreter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="137"/>
-        <source>The Python interpreter was not found.
-qBittorrent will now ask you to point to its correct location.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="138"/>
-        <source>Please point to its location on your hard disk.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="139"/>
-        <source>Python executable (python.exe)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="141"/>
-        <source>No Python interpreter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="141"/>
-        <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="196"/>
+        <location filename="../searchengine.cpp" line="206"/>
         <source>Cut</source>
         <translation>Leikkaa</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="197"/>
+        <location filename="../searchengine.cpp" line="207"/>
         <source>Copy</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="198"/>
+        <location filename="../searchengine.cpp" line="208"/>
         <source>Paste</source>
         <translation>Liitä</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="199"/>
+        <location filename="../searchengine.cpp" line="209"/>
         <source>Clear field</source>
         <translation>Tyhjennä kenttä</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="200"/>
+        <location filename="../searchengine.cpp" line="210"/>
         <source>Clear completion history</source>
         <translation>Tyhjennä hakuhistoria</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="267"/>
-        <location filename="../searchengine.cpp" line="278"/>
-        <location filename="../searchengine.cpp" line="279"/>
+        <location filename="../searchengine.cpp" line="277"/>
+        <location filename="../searchengine.cpp" line="303"/>
+        <location filename="../searchengine.cpp" line="304"/>
         <source>Search</source>
         <translation type="unfinished">Etsi</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="284"/>
+        <source>Missing Python Interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="285"/>
+        <source>Python 2.x is required to use the search engine but it does not seem to be installed.
+Do you want to install it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="554"/>
         <source>Search Engine</source>
         <translation>Hakupalvelu</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="528"/>
-        <location filename="../searchengine.cpp" line="539"/>
+        <location filename="../searchengine.cpp" line="554"/>
+        <location filename="../searchengine.cpp" line="569"/>
         <source>Search has finished</source>
         <translation>Haku on päättynyt</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="531"/>
+        <location filename="../searchengine.cpp" line="560"/>
         <source>An error occured during search...</source>
         <translation>Haun aikana tapahtui virhe...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="534"/>
+        <location filename="../searchengine.cpp" line="558"/>
+        <location filename="../searchengine.cpp" line="564"/>
         <source>Search aborted</source>
         <translation>Haku keskeytetty</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="537"/>
+        <location filename="../searchengine.cpp" line="171"/>
+        <source>Download error</source>
+        <translation type="unfinished">Latausvirhe</translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="171"/>
+        <source>Python setup could not be downloaded, reason: %1.
+Please install it manually.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="567"/>
         <source>Search returned no results</source>
         <translation>Haku ei palauttanut tuloksia</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="544"/>
+        <location filename="../searchengine.cpp" line="574"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="579"/>
-        <location filename="../searchengine.cpp" line="585"/>
+        <location filename="../searchengine.cpp" line="609"/>
+        <location filename="../searchengine.cpp" line="615"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
@@ -4850,79 +4842,79 @@ qBittorrent will now ask you to point to its correct location.</source>
 <context>
     <name>TrackerList</name>
     <message>
-        <location filename="../trackerlist.h" line="72"/>
+        <location filename="../trackerlist.cpp" line="56"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="73"/>
+        <location filename="../trackerlist.cpp" line="57"/>
         <source>Status</source>
         <translation>Tila</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="74"/>
+        <location filename="../trackerlist.cpp" line="58"/>
         <source>Peers</source>
         <translation>Asiakkaat</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="75"/>
+        <location filename="../trackerlist.cpp" line="59"/>
         <source>Message</source>
         <translation>Viesti</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="77"/>
+        <location filename="../trackerlist.cpp" line="61"/>
         <source>[DHT]</source>
         <translation>[DHT]</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="80"/>
+        <location filename="../trackerlist.cpp" line="64"/>
         <source>[PeX]</source>
         <translation>[PeX]</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="83"/>
+        <location filename="../trackerlist.cpp" line="67"/>
         <source>[LSD]</source>
         <translation>[LSD]</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="220"/>
-        <location filename="../trackerlist.h" line="229"/>
-        <location filename="../trackerlist.h" line="233"/>
-        <location filename="../trackerlist.h" line="265"/>
-        <location filename="../trackerlist.h" line="283"/>
+        <location filename="../trackerlist.cpp" line="201"/>
+        <location filename="../trackerlist.cpp" line="210"/>
+        <location filename="../trackerlist.cpp" line="214"/>
+        <location filename="../trackerlist.cpp" line="246"/>
+        <location filename="../trackerlist.cpp" line="264"/>
         <source>Working</source>
         <translation>Toiminnassa</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="222"/>
-        <location filename="../trackerlist.h" line="235"/>
+        <location filename="../trackerlist.cpp" line="203"/>
+        <location filename="../trackerlist.cpp" line="216"/>
         <source>Disabled</source>
         <translation>Ei käytössä</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="226"/>
+        <location filename="../trackerlist.cpp" line="207"/>
         <source>This torrent is private</source>
         <translation>Torrentti on yksityinen</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="269"/>
+        <location filename="../trackerlist.cpp" line="250"/>
         <source>Updating...</source>
         <translation>Päivitetään...</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="273"/>
-        <location filename="../trackerlist.h" line="287"/>
+        <location filename="../trackerlist.cpp" line="254"/>
+        <location filename="../trackerlist.cpp" line="268"/>
         <source>Not working</source>
         <translation>Ei toiminnassa</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="276"/>
-        <location filename="../trackerlist.h" line="290"/>
+        <location filename="../trackerlist.cpp" line="257"/>
+        <location filename="../trackerlist.cpp" line="271"/>
         <source>Not contacted yet</source>
         <translation>Ei ole vielä yhteyttä</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="364"/>
+        <location filename="../trackerlist.cpp" line="345"/>
         <source>Add a new tracker</source>
         <translation>Lisää uusi seurantapalvelin</translation>
     </message>
@@ -5166,27 +5158,27 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">&amp;Ei</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="862"/>
+        <location filename="../transferlistwidget.cpp" line="867"/>
         <source>Column visibility</source>
         <translation>Sarakkeen näkyvyys</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="982"/>
+        <location filename="../transferlistwidget.cpp" line="991"/>
         <source>Start</source>
         <translation>Käynnistä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="993"/>
         <source>Pause</source>
         <translation>Pysäytä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="995"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="997"/>
         <source>Preview file</source>
         <translation>Esikatsele</translation>
     </message>
@@ -5246,7 +5238,7 @@ qBittorrent will now ask you to point to its correct location.</source>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1094"/>
+        <location filename="../transferlistwidget.cpp" line="1103"/>
         <source>Label</source>
         <translation>Nimike</translation>
     </message>
@@ -5275,113 +5267,113 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="773"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrentin latausnopeuden rajoitus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="801"/>
+        <location filename="../transferlistwidget.cpp" line="806"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrentin lähetysnopeuden rajoitin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="923"/>
+        <location filename="../transferlistwidget.cpp" line="932"/>
         <source>New Label</source>
         <translation>Uusi nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="923"/>
+        <location filename="../transferlistwidget.cpp" line="932"/>
         <source>Label:</source>
         <translation>Nimike:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="928"/>
+        <location filename="../transferlistwidget.cpp" line="937"/>
         <source>Invalid label name</source>
         <translation>Virheellinen nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="928"/>
+        <location filename="../transferlistwidget.cpp" line="937"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="944"/>
+        <location filename="../transferlistwidget.cpp" line="953"/>
         <source>Rename</source>
         <translation>Nimeä uudelleen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="944"/>
+        <location filename="../transferlistwidget.cpp" line="953"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="990"/>
+        <location filename="../transferlistwidget.cpp" line="999"/>
         <source>Limit upload rate</source>
         <translation>Rajoita lähetysnopeus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="992"/>
+        <location filename="../transferlistwidget.cpp" line="1001"/>
         <source>Limit download rate</source>
         <translation>Rajoita latausnopeus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="1003"/>
         <source>Open destination folder</source>
         <translation>Avaa kohdekansio</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="1005"/>
         <source>Buy it</source>
         <translation>Osta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1007"/>
         <source>Increase priority</source>
         <translation>Nosta prioriteettia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1009"/>
         <source>Decrease priority</source>
         <translation>Laske prioriteettia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1011"/>
         <source>Force recheck</source>
         <translation>Pakota tarkistamaan uudelleen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1004"/>
+        <location filename="../transferlistwidget.cpp" line="1013"/>
         <source>Copy magnet link</source>
         <translation>Kopioi magnet-linkki</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1007"/>
+        <location filename="../transferlistwidget.cpp" line="1016"/>
         <source>Super seeding mode</source>
         <translation>super seed -tila</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1019"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1021"/>
         <source>Download in sequential order</source>
         <translation>Lataa järjestyksessä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1014"/>
+        <location filename="../transferlistwidget.cpp" line="1023"/>
         <source>Download first and last piece first</source>
         <translation>Lataa ensin ensimmäinen ja viimeinen osa</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1095"/>
+        <location filename="../transferlistwidget.cpp" line="1104"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Uusi...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1096"/>
+        <location filename="../transferlistwidget.cpp" line="1105"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Palauta</translation>
@@ -6009,7 +6001,7 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">Kohdekansiota ei ole valittu</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="167"/>
+        <location filename="../createtorrent_imp.cpp" line="175"/>
         <source>No input path set</source>
         <translation>Lähdekansiota ei ole asetettu</translation>
     </message>
@@ -6022,7 +6014,7 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">Anna ensin kohdekansio</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="167"/>
+        <location filename="../createtorrent_imp.cpp" line="175"/>
         <source>Please type an input path first</source>
         <translation>Anna ensin lähdekansio</translation>
     </message>
@@ -6031,7 +6023,7 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">Anna kelvollinen lähdekansio</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="175"/>
+        <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>Select destination torrent file</source>
         <translation>Valitse kohde-torrent-tiedosto</translation>
     </message>
@@ -6040,19 +6032,19 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">Valitse lähdekansio tai -tiedosto</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="188"/>
-        <location filename="../createtorrent_imp.cpp" line="198"/>
-        <location filename="../createtorrent_imp.cpp" line="209"/>
+        <location filename="../createtorrent_imp.cpp" line="196"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent creation</source>
         <translation>Torrentin luominen</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="175"/>
+        <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>Torrent Files</source>
         <translation>Torrent-tiedostot</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="209"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent luotiin:</translation>
     </message>
@@ -6062,33 +6054,33 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation>Valitse kohdekansio</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="124"/>
+        <location filename="../createtorrent_imp.cpp" line="132"/>
         <source>Please type an announce URL</source>
         <translation>Anna julkaisusoite</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="188"/>
+        <location filename="../createtorrent_imp.cpp" line="196"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrentin luominen epäonnistui: %1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="125"/>
+        <location filename="../createtorrent_imp.cpp" line="133"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>Julkaisuosoite:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="143"/>
+        <location filename="../createtorrent_imp.cpp" line="151"/>
         <source>Please type a web seed url</source>
         <translation>Anna verkkojako-osoite</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="144"/>
+        <location filename="../createtorrent_imp.cpp" line="152"/>
         <source>Web seed URL:</source>
         <translation>Verkkojako-osoite:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="88"/>
+        <location filename="../createtorrent_imp.cpp" line="92"/>
         <source>Select a file to add to the torrent</source>
         <translation>Valitse torrentiin lisättävä tiedosto</translation>
     </message>
@@ -6101,7 +6093,7 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">Aseta ainakin yksi seurantapalvelin</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="198"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>Luotu torrentti ei kelpaa. Sitä ei lisätä latauslistaan.</translation>
     </message>
@@ -6468,12 +6460,12 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">Ei</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="188"/>
+        <location filename="../engineselectdlg.cpp" line="187"/>
         <source>Uninstall warning</source>
         <translation>Poistovaroitus</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="188"/>
+        <location filename="../engineselectdlg.cpp" line="187"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -6482,107 +6474,107 @@ However, those plugins were disabled.</source>
 Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="190"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>Uninstall success</source>
         <translation>Poisto onnistui</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="359"/>
+        <location filename="../engineselectdlg.cpp" line="358"/>
         <source>Select search plugins</source>
         <translation>Valitse hakuliitännäiset</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="360"/>
+        <location filename="../engineselectdlg.cpp" line="359"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrentin hakuliitännäiset</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
-        <location filename="../engineselectdlg.cpp" line="283"/>
-        <location filename="../engineselectdlg.cpp" line="288"/>
-        <location filename="../engineselectdlg.cpp" line="297"/>
-        <location filename="../engineselectdlg.cpp" line="300"/>
+        <location filename="../engineselectdlg.cpp" line="258"/>
+        <location filename="../engineselectdlg.cpp" line="282"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="296"/>
+        <location filename="../engineselectdlg.cpp" line="299"/>
         <source>Search plugin install</source>
         <translation>Hakuliitännäisen asennus</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="118"/>
-        <location filename="../engineselectdlg.cpp" line="201"/>
-        <location filename="../engineselectdlg.cpp" line="320"/>
+        <location filename="../engineselectdlg.cpp" line="200"/>
+        <location filename="../engineselectdlg.cpp" line="319"/>
         <source>Yes</source>
         <translation>Kyllä</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="121"/>
-        <location filename="../engineselectdlg.cpp" line="167"/>
-        <location filename="../engineselectdlg.cpp" line="214"/>
-        <location filename="../engineselectdlg.cpp" line="323"/>
+        <location filename="../engineselectdlg.cpp" line="166"/>
+        <location filename="../engineselectdlg.cpp" line="213"/>
+        <location filename="../engineselectdlg.cpp" line="322"/>
         <source>No</source>
         <translation>Ei</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
-        <location filename="../engineselectdlg.cpp" line="283"/>
-        <location filename="../engineselectdlg.cpp" line="288"/>
-        <location filename="../engineselectdlg.cpp" line="297"/>
-        <location filename="../engineselectdlg.cpp" line="300"/>
-        <location filename="../engineselectdlg.cpp" line="411"/>
-        <location filename="../engineselectdlg.cpp" line="443"/>
-        <location filename="../engineselectdlg.cpp" line="463"/>
-        <location filename="../engineselectdlg.cpp" line="470"/>
+        <location filename="../engineselectdlg.cpp" line="258"/>
+        <location filename="../engineselectdlg.cpp" line="282"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="296"/>
+        <location filename="../engineselectdlg.cpp" line="299"/>
+        <location filename="../engineselectdlg.cpp" line="410"/>
+        <location filename="../engineselectdlg.cpp" line="442"/>
+        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
+        <location filename="../engineselectdlg.cpp" line="258"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Uudempi versio hakuliitännäisestä %1 on jo asennettu.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="411"/>
-        <location filename="../engineselectdlg.cpp" line="443"/>
-        <location filename="../engineselectdlg.cpp" line="463"/>
-        <location filename="../engineselectdlg.cpp" line="470"/>
+        <location filename="../engineselectdlg.cpp" line="410"/>
+        <location filename="../engineselectdlg.cpp" line="442"/>
+        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>Search plugin update</source>
         <translation>Hakuliitännäisen päivitys</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="443"/>
-        <location filename="../engineselectdlg.cpp" line="463"/>
+        <location filename="../engineselectdlg.cpp" line="442"/>
+        <location filename="../engineselectdlg.cpp" line="462"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Päivityspalvelin ei ole tällä hetkellä saavutettavissa.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="411"/>
+        <location filename="../engineselectdlg.cpp" line="410"/>
         <source>All your plugins are already up to date.</source>
         <translation>Kaikki liitännäiset ovat ajan tasalla.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="283"/>
+        <location filename="../engineselectdlg.cpp" line="282"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Hakuliitännäisen %1 päivitys epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="288"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Hakuliitännäisen %1 asennus epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="190"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Kaikki valitut liitännäiset poistettiin</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="297"/>
+        <location filename="../engineselectdlg.cpp" line="296"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Hakuliitännäinen %1 päivitettiin.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="300"/>
+        <location filename="../engineselectdlg.cpp" line="299"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Hakuliitännäinen %1 asennettiin.</translation>
@@ -6592,18 +6584,18 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Hakuliitännäisarkiston lukeminen epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="470"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Hakuliitännäisen %1 asennus epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="350"/>
+        <location filename="../engineselectdlg.cpp" line="349"/>
         <source>New search engine plugin URL</source>
         <translation>Uusi hakukoneliitännäisen osoite</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="351"/>
+        <location filename="../engineselectdlg.cpp" line="350"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
@@ -6611,7 +6603,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
@@ -6622,7 +6614,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">d</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
@@ -6638,7 +6630,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete"> h</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
@@ -6649,51 +6641,51 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="428"/>
-        <location filename="../misc.cpp" line="433"/>
-        <location filename="../misc.cpp" line="437"/>
-        <location filename="../misc.cpp" line="440"/>
+        <location filename="../misc.cpp" line="426"/>
+        <location filename="../misc.cpp" line="431"/>
+        <location filename="../misc.cpp" line="435"/>
+        <location filename="../misc.cpp" line="438"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="321"/>
+        <location filename="../misc.cpp" line="319"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="471"/>
+        <location filename="../misc.cpp" line="469"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>alle minuutti</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="475"/>
+        <location filename="../misc.cpp" line="473"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="480"/>
+        <location filename="../misc.cpp" line="478"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 h %2 min</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="485"/>
+        <location filename="../misc.cpp" line="483"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1 d %2 h %3 min</translation>
@@ -6791,10 +6783,10 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Valitse ipfilter.dat-tiedosto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1452"/>
-        <location filename="../options_imp.cpp" line="1454"/>
-        <location filename="../options_imp.cpp" line="1466"/>
-        <location filename="../options_imp.cpp" line="1468"/>
+        <location filename="../options_imp.cpp" line="1482"/>
+        <location filename="../options_imp.cpp" line="1484"/>
+        <location filename="../options_imp.cpp" line="1499"/>
+        <location filename="../options_imp.cpp" line="1501"/>
         <source>Choose a save directory</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
@@ -6808,50 +6800,50 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Tiedoston %1 avaaminen lukutilassa epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1380"/>
+        <location filename="../options_imp.cpp" line="1404"/>
         <source>Add directory to scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1386"/>
+        <location filename="../options_imp.cpp" line="1410"/>
         <source>Folder is already being watched.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1389"/>
+        <location filename="../options_imp.cpp" line="1413"/>
         <source>Folder does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1392"/>
+        <location filename="../options_imp.cpp" line="1416"/>
         <source>Folder is not readable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1400"/>
+        <location filename="../options_imp.cpp" line="1424"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1400"/>
+        <location filename="../options_imp.cpp" line="1424"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1423"/>
-        <location filename="../options_imp.cpp" line="1425"/>
+        <location filename="../options_imp.cpp" line="1447"/>
+        <location filename="../options_imp.cpp" line="1449"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1437"/>
-        <location filename="../options_imp.cpp" line="1439"/>
+        <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Choose an ip filter file</source>
         <translation>Valitse IP-suodatintiedosto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1437"/>
-        <location filename="../options_imp.cpp" line="1439"/>
+        <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Filters</source>
         <translation>Suotimet</translation>
     </message>
@@ -7454,18 +7446,18 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.h" line="406"/>
-        <location filename="../torrentadditiondlg.h" line="408"/>
+        <location filename="../torrentadditiondlg.h" line="420"/>
+        <location filename="../torrentadditiondlg.h" line="422"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="438"/>
+        <location filename="../torrentadditiondlg.h" line="459"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen ei onnistunut</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="431"/>
+        <location filename="../torrentadditiondlg.h" line="448"/>
         <source>Empty save path</source>
         <translation>Ei tallennuskansiota</translation>
     </message>
@@ -7474,12 +7466,12 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Ei</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="486"/>
+        <location filename="../torrentadditiondlg.h" line="508"/>
         <source>Invalid file selection</source>
         <translation>Virheellinen tiedostovalinta</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="431"/>
+        <location filename="../torrentadditiondlg.h" line="448"/>
         <source>Please enter a save path</source>
         <translation>Anna tallennuskansio</translation>
     </message>
@@ -7488,19 +7480,19 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Tuntematon</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="389"/>
+        <location filename="../torrentadditiondlg.h" line="399"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 torrentin lataamisen jälkeen)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="392"/>
+        <location filename="../torrentadditiondlg.h" line="402"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(tarvitaan %1 lisää lataamiseen)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="438"/>
+        <location filename="../torrentadditiondlg.h" line="459"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen ei onnistunut</translation>
     </message>
@@ -7513,80 +7505,80 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Kyllä</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="156"/>
+        <location filename="../torrentadditiondlg.h" line="160"/>
         <source>Unable to decode magnet link:</source>
         <translation>Magnet-linkin purkaminen ei onnistunut:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="160"/>
+        <location filename="../torrentadditiondlg.h" line="164"/>
         <source>Magnet Link</source>
         <translation>Magnet-linkki</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="194"/>
-        <location filename="../torrentadditiondlg.h" line="197"/>
+        <location filename="../torrentadditiondlg.h" line="198"/>
+        <location filename="../torrentadditiondlg.h" line="201"/>
         <source>Unable to decode torrent file:</source>
         <translation>Torrent-tiedoston purkaminen ei onnistunut:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="245"/>
+        <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="283"/>
+        <location filename="../torrentadditiondlg.h" line="287"/>
         <source>Rename the file</source>
         <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="284"/>
+        <location filename="../torrentadditiondlg.h" line="288"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="288"/>
-        <location filename="../torrentadditiondlg.h" line="314"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="322"/>
         <source>The file could not be renamed</source>
         <translation>Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="289"/>
+        <location filename="../torrentadditiondlg.h" line="293"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="315"/>
-        <location filename="../torrentadditiondlg.h" line="348"/>
+        <location filename="../torrentadditiondlg.h" line="323"/>
+        <location filename="../torrentadditiondlg.h" line="357"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="347"/>
+        <location filename="../torrentadditiondlg.h" line="356"/>
         <source>The folder could not be renamed</source>
         <translation>Kansiota ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="444"/>
+        <location filename="../torrentadditiondlg.h" line="465"/>
         <source>Invalid label name</source>
         <translation>Virheellinen nimike</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="444"/>
+        <location filename="../torrentadditiondlg.h" line="465"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="479"/>
+        <location filename="../torrentadditiondlg.h" line="501"/>
         <source>Seeding mode error</source>
         <translation>Jakamistilavirhe</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="479"/>
+        <location filename="../torrentadditiondlg.h" line="501"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Valitsit tiedoston tarkistamisen ohittamisen. Paikalliset tiedostot eivät näytä olevan nykyisessä kohdekansiossa. Ota tämä piirre käytöstä tai päivitä tallennuspolku.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="486"/>
+        <location filename="../torrentadditiondlg.h" line="508"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Valitse ainakin yksi torrent-tiedosto</translation>
     </message>
@@ -7603,7 +7595,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="obsolete">Edistyminen</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="249"/>
+        <location filename="../torrentadditiondlg.h" line="253"/>
         <source>Priority</source>
         <translation type="unfinished">Prioriteetti</translation>
     </message>

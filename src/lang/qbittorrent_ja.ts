@@ -343,16 +343,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="926"/>
-        <location filename="../bittorrent.cpp" line="1199"/>
-        <location filename="../bittorrent.cpp" line="1204"/>
+        <location filename="../bittorrent.cpp" line="1210"/>
+        <location filename="../bittorrent.cpp" line="1215"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; が再開されました。 (高速再開)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="928"/>
-        <location filename="../bittorrent.cpp" line="1201"/>
-        <location filename="../bittorrent.cpp" line="1206"/>
+        <location filename="../bittorrent.cpp" line="1212"/>
+        <location filename="../bittorrent.cpp" line="1217"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; がダウンロードの一覧に追加されました。</translation>
@@ -380,26 +380,26 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1544"/>
+        <location filename="../bittorrent.cpp" line="1559"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1546"/>
+        <location filename="../bittorrent.cpp" line="1561"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1878"/>
+        <location filename="../bittorrent.cpp" line="1903"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1888"/>
-        <location filename="../bittorrent.cpp" line="1941"/>
+        <location filename="../bittorrent.cpp" line="1913"/>
+        <location filename="../bittorrent.cpp" line="1966"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -408,38 +408,38 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">所定のポートで記入できませんでした。</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2121"/>
+        <location filename="../bittorrent.cpp" line="2162"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2126"/>
+        <location filename="../bittorrent.cpp" line="2167"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2141"/>
+        <location filename="../bittorrent.cpp" line="2182"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2037"/>
-        <location filename="../bittorrent.cpp" line="2142"/>
+        <location filename="../bittorrent.cpp" line="2078"/>
+        <location filename="../bittorrent.cpp" line="2183"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2036"/>
+        <location filename="../bittorrent.cpp" line="2077"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2147"/>
+        <location filename="../bittorrent.cpp" line="2188"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2259"/>
+        <location filename="../bittorrent.cpp" line="2300"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
@@ -1252,33 +1252,33 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">最大</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="325"/>
-        <location filename="../eventmanager.cpp" line="326"/>
+        <location filename="../eventmanager.cpp" line="333"/>
+        <location filename="../eventmanager.cpp" line="334"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="330"/>
-        <location filename="../eventmanager.cpp" line="334"/>
+        <location filename="../eventmanager.cpp" line="338"/>
+        <location filename="../eventmanager.cpp" line="342"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="337"/>
+        <location filename="../eventmanager.cpp" line="345"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="340"/>
+        <location filename="../eventmanager.cpp" line="348"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="415"/>
-        <location filename="../eventmanager.cpp" line="424"/>
+        <location filename="../eventmanager.cpp" line="423"/>
+        <location filename="../eventmanager.cpp" line="432"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation type="unfinished"></translation>
@@ -1609,7 +1609,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="667"/>
+        <location filename="../GUI.cpp" line="682"/>
         <source>Open Torrent Files</source>
         <translation>Torrent ファイルを開く</translation>
     </message>
@@ -1618,12 +1618,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="561"/>
+        <location filename="../GUI.cpp" line="572"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="561"/>
+        <location filename="../GUI.cpp" line="572"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
@@ -1640,7 +1640,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">ダウンロードしています....</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="668"/>
+        <location filename="../GUI.cpp" line="683"/>
         <source>Torrent Files</source>
         <translation>Torrent ファイル</translation>
     </message>
@@ -1685,7 +1685,7 @@ Please close the other one first.</source>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="145"/>
+        <location filename="../GUI.cpp" line="151"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1742,33 +1742,33 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 が開始されました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
-        <location filename="../GUI.cpp" line="842"/>
+        <location filename="../GUI.cpp" line="570"/>
+        <location filename="../GUI.cpp" line="857"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="560"/>
+        <location filename="../GUI.cpp" line="571"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="768"/>
+        <location filename="../GUI.cpp" line="783"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation type="unfinished">qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="845"/>
-        <location filename="../GUI.cpp" line="852"/>
+        <location filename="../GUI.cpp" line="860"/>
+        <location filename="../GUI.cpp" line="867"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL 速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="848"/>
-        <location filename="../GUI.cpp" line="854"/>
+        <location filename="../GUI.cpp" line="863"/>
+        <location filename="../GUI.cpp" line="869"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP 速度: %1 KiB/s</translation>
@@ -1784,7 +1784,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">失速しました</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="570"/>
         <source>Are you sure you want to quit?</source>
         <translation>終了してもよろしいですか?</translation>
     </message>
@@ -1842,18 +1842,18 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">&apos;%1&apos; が再開されました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="343"/>
+        <location filename="../GUI.cpp" line="352"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 はダウンロードが完了しました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="343"/>
+        <location filename="../GUI.cpp" line="352"/>
         <source>Download completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="358"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O エラー</translation>
@@ -1891,23 +1891,17 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">エラーが発生しました (ディスクいっぱい?)、&apos;%1&apos; が停止されました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="159"/>
+        <location filename="../GUI.cpp" line="165"/>
         <source>Search</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="222"/>
+        <location filename="../GUI.cpp" line="228"/>
         <source>Torrent file association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="223"/>
-        <source>qBittorrent is not the default application to open torrent files.
-Do you want to associate qBittorrent to torrent files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="297"/>
+        <location filename="../GUI.cpp" line="305"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -2000,7 +1994,7 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">率</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="356"/>
+        <location filename="../GUI.cpp" line="365"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -2021,12 +2015,12 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="458"/>
         <source>Url download error</source>
         <translation>Url のダウンロード エラー</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="458"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>次の url にあるファイルをダウンロードできませんでした: %1、理由: %2。</translation>
     </message>
@@ -2057,7 +2051,7 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="360"/>
+        <location filename="../GUI.cpp" line="369"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
@@ -2089,7 +2083,13 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="obsolete">qBittorrent %1 (DL: %2KiB/s、UP: %3KiB/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="229"/>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="358"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2097,55 +2097,55 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="367"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation type="unfinished">Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="362"/>
+        <location filename="../GUI.cpp" line="371"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation type="unfinished">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="440"/>
+        <location filename="../GUI.cpp" line="451"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="440"/>
+        <location filename="../GUI.cpp" line="451"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="453"/>
+        <location filename="../GUI.cpp" line="464"/>
         <source>Global Upload Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="475"/>
+        <location filename="../GUI.cpp" line="486"/>
         <source>Global Download Speed Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="740"/>
+        <location filename="../GUI.cpp" line="755"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">オプションの保存に成功しました。</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="859"/>
+        <location filename="../GUI.cpp" line="874"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="938"/>
+        <location filename="../GUI.cpp" line="953"/>
         <source>Use normal speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="941"/>
+        <location filename="../GUI.cpp" line="956"/>
         <source>Use alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3512,7 +3512,7 @@ QGroupBox {
         <translation type="obsolete">進行状況</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="521"/>
+        <location filename="../propertieswidget.cpp" line="537"/>
         <source>Priority</source>
         <translation type="unfinished">優先度</translation>
     </message>
@@ -3540,80 +3540,80 @@ QGroupBox {
         <translation type="unfinished">高</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="313"/>
-        <location filename="../propertieswidget.cpp" line="314"/>
+        <location filename="../propertieswidget.cpp" line="319"/>
+        <location filename="../propertieswidget.cpp" line="320"/>
         <source>this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="318"/>
-        <location filename="../propertieswidget.cpp" line="322"/>
+        <location filename="../propertieswidget.cpp" line="324"/>
+        <location filename="../propertieswidget.cpp" line="328"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="325"/>
+        <location filename="../propertieswidget.cpp" line="331"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="329"/>
+        <location filename="../propertieswidget.cpp" line="335"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="487"/>
-        <location filename="../propertieswidget.cpp" line="508"/>
+        <location filename="../propertieswidget.cpp" line="497"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>I/O Error</source>
         <translation type="unfinished">I/O エラー</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="487"/>
+        <location filename="../propertieswidget.cpp" line="497"/>
         <source>This file does not exist yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="508"/>
+        <location filename="../propertieswidget.cpp" line="523"/>
         <source>This folder does not exist yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="517"/>
+        <location filename="../propertieswidget.cpp" line="533"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="557"/>
+        <location filename="../propertieswidget.cpp" line="573"/>
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="558"/>
+        <location filename="../propertieswidget.cpp" line="574"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="562"/>
-        <location filename="../propertieswidget.cpp" line="592"/>
+        <location filename="../propertieswidget.cpp" line="578"/>
+        <location filename="../propertieswidget.cpp" line="610"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="563"/>
+        <location filename="../propertieswidget.cpp" line="579"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="593"/>
-        <location filename="../propertieswidget.cpp" line="631"/>
+        <location filename="../propertieswidget.cpp" line="611"/>
+        <location filename="../propertieswidget.cpp" line="649"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="630"/>
+        <location filename="../propertieswidget.cpp" line="648"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3622,23 +3622,23 @@ QGroupBox {
         <translation type="obsolete">なし - アンリーチ可能ですか?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="667"/>
+        <location filename="../propertieswidget.cpp" line="686"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished">新しい url シード</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="668"/>
+        <location filename="../propertieswidget.cpp" line="687"/>
         <source>New url seed:</source>
         <translation type="unfinished">新しい url シード:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="673"/>
+        <location filename="../propertieswidget.cpp" line="692"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="674"/>
+        <location filename="../propertieswidget.cpp" line="693"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished">この url シードはすでに一覧にあります。</translation>
     </message>
@@ -3647,18 +3647,18 @@ QGroupBox {
         <translation type="obsolete">トラッカの一覧を空にできません。</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="719"/>
-        <location filename="../propertieswidget.cpp" line="721"/>
+        <location filename="../propertieswidget.cpp" line="738"/>
+        <location filename="../propertieswidget.cpp" line="740"/>
         <source>Choose save path</source>
         <translation type="unfinished">保存パスの選択</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="728"/>
+        <location filename="../propertieswidget.cpp" line="747"/>
         <source>Save path creation error</source>
         <translation type="unfinished">保存パスの作成エラー</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="728"/>
+        <location filename="../propertieswidget.cpp" line="747"/>
         <source>Could not create the save path</source>
         <translation type="unfinished">保存パスを作成できませんでした</translation>
     </message>
@@ -3928,37 +3928,37 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="317"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="318"/>
+        <location filename="../rss_imp.cpp" line="317"/>
         <source>New feed name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="322"/>
+        <location filename="../rss_imp.cpp" line="321"/>
         <source>Name already in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="322"/>
+        <location filename="../rss_imp.cpp" line="321"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="479"/>
+        <location filename="../rss_imp.cpp" line="478"/>
         <source>Date: </source>
         <translation>日付: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="482"/>
+        <location filename="../rss_imp.cpp" line="481"/>
         <source>Author: </source>
         <translation>作者: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="525"/>
+        <location filename="../rss_imp.cpp" line="524"/>
         <source>Unread</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4076,12 +4076,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">検索エンジン</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="290"/>
+        <location filename="../searchengine.cpp" line="315"/>
         <source>Empty search pattern</source>
         <translation>検索パターンを空にする</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="290"/>
+        <location filename="../searchengine.cpp" line="315"/>
         <source>Please type a search pattern first</source>
         <translation>まず検索パターンを入力してください</translation>
     </message>
@@ -4094,13 +4094,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">少なくとも 1 つの検索エンジンを選択する必要があります。</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="327"/>
-        <location filename="../searchengine.cpp" line="418"/>
+        <location filename="../searchengine.cpp" line="352"/>
+        <location filename="../searchengine.cpp" line="444"/>
         <source>Results</source>
         <translation>結果</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="397"/>
+        <location filename="../searchengine.cpp" line="423"/>
         <source>Searching...</source>
         <translation>検索しています...</translation>
     </message>
@@ -4143,96 +4143,88 @@ Changelog:
         <translation type="obsolete">お使いの検索プラグインはすでに最新です。</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="137"/>
-        <source>Failed to locate the Python interpreter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="137"/>
-        <source>The Python interpreter was not found.
-qBittorrent will now ask you to point to its correct location.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="138"/>
-        <source>Please point to its location on your hard disk.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="139"/>
-        <source>Python executable (python.exe)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="141"/>
-        <source>No Python interpreter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="141"/>
-        <source>The Python interpreter is missing. qBittorrent search engine will not work.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../searchengine.cpp" line="196"/>
+        <location filename="../searchengine.cpp" line="206"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="197"/>
+        <location filename="../searchengine.cpp" line="207"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="198"/>
+        <location filename="../searchengine.cpp" line="208"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="199"/>
+        <location filename="../searchengine.cpp" line="209"/>
         <source>Clear field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="200"/>
+        <location filename="../searchengine.cpp" line="210"/>
         <source>Clear completion history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="267"/>
-        <location filename="../searchengine.cpp" line="278"/>
-        <location filename="../searchengine.cpp" line="279"/>
+        <location filename="../searchengine.cpp" line="277"/>
+        <location filename="../searchengine.cpp" line="303"/>
+        <location filename="../searchengine.cpp" line="304"/>
         <source>Search</source>
         <translation type="unfinished">検索</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="528"/>
+        <location filename="../searchengine.cpp" line="284"/>
+        <source>Missing Python Interpreter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="285"/>
+        <source>Python 2.x is required to use the search engine but it does not seem to be installed.
+Do you want to install it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="554"/>
         <source>Search Engine</source>
         <translation>検索エンジン</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="528"/>
-        <location filename="../searchengine.cpp" line="539"/>
+        <location filename="../searchengine.cpp" line="554"/>
+        <location filename="../searchengine.cpp" line="569"/>
         <source>Search has finished</source>
         <translation>検索は完了しました</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="531"/>
+        <location filename="../searchengine.cpp" line="560"/>
         <source>An error occured during search...</source>
         <translation>検索中にエラーが発生しました...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="534"/>
+        <location filename="../searchengine.cpp" line="558"/>
+        <location filename="../searchengine.cpp" line="564"/>
         <source>Search aborted</source>
         <translation>検索が中止されました</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="537"/>
+        <location filename="../searchengine.cpp" line="171"/>
+        <source>Download error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="171"/>
+        <source>Python setup could not be downloaded, reason: %1.
+Please install it manually.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchengine.cpp" line="567"/>
         <source>Search returned no results</source>
         <translation>検索結果がありません</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="544"/>
+        <location filename="../searchengine.cpp" line="574"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>結果</translation>
@@ -4246,8 +4238,8 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">次の url にある検索プラグインの更新をダウンロードできませんでした: %1、理由: %2。</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="579"/>
-        <location filename="../searchengine.cpp" line="585"/>
+        <location filename="../searchengine.cpp" line="609"/>
+        <location filename="../searchengine.cpp" line="615"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
@@ -4399,79 +4391,79 @@ qBittorrent will now ask you to point to its correct location.</source>
 <context>
     <name>TrackerList</name>
     <message>
-        <location filename="../trackerlist.h" line="72"/>
+        <location filename="../trackerlist.cpp" line="56"/>
         <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="73"/>
+        <location filename="../trackerlist.cpp" line="57"/>
         <source>Status</source>
         <translation type="unfinished">状態</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="74"/>
+        <location filename="../trackerlist.cpp" line="58"/>
         <source>Peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="75"/>
+        <location filename="../trackerlist.cpp" line="59"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="77"/>
+        <location filename="../trackerlist.cpp" line="61"/>
         <source>[DHT]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="80"/>
+        <location filename="../trackerlist.cpp" line="64"/>
         <source>[PeX]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="83"/>
+        <location filename="../trackerlist.cpp" line="67"/>
         <source>[LSD]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="220"/>
-        <location filename="../trackerlist.h" line="229"/>
-        <location filename="../trackerlist.h" line="233"/>
-        <location filename="../trackerlist.h" line="265"/>
-        <location filename="../trackerlist.h" line="283"/>
+        <location filename="../trackerlist.cpp" line="201"/>
+        <location filename="../trackerlist.cpp" line="210"/>
+        <location filename="../trackerlist.cpp" line="214"/>
+        <location filename="../trackerlist.cpp" line="246"/>
+        <location filename="../trackerlist.cpp" line="264"/>
         <source>Working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="222"/>
-        <location filename="../trackerlist.h" line="235"/>
+        <location filename="../trackerlist.cpp" line="203"/>
+        <location filename="../trackerlist.cpp" line="216"/>
         <source>Disabled</source>
         <translation type="unfinished">無効</translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="226"/>
+        <location filename="../trackerlist.cpp" line="207"/>
         <source>This torrent is private</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="269"/>
+        <location filename="../trackerlist.cpp" line="250"/>
         <source>Updating...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="273"/>
-        <location filename="../trackerlist.h" line="287"/>
+        <location filename="../trackerlist.cpp" line="254"/>
+        <location filename="../trackerlist.cpp" line="268"/>
         <source>Not working</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="276"/>
-        <location filename="../trackerlist.h" line="290"/>
+        <location filename="../trackerlist.cpp" line="257"/>
+        <location filename="../trackerlist.cpp" line="271"/>
         <source>Not contacted yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trackerlist.h" line="364"/>
+        <location filename="../trackerlist.cpp" line="345"/>
         <source>Add a new tracker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4710,27 +4702,27 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">いいえ(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="862"/>
+        <location filename="../transferlistwidget.cpp" line="867"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="982"/>
+        <location filename="../transferlistwidget.cpp" line="991"/>
         <source>Start</source>
         <translation type="unfinished">開始</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="984"/>
+        <location filename="../transferlistwidget.cpp" line="993"/>
         <source>Pause</source>
         <translation type="unfinished">一時停止</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="986"/>
+        <location filename="../transferlistwidget.cpp" line="995"/>
         <source>Delete</source>
         <translation type="unfinished">削除</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="988"/>
+        <location filename="../transferlistwidget.cpp" line="997"/>
         <source>Preview file</source>
         <translation type="unfinished">ファイルのプレビュー</translation>
     </message>
@@ -4790,7 +4782,7 @@ qBittorrent will now ask you to point to its correct location.</source>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="82"/>
-        <location filename="../transferlistwidget.cpp" line="1094"/>
+        <location filename="../transferlistwidget.cpp" line="1103"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4819,113 +4811,113 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="773"/>
         <source>Torrent Download Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="801"/>
+        <location filename="../transferlistwidget.cpp" line="806"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="923"/>
+        <location filename="../transferlistwidget.cpp" line="932"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="923"/>
+        <location filename="../transferlistwidget.cpp" line="932"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="928"/>
+        <location filename="../transferlistwidget.cpp" line="937"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="928"/>
+        <location filename="../transferlistwidget.cpp" line="937"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="944"/>
+        <location filename="../transferlistwidget.cpp" line="953"/>
         <source>Rename</source>
         <translation type="unfinished">名前の変更</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="944"/>
+        <location filename="../transferlistwidget.cpp" line="953"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="990"/>
+        <location filename="../transferlistwidget.cpp" line="999"/>
         <source>Limit upload rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="992"/>
+        <location filename="../transferlistwidget.cpp" line="1001"/>
         <source>Limit download rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="1003"/>
         <source>Open destination folder</source>
         <translation type="unfinished">作成先のフォルダを開く</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="996"/>
+        <location filename="../transferlistwidget.cpp" line="1005"/>
         <source>Buy it</source>
         <translation type="unfinished">購入</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="998"/>
+        <location filename="../transferlistwidget.cpp" line="1007"/>
         <source>Increase priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1000"/>
+        <location filename="../transferlistwidget.cpp" line="1009"/>
         <source>Decrease priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1002"/>
+        <location filename="../transferlistwidget.cpp" line="1011"/>
         <source>Force recheck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1004"/>
+        <location filename="../transferlistwidget.cpp" line="1013"/>
         <source>Copy magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1007"/>
+        <location filename="../transferlistwidget.cpp" line="1016"/>
         <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1010"/>
+        <location filename="../transferlistwidget.cpp" line="1019"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1012"/>
+        <location filename="../transferlistwidget.cpp" line="1021"/>
         <source>Download in sequential order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1014"/>
+        <location filename="../transferlistwidget.cpp" line="1023"/>
         <source>Download first and last piece first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1095"/>
+        <location filename="../transferlistwidget.cpp" line="1104"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1096"/>
+        <location filename="../transferlistwidget.cpp" line="1105"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
@@ -5513,12 +5505,12 @@ qBittorrent will now ask you to point to its correct location.</source>
 <context>
     <name>createtorrent</name>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="175"/>
+        <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>Select destination torrent file</source>
         <translation>作成先の torrent ファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="175"/>
+        <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>Torrent Files</source>
         <translation>Torrent ファイル</translation>
     </message>
@@ -5535,12 +5527,12 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">まず保存先のパスを入力してくださいい</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="167"/>
+        <location filename="../createtorrent_imp.cpp" line="175"/>
         <source>No input path set</source>
         <translation>入力パスが設定されていません</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="167"/>
+        <location filename="../createtorrent_imp.cpp" line="175"/>
         <source>Please type an input path first</source>
         <translation>まず入力パスを入力してください</translation>
     </message>
@@ -5549,14 +5541,14 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">入力パスが存在しません</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="188"/>
-        <location filename="../createtorrent_imp.cpp" line="198"/>
-        <location filename="../createtorrent_imp.cpp" line="209"/>
+        <location filename="../createtorrent_imp.cpp" line="196"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent creation</source>
         <translation>Torrent の作成</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="209"/>
+        <location filename="../createtorrent_imp.cpp" line="217"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent の作成に成功しました:</translation>
     </message>
@@ -5578,7 +5570,7 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">Torrent に追加するファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="124"/>
+        <location filename="../createtorrent_imp.cpp" line="132"/>
         <source>Please type an announce URL</source>
         <translation>アナウンス URL を入力してください</translation>
     </message>
@@ -5595,28 +5587,28 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">URL シード:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="188"/>
+        <location filename="../createtorrent_imp.cpp" line="196"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Torrent の作成に成功しませんでした、理由: %1</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="125"/>
+        <location filename="../createtorrent_imp.cpp" line="133"/>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
         <translation>アナウンス URL:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="143"/>
+        <location filename="../createtorrent_imp.cpp" line="151"/>
         <source>Please type a web seed url</source>
         <translation>Web シード の url を入力してください</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="144"/>
+        <location filename="../createtorrent_imp.cpp" line="152"/>
         <source>Web seed URL:</source>
         <translation>Web シード の URL:</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="88"/>
+        <location filename="../createtorrent_imp.cpp" line="92"/>
         <source>Select a file to add to the torrent</source>
         <translation>Torrent に追加するファイルを選択します</translation>
     </message>
@@ -5629,7 +5621,7 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">少なくとも 1 つのトラッカを設定してください</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="198"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5980,12 +5972,12 @@ qBittorrent will now ask you to point to its correct location.</source>
         <translation type="obsolete">False</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="188"/>
+        <location filename="../engineselectdlg.cpp" line="187"/>
         <source>Uninstall warning</source>
         <translation>アンインストールの警告</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="188"/>
+        <location filename="../engineselectdlg.cpp" line="187"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -5994,7 +5986,7 @@ However, those plugins were disabled.</source>
 しかし、それらのプラグインは無効になります。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="190"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>Uninstall success</source>
         <translation>アンインストール成功</translation>
     </message>
@@ -6003,39 +5995,39 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">すべての選択されたプラグインのアンインストールに成功しました</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="359"/>
+        <location filename="../engineselectdlg.cpp" line="358"/>
         <source>Select search plugins</source>
         <translation>検索プラグインの選択</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="360"/>
+        <location filename="../engineselectdlg.cpp" line="359"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent 検索プラグイン</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
-        <location filename="../engineselectdlg.cpp" line="283"/>
-        <location filename="../engineselectdlg.cpp" line="288"/>
-        <location filename="../engineselectdlg.cpp" line="297"/>
-        <location filename="../engineselectdlg.cpp" line="300"/>
+        <location filename="../engineselectdlg.cpp" line="258"/>
+        <location filename="../engineselectdlg.cpp" line="282"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="296"/>
+        <location filename="../engineselectdlg.cpp" line="299"/>
         <source>Search plugin install</source>
         <translation>検索プラグインのインストール</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
-        <location filename="../engineselectdlg.cpp" line="283"/>
-        <location filename="../engineselectdlg.cpp" line="288"/>
-        <location filename="../engineselectdlg.cpp" line="297"/>
-        <location filename="../engineselectdlg.cpp" line="300"/>
-        <location filename="../engineselectdlg.cpp" line="411"/>
-        <location filename="../engineselectdlg.cpp" line="443"/>
-        <location filename="../engineselectdlg.cpp" line="463"/>
-        <location filename="../engineselectdlg.cpp" line="470"/>
+        <location filename="../engineselectdlg.cpp" line="258"/>
+        <location filename="../engineselectdlg.cpp" line="282"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="296"/>
+        <location filename="../engineselectdlg.cpp" line="299"/>
+        <location filename="../engineselectdlg.cpp" line="410"/>
+        <location filename="../engineselectdlg.cpp" line="442"/>
+        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
+        <location filename="../engineselectdlg.cpp" line="258"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 検索エンジン プラグインのより最近のバージョンはすでにインストールされています。</translation>
@@ -6051,16 +6043,16 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">%1 検索エンジン プラグインのインストールに成功しました。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="411"/>
-        <location filename="../engineselectdlg.cpp" line="443"/>
-        <location filename="../engineselectdlg.cpp" line="463"/>
-        <location filename="../engineselectdlg.cpp" line="470"/>
+        <location filename="../engineselectdlg.cpp" line="410"/>
+        <location filename="../engineselectdlg.cpp" line="442"/>
+        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>Search plugin update</source>
         <translation>検索プラグインの更新</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="443"/>
-        <location filename="../engineselectdlg.cpp" line="463"/>
+        <location filename="../engineselectdlg.cpp" line="442"/>
+        <location filename="../engineselectdlg.cpp" line="462"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>すみません、更新サーバーが一時的に利用不可です。</translation>
     </message>
@@ -6075,27 +6067,27 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">すみません、%1 検索プラグインの更新に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="411"/>
+        <location filename="../engineselectdlg.cpp" line="410"/>
         <source>All your plugins are already up to date.</source>
         <translation>すべてのお使いのプラグインはすでに最新です。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="190"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>すべての選択されたプラグインのアンインストールに成功しました</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="118"/>
-        <location filename="../engineselectdlg.cpp" line="201"/>
-        <location filename="../engineselectdlg.cpp" line="320"/>
+        <location filename="../engineselectdlg.cpp" line="200"/>
+        <location filename="../engineselectdlg.cpp" line="319"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="121"/>
-        <location filename="../engineselectdlg.cpp" line="167"/>
-        <location filename="../engineselectdlg.cpp" line="214"/>
-        <location filename="../engineselectdlg.cpp" line="323"/>
+        <location filename="../engineselectdlg.cpp" line="166"/>
+        <location filename="../engineselectdlg.cpp" line="213"/>
+        <location filename="../engineselectdlg.cpp" line="322"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6104,42 +6096,42 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">検索エンジン プラグイン アーカイブは読み込めませんでした。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="288"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 検索エンジン プラグインはインストールできませんでした。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="283"/>
+        <location filename="../engineselectdlg.cpp" line="282"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 検索エンジン プラグインは更新できませんでした、古いバージョンを維持します。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="297"/>
+        <location filename="../engineselectdlg.cpp" line="296"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 検索エンジン プラグインの更新に成功しました。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="300"/>
+        <location filename="../engineselectdlg.cpp" line="299"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 検索エンジン プラグインのインストールに成功しました。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="470"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>すみません、%1 検索エンジン プラグインのインストールに失敗しました。</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="350"/>
+        <location filename="../engineselectdlg.cpp" line="349"/>
         <source>New search engine plugin URL</source>
         <translation>新しい検索エンジン プラグインの URL</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="351"/>
+        <location filename="../engineselectdlg.cpp" line="350"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
@@ -6147,69 +6139,69 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="322"/>
+        <location filename="../misc.cpp" line="320"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="428"/>
-        <location filename="../misc.cpp" line="433"/>
-        <location filename="../misc.cpp" line="437"/>
-        <location filename="../misc.cpp" line="440"/>
+        <location filename="../misc.cpp" line="426"/>
+        <location filename="../misc.cpp" line="431"/>
+        <location filename="../misc.cpp" line="435"/>
+        <location filename="../misc.cpp" line="438"/>
         <source>Unknown</source>
         <translation type="unfinished">不明</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="321"/>
+        <location filename="../misc.cpp" line="319"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="471"/>
+        <location filename="../misc.cpp" line="469"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 分</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="475"/>
+        <location filename="../misc.cpp" line="473"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 分</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="480"/>
+        <location filename="../misc.cpp" line="478"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 時間 %2 分</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="485"/>
+        <location filename="../misc.cpp" line="483"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
         <translation>%1 日 %2 時間 %3 分</translation>
@@ -6271,10 +6263,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">ipfilter.dat ファイルを選択します</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1452"/>
-        <location filename="../options_imp.cpp" line="1454"/>
-        <location filename="../options_imp.cpp" line="1466"/>
-        <location filename="../options_imp.cpp" line="1468"/>
+        <location filename="../options_imp.cpp" line="1482"/>
+        <location filename="../options_imp.cpp" line="1484"/>
+        <location filename="../options_imp.cpp" line="1499"/>
+        <location filename="../options_imp.cpp" line="1501"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリを選択します</translation>
     </message>
@@ -6288,50 +6280,50 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">読み込みモードで %1 を開くことができませんでした。</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1380"/>
+        <location filename="../options_imp.cpp" line="1404"/>
         <source>Add directory to scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1386"/>
+        <location filename="../options_imp.cpp" line="1410"/>
         <source>Folder is already being watched.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1389"/>
+        <location filename="../options_imp.cpp" line="1413"/>
         <source>Folder does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1392"/>
+        <location filename="../options_imp.cpp" line="1416"/>
         <source>Folder is not readable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1400"/>
+        <location filename="../options_imp.cpp" line="1424"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1400"/>
+        <location filename="../options_imp.cpp" line="1424"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1423"/>
-        <location filename="../options_imp.cpp" line="1425"/>
+        <location filename="../options_imp.cpp" line="1447"/>
+        <location filename="../options_imp.cpp" line="1449"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1437"/>
-        <location filename="../options_imp.cpp" line="1439"/>
+        <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Choose an ip filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1437"/>
-        <location filename="../options_imp.cpp" line="1439"/>
+        <location filename="../options_imp.cpp" line="1464"/>
+        <location filename="../options_imp.cpp" line="1466"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6854,8 +6846,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">True</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="194"/>
-        <location filename="../torrentadditiondlg.h" line="197"/>
+        <location filename="../torrentadditiondlg.h" line="198"/>
+        <location filename="../torrentadditiondlg.h" line="201"/>
         <source>Unable to decode torrent file:</source>
         <translation>Torrent ファイルをデコードすることができません:</translation>
     </message>
@@ -6864,8 +6856,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="406"/>
-        <location filename="../torrentadditiondlg.h" line="408"/>
+        <location filename="../torrentadditiondlg.h" line="420"/>
+        <location filename="../torrentadditiondlg.h" line="422"/>
         <source>Choose save path</source>
         <translation>保存パスの選択</translation>
     </message>
@@ -6878,111 +6870,111 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">不明</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="156"/>
+        <location filename="../torrentadditiondlg.h" line="160"/>
         <source>Unable to decode magnet link:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="160"/>
+        <location filename="../torrentadditiondlg.h" line="164"/>
         <source>Magnet Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="245"/>
+        <location filename="../torrentadditiondlg.h" line="249"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="283"/>
+        <location filename="../torrentadditiondlg.h" line="287"/>
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="284"/>
+        <location filename="../torrentadditiondlg.h" line="288"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="288"/>
-        <location filename="../torrentadditiondlg.h" line="314"/>
+        <location filename="../torrentadditiondlg.h" line="292"/>
+        <location filename="../torrentadditiondlg.h" line="322"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="289"/>
+        <location filename="../torrentadditiondlg.h" line="293"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="315"/>
-        <location filename="../torrentadditiondlg.h" line="348"/>
+        <location filename="../torrentadditiondlg.h" line="323"/>
+        <location filename="../torrentadditiondlg.h" line="357"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="347"/>
+        <location filename="../torrentadditiondlg.h" line="356"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="389"/>
+        <location filename="../torrentadditiondlg.h" line="399"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="392"/>
+        <location filename="../torrentadditiondlg.h" line="402"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="431"/>
+        <location filename="../torrentadditiondlg.h" line="448"/>
         <source>Empty save path</source>
         <translation>空の保存パス</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="431"/>
+        <location filename="../torrentadditiondlg.h" line="448"/>
         <source>Please enter a save path</source>
         <translation>保存パスを入力してください</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="438"/>
+        <location filename="../torrentadditiondlg.h" line="459"/>
         <source>Save path creation error</source>
         <translation>保存パスの作成エラー</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="438"/>
+        <location filename="../torrentadditiondlg.h" line="459"/>
         <source>Could not create the save path</source>
         <translation>保存パスを作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="444"/>
+        <location filename="../torrentadditiondlg.h" line="465"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="444"/>
+        <location filename="../torrentadditiondlg.h" line="465"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="479"/>
+        <location filename="../torrentadditiondlg.h" line="501"/>
         <source>Seeding mode error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="479"/>
+        <location filename="../torrentadditiondlg.h" line="501"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="486"/>
+        <location filename="../torrentadditiondlg.h" line="508"/>
         <source>Invalid file selection</source>
         <translation>不正なファイル選択</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="486"/>
+        <location filename="../torrentadditiondlg.h" line="508"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Torrent では少なくとも 1 つのファイルを選択する必要があります</translation>
     </message>
@@ -6999,7 +6991,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">進行状況</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.h" line="249"/>
+        <location filename="../torrentadditiondlg.h" line="253"/>
         <source>Priority</source>
         <translation type="unfinished">優先度</translation>
     </message>
