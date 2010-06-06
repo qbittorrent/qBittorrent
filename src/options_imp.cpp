@@ -90,7 +90,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   locales << "nl_NL";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain.png"))), QString::fromUtf8("Español"));
   locales << "es_ES";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain_catalunya.png"))), QString::fromUtf8("Catal� "));
+  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain_catalunya.png"))), QString::fromUtf8("Català"));
   locales << "ca_ES";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/portugal.png"))), QString::fromUtf8("Português"));
   locales << "pt_PT";
@@ -126,7 +126,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   locales << "bg_BG";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/ukraine.png"))), QString::fromUtf8("Українська"));
   locales << "uk_UA";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/russia.png"))), QString::fromUtf8("� усский"));
+  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/russia.png"))), QString::fromUtf8("Русский"));
   locales << "ru_RU";
   comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/japan.png"))), QString::fromUtf8("日本語"));
   locales << "ja_JP";
