@@ -2,7 +2,8 @@
     - FEATURE: Official support for Win32 platform
     - BUGFIX: Fix torrent availability computation (closes #587337)
     - BUGFIX: Disable torrent addition dialog as a default
-    - BUGFIX: Fix compatibility with non-unicode systems
+    - BUGFIX: Fix Web UI authentication with Opera Browser
+    - BUGFIX: Fix compatibility with non UTF-8 systems
 
 * Mon May 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.8
     - BUGFIX: ETA for finished torrent is now 0 instead of Infinite (closes #583704)

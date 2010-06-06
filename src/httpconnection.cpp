@@ -155,7 +155,7 @@ void HttpConnection::respond() {
     qDebug("client IP: %s (%d failed attempts)", qPrintable(peer_ip), nb_fail+1);
     // Return unauthorized header
     generator.setStatusLine(401, "Unauthorized");
-    generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+parent->generateNonce()+"\", algorithm=\"MD5\", qop=\"auth\"");
+    generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+parent->generateNonce()+"\", opaque=\""+parent->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
     write();
     return;
   }
