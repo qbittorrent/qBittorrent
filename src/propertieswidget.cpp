@@ -584,25 +584,27 @@ void PropertiesWidget::renameSelectedFile() {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
       if(!h.is_valid() || !h.has_metadata()) return;
-      const QString &old_name = misc::toQString(h.get_torrent_info().file_at(file_index).path.string());
+      QString old_name = misc::toQStringU(h.get_torrent_info().file_at(file_index).path.string());
+      old_name = old_name.replace("\\", "/");
       if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
         new_name_last += ".!qB";
       }
-      QStringList path_items = old_name.split(QDir::separator());
+      QStringList path_items = old_name.split("/");
       path_items.removeLast();
       path_items << new_name_last;
-      const QString &new_name = path_items.join(QDir::separator());
+      QString new_name = path_items.join("/");
       if(old_name == new_name) {
         qDebug("Name did not change");
         return;
       }
+      new_name = QDir::cleanPath(new_name);
       // Check if that name is already used
       for(int i=0; i<h.num_files(); ++i) {
         if(i == file_index) continue;
 #if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
-        if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseSensitive) == 0) {
+        if(misc::toQStringU(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseSensitive) == 0) {
 #else
-          if(misc::toQString(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseInsensitive) == 0) {
+          if(misc::toQStringU(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseInsensitive) == 0) {
 #endif
             // Display error message
             QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -629,15 +631,15 @@ void PropertiesWidget::renameSelectedFile() {
           path_items.prepend(parent.data().toString());
           parent = PropListModel->parent(parent);
         }
-        const QString &old_path = path_items.join(QDir::separator());
+        const QString &old_path = path_items.join("/");
         path_items.removeLast();
         path_items << new_name_last;
-        QString new_path = path_items.join(QDir::separator());
-        if(!new_path.endsWith(QDir::separator())) new_path += QDir::separator();
+        QString new_path = path_items.join("/");
+        if(!new_path.endsWith("/")) new_path += "/";
         // Check for overwriting
         const int num_files = h.num_files();
         for(int i=0; i<num_files; ++i) {
-          const QString current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+          const QString current_name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
 #if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
           if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
@@ -652,12 +654,13 @@ void PropertiesWidget::renameSelectedFile() {
           bool force_recheck = false;
           // Replace path in all files
           for(int i=0; i<num_files; ++i) {
-            const QString &current_name = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+            const QString &current_name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
             if(current_name.startsWith(old_path)) {
               QString new_name = current_name;
               new_name.replace(0, old_path.length(), new_path);
-              if(!force_recheck && QFile::exists(h.save_path()+QDir::separator()+new_name))
+              if(!force_recheck && QDir(h.save_path()).exists(new_name))
                 force_recheck = true;
+              new_name = QDir::cleanPath(new_name);
               qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
               h.rename_file(i, new_name);
             }
@@ -667,7 +670,7 @@ void PropertiesWidget::renameSelectedFile() {
           // Rename folder in torrent files model too
           PropListModel->setData(index, new_name_last);
           // Remove old folder
-          const QDir old_folder(h.save_path()+QDir::separator()+old_path);
+          const QDir old_folder(h.save_path()+"/"+old_path);
           int timeout = 10;
           while(!misc::removeEmptyTree(old_folder.absolutePath()) && timeout > 0) {
             SleeperThread::msleep(100);
