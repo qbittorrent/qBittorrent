@@ -283,7 +283,11 @@ int main(int argc, char *argv[]){
   }
 #endif
   // Set environment variable
+#if defined(Q_WS_WIN) && !defined(MINGW)
+  if(SetEnvironmentVariableA("QBITTORRENT", VERSION)) {
+#else
   if(putenv((char*)"QBITTORRENT="VERSION)) {
+#endif
     std::cerr << "Couldn't set environment variable...\n";
   }
 

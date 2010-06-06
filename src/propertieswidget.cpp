@@ -536,7 +536,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&){
   QMenu myFilesLlistMenu;
-  const QModelIndexList &selectedRows = filesList->selectionModel()->selectedRows(0);
+  QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
   if(selectedRows.size() == 1) {
     actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));

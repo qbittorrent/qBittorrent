@@ -1856,8 +1856,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     default:
       qDebug("Disabling HTTP communications proxy");
 #ifdef Q_WS_WIN
+#ifdef MINGW
       putenv("http_proxy=");
       putenv("sock_proxy=");
+#else
+      SetEnvironmentVariableA("http_proxy", "");
+      SetEnvironmentVariableA("sock_proxy", "");
+#endif
 #else
       unsetenv("http_proxy");
       unsetenv("sock_proxy");
@@ -1866,12 +1871,17 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     }
     // We need this for urllib in search engine plugins
 #ifdef Q_WS_WIN
-    QString proxyStr;
+    QString type_str;
     if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
-      proxyStr = "sock_proxy=" + proxy_str;
+      type_str = "sock_proxy";
     else
-      proxyStr = "http_proxy=" + proxy_str;
-    putenv(proxyStr.toLocal8Bit().constData());
+      type_str = "http_proxy";
+#ifdef MINGW
+    QString tmp = type_str+"="+proxy_str;
+    putenv(tmp.toLocal8Bit().constData());
+#else
+    SetEnvironmentVariableA(type_str.toLocal8Bit().constData(), proxy_str.toLocal8Bit().constData());
+#endif
 #else
     qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
     if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
