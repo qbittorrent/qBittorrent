@@ -1898,7 +1898,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 
     void Bittorrent::recursiveTorrentDownload(const QTorrentHandle &h) {
         for(int i=0; i<h.get_torrent_info().num_files(); ++i) {
-            const QString &torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+            const QString &torrent_relpath = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
             if(torrent_relpath.endsWith(".torrent")) {
                 addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
                 const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
