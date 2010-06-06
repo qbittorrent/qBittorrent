@@ -201,7 +201,7 @@ void createtorrent::handleCreationSuccess(QString path, const char* branch_path)
     // Create save path temp data
     boost::intrusive_ptr<torrent_info> t;
     try {
-      t = new torrent_info(path.toLocal8Bit().data());
+      t = new torrent_info(path.toUtf8().data());
     } catch(std::exception&) {
       QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
       return;

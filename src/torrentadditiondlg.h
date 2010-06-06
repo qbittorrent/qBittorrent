@@ -203,7 +203,7 @@ public:
     this->from_url = from_url;
     // Getting torrent file informations
     try {
-      t = new torrent_info(filePath.toLocal8Bit().data());
+      t = new torrent_info(filePath.toUtf8().data());
       if(!t->is_valid())
         throw std::exception();
     } catch(std::exception&) {
@@ -318,15 +318,19 @@ public slots:
       if(PropListModel->getType(index)==TFILE) {
         // File renaming
         const uint file_index = PropListModel->getFileIndex(index);
-        const QString &old_name = files_path.at(file_index);
-        QStringList path_items = old_name.split(QDir::separator());
+        QString old_name = files_path.at(file_index);
+        old_name = old_name.replace("\\", "/");
+        qDebug("Old name: %s", qPrintable(old_name));
+        QStringList path_items = old_name.split("/");
         path_items.removeLast();
         path_items << new_name_last;
-        const QString &new_name = path_items.join(QDir::separator());
+        QString new_name = path_items.join("/");
         if(old_name == new_name) {
           qDebug("Name did not change");
           return;
         }
+        new_name = QDir::cleanPath(new_name);
+        qDebug("New name: %s", qPrintable(new_name));
         // Check if that name is already used
         for(uint i=0; i<nbFiles; ++i) {
           if(i == file_index) continue;
@@ -342,6 +346,7 @@ public slots:
               return;
             }
           }
+          new_name = QDir::cleanPath(new_name);
           qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
           // Rename file in files_path
           files_path.replace(file_index, new_name);
@@ -356,11 +361,11 @@ public slots:
             path_items.prepend(parent.data().toString());
             parent = PropListModel->parent(parent);
           }
-          const QString &old_path = path_items.join(QDir::separator());
+          const QString &old_path = path_items.join("/");
           path_items.removeLast();
           path_items << new_name_last;
-          QString new_path = path_items.join(QDir::separator());
-          if(!new_path.endsWith(QDir::separator())) new_path += QDir::separator();
+          QString new_path = path_items.join("/");
+          if(!new_path.endsWith("/")) new_path += "/";
           // Check for overwriting
           for(uint i=0; i<nbFiles; ++i) {
             const QString &current_name = files_path.at(i);
@@ -381,6 +386,7 @@ public slots:
               if(current_name.startsWith(old_path)) {
                 QString new_name = current_name;
                 new_name.replace(0, old_path.length(), new_path);
+                new_name = QDir::cleanPath(new_name);
                 qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
                 // Rename in files_path
                 files_path.replace(i, new_name);

@@ -76,7 +76,6 @@ public:
   static inline sha1_hash QStringToSha1(const QString& s) {
     std::string str(s.toLocal8Bit().data());
     std::istringstream i(str);
-    std::cout << "lol" << std::endl;
     sha1_hash x;
     i>>x;
     return x;

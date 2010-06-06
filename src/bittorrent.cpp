@@ -971,7 +971,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   qDebug("Adding %s to download list", qPrintable(file));
   try {
     // Getting torrent file informations
-    t = new torrent_info(file.toLocal8Bit().constData());
+    t = new torrent_info(file.toUtf8().constData());
     if(!t->is_valid())
       throw std::exception();
   } catch(std::exception&) {
@@ -1141,9 +1141,20 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       bool force_recheck = false;
       if(files_path.size() == h.num_files()) {
         for(int i=0; i<h.num_files(); ++i) {
+          QString old_path = h.files_path().at(i);
+          old_path = old_path.replace("\\", "/");
+          if(!QFile::exists(old_path)) {
+            // Remove old parent folder manually since we will
+            // not get a file_renamed alert
+            QStringList parts = old_path.split("/", QString::SkipEmptyParts);
+            parts.removeLast();
+            if(!parts.empty())
+              QDir().rmpath(parts.join("/"));
+          }
           const QString &path = files_path.at(i);
-          if(!force_recheck && QFile::exists(h.save_path()+QDir::separator()+path))
+          if(!force_recheck && QDir(h.save_path()).exists(path))
             force_recheck = true;
+          qDebug("Renaming file to %s", qPrintable(path));
           h.rename_file(i, path);
         }
         // Force recheck
@@ -1577,7 +1588,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     foreach(const QString &file, pathList) {
       qDebug("File %s added", qPrintable(file));
       try {
-        torrent_info t(file.toLocal8Bit().constData());
+        torrent_info t(file.toUtf8().constData());
         if(t.is_valid())
           addTorrent(file, true);
       } catch(std::exception&) {
@@ -1893,12 +1904,12 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 
   void Bittorrent::recursiveTorrentDownload(const QTorrentHandle &h) {
     for(int i=0; i<h.get_torrent_info().num_files(); ++i) {
-      const QString &torrent_relpath = misc::toQString(h.get_torrent_info().file_at(i).path.string());
+      const QString &torrent_relpath = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
       if(torrent_relpath.endsWith(".torrent")) {
         addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
         const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
         try {
-          boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toLocal8Bit().constData());
+          boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toUtf8().constData());
           const QString &sub_hash = misc::toQString(t->info_hash());
           // Passing the save path along to the sub torrent file
           TorrentTempData::setSavePath(sub_hash, h.save_path());
@@ -1947,7 +1958,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                 const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
                 qDebug("Full subtorrent path is %s", qPrintable(torrent_fullpath));
                 try {
-                  boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toLocal8Bit().constData());
+                  boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toUtf8().constData());
                   if(t->is_valid()) {
                     qDebug("emitting recursiveTorrentDownloadPossible()");
                     emit recursiveTorrentDownloadPossible(h);

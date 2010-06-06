@@ -510,7 +510,7 @@ public:
     TreeItem *parent = this->rootItem;
     /*if(t.num_files() == 1) {
       // Create possible parent folder
-      QStringList path_parts = misc::toQStringU(t.file_at(0).path.string()).split("/");
+      QStringList path_parts = misc::toQStringU(t.file_at(0).path.string()).split("/", QString::SkipEmptyParts);
       path_parts.removeLast();
       foreach(const QString &part, path_parts) {
         TreeItem *folder = new TreeItem(part, parent);
