@@ -1866,16 +1866,16 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         }
         // We need this for urllib in search engine plugins
 #ifdef Q_WS_WIN
-        QString proxyType;
+        QString type_str;
         if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
-            proxyType = "sock_proxy";
+            type_str = "sock_proxy";
         else
-            proxyType = "http_proxy";
+            type_str = "http_proxy";
 #ifdef MINGW
-        QString tmp = proxyType+"="+proxy_str;
+        QString tmp = type_str+"="+proxy_str;
         putenv(tmp.toLocal8Bit().constData());
 #else
-        SetEnvironmentVariableA(proxyType.toLocal8Bit().constData(), proxy_str.toLocal8Bit().constData());
+        SetEnvironmentVariableA(type_str.toLocal8Bit().constData(), proxy_str.toLocal8Bit().constData());
 #endif
 #else
         qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
