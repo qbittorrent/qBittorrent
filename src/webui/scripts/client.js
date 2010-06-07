@@ -142,7 +142,7 @@ window.addEvent('load', function(){
   
   var saveColumnSizes = function() {
     var filters_width = $('Filters').getSize().x;
-    var properties_height = $('properties').getSize().y;
+    var properties_height = $('propertiesPanel').getSize().y;
     // Save it in a cookie
     Cookie.write('filters_width', filters_width);
     Cookie.write('properties_height', properties_height);
@@ -317,7 +317,7 @@ window.addEvent('load', function(){
     else
       prop_h = 200;
     new MochaUI.Panel({
-		id: 'properties',
+		id: 'propertiesPanel',
 		title: 'Panel',
 		header: true,
 		padding: { top: 0, right: 0, bottom: 0, left: 0 },
