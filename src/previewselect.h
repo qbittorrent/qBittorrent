@@ -36,6 +36,7 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QFile>
+#include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include "ui_preview.h"
 #include "previewlistdelegate.h"
@@ -65,7 +66,7 @@ protected slots:
     QModelIndex index;
     QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(NAME);
     if(selectedIndexes.size() == 0) return;
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     // Flush data
     h.flush_cache();
 #endif

@@ -35,6 +35,7 @@
 #include <QHash>
 #include <QAction>
 #include <QColor>
+#include <libtorrent/version.hpp>
 
 #include "trackerlist.h"
 #include "propertieswidget.h"
@@ -93,7 +94,7 @@ void TrackerList::setRowColor(int row, QColor color) {
   }
 }
 
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
 void TrackerList::moveSelectionUp() {
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) {
@@ -241,7 +242,7 @@ void TrackerList::loadTrackers() {
     }
     TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
     QString error_message = data.last_message.trimmed();
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     if(it->verified) {
       item->setText(COL_STATUS, tr("Working"));
       item->setText(COL_MSG, "");

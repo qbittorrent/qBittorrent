@@ -34,6 +34,7 @@
 #include <QTreeWidget>
 #include <QList>
 
+#include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
 
 enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
@@ -62,7 +63,7 @@ protected:
 public slots:
   void setRowColor(int row, QColor color);
 
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
   void moveSelectionUp();
   void moveSelectionDown();
 #endif

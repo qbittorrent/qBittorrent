@@ -31,6 +31,7 @@
 #ifndef QTORRENTHANDLE_H
 #define QTORRENTHANDLE_H
 
+#include <libtorrent/version.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_info.hpp>
 
@@ -117,7 +118,7 @@ class QTorrentHandle {
     qlonglong seeding_time() const;
     std::vector<int> file_priorities() const;
     bool is_sequential_download() const;
- #ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     bool super_seeding() const;
 #endif
     QString creation_date() const;
@@ -158,7 +159,7 @@ class QTorrentHandle {
     void auto_managed(bool) const;
     void force_recheck() const;
     void move_storage(QString path) const;
- #ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     void super_seeding(bool on) const;
     void flush_cache() const;
 #endif

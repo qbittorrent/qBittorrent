@@ -37,6 +37,7 @@
 #include "misc.h"
 #include "qtorrenthandle.h"
 #include "torrentpersistentdata.h"
+#include <libtorrent/version.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/bencode.hpp>
@@ -228,7 +229,7 @@ QString QTorrentHandle::save_path() const {
   return misc::toQString(h.save_path().string());
 }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
 bool QTorrentHandle::super_seeding() const {
   Q_ASSERT(h.is_valid());
   return h.super_seeding();
@@ -595,7 +596,7 @@ void QTorrentHandle::file_priority(int index, int priority) const {
   TorrentPersistentData::saveSeedStatus(*this);
 }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
 void QTorrentHandle::super_seeding(bool on) const {
   Q_ASSERT(h.is_valid());
   h.super_seeding(on);
@@ -648,7 +649,7 @@ void QTorrentHandle::set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint
 
 void QTorrentHandle::add_tracker(announce_entry const& url) {
   Q_ASSERT(h.is_valid());
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   h.add_tracker(url);
 #else
   std::vector<announce_entry> trackers = h.trackers();

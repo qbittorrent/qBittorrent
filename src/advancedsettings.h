@@ -7,6 +7,7 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QNetworkInterface>
+#include <libtorrent/version.hpp>
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
@@ -73,7 +74,7 @@ public slots:
     Preferences::resolvePeerHostNames(cb_resolve_hosts->isChecked());
     // Max Half-Open connections
     Preferences::setMaxHalfOpenConnections(spin_maxhalfopen->value());
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     // Super seeding
     Preferences::enableSuperSeeding(cb_super_seeding->isChecked());
 #endif
@@ -164,7 +165,7 @@ protected slots:
     setItem(SUPER_SEEDING, PROPERTY, new QTableWidgetItem(tr("Strict super seeding")));
     cb_super_seeding = new QCheckBox();
     connect(cb_super_seeding, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
- #ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     cb_super_seeding->setChecked(Preferences::isSuperSeedingEnabled());
 #else
     cb_super_seeding->setEnabled(false);

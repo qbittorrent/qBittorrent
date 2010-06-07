@@ -43,6 +43,7 @@
 #include <QDesktopWidget>
 #include <QInputDialog>
 
+#include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/bencode.hpp>
 #include "bittorrent.h"
@@ -108,7 +109,7 @@ public:
       addInPause->setChecked(true);
       //addInPause->setEnabled(false);
     }
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
     addInSeed->setVisible(false);
 #endif
   }
@@ -512,7 +513,7 @@ public slots:
               TorrentTempData::setFilesPath(hash, files_path);
             }
           }
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
           // Skip file checking and directly start seeding
           if(addInSeed->isChecked()) {
             // Check if local file(s) actually exist

@@ -29,6 +29,7 @@
  */
 
 
+#include <libtorrent/version.hpp>
 #include "eventmanager.h"
 #include "bittorrent.h"
 #include "scannedfoldersmodel.h"
@@ -60,7 +61,7 @@ QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
       tracker["url"] = tracker_url;
       TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
       QString error_message = data.last_message.trimmed();
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
       if(it->verified) {
         tracker["status"] = tr("Working");
       } else {
@@ -171,7 +172,7 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     Preferences::setMaxActiveTorrents(m["max_active_torrents"].toInt());
   if(m.contains("max_active_uploads"))
     Preferences::setMaxActiveUploads(m["max_active_uploads"].toInt());
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   if(m.contains("incomplete_files_ext"))
     Preferences::useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
 #endif
@@ -274,7 +275,7 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["max_active_downloads"] = Preferences::getMaxActiveDownloads();
   data["max_active_torrents"] = Preferences::getMaxActiveTorrents();
   data["max_active_uploads"] = Preferences::getMaxActiveUploads();
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   data["incomplete_files_ext"] = Preferences::useIncompleteFilesExtension();
 #endif
   // Connection

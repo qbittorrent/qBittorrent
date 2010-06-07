@@ -37,6 +37,7 @@
 #include <QDir>
 #include <QTime>
 #include <QList>
+#include <libtorrent/version.hpp>
 
 #ifndef DISABLE_GUI
 #include <QApplication>
@@ -178,7 +179,7 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Downloads/TempPath"), path);
   }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   static bool useIncompleteFilesExtension() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/UseIncompleteExtension"), false).toBool();
@@ -967,7 +968,7 @@ public:
     return settings.value(QString::fromUtf8("Preferences/Connection/Interface"), QString()).toString();
   }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   static bool isSuperSeedingEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Advanced/SuperSeeding"), false).toBool();
