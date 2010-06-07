@@ -159,6 +159,7 @@ void sigabrtHandler(int) {
 
 #ifndef DISABLE_GUI
 void useStyle(QApplication *app, QString style){
+  Q_UNUSED(app);
   if(!style.isEmpty()) {
     QApplication::setStyle(QStyleFactory::create(style));
   }
