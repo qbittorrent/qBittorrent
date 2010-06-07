@@ -5,6 +5,7 @@
 #include <QHeaderView>
 #include <QSpinBox>
 #include <QCheckBox>
+#include <libtorrent/version.hpp>
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};

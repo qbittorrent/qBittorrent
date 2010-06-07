@@ -37,6 +37,7 @@
 #include <boost/filesystem/fstream.hpp>
 #include <boost/bind.hpp>
 
+#include <libtorrent/version.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/torrent_info.hpp>
@@ -208,7 +209,7 @@ void createtorrent::handleCreationSuccess(QString path, const char* branch_path)
     }
     QString hash = misc::toQString(t->info_hash());
     TorrentTempData::setSavePath(hash, QString::fromLocal8Bit(branch_path));
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     // Enable seeding mode (do not recheck the files)
     TorrentTempData::setSeedingMode(hash, true);
 #endif

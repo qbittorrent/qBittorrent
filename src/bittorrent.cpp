@@ -48,7 +48,8 @@
 #include "httpserver.h"
 #include "bandwidthscheduler.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
-#ifdef LIBTORRENT_0_15
+#include <libtorrent/version.hpp>
+#if LIBTORRENT_VERSION_MINOR > 14
 #include <libtorrent/extensions/lt_trackers.hpp>
 #endif
 #include <libtorrent/extensions/ut_pex.hpp>
@@ -118,7 +119,7 @@ Bittorrent::Bittorrent()
     // Enabling plugins
     //s->add_extension(&create_metadata_plugin);
     s->add_extension(&create_ut_metadata_plugin);
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     s->add_extension(create_lt_trackers_plugin);
 #endif
     if(Preferences::isPeXEnabled()) {
@@ -138,7 +139,7 @@ Bittorrent::Bittorrent()
     connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
     connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
     appendLabelToSavePath = Preferences::appendTorrentLabel();
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     appendqBExtension = Preferences::useIncompleteFilesExtension();
 #endif
     connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
@@ -148,19 +149,19 @@ Bittorrent::Bittorrent()
 }
 
 session_proxy Bittorrent::asyncDeletion() {
-    qDebug("Bittorrent session async deletion IN");
-    exiting = true;
-    // Do some BT related saving
-#ifndef LIBTORRENT_0_15
-    saveDHTEntry();
+  qDebug("Bittorrent session async deletion IN");
+  exiting = true;
+  // Do some BT related saving
+#if LIBTORRENT_VERSION_MINOR < 15
+  saveDHTEntry();
 #endif
-    saveSessionState();
-    saveFastResumeData();
-    // Delete session
-    session_proxy sp = s->abort();
-    delete s;
-    qDebug("Bittorrent session async deletion OUT");
-    return sp;
+  saveSessionState();
+  saveFastResumeData();
+  // Delete session
+  session_proxy sp = s->abort();
+  delete s;
+  qDebug("Bittorrent session async deletion OUT");
+  return sp;
 }
 
 // Main destructor
@@ -168,7 +169,7 @@ Bittorrent::~Bittorrent() {
     qDebug("BTSession destructor IN");
     if(!exiting) {
         // Do some BT related saving
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
         saveDHTEntry();
 #endif
         saveSessionState();
@@ -278,7 +279,7 @@ void Bittorrent::configureSession() {
         setDefaultTempPath(QString::null);
     }
     setAppendLabelToSavePath(Preferences::appendTorrentLabel());
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     setAppendqBExtension(Preferences::useIncompleteFilesExtension());
 #endif
     preAllocateAllFiles(Preferences::preAllocateAllFiles());
@@ -420,7 +421,7 @@ void Bittorrent::configureSession() {
     sessionSettings.stop_tracker_timeout = 1;
     //sessionSettings.announce_to_all_trackers = true;
     sessionSettings.auto_scrape_interval = 1200; // 20 minutes
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     sessionSettings.announce_to_all_trackers = true;
     sessionSettings.announce_to_all_tiers = true; //uTorrent behavior
     sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
@@ -852,7 +853,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
         qDebug("addMagnetURI: using save_path: %s", qPrintable(savePath));
     }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     // Skip checking and directly start seeding (new in libtorrent v0.15)
     if(TorrentTempData::isSeedingMode(hash)){
         p.seed_mode=true;
@@ -1075,7 +1076,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
         qDebug("addTorrent: using save_path: %s", qPrintable(savePath));
     }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     // Skip checking and directly start seeding (new in libtorrent v0.15)
     if(TorrentTempData::isSeedingMode(hash)){
         p.seed_mode=true;
@@ -1166,7 +1167,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
             qDebug("addTorrent: Saving save_path in persistent data: %s", qPrintable(savePath));
             TorrentPersistentData::saveSavePath(hash, savePath);
         }
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
         // Append .!qB to incomplete files
         if(appendqBExtension)
             appendqBextensionToTorrent(h, true);
@@ -1350,7 +1351,7 @@ void Bittorrent::enableLSD(bool b) {
 void Bittorrent::loadSessionState() {
     const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
     if(!QFile::exists(state_path)) return;
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     std::vector<char> in;
     if (load_file(state_path.toLocal8Bit().constData(), in) == 0)
     {
@@ -1371,7 +1372,7 @@ void Bittorrent::loadSessionState() {
 void Bittorrent::saveSessionState() {
     qDebug("Saving session state to disk...");
     const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     entry session_state;
     s->save_state(session_state);
     std::vector<char> out;
@@ -1397,7 +1398,7 @@ void Bittorrent::saveSessionState() {
 bool Bittorrent::enableDHT(bool b) {
     if(b) {
         if(!DHTEnabled) {
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
             entry dht_state;
             const QString dht_state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
             if(QFile::exists(dht_state_path)) {
@@ -1409,7 +1410,7 @@ bool Bittorrent::enableDHT(bool b) {
             }
 #endif
             try {
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
                 s->start_dht();
 #else
                 s->start_dht(dht_state);
@@ -1625,7 +1626,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         defaultTempPath = temppath;
     }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     void Bittorrent::appendqBextensionToTorrent(QTorrentHandle h, bool append) {
         if(!h.is_valid() || !h.has_metadata()) return;
         std::vector<size_type> fp;
@@ -1713,7 +1714,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         }
     }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     void Bittorrent::setAppendqBExtension(bool append) {
         if(appendqBExtension != append) {
             appendqBExtension = !appendqBExtension;
@@ -1926,7 +1927,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                 if(h.is_valid()) {
                     emit finishedTorrent(h);
                     const QString &hash = h.hash();
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
                     // Remove .!qB extension if necessary
                     if(appendqBExtension)
                         appendqBextensionToTorrent(h, false);
@@ -2032,7 +2033,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                 QTorrentHandle h(p->handle);
                 if(h.is_valid()) {
                     qDebug("Received metadata for %s", qPrintable(h.hash()));
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
                     // Append .!qB to incomplete files
                     if(appendqBExtension)
                         appendqBextensionToTorrent(h, true);
@@ -2083,7 +2084,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                     }
                 }
             }
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
             else if (file_completed_alert* p = dynamic_cast<file_completed_alert*>(a.get())) {
                 QTorrentHandle h(p->handle);
                 if(appendqBExtension) {
@@ -2113,7 +2114,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                         QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
                         TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
                         data.last_message = misc::toQString(p->msg);
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
                         data.verified = false;
                         ++data.fail_count;
 #endif
@@ -2134,7 +2135,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                     TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
                     data.last_message = ""; // Reset error/warning message
                     data.num_peers = p->num_peers;
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
                     data.fail_count = 0;
                     data.verified = true;
 #endif
@@ -2149,7 +2150,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                     const QString &tracker_url = misc::toQString(p->url);
                     TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
                     data.last_message = misc::toQString(p->msg); // Store warning message
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
                     data.verified = true;
                     data.fail_count = 0;
 #endif
@@ -2368,7 +2369,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         return sessionStatus.payload_upload_rate;
     }
 
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
     // Save DHT entry to hard drive
     void Bittorrent::saveDHTEntry() {
         // Save DHT entry

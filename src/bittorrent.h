@@ -43,6 +43,7 @@
 #include <QPointer>
 #include <QTimer>
 
+#include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
 #include "qtorrenthandle.h"
@@ -63,7 +64,7 @@ public:
   QString name_or_url;
   QString last_message;
   unsigned long num_peers;
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
   bool verified;
   uint fail_count;
 #endif
@@ -74,13 +75,13 @@ public:
     Q_ASSERT(!name_or_url.isEmpty());
     last_message = b.last_message;
     num_peers = b.num_peers;
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
     verified = b.verified;
     fail_count = b.fail_count;
 #endif
   }
   TrackerInfos(QString name_or_url): name_or_url(name_or_url), last_message(""), num_peers(0) {
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
     fail_count = 0;
     verified = false;
 #endif
@@ -135,7 +136,7 @@ public slots:
   void resumeTorrent(QString hash);
   void resumeAllTorrents();
   /* End Web UI */
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
   void saveDHTEntry();
 #endif
   void preAllocateAllFiles(bool b);
@@ -163,7 +164,7 @@ public slots:
   void setAppendLabelToSavePath(bool append);
   void appendLabelToTorrentSavePath(QTorrentHandle h);
   void changeLabelInTorrentSavePath(QTorrentHandle h, QString old_label, QString new_label);
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   void appendqBextensionToTorrent(QTorrentHandle h, bool append);
   void setAppendqBExtension(bool append);
 #endif
@@ -249,7 +250,7 @@ private:
   bool queueingEnabled;
   bool appendLabelToSavePath;
   bool torrentExport;
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   bool appendqBExtension;
 #endif
   QString defaultSavePath;

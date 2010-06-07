@@ -39,6 +39,7 @@
 #include <QDesktopWidget>
 #include <QStyleFactory>
 
+#include <libtorrent/version.hpp>
 #include <time.h>
 #include <stdlib.h>
 
@@ -283,7 +284,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
-#ifndef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR < 15
   checkAppendqB->setVisible(false);
 #endif
   // Load Advanced settings
@@ -402,7 +403,7 @@ void options_imp::saveOptions(){
 #endif
   settings.setValue(QString::fromUtf8("TempPath"), temp_path);
   settings.setValue(QString::fromUtf8("AppendLabel"), checkAppendLabel->isChecked());
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   settings.setValue(QString::fromUtf8("UseIncompleteExtension"), checkAppendqB->isChecked());
 #endif
   settings.setValue(QString::fromUtf8("PreAllocation"), preAllocateAllFiles());
@@ -642,7 +643,7 @@ void options_imp::loadOptions(){
 #endif
   textTempPath->setText(temp_path);
   checkAppendLabel->setChecked(Preferences::appendTorrentLabel());
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   checkAppendqB->setChecked(Preferences::useIncompleteFilesExtension());
 #endif
   checkPreallocateAll->setChecked(Preferences::preAllocateAllFiles());

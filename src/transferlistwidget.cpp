@@ -38,6 +38,7 @@
 #include "GUI.h"
 #include "preferences.h"
 #include "deletionconfirmationdlg.h"
+#include <libtorrent/version.hpp>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QDesktopServices>
@@ -891,7 +892,7 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   }
 }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
 void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const {
   const QStringList &hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
@@ -1012,7 +1013,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
   QAction actionCopy_magnet_link(QIcon(QString::fromUtf8(":/Icons/magnet.png")), tr("Copy magnet link"), 0);
   connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
 #endif
@@ -1027,7 +1028,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   bool all_same_super_seeding = true;
   bool super_seeding_mode = false;
 #endif
@@ -1061,7 +1062,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
         }
       }
     }
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     else {
       if(!one_not_seed && all_same_super_seeding && h.has_metadata()) {
         if(first) {
@@ -1111,7 +1112,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   if(one_not_seed)
     listMenu.addAction(&actionSet_download_limit);
   listMenu.addAction(&actionSet_upload_limit);
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   if(!one_not_seed && all_same_super_seeding && one_has_metadata) {
     QIcon ico;
     if(super_seeding_mode) {

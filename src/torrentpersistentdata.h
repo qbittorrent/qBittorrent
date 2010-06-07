@@ -34,6 +34,7 @@
 #include <QSettings>
 #include <QVariant>
 #include <QDateTime>
+#include <libtorrent/version.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include "qtorrenthandle.h"
 #include "misc.h"
@@ -126,7 +127,7 @@ public:
 
   }
 
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   static void setSeedingMode(QString hash,bool seed){
     QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp", QHash<QString, QVariant>()).toHash();

@@ -31,7 +31,8 @@
 #ifndef TRANSFERLISTWIDGET_H
 #define TRANSFERLISTWIDGET_H
 
-#include<QTreeView>
+#include <QTreeView>
+#include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
 
 class QStandardItemModel;
@@ -105,7 +106,7 @@ protected slots:
   void updateMetadata(QTorrentHandle &h);
   void currentChanged(const QModelIndex& current, const QModelIndex&);
   void resumeTorrent(QTorrentHandle &h);
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   void toggleSelectedTorrentsSuperSeeding() const;
 #endif
   void toggleSelectedTorrentsSequentialDownload() const;

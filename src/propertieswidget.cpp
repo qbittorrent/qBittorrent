@@ -40,6 +40,7 @@
 #include <QFileDialog>
 #include <QDesktopServices>
 #include <QInputDialog>
+#include <libtorrent/version.hpp>
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
 #include "torrentpersistentdata.h"
@@ -101,7 +102,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   ProgressHLayout_2->insertWidget(1, pieces_availability);
   // Tracker list
   trackerList = new TrackerList(this);
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
   trackerUpButton->setVisible(false);
   trackerDownButton->setVisible(false);
 #else
@@ -483,7 +484,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     const QString &filename = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
     const QString &file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", qPrintable(file_path));
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     // Flush data
     h.flush_cache();
 #endif
@@ -509,7 +510,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     const QString &filename = path_items.join(QDir::separator());
     const QString &file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open folder at %s", qPrintable(file_path));
-#ifdef LIBTORRENT_0_15
+#if LIBTORRENT_VERSION_MINOR > 14
     // Flush data
     h.flush_cache();
 #endif
