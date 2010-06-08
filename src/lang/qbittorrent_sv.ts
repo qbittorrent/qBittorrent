@@ -1613,20 +1613,21 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekräfta rekursiv hämtning</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfilen %1 innehåller flera torrentfiler. Vill du fortsätta med att hämta ner dem?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Associering av torrentfiler</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent är inte standardprogrammet för att öppna torrentfiler eller Magnet-länkar.
+Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
     </message>
 </context>
 <context>
@@ -3270,21 +3271,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">Hämtningsfel</translation>
+        <translation>Hämtningsfel</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Python-installationen kunde inte hämtas. Anledning: %1.
+Installera den manuellt.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Python-tolk saknas</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x krävs för att använda sökmotorn men det verkar som om den inte är installerad.
+Vill du installera den nu?</translation>
     </message>
 </context>
 <context>
