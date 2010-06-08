@@ -2118,13 +2118,14 @@ Kérlek előbb azt zárd be.</translation>
     <message>
         <location filename="../GUI.cpp" line="235"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent fájl társítás</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="236"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>A qBittorrent nem az alapértelmezett .torrent vagy Magnet link kezelő alkalmazás.
+Szeretnéd alapértelmezetté tenni?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="312"/>
@@ -2158,12 +2159,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="465"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés ismételt megerősítése</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="465"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>A %1 torrent .torrent fájlokat is tartalmaz. Szeretnéd folytatni a letöltést?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="888"/>
@@ -2336,7 +2337,7 @@ Mégis leállítod a qBittorrentet?</translation>
         <location filename="../GUI.cpp" line="585"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Néhány letöltés még folyamatban van.
+        <translation>Néhány átvitel még folyamatban van.
 Bizotos, hogy bezárod a qBittorrentet?</translation>
     </message>
     <message>
@@ -2739,7 +2740,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../headlessloader.h" line="75"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Ez biztonsági kockázatot jelent. Kérem változtass jelszót a program beállításinál.</translation>
+        <translation>Ez biztonsági kockázatot jelent. Kérlek változtass jelszót a program beállításinál.</translation>
     </message>
 </context>
 <context>
@@ -2747,7 +2748,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../httpconnection.cpp" line="138"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation>Az IP címed bannolva lett túl sok hibáz azonosítási kísárlet miatt.</translation>
+        <translation>Az IP címed bannolva lett túl sok hibás azonosítási kísárlet miatt.</translation>
     </message>
     <message>
         <location filename="../httpconnection.cpp" line="315"/>
@@ -2782,7 +2783,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../httpserver.cpp" line="108"/>
         <source>Delete from HD</source>
-        <translation>Törlés merevlemezről</translation>
+        <translation>Törlés a merevlemezről</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="109"/>
@@ -2906,9 +2907,9 @@ Vélhetően tisztában vagy ezekkel, így többé nem kapsz figyelmeztetést.</t
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>qBittorrent egy fájl megosztó program. Amikor futtatod, elérhetővé teszel adatokat mások számára a feltöltés révén. Kizárólag saját felelősségre ossz meg bármilyen tartalmat.
+        <translation>A qBittorrent egy fájl megosztó program. Amikor futtatod, elérhetővé teszel tartalmakat mások számára a feltöltés révén. Kizárólag saját felelősségre ossz meg bármilyen tartalmat.
 
-Vélhetően tisztában vagy ezekkel, így többé nem kapsz figyelmeztetést.</translation>
+Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="110"/>
@@ -3328,7 +3329,7 @@ Vélhetően tisztában vagy ezekkel, így többé nem kapsz figyelmeztetést.</t
     <message>
         <location filename="../ui/options.ui" line="214"/>
         <source>Advanced</source>
-        <translation>Spediális</translation>
+        <translation>Speciális</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="252"/>
@@ -3418,7 +3419,7 @@ Vélhetően tisztában vagy ezekkel, így többé nem kapsz figyelmeztetést.</t
     <message>
         <location filename="../ui/options.ui" line="421"/>
         <source>Downloading:</source>
-        <translation>Letöltés:</translation>
+        <translation>Letöltéseknél:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="438"/>
@@ -3441,7 +3442,7 @@ Vélhetően tisztában vagy ezekkel, így többé nem kapsz figyelmeztetést.</t
     <message>
         <location filename="../ui/options.ui" line="469"/>
         <source>Completed:</source>
-        <translation>Letöltött:</translation>
+        <translation>Letöltöttnél:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="505"/>
@@ -3694,7 +3695,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1704"/>
         <source>On days:</source>
-        <translation>Napok:</translation>
+        <translation>Ekkor:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1715"/>
@@ -3821,7 +3822,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="706"/>
         <source>Check Folders for .torrent Files:</source>
-        <translation>.torrent fájl kezesése ebben a könyvtárban:</translation>
+        <translation>.torrent fájl keresése ebben a könyvtárban:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="756"/>
@@ -3975,7 +3976,7 @@ QGroupBox {
     <message>
         <location filename="../proplistdelegate.h" line="90"/>
         <source>Not downloaded</source>
-        <translation>Letöltés nélküli</translation>
+        <translation>Mellőzve</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="99"/>
@@ -4837,13 +4838,14 @@ Changelog:
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiányzó Python bővítmény</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>A kereső használatához Python 2.x szükséges, de úgy tűnik nincs telepítve.
+Szeretnéd most telepíteni?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="554"/>
@@ -4870,13 +4872,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">Letöltési hiba</translation>
+        <translation>Letöltési hiba</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>A Python telepítőt nem sikerült letölteni, mivel: %1.
+Kérlek telepítsd manuálisan.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>
@@ -5092,7 +5095,7 @@ Please install it manually.</source>
         <location filename="../trackerlist.cpp" line="247"/>
         <location filename="../trackerlist.cpp" line="265"/>
         <source>Working</source>
-        <translation>Folyamat</translation>
+        <translation>Kapcsolódva</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="204"/>
@@ -5114,7 +5117,7 @@ Please install it manually.</source>
         <location filename="../trackerlist.cpp" line="255"/>
         <location filename="../trackerlist.cpp" line="269"/>
         <source>Not working</source>
-        <translation>Nincs folyamatban</translation>
+        <translation>Nincs kapcsolódva</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="258"/>
@@ -5526,12 +5529,12 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="1041"/>
         <source>Limit upload rate</source>
-        <translation>Feltöltési arány limit</translation>
+        <translation>Feltöltési sebesség limit</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1043"/>
         <source>Limit download rate</source>
-        <translation>Letöltési arány limit</translation>
+        <translation>Letöltési sebesség limit</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1045"/>
@@ -6045,7 +6048,7 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/createtorrent.ui" line="121"/>
         <source>Web seeds urls (optional):</source>
-        <translation>Web seeds urls (esetleges):</translation>
+        <translation>Web seeds címek (esetleges):</translation>
     </message>
     <message>
         <source>Input file or directory:</source>
@@ -6607,9 +6610,9 @@ Please install it manually.</source>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation>Néhány modult nem lehet eltávolítani, mivel a program részei.
+        <translation>Ezt a modult nem lehet eltávolítani, mivel a program része.
  Csak azokat lehet, amiket saját kezüleg telepítettél.
-Viszont azok a modulok kikapcsolhatóak.</translation>
+Viszont kikapcsoltam a modult.</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="189"/>
@@ -6640,7 +6643,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <location filename="../engineselectdlg.cpp" line="200"/>
         <location filename="../engineselectdlg.cpp" line="319"/>
         <source>Yes</source>
-        <translation>Igen</translation>
+        <translation>Bekapcsolva</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="121"/>
@@ -6648,7 +6651,7 @@ Viszont azok a modulok kikapcsolhatóak.</translation>
         <location filename="../engineselectdlg.cpp" line="213"/>
         <location filename="../engineselectdlg.cpp" line="322"/>
         <source>No</source>
-        <translation>Nem</translation>
+        <translation>Kikapcsolva</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="258"/>
