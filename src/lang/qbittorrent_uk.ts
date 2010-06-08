@@ -2343,20 +2343,21 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтвердження рекурсивного завантаження</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Торрент %1 містить інші торренти. Завантажувати і їх?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкривання torrent-файлів</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent не є програмою за замовчуванням для відкривання торрентів та Магнітних посилань.
+Встановити qBittorrent як програму для відкривання torrent-файлів та Магнітних посилань?</translation>
     </message>
 </context>
 <context>
@@ -4221,21 +4222,23 @@ Changelog:
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">Помилка завантаження</translation>
+        <translation>Помилка завантаження</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося завантажити програму інсталяції Python. Причина: %1.
+Будь ласка, встановіть Python самостійно.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вистачає інтерпретатора Python</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Для використання Пошуковика потрібен Python 2.x, але, здається, він не встановлений.
+Встановити його зараз?</translation>
     </message>
 </context>
 <context>
