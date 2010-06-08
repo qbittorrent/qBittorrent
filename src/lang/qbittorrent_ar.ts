@@ -175,12 +175,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="157"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>أكبر كمية من الاتصالات النصف مفتوحة [٠ : معطلة]</translation>
+        <translation type="unfinished">أكبر كمية من الاتصالات النصف مفتوحة [٠ : معطلة]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="165"/>
         <source>Strict super seeding</source>
-        <translation>الرفع القوي المخصص</translation>
+        <translation type="unfinished">الرفع القوي المخصص</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="175"/>
@@ -795,7 +795,8 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../GUI.cpp" line="236"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ليس البرنامج المفضل لفتح ملفات التورنت او الروابط الممغنطة 
+هل تريد ربط qBittorrent بملفات التورنت او الروابط الممغنطة ؟</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="584"/>
@@ -883,7 +884,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="235"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>الإرتباط بملف التورنت</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="326"/>
@@ -967,249 +968,249 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../geoip.h" line="114"/>
         <source>Australia</source>
-        <translation>استراليا</translation>
+        <translation type="unfinished">استراليا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Argentina</source>
-        <translation>ارجنتينا</translation>
+        <translation type="unfinished">ارجنتينا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Austria</source>
-        <translation>النمسا</translation>
+        <translation type="unfinished">النمسا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>United Arab Emirates</source>
-        <translation>الامارات العربية المتحدة</translation>
+        <translation type="unfinished">الامارات العربية المتحدة</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="120"/>
         <source>Brazil</source>
-        <translation>البرازيل</translation>
+        <translation type="unfinished">البرازيل</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Bulgaria</source>
-        <translation>بلغاريا</translation>
+        <translation type="unfinished">بلغاريا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Belarus</source>
-        <translation>بيلاروس</translation>
+        <translation type="unfinished">بيلاروس</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <source>Belgium</source>
-        <translation>بلجيكا</translation>
+        <translation type="unfinished">بلجيكا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Bosnia</source>
-        <translation>البوسنة</translation>
+        <translation type="unfinished">البوسنة</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="127"/>
         <source>Canada</source>
-        <translation>كندا</translation>
+        <translation type="unfinished">كندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Czech Republic</source>
-        <translation>التشيك</translation>
+        <translation type="unfinished">التشيك</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <location filename="../geoip.h" line="153"/>
         <source>China</source>
-        <translation>الصين</translation>
+        <translation type="unfinished">الصين</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <source>Costa Rica</source>
-        <translation>كوستاريكا</translation>
+        <translation type="unfinished">كوستاريكا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="131"/>
         <source>Switzerland</source>
-        <translation>سويسرا</translation>
+        <translation type="unfinished">سويسرا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="134"/>
         <source>Germany</source>
-        <translation>المانيا</translation>
+        <translation type="unfinished">المانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="135"/>
         <source>Denmark</source>
-        <translation>الدنمارك</translation>
+        <translation type="unfinished">الدنمارك</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="136"/>
         <source>Algeria</source>
-        <translation>الجزائر</translation>
+        <translation type="unfinished">الجزائر</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="139"/>
         <source>Spain</source>
-        <translation>اسبانيا</translation>
+        <translation type="unfinished">اسبانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="140"/>
         <source>Egypt</source>
-        <translation>مصر</translation>
+        <translation type="unfinished">مصر</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="143"/>
         <source>Finland</source>
-        <translation>فنلندا</translation>
+        <translation type="unfinished">فنلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="144"/>
         <source>France</source>
-        <translation>فرنسا</translation>
+        <translation type="unfinished">فرنسا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="147"/>
         <source>United Kingdom</source>
-        <translation>بريطانيا</translation>
+        <translation type="unfinished">بريطانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>Greece</source>
-        <translation>اليونان</translation>
+        <translation type="unfinished">اليونان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="149"/>
         <source>Georgia</source>
-        <translation>جورجيا</translation>
+        <translation type="unfinished">جورجيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="152"/>
         <source>Hungary</source>
-        <translation>هنغاريا</translation>
+        <translation type="unfinished">هنغاريا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="154"/>
         <source>Croatia</source>
-        <translation>كرواتيا</translation>
+        <translation type="unfinished">كرواتيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="157"/>
         <source>Italy</source>
-        <translation>ايطاليا</translation>
+        <translation type="unfinished">ايطاليا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="158"/>
         <source>India</source>
-        <translation>الهند</translation>
+        <translation type="unfinished">الهند</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>Israel</source>
-        <translation>اسرائيل</translation>
+        <translation type="unfinished">اسرائيل</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="160"/>
         <source>Ireland</source>
-        <translation>ايرلندا</translation>
+        <translation type="unfinished">ايرلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="161"/>
         <source>Iceland</source>
-        <translation>ايسلندا</translation>
+        <translation type="unfinished">ايسلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>Indonesia</source>
-        <translation>اندونيسيا</translation>
+        <translation type="unfinished">اندونيسيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="165"/>
         <source>Japan</source>
-        <translation>اليابان</translation>
+        <translation type="unfinished">اليابان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="168"/>
         <source>South Korea</source>
-        <translation>كوريا الجنوبية</translation>
+        <translation type="unfinished">كوريا الجنوبية</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="171"/>
         <source>Luxembourg</source>
-        <translation>لكسمبورغ</translation>
+        <translation type="unfinished">لكسمبورغ</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="174"/>
         <source>Malaysia</source>
-        <translation>مالبزيا</translation>
+        <translation type="unfinished">مالبزيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Mexico</source>
-        <translation>المكسيك</translation>
+        <translation type="unfinished">المكسيك</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <location filename="../geoip.h" line="194"/>
         <source>Serbia</source>
-        <translation>الصرب</translation>
+        <translation type="unfinished">الصرب</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="177"/>
         <source>Morocco</source>
-        <translation>المغرب</translation>
+        <translation type="unfinished">المغرب</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="180"/>
         <source>Netherlands</source>
-        <translation>هولندا</translation>
+        <translation type="unfinished">هولندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Norway</source>
-        <translation>النرويج</translation>
+        <translation type="unfinished">النرويج</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>New Zealand</source>
-        <translation>نيوزبلندا</translation>
+        <translation type="unfinished">نيوزبلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="185"/>
         <source>Portugal</source>
-        <translation>البرتغال</translation>
+        <translation type="unfinished">البرتغال</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Poland</source>
-        <translation>بولندا</translation>
+        <translation type="unfinished">بولندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>Pakistan</source>
-        <translation>باكستان</translation>
+        <translation type="unfinished">باكستان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="188"/>
         <source>Philippines</source>
-        <translation>الفلبين</translation>
+        <translation type="unfinished">الفلبين</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
         <source>Russia</source>
-        <translation>روسيا</translation>
+        <translation type="unfinished">روسيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Romania</source>
-        <translation>رومانيا</translation>
+        <translation type="unfinished">رومانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>France (Reunion Island)</source>
-        <translation>فرنسا جزيرة الالتقاء</translation>
+        <translation type="unfinished">فرنسا جزيرة الالتقاء</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="197"/>
@@ -1219,53 +1220,53 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Sweden</source>
-        <translation>السويد</translation>
+        <translation type="unfinished">السويد</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Slovakia</source>
-        <translation>سلوفاكيا</translation>
+        <translation type="unfinished">سلوفاكيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Singapore</source>
-        <translation>سنغافورة</translation>
+        <translation type="unfinished">سنغافورة</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="201"/>
         <source>Slovenia</source>
-        <translation>سلوفانيا</translation>
+        <translation type="unfinished">سلوفانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="204"/>
         <source>Taiwan</source>
-        <translation>تايوان</translation>
+        <translation type="unfinished">تايوان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Turkey</source>
-        <translation>تركيا</translation>
+        <translation type="unfinished">تركيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="206"/>
         <source>Thailand</source>
-        <translation>تايلند</translation>
+        <translation type="unfinished">تايلند</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="209"/>
         <location filename="../geoip.h" line="210"/>
         <source>USA</source>
-        <translation>امريكا</translation>
+        <translation type="unfinished">امريكا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="211"/>
         <source>Ukraine</source>
-        <translation>اوكرانيا</translation>
+        <translation type="unfinished">اوكرانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="214"/>
         <source>South Africa</source>
-        <translation>افريقيا الجنوبية</translation>
+        <translation type="unfinished">افريقيا الجنوبية</translation>
     </message>
 </context>
 <context>
@@ -3020,13 +3021,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>موجه Python مفقود</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x مطلوب من اجل إستخدام محرك البحث لاكن لا يبدو انه منصب
+هل تريد تنصيبه الآن ؟</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="315"/>
@@ -3074,13 +3076,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">خطأ تحميل</translation>
+        <translation>خطأ تحميل</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>منصب برنامج Python لم يستطيع التحميل, السبب: %1 
+الرجاء التنصيب يدويا.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>
