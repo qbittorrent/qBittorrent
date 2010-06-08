@@ -758,7 +758,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../GUI.cpp" line="235"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ليس البرنامج المفضل لفتح ملفات التورنت او الروابط الممغنطة 
+هل تريد ربط qBittorrent بملفات التورنت او الروابط الممغنطة ؟</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="576"/>
@@ -846,7 +847,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="234"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>الإرتباط بملف التورنت</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="358"/>
@@ -2885,13 +2886,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>موجه Python مفقود</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x مطلوب من اجل إستخدام محرك البحث لاكن لا يبدو انه منصب
+هل تريد تنصيبه الآن ؟</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="315"/>
@@ -2939,13 +2941,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">خطأ تحميل</translation>
+        <translation>خطأ تحميل</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>منصب برنامج Python لم يستطيع التحميل, السبب: %1 
+الرجاء التنصيب يدويا.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>
