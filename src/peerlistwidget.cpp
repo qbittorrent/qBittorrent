@@ -333,7 +333,7 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
       missingFlags.insert(ip);
     }
   }
-  listModel->setData(listModel->index(row, CLIENT), misc::toQString(peer.client));
+  listModel->setData(listModel->index(row, CLIENT), misc::toQStringU(peer.client));
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
   listModel->setData(listModel->index(row, UP_SPEED), peer.payload_up_speed);
@@ -352,7 +352,7 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
       missingFlags.remove(ip);
     }
   }
-  listModel->setData(listModel->index(row, CLIENT), misc::toQString(peer.client));
+  listModel->setData(listModel->index(row, CLIENT), misc::toQStringU(peer.client));
   listModel->setData(listModel->index(row, PROGRESS), peer.progress);
   listModel->setData(listModel->index(row, DOWN_SPEED), peer.payload_down_speed);
   listModel->setData(listModel->index(row, UP_SPEED), peer.payload_up_speed);
