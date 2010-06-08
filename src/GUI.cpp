@@ -65,6 +65,9 @@
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
 #include "statusbar.h"
+#ifdef Q_WS_MAC
+#include "qmacapplication.h"
+#endif
 
 #ifdef Q_WS_WIN
 #include <windows.h>
@@ -129,6 +132,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
   connect(BTSession, SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle&)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle&)));
+#ifdef Q_WS_MAC
+  connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QStringList)), this, SLOT(processParams(QStringList)));
+#endif
 
   qDebug("create tabWidget");
   tabs = new QTabWidget();

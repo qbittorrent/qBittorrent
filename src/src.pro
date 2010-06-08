@@ -270,8 +270,10 @@ HEADERS += misc.h \
     bandwidthscheduler.h \
     scannedfoldersmodel.h
 
-contains(DEFINES, DISABLE_GUI):HEADERS += headlessloader.h
-else:HEADERS +=  GUI.h \
+contains(DEFINES, DISABLE_GUI) {
+  HEADERS += headlessloader.h
+} else {
+     HEADERS +=  GUI.h \
                  feedList.h \
                  supportedengines.h \
                  transferlistwidget.h \
@@ -311,6 +313,10 @@ else:HEADERS +=  GUI.h \
                  trackerlogin.h \
                  pieceavailabilitybar.h \
                  advancedsettings.h
+  macx {
+      HEADERS += qmacapplication.h
+  }
+}
 
 !contains(DEFINES, DISABLE_GUI):FORMS += ui/mainwindow.ui \
 	    ui/options.ui \
@@ -344,7 +350,8 @@ SOURCES += main.cpp \
     scannedfoldersmodel.cpp \
     misc.cpp
 
-!contains(DEFINES, DISABLE_GUI):SOURCES += GUI.cpp \
+!contains(DEFINES, DISABLE_GUI) {
+        SOURCES += GUI.cpp \
                    options_imp.cpp \
                    createtorrent_imp.cpp \
                    searchengine.cpp \
@@ -357,5 +364,8 @@ SOURCES += main.cpp \
                    propertieswidget.cpp \
                    peerlistwidget.cpp \
                    trackerlist.cpp
-
+  macx {
+        HEADERS += qmacapplication.cpp
+  }
+}
 DESTDIR = .
