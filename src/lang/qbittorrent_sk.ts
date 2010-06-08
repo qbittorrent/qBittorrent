@@ -2593,23 +2593,24 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie rekurzívneho sťahovania</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent %1 obsahuje ďalšie súbory torrent. Chcete začať sťahovať aj tie?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Asociácia typu súboru .torrent</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation>qBittorrent nie je predvolená aplikácia na otváranie súborov torrent a odkazov Magnet.
+Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2812,6 +2813,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Saoudi Arabia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2849,10 +2854,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Saoudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3956,7 +3957,7 @@ QGroupBox {
     </message>
     <message>
         <source>Remove folder</source>
-        <translation>Odstrániť priečinok ...</translation>
+        <translation>Odstrániť priečinok</translation>
     </message>
     <message>
         <source>On torrent deletion, also delete files on hard disk as a default</source>
@@ -4735,21 +4736,23 @@ Záznam zmien:</translation>
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">Chyba pri sťahovaní</translation>
+        <translation>Chyba pri sťahovaní</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné stiahnuť inštalačný program Pythonu. Dôvod: %1
+Prosím, nainštalujte ho ručne.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Chýbajúci interpreter Pythonu</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Na používanie vyhľadávača je potrebný Python 2.x, ale zdá sa, že nie je nainštalovaný.
+Chcete ho nainštalovať teraz?</translation>
     </message>
 </context>
 <context>
@@ -6706,7 +6709,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>Nepodarilo sa pridať priečinok na prehľadanie: „%s“: %2</translation>
+        <translation>Nepodarilo sa pridať priečinok na prehľadanie: „%1“: %2</translation>
     </message>
 </context>
 <context>
