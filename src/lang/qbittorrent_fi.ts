@@ -133,68 +133,68 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="29"/>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>Ominaisuus</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="29"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Arvo</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="74"/>
         <source>Disk write cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Levykirjoituksen välimuistin koko</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="80"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="83"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Uloslähtevät portit (minimi) [0: ei käytössä]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="91"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Uloslähtevät portit (maksimi) [0: ei käytössä]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="111"/>
         <source>Recheck torrents on completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkista torrentit uudelleen niiden valmistuttua</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="117"/>
         <source>Transfer list refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirtolistan päivitystiheys</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="123"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="126"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selvitä asiakkaiden kotimaat (GeoIP)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="132"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished">Selvitä asiakkaiden palvelinnimet</translation>
+        <translation>Selvitä asiakkaiden palvelinnimet</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="99"/>
         <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohita siirtorajoitukset lähiverkossa</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="105"/>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Huomioi TCP/IP:n lisäkuorma siirtorajoituksissa</translation>
     </message>
 </context>
 <context>
@@ -377,12 +377,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1029"/>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Huomaa: torrenttiin lisättiin uusia seurantapalvelimia.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1042"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Huomaa: torrenttiin lisättiin uusia URL-syötteitä.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1560"/>
@@ -431,12 +431,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../bittorrent.cpp" line="2079"/>
         <location filename="../bittorrent.cpp" line="2184"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Syy: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2078"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tapahtui I/O-virhe, ”%1” pysäytettiin.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2189"/>
@@ -1891,7 +1891,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nimi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="572"/>
+        <location filename="../GUI.cpp" line="578"/>
         <source>&amp;No</source>
         <translation>&amp;Ei</translation>
     </message>
@@ -1904,7 +1904,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Hakupalvelua ei ole valittu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="682"/>
+        <location filename="../GUI.cpp" line="688"/>
         <source>Open Torrent Files</source>
         <translation>Avaa torrent-tiedostoja</translation>
     </message>
@@ -2034,12 +2034,12 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tiedosto ei ole kelvollinen torrent-tiedosto.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="683"/>
+        <location filename="../GUI.cpp" line="689"/>
         <source>Torrent Files</source>
         <translation>Torrent-tiedostot</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="151"/>
+        <location filename="../GUI.cpp" line="157"/>
         <source>Transfers</source>
         <translation>Siirrot</translation>
     </message>
@@ -2056,7 +2056,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Lähetysnopeus: </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="572"/>
+        <location filename="../GUI.cpp" line="578"/>
         <source>&amp;Yes</source>
         <translation>&amp;Kyllä</translation>
     </message>
@@ -2073,7 +2073,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="88"/>
+        <location filename="../GUI.cpp" line="91"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation> qBittorrent %1</translation>
@@ -2131,78 +2131,78 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Lataajia</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="373"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="371"/>
+        <location filename="../GUI.cpp" line="377"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="451"/>
+        <location filename="../GUI.cpp" line="457"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vahvistus rekursiiviseen lataukseen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="451"/>
+        <location filename="../GUI.cpp" line="457"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentti %1 sisältää torrent-tiedostoja, jatketaanko latausta?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="464"/>
+        <location filename="../GUI.cpp" line="470"/>
         <source>Global Upload Speed Limit</source>
         <translation>Yleinen lähetysnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="486"/>
+        <location filename="../GUI.cpp" line="492"/>
         <source>Global Download Speed Limit</source>
         <translation>Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="570"/>
-        <location filename="../GUI.cpp" line="857"/>
+        <location filename="../GUI.cpp" line="576"/>
+        <location filename="../GUI.cpp" line="863"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="783"/>
+        <location filename="../GUI.cpp" line="789"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
         <translation> qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="860"/>
-        <location filename="../GUI.cpp" line="867"/>
+        <location filename="../GUI.cpp" line="866"/>
+        <location filename="../GUI.cpp" line="873"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Latausnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="863"/>
         <location filename="../GUI.cpp" line="869"/>
+        <location filename="../GUI.cpp" line="875"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Lähetysnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="874"/>
+        <location filename="../GUI.cpp" line="880"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Lataus: %2/s, lähetys: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="953"/>
+        <location filename="../GUI.cpp" line="959"/>
         <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä normaaleja nopeusrajoituksia</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="956"/>
+        <location filename="../GUI.cpp" line="962"/>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä vaihtoehtoisia nopeusrajoituksia</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -2220,7 +2220,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Seisahtunut</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="570"/>
+        <location filename="../GUI.cpp" line="576"/>
         <source>Are you sure you want to quit?</source>
         <translation>Haluatko varmasti poistua?</translation>
     </message>
@@ -2258,13 +2258,13 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Torrentin ”%1” lataamista jatkettiin.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="352"/>
+        <location filename="../GUI.cpp" line="358"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Lataus ”%1” tuli valmiiksi.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="364"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O-virhe</translation>
@@ -2302,17 +2302,17 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tapahtui virhe (levy on täynnä?). Lataus ”%1” pysäytettiin.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="165"/>
+        <location filename="../GUI.cpp" line="171"/>
         <source>Search</source>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="228"/>
+        <location filename="../GUI.cpp" line="234"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-tiedoston liittäminen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="305"/>
+        <location filename="../GUI.cpp" line="311"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -2368,24 +2368,25 @@ Haluatko varmasti lopettaa?</translation>
         <translation type="obsolete">Salaus [EI KÄYTÖSSÄ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="365"/>
+        <location filename="../GUI.cpp" line="371"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="352"/>
+        <location filename="../GUI.cpp" line="358"/>
         <source>Download completion</source>
         <translation>Latauksen valmistuminen</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="229"/>
+        <location filename="../GUI.cpp" line="235"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ei ole torrent-tiedostojen tai Magnet-linkkien oletusohjelmisto.
+Haluatko, että qBittorrent käsittelee nämä oletusarvoisesti?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="358"/>
+        <location filename="../GUI.cpp" line="364"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2404,12 +2405,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="458"/>
+        <location filename="../GUI.cpp" line="464"/>
         <source>Url download error</source>
         <translation>Latausvirhe</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="458"/>
+        <location filename="../GUI.cpp" line="464"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Tiedoston lataaminen osoitteesta %1 epäonnistui: %2.</translation>
     </message>
@@ -2432,13 +2433,13 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="369"/>
+        <location filename="../GUI.cpp" line="375"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="571"/>
+        <location filename="../GUI.cpp" line="577"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Tiedostoja on siirrotta.
@@ -2508,7 +2509,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Lähetykset</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="755"/>
+        <location filename="../GUI.cpp" line="761"/>
         <source>Options were saved successfully.</source>
         <translation>Asetukset tallennettiin.</translation>
     </message>
@@ -2546,19 +2547,19 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../httpconnection.cpp" line="138"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-osoitteesi on hylätty liian monen epäonnistuneen autentikointiyrityksen vuoksi.</translation>
     </message>
     <message>
         <location filename="../httpconnection.cpp" line="315"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">LaN: %1/s - S: %2</translation>
+        <translation>LaN: %1/s - S: %2</translation>
     </message>
     <message>
         <location filename="../httpconnection.cpp" line="316"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">LäN: %1/s - S: %2</translation>
+        <translation>LäN: %1/s - S: %2</translation>
     </message>
 </context>
 <context>
@@ -2683,7 +2684,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="101"/>
+        <location filename="../main.cpp" line="108"/>
         <source>Legal Notice</source>
         <translation>Oikeudellinen huomautus</translation>
     </message>
@@ -2700,30 +2701,32 @@ Todennäköisesti tiesit tämän jo, joten emme toista asiaa.</translation>
         <translation type="obsolete">Paina mitä tahansa näppäintä hyväksyäksesi ja jatkaaksesi...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="102"/>
-        <location filename="../main.cpp" line="113"/>
+        <location filename="../main.cpp" line="109"/>
+        <location filename="../main.cpp" line="120"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent on tiedostonjako-ohjelma. Kun ajat torrenttia, sen tiedot ovat muiden saatavilla. Olet vastuussa kaikesta jakamastasi.
+
+Muita varoituksia ei anneta.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="103"/>
+        <location filename="../main.cpp" line="110"/>
         <source>Press %1 key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Paina %1-näppäintä hyväksyäksesi ja jatkaaksesi...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="114"/>
+        <location filename="../main.cpp" line="121"/>
         <source>Legal notice</source>
         <translation>Oikeudellinen huomautus</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="115"/>
+        <location filename="../main.cpp" line="122"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="116"/>
+        <location filename="../main.cpp" line="123"/>
         <source>I Agree</source>
         <translation>Hyväksyn</translation>
     </message>
@@ -2935,7 +2938,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä vaihtoehtoisia nopeusrajoituksia</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="61"/>
@@ -2991,7 +2994,7 @@ No further notices will be issued.</source>
         <location filename="../peerlistdelegate.h" line="62"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
@@ -3134,7 +3137,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="136"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nopeus</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="145"/>
@@ -3165,7 +3168,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/options.ui" line="214"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Edistyneet</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="252"/>
@@ -3359,7 +3362,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="804"/>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopioi .torrent-tiedostot kohteeseen:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="850"/>
@@ -3504,43 +3507,43 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1367"/>
         <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleiset nopeusrajoitukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1512"/>
         <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtoehtoiset nopeusrajoitukset</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1628"/>
         <source>Scheduled times:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajankohdat:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1655"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished">–</translation>
+        <translation>–</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1699"/>
         <source>On days:</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivinä:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1710"/>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>Joka päivä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1715"/>
         <source>Week days</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkipäivinä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1720"/>
         <source>Week ends</source>
-        <translation type="unfinished"></translation>
+        <translation>Viikonloppuisin</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1782"/>
@@ -3647,17 +3650,17 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="689"/>
         <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkista torrent-tiedostot kansioista:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="751"/>
         <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää kansio...</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="761"/>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista kansio</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1933"/>
@@ -3809,28 +3812,28 @@ QGroupBox {
     <message>
         <location filename="../proplistdelegate.h" line="90"/>
         <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei ladattu</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="99"/>
         <location filename="../proplistdelegate.h" line="150"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normaali</translation>
+        <translation>Normaali</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="93"/>
         <location filename="../proplistdelegate.h" line="151"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Korkea</translation>
+        <translation>Korkea</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="96"/>
         <location filename="../proplistdelegate.h" line="152"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">Korkein</translation>
+        <translation>Korkein</translation>
     </message>
 </context>
 <context>
@@ -3997,7 +4000,7 @@ QGroupBox {
     <message>
         <location filename="../propertieswidget.cpp" line="538"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioriteetti</translation>
+        <translation>Prioriteetti</translation>
     </message>
     <message>
         <source>Ignored</source>
@@ -4006,17 +4009,17 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="914"/>
         <source>Normal</source>
-        <translation type="unfinished">Normaali</translation>
+        <translation>Normaali</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="924"/>
         <source>Maximum</source>
-        <translation type="unfinished">Korkein</translation>
+        <translation>Korkein</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="919"/>
         <source>High</source>
-        <translation type="unfinished">Korkea</translation>
+        <translation>Korkea</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="320"/>
@@ -4212,7 +4215,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="164"/>
         <source>Article title</source>
-        <translation>Nimike:</translation>
+        <translation>Nimike</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="232"/>
@@ -4464,12 +4467,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="95"/>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Seurattu kansio</translation>
     </message>
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="96"/>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataa tänne</translation>
     </message>
 </context>
 <context>
@@ -4631,18 +4634,19 @@ Muutoshistoria:
         <location filename="../searchengine.cpp" line="303"/>
         <location filename="../searchengine.cpp" line="304"/>
         <source>Search</source>
-        <translation type="unfinished">Etsi</translation>
+        <translation>Etsi</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Python-tulkki puuttuu</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hakukone tarvitsee Python 2.x:n, mutta sitä ei ole asennettu.
+Haluatko asentaa sen nyt?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="554"/>
@@ -4669,13 +4673,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">Latausvirhe</translation>
+        <translation>Latausvirhe</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pythonin asennuspakettia ei voitu ladata, syy: %1.
+Asenna se itse.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>
@@ -4798,12 +4803,12 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="197"/>
         <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Napsauta poistaaksesi vaihtoehtoinen nopeusrajoitus</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Napsauta ottaaksesi vaihtoehtoinen nopeusrajoitus käyttöön</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="210"/>
@@ -4836,7 +4841,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentfilesmodel.h" line="315"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioriteetti</translation>
+        <translation>Prioriteetti</translation>
     </message>
 </context>
 <context>
@@ -5013,7 +5018,7 @@ Please install it manually.</source>
         <location filename="../transferlistdelegate.h" line="128"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -5246,25 +5251,25 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="84"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lisätty</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="85"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Valmistui</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="86"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Latausraja</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="88"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lähetysraja</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="774"/>
@@ -5425,32 +5430,32 @@ Please install it manually.</source>
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="81"/>
+        <location filename="../main.cpp" line="88"/>
         <source>Usage:</source>
         <translation>Käyttö:</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="82"/>
+        <location filename="../main.cpp" line="89"/>
         <source>displays program version</source>
         <translation>näyttää ohjelman version</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="84"/>
+        <location filename="../main.cpp" line="91"/>
         <source>disable splash screen</source>
         <translation>poista aloituskuva käytöstä</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="86"/>
+        <location filename="../main.cpp" line="93"/>
         <source>displays this help message</source>
         <translation>näyttää tämän avusteen</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="87"/>
+        <location filename="../main.cpp" line="94"/>
         <source>changes the webui port (current: %1)</source>
         <translation>vaihtaa web-äyttöliittymän portin (nykyinen: %1)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="95"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[tiedostot tai URL:it]: lataa käyttäjän antamat torrentit (valinnainen)</translation>
     </message>
@@ -5590,17 +5595,17 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="313"/>
         <source>Normal</source>
-        <translation type="unfinished">Normaali</translation>
+        <translation>Normaali</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="318"/>
         <source>High</source>
-        <translation type="unfinished">Korkea</translation>
+        <translation>Korkea</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="323"/>
         <source>Maximum</source>
-        <translation type="unfinished">Korkein</translation>
+        <translation>Korkein</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="213"/>
@@ -6802,38 +6807,38 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1405"/>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää seurattava hakemisto</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1411"/>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansio on jo seurannassa.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1414"/>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiota ei ole.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1417"/>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiota ei voida lukea.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1425"/>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1425"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiota &quot;%1&quot; ei voitu lisätä seurattavien joukkoon: %2</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1448"/>
         <location filename="../options_imp.cpp" line="1450"/>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse vientihakemisto</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1465"/>
@@ -7597,7 +7602,7 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
     <message>
         <location filename="../torrentadditiondlg.h" line="254"/>
         <source>Priority</source>
-        <translation type="unfinished">Prioriteetti</translation>
+        <translation>Prioriteetti</translation>
     </message>
 </context>
 </TS>
