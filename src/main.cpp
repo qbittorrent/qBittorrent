@@ -39,6 +39,9 @@
 #include <QStyle>
 #include <QSplashScreen>
 #include <QPushButton>
+#ifdef Q_WS_MAC
+#include "qmacapplication.h"
+#endif
 #include "GUI.h"
 #include "ico.h"
 #else
@@ -70,7 +73,11 @@ const int UNLEN = 256;
 #ifdef DISABLE_GUI
 QCoreApplication *app;
 #else
+#ifndef Q_WS_MAC
 QApplication *app;
+#else
+QMacApplication *app;
+#endif
 #endif
 
 class UsageDisplay: public QObject {
@@ -170,11 +177,15 @@ void useStyle(QApplication *app, QString style){
 // Main
 int main(int argc, char *argv[]){
   // Create Application
-  #ifdef DISABLE_GUI
-    app = new QCoreApplication(argc, argv);
-  #else
-    app = new QApplication(argc, argv);
-  #endif
+#ifdef DISABLE_GUI
+  app = new QCoreApplication(argc, argv);
+#else
+#ifndef Q_WS_MAC
+  app = new QApplication(argc, argv);
+#else
+  app = new QMacApplication(argc, argv);
+#endif
+#endif
 
   QString locale;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
@@ -191,7 +202,7 @@ int main(int argc, char *argv[]){
   if (!GetUserNameA(buffer, &buffer_len))
     uid = QString(buffer);
 #else
-    uid = QString::number(getuid());
+  uid = QString::number(getuid());
 #endif
   localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
   if (localSocket.waitForConnected(1000)){
@@ -287,72 +298,72 @@ int main(int argc, char *argv[]){
 #if defined(Q_WS_WIN) && !defined(MINGW)
   if(SetEnvironmentVariableA("QBITTORRENT", VERSION)) {
 #else
-  if(putenv((char*)"QBITTORRENT="VERSION)) {
+    if(putenv((char*)"QBITTORRENT="VERSION)) {
 #endif
-    std::cerr << "Couldn't set environment variable...\n";
-  }
+      std::cerr << "Couldn't set environment variable...\n";
+    }
 
 #ifndef DISABLE_GUI
-  useStyle(app, settings.value("Preferences/General/Style", "").toString());
-  app->setStyleSheet("QStatusBar::item { border-width: 0; }");
-  QSplashScreen *splash = 0;
-  if(!no_splash) {
-    splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
-    splash->show();
-  }
+    useStyle(app, settings.value("Preferences/General/Style", "").toString());
+    app->setStyleSheet("QStatusBar::item { border-width: 0; }");
+    QSplashScreen *splash = 0;
+    if(!no_splash) {
+      splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
+      splash->show();
+    }
 #endif
 
-  if(!LegalNotice::userAgreesWithNotice()) {
+    if(!LegalNotice::userAgreesWithNotice()) {
 #ifndef DISABLE_GUI
-    delete splash;
+      delete splash;
 #endif
-    delete app;
-    return 0;
-  }
+      delete app;
+      return 0;
+    }
 #ifndef DISABLE_GUI
-  app->setQuitOnLastWindowClosed(false);
+    app->setQuitOnLastWindowClosed(false);
 #endif
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
-  signal(SIGABRT, sigabrtHandler);
-  signal(SIGTERM, sigtermHandler);
-  signal(SIGINT, sigintHandler);
-  signal(SIGSEGV, sigsegvHandler);
+    signal(SIGABRT, sigabrtHandler);
+    signal(SIGTERM, sigtermHandler);
+    signal(SIGINT, sigintHandler);
+    signal(SIGSEGV, sigsegvHandler);
 #endif
-  // Read torrents given on command line
-  QStringList torrentCmdLine = app->arguments();
-  // Remove first argument (program name)
-  torrentCmdLine.removeFirst();
+    // Read torrents given on command line
+    QStringList torrentCmdLine = app->arguments();
+    // Remove first argument (program name)
+    torrentCmdLine.removeFirst();
 #ifndef DISABLE_GUI
-  GUI *window = new GUI(0, torrentCmdLine);
-  if(!no_splash) {
-    splash->finish(window);
-    delete splash;
-  }
+    GUI *window = new GUI(0, torrentCmdLine);
+    if(!no_splash) {
+      splash->finish(window);
+      delete splash;
+    }
 #else
-  // Load Headless class
-  HeadlessLoader *loader = new HeadlessLoader(torrentCmdLine);
+    // Load Headless class
+    HeadlessLoader *loader = new HeadlessLoader(torrentCmdLine);
 #endif
-  int ret =  app->exec();
+    int ret =  app->exec();
 
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
-  // Application has exited, stop catching SIGINT and SIGTERM
-  signal(SIGINT, 0);
-  signal(SIGTERM, 0);
+    // Application has exited, stop catching SIGINT and SIGTERM
+    signal(SIGINT, 0);
+    signal(SIGTERM, 0);
 #endif
 
 #ifndef DISABLE_GUI
-  delete window;
-  qDebug("GUI was deleted!");
+    delete window;
+    qDebug("GUI was deleted!");
 #else
-  delete loader;
+    delete loader;
 #endif
-  qDebug("Deleting app...");
+    qDebug("Deleting app...");
 #ifndef Q_WS_WIN
-  // XXX: Why does it crash on Windows!?
-  delete app;
+    // XXX: Why does it crash on Windows!?
+    delete app;
 #endif
-  qDebug("App was deleted! All good.");
-  return ret;
-}
+    qDebug("App was deleted! All good.");
+    return ret;
+  }
 
 
