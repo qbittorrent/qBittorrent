@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="en_US">
+<TS version="2.0" language="es_ES">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -2523,13 +2523,14 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="234"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Asociación de archivos Torrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="235"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent no es la aplicación por defecto para abrir archivos Torrent o enlaces Magnet.
+¿Quiere que qBittorrent sea el programa por defecto para gestionar estos archivos?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="311"/>
@@ -2565,12 +2566,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="457"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar descarga recursiva</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="457"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>El torrent %1 contiene archivos torrent, ¿quiere seguir adelante con su descarga?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
@@ -4981,13 +4982,14 @@ Log:
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Falta intérprete de Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x es necesario para utilizar el motor de búsqueda pero no parece que esté instalado.
+¿Desea instalarlo ahora?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="554"/>
@@ -5014,13 +5016,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">Error de descarga</translation>
+        <translation>Error de descarga</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>La instalación de Python no se pudo realizar, la razón: %1.
+Por favor, instálelo de forma manual.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>

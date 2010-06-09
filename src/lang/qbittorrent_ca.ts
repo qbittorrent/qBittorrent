@@ -2523,13 +2523,14 @@ Por favor cierra el otro antes.</translation>
     <message>
         <location filename="../GUI.cpp" line="234"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Associació d&apos;arxius Torrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="235"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent no és l&apos;aplicació per defecte per obrir arxius Torrent o enllaços Magnet.
+¿Vol que qBittorrent sigui el programa per defecte per gestionar aquests arxius?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="311"/>
@@ -2565,12 +2566,12 @@ Raó: %2</translation>
     <message>
         <location filename="../GUI.cpp" line="457"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar descàrrega recursiva</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="457"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Aquest torrent %1 conté arxius torrent, vol seguir endavant amb la seva descàrrega?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
@@ -4977,13 +4978,14 @@ Log:
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Manca intèrpret de Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x és necessari per utilitzar el motor de cerca però no sembla que estigui instal-lat.
+¿Voleu instal-lo ara?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="554"/>
@@ -5010,13 +5012,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">Error de descàrrega</translation>
+        <translation>Error de descàrrega</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>La instal-lació de Python no es va poder realitzar, la raó:%1.
+Si us plau, instal-li&apos;l de forma manual.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>
