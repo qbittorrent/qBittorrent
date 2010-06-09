@@ -31,7 +31,6 @@
 #define QMACAPPLICATION_H
 
 #include "qtsingleapplication.h"
-#include <QStringList>
 
 class QMacApplication : public QtSingleApplication
 {
