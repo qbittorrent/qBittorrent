@@ -150,7 +150,12 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Load options
   loadOptions();
   // Disable systray integration if it is not supported by the system
+#ifdef Q_WS_MAC
+  if(1){
+#else
   if(!QSystemTrayIcon::isSystemTrayAvailable()){
+#endif
+    checkNoSystray->setChecked(true);
     checkNoSystray->setEnabled(false);
   }
   // Connect signals / slots
@@ -277,7 +282,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
+#ifdef Q_WS_MAC
+  if(1) {
+#else
   if(!QSystemTrayIcon::supportsMessages()){
+#endif
     // Mac OS X doesn't support it yet
     checkSystrayBalloons->setChecked(false);
     checkSystrayBalloons->setEnabled(false);
@@ -1025,6 +1034,9 @@ bool options_imp::startMinimized() const {
 }
 
 bool options_imp::systrayIntegration() const{
+#ifdef Q_WS_MAC
+  return false;
+#endif
   if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
   return (!checkNoSystray->isChecked());
 }

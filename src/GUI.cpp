@@ -217,6 +217,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
     }
   }
 #endif
+#ifdef Q_WS_MAC
+  qt_mac_set_dock_menu(getTrayIconMenu());
+#endif
 }
 
 // Destructor
@@ -730,6 +733,7 @@ void GUI::optionsSaved() {
 // Load program preferences
 void GUI::loadPreferences(bool configure_session) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
+#ifndef Q_WS_MAC
   const bool newSystrayIntegration = Preferences::systrayIntegration();
   if(newSystrayIntegration != (systrayIcon!=0)) {
     if(newSystrayIntegration) {
@@ -753,6 +757,7 @@ void GUI::loadPreferences(bool configure_session) {
       delete myTrayIconMenu;
     }
   }
+#endif
   // General
   const bool new_displaySpeedInTitle = Preferences::speedInTitleBar();
   if(!new_displaySpeedInTitle && new_displaySpeedInTitle != displaySpeedInTitle) {
@@ -828,8 +833,9 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 // Check connection status and display right icon
 void GUI::updateGUI() {
   // update global informations
+#ifndef Q_WS_MAC
   if(systrayIcon) {
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_WS_X11)
     QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
     html += tr("qBittorrent");
     html += "</div>";
@@ -847,6 +853,7 @@ void GUI::updateGUI() {
 #endif
     systrayIcon->setToolTip(html); // tray icon
   }
+#endif
   if(displaySpeedInTitle) {
     setWindowTitle(tr("qBittorrent %1 (Down: %2/s, Up: %3/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(misc::friendlyUnit(BTSession->getSessionStatus().payload_download_rate)).arg(misc::friendlyUnit(BTSession->getSessionStatus().payload_upload_rate)));
   }
@@ -867,8 +874,10 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
       }
     }
 #endif
+#ifndef Q_WS_MAC
     if(systrayIcon)
       systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+#endif
   }
 }
 
@@ -902,6 +911,7 @@ void GUI::downloadFromURLList(const QStringList& url_list) {
  *****************************************************/
 
 void GUI::createSystrayDelayed() {
+#ifndef Q_WS_MAC
   static int timeout = 20;
   if(QSystemTrayIcon::isSystemTrayAvailable()) {
     // Ok, systray integration is now supported
@@ -922,6 +932,7 @@ void GUI::createSystrayDelayed() {
       Preferences::setSystrayIntegration(false);
     }
   }
+#endif
 }
 
 void GUI::updateAltSpeedsBtn(bool alternative) {
@@ -934,14 +945,9 @@ void GUI::updateAltSpeedsBtn(bool alternative) {
   }
 }
 
-void GUI::createTrayIcon() {
-  // Tray icon
-#ifdef Q_WS_WIN
-  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent16.png")), this);
-#endif
-#ifndef Q_WS_WIN
-  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")), this);
-#endif
+QMenu* GUI::getTrayIconMenu() {
+  if(myTrayIconMenu)
+    return myTrayIconMenu;
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
   myTrayIconMenu->addAction(actionOpen);
@@ -956,7 +962,18 @@ void GUI::createTrayIcon() {
   myTrayIconMenu->addAction(actionPause_All);
   myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionExit);
-  systrayIcon->setContextMenu(myTrayIconMenu);
+  return myTrayIconMenu;
+}
+
+void GUI::createTrayIcon() {
+  // Tray icon
+#ifdef Q_WS_WIN
+  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent16.png")), this);
+#else
+  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")), this);
+#endif
+
+  systrayIcon->setContextMenu(getTrayIconMenu());
   connect(systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
   // End of Icon Menu
   connect(systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
