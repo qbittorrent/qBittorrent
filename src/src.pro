@@ -365,7 +365,7 @@ SOURCES += main.cpp \
                    peerlistwidget.cpp \
                    trackerlist.cpp
   macx {
-        HEADERS += qmacapplication.cpp
+        SOURCES += qmacapplication.cpp
   }
 }
 DESTDIR = .
