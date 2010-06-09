@@ -65,6 +65,7 @@
 #include "statusbar.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
+void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 
 using namespace libtorrent;
