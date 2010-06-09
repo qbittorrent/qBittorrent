@@ -19,7 +19,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.bitorrent.torrent</string>
+				<string>org.bittorrent.torrent</string>
 			</array>
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
