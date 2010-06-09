@@ -13,6 +13,10 @@
 			<string>qbittorrentDocument</string>
 			<key>CFBundleTypeName</key>
 			<string>BitTorrent Document</string>
+                        <key>CFBundleTypeMIMETypes</key>
+                	<array>
+        	            <string>image/x-bittorrent</string>
+	                </array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSHandlerRank</key>

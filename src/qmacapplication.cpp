@@ -36,7 +36,6 @@ QMacApplication::QMacApplication(QString appid, int &argc, char** argv) :
 {
 }
 
-
 bool QMacApplication::event(QEvent * event) {
   switch (event->type()) {
   case QEvent::FileOpen:
@@ -46,7 +45,7 @@ bool QMacApplication::event(QEvent * event) {
       return true;
     }
   default:
-    return QApplication::event(event);
+    return QApplication::QtSingleApplication(event);
   }
 }
 
