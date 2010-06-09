@@ -116,7 +116,10 @@ QString misc::QDesktopServicesCacheLocation() {
   OSErr err = FSFindFolder(kUserDomain, kCachedDataFolderType, false, &ref);
   if (err)
     return QString();
-  QString path = getFullPath(ref);
+  QString path;
+  QByteArray ba(2048, 0);
+  if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
+        path = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
   path += QLatin1Char('/') + qApp->applicationName();
   return path;
 #else
