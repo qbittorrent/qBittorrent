@@ -319,6 +319,12 @@ contains(DEFINES, DISABLE_GUI) {
   }
 }
 
+contains(DEFINES, DISABLE_GUI) {
+  include(qtsingleapp/qtsinglecoreapplication.pri)
+} else {
+  include(qtsingleapp/qtsingleapplication.pri)
+}
+
 !contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \
            ui/options.ui \
@@ -371,7 +377,7 @@ SOURCES += main.cpp \
              trackerlist.cpp
 
   macx {
-    HEADERS += qmacapplication.cpp
+    SOURCES += qmacapplication.cpp
   }
 }
 

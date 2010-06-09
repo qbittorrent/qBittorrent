@@ -32,17 +32,17 @@
 
 #ifdef Q_WS_MAC
 
-#include <QApplication>
+#include "qtsingleapplication.h"
 #include <QStringList>
 
-class QMacApplication : public QApplication
+class QMacApplication : public QtSingleApplication
 {
   Q_OBJECT
 public:
-  explicit QMacApplication(int &argc, char** argv);
+  explicit QMacApplication(QString appid, int &argc, char** argv);
 
 signals:
-  void newFileOpenMacEvent(QStringList paths);
+  void newFileOpenMacEvent(const QString &path);
 
 protected:
   bool event(QEvent *);

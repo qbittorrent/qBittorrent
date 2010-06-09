@@ -33,12 +33,10 @@
 
 #include <QObject>
 #include <QCoreApplication>
-#include <QLocalServer>
-#include <QLocalSocket>
 #include "preferences.h"
 #include "bittorrent.h"
 
-class HeadlessLoader: QObject {
+class HeadlessLoader: public QObject {
   Q_OBJECT
 
 public:
@@ -52,20 +50,6 @@ public:
     BTSession->startUpTorrents();
     // Process command line parameters
     processParams(torrentCmdLine);
-    // Use a tcp server to allow only one instance of qBittorrent
-    localServer = new QLocalServer();
-    const QString &uid = QString::number(getuid());
-#ifdef Q_WS_X11
-    if(QFile::exists(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid)) {
-      // Socket was not closed cleanly
-      std::cerr << "Warning: Local domain socket was not closed cleanly, deleting file..." << std::endl;
-      QFile::remove(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid);
-    }
-#endif
-    if (!localServer->listen("qBittorrent-"+uid)) {
-      std::cerr  << "Couldn't create socket, single instance mode won't work..." << std::endl;
-    }
-    connect(localServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
     // Display some information to the user
     std::cout << std::endl << "******** " << qPrintable(tr("Information")) << " ********" << std::endl;
     std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(Preferences::getWebUiPort()))) << std::endl;
@@ -77,7 +61,6 @@ public:
   }
 
   ~HeadlessLoader() {
-    delete localServer;
     delete BTSession;
   }
 
@@ -92,6 +75,10 @@ public slots:
     std::cout << qPrintable(msg) << std::endl;
   }
 
+  void processParams(const QString& params_str) {
+    processParams(params_str.split(" ", QString::SkipEmptyParts));
+  }
+
   // As program parameters, we can get paths or urls.
   // This function parse the parameters and call
   // the right addTorrent function, considering
@@ -99,7 +86,6 @@ public slots:
   void processParams(const QStringList& params) {
     foreach(QString param, params) {
       param = param.trimmed();
-      if(param.startsWith("--")) continue;
       if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
         BTSession->downloadFromUrl(param);
       }else{
@@ -112,26 +98,7 @@ public slots:
     }
   }
 
-  void acceptConnection() {
-    QLocalSocket *clientConnection = localServer->nextPendingConnection();
-    connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsOnSocket()));
-    qDebug("accepted connection from another instance");
-  }
-
-  void readParamsOnSocket() {
-    QLocalSocket *clientConnection = static_cast<QLocalSocket*>(sender());
-    if(clientConnection) {
-      const QByteArray &params = clientConnection->readAll();
-      if(!params.isEmpty()) {
-        processParams(QString(params).split("\n"));
-        qDebug("Received parameters from another instance");
-      }
-      clientConnection->deleteLater();
-    }
-  }
-
 private:
-  QLocalServer *localServer;
   Bittorrent *BTSession;
 
 };

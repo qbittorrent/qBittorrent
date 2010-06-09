@@ -45,6 +45,11 @@
 
 #ifdef Q_WS_WIN
 #include <shlobj.h>
+#include <windows.h>
+const int UNLEN = 256;
+#else
+#include <unistd.h>
+#include <sys/types.h>
 #endif
 
 #ifdef Q_WS_MAC
@@ -543,6 +548,19 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
     return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::number(days)).arg(QString::number(hours)).arg(QString::number(minutes));
   }
   return QString::fromUtf8("∞");
+}
+
+QString misc::getUserIDString() {
+  QString uid = "0";
+#ifdef Q_WS_WIN
+  char buffer[UNLEN+1] = {0};
+  DWORD buffer_len = UNLEN + 1;
+  if (!GetUserNameA(buffer, &buffer_len))
+    uid = QString(buffer);
+#else
+  uid = QString::number(getuid());
+#endif
+  return uid;
 }
 
 QStringList misc::toStringList(const QList<bool> &l) {

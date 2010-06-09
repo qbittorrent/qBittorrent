@@ -33,8 +33,8 @@
 #include <QFileOpenEvent>
 #include "qmacapplication.h"
 
-QMacApplication::QMacApplication(int &argc, char** argv) :
-    QApplication(argc, argv)
+QMacApplication::QMacApplication(QString appid, int &argc, char** argv) :
+    QtSingleApplication(appid, argc, argv)
 {
 }
 
@@ -43,9 +43,8 @@ bool QMacApplication::event(QEvent * event) {
   switch (event->type()) {
   case QEvent::FileOpen:
     {
-      QStringList paths;
-      paths << static_cast<QFileOpenEvent *>(event)->file();
-      emit newFileOpenMacEvent(paths);
+      QString path = static_cast<QFileOpenEvent *>(event)->file();
+      emit newFileOpenMacEvent(path);
       return true;
     }
   default:
