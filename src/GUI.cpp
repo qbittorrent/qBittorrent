@@ -210,6 +210,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   status_bar = new StatusBar(QMainWindow::statusBar(), BTSession);
   connect(actionUse_alternative_speed_limits, SIGNAL(triggered()), status_bar, SLOT(toggleAlternativeSpeeds()));
 
+#ifdef Q_WS_MAC
+  setUnifiedTitleAndToolBarOnMac(true);
+#endif
+
   show();
 
   // Load Window state and sizes
