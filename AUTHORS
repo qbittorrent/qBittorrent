@@ -12,7 +12,7 @@ Contributors:
 
 Code from other projects:
 * files src/qtsingleapp/*
-  copyright: Qt Software (Nokia)
+  copyright: Nokia Corporation
   license: LGPL
 
 * files src/ico.cpp src/ico.h
