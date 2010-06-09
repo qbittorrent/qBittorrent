@@ -11,6 +11,10 @@ Contributors:
 * Christian Kandeler <zambesi@users.sourceforge.net>
 
 Code from other projects:
+* files src/qtsingleapp/*
+  copyright: Nokia Corporation
+  license: LGPL
+
 * files src/ico.cpp src/ico.h
   copyright: Malte Starostik <malte@kde.org>
   license: LGPL

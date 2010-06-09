@@ -39,8 +39,6 @@
 #include <QDesktopServices>
 #include <QStatusBar>
 #include <QClipboard>
-#include <QLocalServer>
-#include <QLocalSocket>
 #include <QCloseEvent>
 #include <QShortcut>
 
@@ -67,11 +65,6 @@
 #include "statusbar.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
-#endif
-
-#ifdef Q_WS_WIN
-#include <windows.h>
-const int UNLEN = 256;
 #endif
 
 using namespace libtorrent;
@@ -133,7 +126,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
   connect(BTSession, SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle&)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle&)));
 #ifdef Q_WS_MAC
-  connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QStringList)), this, SLOT(processParams(QStringList)));
+  connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QString)), this, SLOT(processParams(QString)));
 #endif
 
   qDebug("create tabWidget");
@@ -176,28 +169,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   BTSession->startUpTorrents();
   // Add torrent given on command line
   processParams(torrentCmdLine);
-  // Use a tcp server to allow only one instance of qBittorrent
-  localServer = new QLocalServer();
-  QString uid = "";
-#ifdef Q_WS_WIN
-  char buffer[UNLEN+1] = {0};
-  DWORD buffer_len = UNLEN + 1;
-  if (!GetUserNameA(buffer, &buffer_len))
-    uid = QString(buffer);
-#else
-  uid = QString::number(getuid());
-#endif
-#ifdef Q_WS_X11
-  if(QFile::exists(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid)) {
-    // Socket was not closed cleanly
-    std::cerr << "Warning: Local domain socket was not closed cleanly, deleting file...\n";
-    QFile::remove(QDir::tempPath()+QDir::separator()+QString("qBittorrent-")+uid);
-  }
-#endif
-  if (!localServer->listen("qBittorrent-"+uid)) {
-    std::cerr  << "Couldn't create socket, single instance mode won't work...\n";
-  }
-  connect(localServer, SIGNAL(newConnection()), this, SLOT(acceptConnection()));
+
   // Start connection checking timer
   guiUpdater = new QTimer(this);
   connect(guiUpdater, SIGNAL(timeout()), this, SLOT(updateGUI()));
@@ -284,8 +256,6 @@ GUI::~GUI() {
     delete systrayIcon;
     delete myTrayIconMenu;
   }
-  localServer->close();
-  delete localServer;
   delete tabs;
   // Keyboard shortcuts
   delete switchSearchShortcut;
@@ -436,24 +406,6 @@ void GUI::balloonClicked() {
     }
     raise();
     activateWindow();
-  }
-}
-
-void GUI::acceptConnection() {
-  QLocalSocket *clientConnection = localServer->nextPendingConnection();
-  connect(clientConnection, SIGNAL(disconnected()), this, SLOT(readParamsOnSocket()));
-  qDebug("accepted connection from another instance");
-}
-
-void GUI::readParamsOnSocket() {
-  QLocalSocket *clientConnection = static_cast<QLocalSocket*>(sender());
-  if(clientConnection) {
-    const QByteArray &params = clientConnection->readAll();
-    if(!params.isEmpty()) {
-      processParams(QString::fromLocal8Bit(params.constData()).split("\n"));
-      qDebug("Received parameters from another instance");
-    }
-    clientConnection->deleteLater();
   }
 }
 
@@ -713,12 +665,15 @@ void GUI::on_actionOpen_triggered() {
 // This function parse the parameters and call
 // the right addTorrent function, considering
 // the parameter type.
+void GUI::processParams(const QString& params_str) {
+    processParams(params_str.split(" ", QString::SkipEmptyParts));
+}
+
 void GUI::processParams(const QStringList& params) {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString param, params) {
     param = param.trimmed();
-    if(param.startsWith("--")) continue;
     if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(param);
     }else{

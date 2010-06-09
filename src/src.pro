@@ -338,6 +338,12 @@ contains(DEFINES, DISABLE_GUI) {
 	    ui/peer.ui \
 	    ui/confirmdeletiondlg.ui
 
+contains(DEFINES, DISABLE_GUI) {
+  include(qtsingleapp/qtsinglecoreapplication.pri)
+} else {
+  include(qtsingleapp/qtsingleapplication.pri)
+}
+
 SOURCES += main.cpp \ 
     bittorrent.cpp \
     qtorrenthandle.cpp \

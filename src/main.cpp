@@ -33,7 +33,6 @@
 #include <QFile>
 
 #ifndef DISABLE_GUI
-#include <QApplication>
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QStyle>
@@ -41,19 +40,19 @@
 #include <QPushButton>
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
+#else
+#include "qtsingleapplication.h"
 #endif
 #include "GUI.h"
 #include "ico.h"
 #else
-#include <QCoreApplication>
+#include "qtsinglecoreapplication.h"
 #include <iostream>
 #include <stdio.h>
 #include "headlessloader.h"
 #endif
 
 #include <QSettings>
-#include <QLocalSocket>
-#include <sys/types.h>
 
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
 #include <signal.h>
@@ -61,20 +60,15 @@
 #include "stacktrace.h"
 #endif
 
-#ifdef Q_WS_WIN
-#include <windows.h>
-const int UNLEN = 256;
-#endif
-
 #include <stdlib.h>
 #include "misc.h"
 #include "preferences.h"
 
 #ifdef DISABLE_GUI
-QCoreApplication *app;
+QtSingleCoreApplication *app;
 #else
 #ifndef Q_WS_MAC
-QApplication *app;
+QtSingleApplication *app;
 #else
 QMacApplication *app;
 #endif
@@ -177,59 +171,41 @@ void useStyle(QApplication *app, QString style){
 // Main
 int main(int argc, char *argv[]){
   // Create Application
+  QString uid = misc::getUserIDString();
 #ifdef DISABLE_GUI
-  app = new QCoreApplication(argc, argv);
+  app = new QtSingleCoreApplication("qBittorrent-"+uid, argc, argv);
 #else
 #ifndef Q_WS_MAC
-  app = new QApplication(argc, argv);
+  app = new QtSingleApplication("qBittorrent-"+uid, argc, argv);
 #else
-  app = new QMacApplication(argc, argv);
+  app = new QMacApplication("qBittorrent-"+uid, argc, argv);
 #endif
 #endif
+
+  // Check if qBittorrent is already running for this user
+  if(app->isRunning()) {
+    qDebug("qBittorrent is already running for this user.");
+    //Pass program parameters if any
+    QString message;
+    for (int a = 1; a < argc; ++a) {
+      QString p = QString::fromLocal8Bit(argv[a]);
+      if(p.startsWith("--")) continue;
+      message += argv[a];
+      if (a < argc-1)
+        message += " ";
+    }
+    if(!message.isEmpty()) {
+      qDebug("Passing program parameters to running instance...");
+      app->sendMessage(message);
+    }
+    return 0;
+  }
 
   QString locale;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
 #ifndef DISABLE_GUI
   bool no_splash = false;
 #endif
-
-  //Check if there is another instance running
-  QLocalSocket localSocket;
-  QString uid;
-#ifdef Q_WS_WIN
-  char buffer[UNLEN+1] = {0};
-  DWORD buffer_len = UNLEN + 1;
-  if (!GetUserNameA(buffer, &buffer_len))
-    uid = QString(buffer);
-#else
-  uid = QString::number(getuid());
-#endif
-  localSocket.connectToServer("qBittorrent-"+uid, QIODevice::WriteOnly);
-  if (localSocket.waitForConnected(1000)){
-    std::cout << "Another qBittorrent instance is already running...\n";
-    // Send parameters
-    if(argc > 1){
-      QStringList params;
-      for(int i=1;i<argc;++i){
-        params << QString::fromLocal8Bit(argv[i]);
-        std::cout << argv[i] << '\n';
-      }
-      QByteArray block = params.join("\n").toLocal8Bit();
-      std::cout << "writting: " << block.data() << '\n';
-      std::cout << "size: " << block.size() << '\n';
-      uint val = localSocket.write(block);
-      if(localSocket.waitForBytesWritten(5000)){
-        std::cout << "written(" <<val<<"): " << block.data() << '\n';
-      }else{
-        std::cerr << "Writing to the socket timed out\n";
-      }
-      localSocket.disconnectFromServer();
-      std::cout << "disconnected\n";
-    }
-    localSocket.close();
-    delete app;
-    return 0;
-  }
 
   // Load translation
   locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
@@ -339,9 +315,14 @@ int main(int argc, char *argv[]){
       splash->finish(window);
       delete splash;
     }
+    QObject::connect(app, SIGNAL(messageReceived(const QString&)),
+                     window, SLOT(processParams(const QString&)));
+    app->setActivationWindow(window);
 #else
     // Load Headless class
     HeadlessLoader *loader = new HeadlessLoader(torrentCmdLine);
+    QObject::connect(app, SIGNAL(messageReceived(const QString&)),
+                     loader, SLOT(processParams(const QString&)));
 #endif
     int ret =  app->exec();
 
