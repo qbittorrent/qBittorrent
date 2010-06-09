@@ -223,6 +223,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 GUI::~GUI() {
   qDebug("GUI destruction");
   hide();
+#ifdef Q_WS_MAC
+  // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
+  setUnifiedTitleAndToolBarOnMac(true);
+#endif
   // Async deletion of Bittorrent session as early as possible
   // in order to speed up exit
   session_proxy sp = BTSession->asyncDeletion();

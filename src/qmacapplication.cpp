@@ -28,8 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifdef Q_WS_MAC
-
 #include <QFileOpenEvent>
 #include "qmacapplication.h"
 
@@ -52,4 +50,3 @@ bool QMacApplication::event(QEvent * event) {
   }
 }
 
-#endif

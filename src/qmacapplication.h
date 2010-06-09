@@ -30,8 +30,6 @@
 #ifndef QMACAPPLICATION_H
 #define QMACAPPLICATION_H
 
-#ifdef Q_WS_MAC
-
 #include "qtsingleapplication.h"
 #include <QStringList>
 
@@ -47,9 +45,6 @@ signals:
 protected:
   bool event(QEvent *);
 
-
 };
-
-#endif
 
 #endif // QMACAPPLICATION_H
