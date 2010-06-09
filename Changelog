@@ -1,8 +1,10 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
     - FEATURE: Official support for Win32 platform
+    - FEATURE: Better integration with Mac OS
     - BUGFIX: Fix torrent availability computation (closes #587337)
     - BUGFIX: Disable torrent addition dialog as a default
     - BUGFIX: Fix Web UI authentication with Opera Browser
+    - BUGFIX: Fix Javascript error in Web UI when using IE
     - BUGFIX: Fix compatibility with non UTF-8 systems
 
 * Mon May 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.8
