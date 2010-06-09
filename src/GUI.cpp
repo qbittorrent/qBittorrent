@@ -225,7 +225,7 @@ GUI::~GUI() {
   hide();
 #ifdef Q_WS_MAC
   // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
-  setUnifiedTitleAndToolBarOnMac(true);
+  setUnifiedTitleAndToolBarOnMac(false);
 #endif
   // Async deletion of Bittorrent session as early as possible
   // in order to speed up exit
