@@ -69,6 +69,7 @@ public:
   // Methods
   int getCurrentTabIndex() const;
   TransferListWidget* getTransferList() const { return transferList; }
+  QMenu* getTrayIconMenu();
 
 public slots:
   void trackerAuthenticationRequired(QTorrentHandle& h);
@@ -142,7 +143,7 @@ private:
   QPointer<downloadFromURL> downloadFromURLDialog;
   QPointer<QSystemTrayIcon> systrayIcon;
   QPointer<QTimer> systrayCreator;
-  QMenu *myTrayIconMenu;
+  QPointer<QMenu> myTrayIconMenu;
   TransferListWidget *transferList;
   TransferListFiltersWidget *transferListFilters;
   PropertiesWidget *properties;
