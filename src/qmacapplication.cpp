@@ -28,12 +28,14 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QEvent>
 #include <QFileOpenEvent>
 #include "qmacapplication.h"
 
 QMacApplication::QMacApplication(QString appid, int &argc, char** argv) :
     QtSingleApplication(appid, argc, argv)
 {
+  qDebug("Constructing a QMacApplication to receive file open events");
 }
 
 bool QMacApplication::event(QEvent * ev) {
@@ -41,6 +43,7 @@ bool QMacApplication::event(QEvent * ev) {
   case QEvent::FileOpen:
     {
       QString path = static_cast<QFileOpenEvent *>(ev)->file();
+      qDebug("Received a mac file open event: %s", qPrintable(path));
       emit newFileOpenMacEvent(path);
       return true;
     }
