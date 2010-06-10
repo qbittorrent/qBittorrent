@@ -36,16 +36,16 @@ QMacApplication::QMacApplication(QString appid, int &argc, char** argv) :
 {
 }
 
-bool QMacApplication::event(QEvent * event) {
-  switch (event->type()) {
+bool QMacApplication::event(QEvent * ev) {
+  switch (ev->type()) {
   case QEvent::FileOpen:
     {
-      QString path = static_cast<QFileOpenEvent *>(event)->file();
+      QString path = static_cast<QFileOpenEvent *>(ev)->file();
       emit newFileOpenMacEvent(path);
       return true;
     }
   default:
-    return QtSingleApplication::event(event);
+    return QtSingleApplication::event(ev);
   }
 }
 
