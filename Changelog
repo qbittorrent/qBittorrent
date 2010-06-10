@@ -7,6 +7,7 @@
     - BUGFIX: Fix Javascript error in Web UI when using IE
     - BUGFIX: Fix compatibility with non UTF-8 systems
     - BUGFIX: Fix race condition allowing to run multiple instances
+    - BUGFIX: Fix window hiding problem when having a modal window
 
 * Mon May 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.8
     - BUGFIX: ETA for finished torrent is now 0 instead of Infinite (closes #583704)
