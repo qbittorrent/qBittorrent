@@ -68,7 +68,6 @@ public:
   ~GUI();
   // Methods
   int getCurrentTabIndex() const;
-  bool checkForModals() const;
   TransferListWidget* getTransferList() const { return transferList; }
   QMenu* getTrayIconMenu();
 
