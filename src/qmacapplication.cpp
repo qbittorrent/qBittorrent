@@ -45,7 +45,7 @@ bool QMacApplication::event(QEvent * event) {
       return true;
     }
   default:
-    return QApplication::QtSingleApplication(event);
+    return QtSingleApplication::event(event);
   }
 }
 
