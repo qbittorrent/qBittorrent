@@ -580,6 +580,20 @@ void GUI::on_actionCreate_torrent_triggered() {
   }
 }
 
+bool GUI::checkForModals() const {
+  //Returns true if there are any modal windows visible
+  QList<QDialog*> dialog_list = findChildren<QDialog*>();
+  QList<QDialog*>::const_iterator i;
+  
+  for(i = dialog_list.begin(); i != dialog_list.constEnd(); i++) {
+    if((*i)->isModal() && (*i)->isVisible()) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
 bool GUI::event(QEvent * e) {
   if(e->type() == QEvent::WindowStateChange) {
     qDebug("Window change event");
@@ -588,10 +602,17 @@ bool GUI::event(QEvent * e) {
       qDebug("minimisation");
       QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
       if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
-        qDebug("Minimize to Tray enabled, hiding!");
-        e->accept();
-        QTimer::singleShot(0, this, SLOT(hide()));
-        return true;
+        if(checkForModals())
+        {
+          qDebug("Minimize to Tray enabled, but not hiding because of a modal dialog");
+        }
+        else
+        {
+          qDebug("Minimize to Tray enabled, hiding!");
+          e->accept();
+          QTimer::singleShot(0, this, SLOT(hide()));
+          return true;
+        }
       }
     }
   }
