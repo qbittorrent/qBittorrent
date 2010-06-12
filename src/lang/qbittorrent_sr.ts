@@ -1203,20 +1203,21 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Потврда поновног преузимања</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Торент %1 садржи торент фајлове, да ли желите да наставите њихово преузимање?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Асоцириње Торент фајла</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent није подразумевана апликација за отварање Торент фајлова или Magnet линкова.
+Да ли желите да асоцирате qBittorrent за Торент фајлове и Magnet линкове?</translation>
     </message>
 </context>
 <context>
@@ -2752,21 +2753,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">Грешка преузимања</translation>
+        <translation>Грешка преузимања</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Python setup не може бити преузет,разлог: %1.
+Молим Вас инсталирајте га ручно.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Недостаје Python преводилац</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pithon 2.х је потребан за коришћење претраживачког модула, али изгледа да није инсталиран.
+Да ли желите да га инсталирате?</translation>
     </message>
 </context>
 <context>
