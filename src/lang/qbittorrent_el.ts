@@ -2635,13 +2635,14 @@ Please close the other one first.</source>
     <message>
         <location filename="../GUI.cpp" line="211"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Συσχετισμός με αρχεία τόρεντ</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="212"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>Το qBittorrent δεν είναι η προεπιλεγμένη εφαρμογή για το άνοιγμα αρχείων torrent και Magnet link.
+Θέλετε να συσχετίσετε το qBittorrent με τα αρχεία τόρεντ και Magnet link?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="295"/>
@@ -2671,12 +2672,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="423"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιβεβαίωση σχετικού (recursive) κατεβάσματος</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="423"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Το τόρεντ %1 περιέχει άλλα αρχεία τόρεντ, θέλετε να συνεχίσετε και να τα κατεβάσετε?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="762"/>
@@ -5135,13 +5136,14 @@ Changelog:
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Έλλειψη διερμηνέα Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Απαιτείται το Python 2.x. για την μηχανή αναζήτησης,αλλά δεν φαίνεται να είναι εγκατεστημένο.
+Θέλετε να το εγκαταστήσετε τώρα?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="554"/>
@@ -5168,13 +5170,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">Σφάλμα κατεβάσματος</translation>
+        <translation>Σφάλμα κατεβάσματος</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Τα αρχεία εγκατάστασης του Python δεν ήταν δυνατό να κατεβαστούν, αιτία: %1
+Παρακαλώ εγκαταστήστε το χειροκίνητα.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>

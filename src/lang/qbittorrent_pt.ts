@@ -2530,20 +2530,21 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmação de download recursivo</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>O torrent %1 contém arquivos torrent, continua com este download?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Associação de arquivo torrent</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent não é sua aplicação padrão para arquivos torrent e links magnéticos.
+Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</translation>
     </message>
 </context>
 <context>
@@ -4419,21 +4420,23 @@ Log de mudanças:</translation>
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">Erro no download</translation>
+        <translation>Erro no download</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>A instalação do Python não pode ser baixada, razão: %1.
+Por favor instale manualmente.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Faltando interpretador Python</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x é requerido para você poder usar a busca mas não parece estar instalado.
+Gostaria de instalar agora?</translation>
     </message>
 </context>
 <context>
