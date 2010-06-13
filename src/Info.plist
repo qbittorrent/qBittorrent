@@ -15,7 +15,7 @@
 			<string>BitTorrent Document</string>
                         <key>CFBundleTypeMIMETypes</key>
                 	<array>
-        	            <string>image/x-bittorrent</string>
+        	            <string>application/x-bittorrent</string>
 	                </array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
