@@ -1529,7 +1529,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="211"/>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Asociace souboru .torrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="357"/>
@@ -1546,12 +1546,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../GUI.cpp" line="423"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrzení rekurzivního stahování</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="423"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent %1 obsahuje soubory .torrent, chcete je také začít stahovat?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="436"/>
@@ -1792,7 +1792,8 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <location filename="../GUI.cpp" line="212"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent není výchozí aplikací pro otevírání souborů .torrent ani Magnet odkazů.
+Chcete asociovat qBittorrent se soubory .torrent a Magnet odkazů?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="342"/>
@@ -3890,13 +3891,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine.cpp" line="284"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Chybí překladač jazyka Python</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="285"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro použití funkce hledání je vyžadován Python 2.x, ten ale není nainstalován.
+Chcete jej nyní nainstalovat?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="315"/>
@@ -3944,13 +3946,14 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Download error</source>
-        <translation type="unfinished">Chyba stahování</translation>
+        <translation>Chyba stahování</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="171"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalační soubor Pyhon nelze stáhnout, důvod: %1.
+Nainstalujte jej prosím ručně.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="567"/>
@@ -4209,7 +4212,7 @@ Please install it manually.</source>
     <message utf8="true">
         <location filename="../ui/trackersadditiondlg.ui" line="44"/>
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam URL kompatibilní s µTorrent:</translation>
     </message>
     <message>
         <location filename="../trackersadditiondlg.h" line="77"/>
@@ -4684,7 +4687,7 @@ Please install it manually.</source>
     <message>
         <location filename="../main.cpp" line="89"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>[soubory nebo url]: stahovat torrenty poskytnuté uživatelem (volitelné)</translation>
     </message>
 </context>
 <context>
