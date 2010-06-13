@@ -272,7 +272,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; 不是一個有效的 magnet URI。</translation>
+        <translation>&apos;%1&apos; 不是一個有效的磁性 URI。</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
@@ -1745,23 +1745,24 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>遞迴下載確認</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent %1 包含 torrent 檔案, 你想要執行下載作業嗎?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent 檔案關聯</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation>qBittorrent 不是你開啟 torrent 檔案或磁性連結的預設程式。
+你想要以 qBittorrent 開啟 torrent 檔案和磁性連結嗎?</translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1964,6 +1965,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Saoudi Arabia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2001,10 +2006,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Saoudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2068,7 +2069,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>從他們的 URL 或 magnet 連結下載 torrent</translation>
+        <translation>從他們的 URL 或磁性連結下載 torrent</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -3673,21 +3674,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">下載錯誤</translation>
+        <translation>下載錯誤</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 安裝程式無法下載。原因: %1。
+請手動安裝。</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>遺失 Python 解釋器</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>使用搜尋引擎需要 Python 2.x, 但是它沒有安裝。
+你想要現在安裝嗎?</translation>
     </message>
 </context>
 <context>
@@ -4111,7 +4114,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>複製 magnet link</translation>
+        <translation>複製磁性連結</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -5850,11 +5853,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation>無法解碼 magnet link:</translation>
+        <translation>無法解碼磁性連結:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>Magnet Link</translation>
+        <translation>磁性連結</translation>
     </message>
     <message>
         <source>Invalid label name</source>

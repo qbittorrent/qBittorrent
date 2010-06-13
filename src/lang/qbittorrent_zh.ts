@@ -2796,23 +2796,24 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>循环下载确认</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent%1包含torrent文件，您想继续下载吗?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>结合torrent文件</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation>qBittorrent不是打开torrent文件或Magnet链接的默认应用程序.
+您想用qBittorrent打开torrent文件或Magnet链接吗?</translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3015,6 +3016,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Saoudi Arabia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3052,10 +3057,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Saoudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4944,21 +4945,23 @@ reason: %2.</source>
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">下载错误</translation>
+        <translation>下载错误</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>不能下载Python安装程序,原因:%1.
+请手动安装.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>缺少Python解释器</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>需要Python 2.x以使用搜索引擎但未被安装.
+您想现在安装吗?</translation>
     </message>
 </context>
 <context>
