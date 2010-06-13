@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
+* Sun Jun 13 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
     - FEATURE: Official support for Win32 platform
     - FEATURE: Better integration with Mac OS
     - BUGFIX: Fix torrent availability computation (closes #587337)
