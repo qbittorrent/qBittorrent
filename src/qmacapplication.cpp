@@ -30,6 +30,7 @@
 
 #include <QEvent>
 #include <QFileOpenEvent>
+#include <QUrl>
 #include "qmacapplication.h"
 
 QMacApplication::QMacApplication(QString appid, int &argc, char** argv) :
