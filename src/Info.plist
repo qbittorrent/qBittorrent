@@ -29,6 +29,17 @@
 			<true/>
 		</dict>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>magnet</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>BitTorrent Magnet URL</string>
+		</dict>
+	</array>
 	<key>CFBundleIconFile</key>
 	<string>qbittorrent_mac.icns</string>
 	<key>CFBundleInfoDictionaryVersion</key>
