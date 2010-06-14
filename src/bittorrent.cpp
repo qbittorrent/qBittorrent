@@ -1351,6 +1351,12 @@ void Bittorrent::enableLSD(bool b) {
 void Bittorrent::loadSessionState() {
   const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
   if(!QFile::exists(state_path)) return;
+  if(QFile(state_path).size() == 0) {
+    // Remove empty state file
+    QFile::remove(state_path);
+    return;
+  }
+
 #if LIBTORRENT_VERSION_MINOR > 14
   std::vector<char> in;
   if (load_file(state_path.toLocal8Bit().constData(), in) == 0)
