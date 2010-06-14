@@ -974,12 +974,12 @@ public:
 
   static bool isFileAssocOk() {
     QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
-    if(settings.value(".torrent/Default").toString() != "qBittorrent") {
+    if(settings.value(".torrent\\Default").toString() != "qBittorrent") {
       qDebug(".torrent != qBittorrent");
       return false;
     }
     qDebug("Checking shell command");
-    QString shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
+    QString shell_command = settings.value("qBittorrent\\shell\\open\\command\\Default", "").toString();
     qDebug("Shell command is: %s", qPrintable(shell_command));
     QRegExp exe_reg("\"([^\"]+)\".*");
     if(exe_reg.indexIn(shell_command) < 0)
@@ -989,7 +989,7 @@ public:
     if(assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
       return false;
     // Check magnet link assoc
-    shell_command = settings.value("Magnet/shell/open/command/Default", "").toString();
+    shell_command = settings.value("Magnet\\shell\\open\\command\\Default", "").toString();
     if(exe_reg.indexIn(shell_command) < 0)
       return false;
     assoc_exe = exe_reg.cap(1);
@@ -1002,21 +1002,21 @@ public:
   static void setFileAssoc() {
     QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
     // .Torrent association
-    settings.setValue(".torrent/Default", "qBittorrent");
-    settings.setValue(".torrent/Content Type", "application/x-bittorrent");
-    settings.setValue("qBittorrent/shell/Default", "open");
+    settings.setValue(".torrent\\Default", "qBittorrent");
+    settings.setValue(".torrent\\Content Type", "application/x-bittorrent");
+    settings.setValue("qBittorrent\\shell\\Default", "open");
     const QString command_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\" \"%1\"";
-    settings.setValue("qBittorrent/shell/open/command/Default", command_str);
-    settings.setValue("qBittorrent/Content Type/Default", "application/x-bittorrent");
+    settings.setValue("qBittorrent\\shell\\open\\command\\Default", command_str);
+    settings.setValue("qBittorrent\\Content Type\\Default", "application/x-bittorrent");
     const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",0";
-    settings.setValue("qBittorrent/DefaultIcon/Default", icon_str);
+    settings.setValue("qBittorrent\\DefaultIcon\\Default", icon_str);
     // Magnet association
-    settings.setValue("Magnet/Default", "Magnet URI");
-    settings.setValue("Magnet/Content Type", "application/x-magnet");
-    settings.setValue("Magnet/URL Protocol", "");
-    settings.setValue("Magnet/DefaultIcon/Default", icon_str);
-    settings.setValue("Magnet/shell/Default", "open");
-    settings.setValue("Magnet/shell/open/command/Default", command_str);
+    settings.setValue("Magnet\\Default", "Magnet URI");
+    settings.setValue("Magnet\\Content Type", "application/x-magnet");
+    settings.setValue("Magnet\\URL Protocol", "");
+    settings.setValue("Magnet\\DefaultIcon\\Default", icon_str);
+    settings.setValue("Magnet\\shell\\Default", "open");
+    settings.setValue("Magnet\\shell\\open\\command\\Default", command_str);
   }
 
 #endif
