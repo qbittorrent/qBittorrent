@@ -11,6 +11,7 @@
     - FEATURE: Added filter for paused/error torrents
     - FEATURE: Add Check/Uncheck all feature in Web UI
     - BUGFIX: Hide seeding torrents files priorities in Web UI
+    - BUGFIX: The user can disable permanently recursive torrent download
     - COSMETIC: Display peers country name in tooltip
     - COSMETIC: Display number of torrents in transfers tab label
 

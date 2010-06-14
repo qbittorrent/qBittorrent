@@ -428,8 +428,19 @@ void GUI::balloonClicked() {
 }
 
 void GUI::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
-  if(QMessageBox::question(this, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()), QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes) {
+  if(Preferences::recursiveDownloadDisabled()) return;
+  QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()));
+  QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+  /*QPushButton *no = */confirmBox.addButton(tr("No"), QMessageBox::NoRole);
+  QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
+  confirmBox.exec();
+  if(confirmBox.clickedButton() == 0) return;
+  if(confirmBox.clickedButton() == yes) {
     BTSession->recursiveTorrentDownload(h);
+    return;
+  }
+  if(confirmBox.clickedButton() == never) {
+    Preferences::disableRecursiveDownload();
   }
 }
 

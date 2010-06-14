@@ -1002,6 +1002,16 @@ public:
     qBTRSS.setValue("hosts_cookies", hosts_table);
   }
 
+  static bool recursiveDownloadDisabled() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/DisableRecursiveDownload"), false).toBool();
+  }
+
+  static void disableRecursiveDownload(bool disable=true) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/DisableRecursiveDownload"), disable);
+  }
+
 #ifdef Q_WS_WIN
   static QString getPythonPath() {
     QSettings reg_python("HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\PythonCore", QSettings::NativeFormat);
