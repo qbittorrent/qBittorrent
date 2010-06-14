@@ -1358,6 +1358,11 @@ void Bittorrent::enableLSD(bool b) {
 void Bittorrent::loadSessionState() {
   const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
   if(!QFile::exists(state_path)) return;
+  if(QFile(state_path).size() == 0) {
+    // Remove empty state file
+    QFile::remove(state_path);
+    return;
+  }
 #if LIBTORRENT_VERSION_MINOR > 14
   std::vector<char> in;
   if (load_file(state_path.toLocal8Bit().constData(), in) == 0)
@@ -1386,12 +1391,10 @@ void Bittorrent::saveSessionState() {
   bencode(std::back_inserter(out), session_state);
   file f;
   error_code ec;
-  if (f.open(state_path.toLocal8Bit().data(), file::write_only, ec)) {
-    if (ec) {
-      file::iovec_t b = {&out[0], out.size()};
-      f.writev(0, &b, 1, ec);
-    }
-  }
+  if (!f.open(state_path.toLocal8Bit().constData(), file::write_only, ec)) return;
+  if (ec) return;
+  file::iovec_t b = {&out[0], out.size()};
+  f.writev(0, &b, 1, ec);
 #else
   entry session_state = s->state();
   boost::filesystem::ofstream out(state_path.toLocal8Bit().constData()
