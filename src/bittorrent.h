@@ -118,6 +118,9 @@ public:
   bool useTemporaryFolder() const;
   QString getDefaultSavePath() const;
   ScanFoldersModel* getScanFoldersModel() const;
+#if LIBTORRENT_VERSION_MINOR < 15
+  void saveDHTEntry();
+#endif
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -136,9 +139,6 @@ public slots:
   void resumeTorrent(QString hash);
   void resumeAllTorrents();
   /* End Web UI */
-#if LIBTORRENT_VERSION_MINOR < 15
-  void saveDHTEntry();
-#endif
   void preAllocateAllFiles(bool b);
   void saveFastResumeData();
   void enableIPFilter(QString filter);
