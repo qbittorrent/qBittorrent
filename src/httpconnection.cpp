@@ -237,6 +237,7 @@ void HttpConnection::respond() {
   QFile file(url);
   if(!file.open(QIODevice::ReadOnly))
   {
+    qDebug("File %s was not found!", qPrintable(url));
     respondNotFound();
     return;
   }

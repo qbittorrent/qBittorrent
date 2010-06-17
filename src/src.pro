@@ -142,8 +142,9 @@ macx {
 contains(DEFINES, DISABLE_GUI) {
   QT = core
   TARGET = qbittorrent-nox
+} else {
+  TARGET = qbittorrent
 }
-else:TARGET = qbittorrent
 
 # QMAKE_CXXFLAGS_RELEASE += -fwrapv
 # QMAKE_CXXFLAGS_DEBUG += -fwrapv
@@ -210,6 +211,7 @@ os2:LIBS += -ltorrent-rasterbar \
     message("On Mac OS X, GeoIP database must be embedded.")
   }
   unix:!macx:contains(DEFINES, WITH_GEOIP_EMBEDDED):message("You chose to embed GeoIP database in qBittorrent executable.")
+}
 
 # Resource files
 RESOURCES = icons.qrc \
@@ -217,19 +219,19 @@ RESOURCES = icons.qrc \
             search.qrc \
             webui.qrc
 
-  # Add GeoIP resource file if the GeoIP database
-  # should be embedded in qBittorrent executable
-  contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-    exists("geoip/GeoIP.dat") {
-      message("GeoIP.dat was found in src/geoip/.")
-      RESOURCES += geoip.qrc
-    }
-    else {
-      DEFINES -= WITH_GEOIP_EMBEDDED
-      error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
-    }
+# Add GeoIP resource file if the GeoIP database
+# should be embedded in qBittorrent executable
+contains(DEFINES, WITH_GEOIP_EMBEDDED) {
+  exists("geoip/GeoIP.dat") {
+    message("GeoIP.dat was found in src/geoip/.")
+    RESOURCES += geoip.qrc
   }
-else:message("GeoIP database will not be embedded in qBittorrent executable.")
+  else {
+    DEFINES -= WITH_GEOIP_EMBEDDED
+    error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
+  }
+} else {
+  message("GeoIP database will not be embedded in qBittorrent executable.")
 }
 
 # Translations
