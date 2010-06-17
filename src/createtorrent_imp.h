@@ -58,6 +58,7 @@ class torrentCreatorThread : public QThread {
     }
     void create(QString _input_path, QString _save_path, QStringList _trackers, QStringList _url_seeds, QString _comment, bool _is_private, int _piece_size);
     void sendProgressSignal(int progress);
+    void abortCreation() { abort = true; }
   
   protected:
     void run();
@@ -87,6 +88,7 @@ class createtorrent : public QDialog, private Ui::createTorrentDialog{
 
   public slots:
     void updateProgressBar(int progress);
+    void on_cancelButton_clicked();
 
   protected slots:
     void on_createButton_clicked();
