@@ -64,7 +64,7 @@ class torrentCreatorThread : public QThread {
     
   signals:
     void creationFailure(QString msg);
-    void creationSuccess(QString path, const char* branch_path);
+    void creationSuccess(QString path, QString branch_path);
 
   signals:
     void updateProgress(int progress);
@@ -97,7 +97,7 @@ class createtorrent : public QDialog, private Ui::createTorrentDialog{
     void on_addURLSeed_button_clicked();
     void on_removeURLSeed_button_clicked();
     void handleCreationFailure(QString msg);
-    void handleCreationSuccess(QString path, const char* branch_path);
+    void handleCreationSuccess(QString path, QString branch_path);
 };
 
 #endif

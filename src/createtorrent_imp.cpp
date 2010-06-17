@@ -68,7 +68,7 @@ createtorrent::createtorrent(QWidget *parent): QDialog(parent){
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
   creatorThread = new torrentCreatorThread(this);
-  connect(creatorThread, SIGNAL(creationSuccess(QString, const char*)), this, SLOT(handleCreationSuccess(QString, const char*)));
+  connect(creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
   connect(creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
   connect(creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
   path::default_name_check(no_check);
@@ -197,7 +197,7 @@ void createtorrent::handleCreationFailure(QString msg) {
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was unsuccessful, reason: %1").arg(msg));
 }
 
-void createtorrent::handleCreationSuccess(QString path, const char* branch_path) {
+void createtorrent::handleCreationSuccess(QString path, QString branch_path) {
   if(checkStartSeeding->isChecked()) {
     // Create save path temp data
     boost::intrusive_ptr<torrent_info> t;
@@ -208,7 +208,7 @@ void createtorrent::handleCreationSuccess(QString path, const char* branch_path)
       return;
     }
     QString hash = misc::toQString(t->info_hash());
-    TorrentTempData::setSavePath(hash, QString::fromLocal8Bit(branch_path));
+    TorrentTempData::setSavePath(hash, branch_path);
 #if LIBTORRENT_VERSION_MINOR > 14
     // Enable seeding mode (do not recheck the files)
     TorrentTempData::setSeedingMode(hash, true);
@@ -281,7 +281,7 @@ void torrentCreatorThread::run() {
     ofstream out(complete(path((const char*)save_path.toLocal8Bit())), std::ios_base::binary);
     bencode(std::ostream_iterator<char>(out), t.generate());
     emit updateProgress(100);
-    emit creationSuccess(save_path, full_path.branch_path().string().c_str());
+    emit creationSuccess(save_path, QString::fromUtf8(full_path.branch_path().string().c_str()));
   }
   catch (std::exception& e){
     emit creationFailure(QString::fromUtf8(e.what()));
