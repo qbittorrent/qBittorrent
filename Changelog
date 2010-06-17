@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.10
+    - BUGFIX: Fix Web UI in qBittorrent nox version
+
 * Sun Jun 13 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
     - FEATURE: Official support for Win32 platform
     - FEATURE: Better integration with Mac OS
