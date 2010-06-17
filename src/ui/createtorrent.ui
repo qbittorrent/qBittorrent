@@ -65,7 +65,7 @@
         <string>Add file</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/document-new.png</normaloff>:/Icons/oxygen/document-new.png</iconset>
        </property>
       </widget>
@@ -76,7 +76,7 @@
         <string>Add folder</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset resource="../icons.qrc">
          <normaloff>:/Icons/oxygen/folder-new.png</normaloff>:/Icons/oxygen/folder-new.png</iconset>
        </property>
       </widget>
@@ -202,7 +202,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="../icons.qrc">
                <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
              </property>
              <property name="iconSize">
@@ -231,7 +231,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="../icons.qrc">
                <normaloff>:/Icons/oxygen/list-remove.png</normaloff>:/Icons/oxygen/list-remove.png</iconset>
              </property>
              <property name="iconSize">
@@ -313,7 +313,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="../icons.qrc">
                <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
              </property>
              <property name="iconSize">
@@ -342,7 +342,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="../icons.qrc">
                <normaloff>:/Icons/oxygen/list-remove.png</normaloff>:/Icons/oxygen/list-remove.png</iconset>
              </property>
              <property name="iconSize">
@@ -539,24 +539,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="../icons.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>cancelButton</sender>
-   <signal>clicked()</signal>
-   <receiver>createTorrentDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>355</x>
-     <y>275</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>179</x>
-     <y>282</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

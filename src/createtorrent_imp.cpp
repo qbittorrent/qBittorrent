@@ -188,16 +188,29 @@ void createtorrent::on_createButton_clicked(){
   } else {
     return;
   }
+  // Disable dialog
+  setEnabled(false);
+  // Set busy cursor
+  setCursor(QCursor(Qt::WaitCursor));
+  // Actually create the torrent
   QStringList url_seeds = allItems(URLSeeds_list);
   QString comment = txt_comment->toPlainText();
   creatorThread->create(input, destination, trackers, url_seeds, comment, check_private->isChecked(), getPieceSize());
 }
 
 void createtorrent::handleCreationFailure(QString msg) {
+  // Enable dialog
+  setEnabled(true);
+  // Remove busy cursor
+  setCursor(QCursor(Qt::ArrowCursor));
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was unsuccessful, reason: %1").arg(msg));
 }
 
 void createtorrent::handleCreationSuccess(QString path, QString branch_path) {
+  // Enable Dialog
+  setEnabled(true);
+  // Remove busy cursor
+  setCursor(QCursor(Qt::ArrowCursor));
   if(checkStartSeeding->isChecked()) {
     // Create save path temp data
     boost::intrusive_ptr<torrent_info> t;
@@ -217,6 +230,18 @@ void createtorrent::handleCreationSuccess(QString path, QString branch_path) {
   }
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
   close();
+}
+
+void createtorrent::on_cancelButton_clicked() {
+  // End torrent creation thread
+  if(creatorThread->isRunning()) {
+    creatorThread->abortCreation();
+    creatorThread->terminate();
+    // Wait for termination
+    creatorThread->wait();
+  }
+  // Close the dialog
+  reject();
 }
 
 void createtorrent::updateProgressBar(int progress) {
