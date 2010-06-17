@@ -142,8 +142,9 @@ macx {
 contains(DEFINES, DISABLE_GUI) {
   QT = core
   TARGET = qbittorrent-nox
+} else {
+  TARGET = qbittorrent
 }
-else:TARGET = qbittorrent
 
 # QMAKE_CXXFLAGS_RELEASE += -fwrapv
 # QMAKE_CXXFLAGS_DEBUG += -fwrapv
@@ -211,25 +212,27 @@ os2:LIBS += -ltorrent-rasterbar \
   }
   unix:!macx:contains(DEFINES, WITH_GEOIP_EMBEDDED):message("You chose to embed GeoIP database in qBittorrent executable.")
 
+}
+
 # Resource files
 RESOURCES = icons.qrc \
     lang.qrc \
     search.qrc \
     webui.qrc
 
-  # Add GeoIP resource file if the GeoIP database
-  # should be embedded in qBittorrent executable
-  contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-    exists("geoip/GeoIP.dat") {
-      message("GeoIP.dat was found in src/geoip/.")
-      RESOURCES += geoip.qrc
-    }
-    else {
-      DEFINES -= WITH_GEOIP_EMBEDDED
-      error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
-    }
+# Add GeoIP resource file if the GeoIP database
+# should be embedded in qBittorrent executable
+contains(DEFINES, WITH_GEOIP_EMBEDDED) {
+  exists("geoip/GeoIP.dat") {
+    message("GeoIP.dat was found in src/geoip/.")
+    RESOURCES += geoip.qrc
   }
-else:message("GeoIP database will not be embedded in qBittorrent executable.")
+  else {
+    DEFINES -= WITH_GEOIP_EMBEDDED
+    error("GeoIP.dat was not found in src/geoip/ folder, please follow instructions in src/geoip/README.")
+  }
+} else {
+  message("GeoIP database will not be embedded in qBittorrent executable.")
 }
 
 # Translations
@@ -284,7 +287,7 @@ HEADERS += misc.h \
     scannedfoldersmodel.h
 
 contains(DEFINES, DISABLE_GUI) {
-  HEADERS += headlessloader.h
+     HEADERS +=  headlessloader.h
 } else {
      HEADERS +=  GUI.h \
                  feedList.h \
@@ -331,7 +334,8 @@ contains(DEFINES, DISABLE_GUI) {
   }
 }
 
-!contains(DEFINES, DISABLE_GUI):FORMS += ui/mainwindow.ui \
+!contains(DEFINES, DISABLE_GUI) {
+   FORMS += ui/mainwindow.ui \
 	    ui/options.ui \
 	    ui/about.ui \
 	    ui/createtorrent.ui \
@@ -350,6 +354,7 @@ contains(DEFINES, DISABLE_GUI) {
 	    ui/propertieswidget.ui \
 	    ui/peer.ui \
 	    ui/confirmdeletiondlg.ui
+}
 
 contains(DEFINES, DISABLE_GUI) {
   include(qtsingleapp/qtsinglecoreapplication.pri)
