@@ -78,6 +78,7 @@ public slots:
   bool allFiltered() const;
   void savePiecesPriorities();
   void on_OkButton_clicked();
+  void renameTorrentNameInModel(QString file_path);
 
 public slots:
   void updateLabelInSavePath(QString label);

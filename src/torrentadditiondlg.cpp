@@ -101,6 +101,12 @@ void torrentAdditionDialog::saveSettings() {
   settings.setValue("TorrentAdditionDlg/pos", pos());
 }
 
+void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
+  file_path = file_path.replace("\\", "/");
+  // Rename in torrent files model too
+  PropListModel->setData(PropListModel->index(0, 0), file_path.split("/", QString::SkipEmptyParts).last());
+}
+
 void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
   show();
   is_magnet = true;
@@ -170,14 +176,35 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
     close();
     return;
   }
-  QString root_folder = misc::truncateRootFolder(t);
-  if(!root_folder.isEmpty()) {
-    QString save_path = savePathTxt->text();
-    if(!save_path.endsWith(QDir::separator()))
-      save_path += QDir::separator();
-    savePathTxt->setText(save_path + root_folder);
-  }
   nbFiles = t->num_files();
+  if(nbFiles == 0) {
+    // Empty torrent file!?
+    close();
+    return;
+  }
+  if(nbFiles == 1) {
+    // Update properties model whenever the file path is edited
+    connect(savePathTxt, SIGNAL(textChanged(QString)), this, SLOT(renameTorrentNameInModel(QString)));
+  }
+  QString root_folder = misc::truncateRootFolder(t);
+  QString save_path = savePathTxt->text();
+#ifdef Q_WS_WIN
+  save_path = save_path.replace("/", "\\");
+#endif
+  if(!save_path.endsWith(QDir::separator()))
+    save_path += QDir::separator();
+  // If the torrent has a root folder, append it to the save path
+  if(!root_folder.isEmpty()) {
+    savePathTxt->setText(save_path + root_folder + QDir::separator());
+  }
+  if(nbFiles == 1) {
+    // single file torrent
+    QString single_file_relpath = misc::toQStringU(t->file_at(0).path.string());
+#ifdef Q_WS_WIN
+    single_file_relpath = single_file_relpath.replace("/", "\\");
+#endif
+    savePathTxt->setText(save_path+single_file_relpath);
+  }
   // Setting file name
   fileName = misc::toQStringU(t->name());
   hash = misc::toQString(t->info_hash());
@@ -217,7 +244,7 @@ void torrentAdditionDialog::displayContentListMenu(const QPoint&) {
   QMenu myFilesLlistMenu;
   const QModelIndexList &selectedRows = torrentContentList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
-  if(selectedRows.size() == 1) {
+  if(selectedRows.size() == 1 && t->num_files() > 1) {
     actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
@@ -381,23 +408,27 @@ void torrentAdditionDialog::renameSelectedFile() {
     }
 
     void torrentAdditionDialog::on_browseButton_clicked(){
-      QString dir;
+      QString new_path;
       QString save_path = savePathTxt->text();
 #ifdef Q_WS_WIN
       save_path = save_path.replace("\\", "/");
 #endif
       save_path = misc::expandPath(save_path);
-      const QDir &saveDir(save_path);
-      if(!save_path.isEmpty() && saveDir.exists()){
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath());
-      }else{
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+      if(t->num_files() == 1) {
+        new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), save_path);
+      } else {
+        const QDir saveDir(save_path);
+        if(!save_path.isEmpty() && saveDir.exists()){
+          new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath());
+        }else{
+          new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+        }
       }
-      if(!dir.isNull()){
+      if(!new_path.isEmpty()){
 #ifdef Q_WS_WIN
-        dir = dir.replace("/", "\\");
+        new_path = new_path.replace("/", "\\");
 #endif
-        savePathTxt->setText(dir);
+        savePathTxt->setText(new_path);
       }
     }
 
@@ -424,7 +455,15 @@ void torrentAdditionDialog::renameSelectedFile() {
 #ifdef Q_WS_WIN
       save_path = save_path.replace("\\", "/");
 #endif
-      QDir savePath(misc::expandPath(save_path));
+      save_path = misc::expandPath(save_path);
+      if(t->num_files() == 1) {
+        // Remove file name
+        QStringList parts = save_path.split("/", QString::SkipEmptyParts);
+        const QString single_file_name = parts.takeLast();
+        files_path.replace(0, single_file_name);
+        save_path = "/"+parts.join("/");
+      }
+      QDir savePath(save_path);
       // Check if savePath exists
       if(!savePath.exists()){
         if(!savePath.mkpath(savePath.path())){
@@ -467,7 +506,7 @@ void torrentAdditionDialog::renameSelectedFile() {
         // Skip file checking and directly start seeding
         if(addInSeed->isChecked()) {
           // Check if local file(s) actually exist
-          if(is_magnet || savePath.exists(misc::toQStringU(t->name()))) {
+          if(is_magnet || QFile::exists(savePathTxt->text())) {
             TorrentTempData::setSeedingMode(hash, true);
           } else {
             QMessageBox::warning(0, tr("Seeding mode error"), tr("You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path."));

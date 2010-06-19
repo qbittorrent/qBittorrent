@@ -179,6 +179,14 @@ long long misc::freeDiskSpaceOnPath(QString path) {
 }
 
 QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
+  if(t->num_files() == 1) {
+    // Single file torrent
+    // Remove possible subfolders
+    QString path = QString::fromUtf8(t->file_at(0).path.string().c_str());
+    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
+    t->rename_file(0, path_parts.last().toUtf8().data());
+    return QString::null;
+  }
   QString root_folder;
   int i = 0;
   for(torrent_info::file_iterator it = t->begin_files(); it < t->end_files(); it++) {
@@ -194,9 +202,17 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
 }
 
 QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
+  torrent_info t = h.get_torrent_info();
+  if(t.num_files() == 1) {
+    // Single file torrent
+    // Remove possible subfolders
+    QString path = QString::fromUtf8(t.file_at(0).path.string().c_str());
+    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
+    t.rename_file(0, path_parts.last().toUtf8().data());
+    return QString::null;
+  }
   QString root_folder;
   int i = 0;
-  torrent_info t = h.get_torrent_info();
   for(torrent_info::file_iterator it = t.begin_files(); it < t.end_files(); it++) {
     QString path = QString::fromUtf8(it->path.string().c_str());
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
