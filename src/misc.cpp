@@ -186,7 +186,7 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
-      t->rename_file(i, std::string(path_parts.join("/").toUtf8()));
+      t->rename_file(i, path_parts.join("/").toUtf8().data());
     }
     ++i;
   }
@@ -202,7 +202,7 @@ QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
-      h.rename_file(i, std::string(path_parts.join("/").toUtf8()));
+      h.rename_file(i, path_parts.join("/").toUtf8().data());
     }
     ++i;
   }
