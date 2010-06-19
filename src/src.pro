@@ -389,7 +389,8 @@ SOURCES += main.cpp \
              propertieswidget.cpp \
              peerlistwidget.cpp \
              cookiesdlg.cpp \
-             trackerlist.cpp
+             trackerlist.cpp \
+             torrentadditiondlg.cpp
 
   macx {
     SOURCES += qmacapplication.cpp
