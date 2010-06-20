@@ -61,10 +61,8 @@ protected:
 public slots:
   void setRowColor(int row, QColor color);
 
-#if LIBTORRENT_VERSION_MINOR < 15
   void moveSelectionUp();
   void moveSelectionDown();
-#endif
 
   void clear();
   void loadStickyItems(const QTorrentHandle &h);

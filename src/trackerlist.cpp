@@ -94,8 +94,8 @@ void TrackerList::setRowColor(int row, QColor color) {
   }
 }
 
-#if LIBTORRENT_VERSION_MINOR < 15
 void TrackerList::moveSelectionUp() {
+#if LIBTORRENT_VERSION_MINOR < 15
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) {
     clear();
@@ -129,9 +129,11 @@ void TrackerList::moveSelectionUp() {
   h.replace_trackers(trackers);
   // Reannounce
   h.force_reannounce();
+#endif
 }
 
 void TrackerList::moveSelectionDown() {
+#if LIBTORRENT_VERSION_MINOR < 15
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) {
     clear();
@@ -165,8 +167,8 @@ void TrackerList::moveSelectionDown() {
   h.replace_trackers(trackers);
   // Reannounce
   h.force_reannounce();
-}
 #endif
+}
 
 void TrackerList::clear() {
   qDeleteAll(tracker_items.values());
