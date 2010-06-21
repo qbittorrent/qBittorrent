@@ -872,16 +872,13 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
       actions.append(0);
       continue;
     }
-    QIcon icon;
-    if(isColumnHidden(i))
-      icon = QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png"));
-    else
-      icon = QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png"));
-    actions.append(hideshowColumn.addAction(icon, listModel->headerData(i, Qt::Horizontal).toString()));
+    QAction *myAct = hideshowColumn.addAction(listModel->headerData(i, Qt::Horizontal).toString());
+    myAct->setCheckable(true);
+    myAct->setChecked(!isColumnHidden(i));
+    actions.append(myAct);
   }
   // Call menu
-  QAction *act = 0;
-  act = hideshowColumn.exec(QCursor::pos());
+  QAction *act = hideshowColumn.exec(QCursor::pos());
   if(act) {
     int col = actions.indexOf(act);
     Q_ASSERT(col >= 0);
@@ -1015,13 +1012,16 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
 #if LIBTORRENT_VERSION_MINOR > 14
   QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
+  actionSuper_seeding_mode.setCheckable(true);
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
 #endif
   QAction actionRename(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."), 0);
   connect(&actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedTorrent()));
   QAction actionSequential_download(tr("Download in sequential order"), 0);
+  actionSequential_download.setCheckable(true);
   connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
   QAction actionFirstLastPiece_prio(tr("Download first and last piece first"), 0);
+  actionFirstLastPiece_prio.setCheckable(true);
   connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
   // End of actions
   QMenu listMenu(this);
@@ -1114,13 +1114,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addAction(&actionSet_upload_limit);
 #if LIBTORRENT_VERSION_MINOR > 14
   if(!one_not_seed && all_same_super_seeding && one_has_metadata) {
-    QIcon ico;
-    if(super_seeding_mode) {
-      ico = QIcon(":/Icons/oxygen/button_ok.png");
-    } else {
-      ico = QIcon(":/Icons/oxygen/button_cancel.png");
-    }
-    actionSuper_seeding_mode.setIcon(ico);
+    actionSuper_seeding_mode.setChecked(super_seeding_mode);
     listMenu.addAction(&actionSuper_seeding_mode);
   }
 #endif
@@ -1132,24 +1126,12 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   }
   if(one_not_seed && one_has_metadata) {
     if(all_same_sequential_download_mode) {
-      QIcon ico;
-      if(sequential_download_mode) {
-        ico = QIcon(":/Icons/oxygen/button_ok.png");
-      } else {
-        ico = QIcon(":/Icons/oxygen/button_cancel.png");
-      }
-      actionSequential_download.setIcon(ico);
+      actionSequential_download.setChecked(sequential_download_mode);
       listMenu.addAction(&actionSequential_download);
       added_preview_action = true;
     }
     if(all_same_prio_firstlast) {
-      QIcon ico;
-      if(prioritize_first_last) {
-        ico = QIcon(":/Icons/oxygen/button_ok.png");
-      } else {
-        ico = QIcon(":/Icons/oxygen/button_cancel.png");
-      }
-      actionFirstLastPiece_prio.setIcon(ico);
+      actionFirstLastPiece_prio.setChecked(prioritize_first_last);
       listMenu.addAction(&actionFirstLastPiece_prio);
       added_preview_action = true;
     }
