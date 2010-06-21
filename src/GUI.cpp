@@ -556,7 +556,8 @@ void GUI::closeEvent(QCloseEvent *e) {
       if(!isVisible())
         show();
       QMessageBox confirmBox(QMessageBox::Question, tr("Are you sure you want to quit?")+QString::fromUtf8(" -- ")+tr("qBittorrent"),
-                             tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"));
+                             tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
+                             QMessageBox::NoButton, this);
       QPushButton *noBtn = confirmBox.addButton(tr("No"), QMessageBox::NoRole);
       QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
       QPushButton *alwaysBtn = confirmBox.addButton(tr("Always"), QMessageBox::YesRole);
