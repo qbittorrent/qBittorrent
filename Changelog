@@ -1,5 +1,8 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.10
     - BUGFIX: Fix Web UI in qBittorrent nox version
+    - BUGFIX: Improved ETA display (more user friendly)
+    - BUGFIX: Fix possible compilation errors with libtorrent v0.15
+    - BUGFIX: Fix minor issues in torrent creation tool
 
 * Sun Jun 13 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
     - FEATURE: Official support for Win32 platform
