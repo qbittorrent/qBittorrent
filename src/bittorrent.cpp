@@ -521,8 +521,6 @@ void Bittorrent::configureSession() {
     addConsoleMessage(tr("Encryption support [OFF]"), QString::fromUtf8("blue"));
   }
   applyEncryptionSettings(encryptionSettings);
-  // * Desired ratio
-  setGlobalRatio(Preferences::getDesiredRatio());
   // * Maximum ratio
   setDeleteRatio(Preferences::getDeleteRatio());
   // Ip Filter
@@ -1761,26 +1759,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
   void Bittorrent::setUploadRateLimit(long rate) {
     qDebug("set upload_limit to %fkb/s", rate/1024.);
     s->set_upload_rate_limit(rate);
-  }
-
-  // libtorrent allow to adjust ratio for each torrent
-  // This function will apply to same ratio to all torrents
-  void Bittorrent::setGlobalRatio(float ratio) {
-    if(ratio != -1 && ratio < 1.) ratio = 1.;
-    if(ratio == -1) {
-      // 0 means unlimited for libtorrent
-      ratio = 0;
-    }
-    std::vector<torrent_handle> handles = s->get_torrents();
-    std::vector<torrent_handle>::iterator it;
-    for(it = handles.begin(); it != handles.end(); it++) {
-      QTorrentHandle h(*it);
-      if(!h.is_valid()) {
-        qDebug("/!\\ Error: Invalid handle");
-        continue;
-      }
-      h.set_ratio(ratio);
-    }
   }
 
   // Torrents will a ratio superior to the given value will

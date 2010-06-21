@@ -168,7 +168,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(checkMaxConnecs,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimit(bool)));
     connect(checkMaxConnecsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimitPerTorrent(bool)));
     connect(checkMaxUploadsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxUploadsLimitPerTorrent(bool)));
-    connect(checkRatioLimit,  SIGNAL(toggled(bool)), this, SLOT(enableShareRatio(bool)));
     connect(checkRatioRemove,  SIGNAL(toggled(bool)), this, SLOT(enableDeleteRatio(bool)));
     connect(comboPeerID, SIGNAL(currentIndexChanged(int)), this, SLOT(enableSpoofingSettings(int)));
     // Proxy tab
@@ -231,9 +230,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(client_version, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(client_build, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(checkRatioLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkRatioRemove, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(spinRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     connect(spinMaxRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     // Proxy tab
     connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -471,7 +468,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       Preferences::setPeerID("qB");
     }
     settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
-    settings.setValue(QString::fromUtf8("DesiredRatio"), getDesiredRatio());
     settings.setValue(QString::fromUtf8("MaxRatio"), getDeleteRatio());
     // End Bittorrent preferences
     settings.endGroup();
@@ -793,17 +789,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       }
     }
     comboEncryption->setCurrentIndex(Preferences::getEncryptionSetting());
-    floatValue = Preferences::getDesiredRatio();
-    if(floatValue >= 1.) {
-      // Enable
-      checkRatioLimit->setChecked(true);
-      spinRatio->setEnabled(true);
-      spinRatio->setValue(floatValue);
-    } else {
-      // Disable
-      checkRatioLimit->setChecked(false);
-      spinRatio->setEnabled(false);
-    }
+    // Ratio limit
     floatValue = Preferences::getDeleteRatio();
     if(floatValue >= 1.) {
       // Enable
@@ -990,14 +976,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
 
   // Return Share ratio
-  float options_imp::getDesiredRatio() const{
-    if(checkRatioLimit->isChecked()){
-      return spinRatio->value();
-    }
-    return -1;
-  }
-
-  // Return Share ratio
   float options_imp::getDeleteRatio() const{
     if(checkRatioRemove->isChecked()){
       return spinMaxRatio->value();
@@ -1130,10 +1108,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 
   void options_imp::enableApplyButton(){
     applyButton->setEnabled(true);
-  }
-
-  void options_imp::enableShareRatio(bool checked){
-    spinRatio->setEnabled(checked);
   }
 
   void options_imp::enableDeleteRatio(bool checked){

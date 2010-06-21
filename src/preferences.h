@@ -693,11 +693,6 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Bittorrent/Encryption"), val);
   }
 
-  static float getDesiredRatio() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Bittorrent/DesiredRatio"), -1).toDouble();
-  }
-
   static float getDeleteRatio() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/MaxRatio"), -1).toDouble();

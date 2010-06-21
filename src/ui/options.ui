@@ -457,6 +457,9 @@
                  <property name="text">
                   <string>Show splash screen on start up</string>
                  </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -470,6 +473,9 @@
                 <widget class="QCheckBox" name="checkShowSystray">
                  <property name="text">
                   <string>Show qBittorrent icon in notification area</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -1506,7 +1512,7 @@ QGroupBox {
 }</string>
                  </property>
                  <property name="title">
-                  <string>Schedule alternative speed limits</string>
+                  <string>Schedule the use of alternative speed limits</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -1950,60 +1956,6 @@ QGroupBox {
                <string>Share ratio settings</string>
               </property>
               <layout class="QVBoxLayout">
-               <item>
-                <layout class="QHBoxLayout">
-                 <item>
-                  <widget class="QCheckBox" name="checkRatioLimit">
-                   <property name="text">
-                    <string>Desired ratio:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QDoubleSpinBox" name="spinRatio">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <pointsize>8</pointsize>
-                    </font>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignHCenter</set>
-                   </property>
-                   <property name="decimals">
-                    <number>1</number>
-                   </property>
-                   <property name="minimum">
-                    <double>1.000000000000000</double>
-                   </property>
-                   <property name="maximum">
-                    <double>10.000000000000000</double>
-                   </property>
-                   <property name="singleStep">
-                    <double>0.100000000000000</double>
-                   </property>
-                   <property name="value">
-                    <double>1.000000000000000</double>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
                <item>
                 <layout class="QHBoxLayout">
                  <item>
@@ -2895,8 +2847,6 @@ QGroupBox {
   <tabstop>checkNATPMP</tabstop>
   <tabstop>checkLSD</tabstop>
   <tabstop>comboEncryption</tabstop>
-  <tabstop>checkRatioLimit</tabstop>
-  <tabstop>spinRatio</tabstop>
   <tabstop>checkRatioRemove</tabstop>
   <tabstop>spinMaxRatio</tabstop>
   <tabstop>spinWebUiPort</tabstop>
