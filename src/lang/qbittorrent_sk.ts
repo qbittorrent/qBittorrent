@@ -1751,11 +1751,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>&amp;Áno</translation>
+        <translation type="obsolete">&amp;Áno</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation>&amp;Nie</translation>
+        <translation type="obsolete">&amp;Nie</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -2576,7 +2576,7 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -2611,6 +2611,22 @@ Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation
     </message>
     <message>
         <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Áno</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Nie</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Nikdy</translation>
+    </message>
+    <message>
+        <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3100,11 +3116,11 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Ukončiť</translation>
+        <translation type="obsolete">Ukončiť</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Nastavenia</translation>
+        <translation type="obsolete">Nastavenia</translation>
     </message>
     <message>
         <source>About</source>
@@ -3192,7 +3208,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation>Stiahnuť z URL</translation>
+        <translation type="obsolete">Stiahnuť z URL</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3208,7 +3224,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Vytvoriť torrent</translation>
+        <translation type="obsolete">Vytvoriť torrent</translation>
     </message>
     <message>
         <source>Update search plugin</source>
@@ -3244,11 +3260,11 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Nastaviť obmedzenie nahrávania</translation>
+        <translation type="obsolete">Nastaviť obmedzenie nahrávania</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Nastaviť limit sťahovania</translation>
+        <translation type="obsolete">Nastaviť limit sťahovania</translation>
     </message>
     <message>
         <source>Log</source>
@@ -3260,15 +3276,15 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Set global download limit</source>
-        <translation>Nastaviť globálny limit sťahovania</translation>
+        <translation type="obsolete">Nastaviť globálny limit sťahovania</translation>
     </message>
     <message>
         <source>Set global upload limit</source>
-        <translation>Nastaviť globálny limit nahrávania</translation>
+        <translation type="obsolete">Nastaviť globálny limit nahrávania</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Nastavenia</translation>
+        <translation type="obsolete">Nastavenia</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -3280,7 +3296,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Console</source>
-        <translation>Konzola</translation>
+        <translation type="obsolete">Konzola</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -3288,7 +3304,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation>Otvoriť torrent</translation>
+        <translation type="obsolete">Otvoriť torrent</translation>
     </message>
     <message>
         <source>Visit Website</source>
@@ -3297,6 +3313,70 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <message>
         <source>Use alternative speed limits</source>
         <translation>Používať alternatívne rýchlostné obmedzenia</translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;URL...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent &amp;creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Log viewer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top &amp;tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display top tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show transfer speed in title bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3360,15 +3440,15 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation>Pridať nového rovesníka</translation>
+        <translation type="obsolete">Pridať nového rovesníka</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Obmedziť rýchlosť nahrávania</translation>
+        <translation type="obsolete">Obmedziť rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Obmedziť rýchlosť sťahovania</translation>
+        <translation type="obsolete">Obmedziť rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -3414,12 +3494,24 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <source>Download rate limiting</source>
         <translation>Obmedzenie rýchlosti sťahovania</translation>
     </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation>Nastavenia</translation>
+        <translation type="obsolete">Nastavenia</translation>
     </message>
     <message>
         <source>UI</source>
@@ -3443,7 +3535,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation>IP filter</translation>
+        <translation type="obsolete">IP filter</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -3455,7 +3547,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Nastavenia používateľského rozhrania</translation>
+        <translation type="obsolete">Nastavenia používateľského rozhrania</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -3491,19 +3583,19 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>Potvrdenie ukončenia v prípade, že zoznam sťahovaní nie je prázdny</translation>
+        <translation type="obsolete">Potvrdenie ukončenia v prípade, že zoznam sťahovaní nie je prázdny</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation>Zobrazovať horný panel nástrojov</translation>
+        <translation type="obsolete">Zobrazovať horný panel nástrojov</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation>Vypnúť štartovaciu obrazovku</translation>
+        <translation type="obsolete">Vypnúť štartovaciu obrazovku</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation>Zobraziť aktuálnu rýchlosť sťahovania v titulnom pruhu</translation>
+        <translation type="obsolete">Zobraziť aktuálnu rýchlosť sťahovania v titulnom pruhu</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -3525,48 +3617,48 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <message>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Operácia po dvojitom kliknutí:</translation>
+        <translation type="obsolete">Operácia po dvojitom kliknutí:</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation>Sťahuje sa:</translation>
+        <translation type="obsolete">Sťahuje sa:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation>Spustiť/zastaviť</translation>
+        <translation type="obsolete">Spustiť/zastaviť</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation>Otvoriť priečinok</translation>
+        <translation type="obsolete">Otvoriť priečinok</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation>Dokončené: </translation>
+        <translation type="obsolete">Dokončené: </translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation>Ikona v oznamovacej oblasti (systray)</translation>
+        <translation type="obsolete">Ikona v oznamovacej oblasti (systray)</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation>Vypnúť ikonu v oznamovacej oblasti</translation>
+        <translation type="obsolete">Vypnúť ikonu v oznamovacej oblasti</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Zatvoriť do oznamovacej oblasti</translation>
+        <translation type="obsolete">Zatvoriť do oznamovacej oblasti</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation>Minimalizovať do oznamovacej oblasti</translation>
+        <translation type="obsolete">Minimalizovať do oznamovacej oblasti</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Spustiť minimalizované</translation>
+        <translation type="obsolete">Spustiť minimalizované</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation>Zobrazovať bublinové upozornenia v oblasti upozornení</translation>
+        <translation type="obsolete">Zobrazovať bublinové upozornenia v oblasti upozornení</translation>
     </message>
     <message>
         <source>File system</source>
@@ -3580,7 +3672,7 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation>QGroupBox::title {
+        <translation type="obsolete">QGroupBox::title {
 font-weight: normal;
 margin-left: -3px;
 }
@@ -3590,21 +3682,21 @@ QGroupBox {
     </message>
     <message>
         <source>Destination Folder:</source>
-        <translation>Cieľový priečinok:</translation>
+        <translation type="obsolete">Cieľový priečinok:</translation>
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation>Pridať označenie torrentu</translation>
+        <translation type="obsolete">Pridať označenie torrentu</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation>Používať odlišný priečinok pre nedokončené sťahovania:</translation>
+        <translation type="obsolete">Používať odlišný priečinok pre nedokončené sťahovania:</translation>
     </message>
     <message>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation>QLineEdit {
+        <translation type="obsolete">QLineEdit {
   margin-left: 23px;
 }</translation>
     </message>
@@ -3614,11 +3706,11 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Pridávať nedosťahovaným súborom príponu.!qB</translation>
+        <translation type="obsolete">Pridávať nedosťahovaným súborom príponu.!qB</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation>Dopredu alokovať všetky súbory</translation>
+        <translation type="obsolete">Dopredu alokovať všetky súbory</translation>
     </message>
     <message>
         <source>Disk cache:</source>
@@ -3634,7 +3726,7 @@ QGroupBox {
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation>Zapnúť systém frontu</translation>
+        <translation type="obsolete">Zapnúť systém frontu</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -3659,7 +3751,7 @@ QGroupBox {
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Nezačínať sťahovanie automaticky</translation>
+        <translation type="obsolete">Nezačínať sťahovanie automaticky</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -3751,7 +3843,7 @@ QGroupBox {
     </message>
     <message>
         <source>Encryption:</source>
-        <translation>Šifrovanie:</translation>
+        <translation type="obsolete">Šifrovanie:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -3771,7 +3863,7 @@ QGroupBox {
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation>Požadovaný pomer:</translation>
+        <translation type="obsolete">Požadovaný pomer:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
@@ -3811,15 +3903,15 @@ QGroupBox {
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation>Nastavenie filtra</translation>
+        <translation type="obsolete">Nastavenie filtra</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation>Aktivovať filtrovanie IP</translation>
+        <translation type="obsolete">Aktivovať filtrovanie IP</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation>Zapnúť webové rozhranie</translation>
+        <translation type="obsolete">Zapnúť webové rozhranie</translation>
     </message>
     <message>
         <source>HTTP Server</source>
@@ -3827,11 +3919,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation>Zapnúť podporu RSS</translation>
+        <translation type="obsolete">Zapnúť podporu RSS</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation>Nastavenia RSS</translation>
+        <translation type="obsolete">Nastavenia RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
@@ -3916,7 +4008,7 @@ QGroupBox {
     </message>
     <message>
         <source>Scheduled times:</source>
-        <translation>Naplánované časy:</translation>
+        <translation type="obsolete">Naplánované časy:</translation>
     </message>
     <message>
         <source>to</source>
@@ -3925,7 +4017,7 @@ QGroupBox {
     </message>
     <message>
         <source>On days:</source>
-        <translation>V dňoch:</translation>
+        <translation type="obsolete">V dňoch:</translation>
     </message>
     <message>
         <source>Every day</source>
@@ -3949,22 +4041,137 @@ QGroupBox {
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation>Kontrolovať .torrent súbory v priečinkoch:</translation>
+        <translation type="obsolete">Kontrolovať .torrent súbory v priečinkoch:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation>Pridať priečinok ...</translation>
+        <translation type="obsolete">Pridať priečinok ...</translation>
     </message>
     <message>
         <source>Remove folder</source>
         <translation>Odstrániť priečinok</translation>
     </message>
     <message>
-        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No action</source>
+        <source>Options</source>
+        <translation type="unfinished">Nastavenia</translation>
+    </message>
+    <message>
+        <source>Visual Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double-click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Otvoriť cieľový priečinok</translation>
+    </message>
+    <message>
+        <source>Completed torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show qBittorrent icon in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the label of the torrent to the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files&apos; names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>from</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4344,7 +4551,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation>Sťahovanie RSS kanálov</translation>
+        <translation type="obsolete">Sťahovanie RSS kanálov</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -4373,7 +4580,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New folder</source>
-        <translation>Nový priečinok</translation>
+        <translation type="obsolete">Nový priečinok</translation>
     </message>
     <message>
         <source>1</source>
@@ -4393,7 +4600,23 @@ p, li { white-space: pre-wrap; }
         <translation>Názov článku</translation>
     </message>
     <message>
-        <source>Manage cookies</source>
+        <source>Rename...</source>
+        <translation type="unfinished">Premenovať...</translation>
+    </message>
+    <message>
+        <source>New subscription...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed downloader...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4919,7 +5142,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation>Pridať nový tracker</translation>
+        <translation type="obsolete">Pridať nový tracker</translation>
     </message>
     <message>
         <source>[PeX]</source>
@@ -4928,6 +5151,10 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>[LSD]</source>
         <translation>[LSD]</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5050,7 +5277,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Add label</source>
-        <translation>Pridať označenie</translation>
+        <translation type="obsolete">Pridať označenie</translation>
     </message>
     <message>
         <source>New Label</source>
@@ -5071,6 +5298,10 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Paused</source>
         <translation type="unfinished">Pozastavený</translation>
+    </message>
+    <message>
+        <source>Add label...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5120,7 +5351,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Náhľad súboru</translation>
+        <translation type="obsolete">Náhľad súboru</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -5213,11 +5444,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Obmedziť rýchlosť nahrávania</translation>
+        <translation type="obsolete">Obmedziť rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Obmedziť rýchlosť sťahovania</translation>
+        <translation type="obsolete">Obmedziť rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -5307,6 +5538,18 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Set location...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5743,7 +5986,15 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation>Zmazať aj súbory na pevnom disku</translation>
+        <translation type="obsolete">Zmazať aj súbory na pevnom disku</translation>
+    </message>
+    <message>
+        <source>Remember choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also delete the files on the hard disk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6547,12 +6798,22 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1h%2m</translation>
+        <translation type="obsolete">%1h%2m</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1d%2h%3m</translation>
+        <translation type="obsolete">%1d%2h%3m</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

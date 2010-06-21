@@ -1347,11 +1347,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>&amp;Ja</translation>
+        <translation type="obsolete">&amp;Ja</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation>&amp;Nej</translation>
+        <translation type="obsolete">&amp;Nej</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -1633,7 +1633,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -1668,6 +1668,22 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Ja</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Nej</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Aldrig</translation>
+    </message>
+    <message>
+        <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2113,11 +2129,11 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Avsluta</translation>
+        <translation type="obsolete">Avsluta</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Inställningar</translation>
+        <translation type="obsolete">Inställningar</translation>
     </message>
     <message>
         <source>About</source>
@@ -2149,11 +2165,11 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation>Hämta från url</translation>
+        <translation type="obsolete">Hämta från url</translation>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Skapa torrent</translation>
+        <translation type="obsolete">Skapa torrent</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -2177,11 +2193,11 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Ställ in sändningsgräns</translation>
+        <translation type="obsolete">Ställ in sändningsgräns</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Ställ in hämtningsgräns</translation>
+        <translation type="obsolete">Ställ in hämtningsgräns</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -2189,15 +2205,15 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Set global download limit</source>
-        <translation>Ställ in allmän hämtningsgräns</translation>
+        <translation type="obsolete">Ställ in allmän hämtningsgräns</translation>
     </message>
     <message>
         <source>Set global upload limit</source>
-        <translation>Ställ in allmän sändningsgräns</translation>
+        <translation type="obsolete">Ställ in allmän sändningsgräns</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Inställningar</translation>
+        <translation type="obsolete">Inställningar</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -2209,7 +2225,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Console</source>
-        <translation>Konsoll</translation>
+        <translation type="obsolete">Konsoll</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -2217,7 +2233,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation>Öppna torrent-fil</translation>
+        <translation type="obsolete">Öppna torrent-fil</translation>
     </message>
     <message>
         <source>Visit Website</source>
@@ -2226,6 +2242,70 @@ Detta meddelande kommer inte att visas igen.</translation>
     <message>
         <source>Use alternative speed limits</source>
         <translation>Använd alternativa hastighetsgränser</translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;URL...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent &amp;creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Log viewer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top &amp;tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display top tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show transfer speed in title bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2289,15 +2369,15 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation>Lägg till en ny klient</translation>
+        <translation type="obsolete">Lägg till en ny klient</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Begränsa sändningsfrekvens</translation>
+        <translation type="obsolete">Begränsa sändningsfrekvens</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Begränsa hämtningsfrekvens</translation>
+        <translation type="obsolete">Begränsa hämtningsfrekvens</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -2343,12 +2423,24 @@ Detta meddelande kommer inte att visas igen.</translation>
         <source>Download rate limiting</source>
         <translation>Begränsar hämtningsfrekvens</translation>
     </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation>Inställningar</translation>
+        <translation type="obsolete">Inställningar</translation>
     </message>
     <message>
         <source>UI</source>
@@ -2372,7 +2464,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation>IP-filter</translation>
+        <translation type="obsolete">IP-filter</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2384,7 +2476,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Användargränssnitt</translation>
+        <translation type="obsolete">Användargränssnitt</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -2420,19 +2512,19 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>Fråga efter bekräftelse vid avslut när hämtningslistan inte är tom</translation>
+        <translation type="obsolete">Fråga efter bekräftelse vid avslut när hämtningslistan inte är tom</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation>Visa övre verktygsrad</translation>
+        <translation type="obsolete">Visa övre verktygsrad</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation>Inaktivera startskärmen</translation>
+        <translation type="obsolete">Inaktivera startskärmen</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation>Visa aktuell hastighet i titellisten</translation>
+        <translation type="obsolete">Visa aktuell hastighet i titellisten</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2454,48 +2546,48 @@ Detta meddelande kommer inte att visas igen.</translation>
     <message>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Åtgärd vid dubbelklick:</translation>
+        <translation type="obsolete">Åtgärd vid dubbelklick:</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation>Hämtar:</translation>
+        <translation type="obsolete">Hämtar:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation>Starta/Stoppa</translation>
+        <translation type="obsolete">Starta/Stoppa</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation>Öppna mapp</translation>
+        <translation type="obsolete">Öppna mapp</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation>Färdig:</translation>
+        <translation type="obsolete">Färdig:</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation>Ikon i systembricka</translation>
+        <translation type="obsolete">Ikon i systembricka</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation>Inaktivera ikon i systembricka</translation>
+        <translation type="obsolete">Inaktivera ikon i systembricka</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Stäng till bricka</translation>
+        <translation type="obsolete">Stäng till bricka</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation>Minimera till bricka</translation>
+        <translation type="obsolete">Minimera till bricka</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Starta minimerad</translation>
+        <translation type="obsolete">Starta minimerad</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation>Visa notifieringsballonger i bricka</translation>
+        <translation type="obsolete">Visa notifieringsballonger i bricka</translation>
     </message>
     <message>
         <source>File system</source>
@@ -2509,7 +2601,7 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation>QGroupBox::title {
+        <translation type="obsolete">QGroupBox::title {
 font-weight: normal;
 margin-left: -3px;
 }
@@ -2519,21 +2611,21 @@ QGroupBox {
     </message>
     <message>
         <source>Destination Folder:</source>
-        <translation>Målmapp:</translation>
+        <translation type="obsolete">Målmapp:</translation>
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation>Lägg till i torrentens etikett</translation>
+        <translation type="obsolete">Lägg till i torrentens etikett</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation>Använd en annan mapp för ofärdiga hämtningar:</translation>
+        <translation type="obsolete">Använd en annan mapp för ofärdiga hämtningar:</translation>
     </message>
     <message>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation>QLineEdit {
+        <translation type="obsolete">QLineEdit {
   margin-left: 23px;
 }</translation>
     </message>
@@ -2543,11 +2635,11 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Lägg till filändelsen .!qB till ofärdiga filer</translation>
+        <translation type="obsolete">Lägg till filändelsen .!qB till ofärdiga filer</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation>Förallokera alla filer</translation>
+        <translation type="obsolete">Förallokera alla filer</translation>
     </message>
     <message>
         <source>Disk cache:</source>
@@ -2563,7 +2655,7 @@ QGroupBox {
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation>Aktivera kösystem</translation>
+        <translation type="obsolete">Aktivera kösystem</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -2588,7 +2680,7 @@ QGroupBox {
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Starta in hämtningen automatiskt</translation>
+        <translation type="obsolete">Starta in hämtningen automatiskt</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -2680,7 +2772,7 @@ QGroupBox {
     </message>
     <message>
         <source>Encryption:</source>
-        <translation>Kryptering:</translation>
+        <translation type="obsolete">Kryptering:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -2700,7 +2792,7 @@ QGroupBox {
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation>Önskat förhållande:</translation>
+        <translation type="obsolete">Önskat förhållande:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
@@ -2740,15 +2832,15 @@ QGroupBox {
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation>Filterinställningar</translation>
+        <translation type="obsolete">Filterinställningar</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation>Aktivera IP-filtrering</translation>
+        <translation type="obsolete">Aktivera IP-filtrering</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation>Aktivera webbgränssnitt</translation>
+        <translation type="obsolete">Aktivera webbgränssnitt</translation>
     </message>
     <message>
         <source>HTTP Server</source>
@@ -2756,11 +2848,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation>Aktivera RSS-stöd</translation>
+        <translation type="obsolete">Aktivera RSS-stöd</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation>RSS-inställningar</translation>
+        <translation type="obsolete">RSS-inställningar</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
@@ -2845,7 +2937,7 @@ QGroupBox {
     </message>
     <message>
         <source>Scheduled times:</source>
-        <translation>Schemalagda tider:</translation>
+        <translation type="obsolete">Schemalagda tider:</translation>
     </message>
     <message>
         <source>to</source>
@@ -2854,7 +2946,7 @@ QGroupBox {
     </message>
     <message>
         <source>On days:</source>
-        <translation>Olika dagar:</translation>
+        <translation type="obsolete">Olika dagar:</translation>
     </message>
     <message>
         <source>Every day</source>
@@ -2878,22 +2970,137 @@ QGroupBox {
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation>Leta i mappar efter .torrent-filer:</translation>
+        <translation type="obsolete">Leta i mappar efter .torrent-filer:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation>Lägg till mapp ...</translation>
+        <translation type="obsolete">Lägg till mapp ...</translation>
     </message>
     <message>
         <source>Remove folder</source>
         <translation>Ta bort mapp</translation>
     </message>
     <message>
-        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No action</source>
+        <source>Options</source>
+        <translation type="unfinished">Inställningar</translation>
+    </message>
+    <message>
+        <source>Visual Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double-click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Öppna målmapp</translation>
+    </message>
+    <message>
+        <source>Completed torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show qBittorrent icon in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the label of the torrent to the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files&apos; names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>from</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3266,7 +3473,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation>Hämta RSS-kanal</translation>
+        <translation type="obsolete">Hämta RSS-kanal</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -3294,7 +3501,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New folder</source>
-        <translation>Ny mapp</translation>
+        <translation type="obsolete">Ny mapp</translation>
     </message>
     <message>
         <source>1</source>
@@ -3313,7 +3520,23 @@ p, li { white-space: pre-wrap; }
         <translation>Artikelns titel</translation>
     </message>
     <message>
-        <source>Manage cookies</source>
+        <source>Rename...</source>
+        <translation type="unfinished">Byt namn...</translation>
+    </message>
+    <message>
+        <source>New subscription...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed downloader...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3758,7 +3981,7 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation>Lägg till en ny bevakare</translation>
+        <translation type="obsolete">Lägg till en ny bevakare</translation>
     </message>
     <message>
         <source>[PeX]</source>
@@ -3767,6 +3990,10 @@ Vill du installera den nu?</translation>
     <message>
         <source>[LSD]</source>
         <translation>[LSD]</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3889,7 +4116,7 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Add label</source>
-        <translation>Lägg till etikett</translation>
+        <translation type="obsolete">Lägg till etikett</translation>
     </message>
     <message>
         <source>New Label</source>
@@ -3910,6 +4137,10 @@ Vill du installera den nu?</translation>
     <message>
         <source>Paused</source>
         <translation type="unfinished">Pausad</translation>
+    </message>
+    <message>
+        <source>Add label...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3979,7 +4210,7 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Förhandsvisa fil</translation>
+        <translation type="obsolete">Förhandsvisa fil</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -4072,11 +4303,11 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Begränsa sändningsfrekvens</translation>
+        <translation type="obsolete">Begränsa sändningsfrekvens</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Begränsa hämtningsfrekvens</translation>
+        <translation type="obsolete">Begränsa hämtningsfrekvens</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -4166,6 +4397,18 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Set location...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4519,7 +4762,15 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation>Ta även bort filerna från hårddisken</translation>
+        <translation type="obsolete">Ta även bort filerna från hårddisken</translation>
+    </message>
+    <message>
+        <source>Remember choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also delete the files on the hard disk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5123,16 +5374,26 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1h %2min</translation>
+        <translation type="obsolete">%1h %2min</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1d %2h %3min</translation>
+        <translation type="obsolete">%1d %2h %3min</translation>
     </message>
     <message>
         <source>Unknown</source>
         <translation>Okänt</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

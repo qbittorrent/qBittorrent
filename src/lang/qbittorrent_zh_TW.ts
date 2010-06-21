@@ -1409,11 +1409,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>是(&amp;Y)</translation>
+        <translation type="obsolete">是(&amp;Y)</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation>否(&amp;N)</translation>
+        <translation type="obsolete">否(&amp;N)</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -1728,7 +1728,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -1763,6 +1763,22 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">是</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">從不</translation>
+    </message>
+    <message>
+        <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2208,11 +2224,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation>離開</translation>
+        <translation type="obsolete">離開</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>偏好設定</translation>
+        <translation type="obsolete">偏好設定</translation>
     </message>
     <message>
         <source>About</source>
@@ -2244,11 +2260,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation>從 URL 下載</translation>
+        <translation type="obsolete">從 URL 下載</translation>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>建立 torrent</translation>
+        <translation type="obsolete">建立 torrent</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -2272,11 +2288,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>設定上傳限制</translation>
+        <translation type="obsolete">設定上傳限制</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>設定下載限制</translation>
+        <translation type="obsolete">設定下載限制</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -2284,15 +2300,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Set global download limit</source>
-        <translation>設定全域下載限制</translation>
+        <translation type="obsolete">設定全域下載限制</translation>
     </message>
     <message>
         <source>Set global upload limit</source>
-        <translation>設定全域上傳限制</translation>
+        <translation type="obsolete">設定全域上傳限制</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>選項</translation>
+        <translation type="obsolete">選項</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -2304,7 +2320,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Console</source>
-        <translation>終端機</translation>
+        <translation type="obsolete">終端機</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -2312,7 +2328,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation>開啟 torrent</translation>
+        <translation type="obsolete">開啟 torrent</translation>
     </message>
     <message>
         <source>Visit Website</source>
@@ -2321,6 +2337,70 @@ No further notices will be issued.</source>
     <message>
         <source>Use alternative speed limits</source>
         <translation>使用另外的速度限制</translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;URL...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent &amp;creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Log viewer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top &amp;tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display top tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show transfer speed in title bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2384,15 +2464,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation>增加新下載者</translation>
+        <translation type="obsolete">增加新下載者</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>限制上傳速度</translation>
+        <translation type="obsolete">限制上傳速度</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>限制下載速度</translation>
+        <translation type="obsolete">限制下載速度</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -2438,12 +2518,24 @@ No further notices will be issued.</source>
         <source>Download rate limiting</source>
         <translation>下載速度限制</translation>
     </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation>偏好設定</translation>
+        <translation type="obsolete">偏好設定</translation>
     </message>
     <message>
         <source>UI</source>
@@ -2467,7 +2559,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation>IP 過濾</translation>
+        <translation type="obsolete">IP 過濾</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2479,7 +2571,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>User interface</source>
-        <translation>使用者介面設定</translation>
+        <translation type="obsolete">使用者介面設定</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -2515,19 +2607,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>下載清單不是空的時候離開程式需確認</translation>
+        <translation type="obsolete">下載清單不是空的時候離開程式需確認</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation>顯示最上方的工具列</translation>
+        <translation type="obsolete">顯示最上方的工具列</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation>停用啟始畫面</translation>
+        <translation type="obsolete">停用啟始畫面</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation>在標題列顯示目前的速度</translation>
+        <translation type="obsolete">在標題列顯示目前的速度</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2549,48 +2641,48 @@ No further notices will be issued.</source>
     <message>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>雙擊時的行動:</translation>
+        <translation type="obsolete">雙擊時的行動:</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation>下載中:</translation>
+        <translation type="obsolete">下載中:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation>開始/停止</translation>
+        <translation type="obsolete">開始/停止</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation>開啟資料夾</translation>
+        <translation type="obsolete">開啟資料夾</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation>已完成:</translation>
+        <translation type="obsolete">已完成:</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation>系統列圖示</translation>
+        <translation type="obsolete">系統列圖示</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation>停用系統列圖示</translation>
+        <translation type="obsolete">停用系統列圖示</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>關閉到系統列</translation>
+        <translation type="obsolete">關閉到系統列</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation>最小化到系統列</translation>
+        <translation type="obsolete">最小化到系統列</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>啟動時最小化</translation>
+        <translation type="obsolete">啟動時最小化</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation>在系統列顯示通知氣球</translation>
+        <translation type="obsolete">在系統列顯示通知氣球</translation>
     </message>
     <message>
         <source>File system</source>
@@ -2604,7 +2696,7 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation>QGroupBox::title {
+        <translation type="obsolete">QGroupBox::title {
 font-weight: normal;
 margin-left: -3px;
 }
@@ -2614,21 +2706,21 @@ QGroupBox {
     </message>
     <message>
         <source>Destination Folder:</source>
-        <translation>目的地資料夾:</translation>
+        <translation type="obsolete">目的地資料夾:</translation>
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation>附加 torrent 標籤</translation>
+        <translation type="obsolete">附加 torrent 標籤</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation>未完成的下載使用另一個資料夾:</translation>
+        <translation type="obsolete">未完成的下載使用另一個資料夾:</translation>
     </message>
     <message>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation>QLineEdit {
+        <translation type="obsolete">QLineEdit {
   margin-left: 23px;
 }</translation>
     </message>
@@ -2638,11 +2730,11 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>在未完成檔案加上 .!qB 副檔名</translation>
+        <translation type="obsolete">在未完成檔案加上 .!qB 副檔名</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation>事先分配所有檔案</translation>
+        <translation type="obsolete">事先分配所有檔案</translation>
     </message>
     <message>
         <source>Disk cache:</source>
@@ -2658,7 +2750,7 @@ QGroupBox {
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation>啟用排程系統</translation>
+        <translation type="obsolete">啟用排程系統</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -2683,7 +2775,7 @@ QGroupBox {
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>不要自動開始下載</translation>
+        <translation type="obsolete">不要自動開始下載</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -2775,7 +2867,7 @@ QGroupBox {
     </message>
     <message>
         <source>Encryption:</source>
-        <translation>加密:</translation>
+        <translation type="obsolete">加密:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -2795,7 +2887,7 @@ QGroupBox {
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation>希望的分享率:</translation>
+        <translation type="obsolete">希望的分享率:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
@@ -2835,15 +2927,15 @@ QGroupBox {
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation>過濾器設定</translation>
+        <translation type="obsolete">過濾器設定</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation>啟用 IP 過濾</translation>
+        <translation type="obsolete">啟用 IP 過濾</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation>啟用 Web UI</translation>
+        <translation type="obsolete">啟用 Web UI</translation>
     </message>
     <message>
         <source>HTTP Server</source>
@@ -2851,11 +2943,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation>啟用 RSS 支援</translation>
+        <translation type="obsolete">啟用 RSS 支援</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation>RSS 設定</translation>
+        <translation type="obsolete">RSS 設定</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
@@ -2940,7 +3032,7 @@ QGroupBox {
     </message>
     <message>
         <source>Scheduled times:</source>
-        <translation>排程的時間:</translation>
+        <translation type="obsolete">排程的時間:</translation>
     </message>
     <message>
         <source>to</source>
@@ -2949,7 +3041,7 @@ QGroupBox {
     </message>
     <message>
         <source>On days:</source>
-        <translation>在哪幾天:</translation>
+        <translation type="obsolete">在哪幾天:</translation>
     </message>
     <message>
         <source>Every day</source>
@@ -2973,22 +3065,137 @@ QGroupBox {
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation>檢查資料夾裡的 torrent 檔案:</translation>
+        <translation type="obsolete">檢查資料夾裡的 torrent 檔案:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation>增加資料夾...</translation>
+        <translation type="obsolete">增加資料夾...</translation>
     </message>
     <message>
         <source>Remove folder</source>
         <translation>移除資料夾</translation>
     </message>
     <message>
-        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No action</source>
+        <source>Options</source>
+        <translation type="unfinished">選項</translation>
+    </message>
+    <message>
+        <source>Visual Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double-click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">開啟目的地資料夾</translation>
+    </message>
+    <message>
+        <source>Completed torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show qBittorrent icon in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the label of the torrent to the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files&apos; names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>from</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3365,7 +3572,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation>RSS feed 下載器</translation>
+        <translation type="obsolete">RSS feed 下載器</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -3393,7 +3600,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New folder</source>
-        <translation>新資料夾</translation>
+        <translation type="obsolete">新資料夾</translation>
     </message>
     <message>
         <source>1</source>
@@ -3412,7 +3619,23 @@ p, li { white-space: pre-wrap; }
         <translation>文章標題</translation>
     </message>
     <message>
-        <source>Manage cookies</source>
+        <source>Rename...</source>
+        <translation type="unfinished">重新命名...</translation>
+    </message>
+    <message>
+        <source>New subscription...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed downloader...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3857,7 +4080,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation>增加新 tracker</translation>
+        <translation type="obsolete">增加新 tracker</translation>
     </message>
     <message>
         <source>[PeX]</source>
@@ -3866,6 +4089,10 @@ Do you want to install it now?</source>
     <message>
         <source>[LSD]</source>
         <translation>[LSD]</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3988,7 +4215,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add label</source>
-        <translation>增加標籤</translation>
+        <translation type="obsolete">增加標籤</translation>
     </message>
     <message>
         <source>New Label</source>
@@ -4009,6 +4236,10 @@ Do you want to install it now?</source>
     <message>
         <source>Paused</source>
         <translation type="unfinished">暫停</translation>
+    </message>
+    <message>
+        <source>Add label...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4078,7 +4309,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>預覽檔案</translation>
+        <translation type="obsolete">預覽檔案</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -4171,11 +4402,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>限制上傳速度</translation>
+        <translation type="obsolete">限制上傳速度</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>限制下載速度</translation>
+        <translation type="obsolete">限制下載速度</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -4265,6 +4496,18 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Set location...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4618,7 +4861,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation>也把硬碟裡的檔案刪除</translation>
+        <translation type="obsolete">也把硬碟裡的檔案刪除</translation>
+    </message>
+    <message>
+        <source>Remember choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also delete the files on the hard disk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5234,16 +5485,26 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 小時 %2 分鐘</translation>
+        <translation type="obsolete">%1 小時 %2 分鐘</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1 天 %2 小時 %3 分鐘</translation>
+        <translation type="obsolete">%1 天 %2 小時 %3 分鐘</translation>
     </message>
     <message>
         <source>Unknown</source>
         <translation>未知</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

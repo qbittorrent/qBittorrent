@@ -1755,11 +1755,11 @@ ex.: Quantidade total de dados transferidos</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>&amp;Sim</translation>
+        <translation type="obsolete">&amp;Sim</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation>&amp;Não</translation>
+        <translation type="obsolete">&amp;Não</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -2550,7 +2550,7 @@ Está certo que quer sair do qBittorrent?</translation>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -2585,6 +2585,22 @@ Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</t
     </message>
     <message>
         <source>Transfers (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Sim</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Não</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Nunca</translation>
+    </message>
+    <message>
+        <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3074,11 +3090,11 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Sair</translation>
+        <translation type="obsolete">Sair</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Preferências</translation>
+        <translation type="obsolete">Preferências</translation>
     </message>
     <message>
         <source>About</source>
@@ -3166,7 +3182,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation>Baixar da URL</translation>
+        <translation type="obsolete">Baixar da URL</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3182,7 +3198,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Criar torrent</translation>
+        <translation type="obsolete">Criar torrent</translation>
     </message>
     <message>
         <source>Ratio: </source>
@@ -3222,11 +3238,11 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Setar limite de upload</translation>
+        <translation type="obsolete">Setar limite de upload</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Setar limite de download</translation>
+        <translation type="obsolete">Setar limite de download</translation>
     </message>
     <message>
         <source>Log</source>
@@ -3238,15 +3254,15 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Set global download limit</source>
-        <translation>Setar limite global de download</translation>
+        <translation type="obsolete">Setar limite global de download</translation>
     </message>
     <message>
         <source>Set global upload limit</source>
-        <translation>Setar limite global de upload</translation>
+        <translation type="obsolete">Setar limite global de upload</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Opções</translation>
+        <translation type="obsolete">Opções</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -3258,7 +3274,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Console</source>
-        <translation>Console</translation>
+        <translation type="obsolete">Console</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -3266,7 +3282,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation>Abrir torrent</translation>
+        <translation type="obsolete">Abrir torrent</translation>
     </message>
     <message>
         <source>Visit Website</source>
@@ -3275,6 +3291,70 @@ Nenhum outro aviso será dado.</translation>
     <message>
         <source>Use alternative speed limits</source>
         <translation>Usar limite de velocidade alternativo</translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;URL...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent &amp;creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Log viewer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top &amp;tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display top tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show transfer speed in title bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3338,15 +3418,15 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation>Adicionar uma nova fonte</translation>
+        <translation type="obsolete">Adicionar uma nova fonte</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Taxa limite de upload</translation>
+        <translation type="obsolete">Taxa limite de upload</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Taxa limite de download</translation>
+        <translation type="obsolete">Taxa limite de download</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -3392,12 +3472,24 @@ Nenhum outro aviso será dado.</translation>
         <source>Download rate limiting</source>
         <translation>Limitando taxa de download</translation>
     </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation>Preferências</translation>
+        <translation type="obsolete">Preferências</translation>
     </message>
     <message>
         <source>UI</source>
@@ -3421,7 +3513,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation>Filtro IP</translation>
+        <translation type="obsolete">Filtro IP</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -3433,7 +3525,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Interface de usuário</translation>
+        <translation type="obsolete">Interface de usuário</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -3469,19 +3561,19 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>Pedir confirmação para sair quando lista de download não está vazia</translation>
+        <translation type="obsolete">Pedir confirmação para sair quando lista de download não está vazia</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation>Exibir toolbar do topo</translation>
+        <translation type="obsolete">Exibir toolbar do topo</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation>Desabilitar tela de início</translation>
+        <translation type="obsolete">Desabilitar tela de início</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation>Exibir velocidade atual na barra de título</translation>
+        <translation type="obsolete">Exibir velocidade atual na barra de título</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -3503,48 +3595,48 @@ Nenhum outro aviso será dado.</translation>
     <message>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Ação do duplo clique:</translation>
+        <translation type="obsolete">Ação do duplo clique:</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation>Baixando:</translation>
+        <translation type="obsolete">Baixando:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation>Inicia/Para</translation>
+        <translation type="obsolete">Inicia/Para</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation>Abrir pasta</translation>
+        <translation type="obsolete">Abrir pasta</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation>Completado:</translation>
+        <translation type="obsolete">Completado:</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation>Ícone da bandeja do sistema</translation>
+        <translation type="obsolete">Ícone da bandeja do sistema</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation>Desabilitar ícone da barra de sistema</translation>
+        <translation type="obsolete">Desabilitar ícone da barra de sistema</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Fechar para bandeja</translation>
+        <translation type="obsolete">Fechar para bandeja</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation>Minimizar para bandeja</translation>
+        <translation type="obsolete">Minimizar para bandeja</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Iniciar minimizado</translation>
+        <translation type="obsolete">Iniciar minimizado</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation>Mostrar balões de notificação na bandeja</translation>
+        <translation type="obsolete">Mostrar balões de notificação na bandeja</translation>
     </message>
     <message>
         <source>File system</source>
@@ -3558,7 +3650,7 @@ margin-left: -3px;
 QGroupBox {
   border-width: 0;
 }</source>
-        <translation>QGroupBox::title {
+        <translation type="obsolete">QGroupBox::title {
 font-weight: normal;
 margin-left: -3px;
 }
@@ -3568,21 +3660,21 @@ QGroupBox {
     </message>
     <message>
         <source>Destination Folder:</source>
-        <translation>Pasta de destino:</translation>
+        <translation type="obsolete">Pasta de destino:</translation>
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation>Colocar marcas torrent&apos;s</translation>
+        <translation type="obsolete">Colocar marcas torrent&apos;s</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation>Use uma pasta diferente para downloads incompletos:</translation>
+        <translation type="obsolete">Use uma pasta diferente para downloads incompletos:</translation>
     </message>
     <message>
         <source>QLineEdit {
   margin-left: 23px;
 }</source>
-        <translation>QLineEdit{
+        <translation type="obsolete">QLineEdit{
   margin-left: 23px;
 }</translation>
     </message>
@@ -3592,11 +3684,11 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Colocar extensão .!qB para arquivos incompletos</translation>
+        <translation type="obsolete">Colocar extensão .!qB para arquivos incompletos</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation>Pre-alocar todos os arquivos</translation>
+        <translation type="obsolete">Pre-alocar todos os arquivos</translation>
     </message>
     <message>
         <source>Disk cache:</source>
@@ -3612,7 +3704,7 @@ QGroupBox {
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation>Habilitar sistema de espera</translation>
+        <translation type="obsolete">Habilitar sistema de espera</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -3637,7 +3729,7 @@ QGroupBox {
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Não iniciar download automáticamente</translation>
+        <translation type="obsolete">Não iniciar download automáticamente</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -3729,7 +3821,7 @@ QGroupBox {
     </message>
     <message>
         <source>Encryption:</source>
-        <translation>Encriptação:</translation>
+        <translation type="obsolete">Encriptação:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -3749,7 +3841,7 @@ QGroupBox {
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation>Taxa designada:</translation>
+        <translation type="obsolete">Taxa designada:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
@@ -3789,15 +3881,15 @@ QGroupBox {
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation>Configurações de Filtro</translation>
+        <translation type="obsolete">Configurações de Filtro</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation>Ativar filtro de IP</translation>
+        <translation type="obsolete">Ativar filtro de IP</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation>Habilitar interface de usuário web</translation>
+        <translation type="obsolete">Habilitar interface de usuário web</translation>
     </message>
     <message>
         <source>HTTP Server</source>
@@ -3805,11 +3897,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation>Habilitar suporte RSS</translation>
+        <translation type="obsolete">Habilitar suporte RSS</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation>Configurações RSS</translation>
+        <translation type="obsolete">Configurações RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
@@ -3894,7 +3986,7 @@ QGroupBox {
     </message>
     <message>
         <source>Scheduled times:</source>
-        <translation>Horários programados:</translation>
+        <translation type="obsolete">Horários programados:</translation>
     </message>
     <message>
         <source>to</source>
@@ -3903,7 +3995,7 @@ QGroupBox {
     </message>
     <message>
         <source>On days:</source>
-        <translation>Nos dias:</translation>
+        <translation type="obsolete">Nos dias:</translation>
     </message>
     <message>
         <source>Every day</source>
@@ -3927,22 +4019,137 @@ QGroupBox {
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation>Buscar nas pastas por arquivos .torrent:</translation>
+        <translation type="obsolete">Buscar nas pastas por arquivos .torrent:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation>Adicionar pasta ...</translation>
+        <translation type="obsolete">Adicionar pasta ...</translation>
     </message>
     <message>
         <source>Remove folder</source>
         <translation>Remover pasta</translation>
     </message>
     <message>
-        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No action</source>
+        <source>Options</source>
+        <translation type="unfinished">Opções</translation>
+    </message>
+    <message>
+        <source>Visual Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double-click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Abrir pasta de destino</translation>
+    </message>
+    <message>
+        <source>Completed torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show qBittorrent icon in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the label of the torrent to the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files&apos; names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>from</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4334,7 +4541,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation>Baixador de RSS feed</translation>
+        <translation type="obsolete">Baixador de RSS feed</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -4362,7 +4569,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New folder</source>
-        <translation>Nova pasta</translation>
+        <translation type="obsolete">Nova pasta</translation>
     </message>
     <message>
         <source>1</source>
@@ -4381,7 +4588,23 @@ p, li { white-space: pre-wrap; }
         <translation>Título do artigo</translation>
     </message>
     <message>
-        <source>Manage cookies</source>
+        <source>Rename...</source>
+        <translation type="unfinished">Renomear...</translation>
+    </message>
+    <message>
+        <source>New subscription...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed downloader...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4986,7 +5209,7 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation>Adicionar uma nova fonte</translation>
+        <translation type="obsolete">Adicionar uma nova fonte</translation>
     </message>
     <message>
         <source>[PeX]</source>
@@ -4995,6 +5218,10 @@ Gostaria de instalar agora?</translation>
     <message>
         <source>[LSD]</source>
         <translation>[LSD]</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5113,7 +5340,7 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Add label</source>
-        <translation>Adicionar etiqueta</translation>
+        <translation type="obsolete">Adicionar etiqueta</translation>
     </message>
     <message>
         <source>New Label</source>
@@ -5134,6 +5361,10 @@ Gostaria de instalar agora?</translation>
     <message>
         <source>Paused</source>
         <translation type="unfinished">Pausado</translation>
+    </message>
+    <message>
+        <source>Add label...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5203,7 +5434,7 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Arquivo de pré-visualização</translation>
+        <translation type="obsolete">Arquivo de pré-visualização</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -5296,11 +5527,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Taxa limite de upload</translation>
+        <translation type="obsolete">Taxa limite de upload</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Taxa limite de download</translation>
+        <translation type="obsolete">Taxa limite de download</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -5390,6 +5621,18 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Set location...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5818,7 +6061,15 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation>Deletar arquivos do disco rígido também</translation>
+        <translation type="obsolete">Deletar arquivos do disco rígido também</translation>
+    </message>
+    <message>
+        <source>Remember choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also delete the files on the hard disk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6558,12 +6809,22 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1h%2m</translation>
+        <translation type="obsolete">%1h%2m</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1d%2h%3m</translation>
+        <translation type="obsolete">%1d%2h%3m</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

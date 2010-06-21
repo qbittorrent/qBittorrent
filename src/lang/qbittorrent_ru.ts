@@ -1873,11 +1873,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>&amp;Да</translation>
+        <translation type="obsolete">&amp;Да</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation>&amp;Нет</translation>
+        <translation type="obsolete">&amp;Нет</translation>
     </message>
     <message>
         <source>Download list cleared.</source>
@@ -2657,7 +2657,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -2691,6 +2691,22 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Да</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Нет</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Никогда</translation>
+    </message>
+    <message>
+        <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3184,11 +3200,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Выход</translation>
+        <translation type="obsolete">Выход</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Настройки</translation>
+        <translation type="obsolete">Настройки</translation>
     </message>
     <message>
         <source>About</source>
@@ -3284,7 +3300,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation>Закачать из URL</translation>
+        <translation type="obsolete">Закачать из URL</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -3292,7 +3308,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Создать торрент</translation>
+        <translation type="obsolete">Создать торрент</translation>
     </message>
     <message>
         <source>Ratio: </source>
@@ -3332,11 +3348,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Установить ограничение раздачи</translation>
+        <translation type="obsolete">Установить ограничение раздачи</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>Установить ограничение закачки</translation>
+        <translation type="obsolete">Установить ограничение закачки</translation>
     </message>
     <message>
         <source>Log</source>
@@ -3348,15 +3364,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Set global download limit</source>
-        <translation>Установить глобальное ораничение закачки</translation>
+        <translation type="obsolete">Установить глобальное ораничение закачки</translation>
     </message>
     <message>
         <source>Set global upload limit</source>
-        <translation>Установить глобальное ограничение раздачи</translation>
+        <translation type="obsolete">Установить глобальное ограничение раздачи</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Параметры</translation>
+        <translation type="obsolete">Параметры</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -3368,7 +3384,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Console</source>
-        <translation>Консоль</translation>
+        <translation type="obsolete">Консоль</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -3376,7 +3392,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation>Открыть торрент</translation>
+        <translation type="obsolete">Открыть торрент</translation>
     </message>
     <message>
         <source>Visit Website</source>
@@ -3385,6 +3401,70 @@ No further notices will be issued.</source>
     <message>
         <source>Use alternative speed limits</source>
         <translation>Использовать альтернативные лимиты скорости</translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;URL...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent &amp;creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Log viewer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top &amp;tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display top tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show transfer speed in title bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3448,15 +3528,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation>Добавить новый пир</translation>
+        <translation type="obsolete">Добавить новый пир</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Ограничить отношение отдачи</translation>
+        <translation type="obsolete">Ограничить отношение отдачи</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Ограничить отношение скачивания</translation>
+        <translation type="obsolete">Ограничить отношение скачивания</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -3502,12 +3582,24 @@ No further notices will be issued.</source>
         <source>Download rate limiting</source>
         <translation>Ограничение соотношения скачивания</translation>
     </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation>Настройки</translation>
+        <translation type="obsolete">Настройки</translation>
     </message>
     <message>
         <source>UI</source>
@@ -3531,7 +3623,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation>Фильтр по IP</translation>
+        <translation type="obsolete">Фильтр по IP</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -3543,7 +3635,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Настройки интерфейса пользователя</translation>
+        <translation type="obsolete">Настройки интерфейса пользователя</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -3579,19 +3671,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation>Спрашивать о подтверждении выхода, если список закачек не пустой</translation>
+        <translation type="obsolete">Спрашивать о подтверждении выхода, если список закачек не пустой</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation>Показать верхнюю панель</translation>
+        <translation type="obsolete">Показать верхнюю панель</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation>Отключить заставку при загрузке</translation>
+        <translation type="obsolete">Отключить заставку при загрузке</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation>Отображать текущую скорость в полосе заголовка</translation>
+        <translation type="obsolete">Отображать текущую скорость в полосе заголовка</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -3613,80 +3705,64 @@ No further notices will be issued.</source>
     <message>
         <source>Action on double click:</source>
         <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation>Действие по двойному щелчку:</translation>
+        <translation type="obsolete">Действие по двойному щелчку:</translation>
     </message>
     <message>
         <source>Downloading:</source>
-        <translation>Скачивание:</translation>
+        <translation type="obsolete">Скачивание:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation>Начать/Остановить</translation>
+        <translation type="obsolete">Начать/Остановить</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation>Открыть папку</translation>
+        <translation type="obsolete">Открыть папку</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation> Завершено:</translation>
+        <translation type="obsolete"> Завершено:</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation>Значок в системном лотке</translation>
+        <translation type="obsolete">Значок в системном лотке</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation>Убрать значок из системного лотка</translation>
+        <translation type="obsolete">Убрать значок из системного лотка</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Свернуть в значок при закрытии</translation>
+        <translation type="obsolete">Свернуть в значок при закрытии</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation>Сворачивать в значок</translation>
+        <translation type="obsolete">Сворачивать в значок</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Запускать свернутым</translation>
+        <translation type="obsolete">Запускать свернутым</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation>Показывать всплывающие сообщения в  системном лотке</translation>
+        <translation type="obsolete">Показывать всплывающие сообщения в  системном лотке</translation>
     </message>
     <message>
         <source>File system</source>
         <translation>Файловая система</translation>
     </message>
     <message>
-        <source>QGroupBox::title {
-font-weight: normal;
-margin-left: -3px;
-}
-QGroupBox {
-  border-width: 0;
-}</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Destination Folder:</source>
-        <translation>Папка назначения:</translation>
+        <translation type="obsolete">Папка назначения:</translation>
     </message>
     <message>
         <source>Append the torrent&apos;s label</source>
-        <translation>Добавить метку для торрента</translation>
+        <translation type="obsolete">Добавить метку для торрента</translation>
     </message>
     <message>
         <source>Use a different folder for incomplete downloads:</source>
-        <translation>Использовать другую папку для незаконченых загрузок:</translation>
-    </message>
-    <message>
-        <source>QLineEdit {
-  margin-left: 23px;
-}</source>
-        <translation></translation>
+        <translation type="obsolete">Использовать другую папку для незаконченых загрузок:</translation>
     </message>
     <message>
         <source>Automatically load .torrent files from:</source>
@@ -3694,11 +3770,11 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Добавить расширение .!qB к незаконченым файлам</translation>
+        <translation type="obsolete">Добавить расширение .!qB к незаконченым файлам</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
-        <translation>Резервировать место для всего файла</translation>
+        <translation type="obsolete">Резервировать место для всего файла</translation>
     </message>
     <message>
         <source>Disk cache:</source>
@@ -3714,7 +3790,7 @@ QGroupBox {
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation>Включить очереди torrent</translation>
+        <translation type="obsolete">Включить очереди torrent</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -3739,7 +3815,7 @@ QGroupBox {
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Не начинать загрузку автоматически</translation>
+        <translation type="obsolete">Не начинать загрузку автоматически</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -3831,7 +3907,7 @@ QGroupBox {
     </message>
     <message>
         <source>Encryption:</source>
-        <translation>Шифрование:</translation>
+        <translation type="obsolete">Шифрование:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -3851,7 +3927,7 @@ QGroupBox {
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation>Предпочитаемое соотношение:</translation>
+        <translation type="obsolete">Предпочитаемое соотношение:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
@@ -3891,15 +3967,15 @@ QGroupBox {
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation>Настройки фильтра</translation>
+        <translation type="obsolete">Настройки фильтра</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation>Включить фильтр по IP</translation>
+        <translation type="obsolete">Включить фильтр по IP</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation>Включить Web интерфейс</translation>
+        <translation type="obsolete">Включить Web интерфейс</translation>
     </message>
     <message>
         <source>HTTP Server</source>
@@ -3907,11 +3983,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation>Включить поддержку RSS</translation>
+        <translation type="obsolete">Включить поддержку RSS</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation>Настройки RSS</translation>
+        <translation type="obsolete">Настройки RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
@@ -3996,7 +4072,7 @@ QGroupBox {
     </message>
     <message>
         <source>Scheduled times:</source>
-        <translation>Расписание:</translation>
+        <translation type="obsolete">Расписание:</translation>
     </message>
     <message>
         <source>to</source>
@@ -4005,7 +4081,7 @@ QGroupBox {
     </message>
     <message>
         <source>On days:</source>
-        <translation>В указанные дни:</translation>
+        <translation type="obsolete">В указанные дни:</translation>
     </message>
     <message>
         <source>Every day</source>
@@ -4029,22 +4105,137 @@ QGroupBox {
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
-        <translation>Проверить папок на торрент файлы:</translation>
+        <translation type="obsolete">Проверить папок на торрент файлы:</translation>
     </message>
     <message>
         <source>Add folder ...</source>
-        <translation>Добавить папку...</translation>
+        <translation type="obsolete">Добавить папку...</translation>
     </message>
     <message>
         <source>Remove folder</source>
         <translation>Удалить папку</translation>
     </message>
     <message>
-        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No action</source>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visual Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double-click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Открыть папку назначения</translation>
+    </message>
+    <message>
+        <source>Completed torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show qBittorrent icon in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the label of the torrent to the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files&apos; names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>from</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4445,7 +4636,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation>Загрузка RSS канала</translation>
+        <translation type="obsolete">Загрузка RSS канала</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -4473,7 +4664,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New folder</source>
-        <translation>Новая папка</translation>
+        <translation type="obsolete">Новая папка</translation>
     </message>
     <message>
         <source>1</source>
@@ -4488,7 +4679,23 @@ p, li { white-space: pre-wrap; }
         <translation>Заголовок статьи</translation>
     </message>
     <message>
-        <source>Manage cookies</source>
+        <source>Rename...</source>
+        <translation type="unfinished">Переименовать...</translation>
+    </message>
+    <message>
+        <source>New subscription...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed downloader...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5027,7 +5234,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation>Добавить новый трекер</translation>
+        <translation type="obsolete">Добавить новый трекер</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5150,7 +5361,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add label</source>
-        <translation>Добавить метку</translation>
+        <translation type="obsolete">Добавить метку</translation>
     </message>
     <message>
         <source>New Label</source>
@@ -5171,6 +5382,10 @@ Do you want to install it now?</source>
     <message>
         <source>Paused</source>
         <translation type="unfinished">Пауза</translation>
+    </message>
+    <message>
+        <source>Add label...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5230,7 +5445,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Предпросмотр фаила </translation>
+        <translation type="obsolete">Предпросмотр фаила </translation>
     </message>
     <message>
         <source>Delete Permanently</source>
@@ -5315,11 +5530,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Ограничить соотношение отдачи</translation>
+        <translation type="obsolete">Ограничить соотношение отдачи</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Ограничить соотношение скачивания</translation>
+        <translation type="obsolete">Ограничить соотношение скачивания</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -5409,6 +5624,18 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Set location...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5855,7 +6082,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation>Удалить файлы и с жесткого диска</translation>
+        <translation type="obsolete">Удалить файлы и с жесткого диска</translation>
+    </message>
+    <message>
+        <source>Remember choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also delete the files on the hard disk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6616,12 +6851,22 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1ч%2м</translation>
+        <translation type="obsolete">%1ч%2м</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1д%2ч%3м</translation>
+        <translation type="obsolete">%1д%2ч%3м</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1799,11 +1799,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>&amp;Evet</translation>
+        <translation type="obsolete">&amp;Evet</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation>&amp;Hayır</translation>
+        <translation type="obsolete">&amp;Hayır</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -2635,7 +2635,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent vx.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -2669,6 +2669,22 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Evet</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Hayır</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Asla</translation>
+    </message>
+    <message>
+        <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3152,11 +3168,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Çıkış</translation>
+        <translation type="obsolete">Çıkış</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Yeğlenenler</translation>
+        <translation type="obsolete">Yeğlenenler</translation>
     </message>
     <message>
         <source>About</source>
@@ -3248,7 +3264,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Download from URL</source>
-        <translation>Adresten indir</translation>
+        <translation type="obsolete">Adresten indir</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3264,7 +3280,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Create torrent</source>
-        <translation>Torrent oluştur</translation>
+        <translation type="obsolete">Torrent oluştur</translation>
     </message>
     <message>
         <source>Ratio: </source>
@@ -3304,23 +3320,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Set upload limit</source>
-        <translation>Gönderme sınırını ayarla</translation>
+        <translation type="obsolete">Gönderme sınırını ayarla</translation>
     </message>
     <message>
         <source>Set download limit</source>
-        <translation>İndirme sınırını ayarla</translation>
+        <translation type="obsolete">İndirme sınırını ayarla</translation>
     </message>
     <message>
         <source>Set global download limit</source>
-        <translation>Genel indirme sınırını ayarla</translation>
+        <translation type="obsolete">Genel indirme sınırını ayarla</translation>
     </message>
     <message>
         <source>Set global upload limit</source>
-        <translation>Genel gönderme sınırını ayarla</translation>
+        <translation type="obsolete">Genel gönderme sınırını ayarla</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Seçenekler</translation>
+        <translation type="obsolete">Seçenekler</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -3332,7 +3348,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Console</source>
-        <translation>Uçbirim</translation>
+        <translation type="obsolete">Uçbirim</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -3340,7 +3356,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Open torrent</source>
-        <translation>Torrenti aç</translation>
+        <translation type="obsolete">Torrenti aç</translation>
     </message>
     <message>
         <source>Visit Website</source>
@@ -3348,6 +3364,70 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;URL...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent &amp;creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set global upload limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Log viewer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top &amp;tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display top tool bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3412,15 +3492,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add a new peer</source>
-        <translation>Yeni bir eş ekle</translation>
+        <translation type="obsolete">Yeni bir eş ekle</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Gönderme oranını sınırla</translation>
+        <translation type="obsolete">Gönderme oranını sınırla</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>İndirme oranını sınırla</translation>
+        <translation type="obsolete">İndirme oranını sınırla</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -3466,12 +3546,24 @@ No further notices will be issued.</source>
         <source>Download rate limiting</source>
         <translation>İndirme oranını sınırla</translation>
     </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished">Yeğlenenler</translation>
+        <translation type="obsolete">Yeğlenenler</translation>
     </message>
     <message>
         <source>UI</source>
@@ -3495,7 +3587,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>IP Filter</source>
-        <translation type="unfinished">IP Süzgeci</translation>
+        <translation type="obsolete">IP Süzgeci</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -3504,10 +3596,6 @@ No further notices will be issued.</source>
     <message>
         <source>RSS</source>
         <translation type="unfinished">RSS</translation>
-    </message>
-    <message>
-        <source>User interface</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Language:</source>
@@ -3523,19 +3611,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="unfinished">İndirme listesi boş değilse çıkışta onay iste</translation>
+        <translation type="obsolete">İndirme listesi boş değilse çıkışta onay iste</translation>
     </message>
     <message>
         <source>Display top toolbar</source>
-        <translation type="unfinished">Üst araç çubuğunu göster</translation>
+        <translation type="obsolete">Üst araç çubuğunu göster</translation>
     </message>
     <message>
         <source>Disable splash screen</source>
-        <translation type="unfinished">Ön ekranı etkisizleştir</translation>
+        <translation type="obsolete">Ön ekranı etkisizleştir</translation>
     </message>
     <message>
         <source>Display current speed in title bar</source>
-        <translation type="unfinished">Başlık çubuğunda şimdiki hızı göster</translation>
+        <translation type="obsolete">Başlık çubuğunda şimdiki hızı göster</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -3547,90 +3635,53 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Action on double click:</source>
-        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Downloading:</source>
-        <translation type="unfinished">İndiriliyor:</translation>
+        <translation type="obsolete">İndiriliyor:</translation>
     </message>
     <message>
         <source>Start/Stop</source>
-        <translation type="unfinished">Başlat/Durdur</translation>
+        <translation type="obsolete">Başlat/Durdur</translation>
     </message>
     <message>
         <source>Open folder</source>
-        <translation type="unfinished">Klasör aç</translation>
+        <translation type="obsolete">Klasör aç</translation>
     </message>
     <message>
         <source>Completed:</source>
-        <translation type="unfinished">Tamamlandı:</translation>
+        <translation type="obsolete">Tamamlandı:</translation>
     </message>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished">Sistem tepsisi simgesi</translation>
+        <translation type="obsolete">Sistem tepsisi simgesi</translation>
     </message>
     <message>
         <source>Disable system tray icon</source>
-        <translation type="unfinished">Sistem tepsisi simgesini etkisizleştir</translation>
+        <translation type="obsolete">Sistem tepsisi simgesini etkisizleştir</translation>
     </message>
     <message>
         <source>Close to tray</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished">Sistem tepsisine kapat</translation>
+        <translation type="obsolete">Sistem tepsisine kapat</translation>
     </message>
     <message>
         <source>Minimize to tray</source>
-        <translation type="unfinished">Sistem tepsisine küçült</translation>
+        <translation type="obsolete">Sistem tepsisine küçült</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation type="unfinished">Küçültülmüş başlat</translation>
+        <translation type="obsolete">Küçültülmüş başlat</translation>
     </message>
     <message>
         <source>Show notification balloons in tray</source>
-        <translation type="unfinished">Sistem tepsisinde bildiri balonları göster</translation>
+        <translation type="obsolete">Sistem tepsisinde bildiri balonları göster</translation>
     </message>
     <message>
         <source>File system</source>
         <translation type="unfinished">Dosya sistemi</translation>
     </message>
     <message>
-        <source>QGroupBox::title {
-font-weight: normal;
-margin-left: -3px;
-}
-QGroupBox {
-  border-width: 0;
-}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Destination Folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Append the torrent&apos;s label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use a different folder for incomplete downloads:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QLineEdit {
-  margin-left: 23px;
-}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Pre-allocate all files</source>
-        <translation type="unfinished">Bütün dosyalar için alan tahsisi yap</translation>
+        <translation type="obsolete">Bütün dosyalar için alan tahsisi yap</translation>
     </message>
     <message>
         <source>Torrent queueing</source>
@@ -3638,7 +3689,7 @@ QGroupBox {
     </message>
     <message>
         <source>Enable queueing system</source>
-        <translation type="unfinished">Sıralama sistemini etkinleştir</translation>
+        <translation type="obsolete">Sıralama sistemini etkinleştir</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -3663,7 +3714,7 @@ QGroupBox {
     <message>
         <source>Do not start download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished">İndirmeyi otomatik olarak başlatma</translation>
+        <translation type="obsolete">İndirmeyi otomatik olarak başlatma</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -3739,7 +3790,7 @@ QGroupBox {
     </message>
     <message>
         <source>Encryption:</source>
-        <translation type="unfinished">Şifreleme:</translation>
+        <translation type="obsolete">Şifreleme:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -3759,7 +3810,7 @@ QGroupBox {
     </message>
     <message>
         <source>Desired ratio:</source>
-        <translation type="unfinished">İstenen oran:</translation>
+        <translation type="obsolete">İstenen oran:</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
@@ -3799,15 +3850,15 @@ QGroupBox {
     </message>
     <message>
         <source>Filter Settings</source>
-        <translation type="unfinished">Süzgeç Ayarları</translation>
+        <translation type="obsolete">Süzgeç Ayarları</translation>
     </message>
     <message>
         <source>Activate IP Filtering</source>
-        <translation type="unfinished">IP Süzgeçlemeyi Etkinleştir</translation>
+        <translation type="obsolete">IP Süzgeçlemeyi Etkinleştir</translation>
     </message>
     <message>
         <source>Enable Web User Interface</source>
-        <translation type="unfinished">Web Kullanıcı Arayüzünü Etkinleştir</translation>
+        <translation type="obsolete">Web Kullanıcı Arayüzünü Etkinleştir</translation>
     </message>
     <message>
         <source>HTTP Server</source>
@@ -3815,11 +3866,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable RSS support</source>
-        <translation type="unfinished">RSS desteğini etkinleştir</translation>
+        <translation type="obsolete">RSS desteğini etkinleştir</translation>
     </message>
     <message>
         <source>RSS settings</source>
-        <translation type="unfinished">RSS ayarları</translation>
+        <translation type="obsolete">RSS ayarları</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
@@ -3903,16 +3954,8 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Scheduled times:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>On days:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3936,23 +3979,130 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check Folders for .torrent Files:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add folder ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>On torrent deletion, also delete files on hard disk as a default</source>
+        <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No action</source>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visual Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action on double-click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Hedef klasörü aç</translation>
+    </message>
+    <message>
+        <source>Completed torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show qBittorrent icon in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append the label of the torrent to the save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files&apos; names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP Filtering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>from</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4348,7 +4498,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader</source>
-        <translation>RSS besleme indirici</translation>
+        <translation type="obsolete">RSS besleme indirici</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -4376,7 +4526,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New folder</source>
-        <translation>Yeni klasör</translation>
+        <translation type="obsolete">Yeni klasör</translation>
     </message>
     <message>
         <source>1</source>
@@ -4395,7 +4545,23 @@ p, li { white-space: pre-wrap; }
         <translation>Yazı başlığı</translation>
     </message>
     <message>
-        <source>Manage cookies</source>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New subscription...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feed downloader...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4908,7 +5074,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation>Yeni bir izleyici ekle</translation>
+        <translation type="obsolete">Yeni bir izleyici ekle</translation>
     </message>
     <message>
         <source>[PeX]</source>
@@ -4917,6 +5083,10 @@ Do you want to install it now?</source>
     <message>
         <source>[LSD]</source>
         <translation>[LSD]</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5034,10 +5204,6 @@ Do you want to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5056,6 +5222,10 @@ Do you want to install it now?</source>
     <message>
         <source>Paused</source>
         <translation type="unfinished">Duraklatıldı</translation>
+    </message>
+    <message>
+        <source>Add label...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5110,7 +5280,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Dosya önizleme</translation>
+        <translation type="obsolete">Dosya önizleme</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -5199,11 +5369,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Gönderme oranını sınırla</translation>
+        <translation type="obsolete">Gönderme oranını sınırla</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>İndirme oranını sınırla</translation>
+        <translation type="obsolete">İndirme oranını sınırla</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -5293,6 +5463,18 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Set location...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit upload rate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5733,7 +5915,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
-        <translation>Sabit diskteki dosyaları da sil</translation>
+        <translation type="obsolete">Sabit diskteki dosyaları da sil</translation>
+    </message>
+    <message>
+        <source>Remember choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also delete the files on the hard disk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6466,12 +6656,22 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1sa%2d</translation>
+        <translation type="obsolete">%1sa%2d</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1gü%2sa%3d</translation>
+        <translation type="obsolete">%1gü%2sa%3d</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
