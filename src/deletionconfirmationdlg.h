@@ -44,6 +44,7 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     setupUi(this);
     move(misc::screenCenter(this));
     checkPermDelete->setChecked(Preferences::deleteTorrentFilesAsDefault());
+    connect(checkPermDelete, SIGNAL(clicked()), this, SLOT(updateRememberButtonState()));
     buttonBox->setFocus();
   }
 
@@ -60,6 +61,15 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     return false;
   }
 
+private slots:
+  void updateRememberButtonState() {
+    rememberBtn->setEnabled(checkPermDelete->isChecked() != Preferences::deleteTorrentFilesAsDefault());
+  }
+
+  void on_rememberBtn_clicked() {
+    Preferences::setDeleteTorrentFilesAsDefault(checkPermDelete->isChecked());
+    rememberBtn->setEnabled(false);
+  }
 };
 
 #endif // DELETIONCONFIRMATIONDLG_H
