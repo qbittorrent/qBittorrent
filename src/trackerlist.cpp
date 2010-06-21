@@ -345,7 +345,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
   QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
   QMenu menu;
   // Add actions
-  QAction *addAct = menu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add a new tracker"));
+  QAction *addAct = menu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add a new tracker..."));
   QAction *delAct = 0;
   if(!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), "Remove tracker");

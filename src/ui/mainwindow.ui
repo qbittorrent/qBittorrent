@@ -209,12 +209,12 @@
   </action>
   <action name="actionSet_upload_limit">
    <property name="text">
-    <string>Set upload limit</string>
+    <string>Set upload limit...</string>
    </property>
   </action>
   <action name="actionSet_download_limit">
    <property name="text">
-    <string>Set download limit</string>
+    <string>Set download limit...</string>
    </property>
   </action>
   <action name="actionDocumentation">
@@ -224,12 +224,12 @@
   </action>
   <action name="actionSet_global_download_limit">
    <property name="text">
-    <string>Set global download limit</string>
+    <string>Set global download limit...</string>
    </property>
   </action>
   <action name="actionSet_global_upload_limit">
    <property name="text">
-    <string>Set global upload limit</string>
+    <string>Set global upload limit...</string>
    </property>
   </action>
   <action name="actionDecreasePriority">

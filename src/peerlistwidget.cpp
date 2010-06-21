@@ -128,7 +128,7 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   // Add Peer Action
   QAction *addPeerAct = 0;
   if(!h.is_queued() && !h.is_checking()) {
-    addPeerAct = menu.addAction(QIcon(":/Icons/oxygen/user-group-new.png"), tr("Add a new peer"));
+    addPeerAct = menu.addAction(QIcon(":/Icons/oxygen/user-group-new.png"), tr("Add a new peer..."));
     empty_menu = false;
   }
   // Per Peer Speed limiting actions
@@ -136,8 +136,8 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   QAction *dlLimitAct = 0;
   QAction *banAct = 0;
   if(!selectedPeerIPs.isEmpty()) {
-    dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate"));
-    upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate"));
+    dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate..."));
+    upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate..."));
     banAct = menu.addAction(QIcon(":/Icons/oxygen/user-group-delete.png"), tr("Ban peer permanently"));
     empty_menu = false;
   }

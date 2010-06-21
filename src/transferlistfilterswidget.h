@@ -313,7 +313,7 @@ protected slots:
     QAction *removeAct = 0;
     if(!labelFilters->selectedItems().empty() && labelFilters->row(labelFilters->selectedItems().first()) > 1)
       removeAct = labelMenu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Remove label"));
-    QAction *addAct = labelMenu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add label"));
+    QAction *addAct = labelMenu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add label..."));
     QAction *act = 0;
     act = labelMenu.exec(QCursor::pos());
     if(act) {
