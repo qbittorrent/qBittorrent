@@ -422,26 +422,26 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <translation>Внимание: нови даващи URL бяха добавени към съществуващия торент.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1560"/>
+        <location filename="../bittorrent.cpp" line="1564"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе блокиран от вашия IP филтър&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1562"/>
+        <location filename="../bittorrent.cpp" line="1566"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе прекъснат поради разрушени части&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1904"/>
+        <location filename="../bittorrent.cpp" line="1908"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Програмирано сваляне на файл %1 вмъкнато в торент %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1914"/>
-        <location filename="../bittorrent.cpp" line="1967"/>
+        <location filename="../bittorrent.cpp" line="1918"/>
+        <location filename="../bittorrent.cpp" line="1971"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Не мога да декодирам %1 торент-файла.</translation>
     </message>
@@ -450,38 +450,38 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Невъзможно изчакване от дадените портове.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2163"/>
+        <location filename="../bittorrent.cpp" line="2167"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Грешка при следене на порт, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2168"/>
+        <location filename="../bittorrent.cpp" line="2172"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Следене на порт успешно, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2183"/>
+        <location filename="../bittorrent.cpp" line="2187"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Бърза пауза бе отхвърлена за торент %1, нова проверка...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2079"/>
-        <location filename="../bittorrent.cpp" line="2184"/>
+        <location filename="../bittorrent.cpp" line="2083"/>
+        <location filename="../bittorrent.cpp" line="2188"/>
         <source>Reason: %1</source>
         <translation>Причина: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2078"/>
+        <location filename="../bittorrent.cpp" line="2082"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Намерена грешка В/И, &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2189"/>
+        <location filename="../bittorrent.cpp" line="2193"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2301"/>
+        <location filename="../bittorrent.cpp" line="2305"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
@@ -2898,13 +2898,13 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Вашия IP адрес беше забранен след многократни неуспешни опити за удостоверяване.</translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="315"/>
+        <location filename="../httpconnection.cpp" line="316"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Св: %1/с - Пр: %2</translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="316"/>
+        <location filename="../httpconnection.cpp" line="317"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Ка: %1/с - Пр: %2</translation>
@@ -5294,44 +5294,44 @@ Please install it manually.</source>
         <translation>[LSD]</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="202"/>
-        <location filename="../trackerlist.cpp" line="211"/>
-        <location filename="../trackerlist.cpp" line="215"/>
-        <location filename="../trackerlist.cpp" line="247"/>
-        <location filename="../trackerlist.cpp" line="265"/>
+        <location filename="../trackerlist.cpp" line="204"/>
+        <location filename="../trackerlist.cpp" line="213"/>
+        <location filename="../trackerlist.cpp" line="217"/>
+        <location filename="../trackerlist.cpp" line="249"/>
+        <location filename="../trackerlist.cpp" line="267"/>
         <source>Working</source>
         <translation>Работи</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="204"/>
-        <location filename="../trackerlist.cpp" line="217"/>
+        <location filename="../trackerlist.cpp" line="206"/>
+        <location filename="../trackerlist.cpp" line="219"/>
         <source>Disabled</source>
         <translation>Изключено</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="208"/>
+        <location filename="../trackerlist.cpp" line="210"/>
         <source>This torrent is private</source>
         <translation>Този торент е личен</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="251"/>
+        <location filename="../trackerlist.cpp" line="253"/>
         <source>Updating...</source>
         <translation>Обновяване...</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="255"/>
-        <location filename="../trackerlist.cpp" line="269"/>
+        <location filename="../trackerlist.cpp" line="257"/>
+        <location filename="../trackerlist.cpp" line="271"/>
         <source>Not working</source>
         <translation>Не работи</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="258"/>
-        <location filename="../trackerlist.cpp" line="272"/>
+        <location filename="../trackerlist.cpp" line="260"/>
+        <location filename="../trackerlist.cpp" line="274"/>
         <source>Not contacted yet</source>
         <translation>Още не е свързан</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="346"/>
+        <location filename="../trackerlist.cpp" line="348"/>
         <source>Add a new tracker</source>
         <translation>Добави нов тракер</translation>
     </message>
@@ -6498,14 +6498,14 @@ Please install it manually.</source>
         <translation type="obsolete">Моля първо напишете правилен входящ път </translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="197"/>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
-        <location filename="../createtorrent_imp.cpp" line="218"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
+        <location filename="../createtorrent_imp.cpp" line="220"/>
+        <location filename="../createtorrent_imp.cpp" line="231"/>
         <source>Torrent creation</source>
         <translation>Създаване на Торент</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="218"/>
+        <location filename="../createtorrent_imp.cpp" line="231"/>
         <source>Torrent was created successfully:</source>
         <translation>Торента бе създаден успешно:</translation>
     </message>
@@ -6528,7 +6528,7 @@ Please install it manually.</source>
         <translation>Моля въведете даващ URL </translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="197"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Създаване на торент неуспешно, причина: %1</translation>
     </message>
@@ -6562,7 +6562,7 @@ Please install it manually.</source>
         <translation type="obsolete">Моля изберете поне един тракер</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="220"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>Създаденият торент файл е невалиден. Няма да бъде добавен в листа за сваляне.</translation>
     </message>
@@ -7126,6 +7126,18 @@ However, those plugins were disabled.</source>
         <translation>ТБ</translation>
     </message>
     <message>
+        <location filename="../misc.cpp" line="486"/>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../misc.cpp" line="491"/>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">м</translation>
@@ -7172,16 +7184,14 @@ However, those plugins were disabled.</source>
         <translation>%1мин</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="486"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1ч%2мин</translation>
+        <translation type="obsolete">%1ч%2мин</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="491"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1д%2ч%3мин</translation>
+        <translation type="obsolete">%1д%2ч%3мин</translation>
     </message>
 </context>
 <context>
@@ -7814,12 +7824,12 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Спри</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="72"/>
+        <location filename="../ui/search.ui" line="67"/>
         <source>Status:</source>
         <translation>Състояние:</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="96"/>
+        <location filename="../ui/search.ui" line="91"/>
         <source>Stopped</source>
         <translation>Спрян</translation>
     </message>
@@ -7828,7 +7838,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Резултати:</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="140"/>
+        <location filename="../ui/search.ui" line="135"/>
         <source>Download</source>
         <translation>Свали</translation>
     </message>
@@ -7841,7 +7851,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Обнови допълнението за търсене</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="160"/>
+        <location filename="../ui/search.ui" line="155"/>
         <source>Search engines...</source>
         <translation>Търсачки...</translation>
     </message>

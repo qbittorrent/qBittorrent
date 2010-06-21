@@ -4799,16 +4799,26 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1h %2min</translation>
+        <translation type="obsolete">%1h %2min</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1d %2h %3min</translation>
+        <translation type="obsolete">%1d %2h %3min</translation>
     </message>
     <message>
         <source>Unknown</source>
         <translation>Okänt</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -6437,12 +6437,22 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1小时%2分钟</translation>
+        <translation type="obsolete">%1小时%2分钟</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1天%2小时%3分钟</translation>
+        <translation type="obsolete">%1天%2小时%3分钟</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

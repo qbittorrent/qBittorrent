@@ -396,26 +396,26 @@ p, li { white-space: pre-wrap; }
         <translation>Nota: nuevas semillas URL se han añadido al Torrent existente.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1560"/>
+        <location filename="../bittorrent.cpp" line="1564"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;fue bloqueado debido al filtro IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1562"/>
+        <location filename="../bittorrent.cpp" line="1566"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;Fue bloqueado debido a fragmentos corruptos&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1904"/>
+        <location filename="../bittorrent.cpp" line="1908"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Descarga recursiva de archivo %1 inscrustada en Torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1914"/>
-        <location filename="../bittorrent.cpp" line="1967"/>
+        <location filename="../bittorrent.cpp" line="1918"/>
+        <location filename="../bittorrent.cpp" line="1971"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>No se puede descodificar %1 archivo torrent.</translation>
     </message>
@@ -428,38 +428,38 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">No se pudo escuchar en ninguno de los puertos brindados.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2163"/>
+        <location filename="../bittorrent.cpp" line="2167"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Falló el mapeo del puerto, mensaje: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2168"/>
+        <location filename="../bittorrent.cpp" line="2172"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapeo del puerto exitoso, mensaje: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2183"/>
+        <location filename="../bittorrent.cpp" line="2187"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Se negaron los datos para reinicio rápido del torrent: %1, verificando de nuevo...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2079"/>
-        <location filename="../bittorrent.cpp" line="2184"/>
+        <location filename="../bittorrent.cpp" line="2083"/>
+        <location filename="../bittorrent.cpp" line="2188"/>
         <source>Reason: %1</source>
         <translation>Razón: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2078"/>
+        <location filename="../bittorrent.cpp" line="2082"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Error de E/S ocurrido, &apos;%1&apos; pausado.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2189"/>
+        <location filename="../bittorrent.cpp" line="2193"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Falló la búsqueda de semilla por Url para la Url: %1, mensaje: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2301"/>
+        <location filename="../bittorrent.cpp" line="2305"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descargando &apos;%1&apos;, por favor espere...</translation>
@@ -2811,13 +2811,13 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Tras muchos intentos de conexión, parece ser que tu dirección IP ha sido restringida.</translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="315"/>
+        <location filename="../httpconnection.cpp" line="316"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Bajada: %1/s - Total: %2</translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="316"/>
+        <location filename="../httpconnection.cpp" line="317"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Subida: %1/s - Total: %2</translation>
@@ -5233,44 +5233,44 @@ Por favor, instálelo de forma manual.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="202"/>
-        <location filename="../trackerlist.cpp" line="211"/>
-        <location filename="../trackerlist.cpp" line="215"/>
-        <location filename="../trackerlist.cpp" line="247"/>
-        <location filename="../trackerlist.cpp" line="265"/>
+        <location filename="../trackerlist.cpp" line="204"/>
+        <location filename="../trackerlist.cpp" line="213"/>
+        <location filename="../trackerlist.cpp" line="217"/>
+        <location filename="../trackerlist.cpp" line="249"/>
+        <location filename="../trackerlist.cpp" line="267"/>
         <source>Working</source>
         <translation>Trabajando</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="204"/>
-        <location filename="../trackerlist.cpp" line="217"/>
+        <location filename="../trackerlist.cpp" line="206"/>
+        <location filename="../trackerlist.cpp" line="219"/>
         <source>Disabled</source>
         <translation>Deshabilitado</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="208"/>
+        <location filename="../trackerlist.cpp" line="210"/>
         <source>This torrent is private</source>
         <translation>Este torrent es privado</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="251"/>
+        <location filename="../trackerlist.cpp" line="253"/>
         <source>Updating...</source>
         <translation>Actualizando...</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="255"/>
-        <location filename="../trackerlist.cpp" line="269"/>
+        <location filename="../trackerlist.cpp" line="257"/>
+        <location filename="../trackerlist.cpp" line="271"/>
         <source>Not working</source>
         <translation>Parado</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="258"/>
-        <location filename="../trackerlist.cpp" line="272"/>
+        <location filename="../trackerlist.cpp" line="260"/>
+        <location filename="../trackerlist.cpp" line="274"/>
         <source>Not contacted yet</source>
         <translation>Todavía sin conexión</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="346"/>
+        <location filename="../trackerlist.cpp" line="348"/>
         <source>Add a new tracker</source>
         <translation>Añadir nuevo tracker</translation>
     </message>
@@ -6416,14 +6416,14 @@ Por favor, instálelo de forma manual.</translation>
         <translation type="obsolete">Por favor escribe primero una ruta de entrada correcta</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="197"/>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
-        <location filename="../createtorrent_imp.cpp" line="218"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
+        <location filename="../createtorrent_imp.cpp" line="220"/>
+        <location filename="../createtorrent_imp.cpp" line="231"/>
         <source>Torrent creation</source>
         <translation>Crear nuevo Torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="218"/>
+        <location filename="../createtorrent_imp.cpp" line="231"/>
         <source>Torrent was created successfully:</source>
         <translation>El Torrent se creó con éxito:</translation>
     </message>
@@ -6446,7 +6446,7 @@ Por favor, instálelo de forma manual.</translation>
         <translation>Por favor escribe una Dirección URL</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="197"/>
+        <location filename="../createtorrent_imp.cpp" line="206"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>La creación del torrent no ha sido exitosa, razón: %1</translation>
     </message>
@@ -6480,7 +6480,7 @@ Por favor, instálelo de forma manual.</translation>
         <translation type="obsolete">Por favor establece al menos un tracker</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="207"/>
+        <location filename="../createtorrent_imp.cpp" line="220"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>La creación del  archivo torrent no es válida. No se añadirá a la lista de descargas.</translation>
     </message>
@@ -7014,6 +7014,18 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>TiB</translation>
     </message>
     <message>
+        <location filename="../misc.cpp" line="486"/>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../misc.cpp" line="491"/>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>m</source>
         <comment>minutes</comment>
         <translation type="obsolete">m</translation>
@@ -7065,16 +7077,14 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="486"/>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1h%2m</translation>
+        <translation type="obsolete">%1h%2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="491"/>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1d%2h%3m</translation>
+        <translation type="obsolete">%1d%2h%3m</translation>
     </message>
 </context>
 <context>
@@ -7735,12 +7745,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Detenido</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="72"/>
+        <location filename="../ui/search.ui" line="67"/>
         <source>Status:</source>
         <translation>Estado:</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="96"/>
+        <location filename="../ui/search.ui" line="91"/>
         <source>Stopped</source>
         <translation>Detenido</translation>
     </message>
@@ -7749,7 +7759,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Resultados:</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="140"/>
+        <location filename="../ui/search.ui" line="135"/>
         <source>Download</source>
         <translation>Descargar</translation>
     </message>
@@ -7762,7 +7772,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation type="obsolete">Actualizar plugin de búsqueda</translation>
     </message>
     <message>
-        <location filename="../ui/search.ui" line="160"/>
+        <location filename="../ui/search.ui" line="155"/>
         <source>Search engines...</source>
         <translation>Motores de búsqueda...</translation>
     </message>

@@ -6292,12 +6292,22 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1ч%2м</translation>
+        <translation type="obsolete">%1ч%2м</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1д%2ч%3м</translation>
+        <translation type="obsolete">%1д%2ч%3м</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

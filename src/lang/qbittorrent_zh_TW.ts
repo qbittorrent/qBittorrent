@@ -4910,16 +4910,26 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h%2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 小時 %2 分鐘</translation>
+        <translation type="obsolete">%1 小時 %2 分鐘</translation>
     </message>
     <message>
         <source>%1d%2h%3m</source>
         <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation>%1 天 %2 小時 %3 分鐘</translation>
+        <translation type="obsolete">%1 天 %2 小時 %3 分鐘</translation>
     </message>
     <message>
         <source>Unknown</source>
         <translation>未知</translation>
+    </message>
+    <message>
+        <source>%1h %2m</source>
+        <comment>e.g: 3hours 5minutes</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1d %2h</source>
+        <comment>e.g: 2days 10hours</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
