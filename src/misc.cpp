@@ -559,12 +559,12 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
   int hours = minutes / 60;
   minutes = minutes - hours*60;
   if(hours < 24) {
-    return tr("%1h%2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
+    return tr("%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
   }
   int days = hours / 24;
   hours = hours - days * 24;
   if(days < 100) {
-    return tr("%1d%2h%3m", "e.g: 2days 10hours 2minutes").arg(QString::number(days)).arg(QString::number(hours)).arg(QString::number(minutes));
+    return tr("%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
   }
   return QString::fromUtf8("∞");
 }
