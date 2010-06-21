@@ -130,8 +130,6 @@ protected:
 protected slots:
   void enableUploadLimit(bool checked);
   void enableDownloadLimit(bool checked);
-  void enableTempPathInput(bool checked);
-  void enableTorrentExport(bool checked);
   void enablePeerProxy(int comboIndex);
   void enablePeerProxyAuth(bool checked);
   void enableHTTPProxy(int comboIndex);
@@ -146,7 +144,6 @@ protected slots:
   void enableRSS(bool checked);
   void enableDHTSettings(bool checked);
   void enableDHTPortSettings(bool checked);
-  void enableQueueingSystem(bool checked);
   void enableSpoofingSettings(int index);
   void setStyle(QString style);
   void on_buttonBox_accepted();

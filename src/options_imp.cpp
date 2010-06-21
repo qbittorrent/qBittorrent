@@ -161,9 +161,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // Connect signals / slots
     // General tab
     connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(setSystrayOptionsState(bool)));
-    // Downloads tab
-    connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableTempPathInput(bool)));
-    connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableTorrentExport(bool)));
     // Connection tab
     connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableUploadLimit(bool)));
     connect(checkDownloadLimit,  SIGNAL(toggled(bool)), this, SLOT(enableDownloadLimit(bool)));
@@ -185,7 +182,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // Misc tab
     connect(checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableFilter(bool)));
     connect(checkEnableRSS, SIGNAL(toggled(bool)), this, SLOT(enableRSS(bool)));
-    connect(checkEnableQueueing, SIGNAL(toggled(bool)), this, SLOT(enableQueueingSystem(bool)));
     // Web UI tab
     connect(checkWebUi,  SIGNAL(toggled(bool)), this, SLOT(enableWebUi(bool)));
 
@@ -619,10 +615,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     if(Preferences::isTempPathEnabled()) {
       // enable
       checkTempFolder->setChecked(true);
-      enableTempPathInput(checkTempFolder->isChecked());
     } else {
       checkTempFolder->setChecked(false);
-      enableTempPathInput(checkTempFolder->isChecked());
     }
     QString temp_path = Preferences::getTempPath();
 #ifdef Q_WS_WIN
@@ -641,7 +635,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     if(strValue.isEmpty()) {
       // Disable
       checkExportDir->setChecked(false);
-      enableTorrentExport(checkExportDir->isChecked());
     } else {
       // enable
       checkExportDir->setChecked(true);
@@ -649,7 +642,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       strValue = strValue.replace("/", "\\");
 #endif
       textExportDir->setText(strValue);
-      enableTorrentExport(checkExportDir->isChecked());
     }
 
     intValue = Preferences::getActionOnDblClOnTorrentDl();
@@ -849,7 +841,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // End RSS preferences
     // Queueing system preferences
     checkEnableQueueing->setChecked(Preferences::isQueueingSystemEnabled());
-    enableQueueingSystem(checkEnableQueueing->isChecked());
     spinMaxActiveDownloads->setValue(Preferences::getMaxActiveDownloads());
     spinMaxActiveUploads->setValue(Preferences::getMaxActiveUploads());
     spinMaxActiveTorrents->setValue(Preferences::getMaxActiveTorrents());
@@ -1109,16 +1100,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     }
   }
 
-  void options_imp::enableTempPathInput(bool checked){
-    if(checked){
-      textTempPath->setEnabled(true);
-      browseTempDirButton->setEnabled(true);
-    }else{
-      textTempPath->setEnabled(false);
-      browseTempDirButton->setEnabled(false);
-    }
-  }
-
   bool options_imp::useAdditionDialog() const{
     return checkAdditionDialog->isChecked();
   }
@@ -1131,15 +1112,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 
   void options_imp::enableMaxConnecsLimit(bool checked){
     spinMaxConnec->setEnabled(checked);
-  }
-
-  void options_imp::enableQueueingSystem(bool checked) {
-    spinMaxActiveDownloads->setEnabled(checked);
-    spinMaxActiveUploads->setEnabled(checked);
-    label_max_active_dl->setEnabled(checked);
-    label_max_active_up->setEnabled(checked);
-    maxActiveTorrents_lbl->setEnabled(checked);
-    spinMaxActiveTorrents->setEnabled(checked);
   }
 
   void options_imp::enableMaxConnecsLimitPerTorrent(bool checked){
@@ -1262,11 +1234,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     lblProxyPassword_http->setEnabled(checked);
     textProxyUsername_http->setEnabled(checked);
     textProxyPassword_http->setEnabled(checked);
-  }
-
-  void options_imp::enableTorrentExport(bool checked) {
-    textExportDir->setEnabled(checked);
-    browseExportDirButton->setEnabled(checked);
   }
 
   bool options_imp::isSlashScreenDisabled() const {
