@@ -87,6 +87,11 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/General/DeleteTorrentsFilesAsDefault"), del);
   }
 
+  static void setConfirmOnExit(bool confirm) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/ExitConfirm"), confirm);
+  }
+
   static bool confirmOnExit() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool();

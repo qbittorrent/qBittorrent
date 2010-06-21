@@ -193,7 +193,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // General tab
   connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(comboStyle, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkConfirmExit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkSpeedInTitle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkNoSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -386,7 +385,6 @@ void options_imp::saveOptions(){
   settings.beginGroup("General");
   settings.setValue(QString::fromUtf8("Locale"), getLocale());
   settings.setValue(QString::fromUtf8("Style"), getStyle());
-  settings.setValue(QString::fromUtf8("ExitConfirm"), confirmOnExit());
   settings.setValue(QString::fromUtf8("SpeedInTitleBar"), speedInTitleBar());
   settings.setValue(QString::fromUtf8("AlternatingRowColors"), checkAltRowColors->isChecked());
   settings.setValue(QString::fromUtf8("SystrayEnabled"), systrayIntegration());
@@ -617,7 +615,6 @@ void options_imp::loadOptions(){
   // General preferences
   setLocale(Preferences::getLocale());
   setStyle(Preferences::getStyle());
-  checkConfirmExit->setChecked(Preferences::confirmOnExit());
   checkSpeedInTitle->setChecked(Preferences::speedInTitleBar());
   checkAltRowColors->setChecked(Preferences::useAlternatingRowColors());
   checkNoSystray->setChecked(!Preferences::systrayIntegration());
@@ -980,10 +977,6 @@ bool options_imp::minimizeToTray() const{
 bool options_imp::closeToTray() const{
   if(checkNoSystray->isChecked()) return false;
   return checkCloseToSystray->isChecked();
-}
-
-bool options_imp::confirmOnExit() const{
-  return checkConfirmExit->isChecked();
 }
 
 bool options_imp::isQueueingSystemEnabled() const {

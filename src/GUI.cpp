@@ -548,23 +548,29 @@ void GUI::closeEvent(QCloseEvent *e) {
   const bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
   if(!force_exit && systrayIcon && goToSystrayOnExit && !this->isHidden()) {
     hide();
-    //e->ignore();
     e->accept();
     return;
   }
   if(settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool() && BTSession->hasActiveTorrents()) {
-    show();
-    if(!isMaximized())
-      showNormal();
     if(e->spontaneous() || force_exit) {
-      if(QMessageBox::question(this,
-                               tr("Are you sure you want to quit?")+QString::fromUtf8(" -- ")+tr("qBittorrent"),
-                               tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
-                               tr("&Yes"), tr("&No"),
-                               QString(), 0, 1)) {
+      if(!isVisible())
+        show();
+      QMessageBox confirmBox(QMessageBox::Question, tr("Are you sure you want to quit?")+QString::fromUtf8(" -- ")+tr("qBittorrent"),
+                             tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"));
+      QPushButton *noBtn = confirmBox.addButton(tr("No"), QMessageBox::NoRole);
+      QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+      QPushButton *alwaysBtn = confirmBox.addButton(tr("Always"), QMessageBox::YesRole);
+      confirmBox.setDefaultButton(yesBtn);
+      confirmBox.exec();
+      if(!confirmBox.clickedButton() || confirmBox.clickedButton() == noBtn) {
+        // Cancel exit
         e->ignore();
         force_exit = false;
         return;
+      }
+      if(confirmBox.clickedButton() == alwaysBtn) {
+        // Remember choice
+        Preferences::setConfirmOnExit(false);
       }
     }
   }
@@ -579,7 +585,6 @@ void GUI::closeEvent(QCloseEvent *e) {
   e->accept();
   qApp->exit();
 }
-
 
 // Display window to create a torrent
 void GUI::on_actionCreate_torrent_triggered() {

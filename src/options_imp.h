@@ -67,7 +67,6 @@ protected:
   // General options
   QString getLocale() const;
   QString getStyle() const;
-  bool confirmOnExit() const;
   bool speedInTitleBar() const;
   bool systrayIntegration() const;
   bool minimizeToTray() const;
