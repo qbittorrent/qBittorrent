@@ -166,21 +166,6 @@
       </item>
       <item>
        <property name="text">
-        <string>IP Filter</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/filter.png</normaloff>:/Icons/oxygen/filter.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>Web UI</string>
        </property>
        <property name="textAlignment">
@@ -1094,6 +1079,9 @@ QGroupBox {
                <string>Connections limit</string>
               </property>
               <layout class="QVBoxLayout" name="_8">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <layout class="QHBoxLayout" name="_9">
                  <item>
@@ -1213,6 +1201,45 @@ QGroupBox {
                   </spacer>
                  </item>
                 </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="checkIPFilter">
+              <property name="title">
+               <string>IP Filtering</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_14">
+               <item row="0" column="0">
+                <widget class="QLabel" name="lblFilterPath">
+                 <property name="text">
+                  <string>Filter path (.dat, .p2p, .p2b):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="textFilterPath"/>
+               </item>
+               <item row="0" column="2">
+                <widget class="QToolButton" name="browseFilterButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>22</width>
+                   <height>22</height>
+                  </size>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../icons.qrc">
+                   <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2065,8 +2092,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>475</width>
-             <height>308</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -2075,7 +2102,7 @@ QGroupBox {
               <property name="title">
                <string>HTTP Communications (trackers, Web seeds, search engine)</string>
               </property>
-              <layout class="QVBoxLayout">
+              <layout class="QVBoxLayout" name="verticalLayout_27">
                <item>
                 <layout class="QHBoxLayout">
                  <item>
@@ -2172,8 +2199,8 @@ QGroupBox {
                 </layout>
                </item>
                <item>
-                <layout class="QHBoxLayout">
-                 <item>
+                <layout class="QGridLayout" name="gridLayout_11">
+                 <item row="0" column="0">
                   <widget class="QCheckBox" name="checkProxyAuth_http">
                    <property name="enabled">
                     <bool>false</bool>
@@ -2183,82 +2210,74 @@ QGroupBox {
                    </property>
                   </widget>
                  </item>
-                 <item>
-                  <layout class="QHBoxLayout">
-                   <item>
-                    <layout class="QVBoxLayout">
-                     <item>
-                      <widget class="QLabel" name="lblProxyUsername_http">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>Username:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="lblProxyPassword_http">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>Password:</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <layout class="QVBoxLayout">
-                     <item>
-                      <widget class="QLineEdit" name="textProxyUsername_http">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="maxLength">
-                        <number>1000</number>
-                       </property>
-                       <property name="echoMode">
-                        <enum>QLineEdit::Normal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="textProxyPassword_http">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="maxLength">
-                        <number>1000</number>
-                       </property>
-                       <property name="echoMode">
-                        <enum>QLineEdit::Password</enum>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <spacer>
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
+                 <item row="0" column="1">
+                  <layout class="QGridLayout" name="gridLayout_10">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="lblProxyUsername_http">
+                     <property name="enabled">
+                      <bool>false</bool>
                      </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
+                     <property name="text">
+                      <string>Username:</string>
                      </property>
-                    </spacer>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLineEdit" name="textProxyUsername_http">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="maxLength">
+                      <number>1000</number>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Normal</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="lblProxyPassword_http">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>Password:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLineEdit" name="textProxyPassword_http">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="maxLength">
+                      <number>1000</number>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Password</enum>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
+                 </item>
+                 <item row="0" column="2">
+                  <spacer>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                 </layout>
                </item>
@@ -2273,7 +2292,7 @@ QGroupBox {
               <property name="title">
                <string>Peer Communications</string>
               </property>
-              <layout class="QVBoxLayout">
+              <layout class="QVBoxLayout" name="verticalLayout_29">
                <item>
                 <layout class="QHBoxLayout">
                  <item>
@@ -2375,8 +2394,8 @@ QGroupBox {
                 </layout>
                </item>
                <item>
-                <layout class="QHBoxLayout">
-                 <item>
+                <layout class="QGridLayout" name="gridLayout_13">
+                 <item row="0" column="0">
                   <widget class="QCheckBox" name="checkProxyAuth">
                    <property name="enabled">
                     <bool>false</bool>
@@ -2386,82 +2405,74 @@ QGroupBox {
                    </property>
                   </widget>
                  </item>
-                 <item>
-                  <layout class="QHBoxLayout">
-                   <item>
-                    <layout class="QVBoxLayout">
-                     <item>
-                      <widget class="QLabel" name="lblProxyUsername">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>Username:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="lblProxyPassword">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>Password:</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <layout class="QVBoxLayout">
-                     <item>
-                      <widget class="QLineEdit" name="textProxyUsername">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="maxLength">
-                        <number>1000</number>
-                       </property>
-                       <property name="echoMode">
-                        <enum>QLineEdit::Normal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="textProxyPassword">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="maxLength">
-                        <number>1000</number>
-                       </property>
-                       <property name="echoMode">
-                        <enum>QLineEdit::Password</enum>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <spacer>
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
+                 <item row="0" column="1">
+                  <layout class="QGridLayout" name="gridLayout_12">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="lblProxyUsername">
+                     <property name="enabled">
+                      <bool>false</bool>
                      </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
+                     <property name="text">
+                      <string>Username:</string>
                      </property>
-                    </spacer>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLineEdit" name="textProxyUsername">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="maxLength">
+                      <number>1000</number>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Normal</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="lblProxyPassword">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>Password:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLineEdit" name="textProxyPassword">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="maxLength">
+                      <number>1000</number>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Password</enum>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
+                 </item>
+                 <item row="0" column="2">
+                  <spacer>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                 </layout>
                </item>
@@ -2487,103 +2498,6 @@ QGroupBox {
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage6">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QScrollArea" name="scrollArea_6">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_6">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>287</width>
-             <height>124</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_21">
-            <item>
-             <widget class="QGroupBox" name="filterBox">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="title">
-               <string>Filter Settings</string>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_22">
-               <item>
-                <widget class="QCheckBox" name="checkIPFilter">
-                 <property name="text">
-                  <string>Activate IP Filtering</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>:/Icons/filter.png</normaloff>:/Icons/filter.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="mynonamelayout">
-                 <item>
-                  <widget class="QLabel" name="lblFilterPath">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string>Filter path (.dat, .p2p, .p2b):</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="textFilterPath">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="browseFilterButton">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>22</width>
-                     <height>22</height>
-                    </size>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="../icons.qrc">
-                     <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <spacer name="mynornamespacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>357</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
       <widget class="QWidget" name="tabOptionPage7">
        <layout class="QVBoxLayout">
         <item>
@@ -2596,138 +2510,134 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>213</width>
-             <height>221</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
             <item>
-             <widget class="QCheckBox" name="checkWebUi">
-              <property name="enabled">
-               <bool>true</bool>
+             <widget class="QGroupBox" name="checkWebUi">
+              <property name="title">
+               <string>Enable Web User Interface (Remote control)</string>
               </property>
-              <property name="text">
-               <string>Enable Web User Interface</string>
+              <property name="checkable">
+               <bool>true</bool>
               </property>
               <property name="checked">
                <bool>false</bool>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupWebUiServer">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="title">
-               <string>HTTP Server</string>
-              </property>
-              <layout class="QHBoxLayout">
+              <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
-                <widget class="QLabel" name="lblWebUiPort">
-                 <property name="text">
-                  <string>Port:</string>
+                <widget class="QGroupBox" name="groupWebUiServer">
+                 <property name="title">
+                  <string>HTTP Server</string>
                  </property>
+                 <layout class="QHBoxLayout">
+                  <item>
+                   <widget class="QLabel" name="lblWebUiPort">
+                    <property name="text">
+                     <string>Port:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="spinWebUiPort">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>65535</number>
+                    </property>
+                    <property name="value">
+                     <number>8080</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>21</width>
+                      <height>29</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="spinWebUiPort">
-                 <property name="minimum">
-                  <number>1</number>
+                <widget class="QGroupBox" name="groupWebUiAuth">
+                 <property name="title">
+                  <string>Authentication</string>
                  </property>
-                 <property name="maximum">
-                  <number>65535</number>
-                 </property>
-                 <property name="value">
-                  <number>8080</number>
-                 </property>
+                 <layout class="QHBoxLayout">
+                  <item>
+                   <layout class="QVBoxLayout">
+                    <item>
+                     <widget class="QLabel" name="lblWebUiUsername">
+                      <property name="text">
+                       <string>Username:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lblWebUiPassword">
+                      <property name="text">
+                       <string>Password:</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout">
+                    <item>
+                     <widget class="QLineEdit" name="textWebUiUsername">
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="maxLength">
+                       <number>1000</number>
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::Normal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="textWebUiPassword">
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="maxLength">
+                       <number>1000</number>
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <spacer>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>198</width>
+                      <height>57</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </widget>
-               </item>
-               <item>
-                <spacer>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>21</width>
-                   <height>29</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupWebUiAuth">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="title">
-               <string>Authentication</string>
-              </property>
-              <layout class="QHBoxLayout">
-               <item>
-                <layout class="QVBoxLayout">
-                 <item>
-                  <widget class="QLabel" name="lblWebUiUsername">
-                   <property name="text">
-                    <string>Username:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="lblWebUiPassword">
-                   <property name="text">
-                    <string>Password:</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QVBoxLayout">
-                 <item>
-                  <widget class="QLineEdit" name="textWebUiUsername">
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="maxLength">
-                    <number>1000</number>
-                   </property>
-                   <property name="echoMode">
-                    <enum>QLineEdit::Normal</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="textWebUiPassword">
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="maxLength">
-                    <number>1000</number>
-                   </property>
-                   <property name="echoMode">
-                    <enum>QLineEdit::Password</enum>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <spacer>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>198</width>
-                   <height>57</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
               </layout>
              </widget>
@@ -2763,146 +2673,133 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>445</width>
-             <height>192</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_24">
             <item>
-             <widget class="QGroupBox" name="groupRSS">
+             <widget class="QGroupBox" name="checkEnableRSS">
               <property name="title">
                <string>RSS</string>
               </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
               <layout class="QVBoxLayout" name="_12">
                <item>
-                <widget class="QCheckBox" name="checkEnableRSS">
-                 <property name="text">
-                  <string>Enable RSS support</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="groupRSSSettings">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="title">
-                  <string>RSS settings</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="_13">
-                  <item>
-                   <layout class="QHBoxLayout" name="_14">
-                    <item>
-                     <widget class="QLabel" name="label_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>48</width>
-                        <height>48</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>48</width>
-                        <height>48</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="pixmap">
-                       <pixmap resource="../icons.qrc">:/Icons/rss32.png</pixmap>
-                      </property>
-                      <property name="scaledContents">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="_15">
-                      <item>
-                       <layout class="QHBoxLayout" name="_16">
-                        <item>
-                         <widget class="QLabel" name="label">
-                          <property name="text">
-                           <string>RSS feeds refresh interval:</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSpinBox" name="spinRSSRefresh">
-                          <property name="minimum">
-                           <number>1</number>
-                          </property>
-                          <property name="maximum">
-                           <number>999999</number>
-                          </property>
-                          <property name="value">
-                           <number>5</number>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_2">
-                          <property name="text">
-                           <string>minutes</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <spacer>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="_17">
-                        <item>
-                         <widget class="QLabel" name="label_3">
-                          <property name="text">
-                           <string>Maximum number of articles per feed:</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
-                          <property name="maximum">
-                           <number>9999</number>
-                          </property>
-                          <property name="value">
-                           <number>100</number>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <spacer>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
+                <layout class="QHBoxLayout" name="_14">
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="minimumSize">
+                    <size>
+                     <width>48</width>
+                     <height>48</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>48</width>
+                     <height>48</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="../icons.qrc">:/Icons/rss32.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="_15">
+                   <item>
+                    <layout class="QHBoxLayout" name="_16">
+                     <item>
+                      <widget class="QLabel" name="label">
+                       <property name="text">
+                        <string>RSS feeds refresh interval:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QSpinBox" name="spinRSSRefresh">
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>999999</number>
+                       </property>
+                       <property name="value">
+                        <number>5</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_2">
+                       <property name="text">
+                        <string>minutes</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="_17">
+                     <item>
+                      <widget class="QLabel" name="label_3">
+                       <property name="text">
+                        <string>Maximum number of articles per feed:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                       <property name="maximum">
+                        <number>9999</number>
+                       </property>
+                       <property name="value">
+                        <number>100</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
                </item>
                <item>
                 <spacer name="verticalSpacer_3">
@@ -2938,8 +2835,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>62</width>
-             <height>18</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -3002,9 +2899,6 @@ QGroupBox {
   <tabstop>spinRatio</tabstop>
   <tabstop>checkRatioRemove</tabstop>
   <tabstop>spinMaxRatio</tabstop>
-  <tabstop>checkIPFilter</tabstop>
-  <tabstop>textFilterPath</tabstop>
-  <tabstop>browseFilterButton</tabstop>
   <tabstop>spinWebUiPort</tabstop>
   <tabstop>textWebUiUsername</tabstop>
   <tabstop>textWebUiPassword</tabstop>

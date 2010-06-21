@@ -176,11 +176,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(checkProxyAuth_http,  SIGNAL(toggled(bool)), this, SLOT(enableHTTPProxyAuth(bool)));
     connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enablePeerProxy(int)));
     connect(checkProxyAuth,  SIGNAL(toggled(bool)), this, SLOT(enablePeerProxyAuth(bool)));
-    // Misc tab
-    connect(checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableFilter(bool)));
-    connect(checkEnableRSS, SIGNAL(toggled(bool)), this, SLOT(enableRSS(bool)));
-    // Web UI tab
-    connect(checkWebUi,  SIGNAL(toggled(bool)), this, SLOT(enableWebUi(bool)));
 
     // Apply button is activated when a value is changed
     // General tab
@@ -824,12 +819,10 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // Misc preferences
     // * IP Filter
     checkIPFilter->setChecked(Preferences::isFilteringEnabled());
-    enableFilter(checkIPFilter->isChecked());
     textFilterPath->setText(Preferences::getFilter());
     // End IP Filter
     // * RSS
     checkEnableRSS->setChecked(Preferences::isRSSEnabled());
-    enableRSS(checkEnableRSS->isChecked());
     spinRSSRefresh->setValue(Preferences::getRSSRefreshInterval());
     spinRSSMaxArticlesPerFeed->setValue(Preferences::getRSSMaxArticlesPerFeed());
     // End RSS preferences
@@ -841,7 +834,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // End Queueing system preferences
     // Web UI
     checkWebUi->setChecked(Preferences::isWebUiEnabled());
-    enableWebUi(checkWebUi->isChecked());
     spinWebUiPort->setValue(Preferences::getWebUiPort());
     textWebUiUsername->setText(Preferences::getWebUiUsername());
     textWebUiPassword->setText(Preferences::getWebUiPassword());
@@ -1132,16 +1124,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     }
   }
 
-  void options_imp::enableFilter(bool checked){
-    lblFilterPath->setEnabled(checked);
-    textFilterPath->setEnabled(checked);
-    browseFilterButton->setEnabled(checked);
-  }
-
-  void options_imp::enableRSS(bool checked) {
-    groupRSSSettings->setEnabled(checked);
-  }
-
   void options_imp::enableUploadLimit(bool checked){
     spinUploadLimit->setEnabled(checked);
   }
@@ -1429,11 +1411,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
 
   // Web UI
-
-  void options_imp::enableWebUi(bool checkBoxValue){
-    groupWebUiServer->setEnabled(checkBoxValue);
-    groupWebUiAuth->setEnabled(checkBoxValue);
-  }
 
   bool options_imp::isWebUiEnabled() const
   {

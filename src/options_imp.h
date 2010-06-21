@@ -139,8 +139,6 @@ protected slots:
   void enableMaxUploadsLimitPerTorrent(bool checked);
   void enableShareRatio(bool checked);
   void enableDeleteRatio(bool checked);
-  void enableFilter(bool checked);
-  void enableRSS(bool checked);
   void enableSpoofingSettings(int index);
   void setStyle(QString style);
   void on_buttonBox_accepted();
@@ -155,7 +153,6 @@ protected slots:
   void enableSystrayOptions();
   void disableSystrayOptions();
   void setSystrayOptionsState(bool checked);
-  void enableWebUi(bool checkBoxValue);
   void changePage(QListWidgetItem*, QListWidgetItem*);
   void loadWindowState();
   void saveWindowState() const;
