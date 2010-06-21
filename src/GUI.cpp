@@ -947,13 +947,7 @@ void GUI::createSystrayDelayed() {
 }
 
 void GUI::updateAltSpeedsBtn(bool alternative) {
-  if(alternative) {
-    actionUse_alternative_speed_limits->setIcon(QIcon(":/Icons/slow.png"));
-    actionUse_alternative_speed_limits->setText(tr("Use normal speed limits"));
-  } else {
-    actionUse_alternative_speed_limits->setIcon(QIcon(":/Icons/slow_off.png"));
-    actionUse_alternative_speed_limits->setText(tr("Use alternative speed limits"));
-  }
+    actionUse_alternative_speed_limits->setChecked(alternative);
 }
 
 QMenu* GUI::getTrayIconMenu() {
@@ -965,6 +959,7 @@ QMenu* GUI::getTrayIconMenu() {
   myTrayIconMenu->addAction(actionDownload_from_URL);
   myTrayIconMenu->addSeparator();
   updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
+  actionUse_alternative_speed_limits->setChecked(Preferences::isAltBandwidthEnabled());
   myTrayIconMenu->addAction(actionUse_alternative_speed_limits);
   myTrayIconMenu->addAction(actionSet_global_download_limit);
   myTrayIconMenu->addAction(actionSet_global_upload_limit);

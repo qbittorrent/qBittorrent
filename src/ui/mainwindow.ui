@@ -269,12 +269,14 @@
    </property>
   </action>
   <action name="actionUse_alternative_speed_limits">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/slow_off.png</normaloff>:/Icons/slow_off.png</iconset>
+   <property name="checkable">
+    <bool>true</bool>
    </property>
    <property name="text">
-    <string>Use alternative speed limits</string>
+    <string>Alternative speed limits</string>
+   </property>
+   <property name="toolTip">
+    <string>Alternative speed limits</string>
    </property>
   </action>
   <action name="actionTop_tool_bar">
