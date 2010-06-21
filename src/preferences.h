@@ -142,11 +142,6 @@ public:
     return settings.value(QString::fromUtf8("Preferences/General/NoSplashScreen"), false).toBool();
   }
 
-  static bool OSDEnabled() {
-    QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool();
-  }
-
   // Downloads
   static QString getSavePath() {
     QSettings settings("qBittorrent", "qBittorrent");

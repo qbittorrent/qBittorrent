@@ -881,8 +881,6 @@ void GUI::updateGUI() {
 }
 
 void GUI::showNotificationBaloon(QString title, QString msg) const {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(settings.value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool()) {
 #ifdef WITH_LIBNOTIFY
     if (notify_init ("summary-body")) {
       NotifyNotification* notification;
@@ -896,10 +894,9 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
     }
 #endif
 #ifndef Q_WS_MAC
-    if(systrayIcon)
+    if(systrayIcon && QSystemTrayIcon::supportsMessages())
       systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
 #endif
-  }
 }
 
 /*****************************************************

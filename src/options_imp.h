@@ -73,7 +73,6 @@ protected:
   bool closeToTray() const;
   bool startMinimized() const;
   bool isSlashScreenDisabled() const;
-  bool OSDEnabled() const;
   bool isToolbarDisplayed() const;
   // Downloads
   QString getSavePath() const;

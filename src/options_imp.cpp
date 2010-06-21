@@ -199,7 +199,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkSystrayBalloons, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDisplayToolbar, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkNoSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDeleteTorrentFiles, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -281,15 +280,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
-#ifdef Q_WS_MAC
-  if(1) {
-#else
-  if(!QSystemTrayIcon::supportsMessages()){
-#endif
-    // Mac OS X doesn't support it yet
-    checkSystrayBalloons->setChecked(false);
-    checkSystrayBalloons->setEnabled(false);
-  }
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 #if LIBTORRENT_VERSION_MINOR < 15
@@ -391,7 +381,6 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("CloseToTray"), closeToTray());
   settings.setValue(QString::fromUtf8("MinimizeToTray"), minimizeToTray());
   settings.setValue(QString::fromUtf8("StartMinimized"), startMinimized());
-  settings.setValue(QString::fromUtf8("NotificationBaloons"), OSDEnabled());
   settings.setValue(QString::fromUtf8("ToolbarDisplayed"), isToolbarDisplayed());
   settings.setValue(QString::fromUtf8("NoSplashScreen"), isSlashScreenDisabled());
   Preferences::setDeleteTorrentFilesAsDefault(checkDeleteTorrentFiles->isChecked());
@@ -628,7 +617,6 @@ void options_imp::loadOptions(){
     checkCloseToSystray->setChecked(Preferences::closeToTray());
     checkMinimizeToSysTray->setChecked(Preferences::minimizeToTray());
     checkStartMinimized->setChecked(Preferences::startMinimized());
-    checkSystrayBalloons->setChecked(Preferences::OSDEnabled());
   }
   // End General preferences
   // Downloads preferences
@@ -1016,11 +1004,6 @@ QPair<int,int> options_imp::getGlobalBandwidthLimits() const{
   return qMakePair(DL, UP);
 }
 
-bool options_imp::OSDEnabled() const {
-  if(checkNoSystray->isChecked()) return false;
-  return checkSystrayBalloons->isChecked();
-}
-
 bool options_imp::startMinimized() const {
   if(checkStartMinimized->isChecked()) return true;
   return checkStartMinimized->isChecked();
@@ -1175,13 +1158,11 @@ void options_imp::enableMaxConnecsLimitPerTorrent(bool checked){
 void options_imp::enableSystrayOptions() {
   checkCloseToSystray->setEnabled(true);
   checkMinimizeToSysTray->setEnabled(true);
-  checkSystrayBalloons->setEnabled(true);
 }
 
 void options_imp::disableSystrayOptions() {
   checkCloseToSystray->setEnabled(false);
   checkMinimizeToSysTray->setEnabled(false);
-  checkSystrayBalloons->setEnabled(false);
 }
 
 void options_imp::setSystrayOptionsState(bool checked) {

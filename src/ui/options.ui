@@ -240,9 +240,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-109</y>
              <width>506</width>
-             <height>543</height>
+             <height>515</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -523,16 +523,6 @@ QGroupBox {
                      <widget class="QCheckBox" name="checkStartMinimized">
                       <property name="text">
                        <string>Start minimized</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="checkSystrayBalloons">
-                      <property name="text">
-                       <string>Show notification balloons in tray</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -3110,7 +3100,6 @@ QGroupBox {
   <tabstop>checkCloseToSystray</tabstop>
   <tabstop>checkMinimizeToSysTray</tabstop>
   <tabstop>checkStartMinimized</tabstop>
-  <tabstop>checkSystrayBalloons</tabstop>
   <tabstop>textSavePath</tabstop>
   <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkPreallocateAll</tabstop>
