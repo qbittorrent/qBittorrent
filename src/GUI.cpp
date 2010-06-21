@@ -82,13 +82,7 @@ using namespace libtorrent;
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false) {
   setupUi(this);
 
-  setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION))
-#if defined(Q_WS_WIN)
-                 +" [Windows]"
-#elif defined(Q_WS_MAC)
-                 +" [Mac OS X]"
-#endif
-                 );
+  setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -186,6 +180,10 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 #ifdef Q_WS_MAC
   setUnifiedTitleAndToolBarOnMac(true);
 #endif
+
+  // View settings
+  actionTop_tool_bar->setChecked(Preferences::isToolbarDisplayed());
+  actionSpeed_in_title_bar->setChecked(Preferences::speedInTitleBar());
 
   show();
 
@@ -781,12 +779,6 @@ void GUI::loadPreferences(bool configure_session) {
   }
 #endif
   // General
-  const bool new_displaySpeedInTitle = Preferences::speedInTitleBar();
-  if(!new_displaySpeedInTitle && new_displaySpeedInTitle != displaySpeedInTitle) {
-    // Reset title
-    setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent vx.x").arg(QString::fromUtf8(VERSION)));
-  }
-  displaySpeedInTitle = new_displaySpeedInTitle;
   if(Preferences::isToolbarDisplayed()) {
     toolBar->setVisible(true);
     toolBar->layout()->setSpacing(7);
@@ -1010,6 +1002,24 @@ void GUI::on_actionOptions_triggered() {
   }
 }
 
+void GUI::on_actionTop_tool_bar_triggered() {
+    bool is_visible = static_cast<QAction*>(sender())->isChecked();
+    toolBar->setVisible(is_visible);
+    Preferences::setToolbarDisplayed(is_visible);
+}
+
+void GUI::on_actionSpeed_in_title_bar_triggered() {
+    displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
+    Preferences::showSpeedInTitleBar(displaySpeedInTitle);
+    if(displaySpeedInTitle)
+      updateGUI();
+    else
+      setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
+}
+
+
+
+
 /*****************************************************
  *                                                   *
  *                 HTTP Downloader                   *
@@ -1024,4 +1034,3 @@ void GUI::on_actionDownload_from_URL_triggered() {
     connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
   }
 }
-

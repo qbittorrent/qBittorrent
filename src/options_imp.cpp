@@ -193,13 +193,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // General tab
   connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(comboStyle, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-  connect(checkSpeedInTitle, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkNoSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkDisplayToolbar, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkNoSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDeleteTorrentFiles, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Downloads tab
@@ -375,13 +373,11 @@ void options_imp::saveOptions(){
   settings.beginGroup("General");
   settings.setValue(QString::fromUtf8("Locale"), getLocale());
   settings.setValue(QString::fromUtf8("Style"), getStyle());
-  settings.setValue(QString::fromUtf8("SpeedInTitleBar"), speedInTitleBar());
   settings.setValue(QString::fromUtf8("AlternatingRowColors"), checkAltRowColors->isChecked());
   settings.setValue(QString::fromUtf8("SystrayEnabled"), systrayIntegration());
   settings.setValue(QString::fromUtf8("CloseToTray"), closeToTray());
   settings.setValue(QString::fromUtf8("MinimizeToTray"), minimizeToTray());
   settings.setValue(QString::fromUtf8("StartMinimized"), startMinimized());
-  settings.setValue(QString::fromUtf8("ToolbarDisplayed"), isToolbarDisplayed());
   settings.setValue(QString::fromUtf8("NoSplashScreen"), isSlashScreenDisabled());
   Preferences::setDeleteTorrentFilesAsDefault(checkDeleteTorrentFiles->isChecked());
   // End General preferences
@@ -604,10 +600,8 @@ void options_imp::loadOptions(){
   // General preferences
   setLocale(Preferences::getLocale());
   setStyle(Preferences::getStyle());
-  checkSpeedInTitle->setChecked(Preferences::speedInTitleBar());
   checkAltRowColors->setChecked(Preferences::useAlternatingRowColors());
   checkNoSystray->setChecked(!Preferences::systrayIntegration());
-  checkDisplayToolbar->setChecked(Preferences::isToolbarDisplayed());
   checkNoSplash->setChecked(Preferences::isSlashScreenDisabled());
   checkDeleteTorrentFiles->setChecked(Preferences::deleteTorrentFilesAsDefault());
   if(checkNoSystray->isChecked()) {
@@ -1282,10 +1276,6 @@ bool options_imp::isSlashScreenDisabled() const {
   return checkNoSplash->isChecked();
 }
 
-bool options_imp::speedInTitleBar() const {
-  return checkSpeedInTitle->isChecked();
-}
-
 bool options_imp::preAllocateAllFiles() const {
   return checkPreallocateAll->isChecked();
 }
@@ -1500,10 +1490,6 @@ void options_imp::on_browseTempDirButton_clicked(){
 // Return Filter object to apply to BT session
 QString options_imp::getFilter() const{
   return textFilterPath->text();
-}
-
-bool options_imp::isToolbarDisplayed() const {
-  return checkDisplayToolbar->isChecked();
 }
 
 // Web UI

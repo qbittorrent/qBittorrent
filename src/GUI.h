@@ -164,6 +164,10 @@ private:
   SearchEngine *searchEngine;
   // RSS
   QPointer<RSSImp> rssWidget;
+
+private slots:
+    void on_actionSpeed_in_title_bar_triggered();
+    void on_actionTop_tool_bar_triggered();
 };
 
 #endif

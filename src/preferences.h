@@ -97,6 +97,11 @@ public:
     return settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool();
   }
 
+  static void showSpeedInTitleBar(bool show) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/SpeedInTitleBar"), show);
+  }
+
   static bool speedInTitleBar() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/General/SpeedInTitleBar"), false).toBool();
@@ -115,6 +120,11 @@ public:
   static void setSystrayIntegration(bool enabled) {
     QSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/General/SystrayEnabled"), enabled);
+  }
+
+  static void setToolbarDisplayed(bool displayed) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/ToolbarDisplayed"), displayed);
   }
 
   static bool isToolbarDisplayed() {

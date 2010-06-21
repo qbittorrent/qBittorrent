@@ -1036,11 +1036,11 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionPause, SIGNAL(triggered()), this, SLOT(pauseSelectedTorrents()));
   QAction actionDelete(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")), tr("Delete"), 0);
   connect(&actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedTorrents()));
-  QAction actionPreview_file(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")), tr("Preview file"), 0);
+  QAction actionPreview_file(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")), tr("Preview file..."), 0);
   connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
-  QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")), tr("Limit upload rate"), 0);
+  QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")), tr("Limit upload rate..."), 0);
   connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
-  QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/download.png")), tr("Limit download rate"), 0);
+  QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/download.png")), tr("Limit download rate..."), 0);
   connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
   QAction actionOpen_destination_folder(QIcon(QString::fromUtf8(":/Icons/oxygen/folder.png")), tr("Open destination folder"), 0);
   connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));

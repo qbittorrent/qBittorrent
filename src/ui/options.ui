@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Preferences</string>
+   <string>Options</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
@@ -240,9 +240,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-109</y>
-             <width>506</width>
-             <height>515</height>
+             <y>0</y>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -252,6 +252,9 @@
                <string>User interface</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <layout class="QHBoxLayout">
                  <item>
@@ -336,26 +339,9 @@
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkDisplayToolbar">
-                 <property name="text">
-                  <string>Display top toolbar</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="checkNoSplash">
                  <property name="text">
                   <string>Disable splash screen</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkSpeedInTitle">
-                 <property name="text">
-                  <string>Display current speed in title bar</string>
                  </property>
                 </widget>
                </item>
@@ -366,173 +352,181 @@
                  </property>
                 </widget>
                </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_4">
+              <property name="title">
+               <string>Transfer list</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
-                <widget class="QGroupBox" name="groupBox_4">
-                 <property name="title">
-                  <string>Transfer list</string>
+                <widget class="QCheckBox" name="checkAltRowColors">
+                 <property name="text">
+                  <string extracomment="In transfer list, one every two rows will have grey background.">Use alternating row colors</string>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_27">
-                  <item>
-                   <widget class="QCheckBox" name="checkAltRowColors">
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_7">
+                 <property name="font">
+                  <font>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="title">
+                  <string>Action on double-click</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout">
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="lblDlList_2">
                     <property name="text">
-                     <string extracomment="In transfer list, one every two rows will have grey background.">Use alternating row colors</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
+                     <string>Downloading torrents:</string>
                     </property>
                    </widget>
                   </item>
-                  <item>
-                   <widget class="QGroupBox" name="ActDblClickBox">
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="actionTorrentDlOnDblClBox">
                     <property name="sizePolicy">
-                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
-                    <property name="styleSheet">
-                     <string notr="true">QGroupBox::title {
-font-weight: normal;
-margin-left: -2px;
-}
-QGroupBox {
-  border-width: 0;
-}</string>
+                    <property name="currentIndex">
+                     <number>0</number>
                     </property>
-                    <property name="title">
-                     <string comment="Action executed when doucle-clicking on an item in transfer (download/upload) list">Action on double click:</string>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_4">
-                     <item>
-                      <layout class="QHBoxLayout" name="_4">
-                       <item>
-                        <widget class="QLabel" name="lblDlList_2">
-                         <property name="text">
-                          <string>Downloading:</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QComboBox" name="actionTorrentDlOnDblClBox">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="currentIndex">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <property name="text">
-                           <string>Start/Stop</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>Open folder</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>No action</string>
-                          </property>
-                         </item>
-                        </widget>
-                       </item>
-                       <item>
-                        <spacer>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="lblUploadList">
-                         <property name="text">
-                          <string>Completed:</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QComboBox" name="actionTorrentFnOnDblClBox">
-                         <item>
-                          <property name="text">
-                           <string>Start/Stop</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>Open folder</string>
-                          </property>
-                         </item>
-                         <item>
-                          <property name="text">
-                           <string>No action</string>
-                          </property>
-                         </item>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                    </layout>
+                    <item>
+                     <property name="text">
+                      <string>Start / Stop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Open destination folder</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>No action</string>
+                     </property>
+                    </item>
                    </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="lblUploadList">
+                    <property name="text">
+                     <string>Completed torrents:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QComboBox" name="actionTorrentFnOnDblClBox">
+                    <item>
+                     <property name="text">
+                      <string>Start / Stop</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Open destination folder</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>No action</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_6">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
                   </item>
                  </layout>
                 </widget>
                </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_3">
-                 <item>
-                  <widget class="QGroupBox" name="systrayBox">
-                   <property name="title">
-                    <string>System tray icon</string>
-                   </property>
-                   <layout class="QVBoxLayout">
-                    <item>
-                     <widget class="QCheckBox" name="checkNoSystray">
-                      <property name="text">
-                       <string>Disable system tray icon</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="checkCloseToSystray">
-                      <property name="text">
-                       <string comment="i.e: The systray tray icon will still be visible when closing the main window.">Close to tray</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="checkMinimizeToSysTray">
-                      <property name="text">
-                       <string>Minimize to tray</string>
-                      </property>
-                      <property name="checked">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="checkStartMinimized">
-                      <property name="text">
-                       <string>Start minimized</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="systrayBox">
+              <property name="title">
+               <string>System tray icon</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QCheckBox" name="checkNoSystray">
+                 <property name="text">
+                  <string>Disable system tray icon</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QCheckBox" name="checkMinimizeToSysTray">
+                 <property name="text">
+                  <string>Minimize to tray</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="checkCloseToSystray">
+                 <property name="text">
+                  <string comment="i.e: The systray tray icon will still be visible when closing the main window.">Close to tray</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QCheckBox" name="checkStartMinimized">
+                 <property name="text">
+                  <string>Start minimized</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </widget>
@@ -3046,8 +3040,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>62</width>
+             <height>18</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -3095,7 +3089,6 @@ QGroupBox {
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
   <tabstop>comboStyle</tabstop>
-  <tabstop>checkSpeedInTitle</tabstop>
   <tabstop>checkNoSystray</tabstop>
   <tabstop>checkCloseToSystray</tabstop>
   <tabstop>checkMinimizeToSysTray</tabstop>

@@ -67,13 +67,11 @@ protected:
   // General options
   QString getLocale() const;
   QString getStyle() const;
-  bool speedInTitleBar() const;
   bool systrayIntegration() const;
   bool minimizeToTray() const;
   bool closeToTray() const;
   bool startMinimized() const;
   bool isSlashScreenDisabled() const;
-  bool isToolbarDisplayed() const;
   // Downloads
   QString getSavePath() const;
   bool isTempPathEnabled() const;

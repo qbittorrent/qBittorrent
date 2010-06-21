@@ -29,7 +29,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -58,10 +58,12 @@
    </widget>
    <widget class="QMenu" name="menu_Options">
     <property name="title">
-     <string>Options</string>
+     <string>&amp;Tools</string>
     </property>
-    <addaction name="actionOptions"/>
     <addaction name="actionShow_console"/>
+    <addaction name="actionCreate_torrent"/>
+    <addaction name="separator"/>
+    <addaction name="actionOptions"/>
    </widget>
    <widget class="QMenu" name="menu_File">
     <property name="title">
@@ -69,11 +71,18 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionDownload_from_URL"/>
-    <addaction name="actionCreate_torrent"/>
     <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionTop_tool_bar"/>
+    <addaction name="actionSpeed_in_title_bar"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
+   <addaction name="menuView"/>
    <addaction name="menu_Options"/>
    <addaction name="menu_Help"/>
   </widget>
@@ -125,17 +134,17 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="text">
-    <string>Open torrent</string>
+    <string>&amp;Add File...</string>
    </property>
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>E&amp;xit</string>
    </property>
   </action>
   <action name="actionOptions">
    <property name="text">
-    <string>Preferences</string>
+    <string>&amp;Options...</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -175,12 +184,12 @@
   </action>
   <action name="actionDownload_from_URL">
    <property name="text">
-    <string>Download from URL</string>
+    <string>Add &amp;URL...</string>
    </property>
   </action>
   <action name="actionCreate_torrent">
    <property name="text">
-    <string>Create torrent</string>
+    <string>Torrent &amp;creator</string>
    </property>
   </action>
   <action name="actionPreview_file">
@@ -253,7 +262,7 @@
      <normaloff>:/Icons/oxygen/log.png</normaloff>:/Icons/oxygen/log.png</iconset>
    </property>
    <property name="text">
-    <string>Console</string>
+    <string>&amp;Log viewer...</string>
    </property>
    <property name="toolTip">
     <string>Log Window</string>
@@ -266,6 +275,28 @@
    </property>
    <property name="text">
     <string>Use alternative speed limits</string>
+   </property>
+  </action>
+  <action name="actionTop_tool_bar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Top &amp;tool bar</string>
+   </property>
+   <property name="toolTip">
+    <string>Display top tool bar</string>
+   </property>
+  </action>
+  <action name="actionSpeed_in_title_bar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Speed in title bar</string>
+   </property>
+   <property name="toolTip">
+    <string>Show transfer speed in title bar</string>
    </property>
   </action>
  </widget>
