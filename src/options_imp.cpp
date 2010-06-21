@@ -164,15 +164,12 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // Connection tab
     connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableUploadLimit(bool)));
     connect(checkDownloadLimit,  SIGNAL(toggled(bool)), this, SLOT(enableDownloadLimit(bool)));
-    connect(check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableSchedulerFields(bool)));
     // Bittorrent tab
     connect(checkMaxConnecs,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimit(bool)));
     connect(checkMaxConnecsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimitPerTorrent(bool)));
     connect(checkMaxUploadsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxUploadsLimitPerTorrent(bool)));
     connect(checkRatioLimit,  SIGNAL(toggled(bool)), this, SLOT(enableShareRatio(bool)));
     connect(checkRatioRemove,  SIGNAL(toggled(bool)), this, SLOT(enableDeleteRatio(bool)));
-    connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableDHTSettings(bool)));
-    connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableDHTPortSettings(bool)));
     connect(comboPeerID, SIGNAL(currentIndexChanged(int)), this, SLOT(enableSpoofingSettings(int)));
     // Proxy tab
     connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)),this, SLOT(enableHTTPProxy(int)));
@@ -683,7 +680,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     spinDownloadLimitAlt->setValue(Preferences::getAltGlobalDownloadLimit());
     // Scheduler
     check_schedule->setChecked(Preferences::isSchedulerEnabled());
-    enableSchedulerFields(check_schedule->isChecked());
     schedule_from->setTime(Preferences::getSchedulerStartTime());
     schedule_to->setTime(Preferences::getSchedulerEndTime());
     schedule_days->setCurrentIndex((int)Preferences::getSchedulerDays());
@@ -771,9 +767,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       spinMaxUploadsPerTorrent->setEnabled(false);
     }
     checkDHT->setChecked(Preferences::isDHTEnabled());
-    enableDHTSettings(checkDHT->isChecked());
     checkDifferentDHTPort->setChecked(!Preferences::isDHTPortSameAsBT());
-    enableDHTPortSettings(checkDifferentDHTPort->isChecked());
     spinDHTPort->setValue(Preferences::getDHTPort());
     checkPeX->setChecked(Preferences::isPeXEnabled());
     checkLSD->setChecked(Preferences::isLSDEnabled());
@@ -1104,12 +1098,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     return checkAdditionDialog->isChecked();
   }
 
-  void options_imp::enableSchedulerFields(bool checked) {
-    schedule_from->setEnabled(checked);
-    schedule_to->setEnabled(checked);
-    schedule_days->setEnabled(checked);
-  }
-
   void options_imp::enableMaxConnecsLimit(bool checked){
     spinMaxConnec->setEnabled(checked);
   }
@@ -1165,22 +1153,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   void options_imp::enableShareRatio(bool checked){
     spinRatio->setEnabled(checked);
   }
-
-  void options_imp::enableDHTPortSettings(bool checked) {
-    spinDHTPort->setEnabled(checked);
-    dh_port_lbl->setEnabled(checked);
-  }
-
-  void options_imp::enableDHTSettings(bool checked) {
-    if(checked){
-      checkDifferentDHTPort->setEnabled(true);
-      enableDHTPortSettings(checkDifferentDHTPort->isChecked());
-    }else{
-      checkDifferentDHTPort->setEnabled(false);
-      enableDHTPortSettings(false);
-    }
-  }
-
 
   void options_imp::enableDeleteRatio(bool checked){
     spinMaxRatio->setEnabled(checked);

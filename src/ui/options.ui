@@ -1006,8 +1006,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>447</width>
-             <height>288</height>
+             <width>524</width>
+             <height>398</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -1251,8 +1251,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>364</width>
-             <height>328</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1261,142 +1261,102 @@ QGroupBox {
               <property name="title">
                <string>Global speed limits</string>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_18">
-               <item>
-                <layout class="QHBoxLayout" name="_3">
-                 <item>
-                  <widget class="QLabel" name="label_5">
+              <layout class="QGridLayout" name="gridLayout_7">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string notr="true"/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="../icons.qrc">:/Icons/slow_off.png</pixmap>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <layout class="QGridLayout" name="gridLayout_6">
+                 <item row="0" column="0">
+                  <widget class="QCheckBox" name="checkUploadLimit">
                    <property name="text">
-                    <string notr="true"/>
+                    <string>Upload:</string>
                    </property>
-                   <property name="pixmap">
-                    <pixmap resource="../icons.qrc">:/Icons/slow_off.png</pixmap>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
-                 <item>
-                  <layout class="QVBoxLayout" name="_5">
-                   <item>
-                    <widget class="QCheckBox" name="checkUploadLimit">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>45</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string>Upload:</string>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QCheckBox" name="checkDownloadLimit">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>37</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string>Download:</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <layout class="QVBoxLayout" name="_18">
-                   <item>
-                    <layout class="QHBoxLayout" name="_19">
-                     <item>
-                      <widget class="QSpinBox" name="spinUploadLimit">
-                       <property name="enabled">
-                        <bool>true</bool>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>27</height>
-                        </size>
-                       </property>
-                       <property name="suffix">
-                        <string/>
-                       </property>
-                       <property name="minimum">
-                        <number>1</number>
-                       </property>
-                       <property name="maximum">
-                        <number>1000000</number>
-                       </property>
-                       <property name="value">
-                        <number>50</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_10">
-                       <property name="text">
-                        <string>KiB/s</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <layout class="QHBoxLayout" name="_20">
-                     <item>
-                      <widget class="QSpinBox" name="spinDownloadLimit">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>27</height>
-                        </size>
-                       </property>
-                       <property name="suffix">
-                        <string/>
-                       </property>
-                       <property name="minimum">
-                        <number>1</number>
-                       </property>
-                       <property name="maximum">
-                        <number>1000000</number>
-                       </property>
-                       <property name="value">
-                        <number>100</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_13">
-                       <property name="text">
-                        <string>KiB/s</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                 <item row="0" column="1">
+                  <widget class="QSpinBox" name="spinUploadLimit">
+                   <property name="enabled">
+                    <bool>true</bool>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
+                   <property name="suffix">
+                    <string/>
                    </property>
-                  </spacer>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>1000000</number>
+                   </property>
+                   <property name="value">
+                    <number>50</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLabel" name="label_10">
+                   <property name="text">
+                    <string>KiB/s</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QCheckBox" name="checkDownloadLimit">
+                   <property name="text">
+                    <string>Download:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="spinDownloadLimit">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="suffix">
+                    <string/>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>1000000</number>
+                   </property>
+                   <property name="value">
+                    <number>100</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLabel" name="label_13">
+                   <property name="text">
+                    <string>KiB/s</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
+               </item>
+               <item row="0" column="2">
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>200</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
               </layout>
              </widget>
@@ -1406,10 +1366,10 @@ QGroupBox {
               <property name="title">
                <string>Alternative global speed limits</string>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_32">
+              <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_12">
-                 <item>
+                <layout class="QGridLayout" name="gridLayout_9">
+                 <item row="0" column="0">
                   <widget class="QLabel" name="label_16">
                    <property name="minimumSize">
                     <size>
@@ -1434,27 +1394,16 @@ QGroupBox {
                    </property>
                   </widget>
                  </item>
-                 <item>
-                  <layout class="QVBoxLayout" name="verticalLayout_31">
-                   <item>
+                 <item row="0" column="1">
+                  <layout class="QGridLayout" name="gridLayout_8">
+                   <item row="0" column="0">
                     <widget class="QLabel" name="label_11">
                      <property name="text">
                       <string>Upload:</string>
                      </property>
                     </widget>
                    </item>
-                   <item>
-                    <widget class="QLabel" name="label_12">
-                     <property name="text">
-                      <string>Download:</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <layout class="QVBoxLayout" name="verticalLayout_30">
-                   <item>
+                   <item row="0" column="1">
                     <widget class="QSpinBox" name="spinUploadLimitAlt">
                      <property name="minimum">
                       <number>1</number>
@@ -1467,7 +1416,21 @@ QGroupBox {
                      </property>
                     </widget>
                    </item>
-                   <item>
+                   <item row="0" column="2">
+                    <widget class="QLabel" name="label_14">
+                     <property name="text">
+                      <string>KiB/s</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_12">
+                     <property name="text">
+                      <string>Download:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
                     <widget class="QSpinBox" name="spinDownloadLimitAlt">
                      <property name="minimum">
                       <number>1</number>
@@ -1480,18 +1443,7 @@ QGroupBox {
                      </property>
                     </widget>
                    </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <layout class="QVBoxLayout" name="verticalLayout_29">
-                   <item>
-                    <widget class="QLabel" name="label_14">
-                     <property name="text">
-                      <string>KiB/s</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
+                   <item row="1" column="2">
                     <widget class="QLabel" name="label_15">
                      <property name="text">
                       <string>KiB/s</string>
@@ -1500,15 +1452,15 @@ QGroupBox {
                    </item>
                   </layout>
                  </item>
-                 <item>
+                 <item row="0" column="2">
                   <spacer name="horizontalSpacer_8">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>40</width>
-                     <height>20</height>
+                     <width>222</width>
+                     <height>59</height>
                     </size>
                    </property>
                   </spacer>
@@ -1516,121 +1468,136 @@ QGroupBox {
                 </layout>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_13">
-                 <item>
-                  <widget class="QCheckBox" name="check_schedule">
-                   <property name="text">
-                    <string>Scheduled times:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QTimeEdit" name="schedule_from">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="displayFormat">
-                    <string notr="true">hh:mm</string>
-                   </property>
-                   <property name="calendarPopup">
-                    <bool>false</bool>
-                   </property>
-                   <property name="time">
-                    <time>
-                     <hour>8</hour>
-                     <minute>0</minute>
-                     <second>0</second>
-                    </time>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_17">
-                   <property name="text">
-                    <string extracomment="time1 to time2">to</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QTimeEdit" name="schedule_to">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="displayFormat">
-                    <string notr="true">hh:mm</string>
-                   </property>
-                   <property name="time">
-                    <time>
-                     <hour>20</hour>
-                     <minute>0</minute>
-                     <second>0</second>
-                    </time>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_9">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_14">
-                 <item>
-                  <widget class="QLabel" name="label_18">
-                   <property name="text">
-                    <string>On days:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="schedule_days">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Every day</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Week days</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Week ends</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_10">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
+                <widget class="QGroupBox" name="check_schedule">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox::title {
+font-weight: normal;
+margin-left: 0px;
+}
+QGroupBox {
+  border-width: 0;
+}</string>
+                 </property>
+                 <property name="title">
+                  <string>Schedule alternative speed limits</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_5">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_13">
+                    <item>
+                     <widget class="QLabel" name="label_6">
+                      <property name="text">
+                       <string extracomment="from (time1 to time2)">from</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTimeEdit" name="schedule_from">
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
+                      <property name="calendarPopup">
+                       <bool>false</bool>
+                      </property>
+                      <property name="time">
+                       <time>
+                        <hour>8</hour>
+                        <minute>0</minute>
+                        <second>0</second>
+                       </time>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_17">
+                      <property name="text">
+                       <string extracomment="time1 to time2">to</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTimeEdit" name="schedule_to">
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
+                      <property name="time">
+                       <time>
+                        <hour>20</hour>
+                        <minute>0</minute>
+                        <second>0</second>
+                       </time>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_9">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_14">
+                    <item>
+                     <widget class="QLabel" name="label_18">
+                      <property name="text">
+                       <string>When:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="schedule_days">
+                      <item>
+                       <property name="text">
+                        <string>Every day</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Week days</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Week ends</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_10">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1643,7 +1610,7 @@ QGroupBox {
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>58</height>
+                <height>40</height>
                </size>
               </property>
              </spacer>
@@ -1666,8 +1633,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>459</width>
-             <height>407</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1678,86 +1645,98 @@ QGroupBox {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
-                <widget class="QCheckBox" name="checkDHT">
-                 <property name="text">
+                <widget class="QGroupBox" name="checkDHT">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox::title {
+font-weight: normal;
+margin-left: 0px;
+}
+QGroupBox {
+  border-width: 0;
+}</string>
+                 </property>
+                 <property name="title">
                   <string>Enable DHT network (decentralized)</string>
                  </property>
-                 <property name="checked">
+                 <property name="checkable">
                   <bool>true</bool>
                  </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_18">
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QGroupBox" name="checkDifferentDHTPort">
+                    <property name="styleSheet">
+                     <string notr="true">QGroupBox::title {
+font-weight: normal;
+margin-left: 0px;
+}
+QGroupBox {
+  border-width: 0;
+}</string>
+                    </property>
+                    <property name="title">
+                     <string>Use a different port for DHT and Bittorrent</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_17">
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_8">
+                       <item>
+                        <widget class="QLabel" name="dh_port_lbl">
+                         <property name="text">
+                          <string>DHT port:</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSpinBox" name="spinDHTPort">
+                         <property name="minimum">
+                          <number>1</number>
+                         </property>
+                         <property name="maximum">
+                          <number>65525</number>
+                         </property>
+                         <property name="value">
+                          <number>6881</number>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_5">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkDifferentDHTPort">
-                 <property name="text">
-                  <string>Use a different port for DHT and Bittorrent</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_8">
-                 <item>
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>13</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="dh_port_lbl">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string>DHT port:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="spinDHTPort">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="minimum">
-                    <number>1</number>
-                   </property>
-                   <property name="maximum">
-                    <number>65525</number>
-                   </property>
-                   <property name="value">
-                    <number>6881</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_5">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkPeX">
+                 <property name="toolTip">
+                  <string>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</string>
+                 </property>
                  <property name="text">
                   <string>Enable Peer Exchange / PeX (requires restart)</string>
                  </property>
@@ -1768,6 +1747,9 @@ QGroupBox {
                </item>
                <item>
                 <widget class="QCheckBox" name="checkLSD">
+                 <property name="toolTip">
+                  <string>Look for peers on your local network</string>
+                 </property>
                  <property name="text">
                   <string>Enable Local Peer Discovery</string>
                  </property>
@@ -1781,7 +1763,7 @@ QGroupBox {
                  <item>
                   <widget class="QLabel" name="lbl_encryption">
                    <property name="text">
-                    <string>Encryption:</string>
+                    <string>Protocol encryption:</string>
                    </property>
                   </widget>
                  </item>
@@ -3014,7 +2996,6 @@ QGroupBox {
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
   <tabstop>checkNATPMP</tabstop>
-  <tabstop>checkDHT</tabstop>
   <tabstop>checkLSD</tabstop>
   <tabstop>comboEncryption</tabstop>
   <tabstop>checkRatioLimit</tabstop>

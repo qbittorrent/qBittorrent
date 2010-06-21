@@ -137,13 +137,10 @@ protected slots:
   void enableMaxConnecsLimit(bool checked);
   void enableMaxConnecsLimitPerTorrent(bool checked);
   void enableMaxUploadsLimitPerTorrent(bool checked);
-  void enableSchedulerFields(bool checked);
   void enableShareRatio(bool checked);
   void enableDeleteRatio(bool checked);
   void enableFilter(bool checked);
   void enableRSS(bool checked);
-  void enableDHTSettings(bool checked);
-  void enableDHTPortSettings(bool checked);
   void enableSpoofingSettings(int index);
   void setStyle(QString style);
   void on_buttonBox_accepted();
