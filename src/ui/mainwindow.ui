@@ -29,7 +29,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -260,9 +260,8 @@
    </property>
   </action>
   <action name="actionUse_alternative_speed_limits">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/slow_off.png</normaloff>:/Icons/slow_off.png</iconset>
+   <property name="checkable">
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Use alternative speed limits</string>
