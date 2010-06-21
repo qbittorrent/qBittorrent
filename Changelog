@@ -3,6 +3,7 @@
     - BUGFIX: Improved ETA display (more user friendly)
     - BUGFIX: Fix possible compilation errors with libtorrent v0.15
     - BUGFIX: Fix minor issues in torrent creation tool
+    - BUGFIX: Use checkable actions to avoid issues on systems hiding menu icons (e.g. recent Gnome)
 
 * Sun Jun 13 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
     - FEATURE: Official support for Win32 platform
