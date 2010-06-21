@@ -14,6 +14,7 @@
     - BUGFIX: The user can disable permanently recursive torrent download
     - COSMETIC: Display peers country name in tooltip
     - COSMETIC: Display number of torrents in transfers tab label
+    - COSMETIC: Simplified program preferences
 
 * Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
     - FEATURE: User can set alternative speed limits for fast toggling
