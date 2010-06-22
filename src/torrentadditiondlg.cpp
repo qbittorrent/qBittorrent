@@ -531,12 +531,12 @@ void torrentAdditionDialog::renameSelectedFile() {
         }
 #endif
         // Check if there is at least one selected file
-        if(!is_magnet && allFiltered()){
+        if(!is_magnet && t->num_files() > 1 && allFiltered()){
           QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
           return;
         }
         // save filtered files
-        if(!is_magnet)
+        if(!is_magnet && t->num_files() > 1)
           savePiecesPriorities();
         // Add to download list
         QTorrentHandle h;
