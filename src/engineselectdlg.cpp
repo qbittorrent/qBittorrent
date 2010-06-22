@@ -84,6 +84,7 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
     qDebug("dropped %s", qPrintable(file));
     file = file.replace("file://", "");
     if(file.startsWith("http://", Qt::CaseInsensitive) || file.startsWith("https://", Qt::CaseInsensitive) || file.startsWith("ftp://", Qt::CaseInsensitive)) {
+      setCursor(QCursor(Qt::WaitCursor));
       downloader->downloadUrl(file);
       continue;
     }
@@ -108,6 +109,7 @@ void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
 
 void engineSelectDlg::on_updateButton_clicked() {
   // Download version file from update server on sourceforge
+  setCursor(QCursor(Qt::WaitCursor));
   downloader->downloadUrl(QString(UPDATE_URL)+"versions.txt");
 }
 
@@ -349,8 +351,10 @@ void engineSelectDlg::askForPluginUrl() {
   QString url = QInputDialog::getText(this, tr("New search engine plugin URL"),
                                       tr("URL:"), QLineEdit::Normal,
                                       "http://", &ok);
-  if (ok && !url.isEmpty())
+  if (ok && !url.isEmpty()) {
+    setCursor(QCursor(Qt::WaitCursor));
     downloader->downloadUrl(url);
+  }
 }
 
 void engineSelectDlg::askForLocalPlugin() {
@@ -395,6 +399,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
     if(isUpdateNeeded(plugin_name, version)) {
       qDebug("Plugin: %s is outdated", qPrintable(plugin_name));
       // Downloading update
+      setCursor(QCursor(Qt::WaitCursor));
       downloader->downloadUrl(UPDATE_URL+plugin_name+".py");
       //downloader->downloadUrl(UPDATE_URL+plugin_name+".png");
       updated = true;
@@ -413,6 +418,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
 }
 
 void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
+  setCursor(QCursor(Qt::ArrowCursor));
   qDebug("engineSelectDlg received %s", qPrintable(url));
   if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
     // Icon downloaded
@@ -454,6 +460,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
 }
 
 void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
+  setCursor(QCursor(Qt::ArrowCursor));
   if(url.endsWith("favicon.ico", Qt::CaseInsensitive)){
     qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));
     return;
