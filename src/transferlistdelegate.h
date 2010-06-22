@@ -142,7 +142,7 @@ public:
         if(ratio > 100.)
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
         else
-          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 1));
+          QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 2));
         break;
       }
     case TR_PRIORITY: {

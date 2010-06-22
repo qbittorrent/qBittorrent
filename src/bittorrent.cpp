@@ -217,7 +217,7 @@ void Bittorrent::deleteBigRatios() {
     if(h.is_seed()) {
       const QString hash = h.hash();
       const float ratio = getRealRatio(hash);
-      if(ratio <= MAX_RATIO && ratio > ratio_limit) {
+      if(ratio <= MAX_RATIO && ratio >= ratio_limit) {
         addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
         deleteTorrent(hash);
         //emit torrent_ratio_deleted(fileName);

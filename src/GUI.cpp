@@ -541,8 +541,7 @@ void GUI::closeEvent(QCloseEvent *e) {
       if(QMessageBox::question(this,
                                tr("Are you sure you want to quit?")+QString::fromUtf8(" -- ")+tr("qBittorrent"),
                                tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
-                               tr("&Yes"), tr("&No"),
-                               QString(), 0, 1)) {
+                               QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No) {
         e->ignore();
         force_exit = false;
         return;
