@@ -63,7 +63,7 @@
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
 #include "statusbar.h"
-#include "HidableTabWidget.h"
+#include "hidabletabwidget.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
