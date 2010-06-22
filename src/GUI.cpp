@@ -82,13 +82,7 @@ using namespace libtorrent;
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), displaySpeedInTitle(false), force_exit(false) {
   setupUi(this);
 
-  setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION))
-#if defined(Q_WS_WIN)
-                 +" [Windows]"
-#elif defined(Q_WS_MAC)
-                 +" [Mac OS X]"
-#endif
-                 );
+  setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
