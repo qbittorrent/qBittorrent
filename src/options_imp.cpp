@@ -366,13 +366,13 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // Downloads preferences
     settings.beginGroup("Downloads");
     QString save_path = getSavePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     save_path = save_path.replace("\\", "/");
 #endif
     settings.setValue(QString::fromUtf8("SavePath"), save_path);
     settings.setValue(QString::fromUtf8("TempPathEnabled"), isTempPathEnabled());
     QString temp_path = getTempPath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     temp_path = temp_path.replace("\\", "/");
 #endif
     settings.setValue(QString::fromUtf8("TempPath"), temp_path);
@@ -386,7 +386,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     ScanFoldersModel::instance()->makePersistent(settings);
     addedScanDirs.clear();
     QString export_dir = getExportDir();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     export_dir = export_dir.replace("\\", "/");
 #endif
     Preferences::setExportDir(export_dir);
@@ -476,7 +476,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     settings.setValue(QString::fromUtf8("Enabled"), isFilteringEnabled());
     if(isFilteringEnabled()){
       QString filter_path = textFilterPath->text();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       filter_path = filter_path.replace("\\", "/");
 #endif
       settings.setValue(QString::fromUtf8("File"), filter_path);
@@ -588,7 +588,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // End General preferences
     // Downloads preferences
     QString save_path = Preferences::getSavePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     save_path = save_path.replace("/", "\\");
 #endif
     textSavePath->setText(save_path);
@@ -599,7 +599,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       checkTempFolder->setChecked(false);
     }
     QString temp_path = Preferences::getTempPath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     temp_path = temp_path.replace("/", "\\");
 #endif
     textTempPath->setText(temp_path);
@@ -618,7 +618,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     } else {
       // enable
       checkExportDir->setChecked(true);
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       strValue = strValue.replace("/", "\\");
 #endif
       textExportDir->setText(strValue);
@@ -973,7 +973,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   QString options_imp::getSavePath() const{
     if(textSavePath->text().trimmed().isEmpty()){
       QString save_path = Preferences::getSavePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       save_path = save_path.replace("/", "\\");
 #endif
       textSavePath->setText(save_path);
@@ -1307,7 +1307,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
     }
     if(!dir.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       dir = dir.replace("/", "\\");
 #endif
       textExportDir->setText(dir);
@@ -1324,7 +1324,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
     }
     if(!ipfilter.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       ipfilter = ipfilter.replace("/", "\\");
 #endif
       textFilterPath->setText(ipfilter);
@@ -1342,7 +1342,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
     }
     if(!dir.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       dir = dir.replace("/", "\\");
 #endif
       textSavePath->setText(dir);
@@ -1359,7 +1359,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
     }
     if(!dir.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       dir = dir.replace("/", "\\");
 #endif
       textTempPath->setText(dir);

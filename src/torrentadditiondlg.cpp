@@ -53,7 +53,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
   defaultSavePath = Preferences::getSavePath();
   appendLabelToSavePath = Preferences::appendTorrentLabel();
   QString display_path = defaultSavePath;
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   display_path = display_path.replace("/", "\\");
 #endif
   savePathTxt->setText(display_path);
@@ -196,7 +196,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   }
   QString root_folder = misc::truncateRootFolder(t);
   QString save_path = savePathTxt->text();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   save_path = save_path.replace("/", "\\");
 #endif
   if(!save_path.endsWith(QDir::separator()))
@@ -208,7 +208,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   if(nbFiles == 1) {
     // single file torrent
     QString single_file_relpath = misc::toQStringU(t->file_at(0).path.string());
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     single_file_relpath = single_file_relpath.replace("/", "\\");
 #endif
     savePathTxt->setText(save_path+single_file_relpath);
@@ -425,7 +425,7 @@ void torrentAdditionDialog::renameSelectedFile() {
     void torrentAdditionDialog::on_browseButton_clicked(){
       QString new_path;
       QString save_path = savePathTxt->text();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       save_path = save_path.replace("\\", "/");
 #endif
       save_path = misc::expandPath(save_path);
@@ -440,7 +440,7 @@ void torrentAdditionDialog::renameSelectedFile() {
         }
       }
       if(!new_path.isEmpty()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
         new_path = new_path.replace("/", "\\");
 #endif
         savePathTxt->setText(new_path);
@@ -467,7 +467,7 @@ void torrentAdditionDialog::renameSelectedFile() {
         return;
       }
       QString save_path = savePathTxt->text();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       save_path = save_path.replace("\\", "/");
 #endif
       save_path = misc::expandPath(save_path);
