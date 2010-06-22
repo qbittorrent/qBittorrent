@@ -212,6 +212,7 @@ ScanFoldersModel* Bittorrent::getScanFoldersModel() const {
 
 void Bittorrent::processBigRatios() {
   if(ratio_limit <= 0) return;
+  qDebug("Process big ratios...");
   std::vector<torrent_handle> torrents = getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
@@ -220,15 +221,19 @@ void Bittorrent::processBigRatios() {
     if(h.is_seed()) {
       const QString hash = h.hash();
       const float ratio = getRealRatio(hash);
-      if(ratio <= MAX_RATIO && ratio > ratio_limit) {
-        addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
+      qDebug("Ratio: %f (limit: %f)", ratio, ratio_limit);
+      if(ratio <= MAX_RATIO && ratio >= ratio_limit) {
         if(high_ratio_action == REMOVE_ACTION) {
+          addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
           addConsoleMessage(tr("Removing torrent %1...").arg(h.name()));
           deleteTorrent(hash);
         } else {
           // Pause it
-          addConsoleMessage(tr("Pausing torrent %1...").arg(h.name()));
-          pauseTorrent(hash);
+          if(!h.is_paused()) {
+            addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
+            addConsoleMessage(tr("Pausing torrent %1...").arg(h.name()));
+            pauseTorrent(hash);
+          }
         }
         //emit torrent_ratio_deleted(fileName);
       }

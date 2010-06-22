@@ -350,7 +350,7 @@ void PropertiesWidget::loadDynamicData() {
       if(ratio > 100.)
         shareRatio->setText(QString::fromUtf8("∞"));
       else
-        shareRatio->setText(QString(QByteArray::number(ratio, 'f', 1)));
+        shareRatio->setText(QString(QByteArray::number(ratio, 'f', 2)));
       if(!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
