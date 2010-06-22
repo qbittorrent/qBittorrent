@@ -94,7 +94,7 @@ public:
     readSettings();
     //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
     QString display_path = Preferences::getSavePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     display_path = display_path.replace("/", "\\");
 #endif
     savePathTxt->setText(display_path);
@@ -414,7 +414,7 @@ public slots:
       void on_browseButton_clicked(){
         QString dir;
         QString save_path = savePathTxt->text();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
         save_path = save_path.replace("\\", "/");
 #endif
         save_path = misc::expandPath(save_path);
@@ -425,7 +425,7 @@ public slots:
           dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
         }
         if(!dir.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
           dir = dir.replace("/", "\\");
 #endif
           savePathTxt->setText(dir);
@@ -452,7 +452,7 @@ public slots:
           return;
         }
         QString save_path = savePathTxt->text();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
         save_path = save_path.replace("\\", "/");
 #endif
         QDir savePath(misc::expandPath(save_path));

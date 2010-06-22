@@ -401,13 +401,13 @@ void options_imp::saveOptions(){
   // Downloads preferences
   settings.beginGroup("Downloads");
   QString save_path = getSavePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   save_path = save_path.replace("\\", "/");
 #endif
   settings.setValue(QString::fromUtf8("SavePath"), save_path);
   settings.setValue(QString::fromUtf8("TempPathEnabled"), isTempPathEnabled());
   QString temp_path = getTempPath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   temp_path = temp_path.replace("\\", "/");
 #endif
   settings.setValue(QString::fromUtf8("TempPath"), temp_path);
@@ -421,7 +421,7 @@ void options_imp::saveOptions(){
   ScanFoldersModel::instance()->makePersistent(settings);
   addedScanDirs.clear();
   QString export_dir = getExportDir();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   export_dir = export_dir.replace("\\", "/");
 #endif
   Preferences::setExportDir(export_dir);
@@ -511,7 +511,7 @@ void options_imp::saveOptions(){
   settings.setValue(QString::fromUtf8("Enabled"), isFilteringEnabled());
   if(isFilteringEnabled()){
     QString filter_path = textFilterPath->text();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     filter_path = filter_path.replace("\\", "/");
 #endif
     settings.setValue(QString::fromUtf8("File"), filter_path);
@@ -634,7 +634,7 @@ void options_imp::loadOptions(){
   // End General preferences
   // Downloads preferences
   QString save_path = Preferences::getSavePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   save_path = save_path.replace("/", "\\");
 #endif
   textSavePath->setText(save_path);
@@ -647,7 +647,7 @@ void options_imp::loadOptions(){
     enableTempPathInput(checkTempFolder->isChecked());
   }
   QString temp_path = Preferences::getTempPath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   temp_path = temp_path.replace("/", "\\");
 #endif
   textTempPath->setText(temp_path);
@@ -667,7 +667,7 @@ void options_imp::loadOptions(){
   } else {
     // enable
     checkExportDir->setChecked(true);
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     strValue = strValue.replace("/", "\\");
 #endif
     textExportDir->setText(strValue);
@@ -1063,7 +1063,7 @@ float options_imp::getDeleteRatio() const{
 QString options_imp::getSavePath() const{
   if(textSavePath->text().trimmed().isEmpty()){
     QString save_path = Preferences::getSavePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     save_path = save_path.replace("/", "\\");
 #endif
     textSavePath->setText(save_path);
@@ -1462,7 +1462,7 @@ void options_imp::on_browseExportDirButton_clicked() {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
   }
   if(!dir.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir = dir.replace("/", "\\");
 #endif
     textExportDir->setText(dir);
@@ -1479,7 +1479,7 @@ void options_imp::on_browseFilterButton_clicked() {
     ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
   }
   if(!ipfilter.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     ipfilter = ipfilter.replace("/", "\\");
 #endif
     textFilterPath->setText(ipfilter);
@@ -1497,7 +1497,7 @@ void options_imp::on_browseSaveDirButton_clicked(){
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if(!dir.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir = dir.replace("/", "\\");
 #endif
     textSavePath->setText(dir);
@@ -1514,7 +1514,7 @@ void options_imp::on_browseTempDirButton_clicked(){
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if(!dir.isNull()){
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir = dir.replace("/", "\\");
 #endif
     textTempPath->setText(dir);

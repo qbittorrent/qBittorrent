@@ -212,7 +212,7 @@ void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
     QString p = TorrentPersistentData::getSavePath(h.hash());
     if(p.isEmpty())
       p = h.save_path();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     p = p.replace("/", "\\");
 #endif
     save_path->setText(p);
@@ -233,7 +233,7 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     QString p = TorrentPersistentData::getSavePath(h.hash());
     if(p.isEmpty())
       p = h.save_path();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     p = p.replace("/", "\\");
 #endif
     save_path->setText(p);
@@ -754,7 +754,7 @@ void PropertiesWidget::renameSelectedFile() {
           h.move_storage(savePath.absolutePath());
         // Update save_path in dialog
         QString display_path = savePath.absolutePath();
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
         display_path = display_path.replace("/", "\\");
 #endif
         save_path->setText(display_path);

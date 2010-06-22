@@ -82,7 +82,7 @@ createtorrent::~createtorrent() {
 void createtorrent::on_addFolder_button_clicked(){
   QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), QDir::homePath(), QFileDialog::ShowDirsOnly);
   if(!dir.isEmpty()) {
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir = dir.replace("/", "\\");
 #endif
     textInputPath->setText(dir);
@@ -92,7 +92,7 @@ void createtorrent::on_addFolder_button_clicked(){
 void createtorrent::on_addFile_button_clicked(){
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), QDir::homePath());
   if(!file.isEmpty()) {
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     file = file.replace("/", "\\");
 #endif
     textInputPath->setText(file);

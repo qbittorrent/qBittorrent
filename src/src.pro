@@ -12,7 +12,7 @@ CONFIG += qt \
 
 # Update this VERSION for each release
 os2 {
-    DEFINES += VERSION=\'\"v2.2.9\'\"
+    DEFINES += VERSION=\'\"v2.2.9\"\'
 } else {
     DEFINES += VERSION=\\\"v2.2.9\\\"
 }
@@ -191,11 +191,15 @@ win32 {
 
 }
 
-os2:LIBS += -ltorrent-rasterbar \
+os2 {
+  LIBS += -ltorrent-rasterbar \
     -lboost_thread \
     -lboost_system \
     -lboost_filesystem \
     -lssl -lcrypto -lidn -lpthread
+
+  RC_FILE = qbittorrent_os2.rc
+}
 
 !contains(DEFINES, DISABLE_GUI) {
   win32 {
