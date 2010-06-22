@@ -134,9 +134,15 @@ QString misc::QDesktopServicesCacheLocation() {
 
 long long misc::freeDiskSpaceOnPath(QString path) {
   if(path.isEmpty()) return -1;
+  path = path.replace("\\", "/");
   QDir dir_path(path);
   if(!dir_path.exists()) {
-    if(!dir_path.cdUp()) return -1;
+    QStringList parts = path.split("/");
+    while (parts.size() > 1 && !QDir(parts.join("/")).exists()) {
+      parts.removeLast();
+    }
+    dir_path = QDir(parts.join("/"));
+    if(!dir_path.exists()) return -1;
   }
   Q_ASSERT(dir_path.exists());
 #ifndef Q_WS_WIN
