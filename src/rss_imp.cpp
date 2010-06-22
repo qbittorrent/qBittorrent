@@ -43,6 +43,7 @@
 #include "bittorrent.h"
 #include "cookiesdlg.h"
 #include "preferences.h"
+#include "rsssettings.h"
 
 enum NewsCols { NEWS_ICON, NEWS_TITLE_COL, NEWS_URL_COL, NEWS_ID };
 
@@ -640,3 +641,9 @@ RSSImp::~RSSImp(){
   qDebug("RSSImp deleted");
 }
 
+
+void RSSImp::on_settingsButton_clicked() {
+  RssSettings rssSettingsDlg(this);
+  if(rssSettingsDlg.exec())
+    updateRefreshInterval(Preferences::getRefreshInterval());
+}

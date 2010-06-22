@@ -44,11 +44,9 @@ class QTreeWidgetItem;
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
 
-private:
-  RssManager *rssmanager;
-  Bittorrent *BTSession;
-  FeedList *listStreams;
-  QTreeWidgetItem* previous_news;
+public:
+  RSSImp(Bittorrent *BTSession);
+  ~RSSImp();
 
 public slots:
   void deleteSelectedItems();
@@ -80,10 +78,13 @@ protected slots:
   void loadFoldersOpenState();
   void displayOverwriteError(QString filename);
   void on_actionManage_cookies_triggered();
+  void on_settingsButton_clicked();
 
-public:
-  RSSImp(Bittorrent *BTSession);
-  ~RSSImp();
+private:
+  RssManager *rssmanager;
+  Bittorrent *BTSession;
+  FeedList *listStreams;
+  QTreeWidgetItem* previous_news;
 
 };
 

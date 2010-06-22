@@ -89,6 +89,13 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QPushButton" name="settingsButton">
+       <property name="text">
+        <string>Settings...</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>

@@ -248,9 +248,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     // Misc tab
     connect(checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinRSSRefresh, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(spinRSSMaxArticlesPerFeed, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(checkEnableRSS, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkEnableQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(spinMaxActiveDownloads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     connect(spinMaxActiveUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -483,13 +480,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
       settings.setValue(QString::fromUtf8("File"), filter_path);
     }
     // End IPFilter preferences
-    settings.endGroup();
-    // RSS
-    settings.beginGroup("RSS");
-    settings.setValue(QString::fromUtf8("RSSEnabled"), isRSSEnabled());
-    settings.setValue(QString::fromUtf8("RSSRefresh"), spinRSSRefresh->value());
-    settings.setValue(QString::fromUtf8("RSSMaxArticlesPerFeed"), spinRSSMaxArticlesPerFeed->value());
-    // End RSS preferences
     settings.endGroup();
     // Queueing system
     settings.beginGroup("Queueing");
@@ -807,11 +797,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     checkIPFilter->setChecked(Preferences::isFilteringEnabled());
     textFilterPath->setText(Preferences::getFilter());
     // End IP Filter
-    // * RSS
-    checkEnableRSS->setChecked(Preferences::isRSSEnabled());
-    spinRSSRefresh->setValue(Preferences::getRSSRefreshInterval());
-    spinRSSMaxArticlesPerFeed->setValue(Preferences::getRSSMaxArticlesPerFeed());
-    // End RSS preferences
     // Queueing system preferences
     checkEnableQueueing->setChecked(Preferences::isQueueingSystemEnabled());
     spinMaxActiveDownloads->setValue(Preferences::getMaxActiveDownloads());
@@ -927,10 +912,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 
   bool options_imp::isDHTEnabled() const{
     return checkDHT->isChecked();
-  }
-
-  bool options_imp::isRSSEnabled() const{
-    return checkEnableRSS->isChecked();
   }
 
   bool options_imp::isLSDEnabled() const{

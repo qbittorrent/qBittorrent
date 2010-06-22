@@ -79,6 +79,7 @@
     </property>
     <addaction name="actionTop_tool_bar"/>
     <addaction name="actionSpeed_in_title_bar"/>
+    <addaction name="actionRSS_Reader"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
@@ -299,6 +300,14 @@
    </property>
    <property name="toolTip">
     <string>Show transfer speed in title bar</string>
+   </property>
+  </action>
+  <action name="actionRSS_Reader">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>RSS Reader</string>
    </property>
   </action>
  </widget>

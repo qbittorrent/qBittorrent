@@ -744,10 +744,21 @@ public:
     return settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toUInt();
   }
 
+  static void setRSSRefreshInterval(uint interval) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSRefresh"), interval);
+  }
+
   static int getRSSMaxArticlesPerFeed() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
   }
+
+  static void setRSSMaxArticlesPerFeed(int nb) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), nb);
+  }
+
 
   // Queueing system
   static bool isQueueingSystemEnabled() {

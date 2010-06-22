@@ -328,7 +328,8 @@ contains(DEFINES, DISABLE_GUI) {
               trackerlogin.h \
               pieceavailabilitybar.h \
               advancedsettings.h \
-              cookiesdlg.h
+              cookiesdlg.h \
+              rsssettings.h
   macx {
     HEADERS += qmacapplication.h
   }
@@ -360,7 +361,8 @@ contains(DEFINES, DISABLE_GUI) {
            ui/propertieswidget.ui \
            ui/peer.ui \
            ui/confirmdeletiondlg.ui \
-           ui/cookiesdlg.ui
+           ui/cookiesdlg.ui \
+           ui/rsssettings.ui
 }
 
 SOURCES += main.cpp \ 
@@ -390,7 +392,8 @@ SOURCES += main.cpp \
              peerlistwidget.cpp \
              cookiesdlg.cpp \
              trackerlist.cpp \
-             torrentadditiondlg.cpp
+             torrentadditiondlg.cpp \
+             rsssettings.cpp
 
   macx {
     SOURCES += qmacapplication.cpp
@@ -398,3 +401,4 @@ SOURCES += main.cpp \
 }
 
 DESTDIR = .
+

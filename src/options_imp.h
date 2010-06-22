@@ -95,7 +95,6 @@ protected:
   bool isDHTPortSameAsBT() const;
   int getDHTPort() const;
   bool isLSDEnabled() const;
-  bool isRSSEnabled() const;
   int getEncryptionSetting() const;
   float getDeleteRatio() const;
   // Proxy options

@@ -184,6 +184,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   // View settings
   actionTop_tool_bar->setChecked(Preferences::isToolbarDisplayed());
   actionSpeed_in_title_bar->setChecked(Preferences::speedInTitleBar());
+  actionRSS_Reader->setChecked(Preferences::isRSSEnabled());
+  if(actionRSS_Reader->isChecked())
+    displayRSSTab(true);
 
   show();
 
@@ -812,14 +815,6 @@ void GUI::loadPreferences(bool configure_session) {
     }
   }
 
-  // RSS
-  if(Preferences::isRSSEnabled()) {
-    displayRSSTab(true);
-    rssWidget->updateRefreshInterval(Preferences::getRSSRefreshInterval());
-  } else {
-    displayRSSTab(false);
-  }
-
   // Torrent properties
   properties->reloadPreferences();
 
@@ -1012,8 +1007,9 @@ void GUI::on_actionSpeed_in_title_bar_triggered() {
       setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
 }
 
-
-
+void GUI::on_actionRSS_Reader_triggered() {
+  displayRSSTab(actionRSS_Reader->isChecked());
+}
 
 /*****************************************************
  *                                                   *
