@@ -5,6 +5,7 @@
     - BUGFIX: Fix minor issues in torrent creation tool
     - BUGFIX: Use checkable actions to avoid issues on systems hiding menu icons (e.g. recent Gnome)
     - BUGFIX: Use busy cursor for search plugin updates
+    - BUGFIX: Free disk space calculation now works if destination folder does not exist
     - COSMETIC: Display "Alternative speed limits" button as pressed when enabled
 
 * Sun Jun 13 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.9
