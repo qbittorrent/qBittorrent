@@ -116,7 +116,7 @@ Bittorrent::Bittorrent()
   addConsoleMessage("Peer ID: "+misc::toQString(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
 
   // Set severity level of libtorrent session
-  s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification);
+  s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification | alert::progress_notification);
   // Load previous state
   loadSessionState();
   // Enabling plugins
@@ -2087,7 +2087,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 #if LIBTORRENT_VERSION_MINOR > 14
       else if (file_completed_alert* p = dynamic_cast<file_completed_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
+        qDebug("A file completed download in torrent %s", qPrintable(h.name()));
         if(appendqBExtension) {
+          qDebug("appendqBTExtension is true");
           QString name = misc::toQStringU(h.get_torrent_info().file_at(p->index).path.string());
           if(name.endsWith(".!qB")) {
             const QString old_name = name;
