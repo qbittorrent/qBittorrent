@@ -153,7 +153,7 @@ public slots:
   void setMaxUploadsPerTorrent(int max);
   void setDownloadRateLimit(long rate);
   void setUploadRateLimit(long rate);
-  void setDeleteRatio(float ratio);
+  void setMaxRatio(float ratio);
   void setDHTPort(int dht_port);
   void setPeerProxySettings(const proxy_settings &proxySettings);
   void setHTTPProxySettings(const proxy_settings &proxySettings);
@@ -194,7 +194,7 @@ protected:
 protected slots:
   void addTorrentsFromScanFolder(QStringList&);
   void readAlerts();
-  void deleteBigRatios();
+  void processBigRatios();
   void takeETASamples();
   void exportTorrentFiles(QString path);
   void saveTempFastResumeData();
@@ -240,6 +240,7 @@ private:
   bool preAllocateAll;
   bool addInPause;
   float ratio_limit;
+  int high_ratio_action;
   bool UPnPEnabled;
   bool NATPMPEnabled;
   bool LSDEnabled;

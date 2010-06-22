@@ -11,6 +11,7 @@
     - FEATURE: Added filter for paused/error torrents
     - FEATURE: Add Check/Uncheck all feature in Web UI
     - FEATURE: Search engine can now be disabled
+    - FEATURE: Torrents can be automatically paused once they reach a given ratio
     - BUGFIX: Hide seeding torrents files priorities in Web UI
     - BUGFIX: The user can disable permanently recursive torrent download
     - COSMETIC: Display peers country name in tooltip

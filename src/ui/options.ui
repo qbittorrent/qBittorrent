@@ -516,7 +516,7 @@
              <x>0</x>
              <y>0</y>
              <width>506</width>
-             <height>630</height>
+             <height>504</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -551,97 +551,6 @@
                   <string comment="The torrent will be added to download list in pause state">Do not start the download automatically</string>
                  </property>
                 </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="checkEnableQueueing">
-              <property name="title">
-               <string>Torrent queueing</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_2">
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_max_active_dl">
-                 <property name="text">
-                  <string>Maximum active downloads:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QSpinBox" name="spinMaxActiveDownloads">
-                 <property name="minimum">
-                  <number>-1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>3</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_max_active_up">
-                 <property name="text">
-                  <string>Maximum active uploads:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QSpinBox" name="spinMaxActiveUploads">
-                 <property name="minimum">
-                  <number>-1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>3</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="maxActiveTorrents_lbl">
-                 <property name="text">
-                  <string>Maximum active torrents:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QSpinBox" name="spinMaxActiveTorrents">
-                 <property name="minimum">
-                  <number>-1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>5</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
               </layout>
              </widget>
@@ -1650,12 +1559,12 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>524</width>
-             <height>406</height>
+             <y>-80</y>
+             <width>539</width>
+             <height>484</height>
             </rect>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_20">
+           <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
              <widget class="QGroupBox" name="AddBTFeaturesBox">
               <property name="title">
@@ -1828,6 +1737,9 @@ QGroupBox {
                <string>Client whitelisting workaround</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_11">
                  <item>
@@ -1936,17 +1848,111 @@ QGroupBox {
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="checkEnableQueueing">
+              <property name="title">
+               <string>Torrent queueing</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_max_active_dl">
+                 <property name="text">
+                  <string>Maximum active downloads:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinMaxActiveDownloads">
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999</number>
+                 </property>
+                 <property name="value">
+                  <number>3</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_max_active_up">
+                 <property name="text">
+                  <string>Maximum active uploads:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinMaxActiveUploads">
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999</number>
+                 </property>
+                 <property name="value">
+                  <number>3</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="maxActiveTorrents_lbl">
+                 <property name="text">
+                  <string>Maximum active torrents:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="spinMaxActiveTorrents">
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999</number>
+                 </property>
+                 <property name="value">
+                  <number>5</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <spacer name="horizontalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="ratioBox">
               <property name="title">
-               <string>Share ratio settings</string>
+               <string>Share ratio limiting</string>
               </property>
               <layout class="QVBoxLayout">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <layout class="QHBoxLayout">
                  <item>
-                  <widget class="QCheckBox" name="checkRatioRemove">
+                  <widget class="QCheckBox" name="checkMaxRatio">
                    <property name="text">
-                    <string>Remove finished torrents when their ratio reaches:</string>
+                    <string>Seed torrents until their ratio reaches</string>
                    </property>
                   </widget>
                  </item>
@@ -1967,10 +1973,10 @@ QGroupBox {
                     <number>1</number>
                    </property>
                    <property name="minimum">
-                    <double>1.000000000000000</double>
+                    <double>0.100000000000000</double>
                    </property>
                    <property name="maximum">
-                    <double>10.000000000000000</double>
+                    <double>20.000000000000000</double>
                    </property>
                    <property name="singleStep">
                     <double>0.100000000000000</double>
@@ -1978,6 +1984,30 @@ QGroupBox {
                    <property name="value">
                     <double>1.000000000000000</double>
                    </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>then</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboRatioLimitAct">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>Pause them</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Remove them</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item>
@@ -2670,7 +2700,7 @@ QGroupBox {
   <tabstop>checkNATPMP</tabstop>
   <tabstop>checkLSD</tabstop>
   <tabstop>comboEncryption</tabstop>
-  <tabstop>checkRatioRemove</tabstop>
+  <tabstop>checkMaxRatio</tabstop>
   <tabstop>spinMaxRatio</tabstop>
   <tabstop>spinWebUiPort</tabstop>
   <tabstop>textWebUiUsername</tabstop>

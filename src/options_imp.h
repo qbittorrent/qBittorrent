@@ -96,7 +96,7 @@ protected:
   int getDHTPort() const;
   bool isLSDEnabled() const;
   int getEncryptionSetting() const;
-  float getDeleteRatio() const;
+  float getMaxRatio() const;
   // Proxy options
   QString getHTTPProxyIp() const;
   unsigned short getHTTPProxyPort() const;
@@ -135,7 +135,7 @@ protected slots:
   void enableMaxConnecsLimit(bool checked);
   void enableMaxConnecsLimitPerTorrent(bool checked);
   void enableMaxUploadsLimitPerTorrent(bool checked);
-  void enableDeleteRatio(bool checked);
+  void enableMaxRatio(bool checked);
   void enableSpoofingSettings(int index);
   void setStyle(QString style);
   void on_buttonBox_accepted();

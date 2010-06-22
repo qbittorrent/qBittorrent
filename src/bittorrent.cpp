@@ -210,8 +210,8 @@ ScanFoldersModel* Bittorrent::getScanFoldersModel() const {
   return m_scanFolders;
 }
 
-void Bittorrent::deleteBigRatios() {
-  if(ratio_limit == -1) return;
+void Bittorrent::processBigRatios() {
+  if(ratio_limit <= 0) return;
   std::vector<torrent_handle> torrents = getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
@@ -222,7 +222,14 @@ void Bittorrent::deleteBigRatios() {
       const float ratio = getRealRatio(hash);
       if(ratio <= MAX_RATIO && ratio > ratio_limit) {
         addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
-        deleteTorrent(hash);
+        if(high_ratio_action == REMOVE_ACTION) {
+          addConsoleMessage(tr("Removing torrent %1...").arg(h.name()));
+          deleteTorrent(hash);
+        } else {
+          // Pause it
+          addConsoleMessage(tr("Pausing torrent %1...").arg(h.name()));
+          pauseTorrent(hash);
+        }
         //emit torrent_ratio_deleted(fileName);
       }
     }
@@ -522,7 +529,8 @@ void Bittorrent::configureSession() {
   }
   applyEncryptionSettings(encryptionSettings);
   // * Maximum ratio
-  setDeleteRatio(Preferences::getDeleteRatio());
+  high_ratio_action = Preferences::getMaxRatioAction();
+  setMaxRatio(Preferences::getMaxRatio());
   // Ip Filter
   FilterParserThread::processFilterList(s, Preferences::bannedIPs());
   if(Preferences::isFilteringEnabled()) {
@@ -1763,12 +1771,12 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 
   // Torrents will a ratio superior to the given value will
   // be automatically deleted
-  void Bittorrent::setDeleteRatio(float ratio) {
-    if(ratio != -1 && ratio < 1.) ratio = 1.;
+  void Bittorrent::setMaxRatio(float ratio) {
+    if(ratio <= 0) ratio = -1.;
     if(ratio_limit == -1 && ratio != -1) {
       Q_ASSERT(!BigRatioTimer);
       BigRatioTimer = new QTimer(this);
-      connect(BigRatioTimer, SIGNAL(timeout()), this, SLOT(deleteBigRatios()));
+      connect(BigRatioTimer, SIGNAL(timeout()), this, SLOT(processBigRatios()));
       BigRatioTimer->start(5000);
     } else {
       if(ratio_limit != -1 && ratio == -1) {
@@ -1778,7 +1786,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     if(ratio_limit != ratio) {
       ratio_limit = ratio;
       qDebug("* Set deleteRatio to %.1f", ratio_limit);
-      deleteBigRatios();
+      processBigRatios();
     }
   }
 

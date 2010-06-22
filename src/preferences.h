@@ -53,6 +53,7 @@
 
 #define QBT_REALM "Web UI Access"
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
+enum maxRatioAction {PAUSE_ACTION, REMOVE_ACTION};
 
 class Preferences {
 public:
@@ -693,9 +694,24 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Bittorrent/Encryption"), val);
   }
 
-  static float getDeleteRatio() {
+  static float getMaxRatio() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Bittorrent/MaxRatio"), -1).toDouble();
+  }
+
+  static void setMaxRatio(float ratio) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/MaxRatio"), ratio);
+  }
+
+  static void setMaxRatioAction(int act) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Bittorrent/MaxRatioAction"), act);
+  }
+
+  static int getMaxRatioAction() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Bittorrent/MaxRatioAction"), PAUSE_ACTION).toInt();
   }
 
   // IP Filter
