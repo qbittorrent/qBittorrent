@@ -63,6 +63,7 @@
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
 #include "statusbar.h"
+#include "HidableTabWidget.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -125,7 +126,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
 #endif
 
   qDebug("create tabWidget");
-  tabs = new QTabWidget();
+  tabs = new HidableTabWidget();
   connect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   vSplitter = new QSplitter(Qt::Horizontal);
   //vSplitter->setChildrenCollapsible(false);
@@ -182,10 +183,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionSpeed_in_title_bar->setChecked(Preferences::speedInTitleBar());
   actionRSS_Reader->setChecked(Preferences::isRSSEnabled());
   actionSearch_engine->setChecked(Preferences::isSearchEnabled());
-  if(actionSearch_engine->isChecked())
-    displaySearchTab(true);
-  if(actionRSS_Reader->isChecked())
-    displayRSSTab(true);
+  displaySearchTab(actionSearch_engine->isChecked());
+  displayRSSTab(actionRSS_Reader->isChecked());
 
   show();
 
@@ -297,10 +296,13 @@ void GUI::displayRSSTab(bool enable) {
       int index_tab = tabs->addTab(rssWidget, tr("RSS"));
       tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
     }
+    tabs->showTabBar(true);
   } else {
     if(rssWidget) {
       delete rssWidget;
     }
+    if(!searchEngine)
+      tabs->showTabBar(false);
   }
 }
 
@@ -311,10 +313,13 @@ void GUI::displaySearchTab(bool enable) {
       searchEngine = new SearchEngine(this, BTSession);
       tabs->insertTab(1, searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
     }
+    tabs->showTabBar(true);
   } else {
     if(searchEngine) {
       delete searchEngine;
     }
+    if(!rssWidget)
+      tabs->showTabBar(false);
   }
 }
 
@@ -447,17 +452,17 @@ void GUI::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
   QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()));
   QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
   /*QPushButton *no = */confirmBox.addButton(tr("No"), QMessageBox::NoRole);
-  QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
-  confirmBox.exec();
-  if(confirmBox.clickedButton() == 0) return;
-  if(confirmBox.clickedButton() == yes) {
-    BTSession->recursiveTorrentDownload(h);
-    return;
-  }
-  if(confirmBox.clickedButton() == never) {
-    Preferences::disableRecursiveDownload();
-  }
-}
+                        QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
+                        confirmBox.exec();
+                        if(confirmBox.clickedButton() == 0) return;
+                        if(confirmBox.clickedButton() == yes) {
+                          BTSession->recursiveTorrentDownload(h);
+                          return;
+                        }
+                        if(confirmBox.clickedButton() == never) {
+                          Preferences::disableRecursiveDownload();
+                        }
+                      }
 
 void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
   // Display a message box
@@ -884,20 +889,20 @@ void GUI::updateGUI() {
 
 void GUI::showNotificationBaloon(QString title, QString msg) const {
 #ifdef WITH_LIBNOTIFY
-    if (notify_init ("summary-body")) {
-      NotifyNotification* notification;
-      notification = notify_notification_new (qPrintable(title), qPrintable(msg), "qbittorrent", 0);
-      gboolean success = notify_notification_show (notification, NULL);
-      g_object_unref(G_OBJECT(notification));
-      notify_uninit ();
-      if(success) {
-        return;
-      }
+  if (notify_init ("summary-body")) {
+    NotifyNotification* notification;
+    notification = notify_notification_new (qPrintable(title), qPrintable(msg), "qbittorrent", 0);
+    gboolean success = notify_notification_show (notification, NULL);
+    g_object_unref(G_OBJECT(notification));
+    notify_uninit ();
+    if(success) {
+      return;
     }
+  }
 #endif
 #ifndef Q_WS_MAC
-    if(systrayIcon && QSystemTrayIcon::supportsMessages())
-      systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
+  if(systrayIcon && QSystemTrayIcon::supportsMessages())
+    systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
 #endif
 }
 
@@ -956,7 +961,7 @@ void GUI::createSystrayDelayed() {
 }
 
 void GUI::updateAltSpeedsBtn(bool alternative) {
-    actionUse_alternative_speed_limits->setChecked(alternative);
+  actionUse_alternative_speed_limits->setChecked(alternative);
 }
 
 QMenu* GUI::getTrayIconMenu() {
@@ -1007,18 +1012,18 @@ void GUI::on_actionOptions_triggered() {
 }
 
 void GUI::on_actionTop_tool_bar_triggered() {
-    bool is_visible = static_cast<QAction*>(sender())->isChecked();
-    toolBar->setVisible(is_visible);
-    Preferences::setToolbarDisplayed(is_visible);
+  bool is_visible = static_cast<QAction*>(sender())->isChecked();
+  toolBar->setVisible(is_visible);
+  Preferences::setToolbarDisplayed(is_visible);
 }
 
 void GUI::on_actionSpeed_in_title_bar_triggered() {
-    displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
-    Preferences::showSpeedInTitleBar(displaySpeedInTitle);
-    if(displaySpeedInTitle)
-      updateGUI();
-    else
-      setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
+  displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
+  Preferences::showSpeedInTitleBar(displaySpeedInTitle);
+  if(displaySpeedInTitle)
+    updateGUI();
+  else
+    setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
 }
 
 void GUI::on_actionRSS_Reader_triggered() {

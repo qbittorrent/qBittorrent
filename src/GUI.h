@@ -58,6 +58,7 @@ class consoleDlg;
 class about;
 class createtorrent;
 class downloadFromURL;
+class HidableTabWidget;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -136,7 +137,7 @@ private:
   QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?
   // GUI related
   QTimer *guiUpdater;
-  QTabWidget *tabs;
+  HidableTabWidget *tabs;
   StatusBar *status_bar;
   QPointer<options_imp> options;
   QPointer<consoleDlg> console;

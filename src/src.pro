@@ -329,7 +329,9 @@ contains(DEFINES, DISABLE_GUI) {
               pieceavailabilitybar.h \
               advancedsettings.h \
               cookiesdlg.h \
-              rsssettings.h
+              rsssettings.h \
+              HidableTabWidget.h
+
   macx {
     HEADERS += qmacapplication.h
   }
@@ -401,4 +403,3 @@ SOURCES += main.cpp \
 }
 
 DESTDIR = .
-
