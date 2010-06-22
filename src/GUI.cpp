@@ -155,10 +155,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
 
-  // Search engine tab
-  searchEngine = new SearchEngine(this, BTSession);
-  tabs->addTab(searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
-
   // Configure BT session according to options
   loadPreferences(false);
   // Resume unfinished torrents
@@ -185,6 +181,9 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), dis
   actionTop_tool_bar->setChecked(Preferences::isToolbarDisplayed());
   actionSpeed_in_title_bar->setChecked(Preferences::speedInTitleBar());
   actionRSS_Reader->setChecked(Preferences::isRSSEnabled());
+  actionSearch_engine->setChecked(Preferences::isSearchEnabled());
+  if(actionSearch_engine->isChecked())
+    displaySearchTab(true);
   if(actionRSS_Reader->isChecked())
     displayRSSTab(true);
 
@@ -254,7 +253,8 @@ GUI::~GUI() {
     delete downloadFromURLDialog;
   if(rssWidget)
     delete rssWidget;
-  delete searchEngine;
+  if(searchEngine)
+    delete searchEngine;
   delete transferListFilters;
   delete properties;
   delete hSplitter;
@@ -300,6 +300,20 @@ void GUI::displayRSSTab(bool enable) {
   } else {
     if(rssWidget) {
       delete rssWidget;
+    }
+  }
+}
+
+void GUI::displaySearchTab(bool enable) {
+  if(enable) {
+    // RSS tab
+    if(!searchEngine) {
+      searchEngine = new SearchEngine(this, BTSession);
+      tabs->insertTab(1, searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
+    }
+  } else {
+    if(searchEngine) {
+      delete searchEngine;
     }
   }
 }
@@ -1008,7 +1022,13 @@ void GUI::on_actionSpeed_in_title_bar_triggered() {
 }
 
 void GUI::on_actionRSS_Reader_triggered() {
+  Preferences::setRSSEnabled(actionRSS_Reader->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
+}
+
+void GUI::on_actionSearch_engine_triggered() {
+  Preferences::setSearchEnabled(actionSearch_engine->isChecked());
+  displaySearchTab(actionSearch_engine->isChecked());
 }
 
 /*****************************************************
@@ -1025,3 +1045,4 @@ void GUI::on_actionDownload_from_URL_triggered() {
     connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
   }
 }
+

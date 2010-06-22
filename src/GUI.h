@@ -128,6 +128,7 @@ protected:
   void showEvent(QShowEvent *);
   bool event(QEvent * event);
   void displayRSSTab(bool enable);
+  void displaySearchTab(bool enable);
 
 private:
   // Bittorrent
@@ -161,11 +162,12 @@ private:
   QSplitter *hSplitter;
   QSplitter *vSplitter;
   // Search
-  SearchEngine *searchEngine;
+  QPointer<SearchEngine> searchEngine;
   // RSS
   QPointer<RSSImp> rssWidget;
 
 private slots:
+    void on_actionSearch_engine_triggered();
     void on_actionRSS_Reader_triggered();
     void on_actionSpeed_in_title_bar_triggered();
     void on_actionTop_tool_bar_triggered();

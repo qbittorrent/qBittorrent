@@ -79,6 +79,8 @@
     </property>
     <addaction name="actionTop_tool_bar"/>
     <addaction name="actionSpeed_in_title_bar"/>
+    <addaction name="separator"/>
+    <addaction name="actionSearch_engine"/>
     <addaction name="actionRSS_Reader"/>
    </widget>
    <addaction name="menu_File"/>
@@ -307,7 +309,15 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>RSS Reader</string>
+    <string>RSS reader</string>
+   </property>
+  </action>
+  <action name="actionSearch_engine">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Search engine</string>
    </property>
   </action>
  </widget>

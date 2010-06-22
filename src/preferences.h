@@ -733,10 +733,26 @@ public:
     return settings.value(QString::fromUtf8("Preferences/IPFilter/BannedIPs"), QStringList()).toStringList();
   }
 
+  // Search
+  static bool isSearchEnabled() {
+    QSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Search/SearchEnabled"), true).toBool();
+  }
+
+  static void setSearchEnabled(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Search/SearchEnabled"), enabled);
+  }
+
   // RSS
   static bool isRSSEnabled() {
     QSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/RSS/RSSEnabled"), false).toBool();
+  }
+
+  static void setRSSEnabled(bool enabled) {
+    QSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSEnabled"), enabled);
   }
 
   static unsigned int getRSSRefreshInterval() {
