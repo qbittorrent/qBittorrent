@@ -105,6 +105,8 @@ public:
 #if LIBTORRENT_VERSION_MINOR < 15
     addInSeed->setVisible(false);
 #endif
+    // Set Add button as default
+    OkButton->setDefault(true);
   }
 
   ~torrentAdditionDialog() {
