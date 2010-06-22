@@ -107,10 +107,7 @@ void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
   PropListModel->setData(PropListModel->index(0, 0), file_path.split("/", QString::SkipEmptyParts).last());
 }
 
-void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
-  show();
-  is_magnet = true;
-  this->from_url = magnet_uri;
+void torrentAdditionDialog::hideTorrentContent() {
   int hidden_height = 0;
   // Disable useless widgets
   hidden_height += torrentContentList->height();
@@ -120,6 +117,17 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
   hidden_height += collapseAllButton->height();
   collapseAllButton->setVisible(false);
   expandAllButton->setVisible(false);
+
+  // Resize main window
+  setMinimumSize(0, 0);
+  resize(width(), height()-hidden_height);
+}
+
+void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
+  show();
+  is_magnet = true;
+  this->from_url = magnet_uri;
+
   // Get torrent hash
   hash = misc::magnetUriToHash(magnet_uri);
   if(hash.isEmpty()) {
@@ -146,10 +154,8 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
   foreach(const QString& label, customLabels) {
     comboLabel->addItem(label);
   }
-  // Show dialog
-  //show();
-  setMinimumSize(0, 0);
-  resize(width(), height()-hidden_height);
+  // No need to display torrent content
+  hideTorrentContent();
 }
 
 void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
@@ -216,12 +222,17 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
     newFileName = fileName;
   }
   fileNameLbl->setText(QString::fromUtf8("<center><b>")+newFileName+QString::fromUtf8("</b></center>"));
-  // List files in torrent
-  PropListModel->setupModelData(*t);
-  // Expand first item if possible
-  torrentContentList->expand(PropListModel->index(0, 0));
-  connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(updateDiskSpaceLabels()));
-  //torrentContentList->expandAll();
+  if(t->num_files() > 1) {
+    // List files in torrent
+    PropListModel->setupModelData(*t);
+    // Expand first item if possible
+    torrentContentList->expand(PropListModel->index(0, 0));
+    connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(updateDiskSpaceLabels()));
+    // Loads files path in the torrent
+    for(uint i=0; i<nbFiles; ++i) {
+      files_path << misc::toQStringU(t->file_at(i).path.string());
+    }
+  }
   connect(savePathTxt, SIGNAL(textChanged(QString)), this, SLOT(updateDiskSpaceLabels()));
   updateDiskSpaceLabels();
   // Load custom labels
@@ -232,12 +243,10 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   foreach(const QString& label, customLabels) {
     comboLabel->addItem(label);
   }
-  // Loads files path in the torrent
-  for(uint i=0; i<nbFiles; ++i) {
-    files_path << misc::toQStringU(t->file_at(i).path.string());
-  }
   // Show the dialog
   show();
+  if(t->num_files() <= 1)
+    hideTorrentContent();
 }
 
 void torrentAdditionDialog::displayContentListMenu(const QPoint&) {
@@ -382,12 +391,16 @@ void torrentAdditionDialog::renameSelectedFile() {
       if(!is_magnet) {
         // Determine torrent size
         qulonglong torrent_size = 0;
-        const unsigned int nbFiles = t->num_files();
-        const std::vector<int> &priorities = PropListModel->getFilesPriorities(nbFiles);
+        if(t->num_files() > 1) {
+          const unsigned int nbFiles = t->num_files();
+          const std::vector<int> &priorities = PropListModel->getFilesPriorities(nbFiles);
 
-        for(unsigned int i=0; i<nbFiles; ++i) {
-          if(priorities[i] > 0)
-            torrent_size += t->file_at(i).size;
+          for(unsigned int i=0; i<nbFiles; ++i) {
+            if(priorities[i] > 0)
+              torrent_size += t->file_at(i).size;
+          }
+        } else {
+          torrent_size = t->total_size();
         }
         lbl_torrent_size->setText(misc::friendlyUnit(torrent_size));
 
@@ -460,7 +473,8 @@ void torrentAdditionDialog::renameSelectedFile() {
         // Remove file name
         QStringList parts = save_path.split("/", QString::SkipEmptyParts);
         const QString single_file_name = parts.takeLast();
-        files_path.replace(0, single_file_name);
+        Q_ASSERT(files_path.isEmpty());
+        files_path << single_file_name;
         save_path = "/"+parts.join("/");
       }
       QDir savePath(save_path);

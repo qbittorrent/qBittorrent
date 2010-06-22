@@ -79,6 +79,7 @@ public slots:
   void savePiecesPriorities();
   void on_OkButton_clicked();
   void renameTorrentNameInModel(QString file_path);
+  void hideTorrentContent();
 
 public slots:
   void updateLabelInSavePath(QString label);
