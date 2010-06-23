@@ -1862,12 +1862,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     default:
       qDebug("Disabling HTTP communications proxy");
 #ifdef Q_WS_WIN
-#ifdef MINGW
       putenv("http_proxy=");
       putenv("sock_proxy=");
-#else
-      SetEnvironmentVariableA("http_proxy", "");
-      SetEnvironmentVariableA("sock_proxy", "");
 #endif
 #else
       unsetenv("http_proxy");
@@ -1882,12 +1878,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       type_str = "sock_proxy";
     else
       type_str = "http_proxy";
-#ifdef MINGW
     QString tmp = type_str+"="+proxy_str;
     putenv(tmp.toLocal8Bit().constData());
-#else
-    SetEnvironmentVariableA(type_str.toLocal8Bit().constData(), proxy_str.toLocal8Bit().constData());
-#endif
 #else
     qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
     if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)

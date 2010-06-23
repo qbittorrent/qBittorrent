@@ -120,12 +120,8 @@ bool SearchEngine::addPythonPathToEnv() {
     }
     path_envar = python_path+";"+path_envar;
     qDebug("New PATH envvar is: %s", qPrintable(path_envar));
-#ifdef MINGW
     QString envar = "PATH="+path_envar;
     putenv(envar.toLocal8Bit().data());
-#else
-    SetEnvironmentVariableA("PATH", path_envar.toLocal8Bit().constData());
-#endif
     return true;
   }
   return false;
