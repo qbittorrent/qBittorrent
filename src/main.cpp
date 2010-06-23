@@ -192,10 +192,11 @@ int main(int argc, char *argv[]){
       if(p.startsWith("--")) continue;
       message += argv[a];
       if (a < argc-1)
-        message += " ";
+        message += "|";
     }
     if(!message.isEmpty()) {
       qDebug("Passing program parameters to running instance...");
+      qDebug("Message: %s", qPrintable(message));
       app->sendMessage(message);
     }
     return 0;

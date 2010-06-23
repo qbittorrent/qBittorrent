@@ -718,7 +718,7 @@ void GUI::on_actionOpen_triggered() {
 // the right addTorrent function, considering
 // the parameter type.
 void GUI::processParams(const QString& params_str) {
-  processParams(params_str.split(" ", QString::SkipEmptyParts));
+  processParams(params_str.split("|", QString::SkipEmptyParts));
 }
 
 void GUI::processParams(const QStringList& params) {
