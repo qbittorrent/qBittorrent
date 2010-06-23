@@ -278,191 +278,202 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="224"/>
+        <location filename="../bittorrent.cpp" line="227"/>
+        <location filename="../bittorrent.cpp" line="233"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 използва максималното разрешено от вас отношение.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="316"/>
+        <location filename="../bittorrent.cpp" line="228"/>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="234"/>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="328"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>qBittorrent се прехвърля на порт: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="379"/>
+        <location filename="../bittorrent.cpp" line="391"/>
         <source>UPnP support [ON]</source>
         <translation>UPnP поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="382"/>
+        <location filename="../bittorrent.cpp" line="394"/>
         <source>UPnP support [OFF]</source>
         <translation>UPnP поддръжка [ИЗКЛ] </translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="387"/>
+        <location filename="../bittorrent.cpp" line="399"/>
         <source>NAT-PMP support [ON]</source>
         <translation>NAT-PMP поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="402"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>NAT-PMP поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="417"/>
+        <location filename="../bittorrent.cpp" line="429"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP агент на клиета е %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="435"/>
+        <location filename="../bittorrent.cpp" line="447"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>Ползване на дисков кеш размер от %1 ΜιΒ</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="476"/>
+        <location filename="../bittorrent.cpp" line="488"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT поддръжка [ВКЛ], порт: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="478"/>
-        <location filename="../bittorrent.cpp" line="482"/>
+        <location filename="../bittorrent.cpp" line="490"/>
+        <location filename="../bittorrent.cpp" line="494"/>
         <source>DHT support [OFF]</source>
         <translation>DHT поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="486"/>
+        <location filename="../bittorrent.cpp" line="498"/>
         <source>PeX support [ON]</source>
         <translation>PeX поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="488"/>
+        <location filename="../bittorrent.cpp" line="500"/>
         <source>PeX support [OFF]</source>
         <translation>PeX поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="491"/>
+        <location filename="../bittorrent.cpp" line="503"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Рестарта изисква превключване на PeX поддръжката</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="496"/>
+        <location filename="../bittorrent.cpp" line="508"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Търсене на локални връзки [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="499"/>
+        <location filename="../bittorrent.cpp" line="511"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Търсене на локални връзки [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="511"/>
+        <location filename="../bittorrent.cpp" line="523"/>
         <source>Encryption support [ON]</source>
         <translation>Поддръжка кодиране [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="516"/>
+        <location filename="../bittorrent.cpp" line="528"/>
         <source>Encryption support [FORCED]</source>
         <translation>Поддръжка кодиране [ФОРСИРАНА]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="521"/>
+        <location filename="../bittorrent.cpp" line="533"/>
         <source>Encryption support [OFF]</source>
         <translation>Поддръжка кодиране [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="628"/>
+        <location filename="../bittorrent.cpp" line="641"/>
         <source>The Web UI is listening on port %1</source>
         <translation> Интерфейс на Web Потребител прослушване на порт: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="630"/>
+        <location filename="../bittorrent.cpp" line="643"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Грешка в Интерфейс на Web Потребител - Невъзможно прехърляне на интерфейса на порт %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="761"/>
+        <location filename="../bittorrent.cpp" line="774"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; бе премахнат от списъка за прехвърляне и от твърдия диск.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="763"/>
+        <location filename="../bittorrent.cpp" line="776"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; бе премахнат от списъка за прехвърляне.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="813"/>
+        <location filename="../bittorrent.cpp" line="826"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; е невалиден magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="833"/>
-        <location filename="../bittorrent.cpp" line="1004"/>
-        <location filename="../bittorrent.cpp" line="1007"/>
+        <location filename="../bittorrent.cpp" line="846"/>
+        <location filename="../bittorrent.cpp" line="1017"/>
+        <location filename="../bittorrent.cpp" line="1020"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; вече е в листа за сваляне.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="931"/>
-        <location filename="../bittorrent.cpp" line="1216"/>
-        <location filename="../bittorrent.cpp" line="1221"/>
+        <location filename="../bittorrent.cpp" line="944"/>
+        <location filename="../bittorrent.cpp" line="1229"/>
+        <location filename="../bittorrent.cpp" line="1234"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; бе възстановен. (бързо възстановяване)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="933"/>
-        <location filename="../bittorrent.cpp" line="1218"/>
-        <location filename="../bittorrent.cpp" line="1223"/>
+        <location filename="../bittorrent.cpp" line="946"/>
+        <location filename="../bittorrent.cpp" line="1231"/>
+        <location filename="../bittorrent.cpp" line="1236"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; добавен в листа за сваляне.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="978"/>
-        <location filename="../bittorrent.cpp" line="982"/>
+        <location filename="../bittorrent.cpp" line="991"/>
+        <location filename="../bittorrent.cpp" line="995"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Не мога да декодирам торент-файла: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="985"/>
+        <location filename="../bittorrent.cpp" line="998"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Този файла или е разрушен или не е торент.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1033"/>
+        <location filename="../bittorrent.cpp" line="1046"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Внимание: нови тракери бяха добавени към съществуващия торент.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1046"/>
+        <location filename="../bittorrent.cpp" line="1059"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Внимание: нови даващи URL бяха добавени към съществуващия торент.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1568"/>
+        <location filename="../bittorrent.cpp" line="1581"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе блокиран от вашия IP филтър&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1570"/>
+        <location filename="../bittorrent.cpp" line="1583"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе прекъснат поради разрушени части&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1891"/>
+        <location filename="../bittorrent.cpp" line="1904"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Програмирано сваляне на файл %1 вмъкнато в торент %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1901"/>
-        <location filename="../bittorrent.cpp" line="1951"/>
+        <location filename="../bittorrent.cpp" line="1914"/>
+        <location filename="../bittorrent.cpp" line="1964"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Не мога да декодирам %1 торент-файла.</translation>
     </message>
@@ -471,38 +482,38 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Невъзможно изчакване от дадените портове.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2150"/>
+        <location filename="../bittorrent.cpp" line="2165"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Грешка при следене на порт, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2155"/>
+        <location filename="../bittorrent.cpp" line="2170"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Следене на порт успешно, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2170"/>
+        <location filename="../bittorrent.cpp" line="2185"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Бърза пауза бе отхвърлена за торент %1, нова проверка...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2066"/>
-        <location filename="../bittorrent.cpp" line="2171"/>
+        <location filename="../bittorrent.cpp" line="2079"/>
+        <location filename="../bittorrent.cpp" line="2186"/>
         <source>Reason: %1</source>
         <translation>Причина: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2065"/>
+        <location filename="../bittorrent.cpp" line="2078"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Намерена грешка В/И, &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2176"/>
+        <location filename="../bittorrent.cpp" line="2191"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2302"/>
+        <location filename="../bittorrent.cpp" line="2317"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
@@ -511,17 +522,21 @@ Copyright © 2006 от Christophe Dumez&lt;br&gt;
 <context>
     <name>ConsoleDlg</name>
     <message>
-        <location filename="../ui/console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation>qBittorrent конзола</translation>
+        <translation type="obsolete">qBittorrent конзола</translation>
     </message>
     <message>
-        <location filename="../ui/console.ui" line="26"/>
+        <location filename="../ui/console.ui" line="14"/>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/console.ui" line="32"/>
         <source>General</source>
         <translation>Общи</translation>
     </message>
     <message>
-        <location filename="../ui/console.ui" line="39"/>
+        <location filename="../ui/console.ui" line="46"/>
         <source>Blocked IPs</source>
         <translation>Блокирани IP</translation>
     </message>
@@ -1993,7 +2008,7 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="679"/>
+        <location filename="../GUI.cpp" line="701"/>
         <source>Open Torrent Files</source>
         <translation>Отвори Торент Файлове </translation>
     </message>
@@ -2014,56 +2029,61 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Сигурни ли сте че искате да изтриете всички файлове от списъка за сваляне?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="363"/>
+        <location filename="../GUI.cpp" line="385"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="389"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="430"/>
+        <location filename="../GUI.cpp" line="452"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="430"/>
+        <location filename="../GUI.cpp" line="452"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
-        <location filename="../GUI.cpp" line="560"/>
+        <location filename="../GUI.cpp" line="453"/>
+        <location filename="../GUI.cpp" line="582"/>
         <source>Yes</source>
         <translation type="unfinished">Да</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="432"/>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="454"/>
+        <location filename="../GUI.cpp" line="581"/>
         <source>No</source>
         <translation type="unfinished">Не</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="433"/>
+        <location filename="../GUI.cpp" line="455"/>
         <source>Never</source>
         <translation type="unfinished">Никога</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="453"/>
+        <location filename="../GUI.cpp" line="475"/>
         <source>Global Upload Speed Limit</source>
         <translation>Общ лимит Скорост на качване</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="475"/>
+        <location filename="../GUI.cpp" line="497"/>
         <source>Global Download Speed Limit</source>
         <translation>Общ лимит Скорост на сваляне</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="561"/>
+        <location filename="../GUI.cpp" line="578"/>
+        <source>Exiting qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="583"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2081,20 +2101,18 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="872"/>
+        <location filename="../GUI.cpp" line="886"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Сваля: %2/s, Качва: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="952"/>
         <source>Use normal speed limits</source>
-        <translation>Ползвай нормални ограничения за скорост</translation>
+        <translation type="obsolete">Ползвай нормални ограничения за скорост</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="955"/>
         <source>Use alternative speed limits</source>
-        <translation>Ползвай други ограничения за скорост</translation>
+        <translation type="obsolete">Ползвай други ограничения за скорост</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected item(s) in download list?</source>
@@ -2157,7 +2175,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Не мога да създам директория:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="702"/>
         <source>Torrent Files</source>
         <translation>Торент Файлове</translation>
     </message>
@@ -2217,8 +2235,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="556"/>
-        <location filename="../GUI.cpp" line="854"/>
+        <location filename="../GUI.cpp" line="868"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -2464,7 +2481,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Моля, изчакайте...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="145"/>
+        <location filename="../GUI.cpp" line="146"/>
         <source>Transfers</source>
         <translation>Трансфери</translation>
     </message>
@@ -2490,8 +2507,8 @@ Please close the other one first.</source>
         <translation type="obsolete">Търсачка</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="85"/>
-        <location filename="../GUI.cpp" line="1017"/>
+        <location filename="../GUI.cpp" line="86"/>
+        <location filename="../GUI.cpp" line="1026"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -2559,15 +2576,15 @@ Please close the other one first.</source>
         <translation type="obsolete">qBittorrent %1 стартиран.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="857"/>
-        <location filename="../GUI.cpp" line="864"/>
+        <location filename="../GUI.cpp" line="871"/>
+        <location filename="../GUI.cpp" line="878"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Скорост %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="860"/>
-        <location filename="../GUI.cpp" line="866"/>
+        <location filename="../GUI.cpp" line="874"/>
+        <location filename="../GUI.cpp" line="880"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UL Скорост %1 KB/с</translation>
@@ -2588,9 +2605,8 @@ Please close the other one first.</source>
         <translation type="obsolete">Отложен</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="556"/>
         <source>Are you sure you want to quit?</source>
-        <translation>Сигурни ли сте че искате да напуснете?</translation>
+        <translation type="obsolete">Сигурни ли сте че искате да напуснете?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2651,13 +2667,13 @@ Please close the other one first.</source>
         <translation type="obsolete">&apos;%1&apos; бе възстановен.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="348"/>
+        <location filename="../GUI.cpp" line="370"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; завърши свалянето.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="354"/>
+        <location filename="../GUI.cpp" line="376"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>В/И Грешка</translation>
@@ -2717,18 +2733,18 @@ Please close the other one first.</source>
         <translation type="obsolete">Намерена грешка (пълен диск?), &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="160"/>
+        <location filename="../GUI.cpp" line="314"/>
         <source>Search</source>
         <translation>Търси</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="211"/>
+        <location filename="../GUI.cpp" line="212"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="294"/>
+        <location filename="../GUI.cpp" line="296"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
@@ -2784,28 +2800,28 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Поддръжка кодиране [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="361"/>
+        <location filename="../GUI.cpp" line="383"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="348"/>
+        <location filename="../GUI.cpp" line="370"/>
         <source>Download completion</source>
         <translation>Завършва свалянето</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="210"/>
+        <location filename="../GUI.cpp" line="211"/>
         <source>Torrent file association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="308"/>
+        <location filename="../GUI.cpp" line="330"/>
         <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="354"/>
+        <location filename="../GUI.cpp" line="376"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2824,12 +2840,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="469"/>
         <source>Url download error</source>
         <translation>Грешка при сваляне от Url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="469"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Невъзможно сваляне на файл от url: %1, причина: %2.</translation>
     </message>
@@ -2852,13 +2868,13 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="365"/>
+        <location filename="../GUI.cpp" line="387"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
+        <location filename="../GUI.cpp" line="579"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Някои файлове се прехвърлят. Сигурни ли сте че искате да напуснете qBittorrent?</translation>
@@ -2927,7 +2943,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Качени</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="755"/>
+        <location filename="../GUI.cpp" line="777"/>
         <source>Options were saved successfully.</source>
         <translation>Опциите бяха съхранени успешно.</translation>
     </message>
@@ -3546,122 +3562,137 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="137"/>
+        <location filename="../ui/mainwindow.ui" line="140"/>
         <source>&amp;Add File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="142"/>
+        <location filename="../ui/mainwindow.ui" line="145"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="147"/>
+        <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;Options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="152"/>
+        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
         <translation>Относно</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="157"/>
+        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="162"/>
+        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="167"/>
+        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="172"/>
+        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
         <translation>Пауза Всички</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="177"/>
+        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
         <translation>Старт Всички</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="182"/>
+        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
         <translation>Посетете уебсайт</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="187"/>
+        <location filename="../ui/mainwindow.ui" line="190"/>
         <source>Add &amp;URL...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="192"/>
+        <location filename="../ui/mainwindow.ui" line="195"/>
         <source>Torrent &amp;creator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="212"/>
+        <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="217"/>
+        <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="222"/>
+        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
         <translation>Документация</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="227"/>
+        <location filename="../ui/mainwindow.ui" line="230"/>
         <source>Set global download limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="232"/>
+        <location filename="../ui/mainwindow.ui" line="235"/>
         <source>Set global upload limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="265"/>
+        <location filename="../ui/mainwindow.ui" line="268"/>
         <source>&amp;Log viewer...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="268"/>
+        <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log Window</source>
         <translation>Прозорец Влизане</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="277"/>
-        <source>Use alternative speed limits</source>
-        <translation>Ползвай други ограничения за скорост</translation>
+        <location filename="../ui/mainwindow.ui" line="279"/>
+        <location filename="../ui/mainwindow.ui" line="282"/>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="285"/>
+        <location filename="../ui/mainwindow.ui" line="312"/>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search engine</source>
+        <translation type="unfinished">Програма за търсене</translation>
+    </message>
+    <message>
+        <source>Use alternative speed limits</source>
+        <translation type="obsolete">Ползвай други ограничения за скорост</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="290"/>
         <source>Top &amp;tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="288"/>
+        <location filename="../ui/mainwindow.ui" line="293"/>
         <source>Display top tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="296"/>
+        <location filename="../ui/mainwindow.ui" line="301"/>
         <source>&amp;Speed in title bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="299"/>
+        <location filename="../ui/mainwindow.ui" line="304"/>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3762,12 +3793,12 @@ No further notices will be issued.</source>
         <translation type="obsolete">Трансфери</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="197"/>
+        <location filename="../ui/mainwindow.ui" line="200"/>
         <source>Preview file</source>
         <translation>Огледай файла</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="202"/>
+        <location filename="../ui/mainwindow.ui" line="205"/>
         <source>Clear log</source>
         <translation>Изтрий лога</translation>
     </message>
@@ -3780,7 +3811,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">Посетете уебсайт</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="207"/>
+        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
         <translation>Уведомете за грешка</translation>
     </message>
@@ -3809,12 +3840,12 @@ No further notices will be issued.</source>
         <translation type="obsolete">Отвори Торент </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="241"/>
+        <location filename="../ui/mainwindow.ui" line="244"/>
         <source>Decrease priority</source>
         <translation>Намали предимството</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="253"/>
+        <location filename="../ui/mainwindow.ui" line="256"/>
         <source>Increase priority</source>
         <translation>Увеличи предимството</translation>
     </message>
@@ -4022,13 +4053,11 @@ No further notices will be issued.</source>
         <translation>Web UI</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="184"/>
-        <location filename="../ui/options.ui" line="2636"/>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="199"/>
+        <location filename="../ui/options.ui" line="184"/>
         <source>Advanced</source>
         <translation>Разширено </translation>
     </message>
@@ -4037,17 +4066,17 @@ No further notices will be issued.</source>
         <translation type="obsolete">Потребителски интерфейс</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="248"/>
+        <location filename="../ui/options.ui" line="233"/>
         <source>Language:</source>
         <translation>Език:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="277"/>
+        <location filename="../ui/options.ui" line="262"/>
         <source>(Requires restart)</source>
         <translation>(Изисква рестартиране)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="304"/>
+        <location filename="../ui/options.ui" line="289"/>
         <source>Visual style:</source>
         <translation>Визуален стил:</translation>
     </message>
@@ -4088,7 +4117,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">Показване на скоростта в заглавната лента</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="332"/>
+        <location filename="../ui/options.ui" line="317"/>
         <source>Transfer list</source>
         <translation>Листа за обмен</translation>
     </message>
@@ -4101,7 +4130,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">ms</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="341"/>
+        <location filename="../ui/options.ui" line="326"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Ползвай различно оцветени редове</translation>
@@ -4124,8 +4153,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">Отвори папка</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="396"/>
-        <location filename="../ui/options.ui" line="422"/>
+        <location filename="../ui/options.ui" line="381"/>
+        <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4159,7 +4188,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">Показване уведомителни балони от системата</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="673"/>
+        <location filename="../ui/options.ui" line="567"/>
         <source>File system</source>
         <translation>Файлова система</translation>
     </message>
@@ -4196,7 +4225,7 @@ QGroupBox {
         <translation type="obsolete">Автоматично зареди .торент файлове от:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="928"/>
+        <location filename="../ui/options.ui" line="822"/>
         <source>Copy .torrent files to:</source>
         <translation>Копирай .торент файловете в:</translation>
     </message>
@@ -4217,7 +4246,7 @@ QGroupBox {
         <translation type="obsolete">MiB (разширено)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="576"/>
+        <location filename="../ui/options.ui" line="1853"/>
         <source>Torrent queueing</source>
         <translation>Серия торенти </translation>
     </message>
@@ -4226,22 +4255,22 @@ QGroupBox {
         <translation type="obsolete">Включи система за серии</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="591"/>
+        <location filename="../ui/options.ui" line="1868"/>
         <source>Maximum active downloads:</source>
         <translation>Максимум активни сваляния:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="611"/>
+        <location filename="../ui/options.ui" line="1888"/>
         <source>Maximum active uploads:</source>
         <translation>Максимум активни качвания:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="631"/>
+        <location filename="../ui/options.ui" line="1908"/>
         <source>Maximum active torrents:</source>
         <translation>Максимум активни торенти:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="547"/>
+        <location filename="../ui/options.ui" line="532"/>
         <source>When adding a torrent</source>
         <translation>При добавяне на торент</translation>
     </message>
@@ -4251,116 +4280,141 @@ QGroupBox {
         <translation type="unfinished">Опции</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="237"/>
+        <location filename="../ui/options.ui" line="222"/>
         <source>Visual Appearance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="357"/>
+        <location filename="../ui/options.ui" line="342"/>
         <source>Action on double-click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="369"/>
+        <location filename="../ui/options.ui" line="354"/>
         <source>Downloading torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="386"/>
-        <location filename="../ui/options.ui" line="412"/>
+        <location filename="../ui/options.ui" line="371"/>
+        <location filename="../ui/options.ui" line="397"/>
         <source>Start / Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="391"/>
-        <location filename="../ui/options.ui" line="417"/>
+        <location filename="../ui/options.ui" line="376"/>
+        <location filename="../ui/options.ui" line="402"/>
         <source>Open destination folder</source>
         <translation type="unfinished">Отвори папка получател</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="404"/>
+        <location filename="../ui/options.ui" line="389"/>
         <source>Completed torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="449"/>
+        <location filename="../ui/options.ui" line="434"/>
         <source>Desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="458"/>
+        <location filename="../ui/options.ui" line="443"/>
         <source>Show splash screen on start up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="468"/>
+        <location filename="../ui/options.ui" line="453"/>
         <source>Start qBittorrent minimized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="475"/>
+        <location filename="../ui/options.ui" line="460"/>
         <source>Show qBittorrent icon in notification area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="485"/>
+        <location filename="../ui/options.ui" line="470"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="495"/>
+        <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="556"/>
+        <location filename="../ui/options.ui" line="541"/>
         <source>Display torrent content and some options</source>
         <translation>Показване съдържание на торента и някои опции</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="566"/>
+        <location filename="../ui/options.ui" line="551"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="691"/>
+        <location filename="../ui/options.ui" line="585"/>
         <source>Save files to location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="740"/>
+        <location filename="../ui/options.ui" line="634"/>
         <source>Append the label of the torrent to the save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="750"/>
+        <location filename="../ui/options.ui" line="644"/>
         <source>Pre-allocate disk space for all files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="766"/>
+        <location filename="../ui/options.ui" line="660"/>
         <source>Keep incomplete torrents in:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="813"/>
+        <location filename="../ui/options.ui" line="707"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="829"/>
+        <location filename="../ui/options.ui" line="723"/>
         <source>Automatically add torrents from:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="882"/>
+        <location filename="../ui/options.ui" line="776"/>
         <source>Add folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2473"/>
+        <location filename="../ui/options.ui" line="1944"/>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1955"/>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1992"/>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2003"/>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2008"/>
+        <source>Remove them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2488"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4370,47 +4424,47 @@ QGroupBox {
         <translation type="obsolete">Не започвай автоматично сваляне</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1010"/>
+        <location filename="../ui/options.ui" line="904"/>
         <source>Listening port</source>
         <translation>Порт за прослушване</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1018"/>
+        <location filename="../ui/options.ui" line="912"/>
         <source>Port used for incoming connections:</source>
         <translation>Порт ползван за входящи връзки:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1038"/>
+        <location filename="../ui/options.ui" line="932"/>
         <source>Random</source>
         <translation>Приблизително</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1060"/>
+        <location filename="../ui/options.ui" line="954"/>
         <source>Enable UPnP port mapping</source>
         <translation>Включено UPnP порт следене</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1070"/>
+        <location filename="../ui/options.ui" line="964"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>Включено NAT-PMP порт следене</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1085"/>
+        <location filename="../ui/options.ui" line="979"/>
         <source>Connections limit</source>
         <translation>Ограничение на връзката</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1096"/>
+        <location filename="../ui/options.ui" line="990"/>
         <source>Global maximum number of connections:</source>
         <translation>Общ максимален брой на връзки:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1139"/>
+        <location filename="../ui/options.ui" line="1033"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Максимален брой връзки на торент:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1179"/>
+        <location filename="../ui/options.ui" line="1073"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Максимален брой слотове за качване на торент:</translation>
     </message>
@@ -4419,22 +4473,22 @@ QGroupBox {
         <translation type="obsolete">Общ лимит сваляне</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1313"/>
-        <location filename="../ui/options.ui" line="1435"/>
+        <location filename="../ui/options.ui" line="1207"/>
+        <location filename="../ui/options.ui" line="1329"/>
         <source>Upload:</source>
         <translation>Качване:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1349"/>
-        <location filename="../ui/options.ui" line="1462"/>
+        <location filename="../ui/options.ui" line="1243"/>
+        <location filename="../ui/options.ui" line="1356"/>
         <source>Download:</source>
         <translation>Сваляне:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1342"/>
-        <location filename="../ui/options.ui" line="1375"/>
-        <location filename="../ui/options.ui" line="1455"/>
-        <location filename="../ui/options.ui" line="1482"/>
+        <location filename="../ui/options.ui" line="1236"/>
+        <location filename="../ui/options.ui" line="1269"/>
+        <location filename="../ui/options.ui" line="1349"/>
+        <location filename="../ui/options.ui" line="1376"/>
         <source>KiB/s</source>
         <translation>KiB/с</translation>
     </message>
@@ -4451,12 +4505,12 @@ QGroupBox {
         <translation type="obsolete">Намери имената на получаващата двойка</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1295"/>
+        <location filename="../ui/options.ui" line="1189"/>
         <source>Global speed limits</source>
         <translation>Общи ограничения за скоост</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1400"/>
+        <location filename="../ui/options.ui" line="1294"/>
         <source>Alternative global speed limits</source>
         <translation>Разширени ограничения за скорост</translation>
     </message>
@@ -4465,7 +4519,7 @@ QGroupBox {
         <translation type="obsolete">Планирано време:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1553"/>
+        <location filename="../ui/options.ui" line="1447"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>към</translation>
@@ -4475,47 +4529,47 @@ QGroupBox {
         <translation type="obsolete">В дни:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1602"/>
+        <location filename="../ui/options.ui" line="1496"/>
         <source>Every day</source>
         <translation>Всеки ден</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1607"/>
+        <location filename="../ui/options.ui" line="1501"/>
         <source>Week days</source>
         <translation>Работни дни</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1612"/>
+        <location filename="../ui/options.ui" line="1506"/>
         <source>Week ends</source>
         <translation>Почивни дни</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1677"/>
+        <location filename="../ui/options.ui" line="1571"/>
         <source>Bittorrent features</source>
         <translation>Възможности на Битторент</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1692"/>
+        <location filename="../ui/options.ui" line="1586"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Включена мрежа DHT (децентрализирана)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1713"/>
+        <location filename="../ui/options.ui" line="1607"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Ползвай различен порт за DHT и Битторент</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1730"/>
+        <location filename="../ui/options.ui" line="1624"/>
         <source>DHT port:</source>
         <translation>DHT порт:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1774"/>
+        <location filename="../ui/options.ui" line="1668"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation>Включен Peer Exchange / PeX (изисква рестартиране)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1787"/>
+        <location filename="../ui/options.ui" line="1681"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Включено Откриване на локална връзка</translation>
     </message>
@@ -4524,68 +4578,66 @@ QGroupBox {
         <translation type="obsolete">Криптиране:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1807"/>
+        <location filename="../ui/options.ui" line="1701"/>
         <source>Enabled</source>
         <translation>Включено</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1812"/>
+        <location filename="../ui/options.ui" line="1706"/>
         <source>Forced</source>
         <translation>Форсирано</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1817"/>
+        <location filename="../ui/options.ui" line="1711"/>
         <source>Disabled</source>
         <translation>Изключено</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1874"/>
+        <location filename="../ui/options.ui" line="1771"/>
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1931"/>
+        <location filename="../ui/options.ui" line="1828"/>
         <source>Reset to latest software version</source>
         <translation>Превключи в последната версия на софтуера</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1956"/>
         <source>Share ratio settings</source>
-        <translation>Настройки на процента на споделяне</translation>
+        <translation type="obsolete">Настройки на процента на споделяне</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
         <translation type="obsolete">Предпочитано отношение:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1964"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Премахни завършени торенти когато тяхното отношение достига:</translation>
+        <translation type="obsolete">Премахни завършени торенти когато тяхното отношение достига:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2055"/>
+        <location filename="../ui/options.ui" line="2070"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>HTTP комуникации (тракери, Уеб даващи, търсачки)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2092"/>
-        <location filename="../ui/options.ui" line="2287"/>
+        <location filename="../ui/options.ui" line="2107"/>
+        <location filename="../ui/options.ui" line="2302"/>
         <source>Host:</source>
         <translation>Хост:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2245"/>
+        <location filename="../ui/options.ui" line="2260"/>
         <source>Peer Communications</source>
         <translation>Комуникации Връзки</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2266"/>
+        <location filename="../ui/options.ui" line="2281"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2063"/>
-        <location filename="../ui/options.ui" line="2253"/>
+        <location filename="../ui/options.ui" line="2078"/>
+        <location filename="../ui/options.ui" line="2268"/>
         <source>Type:</source>
         <translation>Вид:</translation>
     </message>
@@ -4598,125 +4650,125 @@ QGroupBox {
         <translation type="obsolete">Добави папка...</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="892"/>
+        <location filename="../ui/options.ui" line="786"/>
         <source>Remove folder</source>
         <translation>Премахни папка</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1217"/>
+        <location filename="../ui/options.ui" line="1111"/>
         <source>IP Filtering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1515"/>
+        <location filename="../ui/options.ui" line="1409"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1529"/>
+        <location filename="../ui/options.ui" line="1423"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1594"/>
+        <location filename="../ui/options.ui" line="1488"/>
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1771"/>
+        <location filename="../ui/options.ui" line="1665"/>
         <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1784"/>
+        <location filename="../ui/options.ui" line="1678"/>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1799"/>
+        <location filename="../ui/options.ui" line="1693"/>
         <source>Protocol encryption:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1843"/>
+        <location filename="../ui/options.ui" line="1737"/>
         <source>Client whitelisting workaround</source>
         <translation>Заобикаляне на черния списък</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1851"/>
+        <location filename="../ui/options.ui" line="1748"/>
         <source>Identify as:</source>
         <translation>Разпознай като:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1859"/>
+        <location filename="../ui/options.ui" line="1756"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1864"/>
+        <location filename="../ui/options.ui" line="1761"/>
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1869"/>
+        <location filename="../ui/options.ui" line="1766"/>
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1885"/>
+        <location filename="../ui/options.ui" line="1782"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1902"/>
+        <location filename="../ui/options.ui" line="1799"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translation>Сглобено:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2071"/>
-        <location filename="../ui/options.ui" line="2261"/>
+        <location filename="../ui/options.ui" line="2086"/>
+        <location filename="../ui/options.ui" line="2276"/>
         <source>(None)</source>
         <translation>(без)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2076"/>
-        <location filename="../ui/options.ui" line="2276"/>
+        <location filename="../ui/options.ui" line="2091"/>
+        <location filename="../ui/options.ui" line="2291"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2118"/>
-        <location filename="../ui/options.ui" line="2313"/>
-        <location filename="../ui/options.ui" line="2491"/>
+        <location filename="../ui/options.ui" line="2133"/>
+        <location filename="../ui/options.ui" line="2328"/>
+        <location filename="../ui/options.ui" line="2506"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2161"/>
-        <location filename="../ui/options.ui" line="2356"/>
-        <location filename="../ui/options.ui" line="2527"/>
+        <location filename="../ui/options.ui" line="2176"/>
+        <location filename="../ui/options.ui" line="2371"/>
+        <location filename="../ui/options.ui" line="2542"/>
         <source>Authentication</source>
         <translation>Удостоверяване</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2173"/>
-        <location filename="../ui/options.ui" line="2368"/>
-        <location filename="../ui/options.ui" line="2535"/>
+        <location filename="../ui/options.ui" line="2188"/>
+        <location filename="../ui/options.ui" line="2383"/>
+        <location filename="../ui/options.ui" line="2550"/>
         <source>Username:</source>
         <translation>Име на потребителя:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2199"/>
-        <location filename="../ui/options.ui" line="2394"/>
-        <location filename="../ui/options.ui" line="2542"/>
+        <location filename="../ui/options.ui" line="2214"/>
+        <location filename="../ui/options.ui" line="2409"/>
+        <location filename="../ui/options.ui" line="2557"/>
         <source>Password:</source>
         <translation>Парола:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2081"/>
-        <location filename="../ui/options.ui" line="2271"/>
+        <location filename="../ui/options.ui" line="2096"/>
+        <location filename="../ui/options.ui" line="2286"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
@@ -4729,7 +4781,7 @@ QGroupBox {
         <translation type="obsolete">Активирай IP Филтриране</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1229"/>
+        <location filename="../ui/options.ui" line="1123"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Филтър път (.dat, .p2p, .p2b): </translation>
     </message>
@@ -4738,7 +4790,7 @@ QGroupBox {
         <translation type="obsolete">Включи Интерфейс на Web Потребител</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2485"/>
+        <location filename="../ui/options.ui" line="2500"/>
         <source>HTTP Server</source>
         <translation>Сървър HTTP</translation>
     </message>
@@ -4751,19 +4803,16 @@ QGroupBox {
         <translation type="obsolete">RSS настройки</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2679"/>
         <source>RSS feeds refresh interval:</source>
-        <translation>Интервал на обновяване на RSS feeds:</translation>
+        <translation type="obsolete">Интервал на обновяване на RSS feeds:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2699"/>
         <source>minutes</source>
-        <translation>минути</translation>
+        <translation type="obsolete">минути</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2723"/>
         <source>Maximum number of articles per feed:</source>
-        <translation>Максимум статии на feed:</translation>
+        <translation type="obsolete">Максимум статии на feed:</translation>
     </message>
 </context>
 <context>
@@ -5147,8 +5196,8 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/rss.ui" line="39"/>
-        <location filename="../ui/rss.ui" line="238"/>
-        <location filename="../ui/rss.ui" line="241"/>
+        <location filename="../ui/rss.ui" line="245"/>
+        <location filename="../ui/rss.ui" line="248"/>
         <source>Mark items read</source>
         <translation>Четене на маркираните</translation>
     </message>
@@ -5158,17 +5207,22 @@ QGroupBox {
         <translation>Обнови всички</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="277"/>
+        <location filename="../ui/rss.ui" line="95"/>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/rss.ui" line="284"/>
         <source>RSS feed downloader...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="286"/>
+        <location filename="../ui/rss.ui" line="293"/>
         <source>New folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="295"/>
+        <location filename="../ui/rss.ui" line="302"/>
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5177,18 +5231,18 @@ QGroupBox {
         <translation type="obsolete">1</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="163"/>
+        <location filename="../ui/rss.ui" line="170"/>
         <source>Feed URL</source>
         <translation>URL на канал</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="193"/>
+        <location filename="../ui/rss.ui" line="200"/>
         <source>Rename...</source>
         <translation type="unfinished">Преименувай...</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="205"/>
-        <location filename="../ui/rss.ui" line="208"/>
+        <location filename="../ui/rss.ui" line="212"/>
+        <location filename="../ui/rss.ui" line="215"/>
         <source>Update</source>
         <translation>Обновяване</translation>
     </message>
@@ -5202,7 +5256,7 @@ QGroupBox {
         <translation>RSS канали</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="110"/>
+        <location filename="../ui/rss.ui" line="117"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -5215,29 +5269,29 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Точка</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="158"/>
+        <location filename="../ui/rss.ui" line="165"/>
         <source>Article title</source>
         <translation>Заглавие на статията</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="217"/>
+        <location filename="../ui/rss.ui" line="224"/>
         <source>New subscription...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="226"/>
-        <location filename="../ui/rss.ui" line="229"/>
+        <location filename="../ui/rss.ui" line="233"/>
+        <location filename="../ui/rss.ui" line="236"/>
         <source>Update all feeds</source>
         <translation>Обнови всички канали</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="181"/>
-        <location filename="../ui/rss.ui" line="184"/>
+        <location filename="../ui/rss.ui" line="188"/>
+        <location filename="../ui/rss.ui" line="191"/>
         <source>Delete</source>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="196"/>
+        <location filename="../ui/rss.ui" line="203"/>
         <source>Rename</source>
         <translation>Преименувай</translation>
     </message>
@@ -5246,17 +5300,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Обнови</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="250"/>
+        <location filename="../ui/rss.ui" line="257"/>
         <source>Download torrent</source>
         <translation>Торент сваляне</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="259"/>
+        <location filename="../ui/rss.ui" line="266"/>
         <source>Open news URL</source>
         <translation>Отваря URL за новини</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="268"/>
+        <location filename="../ui/rss.ui" line="275"/>
         <source>Copy feed URL</source>
         <translation>Копира URL на канал</translation>
     </message>
@@ -5309,12 +5363,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="190"/>
+        <location filename="../rss_imp.cpp" line="191"/>
         <source>Please type a rss stream url</source>
         <translation>Моля въведете url на поток rss</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="190"/>
+        <location filename="../rss_imp.cpp" line="191"/>
         <source>Stream URL:</source>
         <translation>Поток URL:</translation>
     </message>
@@ -5327,20 +5381,20 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ново име на потока:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="228"/>
+        <location filename="../rss_imp.cpp" line="225"/>
+        <location filename="../rss_imp.cpp" line="229"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Сигурни ли сте? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="225"/>
-        <location filename="../rss_imp.cpp" line="229"/>
+        <location filename="../rss_imp.cpp" line="226"/>
+        <location filename="../rss_imp.cpp" line="230"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="225"/>
-        <location filename="../rss_imp.cpp" line="229"/>
+        <location filename="../rss_imp.cpp" line="226"/>
+        <location filename="../rss_imp.cpp" line="230"/>
         <source>&amp;No</source>
         <translation>&amp;Не</translation>
     </message>
@@ -5361,83 +5415,83 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Последно обновяване:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>Please choose a folder name</source>
         <translation>Моля изберете име на папка</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>Folder name:</source>
         <translation>Име на папка:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>New folder</source>
         <translation>Нова папка</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="157"/>
+        <location filename="../rss_imp.cpp" line="158"/>
         <source>Overwrite attempt</source>
         <translation>Опит за презаписване</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="158"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Не можете да презапишете %1.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="195"/>
+        <location filename="../rss_imp.cpp" line="196"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="196"/>
+        <location filename="../rss_imp.cpp" line="197"/>
         <source>This rss feed is already in the list.</source>
         <translation>Този rss канал е вече в списъка.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="224"/>
+        <location filename="../rss_imp.cpp" line="225"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Сигурни ли сте че искате да изтриете тези елементи от списъка?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="228"/>
+        <location filename="../rss_imp.cpp" line="229"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Сигурни ли сте че искате да изтриете този елемент от списъка?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="336"/>
+        <location filename="../rss_imp.cpp" line="337"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Моля изберете ново име за този RSS канал</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="336"/>
+        <location filename="../rss_imp.cpp" line="337"/>
         <source>New feed name:</source>
         <translation>Име на нов канал:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="340"/>
+        <location filename="../rss_imp.cpp" line="341"/>
         <source>Name already in use</source>
         <translation>Името вече се ползва</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="340"/>
+        <location filename="../rss_imp.cpp" line="341"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Това име се ползва от друг елемент, моля изберете друго.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="497"/>
+        <location filename="../rss_imp.cpp" line="498"/>
         <source>Date: </source>
         <translation> Дата:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="500"/>
+        <location filename="../rss_imp.cpp" line="501"/>
         <source>Author: </source>
         <translation> Автор:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="543"/>
+        <location filename="../rss_imp.cpp" line="544"/>
         <source>Unread</source>
         <translation>Непрочетен</translation>
     </message>
@@ -5448,6 +5502,29 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss.h" line="379"/>
         <source>No description available</source>
         <translation>Няма налично описание</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="14"/>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="47"/>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">Интервал на обновяване на RSS feeds:</translation>
+    </message>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="70"/>
+        <source>minutes</source>
+        <translation type="unfinished">минути</translation>
+    </message>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="77"/>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Максимум статии на feed:</translation>
     </message>
 </context>
 <context>
@@ -5821,17 +5898,17 @@ Please install it manually.</source>
         <translation>Щракни за изключване на други ограничения за скорост</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="200"/>
+        <location filename="../statusbar.h" line="201"/>
         <source>Click to enable alternative speed limits</source>
         <translation>Щракни за включване на други ограничения за скорост</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="210"/>
+        <location filename="../statusbar.h" line="211"/>
         <source>Global Download Speed Limit</source>
         <translation>Общ лимит Скорост на сваляне</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="229"/>
+        <location filename="../statusbar.h" line="230"/>
         <source>Global Upload Speed Limit</source>
         <translation>Общ лимит Скорост на качване</translation>
     </message>
@@ -7587,12 +7664,12 @@ Please install it manually.</source>
         <translation type="obsolete">Грешно</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="187"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>Uninstall warning</source>
         <translation>Предупреждение за деинсталиране </translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="187"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -7601,7 +7678,7 @@ However, those plugins were disabled.</source>
 Обаче добавките бяха изключени.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="189"/>
+        <location filename="../engineselectdlg.cpp" line="191"/>
         <source>Uninstall success</source>
         <translation>Успешно деинсталиране</translation>
     </message>
@@ -7610,54 +7687,54 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Всички избрани добавки бяха успешно деинсталирани</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="358"/>
+        <location filename="../engineselectdlg.cpp" line="362"/>
         <source>Select search plugins</source>
         <translation>Избери добавки за търсене</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="359"/>
+        <location filename="../engineselectdlg.cpp" line="363"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent добавки за търсене</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="258"/>
-        <location filename="../engineselectdlg.cpp" line="282"/>
-        <location filename="../engineselectdlg.cpp" line="287"/>
-        <location filename="../engineselectdlg.cpp" line="296"/>
-        <location filename="../engineselectdlg.cpp" line="299"/>
+        <location filename="../engineselectdlg.cpp" line="260"/>
+        <location filename="../engineselectdlg.cpp" line="284"/>
+        <location filename="../engineselectdlg.cpp" line="289"/>
+        <location filename="../engineselectdlg.cpp" line="298"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
         <source>Search plugin install</source>
         <translation>Инсталиране на добавка за търсене </translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="118"/>
-        <location filename="../engineselectdlg.cpp" line="200"/>
-        <location filename="../engineselectdlg.cpp" line="319"/>
+        <location filename="../engineselectdlg.cpp" line="120"/>
+        <location filename="../engineselectdlg.cpp" line="202"/>
+        <location filename="../engineselectdlg.cpp" line="321"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="121"/>
-        <location filename="../engineselectdlg.cpp" line="166"/>
-        <location filename="../engineselectdlg.cpp" line="213"/>
-        <location filename="../engineselectdlg.cpp" line="322"/>
+        <location filename="../engineselectdlg.cpp" line="123"/>
+        <location filename="../engineselectdlg.cpp" line="168"/>
+        <location filename="../engineselectdlg.cpp" line="215"/>
+        <location filename="../engineselectdlg.cpp" line="324"/>
         <source>No</source>
         <translation>Не</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="258"/>
-        <location filename="../engineselectdlg.cpp" line="282"/>
-        <location filename="../engineselectdlg.cpp" line="287"/>
-        <location filename="../engineselectdlg.cpp" line="296"/>
-        <location filename="../engineselectdlg.cpp" line="299"/>
-        <location filename="../engineselectdlg.cpp" line="410"/>
-        <location filename="../engineselectdlg.cpp" line="442"/>
-        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="260"/>
+        <location filename="../engineselectdlg.cpp" line="284"/>
+        <location filename="../engineselectdlg.cpp" line="289"/>
+        <location filename="../engineselectdlg.cpp" line="298"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
+        <location filename="../engineselectdlg.cpp" line="415"/>
+        <location filename="../engineselectdlg.cpp" line="448"/>
         <location filename="../engineselectdlg.cpp" line="469"/>
+        <location filename="../engineselectdlg.cpp" line="476"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="258"/>
+        <location filename="../engineselectdlg.cpp" line="260"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>По-нова версия на %1 добавката за търсене вече е инсталирана.</translation>
@@ -7673,16 +7750,16 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">%1 добавка на търсачката беше успешно инсталирана.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="410"/>
-        <location filename="../engineselectdlg.cpp" line="442"/>
-        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="415"/>
+        <location filename="../engineselectdlg.cpp" line="448"/>
         <location filename="../engineselectdlg.cpp" line="469"/>
+        <location filename="../engineselectdlg.cpp" line="476"/>
         <source>Search plugin update</source>
         <translation>Добавката за търсене е обновена</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="442"/>
-        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="448"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Съжалявам, сървъра за обновяване е временно недостъпен.</translation>
     </message>
@@ -7697,35 +7774,35 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Съжалявам, %1 обновяването на добавката бе неуспешно.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="410"/>
+        <location filename="../engineselectdlg.cpp" line="415"/>
         <source>All your plugins are already up to date.</source>
         <translation>Всички ваши добавки са вече обновени.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="189"/>
+        <location filename="../engineselectdlg.cpp" line="191"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Всички избрани добавки бяха успешно деинсталирани</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="282"/>
+        <location filename="../engineselectdlg.cpp" line="284"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 добавка на търсачката не бе обновена, запазване на досегашната версия.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="289"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 добавка на търсачката не бе инсталирана.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="296"/>
+        <location filename="../engineselectdlg.cpp" line="298"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 добавка на търсачката беше успешно обновена.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="299"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 добавка на търсачката беше успешно обновена.</translation>
@@ -7735,18 +7812,18 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Файла за добавки на търсачката не бе прочетен.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="469"/>
+        <location filename="../engineselectdlg.cpp" line="476"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Съжалявам, инсталацията на %1 добавката за търсене бе неуспешна.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="349"/>
+        <location filename="../engineselectdlg.cpp" line="351"/>
         <source>New search engine plugin URL</source>
         <translation>Нов URL за добавки на търсачката</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="350"/>
+        <location filename="../engineselectdlg.cpp" line="352"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
@@ -7754,43 +7831,43 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>Б</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>КБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>МБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>ГБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>ТБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="562"/>
+        <location filename="../misc.cpp" line="568"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="567"/>
+        <location filename="../misc.cpp" line="573"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation type="unfinished"></translation>
@@ -7816,27 +7893,27 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> ч</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="510"/>
-        <location filename="../misc.cpp" line="515"/>
-        <location filename="../misc.cpp" line="519"/>
-        <location filename="../misc.cpp" line="522"/>
+        <location filename="../misc.cpp" line="516"/>
+        <location filename="../misc.cpp" line="521"/>
+        <location filename="../misc.cpp" line="525"/>
+        <location filename="../misc.cpp" line="528"/>
         <source>Unknown</source>
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="403"/>
+        <location filename="../misc.cpp" line="409"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Неизвестен</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="553"/>
+        <location filename="../misc.cpp" line="559"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1мин</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="557"/>
+        <location filename="../misc.cpp" line="563"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1мин</translation>
@@ -7956,10 +8033,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Изберете ipfilter.dat файл </translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1353"/>
-        <location filename="../options_imp.cpp" line="1355"/>
-        <location filename="../options_imp.cpp" line="1370"/>
-        <location filename="../options_imp.cpp" line="1372"/>
+        <location filename="../options_imp.cpp" line="1340"/>
+        <location filename="../options_imp.cpp" line="1342"/>
+        <location filename="../options_imp.cpp" line="1357"/>
+        <location filename="../options_imp.cpp" line="1359"/>
         <source>Choose a save directory</source>
         <translation>Изберете директория за съхранение</translation>
     </message>
@@ -7973,50 +8050,50 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Не мога да отворя %1 в режим четене.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1275"/>
+        <location filename="../options_imp.cpp" line="1262"/>
         <source>Add directory to scan</source>
         <translation>Добави директория за сканиране</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1281"/>
+        <location filename="../options_imp.cpp" line="1268"/>
         <source>Folder is already being watched.</source>
         <translation>Папката вече се наблюдава.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1284"/>
+        <location filename="../options_imp.cpp" line="1271"/>
         <source>Folder does not exist.</source>
         <translation>Папката не съществува.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1287"/>
+        <location filename="../options_imp.cpp" line="1274"/>
         <source>Folder is not readable.</source>
         <translation>Папката не се чете.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1295"/>
+        <location filename="../options_imp.cpp" line="1282"/>
         <source>Failure</source>
         <translation>Грешка</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1295"/>
+        <location filename="../options_imp.cpp" line="1282"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Грешка при добавяне Папка за Сканиране &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1318"/>
-        <location filename="../options_imp.cpp" line="1320"/>
+        <location filename="../options_imp.cpp" line="1305"/>
+        <location filename="../options_imp.cpp" line="1307"/>
         <source>Choose export directory</source>
         <translation>Изберете Директория за Експорт</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1335"/>
-        <location filename="../options_imp.cpp" line="1337"/>
+        <location filename="../options_imp.cpp" line="1322"/>
+        <location filename="../options_imp.cpp" line="1324"/>
         <source>Choose an ip filter file</source>
         <translation>Избери файл за ip филтър</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1335"/>
-        <location filename="../options_imp.cpp" line="1337"/>
+        <location filename="../options_imp.cpp" line="1322"/>
+        <location filename="../options_imp.cpp" line="1324"/>
         <source>Filters</source>
         <translation>Филтри</translation>
     </message>
@@ -8683,8 +8760,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Вярно</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="171"/>
-        <location filename="../torrentadditiondlg.cpp" line="174"/>
+        <location filename="../torrentadditiondlg.cpp" line="179"/>
+        <location filename="../torrentadditiondlg.cpp" line="182"/>
         <source>Unable to decode torrent file:</source>
         <translation>Не мога да декодирам торент-файла:</translation>
     </message>
@@ -8693,9 +8770,9 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Този файла или е разрушен или не е торент.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="418"/>
-        <location filename="../torrentadditiondlg.cpp" line="422"/>
-        <location filename="../torrentadditiondlg.cpp" line="424"/>
+        <location filename="../torrentadditiondlg.cpp" line="433"/>
+        <location filename="../torrentadditiondlg.cpp" line="437"/>
+        <location filename="../torrentadditiondlg.cpp" line="439"/>
         <source>Choose save path</source>
         <translation>Избери път за съхранение</translation>
     </message>
@@ -8708,111 +8785,111 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Неизвестен</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="126"/>
+        <location filename="../torrentadditiondlg.cpp" line="136"/>
         <source>Unable to decode magnet link:</source>
         <translation>Не мога да декодирам връзката Magnet:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="131"/>
+        <location filename="../torrentadditiondlg.cpp" line="141"/>
         <source>Magnet Link</source>
         <translation>Връзка Magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="248"/>
+        <location filename="../torrentadditiondlg.cpp" line="259"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="286"/>
+        <location filename="../torrentadditiondlg.cpp" line="297"/>
         <source>Rename the file</source>
         <translation>Преименувай файла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="287"/>
+        <location filename="../torrentadditiondlg.cpp" line="298"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="291"/>
-        <location filename="../torrentadditiondlg.cpp" line="321"/>
+        <location filename="../torrentadditiondlg.cpp" line="302"/>
+        <location filename="../torrentadditiondlg.cpp" line="332"/>
         <source>The file could not be renamed</source>
         <translation>Файла не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="292"/>
+        <location filename="../torrentadditiondlg.cpp" line="303"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Името на файла съдържа забранени символи, моля изберете различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="322"/>
-        <location filename="../torrentadditiondlg.cpp" line="356"/>
+        <location filename="../torrentadditiondlg.cpp" line="333"/>
+        <location filename="../torrentadditiondlg.cpp" line="367"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Това име вече съществува в тази папка. Моля, ползвайте различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="355"/>
+        <location filename="../torrentadditiondlg.cpp" line="366"/>
         <source>The folder could not be renamed</source>
         <translation>Папката не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="398"/>
+        <location filename="../torrentadditiondlg.cpp" line="413"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 остават след сваляне на торента)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="401"/>
+        <location filename="../torrentadditiondlg.cpp" line="416"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(още %1 са необходими за свалянето)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="451"/>
+        <location filename="../torrentadditiondlg.cpp" line="466"/>
         <source>Empty save path</source>
         <translation>Празен път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="451"/>
+        <location filename="../torrentadditiondlg.cpp" line="466"/>
         <source>Please enter a save path</source>
         <translation>Моля въведете път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="470"/>
+        <location filename="../torrentadditiondlg.cpp" line="486"/>
         <source>Save path creation error</source>
         <translation>Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="470"/>
+        <location filename="../torrentadditiondlg.cpp" line="486"/>
         <source>Could not create the save path</source>
         <translation>Не мога да създам път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="476"/>
+        <location filename="../torrentadditiondlg.cpp" line="492"/>
         <source>Invalid label name</source>
         <translation>Невалидно име на етикет</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="476"/>
+        <location filename="../torrentadditiondlg.cpp" line="492"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Моля, не ползвайте специални символи в името на етикета.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="512"/>
+        <location filename="../torrentadditiondlg.cpp" line="528"/>
         <source>Seeding mode error</source>
         <translation>Грешка в режим даване</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="512"/>
+        <location filename="../torrentadditiondlg.cpp" line="528"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Избрахте прескачане на проверката. Обаче местните файлове изглежда не съществуват в папката получател. Моля изключете тази функция или обновете пътя за съхранение.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="519"/>
+        <location filename="../torrentadditiondlg.cpp" line="535"/>
         <source>Invalid file selection</source>
         <translation>Невалиден избор на файл</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="519"/>
+        <location filename="../torrentadditiondlg.cpp" line="535"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Трябва да изберете поне един файл в торента</translation>
     </message>
@@ -8829,7 +8906,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Изпълнение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="252"/>
+        <location filename="../torrentadditiondlg.cpp" line="263"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>

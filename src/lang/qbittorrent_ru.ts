@@ -425,12 +425,20 @@ p, li { white-space: pre-wrap; }
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>Консоль qBittorrent</translation>
+        <translation type="obsolete">Консоль qBittorrent</translation>
     </message>
     <message>
         <source>General</source>
@@ -439,6 +447,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Заблокированные IP</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2297,7 +2309,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Вы действительно хотите выйти?</translation>
+        <translation type="obsolete">Вы действительно хотите выйти?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2666,11 +2678,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation>Использовать обычные лимиты скорости</translation>
+        <translation type="obsolete">Использовать обычные лимиты скорости</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Использовать альтернативные лимиты скорости</translation>
+        <translation type="obsolete">Использовать альтернативные лимиты скорости</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
@@ -2707,6 +2719,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3400,7 +3416,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Использовать альтернативные лимиты скорости</translation>
+        <translation type="obsolete">Использовать альтернативные лимиты скорости</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -3464,6 +3480,18 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Show transfer speed in title bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3631,7 +3659,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3923,7 +3951,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Настройки коэффициента раздачи</translation>
+        <translation type="obsolete">Настройки коэффициента раздачи</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -3931,7 +3959,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Удалять законченные torrentы когда их соотношение раздачи достигнет:</translation>
+        <translation type="obsolete">Удалять законченные torrentы когда их соотношение раздачи достигнет:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -3991,15 +4019,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>Интервал обновления RSS каналов:</translation>
+        <translation type="obsolete">Интервал обновления RSS каналов:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>минут</translation>
+        <translation type="obsolete">минут</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Максимальное число статей на канал:</translation>
+        <translation type="obsolete">Максимальное число статей на канал:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -4236,6 +4264,26 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4698,6 +4746,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -4816,6 +4868,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Описание недоступно</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">Интервал обновления RSS каналов:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">минут</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Максимальное число статей на канал:</translation>
     </message>
 </context>
 <context>

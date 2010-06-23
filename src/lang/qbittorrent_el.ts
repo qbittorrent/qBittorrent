@@ -299,191 +299,202 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="224"/>
+        <location filename="../bittorrent.cpp" line="227"/>
+        <location filename="../bittorrent.cpp" line="233"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>Το %1 έφτασε στη μέγιστη αναλογία που θέσατε.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="316"/>
+        <location filename="../bittorrent.cpp" line="228"/>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="234"/>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="328"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>Το qBittorrent χρησιμοποιεί τη θύρα: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="379"/>
+        <location filename="../bittorrent.cpp" line="391"/>
         <source>UPnP support [ON]</source>
         <translation>Υποστήριξη UPnP [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="382"/>
+        <location filename="../bittorrent.cpp" line="394"/>
         <source>UPnP support [OFF]</source>
         <translation>Υποστήριξη UPnP [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="387"/>
+        <location filename="../bittorrent.cpp" line="399"/>
         <source>NAT-PMP support [ON]</source>
         <translation>Υποστήριξη NAT-PMP [NAI]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="390"/>
+        <location filename="../bittorrent.cpp" line="402"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>Υποστήριξη NAT-PMP [OXI]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="417"/>
+        <location filename="../bittorrent.cpp" line="429"/>
         <source>HTTP user agent is %1</source>
         <translation>Η εφαρμογή HTTP σας είναι %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="435"/>
+        <location filename="../bittorrent.cpp" line="447"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>Χρησιμοποιείται προσωρινή μνήμη δίσκου, %1 MiB</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="476"/>
+        <location filename="../bittorrent.cpp" line="488"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Υποστήριξη DHT [NAI], θύρα: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="478"/>
-        <location filename="../bittorrent.cpp" line="482"/>
+        <location filename="../bittorrent.cpp" line="490"/>
+        <location filename="../bittorrent.cpp" line="494"/>
         <source>DHT support [OFF]</source>
         <translation>Υποστήριξη DHT [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="486"/>
+        <location filename="../bittorrent.cpp" line="498"/>
         <source>PeX support [ON]</source>
         <translation>Υποστήριξη PeX [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="488"/>
+        <location filename="../bittorrent.cpp" line="500"/>
         <source>PeX support [OFF]</source>
         <translation>Υποστήριξη PeX [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="491"/>
+        <location filename="../bittorrent.cpp" line="503"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Απαιτείται επανεκκίνηση για να αλλάξουν οι ρυθμίσεις PeX</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="496"/>
+        <location filename="../bittorrent.cpp" line="508"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Ανακάλυψη Τοπικών Συνδέσεων [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="499"/>
+        <location filename="../bittorrent.cpp" line="511"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Ανακάλυψη Τοπικών Συνδέσεων [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="511"/>
+        <location filename="../bittorrent.cpp" line="523"/>
         <source>Encryption support [ON]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="516"/>
+        <location filename="../bittorrent.cpp" line="528"/>
         <source>Encryption support [FORCED]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΕΞΑΝΑΓΚΑΣΤΜΕΝΗ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="521"/>
+        <location filename="../bittorrent.cpp" line="533"/>
         <source>Encryption support [OFF]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="628"/>
+        <location filename="../bittorrent.cpp" line="641"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Το Web UI χρησιμοποιεί τη θύρα %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="630"/>
+        <location filename="../bittorrent.cpp" line="643"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Σφάλμα Web User Interface - Αδύνατο να συνδεθεί το Web UI στην θύρα %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="761"/>
+        <location filename="../bittorrent.cpp" line="774"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>To &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων και τον σκληρό δίσκο.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="763"/>
+        <location filename="../bittorrent.cpp" line="776"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>Το &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="813"/>
+        <location filename="../bittorrent.cpp" line="826"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>Το &apos;%1&apos; δεν είναι ένα έγκυρο magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="833"/>
-        <location filename="../bittorrent.cpp" line="1004"/>
-        <location filename="../bittorrent.cpp" line="1007"/>
+        <location filename="../bittorrent.cpp" line="846"/>
+        <location filename="../bittorrent.cpp" line="1017"/>
+        <location filename="../bittorrent.cpp" line="1020"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>Το &apos;%1&apos; είναι ήδη στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="931"/>
-        <location filename="../bittorrent.cpp" line="1216"/>
-        <location filename="../bittorrent.cpp" line="1221"/>
+        <location filename="../bittorrent.cpp" line="944"/>
+        <location filename="../bittorrent.cpp" line="1229"/>
+        <location filename="../bittorrent.cpp" line="1234"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Το &apos;%1&apos; ξανάρχισε. (γρήγορη επανασύνδεση)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="933"/>
-        <location filename="../bittorrent.cpp" line="1218"/>
-        <location filename="../bittorrent.cpp" line="1223"/>
+        <location filename="../bittorrent.cpp" line="946"/>
+        <location filename="../bittorrent.cpp" line="1231"/>
+        <location filename="../bittorrent.cpp" line="1236"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>Το &apos;%1&apos; προστέθηκε στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="978"/>
-        <location filename="../bittorrent.cpp" line="982"/>
+        <location filename="../bittorrent.cpp" line="991"/>
+        <location filename="../bittorrent.cpp" line="995"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="985"/>
+        <location filename="../bittorrent.cpp" line="998"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Το αρχείο είναι είτε κατεστραμμένο ή δεν είναι torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1033"/>
+        <location filename="../bittorrent.cpp" line="1046"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι trackers προστέθηκαν στο υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1046"/>
+        <location filename="../bittorrent.cpp" line="1059"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι διαμοιραστές μέσω URL προστέθηκαν στο ήδη υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1568"/>
+        <location filename="../bittorrent.cpp" line="1581"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του φίλτρου IP σας&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1570"/>
+        <location filename="../bittorrent.cpp" line="1583"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1891"/>
+        <location filename="../bittorrent.cpp" line="1904"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1901"/>
-        <location filename="../bittorrent.cpp" line="1951"/>
+        <location filename="../bittorrent.cpp" line="1914"/>
+        <location filename="../bittorrent.cpp" line="1964"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent %1.</translation>
     </message>
@@ -492,38 +503,38 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Αδύνατη η επικοινωνία με καμία από της δεδομένες θύρες.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2150"/>
+        <location filename="../bittorrent.cpp" line="2165"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2155"/>
+        <location filename="../bittorrent.cpp" line="2170"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2170"/>
+        <location filename="../bittorrent.cpp" line="2185"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη επανεκκίνηση αρχείων απορρίφθηκε για το torrent %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2066"/>
-        <location filename="../bittorrent.cpp" line="2171"/>
+        <location filename="../bittorrent.cpp" line="2079"/>
+        <location filename="../bittorrent.cpp" line="2186"/>
         <source>Reason: %1</source>
         <translation>Αιτία: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2065"/>
+        <location filename="../bittorrent.cpp" line="2078"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ένα σφάλμα I/O προέκυψε, το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2176"/>
+        <location filename="../bittorrent.cpp" line="2191"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url διαμοιρασμού για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2302"/>
+        <location filename="../bittorrent.cpp" line="2317"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
@@ -532,17 +543,21 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
 <context>
     <name>ConsoleDlg</name>
     <message>
-        <location filename="../ui/console.ui" line="13"/>
         <source>qBittorrent console</source>
-        <translation>Κονσόλα qBittorrent</translation>
+        <translation type="obsolete">Κονσόλα qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/console.ui" line="26"/>
+        <location filename="../ui/console.ui" line="14"/>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/console.ui" line="32"/>
         <source>General</source>
         <translation>Γενικά</translation>
     </message>
     <message>
-        <location filename="../ui/console.ui" line="39"/>
+        <location filename="../ui/console.ui" line="46"/>
         <source>Blocked IPs</source>
         <translation>Μποκαρισμένες IP</translation>
     </message>
@@ -1999,7 +2014,7 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="679"/>
+        <location filename="../GUI.cpp" line="701"/>
         <source>Open Torrent Files</source>
         <translation>Άνοιγμα Αρχείων torrent</translation>
     </message>
@@ -2088,7 +2103,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Δεν μπόρεσε να δημιουργηθεί η κατηγορία:</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="680"/>
+        <location filename="../GUI.cpp" line="702"/>
         <source>Torrent Files</source>
         <translation>Αρχεία torrent</translation>
     </message>
@@ -2148,8 +2163,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="556"/>
-        <location filename="../GUI.cpp" line="854"/>
+        <location filename="../GUI.cpp" line="868"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -2419,7 +2433,7 @@ Please close the other one first.</source>
         <translation type="obsolete">Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="145"/>
+        <location filename="../GUI.cpp" line="146"/>
         <source>Transfers</source>
         <translation>Μεταφορές</translation>
     </message>
@@ -2445,8 +2459,8 @@ Please close the other one first.</source>
         <translation type="obsolete">Μηχανή Αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="85"/>
-        <location filename="../GUI.cpp" line="1017"/>
+        <location filename="../GUI.cpp" line="86"/>
+        <location filename="../GUI.cpp" line="1026"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -2514,15 +2528,15 @@ Please close the other one first.</source>
         <translation type="obsolete">Εκκινήθηκε το qBittorrent %1.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="857"/>
-        <location filename="../GUI.cpp" line="864"/>
+        <location filename="../GUI.cpp" line="871"/>
+        <location filename="../GUI.cpp" line="878"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Λήψης: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="860"/>
-        <location filename="../GUI.cpp" line="866"/>
+        <location filename="../GUI.cpp" line="874"/>
+        <location filename="../GUI.cpp" line="880"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Αποστολής: %1 KiB/s</translation>
@@ -2543,9 +2557,8 @@ Please close the other one first.</source>
         <translation type="obsolete">Αποτυχία λειτουργίας</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="556"/>
         <source>Are you sure you want to quit?</source>
-        <translation>Είστε σίγουρος/η οτι θέλετε να κλείσετε την εφαρμογή?</translation>
+        <translation type="obsolete">Είστε σίγουρος/η οτι θέλετε να κλείσετε την εφαρμογή?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2606,13 +2619,13 @@ Please close the other one first.</source>
         <translation type="obsolete">Το &apos;%1&apos; ξανάρχισε.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="348"/>
+        <location filename="../GUI.cpp" line="370"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Έχει τελειώσει η λήψη του &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="354"/>
+        <location filename="../GUI.cpp" line="376"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Σφάλμα</translation>
@@ -2672,39 +2685,39 @@ Please close the other one first.</source>
         <translation type="obsolete">Ένα σφάλμα προέκυψε (δίσκος πλήρης?), το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="160"/>
+        <location filename="../GUI.cpp" line="314"/>
         <source>Search</source>
         <translation>Εύρεση</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="210"/>
+        <location filename="../GUI.cpp" line="211"/>
         <source>Torrent file association</source>
         <translation>Συσχετισμός με αρχεία τόρεντ</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="211"/>
+        <location filename="../GUI.cpp" line="212"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>Το qBittorrent δεν είναι η προεπιλεγμένη εφαρμογή για το άνοιγμα αρχείων torrent και Magnet link.
 Θέλετε να συσχετίσετε το qBittorrent με τα αρχεία τόρεντ και Magnet link?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="294"/>
+        <location filename="../GUI.cpp" line="296"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="308"/>
+        <location filename="../GUI.cpp" line="330"/>
         <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="348"/>
+        <location filename="../GUI.cpp" line="370"/>
         <source>Download completion</source>
         <translation>Ολοκλήρωση λήψης</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="354"/>
+        <location filename="../GUI.cpp" line="376"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2713,23 +2726,28 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
  Αιτία: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="363"/>
+        <location filename="../GUI.cpp" line="385"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="430"/>
+        <location filename="../GUI.cpp" line="452"/>
         <source>Recursive download confirmation</source>
         <translation>Επιβεβαίωση σχετικού (recursive) κατεβάσματος</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="430"/>
+        <location filename="../GUI.cpp" line="452"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Το τόρεντ %1 περιέχει άλλα αρχεία τόρεντ, θέλετε να συνεχίσετε και να τα κατεβάσετε?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="561"/>
+        <location filename="../GUI.cpp" line="578"/>
+        <source>Exiting qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="583"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2739,20 +2757,18 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="872"/>
+        <location filename="../GUI.cpp" line="886"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Κάτ.: %2/s, Αν.: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="952"/>
         <source>Use normal speed limits</source>
-        <translation>Χρήση κανονικών ορίων ταχυτήτων</translation>
+        <translation type="obsolete">Χρήση κανονικών ορίων ταχυτήτων</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="955"/>
         <source>Use alternative speed limits</source>
-        <translation>Χρήση εναλλακτικών ορίων ταχυτήτων</translation>
+        <translation type="obsolete">Χρήση εναλλακτικών ορίων ταχυτήτων</translation>
     </message>
     <message>
         <source>qBittorrent is bind to port: %1</source>
@@ -2819,7 +2835,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Αναλογία</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="361"/>
+        <location filename="../GUI.cpp" line="383"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
@@ -2840,12 +2856,12 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="469"/>
         <source>Url download error</source>
         <translation>Σφάλμα λήψης url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="447"/>
+        <location filename="../GUI.cpp" line="469"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Αδυναμία λήψης αρχείου από το url: %1,αιτία: %2.</translation>
     </message>
@@ -2876,46 +2892,46 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="365"/>
+        <location filename="../GUI.cpp" line="387"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="389"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="431"/>
-        <location filename="../GUI.cpp" line="560"/>
+        <location filename="../GUI.cpp" line="453"/>
+        <location filename="../GUI.cpp" line="582"/>
         <source>Yes</source>
         <translation type="unfinished">Ναι</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="432"/>
-        <location filename="../GUI.cpp" line="559"/>
+        <location filename="../GUI.cpp" line="454"/>
+        <location filename="../GUI.cpp" line="581"/>
         <source>No</source>
         <translation type="unfinished">Όχι</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="433"/>
+        <location filename="../GUI.cpp" line="455"/>
         <source>Never</source>
         <translation type="unfinished">Ποτέ</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="453"/>
+        <location filename="../GUI.cpp" line="475"/>
         <source>Global Upload Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Αποστολής</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="475"/>
+        <location filename="../GUI.cpp" line="497"/>
         <source>Global Download Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Λήψης</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="557"/>
+        <location filename="../GUI.cpp" line="579"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Μερικά αρχεία μεταφέρονται τώρα.
@@ -2985,7 +3001,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Αποστολή</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="755"/>
+        <location filename="../GUI.cpp" line="777"/>
         <source>Options were saved successfully.</source>
         <translation>Οι επιλογές αποθηκεύτηκαν επιτυχώς.</translation>
     </message>
@@ -3606,122 +3622,137 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="137"/>
+        <location filename="../ui/mainwindow.ui" line="140"/>
         <source>&amp;Add File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="142"/>
+        <location filename="../ui/mainwindow.ui" line="145"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="147"/>
+        <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;Options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="152"/>
+        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
         <translation>Σχετικά</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="157"/>
+        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
         <translation>Έναρξη</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="162"/>
+        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
         <translation>Παύση</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="167"/>
+        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
         <translation>Σβήσιμο</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="172"/>
+        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
         <translation>Παύση Όλων</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="177"/>
+        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
         <translation>Έναρξη Όλων</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="182"/>
+        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
         <translation>Επισκεφθείτε την Ιστοσελίδα</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="187"/>
+        <location filename="../ui/mainwindow.ui" line="190"/>
         <source>Add &amp;URL...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="192"/>
+        <location filename="../ui/mainwindow.ui" line="195"/>
         <source>Torrent &amp;creator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="212"/>
+        <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="217"/>
+        <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="222"/>
+        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
         <translation>Έγγραφα</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="227"/>
+        <location filename="../ui/mainwindow.ui" line="230"/>
         <source>Set global download limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="232"/>
+        <location filename="../ui/mainwindow.ui" line="235"/>
         <source>Set global upload limit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="265"/>
+        <location filename="../ui/mainwindow.ui" line="268"/>
         <source>&amp;Log viewer...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="268"/>
+        <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log Window</source>
         <translation>Παράθυρο Καταγραφής</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="277"/>
-        <source>Use alternative speed limits</source>
-        <translation>Χρήση εναλλακτικών ορίων ταχύτητας</translation>
+        <location filename="../ui/mainwindow.ui" line="279"/>
+        <location filename="../ui/mainwindow.ui" line="282"/>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="285"/>
+        <location filename="../ui/mainwindow.ui" line="312"/>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search engine</source>
+        <translation type="unfinished">Μηχανή αναζήτησης</translation>
+    </message>
+    <message>
+        <source>Use alternative speed limits</source>
+        <translation type="obsolete">Χρήση εναλλακτικών ορίων ταχύτητας</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="290"/>
         <source>Top &amp;tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="288"/>
+        <location filename="../ui/mainwindow.ui" line="293"/>
         <source>Display top tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="296"/>
+        <location filename="../ui/mainwindow.ui" line="301"/>
         <source>&amp;Speed in title bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="299"/>
+        <location filename="../ui/mainwindow.ui" line="304"/>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3822,12 +3853,12 @@ No further notices will be issued.</source>
         <translation type="obsolete">Μεταφορές</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="197"/>
+        <location filename="../ui/mainwindow.ui" line="200"/>
         <source>Preview file</source>
         <translation>Προεπισκόπηση αρχείου</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="202"/>
+        <location filename="../ui/mainwindow.ui" line="205"/>
         <source>Clear log</source>
         <translation>Εκκαθάριση καταγραφών</translation>
     </message>
@@ -3840,7 +3871,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">Επίσκεψη ιστοσελίδας</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="207"/>
+        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
         <translation>Αναφορά σφάλματος</translation>
     </message>
@@ -3877,12 +3908,12 @@ No further notices will be issued.</source>
         <translation type="obsolete">Άνοιγμα torrent</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="241"/>
+        <location filename="../ui/mainwindow.ui" line="244"/>
         <source>Decrease priority</source>
         <translation>Μείωσε προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="253"/>
+        <location filename="../ui/mainwindow.ui" line="256"/>
         <source>Increase priority</source>
         <translation>Αύξησε προτεραιότητα</translation>
     </message>
@@ -4090,13 +4121,11 @@ No further notices will be issued.</source>
         <translation>Web UI</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="184"/>
-        <location filename="../ui/options.ui" line="2636"/>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="199"/>
+        <location filename="../ui/options.ui" line="184"/>
         <source>Advanced</source>
         <translation>Για προχωρημένους</translation>
     </message>
@@ -4105,17 +4134,17 @@ No further notices will be issued.</source>
         <translation type="obsolete">Διεπαφή χρήστη</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="248"/>
+        <location filename="../ui/options.ui" line="233"/>
         <source>Language:</source>
         <translation>Γλώσσα:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="277"/>
+        <location filename="../ui/options.ui" line="262"/>
         <source>(Requires restart)</source>
         <translation>(Απαιτεί επανεκκίνηση)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="304"/>
+        <location filename="../ui/options.ui" line="289"/>
         <source>Visual style:</source>
         <translation>Στυλ:</translation>
     </message>
@@ -4156,7 +4185,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">Ένδειξη τρέχουσας ταχύτητας στην μπάρα τίτλου</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="332"/>
+        <location filename="../ui/options.ui" line="317"/>
         <source>Transfer list</source>
         <translation>Μεταφορές</translation>
     </message>
@@ -4169,7 +4198,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">ms</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="341"/>
+        <location filename="../ui/options.ui" line="326"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Χρήση εναλασσόμενων χρωμάτων στις σειρές</translation>
@@ -4192,8 +4221,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">Άνοιγμα φακέλου</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="396"/>
-        <location filename="../ui/options.ui" line="422"/>
+        <location filename="../ui/options.ui" line="381"/>
+        <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4227,7 +4256,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">Εμφάνιση μπαλονιών ειδοποιήσεων στη μπάρα εργασιών</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="673"/>
+        <location filename="../ui/options.ui" line="567"/>
         <source>File system</source>
         <translation>Σύστημα αρχείων</translation>
     </message>
@@ -4272,7 +4301,7 @@ QGroupBox {
         <translation type="obsolete">Αυτόματη φόρτωση αρχείων τόρεντ από:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="928"/>
+        <location filename="../ui/options.ui" line="822"/>
         <source>Copy .torrent files to:</source>
         <translation>Αντιγραφή .torrent αρχείων στο:</translation>
     </message>
@@ -4293,7 +4322,7 @@ QGroupBox {
         <translation type="obsolete">MiB (προχωρημένο)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="576"/>
+        <location filename="../ui/options.ui" line="1853"/>
         <source>Torrent queueing</source>
         <translation>Σειρά torrent</translation>
     </message>
@@ -4302,22 +4331,22 @@ QGroupBox {
         <translation type="obsolete">Ενεργοποίηση συστήματος σειρών</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="591"/>
+        <location filename="../ui/options.ui" line="1868"/>
         <source>Maximum active downloads:</source>
         <translation>Μέγιστος αριθμός ενεργών λήψεων:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="611"/>
+        <location filename="../ui/options.ui" line="1888"/>
         <source>Maximum active uploads:</source>
         <translation>Μέγιστος αριθμός ενεργών αποστολών:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="631"/>
+        <location filename="../ui/options.ui" line="1908"/>
         <source>Maximum active torrents:</source>
         <translation>Μέγιστος αριθμός ενεργών τόρεντ:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="547"/>
+        <location filename="../ui/options.ui" line="532"/>
         <source>When adding a torrent</source>
         <translation>Όταν προστίθεται κάποιο τόρεντ</translation>
     </message>
@@ -4327,116 +4356,141 @@ QGroupBox {
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="237"/>
+        <location filename="../ui/options.ui" line="222"/>
         <source>Visual Appearance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="357"/>
+        <location filename="../ui/options.ui" line="342"/>
         <source>Action on double-click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="369"/>
+        <location filename="../ui/options.ui" line="354"/>
         <source>Downloading torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="386"/>
-        <location filename="../ui/options.ui" line="412"/>
+        <location filename="../ui/options.ui" line="371"/>
+        <location filename="../ui/options.ui" line="397"/>
         <source>Start / Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="391"/>
-        <location filename="../ui/options.ui" line="417"/>
+        <location filename="../ui/options.ui" line="376"/>
+        <location filename="../ui/options.ui" line="402"/>
         <source>Open destination folder</source>
         <translation type="unfinished">Άνοιγμα φακέλου προορισμού</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="404"/>
+        <location filename="../ui/options.ui" line="389"/>
         <source>Completed torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="449"/>
+        <location filename="../ui/options.ui" line="434"/>
         <source>Desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="458"/>
+        <location filename="../ui/options.ui" line="443"/>
         <source>Show splash screen on start up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="468"/>
+        <location filename="../ui/options.ui" line="453"/>
         <source>Start qBittorrent minimized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="475"/>
+        <location filename="../ui/options.ui" line="460"/>
         <source>Show qBittorrent icon in notification area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="485"/>
+        <location filename="../ui/options.ui" line="470"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="495"/>
+        <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="556"/>
+        <location filename="../ui/options.ui" line="541"/>
         <source>Display torrent content and some options</source>
         <translation>Εμφάνιση περιεχομένων τόρεντ και μερικών ρυθμίσεων</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="566"/>
+        <location filename="../ui/options.ui" line="551"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="691"/>
+        <location filename="../ui/options.ui" line="585"/>
         <source>Save files to location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="740"/>
+        <location filename="../ui/options.ui" line="634"/>
         <source>Append the label of the torrent to the save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="750"/>
+        <location filename="../ui/options.ui" line="644"/>
         <source>Pre-allocate disk space for all files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="766"/>
+        <location filename="../ui/options.ui" line="660"/>
         <source>Keep incomplete torrents in:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="813"/>
+        <location filename="../ui/options.ui" line="707"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="829"/>
+        <location filename="../ui/options.ui" line="723"/>
         <source>Automatically add torrents from:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="882"/>
+        <location filename="../ui/options.ui" line="776"/>
         <source>Add folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2473"/>
+        <location filename="../ui/options.ui" line="1944"/>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1955"/>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="1992"/>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2003"/>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2008"/>
+        <source>Remove them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="2488"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4446,47 +4500,47 @@ QGroupBox {
         <translation type="obsolete">Μη αυτόματη εκκίνηση λήψης</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1010"/>
+        <location filename="../ui/options.ui" line="904"/>
         <source>Listening port</source>
         <translation>Επικοινωνία θύρας</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1018"/>
+        <location filename="../ui/options.ui" line="912"/>
         <source>Port used for incoming connections:</source>
         <translation>Θύρα που χρησιμοποιείται για εισερχόμενες συνδέσεις:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1038"/>
+        <location filename="../ui/options.ui" line="932"/>
         <source>Random</source>
         <translation>Τυχαία</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1060"/>
+        <location filename="../ui/options.ui" line="954"/>
         <source>Enable UPnP port mapping</source>
         <translation>Ενεργοποίηση χαρτογράφησης θυρών UPnP </translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1070"/>
+        <location filename="../ui/options.ui" line="964"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>Ενεργοποίηση χαρτογράφησης θυρών NAT-PMP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1085"/>
+        <location filename="../ui/options.ui" line="979"/>
         <source>Connections limit</source>
         <translation>Όριο συνδέσεων</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1096"/>
+        <location filename="../ui/options.ui" line="990"/>
         <source>Global maximum number of connections:</source>
         <translation>Συνολικός αριθμός μεγίστων συνδέσεων:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1139"/>
+        <location filename="../ui/options.ui" line="1033"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Μέγιστος αριθμός συνδέσεων ανά torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1179"/>
+        <location filename="../ui/options.ui" line="1073"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Μέγιστες θυρίδες αποστολής ανά torrent:</translation>
     </message>
@@ -4495,22 +4549,22 @@ QGroupBox {
         <translation type="obsolete">Συνολικό όριο σύνδεσης</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1313"/>
-        <location filename="../ui/options.ui" line="1435"/>
+        <location filename="../ui/options.ui" line="1207"/>
+        <location filename="../ui/options.ui" line="1329"/>
         <source>Upload:</source>
         <translation>Αποστολή:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1349"/>
-        <location filename="../ui/options.ui" line="1462"/>
+        <location filename="../ui/options.ui" line="1243"/>
+        <location filename="../ui/options.ui" line="1356"/>
         <source>Download:</source>
         <translation>Λήψη:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1342"/>
-        <location filename="../ui/options.ui" line="1375"/>
-        <location filename="../ui/options.ui" line="1455"/>
-        <location filename="../ui/options.ui" line="1482"/>
+        <location filename="../ui/options.ui" line="1236"/>
+        <location filename="../ui/options.ui" line="1269"/>
+        <location filename="../ui/options.ui" line="1349"/>
+        <location filename="../ui/options.ui" line="1376"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -4527,12 +4581,12 @@ QGroupBox {
         <translation type="obsolete">Ανεύρεση ονομάτων φορέων διασυνδέσεων</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1295"/>
+        <location filename="../ui/options.ui" line="1189"/>
         <source>Global speed limits</source>
         <translation>Συνολικό όριο ταχύτητας</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1400"/>
+        <location filename="../ui/options.ui" line="1294"/>
         <source>Alternative global speed limits</source>
         <translation>Συνολικά εναλλακτικά όρια ταχύτητας</translation>
     </message>
@@ -4541,7 +4595,7 @@ QGroupBox {
         <translation type="obsolete">Προγραμματισμένες ώρες:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1553"/>
+        <location filename="../ui/options.ui" line="1447"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>έως</translation>
@@ -4551,48 +4605,48 @@ QGroupBox {
         <translation type="obsolete">Τις ημέρες:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1602"/>
+        <location filename="../ui/options.ui" line="1496"/>
         <source>Every day</source>
         <translation>Κάθε μέρα</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1607"/>
+        <location filename="../ui/options.ui" line="1501"/>
         <source>Week days</source>
         <translation>Καθημερινές μέρες</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1612"/>
+        <location filename="../ui/options.ui" line="1506"/>
         <source>Week ends</source>
         <translation>Σαββατοκύριακα</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1677"/>
+        <location filename="../ui/options.ui" line="1571"/>
         <source>Bittorrent features</source>
         <translation>Λειτουργίες Bittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1692"/>
+        <location filename="../ui/options.ui" line="1586"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Ενεργοποίηση δικτύου DHT (αποκεντροποιημένο)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1713"/>
+        <location filename="../ui/options.ui" line="1607"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Χρήση διαφορετικής θύρας για DHT και Bittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1730"/>
+        <location filename="../ui/options.ui" line="1624"/>
         <source>DHT port:</source>
         <translation>Θύρα DHT:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1774"/>
+        <location filename="../ui/options.ui" line="1668"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translatorcomment>Left as is; We want the user to see PeX later and know what it is ;)</translatorcomment>
         <translation>Ενεργοποίηση Peer Exchange / PeX (απαιτεί επανεκκίνηση)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1787"/>
+        <location filename="../ui/options.ui" line="1681"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Ενεργοποίηση Ανακάλυψης Νέων Συνδέσεων</translation>
     </message>
@@ -4601,68 +4655,66 @@ QGroupBox {
         <translation type="obsolete">Κρυπτογράφηση:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1807"/>
+        <location filename="../ui/options.ui" line="1701"/>
         <source>Enabled</source>
         <translation>Ενεργοποιημένο</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1812"/>
+        <location filename="../ui/options.ui" line="1706"/>
         <source>Forced</source>
         <translation>Εξαναγκασμένο</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1817"/>
+        <location filename="../ui/options.ui" line="1711"/>
         <source>Disabled</source>
         <translation>Απενεργοποιημένο</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1874"/>
+        <location filename="../ui/options.ui" line="1771"/>
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1931"/>
+        <location filename="../ui/options.ui" line="1828"/>
         <source>Reset to latest software version</source>
         <translation>Επαναφορά στην τελευταία έκδοση λογισμικού</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1956"/>
         <source>Share ratio settings</source>
-        <translation>Ρυθμίσεις ποσοστού μοιράσματος</translation>
+        <translation type="obsolete">Ρυθμίσεις ποσοστού μοιράσματος</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
         <translation type="obsolete">Επιθυμητή αναλογία:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1964"/>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Αφαίρεση τελειωμένων torrent όταν η αναλογία τους φτάσει στο:</translation>
+        <translation type="obsolete">Αφαίρεση τελειωμένων torrent όταν η αναλογία τους φτάσει στο:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2055"/>
+        <location filename="../ui/options.ui" line="2070"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>Επικοινωνίες HTTP (ιχνηλάτες, διαμοιραστές, μηχανή αναζήτησης)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2092"/>
-        <location filename="../ui/options.ui" line="2287"/>
+        <location filename="../ui/options.ui" line="2107"/>
+        <location filename="../ui/options.ui" line="2302"/>
         <source>Host:</source>
         <translation>Διακομιστής:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2245"/>
+        <location filename="../ui/options.ui" line="2260"/>
         <source>Peer Communications</source>
         <translation>Συνδέσεις με χρήστες</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2266"/>
+        <location filename="../ui/options.ui" line="2281"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2063"/>
-        <location filename="../ui/options.ui" line="2253"/>
+        <location filename="../ui/options.ui" line="2078"/>
+        <location filename="../ui/options.ui" line="2268"/>
         <source>Type:</source>
         <translation>Είδος:</translation>
     </message>
@@ -4675,126 +4727,126 @@ QGroupBox {
         <translation type="obsolete">Προσθήκη φακέλου ...</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="892"/>
+        <location filename="../ui/options.ui" line="786"/>
         <source>Remove folder</source>
         <translation>Αφαίρεση φακέλου</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1217"/>
+        <location filename="../ui/options.ui" line="1111"/>
         <source>IP Filtering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1515"/>
+        <location filename="../ui/options.ui" line="1409"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1529"/>
+        <location filename="../ui/options.ui" line="1423"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1594"/>
+        <location filename="../ui/options.ui" line="1488"/>
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1771"/>
+        <location filename="../ui/options.ui" line="1665"/>
         <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1784"/>
+        <location filename="../ui/options.ui" line="1678"/>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1799"/>
+        <location filename="../ui/options.ui" line="1693"/>
         <source>Protocol encryption:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1843"/>
+        <location filename="../ui/options.ui" line="1737"/>
         <source>Client whitelisting workaround</source>
         <translation>Παράκαμψη αποκλεισμού πελάτη</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1851"/>
+        <location filename="../ui/options.ui" line="1748"/>
         <source>Identify as:</source>
         <translation>Αναγνώριση ως:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1859"/>
+        <location filename="../ui/options.ui" line="1756"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1864"/>
+        <location filename="../ui/options.ui" line="1761"/>
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1869"/>
+        <location filename="../ui/options.ui" line="1766"/>
         <source>µTorrent</source>
         <translation>μTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1885"/>
+        <location filename="../ui/options.ui" line="1782"/>
         <source>Version:</source>
         <translation>Έκδοση:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1902"/>
+        <location filename="../ui/options.ui" line="1799"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translatorcomment>Left as is for the moment. This word not quite used, may use my own in next ver.</translatorcomment>
         <translation>Build:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2071"/>
-        <location filename="../ui/options.ui" line="2261"/>
+        <location filename="../ui/options.ui" line="2086"/>
+        <location filename="../ui/options.ui" line="2276"/>
         <source>(None)</source>
         <translation>(Κανένα)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2076"/>
-        <location filename="../ui/options.ui" line="2276"/>
+        <location filename="../ui/options.ui" line="2091"/>
+        <location filename="../ui/options.ui" line="2291"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2118"/>
-        <location filename="../ui/options.ui" line="2313"/>
-        <location filename="../ui/options.ui" line="2491"/>
+        <location filename="../ui/options.ui" line="2133"/>
+        <location filename="../ui/options.ui" line="2328"/>
+        <location filename="../ui/options.ui" line="2506"/>
         <source>Port:</source>
         <translation>Θύρα:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2161"/>
-        <location filename="../ui/options.ui" line="2356"/>
-        <location filename="../ui/options.ui" line="2527"/>
+        <location filename="../ui/options.ui" line="2176"/>
+        <location filename="../ui/options.ui" line="2371"/>
+        <location filename="../ui/options.ui" line="2542"/>
         <source>Authentication</source>
         <translation>Πιστοποίηση</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2173"/>
-        <location filename="../ui/options.ui" line="2368"/>
-        <location filename="../ui/options.ui" line="2535"/>
+        <location filename="../ui/options.ui" line="2188"/>
+        <location filename="../ui/options.ui" line="2383"/>
+        <location filename="../ui/options.ui" line="2550"/>
         <source>Username:</source>
         <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2199"/>
-        <location filename="../ui/options.ui" line="2394"/>
-        <location filename="../ui/options.ui" line="2542"/>
+        <location filename="../ui/options.ui" line="2214"/>
+        <location filename="../ui/options.ui" line="2409"/>
+        <location filename="../ui/options.ui" line="2557"/>
         <source>Password:</source>
         <translation>Κωδικός:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2081"/>
-        <location filename="../ui/options.ui" line="2271"/>
+        <location filename="../ui/options.ui" line="2096"/>
+        <location filename="../ui/options.ui" line="2286"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
@@ -4807,7 +4859,7 @@ QGroupBox {
         <translation type="obsolete">Ενεργοποίηση Φιλτραρίσματος ΙΡ</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1229"/>
+        <location filename="../ui/options.ui" line="1123"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Διαδρομή φίλτρου (.dat, .p2p, .p2b):</translation>
     </message>
@@ -4816,7 +4868,7 @@ QGroupBox {
         <translation type="obsolete">Ενεργοποίηση Web User Interface</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2485"/>
+        <location filename="../ui/options.ui" line="2500"/>
         <source>HTTP Server</source>
         <translation>Διακομιστής HTTP</translation>
     </message>
@@ -4829,19 +4881,16 @@ QGroupBox {
         <translation type="obsolete">Ρυθμίσεις RSS</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2679"/>
         <source>RSS feeds refresh interval:</source>
-        <translation>Χρονικό διάστημα ανανέωσης παροχών RSS:</translation>
+        <translation type="obsolete">Χρονικό διάστημα ανανέωσης παροχών RSS:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2699"/>
         <source>minutes</source>
-        <translation>λεπτά</translation>
+        <translation type="obsolete">λεπτά</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2723"/>
         <source>Maximum number of articles per feed:</source>
-        <translation>Μέγιστος αριθμός άρθρων ανά τροφοδοσία:</translation>
+        <translation type="obsolete">Μέγιστος αριθμός άρθρων ανά τροφοδοσία:</translation>
     </message>
 </context>
 <context>
@@ -5225,8 +5274,8 @@ QGroupBox {
     </message>
     <message>
         <location filename="../ui/rss.ui" line="39"/>
-        <location filename="../ui/rss.ui" line="238"/>
-        <location filename="../ui/rss.ui" line="241"/>
+        <location filename="../ui/rss.ui" line="245"/>
+        <location filename="../ui/rss.ui" line="248"/>
         <source>Mark items read</source>
         <translation>Μαρκάρισμα αντικειμένων ως διαβασμένα</translation>
     </message>
@@ -5236,17 +5285,22 @@ QGroupBox {
         <translation>Ανανέωση όλων</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="277"/>
+        <location filename="../ui/rss.ui" line="95"/>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/rss.ui" line="284"/>
         <source>RSS feed downloader...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="286"/>
+        <location filename="../ui/rss.ui" line="293"/>
         <source>New folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="295"/>
+        <location filename="../ui/rss.ui" line="302"/>
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5255,18 +5309,18 @@ QGroupBox {
         <translation type="obsolete">1</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="163"/>
+        <location filename="../ui/rss.ui" line="170"/>
         <source>Feed URL</source>
         <translation>URL Παροχής</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="193"/>
+        <location filename="../ui/rss.ui" line="200"/>
         <source>Rename...</source>
         <translation type="unfinished">Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="205"/>
-        <location filename="../ui/rss.ui" line="208"/>
+        <location filename="../ui/rss.ui" line="212"/>
+        <location filename="../ui/rss.ui" line="215"/>
         <source>Update</source>
         <translation>Ανανέωση</translation>
     </message>
@@ -5280,7 +5334,7 @@ QGroupBox {
         <translation>Παροχές RSS</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="110"/>
+        <location filename="../ui/rss.ui" line="117"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -5297,29 +5351,29 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ένδειξη</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="158"/>
+        <location filename="../ui/rss.ui" line="165"/>
         <source>Article title</source>
         <translation>Τίτλος άρθρου</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="217"/>
+        <location filename="../ui/rss.ui" line="224"/>
         <source>New subscription...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="226"/>
-        <location filename="../ui/rss.ui" line="229"/>
+        <location filename="../ui/rss.ui" line="233"/>
+        <location filename="../ui/rss.ui" line="236"/>
         <source>Update all feeds</source>
         <translation>Ανανέωση όλων των παροχών</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="181"/>
-        <location filename="../ui/rss.ui" line="184"/>
+        <location filename="../ui/rss.ui" line="188"/>
+        <location filename="../ui/rss.ui" line="191"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="196"/>
+        <location filename="../ui/rss.ui" line="203"/>
         <source>Rename</source>
         <translation>Μετονομασία</translation>
     </message>
@@ -5328,17 +5382,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ανανέωση</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="250"/>
+        <location filename="../ui/rss.ui" line="257"/>
         <source>Download torrent</source>
         <translation>Λήψη torrent</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="259"/>
+        <location filename="../ui/rss.ui" line="266"/>
         <source>Open news URL</source>
         <translation>Άνοιγμα URL ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../ui/rss.ui" line="268"/>
+        <location filename="../ui/rss.ui" line="275"/>
         <source>Copy feed URL</source>
         <translation>Αντιγραφή URL παροχής</translation>
     </message>
@@ -5391,12 +5445,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss_imp.cpp" line="190"/>
+        <location filename="../rss_imp.cpp" line="191"/>
         <source>Please type a rss stream url</source>
         <translation>Παρακαλώ εισάγετε ένα url τροφοδοσίας rss</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="190"/>
+        <location filename="../rss_imp.cpp" line="191"/>
         <source>Stream URL:</source>
         <translation>URL τροφοδοσίας:</translation>
     </message>
@@ -5409,20 +5463,20 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Νέο όνομα τροφοδοσίας:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="224"/>
-        <location filename="../rss_imp.cpp" line="228"/>
+        <location filename="../rss_imp.cpp" line="225"/>
+        <location filename="../rss_imp.cpp" line="229"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Είστε σίγουρος? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="225"/>
-        <location filename="../rss_imp.cpp" line="229"/>
+        <location filename="../rss_imp.cpp" line="226"/>
+        <location filename="../rss_imp.cpp" line="230"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ναι</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="225"/>
-        <location filename="../rss_imp.cpp" line="229"/>
+        <location filename="../rss_imp.cpp" line="226"/>
+        <location filename="../rss_imp.cpp" line="230"/>
         <source>&amp;No</source>
         <translation>&amp;Όχι</translation>
     </message>
@@ -5443,84 +5497,84 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Τελευταία ανανέωση:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>Please choose a folder name</source>
         <translation>Παρακαλώ επιλέξτε ένα όνομα φακέλου</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>Folder name:</source>
         <translation>Όνομα φακέλου:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="136"/>
+        <location filename="../rss_imp.cpp" line="137"/>
         <source>New folder</source>
         <translation>Νέος φάκελος</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="157"/>
+        <location filename="../rss_imp.cpp" line="158"/>
         <source>Overwrite attempt</source>
         <translation>Προσπάθεια επαννεγγραφής</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="158"/>
+        <location filename="../rss_imp.cpp" line="159"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translatorcomment>Δεν προρείτε να επανεγγράψετε το myFolder αντικείμενο.</translatorcomment>
         <translation>Δεν μπορείτε να επανεγγράψετε το %1 αντικείμενο.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="195"/>
+        <location filename="../rss_imp.cpp" line="196"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="196"/>
+        <location filename="../rss_imp.cpp" line="197"/>
         <source>This rss feed is already in the list.</source>
         <translation>Αυτή η τροφοδοσία rss είναι ήδη στη λίστα.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="224"/>
+        <location filename="../rss_imp.cpp" line="225"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Είστε σίγουρος οτι θέλετε να διαγράψετε αυτά τα στοιχεία από τη λίστα?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="228"/>
+        <location filename="../rss_imp.cpp" line="229"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Είστε σίγουρος οτι θέλετε να διαγράψετε αυτό το στοιχείο από τη λίστα?</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="336"/>
+        <location filename="../rss_imp.cpp" line="337"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Παρακαλώ επιλέξτε ένα νέο όνομα για αυτή την παροχή RSS</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="336"/>
+        <location filename="../rss_imp.cpp" line="337"/>
         <source>New feed name:</source>
         <translation>Νέο όνομα παροχής:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="340"/>
+        <location filename="../rss_imp.cpp" line="341"/>
         <source>Name already in use</source>
         <translation>Το όνομα ήδη χρησιμοποιείται</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="340"/>
+        <location filename="../rss_imp.cpp" line="341"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται από ένα άλλο αντικείμενο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="497"/>
+        <location filename="../rss_imp.cpp" line="498"/>
         <source>Date: </source>
         <translation> Ημερομηνία:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="500"/>
+        <location filename="../rss_imp.cpp" line="501"/>
         <source>Author: </source>
         <translation> Δημιουργός:</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="543"/>
+        <location filename="../rss_imp.cpp" line="544"/>
         <source>Unread</source>
         <translation>Μη διαβασμένο</translation>
     </message>
@@ -5531,6 +5585,29 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss.h" line="379"/>
         <source>No description available</source>
         <translation>Δεν υπάρχει διαθέσιμη περιγραφή</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="14"/>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="47"/>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="70"/>
+        <source>minutes</source>
+        <translation type="unfinished">λεπτά</translation>
+    </message>
+    <message>
+        <location filename="../ui/rsssettings.ui" line="77"/>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Μέγιστος αριθμός άρθρων ανά τροφοδοσία:</translation>
     </message>
 </context>
 <context>
@@ -5914,17 +5991,17 @@ Please install it manually.</source>
         <translation>Κλικ για απενεργοποίηση εναλλακτικών ορίων ταχύτητας</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="200"/>
+        <location filename="../statusbar.h" line="201"/>
         <source>Click to enable alternative speed limits</source>
         <translation>Κλικ για ενεργοποίηση εναλλακτικών ορίων ταχύτητας</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="210"/>
+        <location filename="../statusbar.h" line="211"/>
         <source>Global Download Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Λήψης</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="229"/>
+        <location filename="../statusbar.h" line="230"/>
         <source>Global Upload Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Αποστολής</translation>
     </message>
@@ -7680,12 +7757,12 @@ Please install it manually.</source>
         <translation type="obsolete">Λάθος</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="187"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>Uninstall warning</source>
         <translation>Προειδοποίηση απεγκατάστασης</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="187"/>
+        <location filename="../engineselectdlg.cpp" line="189"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -7694,7 +7771,7 @@ However, those plugins were disabled.</source>
 Ωστόσο, αυτά τα plugin απενεργοποιήθηκαν.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="189"/>
+        <location filename="../engineselectdlg.cpp" line="191"/>
         <source>Uninstall success</source>
         <translation>Επιτυχής απεγκατάσταση</translation>
     </message>
@@ -7703,54 +7780,54 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Όλα τα επιλεγμένα plugin απεγκαταστήθηκαν επιτυχώς </translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="358"/>
+        <location filename="../engineselectdlg.cpp" line="362"/>
         <source>Select search plugins</source>
         <translation>Επιλέξτε plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="359"/>
+        <location filename="../engineselectdlg.cpp" line="363"/>
         <source>qBittorrent search plugins</source>
         <translation>plugin αναζήτησης του qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="258"/>
-        <location filename="../engineselectdlg.cpp" line="282"/>
-        <location filename="../engineselectdlg.cpp" line="287"/>
-        <location filename="../engineselectdlg.cpp" line="296"/>
-        <location filename="../engineselectdlg.cpp" line="299"/>
+        <location filename="../engineselectdlg.cpp" line="260"/>
+        <location filename="../engineselectdlg.cpp" line="284"/>
+        <location filename="../engineselectdlg.cpp" line="289"/>
+        <location filename="../engineselectdlg.cpp" line="298"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
         <source>Search plugin install</source>
         <translation>Εγκατάσταση plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="118"/>
-        <location filename="../engineselectdlg.cpp" line="200"/>
-        <location filename="../engineselectdlg.cpp" line="319"/>
+        <location filename="../engineselectdlg.cpp" line="120"/>
+        <location filename="../engineselectdlg.cpp" line="202"/>
+        <location filename="../engineselectdlg.cpp" line="321"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="121"/>
-        <location filename="../engineselectdlg.cpp" line="166"/>
-        <location filename="../engineselectdlg.cpp" line="213"/>
-        <location filename="../engineselectdlg.cpp" line="322"/>
+        <location filename="../engineselectdlg.cpp" line="123"/>
+        <location filename="../engineselectdlg.cpp" line="168"/>
+        <location filename="../engineselectdlg.cpp" line="215"/>
+        <location filename="../engineselectdlg.cpp" line="324"/>
         <source>No</source>
         <translation>Όχι</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="258"/>
-        <location filename="../engineselectdlg.cpp" line="282"/>
-        <location filename="../engineselectdlg.cpp" line="287"/>
-        <location filename="../engineselectdlg.cpp" line="296"/>
-        <location filename="../engineselectdlg.cpp" line="299"/>
-        <location filename="../engineselectdlg.cpp" line="410"/>
-        <location filename="../engineselectdlg.cpp" line="442"/>
-        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="260"/>
+        <location filename="../engineselectdlg.cpp" line="284"/>
+        <location filename="../engineselectdlg.cpp" line="289"/>
+        <location filename="../engineselectdlg.cpp" line="298"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
+        <location filename="../engineselectdlg.cpp" line="415"/>
+        <location filename="../engineselectdlg.cpp" line="448"/>
         <location filename="../engineselectdlg.cpp" line="469"/>
+        <location filename="../engineselectdlg.cpp" line="476"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="258"/>
+        <location filename="../engineselectdlg.cpp" line="260"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Μια πιο πρόσφατη έκδοση plugin αναζήτησης %1 έχει ήδη εγκατασταθεί.</translation>
@@ -7766,16 +7843,16 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Το plugin αναζήτησης %1 εγκαταστήθηκε επιτυχώς.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="410"/>
-        <location filename="../engineselectdlg.cpp" line="442"/>
-        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="415"/>
+        <location filename="../engineselectdlg.cpp" line="448"/>
         <location filename="../engineselectdlg.cpp" line="469"/>
+        <location filename="../engineselectdlg.cpp" line="476"/>
         <source>Search plugin update</source>
         <translation>Αναβάθμιση plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="442"/>
-        <location filename="../engineselectdlg.cpp" line="462"/>
+        <location filename="../engineselectdlg.cpp" line="448"/>
+        <location filename="../engineselectdlg.cpp" line="469"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Λυπούμαστε, ο εξυπηρετητής αναβάθμισης δεν είναι προσωρινά διαθέσιμος.</translation>
     </message>
@@ -7790,35 +7867,35 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Λυπούμαστε, η αναβάθμιση του plugin αναζήτησης %1 απέτυχε.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="410"/>
+        <location filename="../engineselectdlg.cpp" line="415"/>
         <source>All your plugins are already up to date.</source>
         <translation>Όλα τα plugin σας είναι ήδη αναβαθμισμένα.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="189"/>
+        <location filename="../engineselectdlg.cpp" line="191"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Όλα τα επιλεγμένα plugin απεγκαταστάθηκαν επιτυχώς</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="282"/>
+        <location filename="../engineselectdlg.cpp" line="284"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 δεν ήταν δυνατό να αναβαθμιστεί, παραμένει η παλιά έκδοση.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="289"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 δεν ήταν δυνατό να εγκατασταθεί.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="296"/>
+        <location filename="../engineselectdlg.cpp" line="298"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 αναβαθμίστηκε επιτυχώς.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="299"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 εγκαταστάθηκε επιτυχώς.</translation>
@@ -7828,18 +7905,18 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Το αρχείο του plugin αναζήτησης δεν ήταν δυνατό να διαβαστεί.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="469"/>
+        <location filename="../engineselectdlg.cpp" line="476"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Λυπούμαστε, η εγκατάσταση του plugin αναζήτησης %1 απέτυχε.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="349"/>
+        <location filename="../engineselectdlg.cpp" line="351"/>
         <source>New search engine plugin URL</source>
         <translation>Νέο URL plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="350"/>
+        <location filename="../engineselectdlg.cpp" line="352"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
@@ -7847,43 +7924,43 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="404"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="562"/>
+        <location filename="../misc.cpp" line="568"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="567"/>
+        <location filename="../misc.cpp" line="573"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation type="unfinished"></translation>
@@ -7904,10 +7981,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> μ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="510"/>
-        <location filename="../misc.cpp" line="515"/>
-        <location filename="../misc.cpp" line="519"/>
-        <location filename="../misc.cpp" line="522"/>
+        <location filename="../misc.cpp" line="516"/>
+        <location filename="../misc.cpp" line="521"/>
+        <location filename="../misc.cpp" line="525"/>
+        <location filename="../misc.cpp" line="528"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -7922,19 +7999,19 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">μ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="403"/>
+        <location filename="../misc.cpp" line="409"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="553"/>
+        <location filename="../misc.cpp" line="559"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="557"/>
+        <location filename="../misc.cpp" line="563"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1λ</translation>
@@ -8054,10 +8131,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Επιλέξτε ένα αρχείο ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1353"/>
-        <location filename="../options_imp.cpp" line="1355"/>
-        <location filename="../options_imp.cpp" line="1370"/>
-        <location filename="../options_imp.cpp" line="1372"/>
+        <location filename="../options_imp.cpp" line="1340"/>
+        <location filename="../options_imp.cpp" line="1342"/>
+        <location filename="../options_imp.cpp" line="1357"/>
+        <location filename="../options_imp.cpp" line="1359"/>
         <source>Choose a save directory</source>
         <translation>Επιλέξτε φάκελο αποθήκευσης</translation>
     </message>
@@ -8071,50 +8148,50 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Αδύνατο το άνοιγμα του %1 σε λειτουργία ανάγνωσης.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1275"/>
+        <location filename="../options_imp.cpp" line="1262"/>
         <source>Add directory to scan</source>
         <translation>Προσθήκη κατηγορίας στη σάρωση</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1281"/>
+        <location filename="../options_imp.cpp" line="1268"/>
         <source>Folder is already being watched.</source>
         <translation>Αυτός ο φάκελος ήδη παρακολουθείται.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1284"/>
+        <location filename="../options_imp.cpp" line="1271"/>
         <source>Folder does not exist.</source>
         <translation>Αυτός ο φάκελος δεν υπάρχει.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1287"/>
+        <location filename="../options_imp.cpp" line="1274"/>
         <source>Folder is not readable.</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να διαβαστεί.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1295"/>
+        <location filename="../options_imp.cpp" line="1282"/>
         <source>Failure</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1295"/>
+        <location filename="../options_imp.cpp" line="1282"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Δεν ήταν δυνατό να προστεθεί ο Φάκελος για Σάρωση &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1318"/>
-        <location filename="../options_imp.cpp" line="1320"/>
+        <location filename="../options_imp.cpp" line="1305"/>
+        <location filename="../options_imp.cpp" line="1307"/>
         <source>Choose export directory</source>
         <translation>Επιλέξτε φάκελο εξαγωγής</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1335"/>
-        <location filename="../options_imp.cpp" line="1337"/>
+        <location filename="../options_imp.cpp" line="1322"/>
+        <location filename="../options_imp.cpp" line="1324"/>
         <source>Choose an ip filter file</source>
         <translation>Επιλέξτε ένα αρχείο φίλτρου ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1335"/>
-        <location filename="../options_imp.cpp" line="1337"/>
+        <location filename="../options_imp.cpp" line="1322"/>
+        <location filename="../options_imp.cpp" line="1324"/>
         <source>Filters</source>
         <translation>Φίλτρα</translation>
     </message>
@@ -8785,8 +8862,8 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Σωστό</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="171"/>
-        <location filename="../torrentadditiondlg.cpp" line="174"/>
+        <location filename="../torrentadditiondlg.cpp" line="179"/>
+        <location filename="../torrentadditiondlg.cpp" line="182"/>
         <source>Unable to decode torrent file:</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent:</translation>
     </message>
@@ -8795,9 +8872,9 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Το αρχείο είτε είναι κατεστραμμένο, ή δεν ειναι ενα torrent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="418"/>
-        <location filename="../torrentadditiondlg.cpp" line="422"/>
-        <location filename="../torrentadditiondlg.cpp" line="424"/>
+        <location filename="../torrentadditiondlg.cpp" line="433"/>
+        <location filename="../torrentadditiondlg.cpp" line="437"/>
+        <location filename="../torrentadditiondlg.cpp" line="439"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
@@ -8810,111 +8887,111 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="126"/>
+        <location filename="../torrentadditiondlg.cpp" line="136"/>
         <source>Unable to decode magnet link:</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το magnet link:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="131"/>
+        <location filename="../torrentadditiondlg.cpp" line="141"/>
         <source>Magnet Link</source>
         <translation>Magnet Link</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="248"/>
+        <location filename="../torrentadditiondlg.cpp" line="259"/>
         <source>Rename...</source>
         <translation>Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="286"/>
+        <location filename="../torrentadditiondlg.cpp" line="297"/>
         <source>Rename the file</source>
         <translation>Μετονομασία αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="287"/>
+        <location filename="../torrentadditiondlg.cpp" line="298"/>
         <source>New name:</source>
         <translation>Νέο όνομα:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="291"/>
-        <location filename="../torrentadditiondlg.cpp" line="321"/>
+        <location filename="../torrentadditiondlg.cpp" line="302"/>
+        <location filename="../torrentadditiondlg.cpp" line="332"/>
         <source>The file could not be renamed</source>
         <translation>Αυτό το αρχείο δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="292"/>
+        <location filename="../torrentadditiondlg.cpp" line="303"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Αυτό το όνομα αρχείου περιέχει απαγορευμένους χαρακτήρες, παρακαλώ επιλέξτε ένα διαφορετικό.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="322"/>
-        <location filename="../torrentadditiondlg.cpp" line="356"/>
+        <location filename="../torrentadditiondlg.cpp" line="333"/>
+        <location filename="../torrentadditiondlg.cpp" line="367"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται σ&apos;αυτό το φάκελο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="355"/>
+        <location filename="../torrentadditiondlg.cpp" line="366"/>
         <source>The folder could not be renamed</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="398"/>
+        <location filename="../torrentadditiondlg.cpp" line="413"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 απομένουν μετά από το λήψη του torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="401"/>
+        <location filename="../torrentadditiondlg.cpp" line="416"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 επιπλέον απαιτούνται για τη λήψη)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="451"/>
+        <location filename="../torrentadditiondlg.cpp" line="466"/>
         <source>Empty save path</source>
         <translation>Κενή διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="451"/>
+        <location filename="../torrentadditiondlg.cpp" line="466"/>
         <source>Please enter a save path</source>
         <translation>Παρακαλώ εισάγετε μία διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="470"/>
+        <location filename="../torrentadditiondlg.cpp" line="486"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="470"/>
+        <location filename="../torrentadditiondlg.cpp" line="486"/>
         <source>Could not create the save path</source>
         <translation>Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="476"/>
+        <location filename="../torrentadditiondlg.cpp" line="492"/>
         <source>Invalid label name</source>
         <translation>Άκυρο όνομα ετικέτας</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="476"/>
+        <location filename="../torrentadditiondlg.cpp" line="492"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Παρακαλώ μην χρισιμοποιείτε ειδικούς χαρακτήρες στο όνομα της ετικέτας.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="512"/>
+        <location filename="../torrentadditiondlg.cpp" line="528"/>
         <source>Seeding mode error</source>
         <translation>Σφάλμα λειτουργίας μοιράσματος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="512"/>
+        <location filename="../torrentadditiondlg.cpp" line="528"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Επιλέξατε προσπέλαση του ελέγχου αρχείων. Ωστόσο, τα τοπικά αρχεία δεν φαίνεται να υπάρχουν στον τρέχον φάκελο προορισμού. Παρακαλούμε απενεργοποιήστε αυτή τη λειτουργία ή ανανεώστε την διαδρομή αποθήκευσης.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="519"/>
+        <location filename="../torrentadditiondlg.cpp" line="535"/>
         <source>Invalid file selection</source>
         <translation>Άκυρη επιλογή αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="519"/>
+        <location filename="../torrentadditiondlg.cpp" line="535"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Πρέπει να επιλέξετε τουλάχιστο ένα αρχείο του torrent</translation>
     </message>
@@ -8931,7 +9008,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="252"/>
+        <location filename="../torrentadditiondlg.cpp" line="263"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>

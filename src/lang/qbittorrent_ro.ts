@@ -382,12 +382,20 @@ p, li { white-space: pre-wrap; }(new line)
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>Consola qBittorrent</translation>
+        <translation type="obsolete">Consola qBittorrent</translation>
     </message>
     <message>
         <source>General</source>
@@ -396,6 +404,10 @@ p, li { white-space: pre-wrap; }(new line)
     <message>
         <source>Blocked IPs</source>
         <translation>IP-uri blocate</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2200,7 +2212,7 @@ Vă rugăm să-l opriţi.</translation>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Doriti să ieşiţi ?</translation>
+        <translation type="obsolete">Doriti să ieşiţi ?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2496,14 +2508,6 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <translation>qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
     </message>
     <message>
-        <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2538,6 +2542,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3216,10 +3224,6 @@ No further notices will be issued.</source>
         <translation>Vizitează Website</translation>
     </message>
     <message>
-        <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3282,6 +3286,18 @@ No further notices will be issued.</source>
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">Motorul de căutare</translation>
     </message>
 </context>
 <context>
@@ -3448,7 +3464,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3764,7 +3780,7 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Share ratio settings</translation>
+        <translation type="obsolete">Share ratio settings</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -3772,7 +3788,7 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Remove finished torrents when their ratio reaches:</translation>
+        <translation type="obsolete">Remove finished torrents when their ratio reaches:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -3832,15 +3848,15 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS feeds refresh interval:</translation>
+        <translation type="obsolete">RSS feeds refresh interval:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minutes</translation>
+        <translation type="obsolete">minutes</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maximum number of articles per feed:</translation>
+        <translation type="obsolete">Maximum number of articles per feed:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -4061,6 +4077,26 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4522,6 +4558,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -4640,6 +4680,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Descrierea nu este disponobilă</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

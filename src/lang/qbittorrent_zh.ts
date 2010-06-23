@@ -393,12 +393,20 @@ p, li { white-space: pre-wrap; }
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>出现输入/输出错误,&apos;%1&apos;暂停.</translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>qBittorrent控制台</translation>
+        <translation type="obsolete">qBittorrent控制台</translation>
     </message>
     <message>
         <source>General</source>
@@ -407,6 +415,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>被阻止IP</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2370,7 +2382,7 @@ download list and in hard drive?</source>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>确实要退出吗?</translation>
+        <translation type="obsolete">确实要退出吗?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2788,11 +2800,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation>使用正常速度限制</translation>
+        <translation type="obsolete">使用正常速度限制</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>使用其他速度限制</translation>
+        <translation type="obsolete">使用其他速度限制</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
@@ -2830,6 +2842,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3509,7 +3525,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>使用其他速度限制</translation>
+        <translation type="obsolete">使用其他速度限制</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -3574,6 +3590,18 @@ No further notices will be issued.</source>
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">搜索引擎</translation>
     </message>
 </context>
 <context>
@@ -3740,7 +3768,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -4032,7 +4060,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>共享率设置</translation>
+        <translation type="obsolete">共享率设置</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -4040,7 +4068,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>当比率达到时移除完成的torrent:</translation>
+        <translation type="obsolete">当比率达到时移除完成的torrent:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -4100,15 +4128,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS消息种子刷新间隔:</translation>
+        <translation type="obsolete">RSS消息种子刷新间隔:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>分钟</translation>
+        <translation type="obsolete">分钟</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>每个订阅源文章数目最大值:</translation>
+        <translation type="obsolete">每个订阅源文章数目最大值:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -4345,6 +4373,26 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4804,6 +4852,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -4932,6 +4984,25 @@ list?</source>
     <message>
         <source>No description available</source>
         <translation>无可用描述</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">RSS消息种子刷新间隔:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">分钟</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">每个订阅源文章数目最大值:</translation>
     </message>
 </context>
 <context>

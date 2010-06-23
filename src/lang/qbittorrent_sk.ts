@@ -382,12 +382,20 @@ p, li { white-space: pre-wrap; }
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>Konzola qBittorrent</translation>
+        <translation type="obsolete">Konzola qBittorrent</translation>
     </message>
     <message>
         <source>General</source>
@@ -396,6 +404,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Zablokované IP</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2215,7 +2227,7 @@ Najskôr ho prosím zatvorte.</translation>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Ste si istý, že chcete skončiť?</translation>
+        <translation type="obsolete">Ste si istý, že chcete skončiť?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2585,11 +2597,11 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation>Používať normálne rýchlostné obmedzenia</translation>
+        <translation type="obsolete">Používať normálne rýchlostné obmedzenia</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Používať alternatívne rýchlostné obmedzenia</translation>
+        <translation type="obsolete">Používať alternatívne rýchlostné obmedzenia</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
@@ -2627,6 +2639,10 @@ Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3312,7 +3328,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Používať alternatívne rýchlostné obmedzenia</translation>
+        <translation type="obsolete">Používať alternatívne rýchlostné obmedzenia</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -3377,6 +3393,18 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">Vyhľadávač</translation>
     </message>
 </context>
 <context>
@@ -3543,7 +3571,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3859,7 +3887,7 @@ QGroupBox {
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Nastavenia pomeru zdieľania</translation>
+        <translation type="obsolete">Nastavenia pomeru zdieľania</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -3867,7 +3895,7 @@ QGroupBox {
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Odstrániť dokončené torrenty, keď ich pomer dosiahne:</translation>
+        <translation type="obsolete">Odstrániť dokončené torrenty, keď ich pomer dosiahne:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -3927,15 +3955,15 @@ QGroupBox {
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>Interval obnovovania RSS kanálov:</translation>
+        <translation type="obsolete">Interval obnovovania RSS kanálov:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minút</translation>
+        <translation type="obsolete">minút</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maximálny počet článkov na kanál:</translation>
+        <translation type="obsolete">Maximálny počet článkov na kanál:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -4172,6 +4200,26 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4619,6 +4667,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -4741,6 +4793,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Popis nie je dostupný</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">Interval obnovovania RSS kanálov:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">minút</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Maximálny počet článkov na kanál:</translation>
     </message>
 </context>
 <context>

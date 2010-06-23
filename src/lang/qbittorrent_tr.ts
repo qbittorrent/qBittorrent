@@ -439,12 +439,20 @@ p, li { white-space: pre-wrap; }
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>qBittorrent uçbirimi</translation>
+        <translation type="obsolete">qBittorrent uçbirimi</translation>
     </message>
     <message>
         <source>General</source>
@@ -453,6 +461,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Engellenmiş IP&apos;ler</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2304,7 +2316,7 @@ Lütfen önce diğerini kapatın.</translation>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Çıkmak istediğinize emin misiniz?</translation>
+        <translation type="obsolete">Çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2643,14 +2655,6 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
         <translation>qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
     </message>
     <message>
-        <source>Use normal speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2685,6 +2689,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3363,10 +3371,6 @@ No further notices will be issued.</source>
         <translation>Siteyi ziyaret et</translation>
     </message>
     <message>
-        <source>Use alternative speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3429,6 +3433,18 @@ No further notices will be issued.</source>
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">Arama motoru</translation>
     </message>
 </context>
 <context>
@@ -3595,7 +3611,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished">RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -3806,7 +3822,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation type="unfinished">Oran ayarlarını paylaş</translation>
+        <translation type="obsolete">Oran ayarlarını paylaş</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -3814,7 +3830,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="unfinished">Tamamlanan torrentleri oranları erişince kaldır:</translation>
+        <translation type="obsolete">Tamamlanan torrentleri oranları erişince kaldır:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -3874,15 +3890,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS beslemeleri yenileme süresi:</translation>
+        <translation type="obsolete">RSS beslemeleri yenileme süresi:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">dakika</translation>
+        <translation type="obsolete">dakika</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Besleme başına azami makale sayısı:</translation>
+        <translation type="obsolete">Besleme başına azami makale sayısı:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -4103,6 +4119,26 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4564,6 +4600,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -4682,6 +4722,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Kullanılır betimleme yok</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">RSS beslemeleri yenileme süresi:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">dakika</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Besleme başına azami makale sayısı:</translation>
     </message>
 </context>
 <context>

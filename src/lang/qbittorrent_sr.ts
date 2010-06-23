@@ -362,12 +362,20 @@ p, li { white-space: pre-wrap; }
         <translatorcomment>н.пр.: Преузимам &apos;xxx.torrent&apos;, молим сачекајте...</translatorcomment>
         <translation>Преузимање &apos;%1&apos;, молим сачекајте...</translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>qBittorrent конзола</translation>
+        <translation type="obsolete">qBittorrent конзола</translation>
     </message>
     <message>
         <source>General</source>
@@ -376,6 +384,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Блокирани IP-и</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1143,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Да ли сте сигурни да желите да прекинете?</translation>
+        <translation type="obsolete">Да ли сте сигурни да желите да прекинете?</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
@@ -1228,11 +1240,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation>Користи нормална ограничења брзине</translation>
+        <translation type="obsolete">Користи нормална ограничења брзине</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Користи алтернативна ограничења брзине</translation>
+        <translation type="obsolete">Користи алтернативна ограничења брзине</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
@@ -1274,6 +1286,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1778,7 +1794,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Користи алтернативно ограничење брзине</translation>
+        <translation type="obsolete">Користи алтернативно ограничење брзине</translation>
     </message>
     <message>
         <source>Report a bug</source>
@@ -1887,6 +1903,18 @@ No further notices will be issued.</source>
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">Претраживачки модул</translation>
     </message>
 </context>
 <context>
@@ -2065,7 +2093,7 @@ No further notices will be issued.</source>
     <message>
         <source>RSS</source>
         <translatorcomment>RSS је породица веб формата који се користе за објављивање садржаја који се често мењају, као што су новински наслови. RSS документ садржи или сажетак садржаја са придружене веб стране, или читав текст. RSS вам омогућава да будете у току са изменама и новостима са неког веб сајта потпуно аутоматски, а тај садржај се може увести у RSS апликацију на вашој страни.</translatorcomment>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -2431,7 +2459,7 @@ QGroupBox {
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Подешавање идекса дељења</translation>
+        <translation type="obsolete">Подешавање идекса дељења</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -2439,7 +2467,7 @@ QGroupBox {
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Премести завршене торенте када је овај индекс достигнут:</translation>
+        <translation type="obsolete">Премести завршене торенте када је овај индекс достигнут:</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
@@ -2562,15 +2590,15 @@ QGroupBox {
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS поруке интервал освежавања:</translation>
+        <translation type="obsolete">RSS поруке интервал освежавања:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>минута</translation>
+        <translation type="obsolete">минута</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Максимални број чланака по допису:</translation>
+        <translation type="obsolete">Максимални број чланака по допису:</translation>
     </message>
     <message>
         <source>No action</source>
@@ -2693,6 +2721,26 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3045,6 +3093,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -3145,6 +3197,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Нема доступних описа</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">RSS поруке интервал освежавања:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">минута</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Максимални број чланака по допису:</translation>
     </message>
 </context>
 <context>

@@ -344,12 +344,20 @@ p, li { white-space: pre-wrap; }
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Dogodila se I/O greška. &apos;%1&apos; zaustavljen.</translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>qBittorrent konzola</translation>
+        <translation type="obsolete">qBittorrent konzola</translation>
     </message>
     <message>
         <source>General</source>
@@ -358,6 +366,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Blokirani IP-ovi</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -648,7 +660,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Jeste li sigurni da želite završiti?</translation>
+        <translation type="obsolete">Jeste li sigurni da želite završiti?</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
@@ -738,11 +750,11 @@ Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation>Koristi uobičajene limite brzine</translation>
+        <translation type="obsolete">Koristi uobičajene limite brzine</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Koristi alternativnen limite brzine</translation>
+        <translation type="obsolete">Koristi alternativnen limite brzine</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
@@ -784,6 +796,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1271,7 +1287,7 @@ Neće biti daljnjih napomena.
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Koristi alternativne limite brzine</translation>
+        <translation type="obsolete">Koristi alternativne limite brzine</translation>
     </message>
     <message>
         <source>Report a bug</source>
@@ -1380,6 +1396,18 @@ Neće biti daljnjih napomena.
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">Tražilica</translation>
     </message>
 </context>
 <context>
@@ -1546,7 +1574,7 @@ Neće biti daljnjih napomena.
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1859,7 +1887,7 @@ QGroupBox {
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Postavke omjera djeljenja</translation>
+        <translation type="obsolete">Postavke omjera djeljenja</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -1867,7 +1895,7 @@ QGroupBox {
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Ukloni završene torrente kada njihov omjer dosegne:</translation>
+        <translation type="obsolete">Ukloni završene torrente kada njihov omjer dosegne:</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
@@ -1976,15 +2004,15 @@ QGroupBox {
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>Interval osvježavanja RSS kanala:</translation>
+        <translation type="obsolete">Interval osvježavanja RSS kanala:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minute</translation>
+        <translation type="obsolete">minute</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Najveći broj članaka po kanalu:</translation>
+        <translation type="obsolete">Najveći broj članaka po kanalu:</translation>
     </message>
     <message>
         <source>Check Folders for .torrent Files:</source>
@@ -2119,6 +2147,26 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2449,6 +2497,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -2543,6 +2595,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Opis nije dostupan</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">Interval osvježavanja RSS kanala:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">minute</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Najveći broj članaka po kanalu:</translation>
     </message>
 </context>
 <context>

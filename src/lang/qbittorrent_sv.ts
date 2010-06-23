@@ -375,12 +375,20 @@ p, li { white-space: pre-wrap; }
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>qBittorrent-konsoll</translation>
+        <translation type="obsolete">qBittorrent-konsoll</translation>
     </message>
     <message>
         <source>General</source>
@@ -389,6 +397,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Blocked IPs</source>
         <translation>Blockerade IP</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1394,7 +1406,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Är du säker på att du vill avsluta?</translation>
+        <translation type="obsolete">Är du säker på att du vill avsluta?</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
@@ -1642,11 +1654,11 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation>Använd normala hastighetsgränser</translation>
+        <translation type="obsolete">Använd normala hastighetsgränser</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Använd alternativa hastighetsgränser</translation>
+        <translation type="obsolete">Använd alternativa hastighetsgränser</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
@@ -1684,6 +1696,10 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2241,7 +2257,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Använd alternativa hastighetsgränser</translation>
+        <translation type="obsolete">Använd alternativa hastighetsgränser</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -2306,6 +2322,18 @@ Detta meddelande kommer inte att visas igen.</translation>
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">Sökmotor</translation>
     </message>
 </context>
 <context>
@@ -2472,7 +2500,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2788,7 +2816,7 @@ QGroupBox {
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Inställningar för utdelningsförhållande</translation>
+        <translation type="obsolete">Inställningar för utdelningsförhållande</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -2796,7 +2824,7 @@ QGroupBox {
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Ta bort färdiga torrent-filer när deras förhållande når:</translation>
+        <translation type="obsolete">Ta bort färdiga torrent-filer när deras förhållande når:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -2856,15 +2884,15 @@ QGroupBox {
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>Uppdateringsintervall för RSS-kanaler:</translation>
+        <translation type="obsolete">Uppdateringsintervall för RSS-kanaler:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minuter</translation>
+        <translation type="obsolete">minuter</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maximalt antal inlägg per RSS-kanal:</translation>
+        <translation type="obsolete">Maximalt antal inlägg per RSS-kanal:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -3101,6 +3129,26 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3539,6 +3587,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -3657,6 +3709,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Ingen beskrivning tillgänglig</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">Uppdateringsintervall för RSS-kanaler:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">minuter</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Maximalt antal inlägg per RSS-kanal:</translation>
     </message>
 </context>
 <context>

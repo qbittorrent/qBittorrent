@@ -433,12 +433,20 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
     </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
     <message>
         <source>qBittorrent console</source>
-        <translation>Konsola qBittorrent</translation>
+        <translation type="obsolete">Konsola qBittorrent</translation>
     </message>
     <message>
         <source>General</source>
@@ -447,6 +455,10 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
     <message>
         <source>Blocked IPs</source>
         <translation>Zablokowane IP</translation>
+    </message>
+    <message>
+        <source>qBittorrent log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2319,7 +2331,7 @@ Zamknij najpierw okno podglądu.</translation>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
-        <translation>Czy na pewno zakończyć aplikację?</translation>
+        <translation type="obsolete">Czy na pewno zakończyć aplikację?</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed.</source>
@@ -2684,11 +2696,11 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Use normal speed limits</source>
-        <translation>Użyj normalnych limitów prędkości</translation>
+        <translation type="obsolete">Użyj normalnych limitów prędkości</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation>Użyj alternatywnych limitów prędkości</translation>
+        <translation type="obsolete">Użyj alternatywnych limitów prędkości</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
@@ -2726,6 +2738,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3430,7 +3446,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
-        <translation type="unfinished">Użyj alternatywnych limitów prędkości</translation>
+        <translation type="obsolete">Użyj alternatywnych limitów prędkości</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -3495,6 +3511,18 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <message>
         <source>Show transfer speed in title bar</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation type="unfinished">Wyszukiwarka</translation>
     </message>
 </context>
 <context>
@@ -3661,7 +3689,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3953,7 +3981,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
-        <translation>Ustawienia współczynnika udziału</translation>
+        <translation type="obsolete">Ustawienia współczynnika udziału</translation>
     </message>
     <message>
         <source>Desired ratio:</source>
@@ -3961,7 +3989,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Remove finished torrents when their ratio reaches:</source>
-        <translation>Usuń zakończone torrenty gdy współczynnik osiągnie:</translation>
+        <translation type="obsolete">Usuń zakończone torrenty gdy współczynnik osiągnie:</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -4021,15 +4049,15 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>Częstotliwość odświeżania kanałów RSS:</translation>
+        <translation type="obsolete">Częstotliwość odświeżania kanałów RSS:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minut</translation>
+        <translation type="obsolete">minut</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maksymalna ilość wiadomości na kanał RSS:</translation>
+        <translation type="obsolete">Maksymalna ilość wiadomości na kanał RSS:</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -4266,6 +4294,26 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share ratio limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>then</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4715,6 +4763,10 @@ p, li { white-space: pre-wrap; }
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSSImp</name>
@@ -4845,6 +4897,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation>Opis niedostępny</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettings</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">minut</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
