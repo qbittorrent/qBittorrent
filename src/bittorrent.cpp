@@ -1065,6 +1065,21 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     }
     return h;
   }
+  // Check number of files
+  if(t->num_files() < 1) {
+    addConsoleMessage(tr("Error: The torrent %1 does not contain any file.").arg(misc::toQStringU(t->name())));
+    if(fromScanDir) {
+      // Delete torrent from scan dir
+      QFile::remove(file);
+    } else {
+      if(!from_url.isNull()) {
+        // If download from url, remove temp file
+        QFile::remove(file);
+      }
+    }
+    return h;
+  }
+  // Actually add the torrent
   QString root_folder = misc::truncateRootFolder(t);
   add_torrent_params p;
   //Getting fast resume data if existing

@@ -30,7 +30,7 @@
 
 #include "torrentadditiondlg.h"
 
-torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label("") {
+torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label(""), hidden_height(0) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   connect(this, SIGNAL(torrentPaused(QTorrentHandle&)), parent->getTransferList(), SLOT(pauseTorrent(QTorrentHandle&)));
@@ -91,15 +91,17 @@ void torrentAdditionDialog::readSettings() {
 }
 
 void torrentAdditionDialog::saveSettings() {
-  if(is_magnet || t->num_files() <= 1) return;
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QStringList contentColsWidths;
-  // -1 because we hid PROGRESS column
-  for(int i=0; i<PropListModel->columnCount()-1; ++i) {
-    contentColsWidths << QString::number(torrentContentList->columnWidth(i));
+  if(!is_magnet && t->num_files() > 1) {
+    QStringList contentColsWidths;
+    // -1 because we hid PROGRESS column
+    for(int i=0; i<PropListModel->columnCount()-1; ++i) {
+      contentColsWidths << QString::number(torrentContentList->columnWidth(i));
+    }
+    settings.setValue(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), contentColsWidths);
   }
-  settings.setValue(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), contentColsWidths);
-  settings.setValue("TorrentAdditionDlg/size", size());
+  settings.setValue("TorrentAdditionDlg/size", size()+QSize(0, hidden_height));
+  qDebug("pos: (%d, %d)", pos().x(), pos().y());
   settings.setValue("TorrentAdditionDlg/pos", pos());
 }
 
@@ -110,7 +112,6 @@ void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
 }
 
 void torrentAdditionDialog::hideTorrentContent() {
-  int hidden_height = 0;
   // Disable useless widgets
   hidden_height += torrentContentList->height();
   torrentContentList->setVisible(false);

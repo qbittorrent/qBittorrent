@@ -102,6 +102,7 @@ private:
   boost::intrusive_ptr<torrent_info> t;
   QStringList files_path;
   bool is_magnet;
+  int hidden_height;
 };
 
 #endif
