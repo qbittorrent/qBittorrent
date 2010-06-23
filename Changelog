@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.10
+* Wed Jun 23 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.10
     - BUGFIX: Fix Web UI in qBittorrent nox version
     - BUGFIX: Improved ETA display (more user friendly)
     - BUGFIX: Fix possible compilation errors with libtorrent v0.15
