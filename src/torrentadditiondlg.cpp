@@ -92,7 +92,7 @@ void torrentAdditionDialog::readSettings() {
 
 void torrentAdditionDialog::saveSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(!is_magnet && t->num_files() > 1) {
+  if(!is_magnet && t.get() && t->is_valid() && t->num_files() > 1) {
     QStringList contentColsWidths;
     // -1 because we hid PROGRESS column
     for(int i=0; i<PropListModel->columnCount()-1; ++i) {
