@@ -1868,7 +1868,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 #ifdef Q_WS_WIN
       putenv("http_proxy=");
       putenv("sock_proxy=");
-#endif
 #else
       unsetenv("http_proxy");
       unsetenv("sock_proxy");
