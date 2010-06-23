@@ -416,7 +416,6 @@ void GUI::readSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   restoreGeometry(settings.value("geometry").toByteArray());
-  //  showMaximized();
   const QStringList &sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
   // Splitter size
   QList<int> sizes;
