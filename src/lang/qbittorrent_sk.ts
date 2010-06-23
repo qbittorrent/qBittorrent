@@ -390,6 +390,14 @@ p, li { white-space: pre-wrap; }
         <source>Pausing torrent %1...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Error: The torrent %1 does not contain any file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File sizes mismatch for torrent %1, pausing it.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConsoleDlg</name>
