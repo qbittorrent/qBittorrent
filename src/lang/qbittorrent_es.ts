@@ -430,7 +430,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1070"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error: este torrent %1 no contiene ningún archivo.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1596"/>
@@ -493,7 +493,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="2198"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>El tamaño de archivo no coincide con el torrent %1, pausandolo.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2207"/>
@@ -4246,7 +4246,7 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translatorcomment>El icono de la bandeja del sistema seguirá siendo visible al cerrar la ventana principal.</translatorcomment>
-        <translation>Al cerrar qBittorrent dejadlo en el area de notificación</translation>
+        <translation>Al cerrar qBittorrent dejadlo activo en el area de notificación</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="541"/>
@@ -4340,12 +4340,12 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
     <message>
         <location filename="../ui/options.ui" line="2003"/>
         <source>Pause them</source>
-        <translation>Pausar los</translation>
+        <translation>Pausar</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2008"/>
         <source>Remove them</source>
-        <translation>Eliminar los</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2488"/>
@@ -6396,7 +6396,7 @@ Por favor, instálelo de forma manual.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Set location...</source>
-        <translation>Establecer un destino...</translation>
+        <translation>Establecer destino...</translation>
     </message>
     <message>
         <source>Buy it</source>

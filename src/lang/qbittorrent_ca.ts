@@ -430,7 +430,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1070"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error: aquest torrent %1 no conté cap fitxer.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1596"/>
@@ -493,7 +493,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="2198"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>La mida del fitxer no coincideix amb el torrent %1, pausat.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2207"/>
@@ -4245,7 +4245,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>En tancar qBittorrent deixeu en l&apos;àrea de notificació</translation>
+        <translation>En tancar qBittorrent deixeu actiu en l&apos;àrea de notificació</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="541"/>
@@ -4311,12 +4311,12 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     <message>
         <location filename="../ui/options.ui" line="2003"/>
         <source>Pause them</source>
-        <translation>Pausar els</translation>
+        <translation>Pausar</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2008"/>
         <source>Remove them</source>
-        <translation>Eliminar els</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2488"/>
