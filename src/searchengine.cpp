@@ -337,7 +337,6 @@ void SearchEngine::on_search_button_clicked(){
 
   // Getting checked search engines
   QStringList params;
-  QStringList engineNames;
   search_stopped = false;
   params << misc::searchEngineLocation()+QDir::separator()+"nova2.py";
   params << supported_engines->enginesEnabled().join(",");

@@ -2179,12 +2179,22 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         //emit peerBlocked(QString::fromUtf8(p->ip.to_string().c_str()));
       }
       else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
-        const QTorrentHandle h(p->handle);
+        QTorrentHandle h(p->handle);
         if(h.is_valid()){
           qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(h.name()), p->message().c_str());
-          addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
-          addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
-          //emit fastResumeDataRejected(h.name());
+#if LIBTORRENT_VERSION_MINOR < 15
+          QString msg = QString::fromLocal8Bit(p->message().c_str());
+          if(msg.contains("filesize", Qt::CaseInsensitive) && msg.contains("mismatch", Qt::CaseInsensitive)) {
+#else
+          if(p->error.value() == 134) {
+#endif
+            // Mismatching file size (files were probably moved
+            addConsoleMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()));
+            pauseTorrent(h.hash());
+          } else {
+            addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
+            addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
+          }
         }
       }
       else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())) {
