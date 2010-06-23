@@ -353,9 +353,7 @@ void GUI::tab_changed(int new_tab) {
 void GUI::writeSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
-  settings.setValue("IsMaximized", isMaximized());
-  settings.setValue(QString::fromUtf8("size"), size());
-  settings.setValue(QString::fromUtf8("pos"), pos());
+  settings.setValue("geometry", saveGeometry());
   // Splitter size
   QStringList sizes_str;
   sizes_str << QString::number(vSplitter->sizes().first());
@@ -417,10 +415,8 @@ void GUI::displayRSSTab() const {
 void GUI::readSettings() {
   QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
-  resize(settings.value(QString::fromUtf8("size"), size()).toSize());
-  move(settings.value(QString::fromUtf8("pos"), misc::screenCenter(this)).toPoint());
-  if(settings.value("IsMaximized", false).toBool())
-    showMaximized();
+  restoreGeometry(settings.value("geometry").toByteArray());
+  //  showMaximized();
   const QStringList &sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
   // Splitter size
   QList<int> sizes;
