@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.11
     - BUGFIX: Fix parsing of program arguments with spaces
+    - BUGFIX: Fix possible crashing when using alternative speed limits (#598272)
 
 * Wed Jun 23 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.10
     - BUGFIX: Fix Web UI in qBittorrent nox version

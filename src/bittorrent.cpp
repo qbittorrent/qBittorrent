@@ -637,8 +637,20 @@ void Bittorrent::useAlternativeSpeedsLimit(bool alternative) {
     s->set_download_rate_limit(Preferences::getAltGlobalDownloadLimit()*1024);
     s->set_upload_rate_limit(Preferences::getAltGlobalUploadLimit()*1024);
   } else {
-    s->set_download_rate_limit(Preferences::getGlobalDownloadLimit()*1024);
-    s->set_upload_rate_limit(Preferences::getGlobalUploadLimit()*1024);
+    int down_limit = Preferences::getGlobalDownloadLimit();
+    if(down_limit <= 0) {
+      down_limit = -1;
+    } else {
+      down_limit *= 1024;
+    }
+    s->set_download_rate_limit(down_limit);
+    int up_limit = Preferences::getGlobalUploadLimit();
+    if(up_limit <= 0) {
+      up_limit = -1;
+    } else {
+      up_limit *= 1024;
+    }
+    s->set_upload_rate_limit(up_limit);
   }
   emit alternativeSpeedsModeChanged(alternative);
 }
