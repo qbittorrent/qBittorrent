@@ -749,7 +749,7 @@ void PropertiesWidget::renameSelectedFile() {
       }else{
         dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
       }
-      if(!dir.isNull()){
+      if(!dir.isEmpty()){
         // Check if savePath exists
         QDir savePath(misc::expandPath(dir));
         if(!savePath.exists()){
