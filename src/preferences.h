@@ -331,7 +331,10 @@ public:
 
   static int getAltGlobalDownloadLimit() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/GlobalDLLimitAlt"), 10).toInt();
+    int ret = settings.value(QString::fromUtf8("Preferences/Connection/GlobalDLLimitAlt"), 10).toInt();
+    if(ret <= 0)
+      ret = 10;
+    return ret;
   }
 
   static void setAltGlobalDownloadLimit(int limit) {
@@ -342,7 +345,10 @@ public:
 
   static int getAltGlobalUploadLimit() {
     QSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/Connection/GlobalUPLimitAlt"), 10).toInt();
+    int ret = settings.value(QString::fromUtf8("Preferences/Connection/GlobalUPLimitAlt"), 10).toInt();
+    if(ret <= 0)
+      ret = 10;
+    return ret;
   }
 
   static void setAltGlobalUploadLimit(int limit) {
