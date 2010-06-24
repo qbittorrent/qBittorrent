@@ -430,7 +430,7 @@ void torrentAdditionDialog::renameSelectedFile() {
       save_path = save_path.replace("\\", "/");
 #endif
       save_path = misc::expandPath(save_path);
-      if(t->num_files() == 1) {
+      if(!is_magnet && t->num_files() == 1) {
         new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), save_path);
       } else {
         const QDir saveDir(save_path);
