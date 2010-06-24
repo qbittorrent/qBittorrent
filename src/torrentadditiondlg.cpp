@@ -472,7 +472,7 @@ void torrentAdditionDialog::renameSelectedFile() {
       save_path = save_path.replace("\\", "/");
 #endif
       save_path = misc::expandPath(save_path);
-      if(t->num_files() == 1) {
+      if(!is_magnet && t->num_files() == 1) {
         // Remove file name
         QStringList parts = save_path.split("/", QString::SkipEmptyParts);
         const QString single_file_name = parts.takeLast();
