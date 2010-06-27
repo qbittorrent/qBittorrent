@@ -891,8 +891,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>447</width>
-             <height>348</height>
+             <width>524</width>
+             <height>398</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -1178,8 +1178,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>404</width>
-             <height>334</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1559,8 +1559,8 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>539</width>
+             <y>-96</y>
+             <width>542</width>
              <height>484</height>
             </rect>
            </property>
@@ -1960,11 +1960,6 @@ QGroupBox {
                   <widget class="QDoubleSpinBox" name="spinMaxRatio">
                    <property name="enabled">
                     <bool>false</bool>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <pointsize>8</pointsize>
-                    </font>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignHCenter</set>
