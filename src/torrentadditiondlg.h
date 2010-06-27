@@ -68,6 +68,7 @@ public:
   void saveSettings();
   void showLoadMagnetURI(QString magnet_uri);
   void showLoad(QString filePath, QString from_url=QString::null);
+  QString getCurrentTruncatedSavePath() const;
 
 public slots:
   void displayContentListMenu(const QPoint&);
@@ -80,6 +81,8 @@ public slots:
   void on_OkButton_clicked();
   void renameTorrentNameInModel(QString file_path);
   void hideTorrentContent();
+  void saveTruncatedPathHistory();
+  QStringList getSavePathHistory() const;
 
 public slots:
   void updateLabelInSavePath(QString label);
