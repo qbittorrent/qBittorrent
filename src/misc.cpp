@@ -411,6 +411,8 @@ QString misc::friendlyUnit(double val) {
   char i = 0;
   while(val >= 1024. && i++<6)
     val /= 1024.;
+  if(i == 0)
+    return QString::number((long)val) + " " + units[0];
   return QString::number(val, 'f', 1) + " " + units[(int)i];
 }
 
