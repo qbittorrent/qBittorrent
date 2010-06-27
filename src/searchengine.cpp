@@ -221,7 +221,11 @@ void SearchEngine::displayPatternContextMenu(QPoint) {
   QAction *act = myMenu.exec(QCursor::pos());
   if(act != 0) {
     if(act == &clearHistoryAct) {
-      searchHistory.setStringList(QStringList());
+      // Ask for confirmation
+      if(QMessageBox::question(this, tr("Confirmation"), tr("Are you sure you want to clear the history?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+        // Clear history
+        searchHistory.setStringList(QStringList());
+      }
     }
     else if (act == &pasteAct) {
       search_pattern->paste();
