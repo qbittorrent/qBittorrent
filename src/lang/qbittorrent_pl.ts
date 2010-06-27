@@ -4288,10 +4288,6 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
@@ -4322,6 +4318,10 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Remove them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4620,6 +4620,10 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <message>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">Nie pobierany</translation>
     </message>
 </context>
 <context>
@@ -5158,6 +5162,14 @@ Please install it manually.</source>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to clear the history?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5980,6 +5992,10 @@ Do you want to install it now?</source>
     <message>
         <source>Label:</source>
         <translation>Etykieta:</translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">Nie pobierany</translation>
     </message>
 </context>
 <context>

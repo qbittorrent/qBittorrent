@@ -3218,10 +3218,6 @@ QGroupBox {
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
@@ -3252,6 +3248,10 @@ QGroupBox {
     </message>
     <message>
         <source>Remove them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3546,6 +3546,10 @@ QGroupBox {
     <message>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">沒有下載</translation>
     </message>
 </context>
 <context>
@@ -3993,6 +3997,14 @@ Please install it manually.</source>
 Do you want to install it now?</source>
         <translation>使用搜尋引擎需要 Python 2.x, 但是它沒有安裝。
 你想要現在安裝嗎?</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to clear the history?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4732,6 +4744,10 @@ Do you want to install it now?</source>
     <message>
         <source>Label:</source>
         <translation>標籤:</translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">沒有下載</translation>
     </message>
 </context>
 <context>

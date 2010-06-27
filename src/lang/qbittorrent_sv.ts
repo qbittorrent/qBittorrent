@@ -3123,10 +3123,6 @@ QGroupBox {
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
@@ -3157,6 +3153,10 @@ QGroupBox {
     </message>
     <message>
         <source>Remove them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3447,6 +3447,10 @@ QGroupBox {
     <message>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">Inte hämtad</translation>
     </message>
 </context>
 <context>
@@ -3894,6 +3898,14 @@ Installera den manuellt.</translation>
 Do you want to install it now?</source>
         <translation>Python 2.x krävs för att använda sökmotorn men det verkar som om den inte är installerad.
 Vill du installera den nu?</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to clear the history?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4633,6 +4645,10 @@ Vill du installera den nu?</translation>
     <message>
         <source>Label:</source>
         <translation>Etikett:</translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">Inte hämtad</translation>
     </message>
 </context>
 <context>

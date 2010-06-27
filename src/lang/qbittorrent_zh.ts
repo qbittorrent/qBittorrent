@@ -4367,10 +4367,6 @@ No further notices will be issued.</source>
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <source>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
@@ -4401,6 +4397,10 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Remove them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4699,6 +4699,10 @@ No further notices will be issued.</source>
     <message>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">未下载</translation>
     </message>
 </context>
 <context>
@@ -5248,6 +5252,14 @@ Please install it manually.</source>
 Do you want to install it now?</source>
         <translation>需要Python 2.x以使用搜索引擎但未被安装.
 您想现在安装吗?</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to clear the history?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6100,6 +6112,10 @@ previewing)</source>
     <message>
         <source>Label:</source>
         <translation>标签:</translation>
+    </message>
+    <message>
+        <source>Not downloaded</source>
+        <translation type="unfinished">未下载</translation>
     </message>
 </context>
 <context>

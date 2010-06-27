@@ -1559,7 +1559,7 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-96</y>
+             <y>0</y>
              <width>542</width>
              <height>484</height>
             </rect>
@@ -1662,7 +1662,7 @@ QGroupBox {
                <item>
                 <widget class="QCheckBox" name="checkPeX">
                  <property name="toolTip">
-                  <string>Exchange peers without compatible Bittorrent clients (µTorrent, Vuze, ...)</string>
+                  <string>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</string>
                  </property>
                  <property name="text">
                   <string>Enable Peer Exchange / PeX (requires restart)</string>
@@ -2054,8 +2054,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>475</width>
-             <height>304</height>
+             <width>524</width>
+             <height>406</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
