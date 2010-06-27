@@ -2827,10 +2827,6 @@ Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Saoudi Arabia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2868,6 +2864,10 @@ Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</t
     </message>
     <message>
         <source>South Africa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5368,6 +5368,14 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

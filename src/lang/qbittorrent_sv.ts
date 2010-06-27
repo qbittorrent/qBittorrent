@@ -1910,10 +1910,6 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Saoudi Arabia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1951,6 +1947,10 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
     </message>
     <message>
         <source>South Africa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4140,6 +4140,14 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

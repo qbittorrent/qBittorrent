@@ -194,7 +194,7 @@ public:
       if(iso[1] == 'S') { country_name = tr("Serbia"); return QIcon(":/Icons/flags/serbia.png"); }
       break;
     case 'S':
-      if(iso[1] == 'A') { country_name = tr("Saoudi Arabia"); return QIcon(":/Icons/flags/saoudi_arabia.png"); }
+      if(iso[1] == 'A') { country_name = tr("Saudi Arabia"); return QIcon(":/Icons/flags/saoudi_arabia.png"); }
       if(iso[1] == 'E') { country_name = tr("Sweden"); return QIcon(":/Icons/flags/sweden.png"); }
       if(iso[1] == 'K') { country_name = tr("Slovakia"); return QIcon(":/Icons/flags/slovakia.png"); }
       if(iso[1] == 'G') { country_name = tr("Singapore"); return QIcon(":/Icons/flags/singapore.png"); }

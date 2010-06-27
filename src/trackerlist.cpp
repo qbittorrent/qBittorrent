@@ -345,14 +345,16 @@ void TrackerList::deleteSelectedTrackers(){
 void TrackerList::showTrackerListMenu(QPoint) {
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid() || !h.has_metadata()) return;
-  QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
+  //QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
   QMenu menu;
   // Add actions
   QAction *addAct = menu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add a new tracker..."));
   QAction *delAct = 0;
   if(!getSelectedTrackerItems().isEmpty()) {
-    delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), "Remove tracker");
+    delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Remove tracker"));
   }
+  menu.addSeparator();
+  QAction *reannounceAct = menu.addAction(QIcon(":/Icons/oxygen/run-build.png"), tr("Force reannounce"));
   QAction *act = menu.exec(QCursor::pos());
   if(act == 0) return;
   if(act == addAct) {
@@ -361,6 +363,10 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
   if(act == delAct) {
     deleteSelectedTrackers();
+    return;
+  }
+  if(act == reannounceAct) {
+    properties->getCurrentTorrent().force_reannounce();
     return;
   }
 }

@@ -73,7 +73,7 @@ private:
 public:
   PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, Bittorrent* BTSession);
   ~PropertiesWidget();
-  const QTorrentHandle& getCurrentTorrent() const;
+  QTorrentHandle getCurrentTorrent() const;
   Bittorrent* getBTSession() const;
   TrackerList* getTrackerList() const { return trackerList; }
   PeerListWidget* getPeerList() const { return peersList; }

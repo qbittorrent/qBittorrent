@@ -1500,10 +1500,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Saoudi Arabia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sweden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1541,6 +1537,10 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>South Africa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saudi Arabia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3627,6 +3627,14 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

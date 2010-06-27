@@ -200,7 +200,7 @@ void PropertiesWidget::clear() {
   setEnabled(false);
 }
 
-const QTorrentHandle& PropertiesWidget::getCurrentTorrent() const {
+QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
   return h;
 }
 
