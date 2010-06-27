@@ -545,6 +545,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   }
   QMenu subMenu;
   subMenu.setTitle(tr("Priority"));
+  subMenu.addAction(actionNot_downloaded);
   subMenu.addAction(actionNormal);
   subMenu.addAction(actionHigh);
   subMenu.addAction(actionMaximum);
@@ -561,6 +562,10 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
       } else {
         if(act == actionMaximum) {
           prio = MAXIMUM;
+        } else {
+          if(act == actionNot_downloaded) {
+            prio = IGNORED;
+          }
         }
       }
       qDebug("Setting files priority");

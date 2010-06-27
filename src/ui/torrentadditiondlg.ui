@@ -327,6 +327,11 @@
     <string>Maximum</string>
    </property>
   </action>
+  <action name="actionNot_downloaded">
+   <property name="text">
+    <string>Not downloaded</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

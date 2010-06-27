@@ -288,6 +288,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
     }
     QMenu subMenu;
     subMenu.setTitle(tr("Priority"));
+    subMenu.addAction(actionNot_downloaded);
     subMenu.addAction(actionNormal);
     subMenu.addAction(actionHigh);
     subMenu.addAction(actionMaximum);
@@ -304,6 +305,10 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
         } else {
           if(act == actionMaximum) {
             prio = MAXIMUM;
+          } else {
+            if(act == actionNot_downloaded) {
+              prio = IGNORED;
+            }
           }
         }
         qDebug("Setting files priority");
