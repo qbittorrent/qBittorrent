@@ -3049,39 +3049,67 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>Névjegy</translation>
+        <translation type="obsolete">Névjegy</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="obsolete">Indítás</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="obsolete">Szünet</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="obsolete">Törlés</translation>
+    </message>
+    <message>
+        <source>Pause All</source>
+        <translation type="obsolete">Összes leállítása</translation>
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="obsolete">Összes indítása</translation>
+    </message>
+    <message>
+        <source>Visit Website</source>
+        <translation type="obsolete">Weboldal meglátogatása</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
-        <source>Start</source>
-        <translation>Indítás</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
-        <source>Pause</source>
-        <translation>Szünet</translation>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
-        <source>Delete</source>
-        <translation>Törlés</translation>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
-        <source>Pause All</source>
-        <translation>Összes leállítása</translation>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
-        <source>Start All</source>
-        <translation>Összes indítása</translation>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
-        <source>Visit Website</source>
-        <translation>Weboldal meglátogatása</translation>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -3094,6 +3122,11 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
@@ -3101,6 +3134,11 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3120,8 +3158,12 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Log Window</source>
-        <translation>Naplózás</translation>
+        <translation type="obsolete">Naplózás</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -3131,13 +3173,17 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">Kereső oldal</translation>
+        <translation type="obsolete">Kereső oldal</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3202,9 +3248,8 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="obsolete">Irány a weboldal</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Hibajelentés</translation>
+        <translation type="obsolete">Hibajelentés</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -3227,9 +3272,8 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="obsolete">IP szűrő</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Dokumentáció</translation>
+        <translation type="obsolete">Dokumentáció</translation>
     </message>
     <message>
         <source>Set global download limit</source>

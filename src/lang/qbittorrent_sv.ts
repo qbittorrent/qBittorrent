@@ -2161,27 +2161,27 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="obsolete">Om</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Starta</translation>
+        <translation type="obsolete">Starta</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Gör paus</translation>
+        <translation type="obsolete">Gör paus</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Ta bort</translation>
+        <translation type="obsolete">Ta bort</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pausa alla</translation>
+        <translation type="obsolete">Pausa alla</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Starta alla</translation>
+        <translation type="obsolete">Starta alla</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -2213,7 +2213,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Rapportera ett fel</translation>
+        <translation type="obsolete">Rapportera ett fel</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -2225,7 +2225,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Dokumentation</translation>
+        <translation type="obsolete">Dokumentation</translation>
     </message>
     <message>
         <source>Set global download limit</source>
@@ -2253,7 +2253,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Loggfönster</translation>
+        <translation type="obsolete">Loggfönster</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -2261,7 +2261,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Besök webbplatsen</translation>
+        <translation type="obsolete">Besök webbplatsen</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -2336,12 +2336,56 @@ Detta meddelande kommer inte att visas igen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Sökmotor</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Sökmotor</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

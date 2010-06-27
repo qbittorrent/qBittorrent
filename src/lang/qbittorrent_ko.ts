@@ -3564,39 +3564,32 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>정보</translation>
+        <translation type="obsolete">정보</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
-        <translation>시작</translation>
+        <translation type="obsolete">시작</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
-        <translation>정지</translation>
+        <translation type="obsolete">정지</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
-        <translation>삭제</translation>
+        <translation type="obsolete">삭제</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
-        <translation>모두 멈추기</translation>
+        <translation type="obsolete">모두 멈추기</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
-        <translation>모두 시작하기</translation>
+        <translation type="obsolete">모두 시작하기</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
-        <translation>웹사이트 방문</translation>
+        <translation type="obsolete">웹사이트 방문</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -3619,9 +3612,53 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>참고자료</translation>
+        <translation type="obsolete">참고자료</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="160"/>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="165"/>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="170"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="175"/>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="180"/>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
@@ -3640,8 +3677,12 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Log Window</source>
-        <translation>로그 창</translation>
+        <translation type="obsolete">로그 창</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -3651,13 +3692,17 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">검색 엔진</translation>
+        <translation type="obsolete">검색 엔진</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3794,9 +3839,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">웹사이트 방문하기</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>버그 신고하기</translation>
+        <translation type="obsolete">버그 신고하기</translation>
     </message>
     <message>
         <source>Set upload limit</source>

@@ -2814,38 +2814,62 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>バージョン情報</translation>
+        <translation type="obsolete">バージョン情報</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="obsolete">開始</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="obsolete">一時停止</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="obsolete">削除</translation>
+    </message>
+    <message>
+        <source>Pause All</source>
+        <translation type="obsolete">すべて一時停止</translation>
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="obsolete">すべて開始</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
-        <source>Start</source>
-        <translation>開始</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
-        <source>Pause</source>
-        <translation>一時停止</translation>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
-        <source>Delete</source>
-        <translation>削除</translation>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
-        <source>Pause All</source>
-        <translation>すべて一時停止</translation>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
-        <source>Start All</source>
-        <translation>すべて開始</translation>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
-        <source>Visit Website</source>
+        <source>Visit &amp;Website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2859,6 +2883,11 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
@@ -2866,6 +2895,11 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2885,7 +2919,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
-        <source>Log Window</source>
+        <source>Log viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2896,13 +2930,17 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">検索エンジン</translation>
+        <translation type="obsolete">検索エンジン</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="290"/>
@@ -2963,9 +3001,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">ウェブサイトの訪問</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>バグの報告</translation>
+        <translation type="obsolete">バグの報告</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -2980,9 +3017,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">ダウンロード制限の設定</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>資料</translation>
+        <translation type="obsolete">資料</translation>
     </message>
     <message>
         <source>Log</source>

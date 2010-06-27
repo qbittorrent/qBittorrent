@@ -1753,31 +1753,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>О програму</translation>
+        <translation type="obsolete">О програму</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="obsolete">Старт</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation type="obsolete">Пауза</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Обриши</translation>
+        <translation type="obsolete">Обриши</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Паузирај све</translation>
+        <translation type="obsolete">Паузирај све</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Стартуј све</translation>
+        <translation type="obsolete">Стартуј све</translation>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Посети Веб страну</translation>
+        <translation type="obsolete">Посети Веб страну</translation>
     </message>
     <message>
         <source>Download from URL</source>
@@ -1798,7 +1798,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Дневнички(Лог) прозор</translation>
+        <translation type="obsolete">Дневнички(Лог) прозор</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -1806,7 +1806,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Извести о грешци</translation>
+        <translation type="obsolete">Извести о грешци</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -1818,7 +1818,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Документација</translation>
+        <translation type="obsolete">Документација</translation>
     </message>
     <message>
         <source>Set global download limit</source>
@@ -1917,12 +1917,56 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Претраживачки модул</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Претраживачки модул</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -3353,39 +3353,32 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>Informazioni</translation>
+        <translation type="obsolete">Informazioni</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
-        <translation>Avvia</translation>
+        <translation type="obsolete">Avvia</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
-        <translation>Ferma</translation>
+        <translation type="obsolete">Ferma</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
-        <translation>Cancella</translation>
+        <translation type="obsolete">Cancella</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
-        <translation>Ferma tutti</translation>
+        <translation type="obsolete">Ferma tutti</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
-        <translation>Inizia tutti</translation>
+        <translation type="obsolete">Inizia tutti</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
-        <translation>Visita il sito web</translation>
+        <translation type="obsolete">Visita il sito web</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -3408,9 +3401,53 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Documentazione</translation>
+        <translation type="obsolete">Documentazione</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="160"/>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="165"/>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="170"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="175"/>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="180"/>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
@@ -3429,8 +3466,12 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Log Window</source>
-        <translation>Finestra di log</translation>
+        <translation type="obsolete">Finestra di log</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -3440,13 +3481,17 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">Motore di ricerca</translation>
+        <translation type="obsolete">Motore di ricerca</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="290"/>
@@ -3559,9 +3604,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">Visita il sito web</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Segnala un bug</translation>
+        <translation type="obsolete">Segnala un bug</translation>
     </message>
     <message>
         <source>Downloads</source>

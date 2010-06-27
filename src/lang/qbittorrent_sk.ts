@@ -3148,31 +3148,31 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>O aplikácii</translation>
+        <translation type="obsolete">O aplikácii</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Spustiť</translation>
+        <translation type="obsolete">Spustiť</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pozastaviť</translation>
+        <translation type="obsolete">Pozastaviť</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Zmazať</translation>
+        <translation type="obsolete">Zmazať</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pozastaviť všetky</translation>
+        <translation type="obsolete">Pozastaviť všetky</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Spustiť všetky</translation>
+        <translation type="obsolete">Spustiť všetky</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Dokumentácia</translation>
+        <translation type="obsolete">Dokumentácia</translation>
     </message>
     <message>
         <source>Delete All</source>
@@ -3280,7 +3280,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Oznámiť chybu</translation>
+        <translation type="obsolete">Oznámiť chybu</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3324,7 +3324,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Okno so záznamom</translation>
+        <translation type="obsolete">Okno so záznamom</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -3332,7 +3332,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Navštíviť webstránku</translation>
+        <translation type="obsolete">Navštíviť webstránku</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3407,12 +3407,56 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Vyhľadávač</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Vyhľadávač</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

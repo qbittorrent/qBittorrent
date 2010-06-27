@@ -3192,31 +3192,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>Hakkında</translation>
+        <translation type="obsolete">Hakkında</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Başlat</translation>
+        <translation type="obsolete">Başlat</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Duraklat</translation>
+        <translation type="obsolete">Duraklat</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Sil</translation>
+        <translation type="obsolete">Sil</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Hepsini Duraklat</translation>
+        <translation type="obsolete">Hepsini Duraklat</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Hepsini Başlat</translation>
+        <translation type="obsolete">Hepsini Başlat</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Belgeleme</translation>
+        <translation type="obsolete">Belgeleme</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -3332,7 +3332,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Hatayı rapor et</translation>
+        <translation type="obsolete">Hatayı rapor et</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3368,7 +3368,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Günlük Penceresi</translation>
+        <translation type="obsolete">Günlük Penceresi</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -3376,7 +3376,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Siteyi ziyaret et</translation>
+        <translation type="obsolete">Siteyi ziyaret et</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -3447,12 +3447,56 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Arama motoru</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Arama motoru</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -152,37 +152,37 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
   <action name="actionStart">
    <property name="text">
-    <string>Start</string>
+    <string>&amp;Start</string>
    </property>
   </action>
   <action name="actionPause">
    <property name="text">
-    <string>Pause</string>
+    <string>&amp;Pause</string>
    </property>
   </action>
   <action name="actionDelete">
    <property name="text">
-    <string>Delete</string>
+    <string>&amp;Delete</string>
    </property>
   </action>
   <action name="actionPause_All">
    <property name="text">
-    <string>Pause All</string>
+    <string>P&amp;ause All</string>
    </property>
   </action>
   <action name="actionStart_All">
    <property name="text">
-    <string>Start All</string>
+    <string>S&amp;tart All</string>
    </property>
   </action>
   <action name="actionWebsite">
    <property name="text">
-    <string>Visit Website</string>
+    <string>Visit &amp;Website</string>
    </property>
   </action>
   <action name="actionDownload_from_URL">
@@ -207,7 +207,7 @@
   </action>
   <action name="actionBugReport">
    <property name="text">
-    <string>Report a bug</string>
+    <string>Report a &amp;bug</string>
    </property>
   </action>
   <action name="actionSet_upload_limit">
@@ -222,7 +222,7 @@
   </action>
   <action name="actionDocumentation">
    <property name="text">
-    <string>Documentation</string>
+    <string>&amp;Documentation</string>
    </property>
   </action>
   <action name="actionSet_global_download_limit">
@@ -268,7 +268,7 @@
     <string>&amp;Log viewer...</string>
    </property>
    <property name="toolTip">
-    <string>Log Window</string>
+    <string>Log viewer</string>
    </property>
   </action>
   <action name="actionUse_alternative_speed_limits">
@@ -309,7 +309,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>RSS reader</string>
+    <string>&amp;RSS reader</string>
    </property>
   </action>
   <action name="actionSearch_engine">
@@ -317,7 +317,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Search engine</string>
+    <string>Search &amp;engine</string>
    </property>
   </action>
  </widget>

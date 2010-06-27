@@ -3258,31 +3258,31 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>O programie</translation>
+        <translation type="obsolete">O programie</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Uruchom</translation>
+        <translation type="obsolete">Uruchom</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Wstrzymaj</translation>
+        <translation type="obsolete">Wstrzymaj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Usuń</translation>
+        <translation type="obsolete">Usuń</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Wstrzymaj wszystko</translation>
+        <translation type="obsolete">Wstrzymaj wszystko</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Uruchom wszystko</translation>
+        <translation type="obsolete">Uruchom wszystko</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Dokumentacja</translation>
+        <translation type="obsolete">Dokumentacja</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -3398,7 +3398,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Zgłoś błąd</translation>
+        <translation type="obsolete">Zgłoś błąd</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3442,7 +3442,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Okno dziennika</translation>
+        <translation type="obsolete">Okno dziennika</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -3450,7 +3450,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Odwiedź stronę</translation>
+        <translation type="obsolete">Odwiedź stronę</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3525,12 +3525,56 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Wyszukiwarka</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Wyszukiwarka</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

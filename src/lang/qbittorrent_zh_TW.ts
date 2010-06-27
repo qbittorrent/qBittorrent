@@ -2256,27 +2256,27 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>關於</translation>
+        <translation type="obsolete">關於</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>開始</translation>
+        <translation type="obsolete">開始</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>暫停</translation>
+        <translation type="obsolete">暫停</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>刪除</translation>
+        <translation type="obsolete">刪除</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>全部暫停</translation>
+        <translation type="obsolete">全部暫停</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>全部開始</translation>
+        <translation type="obsolete">全部開始</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -2308,7 +2308,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>回報錯誤</translation>
+        <translation type="obsolete">回報錯誤</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -2320,7 +2320,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>文件</translation>
+        <translation type="obsolete">文件</translation>
     </message>
     <message>
         <source>Set global download limit</source>
@@ -2348,7 +2348,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>紀錄視窗</translation>
+        <translation type="obsolete">紀錄視窗</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -2356,7 +2356,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>瀏覽網站</translation>
+        <translation type="obsolete">瀏覽網站</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -2431,12 +2431,56 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">搜尋引擎</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">搜尋引擎</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

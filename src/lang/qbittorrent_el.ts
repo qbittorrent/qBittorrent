@@ -3647,39 +3647,32 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>Σχετικά</translation>
+        <translation type="obsolete">Σχετικά</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
-        <translation>Έναρξη</translation>
+        <translation type="obsolete">Έναρξη</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
-        <translation>Παύση</translation>
+        <translation type="obsolete">Παύση</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
-        <translation>Σβήσιμο</translation>
+        <translation type="obsolete">Σβήσιμο</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
-        <translation>Παύση Όλων</translation>
+        <translation type="obsolete">Παύση Όλων</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
-        <translation>Έναρξη Όλων</translation>
+        <translation type="obsolete">Έναρξη Όλων</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
-        <translation>Επισκεφθείτε την Ιστοσελίδα</translation>
+        <translation type="obsolete">Επισκεφθείτε την Ιστοσελίδα</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -3702,9 +3695,53 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Έγγραφα</translation>
+        <translation type="obsolete">Έγγραφα</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="160"/>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="165"/>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="170"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="175"/>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="180"/>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
@@ -3723,8 +3760,12 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Log Window</source>
-        <translation>Παράθυρο Καταγραφής</translation>
+        <translation type="obsolete">Παράθυρο Καταγραφής</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -3734,13 +3775,17 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">Μηχανή αναζήτησης</translation>
+        <translation type="obsolete">Μηχανή αναζήτησης</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3881,9 +3926,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">Επίσκεψη ιστοσελίδας</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Αναφορά σφάλματος</translation>
+        <translation type="obsolete">Αναφορά σφάλματος</translation>
     </message>
     <message>
         <source>Set upload limit</source>

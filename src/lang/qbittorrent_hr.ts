@@ -1247,31 +1247,31 @@ Neće biti daljnjih napomena.
     </message>
     <message>
         <source>About</source>
-        <translation>O</translation>
+        <translation type="obsolete">O</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Kreni</translation>
+        <translation type="obsolete">Kreni</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Stani</translation>
+        <translation type="obsolete">Stani</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Izbriši</translation>
+        <translation type="obsolete">Izbriši</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Zaustavi sve</translation>
+        <translation type="obsolete">Zaustavi sve</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Počni sve</translation>
+        <translation type="obsolete">Počni sve</translation>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Posjeti web mjesto</translation>
+        <translation type="obsolete">Posjeti web mjesto</translation>
     </message>
     <message>
         <source>Download from URL</source>
@@ -1291,7 +1291,7 @@ Neće biti daljnjih napomena.
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Prozor zapisa</translation>
+        <translation type="obsolete">Prozor zapisa</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -1299,7 +1299,7 @@ Neće biti daljnjih napomena.
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Prijavi grešku</translation>
+        <translation type="obsolete">Prijavi grešku</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -1311,7 +1311,7 @@ Neće biti daljnjih napomena.
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Dokumentacija</translation>
+        <translation type="obsolete">Dokumentacija</translation>
     </message>
     <message>
         <source>Set global download limit</source>
@@ -1410,12 +1410,56 @@ Neće biti daljnjih napomena.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Tražilica</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Tražilica</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

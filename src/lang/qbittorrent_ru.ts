@@ -3232,31 +3232,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>О программе</translation>
+        <translation type="obsolete">О программе</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Возобновить</translation>
+        <translation type="obsolete">Возобновить</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Приостановить</translation>
+        <translation type="obsolete">Приостановить</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation type="obsolete">Удалить</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Приостановить Все</translation>
+        <translation type="obsolete">Приостановить Все</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Возобновить Все</translation>
+        <translation type="obsolete">Возобновить Все</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Документация</translation>
+        <translation type="obsolete">Документация</translation>
     </message>
     <message>
         <source>Delete All</source>
@@ -3368,7 +3368,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Сообщить об ошибке</translation>
+        <translation type="obsolete">Сообщить об ошибке</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3412,7 +3412,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Лог</translation>
+        <translation type="obsolete">Лог</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -3420,7 +3420,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Посетить веб-сайт</translation>
+        <translation type="obsolete">Посетить веб-сайт</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3495,11 +3495,51 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

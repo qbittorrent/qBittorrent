@@ -2672,39 +2672,67 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="obsolete">Om</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="obsolete">Start</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="obsolete">Pause</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="obsolete">Slet</translation>
+    </message>
+    <message>
+        <source>Pause All</source>
+        <translation type="obsolete">Sæt Alle På Pause</translation>
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="obsolete">Start Alle</translation>
+    </message>
+    <message>
+        <source>Visit Website</source>
+        <translation type="obsolete">Besøg Website</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
-        <source>Start</source>
-        <translation>Start</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
-        <source>Pause</source>
-        <translation>Pause</translation>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
-        <source>Delete</source>
-        <translation>Slet</translation>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
-        <source>Pause All</source>
-        <translation>Sæt Alle På Pause</translation>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
-        <source>Start All</source>
-        <translation>Start Alle</translation>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
-        <source>Visit Website</source>
-        <translation>Besøg Website</translation>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -2717,6 +2745,11 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
@@ -2724,6 +2757,11 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2743,8 +2781,12 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Log Window</source>
-        <translation>Log vindue</translation>
+        <translation type="obsolete">Log vindue</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -2754,13 +2796,17 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">Søgemaskine</translation>
+        <translation type="obsolete">Søgemaskine</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="290"/>
@@ -2865,9 +2911,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">Besøg Website</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Rapporter en fejl</translation>
+        <translation type="obsolete">Rapporter en fejl</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -2878,9 +2923,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">Sæt download grænse</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Dokumentation</translation>
+        <translation type="obsolete">Dokumentation</translation>
     </message>
     <message>
         <source>Set global download limit</source>

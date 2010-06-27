@@ -1569,39 +1569,32 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>عن البرنامج</translation>
+        <translation type="obsolete">عن البرنامج</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
-        <translation>تشغيل</translation>
+        <translation type="obsolete">تشغيل</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
-        <translation>ايقاف مؤقت</translation>
+        <translation type="obsolete">ايقاف مؤقت</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
-        <translation>حذف</translation>
+        <translation type="obsolete">حذف</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
-        <translation>ايقاف مؤقت للكل</translation>
+        <translation type="obsolete">ايقاف مؤقت للكل</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
-        <translation> تشغيل الكل</translation>
+        <translation type="obsolete"> تشغيل الكل</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
-        <translation>زيارة الموقع</translation>
+        <translation type="obsolete">زيارة الموقع</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -1611,6 +1604,11 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="195"/>
         <source>Torrent &amp;creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1640,14 +1638,8 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="320"/>
         <source>Search engine</source>
-        <translation type="unfinished">محرك البحث</translation>
+        <translation type="obsolete">محرك البحث</translation>
     </message>
     <message>
         <source>Download from URL</source>
@@ -1656,6 +1648,41 @@ No further notices will be issued.</source>
     <message>
         <source>Create torrent</source>
         <translation type="obsolete">انشاء تورنت</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="160"/>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="165"/>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="170"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="175"/>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="180"/>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="200"/>
@@ -1668,6 +1695,11 @@ No further notices will be issued.</source>
         <translation>مسح السجل</translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
@@ -1675,6 +1707,11 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1693,18 +1730,26 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log Window</source>
-        <translation>نافذة السجل</translation>
+        <translation type="obsolete">نافذة السجل</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="312"/>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
         <translation type="obsolete">استخدام السرعة المحدودة</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>الابلاغ عن عطل</translation>
+        <translation type="obsolete">الابلاغ عن عطل</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -1715,9 +1760,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">ضع حد التحميل</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>التعليمات</translation>
+        <translation type="obsolete">التعليمات</translation>
     </message>
     <message>
         <source>Set global download limit</source>

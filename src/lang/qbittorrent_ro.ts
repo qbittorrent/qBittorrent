@@ -3049,31 +3049,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>Despre</translation>
+        <translation type="obsolete">Despre</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation type="obsolete">Start</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pauză</translation>
+        <translation type="obsolete">Pauză</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Şterge</translation>
+        <translation type="obsolete">Şterge</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pauză Toţi</translation>
+        <translation type="obsolete">Pauză Toţi</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Start Toţi</translation>
+        <translation type="obsolete">Start Toţi</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Documentaţie</translation>
+        <translation type="obsolete">Documentaţie</translation>
     </message>
     <message>
         <source>Delete All</source>
@@ -3185,7 +3185,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Raportaţi despre bug-uri</translation>
+        <translation type="obsolete">Raportaţi despre bug-uri</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3221,7 +3221,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Fereastra de logare</translation>
+        <translation type="obsolete">Fereastra de logare</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -3229,7 +3229,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Vizitează Website</translation>
+        <translation type="obsolete">Vizitează Website</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -3300,12 +3300,56 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Motorul de căutare</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Motorul de căutare</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -3337,31 +3337,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>关于</translation>
+        <translation type="obsolete">关于</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>开始</translation>
+        <translation type="obsolete">开始</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>暂停</translation>
+        <translation type="obsolete">暂停</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation type="obsolete">删除</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>暂停所有</translation>
+        <translation type="obsolete">暂停所有</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>开始所有</translation>
+        <translation type="obsolete">开始所有</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>文档资料</translation>
+        <translation type="obsolete">文档资料</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -3473,7 +3473,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>报告错误</translation>
+        <translation type="obsolete">报告错误</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3521,7 +3521,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>登陆窗口</translation>
+        <translation type="obsolete">登陆窗口</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -3529,7 +3529,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>浏览网站</translation>
+        <translation type="obsolete">浏览网站</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3604,12 +3604,56 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">搜索引擎</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">搜索引擎</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

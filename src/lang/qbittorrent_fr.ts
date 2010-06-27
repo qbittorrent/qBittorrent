@@ -3744,7 +3744,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="140"/>
         <source>&amp;Add File...</source>
-        <translation>Ajouter un fichier...</translation>
+        <translation>&amp;Ajouter un fichier...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="145"/>
@@ -3757,39 +3757,67 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation>&amp;Options...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>A Propos</translation>
+        <translation type="obsolete">A Propos</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="obsolete">Démarrer</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="obsolete">Pause</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="obsolete">Supprimer</translation>
+    </message>
+    <message>
+        <source>Pause All</source>
+        <translation type="obsolete">Tous en Pause</translation>
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="obsolete">Démarrer tous</translation>
+    </message>
+    <message>
+        <source>Visit Website</source>
+        <translation type="obsolete">Visiter le site officiel</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation>&amp;A Propos</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
-        <source>Start</source>
-        <translation>Démarrer</translation>
+        <source>&amp;Start</source>
+        <translation>&amp;Démarrer</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
-        <source>Pause</source>
-        <translation>Pause</translation>
+        <source>&amp;Pause</source>
+        <translation>Mettre en &amp;pause</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
-        <source>Delete</source>
-        <translation>Supprimer</translation>
+        <source>&amp;Delete</source>
+        <translation>&amp;Supprimer</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
-        <source>Pause All</source>
-        <translation>Tous en Pause</translation>
+        <source>P&amp;ause All</source>
+        <translation>Tout &amp;mettre en pause</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
-        <source>Start All</source>
-        <translation>Démarrer tous</translation>
+        <source>S&amp;tart All</source>
+        <translation>Tout déma&amp;rrrer</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
-        <source>Visit Website</source>
-        <translation>Visiter le site officiel</translation>
+        <source>Visit &amp;Website</source>
+        <translation>&amp;Visiter le site officiel</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -3802,6 +3830,11 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation>&amp;Créateur de torrent</translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation>Signaler un &amp;bogue</translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation>Définir limite d&apos;envoi...</translation>
@@ -3810,6 +3843,11 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
         <translation>Définir limite de réception...</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
+        <translation>&amp;Documentation</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
@@ -3828,8 +3866,12 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
-        <source>Log Window</source>
+        <source>Log viewer</source>
         <translation>Journal d&apos;exécution</translation>
+    </message>
+    <message>
+        <source>Log Window</source>
+        <translation type="obsolete">Journal d&apos;exécution</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -3839,13 +3881,21 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
-        <translation>Lecteur RSS</translation>
+        <source>&amp;RSS reader</source>
+        <translation>Lecteur &amp;RSS</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation>&amp;Moteur de recherche</translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="obsolete">Lecteur RSS</translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation>Moteur de recherche</translation>
+        <translation type="obsolete">Moteur de recherche</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3986,9 +4036,8 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation type="obsolete">Visiter le site internet</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Signaler un bogue</translation>
+        <translation type="obsolete">Signaler un bogue</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3999,9 +4048,8 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation type="obsolete">Définir limite téléchargement</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Documentation</translation>
+        <translation type="obsolete">Documentation</translation>
     </message>
     <message>
         <source>Log</source>

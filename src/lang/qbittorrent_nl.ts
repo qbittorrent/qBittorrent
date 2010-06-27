@@ -3153,31 +3153,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>Over</translation>
+        <translation type="obsolete">Over</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation type="obsolete">Start</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pauze</translation>
+        <translation type="obsolete">Pauze</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Verwijderen</translation>
+        <translation type="obsolete">Verwijderen</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pauzeer alles</translation>
+        <translation type="obsolete">Pauzeer alles</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Start alles</translation>
+        <translation type="obsolete">Start alles</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Documentatie</translation>
+        <translation type="obsolete">Documentatie</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -3293,7 +3293,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Meld een fout</translation>
+        <translation type="obsolete">Meld een fout</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3326,14 +3326,6 @@ No further notices will be issued.</source>
     <message>
         <source>Console</source>
         <translation type="obsolete">Console</translation>
-    </message>
-    <message>
-        <source>Log Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Visit Website</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -3404,12 +3396,56 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Zoekmachine</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Zoekmachine</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

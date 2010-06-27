@@ -3136,9 +3136,8 @@ Muita varoituksia ei anneta.</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>Tietoja</translation>
+        <translation type="obsolete">Tietoja</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3158,9 +3157,8 @@ Muita varoituksia ei anneta.</translation>
         <translation type="obsolete">Luo torrentti</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation type="obsolete">Poista</translation>
     </message>
     <message>
         <source>Delete All</source>
@@ -3171,9 +3169,8 @@ Muita varoituksia ei anneta.</translation>
         <translation type="obsolete">Poista pysyvästi</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Dokumentaatio</translation>
+        <translation type="obsolete">Dokumentaatio</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3219,14 +3216,12 @@ Muita varoituksia ei anneta.</translation>
         <translation type="obsolete">&amp;Asetukset</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
-        <translation>Pysäytä</translation>
+        <translation type="obsolete">Pysäytä</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
-        <translation>Pysäytä kaikki</translation>
+        <translation type="obsolete">Pysäytä kaikki</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -3258,14 +3253,12 @@ Muita varoituksia ei anneta.</translation>
         <translation type="obsolete"> Jakosuhde:</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
-        <translation>Käynnistä</translation>
+        <translation type="obsolete">Käynnistä</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
-        <translation>Käynnistä kaikki</translation>
+        <translation type="obsolete">Käynnistä kaikki</translation>
     </message>
     <message>
         <source>Status:</source>
@@ -3304,9 +3297,8 @@ Muita varoituksia ei anneta.</translation>
         <translation type="obsolete">Vieraile verkkosivulla</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Ilmoita virheestä</translation>
+        <translation type="obsolete">Ilmoita virheestä</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3325,9 +3317,8 @@ Muita varoituksia ei anneta.</translation>
         <translation type="obsolete">Aseta yleinen lähetysnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log Window</source>
-        <translation>Loki-ikkuna</translation>
+        <translation type="obsolete">Loki-ikkuna</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3367,9 +3358,43 @@ Muita varoituksia ei anneta.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
-        <translation>Käy web-sivustolla</translation>
+        <translation type="obsolete">Käy web-sivustolla</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="160"/>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="165"/>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="170"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="175"/>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="180"/>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -3382,6 +3407,11 @@ Muita varoituksia ei anneta.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
@@ -3389,6 +3419,11 @@ Muita varoituksia ei anneta.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3414,6 +3449,11 @@ Muita varoituksia ei anneta.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>&amp;Log viewer...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3444,13 +3484,17 @@ Muita varoituksia ei anneta.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">Hakupalvelu</translation>
+        <translation type="obsolete">Hakupalvelu</translation>
     </message>
     <message>
         <source>Console</source>

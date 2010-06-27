@@ -2939,31 +2939,31 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>About</source>
-        <translation>Про програму</translation>
+        <translation type="obsolete">Про програму</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Почати</translation>
+        <translation type="obsolete">Почати</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Призупинити</translation>
+        <translation type="obsolete">Призупинити</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Видалити</translation>
+        <translation type="obsolete">Видалити</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Призупинити всі</translation>
+        <translation type="obsolete">Призупинити всі</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>Почати всі</translation>
+        <translation type="obsolete">Почати всі</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Документація</translation>
+        <translation type="obsolete">Документація</translation>
     </message>
     <message>
         <source>Delete All</source>
@@ -3075,7 +3075,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Report a bug</source>
-        <translation>Повідомити про помилку</translation>
+        <translation type="obsolete">Повідомити про помилку</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -3119,7 +3119,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log Window</source>
-        <translation>Журнал подій</translation>
+        <translation type="obsolete">Журнал подій</translation>
     </message>
     <message>
         <source>Open torrent</source>
@@ -3127,7 +3127,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Visit Website</source>
-        <translation>Відвідати вебсайт</translation>
+        <translation type="obsolete">Відвідати вебсайт</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3202,12 +3202,56 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS reader</source>
+        <source>Search engine</source>
+        <translation type="obsolete">Пошуковик</translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished">Пошуковик</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

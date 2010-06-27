@@ -2603,39 +2603,67 @@ Další upozornění již nebudou zobrazena.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>O aplikaci</translation>
+        <translation type="obsolete">O aplikaci</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="obsolete">Spustit</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="obsolete">Pozastavit</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="obsolete">Smazat</translation>
+    </message>
+    <message>
+        <source>Pause All</source>
+        <translation type="obsolete">Pozastavit vše</translation>
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="obsolete">Spustit vše</translation>
+    </message>
+    <message>
+        <source>Visit Website</source>
+        <translation type="obsolete">Navštívit webovou stránku</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
-        <source>Start</source>
-        <translation>Spustit</translation>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
-        <source>Pause</source>
-        <translation>Pozastavit</translation>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
-        <source>Delete</source>
-        <translation>Smazat</translation>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
-        <source>Pause All</source>
-        <translation>Pozastavit vše</translation>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
-        <source>Start All</source>
-        <translation>Spustit vše</translation>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
-        <source>Visit Website</source>
-        <translation>Navštívit webovou stránku</translation>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -2648,6 +2676,11 @@ Další upozornění již nebudou zobrazena.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
         <translation type="unfinished"></translation>
@@ -2655,6 +2688,11 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2674,8 +2712,12 @@ Další upozornění již nebudou zobrazena.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Log Window</source>
-        <translation>Okno se záznamy</translation>
+        <translation type="obsolete">Okno se záznamy</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -2685,13 +2727,17 @@ Další upozornění již nebudou zobrazena.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
+        <source>&amp;RSS reader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation type="unfinished">Vyhledávač</translation>
+        <translation type="obsolete">Vyhledávač</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -2748,9 +2794,8 @@ Další upozornění již nebudou zobrazena.</translation>
         <translation type="obsolete">Navštívit webovou stránku</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Nahlásit chybu</translation>
+        <translation type="obsolete">Nahlásit chybu</translation>
     </message>
     <message>
         <source>Set upload limit</source>
@@ -2761,9 +2806,8 @@ Další upozornění již nebudou zobrazena.</translation>
         <translation type="obsolete">Nastavit limit stahování</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Dokumentace</translation>
+        <translation type="obsolete">Dokumentace</translation>
     </message>
     <message>
         <source>Set global download limit</source>

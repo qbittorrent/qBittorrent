@@ -3502,39 +3502,32 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
         <translation>&amp;Opciones...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation type="obsolete">Acerca de</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Start</source>
-        <translation>Comenzar</translation>
+        <translation type="obsolete">Comenzar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>Pause</source>
-        <translation>Pausa</translation>
+        <translation type="obsolete">Pausa</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation type="obsolete">Borrar</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>Pause All</source>
-        <translation>Pausar Todas</translation>
+        <translation type="obsolete">Pausar Todas</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Start All</source>
-        <translation>Comenzar Todas</translation>
+        <translation type="obsolete">Comenzar Todas</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit Website</source>
-        <translation>Visite mi sitio Web</translation>
+        <translation type="obsolete">Visite mi sitio Web</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
@@ -3557,9 +3550,53 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
         <translation>Límite de Bajada...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
         <source>Documentation</source>
-        <translation>Documentación</translation>
+        <translation type="obsolete">Documentación</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="155"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="160"/>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="165"/>
+        <source>&amp;Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="170"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="175"/>
+        <source>P&amp;ause All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="180"/>
+        <source>S&amp;tart All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <source>Visit &amp;Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="210"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="225"/>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
@@ -3578,8 +3615,12 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
+        <source>Log viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Log Window</source>
-        <translation>Ventana de registro</translation>
+        <translation type="obsolete">Ventana de registro</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
@@ -3589,13 +3630,21 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
-        <source>RSS reader</source>
-        <translation>Lector RSS</translation>
+        <source>&amp;RSS reader</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
+        <source>Search &amp;engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS reader</source>
+        <translation type="obsolete">Lector RSS</translation>
+    </message>
+    <message>
         <source>Search engine</source>
-        <translation>Motor de búsqueda</translation>
+        <translation type="obsolete">Motor de búsqueda</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -3736,9 +3785,8 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
         <translation type="obsolete">Visitar website</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a bug</source>
-        <translation>Comunicar un bug</translation>
+        <translation type="obsolete">Comunicar un bug</translation>
     </message>
     <message>
         <source>Set upload limit</source>
