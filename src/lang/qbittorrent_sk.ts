@@ -2899,7 +2899,7 @@ Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Saudská Arábia</translation>
     </message>
 </context>
 <context>
@@ -4574,15 +4574,15 @@ QGroupBox {
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať všetky</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevybrať nič</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesťahovať</translation>
     </message>
 </context>
 <context>
@@ -5310,11 +5310,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrániť tracker</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished">Vynútiť opätovné ohlásenie</translation>
+        <translation>Vynútiť opätovné ohlásenie</translation>
     </message>
 </context>
 <context>
@@ -5945,15 +5945,15 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať všetky</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevybrať nič</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesťahovať</translation>
     </message>
 </context>
 <context>
