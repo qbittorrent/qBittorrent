@@ -459,6 +459,19 @@ QString QTorrentHandle::root_path() const {
   return save_path();
 }
 
+QString QTorrentHandle::firstFileSavePath() const {
+  Q_ASSERT(h.is_valid());
+  Q_ASSERT(has_metadata());
+  QString fsave_path = TorrentPersistentData::getSavePath(hash());
+  if(fsave_path.isEmpty())
+    fsave_path = save_path();
+  fsave_path = fsave_path.replace("\\", "/");
+  if(!fsave_path.endsWith("/"))
+    fsave_path += "/";
+  fsave_path += misc::toQStringU(h.get_torrent_info().file_at(0).path.string());
+  return fsave_path;
+}
+
 bool QTorrentHandle::has_error() const {
   Q_ASSERT(h.is_valid());
   return h.is_paused() && !h.status().error.empty();

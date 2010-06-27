@@ -210,9 +210,14 @@ Bittorrent* PropertiesWidget::getBTSession() const {
 
 void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
   if(h.is_valid() && h == _h) {
-    QString p = TorrentPersistentData::getSavePath(h.hash());
-    if(p.isEmpty())
-      p = h.save_path();
+    QString p;
+    if(h.has_metadata() && h.num_files() == 1) {
+      p = h.firstFileSavePath();
+    } else {
+      p = TorrentPersistentData::getSavePath(h.hash());
+      if(p.isEmpty())
+        p = h.save_path();
+    }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     p = p.replace("/", "\\");
 #endif
@@ -237,9 +242,14 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
 
   try {
     // Save path
-    QString p = TorrentPersistentData::getSavePath(h.hash());
-    if(p.isEmpty())
-      p = h.save_path();
+    QString p;
+    if(h.has_metadata() && h.num_files() == 1) {
+      p = h.firstFileSavePath();
+    } else {
+      p = TorrentPersistentData::getSavePath(h.hash());
+      if(p.isEmpty())
+        p = h.save_path();
+    }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     p = p.replace("/", "\\");
 #endif
@@ -699,8 +709,8 @@ void PropertiesWidget::renameSelectedFile() {
       bool ok;
       // Ask user for a new url seed
       const QString &url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
-                                               tr("New url seed:"), QLineEdit::Normal,
-                                               QString::fromUtf8("http://www."), &ok);
+                                                      tr("New url seed:"), QLineEdit::Normal,
+                                                      QString::fromUtf8("http://www."), &ok);
       if(!ok) return;
       qDebug("Adding %s web seed", qPrintable(url_seed));
       if(!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
@@ -747,16 +757,27 @@ void PropertiesWidget::renameSelectedFile() {
 
     void PropertiesWidget::on_changeSavePathButton_clicked() {
       if(!h.is_valid()) return;
-      QString dir;
-      const QDir saveDir(h.save_path());
-      if(saveDir.exists()){
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
-      }else{
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+      QString new_path;
+      if(h.has_metadata() && h.num_files() == 1) {
+        new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"),  h.firstFileSavePath());
+      } else {
+        const QDir saveDir(h.save_path());
+        if(saveDir.exists()){
+          new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
+        }else{
+          new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
+        }
       }
-      if(!dir.isEmpty()){
+      if(!new_path.isEmpty()){
         // Check if savePath exists
-        QDir savePath(misc::expandPath(dir));
+        QString save_path_dir = new_path.replace("\\", "/");
+        QString new_file_name;
+        if(h.has_metadata() && h.num_files() == 1) {
+          QStringList parts = save_path_dir.split("/");
+          new_file_name = parts.takeLast(); // Skip file name
+          save_path_dir = parts.join("/");
+        }
+        QDir savePath(misc::expandPath(save_path_dir));
         if(!savePath.exists()){
           if(!savePath.mkpath(savePath.absolutePath())){
             QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
@@ -767,7 +788,24 @@ void PropertiesWidget::renameSelectedFile() {
         if(!BTSession->useTemporaryFolder() || h.is_seed())
           h.move_storage(savePath.absolutePath());
         // Update save_path in dialog
-        QString display_path = savePath.absolutePath();
+        QString display_path;
+        if(h.has_metadata() && h.num_files() == 1) {
+          // Rename the file
+          Q_ASSERT(!new_file_name.isEmpty());
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+          if(h.file_at(0).compare(new_file_name, Qt::CaseInsensitive) != 0) {
+#else
+            if(h.file_at(0).compare(new_file_name, Qt::CaseSensitive) != 0) {
+#endif
+              qDebug("Renaming single file to %s", qPrintable(new_file_name));
+              h.rename_file(0, new_file_name);
+              // Also rename it in the files list model
+              PropListModel->setData(PropListModel->index(0, 0), new_file_name);
+          }
+          display_path = new_path;
+        } else {
+          display_path = savePath.absolutePath();
+        }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
         display_path = display_path.replace("/", "\\");
 #endif
