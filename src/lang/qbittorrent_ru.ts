@@ -4429,11 +4429,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Свернуть все</translation>
+        <translation type="obsolete">Свернуть все</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Развернуть все</translation>
+        <translation type="obsolete">Развернуть все</translation>
     </message>
     <message>
         <source>General</source>
@@ -4642,7 +4642,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Не загружать</translation>
+        <translation type="obsolete">Не загружать</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5966,11 +5978,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Свернуть все</translation>
+        <translation type="obsolete">Свернуть все</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Развернуть все</translation>
+        <translation type="obsolete">Развернуть все</translation>
     </message>
     <message>
         <source>Torrent size:</source>
@@ -5998,7 +6010,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Не загружать</translation>
+        <translation type="obsolete">Не загружать</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

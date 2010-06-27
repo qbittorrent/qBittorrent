@@ -82,8 +82,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
 
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
-  connect(collapseAllButton, SIGNAL(clicked()), filesList, SLOT(collapseAll()));
-  connect(expandAllButton, SIGNAL(clicked()), filesList, SLOT(expandAll()));
+  connect(selectAllButton, SIGNAL(clicked()), PropListModel, SLOT(selectAll()));
+  connect(selectNoneButton, SIGNAL(clicked()), PropListModel, SLOT(selectNone()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
   connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));

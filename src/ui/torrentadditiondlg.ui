@@ -212,16 +212,16 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="collapseAllButton">
+      <widget class="QPushButton" name="selectAllButton">
        <property name="text">
-        <string>Collapse all</string>
+        <string>Select All</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="expandAllButton">
+      <widget class="QPushButton" name="selectNoneButton">
        <property name="text">
-        <string>Expand all</string>
+        <string>Select None</string>
        </property>
       </widget>
      </item>
@@ -329,7 +329,10 @@
   </action>
   <action name="actionNot_downloaded">
    <property name="text">
-    <string>Not downloaded</string>
+    <string>Do not download</string>
+   </property>
+   <property name="toolTip">
+    <string>Do not download</string>
    </property>
   </action>
  </widget>

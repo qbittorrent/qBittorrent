@@ -4385,6 +4385,22 @@ QGroupBox {
         <translation>Elvetve:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Feltöltési limit:</translation>
@@ -4433,14 +4449,12 @@ QGroupBox {
         <translation type="obsolete">Aktuális tracker:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Elrejtés</translation>
+        <translation type="obsolete">Elrejtés</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Kibontás</translation>
+        <translation type="obsolete">Kibontás</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -4468,9 +4482,8 @@ QGroupBox {
         <translation>Fájlok</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">Mellőzve</translation>
+        <translation type="obsolete">Mellőzve</translation>
     </message>
     <message>
         <source>Size</source>
@@ -6104,6 +6117,16 @@ Kérlek telepítsd manuálisan.</translation>
         <translation>Torrent tartalma:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Letöltés sorrendben (lassabb, de előnézethez ideális)</translation>
@@ -6115,8 +6138,13 @@ Kérlek telepítsd manuálisan.</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Mellőzve</translation>
+        <translation type="obsolete">Mellőzve</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -6157,18 +6185,16 @@ Kérlek telepítsd manuálisan.</translation>
         <translation>Maximális</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Elrejtés</translation>
+        <translation type="obsolete">Elrejtés</translation>
     </message>
     <message>
         <source>Expand All</source>
         <translation type="obsolete">Kibontás</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Kibontás</translation>
+        <translation type="obsolete">Kibontás</translation>
     </message>
 </context>
 <context>

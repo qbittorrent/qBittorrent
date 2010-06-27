@@ -4987,6 +4987,22 @@ QGroupBox {
         <translation>Изгубени:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Лимит качване:</translation>
@@ -5035,14 +5051,12 @@ QGroupBox {
         <translation type="obsolete">Текущ тракер:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Свий всички</translation>
+        <translation type="obsolete">Свий всички</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Разшири всички</translation>
+        <translation type="obsolete">Разшири всички</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -5070,9 +5084,8 @@ QGroupBox {
         <translation>Файлове</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">Не свалени</translation>
+        <translation type="obsolete">Не свалени</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6768,6 +6781,16 @@ Please install it manually.</source>
         <translation>Съдържание на Торента:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Сваляне поред (по-бавно но удобно за преглед)</translation>
@@ -6779,8 +6802,13 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Не свалени</translation>
+        <translation type="obsolete">Не свалени</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6845,18 +6873,16 @@ Please install it manually.</source>
         <translation>Максимален</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Свий всички</translation>
+        <translation type="obsolete">Свий всички</translation>
     </message>
     <message>
         <source>Expand All</source>
         <translation type="obsolete">Разшири всички</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Разшири всички</translation>
+        <translation type="obsolete">Разшири всички</translation>
     </message>
 </context>
 <context>

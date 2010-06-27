@@ -83,8 +83,6 @@ public slots:
   void hideTorrentContent();
   void saveTruncatedPathHistory();
   QStringList getSavePathHistory() const;
-
-public slots:
   void updateLabelInSavePath(QString label);
 
 signals:

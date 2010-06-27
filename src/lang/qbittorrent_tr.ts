@@ -4284,11 +4284,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Tümünü daralt</translation>
+        <translation type="obsolete">Tümünü daralt</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Tümünü genişlet</translation>
+        <translation type="obsolete">Tümünü genişlet</translation>
     </message>
     <message>
         <source>General</source>
@@ -4495,7 +4495,15 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not downloaded</source>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5801,11 +5809,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Tümünü daralt</translation>
+        <translation type="obsolete">Tümünü daralt</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Tümünü genişlet</translation>
+        <translation type="obsolete">Tümünü genişlet</translation>
     </message>
     <message>
         <source>Torrent size:</source>
@@ -5832,7 +5840,15 @@ Do you want to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not downloaded</source>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

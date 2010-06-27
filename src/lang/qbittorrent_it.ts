@@ -4729,6 +4729,22 @@ QGroupBox {
         <translation>Sprecati:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Limite UP:</translation>
@@ -4773,14 +4789,12 @@ QGroupBox {
         <translation type="obsolete">Tracker corrente:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Riduci tutto</translation>
+        <translation type="obsolete">Riduci tutto</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Espandi tutto</translation>
+        <translation type="obsolete">Espandi tutto</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -4806,11 +4820,6 @@ QGroupBox {
         <location filename="../ui/propertieswidget.ui" line="915"/>
         <source>Files</source>
         <translation>File</translation>
-    </message>
-    <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
-        <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File name</source>
@@ -6484,6 +6493,16 @@ Please install it manually.</source>
         <translation>Contenuto del torrent:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Scarica nell&apos;ordine giusto (più lento ma migliore per le anteprime)</translation>
@@ -6495,7 +6514,8 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
-        <source>Not downloaded</source>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6557,18 +6577,16 @@ Please install it manually.</source>
         <translation type="unfinished">Massima</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Riduci tutto</translation>
+        <translation type="obsolete">Riduci tutto</translation>
     </message>
     <message>
         <source>Expand All</source>
         <translation type="obsolete">Espandi tutto</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Espandi tutto</translation>
+        <translation type="obsolete">Espandi tutto</translation>
     </message>
 </context>
 <context>

@@ -4968,6 +4968,22 @@ margin-left: -3px;
         <translation>낭비됨:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>업로드 제한:</translation>
@@ -5012,14 +5028,12 @@ margin-left: -3px;
         <translation type="obsolete">현재 트레커:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>모두 접기</translation>
+        <translation type="obsolete">모두 접기</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>모두 펴기</translation>
+        <translation type="obsolete">모두 펴기</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -5047,9 +5061,8 @@ margin-left: -3px;
         <translation>파일</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">다운되지 않았음</translation>
+        <translation type="obsolete">다운되지 않았음</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6736,6 +6749,16 @@ Please install it manually.</source>
         <translation>토렌트 내용:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>순차적으로 다운받기(느리지만 미리보기에 좋음)</translation>
@@ -6747,8 +6770,13 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">다운되지 않았음</translation>
+        <translation type="obsolete">다운되지 않았음</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6813,14 +6841,12 @@ Please install it manually.</source>
         <translation>최고</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>모두 접어서 간단하게 보여주기</translation>
+        <translation type="obsolete">모두 접어서 간단하게 보여주기</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>다 펼쳐서 보여주기</translation>
+        <translation type="obsolete">다 펼쳐서 보여주기</translation>
     </message>
 </context>
 <context>

@@ -4905,6 +4905,22 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <translation>Perdut:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Límit Pujada:</translation>
@@ -4949,14 +4965,12 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <translation type="obsolete">Pista actual:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Ocultar tots</translation>
+        <translation type="obsolete">Ocultar tots</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Mostrar tots</translation>
+        <translation type="obsolete">Mostrar tots</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -4984,9 +4998,8 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <translation>Arxius</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">No descarregar</translation>
+        <translation type="obsolete">No descarregar</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6715,6 +6728,16 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Contingut del torrent:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Descarregar en ordre seqüencial (més lent, però millor per a la vista prèvia)</translation>
@@ -6726,8 +6749,13 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">No descarregar</translation>
+        <translation type="obsolete">No descarregar</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6792,14 +6820,12 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Màxima</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Ocultar tot</translation>
+        <translation type="obsolete">Ocultar tot</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Mostrar tot</translation>
+        <translation type="obsolete">Mostrar tot</translation>
     </message>
 </context>
 <context>

@@ -4357,11 +4357,11 @@ QGroupBox {
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Zbaliť všetko</translation>
+        <translation type="obsolete">Zbaliť všetko</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Rozbaliť všetko</translation>
+        <translation type="obsolete">Rozbaliť všetko</translation>
     </message>
     <message>
         <source>General</source>
@@ -4565,7 +4565,19 @@ QGroupBox {
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nestiahnuté</translation>
+        <translation type="obsolete">Nestiahnuté</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5880,7 +5892,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Zbaliť všetko</translation>
+        <translation type="obsolete">Zbaliť všetko</translation>
     </message>
     <message>
         <source>Expand All</source>
@@ -5888,7 +5900,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Rozbaliť všetko</translation>
+        <translation type="obsolete">Rozbaliť všetko</translation>
     </message>
     <message>
         <source>Torrent size:</source>
@@ -5916,7 +5928,19 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nestiahnuté</translation>
+        <translation type="obsolete">Nestiahnuté</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -3286,11 +3286,11 @@ QGroupBox {
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Fäll in alla</translation>
+        <translation type="obsolete">Fäll in alla</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Fäll ut alla</translation>
+        <translation type="obsolete">Fäll ut alla</translation>
     </message>
     <message>
         <source>General</source>
@@ -3494,7 +3494,19 @@ QGroupBox {
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Inte hämtad</translation>
+        <translation type="obsolete">Inte hämtad</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4656,7 +4668,7 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Fäll in alla</translation>
+        <translation type="obsolete">Fäll in alla</translation>
     </message>
     <message>
         <source>Expand All</source>
@@ -4664,7 +4676,7 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Fäll ut alla</translation>
+        <translation type="obsolete">Fäll ut alla</translation>
     </message>
     <message>
         <source>Torrent size:</source>
@@ -4692,7 +4704,19 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Inte hämtad</translation>
+        <translation type="obsolete">Inte hämtad</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

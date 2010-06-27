@@ -3381,11 +3381,11 @@ QGroupBox {
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>全部折疊</translation>
+        <translation type="obsolete">全部折疊</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>全部展開</translation>
+        <translation type="obsolete">全部展開</translation>
     </message>
     <message>
         <source>General</source>
@@ -3593,7 +3593,19 @@ QGroupBox {
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">沒有下載</translation>
+        <translation type="obsolete">沒有下載</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4755,7 +4767,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>全部折疊</translation>
+        <translation type="obsolete">全部折疊</translation>
     </message>
     <message>
         <source>Expand All</source>
@@ -4763,7 +4775,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>全部展開</translation>
+        <translation type="obsolete">全部展開</translation>
     </message>
     <message>
         <source>Torrent size:</source>
@@ -4791,7 +4803,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">沒有下載</translation>
+        <translation type="obsolete">沒有下載</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

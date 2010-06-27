@@ -3919,6 +3919,22 @@ QGroupBox {
         <translation>Zahozeno:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Limit nahrávání:</translation>
@@ -3967,14 +3983,12 @@ QGroupBox {
         <translation type="obsolete">Aktuální tracker:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Sbalit vše</translation>
+        <translation type="obsolete">Sbalit vše</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Rozbalit vše</translation>
+        <translation type="obsolete">Rozbalit vše</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -4002,9 +4016,8 @@ QGroupBox {
         <translation>Soubory</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nestaženo</translation>
+        <translation type="obsolete">Nestaženo</translation>
     </message>
     <message>
         <source>File name</source>
@@ -5566,6 +5579,16 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Obsah torrentu:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Stahovat v sekvenčním pořadí (pomalejší, ale dobré pro náhled)</translation>
@@ -5577,8 +5600,13 @@ Nainstalujte jej prosím ručně.</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nestaženo</translation>
+        <translation type="obsolete">Nestaženo</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -5619,14 +5647,12 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Maximální</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Sbalit vše</translation>
+        <translation type="obsolete">Sbalit vše</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Rozbalit vše</translation>
+        <translation type="obsolete">Rozbalit vše</translation>
     </message>
 </context>
 <context>

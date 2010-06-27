@@ -4152,11 +4152,11 @@ QGroupBox {
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Згорнути всі</translation>
+        <translation type="obsolete">Згорнути всі</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Розгорнути всі</translation>
+        <translation type="obsolete">Розгорнути всі</translation>
     </message>
     <message>
         <source>General</source>
@@ -4360,7 +4360,19 @@ QGroupBox {
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Не завантажується</translation>
+        <translation type="obsolete">Не завантажується</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5659,11 +5671,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Згорнути всі</translation>
+        <translation type="obsolete">Згорнути всі</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Розгорнути всі</translation>
+        <translation type="obsolete">Розгорнути всі</translation>
     </message>
     <message>
         <source>Torrent size:</source>
@@ -5691,7 +5703,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Не завантажується</translation>
+        <translation type="obsolete">Не завантажується</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

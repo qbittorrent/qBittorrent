@@ -4209,11 +4209,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation type="unfinished">Alles inklappen</translation>
+        <translation type="obsolete">Alles inklappen</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation type="unfinished">Alles uitklappen</translation>
+        <translation type="obsolete">Alles uitklappen</translation>
     </message>
     <message>
         <source>General</source>
@@ -4420,7 +4420,15 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not downloaded</source>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5745,11 +5753,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Alles inklappen</translation>
+        <translation type="obsolete">Alles inklappen</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Alles uitklappen</translation>
+        <translation type="obsolete">Alles uitklappen</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
@@ -5760,7 +5768,15 @@ Do you want to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not downloaded</source>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

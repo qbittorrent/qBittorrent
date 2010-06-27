@@ -43,8 +43,8 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
   torrentContentList->setItemDelegate(PropDelegate);
   connect(torrentContentList, SIGNAL(clicked(const QModelIndex&)), torrentContentList, SLOT(edit(const QModelIndex&)));
   connect(torrentContentList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContentListMenu(const QPoint&)));
-  connect(collapseAllButton, SIGNAL(clicked()), torrentContentList, SLOT(collapseAll()));
-  connect(expandAllButton, SIGNAL(clicked()), torrentContentList, SLOT(expandAll()));
+  connect(selectAllButton, SIGNAL(clicked()), PropListModel, SLOT(selectAll()));
+  connect(selectNoneButton, SIGNAL(clicked()), PropListModel, SLOT(selectNone()));
   connect(comboLabel, SIGNAL(editTextChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
   connect(comboLabel, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
   // Remember columns width
@@ -135,9 +135,9 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
     torrentContentList->setVisible(false);
     hidden_height += torrentContentLbl->height();
     torrentContentLbl->setVisible(false);
-    hidden_height += collapseAllButton->height();
-    collapseAllButton->setVisible(false);
-    expandAllButton->setVisible(false);
+    hidden_height += selectAllButton->height();
+    selectNoneButton->setVisible(false);
+    selectAllButton->setVisible(false);
 
     // Resize main window
     setMinimumSize(0, 0);

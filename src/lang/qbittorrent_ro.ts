@@ -4242,11 +4242,11 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Închide toate</translation>
+        <translation type="obsolete">Închide toate</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Deschide toate</translation>
+        <translation type="obsolete">Deschide toate</translation>
     </message>
     <message>
         <source>General</source>
@@ -4453,7 +4453,15 @@ QGroupBox {(new line)
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not downloaded</source>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5766,11 +5774,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Închide toate</translation>
+        <translation type="obsolete">Închide toate</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Deschide toate</translation>
+        <translation type="obsolete">Deschide toate</translation>
     </message>
     <message>
         <source>Torrent size:</source>
@@ -5797,7 +5805,15 @@ Do you want to install it now?</source>
         <translation>Etichetă:</translation>
     </message>
     <message>
-        <source>Not downloaded</source>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

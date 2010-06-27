@@ -4455,11 +4455,11 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Zwiń wszystko</translation>
+        <translation type="obsolete">Zwiń wszystko</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Rozwiń wszystko</translation>
+        <translation type="obsolete">Rozwiń wszystko</translation>
     </message>
     <message>
         <source>General</source>
@@ -4667,7 +4667,19 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nie pobierany</translation>
+        <translation type="obsolete">Nie pobierany</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6023,11 +6035,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Zwiń wszystko</translation>
+        <translation type="obsolete">Zwiń wszystko</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Rozwiń wszystko</translation>
+        <translation type="obsolete">Rozwiń wszystko</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
@@ -6039,7 +6051,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nie pobierany</translation>
+        <translation type="obsolete">Nie pobierany</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -560,6 +560,21 @@ public:
     emit layoutChanged();
   }
 
+public slots:
+  void selectAll() {
+    for(int i=0; i<rootItem->childCount(); ++i) {
+      rootItem->child(i)->setPriority(NORMAL);
+    }
+    emit layoutChanged();
+  }
+
+  void selectNone() {
+    for(int i=0; i<rootItem->childCount(); ++i) {
+      rootItem->child(i)->setPriority(IGNORED);
+    }
+    emit layoutChanged();
+  }
+
 public:
 signals:
   void filteredFilesChanged();

@@ -2308,11 +2308,11 @@ QGroupBox {
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Sklopi sve</translation>
+        <translation type="obsolete">Sklopi sve</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Proširi sve</translation>
+        <translation type="obsolete">Proširi sve</translation>
     </message>
     <message>
         <source>General</source>
@@ -2448,7 +2448,19 @@ QGroupBox {
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nije preuzeto</translation>
+        <translation type="obsolete">Nije preuzeto</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3491,15 +3503,27 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Collapse all</source>
-        <translation>Sklopi sve</translation>
+        <translation type="obsolete">Sklopi sve</translation>
     </message>
     <message>
         <source>Expand all</source>
-        <translation>Proširi sve</translation>
+        <translation type="obsolete">Proširi sve</translation>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Nije preuzeto</translation>
+        <translation type="obsolete">Nije preuzeto</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

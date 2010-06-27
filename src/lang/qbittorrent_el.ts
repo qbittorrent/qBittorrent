@@ -5105,6 +5105,22 @@ QGroupBox {
         <translation>Σχόλιο:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Download in correct order (slower but good for previewing)</source>
         <translation type="obsolete">Λήψη στη σωστή σειρά (πιο αργό αλλα καλό για προεπισκόπηση)</translation>
     </message>
@@ -5113,14 +5129,12 @@ QGroupBox {
         <translation type="obsolete">Τρέχων ιχνηλάτης:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Κατάρρευση όλων</translation>
+        <translation type="obsolete">Κατάρρευση όλων</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Επέκταση όλων</translation>
+        <translation type="obsolete">Επέκταση όλων</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -5148,9 +5162,8 @@ QGroupBox {
         <translation>Αρχεία</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">Δεν έγινε download</translation>
+        <translation type="obsolete">Δεν έγινε download</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6860,6 +6873,16 @@ Please install it manually.</source>
         <translation>Περιεχόμενο torrent:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Λήψη σε συνεχόμενη σειρά (πιο αργό αλλά καλό για preview)</translation>
@@ -6871,8 +6894,13 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Δεν έγινε download</translation>
+        <translation type="obsolete">Δεν έγινε download</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6937,18 +6965,16 @@ Please install it manually.</source>
         <translation>Μέγιστο</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Κατάρρευση όλων</translation>
+        <translation type="obsolete">Κατάρρευση όλων</translation>
     </message>
     <message>
         <source>Expand All</source>
         <translation type="obsolete">Επέκταση όλων</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Επέκταση όλων</translation>
+        <translation type="obsolete">Επέκταση όλων</translation>
     </message>
 </context>
 <context>

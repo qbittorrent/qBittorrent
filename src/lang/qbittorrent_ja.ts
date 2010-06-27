@@ -3961,6 +3961,22 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation type="unfinished"></translation>
@@ -4009,16 +4025,6 @@ No further notices will be issued.</source>
         <translation type="obsolete">現在のトラッカ:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
-        <source>Collapse all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
-        <source>Expand all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
         <source>General</source>
         <translation type="unfinished">一般</translation>
@@ -4041,11 +4047,6 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/propertieswidget.ui" line="915"/>
         <source>Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
-        <source>Not downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5710,6 +5711,16 @@ Please install it manually.</source>
         <translation>Torrent の内容:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
@@ -5721,7 +5732,8 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
-        <source>Not downloaded</source>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5781,16 +5793,6 @@ Please install it manually.</source>
         <location filename="../ui/torrentadditiondlg.ui" line="327"/>
         <source>Maximum</source>
         <translation type="unfinished">最大</translation>
-    </message>
-    <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
-        <source>Collapse all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
-        <source>Expand all</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

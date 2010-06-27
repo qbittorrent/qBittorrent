@@ -4588,6 +4588,22 @@ QGroupBox {
         <translation>Hukattu:</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Lähetysraja:</translation>
@@ -4636,14 +4652,12 @@ QGroupBox {
         <translation type="obsolete">Nykyinen seurantapalvelin:</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Pienennä kaikki</translation>
+        <translation type="obsolete">Pienennä kaikki</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Laajenna kaikki</translation>
+        <translation type="obsolete">Laajenna kaikki</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -4671,9 +4685,8 @@ QGroupBox {
         <translation>Tiedostot</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">Ei ladattu</translation>
+        <translation type="obsolete">Ei ladattu</translation>
     </message>
     <message>
         <source>File name</source>
@@ -6321,6 +6334,16 @@ Asenna se itse.</translation>
         <translation>Nimike:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Lataa järjestyksessä (hitaampi, mutta mahdollistaa aikaisemman esikatselun)</translation>
@@ -6337,8 +6360,13 @@ Asenna se itse.</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation type="unfinished">Ei ladattu</translation>
+        <translation type="obsolete">Ei ladattu</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="260"/>
@@ -6409,18 +6437,16 @@ Asenna se itse.</translation>
         <translation>Korkein</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Pienennä kaikki</translation>
+        <translation type="obsolete">Pienennä kaikki</translation>
     </message>
     <message>
         <source>Expand All</source>
         <translation type="obsolete">Laajenna kaikki</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Laajenna kaikki</translation>
+        <translation type="obsolete">Laajenna kaikki</translation>
     </message>
 </context>
 <context>

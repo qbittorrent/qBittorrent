@@ -3649,6 +3649,16 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="947"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
@@ -3665,7 +3675,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="962"/>
-        <source>Not downloaded</source>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3675,16 +3686,6 @@ No further notices will be issued.</source>
     <message>
         <source>Current tracker:</source>
         <translation type="obsolete">Nåværende sporingstjener:</translation>
-    </message>
-    <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
-        <source>Collapse all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
-        <source>Expand all</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -5235,6 +5236,16 @@ Please install it manually.</source>
         <translation>Torrent innhold:</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation type="unfinished"></translation>
@@ -5261,7 +5272,8 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
-        <source>Not downloaded</source>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5306,16 +5318,6 @@ Please install it manually.</source>
     <message>
         <source>Select</source>
         <translation type="obsolete">velg</translation>
-    </message>
-    <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
-        <source>Collapse all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
-        <source>Expand all</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

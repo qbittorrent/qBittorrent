@@ -5193,6 +5193,22 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation>Gaspillé :</translation>
     </message>
     <message>
+        <location filename="../ui/propertieswidget.ui" line="787"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="794"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/propertieswidget.ui" line="962"/>
+        <location filename="../ui/propertieswidget.ui" line="965"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
         <translation>Limite envoi :</translation>
@@ -5242,14 +5258,12 @@ Comment:</source>
         <translation type="obsolete">Tracker actuel :</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Collapse all</source>
-        <translation>Tout réduire</translation>
+        <translation type="obsolete">Tout réduire</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Expand all</source>
-        <translation>Tout développer</translation>
+        <translation type="obsolete">Tout développer</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="841"/>
@@ -5277,9 +5291,8 @@ Comment:</source>
         <translation>Fichiers</translation>
     </message>
     <message>
-        <location filename="../ui/propertieswidget.ui" line="962"/>
         <source>Not downloaded</source>
-        <translation>Non téléchargé</translation>
+        <translation type="obsolete">Non téléchargé</translation>
     </message>
     <message>
         <source>File name</source>
@@ -7071,6 +7084,16 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Contenu du torrent :</translation>
     </message>
     <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
+        <source>Select None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Téléchargement séquentiel (plus lent mais facilite la prévisualisation)</translation>
@@ -7082,8 +7105,13 @@ Veuillez l&apos;installer manuellement.</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
+        <location filename="../ui/torrentadditiondlg.ui" line="335"/>
+        <source>Do not download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Not downloaded</source>
-        <translation>Non téléchargé</translation>
+        <translation type="obsolete">Non téléchargé</translation>
     </message>
     <message>
         <source>File name</source>
@@ -7148,18 +7176,16 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Maximale</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Collapse all</source>
-        <translation>Tout réduire</translation>
+        <translation type="obsolete">Tout réduire</translation>
     </message>
     <message>
         <source>Expand All</source>
         <translation type="obsolete">Tout développer</translation>
     </message>
     <message>
-        <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Expand all</source>
-        <translation>Tout développer</translation>
+        <translation type="obsolete">Tout développer</translation>
     </message>
 </context>
 <context>
