@@ -210,7 +210,10 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
     dht_item->setText(COL_MSG, tr("This torrent is private"));
   }
   // Load PeX Information
-  pex_item->setText(COL_STATUS, tr("Working"));
+  if(properties->getBTSession()->isPexEnabled())
+    pex_item->setText(COL_STATUS, tr("Working"));
+  else
+    pex_item->setText(COL_STATUS, tr("Disabled"));
   pex_item->setText(COL_PEERS, QString::number(nb_pex));
   // Load LSD Information
   if(properties->getBTSession()->isLSDEnabled())

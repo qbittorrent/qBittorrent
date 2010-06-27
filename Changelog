@@ -14,8 +14,10 @@
     - FEATURE: Search engine can now be disabled
     - FEATURE: Torrents can be automatically paused once they reach a given ratio
     - FEATURE: Several files can now be disabled at once
+    - FEATURE: Added "Select All/None" buttons to files list
     - BUGFIX: Hide seeding torrents files priorities in Web UI
     - BUGFIX: The user can disable permanently recursive torrent download
+    - BUGFIX: Peer Exchange status is now correctly reported
     - COSMETIC: Display peers country name in tooltip
     - COSMETIC: Display number of torrents in transfers tab label
     - COSMETIC: Simplified program preferences

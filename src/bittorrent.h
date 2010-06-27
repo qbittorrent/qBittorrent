@@ -118,6 +118,7 @@ public:
   bool useTemporaryFolder() const;
   QString getDefaultSavePath() const;
   ScanFoldersModel* getScanFoldersModel() const;
+  bool isPexEnabled() const;
 #if LIBTORRENT_VERSION_MINOR < 15
   void saveDHTEntry();
 #endif

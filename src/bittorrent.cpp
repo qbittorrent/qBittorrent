@@ -210,6 +210,10 @@ ScanFoldersModel* Bittorrent::getScanFoldersModel() const {
   return m_scanFolders;
 }
 
+bool Bittorrent::isPexEnabled() const {
+  return PeXEnabled;
+}
+
 void Bittorrent::processBigRatios() {
   if(ratio_limit <= 0) return;
   qDebug("Process big ratios...");
