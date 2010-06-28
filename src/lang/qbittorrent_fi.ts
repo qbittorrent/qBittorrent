@@ -189,23 +189,23 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="157"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Puoliavointen yhteyksien enimmäismäärä [0: ei käytössä]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="165"/>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiukka super seed</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="175"/>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkkoliitäntä (vaatii uudelleenkäynnistyksen)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="177"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mikä tahansa liitäntä</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="118"/>
@@ -249,12 +249,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="232"/>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan torrent %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="238"/>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Keskeytetään torrent %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="332"/>
@@ -419,7 +419,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1086"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe: torrentissa %1 ei ole tiedostoja.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1612"/>
@@ -478,7 +478,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="2220"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentin %1 tiedostokoot eivät täsmää, keskeytetään.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2229"/>
@@ -501,7 +501,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/console.ui" line="14"/>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrentin lokin katselu</translation>
     </message>
     <message>
         <location filename="../ui/console.ui" line="32"/>
@@ -519,23 +519,24 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Evästeiden hallinta</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="36"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Avain</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="41"/>
         <source>Value</source>
-        <translation type="unfinished">Arvo</translation>
+        <translation>Arvo</translation>
     </message>
     <message>
         <location filename="../cookiesdlg.cpp" line="43"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Evästeiden vakioavaimet ovat: ”%1”, ”%2”.
+Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
     </message>
 </context>
 <context>
@@ -2225,18 +2226,18 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <location filename="../GUI.cpp" line="448"/>
         <location filename="../GUI.cpp" line="577"/>
         <source>Yes</source>
-        <translation type="unfinished">Kyllä</translation>
+        <translation>Kyllä</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="449"/>
         <location filename="../GUI.cpp" line="576"/>
         <source>No</source>
-        <translation type="unfinished">Ei</translation>
+        <translation>Ei</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="450"/>
         <source>Never</source>
-        <translation type="unfinished">Ei koskaan</translation>
+        <translation>Ei koskaan</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
@@ -2251,7 +2252,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
     <message>
         <location filename="../GUI.cpp" line="573"/>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Lopetetaan qBittorrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="863"/>
@@ -2261,7 +2262,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
     <message>
         <location filename="../GUI.cpp" line="578"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Aina</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
@@ -2479,7 +2480,7 @@ Haluatko, että qBittorrent käsittelee nämä oletusarvoisesti?</translation>
     <message>
         <location filename="../GUI.cpp" line="330"/>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrot (%1)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="374"/>
@@ -2607,7 +2608,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../GUI.cpp" line="772"/>
         <source>Options were saved successfully.</source>
-        <translation>Asetukset tallennettiin.</translation>
+        <translation>Valinnat tallennettiin.</translation>
     </message>
 </context>
 <context>
@@ -2615,305 +2616,305 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     <message>
         <location filename="../geoip.h" line="114"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Austraalia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Argentiina</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Itävalta</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdistyneet Arabiemiraatit</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="120"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Brasilia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulgaaria</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Valko-Venäjä</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Bosnia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="127"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <location filename="../geoip.h" line="153"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Costa Rica</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="131"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Sveitsi</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="134"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="135"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="136"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Algeria</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="139"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="140"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Egypti</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="143"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="144"/>
         <source>France</source>
-        <translation type="unfinished">Ranska</translation>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="147"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdistynyt kuningaskunta</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="149"/>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Georgia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="152"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="154"/>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="157"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="158"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Intia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Israel</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="160"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Irlanti</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="161"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Islanti</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Indonesia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="165"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="168"/>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Etelä-Korea</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="171"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Luxemburg</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="174"/>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Malesia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Meksiko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <location filename="../geoip.h" line="194"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Serbia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="177"/>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Marokko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="180"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Alankomaat</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi-Seelanti</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="185"/>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakistani</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="188"/>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Filippiinit</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Romania</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ranska (Reunion-saari)</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="197"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Saudi-Arabia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovakia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Singapore</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="201"/>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="204"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Taiwan</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="206"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Thaimaa</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="209"/>
         <location filename="../geoip.h" line="210"/>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>USA</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="211"/>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukraina</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="214"/>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Etelä-Afrikka</translation>
     </message>
 </context>
 <context>
@@ -3335,27 +3336,27 @@ Muita varoituksia ei anneta.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="61"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Työkalut</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="78"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Näytä</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="140"/>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lisää tiedosto...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="145"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Poistu</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>V&amp;alinnat...</translation>
     </message>
     <message>
         <source>Visit Website</source>
@@ -3364,77 +3365,77 @@ Muita varoituksia ei anneta.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="155"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tietoja</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Käynnistä</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pysäytä</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Poista</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;ysäytä kaikki</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>K&amp;äynnistä kaikki</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Käy &amp;web-sivustolla</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää &amp;Url...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="195"/>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentin &amp;valmistaja</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoita &amp;virheestä</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta lähetysnopeusrajoitus...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta latausnopeusrajoitus...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="225"/>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dokumentaatio</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta yleinen latausnopeusrajoitus...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="235"/>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta yleinen lähetysnopeusrajoitus...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="244"/>
@@ -3449,48 +3450,48 @@ Muita varoituksia ei anneta.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lokin katselu...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokin katselu</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="279"/>
         <location filename="../ui/mainwindow.ui" line="282"/>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtoehtoiset nopeusrajoitukset</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="290"/>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ylätyökalupalkki</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="293"/>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä ylätyökalupalkki</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="301"/>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nopeus otsikkorivillä</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="304"/>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä nopeus otsikkorivillä</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;RSS-lukija</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hakupalvelu</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3585,17 +3586,17 @@ Muita varoituksia ei anneta.</translation>
     <message>
         <location filename="../peerlistwidget.cpp" line="131"/>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää uusi asiakas...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="139"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rajoita latausnopeus...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="140"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rajoita lähetysnopeus...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
@@ -3803,7 +3804,7 @@ Muita varoituksia ei anneta.</translation>
         <location filename="../ui/options.ui" line="381"/>
         <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei toimintoa</translation>
     </message>
     <message>
         <source>Completed:</source>
@@ -3932,151 +3933,151 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Options</source>
-        <translation type="unfinished">Asetukset</translation>
+        <translation>Valinnat</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="222"/>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulkoasu</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="342"/>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Toiminta tuplanapsautuksella</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="354"/>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladataan torrentteja:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
         <location filename="../ui/options.ui" line="397"/>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita / lopeta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="376"/>
         <location filename="../ui/options.ui" line="402"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">Avaa kohdekansio</translation>
+        <translation>Avaa kohdekansio</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="389"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valmistuneet torrentit:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="434"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Työpöytä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="443"/>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä aloituskuva käynnistettäessä</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="453"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistä qBittorrent minimoituna</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="460"/>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä qBittorrentin kuvake ilmoitusalueella</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="470"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimoi qBittorrent ilmoitusalueelle</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sulje qBittorrent ilmoitusalueelle</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="541"/>
         <source>Display torrent content and some options</source>
-        <translation>Näytä torrentin sisältö ja joitakin asetuksia</translation>
+        <translation>Näytä torrentin sisältö ja joitakin valintoja</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="551"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Älä aloita lataamista automaattisesti</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="585"/>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallenna tiedostot kohteeseen:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="634"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää torrentin nimike tallennuspolkuun</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="644"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Varaa kaikille tiedostoille levytila ennakkoon</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="660"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallenna puolivalmiit torrentit kohteeseen:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="707"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää .!qB-tarkenne puolivalmiitten tiedostojen nimiin</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="723"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää torrentit automaattisesti kohteesta:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="776"/>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää kansio...</translation>
     </message>
     <message utf8="true">
         <location filename="../ui/options.ui" line="1665"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihta asiakastietoja yhteensopivien Bittorrent-asiakkaiden (µTorrent, Vuze, ...) kanssa</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1944"/>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakosuhteen rajoitus</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1955"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Jatka torrenttien jakamista kunnes jakosuhde saavuttaa</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1987"/>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>sitten</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1998"/>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytä ne</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2003"/>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista ne</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2483"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ota web-käyttöliittymä käyttöön (etäyhteys)</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
@@ -4317,33 +4318,33 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1111"/>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-suodatus</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1409"/>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajasta vaihtoehtoisten nopeusrajoitusten käyttö</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1423"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>alkaen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1488"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Koska:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1678"/>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Etsi asiakkaita paikallisverkostasi</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1693"/>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokollan salaus:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1737"/>
@@ -4590,18 +4591,18 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse kaikki</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista valinnat</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="962"/>
         <location filename="../ui/propertieswidget.ui" line="965"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä lataa</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
@@ -4626,12 +4627,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="313"/>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Julkaise uudelleen:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="338"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakota uudelleenjulkaisu</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="363"/>
@@ -4876,22 +4877,22 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="95"/>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetukset...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="284"/>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-lataaja...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="293"/>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi kansio...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="302"/>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Evästeiden hallinta...</translation>
     </message>
     <message>
         <source>1</source>
@@ -4905,7 +4906,7 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="200"/>
         <source>Rename...</source>
-        <translation type="unfinished">Nimeä uudelleen...</translation>
+        <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="212"/>
@@ -4947,7 +4948,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="224"/>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi tilaus...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="233"/>
@@ -5180,22 +5181,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rsssettings.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-lukijan asetukset</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS-syötteen päivitystiheys:</translation>
+        <translation>RSS-syötteen päivitystiheys:</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="70"/>
         <source>minutes</source>
-        <translation type="unfinished">minuuttia</translation>
+        <translation>minuuttia</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Artikkeleiden enimmäismäärä syötettä kohden:</translation>
+        <translation>Artikkeleiden enimmäismäärä syötettä kohden:</translation>
     </message>
 </context>
 <context>
@@ -5385,12 +5386,12 @@ Muutoshistoria:
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vahvistus</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko varmasti poistaa historiatiedot?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="277"/>
@@ -5685,17 +5686,17 @@ Asenna se itse.</translation>
     <message>
         <location filename="../trackerlist.cpp" line="351"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää uusi seurantapalvelin...</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="354"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista seurantapalvelin</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="357"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakota uudelleenjulkaisu</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
@@ -5827,7 +5828,7 @@ Asenna se itse.</translation>
         <location filename="../transferlistfilterswidget.h" line="204"/>
         <location filename="../transferlistfilterswidget.h" line="286"/>
         <source>Paused</source>
-        <translation type="unfinished">Pysäytetty</translation>
+        <translation>Pysäytetty</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="207"/>
@@ -5861,7 +5862,7 @@ Asenna se itse.</translation>
     <message>
         <location filename="../transferlistfilterswidget.h" line="316"/>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää nimike...</translation>
     </message>
     <message>
         <source>Add label</source>
@@ -6062,17 +6063,17 @@ Asenna se itse.</translation>
         <location filename="../transferlistwidget.cpp" line="626"/>
         <location filename="../transferlistwidget.cpp" line="628"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Valitse tallennuskansio</translation>
+        <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="815"/>
@@ -6117,17 +6118,17 @@ Asenna se itse.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1036"/>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Esikatsele...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1038"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rajoita lähetysnopeus...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1040"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rajoita latausnopeus...</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -6145,7 +6146,7 @@ Asenna se itse.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta kohde...</translation>
     </message>
     <message>
         <source>Buy it</source>
@@ -6347,12 +6348,12 @@ Asenna se itse.</translation>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse kaikki</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista valinnat</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
@@ -6373,7 +6374,7 @@ Asenna se itse.</translation>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
         <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä lataa</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -6677,12 +6678,12 @@ Asenna se itse.</translation>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="70"/>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Muista valinta</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="101"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista tiedostot myös kovalevyltä</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
@@ -7516,13 +7517,13 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <location filename="../misc.cpp" line="570"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 h %2 min</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="575"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 d %2 h</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="409"/>
