@@ -380,16 +380,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="960"/>
-        <location filename="../bittorrent.cpp" line="1260"/>
-        <location filename="../bittorrent.cpp" line="1265"/>
+        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1267"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Torrentin &quot;%1” latausta jatkettiin. (nopea palautuminen)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="962"/>
-        <location filename="../bittorrent.cpp" line="1262"/>
-        <location filename="../bittorrent.cpp" line="1267"/>
+        <location filename="../bittorrent.cpp" line="1264"/>
+        <location filename="../bittorrent.cpp" line="1269"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>”%1” lisättiin latauslistalle.</translation>
@@ -422,26 +422,26 @@ p, li { white-space: pre-wrap; }
         <translation>Virhe: torrentissa %1 ei ole tiedostoja.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1612"/>
+        <location filename="../bittorrent.cpp" line="1614"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;i&gt;IP-suodatin on estänyt osoitteen&lt;/i&gt; &lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1614"/>
+        <location filename="../bittorrent.cpp" line="1616"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;on estetty korruptuneiden osien takia&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1926"/>
+        <location filename="../bittorrent.cpp" line="1928"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiivinen tiedoston %1 lataus torrentissa %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1936"/>
-        <location filename="../bittorrent.cpp" line="1986"/>
+        <location filename="../bittorrent.cpp" line="1938"/>
+        <location filename="../bittorrent.cpp" line="1988"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Torrent-tiedostoa %1 ei voitu tulkita.</translation>
     </message>
@@ -450,43 +450,43 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Minkään annetun portin käyttäminen ei onnistunut.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2193"/>
+        <location filename="../bittorrent.cpp" line="2195"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: portin määritys epäonnistui virhe: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2198"/>
+        <location filename="../bittorrent.cpp" line="2200"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PP: portin määritys onnistui, viesti: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2223"/>
+        <location filename="../bittorrent.cpp" line="2225"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Nopean jatkamisen tiedot eivät kelpaa torrentille %1. Tarkistetaan uudestaan...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2107"/>
-        <location filename="../bittorrent.cpp" line="2224"/>
+        <location filename="../bittorrent.cpp" line="2109"/>
+        <location filename="../bittorrent.cpp" line="2226"/>
         <source>Reason: %1</source>
         <translation>Syy: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2106"/>
+        <location filename="../bittorrent.cpp" line="2108"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Tapahtui I/O-virhe, ”%1” pysäytettiin.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2220"/>
+        <location filename="../bittorrent.cpp" line="2222"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Torrentin %1 tiedostokoot eivät täsmää, keskeytetään.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2229"/>
+        <location filename="../bittorrent.cpp" line="2231"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Jakajien haku osoitteesta %1 epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2355"/>
+        <location filename="../bittorrent.cpp" line="2357"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Ladataan torrenttia ”%1”. Odota...</translation>

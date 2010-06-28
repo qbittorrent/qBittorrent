@@ -1176,8 +1176,10 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   if(!resumed) {
     // Sequential download
     if(TorrentTempData::hasTempData(hash)) {
-      qDebug("addTorrent: Setting download as sequential (from tmp data)");
+      qDebug("Setting torrent priorities (from temp data)");
+      qDebug("Torrent paused state: %d", (int)h.is_paused());
       h.prioritize_files(TorrentTempData::getFilesPriority(hash));
+      qDebug("addTorrent: Setting download as sequential (from tmp data)");
       h.set_sequential_download(TorrentTempData::isSequential(hash));
       // Import Files names from torrent addition dialog
       const QStringList &files_path = TorrentTempData::getFilesPath(hash);

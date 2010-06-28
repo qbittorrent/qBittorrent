@@ -185,23 +185,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../advancedsettings.h" line="157"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximální počet napůl otevřených spojení [0: Vypnuto]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="165"/>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Striktní super seeding</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="175"/>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Síťové rozhraní (vyžaduje restart)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="177"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Jakékoli rozhraní</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="118"/>
@@ -245,12 +245,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="232"/>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstraňování torrentu %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="238"/>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozastavování torrentu %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="332"/>
@@ -376,16 +376,16 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="960"/>
-        <location filename="../bittorrent.cpp" line="1260"/>
-        <location filename="../bittorrent.cpp" line="1265"/>
+        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1267"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="962"/>
-        <location filename="../bittorrent.cpp" line="1262"/>
-        <location filename="../bittorrent.cpp" line="1267"/>
+        <location filename="../bittorrent.cpp" line="1264"/>
+        <location filename="../bittorrent.cpp" line="1269"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; přidán do seznamu stahování.</translation>
@@ -415,29 +415,29 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1086"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba: Torrent %1 neobsahuje žádný soubor.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1612"/>
+        <location filename="../bittorrent.cpp" line="1614"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1614"/>
+        <location filename="../bittorrent.cpp" line="1616"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1926"/>
+        <location filename="../bittorrent.cpp" line="1928"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1936"/>
-        <location filename="../bittorrent.cpp" line="1986"/>
+        <location filename="../bittorrent.cpp" line="1938"/>
+        <location filename="../bittorrent.cpp" line="1988"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nelze dekódovat soubor torrentu %1.</translation>
     </message>
@@ -446,43 +446,43 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nelze naslouchat na žádném z udaných portů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2193"/>
+        <location filename="../bittorrent.cpp" line="2195"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2198"/>
+        <location filename="../bittorrent.cpp" line="2200"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2223"/>
+        <location filename="../bittorrent.cpp" line="2225"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2107"/>
-        <location filename="../bittorrent.cpp" line="2224"/>
+        <location filename="../bittorrent.cpp" line="2109"/>
+        <location filename="../bittorrent.cpp" line="2226"/>
         <source>Reason: %1</source>
         <translation>Důvod: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2106"/>
+        <location filename="../bittorrent.cpp" line="2108"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Došlo k chybě I/O, &apos;%1&apos; je pozastaven.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2220"/>
+        <location filename="../bittorrent.cpp" line="2222"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesouhlasí velikost souborů u torrentu %1, pozastaveno.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2229"/>
+        <location filename="../bittorrent.cpp" line="2231"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2355"/>
+        <location filename="../bittorrent.cpp" line="2357"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
@@ -497,7 +497,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/console.ui" line="14"/>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohlížeč záznamů qBittorrentu</translation>
     </message>
     <message>
         <location filename="../ui/console.ui" line="32"/>
@@ -515,23 +515,24 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Správa cookies</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="36"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Klíč</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="41"/>
         <source>Value</source>
-        <translation type="unfinished">Hodnota</translation>
+        <translation>Hodnota</translation>
     </message>
     <message>
         <location filename="../cookiesdlg.cpp" line="43"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Obvyklé klíče pro cookie jsou : &apos;%1&apos;, &apos;%2&apos;.
+Tyto informace by měly jít získat z nastavení webového prohlížeče.</translation>
     </message>
 </context>
 <context>
@@ -1603,7 +1604,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../GUI.cpp" line="330"/>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Přenosy (%1)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="383"/>
@@ -1631,18 +1632,18 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../GUI.cpp" line="448"/>
         <location filename="../GUI.cpp" line="577"/>
         <source>Yes</source>
-        <translation type="unfinished">Ano</translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="449"/>
         <location filename="../GUI.cpp" line="576"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="450"/>
         <source>Never</source>
-        <translation type="unfinished">Nikdy</translation>
+        <translation>Nikdy</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
@@ -1657,12 +1658,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../GUI.cpp" line="573"/>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukončování qBittorrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="578"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy</translation>
     </message>
     <message>
         <source>&amp;No</source>
@@ -2030,305 +2031,305 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../geoip.h" line="114"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Austrálie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Argentina</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Rakousko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Spojené arabské emiráty</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="120"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Brazílie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulharsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Bělorusko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Bosna</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="127"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Česká republika</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <location filename="../geoip.h" line="153"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Čína</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Kostarika</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="131"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Švýcarsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="134"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Německo</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="135"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Dánsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="136"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Alžírsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="139"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Španělsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="140"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Egypt</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="143"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Finsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="144"/>
         <source>France</source>
-        <translation type="unfinished">Francie</translation>
+        <translation>Francie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="147"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Spojené království</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Řecko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="149"/>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruzie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="152"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Maďarsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="154"/>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Chorvatsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="157"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Itálie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="158"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Indie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Izrael</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="160"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Irsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="161"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Island</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Indonésie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="165"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Japonsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="168"/>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Jižní Korea</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="171"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Lucembursko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="174"/>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Malajsie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Mexiko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <location filename="../geoip.h" line="194"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Srbsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="177"/>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Maroko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="180"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Nizozemí</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Norsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový Zéland</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="185"/>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugalsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Polsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Pákistán</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="188"/>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Filipíny</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Rusko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Rumunsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>Francie (Réunion)</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="197"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Saúdská Arábie</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Švédsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovensko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Singapur</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="201"/>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovinsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="204"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Taiwan</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Turecko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="206"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Thajsko</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="209"/>
         <location filename="../geoip.h" line="210"/>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>USA</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="211"/>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukrajina</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="214"/>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Jihoafrická republika</translation>
     </message>
 </context>
 <context>
@@ -2558,7 +2559,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="61"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nástroje</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="70"/>
@@ -2585,22 +2586,22 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="78"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>Po&amp;hled</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="140"/>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>Při&amp;dat soubor...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="145"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>U&amp;končit</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Možnosti...</translation>
     </message>
     <message>
         <source>About</source>
@@ -2633,87 +2634,87 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="155"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>O &amp;aplikaci</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Spust&amp;it</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Po&amp;zastavit</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Smaza&amp;t</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozastavit vš&amp;e</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit &amp;vše</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Navštívit &amp;webovou stránku</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat &amp;URL...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="195"/>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvůr&amp;ce torrentu</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahlásit chybu</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit limit nahrávání...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit limit stahování...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="225"/>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentace</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit celkový limit stahování...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="235"/>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit celkový limit nahrávání...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohlížeč záznamů...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohlížeč záznamů</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -2723,17 +2724,17 @@ Další upozornění již nebudou zobrazena.</translation>
         <location filename="../ui/mainwindow.ui" line="279"/>
         <location filename="../ui/mainwindow.ui" line="282"/>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativní limity rychlosti</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanály</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhledávač</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -2746,22 +2747,22 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="290"/>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Horní panel nástrojů</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="293"/>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit horní panel nástrojů</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="301"/>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>R&amp;ychlost v záhlaví okna</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="304"/>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit aktuální rychlost v záhlaví okna</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -2924,17 +2925,17 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../peerlistwidget.cpp" line="131"/>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat nový protějšek...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="139"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost stahování...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="140"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost nahrávání...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
@@ -3142,7 +3143,7 @@ Další upozornění již nebudou zobrazena.</translation>
         <location filename="../ui/options.ui" line="381"/>
         <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádná činnost</translation>
     </message>
     <message>
         <source>Completed:</source>
@@ -3271,70 +3272,70 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Options</source>
-        <translation type="unfinished">Možnosti</translation>
+        <translation>Možnosti</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="222"/>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzhled</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="342"/>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Akce po dvojitém kliknutí</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="354"/>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahování torrentů:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
         <location filename="../ui/options.ui" line="397"/>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Start / Stop</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="376"/>
         <location filename="../ui/options.ui" line="402"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">Otevřít cílový adresář</translation>
+        <translation>Otevřít cílový adresář</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="389"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončené torrenty:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="434"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Plocha</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="443"/>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Při startu zobrazovat úvodní obrazovku</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="453"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit qBittorrent minimalizovaný</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="460"/>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazovat ikonu qBittorrent v oznamovací oblasti (tray)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="470"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizovat qBittorrent do oznamovací oblasti (tray)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zavírat qBittorrent do oznamovací oblasti (tray)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="541"/>
@@ -3345,77 +3346,77 @@ QGroupBox {
         <location filename="../ui/options.ui" line="551"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nespouštět stahování automaticky</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="585"/>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukládat soubory do umístění:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="634"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojit štítek torrentu do cesty pro uložení</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="644"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Dopředu přidělit místo všem souborům</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="660"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uchovat neúplné torrenty v:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="707"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojit příponu .!qB k nedokončeným souborům</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="723"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky přidávat .torrent soubory z:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="776"/>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat adresář ...</translation>
     </message>
     <message utf8="true">
         <location filename="../ui/options.ui" line="1665"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyměňovat protějšky s kompatibilními klienty Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1944"/>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezení poměru sdílení</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1955"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Sdílet torrenty dokud poměr sdílení nedosáhne</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1987"/>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>potom</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1998"/>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozastavit je</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2003"/>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit je</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2483"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnout webové rozhraní (dálkové ovládání)</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
@@ -3656,33 +3657,33 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1111"/>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrování IP</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1409"/>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Načasovat použití alternativních limitů rychlosti</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1423"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>od</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1488"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kdy:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1678"/>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledat protějšky na lokální síti</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1693"/>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Šifrování protokolu:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1737"/>
@@ -3921,18 +3922,18 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat vše</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit výběr</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="962"/>
         <location filename="../ui/propertieswidget.ui" line="965"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Nestahovat</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
@@ -3957,12 +3958,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="313"/>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu-oznámit za:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="338"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynutit znovu-oznámení</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="363"/>
@@ -4211,22 +4212,22 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="95"/>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="284"/>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahování z RSS kanálů...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="293"/>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový adresář...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="302"/>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení cookies...</translation>
     </message>
     <message>
         <source>1</source>
@@ -4240,7 +4241,7 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="200"/>
         <source>Rename...</source>
-        <translation type="unfinished">Přejmenovat...</translation>
+        <translation>Přejmenovat...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="212"/>
@@ -4282,7 +4283,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="224"/>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové přihlášení k odběru...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="233"/>
@@ -4511,22 +4512,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rsssettings.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení RSS čtečky</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">Interval obnovování RSS kanálů:</translation>
+        <translation>Interval obnovování RSS kanálů:</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="70"/>
         <source>minutes</source>
-        <translation type="unfinished">minut</translation>
+        <translation>minut</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Maximální počet článků na kanál:</translation>
+        <translation>Maximální počet článků na kanál:</translation>
     </message>
 </context>
 <context>
@@ -4637,12 +4638,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrzení</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jist, že chcete smazat historii?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="277"/>
@@ -4958,17 +4959,17 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../trackerlist.cpp" line="351"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat nový tracker...</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="354"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit tracker</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="357"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynutit znovu-oznámení</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
@@ -5100,7 +5101,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../transferlistfilterswidget.h" line="204"/>
         <location filename="../transferlistfilterswidget.h" line="286"/>
         <source>Paused</source>
-        <translation type="unfinished">Pozastaveno</translation>
+        <translation>Pozastaveno</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="207"/>
@@ -5134,7 +5135,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistfilterswidget.h" line="316"/>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat štítek...</translation>
     </message>
     <message>
         <source>Add label</source>
@@ -5335,17 +5336,17 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../transferlistwidget.cpp" line="626"/>
         <location filename="../transferlistwidget.cpp" line="628"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Vyberte cestu pro uložení</translation>
+        <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Chyba při vytváření cesty pro uložení</translation>
+        <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nemohu vytvořit cestu pro uložení</translation>
+        <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="815"/>
@@ -5390,17 +5391,17 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1036"/>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled souboru...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1038"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost nahrávání...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1040"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit rychlost stahování...</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -5418,7 +5419,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit umístění...</translation>
     </message>
     <message>
         <source>Buy it</source>
@@ -5592,12 +5593,12 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat vše</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit výběr</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
@@ -5613,7 +5614,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
         <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Nestahovat</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -5883,12 +5884,12 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="70"/>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapamatovat volbu</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="101"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat soubory také z pevného disku</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
@@ -6622,13 +6623,13 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <location filename="../misc.cpp" line="570"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="575"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1d %2h</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="409"/>
