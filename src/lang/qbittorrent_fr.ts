@@ -3816,7 +3816,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
         <source>S&amp;tart All</source>
-        <translation>Tout déma&amp;rrrer</translation>
+        <translation>Tout déma&amp;rrer</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>

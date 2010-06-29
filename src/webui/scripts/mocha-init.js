@@ -41,7 +41,7 @@ initializeWindows = function(){
 		new Event(e).stop();
 		new MochaUI.Window({
 			id: 'preferencesPage',
-			title: "_(Preferences)",
+			title: "_(Options)",
 			loadMethod: 'xhr',
 			toolbar: true,
 			contentURL: 'preferences_content.html',

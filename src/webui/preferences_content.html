@@ -32,7 +32,7 @@
   </div>
 </fieldset>
 <fieldset>
-  <legend><b>_(Global bandwidth limiting)</b></legend>
+  <legend><b>_(Global speed limits)</b></legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -98,15 +98,15 @@
   <div style="padding-left: 30px;">
   <table>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;">_(Destination Folder:)</td><td><input type="text" id="savepath_text"/></td>
+  <td style="vertical-align: bottom; text-align: right;">_(Save files to location:)</td><td><input type="text" id="savepath_text"/></td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();"/></td><td>_(Use a different folder for incomplete downloads:)</td>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();"/></td><td>_(Keep incomplete torrents in:)</td>
   </tr>
   <tr>
   <td style="vertical-align: bottom; text-align: right;"></td><td><input type="text" id="temppath_text"/></td>
   </tr>
-  <tr><td colspan="2">_(Check Folders for .torrent Files:)</td></tr>
+  <tr><td colspan="2">_(Automatically add torrents from:)</td></tr>
   <tr>
   <td></td>
   <td>
@@ -127,7 +127,7 @@
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="appendext_checkbox"/></td><td>_(Append .!qB extension to incomplete files)</td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="preallocateall_checkbox"/></td><td>_(Pre-allocate all files)</td>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="preallocateall_checkbox"/></td><td>_(Pre-allocate disk space for all files)</td>
   </tr>
   </table>
   </div>
@@ -137,7 +137,7 @@
   <div style="padding-left: 30px;">
   <table>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="queueing_checkbox" onclick="updateQueuingSystem();"/></td><td>_(Enable queueing system)</td>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="queueing_checkbox" onclick="updateQueuingSystem();"/></td><td>_(Torrent queueing)</td>
   </tr>
   <tr>
   <td style="vertical-align: bottom; text-align: right;">_(Maximum active downloads:)</td><td><input type="text" id="max_active_dl_value" style="width: 4em;"/></td>
@@ -154,9 +154,9 @@
 </div>
 
 <div id="FilterTab" class="PrefTab invisible">
-  <legend><b>_(Filter Settings)</b></legend>
+  <legend><b>_(IP Filtering)</b></legend>
   <div style="padding-left: 30px;">
-  <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/> _(Activate IP Filtering)
+  <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/> _(IP Filtering)
   <table>
   <tr>
   <td style="vertical-align: bottom;">_(Filter path (.dat, .p2p, .p2b):)</td><td><input type="text" id="ipfilter_text"/></td>
@@ -206,7 +206,7 @@
 
 <div id="WebUITab" class="PrefTab invisible">
 <fieldset>
-  <legend><b>_(User interface)</b></legend>
+  <legend><b>_(Visual Appearance)</b></legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
