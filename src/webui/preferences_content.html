@@ -110,10 +110,10 @@
   <tr>
   <td></td>
   <td>
-    <table style="border: 1px solid black; text-align: center" id="watched_folders_tab">
-    <thead><tr style="border: 1px solid black;"><th>_(Watched Folder)</th><th>_(Download here)</th></tr></thead>
+    <table style="text-align: center" border="1" id="watched_folders_tab">
+    <thead><tr><th>_(Watched Folder)</th><th>_(Download here)</th></tr></thead>
     <tbody></tbody>
-    <tfoot><tr style="border: 1px solid black;"><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="images/oxygen/list-add.png" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="javascript:addWatchFolder();"/></td></tr></tfoot>
+    <tfoot><tr><td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt"/></td><td style="padding-top:4px;"><input type="checkbox" id="new_watch_folder_dl" style="padding-left:18px;"/><img src="images/oxygen/list-add.png" alt="Add" style="padding-left:2px;width:16px;cursor:pointer;margin-right:-18px;" onclick="javascript:addWatchFolder();"/></td></tr></tfoot>
     </table>
   </td>
   </tr>
@@ -711,10 +711,12 @@ updatePeerProxyAuthSettings = function() {
 
 getWatchedFolders = function() {
   var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+  alert(nb_folders);
   var folders = Array();
   var download_in_place = Array();
   for(var i=0; i<nb_folders; i+=1) {
     var folder_path = $('text_watch_'+i).get('value').trim();
+    alert(folder_path);
     if(folder_path.length > 0) {
       folders[folders.length] = folder_path;
       if($defined($("cb_watch_"+i).get('checked')) && $("cb_watch_"+i).get('checked')) {

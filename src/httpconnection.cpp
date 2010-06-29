@@ -150,7 +150,7 @@ void HttpConnection::respond() {
     write();
     return;
   }
-  qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
+  //qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
   if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0 || !parent->isAuthorized(auth.toLocal8Bit(), parser.method())) {
     // Update failed attempt counter
     parent->increaseNbFailedAttemptsForIp(peer_ip);

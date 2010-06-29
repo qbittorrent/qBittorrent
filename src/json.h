@@ -109,6 +109,7 @@ namespace json {
   }
 
   QVariantMap fromJson(QString json) {
+    qDebug("JSON is %s", qPrintable(json));
     QVariantMap m;
     if(json.startsWith("{") && json.endsWith("}")) {
       json.chop(1);
@@ -144,7 +145,7 @@ namespace json {
         if(value_str.startsWith("[") && value_str.endsWith("]")) {
           value_str.chop(1);
           value_str.replace(0, 1, "");
-          QStringList list_elems = value_str.split(",");
+          QStringList list_elems = value_str.split(",", QString::SkipEmptyParts);
           QVariantList varlist;
           foreach(QString list_val, list_elems) {
             if(list_val.startsWith("\"") && list_val.endsWith("\"")) {

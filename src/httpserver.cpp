@@ -177,12 +177,12 @@ void HttpServer::setAuthorization(QString _username, QString _password_ha1) {
 // Parse HTTP AUTH string
 // http://tools.ietf.org/html/rfc2617
 bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
-  qDebug("AUTH string is %s", auth.data());
+  //qDebug("AUTH string is %s", auth.data());
   // Get user name
   QRegExp regex_user(".*username=\"([^\"]+)\".*"); // Must be a quoted string
   if(regex_user.indexIn(auth) < 0) return false;
   QString prop_user = regex_user.cap(1);
-  qDebug("AUTH: Proposed username is %s, real username is %s", prop_user.toLocal8Bit().data(), username.data());
+  //qDebug("AUTH: Proposed username is %s, real username is %s", prop_user.toLocal8Bit().data(), username.data());
   if(prop_user != username) {
     // User name is invalid, we can reject already
     qDebug("AUTH-PROB: Username is invalid");

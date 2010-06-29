@@ -152,6 +152,7 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
       }
       int i = 0;
       foreach(const QString &new_folder, new_folders) {
+        qDebug("New watched folder: %s", qPrintable(new_folder));
         // Update new folders
         if(!old_folders.contains(new_folder)) {
           BTSession->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
