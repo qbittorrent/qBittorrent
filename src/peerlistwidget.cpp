@@ -42,6 +42,7 @@
 #include <QSettings>
 #include <QHeaderView>
 #include <QMenu>
+#include <QClipboard>
 #include <vector>
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), display_flags(false) {
@@ -135,9 +136,13 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   QAction *upLimitAct = 0;
   QAction *dlLimitAct = 0;
   QAction *banAct = 0;
+  QAction *copyIPAct = 0;
   if(!selectedPeerIPs.isEmpty()) {
+    copyIPAct = menu.addAction(QIcon(":/Icons/oxygen/edit-copy.png"), tr("Copy IP"));
+    menu.addSeparator();
     dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate..."));
     upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate..."));
+    menu.addSeparator();
     banAct = menu.addAction(QIcon(":/Icons/oxygen/user-group-delete.png"), tr("Ban peer permanently"));
     empty_menu = false;
   }
@@ -169,6 +174,13 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   if(act == banAct) {
     banSelectedPeers(selectedPeerIPs);
     return;
+  }
+  if(act == copyIPAct) {
+#ifdef Q_WS_WIN
+    QApplication::clipboard()->setText(selectedPeerIPs.join("\r\n"));
+#else
+    QApplication::clipboard()->setText(selectedPeerIPs.join("\n"));
+#endif
   }
 }
 

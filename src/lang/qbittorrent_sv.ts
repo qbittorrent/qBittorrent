@@ -2515,6 +2515,10 @@ Detta meddelande kommer inte att visas igen.</translation>
         <source>Limit upload rate...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy IP</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>

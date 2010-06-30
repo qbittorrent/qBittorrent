@@ -1222,33 +1222,33 @@ You should get this information from your Web browser preferences.</source>
         <translation>Ikke kontaktet endnu</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="336"/>
         <location filename="../eventmanager.cpp" line="337"/>
+        <location filename="../eventmanager.cpp" line="338"/>
         <source>this session</source>
         <translation>denne session</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="341"/>
-        <location filename="../eventmanager.cpp" line="345"/>
+        <location filename="../eventmanager.cpp" line="342"/>
+        <location filename="../eventmanager.cpp" line="346"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="348"/>
+        <location filename="../eventmanager.cpp" line="349"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Seeded i %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="351"/>
+        <location filename="../eventmanager.cpp" line="352"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="430"/>
-        <location filename="../eventmanager.cpp" line="439"/>
+        <location filename="../eventmanager.cpp" line="431"/>
+        <location filename="../eventmanager.cpp" line="440"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation></translation>
@@ -2429,18 +2429,18 @@ Er du sikker på at du vil afslutte qBittorrent?</translation>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../httpconnection.cpp" line="138"/>
+        <location filename="../httpconnection.cpp" line="140"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="316"/>
+        <location filename="../httpconnection.cpp" line="318"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../httpconnection.cpp" line="317"/>
+        <location filename="../httpconnection.cpp" line="319"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
@@ -2982,42 +2982,42 @@ No further notices will be issued.</source>
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../peerlistwidget.cpp" line="55"/>
+        <location filename="../peerlistwidget.cpp" line="56"/>
         <source>IP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="56"/>
+        <location filename="../peerlistwidget.cpp" line="57"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>Klient</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="57"/>
+        <location filename="../peerlistwidget.cpp" line="58"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Fremgang</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="58"/>
+        <location filename="../peerlistwidget.cpp" line="59"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Down hastighed</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="59"/>
+        <location filename="../peerlistwidget.cpp" line="60"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Up hastighed</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="60"/>
+        <location filename="../peerlistwidget.cpp" line="61"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="61"/>
+        <location filename="../peerlistwidget.cpp" line="62"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation></translation>
@@ -3035,73 +3035,78 @@ No further notices will be issued.</source>
         <translation type="obsolete">Begræns download</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="131"/>
+        <location filename="../peerlistwidget.cpp" line="132"/>
         <source>Add a new peer...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="139"/>
+        <location filename="../peerlistwidget.cpp" line="141"/>
+        <source>Copy IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../peerlistwidget.cpp" line="143"/>
         <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="140"/>
+        <location filename="../peerlistwidget.cpp" line="144"/>
         <source>Limit upload rate...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="141"/>
+        <location filename="../peerlistwidget.cpp" line="146"/>
         <source>Ban peer permanently</source>
         <translation>Bandlys peer permanent</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="152"/>
-        <location filename="../peerlistwidget.cpp" line="154"/>
+        <location filename="../peerlistwidget.cpp" line="157"/>
+        <location filename="../peerlistwidget.cpp" line="159"/>
         <source>Peer addition</source>
         <translation>Tilføjelse af peer</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="152"/>
+        <location filename="../peerlistwidget.cpp" line="157"/>
         <source>The peer was added to this torrent.</source>
         <translation>Peer tilfæjet til denne torrent.</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="154"/>
+        <location filename="../peerlistwidget.cpp" line="159"/>
         <source>The peer could not be added to this torrent.</source>
         <translation>Peer kunne ikke tilføjes til denne torrent.</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="177"/>
+        <location filename="../peerlistwidget.cpp" line="189"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Er du sikker? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="177"/>
+        <location filename="../peerlistwidget.cpp" line="189"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Er du sikker på at du vil bandlyse de valgte peers permanent?</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="178"/>
+        <location filename="../peerlistwidget.cpp" line="190"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="178"/>
+        <location filename="../peerlistwidget.cpp" line="190"/>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="183"/>
+        <location filename="../peerlistwidget.cpp" line="195"/>
         <source>Manually banning peer %1...</source>
         <translation>Banlyser peer %1 manuelt...</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="194"/>
+        <location filename="../peerlistwidget.cpp" line="206"/>
         <source>Upload rate limiting</source>
         <translation>Upload begrænsning</translation>
     </message>
     <message>
-        <location filename="../peerlistwidget.cpp" line="215"/>
+        <location filename="../peerlistwidget.cpp" line="227"/>
         <source>Download rate limiting</source>
         <translation>Download begræsning</translation>
     </message>

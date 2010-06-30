@@ -3591,6 +3591,10 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <source>Limit upload rate...</source>
         <translation>Obmedziť rýchlosť nahrávania...</translation>
     </message>
+    <message>
+        <source>Copy IP</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
