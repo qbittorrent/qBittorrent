@@ -176,7 +176,7 @@ void PeerListWidget::showPeerListMenu(QPoint) {
     return;
   }
   if(act == copyIPAct) {
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     QApplication::clipboard()->setText(selectedPeerIPs.join("\r\n"));
 #else
     QApplication::clipboard()->setText(selectedPeerIPs.join("\n"));
