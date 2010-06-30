@@ -4183,7 +4183,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
         <source>Copy IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier adresse IP</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="143"/>
