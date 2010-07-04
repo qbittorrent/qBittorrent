@@ -165,20 +165,20 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Número máximo de conexões abertas [0:desabilitada]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Super semeador</translation>
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface de rede (requer reinício)</translation>
     </message>
     <message>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Qualquer interface</translation>
     </message>
 </context>
 <context>
@@ -384,19 +384,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Removendo torrent %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausando torrent %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: O torrent %1 não contém nenhum arquivo.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>O tamanho do arquivo para o torrent %1 está incorreto, pausando.</translation>
     </message>
 </context>
 <context>
@@ -415,27 +415,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador de log do qBittorrent</translation>
     </message>
 </context>
 <context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestão de cookies</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Chave</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation>Valor</translation>
     </message>
     <message>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaves comuns para cookies são: &apos;%1&apos;, &apos;%2&apos;.
+Você deve buscar essa informação nas preferências do seu navegador.</translation>
     </message>
 </context>
 <context>
@@ -2605,270 +2606,270 @@ Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</t
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Transferências (%1)</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation>Sim</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">Não</translation>
+        <translation>Não</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Nunca</translation>
+        <translation>Nunca</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Sempre</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Saindo do qBittorrent</translation>
     </message>
 </context>
 <context>
     <name>GeoIP</name>
     <message>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Austrália</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Argentina</translation>
     </message>
     <message>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Áustria</translation>
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Emirados Árabes Unidos</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Brasil</translation>
     </message>
     <message>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulgária</translation>
     </message>
     <message>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Belarus</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Bélgica</translation>
     </message>
     <message>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Bósnia</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Canadá</translation>
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>República Tcheca</translation>
     </message>
     <message>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>China</translation>
     </message>
     <message>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Costa Rica</translation>
     </message>
     <message>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Suíça</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Alemanha</translation>
     </message>
     <message>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Dinamarca</translation>
     </message>
     <message>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Argélia</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Espanha</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Egito</translation>
     </message>
     <message>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Finlândia</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished">França</translation>
+        <translation>França</translation>
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Reino Unido</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Grécia</translation>
     </message>
     <message>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Geórgia</translation>
     </message>
     <message>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Hungria</translation>
     </message>
     <message>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Croácia</translation>
     </message>
     <message>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Itália</translation>
     </message>
     <message>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Índia</translation>
     </message>
     <message>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Israel</translation>
     </message>
     <message>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Irlanda</translation>
     </message>
     <message>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Islândia</translation>
     </message>
     <message>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Indonésia</translation>
     </message>
     <message>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Japão</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Coréia do Sul</translation>
     </message>
     <message>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Luxemburgo</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Malásia</translation>
     </message>
     <message>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>México</translation>
     </message>
     <message>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Sérvia</translation>
     </message>
     <message>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Marrocos</translation>
     </message>
     <message>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Holanda</translation>
     </message>
     <message>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Noruéga</translation>
     </message>
     <message>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova Zelândia</translation>
     </message>
     <message>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugal</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Polônia</translation>
     </message>
     <message>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Paquistão</translation>
     </message>
     <message>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Filipinas</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Rússia</translation>
     </message>
     <message>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Romênia</translation>
     </message>
     <message>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>França</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Suécia</translation>
     </message>
     <message>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Eslováquia</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Singapura</translation>
     </message>
     <message>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Eslovênia</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Taiwan</translation>
     </message>
     <message>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Turquia</translation>
     </message>
     <message>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Tailândia</translation>
     </message>
     <message>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>Estados Unidos da América</translation>
     </message>
     <message>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ucrânia</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Africa do Sul</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Arábia Saudita</translation>
     </message>
 </context>
 <context>
@@ -3318,71 +3319,71 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ferramentas</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ver</translation>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adicionar Arquivo...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;air</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Opções...</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Criar torrent</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar limite de upload...</translation>
     </message>
     <message>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar limite de download...</translation>
     </message>
     <message>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar limite global de download...</translation>
     </message>
     <message>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar limite global de upload...</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Visualizador de log...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de &amp;Ferramentas Início</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir Barra de Ferramentas Início</translation>
     </message>
     <message>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Velocidade na barra de título</translation>
     </message>
     <message>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar velocidade de transferência na barra de título</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limites de velocidade alternativos</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3390,51 +3391,51 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sobre</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iniciar</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pausar</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover</translation>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;ausar Todos</translation>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar &amp;Todos</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Visitar &amp;Website</translation>
     </message>
     <message>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Relatar um &amp;erro</translation>
     </message>
     <message>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Documentação</translation>
     </message>
     <message>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>Leitor de &amp;RSS</translation>
     </message>
     <message>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramenta de &amp;busca</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador de Log</translation>
     </message>
 </context>
 <context>
@@ -3554,15 +3555,15 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar um novo peer...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Taxa de limite de download...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Taxa de limite de upload...</translation>
     </message>
     <message>
         <source>Copy IP</source>
@@ -4115,146 +4116,146 @@ QGroupBox {
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem ação</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Opções</translation>
+        <translation>Opções</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Aparência Visual</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação do duplo clique</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixando torrents:</translation>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar / Parar</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation type="unfinished">Abrir pasta de destino</translation>
+        <translation>Abrir pasta de destino</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents completos:</translation>
     </message>
     <message>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Área de trabalho</translation>
     </message>
     <message>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar imagem de início ao ligar</translation>
     </message>
     <message>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar qBittorrent minimizado</translation>
     </message>
     <message>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar ícone na bandeja</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimizar qBittorrent na área de notificação</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fechar qBittorrent para área de notificação</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Não iniciar downloads automaticamente</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar arquivos na pasta:</translation>
     </message>
     <message>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Acrescentar o rótulo do torrent para o caminho de salvamento</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pré-alocar espaço em disco para todos os arquivos</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Manter torrents incompletos em:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Acrescentar extensão .!qB para nomes de arquivos incompletos</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar automaticamente torrents de:</translation>
     </message>
     <message>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar pasta...</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de IP</translation>
     </message>
     <message>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Programar o uso de limite de velocidades alternativas</translation>
     </message>
     <message>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>de</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando:</translation>
     </message>
     <message>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar por peers na rede local</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Protocolo de encriptação:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar interface de usuário de rede (Controle Remoto)</translation>
     </message>
     <message>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Limitando taxa de compartilhamento</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Compartilhar torrents até que sua taxa de compartilhamento atinja</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>então</translation>
     </message>
     <message>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Remove</translation>
     </message>
     <message utf8="true">
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Trocar peers com clientes compatíveis com qBittorrent (µTorrent, Vuze, ...)</translation>
     </message>
 </context>
 <context>
@@ -4547,11 +4548,11 @@ QGroupBox {
     </message>
     <message>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Reanunciar em:</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar reanuncio</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -4559,15 +4560,15 @@ QGroupBox {
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleciona todos</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar nenhum</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Não baixar</translation>
     </message>
 </context>
 <context>
@@ -4709,27 +4710,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Renomear...</translation>
+        <translation>Renomear...</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova inscrição...</translation>
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixador de feed RSS...</translation>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova pasta...</translation>
     </message>
     <message>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrar cookies...</translation>
     </message>
     <message>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações...</translation>
     </message>
 </context>
 <context>
@@ -4859,19 +4860,19 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de Leitor de RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo de atualização de feeds RSS:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">minutos</translation>
+        <translation>minutos</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Número máximo de artigos por feed:</translation>
     </message>
 </context>
 <context>
@@ -5110,11 +5111,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmação</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente limpar o histórico?</translation>
     </message>
 </context>
 <context>
@@ -5372,15 +5373,15 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar novo tracker...</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover tracker</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Força reanuncio</translation>
     </message>
 </context>
 <context>
@@ -5519,11 +5520,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Pausado</translation>
+        <translation>Pausado</translation>
     </message>
     <message>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar etiqueta...</translation>
     </message>
 </context>
 <context>
@@ -5768,31 +5769,31 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha caminho de salvamento</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Erro ao criar caminho de salvamento</translation>
+        <translation>Erro ao criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Não foi possível criar caminho de salvamento</translation>
+        <translation>Não foi possível criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir local...</translation>
     </message>
     <message>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de pré-exibição...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite de taxa de upload...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite de taxa de download...</translation>
     </message>
 </context>
 <context>
@@ -6019,15 +6020,15 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleciona todos</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleciona nenhum</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Não baixar</translation>
     </message>
 </context>
 <context>
@@ -6240,11 +6241,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Lembrar escolha</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Deletar também arquivos do disco</translation>
     </message>
 </context>
 <context>
@@ -6994,12 +6995,12 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1d %2h</translation>
     </message>
 </context>
 <context>
