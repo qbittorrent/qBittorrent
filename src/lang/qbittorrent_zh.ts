@@ -180,20 +180,20 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>最大半开放连接数 [0: 禁用]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>严格超级做种</translation>
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>网络界面（需要重启）</translation>
     </message>
     <message>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>任何界面</translation>
     </message>
 </context>
 <context>
@@ -395,19 +395,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在移除torrent%1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在暂停torrent%1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：torrent%1不包含任何内容.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>文件大小与torrent%1不匹配,暂停中.</translation>
     </message>
 </context>
 <context>
@@ -426,27 +426,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent日志浏览器</translation>
     </message>
 </context>
 <context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookies管理</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>键值</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished">值</translation>
+        <translation>值</translation>
     </message>
     <message>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>对cookies的公共键值为:%1,%2.
+您可以在您的浏览器首选项里得到相关信息.</translation>
     </message>
 </context>
 <context>
@@ -2834,270 +2835,270 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>传输（%1）</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation>是</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation>否</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">从不</translation>
+        <translation>从不</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>一直</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>正在退出qBittorrent</translation>
     </message>
 </context>
 <context>
     <name>GeoIP</name>
     <message>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>澳大利亚</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>阿根廷</translation>
     </message>
     <message>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>奥地利</translation>
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>阿拉伯联合酋长国</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>巴西</translation>
     </message>
     <message>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>保加利亚</translation>
     </message>
     <message>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>白俄罗斯</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>比利时</translation>
     </message>
     <message>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>波斯尼亚</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>加拿大</translation>
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>捷克共和国</translation>
     </message>
     <message>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>中国</translation>
     </message>
     <message>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>哥斯达黎加</translation>
     </message>
     <message>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>瑞士</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>德国</translation>
     </message>
     <message>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>丹麦</translation>
     </message>
     <message>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>阿尔及利亚</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>西班牙</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>埃及</translation>
     </message>
     <message>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>芬兰</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished">法国</translation>
+        <translation>法国</translation>
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>英国</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>希腊</translation>
     </message>
     <message>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>格鲁吉亚</translation>
     </message>
     <message>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>匈牙利</translation>
     </message>
     <message>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>克罗地亚</translation>
     </message>
     <message>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>意大利</translation>
     </message>
     <message>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>印度</translation>
     </message>
     <message>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>以色列</translation>
     </message>
     <message>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>爱尔兰</translation>
     </message>
     <message>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>冰岛</translation>
     </message>
     <message>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>印度尼西亚</translation>
     </message>
     <message>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>日本</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>韩国</translation>
     </message>
     <message>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>卢森堡</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>马来西亚</translation>
     </message>
     <message>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>墨西哥</translation>
     </message>
     <message>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>塞尔维亚</translation>
     </message>
     <message>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>摩洛哥</translation>
     </message>
     <message>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>荷兰</translation>
     </message>
     <message>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>挪威</translation>
     </message>
     <message>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>新西兰</translation>
     </message>
     <message>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>葡萄牙</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>波兰</translation>
     </message>
     <message>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>巴基斯坦</translation>
     </message>
     <message>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>菲律宾</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>俄罗斯</translation>
     </message>
     <message>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>罗马尼亚</translation>
     </message>
     <message>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>法国（留尼旺岛）</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>瑞典</translation>
     </message>
     <message>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>斯洛伐克</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>新加坡</translation>
     </message>
     <message>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>斯洛文尼亚</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>台湾</translation>
     </message>
     <message>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>土耳其</translation>
     </message>
     <message>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>泰国</translation>
     </message>
     <message>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>美国</translation>
     </message>
     <message>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>乌克兰</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>南非</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>沙特阿拉伯</translation>
     </message>
 </context>
 <context>
@@ -3537,71 +3538,71 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>工具</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>视图</translation>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加文件...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>退出</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>选项...</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent创建者</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>设定上传限制...</translation>
     </message>
     <message>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>设定下载限制...</translation>
     </message>
     <message>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>设定总下载限制...</translation>
     </message>
     <message>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>设定总上传限制...</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>日志浏览器...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>顶部工具栏</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>显示顶部工具栏</translation>
     </message>
     <message>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>标题栏中显示速度</translation>
     </message>
     <message>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>标题栏中显示传输速度</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>其他速度限制</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3609,51 +3610,51 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>关于</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>开始</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停所有</translation>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>开始所有</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览网站</translation>
     </message>
     <message>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>报告错误</translation>
     </message>
     <message>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>文档资料</translation>
     </message>
     <message>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS阅读器</translation>
     </message>
     <message>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索引擎</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>日志浏览器</translation>
     </message>
 </context>
 <context>
@@ -3773,15 +3774,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加新用户</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>限制下载速度...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>限制上传速度...</translation>
     </message>
     <message>
         <source>Copy IP</source>
@@ -4310,146 +4311,146 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>无行动</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">选项</translation>
+        <translation>选项</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>视觉外观</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>双击执行活动</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>正在下载torrents:</translation>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>开始 / 结束</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>打开目标文件夹</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>完成的torrents:</translation>
     </message>
     <message>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>桌面</translation>
     </message>
     <message>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时显示程序启动画面</translation>
     </message>
     <message>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>开始时使qBittorrent最小化</translation>
     </message>
     <message>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>在通知区域显示qBittorrent图标</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>最小化qBittorrent到通知区域</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>关闭qBittorrent到通知区域</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>不要自动开始下载</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>保存文件到:</translation>
     </message>
     <message>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>在保存路径附加torrent的标签</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>为所有文件预分配磁盘空间</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>保存未完成的torrents到:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>给未完成文件附加扩展名.!qB</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>自动从此处添加torrents:</translation>
     </message>
     <message>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加文件夹...</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>IP过滤中</translation>
     </message>
     <message>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>为替代速度限制的使用安排时间</translation>
     </message>
     <message>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>从</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>时间:</translation>
     </message>
     <message>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>在本地网络上寻找资源</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>加密协定:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用网络用户界面（远程控制）</translation>
     </message>
     <message>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>分享率限制中</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>分享torrents直至达到比率</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>然后</translation>
     </message>
     <message>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停它们</translation>
     </message>
     <message>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>移除它们</translation>
     </message>
     <message utf8="true">
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>与兼容的Bittorrent客户端交换资源（µTorrent, Vuze, ...）</translation>
     </message>
 </context>
 <context>
@@ -4742,11 +4743,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>再次连接时间:</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>强制再次连接</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -4754,15 +4755,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>选择所有</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>全不选</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>不下载</translation>
     </message>
 </context>
 <context>
@@ -4906,27 +4907,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">重命名...</translation>
+        <translation>重命名...</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>新RSS文件...</translation>
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS源下载器</translation>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>新文件夹...</translation>
     </message>
     <message>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>管理cookies...</translation>
     </message>
     <message>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>设置...</translation>
     </message>
 </context>
 <context>
@@ -5062,19 +5063,19 @@ list?</source>
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS阅读器设置</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS消息种子刷新间隔:</translation>
+        <translation>RSS消息源刷新间隔:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">分钟</translation>
+        <translation>分钟</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">每个订阅源文章数目最大值:</translation>
+        <translation>每个订阅源文章数目最大值:</translation>
     </message>
 </context>
 <context>
@@ -5315,11 +5316,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>您确定要清楚历史记录吗?</translation>
     </message>
 </context>
 <context>
@@ -5498,15 +5499,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加新tracker...</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>移除tracker</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>强制再次连接</translation>
     </message>
 </context>
 <context>
@@ -5649,11 +5650,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加标签...</translation>
     </message>
 </context>
 <context>
@@ -5898,31 +5899,31 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">选择保存路径</translation>
+        <translation>选择保存路径</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">创建保存路径时出现错误</translation>
+        <translation>创建保存路径时出现错误</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">无法创建保存路径</translation>
+        <translation>无法创建保存路径</translation>
     </message>
     <message>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>设定地区</translation>
     </message>
     <message>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>预览文件...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>限制上传速度...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>限制下载速度...</translation>
     </message>
 </context>
 <context>
@@ -6187,15 +6188,15 @@ previewing)</source>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>选择所有</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>全不选</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>不下载</translation>
     </message>
 </context>
 <context>
@@ -6408,11 +6409,11 @@ previewing)</source>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>记住选择</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>同时从硬盘上删除文件</translation>
     </message>
 </context>
 <context>
@@ -7181,12 +7182,12 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1小时%2分钟</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1天%2小时</translation>
     </message>
 </context>
 <context>
