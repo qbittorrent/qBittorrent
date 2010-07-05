@@ -575,7 +575,8 @@
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 0px;
+margin-left: 10px;
+margin-top: 5px;
 }
 QGroupBox {
   border-width: 0;
@@ -650,7 +651,8 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 0px;
+margin-left: 10px;
+margin-top: 5px;
 }
 QGroupBox {
   border-width: 0;
@@ -713,7 +715,8 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 0px;
+margin-left: 10px;
+margin-top: 5px;
 }
 QGroupBox {
   border-width: 0;
@@ -812,7 +815,8 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 0px;
+margin-left: 10px;
+margin-top: 5px;
 }
 QGroupBox {
   border-width: 0;
@@ -1399,7 +1403,8 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 0px;
+margin-left: 10px;
+margin-top: 5px;
 }
 QGroupBox {
   border-width: 0;
@@ -1417,6 +1422,9 @@ QGroupBox {
                  <layout class="QVBoxLayout" name="verticalLayout_5">
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_13">
+                    <property name="leftMargin">
+                     <number>5</number>
+                    </property>
                     <item>
                      <widget class="QLabel" name="label_6">
                       <property name="text">
@@ -1482,6 +1490,9 @@ QGroupBox {
                   </item>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_14">
+                    <property name="leftMargin">
+                     <number>5</number>
+                    </property>
                     <item>
                      <widget class="QLabel" name="label_18">
                       <property name="text">
@@ -1576,7 +1587,8 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 0px;
+margin-left: 10px;
+margin-top: 5px;
 }
 QGroupBox {
   border-width: 0;
@@ -1597,7 +1609,8 @@ QGroupBox {
                     <property name="styleSheet">
                      <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 0px;
+margin-left: 10px;
+margin-top: 5px;
 }
 QGroupBox {
   border-width: 0;
@@ -1618,6 +1631,9 @@ QGroupBox {
                      </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_8">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
                        <item>
                         <widget class="QLabel" name="dh_port_lbl">
                          <property name="text">
