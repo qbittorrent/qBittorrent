@@ -3886,7 +3886,7 @@ QGroupBox {
         <translation type="obsolete">Lataa torrentit tästä kansiosta automaattisesti:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="822"/>
+        <location filename="../ui/options.ui" line="826"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopioi .torrent-tiedostot kohteeseen:</translation>
     </message>
@@ -3907,7 +3907,7 @@ QGroupBox {
         <translation type="obsolete">MiB (edistyneet)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1853"/>
+        <location filename="../ui/options.ui" line="1869"/>
         <source>Torrent queueing</source>
         <translation>Torrenttien jonotus</translation>
     </message>
@@ -3916,17 +3916,17 @@ QGroupBox {
         <translation type="obsolete">Käytä jonotusjärjestelmää</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1868"/>
+        <location filename="../ui/options.ui" line="1884"/>
         <source>Maximum active downloads:</source>
         <translation>Aktiivisia latauksia enintään:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1888"/>
+        <location filename="../ui/options.ui" line="1904"/>
         <source>Maximum active uploads:</source>
         <translation>Aktiivisia lähetettäviä torrentteja enintään:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1908"/>
+        <location filename="../ui/options.ui" line="1924"/>
         <source>Maximum active torrents:</source>
         <translation>Aktiivisia torrentteja enintään:</translation>
     </message>
@@ -4015,72 +4015,72 @@ QGroupBox {
         <translation>Älä aloita lataamista automaattisesti</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="585"/>
+        <location filename="../ui/options.ui" line="586"/>
         <source>Save files to location:</source>
         <translation>Tallenna tiedostot kohteeseen:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="634"/>
+        <location filename="../ui/options.ui" line="635"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Lisää torrentin nimike tallennuspolkuun</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="644"/>
+        <location filename="../ui/options.ui" line="645"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Varaa kaikille tiedostoille levytila ennakkoon</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="660"/>
+        <location filename="../ui/options.ui" line="662"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Tallenna puolivalmiit torrentit kohteeseen:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="707"/>
+        <location filename="../ui/options.ui" line="709"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation>Lisää .!qB-tarkenne puolivalmiitten tiedostojen nimiin</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="723"/>
+        <location filename="../ui/options.ui" line="726"/>
         <source>Automatically add torrents from:</source>
         <translation>Lisää torrentit automaattisesti kohteesta:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="776"/>
+        <location filename="../ui/options.ui" line="779"/>
         <source>Add folder...</source>
         <translation>Lisää kansio...</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1665"/>
+        <location filename="../ui/options.ui" line="1681"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Vaihta asiakastietoja yhteensopivien Bittorrent-asiakkaiden (µTorrent, Vuze, ...) kanssa</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1944"/>
+        <location filename="../ui/options.ui" line="1960"/>
         <source>Share ratio limiting</source>
         <translation>Jakosuhteen rajoitus</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1955"/>
+        <location filename="../ui/options.ui" line="1971"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Jatka torrenttien jakamista kunnes jakosuhde saavuttaa</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1987"/>
+        <location filename="../ui/options.ui" line="2003"/>
         <source>then</source>
         <translation>sitten</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1998"/>
+        <location filename="../ui/options.ui" line="2014"/>
         <source>Pause them</source>
         <translation>Pysäytä ne</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2003"/>
+        <location filename="../ui/options.ui" line="2019"/>
         <source>Remove them</source>
         <translation>Poista ne</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2483"/>
+        <location filename="../ui/options.ui" line="2499"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Ota web-käyttöliittymä käyttöön (etäyhteys)</translation>
     </message>
@@ -4090,47 +4090,47 @@ QGroupBox {
         <translation type="obsolete">Älä aloita lataamista automaattisesti</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="904"/>
+        <location filename="../ui/options.ui" line="908"/>
         <source>Listening port</source>
         <translation>Kuuntele porttia</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="912"/>
+        <location filename="../ui/options.ui" line="916"/>
         <source>Port used for incoming connections:</source>
         <translation>Portti sisääntuleville yhteyksille:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="932"/>
+        <location filename="../ui/options.ui" line="936"/>
         <source>Random</source>
         <translation>Satunnainen</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="954"/>
+        <location filename="../ui/options.ui" line="958"/>
         <source>Enable UPnP port mapping</source>
         <translation>Käytä UPnP-porttivarausta</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="964"/>
+        <location filename="../ui/options.ui" line="968"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>Käytä NAT-PMP-porttivarausta</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="979"/>
+        <location filename="../ui/options.ui" line="983"/>
         <source>Connections limit</source>
         <translation>Yhteyksien enimmäismäärä</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="990"/>
+        <location filename="../ui/options.ui" line="994"/>
         <source>Global maximum number of connections:</source>
         <translation>Kaikkien yhteyksien enimmäismäärä:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1033"/>
+        <location filename="../ui/options.ui" line="1037"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Yhteyksien enimmäismäärä torrenttia kohden:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1073"/>
+        <location filename="../ui/options.ui" line="1077"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Lähetyspaikkoja torrentia kohden:</translation>
     </message>
@@ -4139,22 +4139,22 @@ QGroupBox {
         <translation type="obsolete">Kaistankäyttörajoitukset</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1207"/>
-        <location filename="../ui/options.ui" line="1329"/>
+        <location filename="../ui/options.ui" line="1211"/>
+        <location filename="../ui/options.ui" line="1333"/>
         <source>Upload:</source>
         <translation>Lähetys:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1243"/>
-        <location filename="../ui/options.ui" line="1356"/>
+        <location filename="../ui/options.ui" line="1247"/>
+        <location filename="../ui/options.ui" line="1360"/>
         <source>Download:</source>
         <translation>Lataus:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1236"/>
-        <location filename="../ui/options.ui" line="1269"/>
-        <location filename="../ui/options.ui" line="1349"/>
-        <location filename="../ui/options.ui" line="1376"/>
+        <location filename="../ui/options.ui" line="1240"/>
+        <location filename="../ui/options.ui" line="1273"/>
+        <location filename="../ui/options.ui" line="1353"/>
+        <location filename="../ui/options.ui" line="1380"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -4171,12 +4171,12 @@ QGroupBox {
         <translation type="obsolete">Selvitä asiakkaiden palvelinnimet</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1189"/>
+        <location filename="../ui/options.ui" line="1193"/>
         <source>Global speed limits</source>
         <translation>Yleiset nopeusrajoitukset</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1294"/>
+        <location filename="../ui/options.ui" line="1298"/>
         <source>Alternative global speed limits</source>
         <translation>Vaihtoehtoiset nopeusrajoitukset</translation>
     </message>
@@ -4185,7 +4185,7 @@ QGroupBox {
         <translation type="obsolete">Ajankohdat:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1447"/>
+        <location filename="../ui/options.ui" line="1455"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>–</translation>
@@ -4195,47 +4195,47 @@ QGroupBox {
         <translation type="obsolete">Päivinä:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1496"/>
+        <location filename="../ui/options.ui" line="1507"/>
         <source>Every day</source>
         <translation>Joka päivä</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1501"/>
+        <location filename="../ui/options.ui" line="1512"/>
         <source>Week days</source>
         <translation>Arkipäivinä</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1506"/>
+        <location filename="../ui/options.ui" line="1517"/>
         <source>Week ends</source>
         <translation>Viikonloppuisin</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1571"/>
+        <location filename="../ui/options.ui" line="1582"/>
         <source>Bittorrent features</source>
         <translation>Bittorrent-piirteet</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1586"/>
+        <location filename="../ui/options.ui" line="1598"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Käytä hajautettua DHT-verkkoa</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1607"/>
+        <location filename="../ui/options.ui" line="1620"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Käytä eri porttia DHT:lle ja Bittorrentille</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1624"/>
+        <location filename="../ui/options.ui" line="1640"/>
         <source>DHT port:</source>
         <translation>DHT-portti:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1668"/>
+        <location filename="../ui/options.ui" line="1684"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation>Ota PeX käyttöön (vaatii uudelleenkäynnistyksen)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1681"/>
+        <location filename="../ui/options.ui" line="1697"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Käytä paikallista käyttäjien löytämistä</translation>
     </message>
@@ -4244,27 +4244,27 @@ QGroupBox {
         <translation type="obsolete">Salaus:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1701"/>
+        <location filename="../ui/options.ui" line="1717"/>
         <source>Enabled</source>
         <translation>Käytössä</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1706"/>
+        <location filename="../ui/options.ui" line="1722"/>
         <source>Forced</source>
         <translation>Pakotettu</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1711"/>
+        <location filename="../ui/options.ui" line="1727"/>
         <source>Disabled</source>
         <translation>Poistettu käytöstä</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1771"/>
+        <location filename="../ui/options.ui" line="1787"/>
         <source>KTorrent</source>
         <translation>KTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1828"/>
+        <location filename="../ui/options.ui" line="1844"/>
         <source>Reset to latest software version</source>
         <translation>Palauta viimeiseen ohjelmistoversioon</translation>
     </message>
@@ -4281,29 +4281,29 @@ QGroupBox {
         <translation type="obsolete">Poista valmistuneet torrentit, kun jakosuhde saa arvon:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2065"/>
+        <location filename="../ui/options.ui" line="2081"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>HTTP-yhteydet (seurantapalvelimet, web-syötteet, hakukone)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2102"/>
-        <location filename="../ui/options.ui" line="2297"/>
+        <location filename="../ui/options.ui" line="2118"/>
+        <location filename="../ui/options.ui" line="2313"/>
         <source>Host:</source>
         <translation>Isäntä:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2255"/>
+        <location filename="../ui/options.ui" line="2271"/>
         <source>Peer Communications</source>
         <translation>Asiakastietoliikenne</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2276"/>
+        <location filename="../ui/options.ui" line="2292"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2073"/>
-        <location filename="../ui/options.ui" line="2263"/>
+        <location filename="../ui/options.ui" line="2089"/>
+        <location filename="../ui/options.ui" line="2279"/>
         <source>Type:</source>
         <translation>Tyyppi:</translation>
     </message>
@@ -4316,120 +4316,120 @@ QGroupBox {
         <translation type="obsolete">Lisää kansio...</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="786"/>
+        <location filename="../ui/options.ui" line="789"/>
         <source>Remove folder</source>
         <translation>Poista kansio</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1111"/>
+        <location filename="../ui/options.ui" line="1115"/>
         <source>IP Filtering</source>
         <translation>IP-suodatus</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1409"/>
+        <location filename="../ui/options.ui" line="1414"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation>Ajasta vaihtoehtoisten nopeusrajoitusten käyttö</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1423"/>
+        <location filename="../ui/options.ui" line="1431"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>alkaen</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1488"/>
+        <location filename="../ui/options.ui" line="1499"/>
         <source>When:</source>
         <translation>Koska:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1678"/>
+        <location filename="../ui/options.ui" line="1694"/>
         <source>Look for peers on your local network</source>
         <translation>Etsi asiakkaita paikallisverkostasi</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1693"/>
+        <location filename="../ui/options.ui" line="1709"/>
         <source>Protocol encryption:</source>
         <translation>Protokollan salaus:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1737"/>
+        <location filename="../ui/options.ui" line="1753"/>
         <source>Client whitelisting workaround</source>
         <translation>Asiakkaan sallittujen listan korjaus</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1748"/>
+        <location filename="../ui/options.ui" line="1764"/>
         <source>Identify as:</source>
         <translation>Esitä:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1756"/>
+        <location filename="../ui/options.ui" line="1772"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1761"/>
+        <location filename="../ui/options.ui" line="1777"/>
         <source>Vuze</source>
         <translation>Vuze</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1766"/>
+        <location filename="../ui/options.ui" line="1782"/>
         <source>µTorrent</source>
         <translation>µTorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1782"/>
+        <location filename="../ui/options.ui" line="1798"/>
         <source>Version:</source>
         <translation>Versio:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1799"/>
+        <location filename="../ui/options.ui" line="1815"/>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translation>Aliversio:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2081"/>
-        <location filename="../ui/options.ui" line="2271"/>
+        <location filename="../ui/options.ui" line="2097"/>
+        <location filename="../ui/options.ui" line="2287"/>
         <source>(None)</source>
         <translation>(Ei mikään)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2086"/>
-        <location filename="../ui/options.ui" line="2286"/>
+        <location filename="../ui/options.ui" line="2102"/>
+        <location filename="../ui/options.ui" line="2302"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2128"/>
-        <location filename="../ui/options.ui" line="2323"/>
-        <location filename="../ui/options.ui" line="2501"/>
+        <location filename="../ui/options.ui" line="2144"/>
+        <location filename="../ui/options.ui" line="2339"/>
+        <location filename="../ui/options.ui" line="2517"/>
         <source>Port:</source>
         <translation>Portti:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2171"/>
-        <location filename="../ui/options.ui" line="2366"/>
-        <location filename="../ui/options.ui" line="2537"/>
+        <location filename="../ui/options.ui" line="2187"/>
+        <location filename="../ui/options.ui" line="2382"/>
+        <location filename="../ui/options.ui" line="2553"/>
         <source>Authentication</source>
         <translation>Sisäänkirjautuminen</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2183"/>
-        <location filename="../ui/options.ui" line="2378"/>
-        <location filename="../ui/options.ui" line="2545"/>
+        <location filename="../ui/options.ui" line="2199"/>
+        <location filename="../ui/options.ui" line="2394"/>
+        <location filename="../ui/options.ui" line="2561"/>
         <source>Username:</source>
         <translation>Tunnus:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2209"/>
-        <location filename="../ui/options.ui" line="2404"/>
-        <location filename="../ui/options.ui" line="2552"/>
+        <location filename="../ui/options.ui" line="2225"/>
+        <location filename="../ui/options.ui" line="2420"/>
+        <location filename="../ui/options.ui" line="2568"/>
         <source>Password:</source>
         <translation>Salasana:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2091"/>
-        <location filename="../ui/options.ui" line="2281"/>
+        <location filename="../ui/options.ui" line="2107"/>
+        <location filename="../ui/options.ui" line="2297"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
@@ -4442,7 +4442,7 @@ QGroupBox {
         <translation type="obsolete">Käytä IP-suodatusta</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1123"/>
+        <location filename="../ui/options.ui" line="1127"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Suodatustiedoston sijainti (.dat, .p2p, p2b):</translation>
     </message>
@@ -4451,7 +4451,7 @@ QGroupBox {
         <translation type="obsolete">Käytä web-käyttöliittymää</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2495"/>
+        <location filename="../ui/options.ui" line="2511"/>
         <source>HTTP Server</source>
         <translation>HTTP-palvelin</translation>
     </message>
