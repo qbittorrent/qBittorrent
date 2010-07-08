@@ -247,23 +247,23 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../advancedsettings.h" line="157"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Μέγιστος αριθμός συνδέσεων που αναμένουν απόκριση [0: Απενεργοποιημένο]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="165"/>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Αυστηρή λειτουργία ενισχυμένου διαμοιράσματος</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="175"/>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Δικτυακό interface (απαιτεί επανεκκίνηση)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="177"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Οποιοδήποτε interface</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="118"/>
@@ -307,12 +307,12 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="232"/>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση του τόρεντ %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="238"/>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Παύση του τόρεντ %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="332"/>
@@ -430,76 +430,76 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="862"/>
-        <location filename="../bittorrent.cpp" line="1033"/>
-        <location filename="../bittorrent.cpp" line="1036"/>
+        <location filename="../bittorrent.cpp" line="1039"/>
+        <location filename="../bittorrent.cpp" line="1042"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>Το &apos;%1&apos; είναι ήδη στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="960"/>
-        <location filename="../bittorrent.cpp" line="1262"/>
-        <location filename="../bittorrent.cpp" line="1267"/>
+        <location filename="../bittorrent.cpp" line="966"/>
+        <location filename="../bittorrent.cpp" line="1273"/>
+        <location filename="../bittorrent.cpp" line="1278"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Το &apos;%1&apos; ξανάρχισε. (γρήγορη επανασύνδεση)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="962"/>
-        <location filename="../bittorrent.cpp" line="1264"/>
-        <location filename="../bittorrent.cpp" line="1269"/>
+        <location filename="../bittorrent.cpp" line="968"/>
+        <location filename="../bittorrent.cpp" line="1275"/>
+        <location filename="../bittorrent.cpp" line="1280"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>Το &apos;%1&apos; προστέθηκε στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1007"/>
-        <location filename="../bittorrent.cpp" line="1011"/>
+        <location filename="../bittorrent.cpp" line="1013"/>
+        <location filename="../bittorrent.cpp" line="1017"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1014"/>
+        <location filename="../bittorrent.cpp" line="1020"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Το αρχείο είναι είτε κατεστραμμένο ή δεν είναι torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1062"/>
+        <location filename="../bittorrent.cpp" line="1068"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι trackers προστέθηκαν στο υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1075"/>
+        <location filename="../bittorrent.cpp" line="1081"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι διαμοιραστές μέσω URL προστέθηκαν στο ήδη υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1086"/>
+        <location filename="../bittorrent.cpp" line="1092"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Σφάλμα: Το τόρεντ %1 δεν περιέχει κανένα αρχείο.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1614"/>
+        <location filename="../bittorrent.cpp" line="1625"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του φίλτρου IP σας&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1616"/>
+        <location filename="../bittorrent.cpp" line="1627"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1928"/>
+        <location filename="../bittorrent.cpp" line="1939"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1938"/>
-        <location filename="../bittorrent.cpp" line="1988"/>
+        <location filename="../bittorrent.cpp" line="1949"/>
+        <location filename="../bittorrent.cpp" line="1999"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent %1.</translation>
     </message>
@@ -508,43 +508,43 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Αδύνατη η επικοινωνία με καμία από της δεδομένες θύρες.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2195"/>
+        <location filename="../bittorrent.cpp" line="2206"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2200"/>
+        <location filename="../bittorrent.cpp" line="2211"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2225"/>
+        <location filename="../bittorrent.cpp" line="2236"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη επανεκκίνηση αρχείων απορρίφθηκε για το torrent %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2109"/>
-        <location filename="../bittorrent.cpp" line="2226"/>
+        <location filename="../bittorrent.cpp" line="2120"/>
+        <location filename="../bittorrent.cpp" line="2237"/>
         <source>Reason: %1</source>
         <translation>Αιτία: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2108"/>
+        <location filename="../bittorrent.cpp" line="2119"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ένα σφάλμα I/O προέκυψε, το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2222"/>
+        <location filename="../bittorrent.cpp" line="2233"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Τα μεγέθη των αρχείων δεν είναι σε αντιστοιχία για το τόρεντ %1, γίνεται παύση.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2231"/>
+        <location filename="../bittorrent.cpp" line="2242"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url διαμοιρασμού για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2357"/>
+        <location filename="../bittorrent.cpp" line="2368"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
@@ -559,7 +559,7 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/console.ui" line="14"/>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Καταγραφή γεγονότων στο qBittorrent</translation>
     </message>
     <message>
         <location filename="../ui/console.ui" line="32"/>
@@ -577,23 +577,24 @@ Copyright © 2006 από τον Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαχείριση cookies</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="36"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλειδί</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="41"/>
         <source>Value</source>
-        <translation type="unfinished">Χαρακτηριστικά</translation>
+        <translation>Χαρακτηριστικά</translation>
     </message>
     <message>
         <location filename="../cookiesdlg.cpp" line="43"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Συνήθη κλειδιά για τα cookies είναι : &apos;%1&apos;, &apos;%2&apos;.
+Μπορείτε να βρείτε αυτές τις πληροφορίες από τις προτιμήσεις του περιηγητή σας.</translation>
     </message>
 </context>
 <context>
@@ -2719,7 +2720,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="330"/>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Μεταφορές (%1)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="368"/>
@@ -2754,12 +2755,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="573"/>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Έξοδος από το qBittorrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="578"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Πάντα</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
@@ -2917,18 +2918,18 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../GUI.cpp" line="448"/>
         <location filename="../GUI.cpp" line="577"/>
         <source>Yes</source>
-        <translation type="unfinished">Ναι</translation>
+        <translation>Ναι</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="449"/>
         <location filename="../GUI.cpp" line="576"/>
         <source>No</source>
-        <translation type="unfinished">Όχι</translation>
+        <translation>Όχι</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="450"/>
         <source>Never</source>
-        <translation type="unfinished">Ποτέ</translation>
+        <translation>Ποτέ</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="470"/>
@@ -3021,305 +3022,305 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../geoip.h" line="114"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Αυστραλία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Αργεντινή</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Αυστρία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Ηνωμένα Αραβικά Εμιράτα</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="120"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Βραζιλία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Βουλγαρία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Λευκορωσία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Βέλγιο</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Βοσνία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="127"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Καναδάς</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Τσεχική Δημοκρατία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <location filename="../geoip.h" line="153"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Κίνα</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Κόστα Ρίκα</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="131"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Ελβετία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="134"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Γερμανία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="135"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Δανία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="136"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Αλγερία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="139"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Ισπανία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="140"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Αίγυπτος</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="143"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Φινλανδία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="144"/>
         <source>France</source>
-        <translation type="unfinished">Γαλλία</translation>
+        <translation>Γαλλία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="147"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Ηνωμένο Βασίλειο</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Ελλάδα</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="149"/>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Γεωργία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="152"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Ουγγαρία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="154"/>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Κροατία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="157"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Ιταλία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="158"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Ινδία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Ισραήλ</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="160"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Ιρλανδία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="161"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Ισλανδία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Ινδονησία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="165"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Ιαπωνία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="168"/>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Νότιος Κορέα</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="171"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Λουξεμβούργο</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="174"/>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Μαλαισία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Μεξικό</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <location filename="../geoip.h" line="194"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Σερβία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="177"/>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Μαρόκο</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="180"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Ολλανδία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Νορβηγία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Νέα Ζηλανδία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="185"/>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Πορτογαλία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Πολωνία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Πακιστάν</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="188"/>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Φιλιππίνες</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρωσσία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρουμανία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>Γαλλία (Νήσοι Ρεϊνιόν)</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="197"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Σαουδική Αραβία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Σουηδία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Σλοβακία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Σιγκαπούρη</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="201"/>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Σλοβενία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="204"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Ταϊβάν</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Τουρκία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="206"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Ταϊλάνδη</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="209"/>
         <location filename="../geoip.h" line="210"/>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>ΗΠΑ</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="211"/>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ουκρανία</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="214"/>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Νότιος Αφρική</translation>
     </message>
 </context>
 <context>
@@ -3602,7 +3603,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="61"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Eργαλεία</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="70"/>
@@ -3629,22 +3630,22 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="78"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Προβολή</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="140"/>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Προσθήκη Αρχείου...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="145"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>Έ&amp;ξοδος</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ρυθμίσεις...</translation>
     </message>
     <message>
         <source>About</source>
@@ -3677,22 +3678,22 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη &amp;URL...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="195"/>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Δημιουργός &amp;τόρεντ</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρύθμιση ορίου αποστολής...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρύθμιση ορίου λήψης...</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -3701,67 +3702,67 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="155"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Σχετικά</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Έναρξη</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Παύση</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Διαγραφή</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>Π&amp;αύση Όλων</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>Έ&amp;ναρξη Όλων</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Επίσκεψη &amp;Ιστοσελίδας</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Αναφορά &amp;Σφάλματος</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="225"/>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Έγγραφα</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρύθμιση συνολικού ορίου λήψης...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="235"/>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρύθμιση συνολικού ορίου αποστολής...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Καταγραφή γεγονότων...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Καταγραφή γεγονότων</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -3771,17 +3772,17 @@ No further notices will be issued.</source>
         <location filename="../ui/mainwindow.ui" line="279"/>
         <location filename="../ui/mainwindow.ui" line="282"/>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Εναλλακτικά όρια ταχύτητας</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;RSS αναγβώστης</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Μηχανή &amp;αναζήτησης</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3794,22 +3795,22 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="290"/>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Άνω μπάρα &amp;εργαλείων</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="293"/>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση άνω μπάρας εργαλείων</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="301"/>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ταχύτητα στην μπάρα τίτλου</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="304"/>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένδειξη ταχύτητας μεταφορών στην μπάρα τίτλου</translation>
     </message>
     <message>
         <source>Connexion Status</source>
@@ -4060,7 +4061,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="132"/>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη νέας σύνδεσης...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
@@ -4070,12 +4071,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="143"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Όριο ταχύτητας λήψης...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="144"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Όριο ταχύτητας αποστολής...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="146"/>
@@ -4283,7 +4284,7 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="381"/>
         <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Καμία δράση</translation>
     </message>
     <message>
         <source>Completed:</source>
@@ -4412,70 +4413,70 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιλογές</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="222"/>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="342"/>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Ενέργεια στο διπλό κλικ</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="354"/>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Τόρεντ που κατεβαίνουν:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
         <location filename="../ui/options.ui" line="397"/>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Έναρξη / Παύση</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="376"/>
         <location filename="../ui/options.ui" line="402"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">Άνοιγμα φακέλου προορισμού</translation>
+        <translation>Άνοιγμα φακέλου προορισμού</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="389"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ολοκληρωμένα τόρεντ:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="434"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιφάνεια εργασίας</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="443"/>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση splash screen κατά την έναρξη</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="453"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Έναρξη του qBittorrent σε ελαχιστοποίηση</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="460"/>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση του εικονιδίου του qBittorrent στην περιοχή των ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="470"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Ελαχιστοποίηση του qBittorrent στην περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Κλείσιμο του qBittorrent στην περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="541"/>
@@ -4486,77 +4487,77 @@ QGroupBox {
         <location filename="../ui/options.ui" line="551"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Μη αυτόματη έναρξη του κατεβάσματος</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="586"/>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Αποθήκευση αρχείων στην τοποθεσία:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="635"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Εγγραφή της ετικέτας του τόρεντ στην διαδρομή αποθήκευσης</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="645"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχική κατάληψη του σκληρού δίσκου για όλα τα αρχεία</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="662"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Να μένουν τα μη τελειωμένα τόρεντ στο:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="709"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Να προστίθεται η κατάληψη .!qB στα ονόματα μη τελειωμένων αρχείων</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="726"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Αυτόματη προσθήκη τόρεντ από:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="779"/>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη φακέλου...</translation>
     </message>
     <message utf8="true">
         <location filename="../ui/options.ui" line="1681"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ανταλλαγή συνδέσεων με συμβατά προγράμματα Bittorrent (μTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1960"/>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Όριο ποσοστού διαμοιρασμού</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1971"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαμοιρασμός τόρεντ μέχρι να φτάσουν σε αναλογία</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2003"/>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>τότε</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2014"/>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Παύση τους</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2019"/>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεσή τους</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2499"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ενεργοποίηση Web User Interface (Απομακρυσμένη διαχείριση)</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
@@ -4798,33 +4799,33 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1115"/>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Φιλτράρισμα IP</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1414"/>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Προγραμματισμός χρήσης εναλλακτικών ορίων ταχύτητας</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1431"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>από-έως</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1499"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Όταν:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1694"/>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Αναζήτηση για διαμοιραστές στο τοπικό σας δίκτυο</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1709"/>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Κρυπτογράφηση πρωτόκολλου:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1753"/>
@@ -5087,12 +5088,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="313"/>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ανακοίνωση πάλι σε:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="338"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Υποχρεωτική ανακοίνωση πάλι</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="363"/>
@@ -5112,18 +5113,18 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιλογή Όλων</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Αποεπιλογή Όλων</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="962"/>
         <location filename="../ui/propertieswidget.ui" line="965"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Να μην γίνει download</translation>
     </message>
     <message>
         <source>Download in correct order (slower but good for previewing)</source>
@@ -5365,22 +5366,22 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="95"/>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρυθμίσεις...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="284"/>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Κατέβασμα παροχών RSS...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="293"/>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Νέος φάκελος...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="302"/>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαχείριση cookies...</translation>
     </message>
     <message>
         <source>1</source>
@@ -5394,7 +5395,7 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="200"/>
         <source>Rename...</source>
-        <translation type="unfinished">Μετονομασία...</translation>
+        <translation>Μετονομασία...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="212"/>
@@ -5436,7 +5437,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="224"/>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Νέα εγγραφή...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="233"/>
@@ -5670,22 +5671,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rsssettings.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρυθμίσεις ανάγνωσης RSS</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Xρονικό διάστημα ανανέωσης παροχών RSS:</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="70"/>
         <source>minutes</source>
-        <translation type="unfinished">λεπτά</translation>
+        <translation>λεπτά</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Μέγιστος αριθμός άρθρων ανά τροφοδοσία:</translation>
+        <translation>Μέγιστος αριθμός άρθρων ανά τροφοδοσία:</translation>
     </message>
 </context>
 <context>
@@ -5887,12 +5888,12 @@ Changelog:
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιβεβαίωση</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Είστε σίγουρος οτι θέλετε να καθαρίσετε το ιστορικό?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="277"/>
@@ -6195,17 +6196,17 @@ Please install it manually.</source>
     <message>
         <location filename="../trackerlist.cpp" line="351"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη νέου ιχνηλάτη...</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="354"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση ιχνηλάτη</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="357"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Υποχρεωτική ανακοίνωση ξανά</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
@@ -6337,7 +6338,7 @@ Please install it manually.</source>
         <location filename="../transferlistfilterswidget.h" line="204"/>
         <location filename="../transferlistfilterswidget.h" line="286"/>
         <source>Paused</source>
-        <translation type="unfinished">Παύση</translation>
+        <translation>Σε Παύση</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="207"/>
@@ -6371,7 +6372,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistfilterswidget.h" line="316"/>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη ετικέτας...</translation>
     </message>
     <message>
         <source>Add label</source>
@@ -6567,17 +6568,17 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="626"/>
         <location filename="../transferlistwidget.cpp" line="628"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Επιλέξτε διαδρομή αποθήκευσης</translation>
+        <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
+        <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδύνατη η δημιουργία διαδρομής αποθήκευσης</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="815"/>
@@ -6622,17 +6623,17 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="1036"/>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Προεπισκόπηση αρχείου...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1038"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Όριο ταχύτητας αποστολής...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1040"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Όριο ταχύτητας λήψης...</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -6650,7 +6651,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρύθμιση τοποθεσίας...</translation>
     </message>
     <message>
         <source>Buy it</source>
@@ -6891,12 +6892,12 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιλογή Όλων</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Αποεπιλογή Όλων</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
@@ -6912,7 +6913,7 @@ Please install it manually.</source>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
         <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Να μην γίνει κατέβασμα</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -7210,12 +7211,12 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="70"/>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Απομνημόνευση επιλογής</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="101"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Να διαγραφούν επίσης τα αρχεία στο σκληρό δίσκο</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
@@ -8074,13 +8075,13 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="570"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1ώ %2λ</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="575"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1μ %2ώ</translation>
     </message>
     <message>
         <source>m</source>
