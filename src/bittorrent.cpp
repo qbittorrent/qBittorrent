@@ -879,7 +879,13 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   const QString &savePath = getSavePath(hash, false, QString::null, torrent_name);
   if(!defaultTempPath.isEmpty() && resumed && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addMagnetURI: Temp folder is enabled.");
-    p.save_path = defaultTempPath.toLocal8Bit().constData();
+    qDebug("addTorrent::Temp folder is enabled.");
+    QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
+    if(!torrent_name.isEmpty()) {
+      if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
+      torrent_tmp_path += torrent_name;
+    }
+    p.save_path = torrent_tmp_path.toLocal8Bit().constData();
     qDebug("addMagnetURI: using save_path: %s", qPrintable(defaultTempPath));
   } else {
     p.save_path = savePath.toLocal8Bit().constData();
@@ -1118,7 +1124,12 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   }
   if(!defaultTempPath.isEmpty() && resumed && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
-    p.save_path = defaultTempPath.toLocal8Bit().constData();
+    QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
+    if(!root_folder.isEmpty()) {
+      if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
+      torrent_tmp_path += root_folder;
+    }
+    p.save_path = torrent_tmp_path.toLocal8Bit().constData();
     qDebug("addTorrent: using save_path: %s", qPrintable(defaultTempPath));
   } else {
     p.save_path = savePath.toLocal8Bit().constData();
