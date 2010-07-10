@@ -189,23 +189,23 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../advancedsettings.h" line="157"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>A félig nyitott kapcsolatok maximális száma [0: Kikapcsolva]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="165"/>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Szigorúan szuper seed</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="175"/>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Háltózati csatoló (újraindítást igényel)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="177"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bármely csatoló</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="118"/>
@@ -249,12 +249,12 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="232"/>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent eltávolítása %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="238"/>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent leállítása %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="332"/>
@@ -290,7 +290,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="451"/>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>Lemez gyorsítótr: %1 MiB</translation>
+        <translation>Lemez gyorsítótár: %1 MiB</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="492"/>
@@ -419,7 +419,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1092"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba: A %1 torrent nem tartalmaz fájlokat.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1625"/>
@@ -478,7 +478,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="2233"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>A fájl mérete nem megfelelő ennél a torrentnél: %1, leállítva.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2242"/>
@@ -501,7 +501,7 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/console.ui" line="14"/>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorent eseménynapló</translation>
     </message>
     <message>
         <location filename="../ui/console.ui" line="32"/>
@@ -519,23 +519,24 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
     <message>
         <location filename="../ui/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Süti kezelés</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="36"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Kulcs</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="41"/>
         <source>Value</source>
-        <translation type="unfinished">Érték</translation>
+        <translation>Érték</translation>
     </message>
     <message>
         <location filename="../cookiesdlg.cpp" line="43"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyakori süti kulcsok: &apos;%1&apos;, &apos;%2&apos;.
+Ez megtudható a  böngésző beállításaiból.</translation>
     </message>
 </context>
 <context>
@@ -1485,7 +1486,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../eventmanager.cpp" line="346"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
+        <translation>/mp</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="349"/>
@@ -1504,7 +1505,7 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../eventmanager.cpp" line="440"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation>%1/s</translation>
+        <translation>%1/mp</translation>
     </message>
 </context>
 <context>
@@ -1867,7 +1868,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../GUI.cpp" line="696"/>
         <source>Open Torrent Files</source>
-        <translation>Torrent fájl megnyitása</translation>
+        <translation>Megnyitás</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
@@ -2156,7 +2157,7 @@ Szeretnéd alapértelmezetté tenni?</translation>
     <message>
         <location filename="../GUI.cpp" line="330"/>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Átvitelek (%1)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="368"/>
@@ -2169,7 +2170,8 @@ Szeretnéd alapértelmezetté tenni?</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>I/O hiba történt ennél a torrentnél %1. Oka: %2</translation>
+        <translation>I/O hiba történt ennél a torrentnél %1.
+Oka: %2</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="383"/>
@@ -2191,28 +2193,28 @@ Szeretnéd alapértelmezetté tenni?</translation>
         <location filename="../GUI.cpp" line="448"/>
         <location filename="../GUI.cpp" line="577"/>
         <source>Yes</source>
-        <translation type="unfinished">Bekapcsolva</translation>
+        <translation>Igen</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="449"/>
         <location filename="../GUI.cpp" line="576"/>
         <source>No</source>
-        <translation type="unfinished">Kikapcsolva</translation>
+        <translation>Nem</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="450"/>
         <source>Never</source>
-        <translation type="unfinished">Soha</translation>
+        <translation>Soha</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="573"/>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent bezárása</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="578"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="881"/>
@@ -2372,12 +2374,12 @@ Mégis leállítod a qBittorrentet?</translation>
     <message>
         <location filename="../GUI.cpp" line="470"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Teljes feltöltési sebesség limit</translation>
+        <translation>Teljes feltöltési sebesség korlát</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="492"/>
         <source>Global Download Speed Limit</source>
-        <translation>Teljes letöltési sebesség limit</translation>
+        <translation>Teljes letöltési sebesség korlát</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="574"/>
@@ -2460,305 +2462,305 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../geoip.h" line="114"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausztrália</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Argentína</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausztria</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyesült Arab Emírségek</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="120"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Brazília</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulgária</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehéroroszország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Belgium</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Bosznia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="127"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Csehország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <location filename="../geoip.h" line="153"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Kína</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Costa Rica</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="131"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Svájc</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="134"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Németország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="135"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Dánia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="136"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Algéria</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="139"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanyolország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="140"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyiptom</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="143"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Finnország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="144"/>
         <source>France</source>
-        <translation type="unfinished">Franciaország</translation>
+        <translation>Franciaország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="147"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyesült Királyság</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Görögország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="149"/>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Georgia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="152"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Magyarország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="154"/>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Horvátország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="157"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Olaszország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="158"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>India</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Izrael</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="160"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Írország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="161"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Izland</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Indonézia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="165"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Japán</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="168"/>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Dél Korea</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="171"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Luxemburg</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="174"/>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Majalzia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Mexikó</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <location filename="../geoip.h" line="194"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerbia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="177"/>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Marokkó</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="180"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Hollandia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Norvégia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Új-Zéland</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="185"/>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugália</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Lengyelország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakisztán</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="188"/>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Fülöp-szigetek</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="191"/>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Oroszország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Románia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>Franciaország (Reunion Island)</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="197"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Szaúd-Arábia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Svédország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Szlovákia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Szingapúr</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="201"/>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Szlovénia</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="204"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Tajvan</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Törökország</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="206"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Tájföld</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="209"/>
         <location filename="../geoip.h" line="210"/>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>USA</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="211"/>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukrajna</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="214"/>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Dél Afrika</translation>
     </message>
 </context>
 <context>
@@ -2869,12 +2871,12 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../httpserver.cpp" line="116"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
-        <translation>Letöltési limitnek 0-nál nagyobbnak kell lennie, vagy kikapcsolva.</translation>
+        <translation>Letöltési korlátnak 0-nál nagyobbnak kell lennie, vagy kikapcsolva.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="117"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Feltöltési limitnek 0-nál nagyobbnak kell lennie, vagy kikapcsolva.</translation>
+        <translation>Feltöltési korlátnak 0-nál nagyobbnak kell lennie, vagy kikapcsolva.</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="118"/>
@@ -3004,7 +3006,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../ui/mainwindow.ui" line="61"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Eszközök</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="70"/>
@@ -3031,22 +3033,22 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../ui/mainwindow.ui" line="78"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nézet</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="140"/>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fájl Hozzáadása...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="145"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kilépés</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Beállítások...</translation>
     </message>
     <message>
         <source>About</source>
@@ -3079,87 +3081,87 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../ui/mainwindow.ui" line="155"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Névjegy</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="160"/>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Indítás</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="165"/>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Szünet</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="170"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Törlés</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="175"/>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>Ö&amp;sszes leállítása</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="180"/>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>Ö&amp;sszes indítása</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="185"/>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Irány a &amp;weboldal</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="190"/>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;URL hozzáadása...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="195"/>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent &amp;készítő</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="210"/>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hibajelentés</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="215"/>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési korlát megadása...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési korlát megadása...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="225"/>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dokumentáció</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="230"/>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési sebességkorlát...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="235"/>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési sebességkorlát...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="268"/>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Eseménynapló...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Eseménynapló</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -3169,17 +3171,17 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../ui/mainwindow.ui" line="279"/>
         <location filename="../ui/mainwindow.ui" line="282"/>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatív sebességkorlát</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="312"/>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;RSS olvasó</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="320"/>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Keresőmotor</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3192,22 +3194,22 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../ui/mainwindow.ui" line="290"/>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Felső &amp;eszköz panel</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="293"/>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszközsor megjelenítése</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="301"/>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sebesség a címsoron</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="304"/>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Sebesség megjelenítése a címsoron</translation>
     </message>
     <message>
         <source>Torrent Properties</source>
@@ -3390,7 +3392,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../peerlistwidget.cpp" line="132"/>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Új ügyfél hozzáadása...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
@@ -3400,12 +3402,12 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../peerlistwidget.cpp" line="143"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési arány korlát...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="144"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési arány korlát...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="146"/>
@@ -3613,7 +3615,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../ui/options.ui" line="381"/>
         <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Semmitse</translation>
     </message>
     <message>
         <source>Completed:</source>
@@ -3742,70 +3744,70 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Options</source>
-        <translation type="unfinished">Opciók</translation>
+        <translation>Tulajdonságok</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="222"/>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenés</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="342"/>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupla kett esetén</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="354"/>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltések:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
         <location filename="../ui/options.ui" line="397"/>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Indítás/Megállítás</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="376"/>
         <location filename="../ui/options.ui" line="402"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési könyvtár megnyitása</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="389"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltött torrenteknél:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="434"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Asztal</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="443"/>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Indítókép megjelenítése</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="453"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent indításai háttérben</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="460"/>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorent ikon megjelenítése a panelen</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="470"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent panelre helyezése minimalizálásnál</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Panelre helyezés bezárásnál</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="541"/>
@@ -3816,77 +3818,77 @@ QGroupBox {
         <location filename="../ui/options.ui" line="551"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Automatikusan letöltés nélküli hozzádás a listához</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="586"/>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés helye: </translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="635"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>A címke hozzfűzése a letöltési könyvtár nevéhez</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="645"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájlok helyének lefoglalása előre</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="662"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Átmeneti fájlok helye:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="709"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>.!qB kiterjesztés használata az átmeneti fájloknál</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="726"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentek hozzáadása a letöltésekhez innen:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="779"/>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvtár hozzáadása...</translation>
     </message>
     <message utf8="true">
         <location filename="../ui/options.ui" line="1681"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ügyfélcsere használata a kompatibilis kliensekkel (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1960"/>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Megosztási arány korlátok</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1971"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent megosztása eddig az arányig</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2003"/>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>aztán</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2014"/>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Leállítás</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2019"/>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltávolítás</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2499"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Webes felület engedélyezése (Távoli elérés)</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
@@ -3977,12 +3979,12 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1193"/>
         <source>Global speed limits</source>
-        <translation>Teljes sebesség limit</translation>
+        <translation>Teljes sebesség korlát</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1298"/>
         <source>Alternative global speed limits</source>
-        <translation>Alternatív teljees sebesség limit</translation>
+        <translation>Alternatív teljees sebesség korlát</translation>
     </message>
     <message>
         <source>Scheduled times:</source>
@@ -4127,33 +4129,33 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1115"/>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>IP szűrés</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1414"/>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatív sebesség korlát ütemezése</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1431"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Ettől</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1499"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekkor:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1694"/>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Ügyfél keresése a helyi hálózaton</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1709"/>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titkosítási protokoll:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1753"/>
@@ -4215,7 +4217,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="2382"/>
         <location filename="../ui/options.ui" line="2553"/>
         <source>Authentication</source>
-        <translation>Felhasználó</translation>
+        <translation>Hitelesítés</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2199"/>
@@ -4392,28 +4394,28 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="787"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes kiválasztása</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="794"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyiket sem</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="962"/>
         <location filename="../ui/propertieswidget.ui" line="965"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellőzés</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="194"/>
         <source>UP limit:</source>
-        <translation>Feltöltési limit:</translation>
+        <translation>Feltöltési korlát:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="245"/>
         <source>DL limit:</source>
-        <translation>Letöltési limit:</translation>
+        <translation>Letöltési korlát:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="296"/>
@@ -4428,12 +4430,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="313"/>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Újra közlés:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="338"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Kényszerített újraközlés</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="363"/>
@@ -4678,22 +4680,22 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="95"/>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Beállítások...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="284"/>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés RSS forrásból...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="293"/>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Új könyvtár...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="302"/>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Süti kezelés...</translation>
     </message>
     <message>
         <source>1</source>
@@ -4707,7 +4709,7 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="200"/>
         <source>Rename...</source>
-        <translation type="unfinished">Átnevezés...</translation>
+        <translation>Átnevezés...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="212"/>
@@ -4749,7 +4751,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="224"/>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Új feliratkozás...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="233"/>
@@ -4990,22 +4992,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rsssettings.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS olvasó beállításai</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS csatornák firssítésének időköze:</translation>
+        <translation>RSS csatornák firssítésének időköze:</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="70"/>
         <source>minutes</source>
-        <translation type="unfinished">perc</translation>
+        <translation>perc</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Hírek maximális száma csatornánként:</translation>
+        <translation>Hírek maximális száma csatornánként:</translation>
     </message>
 </context>
 <context>
@@ -5207,12 +5209,12 @@ Changelog:
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Megerősítés</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Bizotosan törlöd az előzményeket?</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="277"/>
@@ -5515,17 +5517,17 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../trackerlist.cpp" line="351"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Új tracker hozzáadása...</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="354"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker eltávolítása</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="357"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Kényszerített újraközlés</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
@@ -5653,7 +5655,7 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../transferlistfilterswidget.h" line="204"/>
         <location filename="../transferlistfilterswidget.h" line="286"/>
         <source>Paused</source>
-        <translation type="unfinished">Leállítva</translation>
+        <translation>Leállítva</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="207"/>
@@ -5687,7 +5689,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../transferlistfilterswidget.h" line="316"/>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Címke hozzáadasa...</translation>
     </message>
     <message>
         <source>Add label</source>
@@ -5878,17 +5880,17 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../transferlistwidget.cpp" line="626"/>
         <location filename="../transferlistwidget.cpp" line="628"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Mentés helye</translation>
+        <translation>Mentés helye</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Save path creation error</source>
-        <translation type="unfinished">Járhatatlan ösvény</translation>
+        <translation>Járhatatlan ösvény</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
+        <translation>Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="815"/>
@@ -5933,17 +5935,17 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1036"/>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Minta fájl...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1038"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltési arány limit...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1040"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési arány limit...</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -5961,7 +5963,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hely megadása...</translation>
     </message>
     <message>
         <source>Buy it</source>
@@ -6135,12 +6137,12 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes kiválasztása</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyiket sem</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
@@ -6156,7 +6158,7 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
         <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellőzés</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -6430,12 +6432,12 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="70"/>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Emlékeztető</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="101"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájlok törlése a merevlemezről is</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
@@ -7239,13 +7241,13 @@ Viszont kikapcsoltam a modult.</translation>
         <location filename="../misc.cpp" line="570"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1ó %2p</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="575"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1nap %2ó</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="409"/>
