@@ -153,20 +153,21 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимални број полу-отворених конекција [0: Онемогућено]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>донирање-seeding</translatorcomment>
+        <translation>Искључиво супер донирање (seeding)</translation>
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Мрежни интерфејс (захтева рестарт)</translation>
     </message>
     <message>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Било који мрежни интерфејс</translation>
     </message>
 </context>
 <context>
@@ -364,19 +365,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклањање торента %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Паузирање торента %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка: Торент %1 не садржи ни један фајл.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Величина фајла није одговарајућа за торент %1, паузирајте га.</translation>
     </message>
 </context>
 <context>
@@ -395,27 +396,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent преглед дневника</translation>
     </message>
 </context>
 <context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Управљање колачићима</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Тастер</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished">Вредност</translation>
+        <translation>Вредност</translation>
     </message>
     <message>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Уобичајени тастери за колачиће су : &apos;%1&apos;, &apos;%2&apos;.
+Требало би да добијете ове информације из подешавања вашег Веб читача.</translation>
     </message>
 </context>
 <context>
@@ -1278,270 +1280,270 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Трансфери (%1)</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">Не</translation>
+        <translation>Не</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Никада</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Увек</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Излазак из qBittorrent-а</translation>
     </message>
 </context>
 <context>
     <name>GeoIP</name>
     <message>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Аустралија</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргентина</translation>
     </message>
     <message>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Ауструја</translation>
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Уједињени Арапски Емирати</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Бразил</translation>
     </message>
     <message>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Бугарска</translation>
     </message>
     <message>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Белорусија</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Белгија</translation>
     </message>
     <message>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Босна</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Канада</translation>
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Република Чешка</translation>
     </message>
     <message>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Кина</translation>
     </message>
     <message>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Коста Рика</translation>
     </message>
     <message>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Швајцарска</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Немачка</translation>
     </message>
     <message>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Данска</translation>
     </message>
     <message>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Алжир</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Шпанија</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Египат</translation>
     </message>
     <message>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Финска</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished">Француска</translation>
+        <translation>Француска</translation>
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Енглеска</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Грчка</translation>
     </message>
     <message>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Грузија</translation>
     </message>
     <message>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Мађарска</translation>
     </message>
     <message>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Хрватска</translation>
     </message>
     <message>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Италија</translation>
     </message>
     <message>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Индија</translation>
     </message>
     <message>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Израел</translation>
     </message>
     <message>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Ирска</translation>
     </message>
     <message>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Исланд</translation>
     </message>
     <message>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Индонезија</translation>
     </message>
     <message>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Јапан</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Јужна Кореја</translation>
     </message>
     <message>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Луксембург</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Малезија</translation>
     </message>
     <message>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Мексико</translation>
     </message>
     <message>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Србија</translation>
     </message>
     <message>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Мароко</translation>
     </message>
     <message>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Холандија</translation>
     </message>
     <message>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Норвешка</translation>
     </message>
     <message>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Нови Зеланд</translation>
     </message>
     <message>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Португалија</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Пољска</translation>
     </message>
     <message>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Пакистан</translation>
     </message>
     <message>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Филипини</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Русија</translation>
     </message>
     <message>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Румунија</translation>
     </message>
     <message>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>Француска (Reunion Island)</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Шведска</translation>
     </message>
     <message>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Словачка</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Сингапур</translation>
     </message>
     <message>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Словенија</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Тајван</translation>
     </message>
     <message>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Турска</translation>
     </message>
     <message>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Тајланд</translation>
     </message>
     <message>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>САД</translation>
     </message>
     <message>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Украјина</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Јужна Африка</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Саудијска Арабија</translation>
     </message>
 </context>
 <context>
@@ -1850,71 +1852,72 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Алати</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Изглед</translation>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Додај фајл...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>И&amp;злаз</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Опције...</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Торент &amp;креатор</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подеси ограничење слања...</translation>
     </message>
     <message>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подеси ограничење преузимања...</translation>
     </message>
     <message>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подеси општи лимит преузимања...</translation>
     </message>
     <message>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подеси општи лимит слања...</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Log-Дневник-Лог</translatorcomment>
+        <translation>&amp;Преглед дневника...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Горња &amp;трака алата</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи горњу траку алата</translation>
     </message>
     <message>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Брзина на насловној траци</translation>
     </message>
     <message>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи брзину преноса на насловној траци</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Алтернативна ограничења брзине</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -1922,51 +1925,51 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;О програму</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Старт</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Пауза</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Обриши</translation>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>П&amp;аузирај све</translation>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>С&amp;тартуј све</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Посети &amp;Веб страну</translation>
     </message>
     <message>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Извести о &amp;грешци</translation>
     </message>
     <message>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Документација</translation>
     </message>
     <message>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;RSS читач</translation>
     </message>
     <message>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Претраживачки &amp;модул</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Преглед дневника</translation>
     </message>
 </context>
 <context>
@@ -2091,19 +2094,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај нов peer (учесник-а)...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничење брзине преузимања...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничење брзине слања...</translation>
     </message>
     <message>
         <source>Copy IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Копирај IP</translation>
     </message>
 </context>
 <context>
@@ -2209,6 +2212,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Transfer list</source>
+        <translatorcomment>Листа преноса</translatorcomment>
         <translation>Трансфер листа</translation>
     </message>
     <message>
@@ -2373,7 +2377,7 @@ QGroupBox {
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation>Порт коришћен за долазеће конекције:</translation>
+        <translation>Порт коришћен за долазне конекције:</translation>
     </message>
     <message>
         <source>Random</source>
@@ -2561,7 +2565,8 @@ QGroupBox {
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Примени белу-листу клијената</translation>
+        <translatorcomment>hack</translatorcomment>
+        <translation>Примени листу одобрења клијената</translation>
     </message>
     <message>
         <source>Identify as:</source>
@@ -2658,146 +2663,149 @@ QGroupBox {
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Без дејства</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Опције</translation>
+        <translation>Опције</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Изглед</translatorcomment>
+        <translation>Визуелни приказ</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Дејство при двоструком клику</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Преузимање торента:</translation>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Старт/Стоп</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation type="unfinished">Отвори одредишну фасциклу</translation>
+        <translation>Отвори одредишну фасциклу</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Завршени торенти:</translation>
     </message>
     <message>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Desktop-Радни простор</translatorcomment>
+        <translation>Радна површина</translation>
     </message>
     <message>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи уводни екран при пократању</translation>
     </message>
     <message>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Стартуј qBittorrent минимизовано</translation>
     </message>
     <message>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи qBittorrent икону на системској палети</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Минимизуј qBittorrent икону на системску палету</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Затвори qBittorrent икону на системску палету</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Немој аутоматски да стартујеш преузимање</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај фајлове на локацији:</translation>
     </message>
     <message>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај ознаку торента у путању чувања</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Додели простор на диску за све фајлове</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Задржи некомплетне торенте у:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај .!qB екстензију у некомплетна имена фајлова</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Аутоматски додај торенте из:</translation>
     </message>
     <message>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај фолдер...</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>IP Филтрирање</translation>
     </message>
     <message>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Распоред коришћења алтернативног ограничења брзине</translation>
     </message>
     <message>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>од</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Када:</translation>
     </message>
     <message>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>peer-пир-учесник</translatorcomment>
+        <translation>Потражите peer-ове на вашој локалној мрежи</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Протокол шифровања:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући Веб Кориснички Интерфејс (Даљински приступ)</translation>
     </message>
     <message>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничење индекса дељења</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Донирај торенте док не достигнеш тражени ниво</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>затим</translation>
     </message>
     <message>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Паузирај их</translation>
     </message>
     <message>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони их</translation>
     </message>
     <message utf8="true">
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Размењуј peer-ове са компатибилним Bittorrent клијентима (µTorrent, Vuze, ...)</translation>
     </message>
 </context>
 <context>
@@ -3003,11 +3011,11 @@ QGroupBox {
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation>Нов Url донор</translation>
+        <translation>Нови Url донор</translation>
     </message>
     <message>
         <source>New url seed:</source>
-        <translation>Нов Url донор:</translation>
+        <translation>Нови Url донор:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
@@ -3031,11 +3039,11 @@ QGroupBox {
     </message>
     <message>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Поново објави за:</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Форсирано реобјављивање</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -3043,15 +3051,15 @@ QGroupBox {
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Селектуј све</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Деселектуј</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Не преузимај</translation>
     </message>
 </context>
 <context>
@@ -3147,27 +3155,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Преименуј...</translation>
+        <translation>Преименуј...</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Нови допис...</translation>
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS преузимач порука...</translation>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Нова фасцикла...</translation>
     </message>
     <message>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Управљање колачићима...</translation>
     </message>
     <message>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подешавања...</translation>
     </message>
 </context>
 <context>
@@ -3275,19 +3283,19 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS читач Подешавања</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS поруке интервал освежавања:</translation>
+        <translation>RSS поруке интервал освежавања:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">минута</translation>
+        <translation>минута</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Максимални број чланака по допису:</translation>
+        <translation>Максимални број чланака по допису:</translation>
     </message>
 </context>
 <context>
@@ -3443,11 +3451,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Потврђивање</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Да ли сте сигурни да желите да обришете историјат?</translation>
     </message>
 </context>
 <context>
@@ -3631,15 +3639,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај нови пратилац...</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони пратилац</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Форсирано реобјављивање</translation>
     </message>
 </context>
 <context>
@@ -3779,11 +3787,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Паузиран</translation>
+        <translation>Паузирани</translation>
     </message>
     <message>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај ознаку...</translation>
     </message>
 </context>
 <context>
@@ -3980,31 +3988,31 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Изаберите путању чувања</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при креирању путање чувања</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Не могу да креирам путању за чување фајла</translation>
+        <translation>Не могу да креирам путању за чување фајла</translation>
     </message>
     <message>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подесите локацију...</translation>
     </message>
     <message>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Приказ датотеке...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничење брзине слања...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничење брзине преузимања...</translation>
     </message>
 </context>
 <context>
@@ -4149,15 +4157,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Селектуј све</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Деселектуј</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Не преузимај</translation>
     </message>
 </context>
 <context>
@@ -4207,11 +4215,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Запамти изабрано</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Такође избриши датотеке на чврстом диску</translation>
     </message>
 </context>
 <context>
@@ -4239,7 +4247,8 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation>Објави urls (пратиоце):</translation>
+        <translatorcomment>trackers-пратиоци</translatorcomment>
+        <translation>Објави urls (пратиоци):</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
@@ -4256,7 +4265,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation>Део величине:</translation>
+        <translation>Делови величине:</translation>
     </message>
     <message>
         <source>32 KiB</source>
@@ -4339,7 +4348,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Молим упишите URL оглашавач</translation>
+        <translation>Молим упишите URL оглашавача</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
@@ -4348,7 +4357,7 @@ Do you want to install it now?</source>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>Оглашени URL:</translation>
+        <translation>Објављени URL:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
@@ -4721,12 +4730,12 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1h%2m</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1d %2h</translation>
     </message>
 </context>
 <context>
