@@ -783,7 +783,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     comboEncryption->setCurrentIndex(Preferences::getEncryptionSetting());
     // Ratio limit
     floatValue = Preferences::getMaxRatio();
-    if(floatValue > 0.) {
+    if(floatValue >= 0.) {
       // Enable
       checkMaxRatio->setChecked(true);
       spinMaxRatio->setEnabled(true);
