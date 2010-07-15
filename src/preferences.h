@@ -1105,12 +1105,14 @@ public:
 
   static bool isFileAssocOk() {
     QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
-    if(settings.value(".torrent\\Default").toString() != "qBittorrent") {
+    if(settings.value(".torrent\\Default").toString() != "qBittorrent" && settings.value(".torrent/Default").toString() != "qBittorrent") {
       qDebug(".torrent != qBittorrent");
       return false;
     }
     qDebug("Checking shell command");
     QString shell_command = settings.value("qBittorrent\\shell\\open\\command\\Default", "").toString();
+    if(shell_command.isEmpty())
+        shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
     qDebug("Shell command is: %s", qPrintable(shell_command));
     QRegExp exe_reg("\"([^\"]+)\".*");
     if(exe_reg.indexIn(shell_command) < 0)
@@ -1121,6 +1123,8 @@ public:
       return false;
     // Check magnet link assoc
     shell_command = settings.value("Magnet\\shell\\open\\command\\Default", "").toString();
+    if(shell_command.isEmpty())
+        shell_command = settings.value("Magnet/shell/open/command/Default", "").toString();
     if(exe_reg.indexIn(shell_command) < 0)
       return false;
     assoc_exe = exe_reg.cap(1);
