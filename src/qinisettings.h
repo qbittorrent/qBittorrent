@@ -34,6 +34,8 @@
 #include <QSettings>
 
 class QIniSettings : public QSettings {
+  Q_OBJECT
+
 public:
   QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
 #ifdef Q_WS_WIN
@@ -47,6 +49,12 @@ public:
 
   QIniSettings(const QString &fileName, Format format, QObject *parent = 0 ) : QSettings(fileName, format, parent) {
 
+  }
+
+  QIniSettings& operator =(const QIniSettings &other) {
+    Q_UNUSED(other);
+    Q_ASSERT(0);
+    return *this;
   }
 
 #ifdef Q_WS_WIN
