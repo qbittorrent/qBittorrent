@@ -1081,8 +1081,6 @@ public:
       const QString version = versions.takeLast();
       qDebug("Detected possible Python v%s location", qPrintable(version));
       QString path = reg_python.value(version+"\\InstallPath\\Default", "").toString().replace("/", "\\");
-      if(path.isEmpty())
-          path = reg_python.value(version+"/InstallPath/Default", "").toString().replace("/", "\\");
       if(!path.isEmpty() && QDir(path).exists("python.exe")) {
         qDebug("Found python.exe at %s", qPrintable(path));
         return path;
@@ -1117,8 +1115,6 @@ public:
     }
     qDebug("Checking shell command");
     QString shell_command = settings.value("qBittorrent\\shell\\open\\command\\Default", "").toString();
-    if(shell_command.isEmpty())
-        shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
     qDebug("Shell command is: %s", qPrintable(shell_command));
     QRegExp exe_reg("\"([^\"]+)\".*");
     if(exe_reg.indexIn(shell_command) < 0)
@@ -1129,8 +1125,6 @@ public:
       return false;
     // Check magnet link assoc
     shell_command = settings.value("Magnet\\shell\\open\\command\\Default", "").toString();
-    if(shell_command.isEmpty())
-        shell_command = settings.value("Magnet/shell/open/command/Default", "").toString();
     if(exe_reg.indexIn(shell_command) < 0)
       return false;
     assoc_exe = exe_reg.cap(1);

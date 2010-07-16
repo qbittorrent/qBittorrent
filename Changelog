@@ -18,6 +18,7 @@
     - BUGFIX: Hide seeding torrents files priorities in Web UI
     - BUGFIX: The user can disable permanently recursive torrent download
     - BUGFIX: Peer Exchange status is now correctly reported
+    - BUGFIX: Use an INI file instead of the registry on Windows (More reliable)
     - COSMETIC: Display peers country name in tooltip
     - COSMETIC: Display number of torrents in transfers tab label
     - COSMETIC: Simplified program preferences
