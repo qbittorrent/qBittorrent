@@ -930,10 +930,10 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   Q_ASSERT(h.hash() == hash);
 
   // If temp path is enabled, move torrent
-  if(!defaultTempPath.isEmpty() && !resumed) {
+  /*if(!defaultTempPath.isEmpty() && !resumed) {
     qDebug("Temp folder is enabled, moving new torrent to temp folder");
     h.move_storage(defaultTempPath);
-  }
+  }*/
 
   // Connections limit per torrent
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
