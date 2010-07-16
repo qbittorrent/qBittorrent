@@ -35,41 +35,50 @@
 
 class QIniSettings : public QSettings {
 public:
-    QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
+  QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
 #ifdef Q_WS_WIN
-            QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
+      QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
 #else
-            QSettings(organization, application, parent)
+      QSettings(organization, application, parent)
 #endif
-    {
+  {
 
-    }
+  }
 
 #ifdef Q_WS_WIN
-    QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
-        QVariant ret = QSettings::value(key);
-        if(format() == QSettings::NativeFormat) {
-            if(ret.isNull()) {
-                // Fallback on Windows, use \ in key instead of /
-                if(key.contains("/")) {
-                    ret = QSettings::value(key.replace("/", "\\"));
-                } else {
-                    if(key.contains("\\")) {
-                        ret = QSettings::value(key.replace("\\", "/"));
-                    }
-                }
-            }
+  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
+    QVariant ret = QSettings::value(key);
+    if(format() == QSettings::NativeFormat) {
+      if(ret.isNull()) {
+        // Fallback on Windows, use \ in key instead of /
+        if(key.contains("/")) {
+          ret = QSettings::value(key.replace("/", "\\"));
+        } else {
+          if(key.contains("\\")) {
+            ret = QSettings::value(key.replace("\\", "/"));
+          }
         }
-        if(ret.isNull())
-            return defaultValue;
-        return ret;
+      }
+    } else {
+      // Keep compatibility with qBittorrent < 2.3.0
+      // Import the setting from the registry
+      QSettings old_settings(organizationName(), applicationName());
+      ret = old_settings.value(key);
+      if(!ret.isEmpty()) {
+        setValue(key, ret);
+        old_settings.remove(key);
+      }
     }
+    if(ret.isNull())
+      return defaultValue;
+    return ret;
+  }
 
-    void setValue(const QString &key, const QVariant &val) {
-        if(format() == QSettings::NativeFormat)
-            key = key.replace("/", "\\");
-        QSettings::setValue(key, val);
-    }
+  void setValue(const QString &key, const QVariant &val) {
+    if(format() == QSettings::NativeFormat)
+      key = key.replace("/", "\\");
+    QSettings::setValue(key, val);
+  }
 #endif
 };
 
