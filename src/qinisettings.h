@@ -45,17 +45,22 @@ public:
 
   }
 
+  QIniSettings(const QString &fileName, Format format, QObject *parent = 0 ) : QSettings(fileName, format, parent) {
+
+  }
+
 #ifdef Q_WS_WIN
-  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
-    QVariant ret = QSettings::value(key);
+  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) {
+    QString key_tmp(key);
+    QVariant ret = QSettings::value(key_tmp);
     if(format() == QSettings::NativeFormat) {
       if(ret.isNull()) {
         // Fallback on Windows, use \ in key instead of /
-        if(key.contains("/")) {
-          ret = QSettings::value(key.replace("/", "\\"));
+        if(key_tmp.contains("/")) {
+          ret = QSettings::value(key_tmp.replace("/", "\\"));
         } else {
-          if(key.contains("\\")) {
-            ret = QSettings::value(key.replace("\\", "/"));
+          if(key_tmp.contains("\\")) {
+            ret = QSettings::value(key_tmp.replace("\\", "/"));
           }
         }
       }
@@ -63,10 +68,10 @@ public:
       // Keep compatibility with qBittorrent < 2.3.0
       // Import the setting from the registry
       QSettings old_settings(organizationName(), applicationName());
-      ret = old_settings.value(key);
-      if(!ret.isEmpty()) {
-        setValue(key, ret);
-        old_settings.remove(key);
+      ret = old_settings.value(key_tmp);
+      if(!ret.isNull()) {
+        setValue(key_tmp, ret);
+        old_settings.remove(key_tmp);
       }
     }
     if(ret.isNull())
@@ -75,9 +80,10 @@ public:
   }
 
   void setValue(const QString &key, const QVariant &val) {
+    QString key_tmp(key);
     if(format() == QSettings::NativeFormat)
-      key = key.replace("/", "\\");
-    QSettings::setValue(key, val);
+      key_tmp = key_tmp.replace("/", "\\");
+    QSettings::setValue(key_tmp, val);
   }
 #endif
 };
