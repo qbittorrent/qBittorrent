@@ -31,7 +31,6 @@
 #include <QTreeWidgetItem>
 #include <QStringList>
 #include <QMenu>
-#include <QSettings>
 #include <QHash>
 #include <QAction>
 #include <QColor>
@@ -42,6 +41,7 @@
 #include "trackersadditiondlg.h"
 #include "misc.h"
 #include "bittorrent.h"
+#include "qinisettings.h"
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
   // Graphical settings
@@ -372,7 +372,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
 }
 
 void TrackerList::loadSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth")).toStringList());
   if(!contentColsWidths.empty()) {
     for(int i=0; i<contentColsWidths.size(); ++i) {
@@ -384,7 +384,7 @@ void TrackerList::loadSettings() {
 }
 
 void TrackerList::saveSettings() const {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QStringList contentColsWidths;
   for(int i=0; i<columnCount(); ++i) {
     contentColsWidths << QString::number(columnWidth(i));

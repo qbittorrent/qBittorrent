@@ -29,7 +29,6 @@
  */
 
 #include <QTemporaryFile>
-#include <QSettings>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkProxy>
@@ -38,6 +37,7 @@
 
 #include "downloadthread.h"
 #include "preferences.h"
+#include "qinisettings.h"
 
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 
@@ -170,7 +170,7 @@ void downloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) 
 
 void downloadThread::applyProxySettings() {
   QNetworkProxy proxy;
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   int intValue = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt();
   if(intValue > 0) {
     // Proxy enabled

@@ -35,7 +35,6 @@
 #include <QListWidgetItem>
 #include <QFrame>
 #include <QIcon>
-#include <QSettings>
 #include <QVBoxLayout>
 #include <QMenu>
 #include <QInputDialog>
@@ -45,6 +44,7 @@
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
+#include "qinisettings.h"
 
 class LabelFiltersList: public QListWidget {
   Q_OBJECT
@@ -250,7 +250,7 @@ public:
   }
 
   void saveSettings() const {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     settings.setValue("selectedFilterIndex", QVariant(statusFilters->currentRow()));
     //settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
@@ -258,13 +258,13 @@ public:
   }
 
   void saveCustomLabels() const {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     settings.setValue("customLabels", QVariant(customLabels.keys()));
   }
 
   void loadSettings() {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     statusFilters->setCurrentRow(settings.value("selectedFilterIndex", 0).toInt());
     QStringList label_list = settings.value("customLabels", QStringList()).toStringList();

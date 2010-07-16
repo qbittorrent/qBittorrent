@@ -31,7 +31,6 @@
 #include <QDir>
 #include <QDateTime>
 #include <QString>
-#include <QSettings>
 #include <QNetworkInterface>
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
@@ -49,6 +48,7 @@
 #endif
 #include "torrentpersistentdata.h"
 #include "httpserver.h"
+#include "qinisettings.h"
 #include "bandwidthscheduler.h"
 #include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/version.hpp>
@@ -2323,7 +2323,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             append_root_folder = true;
           }
         } else {
-          QSettings settings("qBittorrent", "qBittorrent");
+          QIniSettings settings("qBittorrent", "qBittorrent");
           if(!settings.value("ported_to_new_savepath_system", false).toBool()) {
             append_root_folder = true;
           }
@@ -2517,7 +2517,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             addTorrent(torrentBackup.path()+QDir::separator()+hash+".torrent", false, QString(), true);
         }
       }
-      QSettings settings("qBittorrent", "qBittorrent");
+      QIniSettings settings("qBittorrent", "qBittorrent");
       settings.setValue("ported_to_new_savepath_system", true);
       qDebug("Unfinished torrents resumed");
     }

@@ -37,7 +37,6 @@
 #include <fstream>
 #include <QMessageBox>
 #include <QMenu>
-#include <QSettings>
 #include <QHeaderView>
 #include <QApplication>
 #include <QDesktopWidget>
@@ -55,6 +54,7 @@
 #include "preferences.h"
 #include "GUI.h"
 #include "transferlistwidget.h"
+#include "qinisettings.h"
 
 using namespace libtorrent;
 

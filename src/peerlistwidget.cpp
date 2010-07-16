@@ -39,11 +39,11 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
-#include <QSettings>
 #include <QHeaderView>
 #include <QMenu>
 #include <QClipboard>
 #include <vector>
+#include "qinisettings.h"
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), display_flags(false) {
   // Visual settings
@@ -255,7 +255,7 @@ void PeerListWidget::clear() {
 }
 
 void PeerListWidget::loadSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth")).toStringList());
   if(!contentColsWidths.empty()) {
     for(int i=0; i<contentColsWidths.size(); ++i) {
@@ -277,7 +277,7 @@ void PeerListWidget::loadSettings() {
 }
 
 void PeerListWidget::saveSettings() const {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QStringList contentColsWidths;
   for(int i=0; i<listModel->columnCount(); ++i) {
     contentColsWidths << QString::number(columnWidth(i));

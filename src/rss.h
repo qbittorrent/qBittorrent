@@ -34,7 +34,6 @@
 #include <QFile>
 #include <QList>
 #include <QTemporaryFile>
-#include <QSettings>
 #include <QXmlStreamReader>
 #include <QTime>
 #include <QUrl>
@@ -92,7 +91,7 @@ public:
   enum FileType {STREAM, FOLDER};
 
   RssFile(): QObject() {}
-  virtual ~RssFile() {};
+  virtual ~RssFile() {}
 
   virtual unsigned int getNbUnRead() const = 0;
   virtual FileType getType() const = 0;

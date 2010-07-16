@@ -48,13 +48,15 @@ public:
 #ifdef Q_WS_WIN
     QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
         QVariant ret = QSettings::value(key);
-        if(format() == QSettings::NativeFormat && ret.isNull()) {
-            // Fallback on Windows, use \ in key instead of /
-            if(key.contains("/")) {
-                ret = QSettings::value(key.replace("/", "\\"));
-            } else {
-                if(key.contains("\\")) {
-                    ret = QSettings::value(key.replace("\\", "/"));
+        if(format() == QSettings::NativeFormat) {
+            if(ret.isNull()) {
+                // Fallback on Windows, use \ in key instead of /
+                if(key.contains("/")) {
+                    ret = QSettings::value(key.replace("/", "\\"));
+                } else {
+                    if(key.contains("\\")) {
+                        ret = QSettings::value(key.replace("\\", "/"));
+                    }
                 }
             }
         }

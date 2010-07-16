@@ -33,7 +33,6 @@
 
 #include <QDialog>
 #include <QList>
-#include <QSettings>
 #include "ui_bandwidth_limit.h"
 #include "misc.h"
 #include "bittorrent.h"

@@ -43,7 +43,6 @@
 #include <QSortFilterProxyModel>
 #include <QDesktopServices>
 #include <QTimer>
-#include <QSettings>
 #include <QClipboard>
 #include <QInputDialog>
 #include <QColor>
@@ -53,9 +52,11 @@
 #include <QFileDialog>
 #include <vector>
 
+#include "qinisettings.h"
+
 TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent *_BTSession):
     QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   // Create and apply delegate
   listDelegate = new TransferListDelegate(this);
   setItemDelegate(listDelegate);
@@ -573,7 +574,7 @@ inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) c
 
 
 QStringList TransferListWidget::getCustomLabels() const {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   return settings.value("TransferListFilters/customLabels", QStringList()).toStringList();
 }
 
@@ -863,7 +864,7 @@ void TransferListWidget::recheckSelectedTorrents() {
 
 // save the hidden columns in settings
 void TransferListWidget::saveHiddenColumns() const {
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   QStringList ishidden_list;
   const short nbColumns = listModel->columnCount()-1;//hash column is hidden
 
@@ -880,7 +881,7 @@ void TransferListWidget::saveHiddenColumns() const {
 
 // load the previous settings, and hide the columns
 bool TransferListWidget::loadHiddenColumns() {
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   const QString &line = settings.value("TransferListColsHoS", "").toString();
   bool loaded = false;
   const QStringList &ishidden_list = line.split(' ');
@@ -1221,7 +1222,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
 // Save columns width in a file to remember them
 void TransferListWidget::saveColWidthList() {
   qDebug("Saving columns width in transfer list");
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QStringList width_list;
   QStringList new_width_list;
   const short nbColumns = listModel->columnCount()-1; // HASH is hidden
@@ -1255,7 +1256,7 @@ void TransferListWidget::saveColWidthList() {
 // Load columns width in a file that were saved previously
 bool TransferListWidget::loadColWidthList() {
   qDebug("Loading columns width for download list");
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QString line = settings.value(QString::fromUtf8("TransferListColsWidth"), QString()).toString();
   if(line.isEmpty())
     return false;
@@ -1290,7 +1291,7 @@ bool TransferListWidget::loadColWidthList() {
 }
 
 void TransferListWidget::saveLastSortedColumn() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const Qt::SortOrder &sortOrder = header()->sortIndicatorOrder();
   QString sortOrderLetter;
   if(sortOrder == Qt::AscendingOrder)
@@ -1303,7 +1304,7 @@ void TransferListWidget::saveLastSortedColumn() {
 
 void TransferListWidget::loadLastSortedColumn() {
   // Loading last sorted column
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QString sortedCol = settings.value(QString::fromUtf8("TransferListSortedCol"), QString()).toString();
   if(!sortedCol.isEmpty()) {
     Qt::SortOrder sortOrder;

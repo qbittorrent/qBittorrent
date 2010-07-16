@@ -32,13 +32,13 @@
 #include <QTreeView>
 #include <QStandardItemModel>
 #include <QHeaderView>
-#include <QSettings>
 #include <QSortFilterProxyModel>
 
 #include "searchtab.h"
 #include "searchlistdelegate.h"
 #include "misc.h"
 #include "searchengine.h"
+#include "qinisettings.h"
 
 #define SEARCH_NAME 0
 #define SEARCH_SIZE 1
@@ -111,7 +111,7 @@ QHeaderView* SearchTab::header() const {
 }
 
 bool SearchTab::loadColWidthResultsList() {
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   QString line = settings.value("SearchResultsColsWidth", QString()).toString();
   if(line.isEmpty())
     return false;

@@ -93,7 +93,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
   }
 
   void torrentAdditionDialog::readSettings() {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     // Restore size and position
     resize(settings.value(QString::fromUtf8("TorrentAdditionDlg/size"), size()).toSize());
     move(settings.value(QString::fromUtf8("TorrentAdditionDlg/pos"), misc::screenCenter(this)).toPoint());
@@ -109,7 +109,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
   }
 
   void torrentAdditionDialog::saveSettings() {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     if(!is_magnet && t.get() && t->is_valid() && t->num_files() > 1) {
       QStringList contentColsWidths;
       // -1 because we hid PROGRESS column
@@ -168,7 +168,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
     // Update display
     updateDiskSpaceLabels();
     // Load custom labels
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     QStringList customLabels = settings.value("customLabels", QStringList()).toStringList();
     comboLabel->addItem("");
@@ -265,7 +265,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
     connect(savePathTxt, SIGNAL(editTextChanged(QString)), this, SLOT(updateDiskSpaceLabels()));
     updateDiskSpaceLabels();
     // Load custom labels
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     const QStringList &customLabels = settings.value("customLabels", QStringList()).toStringList();
     comboLabel->addItem("");
@@ -616,7 +616,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
         }
 
         void torrentAdditionDialog::saveTruncatedPathHistory() {
-          QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+          QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
           const QString current_save_path = getCurrentTruncatedSavePath();
           // Get current history
           QStringList history = settings.value("TorrentAdditionDlg/save_path_history").toStringList();
@@ -636,6 +636,6 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
           }
 
           QStringList torrentAdditionDialog::getSavePathHistory() const {
-            QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+            QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
             return settings.value("TorrentAdditionDlg/save_path_history").toStringList();
           }

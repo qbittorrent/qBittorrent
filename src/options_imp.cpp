@@ -33,7 +33,6 @@
 #include <QInputDialog>
 #include <QSystemTrayIcon>
 #include <QApplication>
-#include <QSettings>
 #include <QDialogButtonBox>
 #include <QCloseEvent>
 #include <QDesktopWidget>
@@ -48,6 +47,7 @@
 #include "misc.h"
 #include "advancedsettings.h"
 #include "scannedfoldersmodel.h"
+#include "qinisettings.h"
 
 // Constructor
 options_imp::options_imp(QWidget *parent):QDialog(parent){
@@ -296,7 +296,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
 
   void options_imp::loadWindowState() {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     resize(settings.value(QString::fromUtf8("Preferences/State/size"), sizeFittingScreen()).toSize());
     QPoint p = settings.value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
     if(!p.isNull())
@@ -316,7 +316,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
 
   void options_imp::saveWindowState() const {
-    QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.setValue(QString::fromUtf8("Preferences/State/size"), size());
     settings.setValue(QString::fromUtf8("Preferences/State/pos"), pos());
     // Splitter size
@@ -347,7 +347,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 
   void options_imp::saveOptions(){
     applyButton->setEnabled(false);
-    QSettings settings("qBittorrent", "qBittorrent");
+    QIniSettings settings("qBittorrent", "qBittorrent");
     // Apply style
     useStyle();
     settings.beginGroup("Preferences");

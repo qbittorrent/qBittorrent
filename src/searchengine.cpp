@@ -31,7 +31,6 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include <QCompleter>
-#include <QSettings>
 #include <QMessageBox>
 #include <QTemporaryFile>
 #include <QSystemTrayIcon>
@@ -54,6 +53,7 @@
 #include "misc.h"
 #include "preferences.h"
 #include "searchlistdelegate.h"
+#include "qinisettings.h"
 #include "GUI.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
@@ -260,15 +260,15 @@ void SearchEngine::on_enginesButton_clicked() {
   connect(dlg, SIGNAL(enginesChanged()), this, SLOT(fillCatCombobox()));
 }
 
-// get the last searchs from a QSettings to a QStringList
+// get the last searchs from a QIniSettings to a QStringList
 void SearchEngine::startSearchHistory(){
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   searchHistory.setStringList(settings.value("Search/searchHistory",QStringList()).toStringList());
 }
 
-// Save the history list into the QSettings for the next session
+// Save the history list into the QIniSettings for the next session
 void SearchEngine::saveSearchHistory() {
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   settings.setValue("Search/searchHistory",searchHistory.stringList());
 }
 
@@ -372,7 +372,7 @@ void SearchEngine::propagateSectionResized(int index, int , int newsize) {
 void SearchEngine::saveResultsColumnsWidth() {
   if(all_tab.size() > 0) {
     QTreeView* treeview = all_tab.first()->getCurrentTreeView();
-    QSettings settings("qBittorrent", "qBittorrent");
+    QIniSettings settings("qBittorrent", "qBittorrent");
     QStringList width_list;
     QStringList new_width_list;
     short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
@@ -547,7 +547,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   if(searchTimeout->isActive()) {
     searchTimeout->stop();
   }
-  QSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings("qBittorrent", "qBittorrent");
   bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
   if(useNotificationBalloons && parent->getCurrentTabIndex() != TAB_SEARCH) {
     parent->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));

@@ -64,6 +64,7 @@
 #include "propertieswidget.h"
 #include "statusbar.h"
 #include "hidabletabwidget.h"
+#include "qinisettings.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -352,7 +353,7 @@ void GUI::tab_changed(int new_tab) {
 }
 
 void GUI::writeSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   settings.setValue("geometry", saveGeometry());
   // Splitter size
@@ -414,7 +415,7 @@ void GUI::displayRSSTab() const {
 // End of keyboard shortcuts slots
 
 void GUI::readSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   restoreGeometry(settings.value("geometry").toByteArray());
   const QStringList &sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
@@ -560,7 +561,7 @@ void GUI::showEvent(QShowEvent *e) {
 
 // Called when we close the program
 void GUI::closeEvent(QCloseEvent *e) {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
   if(!force_exit && systrayIcon && goToSystrayOnExit && !this->isHidden()) {
     hide();
@@ -619,7 +620,7 @@ bool GUI::event(QEvent * e) {
     //Now check to see if the window is minimised
     if(isMinimized()) {
       qDebug("minimisation");
-      QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
       if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
         if(!qApp->activeWindow() || !qApp->activeWindow()->isModal()) {
           qDebug("Minimize to Tray enabled, hiding!");
@@ -648,7 +649,7 @@ void GUI::dropEvent(QDropEvent *event) {
     files = event->mimeData()->text().split(QString::fromUtf8("\n"));
   }
   // Add file to download list
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString file, files) {
     file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""), Qt::CaseInsensitive);
@@ -690,7 +691,7 @@ void GUI::dragEnterEvent(QDragEnterEvent *event) {
 // Display a dialog to allow user to add
 // torrents to download list
 void GUI::on_actionOpen_triggered() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   const QStringList &pathsList = QFileDialog::getOpenFileNames(0,
@@ -723,7 +724,7 @@ void GUI::processParams(const QString& params_str) {
 }
 
 void GUI::processParams(const QStringList& params) {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString param, params) {
     param = param.trimmed();
@@ -754,7 +755,7 @@ void GUI::addTorrent(QString path) {
 }
 
 void GUI::processDownloadedFiles(QString path, QString url) {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   if(useTorrentAdditionDialog) {
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
@@ -909,7 +910,7 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
  *****************************************************/
 
 void GUI::downloadFromURLList(const QStringList& url_list) {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(const QString& url, url_list) {
     if(url.startsWith("magnet:", Qt::CaseInsensitive)) {

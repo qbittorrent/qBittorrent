@@ -32,7 +32,6 @@
 #define FEEDDOWNLOADER_H
 
 #include <QString>
-#include <QSettings>
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QInputDialog>
@@ -45,6 +44,7 @@
 
 #include "bittorrent.h"
 #include "ui_feeddownloader.h"
+#include "qinisettings.h"
 
 #if QT_VERSION >= 0x040500
 #include <QHash>
@@ -168,20 +168,20 @@ public:
   }
 
   bool isDownloadingEnabled() const {
-    QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on", QHash<QString, QVariant>()).toHash();
     return feeds_w_downloader.value(feed_url, false).toBool();
   }
 
   void setDownloadingEnabled(bool enabled) {
-    QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on", QHash<QString, QVariant>()).toHash();
     feeds_w_downloader[feed_url] = enabled;
     qBTRSS.setValue("downloader_on", feeds_w_downloader);
   }
 
   static FeedFilters getFeedFilters(QString url) {
-    QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> all_feeds_filters = qBTRSS.value("feed_filters", QHash<QString, QVariant>()).toHash();
     return FeedFilters(url, all_feeds_filters.value(url, QHash<QString, QVariant>()).toHash());
   }
@@ -222,7 +222,7 @@ public:
   }
 
   void save() {
-    QSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QHash<QString, QVariant> all_feeds_filters = qBTRSS.value("feed_filters", QHash<QString, QVariant>()).toHash();
     qDebug("Saving filters for feed: %s (%d filters)", qPrintable(feed_url), (*this).size());
     all_feeds_filters[feed_url] = *this;

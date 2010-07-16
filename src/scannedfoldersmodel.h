@@ -36,7 +36,7 @@
 #include <QStringList>
 
 class FileSystemWatcher;
-class QSettings;
+class QIniSettings;
 
 class ScanFoldersModel : public QAbstractTableModel {
   Q_OBJECT
@@ -61,7 +61,7 @@ public:
   PathStatus setDownloadAtPath(int row, bool downloadAtPath);
 
   bool downloadInTorrentFolder(const QString &filePath) const;
-  void makePersistent(QSettings &settings);
+  void makePersistent(QIniSettings &settings);
 
 signals:
   // The absolute paths of new torrent files in the scanned directories.

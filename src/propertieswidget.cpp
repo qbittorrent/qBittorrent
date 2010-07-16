@@ -52,6 +52,7 @@
 #include "GUI.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
+#include "qinisettings.h"
 
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 8px; margin-right: 8px;}"
@@ -275,7 +276,7 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
 }
 
 void PropertiesWidget::readSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentProperties/filesColsWidth")).toStringList());
   if(contentColsWidths.empty()) {
     filesList->header()->resizeSection(0, 300);
@@ -301,7 +302,7 @@ void PropertiesWidget::readSettings() {
 }
 
 void PropertiesWidget::saveSettings() {
-  QSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue("TorrentProperties/Visible", state==VISIBLE);
   QStringList contentColsWidths;
   for(int i=0; i<PropListModel->columnCount(); ++i) {

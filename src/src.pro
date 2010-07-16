@@ -21,9 +21,6 @@ DEFINES += VERSION_MINOR=3
 DEFINES += VERSION_BUGFIX=0
 
 win32 {
-  # Don't use the system registry on Windows
-  DEFINES += QSettings QIniSettings
-
   # Adapt these paths on Windows
   INCLUDEPATH += $$quote(C:/qbittorrent/msvc/boost_1_42_0)
   INCLUDEPATH += $$quote(C:/qbittorrent/msvc/libtorrent-rasterbar-0.14.10/include)

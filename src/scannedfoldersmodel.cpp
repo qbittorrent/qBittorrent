@@ -34,9 +34,9 @@
 
 #include <QDir>
 #include <QFileInfo>
-#include <QSettings>
 #include <QString>
 #include <QTemporaryFile>
+#include "qinisettings.h"
 
 namespace {
   const int PathColumn = 0;
@@ -181,7 +181,7 @@ int ScanFoldersModel::findPathData(const QString &path) const {
   return -1;
 }
 
-void ScanFoldersModel::makePersistent(QSettings &settings) {
+void ScanFoldersModel::makePersistent(QIniSettings &settings) {
   QStringList paths;
   QList<QVariant> downloadInFolderInfo;
   foreach (const PathData* pathData, m_pathList) {

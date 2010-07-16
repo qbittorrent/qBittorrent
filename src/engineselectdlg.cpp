@@ -36,7 +36,6 @@
 #include "pluginsource.h"
 #include <QProcess>
 #include <QHeaderView>
-#include <QSettings>
 #include <QMenu>
 #include <QMessageBox>
 #include <QFileDialog>
