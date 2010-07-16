@@ -886,9 +886,15 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
       torrent_tmp_path += torrent_name;
     }
     p.save_path = torrent_tmp_path.toLocal8Bit().constData();
-    qDebug("addMagnetURI: using save_path: %s", qPrintable(defaultTempPath));
+    // Check if save path exists, creating it otherwise
+    if(!QDir(torrent_tmp_path).exists())
+      QDir().mkpath(torrent_tmp_path);
+    qDebug("addMagnetURI: using save_path: %s", qPrintable(torrent_tmp_path));
   } else {
     p.save_path = savePath.toLocal8Bit().constData();
+    // Check if save path exists, creating it otherwise
+    if(!QDir(savePath).exists())
+      QDir().mkpath(savePath);
     qDebug("addMagnetURI: using save_path: %s", qPrintable(savePath));
   }
 
@@ -1130,9 +1136,15 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       torrent_tmp_path += root_folder;
     }
     p.save_path = torrent_tmp_path.toLocal8Bit().constData();
-    qDebug("addTorrent: using save_path: %s", qPrintable(defaultTempPath));
+    // Check if save path exists, creating it otherwise
+    if(!QDir(torrent_tmp_path).exists())
+      QDir().mkpath(torrent_tmp_path);
+    qDebug("addTorrent: using save_path: %s", qPrintable(torrent_tmp_path));
   } else {
     p.save_path = savePath.toLocal8Bit().constData();
+    // Check if save path exists, creating it otherwise
+    if(!QDir(savePath).exists())
+      QDir().mkpath(savePath);
     qDebug("addTorrent: using save_path: %s", qPrintable(savePath));
   }
 
@@ -1168,12 +1180,19 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     if(!from_url.isNull()) QFile::remove(file);
     return h;
   }
+  // Remember root folder
+  TorrentPersistentData::setRootFolder(hash, root_folder);
 
   // If temp path is enabled, move torrent
-  if(!defaultTempPath.isEmpty() && !resumed) {
+  /*if(!defaultTempPath.isEmpty() && !resumed) {
     qDebug("Temp folder is enabled, moving new torrent to temp folder");
-    h.move_storage(defaultTempPath);
-  }
+    QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
+    if(!root_folder.isEmpty()) {
+      if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
+      torrent_tmp_path += root_folder;
+    }
+    h.move_storage(torrent_tmp_path);
+  }*/
 
   // Connections limit per torrent
   h.set_max_connections(Preferences::getMaxConnecsPerTorrent());
@@ -2255,7 +2274,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               const QDir current_dir(h.save_path());
               const QDir save_dir(getSavePath(h.hash()));
               if(current_dir == save_dir) {
-                h.move_storage(defaultTempPath);
+                QString root_folder = TorrentPersistentData::getRootFolder(hash);
+                QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
+                if(!root_folder.isEmpty()) {
+                  if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
+                  torrent_tmp_path += root_folder;
+                }
+                h.move_storage(torrent_tmp_path);
               }
             }
             emit torrentFinishedChecking(h);
@@ -2347,17 +2372,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
       // Clean path
       savePath = misc::expandPath(savePath);
-      // Checking if savePath Dir exists
-      // create it if it is not
-      QDir saveDir(savePath);
-      if(!saveDir.exists()) {
-        if(!saveDir.mkpath(saveDir.absolutePath())) {
-          std::cerr << "Couldn't create the save directory: " << qPrintable(saveDir.path()) << "\n";
-          // XXX: Do something else?
-        } else {
-          qDebug("Created save folder at %s", qPrintable(saveDir.path()));
-        }
-      }
       return savePath;
     }
 

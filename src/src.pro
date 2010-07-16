@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -12,13 +12,16 @@ CONFIG += qt \
 
 # Update this VERSION for each release
 os2 {
-    DEFINES += VERSION=\'\"v2.3.0rc2\"\'
+    DEFINES += VERSION=\'\"v2.3.0rc3\"\'
 } else {
-    DEFINES += VERSION=\\\"v2.3.0rc2\\\"
+    DEFINES += VERSION=\\\"v2.3.0rc3\\\"
 }
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=3
 DEFINES += VERSION_BUGFIX=0
+
+# NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
+DEFINES += VERSION_TYPE=RELEASE_CANDIDATE
 
 win32 {
   # Adapt these paths on Windows
@@ -50,9 +53,6 @@ win32 {
     DEFINES += NDEBUG
   }
 }
-
-# NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
-DEFINES += VERSION_TYPE=ALPHA
 
 # !mac:QMAKE_LFLAGS += -Wl,--as-needed
 contains(DEBUG_MODE, 1) { 
