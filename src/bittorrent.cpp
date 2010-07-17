@@ -1705,8 +1705,15 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
         if(!h.is_valid()) continue;
-        if(!h.is_seed())
-          h.move_storage(temppath);
+        if(!h.is_seed()) {
+          QString root_folder = TorrentPersistentData::getRootFolder(h.hash());
+          QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
+          if(!root_folder.isEmpty()) {
+            if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
+            torrent_tmp_path += root_folder;
+          }
+          h.move_storage(torrent_tmp_path);
+        }
       }
     }
     defaultTempPath = temppath;
@@ -2157,7 +2164,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             appendqBextensionToTorrent(h, true);
 #endif
           // Truncate root folder
-          misc::truncateRootFolder(p->handle);
+          QString root_folder = misc::truncateRootFolder(p->handle);
+          TorrentPersistentData::setRootFolder(h.hash(), root_folder);
           emit metadataReceived(h);
           if(h.is_paused()) {
             // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
