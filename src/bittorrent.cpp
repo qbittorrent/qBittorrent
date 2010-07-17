@@ -771,10 +771,12 @@ void Bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
   }
   const QString &fileName = h.name();
   // Remove it from session
-  if(delete_local_files)
+  if(delete_local_files) {
+    savePathsToRemove[hash] = h.save_path();
     s->remove_torrent(h.get_torrent_handle(), session::delete_files);
-  else
+  } else {
     s->remove_torrent(h.get_torrent_handle());
+  }
   // Remove it from torrent backup directory
   QDir torrentBackup(misc::BTBackupLocation());
   QStringList filters;
@@ -2067,6 +2069,41 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             // Single-file torrent
             // Renaming a file corresponds to changing the save path
             emit savePathChanged(h);
+          }
+        }
+      }
+      else if (torrent_deleted_alert* p = dynamic_cast<torrent_deleted_alert*>(a.get())) {
+        qDebug("A torrent was deleted from the hard disk, attempting to remove the root folder too...");
+        QString hash;
+#if LIBTORRENT_VERSION_MINOR > 14
+        hash = misc::toQString(p->info_hash);
+
+#else
+        // Unfortunately libtorrent v0.14 does not provide the hash,
+        // only the torrent handle that is often invalid when it arrives
+        try {
+          if(p->handle.is_valid()) {
+            hash = misc::toQString(p->handle.info_hash());
+          }
+        }catch(std::exception){}
+#endif
+        if(!hash.isEmpty()) {
+          if(savePathsToRemove.contains(hash)) {
+            misc::removeEmptyTree(savePathsToRemove.take(hash));
+          }
+        } else {
+          // XXX: Fallback
+          QStringList hashes_deleted;
+          foreach(const QString& key, savePathsToRemove.keys()) {
+            // Attempt to delete
+            misc::removeEmptyTree(savePathsToRemove[key]);
+            if(!QDir(savePathsToRemove[key]).exists()) {
+              hashes_deleted << key;
+            }
+          }
+          // Clean up
+          foreach(const QString& key, hashes_deleted) {
+            savePathsToRemove.remove(key);
           }
         }
       }

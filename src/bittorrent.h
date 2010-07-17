@@ -226,6 +226,7 @@ private:
   QPointer<BandwidthScheduler> bd_scheduler;
   QMap<QUrl, QString> savepath_fromurl;
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
+  QHash<QString, QString> savePathsToRemove;
   QStringList torrentsToPausedAfterChecking;
   QTimer resumeDataTimer;
   // Ratio
