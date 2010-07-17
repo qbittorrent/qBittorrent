@@ -1699,6 +1699,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         h.move_storage(getSavePath(h.hash()));
       }
     } else {
+      qDebug("Enabling default temp path...");
       // Moving all downloading torrents to temporary save path
       std::vector<torrent_handle> torrents = getTorrents();
       std::vector<torrent_handle>::iterator torrentIT;
@@ -1707,11 +1708,12 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         if(!h.is_valid()) continue;
         if(!h.is_seed()) {
           QString root_folder = TorrentPersistentData::getRootFolder(h.hash());
-          QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
+          QString torrent_tmp_path = temppath.replace("\\", "/");
           if(!root_folder.isEmpty()) {
             if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
             torrent_tmp_path += root_folder;
           }
+          qDebug("Moving torrent to its temp save path: %s", qPrintable(torrent_tmp_path));
           h.move_storage(torrent_tmp_path);
         }
       }
@@ -2118,13 +2120,14 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         QTorrentHandle h(p->handle);
         if(h.is_valid()) {
           // Attempt to remove old folder if empty
-          const QString& old_save_path = TorrentPersistentData::getSavePath(h.hash());
+          const QString& old_save_path = TorrentPersistentData::getPreviousPath(h.hash());
           const QString new_save_path = QString::fromLocal8Bit(p->path.c_str());
           qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
           qDebug("Attempting to remove %s", qPrintable(old_save_path));
-          if(old_save_path != defaultSavePath && old_save_path != defaultTempPath)
-            QDir().rmdir(old_save_path);
-          if(new_save_path != defaultTempPath)
+          QDir old_save_dir(old_save_path);
+          if(old_save_dir != QDir(defaultSavePath) && old_save_dir != QDir(defaultTempPath))
+            misc::removeEmptyTree(old_save_path);
+          if(!new_save_path.startsWith(defaultTempPath))
             TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
           emit savePathChanged(h);
           //h.force_recheck();

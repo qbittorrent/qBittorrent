@@ -242,6 +242,22 @@ public:
     QHash<QString, QVariant> data = all_data[hash].toHash();
     return data.value("root_folder", QString()).toString();
   }
+
+  static void setPreviousSavePath(QString hash, QString previous_path) {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    data.insert("previous_path", previous_path);
+    all_data[hash] = data;
+    settings.setValue("torrents", all_data);
+  }
+
+  static QString getPreviousPath(QString hash) {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> data = all_data[hash].toHash();
+    return data.value("previous_path", QString()).toString();
+  }
   
   static void saveSeedDate(const QTorrentHandle &h) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
