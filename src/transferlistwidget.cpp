@@ -1009,7 +1009,8 @@ void TransferListWidget::setSelectionLabel(QString label) {
     TorrentPersistentData::saveLabel(hash, label);
     emit torrentChangedLabel(old_label, label);
     // Update save path if necessary
-    BTSession->changeLabelInTorrentSavePath(BTSession->getTorrentHandle(hash), old_label, label);
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    BTSession->changeLabelInTorrentSavePath(h, old_label, label);
   }
 }
 
@@ -1021,7 +1022,8 @@ void TransferListWidget::removeLabelFromRows(QString label) {
       TorrentPersistentData::saveLabel(hash, "");
       emit torrentChangedLabel(label, "");
       // Update save path if necessary
-      BTSession->changeLabelInTorrentSavePath(BTSession->getTorrentHandle(hash), label, "");
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      BTSession->changeLabelInTorrentSavePath(h, label, "");
     }
   }
 }

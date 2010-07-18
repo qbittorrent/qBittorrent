@@ -162,10 +162,10 @@ public slots:
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);
   void setAppendLabelToSavePath(bool append);
-  void appendLabelToTorrentSavePath(QTorrentHandle h);
-  void changeLabelInTorrentSavePath(QTorrentHandle h, QString old_label, QString new_label);
+  void appendLabelToTorrentSavePath(QTorrentHandle &h);
+  void changeLabelInTorrentSavePath(QTorrentHandle &h, QString old_label, QString new_label);
 #if LIBTORRENT_VERSION_MINOR > 14
-  void appendqBextensionToTorrent(QTorrentHandle h, bool append);
+  void appendqBextensionToTorrent(QTorrentHandle &h, bool append);
   void setAppendqBExtension(bool append);
 #endif
   void applyEncryptionSettings(pe_settings se);
