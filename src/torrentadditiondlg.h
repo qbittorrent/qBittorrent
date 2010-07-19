@@ -70,6 +70,7 @@ public:
   void showLoad(QString filePath, QString from_url=QString::null);
   QString getCurrentTruncatedSavePath(QString* root_folder_or_file_name = 0) const;
   QString getTruncatedSavePath(QString save_path, QString* root_folder_or_file_name = 0) const;
+  bool allFiltered() const;
 
 public slots:
   void displayContentListMenu(const QPoint&);
@@ -77,13 +78,12 @@ public slots:
   void updateDiskSpaceLabels();
   void on_browseButton_clicked();
   void on_CancelButton_clicked();
-  bool allFiltered() const;
   void savePiecesPriorities();
   void on_OkButton_clicked();
   void renameTorrentNameInModel(QString file_path);
   void hideTorrentContent();
   void saveTruncatedPathHistory();
-  QStringList getSavePathHistory() const;
+  void loadSavePathHistory();
   void updateLabelInSavePath(QString label);
   void updateSavePathCurrentText(QString path);
   void resetComboLabelIndex(QString text);
