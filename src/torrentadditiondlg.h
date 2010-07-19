@@ -68,7 +68,8 @@ public:
   void saveSettings();
   void showLoadMagnetURI(QString magnet_uri);
   void showLoad(QString filePath, QString from_url=QString::null);
-  QString getCurrentTruncatedSavePath() const;
+  QString getCurrentTruncatedSavePath(QString* root_folder_or_file_name = 0) const;
+  QString getTruncatedSavePath(QString save_path, QString* root_folder_or_file_name = 0) const;
 
 public slots:
   void displayContentListMenu(const QPoint&);
@@ -84,6 +85,8 @@ public slots:
   void saveTruncatedPathHistory();
   QStringList getSavePathHistory() const;
   void updateLabelInSavePath(QString label);
+  void updateSavePathCurrentText(QString path);
+  void resetComboLabelIndex(QString text);
 
 signals:
   void torrentPaused(QTorrentHandle &h);
@@ -104,6 +107,7 @@ private:
   QStringList files_path;
   bool is_magnet;
   int hidden_height;
+  QStringList path_history;
 };
 
 #endif
