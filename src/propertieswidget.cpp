@@ -94,6 +94,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
   connect(BTSession, SIGNAL(savePathChanged(QTorrentHandle&)), this, SLOT(updateSavePath(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateTorrentInfos(QTorrentHandle&)));
 
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
@@ -226,6 +227,12 @@ void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
   }
 }
 
+void PropertiesWidget::updateTorrentInfos(QTorrentHandle& _h) {
+  if(h.is_valid() && h == _h) {
+    loadTorrentInfos(h);
+  }
+}
+
 void PropertiesWidget::on_reannounce_btn_clicked() {
   if(h.is_valid()) {
     h.force_reannounce();
@@ -243,18 +250,8 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
 
   try {
     // Save path
-    QString p;
-    if(h.has_metadata() && h.num_files() == 1) {
-      p = h.firstFileSavePath();
-    } else {
-      p = TorrentPersistentData::getSavePath(h.hash());
-      if(p.isEmpty())
-        p = h.save_path();
-    }
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    p = p.replace("/", "\\");
-#endif
-    save_path->setText(p);
+    updateSavePath(h);
+    changeSavePathButton->setEnabled(h.has_metadata());
     // Creation date
     lbl_creationDate->setText(h.creation_date());
     // Hash

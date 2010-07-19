@@ -772,7 +772,9 @@ void Bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
   const QString &fileName = h.name();
   // Remove it from session
   if(delete_local_files) {
-    savePathsToRemove[hash] = h.save_path();
+    QDir save_dir(h.save_path());
+    if(save_dir != QDir(defaultSavePath) && (defaultTempPath.isEmpty() || save_dir != QDir(defaultTempPath)))
+      savePathsToRemove[hash] = save_dir.absolutePath();
     s->remove_torrent(h.get_torrent_handle(), session::delete_files);
   } else {
     s->remove_torrent(h.get_torrent_handle());
@@ -883,10 +885,6 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-    if(!torrent_name.isEmpty()) {
-      if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-      torrent_tmp_path += torrent_name;
-    }
     p.save_path = torrent_tmp_path.toLocal8Bit().constData();
     // Check if save path exists, creating it otherwise
     if(!QDir(torrent_tmp_path).exists())
@@ -2073,7 +2071,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             QString old_path = old_path_parts.join("/");
             QStringList new_path_parts = misc::toQStringU(p->name).split("/");
             new_path_parts.removeLast();
-            if(old_path != new_path_parts.join("/")) {
+            if(!new_path_parts.isEmpty() && old_path != new_path_parts.join("/")) {
+              qDebug("Old_path(%s) != new_path(%s)", qPrintable(old_path), qPrintable(new_path_parts.join("/")));
               old_path = h.save_path()+"/"+old_path;
               qDebug("Detected folder renaming, attempt to delete old folder: %s", qPrintable(old_path));
               QDir().rmpath(old_path);
@@ -2127,12 +2126,14 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           const QString& old_save_path = TorrentPersistentData::getPreviousPath(h.hash());
           const QString new_save_path = QString::fromLocal8Bit(p->path.c_str());
           qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
-          qDebug("Attempting to remove %s", qPrintable(old_save_path));
           QDir old_save_dir(old_save_path);
-          if(old_save_dir != QDir(defaultSavePath) && old_save_dir != QDir(defaultTempPath))
+          if(old_save_dir != QDir(defaultSavePath) && old_save_dir != QDir(defaultTempPath)) {
+            qDebug("Attempting to remove %s", qPrintable(old_save_path));
             misc::removeEmptyTree(old_save_path);
-          if(!new_save_path.startsWith(defaultTempPath))
+          }
+          if(defaultTempPath.isEmpty() || !new_save_path.startsWith(defaultTempPath)) {
             TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
+          }
           emit savePathChanged(h);
           //h.force_recheck();
         }
@@ -2173,6 +2174,21 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           // Truncate root folder
           const QString &root_folder = misc::truncateRootFolder(p->handle);
           TorrentPersistentData::setRootFolder(h.hash(), root_folder);
+
+          // Move to a subfolder corresponding to the torrent root folder if necessary
+          if(!root_folder.isEmpty()) {
+            if(!h.is_seed() && !defaultTempPath.isEmpty()) {
+              QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
+              if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
+              torrent_tmp_path += root_folder;
+              h.move_storage(torrent_tmp_path);
+            } else {
+              QString save_path = h.save_path().replace("\\", "/");
+              if(!save_path.endsWith("/")) save_path += "/";
+              save_path += root_folder;
+              h.move_storage(save_path);
+            }
+          }
           emit metadataReceived(h);
           if(h.is_paused()) {
             // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert

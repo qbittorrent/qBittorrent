@@ -316,6 +316,7 @@ public:
 
   static void saveSavePath(QString hash, QString save_path) {
     Q_ASSERT(!hash.isEmpty());
+    qDebug("TorrentPersistentData::saveSavePath(%s)", qPrintable(save_path));
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[hash].toHash();
