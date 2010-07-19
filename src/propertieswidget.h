@@ -85,6 +85,7 @@ protected:
 
 protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
+  void updateTorrentInfos(QTorrentHandle &h);
   void loadUrlSeeds();
   void on_main_infos_button_clicked();
   void on_trackers_button_clicked();

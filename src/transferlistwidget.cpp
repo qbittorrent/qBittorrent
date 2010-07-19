@@ -486,7 +486,7 @@ void TransferListWidget::refreshList(bool force) {
   // Stop updating the display
   setUpdatesEnabled(false);
   // Refresh only if displayed
-  if(!force && main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
+  if(!force && main_window->getCurrentTabWidget() != this) return;
   unsigned int nb_downloading = 0, nb_seeding=0, nb_active=0, nb_inactive = 0, nb_paused = 0;
   if(BTSession->getSession()->get_torrents().size() != (uint)listModel->rowCount()) {
     // Oups, we have torrents that are not displayed, fix this
@@ -695,7 +695,7 @@ void TransferListWidget::pauseAllTorrents() {
 }
 
 void TransferListWidget::deleteSelectedTorrents() {
-  if(main_window->getCurrentTabIndex() != TAB_TRANSFER) return;
+  if(main_window->getCurrentTabWidget() != this) return;
   const QStringList& hashes = getSelectedTorrentsHashes();
   if(!hashes.empty()) {
     bool delete_local_files = false;
@@ -1009,7 +1009,8 @@ void TransferListWidget::setSelectionLabel(QString label) {
     TorrentPersistentData::saveLabel(hash, label);
     emit torrentChangedLabel(old_label, label);
     // Update save path if necessary
-    BTSession->changeLabelInTorrentSavePath(BTSession->getTorrentHandle(hash), old_label, label);
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    BTSession->changeLabelInTorrentSavePath(h, old_label, label);
   }
 }
 
@@ -1021,7 +1022,8 @@ void TransferListWidget::removeLabelFromRows(QString label) {
       TorrentPersistentData::saveLabel(hash, "");
       emit torrentChangedLabel(label, "");
       // Update save path if necessary
-      BTSession->changeLabelInTorrentSavePath(BTSession->getTorrentHandle(hash), label, "");
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      BTSession->changeLabelInTorrentSavePath(h, label, "");
     }
   }
 }

@@ -599,6 +599,8 @@ void QTorrentHandle::force_recheck() const {
 
 void QTorrentHandle::move_storage(QString new_path) const {
   Q_ASSERT(h.is_valid());
+  if(QDir(save_path()) == QDir(new_path)) return;
+  TorrentPersistentData::setPreviousSavePath(hash(), save_path());
   h.move_storage(new_path.toLocal8Bit().constData());
 }
 

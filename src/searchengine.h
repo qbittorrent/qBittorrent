@@ -104,6 +104,7 @@ public:
 public slots:
   void on_download_button_clicked();
   void downloadTorrent(QString engine_url, QString torrent_url);
+  void giveFocusToSearchInput();
 
 protected slots:
   // Search slots

@@ -345,10 +345,18 @@ void GUI::on_actionBugReport_triggered() const {
 }
 
 void GUI::tab_changed(int new_tab) {
-  if(new_tab == TAB_TRANSFER) {
+  Q_UNUSED(new_tab);
+  // We cannot rely on the index new_tab
+  // because the tab order is undetermined now
+  if(tabs->currentWidget() == vSplitter) {
     qDebug("Changed tab to transfer list, refreshing the list");
     transferList->refreshList();
     properties->loadDynamicData();
+    return;
+  }
+  if(tabs->currentWidget() == searchEngine) {
+    qDebug("Changed tab to search engine, giving focus to search input");
+    searchEngine->giveFocusToSearchInput();
   }
 }
 
@@ -401,15 +409,17 @@ void GUI::createKeyboardShortcuts() {
 
 // Keyboard shortcuts slots
 void GUI::displayTransferTab() const {
-  tabs->setCurrentIndex(TAB_TRANSFER);
+  tabs->setCurrentWidget(transferList);
 }
 
 void GUI::displaySearchTab() const {
-  tabs->setCurrentIndex(TAB_SEARCH);
+  if(searchEngine)
+    tabs->setCurrentWidget(searchEngine);
 }
 
 void GUI::displayRSSTab() const {
-  tabs->setCurrentIndex(TAB_RSS);
+  if(rssWidget)
+    tabs->setCurrentWidget(rssWidget);
 }
 
 // End of keyboard shortcuts slots
@@ -509,10 +519,12 @@ void GUI::on_actionExit_triggered() {
   close();
 }
 
-int GUI::getCurrentTabIndex() const {
+QWidget* GUI::getCurrentTabWidget() const {
   if(isMinimized() || !isVisible())
-    return -1;
-  return tabs->currentIndex();
+    return 0;
+  if(tabs->currentIndex() == 0)
+    return transferList;
+  return tabs->currentWidget();
 }
 
 void GUI::setTabText(int index, QString text) const {
@@ -551,7 +563,7 @@ void GUI::on_actionAbout_triggered() {
 
 void GUI::showEvent(QShowEvent *e) {
   qDebug("** Show Event **");
-  if(getCurrentTabIndex() == TAB_TRANSFER) {
+  if(getCurrentTabWidget() == transferList) {
     qDebug("-> Refreshing transfer list");
     transferList->refreshList();
     properties->loadDynamicData();

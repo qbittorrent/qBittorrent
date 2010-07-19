@@ -169,73 +169,75 @@ p, li { white-space: pre-wrap; }
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>Özellik</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Değer</translation>
     </message>
     <message>
         <source>Ignore transfer limits on local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Yerel ağda tarım sınırlarını yoksay</translation>
     </message>
     <message>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktarım sınırı içine TCP/IP ek yükünü kat</translation>
     </message>
     <message>
         <source>Disk write cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Yazılabilir disk ön arabellek boyutu</translation>
     </message>
     <message>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Giden portlar (Min) [0: Etkisiz]</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Giden portlar (Maks) [0: Etkisiz]</translation>
     </message>
     <message>
         <source>Recheck torrents on completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamamlanmış torentleri yeniden denetle</translation>
     </message>
     <message>
         <source>Transfer list refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktarım listesi yenilenme aralığı</translation>
     </message>
     <message>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>milisaniye</translatorcomment>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eş ülkelerini çözümle (GeoIP)</translation>
     </message>
     <message>
         <source>Resolve peer host names</source>
-        <translation type="unfinished">Ana makina adı eşlerini çöz</translation>
+        <translation>Ana makina adı eşlerini çöz</translation>
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Yarı açık bağlantıların azami sayısı [0: Etkisiz]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Süper gönderme kipi</translation>
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ağ arayüzü (yeniden başlatma gerektirir)</translation>
     </message>
     <message>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>örn. Herhangi bir ağ arayüzü</translatorcomment>
+        <translation>Herhangi bir arayüz</translation>
     </message>
 </context>
 <context>
@@ -405,55 +407,55 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB&apos;lık disk önbelleği kullanılıyor</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished">EşD desteği [KAPALI]</translation>
+        <translation>PeX desteği [KAPALI]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished"></translation>
+        <translation>PeX desteğini açmak/kapatmak için yeniden başlatmak gerekir</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ağ arayüzünün kullandığı port: %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP istemcisi: %1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sebep: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Not: yeni izleyiciler varolan torente eklendi.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Not: yeni URL eşleri varolan torente eklendi.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir G/Ç hatası meydana geldi, &apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torent kaldırılıyor: %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torent duraklatılıyor: %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: %1 torenti herhangi bir dosya içermiyor.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 torentinin dosya boyutu eşleşmiyor, duraklatılıyor.</translation>
     </message>
 </context>
 <context>
@@ -472,27 +474,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent kayıt görüntüleyici</translation>
     </message>
 </context>
 <context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Çerez yönetimi</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Anahtar</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Değer</translation>
     </message>
     <message>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Çerezler için yaygın anahtarlar: &apos;%1&apos;, &apos;%2&apos;.
+Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</translation>
     </message>
 </context>
 <context>
@@ -1667,7 +1670,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt yolunu seç</translation>
     </message>
 </context>
 <context>
@@ -2664,327 +2667,330 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Özyineli indirilen doğrulama</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 , torent dosyaları içeriyor, bunların indirilmesini birlikte yürütmek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktarımlar: (%1)</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translation>Torent dosyası ilişkisi</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent torent dosyaranı ve benzer bağlantıları açmak için varsayılan uygulama değil.
+qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Evet</translation>
+        <translation>Evet</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">Hayır</translation>
+        <translation>Hayır</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Asla</translation>
+        <translation>Asla</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Her zaman</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent&apos;ten çıkılıyor</translation>
     </message>
 </context>
 <context>
     <name>GeoIP</name>
     <message>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Avustralya</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Arjantin</translation>
     </message>
     <message>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Avusturya</translation>
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleşik Arap Emirlikleri</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Brezilye</translation>
     </message>
     <message>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulgaristan</translation>
     </message>
     <message>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Beyaz Rusya</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Belçika</translation>
     </message>
     <message>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Bosna Hersek</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanada</translation>
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Çek Cumhuriyeti</translation>
     </message>
     <message>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Çin</translation>
     </message>
     <message>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Kosta Rika</translation>
     </message>
     <message>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>İsviçre</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Almanya</translation>
     </message>
     <message>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Danimarka</translation>
     </message>
     <message>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>Cezayir</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>İspanya</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Mısır</translation>
     </message>
     <message>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Finlandiya</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished">Fransa</translation>
+        <translation>Fransa</translation>
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleşik Krallık</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Yunanistan</translation>
     </message>
     <message>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Gürcistan</translation>
     </message>
     <message>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Macaristan</translation>
     </message>
     <message>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translation>Hırvatistan</translation>
     </message>
     <message>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>İtalya</translation>
     </message>
     <message>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Hindistan</translation>
     </message>
     <message>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>İsrail</translation>
     </message>
     <message>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>İrlanda</translation>
     </message>
     <message>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>İzlanda</translation>
     </message>
     <message>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Endonezya</translation>
     </message>
     <message>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Japonya</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Güney Kore</translation>
     </message>
     <message>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>Lüksemburg</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Malezya</translation>
     </message>
     <message>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translation>Meksika</translation>
     </message>
     <message>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Sırbistan</translation>
     </message>
     <message>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translation>Fas</translation>
     </message>
     <message>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Hollanda</translation>
     </message>
     <message>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Norveç</translation>
     </message>
     <message>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni Zelanda</translation>
     </message>
     <message>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Portekiz</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Polonya</translation>
     </message>
     <message>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakistan</translation>
     </message>
     <message>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Filipinler</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Rusya</translation>
     </message>
     <message>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translation>Romanya</translation>
     </message>
     <message>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fransa (Birleşik Ada)</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>İsveç</translation>
     </message>
     <message>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovakya</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Singapur</translation>
     </message>
     <message>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovenya</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Tayvan</translation>
     </message>
     <message>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Türkiye</translation>
     </message>
     <message>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Tayland</translation>
     </message>
     <message>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translation>ABD</translation>
     </message>
     <message>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukrayna</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Güney Afrika</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Suudi Arabistan</translation>
     </message>
 </context>
 <context>
     <name>HeadlessLoader</name>
     <message>
         <source>Information</source>
-        <translation type="unfinished">Bilgi</translation>
+        <translation>Bilgi</translation>
     </message>
     <message>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent&apos;i kontrol etmek için, Web Arayüzü&apos;ne giriş yolu: http://localhost:%1</translation>
     </message>
     <message>
         <source>The Web UI administrator user name is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü yöneticisinin kullanıcı adı: %1</translation>
     </message>
     <message>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü yöneticisinin parolası hala varsayılan: %1</translation>
     </message>
     <message>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu bir güvenlik riskidir, lütfen program yeğlenenlerinden parolanızı değiştirin.</translation>
     </message>
 </context>
 <context>
     <name>HttpConnection</name>
     <message>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP adresiniz çok fazla yetkilendirme denemesi başarısızlığı nedeniyle yasaklandı.</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">İND: %1/s - Top: %2</translation>
+        <translatorcomment>İndirme hızı: x KB/s - Aktarılan: x MB</translatorcomment>
+        <translation>İND: %1/s - Top: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">GÖN: %1/s - Top: %2</translation>
+        <translatorcomment>Gönderme hızı: x KB/s - Aktarılan: x MB</translatorcomment>
+        <translation>GÖN: %1/s - Top: %2</translation>
     </message>
 </context>
 <context>
@@ -3059,57 +3065,60 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Dil</translation>
+        <translation>Dil</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gelen bağlantıların portu 1024&apos;ten büyük, 65535&apos;ten küçük olmalı.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü için kullanılan port 1024&apos;ten büyük, 65535&apos;ten küçük olmalı.</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web arayüzü kullanıcı adı en az 3 karakter uzunluğunda olmalı.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web arayüzü parolası en az 3 karakter uzunluğunda olmalı.</translation>
     </message>
     <message>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation type="unfinished">İndirilen</translation>
+        <translatorcomment>Dosya indirildi mi indirilmedi mi?</translatorcomment>
+        <translation>İndirilen</translation>
     </message>
 </context>
 <context>
     <name>LegalNotice</name>
     <message>
         <source>Legal Notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Yasal Not</translation>
     </message>
     <message>
         <source>Legal notice</source>
-        <translation type="unfinished"></translation>
+        <translation>Yasal not</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Katılıyorum</translation>
     </message>
     <message>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent bir dosya paylaşım programıdır. Bir torent çalıştırdığınızda başkaları tarafından kopyalanabilecektir. Paylaştığınız tüm içerik sizin sorumluluğunuzdadır.
+
+Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Press %1 key to accept and continue...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3380,71 +3389,71 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Araçlar</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Görünüm</translation>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dosya Ekle...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>Çı&amp;kış</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Seçenekler...</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;URL ekle...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Torent &amp;oluşturucu</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönderim sınırı ayarla...</translation>
     </message>
     <message>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme sınırı ayarla...</translation>
     </message>
     <message>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel indirme sınırı ayarla...</translation>
     </message>
     <message>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel gönderim sınırı ayarla...</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kayıt görüntüleyici...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Üst &amp;araç çubuğu</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Üst araç çubuğunu göster</translation>
     </message>
     <message>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Başlık çubuğunda &amp;hızı göster</translation>
     </message>
     <message>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktarım hızını başlık çubuğunda göster</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı hız sınırları</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3452,51 +3461,51 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hakkında</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Başlat</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Duraklat</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sil</translation>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tümünü D&amp;uraklat</translation>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tümünü Başlat</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;iteyi Ziyaret Et</translation>
     </message>
     <message>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir hata &amp;bildir</translation>
     </message>
     <message>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>B&amp;elgeleme</translation>
     </message>
     <message>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;RSS okuyucu</translation>
     </message>
     <message>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Arama &amp;motoru</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt görüntüleyici</translation>
     </message>
 </context>
 <context>
@@ -3519,7 +3528,8 @@ No further notices will be issued.</source>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation type="unfinished">/s</translation>
+        <translatorcomment>/saniye (örn. saniye başı)</translatorcomment>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
@@ -3616,15 +3626,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni bir eş ekle...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme oranını sınırla...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönderme oranını sınırla...</translation>
     </message>
     <message>
         <source>Copy IP</source>
@@ -3639,23 +3649,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>UI</source>
-        <translation type="unfinished">Arabirim</translation>
+        <translation>Arayüz</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirilenler</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Bağlantı</translation>
+        <translation>Bağlantı</translation>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation type="unfinished">Bittorrent</translation>
+        <translation>Bittorrent</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished">Vekil</translation>
+        <translation>Vekil</translation>
     </message>
     <message>
         <source>IP Filter</source>
@@ -3663,7 +3673,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished">Web KA</translation>
+        <translation>Web Arayüzü</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -3671,15 +3681,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished">Dil:</translation>
+        <translation>Dil:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Yeniden başlatma gerektirir)</translation>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation type="unfinished">Görsel biçem:</translation>
+        <translation>Görsel biçem:</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -3699,12 +3709,13 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktarım listesi</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Aktarım listesinde, her iki sırada bir gri artalan olacak.</translatorcomment>
+        <translation>Başka sıra renkleri kullan</translation>
     </message>
     <message>
         <source>Downloading:</source>
@@ -3749,7 +3760,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>File system</source>
-        <translation type="unfinished">Dosya sistemi</translation>
+        <translation>Dosya sistemi</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
@@ -3757,7 +3768,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Torrent queueing</source>
-        <translation type="unfinished">Torrent kuyruğu</translation>
+        <translation>Torent kuyruğu</translation>
     </message>
     <message>
         <source>Enable queueing system</source>
@@ -3765,23 +3776,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished">Azami etkin indirilen:</translation>
+        <translation>Azami etkin indirilen:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished">Azami etkin gönderimler:</translation>
+        <translation>Azami etkin gönderilen:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished">Azami etkin torrent:</translation>
+        <translation>Azami etkin torent:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished">Bir torrent eklerken</translation>
+        <translation>Bir torent eklerken</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished">Torrent içeriğini ve bazı seçenekleri göster</translation>
+        <translation>Torent içeriğini ve bazı seçenekleri göster</translation>
     </message>
     <message>
         <source>Do not start download automatically</source>
@@ -3790,75 +3801,75 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Listening port</source>
-        <translation type="unfinished">Kullanılan kapı</translation>
+        <translation>Kullanılan port</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished">Gelen bağlantılar için kullanılacak port:</translation>
+        <translation>Gelen bağlantılar için kullanılacak port:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished">Rastgele</translation>
+        <translation>Rastgele</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation type="unfinished">UPnP kapı haritalamayı etkinleştir</translation>
+        <translation>UPnP port haritalamayı etkinleştir</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation type="unfinished">NAT-PMP kapı haritalamayı etkinleştir</translation>
+        <translation>NAT-PMP port haritalamayı etkinleştir</translation>
     </message>
     <message>
         <source>Connections limit</source>
-        <translation type="unfinished">Bağlantıların sınırı</translation>
+        <translation>Bağlantı sınırı</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished">Genel azami bağlantı sayısı:</translation>
+        <translation>Genel azami bağlantı sayısı:</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished">Torrent başına azami bağlantı sayısı:</translation>
+        <translation>Torent başına azami bağlantı sayısı:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished">Torrent başına azami gönderme yuvası sayısı:</translation>
+        <translation>Torent başına azami gönderme yuvası sayısı:</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished">Gönderme:</translation>
+        <translation>Gönderme:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished">İndirme:</translation>
+        <translation>İndirme:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KB/s</translation>
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation type="unfinished">Bittorrent özellikleri</translation>
+        <translation>Bittorrent özellikleri</translation>
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation type="unfinished">DHT ağını etkinleştir (dağıtılmış)</translation>
+        <translation>DHT ağını etkinleştir (dağıtılmış)</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="unfinished">DHT ve Bittorrent için farklı bir port kullan</translation>
+        <translation>DHT ve Bittorrent için farklı bir port kullan</translation>
     </message>
     <message>
         <source>DHT port:</source>
-        <translation type="unfinished">DHT portu:</translation>
+        <translation>DHT portu:</translation>
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eş Değişimini Etkinleştir / PeX (yeniden başlatmak gerekir)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation type="unfinished">Yerel Eş Keşfini Etkinleştir</translation>
+        <translation>Yerel Eş Keşfini Etkinleştir</translation>
     </message>
     <message>
         <source>Encryption:</source>
@@ -3866,15 +3877,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Etkin</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation type="unfinished">Zorlandı</translation>
+        <translation>Zorlandı</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Etkisiz</translation>
+        <translation>Etkisiz</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
@@ -3890,35 +3901,35 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished">Tip:</translation>
+        <translation>Tip:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished">(Hiçbiri)</translation>
+        <translation>(Hiçbiri)</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished">HTTP</translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished">Kapı:</translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished">Kimlik Denetimi</translation>
+        <translation>Kimlik Denetimi</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished">Kullanıcı adı:</translation>
+        <translation>Kullanıcı adı:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Parola:</translation>
+        <translation>Parola:</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished">SOCKS5</translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <source>Filter Settings</source>
@@ -3934,7 +3945,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished">HTTP Sunucu</translation>
+        <translation>HTTP Sunucu</translation>
     </message>
     <message>
         <source>Enable RSS support</source>
@@ -3958,244 +3969,248 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished"></translation>
+        <translation>Süzgeç yolu (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP İletişimi (izleyiciler, Web eşleri, arama motoru)</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ana Makina:</translation>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation type="unfinished"></translation>
+        <translation>Eş İletişimi</translation>
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished">SOCKS4</translation>
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation type="unfinished"></translation>
+        <translation>İstemci beyazlistesi çalışması</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation type="unfinished"></translation>
+        <translation>İlişkilendir:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sürüm:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Yazılımın Oluşturulma numarası:</translatorcomment>
+        <translation>Oluşturma:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation type="unfinished"></translation>
+        <translation>Son yazılım sürümüne getir</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Hız</translation>
     </message>
     <message>
         <source>Global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel hız sınırları</translation>
     </message>
     <message>
         <source>Alternative global speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı genel hız sınırları</translation>
     </message>
     <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>zaman1&apos;den zaman2&apos;ye</translatorcomment>
+        <translation>&gt;</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>Her gün</translation>
     </message>
     <message>
         <source>Week days</source>
-        <translation type="unfinished"></translation>
+        <translation>Hafta içi</translation>
     </message>
     <message>
         <source>Week ends</source>
-        <translation type="unfinished"></translation>
+        <translation>Haftasonu</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Gelişmiş</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent dosyasını kopyala:</translation>
     </message>
     <message>
         <source>Remove folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasörü kaldır</translation>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiçbir şey yapma</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçenekler</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Görsel Özellikler</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Çift tıklama eylemi</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torent indiriliyor:</translation>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Başlat / Durdur</translation>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation type="unfinished">Hedef klasörü aç</translation>
+        <translation>Hedef klasörü aç</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamamlanan torentler:</translation>
     </message>
     <message>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Masaüstü</translation>
     </message>
     <message>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Açılış ekranını başlangıçta göster</translation>
     </message>
     <message>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent&apos;i küçültülmüş başlat</translation>
     </message>
     <message>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent simgesini bildirim alanında göster</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent&apos;i bildirim alanına küçült</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>örn. Sistem tepsisi simgesi ana pencere kapatıldığında görünür.</translatorcomment>
+        <translation>qBittorrent&apos;i bildirim alanına kapat</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Torent, indirme listesine duraklatılmış durumda eklenir</translatorcomment>
+        <translation>İndirmeyi kendiliğinden olarak başlatma</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyaların kaydedileceği yer:</translation>
     </message>
     <message>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt yoluna toren etiketini de ekle</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm dosyalar için disk alanı tahsisi yap</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamamlanmamış torentlerin tutulacağı yer:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamamlanmamış dosya adlarına .!qB eklentisini ekle</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentlerin kendiliğinden ekleneceği yer:</translation>
     </message>
     <message>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasör ekle...</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>IP Süzgeci</translation>
     </message>
     <message>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı hız sınırlarının kullanım zamanı</translation>
     </message>
     <message>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Başlangıç</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaman:</translation>
     </message>
     <message>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Yerel ağda eş ara</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>İletişim kuralı şifreleme:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Kullanıcı Arayüzünü Etkinleştir (Uzaktan Kontrol)</translation>
     </message>
     <message>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Paylaşım oranı sınırlama</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentleri paylaşım oranlarına ulaşıncaya kadar gönder</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>sonra</translation>
     </message>
     <message>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Duraklat</translation>
     </message>
     <message>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaldır</translation>
     </message>
     <message utf8="true">
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eşleri uyumlu Bittorrent istemcileri ile değiştir (µTorrent, Vuze, ...)</translation>
     </message>
 </context>
 <context>
@@ -4215,21 +4230,24 @@ No further notices will be issued.</source>
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">Normal</translation>
+        <translatorcomment>Normal (öncelik)</translatorcomment>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">Yüksek</translation>
+        <translatorcomment>Yüksek (öncelik)</translatorcomment>
+        <translation>Yüksek</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">En yüksek</translation>
+        <translatorcomment>En yüksek (öncelik)</translatorcomment>
+        <translation>En yüksek</translation>
     </message>
     <message>
         <source>Not downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirilmedi</translation>
     </message>
 </context>
 <context>
@@ -4324,7 +4342,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Öncelik</translation>
+        <translation>Öncelik</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4417,15 +4435,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">En Yüksek</translation>
+        <translation>En Yüksek</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Yüksek</translation>
+        <translation>Yüksek</translation>
     </message>
     <message>
         <source>this session</source>
@@ -4452,63 +4470,63 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden adlandır...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni ad:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu ad başka bir öğe tarafından kullanılıyor, Lütfen başka bir ad seçin.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyayı yeniden adlandır</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu dosya adı yasak karakterler içeriyor, lütfen başka bir ad seçin.</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Girdi/Çıktı Hatası</translation>
     </message>
     <message>
         <source>This file does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu dosya henüz mevcut değil.</translation>
     </message>
     <message>
         <source>This folder does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu klasör henüz mevcut değil.</translation>
     </message>
     <message>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden duyuru yeri:</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden duyurmaya çalış</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tümünü Seç</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiçbirini Seçme</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme</translation>
     </message>
 </context>
 <context>
@@ -4650,27 +4668,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden adlandır...</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni abonelik...</translation>
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS Beslemesi indirici...</translation>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni klasör...</translation>
     </message>
     <message>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Çerezleri yönet...</translation>
     </message>
     <message>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayarlar...</translation>
     </message>
 </context>
 <context>
@@ -4796,19 +4814,19 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS Okuyucu Ayarları</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS beslemeleri yenileme süresi:</translation>
+        <translation>RSS beslemeleri yenileme süresi:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">dakika</translation>
+        <translation>dakika</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Besleme başına azami makale sayısı:</translation>
+        <translation>Besleme başına azami makale sayısı:</translation>
     </message>
 </context>
 <context>
@@ -4831,11 +4849,11 @@ p, li { white-space: pre-wrap; }
     <name>ScanFoldersModel</name>
     <message>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>İzlenen Klasör</translation>
     </message>
     <message>
         <source>Download here</source>
-        <translation type="unfinished"></translation>
+        <translation>Buraya indir</translation>
     </message>
 </context>
 <context>
@@ -5016,33 +5034,35 @@ Changelog:
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Ara</translation>
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme hatası</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Python kurulumu indirilemedi, sebep: %1.
+Lütfen elle yükleyiniz.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Python Yorumlayıcısı Eksik</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x&apos;nin arama motoruna ihtiyacı var ancak yüklenmemiş görünüyor.
+Şimdi yüklemek ister misiniz?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Doğrulama</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçmişi temizlemek istediğinize emin misiniz?</translation>
     </message>
 </context>
 <context>
@@ -5131,15 +5151,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation type="unfinished"></translation>
+        <translation>Çevrimdışı. Bu genellikle qBittorrent&apos;in gelen bağlantılar için seçilmiş porta bağlanamadığı anlamındadır.</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı hız sınırlarını etkisizleştirmek için tıklayın</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı hız sınırlarını etkinleştirmek için tıklayın</translation>
     </message>
 </context>
 <context>
@@ -5158,7 +5178,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Öncelik</translation>
+        <translation>Öncelik</translation>
     </message>
 </context>
 <context>
@@ -5221,15 +5241,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni bir izleyici ekle...</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>İzleyiciyi Kaldır</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden duyurmaya çalış</translation>
     </message>
 </context>
 <context>
@@ -5244,31 +5264,31 @@ Do you want to install it now?</source>
     </message>
     <message utf8="true">
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>µTorrent uyumlu URL listesi:</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Girdi/Çıktı Hatası</translation>
     </message>
     <message>
         <source>Error while trying to open the downloaded file.</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirilen dosyayı açmaya çalışırken bir hata oluştu.</translation>
     </message>
     <message>
         <source>No change</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişiklik yok</translation>
     </message>
     <message>
         <source>No additional trackers were found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eklenen izleyiciler bulunamadı.</translation>
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme hatası</translation>
     </message>
     <message>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>İzleyici listesi indirilemedi, sebep: %1</translation>
     </message>
 </context>
 <context>
@@ -5309,7 +5329,8 @@ Do you want to install it now?</source>
     <message>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>KB/saniye (örn. saniye başı)</translatorcomment>
+        <translation>KB/s</translation>
     </message>
 </context>
 <context>
@@ -5336,39 +5357,39 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>All labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm etiketler</translation>
     </message>
     <message>
         <source>Unlabeled</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiketlenmemiş</translation>
     </message>
     <message>
         <source>Remove label</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiketi kaldır</translation>
     </message>
     <message>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni etiket</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket:</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz etiket adı</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen etiket adı içinde hiçbir özel karakter kullanmayınız.</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Duraklatıldı</translation>
+        <translation>Duraklatıldı</translation>
     </message>
     <message>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket ekle...</translation>
     </message>
 </context>
 <context>
@@ -5532,93 +5553,97 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket</translation>
     </message>
     <message>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni Etiket</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket:</translation>
     </message>
     <message>
         <source>New...</source>
         <comment>New label...</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Yeni etiket...</translatorcomment>
+        <translation>Yeni...</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Etiketi sıfırla</translatorcomment>
+        <translation>Sıfırla</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished">Yeniden adlandır</translation>
+        <translation>Yeniden adlandır</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni ad:</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden adlandır...</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz etiket adı</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen etiket adı içinde hiçbir özel karakter kullanmayınız.</translation>
     </message>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Torent, 01/01/2010 08:00 tarihinde aktarım listesine eklendi</translatorcomment>
+        <translation>Eklendi</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Torent, 01/01/2010 08:00 tarihinde tamamlandı</translatorcomment>
+        <translation>Tamamlandı</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>İnd. Sınırı</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gön. Sınırı</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt yolunu seç</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Kayıt yolu oluşturulmada hata</translation>
+        <translation>Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt yolu oluşturulamadı</translation>
     </message>
     <message>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Konum ayarla...</translation>
     </message>
     <message>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya önizleme...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönderme oranını sınırla...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme oranını sınırla...</translation>
     </message>
 </context>
 <context>
@@ -5692,27 +5717,27 @@ Do you want to install it now?</source>
     <name>UsageDisplay</name>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kullanım:</translation>
     </message>
     <message>
         <source>displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation>program sürümünü gösterir</translation>
     </message>
     <message>
         <source>disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>açılış ekranını etkisizleştirir</translation>
     </message>
     <message>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>bu yardım iletisini gösterir</translation>
     </message>
     <message>
         <source>changes the webui port (current: %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>ağ arayüzü portunu değiştirir (şimdiki: %1)</translation>
     </message>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>[dosya ya da url]: kullanıcı tarafından seçilen torentleri indirir (seçime bağlı)</translation>
     </message>
 </context>
 <context>
@@ -5809,15 +5834,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Yüksek</translation>
+        <translation>Yüksek</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">En Yüksek</translation>
+        <translation>En Yüksek</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -5849,19 +5874,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket:</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tümünü Seç</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiçbirini Seçme</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme</translation>
     </message>
 </context>
 <context>
@@ -6074,11 +6099,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçimi hatırla</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayrıca sabit diskteki dosyaları sil</translation>
     </message>
 </context>
 <context>
@@ -6625,7 +6650,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni arama motoru eklentilerini burada bulabilirsiniz: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -6821,12 +6846,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1sa %2dk</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1gün %2sa</translation>
     </message>
 </context>
 <context>
@@ -6955,31 +6980,31 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Dışa aktarım dizini seç</translation>
     </message>
     <message>
         <source>Add directory to scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Taranacak dizin ekle</translation>
     </message>
     <message>
         <source>Folder is already being watched.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu klasör zaten izleniyor.</translation>
     </message>
     <message>
         <source>Folder does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasör mevcut değil.</translation>
     </message>
     <message>
         <source>Folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasör okunabilir değil.</translation>
     </message>
     <message>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarama Klasörü &apos;%1&apos; ekleme başarısız: %2</translation>
     </message>
 </context>
 <context>
@@ -7673,7 +7698,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Öncelik</translation>
+        <translation>Öncelik</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -7699,47 +7724,47 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeniden adlandır...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni ad:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu ad klasör içinde başka bir öğe tarafından kullanılıyor, Lütfen başka bir ad seçin.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasör yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyayı yeniden adlandır</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation type="unfinished"></translation>
+        <translation>İlişik bağlantı kodu çözümlenemedi:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation type="unfinished"></translation>
+        <translation>İlişik Bağlantı</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz etiket adı</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen etiket adı içinde hiçbir özel karakter kullanmayınız.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu dosya adı yasak karakterler içeriyor, lütfen başka bir ad seçin.</translation>
     </message>
 </context>
 </TS>
