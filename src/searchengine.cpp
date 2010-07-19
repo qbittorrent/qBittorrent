@@ -277,6 +277,10 @@ void SearchEngine::searchTextEdited(QString) {
   search_button->setText(tr("Search"));
 }
 
+void SearchEngine::giveFocusToSearchInput() {
+  search_pattern->setFocus();
+}
+
 // Function called when we click on search button
 void SearchEngine::on_search_button_clicked(){
 #ifdef Q_WS_WIN
@@ -549,7 +553,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   }
   QIniSettings settings("qBittorrent", "qBittorrent");
   bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
-  if(useNotificationBalloons && parent->getCurrentTabIndex() != TAB_SEARCH) {
+  if(useNotificationBalloons && parent->getCurrentTabWidget() != this) {
     parent->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
   }
   if(exitcode){

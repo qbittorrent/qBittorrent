@@ -2089,7 +2089,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         QString hash;
 #if LIBTORRENT_VERSION_MINOR > 14
         hash = misc::toQString(p->info_hash);
-
 #else
         // Unfortunately libtorrent v0.14 does not provide the hash,
         // only the torrent handle that is often invalid when it arrives

@@ -37,8 +37,6 @@
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
 
-enum TabIndex{TAB_TRANSFER, TAB_SEARCH, TAB_RSS};
-
 class Bittorrent;
 class QTimer;
 class downloadFromURL;
@@ -68,7 +66,7 @@ public:
   GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
   ~GUI();
   // Methods
-  int getCurrentTabIndex() const;
+  QWidget* getCurrentTabWidget() const;
   TransferListWidget* getTransferList() const { return transferList; }
   QMenu* getTrayIconMenu();
 
