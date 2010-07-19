@@ -47,7 +47,7 @@ namespace json {
     case QVariant::LongLong:
     case QVariant::UInt:
     case QVariant::ULongLong:
-    case QMetaType::Float:
+    //case QMetaType::Float:
       return v.value<QString>();
     case QVariant::StringList:
     case QVariant::List: {
