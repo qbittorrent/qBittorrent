@@ -3397,7 +3397,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
         <source>Copy IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP másolása</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="143"/>
@@ -3694,7 +3694,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="826"/>
         <source>Copy .torrent files to:</source>
-        <translation>.torrent fájlok másolása:</translation>
+        <translation>.torrent fájlok másolása ide:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -3954,7 +3954,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1247"/>
         <location filename="../ui/options.ui" line="1360"/>
         <source>Download:</source>
-        <translation>Letöltés:</translation>
+        <translation>Letöltések:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1240"/>
@@ -3994,7 +3994,7 @@ QGroupBox {
         <location filename="../ui/options.ui" line="1455"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation> - </translation>
+        <translation>eddig</translation>
     </message>
     <message>
         <source>On days:</source>
@@ -4052,7 +4052,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1717"/>
         <source>Enabled</source>
-        <translation>Engedélyez</translation>
+        <translation>Enged</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1722"/>
@@ -4430,12 +4430,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="313"/>
         <source>Reannounce in:</source>
-        <translation>Újra közlés:</translation>
+        <translation>Újra kapcsolódás:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="338"/>
         <source>Force reannounce</source>
-        <translation>Kényszerített újraközlés</translation>
+        <translation>Kényszerített újra kapcsolódás</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="363"/>
@@ -5431,7 +5431,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../torrentfilesmodel.h" line="315"/>
         <source>Progress</source>
-        <translation>Folyamat</translation>
+        <translation>Állapot</translation>
     </message>
     <message>
         <location filename="../torrentfilesmodel.h" line="315"/>
@@ -5649,7 +5649,7 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../transferlistfilterswidget.h" line="201"/>
         <location filename="../transferlistfilterswidget.h" line="285"/>
         <source>Completed</source>
-        <translation>Letöltött</translation>
+        <translation>Feltöltés</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="204"/>
