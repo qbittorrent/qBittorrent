@@ -336,10 +336,7 @@ int main(int argc, char *argv[]){
     delete loader;
 #endif
     qDebug("Deleting app...");
-#ifndef Q_WS_WIN
-    // XXX: Why does it crash on Windows in QWindowsVistaStyle destructor!?
     delete app;
-#endif
     qDebug("App was deleted! All good.");
     return ret;
   }
