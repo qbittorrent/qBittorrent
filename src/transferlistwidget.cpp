@@ -515,10 +515,10 @@ void TransferListWidget::refreshList(bool force) {
         if(s == STATE_PAUSED_DL) {
           ++nb_paused;
         }
-      ++nb_inactive;
-      ++nb_downloading;
-      break;
-    }
+        ++nb_inactive;
+        ++nb_downloading;
+        break;
+      }
     case STATE_SEEDING:
       ++nb_active;
       ++nb_seeding;
@@ -530,10 +530,10 @@ void TransferListWidget::refreshList(bool force) {
         if(s == STATE_PAUSED_UP) {
           ++nb_paused;
         }
-      ++nb_seeding;
-      ++nb_inactive;
-      break;
-    }
+        ++nb_seeding;
+        ++nb_inactive;
+        break;
+      }
     case STATE_INVALID:
       bad_hashes << getHashFromRow(i);
       break;
@@ -601,10 +601,11 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
     }
     break;
   case OPEN_DEST:
-    if(h.has_metadata())
-      QDesktopServices::openUrl(QUrl("file://" + h.root_path()));
-    else
-      QDesktopServices::openUrl(QUrl("file://" + h.save_path()));
+#ifdef Q_WS_WIN
+    QDesktopServices::openUrl(QUrl("file:///" + h.save_path()));
+#else
+    QDesktopServices::openUrl(QUrl("file://" + h.save_path()));
+#endif
     break;
   }
 }
@@ -638,10 +639,10 @@ void TransferListWidget::setSelectedTorrentsLocation() {
       }
     }
     foreach(const QString & hash, hashes) {
-    // Actually move storage
+      // Actually move storage
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(!BTSession->useTemporaryFolder() || h.is_seed())
-      h.move_storage(savePath.absolutePath());
+      if(!BTSession->useTemporaryFolder() || h.is_seed())
+        h.move_storage(savePath.absolutePath());
     }
   }
 }
@@ -764,7 +765,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
   foreach(const QString &hash, hashes) {
     const QTorrentHandle &h = BTSession->getTorrentHandle(hash);
     if(h.is_valid()) {
-      const QString &savePath = h.root_path();
+      const QString &savePath = h.save_path();
       qDebug("Opening path at %s", qPrintable(savePath));
       if(!pathsList.contains(savePath)) {
         pathsList.append(savePath);
