@@ -19,4 +19,6 @@
   </dep>
   <dep type='geoip-database'>
   </dep>
+  <dep type='qtsingleapplication'>
+  </dep>
 </qconf>
