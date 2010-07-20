@@ -181,6 +181,14 @@ int main(int argc, char *argv[]){
 #endif
 #endif
 
+  // XXX: Workaround to avoid the following Qt bug:
+  // http://bugreports.qt.nokia.com/browse/QTBUG-7105
+#ifndef DISABLE_GUI
+  // Force the creation of an input context to avoid
+  // a crash in QApplication destructor
+  app->inputContext();
+#endif
+
   // Check if qBittorrent is already running for this user
   if(app->isRunning()) {
     qDebug("qBittorrent is already running for this user.");

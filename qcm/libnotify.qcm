@@ -40,10 +40,21 @@ public:
 			} else {
 				return false;
 			}
+			QStringList incs3;
+                        QString req_ver3 = "2.0";
+                        QString version3, libs3, other3;
+			if(conf->findPkgConfig("gtk+-2.0", mode, req_ver3, &version3, &incs3, &libs3, &other3)) {
+                                for(int n = 0; n < incs3.count(); ++n)
+                                conf->addIncludePath(incs3[n]);
+                                if(!libs3.isEmpty())
+                                        conf->addLib(libs3);
+                        } else {
+                                return false;
+                        }
 		} else {
 			return false;
 		}
-		
+
 		return true;
 	}
 };
