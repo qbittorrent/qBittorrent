@@ -360,10 +360,16 @@ contains(DEFINES, DISABLE_GUI) {
 	    ui/confirmdeletiondlg.ui
 }
 
-contains(DEFINES, DISABLE_GUI) {
-  include(qtsingleapp/qtsinglecoreapplication.pri)
+contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
+  message("Using the system's qtsingleapplication library")
+  CONFIG += qtsingleapplication
 } else {
-  include(qtsingleapp/qtsingleapplication.pri)
+  message("Using the shipped qtsingleapplication library")
+  contains(DEFINES, DISABLE_GUI) {
+    include(qtsingleapp/qtsinglecoreapplication.pri)
+  } else {
+    include(qtsingleapp/qtsingleapplication.pri)
+  }
 }
 
 SOURCES += main.cpp \ 

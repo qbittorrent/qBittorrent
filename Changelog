@@ -3,6 +3,7 @@
     - BUGFIX: Fix possible crash when using alternative speed limits (#598272)
     - BUGFIX: Fix possible crash on exit when using Qt >= 4.6
     - BUGFIX: Require GTK+ headers on compilation when libnotify is used
+    - BUGFIX: Added configure flag to avoid using the shipped qtsingleapplication
 
 * Wed Jun 23 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.10
     - BUGFIX: Fix Web UI in qBittorrent nox version
