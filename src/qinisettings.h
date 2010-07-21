@@ -62,18 +62,7 @@ public:
     QString key_tmp(key);
     QVariant ret = QSettings::value(key_tmp);
     if(ret.isNull()) {
-      if(format() == QSettings::NativeFormat) {
-
-        // Fallback on Windows, use \ in key instead of /
-        if(key_tmp.contains("/")) {
-          ret = QSettings::value(key_tmp.replace("/", "\\"));
-        } else {
-          if(key_tmp.contains("\\")) {
-            ret = QSettings::value(key_tmp.replace("\\", "/"));
-          }
-        }
-
-      } else {
+      if(format() != QSettings::NativeFormat) {
         // Keep compatibility with qBittorrent < 2.3.0
         // Import the setting from the registry
         QSettings old_settings(organizationName(), applicationName());
@@ -92,7 +81,7 @@ public:
   void setValue(const QString &key, const QVariant &val) {
     QString key_tmp(key);
     if(format() == QSettings::NativeFormat)
-      key_tmp = key_tmp.replace("/", "\\");
+      key_tmp = key_tmp.replace("\\", "/");
     QSettings::setValue(key_tmp, val);
   }
 #endif
