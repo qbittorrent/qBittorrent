@@ -624,21 +624,32 @@ void GUI::on_actionCreate_torrent_triggered() {
 }
 
 bool GUI::event(QEvent * e) {
-  if(e->type() == QEvent::WindowStateChange) {
-    qDebug("Window change event");
-    //Now check to see if the window is minimised
-    if(isMinimized()) {
-      qDebug("minimisation");
-      QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-      if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
-        if(!qApp->activeWindow() || !qApp->activeWindow()->isModal()) {
-          qDebug("Minimize to Tray enabled, hiding!");
-          e->accept();
-          QTimer::singleShot(0, this, SLOT(hide()));
-          return true; 
+  switch(e->type()) {
+  case QEvent::WindowStateChange: {
+      qDebug("Window change event");
+      //Now check to see if the window is minimised
+      if(isMinimized()) {
+        qDebug("minimisation");
+        QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+        if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
+          if(!qApp->activeWindow() || !qApp->activeWindow()->isModal()) {
+            qDebug("Minimize to Tray enabled, hiding!");
+            e->accept();
+            QTimer::singleShot(0, this, SLOT(hide()));
+            return true;
+          }
         }
       }
+      break;
     }
+#ifdef Q_WS_MAC
+  case QEvent::ToolBarChange: {
+      actionTop_tool_bar->setChecked(toolBar->isVisible());
+      break;
+    }
+#endif
+  default:
+    break;
   }
   return QMainWindow::event(e);
 }
