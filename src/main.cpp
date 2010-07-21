@@ -63,16 +63,6 @@
 #include "misc.h"
 #include "preferences.h"
 
-#ifdef DISABLE_GUI
-QtSingleCoreApplication *app;
-#else
-#ifndef Q_WS_MAC
-QtSingleApplication *app;
-#else
-QMacApplication *app;
-#endif
-#endif
-
 class UsageDisplay: public QObject {
   Q_OBJECT
 
@@ -158,12 +148,11 @@ void sigabrtHandler(int) {
 #endif
 
 #ifndef DISABLE_GUI
-void useStyle(QApplication *app, QString style){
-  Q_UNUSED(app);
+void useStyle(QString style){
   if(!style.isEmpty()) {
     QApplication::setStyle(QStyleFactory::create(style));
   }
-  Preferences::setStyle(app->style()->objectName());
+  Preferences::setStyle(QApplication::style()->objectName());
 }
 #endif
 
@@ -171,26 +160,18 @@ void useStyle(QApplication *app, QString style){
 int main(int argc, char *argv[]){
   // Create Application
   QString uid = misc::getUserIDString();
-#ifdef DISABLE_GUI
-  app = new QtSingleCoreApplication("qBittorrent-"+uid, argc, argv);
-#else
-#ifndef Q_WS_MAC
-  app = new QtSingleApplication("qBittorrent-"+uid, argc, argv);
-#else
-  app = new QMacApplication("qBittorrent-"+uid, argc, argv);
-#endif
-#endif
-
-  // XXX: Workaround to avoid the following Qt bug:
-  // http://bugreports.qt.nokia.com/browse/QTBUG-7105
-#ifndef DISABLE_GUI
-  // Force the creation of an input context to avoid
-  // a crash in QApplication destructor
-  app->inputContext();
-#endif
+  #ifdef DISABLE_GUI
+  QtSingleCoreApplication app("qBittorrent-"+uid, argc, argv);
+  #else
+  #ifndef Q_WS_MAC
+  QtSingleApplication app("qBittorrent-"+uid, argc, argv);
+  #else
+  QMacApplication app("qBittorrent-"+uid, argc, argv);
+  #endif
+  #endif
 
   // Check if qBittorrent is already running for this user
-  if(app->isRunning()) {
+  if(app.isRunning()) {
     qDebug("qBittorrent is already running for this user.");
     //Pass program parameters if any
     QString message;
@@ -204,7 +185,7 @@ int main(int argc, char *argv[]){
     if(!message.isEmpty()) {
       qDebug("Passing program parameters to running instance...");
       qDebug("Message: %s", qPrintable(message));
-      app->sendMessage(message);
+      app.sendMessage(message);
     }
     return 0;
   }
@@ -227,27 +208,25 @@ int main(int argc, char *argv[]){
   }else{
     qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
   }
-  app->installTranslator(&translator);
+  app.installTranslator(&translator);
 #ifndef DISABLE_GUI
   if(locale.startsWith("ar")) {
     qDebug("Right to Left mode");
-    app->setLayoutDirection(Qt::RightToLeft);
+    app.setLayoutDirection(Qt::RightToLeft);
   } else {
-    app->setLayoutDirection(Qt::LeftToRight);
+    app.setLayoutDirection(Qt::LeftToRight);
   }
 #endif
-  app->setApplicationName(QString::fromUtf8("qBittorrent"));
+  app.setApplicationName(QString::fromUtf8("qBittorrent"));
 
   // Check for executable parameters
   if(argc > 1){
     if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
-      delete app;
       return 0;
     }
     if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")){
       UsageDisplay::displayUsage(argv[0]);
-      delete app;
       return 0;
     }
 
@@ -284,68 +263,53 @@ int main(int argc, char *argv[]){
   }
 
 #ifndef DISABLE_GUI
-    useStyle(app, settings.value("Preferences/General/Style", "").toString());
-    app->setStyleSheet("QStatusBar::item { border-width: 0; }");
-    QSplashScreen *splash = 0;
-    if(!no_splash) {
-      splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
-      splash->show();
-    }
-#endif
-
-    if(!LegalNotice::userAgreesWithNotice()) {
-#ifndef DISABLE_GUI
-      delete splash;
-#endif
-      delete app;
-      return 0;
-    }
-#ifndef DISABLE_GUI
-    app->setQuitOnLastWindowClosed(false);
-#endif
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
-    signal(SIGABRT, sigabrtHandler);
-    signal(SIGTERM, sigtermHandler);
-    signal(SIGINT, sigintHandler);
-    signal(SIGSEGV, sigsegvHandler);
-#endif
-    // Read torrents given on command line
-    QStringList torrentCmdLine = app->arguments();
-    // Remove first argument (program name)
-    torrentCmdLine.removeFirst();
-#ifndef DISABLE_GUI
-    GUI *window = new GUI(0, torrentCmdLine);
-    if(!no_splash) {
-      splash->finish(window);
-      delete splash;
-    }
-    QObject::connect(app, SIGNAL(messageReceived(const QString&)),
-                     window, SLOT(processParams(const QString&)));
-    app->setActivationWindow(window);
-#else
-    // Load Headless class
-    HeadlessLoader *loader = new HeadlessLoader(torrentCmdLine);
-    QObject::connect(app, SIGNAL(messageReceived(const QString&)),
-                     loader, SLOT(processParams(const QString&)));
-#endif
-    int ret =  app->exec();
-
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
-    // Application has exited, stop catching SIGINT and SIGTERM
-    signal(SIGINT, 0);
-    signal(SIGTERM, 0);
-#endif
-
-#ifndef DISABLE_GUI
-    delete window;
-    qDebug("GUI was deleted!");
-#else
-    delete loader;
-#endif
-    qDebug("Deleting app...");
-    delete app;
-    qDebug("App was deleted! All good.");
-    return ret;
+  useStyle(settings.value("Preferences/General/Style", "").toString());
+  app.setStyleSheet("QStatusBar::item { border-width: 0; }");
+  QSplashScreen *splash = 0;
+  if(!no_splash) {
+    splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
+    splash->show();
   }
+#endif
+
+  if(!LegalNotice::userAgreesWithNotice()) {
+#ifndef DISABLE_GUI
+    delete splash;
+#endif
+    return 0;
+  }
+#ifndef DISABLE_GUI
+  app.setQuitOnLastWindowClosed(false);
+#endif
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+  signal(SIGABRT, sigabrtHandler);
+  signal(SIGTERM, sigtermHandler);
+  signal(SIGINT, sigintHandler);
+  signal(SIGSEGV, sigsegvHandler);
+#endif
+  // Read torrents given on command line
+  QStringList torrentCmdLine = app.arguments();
+  // Remove first argument (program name)
+  torrentCmdLine.removeFirst();
+#ifndef DISABLE_GUI
+  GUI window(0, torrentCmdLine);
+  if(!no_splash) {
+    splash->finish(&window);
+    delete splash;
+  }
+  QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
+                   &window, SLOT(processParams(const QString&)));
+  app.setActivationWindow(&window);
+#else
+  // Load Headless class
+  HeadlessLoader loader(torrentCmdLine);
+  QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
+                   &loader, SLOT(processParams(const QString&)));
+#endif
+
+  int ret = app.exec();
+
+  return ret;
+}
 
 
