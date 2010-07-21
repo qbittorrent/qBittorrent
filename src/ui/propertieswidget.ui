@@ -54,8 +54,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>520</width>
-            <height>360</height>
+            <width>522</width>
+            <height>351</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -215,7 +215,7 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="5">
+              <item row="0" column="6">
                <widget class="QLabel" name="shareRatio">
                 <property name="text">
                  <string notr="true">1.0</string>
@@ -266,7 +266,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="5">
+              <item row="1" column="6">
                <widget class="QLabel" name="lbl_connections">
                 <property name="text">
                  <string notr="true">0</string>
@@ -317,42 +317,18 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="5">
-               <layout class="QHBoxLayout" name="horizontalLayout_3">
-                <item>
-                 <widget class="QLabel" name="reannounce_lbl">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string notr="true"/>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QToolButton" name="reannounce_btn">
-                  <property name="toolTip">
-                   <string>Force reannounce</string>
-                  </property>
-                  <property name="text">
-                   <string notr="true"/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../icons.qrc">
-                    <normaloff>:/Icons/oxygen/run-build.png</normaloff>:/Icons/oxygen/run-build.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>12</width>
-                    <height>12</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+              <item row="2" column="6">
+               <widget class="QLabel" name="reannounce_lbl">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string notr="true"/>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>

@@ -233,12 +233,6 @@ void PropertiesWidget::updateTorrentInfos(QTorrentHandle& _h) {
   }
 }
 
-void PropertiesWidget::on_reannounce_btn_clicked() {
-  if(h.is_valid()) {
-    h.force_reannounce();
-  }
-}
-
 void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
   clear();
   h = _h;
