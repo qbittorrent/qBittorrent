@@ -1064,7 +1064,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   //Getting fast resume data if existing
   std::vector<char> buf;
   if(resumed) {
-    const QString fastresume_path = torrentBackup.path()+QDir::separator()+hash+QString(".fastresume");
+    const QString fastresume_path = torrentBackup.absoluteFilePath(hash+QString(".fastresume"));
     qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
     if (load_file(fastresume_path.toLocal8Bit().constData(), buf) == 0) {
       fastResume = true;
