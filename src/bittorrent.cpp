@@ -2055,7 +2055,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             QFile::remove(file);
           qDebug("Saving fastresume data in %s", qPrintable(file));
           if (p->resume_data) {
-            boost::filesystem::ofstream out(fs::path(torrentBackup.path().toLocal8Bit().constData()) / file.toLocal8Bit().constData(), std::ios_base::binary);
+            boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
             out.unsetf(std::ios_base::skipws);
             bencode(std::ostream_iterator<char>(out), *p->resume_data);
           }
