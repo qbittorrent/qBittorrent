@@ -644,8 +644,10 @@ bool GUI::event(QEvent * e) {
     }
 #ifdef Q_WS_MAC
   case QEvent::ToolBarChange: {
+      qDebug("MAC: Received a toolbar change event!")
       e->accept();
       const bool is_visible = toolBar->isVisible();
+      qDebug("MAC: new toolbar visibility is %d", (int)is_visible);
       actionTop_tool_bar->setChecked(is_visible);
       Preferences::setToolbarDisplayed(is_visible);
       return true;
