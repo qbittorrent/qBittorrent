@@ -121,13 +121,13 @@ public:
 void sigintHandler(int) {
   signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
-  app->exit();
+  qApp->exit();
 }
 
 void sigtermHandler(int) {
   signal(SIGTERM, 0);
   qDebug("Catching SIGTERM, exiting cleanly");
-  app->exit();
+  qApp->exit();
 }
 void sigsegvHandler(int) {
   signal(SIGABRT, 0);
