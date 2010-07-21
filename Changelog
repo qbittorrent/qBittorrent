@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.2.11
+* Wed Jul 21 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.11
     - BUGFIX: Fix parsing of program arguments with spaces
     - BUGFIX: Fix possible crash when using alternative speed limits (#598272)
     - BUGFIX: Fix possible crash on exit when using
