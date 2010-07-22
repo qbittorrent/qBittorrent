@@ -166,6 +166,10 @@ p, li { white-space: pre-wrap; }
         <comment>i.e. Any network interface</comment>
         <translation>Bilo koje sučelje</translation>
     </message>
+    <message>
+        <source>Display program notification baloons</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
@@ -2448,7 +2452,7 @@ QGroupBox {
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Prisili ponovno objavljivanje</translation>
+        <translation type="obsolete">Prisili ponovno objavljivanje</translation>
     </message>
     <message>
         <source>Not downloaded</source>

@@ -180,6 +180,10 @@ p, li { white-space: pre-wrap; }(new line)
         <comment>i.e. Any network interface</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Display program notification baloons</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -4450,10 +4454,6 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

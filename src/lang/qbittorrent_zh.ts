@@ -195,6 +195,10 @@ p, li { white-space: pre-wrap; }
         <comment>i.e. Any network interface</comment>
         <translation>任何界面</translation>
     </message>
+    <message>
+        <source>Display program notification baloons</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -4747,7 +4751,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>强制再次连接</translation>
+        <translation type="obsolete">强制再次连接</translation>
     </message>
     <message>
         <source>Not downloaded</source>

@@ -176,6 +176,10 @@ p, li { white-space: pre-wrap; }
         <comment>i.e. Any network interface</comment>
         <translation>任何介面</translation>
     </message>
+    <message>
+        <source>Display program notification baloons</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3594,7 +3598,7 @@ QGroupBox {
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>強迫重新公告</translation>
+        <translation type="obsolete">強迫重新公告</translation>
     </message>
     <message>
         <source>Not downloaded</source>

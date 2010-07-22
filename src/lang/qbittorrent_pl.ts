@@ -227,6 +227,10 @@ Wszystkie prawa zastrżeżone © 2006 Christophe Dumez&lt;br&gt;(new line)
         <comment>i.e. Any network interface</comment>
         <translation>Dowolny interfejs</translation>
     </message>
+    <message>
+        <source>Display program notification baloons</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -4669,7 +4673,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Sprawdź tracker</translation>
+        <translation type="obsolete">Sprawdź tracker</translation>
     </message>
     <message>
         <source>Not downloaded</source>

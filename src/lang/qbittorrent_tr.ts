@@ -239,6 +239,10 @@ p, li { white-space: pre-wrap; }
         <translatorcomment>örn. Herhangi bir ağ arayüzü</translatorcomment>
         <translation>Herhangi bir arayüz</translation>
     </message>
+    <message>
+        <source>Display program notification baloons</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -4514,7 +4518,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Yeniden duyurmaya çalış</translation>
+        <translation type="obsolete">Yeniden duyurmaya çalış</translation>
     </message>
     <message>
         <source>Select All</source>

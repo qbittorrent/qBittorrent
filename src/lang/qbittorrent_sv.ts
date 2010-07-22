@@ -173,6 +173,10 @@ p, li { white-space: pre-wrap; }
         <comment>i.e. Any network interface</comment>
         <translation>Valfritt gränssnitt</translation>
     </message>
+    <message>
+        <source>Display program notification baloons</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BandwidthAllocationDialog</name>
@@ -3495,7 +3499,7 @@ QGroupBox {
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished">Tvinga annonsering igen</translation>
+        <translation type="obsolete">Tvinga annonsering igen</translation>
     </message>
     <message>
         <source>Not downloaded</source>
