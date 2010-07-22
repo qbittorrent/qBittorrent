@@ -348,7 +348,11 @@ contains(DEFINES, DISABLE_GUI) {
 
 contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
   message("Using the system's qtsingleapplication library")
-  CONFIG += qtsingleapplication
+  contains(DEFINES, DISABLE_GUI) {
+    CONFIG += qtsinglecoreapplication
+  } else {
+    CONFIG += qtsingleapplication
+  }
 } else {
   message("Using the shipped qtsingleapplication library")
   contains(DEFINES, DISABLE_GUI) {
