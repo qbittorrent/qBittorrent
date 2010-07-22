@@ -11,15 +11,15 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE };
-#define ROW_COUNT 12
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, PROGRAM_NOTIFICATIONS };
+#define ROW_COUNT 13
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen;
-  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding;
+  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding, *cb_program_notifications;
   QComboBox *combo_iface;
 
 public:
@@ -52,6 +52,7 @@ public:
     delete spin_maxhalfopen;
     delete cb_super_seeding;
     delete combo_iface;
+    delete cb_program_notifications;
   }
 
 public slots:
@@ -85,6 +86,8 @@ public slots:
     } else {
       Preferences::setNetworkInterface(combo_iface->currentText());
     }
+    // Program notification
+    Preferences::useProgramNotification(cb_program_notifications->isChecked());
   }
 
 protected slots:
@@ -186,6 +189,12 @@ protected slots:
     }
     connect(combo_iface, SIGNAL(currentIndexChanged(int)), this, SLOT(emitSettingsChanged()));
     setCellWidget(NETWORK_IFACE, VALUE, combo_iface);
+    // Program notifications
+    setItem(PROGRAM_NOTIFICATIONS, PROPERTY, new QTableWidgetItem(tr("Display program notification baloons")));
+    cb_program_notifications = new QCheckBox();
+    connect(cb_program_notifications, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_program_notifications->setChecked(Preferences::useProgramNotification());
+    setCellWidget(PROGRAM_NOTIFICATIONS, VALUE, cb_program_notifications);
   }
 
   void emitSettingsChanged() {

@@ -78,6 +78,16 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/General/Style"), style);
   }
 
+  static bool useProgramNotification() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/General/ProgramNotification"), true).toBool();
+  }
+
+  static void useProgramNotification(bool use) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/General/ProgramNotification"), use);
+  }
+
   static bool deleteTorrentFilesAsDefault() {
     QIniSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/General/DeleteTorrentsFilesAsDefault"), false).toBool();

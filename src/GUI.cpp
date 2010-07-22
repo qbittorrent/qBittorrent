@@ -910,6 +910,7 @@ void GUI::updateGUI() {
 }
 
 void GUI::showNotificationBaloon(QString title, QString msg) const {
+  if(!Preferences::useProgramNotification()) return;
 #ifdef WITH_LIBNOTIFY
   if (notify_init ("summary-body")) {
     NotifyNotification* notification;
