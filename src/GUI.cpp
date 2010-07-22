@@ -644,12 +644,12 @@ bool GUI::event(QEvent * e) {
     }
 #ifdef Q_WS_MAC
   case QEvent::ToolBarChange: {
-      qDebug("MAC: Received a toolbar change event!")
+      qDebug("MAC: Received a toolbar change event!");
       bool ret = QMainWindow::event(e);
-      const bool is_visible = toolBar->isVisible();
-      qDebug("MAC: new toolbar visibility is %d", (int)is_visible);
-      actionTop_tool_bar->setChecked(is_visible);
-      Preferences::setToolbarDisplayed(is_visible);
+
+      qDebug("MAC: new toolbar visibility is %d", !actionTop_tool_bar->isChecked());
+      actionTop_tool_bar->toggle();
+      Preferences::setToolbarDisplayed(actionTop_tool_bar->isChecked());
       return ret;
     }
 #endif
