@@ -711,7 +711,6 @@ updatePeerProxyAuthSettings = function() {
 
 getWatchedFolders = function() {
   var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-  alert(nb_folders);
   var folders = Array();
   var download_in_place = Array();
   for(var i=0; i<nb_folders; i+=1) {
