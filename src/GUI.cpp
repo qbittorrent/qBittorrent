@@ -683,6 +683,10 @@ void GUI::dropEvent(QDropEvent *event) {
       BTSession->downloadFromUrl(file);
       continue;
     }
+    if(file.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+      qDebug("Converting bc link to magnet link");
+      file = misc::bcLinkToMagnet(file);
+    }
     if(file.startsWith("magnet:", Qt::CaseInsensitive)) {
       // FIXME: Possibly skipped torrent addition dialog
       BTSession->addMagnetUri(file);
@@ -756,6 +760,10 @@ void GUI::processParams(const QStringList& params) {
     if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(param);
     }else{
+      if(param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+        qDebug("Converting bc link to magnet link");
+        param = misc::bcLinkToMagnet(param);
+      }
       if(param.startsWith("magnet:", Qt::CaseInsensitive)) {
         if(useTorrentAdditionDialog) {
           torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
@@ -938,7 +946,11 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
 void GUI::downloadFromURLList(const QStringList& url_list) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  foreach(const QString& url, url_list) {
+  foreach(QString url, url_list) {
+    if(url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+      qDebug("Converting bc link to magnet link");
+      url = misc::bcLinkToMagnet(url);
+    }
     if(url.startsWith("magnet:", Qt::CaseInsensitive)) {
       if(useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);

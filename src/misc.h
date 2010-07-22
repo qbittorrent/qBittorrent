@@ -116,6 +116,7 @@ public:
   static bool removeEmptyTree(QString path);
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);
+  static QString bcLinkToMagnet(QString bc_link);
   static QString boostTimeToQString(const boost::optional<boost::posix_time::ptime> boostDate);
   // Replace ~ in path
   static QString expandPath(QString path);

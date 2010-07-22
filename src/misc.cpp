@@ -475,6 +475,20 @@ bool misc::removeEmptyTree(QString path) {
   return false;
 }
 
+QString misc::bcLinkToMagnet(QString bc_link) {
+  QByteArray raw_bc = bc_link.toUtf8();
+  raw_bc = raw_bc.mid(8); // skip bc://bt/
+  raw_bc = QByteArray::fromBase64(raw_bc); // Decode base64
+  // Format is now AA/url_encoded_filename/size_bytes/info_hash/ZZ
+  QStringList parts = QString(raw_bc).split("/");
+  if(parts.size() != 5) return QString::null;
+  QString filename = parts.at(1);
+  QString hash = parts.at(3);
+  QString magnet = "magnet:?xt=urn:btih:" + hash;
+  magnet += "&dn=" + filename;
+  return magnet;
+}
+
 QString misc::magnetUriToName(QString magnet_uri) {
   QString name = "";
   QRegExp regHex("dn=([^&]+)");

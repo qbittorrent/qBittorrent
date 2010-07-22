@@ -333,6 +333,10 @@ void HttpConnection::respondCommand(QString command)
     foreach(QString url, list){
       url = url.trimmed();
       if(!url.isEmpty()){
+        if(url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+          qDebug("Converting bc link to magnet link");
+          url = misc::bcLinkToMagnet(url);
+        }
         if(url.startsWith("magnet:", Qt::CaseInsensitive)) {
           emit MagnetReadyToBeDownloaded(url);
         } else {

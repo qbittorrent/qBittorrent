@@ -89,6 +89,10 @@ public slots:
       if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
         BTSession->downloadFromUrl(param);
       }else{
+        if(param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+          qDebug("Converting bc link to magnet link");
+          param = misc::bcLinkToMagnet(param);
+        }
         if(param.startsWith("magnet:", Qt::CaseInsensitive)) {
           BTSession->addMagnetUri(param);
         } else {

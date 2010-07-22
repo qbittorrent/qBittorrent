@@ -15,6 +15,7 @@
     - FEATURE: Torrents can be automatically paused once they reach a given ratio
     - FEATURE: Several files can now be disabled at once
     - FEATURE: Added "Select All/None" buttons to files list
+    - FEATURE: Added support for BitComet links (bc://bt/...)
     - BUGFIX: Hide seeding torrents files priorities in Web UI
     - BUGFIX: The user can disable permanently recursive torrent download
     - BUGFIX: Peer Exchange status is now correctly reported

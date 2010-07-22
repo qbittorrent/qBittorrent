@@ -403,6 +403,10 @@ void SearchEngine::saveResultsColumnsWidth() {
 }
 
 void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
+  if(torrent_url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+    qDebug("Converting bc link to magnet link");
+    torrent_url = misc::bcLinkToMagnet(torrent_url);
+  }
   if(torrent_url.startsWith("magnet:")) {
     QStringList urls;
     urls << torrent_url;
