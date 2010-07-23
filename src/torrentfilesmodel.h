@@ -535,24 +535,19 @@ public:
     torrent_info::file_iterator fi = t.begin_files();
     while(fi != t.end_files()) {
       current_parent = root_folder;
-      QString path = QDir::cleanPath(misc::toQStringU(fi->path.string()));
+      QString path = QDir::cleanPath(misc::toQStringU(fi->path.string())).replace("\\", "/");
       // Iterate of parts of the path to create necessary folders
       QStringList pathFolders = path.split("/");
-      //Q_ASSERT(pathFolders.size() >= 2);
-      QString fileName = pathFolders.takeLast();
-      //QString currentFolderName = pathFolders.takeFirst();
-      //Q_ASSERT(currentFolderName == current_parent->getName());
+      pathFolders.takeLast();
       foreach(const QString &pathPart, pathFolders) {
         TreeItem *new_parent = current_parent->childWithName(pathPart);
         if(!new_parent) {
           new_parent = new TreeItem(pathPart, current_parent);
-          //current_parent->appendChild(new_parent);
         }
         current_parent = new_parent;
       }
       // Actually create the file
       TreeItem *f = new TreeItem(*fi, current_parent, i);
-      //current_parent->appendChild(f);
       files_index[i] = f;
       fi++;
       ++i;

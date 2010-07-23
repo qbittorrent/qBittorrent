@@ -178,7 +178,7 @@ protected slots:
     setItem(NETWORK_IFACE, PROPERTY, new QTableWidgetItem(tr("Network Interface (requires restart)")));
     combo_iface = new QComboBox;
     combo_iface->addItem(tr("Any interface", "i.e. Any network interface"));
-    const QString &current_iface = Preferences::getNetworkInterface();
+    const QString current_iface = Preferences::getNetworkInterface();
     int i = 1;
     foreach(const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
       if(iface.name() == "lo") continue;

@@ -159,7 +159,7 @@ ScanFoldersModel::PathStatus ScanFoldersModel::setDownloadAtPath(int row, bool d
         return CannotWrite;
     }
     oldValue = downloadAtPath;
-    const QModelIndex &changedIndex = index(row, DownloadAtTorrentColumn);
+    const QModelIndex changedIndex = index(row, DownloadAtTorrentColumn);
     emit dataChanged(changedIndex, changedIndex);
   }
   return Ok;

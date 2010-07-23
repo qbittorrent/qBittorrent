@@ -407,7 +407,7 @@ void PropertiesWidget::loadDynamicData() {
 void PropertiesWidget::loadUrlSeeds(){
   listWebSeeds->clear();
   qDebug("Loading URL seeds");
-  const QStringList &hc_seeds = h.url_seeds();
+  const QStringList hc_seeds = h.url_seeds();
   // Add url seeds
   foreach(const QString &hc_seed, hc_seeds){
     qDebug("Loading URL seed: %s", qPrintable(hc_seed));
@@ -491,9 +491,9 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   if(!h.is_valid() || !h.has_metadata()) return;
   if(PropListModel->getType(index) == TFILE) {
     int i = PropListModel->getFileIndex(index);
-    const QDir &saveDir(h.save_path());
-    const QString &filename = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
-    const QString &file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    const QDir saveDir(h.save_path());
+    const QString filename = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
+    const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", qPrintable(file_path));
 #if LIBTORRENT_VERSION_MINOR > 14
     // Flush data
@@ -517,9 +517,9 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
       path_items.prepend(parent.data().toString());
       parent = PropListModel->parent(parent);
     }
-    const QDir &saveDir(h.save_path());
-    const QString &filename = path_items.join(QDir::separator());
-    const QString &file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    const QDir saveDir(h.save_path());
+    const QString filename = path_items.join(QDir::separator());
+    const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open folder at %s", qPrintable(file_path));
 #if LIBTORRENT_VERSION_MINOR > 14
     // Flush data
@@ -582,9 +582,9 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
 }
 
 void PropertiesWidget::renameSelectedFile() {
-  const QModelIndexList &selectedIndexes = filesList->selectionModel()->selectedRows(0);
+  const QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
   Q_ASSERT(selectedIndexes.size() == 1);
-  const QModelIndex &index = selectedIndexes.first();
+  const QModelIndex index = selectedIndexes.first();
   // Ask for new name
   bool ok;
   QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
@@ -648,7 +648,7 @@ void PropertiesWidget::renameSelectedFile() {
           path_items.prepend(parent.data().toString());
           parent = PropListModel->parent(parent);
         }
-        const QString &old_path = path_items.join("/");
+        const QString old_path = path_items.join("/");
         path_items.removeLast();
         path_items << new_name_last;
         QString new_path = path_items.join("/");
@@ -671,7 +671,7 @@ void PropertiesWidget::renameSelectedFile() {
           bool force_recheck = false;
           // Replace path in all files
           for(int i=0; i<num_files; ++i) {
-            const QString &current_name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
+            const QString current_name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
             if(current_name.startsWith(old_path)) {
               QString new_name = current_name;
               new_name.replace(0, old_path.length(), new_path);
@@ -700,7 +700,7 @@ void PropertiesWidget::renameSelectedFile() {
     void PropertiesWidget::askWebSeed(){
       bool ok;
       // Ask user for a new url seed
-      const QString &url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
+      const QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
                                                       tr("New url seed:"), QLineEdit::Normal,
                                                       QString::fromUtf8("http://www."), &ok);
       if(!ok) return;
@@ -717,7 +717,7 @@ void PropertiesWidget::renameSelectedFile() {
     }
 
     void PropertiesWidget::deleteSelectedUrlSeeds(){
-      const QList<QListWidgetItem *> &selectedItems = listWebSeeds->selectedItems();
+      const QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
       bool change = false;
       foreach(const QListWidgetItem *item, selectedItems){
         QString url_seed = item->text();
@@ -732,7 +732,7 @@ void PropertiesWidget::renameSelectedFile() {
 
     bool PropertiesWidget::applyPriorities() {
       qDebug("Saving pieces priorities");
-      const std::vector<int> &priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
+      const std::vector<int> priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
       bool first_last_piece_first = false;
       // Save first/last piece first option state
       if(h.first_last_piece_first())

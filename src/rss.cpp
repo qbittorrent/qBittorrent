@@ -69,7 +69,7 @@ RssFile::FileType RssFolder::getType() const {
 
 void RssFolder::refreshAll(){
   qDebug("Refreshing all rss feeds");
-  const QList<RssFile*> &items = this->values();
+  const QList<RssFile*> items = this->values();
   for(int i=0; i<items.size(); ++i) {
     //foreach(RssFile *item, *this){
     RssFile *item = items.at(i);
@@ -361,7 +361,7 @@ void RssManager::moveFile(RssFile* file, RssFolder* dest_folder) {
 void RssManager::saveStreamList(){
   QStringList streamsUrl;
   QStringList aliases;
-  const QList<RssStream*> &streams = getAllFeeds();
+  const QList<RssStream*> streams = getAllFeeds();
   foreach(const RssStream *stream, streams) {
     QString stream_path = stream->getPath().join("\\");
     if(stream_path.isNull()) {

@@ -107,7 +107,7 @@ void PeerListWidget::updatePeerCountryResolutionState() {
   if(Preferences::resolvePeerCountries() != display_flags) {
     display_flags = !display_flags;
     if(display_flags) {
-      const QTorrentHandle &h = properties->getCurrentTorrent();
+      const QTorrentHandle h = properties->getCurrentTorrent();
       if(!h.is_valid()) return;
       loadPeers(h);
     }
@@ -339,7 +339,7 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
     resolver->resolve(peer.ip);
   if(display_flags) {
     QString country_name;
-    const QIcon &ico = GeoIP::CountryISOCodeToIcon(peer.country, country_name);
+    const QIcon ico = GeoIP::CountryISOCodeToIcon(peer.country, country_name);
     if(!ico.isNull()) {
       listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
       Q_ASSERT(!country_name.isEmpty());
@@ -362,7 +362,7 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   int row = item->row();
   if(display_flags) {
     QString country_name;
-    const QIcon &ico = GeoIP::CountryISOCodeToIcon(peer.country, country_name);
+    const QIcon ico = GeoIP::CountryISOCodeToIcon(peer.country, country_name);
     if(!ico.isNull()) {
       listModel->setData(listModel->index(row, IP), ico, Qt::DecorationRole);
       Q_ASSERT(!country_name.isEmpty());

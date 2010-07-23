@@ -148,7 +148,7 @@ long long misc::freeDiskSpaceOnPath(QString path) {
 #ifndef Q_WS_WIN
   unsigned long long available;
   struct statfs stats;
-  const QString &statfs_path = dir_path.path()+"/.";
+  const QString statfs_path = dir_path.path()+"/.";
   const int ret = statfs (qPrintable(statfs_path), &stats) ;
   if(ret == 0) {
     available = ((unsigned long long)stats.f_bavail) *
@@ -261,22 +261,22 @@ void misc::copyDir(QString src_path, QString dst_path) {
     if(!destDir.mkpath(destDir.absolutePath())) return;
   }
   // List source directory
-  const QFileInfoList &content = sourceDir.entryInfoList();
+  const QFileInfoList content = sourceDir.entryInfoList();
   foreach(const QFileInfo& child, content) {
     if(child.fileName()[0] == '.') continue;
     if(child.isDir()) {
       copyDir(child.absoluteFilePath(), dst_path+QDir::separator()+QDir(child.absoluteFilePath()).dirName());
       continue;
     }
-    const QString &src_child_path = child.absoluteFilePath();
-    const QString &dest_child_path = destDir.absoluteFilePath(child.fileName());
+    const QString src_child_path = child.absoluteFilePath();
+    const QString dest_child_path = destDir.absoluteFilePath(child.fileName());
     // Copy the file from src to dest
     QFile::copy(src_child_path, dest_child_path);
     // Remove source file
     QFile::remove(src_child_path);
   }
   // Remove source folder
-  const QString &dir_name = sourceDir.dirName();
+  const QString dir_name = sourceDir.dirName();
   if(sourceDir.cdUp()) {
     sourceDir.rmdir(dir_name);
   }
@@ -312,15 +312,15 @@ QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save
 }
 
 void misc::moveToXDGFolders() {
-  const QString &old_qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();
+  const QString old_qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();
   if(QDir(old_qBtPath).exists()) {
     // Copy BT_backup folder
-    const QString &old_BTBackupPath = old_qBtPath + "BT_backup";
+    const QString old_BTBackupPath = old_qBtPath + "BT_backup";
     if(QDir(old_BTBackupPath).exists()) {
       copyDir(old_BTBackupPath, BTBackupLocation());
     }
     // Copy search engine folder
-    const QString &old_searchPath = old_qBtPath + "search_engine";
+    const QString old_searchPath = old_qBtPath + "search_engine";
     if(QDir(old_searchPath).exists()) {
       copyDir(old_searchPath, searchEngineLocation());
     }
@@ -375,7 +375,7 @@ QPoint misc::screenCenter(QWidget *win) {
 #endif
 
 QString misc::searchEngineLocation() {
-  const QString &location = QDir::cleanPath(QDesktopServicesDataLocation()
+  const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
                                             + QDir::separator() + "search_engine");
   QDir locationDir(location);
   if(!locationDir.exists())
@@ -384,7 +384,7 @@ QString misc::searchEngineLocation() {
 }
 
 QString misc::BTBackupLocation() {
-  const QString &location = QDir::cleanPath(QDesktopServicesDataLocation()
+  const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
                                             + QDir::separator() + "BT_backup");
   QDir locationDir(location);
   if(!locationDir.exists())
@@ -468,7 +468,7 @@ bool misc::removeEmptyTree(QString path) {
     if(child == "." || child == "..") continue;
     return removeEmptyTree(dir.absoluteFilePath(child));
   }
-  const QString &dir_name = dir.dirName();
+  const QString dir_name = dir.dirName();
   if(dir.cdUp()) {
     return dir.rmdir(dir_name);
   }
@@ -494,7 +494,7 @@ QString misc::magnetUriToName(QString magnet_uri) {
   QRegExp regHex("dn=([^&]+)");
   const int pos = regHex.indexIn(magnet_uri);
   if(pos > -1) {
-    const QString &found = regHex.cap(1);
+    const QString found = regHex.cap(1);
     // URL decode
     name = QUrl::fromPercentEncoding(found.toLocal8Bit()).replace("+", " ");
   }
@@ -507,7 +507,7 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   // Hex
   int pos = regHex.indexIn(magnet_uri);
   if(pos > -1) {
-    const QString &found = regHex.cap(1);
+    const QString found = regHex.cap(1);
     if(found.length() == 40) {
       const sha1_hash sha1(QString(QByteArray::fromHex(regHex.cap(1).toLocal8Bit())).toStdString());
       qDebug("magnetUriToHash (Hex): hash: %s", qPrintable(misc::toQString(sha1)));
@@ -518,7 +518,7 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
   pos = regBase32.indexIn(magnet_uri);
   if(pos > -1) {
-    const QString &found = regBase32.cap(1);
+    const QString found = regBase32.cap(1);
     if(found.length() > 20 && (found.length()*5)%40 == 0) {
       const sha1_hash sha1(base32decode(regBase32.cap(1).toStdString()));
       hash = misc::toQString(sha1);

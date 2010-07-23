@@ -133,7 +133,7 @@ QString HttpConnection::translateDocument(QString data) {
 
 void HttpConnection::respond() {
   //qDebug("Respond called");
-  const QString &peer_ip = socket->peerAddress().toString();
+  const QString peer_ip = socket->peerAddress().toString();
   const int nb_fail = parent->NbFailedAttemptsForIp(peer_ip);
   if(nb_fail >= MAX_AUTH_FAILED_ATTEMPTS) {
     generator.setStatusLine(403, "Forbidden");

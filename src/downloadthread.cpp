@@ -101,7 +101,7 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
 }
 
 void downloadThread::loadCookies(const QString &host_name, QString url) {
-  const QList<QByteArray> &raw_cookies = Preferences::getHostNameCookies(host_name);
+  const QList<QByteArray> raw_cookies = Preferences::getHostNameCookies(host_name);
   QNetworkCookieJar *cookie_jar = networkManager.cookieJar();
   QList<QNetworkCookie> cookies;
   qDebug("Loading cookies for host name: %s", qPrintable(host_name));
@@ -135,7 +135,7 @@ QNetworkReply* downloadThread::downloadUrl(QString url){
     loadCookies(host_name, url);
   // Process download request
   qDebug("url is %s", qPrintable(url));
-  const QUrl &qurl = QUrl::fromEncoded(url.toLocal8Bit());
+  const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
   QNetworkRequest request(qurl);
   // Spoof Firefox 3.5 user agent to avoid
   // Web server banning

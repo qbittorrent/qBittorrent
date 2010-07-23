@@ -69,7 +69,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession
   // Load custom labels
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("TransferListFilters"));
-  const QStringList &customLabels = settings.value("customLabels", QStringList()).toStringList();
+  const QStringList customLabels = settings.value("customLabels", QStringList()).toStringList();
   comboLabel->addItem("");
   foreach(const QString& label, customLabels) {
     comboLabel->addItem(label);
@@ -94,7 +94,7 @@ void torrentAdditionDialog::readSettings() {
   resize(settings.value(QString::fromUtf8("TorrentAdditionDlg/size"), size()).toSize());
   move(settings.value(QString::fromUtf8("TorrentAdditionDlg/pos"), misc::screenCenter(this)).toPoint());
   // Restore column width
-  const QList<int> &contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth")).toStringList());
+  const QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth")).toStringList());
   if(contentColsWidths.empty()) {
     torrentContentList->header()->resizeSection(0, 200);
   } else {
@@ -265,7 +265,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
 void torrentAdditionDialog::displayContentListMenu(const QPoint&) {
   Q_ASSERT(!is_magnet && t->num_files() > 1);
   QMenu myFilesLlistMenu;
-  const QModelIndexList &selectedRows = torrentContentList->selectionModel()->selectedRows(0);
+  const QModelIndexList selectedRows = torrentContentList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
   if(selectedRows.size() == 1 && t->num_files() > 1) {
     actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
@@ -307,12 +307,12 @@ void torrentAdditionDialog::displayContentListMenu(const QPoint&) {
 
 void torrentAdditionDialog::renameSelectedFile() {
   Q_ASSERT(!is_magnet && t->num_files() > 1);
-  const QModelIndexList &selectedIndexes = torrentContentList->selectionModel()->selectedRows(0);
+  const QModelIndexList selectedIndexes = torrentContentList->selectionModel()->selectedRows(0);
   Q_ASSERT(selectedIndexes.size() == 1);
   const QModelIndex &index = selectedIndexes.first();
   // Ask for new name
   bool ok;
-  const QString &new_name_last = QInputDialog::getText(this, tr("Rename the file"),
+  const QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
                                                        tr("New name:"), QLineEdit::Normal,
                                                        index.data().toString(), &ok);
   if (ok && !new_name_last.isEmpty()) {
@@ -368,7 +368,7 @@ void torrentAdditionDialog::renameSelectedFile() {
           path_items.prepend(parent.data().toString());
           parent = PropListModel->parent(parent);
         }
-        const QString &old_path = path_items.join("/");
+        const QString old_path = path_items.join("/");
         path_items.removeLast();
         path_items << new_name_last;
         QString new_path = path_items.join("/");
@@ -414,7 +414,7 @@ void torrentAdditionDialog::renameSelectedFile() {
         qulonglong torrent_size = 0;
         if(t->num_files() > 1) {
           const unsigned int nbFiles = t->num_files();
-          const std::vector<int> &priorities = PropListModel->getFilesPriorities(nbFiles);
+          const std::vector<int> priorities = PropListModel->getFilesPriorities(nbFiles);
 
           for(unsigned int i=0; i<nbFiles; ++i) {
             if(priorities[i] > 0)
@@ -459,7 +459,7 @@ void torrentAdditionDialog::renameSelectedFile() {
           if(path_parts.last().isEmpty())
             path_parts.removeLast();
           // Append label
-          const QString &label_name = comboLabel->currentText();
+          const QString label_name = comboLabel->currentText();
           if(QDir(new_path) == QDir(defaultSavePath) && !label_name.isEmpty())
             path_parts << label_name;
           // Append root folder
@@ -499,7 +499,7 @@ void torrentAdditionDialog::renameSelectedFile() {
     void torrentAdditionDialog::savePiecesPriorities(){
       qDebug("Saving pieces priorities");
       Q_ASSERT(!is_magnet);
-      const std::vector<int> &priorities = PropListModel->getFilesPriorities(t->num_files());
+      const std::vector<int> priorities = PropListModel->getFilesPriorities(t->num_files());
       TorrentTempData::setFilesPriority(hash, priorities);
     }
 
@@ -522,7 +522,7 @@ void torrentAdditionDialog::renameSelectedFile() {
         save_path = parts.join("/");
       }
       QDir savePath(save_path);
-      const QString &current_label = comboLabel->currentText().trimmed();
+      const QString current_label = comboLabel->currentText().trimmed();
       if (!current_label.isEmpty() && !misc::isValidFileSystemName(current_label)) {
         QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));
         return;

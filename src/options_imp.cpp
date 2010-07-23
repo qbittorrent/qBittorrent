@@ -302,7 +302,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     if(!p.isNull())
       move(p);
     // Load slider size
-    const QStringList &sizes_str = settings.value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
+    const QStringList sizes_str = settings.value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
     // Splitter size
     QList<int> sizes;
     if(sizes_str.size() == 2) {
@@ -1285,7 +1285,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   }
 
   void options_imp::on_removeScanFolderButton_clicked() {
-    const QModelIndexList &selected
+    const QModelIndexList selected
         = scanFoldersView->selectionModel()->selectedIndexes();
     if (selected.isEmpty())
       return;

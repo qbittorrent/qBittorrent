@@ -425,7 +425,7 @@ void GUI::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   restoreGeometry(settings.value("geometry").toByteArray());
-  const QStringList &sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
+  const QStringList sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
   // Splitter size
   QList<int> sizes;
   if(sizes_str.size() == 2) {
@@ -664,7 +664,7 @@ void GUI::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
   QStringList files;
   if(event->mimeData()->hasUrls()) {
-    const QList<QUrl> &urls = event->mimeData()->urls();
+    const QList<QUrl> urls = event->mimeData()->urls();
     foreach(const QUrl &url, urls) {
       const QString tmp = url.toString().trimmed();
       if(!tmp.isEmpty())
@@ -723,7 +723,7 @@ void GUI::on_actionOpen_triggered() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Open File Open Dialog
   // Note: it is possible to select more than one file
-  const QStringList &pathsList = QFileDialog::getOpenFileNames(0,
+  const QStringList pathsList = QFileDialog::getOpenFileNames(0,
                                                                tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
                                                                tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!pathsList.empty()) {
