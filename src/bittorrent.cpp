@@ -2015,10 +2015,10 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             // Check if there are torrent files inside
             torrent_info::file_iterator it;
             for(it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++) {
-              const QString torrent_relpath = misc::toQStringU(it->path.string());
-              if(torrent_relpath.endsWith(".torrent")) {
+              const QString torrent_relpath = misc::toQStringU(it->path.string()).replace("\\", "/");
+              if(torrent_relpath.endsWith(".torrent", Qt::CaseInsensitive)) {
                 qDebug("Found possible recursive torrent download.");
-                const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
+                const QString torrent_fullpath = h.save_path()+"/"+torrent_relpath;
                 qDebug("Full subtorrent path is %s", qPrintable(torrent_fullpath));
                 try {
                   boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toUtf8().constData());
