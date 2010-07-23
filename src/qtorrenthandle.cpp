@@ -50,12 +50,12 @@ QTorrentHandle::QTorrentHandle(torrent_handle h): h(h) {}
 // Getters
 //
 
-torrent_handle QTorrentHandle::get_torrent_handle() const {
+const torrent_handle& QTorrentHandle::get_torrent_handle() const {
   Q_ASSERT(h.is_valid());
   return h;
 }
 
-torrent_info QTorrentHandle::get_torrent_info() const {
+const torrent_info& QTorrentHandle::get_torrent_info() const {
   Q_ASSERT(h.is_valid());
   return h.get_torrent_info();
 }
@@ -302,7 +302,7 @@ size_type QTorrentHandle::filesize_at(unsigned int index) const {
   return h.get_torrent_info().file_at(index).size;
 }
 
-std::vector<announce_entry> QTorrentHandle::trackers() const {
+const std::vector<announce_entry>& QTorrentHandle::trackers() const {
   Q_ASSERT(h.is_valid());
   return h.trackers();
 }
@@ -531,7 +531,7 @@ void QTorrentHandle::set_max_connections(int val) {
   h.set_max_connections(val);
 }
 
-void QTorrentHandle::prioritize_files(std::vector<int> v) {
+void QTorrentHandle::prioritize_files(const std::vector<int> &v) {
   // Does not do anything for seeding torrents
   Q_ASSERT(h.is_valid());
   if(v.size() != (unsigned int)h.get_torrent_info().num_files())
@@ -546,7 +546,7 @@ void QTorrentHandle::set_ratio(float ratio) const {
   h.set_ratio(ratio);
 }
 
-void QTorrentHandle::replace_trackers(std::vector<announce_entry> const& v) const {
+void QTorrentHandle::replace_trackers(const std::vector<announce_entry> & v) const {
   Q_ASSERT(h.is_valid());
   h.replace_trackers(v);
 }
@@ -653,7 +653,7 @@ void QTorrentHandle::set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint
   h.set_peer_download_limit(ip, limit);
 }
 
-void QTorrentHandle::add_tracker(announce_entry const& url) {
+void QTorrentHandle::add_tracker(const announce_entry& url) {
   Q_ASSERT(h.is_valid());
 #if LIBTORRENT_VERSION_MINOR > 14
   h.add_tracker(url);

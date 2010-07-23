@@ -60,8 +60,8 @@ class QTorrentHandle {
     // Getters
     //
 
-    torrent_handle get_torrent_handle() const;
-    torrent_info get_torrent_info() const;
+    const torrent_handle& get_torrent_handle() const;
+    const torrent_info& get_torrent_info() const;
     QString hash() const;
     QString name() const;
     float progress() const;
@@ -97,7 +97,7 @@ class QTorrentHandle {
     bool is_queued() const;
     QString file_at(unsigned int index) const;
     size_type filesize_at(unsigned int index) const;
-    std::vector<announce_entry> trackers() const;
+    const std::vector<announce_entry>& trackers() const;
     torrent_status::state_t state() const;
     QString creator() const;
     QString comment() const;
@@ -148,10 +148,10 @@ class QTorrentHandle {
     void add_url_seed(QString seed);
     void set_max_uploads(int val);
     void set_max_connections(int val);
-    void prioritize_files(std::vector<int> v);
+    void prioritize_files(const std::vector<int> &v);
     void file_priority(int index, int priority) const;
     void set_ratio(float ratio) const;
-    void replace_trackers(std::vector<announce_entry> const&) const;
+    void replace_trackers(const std::vector<announce_entry>& trackers) const;
     void force_reannounce();
     void set_sequential_download(bool);
     void set_tracker_login(QString username, QString password);
@@ -170,7 +170,7 @@ class QTorrentHandle {
     void connect_peer(libtorrent::asio::ip::tcp::endpoint const& adr, int source = 0) const;
     void set_peer_upload_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
     void set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
-    void add_tracker(announce_entry const& url);
+    void add_tracker(const announce_entry& url);
     void prioritize_first_last_piece(bool b);
     void rename_file(int index, QString name);
     bool save_torrent_file(QString path);

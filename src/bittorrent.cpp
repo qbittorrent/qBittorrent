@@ -1999,22 +1999,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           if(appendqBExtension)
             appendqBextensionToTorrent(h, false);
 #endif
-          // Move to download directory if necessary
-          if(!defaultTempPath.isEmpty()) {
-            // Check if directory is different
-            const QDir current_dir(h.save_path());
-            const QDir save_dir(getSavePath(hash));
-            if(current_dir != save_dir) {
-              h.move_storage(save_dir.path());
-            }
-          }
           const bool was_already_seeded = TorrentPersistentData::isSeed(hash);
           if(!was_already_seeded) {
             h.save_resume_data();
             qDebug("Checking if the torrent contains torrent files to download");
             // Check if there are torrent files inside
-            torrent_info::file_iterator it;
-            for(it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++) {
+            for(torrent_info::file_iterator it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++) {
+              qDebug("File path: %s", it->path.string().c_str());
               const QString torrent_relpath = misc::toQStringU(it->path.string()).replace("\\", "/");
               if(torrent_relpath.endsWith(".torrent", Qt::CaseInsensitive)) {
                 qDebug("Found possible recursive torrent download.");
@@ -2032,6 +2023,15 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                   addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(torrent_fullpath), QString::fromUtf8("red"));
                 }
               }
+            }
+          }
+          // Move to download directory if necessary
+          if(!defaultTempPath.isEmpty()) {
+            // Check if directory is different
+            const QDir current_dir(h.save_path());
+            const QDir save_dir(getSavePath(hash));
+            if(current_dir != save_dir) {
+              h.move_storage(save_dir.absolutePath());
             }
           }
           // Recheck if the user asked to
