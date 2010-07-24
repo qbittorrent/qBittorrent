@@ -1939,11 +1939,11 @@ QGroupBox {
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Vrati na posljednju verziju softvera</translation>
+        <translation type="obsolete">Vrati na posljednju verziju softvera</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
@@ -1979,32 +1979,32 @@ QGroupBox {
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Klijent dopušta zaobilaženje</translation>
+        <translation type="obsolete">Klijent dopušta zaobilaženje</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Identificiraj kao:</translation>
+        <translation type="obsolete">Identificiraj kao:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Verzija:</translation>
+        <translation type="obsolete">Verzija:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Izgrađena:</translation>
+        <translation type="obsolete">Izgrađena:</translation>
     </message>
     <message>
         <source>(None)</source>

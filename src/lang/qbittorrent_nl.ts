@@ -3906,41 +3906,8 @@ No further notices will be issued.</source>
         <translation type="unfinished">SOCKS4</translation>
     </message>
     <message>
-        <source>Client whitelisting workaround</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Identify as:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Vuze</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message utf8="true">
-        <source>µTorrent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Build:</source>
-        <extracomment>Software Build nulmber:</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset to latest software version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>KTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Speed</source>

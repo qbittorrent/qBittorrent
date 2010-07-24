@@ -4143,40 +4143,40 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Naśladowanie innych klientów w celu ominięcia blokad</translation>
+        <translation type="obsolete">Naśladowanie innych klientów w celu ominięcia blokad</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Identyfikuj się jako:</translation>
+        <translation type="obsolete">Identyfikuj się jako:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Wersja:</translation>
+        <translation type="obsolete">Wersja:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Wydanie:</translation>
+        <translation type="obsolete">Wydanie:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Przywraca ostatnią wersję programu</translation>
+        <translation type="obsolete">Przywraca ostatnią wersję programu</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>

@@ -3072,40 +3072,40 @@ QGroupBox {
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>客戶端白名單替代方案</translation>
+        <translation type="obsolete">客戶端白名單替代方案</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>辨識為:</translation>
+        <translation type="obsolete">辨識為:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>版本:</translation>
+        <translation type="obsolete">版本:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>建立:</translation>
+        <translation type="obsolete">建立:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>重設到最新軟體版本</translation>
+        <translation type="obsolete">重設到最新軟體版本</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>

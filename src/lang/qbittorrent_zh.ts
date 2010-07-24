@@ -4221,40 +4221,40 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>防tracker阻止技术</translation>
+        <translation type="obsolete">防tracker阻止技术</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>鉴定为:</translation>
+        <translation type="obsolete">鉴定为:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>版本:</translation>
+        <translation type="obsolete">版本:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Build:</translation>
+        <translation type="obsolete">Build:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>重置到最新的软件版本</translation>
+        <translation type="obsolete">重置到最新的软件版本</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>

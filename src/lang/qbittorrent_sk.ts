@@ -4052,40 +4052,40 @@ QGroupBox {
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Dočasné riešenie bielou listinou klientov</translation>
+        <translation type="obsolete">Dočasné riešenie bielou listinou klientov</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Identifikovať sa ako:</translation>
+        <translation type="obsolete">Identifikovať sa ako:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Verzia:</translation>
+        <translation type="obsolete">Verzia:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Zostavenie:</translation>
+        <translation type="obsolete">Zostavenie:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Vrátiť na poslednú verziu softvéru</translation>
+        <translation type="obsolete">Vrátiť na poslednú verziu softvéru</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>

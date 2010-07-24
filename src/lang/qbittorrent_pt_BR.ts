@@ -4026,40 +4026,40 @@ QGroupBox {
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Clientes em lista branca</translation>
+        <translation type="obsolete">Clientes em lista branca</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Identificado como:</translation>
+        <translation type="obsolete">Identificado como:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versão:</translation>
+        <translation type="obsolete">Versão:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Build:</translation>
+        <translation type="obsolete">Build:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Resetar para última versão do software</translation>
+        <translation type="obsolete">Resetar para última versão do software</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>

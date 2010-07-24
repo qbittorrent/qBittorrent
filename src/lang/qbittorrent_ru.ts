@@ -4141,40 +4141,28 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Белый список клиентов</translation>
+        <translation type="obsolete">Белый список клиентов</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Представляться как:</translation>
+        <translation type="obsolete">Представляться как:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
-    </message>
-    <message>
-        <source>Vuze</source>
-        <translation></translation>
-    </message>
-    <message utf8="true">
-        <source>µTorrent</source>
-        <translation></translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Версия:</translation>
+        <translation type="obsolete">Версия:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Сборка:</translation>
+        <translation type="obsolete">Сборка:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Вернуться к последней версии программы</translation>
-    </message>
-    <message>
-        <source>KTorrent</source>
-        <translation></translation>
+        <translation type="obsolete">Вернуться к последней версии программы</translation>
     </message>
     <message>
         <source>Speed</source>

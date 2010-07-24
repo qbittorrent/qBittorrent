@@ -2515,11 +2515,11 @@ QGroupBox {
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Подеси на последњу верзију софтвера</translation>
+        <translation type="obsolete">Подеси на последњу верзију софтвера</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
@@ -2570,32 +2570,32 @@ QGroupBox {
     <message>
         <source>Client whitelisting workaround</source>
         <translatorcomment>hack</translatorcomment>
-        <translation>Примени листу одобрења клијената</translation>
+        <translation type="obsolete">Примени листу одобрења клијената</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Идентификуј се као:</translation>
+        <translation type="obsolete">Идентификуј се као:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Верзија:</translation>
+        <translation type="obsolete">Верзија:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Build:</translation>
+        <translation type="obsolete">Build:</translation>
     </message>
     <message>
         <source>(None)</source>

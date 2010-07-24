@@ -2977,40 +2977,40 @@ QGroupBox {
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Temporär vitlistning av klienter</translation>
+        <translation type="obsolete">Temporär vitlistning av klienter</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Identifiera som:</translation>
+        <translation type="obsolete">Identifiera som:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation type="obsolete">Version:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Bygge:</translation>
+        <translation type="obsolete">Bygge:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Återställ till senaste programversion</translation>
+        <translation type="obsolete">Återställ till senaste programversion</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>

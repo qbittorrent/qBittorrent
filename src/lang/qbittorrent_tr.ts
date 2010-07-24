@@ -3993,41 +3993,41 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>İstemci beyazlistesi çalışması</translation>
+        <translation type="obsolete">İstemci beyazlistesi çalışması</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>İlişkilendir:</translation>
+        <translation type="obsolete">İlişkilendir:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Sürüm:</translation>
+        <translation type="obsolete">Sürüm:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
         <translatorcomment>Yazılımın Oluşturulma numarası:</translatorcomment>
-        <translation>Oluşturma:</translation>
+        <translation type="obsolete">Oluşturma:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Son yazılım sürümüne getir</translation>
+        <translation type="obsolete">Son yazılım sürümüne getir</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>

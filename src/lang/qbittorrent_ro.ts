@@ -3940,40 +3940,40 @@ QGroupBox {(new line)
     </message>
     <message>
         <source>Client whitelisting workaround</source>
-        <translation>Client whitelisting workaround</translation>
+        <translation type="obsolete">Client whitelisting workaround</translation>
     </message>
     <message>
         <source>Identify as:</source>
-        <translation>Identify as:</translation>
+        <translation type="obsolete">Identify as:</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Vuze</source>
-        <translation>Vuze</translation>
+        <translation type="obsolete">Vuze</translation>
     </message>
     <message utf8="true">
         <source>µTorrent</source>
-        <translation>µTorrent</translation>
+        <translation type="obsolete">µTorrent</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versiunea:</translation>
+        <translation type="obsolete">Versiunea:</translation>
     </message>
     <message>
         <source>Build:</source>
         <extracomment>Software Build nulmber:</extracomment>
-        <translation>Build:</translation>
+        <translation type="obsolete">Build:</translation>
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation>Reset to latest software version</translation>
+        <translation type="obsolete">Reset to latest software version</translation>
     </message>
     <message>
         <source>KTorrent</source>
-        <translation>KTorrent</translation>
+        <translation type="obsolete">KTorrent</translation>
     </message>
     <message>
         <source>Speed</source>
