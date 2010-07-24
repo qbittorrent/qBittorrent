@@ -169,7 +169,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(checkMaxConnecsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimitPerTorrent(bool)));
     connect(checkMaxUploadsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxUploadsLimitPerTorrent(bool)));
     connect(checkMaxRatio,  SIGNAL(toggled(bool)), this, SLOT(enableMaxRatio(bool)));
-    connect(comboPeerID, SIGNAL(currentIndexChanged(int)), this, SLOT(enableSpoofingSettings(int)));
     // Proxy tab
     connect(comboProxyType_http, SIGNAL(currentIndexChanged(int)),this, SLOT(enableHTTPProxy(int)));
     connect(checkProxyAuth_http,  SIGNAL(toggled(bool)), this, SLOT(enableHTTPProxyAuth(bool)));
@@ -226,9 +225,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     connect(checkLSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(comboPeerID, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(client_version, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(client_build, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(checkMaxRatio, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(spinMaxRatio, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));

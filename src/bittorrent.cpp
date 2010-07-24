@@ -1226,6 +1226,9 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       QFile::remove(newFile);
       // Copy it to torrentBackup directory
       QFile::copy(file, newFile);
+      // Make sure the permissions are ok
+      QFile nf(newFile);
+      nf.setPermissions(nf.permissions()|QFile::ReadOwner|QFile::WriteOwner|QFile::ReadUser|QFile::WriteUser);
     }
     // Copy the torrent file to the export folder
     if(torrentExport) {
