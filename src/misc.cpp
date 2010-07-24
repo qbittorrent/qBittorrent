@@ -273,7 +273,7 @@ void misc::copyDir(QString src_path, QString dst_path) {
     // Copy the file from src to dest
     QFile::copy(src_child_path, dest_child_path);
     // Remove source file
-    QFile::remove(src_child_path);
+    safeRemove(src_child_path);
   }
   // Remove source folder
   const QString dir_name = sourceDir.dirName();
@@ -312,26 +312,26 @@ QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save
 }
 
 void misc::moveToXDGFolders() {
-  const QString old_qBtPath = QDir::homePath()+QDir::separator()+QString::fromUtf8(".qbittorrent") + QDir::separator();
-  if(QDir(old_qBtPath).exists()) {
+  QDir old_qBtPath(QDir::homePath().replace("\\","/")+"/"+".qbittorrent");
+  if(old_qBtPath.exists()) {
     // Copy BT_backup folder
-    const QString old_BTBackupPath = old_qBtPath + "BT_backup";
+    const QString old_BTBackupPath = old_qBtPath.absoluteFilePath("BT_backup");
     if(QDir(old_BTBackupPath).exists()) {
       copyDir(old_BTBackupPath, BTBackupLocation());
     }
     // Copy search engine folder
-    const QString old_searchPath = old_qBtPath + "search_engine";
+    const QString old_searchPath = old_qBtPath.absoluteFilePath("search_engine");
     if(QDir(old_searchPath).exists()) {
       copyDir(old_searchPath, searchEngineLocation());
     }
     // Copy *_state files
-    if(QFile::exists(old_qBtPath+"dht_state")) {
-      QFile::copy(old_qBtPath+"dht_state", cacheLocation()+QDir::separator()+"dht_state");
-      QFile::remove(old_qBtPath+"dht_state");
+    if(QFile::exists(old_qBtPath.absoluteFilePath("dht_state"))) {
+      QFile::copy(old_qBtPath.absoluteFilePath("dht_state"), QDir(cacheLocation()).absoluteFilePath("dht_state"));
+      safeRemove(old_qBtPath.absoluteFilePath("dht_state"));
     }
-    if(QFile::exists(old_qBtPath+"ses_state")) {
-      QFile::copy(old_qBtPath+"ses_state", cacheLocation()+QDir::separator()+"ses_state");
-      QFile::remove(old_qBtPath+"ses_state");
+    if(QFile::exists(old_qBtPath.absoluteFilePath("ses_state"))) {
+      QFile::copy(old_qBtPath.absoluteFilePath("ses_state"), QDir(cacheLocation()).absoluteFilePath("ses_state"));
+      safeRemove(old_qBtPath.absoluteFilePath("ses_state"));
     }
     // Remove .qbittorrent folder if empty
     QDir::home().rmdir(".qbittorrent");
