@@ -632,7 +632,17 @@ bool GUI::event(QEvent * e) {
         qDebug("minimisation");
         QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
         if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
-          if(!qApp->activeWindow() || !qApp->activeWindow()->isModal()) {
+          qDebug("Has active window: %d", (int)(qApp->activeWindow() != 0));
+          // Check if there is a modal window
+          bool has_modal_window = false;
+          foreach (QWidget *widget, QApplication::allWidgets()) {
+            if(widget->isModal()) {
+              has_modal_window = true;
+              break;
+            }
+          }
+          // Iconify if there is no modal window
+          if(!has_modal_window) {
             qDebug("Minimize to Tray enabled, hiding!");
             e->accept();
             QTimer::singleShot(0, this, SLOT(hide()));
