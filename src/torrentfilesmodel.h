@@ -558,7 +558,9 @@ public:
 public slots:
   void selectAll() {
     for(int i=0; i<rootItem->childCount(); ++i) {
-      rootItem->child(i)->setPriority(NORMAL);
+      TreeItem *child = rootItem->child(i);
+      if(child->getPriority() == IGNORED)
+        child->setPriority(NORMAL);
     }
     emit layoutChanged();
   }

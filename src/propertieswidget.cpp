@@ -83,8 +83,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
 
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
-  connect(selectAllButton, SIGNAL(clicked()), PropListModel, SLOT(selectAll()));
-  connect(selectNoneButton, SIGNAL(clicked()), PropListModel, SLOT(selectNone()));
+  connect(selectAllButton, SIGNAL(clicked()), this, SLOT(selectAllFiles()));
+  connect(selectNoneButton, SIGNAL(clicked()), this, SLOT(selectNoneFiles()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
   connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
@@ -395,6 +395,7 @@ void PropertiesWidget::loadDynamicData() {
           // Expand first item if possible
           filesList->expand(PropListModel->index(0, 0));
         }
+        qDebug("Updating priorities in files tab");
         std::vector<size_type> fp;
         h.file_progress(fp);
         PropListModel->updateFilesPriorities(h.file_priorities());
@@ -402,6 +403,28 @@ void PropertiesWidget::loadDynamicData() {
       }
     }
   } catch(invalid_handle e) {}
+}
+
+void PropertiesWidget::selectAllFiles() {
+  // Update torrent properties
+  std::vector<int> prio = h.file_priorities();
+  for(std::vector<int>::iterator it = prio.begin(); it != prio.end(); it++) {
+    if(*it == IGNORED) {
+      *it = NORMAL;
+    }
+  }
+  h.prioritize_files(prio);
+  // Update model
+  PropListModel->selectAll();
+}
+
+void PropertiesWidget::selectNoneFiles() {
+  // Update torrent properties
+  std::vector<int> prio;
+  prio.assign(h.num_files(), IGNORED);
+  h.prioritize_files(prio);
+  // Update model
+  PropListModel->selectNone();
 }
 
 void PropertiesWidget::loadUrlSeeds(){
