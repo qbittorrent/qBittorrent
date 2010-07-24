@@ -200,24 +200,24 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное количество полуоткрытых соединений [0:Отключено]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим супер раздачи</translation>
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сетевой интерфейс (Требует перезагрузки)</translation>
     </message>
     <message>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Любой интерфейс</translation>
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать всплывающие сообщения в  системном лотке</translation>
     </message>
 </context>
 <context>
@@ -431,19 +431,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удаление торрента %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Приостановка торрента %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка: Торрент %1 не содержит никаких файлов.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Несовпадение размеров файлов для торрента %1, приостанавливаю его.</translation>
     </message>
 </context>
 <context>
@@ -462,18 +462,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотрщик журнала qBittorrent</translation>
     </message>
 </context>
 <context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Управление Cookies</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ключ</translation>
     </message>
     <message>
         <source>Value</source>
@@ -482,7 +482,9 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&apos;из настроек&apos; - в firefox 3.6.4</translatorcomment>
+        <translation type="unfinished">Частые ключи для cookies это : &apos;%1&apos;, &apos;%2&apos;.
+Вам следует взять эту информацию из настроек вашего веб-браузера.</translation>
     </message>
 </context>
 <context>
@@ -2698,287 +2700,304 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтверждение рекурсивной загрузки</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Коряво как-то получилось &gt;_&lt;</translatorcomment>
+        <translation type="unfinished">Торрент %1 содержит торрент-файлы, хотите ли вы приступить к их загрузке?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Передачи (%1)</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Из systemsettings (KDE 4.4.5)</translatorcomment>
+        <translation>Привязки торрент-файлов</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Может лучше наоборот, ссылки с файлами к qBittorrent привязывать?</translatorcomment>
+        <translation type="unfinished">qBittorrent сейчас не является приложением по умолчанию для открытия торрент-файлов или Magnet-ссылок.
+Хотите ли вы привязать qBittorrent к торрент-файлам и Magnet-ссылкам?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Никогда</translation>
+        <translation>Никогда</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или Завершаю работу будет правильнее?</translatorcomment>
+        <translation type="unfinished">Завершение работы qBittorrent</translation>
     </message>
 </context>
 <context>
     <name>GeoIP</name>
     <message>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>Австралия</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргентине</translation>
     </message>
     <message>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>Австрия</translation>
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>Объединенные Арабские Эмираты</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>Бразилия</translation>
     </message>
     <message>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>Болгария</translation>
     </message>
     <message>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>Беларусь</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>Бельгия</translation>
     </message>
     <message>
         <source>Bosnia</source>
-        <translation type="unfinished"></translation>
+        <translation>Босния</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>Канада</translation>
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Czech%20Republic</translatorcomment>
+        <translation>Чешская Республика</translation>
     </message>
     <message>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Китай</translation>
     </message>
     <message>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>Коста Рика</translation>
     </message>
     <message>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Швейцария</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Германия</translation>
     </message>
     <message>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Denmark</translatorcomment>
+        <translation>Дания</translation>
     </message>
     <message>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Algeria</translatorcomment>
+        <translation>Алжир</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Испания</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Египет</translation>
     </message>
     <message>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Финляндия</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished">Франция</translation>
+        <translation>Франция</translation>
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|United%20Kingdom</translatorcomment>
+        <translation>Великобритания</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Греция</translation>
     </message>
     <message>
         <source>Georgia</source>
-        <translation type="unfinished"></translation>
+        <translation>Грузия</translation>
     </message>
     <message>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>Венгрия</translation>
     </message>
     <message>
         <source>Croatia</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Croatia</translatorcomment>
+        <translation>Хорватия</translation>
     </message>
     <message>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Италия</translation>
     </message>
     <message>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Индия</translation>
     </message>
     <message>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>Израиль</translation>
     </message>
     <message>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>Ирландия</translation>
     </message>
     <message>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>Исландия</translation>
     </message>
     <message>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>Индонезия</translation>
     </message>
     <message>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>^_^</translatorcomment>
+        <translation>Япония</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation type="unfinished"></translation>
+        <translation>Южная Корея</translation>
     </message>
     <message>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Luxembourg</translatorcomment>
+        <translation>Люксембург</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation type="unfinished"></translation>
+        <translation>Малазия</translation>
     </message>
     <message>
         <source>Mexico</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Mexico</translatorcomment>
+        <translation>Мексика</translation>
     </message>
     <message>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>Сербия</translation>
     </message>
     <message>
         <source>Morocco</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Morocco</translatorcomment>
+        <translation>Марокко</translation>
     </message>
     <message>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Нидерланды</translation>
     </message>
     <message>
         <source>Norway</source>
-        <translation type="unfinished"></translation>
+        <translation>Норвегия</translation>
     </message>
     <message>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая Зеландия</translation>
     </message>
     <message>
         <source>Portugal</source>
-        <translation type="unfinished"></translation>
+        <translation>Португалия</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Польша</translation>
     </message>
     <message>
         <source>Pakistan</source>
-        <translation type="unfinished"></translation>
+        <translation>Пакистан</translation>
     </message>
     <message>
         <source>Philippines</source>
-        <translation type="unfinished"></translation>
+        <translation>Филиппины</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation type="unfinished"></translation>
+        <translation>Россия</translation>
     </message>
     <message>
         <source>Romania</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|Romania</translatorcomment>
+        <translation>Румыния</translation>
     </message>
     <message>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|France%20%28Reunion%20Island%29</translatorcomment>
+        <translation>Франция (остров Реюньон)</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation type="unfinished"></translation>
+        <translation>Швеция</translation>
     </message>
     <message>
         <source>Slovakia</source>
-        <translation type="unfinished"></translation>
+        <translation>Словакия</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation type="unfinished"></translation>
+        <translation>Сингапур</translation>
     </message>
     <message>
         <source>Slovenia</source>
-        <translation type="unfinished"></translation>
+        <translation>Словения</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Тайвань</translation>
     </message>
     <message>
         <source>Turkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Турция</translation>
     </message>
     <message>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Таиланд</translation>
     </message>
     <message>
         <source>USA</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>http://translate.google.com/#en|ru|USA</translatorcomment>
+        <translation>США</translation>
     </message>
     <message>
         <source>Ukraine</source>
-        <translation type="unfinished"></translation>
+        <translation>Украниа</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>Южная Африка</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>Саудовская Аравия</translation>
     </message>
 </context>
 <context>
@@ -3356,7 +3375,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Фаил предпросмотра</translation>
+        <translatorcomment>Имхо правильнее чем файл предпросмотра</translatorcomment>
+        <translation>Предпросмотр файла</translation>
     </message>
     <message>
         <source>Clear log</source>
@@ -3432,119 +3452,128 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Инс&amp;трументы</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Вид</translation>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Добавить файл...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>В&amp;ыход</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Настройки...</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить  &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Создатель такой создатель... Но ничего лучше придумать не могу, в голову приходят только &apos;создавалка&apos; и &apos;создавайка&apos; (создавайка мне торрент! ^_^)</translatorcomment>
+        <translation type="unfinished">&amp;Создатель Torrent-а</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить ограничение раздачи...</translation>
     </message>
     <message>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Исходя из следущего</translatorcomment>
+        <translation>Установить ограничение закачки...</translation>
     </message>
     <message>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить глобальное ораничение закачки...</translation>
     </message>
     <message>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить глобальное ограничение раздачи...</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Просмотрщик лога...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ну не понятно лично мне что это за панель... А тулбар - с детства знакомо.</translatorcomment>
+        <translation type="unfinished">Верхний &amp;тулбар</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать верхнюю панель</translation>
     </message>
     <message>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Скорость в заголовке</translation>
     </message>
     <message>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Имхо &apos;заголовок окна&apos; понятнее чем &apos;полоса заголовка&apos;. Хотя она ещё и в кнопке на панели задач отображается...</translatorcomment>
+        <translation>Отображать текущую скорость в заголовке окна</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Альтернативные лимиты скорости</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Посмотрел в Firefox - там не обезличенное &apos;О программе&apos; а более тёплое &apos;О Mozilla Firefox&apos;. Или может лучше как в Kate - &apos;О программе Kate&apos;?</translatorcomment>
+        <translation type="unfinished">&amp;О qBittorrent</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Исходя из предыдущего, (хотя имхо &apos;Start&apos; это нихрена не &apos;Возобновить&apos;...</translatorcomment>
+        <translation>&amp;Возобновить</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Приостановить</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Удалить</translation>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>П&amp;риостановить Все</translation>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Исходя из предыдущего, (хотя имхо &apos;Start&apos; это нихрена не &apos;Возобновить&apos;...</translatorcomment>
+        <translation>В&amp;озобновить Все</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Посетить &amp;веб-сайт</translation>
     </message>
     <message>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Сообщить о&amp;б ошибке</translation>
     </message>
     <message>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Документация</translation>
     </message>
     <message>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Корявенько... Но имхо &apos;просмотрщик&apos; - это viewer</translatorcomment>
+        <translation type="unfinished">&amp;RSS читалка</translation>
     </message>
     <message>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Исходя из следущего (хотя я лично целиком и полностью за &apos;Поисковый движок&apos;)</translatorcomment>
+        <translation>По&amp;исковик</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотрщик лога</translation>
     </message>
 </context>
 <context>
@@ -3664,19 +3693,22 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Исходя из предыдущего. Хотя мне больше нравится &apos;Добавить пира&apos;, пиры - они ведь живые...</translatorcomment>
+        <translation>Добавить новый пир...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Хоть в предыдущем и &apos;сотношение скачивания&apos;, но мимо _этого_ я пройти просто не могу! Ratio - соотношение, Rate - скорость!</translatorcomment>
+        <translation>Ограничение скорость скачивания...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Хоть в предыдущем и &apos;сотношение раздачи&apos;, но мимо _этого_ я пройти просто не могу! Ratio - соотношение, Rate - скорость!</translatorcomment>
+        <translation>Ограниченить скорость раздачи...</translation>
     </message>
     <message>
         <source>Copy IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Копировать IP</translation>
     </message>
 </context>
 <context>
@@ -3691,7 +3723,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Закачки</translation>
+        <translatorcomment>Имхо &apos;закачка&apos; - это upload</translatorcomment>
+        <translation type="unfinished">Загрузки</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -4091,7 +4124,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP Связи (трекеры, раздающие Web, поисковые движки)</translation>
+        <translatorcomment>Ну не звучит тут &apos;Связи&apos;. Никак не звучит.</translatorcomment>
+        <translation type="unfinished">HTTP соединения (трекеры, раздающие Web, поисковые движки)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -4181,7 +4215,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Advanced</source>
-        <translation>Расширеный</translation>
+        <translatorcomment>Никак не звучит тут &apos;расширенные&apos;...</translatorcomment>
+        <translation type="unfinished">Продвинутые</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -4201,27 +4236,29 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет действия</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Как в Firefox</translatorcomment>
+        <translation type="unfinished">Настройки</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Визуальное Поведение</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>Действие по двойному щелчку</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или они &apos;Загружающиеся&apos;? Или (как в предыдущем) &apos;Скачиваемые&apos;?</translatorcomment>
+        <translation type="unfinished">Загружаемые торренты:</translation>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Начать/Остановить</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -4229,118 +4266,128 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Завершенные торренты:</translation>
     </message>
     <message>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Где? o_O</translatorcomment>
+        <translation type="unfinished">Рабочий стол</translation>
     </message>
     <message>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать заставку при загрузке</translation>
     </message>
     <message>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Запускать qBittorrent свернутым</translation>
     </message>
     <message>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>А может лучше &apos;в трее&apos;?</translatorcomment>
+        <translation>Показывать значок qBittorrent в области уведомлений</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>А может лучше &apos;в трей&apos;?</translatorcomment>
+        <translation type="unfinished">Свроачивать qBittorrent в область уведомлений</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Коряво, коряво...</translatorcomment>
+        <translation type="unfinished">Закрывать qBittorrent в облать уведомлений</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не начинать загрузку автоматически</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>А надо ли &apos;расположение&apos;? И имхо &apos;по умолчанию&apos; здесь будет очень к месту.</translatorcomment>
+        <translation type="unfinished">Сохранять файлы по умолчанию в:</translation>
     </message>
     <message>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить метку торрента к пути сохранения</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или &apos;Предварительно резервировать&apos; будет правильнее?</translatorcomment>
+        <translation type="unfinished">Резервировать место для всех файлов</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Хранить незавершенные торренты в:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить расширение .!qB к незаконченым файлам</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически добавлять торренты из:</translation>
     </message>
     <message>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить папку...</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтрация по IP</translation>
     </message>
     <message>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или &apos;для использования&apos;?</translatorcomment>
+        <translation type="unfinished">Расписание использования альтернативных лимитов скорости</translation>
     </message>
     <message>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>С</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Когда:</translation>
     </message>
     <message>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>Искать пиров в вашей локальной сети</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или &apos;Протокол шифрования&apos;?</translatorcomment>
+        <translation type="unfinished">Шифрование протокола:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить Web интерфейс (Удалённое управление)</translation>
     </message>
     <message>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ограничение коэффициента раздачи</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или тут лучше &apos;соотношение&apos;? Или &apos;рейтинг&apos;?</translatorcomment>
+        <translation type="unfinished">Раздавать торренты пока их коэффициент не достигнет</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Имхо так красивее звучит...</translatorcomment>
+        <translation type="unfinished">а затем</translation>
     </message>
     <message>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>Приостановить их</translation>
     </message>
     <message>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить их</translation>
     </message>
     <message utf8="true">
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Обмен пирами с совместиыми клиентами Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
 </context>
 <context>
@@ -4642,7 +4689,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Переанонсировать через:</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -4650,15 +4697,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать все</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать ничего</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Не загружать</translation>
     </message>
 </context>
 <context>
@@ -4800,23 +4847,24 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая подписка...</translation>
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка RSS канала...</translation>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая папка...</translation>
     </message>
     <message>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или &apos;Управлять&apos;?</translatorcomment>
+        <translation>Управление cookies...</translation>
     </message>
     <message>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки...</translation>
     </message>
 </context>
 <context>
@@ -4942,7 +4990,8 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>И опять читалка...</translatorcomment>
+        <translation type="unfinished">Настройки читалки RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
@@ -5179,24 +5228,28 @@ Changelog:
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>А вот нефиг ставить вручную! Ставить надо из репозитория. Думаю тут лучше будет &apos;самостоятельно&apos;...</translatorcomment>
+        <translation type="unfinished">Установщик Python не может быть загружен по причине: %1.
+Пожалуйста, установите его вручную.</translation>
     </message>
     <message>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>Отсутствует интерпретатор Python</translation>
     </message>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 2.x требуется для использования поисковиков, но не похоже что он установлен
+Хотите ли Вы установить его сечас?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтверждение</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Или &apos;журнал&apos;?</translatorcomment>
+        <translation type="unfinished">Вы уверены, что хотитеочистить историю?</translation>
     </message>
 </context>
 <context>
@@ -5385,15 +5438,16 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить новый трекер...</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить трекер</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Коряво &gt;_&lt;</translatorcomment>
+        <translation type="unfinished">Переанонсировать принудительно</translation>
     </message>
 </context>
 <context>
@@ -5540,7 +5594,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить метку...</translation>
     </message>
 </context>
 <context>
@@ -5779,19 +5833,20 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Блин, до чего же коряво! Может лучше &apos;Переместить файлы&apos;?</translatorcomment>
+        <translation type="unfinished">Установить размещение...</translation>
     </message>
     <message>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр файла...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограниченить скорость раздачи...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение скорость скачивания...</translation>
     </message>
 </context>
 <context>
@@ -6026,15 +6081,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать все</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать ничего</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>Не загружать</translation>
     </message>
 </context>
 <context>
@@ -6257,11 +6312,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Запомнить выбор</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Также удалить файлы и с жесткого диска</translation>
     </message>
 </context>
 <context>
@@ -7032,12 +7087,12 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1ч%2м</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1д%2ч</translation>
     </message>
 </context>
 <context>

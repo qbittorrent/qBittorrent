@@ -446,7 +446,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1981"/>
-        <location filename="../bittorrent.cpp" line="2032"/>
+        <location filename="../bittorrent.cpp" line="2023"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Torrent-tiedostoa %1 ei voitu tulkita.</translation>
     </message>
@@ -1979,7 +1979,7 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
         <translation type="obsolete">Hakupalvelua ei ole valittu</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="723"/>
+        <location filename="../GUI.cpp" line="727"/>
         <source>Open Torrent Files</source>
         <translation>Avaa torrent-tiedostoja</translation>
     </message>
@@ -2109,7 +2109,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete">Tiedosto ei ole kelvollinen torrent-tiedosto.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="724"/>
+        <location filename="../GUI.cpp" line="728"/>
         <source>Torrent Files</source>
         <translation>Torrent-tiedostot</translation>
     </message>
@@ -2148,7 +2148,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="87"/>
-        <location filename="../GUI.cpp" line="1049"/>
+        <location filename="../GUI.cpp" line="1061"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation> qBittorrent %1</translation>
@@ -2260,7 +2260,7 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation>Lopetetaan qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="890"/>
+        <location filename="../GUI.cpp" line="898"/>
         <source>qBittorrent</source>
         <translation> qBittorrent</translation>
     </message>
@@ -2275,21 +2275,21 @@ Uutta esikatselua ei voi aloittaa.</translation>
         <translation type="obsolete"> qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="893"/>
-        <location filename="../GUI.cpp" line="900"/>
+        <location filename="../GUI.cpp" line="901"/>
+        <location filename="../GUI.cpp" line="908"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Latausnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="896"/>
-        <location filename="../GUI.cpp" line="902"/>
+        <location filename="../GUI.cpp" line="904"/>
+        <location filename="../GUI.cpp" line="910"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Lähetysnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="908"/>
+        <location filename="../GUI.cpp" line="916"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Lataus: %2/s, lähetys: %3/s)</translation>
@@ -2611,7 +2611,7 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="obsolete">Lähetykset</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="799"/>
+        <location filename="../GUI.cpp" line="807"/>
         <source>Options were saved successfully.</source>
         <translation>Valinnat tallennettiin.</translation>
     </message>
@@ -4711,7 +4711,7 @@ QGroupBox {
         <translation type="obsolete">Edistyminen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="549"/>
+        <location filename="../propertieswidget.cpp" line="572"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>
@@ -4760,55 +4760,55 @@ QGroupBox {
         <translation>korkeintaan %1</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="509"/>
-        <location filename="../propertieswidget.cpp" line="535"/>
+        <location filename="../propertieswidget.cpp" line="532"/>
+        <location filename="../propertieswidget.cpp" line="558"/>
         <source>I/O Error</source>
         <translation>I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="509"/>
+        <location filename="../propertieswidget.cpp" line="532"/>
         <source>This file does not exist yet.</source>
         <translation>Tiedostoa ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="535"/>
+        <location filename="../propertieswidget.cpp" line="558"/>
         <source>This folder does not exist yet.</source>
         <translation>Kansiota ei ole vielä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="545"/>
+        <location filename="../propertieswidget.cpp" line="568"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="590"/>
+        <location filename="../propertieswidget.cpp" line="613"/>
         <source>Rename the file</source>
         <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="591"/>
+        <location filename="../propertieswidget.cpp" line="614"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="595"/>
-        <location filename="../propertieswidget.cpp" line="627"/>
+        <location filename="../propertieswidget.cpp" line="618"/>
+        <location filename="../propertieswidget.cpp" line="650"/>
         <source>The file could not be renamed</source>
         <translation>Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="596"/>
+        <location filename="../propertieswidget.cpp" line="619"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="628"/>
-        <location filename="../propertieswidget.cpp" line="666"/>
+        <location filename="../propertieswidget.cpp" line="651"/>
+        <location filename="../propertieswidget.cpp" line="689"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="665"/>
+        <location filename="../propertieswidget.cpp" line="688"/>
         <source>The folder could not be renamed</source>
         <translation>Kansiota ei voitu nimetä uudelleen</translation>
     </message>
@@ -4817,23 +4817,23 @@ QGroupBox {
         <translation type="obsolete">Ei yhtään - tavoittamattomissa?</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="703"/>
+        <location filename="../propertieswidget.cpp" line="726"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Uusi URL-lähde</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="704"/>
+        <location filename="../propertieswidget.cpp" line="727"/>
         <source>New url seed:</source>
         <translation>Uusi URL-lähde:</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="709"/>
+        <location filename="../propertieswidget.cpp" line="732"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="710"/>
+        <location filename="../propertieswidget.cpp" line="733"/>
         <source>This url seed is already in the list.</source>
         <translation>URL-jakaja on jo listalla.</translation>
     </message>
@@ -4842,19 +4842,19 @@ QGroupBox {
         <translation type="obsolete">Seurantapalvelinlista ei voi olla tyhjä.</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="754"/>
-        <location filename="../propertieswidget.cpp" line="758"/>
-        <location filename="../propertieswidget.cpp" line="760"/>
+        <location filename="../propertieswidget.cpp" line="777"/>
+        <location filename="../propertieswidget.cpp" line="781"/>
+        <location filename="../propertieswidget.cpp" line="783"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="775"/>
+        <location filename="../propertieswidget.cpp" line="798"/>
         <source>Save path creation error</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../propertieswidget.cpp" line="775"/>
+        <location filename="../propertieswidget.cpp" line="798"/>
         <source>Could not create the save path</source>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
@@ -5328,12 +5328,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine.cpp" line="355"/>
-        <location filename="../searchengine.cpp" line="447"/>
+        <location filename="../searchengine.cpp" line="451"/>
         <source>Results</source>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="426"/>
+        <location filename="../searchengine.cpp" line="430"/>
         <source>Searching...</source>
         <translation>Etsitään...</translation>
     </message>
@@ -5422,24 +5422,24 @@ Do you want to install it now?</source>
 Haluatko asentaa sen nyt?</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="557"/>
+        <location filename="../searchengine.cpp" line="558"/>
         <source>Search Engine</source>
         <translation>Hakupalvelu</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="557"/>
-        <location filename="../searchengine.cpp" line="572"/>
+        <location filename="../searchengine.cpp" line="558"/>
+        <location filename="../searchengine.cpp" line="573"/>
         <source>Search has finished</source>
         <translation>Haku on päättynyt</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="563"/>
+        <location filename="../searchengine.cpp" line="564"/>
         <source>An error occured during search...</source>
         <translation>Haun aikana tapahtui virhe...</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="561"/>
-        <location filename="../searchengine.cpp" line="567"/>
+        <location filename="../searchengine.cpp" line="562"/>
+        <location filename="../searchengine.cpp" line="568"/>
         <source>Search aborted</source>
         <translation>Haku keskeytetty</translation>
     </message>
@@ -5456,19 +5456,19 @@ Please install it manually.</source>
 Asenna se itse.</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="570"/>
+        <location filename="../searchengine.cpp" line="571"/>
         <source>Search returned no results</source>
         <translation>Haku ei palauttanut tuloksia</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="577"/>
+        <location filename="../searchengine.cpp" line="578"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchengine.cpp" line="612"/>
-        <location filename="../searchengine.cpp" line="618"/>
+        <location filename="../searchengine.cpp" line="613"/>
+        <location filename="../searchengine.cpp" line="619"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
@@ -5658,8 +5658,8 @@ Asenna se itse.</translation>
         <location filename="../trackerlist.cpp" line="204"/>
         <location filename="../trackerlist.cpp" line="214"/>
         <location filename="../trackerlist.cpp" line="220"/>
-        <location filename="../trackerlist.cpp" line="252"/>
-        <location filename="../trackerlist.cpp" line="270"/>
+        <location filename="../trackerlist.cpp" line="250"/>
+        <location filename="../trackerlist.cpp" line="268"/>
         <source>Working</source>
         <translation>Toiminnassa</translation>
     </message>
@@ -5676,34 +5676,34 @@ Asenna se itse.</translation>
         <translation>Torrentti on yksityinen</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="256"/>
+        <location filename="../trackerlist.cpp" line="254"/>
         <source>Updating...</source>
         <translation>Päivitetään...</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="260"/>
-        <location filename="../trackerlist.cpp" line="274"/>
+        <location filename="../trackerlist.cpp" line="258"/>
+        <location filename="../trackerlist.cpp" line="272"/>
         <source>Not working</source>
         <translation>Ei toiminnassa</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="263"/>
-        <location filename="../trackerlist.cpp" line="277"/>
+        <location filename="../trackerlist.cpp" line="261"/>
+        <location filename="../trackerlist.cpp" line="275"/>
         <source>Not contacted yet</source>
         <translation>Ei ole vielä yhteyttä</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="351"/>
+        <location filename="../trackerlist.cpp" line="349"/>
         <source>Add a new tracker...</source>
         <translation>Lisää uusi seurantapalvelin...</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="354"/>
+        <location filename="../trackerlist.cpp" line="352"/>
         <source>Remove tracker</source>
         <translation>Poista seurantapalvelin</translation>
     </message>
     <message>
-        <location filename="../trackerlist.cpp" line="357"/>
+        <location filename="../trackerlist.cpp" line="355"/>
         <source>Force reannounce</source>
         <translation>Pakota uudelleenjulkaisu</translation>
     </message>
@@ -5961,22 +5961,22 @@ Asenna se itse.</translation>
         <translation type="obsolete">&amp;Ei</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="911"/>
+        <location filename="../transferlistwidget.cpp" line="910"/>
         <source>Column visibility</source>
         <translation>Sarakkeen näkyvyys</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1034"/>
+        <location filename="../transferlistwidget.cpp" line="1033"/>
         <source>Start</source>
         <translation>Käynnistä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1036"/>
+        <location filename="../transferlistwidget.cpp" line="1035"/>
         <source>Pause</source>
         <translation>Pysäytä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1038"/>
+        <location filename="../transferlistwidget.cpp" line="1037"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
@@ -6040,7 +6040,7 @@ Asenna se itse.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="85"/>
-        <location filename="../transferlistwidget.cpp" line="1152"/>
+        <location filename="../transferlistwidget.cpp" line="1151"/>
         <source>Label</source>
         <translation>Nimike</translation>
     </message>
@@ -6085,57 +6085,57 @@ Asenna se itse.</translation>
         <translation>Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="817"/>
+        <location filename="../transferlistwidget.cpp" line="816"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrentin latausnopeuden rajoitus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="850"/>
+        <location filename="../transferlistwidget.cpp" line="849"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrentin lähetysnopeuden rajoitin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="973"/>
+        <location filename="../transferlistwidget.cpp" line="972"/>
         <source>New Label</source>
         <translation>Uusi nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="973"/>
+        <location filename="../transferlistwidget.cpp" line="972"/>
         <source>Label:</source>
         <translation>Nimike:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="978"/>
+        <location filename="../transferlistwidget.cpp" line="977"/>
         <source>Invalid label name</source>
         <translation>Virheellinen nimike</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="978"/>
+        <location filename="../transferlistwidget.cpp" line="977"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Älä käytä erikoismerkkejä nimikkeessä.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="993"/>
         <source>Rename</source>
         <translation>Nimeä uudelleen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="994"/>
+        <location filename="../transferlistwidget.cpp" line="993"/>
         <source>New name:</source>
         <translation>Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1040"/>
+        <location filename="../transferlistwidget.cpp" line="1039"/>
         <source>Preview file...</source>
         <translation>Esikatsele...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1042"/>
+        <location filename="../transferlistwidget.cpp" line="1041"/>
         <source>Limit upload rate...</source>
         <translation>Rajoita lähetysnopeus...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1044"/>
+        <location filename="../transferlistwidget.cpp" line="1043"/>
         <source>Limit download rate...</source>
         <translation>Rajoita latausnopeus...</translation>
     </message>
@@ -6148,12 +6148,12 @@ Asenna se itse.</translation>
         <translation type="obsolete">Rajoita latausnopeus</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1046"/>
+        <location filename="../transferlistwidget.cpp" line="1045"/>
         <source>Open destination folder</source>
         <translation>Avaa kohdekansio</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1050"/>
+        <location filename="../transferlistwidget.cpp" line="1049"/>
         <source>Set location...</source>
         <translation>Aseta kohde...</translation>
     </message>
@@ -6162,53 +6162,53 @@ Asenna se itse.</translation>
         <translation type="obsolete">Osta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1052"/>
+        <location filename="../transferlistwidget.cpp" line="1051"/>
         <source>Increase priority</source>
         <translation>Nosta prioriteettia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1054"/>
+        <location filename="../transferlistwidget.cpp" line="1053"/>
         <source>Decrease priority</source>
         <translation>Laske prioriteettia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1056"/>
+        <location filename="../transferlistwidget.cpp" line="1055"/>
         <source>Force recheck</source>
         <translation>Pakota tarkistamaan uudelleen</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1058"/>
+        <location filename="../transferlistwidget.cpp" line="1057"/>
         <source>Copy magnet link</source>
         <translation>Kopioi magnet-linkki</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1061"/>
+        <location filename="../transferlistwidget.cpp" line="1060"/>
         <source>Super seeding mode</source>
         <translation>super seed -tila</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1065"/>
+        <location filename="../transferlistwidget.cpp" line="1064"/>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1067"/>
+        <location filename="../transferlistwidget.cpp" line="1066"/>
         <source>Download in sequential order</source>
         <translation>Lataa järjestyksessä</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1070"/>
+        <location filename="../transferlistwidget.cpp" line="1069"/>
         <source>Download first and last piece first</source>
         <translation>Lataa ensin ensimmäinen ja viimeinen osa</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1153"/>
+        <location filename="../transferlistwidget.cpp" line="1152"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Uusi...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1154"/>
+        <location filename="../transferlistwidget.cpp" line="1153"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Palauta</translation>
@@ -7515,21 +7515,21 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="518"/>
-        <location filename="../misc.cpp" line="523"/>
-        <location filename="../misc.cpp" line="527"/>
-        <location filename="../misc.cpp" line="530"/>
+        <location filename="../misc.cpp" line="532"/>
+        <location filename="../misc.cpp" line="537"/>
+        <location filename="../misc.cpp" line="541"/>
+        <location filename="../misc.cpp" line="544"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="570"/>
+        <location filename="../misc.cpp" line="584"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 h %2 min</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="575"/>
+        <location filename="../misc.cpp" line="589"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1 d %2 h</translation>
@@ -7541,13 +7541,13 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="561"/>
+        <location filename="../misc.cpp" line="575"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>alle minuutti</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="565"/>
+        <location filename="../misc.cpp" line="579"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min</translation>
