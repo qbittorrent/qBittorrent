@@ -1572,7 +1572,7 @@ QGroupBox {
              <x>0</x>
              <y>0</y>
              <width>552</width>
-             <height>496</height>
+             <height>430</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1741,122 +1741,6 @@ QGroupBox {
                     </size>
                    </property>
                   </spacer>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupBox_usurpation">
-              <property name="title">
-               <string>Client whitelisting workaround</string>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_19">
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_11">
-                 <item>
-                  <widget class="QLabel" name="label_9">
-                   <property name="text">
-                    <string>Identify as:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboPeerID">
-                   <item>
-                    <property name="text">
-                     <string>qBittorrent</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Vuze</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>µTorrent</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>KTorrent</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="version_label">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string>Version:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="client_version">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="build_label">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string extracomment="Software Build nulmber:">Build:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="client_build">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="resetPeerVersion_button">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>27</width>
-                     <height>27</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>27</width>
-                     <height>27</height>
-                    </size>
-                   </property>
-                   <property name="toolTip">
-                    <string>Reset to latest software version</string>
-                   </property>
-                   <property name="text">
-                    <string notr="true"/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="../icons.qrc">
-                     <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>22</width>
-                     <height>22</height>
-                    </size>
-                   </property>
-                  </widget>
                  </item>
                 </layout>
                </item>
