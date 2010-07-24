@@ -231,7 +231,7 @@ void TrackerList::loadTrackers() {
   // Load actual trackers information
   QHash<QString, TrackerInfos> trackers_data = properties->getBTSession()->getTrackersInfo(h.hash());
   QStringList old_trackers_urls = tracker_items.keys();
-  const std::vector<announce_entry> &trackers = h.trackers();
+  const std::vector<announce_entry> trackers = h.trackers();
   for(std::vector<announce_entry>::const_iterator it = trackers.begin(); it != trackers.end(); it++) {
     QString tracker_url = misc::toQString(it->url);
     QTreeWidgetItem *item = tracker_items.value(tracker_url, 0);
