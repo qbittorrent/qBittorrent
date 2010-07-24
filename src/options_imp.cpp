@@ -272,10 +272,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     scrollArea_advanced->setLayout(adv_layout);
     connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
 
-#ifndef CLIENT_USURPATION
-    groupBox_usurpation->setVisible(false);
-#endif
-
     // Adapt size
     show();
     loadWindowState();
@@ -452,26 +448,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     settings.setValue(QString::fromUtf8("sameDHTPortAsBT"), isDHTPortSameAsBT());
     settings.setValue(QString::fromUtf8("DHTPort"), getDHTPort());
     settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
-#ifndef CLIENT_USURPATION
-    // Peer ID usurpation
-    switch(comboPeerID->currentIndex()) {
-    case 3: // KTorrent
-      Preferences::setPeerID("KT");
-      Preferences::setClientVersion(client_version->text());
-      break;
-    case 2: // uTorrent
-      Preferences::setPeerID("UT");
-      Preferences::setClientVersion(client_version->text());
-      Preferences::setClientBuild(client_build->text());
-      break;
-    case 1: // Vuze
-      Preferences::setPeerID("AZ");
-      Preferences::setClientVersion(client_version->text());
-      break;
-    default: //qBittorrent
-      Preferences::setPeerID("qB");
-    }
-#endif
     settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
     Preferences::setMaxRatio(getMaxRatio());
     Preferences::setMaxRatioAction(comboRatioLimitAct->currentIndex());
@@ -761,34 +737,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     spinDHTPort->setValue(Preferences::getDHTPort());
     checkPeX->setChecked(Preferences::isPeXEnabled());
     checkLSD->setChecked(Preferences::isLSDEnabled());
-    // Peer ID usurpation
-#ifdef CLIENT_USURPATION
-    QString peer_id = Preferences::getPeerID();
-    if(peer_id == "UT") {
-      // uTorrent
-      comboPeerID->setCurrentIndex(2);
-      enableSpoofingSettings(2);
-      client_version->setText(Preferences::getClientVersion());
-      client_build->setText(Preferences::getClientBuild());
-    } else {
-      if(peer_id == "AZ") {
-        // Vuze
-        comboPeerID->setCurrentIndex(1);
-        enableSpoofingSettings(1);
-        client_version->setText(Preferences::getClientVersion());
-      } else {
-        if(peer_id == "KT") {
-          comboPeerID->setCurrentIndex(3);
-          enableSpoofingSettings(3);
-          client_version->setText(Preferences::getClientVersion());
-        } else {
-          // qBittorrent
-          comboPeerID->setCurrentIndex(0);
-          enableSpoofingSettings(0);
-        }
-      }
-    }
-#endif
     comboEncryption->setCurrentIndex(Preferences::getEncryptionSetting());
     // Ratio limit
     floatValue = Preferences::getMaxRatio();
@@ -831,62 +779,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // [min, max]
   int options_imp::getPort() const{
     return spinPort->value();
-  }
-
-  void options_imp::enableSpoofingSettings(int index) {
-    switch(index) {
-    case 0: // qBittorrent
-      resetPeerVersion_button->setEnabled(false);
-      version_label->setEnabled(false);
-      client_version->setEnabled(false);
-      client_version->clear();
-      build_label->setEnabled(false);
-      client_build->setEnabled(false);
-      client_build->clear();
-      break;
-    case 1: // Vuze
-      resetPeerVersion_button->setEnabled(true);
-      version_label->setEnabled(true);
-      client_version->setEnabled(true);
-      client_version->setText(Preferences::getDefaultClientVersion("AZ"));
-      build_label->setEnabled(false);
-      client_build->setEnabled(false);
-      client_build->clear();
-      break;
-    case 2: // uTorrent
-      resetPeerVersion_button->setEnabled(true);
-      version_label->setEnabled(true);
-      client_version->setEnabled(true);
-      client_version->setText(Preferences::getDefaultClientVersion("UT"));
-      build_label->setEnabled(true);
-      client_build->setEnabled(true);
-      client_build->setText(Preferences::getDefaultClientBuild("UT"));
-      break;
-    case 3: // KTorrent
-      resetPeerVersion_button->setEnabled(true);
-      version_label->setEnabled(true);
-      client_version->setEnabled(true);
-      client_version->setText(Preferences::getDefaultClientVersion("KT"));
-      build_label->setEnabled(false);
-      client_build->setEnabled(false);
-      client_build->clear();
-      break;
-    }
-  }
-
-  void options_imp::on_resetPeerVersion_button_clicked() {
-    switch(comboPeerID->currentIndex()) {
-    case 1: // Vuze
-      client_version->setText(Preferences::getDefaultClientVersion("AZ"));
-      break;
-    case 3: // KTorrent
-      client_version->setText(Preferences::getDefaultClientVersion("KT"));
-      break;
-    case 2: // uTorrent
-      client_version->setText(Preferences::getDefaultClientVersion("UT"));
-      client_build->setText(Preferences::getDefaultClientBuild("UT"));
-      break;
-    }
   }
 
   void options_imp::on_randomButton_clicked() {

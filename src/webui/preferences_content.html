@@ -75,23 +75,6 @@
   </select><br/>
   </div>
 </fieldset>
-<!--
-<fieldset>
-  <legend><b>_(Client whitelisting workaround)</b></legend>
-  _(Identify as:)
-  <select id="peer_id_select" onchange="updateSpoofingSettings();">
-    <option value="qB">_(qBittorrent)</option>
-    <option value="AZ">_(Vuze)</option>
-    <option value="UT">_(µTorrent)</option>
-    <option value="KT">_(KTorrent)</option>
-  </select>
-  &nbsp;&nbsp;
-  _(Version:) <input type="text" id="peer_version_text" style="width: 7em;" />
-  &nbsp;&nbsp;
-  _(Build:) <input type="text" id="peer_build_text" style="width: 5em;" />
-  <br/>
-</fieldset>
--->
 </div>
 
 <div id="DownloadsTab" class="PrefTab invisible">
@@ -350,9 +333,6 @@
   var lsd = 0;
   if($defined($('lsd_checkbox').get('checked')) && $('lsd_checkbox').get('checked'))
     lsd = 1;
-  //var peer_id = $('peer_id_select').get('value');
-  //var peer_version = $('peer_version_text').get('value');
-  //var peer_build = $('peer_build_text').get('value');
   // Downloads
   var save_path = $("savepath_text").get('value');
   var temp_path_enabled = 0
@@ -476,9 +456,6 @@
   dict.set('pex', pex);
   dict.set('lsd', lsd);
   dict.set('encryption', $('encryption_select').get('value'));
-  //dict.set('peer_id', peer_id);
-  //dict.set('peer_version', peer_version);
-  //dict.set('peer_build', peer_build);
   // Downloads
   dict.set('save_path', save_path);
   dict.set('temp_path_enabled', temp_path_enabled);
@@ -546,39 +523,6 @@ updateUpLimitEnabled = function() {
     $('up_limit_value').removeProperty('disabled');
   } else {
     $('up_limit_value').set('disabled', 'true');
-  }
-}
-
-updateSpoofingSettings = function() {
-  var peer_id = $('peer_id_select').get('value');
-  if(peer_id == "UT") {
-    // uTorrent
-    $('peer_version_text').removeProperty('disabled');
-    $('peer_version_text').set('value', '1.8.5');
-    $('peer_build_text').removeProperty('disabled');
-    $('peer_build_text').set('value', '17414');
-  } else {
-    if(peer_id == "AZ") {
-      // Vuze
-      $('peer_version_text').removeProperty('disabled');
-      $('peer_version_text').set('value', '4.3.0.4');
-      $('peer_build_text').set('disabled', 'true');
-      $('peer_build_text').set('value', '');
-    } else {
-      if(peer_id == "KT") {
-        // KTorrent
-        $('peer_version_text').removeProperty('disabled');
-        $('peer_version_text').set('value', '3.3.2');
-        $('peer_build_text').set('disabled', 'true');
-        $('peer_build_text').set('value', '');
-      } else {
-        // qBittorrent
-        $('peer_version_text').set('disabled', 'true');
-        $('peer_version_text').set('value', '');
-        $('peer_build_text').set('disabled', 'true');
-        $('peer_build_text').set('value', '');
-      }
-    }
   }
 }
 
@@ -852,10 +796,6 @@ loadPreferences = function() {
                     }
                     var encryption = pref.encryption.toInt();
                     $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
-                    //$('peer_id_select').set('value', pref.peer_id);
-                    //updateSpoofingSettings();
-                    //$('peer_version_text').set('value', pref.peer_version);
-                    //$('peer_build_text').set('value', pref.peer_build);
                     // Downloads
                     var save_path = pref.save_path;
                     $("savepath_text").set('value', save_path);

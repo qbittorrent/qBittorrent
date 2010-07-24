@@ -95,25 +95,7 @@ Bittorrent::Bittorrent()
   version << VERSION_MINOR;
   version << VERSION_BUGFIX;
   version << VERSION_TYPE;
-#ifdef CLIENT_USURPATION
-  QString peer_id = Preferences::getPeerID();
-  if(peer_id.size() != 2) peer_id = "qB";
-  if(peer_id != "qB") {
-    QStringList peer_ver = Preferences::getClientVersion().split('.');
-    while(peer_ver.size() < 4) {
-      peer_ver << "0";
-    }
-    for(int i=0; i<peer_ver.size(); ++i) {
-      QString ver = peer_ver.at(i);
-      if(ver.size() != 1) {
-        ver.truncate(1);
-      }
-      version.replace(i, ver.toInt());
-    }
-  }
-#else
   const QString peer_id = "qB";
-#endif
   // Construct session
   s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
   std::cout << "Peer ID: " << fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string() << std::endl;
@@ -411,32 +393,7 @@ void Bittorrent::configureSession() {
   }
   // * Session settings
   session_settings sessionSettings;
-#ifdef CLIENT_USURPATION
-  QString peer_id = Preferences::getPeerID();
-  if(peer_id.size() != 2) peer_id = "qB";
-  if(peer_id == "UT") {
-    QString version = Preferences::getClientVersion().replace(".", "");
-    while(version.size() < 4)
-      version.append("0");
-    const QString build = Preferences::getClientBuild();
-    sessionSettings.user_agent = QString("uTorrent/"+version+"("+build+")").toStdString();
-  } else {
-    if(peer_id == "AZ") {
-      QStringList version = Preferences::getClientVersion().split(".");
-      while(version.size() < 4)
-        version << "0";
-      sessionSettings.user_agent = QString("Azureus "+version.join(".")).toStdString();
-    } else {
-      if(peer_id == "KT") {
-        sessionSettings.user_agent = QString("KTorrent/"+Preferences::getClientVersion()).toStdString();
-      } else {
-        sessionSettings.user_agent = "qBittorrent "VERSION;
-      }
-    }
-  }
-#else
   sessionSettings.user_agent = "qBittorrent "VERSION;
-#endif
   std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
   addConsoleMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
 
