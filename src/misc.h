@@ -38,6 +38,7 @@
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/date_time/posix_time/conversion.hpp>
 #include <QPoint>
+#include <QFile>
 
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
@@ -79,6 +80,15 @@ public:
     sha1_hash x;
     i>>x;
     return x;
+  }
+
+  static bool safeRemove(QString file_path) {
+    QFile MyFile(file_path);
+    if(!MyFile.exists()) return true;
+    // Make sure the permissions are ok
+    MyFile.setPermissions(MyFile.permissions()|QFile::ReadOwner|QFile::WriteOwner|QFile::ReadUser|QFile::WriteUser);
+    // Actually remove the file
+    return MyFile.remove();
   }
 
   static QString truncateRootFolder(boost::intrusive_ptr<torrent_info> t);

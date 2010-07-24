@@ -983,7 +983,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     if(!from_url.isNull()) {
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
       //emit invalidTorrent(from_url);
-      QFile::remove(file);
+      misc::safeRemove(file);
     }else{
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(file), QString::fromUtf8("red"));
       //emit invalidTorrent(file);
@@ -991,7 +991,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
     if(fromScanDir) {
       // Remove file
-      QFile::remove(file);
+      misc::safeRemove(file);
     }
     return h;
   }
@@ -1006,7 +1006,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     // Update info Bar
     if(!from_url.isNull()) {
       // If download from url, remove temp file
-      QFile::remove(file);
+      misc::safeRemove(file);
       addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
       //emit duplicateTorrent(from_url);
     }else{
@@ -1054,7 +1054,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     }
     if(fromScanDir) {
       // Delete torrent from scan dir
-      QFile::remove(file);
+      misc::safeRemove(file);
     }
     return h;
   }
@@ -1063,11 +1063,11 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     addConsoleMessage(tr("Error: The torrent %1 does not contain any file.").arg(misc::toQStringU(t->name())));
     if(fromScanDir) {
       // Delete torrent from scan dir
-      QFile::remove(file);
+      misc::safeRemove(file);
     } else {
       if(!from_url.isNull()) {
         // If download from url, remove temp file
-        QFile::remove(file);
+        misc::safeRemove(file);
       }
     }
     return h;
@@ -1142,7 +1142,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     // No need to keep on, it failed.
     qDebug("/!\\ Error: Invalid handle");
     // If download from url, remove temp file
-    if(!from_url.isNull()) QFile::remove(file);
+    if(!from_url.isNull()) misc::safeRemove(file);
     return h;
   }
   // Remember root folder
@@ -1223,12 +1223,9 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     if(file != newFile) {
       // Delete file from torrentBackup directory in case it exists because
       // QFile::copy() do not overwrite
-      QFile::remove(newFile);
+      misc::safeRemove(newFile);
       // Copy it to torrentBackup directory
       QFile::copy(file, newFile);
-      // Make sure the permissions are ok
-      QFile nf(newFile);
-      nf.setPermissions(nf.permissions()|QFile::ReadOwner|QFile::WriteOwner|QFile::ReadUser|QFile::WriteUser);
     }
     // Copy the torrent file to the export folder
     if(torrentExport) {
@@ -1249,10 +1246,10 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     h.resume();
   }
   // If download from url, remove temp file
-  if(!from_url.isNull()) QFile::remove(file);
+  if(!from_url.isNull()) misc::safeRemove(file);
   // Delete from scan dir to avoid trying to download it again
   if(fromScanDir) {
-    QFile::remove(file);
+    misc::safeRemove(file);
   }
   // Send torrent addition signal
   if(!from_url.isNull()) {
@@ -1400,7 +1397,7 @@ void Bittorrent::loadSessionState() {
   if(!QFile::exists(state_path)) return;
   if(QFile(state_path).size() == 0) {
     // Remove empty invalid state file
-    QFile::remove(state_path);
+    misc::safeRemove(state_path);
     return;
   }
 #if LIBTORRENT_VERSION_MINOR > 14
@@ -1574,7 +1571,7 @@ void Bittorrent::saveFastResumeData() {
     // Remove old fastresume file if it exists
     const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
     if(QFile::exists(file))
-      QFile::remove(file);
+      misc::safeRemove(file);
     boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
     out.unsetf(std::ios_base::skipws);
     bencode(std::ostream_iterator<char>(out), *rd->resume_data);
@@ -2021,7 +2018,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
           // Delete old fastresume file if necessary
           if(QFile::exists(file))
-            QFile::remove(file);
+            misc::safeRemove(file);
           qDebug("Saving fastresume data in %s", qPrintable(file));
           if (p->resume_data) {
             boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
@@ -2129,7 +2126,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               if(duplicate) {
                 // Remove duplicate file if indentical
                 if(misc::sameFiles(exportPath.absoluteFilePath(h.name()+".torrent"), torrent_path)) {
-                  QFile::remove(torrent_path);
+                  misc::safeRemove(torrent_path);
                 }
               }
             }
@@ -2493,7 +2490,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           entry dht_state = s->dht_state();
           const QString dht_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
           if(QFile::exists(dht_path))
-            QFile::remove(dht_path);
+            misc::safeRemove(dht_path);
           boost::filesystem::ofstream out(dht_path.toLocal8Bit().constData(), std::ios_base::binary);
           out.unsetf(std::ios_base::skipws);
           bencode(std::ostream_iterator<char>(out), dht_state);
