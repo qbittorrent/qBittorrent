@@ -1570,7 +1570,7 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-106</y>
+             <y>0</y>
              <width>552</width>
              <height>496</height>
             </rect>
@@ -1748,7 +1748,7 @@ QGroupBox {
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox_5">
+             <widget class="QGroupBox" name="groupBox_usurpation">
               <property name="title">
                <string>Client whitelisting workaround</string>
               </property>

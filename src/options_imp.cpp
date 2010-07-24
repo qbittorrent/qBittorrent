@@ -140,7 +140,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 
   // Load week days (scheduler)
   for(uint i=1; i<=7; ++i) {
-#ifdef QT_4_5
+#if QT_VERSION >= 0x040500
     schedule_days->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
 #else
     schedule_days->addItem(QDate::longDayName(i));
@@ -271,6 +271,11 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     adv_layout->addWidget(advancedSettings);
     scrollArea_advanced->setLayout(adv_layout);
     connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
+
+#ifndef CLIENT_USURPATION
+    groupBox_usurpation->setVisible(false);
+#endif
+
     // Adapt size
     show();
     loadWindowState();
@@ -447,6 +452,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     settings.setValue(QString::fromUtf8("sameDHTPortAsBT"), isDHTPortSameAsBT());
     settings.setValue(QString::fromUtf8("DHTPort"), getDHTPort());
     settings.setValue(QString::fromUtf8("LSD"), isLSDEnabled());
+#ifndef CLIENT_USURPATION
     // Peer ID usurpation
     switch(comboPeerID->currentIndex()) {
     case 3: // KTorrent
@@ -465,6 +471,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     default: //qBittorrent
       Preferences::setPeerID("qB");
     }
+#endif
     settings.setValue(QString::fromUtf8("Encryption"), getEncryptionSetting());
     Preferences::setMaxRatio(getMaxRatio());
     Preferences::setMaxRatioAction(comboRatioLimitAct->currentIndex());
@@ -755,6 +762,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     checkPeX->setChecked(Preferences::isPeXEnabled());
     checkLSD->setChecked(Preferences::isLSDEnabled());
     // Peer ID usurpation
+#ifdef CLIENT_USURPATION
     QString peer_id = Preferences::getPeerID();
     if(peer_id == "UT") {
       // uTorrent
@@ -780,6 +788,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
         }
       }
     }
+#endif
     comboEncryption->setCurrentIndex(Preferences::getEncryptionSetting());
     // Ratio limit
     floatValue = Preferences::getMaxRatio();

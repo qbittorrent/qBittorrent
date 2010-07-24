@@ -95,6 +95,7 @@ Bittorrent::Bittorrent()
   version << VERSION_MINOR;
   version << VERSION_BUGFIX;
   version << VERSION_TYPE;
+#ifdef CLIENT_USURPATION
   QString peer_id = Preferences::getPeerID();
   if(peer_id.size() != 2) peer_id = "qB";
   if(peer_id != "qB") {
@@ -110,6 +111,9 @@ Bittorrent::Bittorrent()
       version.replace(i, ver.toInt());
     }
   }
+#else
+  const QString peer_id = "qB";
+#endif
   // Construct session
   s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
   std::cout << "Peer ID: " << fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string() << std::endl;
@@ -407,6 +411,7 @@ void Bittorrent::configureSession() {
   }
   // * Session settings
   session_settings sessionSettings;
+#ifdef CLIENT_USURPATION
   QString peer_id = Preferences::getPeerID();
   if(peer_id.size() != 2) peer_id = "qB";
   if(peer_id == "UT") {
@@ -429,6 +434,9 @@ void Bittorrent::configureSession() {
       }
     }
   }
+#else
+  sessionSettings.user_agent = "qBittorrent "VERSION;
+#endif
   std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
   addConsoleMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
 
