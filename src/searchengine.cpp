@@ -158,7 +158,7 @@ void SearchEngine::pythonDownloadSuccess(QString url, QString file_path) {
     on_search_button_clicked();
   }
   // Delete temp file
-  QFile::remove(file_path+".msi");
+  misc::safeRemove(file_path+".msi");
 }
 
 void SearchEngine::pythonDownloadFailure(QString url, QString error) {
@@ -485,14 +485,14 @@ void SearchEngine::updateNova() {
   QString filePath = search_dir.absoluteFilePath("nova2.py");
   if(getPluginVersion(":/search_engine/nova2.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath))
-      QFile::remove(filePath);
+      misc::safeRemove(filePath);
     QFile::copy(":/search_engine/nova2.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("nova2dl.py");
   if(getPluginVersion(":/search_engine/nova2dl.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
-      QFile::remove(filePath);
+      misc::safeRemove(filePath);
     }
     QFile::copy(":/search_engine/nova2dl.py", filePath);
   }
@@ -500,7 +500,7 @@ void SearchEngine::updateNova() {
   filePath = search_dir.absoluteFilePath("novaprinter.py");
   if(getPluginVersion(":/search_engine/novaprinter.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
-      QFile::remove(filePath);
+      misc::safeRemove(filePath);
     }
     QFile::copy(":/search_engine/novaprinter.py", filePath);
   }
@@ -508,7 +508,7 @@ void SearchEngine::updateNova() {
   filePath = search_dir.absoluteFilePath("helpers.py");
   if(getPluginVersion(":/search_engine/helpers.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
-      QFile::remove(filePath);
+      misc::safeRemove(filePath);
     }
     QFile::copy(":/search_engine/helpers.py", filePath);
   }
@@ -529,7 +529,7 @@ void SearchEngine::updateNova() {
         qDebug("shipped %s is more recent then local plugin, updating...", qPrintable(file));
         if(QFile::exists(dest_file)) {
           qDebug("Removing old %s", qPrintable(dest_file));
-          QFile::remove(dest_file);
+          misc::safeRemove(dest_file);
         }
         qDebug("%s copied to %s", qPrintable(shipped_file), qPrintable(dest_file));
         QFile::copy(shipped_file, dest_file);
