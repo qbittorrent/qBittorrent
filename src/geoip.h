@@ -41,6 +41,7 @@
 using namespace libtorrent;
 
 class GeoIP : public QObject {
+  Q_OBJECT
 protected:
 #ifdef WITH_GEOIP_EMBEDDED
   static QString geoipFolder(bool embedded=false) {
