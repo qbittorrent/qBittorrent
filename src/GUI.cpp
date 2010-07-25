@@ -687,7 +687,11 @@ void GUI::dropEvent(QDropEvent *event) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString file, files) {
+#ifdef Q_WS_WIN
+    file = file.trimmed().replace(QString::fromUtf8("file:///"), QString::fromUtf8(""), Qt::CaseInsensitive);
+#else
     file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""), Qt::CaseInsensitive);
+#endif
     qDebug("Dropped file %s on download list", file.toLocal8Bit().data());
     if(file.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
       BTSession->downloadFromUrl(file);
