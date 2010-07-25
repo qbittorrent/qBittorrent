@@ -967,7 +967,11 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     }
   }
   // Processing torrents
+#ifdef Q_WS_WIN
+  const QString file = path.trimmed().replace("file:///", "", Qt::CaseInsensitive);
+#else
   const QString file = path.trimmed().replace("file://", "", Qt::CaseInsensitive);
+#endif
   if(file.isEmpty()) {
     return h;
   }

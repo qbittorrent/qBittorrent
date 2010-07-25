@@ -81,7 +81,11 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
   QString file;
   foreach(file, files) {
     qDebug("dropped %s", qPrintable(file));
+#ifdef Q_WS_WIN
+    file = file.replace("file:///", "");
+#else
     file = file.replace("file://", "");
+#endif
     if(file.startsWith("http://", Qt::CaseInsensitive) || file.startsWith("https://", Qt::CaseInsensitive) || file.startsWith("ftp://", Qt::CaseInsensitive)) {
       setCursor(QCursor(Qt::WaitCursor));
       downloader->downloadUrl(file);

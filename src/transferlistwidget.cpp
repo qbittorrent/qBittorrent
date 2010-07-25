@@ -314,7 +314,11 @@ void TransferListWidget::updateMetadata(QTorrentHandle &h) {
 }
 
 void TransferListWidget::previewFile(QString filePath) {
+#ifdef Q_WS_WIN
+  QDesktopServices::openUrl(QUrl(QString("file:///")+filePath));
+#else
   QDesktopServices::openUrl(QUrl(QString("file://")+filePath));
+#endif
 }
 
 int TransferListWidget::updateTorrent(int row) {
