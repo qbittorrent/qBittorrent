@@ -460,6 +460,9 @@ QString QTorrentHandle::firstFileSavePath() const {
   if(!fsave_path.endsWith("/"))
     fsave_path += "/";
   fsave_path += misc::toQStringU(h.get_torrent_info().file_at(0).path.string());
+  // Remove .!qB extension
+  if(fsave_path.endsWith(".!qB", Qt::CaseInsensitive))
+    fsave_path.chop(4);
   return fsave_path;
 }
 

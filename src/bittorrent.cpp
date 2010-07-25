@@ -963,7 +963,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   if(! torrentBackup.exists()) {
     if(! torrentBackup.mkpath(torrentBackup.path())) {
       std::cerr << "Couldn't create the directory: '" << qPrintable(torrentBackup.path()) << "'\n";
-      exit(1);
+      return h;
     }
   }
   // Processing torrents

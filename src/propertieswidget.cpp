@@ -817,7 +817,7 @@ void PropertiesWidget::renameSelectedFile() {
               // Also rename it in the files list model
               PropListModel->setData(PropListModel->index(0, 0), new_file_name);
           }
-          display_path = new_path;
+          display_path = h.firstFileSavePath();
         } else {
           display_path = savePath.absolutePath();
         }
