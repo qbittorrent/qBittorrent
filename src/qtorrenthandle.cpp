@@ -35,6 +35,7 @@
 #include <QByteArray>
 #include <math.h>
 #include "misc.h"
+#include "preferences.h"
 #include "qtorrenthandle.h"
 #include "torrentpersistentdata.h"
 #include <libtorrent/version.hpp>
@@ -510,8 +511,24 @@ void QTorrentHandle::pause() {
 void QTorrentHandle::resume() {
   Q_ASSERT(h.is_valid());
   if(has_error()) h.clear_error();
+  const QString torrent_hash = hash();
+  bool has_persistant_error = TorrentPersistentData::hasError(torrent_hash);
+  TorrentPersistentData::setErrorState(torrent_hash, false);
+  bool temp_path_enabled = Preferences::isTempPathEnabled();
+  if(has_persistant_error && temp_path_enabled) {
+    // Torrent was supposed to be seeding, checking again in final destination
+    qDebug("Resuming a torrent with error...");
+    const QString final_save_path = TorrentPersistentData::getSavePath(torrent_hash);
+    qDebug("Torrent final path is: %s", qPrintable(final_save_path));
+    if(!final_save_path.isEmpty())
+      move_storage(final_save_path);
+  }
   h.auto_managed(true);
   h.resume();
+  if(has_persistant_error && temp_path_enabled) {
+    // Force recheck
+    h.force_recheck();
+  }
 }
 
 void QTorrentHandle::remove_url_seed(QString seed) {

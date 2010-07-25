@@ -2195,7 +2195,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 #endif
       else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
         if(p->handle.is_valid()) {
-          p->handle.save_resume_data();
+          QTorrentHandle h(p->handle);
+          if(!h.has_error())
+            h.save_resume_data();
         }
       }
       else if (tracker_error_alert* p = dynamic_cast<tracker_error_alert*>(a.get())) {
@@ -2281,9 +2283,11 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 #else
             if(p->error.value() == 134) {
 #endif
+              const QString hash = h.hash();
               // Mismatching file size (files were probably moved
               addConsoleMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()));
-              pauseTorrent(h.hash());
+              pauseTorrent(hash);
+              TorrentPersistentData::setErrorState(hash, true);
             } else {
               addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
               addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
