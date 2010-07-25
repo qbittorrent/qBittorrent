@@ -416,9 +416,9 @@ RssStream::~RssStream(){
   removeAllItems();
   qDebug("All items were removed");
   if(QFile::exists(filePath))
-    QFile::remove(filePath);
+    misc::safeRemove(filePath);
   if(QFile::exists(iconPath) && !iconPath.startsWith(":/"))
-    QFile::remove(iconPath);
+    misc::safeRemove(iconPath);
 }
 
 RssFile::FileType RssStream::getType() const {
