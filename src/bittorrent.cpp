@@ -2286,8 +2286,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               const QString hash = h.hash();
               // Mismatching file size (files were probably moved
               addConsoleMessage(tr("File sizes mismatch for torrent %1, pausing it.").arg(h.name()));
-              pauseTorrent(hash);
               TorrentPersistentData::setErrorState(hash, true);
+              pauseTorrent(hash);
             } else {
               addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
               addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));

@@ -191,7 +191,10 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
       } else {
         listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
       }
-      listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
+      if(TorrentPersistentData::hasError(h.hash()))
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/error.png"))), Qt::DecorationRole);
+      else
+        listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/paused.png"))), Qt::DecorationRole);
       setRowColor(row, QString::fromUtf8("red"));
     }else{
       if(h.is_seed()) {
@@ -250,7 +253,7 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
   listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)0.0));
   if(h.is_seed()) {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
-    if(h.has_error()) {
+    if(h.has_error() || TorrentPersistentData::hasError(h.hash())) {
       listModel->setData(listModel->index(row, TR_NAME), h.error(), Qt::ToolTipRole);
       listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/error.png")), Qt::DecorationRole);
     } else {
@@ -258,7 +261,7 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
     }
   } else {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_DL);
-    if(h.has_error()) {
+    if(h.has_error() || TorrentPersistentData::hasError(h.hash())) {
       listModel->setData(listModel->index(row, TR_NAME), h.error(), Qt::ToolTipRole);
       listModel->setData(listModel->index(row, TR_NAME), QIcon(QString::fromUtf8(":/Icons/skin/error.png")), Qt::DecorationRole);
     } else {
