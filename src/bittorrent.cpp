@@ -750,7 +750,7 @@ void Bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
   filters << hash+".*";
   const QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
   foreach(const QString &file, files) {
-    torrentBackup.remove(file);
+    misc::safeRemove(torrentBackup.absoluteFilePath(file));
   }
   TorrentPersistentData::deletePersistentData(hash);
   // Remove tracker errors
