@@ -191,7 +191,7 @@ public:
 
   static QString getTempPath() {
     QIniSettings settings("qBittorrent", "qBittorrent");
-    QString temp = QDir::home().absoluteFilePath("qBT_dir")+QDir::separator()+"temp";
+    QString temp = QDir(getSavePath()).absoluteFilePath("temp");
     return settings.value(QString::fromUtf8("Preferences/Downloads/TempPath"), temp).toString();
   }
 
