@@ -106,7 +106,7 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
 &lt;br&gt; &lt;u&gt;Site Internet :&lt;/u&gt; &lt;i&gt;http://qbittorrent.sourceforge.net&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="146"/>
+        <location filename="../ui/about.ui" line="137"/>
         <source>Author</source>
         <translation>Auteur</translation>
     </message>
@@ -114,33 +114,49 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <source>qBitorrent Author</source>
         <translation type="obsolete">Auteur de qBittorrent</translation>
     </message>
+    <message utf8="true">
+        <location filename="../ui/about.ui" line="101"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Un client Bittorrent programmé C++, basé sur la bibliothèque Qt4 &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;et la biliothèque libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Site officiel :&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum :&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC :&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent sur Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
-        <location filename="../ui/about.ui" line="193"/>
+        <location filename="../ui/about.ui" line="160"/>
         <source>Name:</source>
         <translation>Nom :</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="211"/>
+        <location filename="../ui/about.ui" line="198"/>
         <source>Country:</source>
         <translation>Nationalité :</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="265"/>
+        <location filename="../ui/about.ui" line="223"/>
         <source>E-mail:</source>
         <translation>Courriel :</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="283"/>
         <source>Home page:</source>
-        <translation>Site Personnel :</translation>
+        <translation type="obsolete">Site Personnel :</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="313"/>
+        <location filename="../ui/about.ui" line="167"/>
         <source>Christophe Dumez</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="320"/>
+        <location filename="../ui/about.ui" line="205"/>
         <source>France</source>
         <translation></translation>
     </message>
@@ -149,12 +165,12 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Remerciements</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="387"/>
+        <location filename="../ui/about.ui" line="267"/>
         <source>Translation</source>
         <translation>Traduction</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="404"/>
+        <location filename="../ui/about.ui" line="284"/>
         <source>License</source>
         <translation>Licence</translation>
     </message>
@@ -168,29 +184,22 @@ Copyright © 2006 par Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Auteur de qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="341"/>
+        <location filename="../ui/about.ui" line="230"/>
         <source>chris@qbittorrent.org</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="348"/>
-        <source>http://www.dchris.eu</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/about.ui" line="229"/>
         <source>Birthday:</source>
-        <translation>Date de naissance :</translation>
+        <translation type="obsolete">Date de naissance :</translation>
     </message>
     <message utf8="true">
-        <location filename="../ui/about.ui" line="120"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -198,22 +207,15 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;et libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2009 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Site Web officiel :&lt;/span&gt; &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="247"/>
         <source>Occupation:</source>
-        <translation>Emploi :</translation>
+        <translation type="obsolete">Emploi :</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="327"/>
-        <source>03/05/1985</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/about.ui" line="334"/>
         <source>Student in computer science</source>
-        <translation>Elève-ingénieur en génie informatique</translation>
+        <translation type="obsolete">Elève-ingénieur en génie informatique</translation>
     </message>
     <message>
-        <location filename="../ui/about.ui" line="374"/>
+        <location filename="../ui/about.ui" line="254"/>
         <source>Thanks to</source>
         <translation>Remerciements</translation>
     </message>
@@ -477,47 +479,47 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="831"/>
-        <location filename="../bittorrent.cpp" line="1010"/>
-        <location filename="../bittorrent.cpp" line="1013"/>
+        <location filename="../bittorrent.cpp" line="1014"/>
+        <location filename="../bittorrent.cpp" line="1017"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="937"/>
-        <location filename="../bittorrent.cpp" line="1257"/>
-        <location filename="../bittorrent.cpp" line="1262"/>
+        <location filename="../bittorrent.cpp" line="1261"/>
+        <location filename="../bittorrent.cpp" line="1266"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="939"/>
-        <location filename="../bittorrent.cpp" line="1259"/>
-        <location filename="../bittorrent.cpp" line="1264"/>
+        <location filename="../bittorrent.cpp" line="1263"/>
+        <location filename="../bittorrent.cpp" line="1268"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="984"/>
         <location filename="../bittorrent.cpp" line="988"/>
+        <location filename="../bittorrent.cpp" line="992"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossible de décoder le torrent : &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="991"/>
+        <location filename="../bittorrent.cpp" line="995"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1039"/>
+        <location filename="../bittorrent.cpp" line="1043"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Remarque : Les nouveaux trackers ont été ajoutés au torrent existant.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1052"/>
+        <location filename="../bittorrent.cpp" line="1056"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Remarque : Les nouvelles sources HTTP sont été ajoutées au torrent existant.</translation>
     </message>
@@ -526,26 +528,26 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Cependant, les nouveaux trackers ont été ajoutés au torrent existant.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1612"/>
+        <location filename="../bittorrent.cpp" line="1616"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1614"/>
+        <location filename="../bittorrent.cpp" line="1618"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1936"/>
+        <location filename="../bittorrent.cpp" line="1940"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Téléchargement récursif du fichier %1 au sein du torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1946"/>
-        <location filename="../bittorrent.cpp" line="1988"/>
+        <location filename="../bittorrent.cpp" line="1950"/>
+        <location filename="../bittorrent.cpp" line="1992"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossible de décoder le torrent %1.</translation>
     </message>
@@ -558,48 +560,48 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
         <translation type="obsolete">Impossible d&apos;écouter sur les ports donnés.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2258"/>
+        <location filename="../bittorrent.cpp" line="2264"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Echec de mapping du port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2263"/>
+        <location filename="../bittorrent.cpp" line="2269"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : Réussite du mapping de port, message : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2288"/>
+        <location filename="../bittorrent.cpp" line="2296"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2172"/>
-        <location filename="../bittorrent.cpp" line="2289"/>
+        <location filename="../bittorrent.cpp" line="2176"/>
+        <location filename="../bittorrent.cpp" line="2297"/>
         <source>Reason: %1</source>
         <translation>Raison : %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1063"/>
+        <location filename="../bittorrent.cpp" line="1067"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Erreur : Le torrent %1 ne contient aucun fichier.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2171"/>
+        <location filename="../bittorrent.cpp" line="2175"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Une erreur E/S s&apos;est produite, &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2285"/>
+        <location filename="../bittorrent.cpp" line="2292"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Les tailles de fichiers ne correspondent pas pour le torrent %1, mise en pause.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2294"/>
+        <location filename="../bittorrent.cpp" line="2302"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2415"/>
+        <location filename="../bittorrent.cpp" line="2423"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -2087,7 +2089,7 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
         <translation type="obsolete">Impossible de trouver le dossier : &apos;</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="737"/>
+        <location filename="../GUI.cpp" line="741"/>
         <source>Open Torrent Files</source>
         <translation>Ouvrir fichiers torrent</translation>
     </message>
@@ -2196,7 +2198,7 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
         <translation type="obsolete">Impossible de créer le dossier :</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="738"/>
+        <location filename="../GUI.cpp" line="742"/>
         <source>Torrent Files</source>
         <translation>Fichiers Torrent</translation>
     </message>
@@ -2559,7 +2561,7 @@ Veuillez d&apos;abord le quitter.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="87"/>
-        <location filename="../GUI.cpp" line="1071"/>
+        <location filename="../GUI.cpp" line="1075"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -2627,7 +2629,7 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">qBittorrent %1 démarré.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="908"/>
+        <location filename="../GUI.cpp" line="912"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -2637,15 +2639,15 @@ Veuillez d&apos;abord le quitter.</translation>
         <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="911"/>
-        <location filename="../GUI.cpp" line="918"/>
+        <location filename="../GUI.cpp" line="915"/>
+        <location filename="../GUI.cpp" line="922"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Vitesse DL : %1 Ko/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="914"/>
-        <location filename="../GUI.cpp" line="920"/>
+        <location filename="../GUI.cpp" line="918"/>
+        <location filename="../GUI.cpp" line="924"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vitesse UP : %1 Ko/s</translation>
@@ -2884,7 +2886,7 @@ Raison : %2</translation>
         <translation>Toujours</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="926"/>
+        <location filename="../GUI.cpp" line="930"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Réception : %2/s, Envoi : %3/s)</translation>
@@ -3115,7 +3117,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Partages</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="817"/>
+        <location filename="../GUI.cpp" line="821"/>
         <source>Options were saved successfully.</source>
         <translation>Préférences sauvegardées avec succès.</translation>
     </message>
@@ -3123,254 +3125,254 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>GeoIP</name>
     <message>
-        <location filename="../geoip.h" line="114"/>
+        <location filename="../geoip.h" line="115"/>
         <source>Australia</source>
         <translation>Australie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="115"/>
+        <location filename="../geoip.h" line="116"/>
         <source>Argentina</source>
         <translation>Argentine</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="116"/>
+        <location filename="../geoip.h" line="117"/>
         <source>Austria</source>
         <translation>Autriche</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="117"/>
+        <location filename="../geoip.h" line="118"/>
         <source>United Arab Emirates</source>
         <translation>Emirats Arabes Unis</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="120"/>
+        <location filename="../geoip.h" line="121"/>
         <source>Brazil</source>
         <translation>Brésil</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="121"/>
+        <location filename="../geoip.h" line="122"/>
         <source>Bulgaria</source>
         <translation>Bulgarie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="122"/>
+        <location filename="../geoip.h" line="123"/>
         <source>Belarus</source>
         <translation>Biélorussie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="123"/>
+        <location filename="../geoip.h" line="124"/>
         <source>Belgium</source>
         <translation>Belgique</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="124"/>
+        <location filename="../geoip.h" line="125"/>
         <source>Bosnia</source>
         <translation>Bosnie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="127"/>
+        <location filename="../geoip.h" line="128"/>
         <source>Canada</source>
         <translation>Canada</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="128"/>
+        <location filename="../geoip.h" line="129"/>
         <source>Czech Republic</source>
         <translation>République Tchèque</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="129"/>
-        <location filename="../geoip.h" line="153"/>
+        <location filename="../geoip.h" line="130"/>
+        <location filename="../geoip.h" line="154"/>
         <source>China</source>
         <translation>Chine</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="130"/>
+        <location filename="../geoip.h" line="131"/>
         <source>Costa Rica</source>
         <translation>Costa Rica</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="131"/>
+        <location filename="../geoip.h" line="132"/>
         <source>Switzerland</source>
         <translation>Suisse</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="134"/>
+        <location filename="../geoip.h" line="135"/>
         <source>Germany</source>
         <translation>Allemagne</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="135"/>
+        <location filename="../geoip.h" line="136"/>
         <source>Denmark</source>
         <translation>Danemark</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="136"/>
+        <location filename="../geoip.h" line="137"/>
         <source>Algeria</source>
         <translation>Algérie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="139"/>
+        <location filename="../geoip.h" line="140"/>
         <source>Spain</source>
         <translation>Espagne</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="140"/>
+        <location filename="../geoip.h" line="141"/>
         <source>Egypt</source>
         <translation>Egypte</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="143"/>
+        <location filename="../geoip.h" line="144"/>
         <source>Finland</source>
         <translation>Finlande</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="144"/>
+        <location filename="../geoip.h" line="145"/>
         <source>France</source>
         <translation>France</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="147"/>
+        <location filename="../geoip.h" line="148"/>
         <source>United Kingdom</source>
         <translation>Royaume Uni</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="148"/>
+        <location filename="../geoip.h" line="149"/>
         <source>Greece</source>
         <translation>Grêce</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="149"/>
+        <location filename="../geoip.h" line="150"/>
         <source>Georgia</source>
         <translation>Géorgie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="152"/>
+        <location filename="../geoip.h" line="153"/>
         <source>Hungary</source>
         <translation>Hongrie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="154"/>
+        <location filename="../geoip.h" line="155"/>
         <source>Croatia</source>
         <translation>Croatie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="157"/>
+        <location filename="../geoip.h" line="158"/>
         <source>Italy</source>
         <translation>Italie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="158"/>
+        <location filename="../geoip.h" line="159"/>
         <source>India</source>
         <translation>Inde</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="159"/>
+        <location filename="../geoip.h" line="160"/>
         <source>Israel</source>
         <translation>Israël</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="160"/>
+        <location filename="../geoip.h" line="161"/>
         <source>Ireland</source>
         <translation>Irelande</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="161"/>
+        <location filename="../geoip.h" line="162"/>
         <source>Iceland</source>
         <translation>Islande</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="162"/>
+        <location filename="../geoip.h" line="163"/>
         <source>Indonesia</source>
         <translation>Indonésie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="165"/>
+        <location filename="../geoip.h" line="166"/>
         <source>Japan</source>
         <translation>Japon</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="168"/>
+        <location filename="../geoip.h" line="169"/>
         <source>South Korea</source>
         <translation>Corée du Sud</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="171"/>
+        <location filename="../geoip.h" line="172"/>
         <source>Luxembourg</source>
         <translation>Luxembourg</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="174"/>
+        <location filename="../geoip.h" line="175"/>
         <source>Malaysia</source>
         <translation>Malaisie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="175"/>
+        <location filename="../geoip.h" line="176"/>
         <source>Mexico</source>
         <translation>Mexique</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="176"/>
-        <location filename="../geoip.h" line="194"/>
+        <location filename="../geoip.h" line="177"/>
+        <location filename="../geoip.h" line="195"/>
         <source>Serbia</source>
         <translation>Serbie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="177"/>
+        <location filename="../geoip.h" line="178"/>
         <source>Morocco</source>
         <translation>Maroc</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="180"/>
+        <location filename="../geoip.h" line="181"/>
         <source>Netherlands</source>
         <translation>Pays Bas</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="181"/>
+        <location filename="../geoip.h" line="182"/>
         <source>Norway</source>
         <translation>Norvège</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="182"/>
+        <location filename="../geoip.h" line="183"/>
         <source>New Zealand</source>
         <translation>Nouvelle-Zélande</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="185"/>
+        <location filename="../geoip.h" line="186"/>
         <source>Portugal</source>
         <translation>Portugal</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="186"/>
+        <location filename="../geoip.h" line="187"/>
         <source>Poland</source>
         <translation>Pologne</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="187"/>
+        <location filename="../geoip.h" line="188"/>
         <source>Pakistan</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="188"/>
+        <location filename="../geoip.h" line="189"/>
         <source>Philippines</source>
         <translation>Philippines</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="191"/>
+        <location filename="../geoip.h" line="192"/>
         <source>Russia</source>
         <translation>Russie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="192"/>
+        <location filename="../geoip.h" line="193"/>
         <source>Romania</source>
         <translation>Roumanie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="193"/>
+        <location filename="../geoip.h" line="194"/>
         <source>France (Reunion Island)</source>
         <translation>France (île de la réunion)</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="197"/>
+        <location filename="../geoip.h" line="198"/>
         <source>Saudi Arabia</source>
         <translation>Arabie Saoudite</translation>
     </message>
@@ -3379,53 +3381,53 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Arabie Saoudite</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="198"/>
+        <location filename="../geoip.h" line="199"/>
         <source>Sweden</source>
         <translation>Suède</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="199"/>
+        <location filename="../geoip.h" line="200"/>
         <source>Slovakia</source>
         <translation>Slovaquie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="200"/>
+        <location filename="../geoip.h" line="201"/>
         <source>Singapore</source>
         <translation>Singapour</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="201"/>
+        <location filename="../geoip.h" line="202"/>
         <source>Slovenia</source>
         <translation>Slovénie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="204"/>
+        <location filename="../geoip.h" line="205"/>
         <source>Taiwan</source>
         <translation>Taïwan</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="205"/>
+        <location filename="../geoip.h" line="206"/>
         <source>Turkey</source>
         <translation>Turquie</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="206"/>
+        <location filename="../geoip.h" line="207"/>
         <source>Thailand</source>
         <translation>Thaïlande</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="209"/>
         <location filename="../geoip.h" line="210"/>
+        <location filename="../geoip.h" line="211"/>
         <source>USA</source>
         <translation>USA</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="211"/>
+        <location filename="../geoip.h" line="212"/>
         <source>Ukraine</source>
         <translation>Ukraine</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="214"/>
+        <location filename="../geoip.h" line="215"/>
         <source>South Africa</source>
         <translation>Afrique du Sud</translation>
     </message>
@@ -6638,22 +6640,22 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation type="obsolete">&amp;Non</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="910"/>
+        <location filename="../transferlistwidget.cpp" line="917"/>
         <source>Column visibility</source>
         <translation>Visibilité des colonnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1033"/>
+        <location filename="../transferlistwidget.cpp" line="1040"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1035"/>
+        <location filename="../transferlistwidget.cpp" line="1042"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1037"/>
+        <location filename="../transferlistwidget.cpp" line="1044"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
@@ -6717,7 +6719,7 @@ Veuillez l&apos;installer manuellement.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="85"/>
-        <location filename="../transferlistwidget.cpp" line="1151"/>
+        <location filename="../transferlistwidget.cpp" line="1158"/>
         <source>Label</source>
         <translation>Catégorie</translation>
     </message>
@@ -6746,73 +6748,73 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Limite envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="628"/>
-        <location filename="../transferlistwidget.cpp" line="630"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
+        <location filename="../transferlistwidget.cpp" line="637"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="637"/>
+        <location filename="../transferlistwidget.cpp" line="644"/>
         <source>Save path creation error</source>
         <translation>Erreur lors de la création du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="637"/>
+        <location filename="../transferlistwidget.cpp" line="644"/>
         <source>Could not create the save path</source>
         <translation>Impossible de créer le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="816"/>
+        <location filename="../transferlistwidget.cpp" line="823"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limitation de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="849"/>
+        <location filename="../transferlistwidget.cpp" line="856"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limitation de la vitesse d&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="972"/>
+        <location filename="../transferlistwidget.cpp" line="979"/>
         <source>New Label</source>
         <translation>Nouvelle catégorie</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="972"/>
+        <location filename="../transferlistwidget.cpp" line="979"/>
         <source>Label:</source>
         <translation>Catégorie :</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="977"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Invalid label name</source>
         <translation>Nom de catégorie incorrect</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="977"/>
+        <location filename="../transferlistwidget.cpp" line="984"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Veuillez ne pas utiliser de caractères spéciaux dans le nom de catégorie.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="993"/>
+        <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>Rename</source>
         <translation>Renommer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="993"/>
+        <location filename="../transferlistwidget.cpp" line="1000"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1039"/>
+        <location filename="../transferlistwidget.cpp" line="1046"/>
         <source>Preview file...</source>
         <translation>Prévisualiser fichier...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1041"/>
+        <location filename="../transferlistwidget.cpp" line="1048"/>
         <source>Limit upload rate...</source>
         <translation>Limiter vitesse d&apos;envoi...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1043"/>
+        <location filename="../transferlistwidget.cpp" line="1050"/>
         <source>Limit download rate...</source>
         <translation>Limiter vitesse de réception...</translation>
     </message>
@@ -6825,12 +6827,12 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation type="obsolete">Limiter la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1045"/>
+        <location filename="../transferlistwidget.cpp" line="1052"/>
         <source>Open destination folder</source>
         <translation>Ouvrir le répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1049"/>
+        <location filename="../transferlistwidget.cpp" line="1056"/>
         <source>Set location...</source>
         <translation>Chemin de sauvegarde...</translation>
     </message>
@@ -6839,53 +6841,53 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation type="obsolete">Acheter</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1051"/>
+        <location filename="../transferlistwidget.cpp" line="1058"/>
         <source>Increase priority</source>
         <translation>Augmenter la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1053"/>
+        <location filename="../transferlistwidget.cpp" line="1060"/>
         <source>Decrease priority</source>
         <translation>Diminuer la priorité</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1055"/>
+        <location filename="../transferlistwidget.cpp" line="1062"/>
         <source>Force recheck</source>
         <translation>Forcer revérification</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1057"/>
+        <location filename="../transferlistwidget.cpp" line="1064"/>
         <source>Copy magnet link</source>
         <translation>Copier le lien magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1060"/>
+        <location filename="../transferlistwidget.cpp" line="1067"/>
         <source>Super seeding mode</source>
         <translation>Mode de super partage</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1064"/>
+        <location filename="../transferlistwidget.cpp" line="1071"/>
         <source>Rename...</source>
         <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1066"/>
+        <location filename="../transferlistwidget.cpp" line="1073"/>
         <source>Download in sequential order</source>
         <translation>Téléchargement séquentiel</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1069"/>
+        <location filename="../transferlistwidget.cpp" line="1076"/>
         <source>Download first and last piece first</source>
         <translation>Téléchargement prioritaire du début et de la fin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1152"/>
+        <location filename="../transferlistwidget.cpp" line="1159"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nouvelle catégorie...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1153"/>
+        <location filename="../transferlistwidget.cpp" line="1160"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Réinitialiser catégorie</translation>
@@ -8099,12 +8101,12 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation type="obsolete">Non</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="188"/>
+        <location filename="../engineselectdlg.cpp" line="192"/>
         <source>Uninstall warning</source>
         <translation>Désinstallation</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="188"/>
+        <location filename="../engineselectdlg.cpp" line="192"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -8113,7 +8115,7 @@ However, those plugins were disabled.</source>
 Cependant, les greffons en question ont été désactivés.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="190"/>
+        <location filename="../engineselectdlg.cpp" line="194"/>
         <source>Uninstall success</source>
         <translation>Désinstallation réussie</translation>
     </message>
@@ -8122,54 +8124,54 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Tous les greffons sélectionnés ont été désinstallés avec succès</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="361"/>
+        <location filename="../engineselectdlg.cpp" line="365"/>
         <source>Select search plugins</source>
         <translation>Sélectionnez les greffons</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="362"/>
+        <location filename="../engineselectdlg.cpp" line="366"/>
         <source>qBittorrent search plugins</source>
         <translation>Greffons de recherche de qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
-        <location filename="../engineselectdlg.cpp" line="283"/>
-        <location filename="../engineselectdlg.cpp" line="288"/>
-        <location filename="../engineselectdlg.cpp" line="297"/>
-        <location filename="../engineselectdlg.cpp" line="300"/>
+        <location filename="../engineselectdlg.cpp" line="263"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="292"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
+        <location filename="../engineselectdlg.cpp" line="304"/>
         <source>Search plugin install</source>
         <translation>Installation d&apos;un greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="119"/>
-        <location filename="../engineselectdlg.cpp" line="201"/>
-        <location filename="../engineselectdlg.cpp" line="320"/>
+        <location filename="../engineselectdlg.cpp" line="123"/>
+        <location filename="../engineselectdlg.cpp" line="205"/>
+        <location filename="../engineselectdlg.cpp" line="324"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="122"/>
-        <location filename="../engineselectdlg.cpp" line="167"/>
-        <location filename="../engineselectdlg.cpp" line="214"/>
-        <location filename="../engineselectdlg.cpp" line="323"/>
+        <location filename="../engineselectdlg.cpp" line="126"/>
+        <location filename="../engineselectdlg.cpp" line="171"/>
+        <location filename="../engineselectdlg.cpp" line="218"/>
+        <location filename="../engineselectdlg.cpp" line="327"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
-        <location filename="../engineselectdlg.cpp" line="283"/>
-        <location filename="../engineselectdlg.cpp" line="288"/>
-        <location filename="../engineselectdlg.cpp" line="297"/>
-        <location filename="../engineselectdlg.cpp" line="300"/>
-        <location filename="../engineselectdlg.cpp" line="414"/>
-        <location filename="../engineselectdlg.cpp" line="447"/>
-        <location filename="../engineselectdlg.cpp" line="468"/>
-        <location filename="../engineselectdlg.cpp" line="475"/>
+        <location filename="../engineselectdlg.cpp" line="263"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
+        <location filename="../engineselectdlg.cpp" line="292"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
+        <location filename="../engineselectdlg.cpp" line="304"/>
+        <location filename="../engineselectdlg.cpp" line="418"/>
+        <location filename="../engineselectdlg.cpp" line="451"/>
+        <location filename="../engineselectdlg.cpp" line="472"/>
+        <location filename="../engineselectdlg.cpp" line="479"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="259"/>
+        <location filename="../engineselectdlg.cpp" line="263"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Une version plus récente du greffon %1 est déjà installée.</translation>
@@ -8185,16 +8187,16 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Le greffon %1 a été installé avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="414"/>
-        <location filename="../engineselectdlg.cpp" line="447"/>
-        <location filename="../engineselectdlg.cpp" line="468"/>
-        <location filename="../engineselectdlg.cpp" line="475"/>
+        <location filename="../engineselectdlg.cpp" line="418"/>
+        <location filename="../engineselectdlg.cpp" line="451"/>
+        <location filename="../engineselectdlg.cpp" line="472"/>
+        <location filename="../engineselectdlg.cpp" line="479"/>
         <source>Search plugin update</source>
         <translation>Mise à jour du greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="447"/>
-        <location filename="../engineselectdlg.cpp" line="468"/>
+        <location filename="../engineselectdlg.cpp" line="451"/>
+        <location filename="../engineselectdlg.cpp" line="472"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Désolé, le serveur de mise à jour est temporairement indisponible.</translation>
     </message>
@@ -8209,35 +8211,35 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Désolé, la mise à jour du greffon %1 a échoué.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="414"/>
+        <location filename="../engineselectdlg.cpp" line="418"/>
         <source>All your plugins are already up to date.</source>
         <translation>Tous vos greffons de recherche sont déjà à jour.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="283"/>
+        <location filename="../engineselectdlg.cpp" line="287"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon de recherche %1 n&apos;a pas pu être mis à jour, l&apos;ancienne version est conservée.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="288"/>
+        <location filename="../engineselectdlg.cpp" line="292"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon de recherche %1 n&apos;a pas pu être installé.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="190"/>
+        <location filename="../engineselectdlg.cpp" line="194"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Tous les greffons sélectionnés ont été désinstallés avec succès</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="297"/>
+        <location filename="../engineselectdlg.cpp" line="301"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon %1 a été mis à jour avec succès.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="300"/>
+        <location filename="../engineselectdlg.cpp" line="304"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Le greffon %1 a été installé avec succès.</translation>
@@ -8252,18 +8254,18 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">L&apos;archive contenant le greffon de recherche n&apos;a pas pu être lue.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="475"/>
+        <location filename="../engineselectdlg.cpp" line="479"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Désolé, l&apos;installation du greffon de recherche %1 a échouée.</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="350"/>
+        <location filename="../engineselectdlg.cpp" line="354"/>
         <source>New search engine plugin URL</source>
         <translation>Adresse du nouveau greffon de recherche</translation>
     </message>
     <message>
-        <location filename="../engineselectdlg.cpp" line="351"/>
+        <location filename="../engineselectdlg.cpp" line="355"/>
         <source>URL:</source>
         <translation>Adresse :</translation>
     </message>
@@ -8474,38 +8476,38 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir le dossier à surveiller</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1163"/>
+        <location filename="../options_imp.cpp" line="1159"/>
         <source>Add directory to scan</source>
         <translation>Ajouter un dossier à surveiller</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1169"/>
+        <location filename="../options_imp.cpp" line="1165"/>
         <source>Folder is already being watched.</source>
         <translation>Ce dossier est déjà surveillé.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1172"/>
+        <location filename="../options_imp.cpp" line="1168"/>
         <source>Folder does not exist.</source>
         <translation>Ce dossier n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1175"/>
+        <location filename="../options_imp.cpp" line="1171"/>
         <source>Folder is not readable.</source>
         <translation>Ce dossier n&apos;est pas accessible en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1183"/>
+        <location filename="../options_imp.cpp" line="1179"/>
         <source>Failure</source>
         <translation>Echec</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1183"/>
+        <location filename="../options_imp.cpp" line="1179"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Impossible d&apos;ajouter le dossier surveillé &apos;%1&apos; : %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1206"/>
-        <location filename="../options_imp.cpp" line="1208"/>
+        <location filename="../options_imp.cpp" line="1202"/>
+        <location filename="../options_imp.cpp" line="1204"/>
         <source>Choose export directory</source>
         <translation>Choisir un dossier pour l&apos;export</translation>
     </message>
@@ -8514,10 +8516,10 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Choisir un fichier ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1241"/>
-        <location filename="../options_imp.cpp" line="1243"/>
-        <location filename="../options_imp.cpp" line="1258"/>
-        <location filename="../options_imp.cpp" line="1260"/>
+        <location filename="../options_imp.cpp" line="1237"/>
+        <location filename="../options_imp.cpp" line="1239"/>
+        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1256"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
@@ -8531,8 +8533,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Impossible d&apos;ouvrir %1 en lecture.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1223"/>
-        <location filename="../options_imp.cpp" line="1225"/>
+        <location filename="../options_imp.cpp" line="1219"/>
+        <location filename="../options_imp.cpp" line="1221"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
@@ -8541,8 +8543,8 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Filtres (*.dat *.p2p *.p2b)</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1223"/>
-        <location filename="../options_imp.cpp" line="1225"/>
+        <location filename="../options_imp.cpp" line="1219"/>
+        <location filename="../options_imp.cpp" line="1221"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
