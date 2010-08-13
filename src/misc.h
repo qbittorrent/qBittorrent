@@ -33,6 +33,7 @@
 
 #include <sstream>
 #include <QString>
+#include <QStringList>
 #include <QThread>
 #include <ctime>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
@@ -72,6 +73,14 @@ public:
     std::ostringstream o;
     o << hash;
     return QString(o.str().c_str());
+  }
+
+  static inline QString removeLastPathPart(QString path) {
+    if(path.isEmpty()) return path;
+    path = path.replace("\\", "/");
+    QStringList tmp = path.split("/");
+    tmp.removeLast();
+    return tmp.join("/");
   }
 
   static inline sha1_hash QStringToSha1(const QString& s) {

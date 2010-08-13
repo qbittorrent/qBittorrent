@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.3.1
     - BUGFIX: Fix compilation with gcc 4.5
     - BUGFIX: Fix about dialog layout
+    - BUGFIX: Remember previously selected paths in torrent creation dialog
 
 * Tue Jul 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
     - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)
