@@ -50,6 +50,7 @@
 #include "torrentpersistentdata.h"
 #include "createtorrent_imp.h"
 #include "misc.h"
+#include "qinisettings.h"
 
 using namespace libtorrent;
 using namespace boost::filesystem;
@@ -80,8 +81,11 @@ createtorrent::~createtorrent() {
 }
 
 void createtorrent::on_addFolder_button_clicked(){
-  QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), QDir::homePath(), QFileDialog::ShowDirsOnly);
+  QIniSettings settings("qBittorrent", "qBittorrent");
+  QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), last_path, QFileDialog::ShowDirsOnly);
   if(!dir.isEmpty()) {
+    settings.setValue("CreateTorrent/last_add_path", dir);
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir = dir.replace("/", "\\");
 #endif
@@ -90,8 +94,11 @@ void createtorrent::on_addFolder_button_clicked(){
 }
 
 void createtorrent::on_addFile_button_clicked(){
-  QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), QDir::homePath());
+  QIniSettings settings("qBittorrent", "qBittorrent");
+  QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
+  QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
   if(!file.isEmpty()) {
+    settings.setValue("CreateTorrent/last_add_path", misc::removeLastPathPart(file));
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     file = file.replace("/", "\\");
 #endif
@@ -177,14 +184,14 @@ void createtorrent::on_createButton_clicked(){
     return;
   }
   QStringList trackers = allItems(trackers_list);
-  /*if(!trackers.size()){
-    QMessageBox::critical(0, tr("No tracker path set"), tr("Please set at least one tracker"));
-    return;
-  }*/
-  QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), QDir::homePath(), tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
+
+  QIniSettings settings("qBittorrent", "qBittorrent");
+  QString last_path = settings.value("CreateTorrent/last_save_path", QDir::homePath()).toString();
+
+  QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), last_path, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!destination.isEmpty()) {
-    if(!destination.endsWith(QString::fromUtf8(".torrent")))
-      destination += QString::fromUtf8(".torrent");
+    settings.setValue("CreateTorrent/last_save_path", misc::removeLastPathPart(destination));
+    destination += QString::fromUtf8(".torrent");
   } else {
     return;
   }
