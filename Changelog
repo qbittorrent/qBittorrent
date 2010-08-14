@@ -1,4 +1,7 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
+    - FEATURE: Added actions to "Move to top/bottom" of priority queue
+
+* Tue Jul 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
     - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)
     - FEATURE: Remember previous save paths in torrent addition dialog
     - FEATURE: Max number of half-open connections can now be edited

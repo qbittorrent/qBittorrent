@@ -742,6 +742,30 @@ void TransferListWidget::decreasePrioSelectedTorrents() {
   refreshList();
 }
 
+// FIXME: Should work only if the tab is displayed
+void TransferListWidget::topPrioSelectedTorrents() {
+  const QStringList hashes = getSelectedTorrentsHashes();
+  foreach(const QString &hash, hashes) {
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid() && !h.is_seed()) {
+      h.queue_position_top();
+    }
+  }
+  refreshList();
+}
+
+// FIXME: Should work only if the tab is displayed
+void TransferListWidget::bottomPrioSelectedTorrents() {
+  const QStringList hashes = getSelectedTorrentsHashes();
+  foreach(const QString &hash, hashes) {
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if(h.is_valid() && !h.is_seed()) {
+      h.queue_position_bottom();
+    }
+  }
+  refreshList();
+}
+
 void TransferListWidget::buySelectedTorrents() const {
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
@@ -1053,12 +1077,16 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
   //QAction actionBuy_it(QIcon(QString::fromUtf8(":/Icons/oxygen/wallet.png")), tr("Buy it"), 0);
   //connect(&actionBuy_it, SIGNAL(triggered()), this, SLOT(buySelectedTorrents()));
+  QAction actionIncreasePriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-up.png")), tr("Move up", "i.e. move up in the queue"), 0);
+  connect(&actionIncreasePriority, SIGNAL(triggered()), this, SLOT(increasePrioSelectedTorrents()));
+  QAction actionDecreasePriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-down.png")), tr("Move down", "i.e. Move down in the queue"), 0);
+  connect(&actionDecreasePriority, SIGNAL(triggered()), this, SLOT(decreasePrioSelectedTorrents()));
+  QAction actionTopPriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-top.png")), tr("Move to top", "i.e. Move to top of the queue"), 0);
+  connect(&actionTopPriority, SIGNAL(triggered()), this, SLOT(topPrioSelectedTorrents()));
+  QAction actionBottomPriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-bottom.png")), tr("Move to bottom", "i.e. Move to bottom of the queue"), 0);
+  connect(&actionBottomPriority, SIGNAL(triggered()), this, SLOT(bottomPrioSelectedTorrents()));
   QAction actionSetTorrentPath(QIcon(QString::fromUtf8(":/Icons/skin/folder.png")), tr("Set location..."), 0);
   connect(&actionSetTorrentPath, SIGNAL(triggered()), this, SLOT(setSelectedTorrentsLocation()));
-  QAction actionIncreasePriority(QIcon(QString::fromUtf8(":/Icons/skin/increase.png")), tr("Increase priority"), 0);
-  connect(&actionIncreasePriority, SIGNAL(triggered()), this, SLOT(increasePrioSelectedTorrents()));
-  QAction actionDecreasePriority(QIcon(QString::fromUtf8(":/Icons/skin/decrease.png")), tr("Decrease priority"), 0);
-  connect(&actionDecreasePriority, SIGNAL(triggered()), this, SLOT(decreasePrioSelectedTorrents()));
   QAction actionForce_recheck(QIcon(QString::fromUtf8(":/Icons/oxygen/gear.png")), tr("Force recheck"), 0);
   connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
   QAction actionCopy_magnet_link(QIcon(QString::fromUtf8(":/Icons/magnet.png")), tr("Copy magnet link"), 0);
@@ -1199,8 +1227,11 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addAction(&actionOpen_destination_folder);
   if(BTSession->isQueueingEnabled() && one_not_seed) {
     listMenu.addSeparator();
-    listMenu.addAction(&actionIncreasePriority);
-    listMenu.addAction(&actionDecreasePriority);
+    QMenu *prioMenu = listMenu.addMenu(tr("Priority"));
+    prioMenu->addAction(&actionTopPriority);
+    prioMenu->addAction(&actionIncreasePriority);
+    prioMenu->addAction(&actionDecreasePriority);
+    prioMenu->addAction(&actionBottomPriority);
   }
   listMenu.addSeparator();
   if(one_has_metadata)

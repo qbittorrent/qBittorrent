@@ -68,6 +68,8 @@ public slots:
   void deleteSelectedTorrents();
   void increasePrioSelectedTorrents();
   void decreasePrioSelectedTorrents();
+  void topPrioSelectedTorrents();
+  void bottomPrioSelectedTorrents();
   void buySelectedTorrents() const;
   void copySelectedMagnetURIs() const;
   void openSelectedTorrentsFolder() const;

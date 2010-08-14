@@ -202,8 +202,9 @@ signals:
 private:
   void addTorrentsFromDir(const QDir &dir, QStringList &torrents) {
     const QStringList files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
-    foreach(const QString &file, files)
+    foreach(const QString &file, files) {
       torrents << dir.canonicalPath() + '/' + file;
+    }
   }
 
 };

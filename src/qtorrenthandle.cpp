@@ -585,7 +585,16 @@ void QTorrentHandle::queue_position_up() const {
   Q_ASSERT(h.is_valid());
   if(h.queue_position() > 0)
     h.queue_position_up();
+}
 
+void QTorrentHandle::queue_position_top() const {
+  Q_ASSERT(h.is_valid());
+  h.queue_position_top();
+}
+
+void QTorrentHandle::queue_position_bottom() const {
+  Q_ASSERT(h.is_valid());
+    h.queue_position_bottom();
 }
 
 void QTorrentHandle::force_reannounce() {
