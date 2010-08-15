@@ -30,6 +30,8 @@ MochaUI.extend({
 						var tmp = data.toInt();
 						if(tmp > 0) {
 							maximum = tmp / 1024.
+						} else {
+							maximum = 0
 						}
 					}
 					// Get torrent upload limit
@@ -115,6 +117,8 @@ MochaUI.extend({
 						var tmp = data.toInt();
 						if(tmp > 0) {
 							maximum = tmp / 1024.
+						} else {
+							maximum = 0
 						}
 					}
 					// Get torrent download limit
