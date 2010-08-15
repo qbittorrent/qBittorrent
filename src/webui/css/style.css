@@ -161,13 +161,39 @@ a.propButton img {
 }
 
 /* context menu specific */
-#contextmenu	{ border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none; }
+#contextmenu	{ border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none; width: 164px;}
 #contextmenu .separator	{ border-top:1px solid #999; }
-#contextmenu li	{ margin:0; padding:0; }
+#contextmenu li	{ margin:0; padding:0;}
 #contextmenu li a { display:block; padding:5px 10px 5px 35px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; background-position:8px 2px; background-repeat:no-repeat; }
 #contextmenu li a:hover	{ background-color:#ddd; }
 #contextmenu li a.disabled { color:#ccc; font-style:italic; }
 #contextmenu li a.disabled:hover { background-color:#eee; }
+#contextmenu li ul {
+	padding: 0;
+	border:1px solid #999; padding:0; background:#eee;
+	list-style-type:none;
+	position: absolute;
+	left: -999em;
+	z-index: 8000;
+	margin: -29px 0 0 164px;
+	width: 164px;
+}
+#contextmenu li ul li a {
+	position: relative;
+}
+#contextmenu li a.arrow-right, #contextmenu li a:hover.arrow-right {
+	background-image: url(../images/skin/arrow-right.gif);
+	background-repeat: no-repeat;
+	background-position: right center;	
+} 
+#contextmenu li:hover ul,
+#contextmenu li.ieHover ul,
+#contextmenu li li.ieHover ul,
+#contextmenu li li li.ieHover ul,
+#contextmenu li li:hover ul,
+#contextmenu li li li:hover ul { /* lists nested under hovered list items */
+	left: auto;
+}
 
 /* context menu items */
 #contextmenu li a.pause	{ background-image:url(../images/skin/pause22.png); }
@@ -177,6 +203,10 @@ a.propButton img {
 #contextmenu li a.deleteHD	{ background-image:url(../images/skin/delete_perm22.png); }
 #contextmenu li a.uploadLimit	{ background-image:url(../images/skin/seeding.png); }
 #contextmenu li a.downloadLimit	{ background-image:url(../images/skin/download.png); }
+#contextmenu li a.prioTop	{ background-image:url(../images/oxygen/go-top.png); }
+#contextmenu li a.prioUp	{ background-image:url(../images/oxygen/go-up.png); }
+#contextmenu li a.prioDown	{ background-image:url(../images/oxygen/go-down.png); }
+#contextmenu li a.prioBottom	{ background-image:url(../images/oxygen/go-bottom.png); }
 
 /* Sliders */
 

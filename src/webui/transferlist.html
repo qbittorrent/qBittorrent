@@ -37,6 +37,18 @@
                         Pause: function(element, ref) {
                                 pauseFN();
                         },
+			prioTop: function(element, ref) {
+				setPriorityFN('topPrio');
+			},
+			prioUp: function(element, ref) {
+				setPriorityFN('increasePrio');
+			},
+			prioDown: function(element, ref) {
+				setPriorityFN('decreasePrio');
+			},
+			prioBottom: function(element, ref) {
+				setPriorityFN('bottomPrio');
+			},
                         ForceRecheck: function(element, ref) {
                                 recheckFN();
                         },
