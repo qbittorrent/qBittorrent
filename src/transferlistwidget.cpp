@@ -742,8 +742,8 @@ void TransferListWidget::decreasePrioSelectedTorrents() {
   refreshList();
 }
 
-// FIXME: Should work only if the tab is displayed
 void TransferListWidget::topPrioSelectedTorrents() {
+  if(main_window->getCurrentTabWidget() != this) return;
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
@@ -754,8 +754,8 @@ void TransferListWidget::topPrioSelectedTorrents() {
   refreshList();
 }
 
-// FIXME: Should work only if the tab is displayed
 void TransferListWidget::bottomPrioSelectedTorrents() {
+  if(main_window->getCurrentTabWidget() != this) return;
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);

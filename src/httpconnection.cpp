@@ -500,6 +500,16 @@ void HttpConnection::respondCommand(QString command)
     if(h.is_valid()) h.queue_position_down();
     return;
   }
+  if(command == "topPrio") {
+    QTorrentHandle h = BTSession->getTorrentHandle(parser.post("hash"));
+    if(h.is_valid()) h.queue_position_top();
+    return;
+  }
+  if(command == "bottomPrio") {
+    QTorrentHandle h = BTSession->getTorrentHandle(parser.post("hash"));
+    if(h.is_valid()) h.queue_position_bottom();
+    return;
+  }
   if(command == "recheck"){
     recheckTorrent(parser.post("hash"));
     return;
