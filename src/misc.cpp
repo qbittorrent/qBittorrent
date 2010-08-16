@@ -124,7 +124,7 @@ QString misc::QDesktopServicesCacheLocation() {
   QString path;
   QByteArray ba(2048, 0);
   if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-        path = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
+    path = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
   path += QLatin1Char('/') + qApp->applicationName();
   return path;
 #else
@@ -196,6 +196,44 @@ void misc::shutdownComputer() {
   QDBusInterface computer("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer", "org.freedesktop.Hal.Device.SystemPowerManagement", QDBusConnection::systemBus());
   computer.call("Shutdown");
 #endif
+#ifdef Q_WS_MAC
+  AEEventID EventToSend = kAEShutDown;
+  AEAddressDesc targetDesc;
+  static const ProcessSerialNumber kPSNOfSystemProcess = { 0, kSystemProcess };
+  AppleEvent eventReply = {typeNull, NULL};
+  AppleEvent appleEventToSend = {typeNull, NULL};
+
+  OSStatus error = noErr;
+
+  error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
+                       sizeof(kPSNOfSystemProcess), &targetDesc);
+
+  if (error != noErr)
+  {
+    return(error);
+  }
+
+  error = AECreateAppleEvent(kCoreEventClass, EventToSend, &targetDesc,
+                             kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
+
+  AEDisposeDesc(&targetDesc);
+  if (error != noErr)
+  {
+    return(error);
+  }
+
+  error = AESend(&appleEventToSend, &eventReply, kAENoReply,
+                 kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
+
+  AEDisposeDesc(&appleEventToSend);
+  if (error != noErr)
+  {
+    return(error);
+  }
+
+  AEDisposeDesc(&eventReply);
+#endif
+  // TODO: Windows support
 }
 
 QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
@@ -390,7 +428,7 @@ QPoint misc::screenCenter(QWidget *win) {
 
 QString misc::searchEngineLocation() {
   const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                            + QDir::separator() + "search_engine");
+                                           + QDir::separator() + "search_engine");
   QDir locationDir(location);
   if(!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
@@ -399,7 +437,7 @@ QString misc::searchEngineLocation() {
 
 QString misc::BTBackupLocation() {
   const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                            + QDir::separator() + "BT_backup");
+                                           + QDir::separator() + "BT_backup");
   QDir locationDir(location);
   if(!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
@@ -639,11 +677,11 @@ QList<int> misc::intListfromStringList(const QStringList &l) {
 
 QList<bool> misc::boolListfromStringList(const QStringList &l) {
   QList<bool> ret;
-    foreach(const QString &s, l) {
-      if(s == "1")
-        ret << true;
-      else
-        ret << false;
-    }
-    return ret;
+  foreach(const QString &s, l) {
+    if(s == "1")
+      ret << true;
+    else
+      ret << false;
+  }
+  return ret;
 }
