@@ -80,12 +80,15 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const {
     return QVariant();
 
   const PathData* pathData = m_pathList.at(index.row());
-  if (index.column() == PathColumn && role == Qt::DisplayRole)
+  if (index.column() == PathColumn && role == Qt::DisplayRole) {
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    return pathData->path.replace("/", "\\");
+    QString ret = pathData->path;
+    ret = ret.replace("/", "\\");
+    return ret;
 #else
   return pathData->path;
 #endif
+  }
   if (index.column() == DownloadAtTorrentColumn && role == Qt::CheckStateRole)
     return pathData->downloadAtPath ? Qt::Checked : Qt::Unchecked;
   return QVariant();
