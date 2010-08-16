@@ -5,6 +5,7 @@
     - BUGFIX: Added missing right-click menu icon in Web UI
     - BUGFIX: Fix speed limit sliders initialization in Web UI
     - BUGFIX: Priority actions are only effective if the transfer list tab is displayed
+    - BUGFIX: Fix possible folder watching issues on Windows and OS/2
 
 * Tue Jul 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
     - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)
