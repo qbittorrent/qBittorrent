@@ -67,6 +67,11 @@ const int UNLEN = 256;
 #include <winbase.h>
 #endif
 
+#ifdef Q_WS_X11
+#include <QDBusInterface>
+#include <QDBusMessage>
+#endif
+
 QString misc::QDesktopServicesDataLocation() {
 #ifdef Q_WS_WIN
   LPWSTR path=new WCHAR[256];
@@ -181,6 +186,15 @@ long long misc::freeDiskSpaceOnPath(QString path) {
   } else {
     return -1;
   }
+#endif
+}
+
+void misc::shutdownComputer() {
+#ifdef Q_WS_X11
+  // Use dbus to power off the system
+  // dbus-send --print-reply --system --dest=org.freedesktop.Hal /org/freedesktop/Hal/devices/computer org.freedesktop.Hal.Device.SystemPowerManagement.Shutdown
+  QDBusInterface computer("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer", "org.freedesktop.Hal.Device.SystemPowerManagement", QDBusConnection::systemBus());
+  computer.call("Shutdown");
 #endif
 }
 

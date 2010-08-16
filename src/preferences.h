@@ -851,6 +851,17 @@ public:
   }
 
   // Advanced settings
+
+  static bool shutdownWhenDownloadsComplete() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Downloads/AutoShutDownOnCompletion"), false).toBool();
+  }
+
+  static void setShutdownWhenDownloadsComplete(bool shutdown) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/AutoShutDownOnCompletion"), shutdown);
+  }
+
   static uint diskCacheSize() {
     QIniSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toUInt();

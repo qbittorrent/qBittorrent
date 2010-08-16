@@ -170,6 +170,7 @@ private slots:
     void on_actionRSS_Reader_triggered();
     void on_actionSpeed_in_title_bar_triggered();
     void on_actionTop_tool_bar_triggered();
+    void on_actionShutdown_when_downloads_complete_triggered();
 };
 
 #endif

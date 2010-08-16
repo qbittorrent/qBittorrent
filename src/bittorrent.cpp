@@ -720,6 +720,17 @@ bool Bittorrent::hasActiveTorrents() const {
   return false;
 }
 
+bool Bittorrent::hasDownloadingTorrents() const {
+  std::vector<torrent_handle> torrents = getTorrents();
+  std::vector<torrent_handle>::iterator torrentIT;
+  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+    const QTorrentHandle h(*torrentIT);
+    if(h.is_valid() && (h.state() == torrent_status::downloading || h.state() == torrent_status::downloading_metadata))
+      return true;
+  }
+  return false;
+}
+
 void Bittorrent::banIP(QString ip) {
   FilterParserThread::processFilterList(s, QStringList(ip));
   Preferences::banIP(ip);
@@ -2013,6 +2024,19 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             TorrentPersistentData::saveSeedStatus(h);
           }
           qDebug("Received finished alert for %s", qPrintable(h.name()));
+          if(!was_already_seeded) {
+            // Auto-Shutdown
+            if(Preferences::shutdownWhenDownloadsComplete() && !hasDownloadingTorrents()) {
+              qDebug("Preparing for auto-shutdown because all downloads are complete!");
+#if LIBTORRENT_VERSION_MINOR < 15
+              saveDHTEntry();
+#endif
+              saveSessionState();
+              saveFastResumeData();
+              delete s;
+              misc::shutdownComputer();
+            }
+          }
         }
       }
       else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {

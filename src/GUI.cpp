@@ -187,6 +187,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   actionSearch_engine->setChecked(Preferences::isSearchEnabled());
   displaySearchTab(actionSearch_engine->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
+  actionShutdown_when_downloads_complete->setChecked(Preferences::shutdownWhenDownloadsComplete());
 
   show();
 
@@ -1064,6 +1065,11 @@ void GUI::on_actionTop_tool_bar_triggered() {
   bool is_visible = static_cast<QAction*>(sender())->isChecked();
   toolBar->setVisible(is_visible);
   Preferences::setToolbarDisplayed(is_visible);
+}
+
+void GUI::on_actionShutdown_when_downloads_complete_triggered() {
+  bool is_checked = static_cast<QAction*>(sender())->isChecked();
+  Preferences::setShutdownWhenDownloadsComplete(is_checked);
 }
 
 void GUI::on_actionSpeed_in_title_bar_triggered() {

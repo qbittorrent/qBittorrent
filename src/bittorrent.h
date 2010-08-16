@@ -108,6 +108,7 @@ public:
   session* getSession() const;
   QHash<QString, TrackerInfos> getTrackersInfo(QString hash) const;
   bool hasActiveTorrents() const;
+  bool hasDownloadingTorrents() const;
   bool isQueueingEnabled() const;
   int getMaximumActiveDownloads() const;
   int getMaximumActiveTorrents() const;

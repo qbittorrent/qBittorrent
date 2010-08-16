@@ -91,6 +91,8 @@ public:
     return x;
   }
 
+  static void shutdownComputer();
+
   static bool safeRemove(QString file_path) {
     QFile MyFile(file_path);
     if(!MyFile.exists()) return true;
