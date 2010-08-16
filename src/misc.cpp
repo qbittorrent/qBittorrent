@@ -233,7 +233,9 @@ void misc::shutdownComputer() {
 
   AEDisposeDesc(&eventReply);
 #endif
-  // TODO: Windows support
+#ifdef Q_WS_WIN
+  InitiateSystemShutdownA(0, qPrintable(tr("qBittorrent will shutdown the computer now because all downloads are complete.")), 10, true, false);
+#endif
 }
 
 QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
