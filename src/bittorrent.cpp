@@ -2035,6 +2035,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               saveFastResumeData();
               delete s;
               misc::shutdownComputer();
+              exiting = true;
+              qApp->exit();
             }
           }
         }

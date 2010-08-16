@@ -234,7 +234,33 @@ void misc::shutdownComputer() {
   AEDisposeDesc(&eventReply);
 #endif
 #ifdef Q_WS_WIN
-  InitiateSystemShutdownA(0, qPrintable(tr("qBittorrent will shutdown the computer now because all downloads are complete.")), 10, true, false);
+  HANDLE hToken;              // handle to process token
+  TOKEN_PRIVILEGES tkp;       // pointer to token structure
+  if(!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+    return;
+  // Get the LUID for shutdown privilege.
+  LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME,
+                       &tkp.Privileges[0].Luid);
+
+  tkp.PrivilegeCount = 1;  // one privilege to set
+  tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+  // Get shutdown privilege for this process.
+
+  AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
+                        (PTOKEN_PRIVILEGES) NULL, 0);
+
+  // Cannot test the return value of AdjustTokenPrivileges.
+
+  if (GetLastError() != ERROR_SUCCESS)
+    return;
+  bool ret = InitiateSystemShutdownA(0, tr("qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
+  qDebug("ret: %d", (int)ret);
+
+  // Disable shutdown privilege.
+  tkp.Privileges[0].Attributes = 0;
+  AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
+                        (PTOKEN_PRIVILEGES) NULL, 0);
 #endif
 }
 
