@@ -3588,6 +3588,10 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <source>Log viewer</source>
         <translation>Przeglądarka dziennika</translation>
     </message>
+    <message>
+        <source>Shutdown when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -5580,6 +5584,18 @@ Do you want to install it now?</source>
         <source>Add label...</source>
         <translation>Dodaj etykietę...</translation>
     </message>
+    <message>
+        <source>Resume torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5667,11 +5683,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Zwiększ priorytet</translation>
+        <translation type="obsolete">Zwiększ priorytet</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Zmniejsz priorytet</translation>
+        <translation type="obsolete">Zmniejsz priorytet</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -5843,6 +5859,30 @@ Do you want to install it now?</source>
     <message>
         <source>Limit download rate...</source>
         <translation>Ogranicz prędkości pobierania...</translation>
+    </message>
+    <message>
+        <source>Move up</source>
+        <comment>i.e. move up in the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move down</source>
+        <comment>i.e. Move down in the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move to top</source>
+        <comment>i.e. Move to top of the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move to bottom</source>
+        <comment>i.e. Move to bottom of the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Priorytet</translation>
     </message>
 </context>
 <context>
@@ -7061,6 +7101,10 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1d %2h</translation>
+    </message>
+    <message>
+        <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -63,9 +63,12 @@ public slots:
   void setSelectedTorrentsLocation();
   void startSelectedTorrents();
   void startAllTorrents();
+  void startVisibleTorrents();
   void pauseSelectedTorrents();
   void pauseAllTorrents();
+  void pauseVisibleTorrents();
   void deleteSelectedTorrents();
+  void deleteVisibleTorrents();
   void increasePrioSelectedTorrents();
   void decreasePrioSelectedTorrents();
   void topPrioSelectedTorrents();

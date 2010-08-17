@@ -2402,6 +2402,10 @@ Detta meddelande kommer inte att visas igen.</translation>
         <source>Log viewer</source>
         <translation>Loggvisare</translation>
     </message>
+    <message>
+        <source>Shutdown when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -4316,6 +4320,18 @@ Vill du installera den nu?</translation>
         <source>Add label...</source>
         <translation>Lägg till etikett...</translation>
     </message>
+    <message>
+        <source>Resume torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -4408,11 +4424,11 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Öka prioriteten</translation>
+        <translation type="obsolete">Öka prioriteten</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Sänk prioriteten</translation>
+        <translation type="obsolete">Sänk prioriteten</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -4584,6 +4600,30 @@ Vill du installera den nu?</translation>
     <message>
         <source>Limit download rate...</source>
         <translation>Begränsa hämtningshastighet...</translation>
+    </message>
+    <message>
+        <source>Move up</source>
+        <comment>i.e. move up in the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move down</source>
+        <comment>i.e. Move down in the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move to top</source>
+        <comment>i.e. Move to top of the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move to bottom</source>
+        <comment>i.e. Move to bottom of the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioritet</translation>
     </message>
 </context>
 <context>
@@ -5584,6 +5624,10 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1d %2h</translation>
+    </message>
+    <message>
+        <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

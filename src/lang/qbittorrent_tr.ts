@@ -3521,6 +3521,10 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <source>Log viewer</source>
         <translation>Kayıt görüntüleyici</translation>
     </message>
+    <message>
+        <source>Shutdown when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -5405,6 +5409,18 @@ Do you want to install it now?</source>
         <source>Add label...</source>
         <translation>Etiket ekle...</translation>
     </message>
+    <message>
+        <source>Resume torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5478,11 +5494,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Önceliği arttır</translation>
+        <translation type="obsolete">Önceliği arttır</translation>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Önceliği düşür</translation>
+        <translation type="obsolete">Önceliği düşür</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -5658,6 +5674,30 @@ Do you want to install it now?</source>
     <message>
         <source>Limit download rate...</source>
         <translation>İndirme oranını sınırla...</translation>
+    </message>
+    <message>
+        <source>Move up</source>
+        <comment>i.e. move up in the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move down</source>
+        <comment>i.e. Move down in the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move to top</source>
+        <comment>i.e. Move to top of the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move to bottom</source>
+        <comment>i.e. Move to bottom of the queue</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Öncelik</translation>
     </message>
 </context>
 <context>
@@ -6866,6 +6906,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1gün %2sa</translation>
+    </message>
+    <message>
+        <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

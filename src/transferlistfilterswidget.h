@@ -314,11 +314,27 @@ protected slots:
     if(!labelFilters->selectedItems().empty() && labelFilters->row(labelFilters->selectedItems().first()) > 1)
       removeAct = labelMenu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Remove label"));
     QAction *addAct = labelMenu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add label..."));
+    labelMenu.addSeparator();
+    QAction *startAct = labelMenu.addAction(QIcon(":/Icons/skin/play22.png"), tr("Resume torrents"));
+    QAction *pauseAct = labelMenu.addAction(QIcon(":/Icons/skin/pause22.png"), tr("Pause torrents"));
+    QAction *deleteTorrentsAct = labelMenu.addAction(QIcon(":/Icons/skin/delete22.png"), tr("Delete torrents"));
     QAction *act = 0;
     act = labelMenu.exec(QCursor::pos());
     if(act) {
       if(act == removeAct) {
         removeSelectedLabel();
+        return;
+      }
+      if(act == deleteTorrentsAct) {
+        transferList->deleteVisibleTorrents();
+        return;
+      }
+      if(act == startAct) {
+        transferList->startVisibleTorrents();
+        return;
+      }
+      if(act == pauseAct) {
+        transferList->pauseVisibleTorrents();
         return;
       }
       if(act == addAct) {

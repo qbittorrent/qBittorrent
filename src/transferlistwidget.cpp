@@ -678,6 +678,18 @@ void TransferListWidget::startAllTorrents() {
   refreshList();
 }
 
+void TransferListWidget::startVisibleTorrents() {
+  for(int i=0; i<proxyModel->rowCount(); ++i) {
+    const int row = mapToSource(proxyModel->index(i, 0)).row();
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
+    if(h.is_valid() && h.is_paused()) {
+      h.resume();
+      resumeTorrent(row, false);
+    }
+  }
+  refreshList();
+}
+
 void TransferListWidget::pauseSelectedTorrents() {
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
@@ -702,6 +714,18 @@ void TransferListWidget::pauseAllTorrents() {
   refreshList();
 }
 
+void TransferListWidget::pauseVisibleTorrents() {
+  for(int i=0; i<proxyModel->rowCount(); ++i) {
+    const int row = mapToSource(proxyModel->index(i, 0)).row();
+    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
+    if(h.is_valid() && !h.is_paused()) {
+      h.pause();
+      pauseTorrent(row, false);
+    }
+  }
+  refreshList();
+}
+
 void TransferListWidget::deleteSelectedTorrents() {
   if(main_window->getCurrentTabWidget() != this) return;
   const QStringList& hashes = getSelectedTorrentsHashes();
@@ -715,6 +739,24 @@ void TransferListWidget::deleteSelectedTorrents() {
       }
       refreshList();
     }
+  }
+}
+
+void TransferListWidget::deleteVisibleTorrents() {
+  if(proxyModel->rowCount() <= 0) return;
+  bool delete_local_files = false;
+  if(DeletionConfirmationDlg::askForDeletionConfirmation(&delete_local_files)) {
+    QStringList hashes;
+    for(int i=0; i<proxyModel->rowCount(); ++i) {
+      const int row = mapToSource(proxyModel->index(i, 0)).row();
+      hashes << getHashFromRow(row);
+    }
+    foreach(const QString &hash, hashes) {
+      const int row = getRowFromHash(hash);
+      deleteTorrent(row, false);
+      BTSession->deleteTorrent(hash, delete_local_files);
+    }
+    refreshList();
   }
 }
 
