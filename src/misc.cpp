@@ -54,6 +54,7 @@ const int UNLEN = 256;
 
 #ifdef Q_WS_MAC
 #include <CoreServices/CoreServices.h>
+#include <Carbon/Carbon.h>
 #endif
 
 #ifndef Q_WS_WIN
@@ -210,7 +211,7 @@ void misc::shutdownComputer() {
 
   if (error != noErr)
   {
-    return(error);
+    return;
   }
 
   error = AECreateAppleEvent(kCoreEventClass, EventToSend, &targetDesc,
@@ -219,7 +220,7 @@ void misc::shutdownComputer() {
   AEDisposeDesc(&targetDesc);
   if (error != noErr)
   {
-    return(error);
+      return;
   }
 
   error = AESend(&appleEventToSend, &eventReply, kAENoReply,
@@ -228,7 +229,7 @@ void misc::shutdownComputer() {
   AEDisposeDesc(&appleEventToSend);
   if (error != noErr)
   {
-    return(error);
+    return;
   }
 
   AEDisposeDesc(&eventReply);
