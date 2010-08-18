@@ -679,12 +679,16 @@ void TransferListWidget::startAllTorrents() {
 }
 
 void TransferListWidget::startVisibleTorrents() {
+  QStringList hashes;
   for(int i=0; i<proxyModel->rowCount(); ++i) {
     const int row = mapToSource(proxyModel->index(i, 0)).row();
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
+    hashes << getHashFromRow(row);
+  }
+  foreach(const QString &hash, hashes) {
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && h.is_paused()) {
       h.resume();
-      resumeTorrent(row, false);
+      resumeTorrent(getRowFromHash(hash), false);
     }
   }
   refreshList();
@@ -715,12 +719,16 @@ void TransferListWidget::pauseAllTorrents() {
 }
 
 void TransferListWidget::pauseVisibleTorrents() {
+  QStringList hashes;
   for(int i=0; i<proxyModel->rowCount(); ++i) {
     const int row = mapToSource(proxyModel->index(i, 0)).row();
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
+    hashes << getHashFromRow(row);
+  }
+  foreach(const QString &hash, hashes) {
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && !h.is_paused()) {
       h.pause();
-      pauseTorrent(row, false);
+      pauseTorrent(getRowFromHash(hash), false);
     }
   }
   refreshList();
