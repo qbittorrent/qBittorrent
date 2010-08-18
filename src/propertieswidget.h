@@ -99,7 +99,6 @@ protected slots:
   void filteredFilesChanged();
   void showPiecesDownloaded(bool show);
   void showPiecesAvailability(bool show);
-  void updateSavePath(QTorrentHandle& h);
   void renameSelectedFile();
   void selectAllFiles();
   void selectNoneFiles();
@@ -113,6 +112,7 @@ public slots:
   void saveSettings();
   void reloadPreferences();
   void openDoubleClickedFile(QModelIndex);
+  void updateSavePath(QTorrentHandle& h);
 
 };
 

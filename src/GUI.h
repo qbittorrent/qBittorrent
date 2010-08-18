@@ -69,6 +69,7 @@ public:
   QWidget* getCurrentTabWidget() const;
   TransferListWidget* getTransferList() const { return transferList; }
   QMenu* getTrayIconMenu();
+  PropertiesWidget *getProperties() const { return properties; }
 
 public slots:
   void trackerAuthenticationRequired(QTorrentHandle& h);

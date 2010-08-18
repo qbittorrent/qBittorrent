@@ -38,6 +38,7 @@
 #include "GUI.h"
 #include "preferences.h"
 #include "deletionconfirmationdlg.h"
+#include "propertieswidget.h"
 #include <libtorrent/version.hpp>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -630,7 +631,8 @@ void TransferListWidget::setSelectedTorrentsLocation() {
   const QStringList hashes = getSelectedTorrentsHashes();
   if(hashes.isEmpty()) return;
   QString dir;
-  const QDir saveDir(BTSession->getTorrentHandle(hashes.first()).save_path());
+  const QDir saveDir(TorrentPersistentData::getSavePath(hashes.first()));
+  qDebug("Torrent save path is %s", qPrintable(saveDir.absolutePath()));
   if(saveDir.exists()){
     dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.path());
   }else{
@@ -648,8 +650,12 @@ void TransferListWidget::setSelectedTorrentsLocation() {
     foreach(const QString & hash, hashes) {
       // Actually move storage
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
-      if(!BTSession->useTemporaryFolder() || h.is_seed())
+      if(!BTSession->useTemporaryFolder() || h.is_seed()) {
         h.move_storage(savePath.absolutePath());
+      } else {
+        TorrentPersistentData::saveSavePath(h.hash(), savePath.absolutePath());
+        main_window->getProperties()->updateSavePath(h);
+      }
     }
   }
 }
