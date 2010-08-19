@@ -12,6 +12,7 @@
 
 #include <QTextStream>
 #include <QTcpSocket>
+#include <QDebug>
 
 Smtp::Smtp(const QString &from, const QString &to, const QString &subject, const QString &body) {
   socket = new QTcpSocket(this);
