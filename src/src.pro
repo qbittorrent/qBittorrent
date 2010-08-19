@@ -295,7 +295,8 @@ HEADERS += misc.h \
            preferences.h \
            bandwidthscheduler.h \
            scannedfoldersmodel.h \
-           qinisettings.h
+           qinisettings.h \
+           smtp.h
 
 contains(DEFINES, DISABLE_GUI) {
   HEADERS += headlessloader.h
@@ -399,7 +400,8 @@ SOURCES += main.cpp \
            httpresponsegenerator.cpp \
            eventmanager.cpp \
            scannedfoldersmodel.cpp \
-           misc.cpp
+           misc.cpp \
+           smtp.cpp
 
 !contains(DEFINES, DISABLE_GUI) {
   SOURCES += GUI.cpp \

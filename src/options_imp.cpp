@@ -199,6 +199,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(addScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
     connect(removeScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
+    connect(groupMailNotification, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(dest_email_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(smtp_server_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     // Connection tab
     connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -387,6 +390,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     export_dir = export_dir.replace("\\", "/");
 #endif
     Preferences::setExportDir(export_dir);
+    Preferences::setMailNotificationEnabled(groupMailNotification->isChecked());
+    Preferences::setMailNotificationEmail(dest_email_txt->text());
+    Preferences::setMailNotificationSMTP(smtp_server_txt->text());
     settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
     settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
     // End Downloads preferences
@@ -602,7 +608,9 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
 #endif
       textExportDir->setText(strValue);
     }
-
+    groupMailNotification->setChecked(Preferences::isMailNotificationEnabled());
+    dest_email_txt->setText(Preferences::getMailNotificationEmail());
+    smtp_server_txt->setText(Preferences::getMailNotificationSMTP());
     intValue = Preferences::getActionOnDblClOnTorrentDl();
     if(intValue >= actionTorrentDlOnDblClBox->count())
       intValue = 0;

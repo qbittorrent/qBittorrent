@@ -276,6 +276,36 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Downloads/TorrentExport"), path);
   }
 
+  static bool isMailNotificationEnabled() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/MailNotification/enabled"), false).toBool();
+  }
+
+  static void setMailNotificationEnabled(bool enabled) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/MailNotification/enabled"), enabled);
+  }
+
+  static QString getMailNotificationEmail() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/MailNotification/email"), "").toString();
+  }
+
+  static void setMailNotificationEmail(QString mail) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/MailNotification/email"), mail);
+  }
+
+  static QString getMailNotificationSMTP() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/MailNotification/smtp_server"), "smtp.changeme.com").toString();
+  }
+
+  static void setMailNotificationSMTP(QString smtp_server) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/MailNotification/smtp_server"), smtp_server);
+  }
+
   static int getActionOnDblClOnTorrentDl() {
     QIniSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/DblClOnTorDl"), 0).toInt();

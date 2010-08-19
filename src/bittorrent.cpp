@@ -36,6 +36,7 @@
 #include <QNetworkAddressEntry>
 #include <stdlib.h>
 
+#include "smtp.h"
 #include "filesystemwatcher.h"
 #include "bittorrent.h"
 #include "misc.h"
@@ -1963,6 +1964,16 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
     }
   }
+  void Bittorrent::sendNotificationEmail(QTorrentHandle h) {
+    // Prepare mail content
+    QString content = tr("Torrent name: %1").arg(h.name()) + "\n";
+    content += tr("Torrent size: %1").arg(misc::friendlyUnit(h.actual_size())) + "\n";
+    content += tr("Save path: %1").arg(TorrentPersistentData::getSavePath(h.hash())) + "\n\n";
+    content += tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds").arg(misc::userFriendlyDuration(h.active_time())) + "\n\n\n";
+    content += tr("Thank you for using qBittorrent.") + "\n";
+    // Send the notification email
+    new Smtp("notification@qbittorrent.org", Preferences::getMailNotificationEmail(), tr("[qBittorrent] %1 has finished downloading").arg(h.name()), content);
+}
 
   // Read alerts sent by the Bittorrent session
   void Bittorrent::readAlerts() {
@@ -2025,6 +2036,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           }
           qDebug("Received finished alert for %s", qPrintable(h.name()));
           if(!was_already_seeded) {
+            // Mail notification
+            if(Preferences::isMailNotificationEnabled())
+              sendNotificationEmail(h);
             // Auto-Shutdown
             if(Preferences::shutdownWhenDownloadsComplete() && !hasDownloadingTorrents()) {
               qDebug("Preparing for auto-shutdown because all downloads are complete!");

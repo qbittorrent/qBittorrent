@@ -200,6 +200,7 @@ protected slots:
   void takeETASamples();
   void exportTorrentFiles(QString path);
   void saveTempFastResumeData();
+  void sendNotificationEmail(QTorrentHandle h);
 
 signals:
   void addedTorrent(QTorrentHandle& h);

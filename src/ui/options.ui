@@ -211,7 +211,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>508</width>
+             <width>503</width>
              <height>446</height>
             </rect>
            </property>
@@ -514,9 +514,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>508</width>
-             <height>504</height>
+             <y>-200</y>
+             <width>503</width>
+             <height>606</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -877,6 +877,38 @@ QGroupBox {
               </property>
              </spacer>
             </item>
+            <item>
+             <widget class="QGroupBox" name="groupMailNotification">
+              <property name="title">
+               <string>Email notification upon download completion</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_15">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Destination email:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="dest_email_txt"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>SMTP server:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="smtp_server_txt"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
          </widget>
@@ -895,8 +927,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>524</width>
-             <height>398</height>
+             <width>451</width>
+             <height>348</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -1182,8 +1214,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>524</width>
-             <height>406</height>
+             <width>413</width>
+             <height>338</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">

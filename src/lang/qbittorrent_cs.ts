@@ -246,207 +246,207 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>Bittorrent</name>
     <message>
-        <location filename="../bittorrent.cpp" line="217"/>
-        <location filename="../bittorrent.cpp" line="223"/>
+        <location filename="../bittorrent.cpp" line="218"/>
+        <location filename="../bittorrent.cpp" line="224"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 dosáhl maximálního nastaveného poměru sdílení.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="218"/>
+        <location filename="../bittorrent.cpp" line="219"/>
         <source>Removing torrent %1...</source>
         <translation>Odstraňování torrentu %1...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="224"/>
+        <location filename="../bittorrent.cpp" line="225"/>
         <source>Pausing torrent %1...</source>
         <translation>Pozastavování torrentu %1...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="318"/>
+        <location filename="../bittorrent.cpp" line="319"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>qBittorrent naslouchá na portu: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="381"/>
+        <location filename="../bittorrent.cpp" line="382"/>
         <source>UPnP support [ON]</source>
         <translation>Podpora UPnP [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="384"/>
+        <location filename="../bittorrent.cpp" line="385"/>
         <source>UPnP support [OFF]</source>
         <translation>Podpora UPnP [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="389"/>
+        <location filename="../bittorrent.cpp" line="390"/>
         <source>NAT-PMP support [ON]</source>
         <translation>Podpora NAT-PMP [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="392"/>
+        <location filename="../bittorrent.cpp" line="393"/>
         <source>NAT-PMP support [OFF]</source>
         <translation>Podpora NAT-PMP [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="398"/>
+        <location filename="../bittorrent.cpp" line="399"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP user agent je %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="416"/>
+        <location filename="../bittorrent.cpp" line="417"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation>Použita vyrovnávací paměť o velikosti %1 MiB</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="457"/>
+        <location filename="../bittorrent.cpp" line="458"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Podpora DHT [ZAP], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="459"/>
-        <location filename="../bittorrent.cpp" line="463"/>
+        <location filename="../bittorrent.cpp" line="460"/>
+        <location filename="../bittorrent.cpp" line="464"/>
         <source>DHT support [OFF]</source>
         <translation>Podpora DHT [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="467"/>
+        <location filename="../bittorrent.cpp" line="468"/>
         <source>PeX support [ON]</source>
         <translation>Podpora PeX [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="469"/>
+        <location filename="../bittorrent.cpp" line="470"/>
         <source>PeX support [OFF]</source>
         <translation>Podpora PeX [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="472"/>
+        <location filename="../bittorrent.cpp" line="473"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Kvůli přepnutí podpory PEX je nutný restart</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="477"/>
+        <location filename="../bittorrent.cpp" line="478"/>
         <source>Local Peer Discovery [ON]</source>
         <translation>Local Peer Discovery [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="480"/>
+        <location filename="../bittorrent.cpp" line="481"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Podpora Local Peer Discovery [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="492"/>
+        <location filename="../bittorrent.cpp" line="493"/>
         <source>Encryption support [ON]</source>
         <translation>Podpora šifrování [ZAP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="497"/>
+        <location filename="../bittorrent.cpp" line="498"/>
         <source>Encryption support [FORCED]</source>
         <translation>Podpora šifrování [VYNUCENO]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="502"/>
+        <location filename="../bittorrent.cpp" line="503"/>
         <source>Encryption support [OFF]</source>
         <translation>Podpora šifrování [VYP]</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="610"/>
+        <location filename="../bittorrent.cpp" line="611"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Webové rozhraní naslouchá na portu %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="612"/>
+        <location filename="../bittorrent.cpp" line="613"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Chyba webového rozhraní - Nelze se připojit k Web UI na port %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="770"/>
+        <location filename="../bittorrent.cpp" line="771"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; byl odstraněn ze seznamu i z pevného disku.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="772"/>
+        <location filename="../bittorrent.cpp" line="773"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; byl odstraněn ze seznamu přenosů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="822"/>
+        <location filename="../bittorrent.cpp" line="823"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; není platný magnet URI.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="842"/>
-        <location filename="../bittorrent.cpp" line="1025"/>
-        <location filename="../bittorrent.cpp" line="1028"/>
+        <location filename="../bittorrent.cpp" line="843"/>
+        <location filename="../bittorrent.cpp" line="1026"/>
+        <location filename="../bittorrent.cpp" line="1029"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; už je v seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="948"/>
-        <location filename="../bittorrent.cpp" line="1272"/>
-        <location filename="../bittorrent.cpp" line="1277"/>
+        <location filename="../bittorrent.cpp" line="949"/>
+        <location filename="../bittorrent.cpp" line="1273"/>
+        <location filename="../bittorrent.cpp" line="1278"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; obnoven. (rychlé obnovení)</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="950"/>
-        <location filename="../bittorrent.cpp" line="1274"/>
-        <location filename="../bittorrent.cpp" line="1279"/>
+        <location filename="../bittorrent.cpp" line="951"/>
+        <location filename="../bittorrent.cpp" line="1275"/>
+        <location filename="../bittorrent.cpp" line="1280"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; přidán do seznamu stahování.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="999"/>
-        <location filename="../bittorrent.cpp" line="1003"/>
+        <location filename="../bittorrent.cpp" line="1000"/>
+        <location filename="../bittorrent.cpp" line="1004"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nelze dekódovat soubor torrentu: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1006"/>
+        <location filename="../bittorrent.cpp" line="1007"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Tento soubor je buď poškozen, nebo to není soubor torrentu.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1054"/>
+        <location filename="../bittorrent.cpp" line="1055"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Poznámka: ke stávajícímu torrentu byly přidány nové trackery.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1067"/>
+        <location filename="../bittorrent.cpp" line="1068"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Poznámka: ke stávajícímu torrentu byly přidány nové URL seedy.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1078"/>
+        <location filename="../bittorrent.cpp" line="1079"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Chyba: Torrent %1 neobsahuje žádný soubor.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1627"/>
+        <location filename="../bittorrent.cpp" line="1628"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1629"/>
+        <location filename="../bittorrent.cpp" line="1630"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zakázán kvůli poškozeným částem&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1951"/>
+        <location filename="../bittorrent.cpp" line="1952"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekurzivní stahování souboru %1 vloženého v torrentu %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1961"/>
-        <location filename="../bittorrent.cpp" line="2003"/>
+        <location filename="../bittorrent.cpp" line="1962"/>
+        <location filename="../bittorrent.cpp" line="2014"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nelze dekódovat soubor torrentu %1.</translation>
     </message>
@@ -455,43 +455,74 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="obsolete">Nelze naslouchat na žádném z udaných portů.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2290"/>
+        <location filename="../bittorrent.cpp" line="2304"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů selhalo, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2295"/>
+        <location filename="../bittorrent.cpp" line="2309"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Namapování portů bylo úspěšné, zpráva: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2322"/>
+        <location filename="../bittorrent.cpp" line="2336"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Rychlé obnovení torrentu %1 bylo odmítnuto, zkouším znovu...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2202"/>
-        <location filename="../bittorrent.cpp" line="2323"/>
+        <location filename="../bittorrent.cpp" line="2216"/>
+        <location filename="../bittorrent.cpp" line="2337"/>
         <source>Reason: %1</source>
         <translation>Důvod: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2201"/>
+        <location filename="../bittorrent.cpp" line="1969"/>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1970"/>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1971"/>
+        <source>Save path: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1972"/>
+        <source>The torrent was downloaded in %1.</source>
+        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1973"/>
+        <source>Thank you for using qBittorrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="1975"/>
+        <source>[qBittorrent] %1 has finished downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bittorrent.cpp" line="2215"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Došlo k chybě I/O, &apos;%1&apos; je pozastaven.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2318"/>
+        <location filename="../bittorrent.cpp" line="2332"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Nesouhlasí velikost souborů u torrentu %1, pozastaveno.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2328"/>
+        <location filename="../bittorrent.cpp" line="2342"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Vyhledání URL seedu selhalo pro URL: %1, zpráva: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2449"/>
+        <location filename="../bittorrent.cpp" line="2463"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Stahuji  &apos;%1&apos;, prosím čekejte...</translation>
@@ -3318,7 +3349,7 @@ QGroupBox {
         <translation type="obsolete">MiB (pokročilé)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1753"/>
+        <location filename="../ui/options.ui" line="1785"/>
         <source>Torrent queueing</source>
         <translation>Řazení torrentů do fronty</translation>
     </message>
@@ -3327,17 +3358,17 @@ QGroupBox {
         <translation type="obsolete">Zapnout systém zařazování do fronty</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1768"/>
+        <location filename="../ui/options.ui" line="1800"/>
         <source>Maximum active downloads:</source>
         <translation>Max. počet aktivních stahování:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1788"/>
+        <location filename="../ui/options.ui" line="1820"/>
         <source>Maximum active uploads:</source>
         <translation>Max. počet aktivních nahrávání:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1808"/>
+        <location filename="../ui/options.ui" line="1840"/>
         <source>Maximum active torrents:</source>
         <translation>Maximální počet aktivních torrentů:</translation>
     </message>
@@ -3460,38 +3491,53 @@ QGroupBox {
         <source>Add folder...</source>
         <translation>Přidat adresář ...</translation>
     </message>
+    <message>
+        <location filename="../ui/options.ui" line="883"/>
+        <source>Email notification upon download completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="892"/>
+        <source>Destination email:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/options.ui" line="902"/>
+        <source>SMTP server:</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message utf8="true">
-        <location filename="../ui/options.ui" line="1681"/>
+        <location filename="../ui/options.ui" line="1713"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Vyměňovat protějšky s kompatibilními klienty Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1844"/>
+        <location filename="../ui/options.ui" line="1876"/>
         <source>Share ratio limiting</source>
         <translation>Omezení poměru sdílení</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1855"/>
+        <location filename="../ui/options.ui" line="1887"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Sdílet torrenty dokud poměr sdílení nedosáhne</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1887"/>
+        <location filename="../ui/options.ui" line="1919"/>
         <source>then</source>
         <translation>potom</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1898"/>
+        <location filename="../ui/options.ui" line="1930"/>
         <source>Pause them</source>
         <translation>Pozastavit je</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1903"/>
+        <location filename="../ui/options.ui" line="1935"/>
         <source>Remove them</source>
         <translation>Odstranit je</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2383"/>
+        <location filename="../ui/options.ui" line="2415"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Zapnout webové rozhraní (dálkové ovládání)</translation>
     </message>
@@ -3501,47 +3547,47 @@ QGroupBox {
         <translation type="obsolete">Nespouštět stahování automaticky</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="908"/>
+        <location filename="../ui/options.ui" line="940"/>
         <source>Listening port</source>
         <translation>Naslouchat na portu</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="916"/>
+        <location filename="../ui/options.ui" line="948"/>
         <source>Port used for incoming connections:</source>
         <translation>Port použitý pro příchozí spojení:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="936"/>
+        <location filename="../ui/options.ui" line="968"/>
         <source>Random</source>
         <translation>Náhodný</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="958"/>
+        <location filename="../ui/options.ui" line="990"/>
         <source>Enable UPnP port mapping</source>
         <translation>Zapnout mapování portů UPnP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="968"/>
+        <location filename="../ui/options.ui" line="1000"/>
         <source>Enable NAT-PMP port mapping</source>
         <translation>Zapnout mapování portů NAT-PMP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="983"/>
+        <location filename="../ui/options.ui" line="1015"/>
         <source>Connections limit</source>
         <translation>Limit připojení</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="994"/>
+        <location filename="../ui/options.ui" line="1026"/>
         <source>Global maximum number of connections:</source>
         <translation>Celkový maximální počet připojení:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1037"/>
+        <location filename="../ui/options.ui" line="1069"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Maximální počet spojení na torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1077"/>
+        <location filename="../ui/options.ui" line="1109"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Maximální počet slotů pro nahrávání na torrent:</translation>
     </message>
@@ -3550,22 +3596,22 @@ QGroupBox {
         <translation type="obsolete">Celkový limit pásma</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1211"/>
-        <location filename="../ui/options.ui" line="1333"/>
+        <location filename="../ui/options.ui" line="1243"/>
+        <location filename="../ui/options.ui" line="1365"/>
         <source>Upload:</source>
         <translation>Nahrávání:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1247"/>
-        <location filename="../ui/options.ui" line="1360"/>
+        <location filename="../ui/options.ui" line="1279"/>
+        <location filename="../ui/options.ui" line="1392"/>
         <source>Download:</source>
         <translation>Stahování:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1240"/>
-        <location filename="../ui/options.ui" line="1273"/>
-        <location filename="../ui/options.ui" line="1353"/>
-        <location filename="../ui/options.ui" line="1380"/>
+        <location filename="../ui/options.ui" line="1272"/>
+        <location filename="../ui/options.ui" line="1305"/>
+        <location filename="../ui/options.ui" line="1385"/>
+        <location filename="../ui/options.ui" line="1412"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -3582,12 +3628,12 @@ QGroupBox {
         <translation type="obsolete">Zjišťovat názvy počítačů protějšků</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1193"/>
+        <location filename="../ui/options.ui" line="1225"/>
         <source>Global speed limits</source>
         <translation>Celkové limity rychlosti</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1298"/>
+        <location filename="../ui/options.ui" line="1330"/>
         <source>Alternative global speed limits</source>
         <translation>Alternativní celkové limity rychlosti</translation>
     </message>
@@ -3596,7 +3642,7 @@ QGroupBox {
         <translation type="obsolete">Naplánovaný čas:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1455"/>
+        <location filename="../ui/options.ui" line="1487"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>do</translation>
@@ -3606,47 +3652,47 @@ QGroupBox {
         <translation type="obsolete">Ve dnech:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1507"/>
+        <location filename="../ui/options.ui" line="1539"/>
         <source>Every day</source>
         <translation>Každý den</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1512"/>
+        <location filename="../ui/options.ui" line="1544"/>
         <source>Week days</source>
         <translation>Pracovní dny</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1517"/>
+        <location filename="../ui/options.ui" line="1549"/>
         <source>Week ends</source>
         <translation>Víkend</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1582"/>
+        <location filename="../ui/options.ui" line="1614"/>
         <source>Bittorrent features</source>
         <translation>Vlastnosti bittorrentu</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1598"/>
+        <location filename="../ui/options.ui" line="1630"/>
         <source>Enable DHT network (decentralized)</source>
         <translation>Zapnout DHT síť (decentralizovaná)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1620"/>
+        <location filename="../ui/options.ui" line="1652"/>
         <source>Use a different port for DHT and Bittorrent</source>
         <translation>Použít jiný port pro DHT a bittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1640"/>
+        <location filename="../ui/options.ui" line="1672"/>
         <source>DHT port:</source>
         <translation>Port DHT:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1684"/>
+        <location filename="../ui/options.ui" line="1716"/>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translation>Zapnout Peer eXchange / PeX (vyžaduje restart)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1697"/>
+        <location filename="../ui/options.ui" line="1729"/>
         <source>Enable Local Peer Discovery</source>
         <translation>Zapnout Local Peer Discovery</translation>
     </message>
@@ -3655,17 +3701,17 @@ QGroupBox {
         <translation type="obsolete">Šifrování:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1717"/>
+        <location filename="../ui/options.ui" line="1749"/>
         <source>Enabled</source>
         <translation>Zapnuto</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1722"/>
+        <location filename="../ui/options.ui" line="1754"/>
         <source>Forced</source>
         <translation>Vynuceno</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1727"/>
+        <location filename="../ui/options.ui" line="1759"/>
         <source>Disabled</source>
         <translation>Vypnuto</translation>
     </message>
@@ -3690,29 +3736,29 @@ QGroupBox {
         <translation type="obsolete">Odstranit dokončené torrenty, když jejich poměr dosáhne:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1965"/>
+        <location filename="../ui/options.ui" line="1997"/>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translation>HTTP komunikace (trackery, web seedy, vyhledávač)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2002"/>
-        <location filename="../ui/options.ui" line="2197"/>
+        <location filename="../ui/options.ui" line="2034"/>
+        <location filename="../ui/options.ui" line="2229"/>
         <source>Host:</source>
         <translation>Host:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2155"/>
+        <location filename="../ui/options.ui" line="2187"/>
         <source>Peer Communications</source>
         <translation>Komunikace protějšků</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2176"/>
+        <location filename="../ui/options.ui" line="2208"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1973"/>
-        <location filename="../ui/options.ui" line="2163"/>
+        <location filename="../ui/options.ui" line="2005"/>
+        <location filename="../ui/options.ui" line="2195"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
@@ -3730,33 +3776,33 @@ QGroupBox {
         <translation>Odstranit adresář</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1115"/>
+        <location filename="../ui/options.ui" line="1147"/>
         <source>IP Filtering</source>
         <translation>Filtrování IP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1414"/>
+        <location filename="../ui/options.ui" line="1446"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation>Načasovat použití alternativních limitů rychlosti</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1431"/>
+        <location filename="../ui/options.ui" line="1463"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>od</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1499"/>
+        <location filename="../ui/options.ui" line="1531"/>
         <source>When:</source>
         <translation>Kdy:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1694"/>
+        <location filename="../ui/options.ui" line="1726"/>
         <source>Look for peers on your local network</source>
         <translation>Hledat protějšky na lokální síti</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1709"/>
+        <location filename="../ui/options.ui" line="1741"/>
         <source>Protocol encryption:</source>
         <translation>Šifrování protokolu:</translation>
     </message>
@@ -3790,48 +3836,48 @@ QGroupBox {
         <translation type="obsolete">Sestavení:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1981"/>
-        <location filename="../ui/options.ui" line="2171"/>
+        <location filename="../ui/options.ui" line="2013"/>
+        <location filename="../ui/options.ui" line="2203"/>
         <source>(None)</source>
         <translation>(žádný)</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1986"/>
-        <location filename="../ui/options.ui" line="2186"/>
+        <location filename="../ui/options.ui" line="2018"/>
+        <location filename="../ui/options.ui" line="2218"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2028"/>
-        <location filename="../ui/options.ui" line="2223"/>
-        <location filename="../ui/options.ui" line="2401"/>
+        <location filename="../ui/options.ui" line="2060"/>
+        <location filename="../ui/options.ui" line="2255"/>
+        <location filename="../ui/options.ui" line="2433"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2071"/>
-        <location filename="../ui/options.ui" line="2266"/>
-        <location filename="../ui/options.ui" line="2437"/>
+        <location filename="../ui/options.ui" line="2103"/>
+        <location filename="../ui/options.ui" line="2298"/>
+        <location filename="../ui/options.ui" line="2469"/>
         <source>Authentication</source>
         <translation>Ověření</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2083"/>
-        <location filename="../ui/options.ui" line="2278"/>
-        <location filename="../ui/options.ui" line="2445"/>
+        <location filename="../ui/options.ui" line="2115"/>
+        <location filename="../ui/options.ui" line="2310"/>
+        <location filename="../ui/options.ui" line="2477"/>
         <source>Username:</source>
         <translation>Uživatelské jméno:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2109"/>
-        <location filename="../ui/options.ui" line="2304"/>
-        <location filename="../ui/options.ui" line="2452"/>
+        <location filename="../ui/options.ui" line="2141"/>
+        <location filename="../ui/options.ui" line="2336"/>
+        <location filename="../ui/options.ui" line="2484"/>
         <source>Password:</source>
         <translation>Heslo:</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1991"/>
-        <location filename="../ui/options.ui" line="2181"/>
+        <location filename="../ui/options.ui" line="2023"/>
+        <location filename="../ui/options.ui" line="2213"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
@@ -3844,7 +3890,7 @@ QGroupBox {
         <translation type="obsolete">Aktivovat filtrování IP</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="1127"/>
+        <location filename="../ui/options.ui" line="1159"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Cesta k filtru (.dat, .p2p, .p2b):</translation>
     </message>
@@ -3853,7 +3899,7 @@ QGroupBox {
         <translation type="obsolete">Zapnout webové rozhraní</translation>
     </message>
     <message>
-        <location filename="../ui/options.ui" line="2395"/>
+        <location filename="../ui/options.ui" line="2427"/>
         <source>HTTP Server</source>
         <translation>HTTP Server</translation>
     </message>
@@ -6793,58 +6839,58 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation type="obsolete">Vyberte adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1202"/>
-        <location filename="../options_imp.cpp" line="1204"/>
+        <location filename="../options_imp.cpp" line="1210"/>
+        <location filename="../options_imp.cpp" line="1212"/>
         <source>Choose export directory</source>
         <translation>Vyberte adresář pro export</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1237"/>
-        <location filename="../options_imp.cpp" line="1239"/>
-        <location filename="../options_imp.cpp" line="1254"/>
-        <location filename="../options_imp.cpp" line="1256"/>
+        <location filename="../options_imp.cpp" line="1245"/>
+        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1262"/>
+        <location filename="../options_imp.cpp" line="1264"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresář pro ukládání</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1219"/>
-        <location filename="../options_imp.cpp" line="1221"/>
+        <location filename="../options_imp.cpp" line="1227"/>
+        <location filename="../options_imp.cpp" line="1229"/>
         <source>Choose an ip filter file</source>
         <translation>Vyberte soubor IP filtrů</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1159"/>
+        <location filename="../options_imp.cpp" line="1167"/>
         <source>Add directory to scan</source>
         <translation>Přidat adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1165"/>
+        <location filename="../options_imp.cpp" line="1173"/>
         <source>Folder is already being watched.</source>
         <translation>Adresář je již sledován.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1168"/>
+        <location filename="../options_imp.cpp" line="1176"/>
         <source>Folder does not exist.</source>
         <translation>Adresář neexistuje.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1171"/>
+        <location filename="../options_imp.cpp" line="1179"/>
         <source>Folder is not readable.</source>
         <translation>Adresář nelze přečíst.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1179"/>
+        <location filename="../options_imp.cpp" line="1187"/>
         <source>Failure</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1179"/>
+        <location filename="../options_imp.cpp" line="1187"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Nelze přidat adresář ke sledování &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1219"/>
-        <location filename="../options_imp.cpp" line="1221"/>
+        <location filename="../options_imp.cpp" line="1227"/>
+        <location filename="../options_imp.cpp" line="1229"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>
