@@ -1722,33 +1722,33 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
         <translation type="obsolete">Maximale</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="328"/>
-        <location filename="../eventmanager.cpp" line="329"/>
+        <location filename="../eventmanager.cpp" line="337"/>
+        <location filename="../eventmanager.cpp" line="338"/>
         <source>this session</source>
         <translation>cette session</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="333"/>
-        <location filename="../eventmanager.cpp" line="337"/>
+        <location filename="../eventmanager.cpp" line="342"/>
+        <location filename="../eventmanager.cpp" line="346"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="340"/>
+        <location filename="../eventmanager.cpp" line="349"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Complet depuis %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="343"/>
+        <location filename="../eventmanager.cpp" line="352"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="422"/>
         <location filename="../eventmanager.cpp" line="431"/>
+        <location filename="../eventmanager.cpp" line="440"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
