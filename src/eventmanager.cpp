@@ -163,6 +163,12 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
   }
   if(m.contains("export_dir"))
     Preferences::setExportDir(m["export_dir"].toString());
+  if(m.contains("mail_notification_enabled"))
+    Preferences::setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
+  if(m.contains("mail_notification_email"))
+    Preferences::setMailNotificationEmail(m["mail_notification_email"].toString());
+  if(m.contains("mail_notification_smtp"))
+    Preferences::setMailNotificationSMTP(m["mail_notification_smtp"].toString());
   if(m.contains("preallocate_all"))
     Preferences::preAllocateAllFiles(m["preallocate_all"].toBool());
   if(m.contains("queueing_enabled"))
@@ -265,6 +271,9 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["download_in_scan_dirs"] = var_list;
   data["export_dir_enabled"] = Preferences::isTorrentExportEnabled();
   data["export_dir"] = Preferences::getExportDir();
+  data["mail_notification_enabled"] = Preferences::isMailNotificationEnabled();
+  data["mail_notification_email"] = Preferences::getMailNotificationEmail();
+  data["mail_notification_smtp"] = Preferences::getMailNotificationSMTP();
   data["preallocate_all"] = Preferences::preAllocateAllFiles();
   data["queueing_enabled"] = Preferences::isQueueingSystemEnabled();
   data["max_active_downloads"] = Preferences::getMaxActiveDownloads();
