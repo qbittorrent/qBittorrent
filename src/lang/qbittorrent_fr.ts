@@ -588,33 +588,33 @@ Copyright © 2006 par Christophe DUMEZ&lt;br&gt;
     <message>
         <location filename="../bittorrent.cpp" line="1969"/>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom du torrent : %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1970"/>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille du torrent : %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1971"/>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin de sauvegarde : %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1972"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>Le torrent a été téléchargé en %1.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1973"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nous vous remercions d&apos;utiliser qBittorrent.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1975"/>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>[qBittorrent] %1 est terminé</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2215"/>
@@ -2845,7 +2845,7 @@ Voulez-vous réaliser cette association ?</translation>
     <message>
         <location filename="../GUI.cpp" line="112"/>
         <source>Set the password...</source>
-        <translation type="unfinished"></translation>
+        <translation>Définir le mot de passe...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="224"/>
@@ -2855,26 +2855,22 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Voulez-vous corriger cela ?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
         <source>Password lock</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Mot de passe de vérouillage</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
         <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Veuillez entrer le mot de passe de vérouillage :</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>Password update</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise à jour du mot de passe</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished"></translation>
+        <translation>Le mot de passe de vérouillage a été mis à jour</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="333"/>
@@ -2934,24 +2930,28 @@ Raison : %2</translation>
         <translation>Jamais</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>UI lock password</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe de vérouillage</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez entrer le mot de passe de vérouillage :</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="582"/>
         <source>Invalid password</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe invalide</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="582"/>
         <source>The password is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Le mot de passe fourni est invalide</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="644"/>
@@ -3879,9 +3879,8 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation>&amp;A Propos</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="164"/>
         <source>&amp;Start</source>
-        <translation>&amp;Démarrer</translation>
+        <translation type="obsolete">&amp;Démarrer</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="169"/>
@@ -3899,9 +3898,18 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <translation>Tout &amp;mettre en pause</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
         <source>S&amp;tart All</source>
-        <translation>Tout déma&amp;rrer</translation>
+        <translation type="obsolete">Tout déma&amp;rrer</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="164"/>
+        <source>&amp;Resume</source>
+        <translation>&amp;Démarrer</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="184"/>
+        <source>R&amp;esume All</source>
+        <translation>Dé&amp;marrer</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="189"/>
@@ -3960,19 +3968,24 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="332"/>
+        <location filename="../ui/mainwindow.ui" line="335"/>
+        <source>Shutdown computer when downloads complete</source>
+        <translation>Eteindre l&apos;ordinateur lors que les téléchargements sont terminés</translation>
+    </message>
+    <message>
         <source>Shutdown when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Eteindre</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="337"/>
         <location filename="../ui/mainwindow.ui" line="340"/>
+        <location filename="../ui/mainwindow.ui" line="343"/>
         <source>Lock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérouiller qBittorrent</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="343"/>
+        <location filename="../ui/mainwindow.ui" line="346"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -4725,17 +4738,17 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../ui/options.ui" line="883"/>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Notification par e-mail de fin de téléchargement</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="892"/>
         <source>Destination email:</source>
-        <translation type="unfinished"></translation>
+        <translation>E-mail de destination :</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="902"/>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serveur SMTP :</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1147"/>
@@ -6664,17 +6677,17 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../transferlistfilterswidget.h" line="318"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrer les torrents</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="319"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre en pause les torrents</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="320"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les torrents</translation>
     </message>
     <message>
         <source>Add label</source>
@@ -6769,19 +6782,16 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Visibilité des colonnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1120"/>
         <source>Start</source>
-        <translation>Démarrer</translation>
+        <translation type="obsolete">Démarrer</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1122"/>
         <source>Pause</source>
-        <translation>Pause</translation>
+        <translation type="obsolete">Pause</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1124"/>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="obsolete">Supprimer</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -6928,6 +6938,24 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
+        <location filename="../transferlistwidget.cpp" line="1120"/>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation>Démarrer</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1122"/>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation>Mettre en pause</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1124"/>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
         <location filename="../transferlistwidget.cpp" line="1126"/>
         <source>Preview file...</source>
         <translation>Prévisualiser fichier...</translation>
@@ -6945,7 +6973,7 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="1286"/>
         <source>Priority</source>
-        <translation type="unfinished">Priorité</translation>
+        <translation>Priorité</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -6964,25 +6992,25 @@ Veuillez l&apos;installer manuellement.</translation>
         <location filename="../transferlistwidget.cpp" line="1136"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Augmenter</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1138"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Baisser</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1140"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1142"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Minimum</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1144"/>
@@ -8426,7 +8454,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../misc.cpp" line="258"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent va maintenant éteindre l&apos;ordinateur car tous les téléchargements sont terminés.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="491"/>

@@ -855,14 +855,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Password update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1494,7 +1486,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation>Za&amp;počni</translation>
+        <translation type="obsolete">Za&amp;počni</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
@@ -1510,7 +1502,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation>Započni &amp;sve</translation>
+        <translation type="obsolete">Započni &amp;sve</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
@@ -1537,15 +1529,23 @@ Neće biti daljnjih napomena.</translation>
         <translation>Preglednik dnevnika</translation>
     </message>
     <message>
-        <source>Shutdown when downloads complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown computer when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>R&amp;esume All</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3309,15 +3309,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Start</source>
-        <translation>Započni</translation>
+        <translation type="obsolete">Započni</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pauziraj</translation>
+        <translation type="obsolete">Pauziraj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Izbriši</translation>
+        <translation type="obsolete">Izbriši</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -3523,6 +3523,21 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioritet</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">Izbriši</translation>
     </message>
 </context>
 <context>

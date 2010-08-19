@@ -1346,14 +1346,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Password update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2004,7 +1996,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation>&amp;Старт</translation>
+        <translation type="obsolete">&amp;Старт</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
@@ -2020,7 +2012,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation>С&amp;тартуј све</translation>
+        <translation type="obsolete">С&amp;тартуј све</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
@@ -2047,15 +2039,23 @@ No further notices will be issued.</source>
         <translation>Преглед дневника</translation>
     </message>
     <message>
-        <source>Shutdown when downloads complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown computer when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>R&amp;esume All</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3929,15 +3929,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="obsolete">Старт</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation type="obsolete">Пауза</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Обриши</translation>
+        <translation type="obsolete">Обриши</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -4148,6 +4148,21 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation type="unfinished">Приоритет</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished">Пауза</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">Обриши</translation>
     </message>
 </context>
 <context>

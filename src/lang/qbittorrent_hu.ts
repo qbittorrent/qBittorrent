@@ -2195,18 +2195,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Szeretnéd alapértelmezetté tenni?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>Password update</source>
         <translation type="unfinished"></translation>
@@ -2274,11 +2262,15 @@ Oka: %2</translation>
         <translation>Soha</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
@@ -3171,9 +3163,8 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="164"/>
         <source>&amp;Start</source>
-        <translation>&amp;Indítás</translation>
+        <translation type="obsolete">&amp;Indítás</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="169"/>
@@ -3191,9 +3182,18 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation>Ö&amp;sszes leállítása</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
         <source>S&amp;tart All</source>
-        <translation>Ö&amp;sszes indítása</translation>
+        <translation type="obsolete">Ö&amp;sszes indítása</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="164"/>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="184"/>
+        <source>R&amp;esume All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="189"/>
@@ -3252,17 +3252,18 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="332"/>
-        <source>Shutdown when downloads complete</source>
+        <location filename="../ui/mainwindow.ui" line="335"/>
+        <source>Shutdown computer when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="337"/>
         <location filename="../ui/mainwindow.ui" line="340"/>
+        <location filename="../ui/mainwindow.ui" line="343"/>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="343"/>
+        <location filename="../ui/mainwindow.ui" line="346"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5897,19 +5898,16 @@ Kérlek telepítsd manuálisan.</translation>
         <translation>Oszlop megjelenítése</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1120"/>
         <source>Start</source>
-        <translation>Indítás</translation>
+        <translation type="obsolete">Indítás</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1122"/>
         <source>Pause</source>
-        <translation>Szünet</translation>
+        <translation type="obsolete">Szünet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1124"/>
         <source>Delete</source>
-        <translation>Törlés</translation>
+        <translation type="obsolete">Törlés</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -6054,6 +6052,24 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../transferlistwidget.cpp" line="1080"/>
         <source>New name:</source>
         <translation>Új név:</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1120"/>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1122"/>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished">Szünet</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1124"/>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">Törlés</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1126"/>

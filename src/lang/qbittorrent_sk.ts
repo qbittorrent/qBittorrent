@@ -2698,14 +2698,6 @@ Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Password update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3496,7 +3488,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation>&amp;Spustiť</translation>
+        <translation type="obsolete">&amp;Spustiť</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
@@ -3512,7 +3504,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation>Spus&amp;tiť všetky</translation>
+        <translation type="obsolete">Spus&amp;tiť všetky</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
@@ -3539,15 +3531,23 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <translation></translation>
     </message>
     <message>
-        <source>Shutdown when downloads complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown computer when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>R&amp;esume All</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5614,15 +5614,15 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Spustiť</translation>
+        <translation type="obsolete">Spustiť</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pozastaviť</translation>
+        <translation type="obsolete">Pozastaviť</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Zmazať</translation>
+        <translation type="obsolete">Zmazať</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -5850,6 +5850,21 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Priority</source>
         <translation type="unfinished">Priorita</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished">Pozastaviť</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">Zmazať</translation>
     </message>
 </context>
 <context>

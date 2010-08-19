@@ -2129,11 +2129,15 @@ You should get this information from your Web browser preferences.</source>
         <translation>Общ лимит Скорост на сваляне</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
@@ -2891,18 +2895,6 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../GUI.cpp" line="223"/>
         <source>Torrent file association</source>
         <translation>Свързване на торент файла</translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="309"/>
@@ -3733,9 +3725,8 @@ No further notices will be issued.</source>
         <translation>&amp;Относно</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="164"/>
         <source>&amp;Start</source>
-        <translation>&amp;Старт</translation>
+        <translation type="obsolete">&amp;Старт</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="169"/>
@@ -3753,9 +3744,18 @@ No further notices will be issued.</source>
         <translation>П&amp;ауза Всички</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
         <source>S&amp;tart All</source>
-        <translation>С&amp;тарт Всички</translation>
+        <translation type="obsolete">С&amp;тарт Всички</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="164"/>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="184"/>
+        <source>R&amp;esume All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="189"/>
@@ -3794,17 +3794,18 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="332"/>
-        <source>Shutdown when downloads complete</source>
+        <location filename="../ui/mainwindow.ui" line="335"/>
+        <source>Shutdown computer when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="337"/>
         <location filename="../ui/mainwindow.ui" line="340"/>
+        <location filename="../ui/mainwindow.ui" line="343"/>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="343"/>
+        <location filename="../ui/mainwindow.ui" line="346"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6496,19 +6497,16 @@ Please install it manually.</source>
         <translation>Видимост на колона</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1120"/>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="obsolete">Старт</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1122"/>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation type="obsolete">Пауза</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1124"/>
         <source>Delete</source>
-        <translation>Изтрий</translation>
+        <translation type="obsolete">Изтрий</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -6653,6 +6651,24 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="1080"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1120"/>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1122"/>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished">Пауза</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1124"/>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">Изтрий</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1126"/>

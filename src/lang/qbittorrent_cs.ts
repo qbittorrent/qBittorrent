@@ -1642,18 +1642,6 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
         <translation>Asociace souboru .torrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>Password update</source>
         <translation type="unfinished"></translation>
@@ -1718,11 +1706,15 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
         <translation>Celkový limit rychlosti stahování</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
@@ -2724,9 +2716,8 @@ Další upozornění již nebudou zobrazena.</translation>
         <translation>O &amp;aplikaci</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="164"/>
         <source>&amp;Start</source>
-        <translation>Spust&amp;it</translation>
+        <translation type="obsolete">Spust&amp;it</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="169"/>
@@ -2744,9 +2735,18 @@ Další upozornění již nebudou zobrazena.</translation>
         <translation>Pozastavit vš&amp;e</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
         <source>S&amp;tart All</source>
-        <translation>Spustit &amp;vše</translation>
+        <translation type="obsolete">Spustit &amp;vše</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="164"/>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="184"/>
+        <source>R&amp;esume All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="189"/>
@@ -2805,17 +2805,18 @@ Další upozornění již nebudou zobrazena.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="332"/>
-        <source>Shutdown when downloads complete</source>
+        <location filename="../ui/mainwindow.ui" line="335"/>
+        <source>Shutdown computer when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="337"/>
         <location filename="../ui/mainwindow.ui" line="340"/>
+        <location filename="../ui/mainwindow.ui" line="343"/>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="343"/>
+        <location filename="../ui/mainwindow.ui" line="346"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5358,19 +5359,16 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Zobrazení sloupců</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1120"/>
         <source>Start</source>
-        <translation>Spustit</translation>
+        <translation type="obsolete">Spustit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1122"/>
         <source>Pause</source>
-        <translation>Pozastavit</translation>
+        <translation type="obsolete">Pozastavit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1124"/>
         <source>Delete</source>
-        <translation>Smazat</translation>
+        <translation type="obsolete">Smazat</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -5515,6 +5513,24 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../transferlistwidget.cpp" line="1080"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1120"/>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1122"/>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished">Pozastavit</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1124"/>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">Smazat</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1126"/>

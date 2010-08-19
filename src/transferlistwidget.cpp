@@ -1117,11 +1117,11 @@ void TransferListWidget::removeLabelFromRows(QString label) {
 
 void TransferListWidget::displayListMenu(const QPoint&) {
   // Create actions
-  QAction actionStart(QIcon(QString::fromUtf8(":/Icons/skin/play.png")), tr("Start"), 0);
+  QAction actionStart(QIcon(QString::fromUtf8(":/Icons/skin/play.png")), tr("Resume", "Resume/start the torrent"), 0);
   connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
-  QAction actionPause(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")), tr("Pause"), 0);
+  QAction actionPause(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")), tr("Pause", "Pause the torrent"), 0);
   connect(&actionPause, SIGNAL(triggered()), this, SLOT(pauseSelectedTorrents()));
-  QAction actionDelete(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")), tr("Delete"), 0);
+  QAction actionDelete(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")), tr("Delete", "Delete the torrent"), 0);
   connect(&actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedTorrents()));
   QAction actionPreview_file(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")), tr("Preview file..."), 0);
   connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));

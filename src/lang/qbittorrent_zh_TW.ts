@@ -1850,14 +1850,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Password update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2516,7 +2508,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation>開始 (&amp;S)</translation>
+        <translation type="obsolete">開始 (&amp;S)</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
@@ -2532,7 +2524,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>S&amp;tart All</source>
-        <translation>全部開始 (&amp;T)</translation>
+        <translation type="obsolete">全部開始 (&amp;T)</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
@@ -2559,15 +2551,23 @@ No further notices will be issued.</source>
         <translation>紀錄檢視器</translation>
     </message>
     <message>
-        <source>Shutdown when downloads complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown computer when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>R&amp;esume All</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4568,15 +4568,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Start</source>
-        <translation>開始</translation>
+        <translation type="obsolete">開始</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>暫停</translation>
+        <translation type="obsolete">暫停</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>刪除</translation>
+        <translation type="obsolete">刪除</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -4804,6 +4804,21 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation type="unfinished">優先度</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished">暫停</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">刪除</translation>
     </message>
 </context>
 <context>

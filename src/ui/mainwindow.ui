@@ -161,7 +161,7 @@
   </action>
   <action name="actionStart">
    <property name="text">
-    <string>&amp;Start</string>
+    <string>&amp;Resume</string>
    </property>
   </action>
   <action name="actionPause">
@@ -181,7 +181,7 @@
   </action>
   <action name="actionStart_All">
    <property name="text">
-    <string>S&amp;tart All</string>
+    <string>R&amp;esume All</string>
    </property>
   </action>
   <action name="actionWebsite">
@@ -329,7 +329,10 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Shutdown when downloads complete</string>
+    <string>Shutdown computer when downloads complete</string>
+   </property>
+   <property name="toolTip">
+    <string>Shutdown computer when downloads complete</string>
    </property>
   </action>
   <action name="actionLock_qBittorrent">

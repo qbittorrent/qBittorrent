@@ -2187,18 +2187,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>Password update</source>
         <translation type="unfinished"></translation>
@@ -2271,11 +2259,15 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
@@ -2921,11 +2913,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="164"/>
-        <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="169"/>
         <source>&amp;Pause</source>
         <translation type="unfinished"></translation>
@@ -2941,8 +2928,13 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="164"/>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="184"/>
-        <source>S&amp;tart All</source>
+        <source>R&amp;esume All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3018,17 +3010,18 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="332"/>
-        <source>Shutdown when downloads complete</source>
+        <location filename="../ui/mainwindow.ui" line="335"/>
+        <source>Shutdown computer when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="337"/>
         <location filename="../ui/mainwindow.ui" line="340"/>
+        <location filename="../ui/mainwindow.ui" line="343"/>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="343"/>
+        <location filename="../ui/mainwindow.ui" line="346"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5408,19 +5401,16 @@ Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1120"/>
         <source>Start</source>
-        <translation type="unfinished">開始</translation>
+        <translation type="obsolete">開始</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1122"/>
         <source>Pause</source>
-        <translation type="unfinished">一時停止</translation>
+        <translation type="obsolete">一時停止</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1124"/>
         <source>Delete</source>
-        <translation type="unfinished">削除</translation>
+        <translation type="obsolete">削除</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -5565,6 +5555,24 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="1080"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1120"/>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1122"/>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished">一時停止</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1124"/>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished">削除</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1126"/>

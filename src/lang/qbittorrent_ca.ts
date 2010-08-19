@@ -2633,18 +2633,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 ¿Vol que qBittorrent sigui el programa per defecte per gestionar aquests arxius?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Password lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GUI.cpp" line="304"/>
-        <location filename="../GUI.cpp" line="318"/>
-        <source>Please define the locking password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="309"/>
         <source>Password update</source>
         <translation type="unfinished"></translation>
@@ -2728,11 +2716,15 @@ Raó: %2</translation>
         <translation>Límit global de Baixada</translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GUI.cpp" line="304"/>
+        <location filename="../GUI.cpp" line="318"/>
         <location filename="../GUI.cpp" line="571"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
@@ -3633,9 +3625,8 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <translation>&amp;Sobre</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="164"/>
         <source>&amp;Start</source>
-        <translation>&amp;Començar</translation>
+        <translation type="obsolete">&amp;Començar</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="169"/>
@@ -3653,9 +3644,18 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <translation>Pa&amp;usar Totes</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
         <source>S&amp;tart All</source>
-        <translation>Iniciar &amp;Totes</translation>
+        <translation type="obsolete">Iniciar &amp;Totes</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="164"/>
+        <source>&amp;Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="184"/>
+        <source>R&amp;esume All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="189"/>
@@ -3694,17 +3694,18 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="332"/>
-        <source>Shutdown when downloads complete</source>
+        <location filename="../ui/mainwindow.ui" line="335"/>
+        <source>Shutdown computer when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="337"/>
         <location filename="../ui/mainwindow.ui" line="340"/>
+        <location filename="../ui/mainwindow.ui" line="343"/>
         <source>Lock qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="343"/>
+        <location filename="../ui/mainwindow.ui" line="346"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6385,19 +6386,16 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Visibilitat de columnes</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1120"/>
         <source>Start</source>
-        <translation>Començar</translation>
+        <translation type="obsolete">Començar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1122"/>
         <source>Pause</source>
-        <translation>Interrompre</translation>
+        <translation type="obsolete">Interrompre</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1124"/>
         <source>Delete</source>
-        <translation>Esborrar</translation>
+        <translation type="obsolete">Esborrar</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -6542,6 +6540,24 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <location filename="../transferlistwidget.cpp" line="1080"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1120"/>
+        <source>Resume</source>
+        <comment>Resume/start the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1122"/>
+        <source>Pause</source>
+        <comment>Pause the torrent</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="1124"/>
+        <source>Delete</source>
+        <comment>Delete the torrent</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1126"/>

@@ -301,7 +301,7 @@ void GUI::defineUILockPassword() {
   QString old_pass_md5 = Preferences::getUILockPasswordMD5();
   if(old_pass_md5.isNull()) old_pass_md5 = "";
   bool ok = false;
-  QString new_clear_password = QInputDialog::getText(this, tr("Password lock"), tr("Please define the locking password:"), QLineEdit::Password, old_pass_md5, &ok);
+  QString new_clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, old_pass_md5, &ok);
   if(ok) {
     if(new_clear_password != old_pass_md5) {
       Preferences::setUILockPassword(new_clear_password);
@@ -315,7 +315,7 @@ void GUI::on_actionLock_qBittorrent_triggered() {
   if(Preferences::getUILockPasswordMD5().isEmpty()) {
     // Ask for a password
     bool ok = false;
-    QString clear_password = QInputDialog::getText(this, tr("Password lock"), tr("Please define the locking password:"), QLineEdit::Password, "", &ok);
+    QString clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
     if(!ok) return;
     Preferences::setUILockPassword(clear_password);
   }
