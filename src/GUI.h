@@ -98,6 +98,9 @@ protected slots:
   void handleDownloadFromUrlFailure(QString, QString) const;
   void createSystrayDelayed();
   void tab_changed(int);
+  void on_actionLock_qBittorrent_triggered();
+  void defineUILockPassword();
+  bool unlockUI();
   // Keyboard shortcuts
   void createKeyboardShortcuts();
   void displayTransferTab() const;
@@ -151,6 +154,7 @@ private:
   PropertiesWidget *properties;
   bool displaySpeedInTitle;
   bool force_exit;
+  bool ui_locked;
   // Keyboard shortcuts
   QShortcut *switchSearchShortcut;
   QShortcut *switchSearchShortcut2;

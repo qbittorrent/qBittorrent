@@ -83,7 +83,7 @@ using namespace libtorrent;
 // Constructor
 GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), force_exit(false) {
   setupUi(this);
-
+  ui_locked = Preferences::isUILocked();
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   displaySpeedInTitle = Preferences::speedInTitleBar();
   // Setting icons
@@ -107,6 +107,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qb_question.png")));
+  actionLock_qBittorrent->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/encrypted32.png")));
+  QMenu *lockMenu = new QMenu();
+  QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("Set the password..."));
+  connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
+  actionLock_qBittorrent->setMenu(lockMenu);
   prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
   prioSeparator2 = menu_Edit->insertSeparator(actionDecreasePriority);
   prioSeparator->setVisible(false);
@@ -160,10 +165,6 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
 
   // Configure BT session according to options
   loadPreferences(false);
-  // Resume unfinished torrents
-  BTSession->startUpTorrents();
-  // Add torrent given on command line
-  processParams(torrentCmdLine);
 
   // Start connection checking timer
   guiUpdater = new QTimer(this);
@@ -204,9 +205,17 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   }while(transferListFilters->getStatusFilters()->verticalScrollBar()->sliderPosition() > 0);
   transferListFilters->getStatusFilters()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-  if(Preferences::startMinimized()) {
-    showMinimized();
+  if(ui_locked) {
+    hide();
+  } else {
+    if(Preferences::startMinimized())
+      showMinimized();
   }
+
+  // Resume unfinished torrents
+  BTSession->startUpTorrents();
+  // Add torrent given on command line
+  processParams(torrentCmdLine);
 
   qDebug("GUI Built");
 #ifdef Q_WS_WIN
@@ -286,6 +295,34 @@ GUI::~GUI() {
   // actually be deleted now and destruction
   // becomes synchronous
   qDebug("Exiting GUI destructor...");
+}
+
+void GUI::defineUILockPassword() {
+  QString old_pass_md5 = Preferences::getUILockPasswordMD5();
+  if(old_pass_md5.isNull()) old_pass_md5 = "";
+  bool ok = false;
+  QString new_clear_password = QInputDialog::getText(this, tr("Password lock"), tr("Please define the locking password:"), QLineEdit::Password, old_pass_md5, &ok);
+  if(ok) {
+    if(new_clear_password != old_pass_md5) {
+      Preferences::setUILockPassword(new_clear_password);
+    }
+    QMessageBox::information(this, tr("Password update"), tr("The UI lock password has been successfully updated"));
+  }
+}
+
+void GUI::on_actionLock_qBittorrent_triggered() {
+  // Check if there is a password
+  if(Preferences::getUILockPasswordMD5().isEmpty()) {
+    // Ask for a password
+    bool ok = false;
+    QString clear_password = QInputDialog::getText(this, tr("Password lock"), tr("Please define the locking password:"), QLineEdit::Password, "", &ok);
+    if(!ok) return;
+    Preferences::setUILockPassword(clear_password);
+  }
+  // Lock the interface
+  ui_locked = true;
+  Preferences::setUILocked(true);
+  hide();
 }
 
 void GUI::displayRSSTab(bool enable) {
@@ -529,10 +566,32 @@ void GUI::setTabText(int index, QString text) const {
   tabs->setTabText(index, text);
 }
 
+bool GUI::unlockUI() {
+  bool ok = false;
+  QString clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
+  if(!ok) return false;
+  QString real_pass_md5 = Preferences::getUILockPasswordMD5();
+  QCryptographicHash md5(QCryptographicHash::Md5);
+  md5.addData(clear_password.toLocal8Bit());
+  QString password_md5 = md5.result().toHex();
+  if(real_pass_md5 == password_md5) {
+    ui_locked = false;
+    Preferences::setUILocked(false);
+    return true;
+  }
+  QMessageBox::warning(this, tr("Invalid password"), tr("The password is invalid"));
+  return false;
+}
+
 // Toggle Main window visibility
 void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
   if(e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick) {
     if(isHidden()) {
+      if(ui_locked) {
+        // Ask for UI lock password
+        if(!unlockUI())
+          return;
+      }
       show();
       if(isMinimized()) {
         if(isMaximized()) {
@@ -739,8 +798,8 @@ void GUI::on_actionOpen_triggered() {
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   const QStringList pathsList = QFileDialog::getOpenFileNames(0,
-                                                               tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
-                                                               tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
+                                                              tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
+                                                              tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!pathsList.empty()) {
     const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
     const uint listSize = pathsList.size();
@@ -822,6 +881,7 @@ void GUI::loadPreferences(bool configure_session) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
 #ifndef Q_WS_MAC
   const bool newSystrayIntegration = Preferences::systrayIntegration();
+  actionLock_qBittorrent->setEnabled(newSystrayIntegration);
   if(newSystrayIntegration != (systrayIcon!=0)) {
     if(newSystrayIntegration) {
       // create the trayicon

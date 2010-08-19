@@ -135,6 +135,8 @@
    <addaction name="actionOptions"/>
    <addaction name="separator"/>
    <addaction name="actionExit"/>
+   <addaction name="separator"/>
+   <addaction name="actionLock_qBittorrent"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
@@ -328,6 +330,17 @@
    </property>
    <property name="text">
     <string>Shutdown when downloads complete</string>
+   </property>
+  </action>
+  <action name="actionLock_qBittorrent">
+   <property name="text">
+    <string>Lock qBittorrent</string>
+   </property>
+   <property name="toolTip">
+    <string>Lock qBittorrent</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>

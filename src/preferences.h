@@ -852,6 +852,29 @@ public:
 
   // Advanced settings
 
+  static void setUILockPassword(QString clear_password) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    QCryptographicHash md5(QCryptographicHash::Md5);
+    md5.addData(clear_password.toLocal8Bit());
+    QString md5_password = md5.result().toHex();
+    settings.setValue("Locking/password", md5_password);
+  }
+
+  static QString getUILockPasswordMD5() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("Locking/password", QString()).toString();
+  }
+
+  static bool isUILocked() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("Locking/locked", false).toBool();
+  }
+
+  static void setUILocked(bool locked) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.setValue("Locking/locked", locked);
+  }
+
   static bool shutdownWhenDownloadsComplete() {
     QIniSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/AutoShutDownOnCompletion"), false).toBool();

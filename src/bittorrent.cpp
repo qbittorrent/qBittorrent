@@ -852,7 +852,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     if (load_file(fastresume_path.toLocal8Bit().constData(), buf) == 0) {
       fastResume = true;
       p.resume_data = &buf;
-      qDebug("Successfuly loaded");
+      qDebug("Successfully loaded");
     }
   }
   QString torrent_name = misc::magnetUriToName(magnet_uri);
@@ -1098,7 +1098,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
     if (load_file(fastresume_path.toLocal8Bit().constData(), buf) == 0) {
       fastResume = true;
       p.resume_data = &buf;
-      qDebug("Successfuly loaded");
+      qDebug("Successfully loaded");
     }
   }
   QString savePath;

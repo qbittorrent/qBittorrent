@@ -161,7 +161,7 @@ void HttpConnection::respond() {
     write();
     return;
   }
-  // Client sucessfuly authenticated, reset number of failed attempts
+  // Client successfully authenticated, reset number of failed attempts
   parent->resetNbFailedAttemptsForIp(peer_ip);
   QString url  = parser.url();
   // Favicon

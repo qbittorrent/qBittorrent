@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
     - FEATURE: Added actions to "Move to top/bottom" of priority queue
     - FEATURE: Added Auto-Shutdown on downloads completion feature
+    - FEATURE: Added button to password-lock the UI
     - FEATURE: Added label-level Pause/Resume/Delete actions
 
 * Tue Jul 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.3.0

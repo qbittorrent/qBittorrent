@@ -2764,6 +2764,42 @@ Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
         <source>Exiting qBittorrent</source>
         <translation>Zamykanie qBittorrent</translation>
     </message>
+    <message>
+        <source>Set the password...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please define the locking password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The UI lock password has been successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI lock password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the UI lock password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The password is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -3590,6 +3626,14 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Shutdown when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
