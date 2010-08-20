@@ -308,7 +308,7 @@ int main(int argc, char *argv[]){
 #endif
 
   int ret = app.exec();
-
+  qDebug("Application has exited");
   return ret;
 }
 

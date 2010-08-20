@@ -2049,12 +2049,16 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
 #if LIBTORRENT_VERSION_MINOR < 15
               saveDHTEntry();
 #endif
+              qDebug("Saving session state");
               saveSessionState();
+              qDebug("Saving fast resume data");
               saveFastResumeData();
+              qDebug("Deleting the session");
               delete s;
+              qDebug("Sending computer shutdown signal");
               misc::shutdownComputer();
-              exiting = true;
-              qApp->exit();
+              qDebug("Exiting the application");
+              exit(0);
             }
           }
         }
