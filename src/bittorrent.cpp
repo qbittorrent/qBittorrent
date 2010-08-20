@@ -204,7 +204,7 @@ bool Bittorrent::isPexEnabled() const {
 void Bittorrent::processBigRatios() {
   if(ratio_limit <= 0) return;
   qDebug("Process big ratios...");
-  std::vector<torrent_handle> torrents = getTorrents();
+  std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     const QTorrentHandle h(*torrentIT);
@@ -367,7 +367,7 @@ void Bittorrent::configureSession() {
       geoipDBLoaded = true;
     }
     // Update torrent handles
-    std::vector<torrent_handle> torrents = getTorrents();
+    std::vector<torrent_handle> torrents = s->get_torrents();
     std::vector<torrent_handle>::iterator torrentIT;
     for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
@@ -701,17 +701,13 @@ qlonglong Bittorrent::getETA(QString hash) {
   return (qlonglong) floor((double) (bytes_left) / avg_speed);
 }
 
-std::vector<torrent_handle> Bittorrent::getTorrents() const {
-  return s->get_torrents();
-}
-
 // Return the torrent handle, given its hash
 QTorrentHandle Bittorrent::getTorrentHandle(QString hash) const{
   return QTorrentHandle(s->find_torrent(misc::QStringToSha1(hash)));
 }
 
 bool Bittorrent::hasActiveTorrents() const {
-  std::vector<torrent_handle> torrents = getTorrents();
+  std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     const QTorrentHandle h(*torrentIT);
@@ -722,12 +718,16 @@ bool Bittorrent::hasActiveTorrents() const {
 }
 
 bool Bittorrent::hasDownloadingTorrents() const {
-  std::vector<torrent_handle> torrents = getTorrents();
+  std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    const QTorrentHandle h(*torrentIT);
-    if(h.is_valid() && (h.state() == torrent_status::downloading || h.state() == torrent_status::downloading_metadata))
-      return true;
+    if(torrentIT->is_valid()) {
+      try {
+        const torrent_status::state_t state = torrentIT->status().state;
+        if(state != torrent_status::finished && state != torrent_status::seeding)
+          return true;
+      } catch(std::exception) {}
+    }
   }
   return false;
 }
@@ -775,7 +775,7 @@ void Bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
 }
 
 void Bittorrent::pauseAllTorrents() {
-  std::vector<torrent_handle> torrents = getTorrents();
+  std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
@@ -787,8 +787,12 @@ void Bittorrent::pauseAllTorrents() {
   }
 }
 
+std::vector<torrent_handle> Bittorrent::getTorrents() const {
+  return s->get_torrents();
+}
+
 void Bittorrent::resumeAllTorrents() {
-  std::vector<torrent_handle> torrents = getTorrents();
+  std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
@@ -1672,7 +1676,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     if(temppath.isEmpty()) {
       // Disabling temp dir
       // Moving all torrents to their destination folder
-      std::vector<torrent_handle> torrents = getTorrents();
+      std::vector<torrent_handle> torrents = s->get_torrents();
       std::vector<torrent_handle>::iterator torrentIT;
       for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
@@ -1682,7 +1686,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     } else {
       qDebug("Enabling default temp path...");
       // Moving all downloading torrents to temporary save path
-      std::vector<torrent_handle> torrents = getTorrents();
+      std::vector<torrent_handle> torrents = s->get_torrents();
       std::vector<torrent_handle>::iterator torrentIT;
       for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
@@ -1764,7 +1768,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       appendLabelToSavePath = !appendLabelToSavePath;
       if(appendLabelToSavePath) {
         // Move torrents storage to sub folder with label name
-        std::vector<torrent_handle> torrents = getTorrents();
+        std::vector<torrent_handle> torrents = s->get_torrents();
         std::vector<torrent_handle>::iterator torrentIT;
         for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
           QTorrentHandle h = QTorrentHandle(*torrentIT);
@@ -1779,7 +1783,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     if(appendqBExtension != append) {
       appendqBExtension = !appendqBExtension;
       // append or remove .!qB extension for incomplete files
-      std::vector<torrent_handle> torrents = getTorrents();
+      std::vector<torrent_handle> torrents = s->get_torrents();
       std::vector<torrent_handle>::iterator torrentIT;
       for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
@@ -1973,7 +1977,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     content += tr("Thank you for using qBittorrent.") + "\n";
     // Send the notification email
     new Smtp("notification@qbittorrent.org", Preferences::getMailNotificationEmail(), tr("[qBittorrent] %1 has finished downloading").arg(h.name()), content);
-}
+  }
 
   // Read alerts sent by the Bittorrent session
   void Bittorrent::readAlerts() {
