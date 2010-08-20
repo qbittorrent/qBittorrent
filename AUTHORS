@@ -12,7 +12,7 @@ Contributors:
 * Silvan Scherrer <silvan.scherrer@aroa.ch>
 
 Code from other projects:
-* files src/qtsingleapp/*
+* files src/qtsingleapp/* src/lineedit/*
   copyright: Nokia Corporation
   license: LGPL
 

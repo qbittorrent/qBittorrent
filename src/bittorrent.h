@@ -201,6 +201,8 @@ protected slots:
   void exportTorrentFiles(QString path);
   void saveTempFastResumeData();
   void sendNotificationEmail(QTorrentHandle h);
+  void autoRunExternalProgram(QTorrentHandle h, bool async=true);
+  void cleanUpAutoRunProcess(int);
 
 signals:
   void addedTorrent(QTorrentHandle& h);

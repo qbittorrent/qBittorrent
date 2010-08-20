@@ -34,6 +34,7 @@
 #include <QNetworkInterface>
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
+#include <QProcess>
 #include <stdlib.h>
 
 #include "smtp.h"
@@ -1968,6 +1969,32 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
     }
   }
+
+  void Bittorrent::cleanUpAutoRunProcess(int) {
+    sender()->deleteLater();
+  }
+
+  void Bittorrent::autoRunExternalProgram(QTorrentHandle h, bool async) {
+    if(!h.is_valid()) return;
+    QString program = Preferences::getAutoRunProgram().trimmed();
+    if(program.isEmpty()) return;
+    // Replace %f by torrent path
+    QString torrent_path;
+    if(h.num_files() == 1)
+      torrent_path = h.firstFileSavePath();
+    else
+      torrent_path = h.save_path();
+    program.replace("%f", torrent_path);
+    QProcess *process = new QProcess;
+    if(async) {
+      connect(process, SIGNAL(finished(int)), this, SLOT(cleanUpAutoRunProcess(int)));
+      process->start(program);
+    } else {
+      process->execute(program);
+      delete process;
+    }
+  }
+
   void Bittorrent::sendNotificationEmail(QTorrentHandle h) {
     // Prepare mail content
     QString content = tr("Torrent name: %1").arg(h.name()) + "\n";
@@ -2040,11 +2067,15 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
           }
           qDebug("Received finished alert for %s", qPrintable(h.name()));
           if(!was_already_seeded) {
+            bool will_shutdown = Preferences::shutdownWhenDownloadsComplete() && !hasDownloadingTorrents();
+            // AutoRun program
+            if(Preferences::isAutoRunEnabled())
+              autoRunExternalProgram(h, will_shutdown);
             // Mail notification
             if(Preferences::isMailNotificationEnabled())
               sendNotificationEmail(h);
             // Auto-Shutdown
-            if(Preferences::shutdownWhenDownloadsComplete() && !hasDownloadingTorrents()) {
+            if(will_shutdown) {
               qDebug("Preparing for auto-shutdown because all downloads are complete!");
 #if LIBTORRENT_VERSION_MINOR < 15
               saveDHTEntry();

@@ -202,6 +202,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(groupMailNotification, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(dest_email_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(smtp_server_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     // Connection tab
     connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
     connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -393,6 +395,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     Preferences::setMailNotificationEnabled(groupMailNotification->isChecked());
     Preferences::setMailNotificationEmail(dest_email_txt->text());
     Preferences::setMailNotificationSMTP(smtp_server_txt->text());
+    Preferences::setAutoRunEnabled(autoRunBox->isChecked());
+    Preferences::setAutoRunProgram(autoRun_txt->text());
     settings.setValue(QString::fromUtf8("DblClOnTorDl"), getActionOnDblClOnTorrentDl());
     settings.setValue(QString::fromUtf8("DblClOnTorFn"), getActionOnDblClOnTorrentFn());
     // End Downloads preferences
@@ -611,6 +615,8 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     groupMailNotification->setChecked(Preferences::isMailNotificationEnabled());
     dest_email_txt->setText(Preferences::getMailNotificationEmail());
     smtp_server_txt->setText(Preferences::getMailNotificationSMTP());
+    autoRunBox->setChecked(Preferences::isAutoRunEnabled());
+    autoRun_txt->setText(Preferences::getAutoRunProgram());
     intValue = Preferences::getActionOnDblClOnTorrentDl();
     if(intValue >= actionTorrentDlOnDblClBox->count())
       intValue = 0;

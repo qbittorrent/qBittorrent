@@ -905,6 +905,26 @@ public:
     return settings.setValue("Locking/locked", locked);
   }
 
+  static bool isAutoRunEnabled() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("AutoRun/enabled", false).toBool();
+  }
+
+  static void setAutoRunEnabled(bool enabled) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.setValue("AutoRun/enabled", enabled);
+  }
+
+  static void setAutoRunProgram(QString program) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue("AutoRun/program", program);
+  }
+
+  static QString getAutoRunProgram() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("AutoRun/program", QString()).toString();
+  }
+
   static bool shutdownWhenDownloadsComplete() {
     QIniSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/AutoShutDownOnCompletion"), false).toBool();

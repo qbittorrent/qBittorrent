@@ -210,7 +210,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-40</y>
              <width>503</width>
              <height>446</height>
             </rect>
@@ -514,9 +514,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-200</y>
+             <y>-269</y>
              <width>503</width>
-             <height>606</height>
+             <height>698</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -905,6 +905,28 @@ QGroupBox {
                </item>
                <item row="1" column="1">
                 <widget class="QLineEdit" name="smtp_server_txt"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="autoRunBox">
+              <property name="title">
+               <string>Run an external program on torrent completion</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_19">
+               <item>
+                <widget class="QLineEdit" name="autoRun_txt"/>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>Use %f to pass the torrent path in parameters</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>

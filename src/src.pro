@@ -12,16 +12,16 @@ CONFIG += qt \
 
 # Update this VERSION for each release
 os2 {
-    DEFINES += VERSION=\'\"v2.4.0beta3\"\'
+    DEFINES += VERSION=\'\"v2.4.0rc1\"\'
 } else {
-    DEFINES += VERSION=\\\"v2.4.0beta3\\\"
+    DEFINES += VERSION=\\\"v2.4.0rc1\\\"
 }
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=4
 DEFINES += VERSION_BUGFIX=0
 
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
-DEFINES += VERSION_TYPE=BETA
+DEFINES += VERSION_TYPE=RELEASE_CANDIDATE
 
 win32 {
   # Adapt these paths on Windows

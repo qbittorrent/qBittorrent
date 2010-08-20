@@ -4,7 +4,8 @@
     - FEATURE: Email notification on download completion
     - FEATURE: Added button to password-lock the UI
     - FEATURE: Added label-level Pause/Resume/Delete actions
-    - FEATURE: Added torrent filtering by name
+    - FEATURE: Torrents can now be filtered by name
+    - FEATURE: Run external program on torrent completion
 
 * Tue Jul 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
     - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)

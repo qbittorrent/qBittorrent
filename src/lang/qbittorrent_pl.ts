@@ -4476,6 +4476,14 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <source>SMTP server:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Run an external program on torrent completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use %f to pass the torrent path in parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
