@@ -132,6 +132,14 @@
 </div>
 </fieldset>
 <fieldset>
+  <legend><b>_(Run an external program on torrent completion)</b></legend>
+<div style="padding-left: 30px;">
+ <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/> _(Run an external program on torrent completion)<br/>
+<input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
+<i>_(Use %f to pass the torrent path in parameters)</i>
+</div>
+</fieldset>
+<fieldset>
   <legend><b>_(Torrent queueing)</b></legend>
   <div style="padding-left: 30px;">
   <input type="checkbox" id="queueing_checkbox" onclick="updateQueuingSystem();"/> _(Torrent queueing)
@@ -377,6 +385,10 @@
     mail_notification_enabled = 1;
   var mail_notification_email = $('dest_email_txt').get('value');
   var mail_notification_smtp = $('smtp_server_txt').get('value');
+  var autorun_enabled = 0;
+  if($defined($('autorun_checkbox').get('checked')) && $('autorun_checkbox').get('checked'))
+    autorun_enabled = 1;
+  var autorun_program = $('autorunProg_txt').get('value');
   // IP Filter
   var ip_filter_enabled = 0;
   if($defined($('ipfilter_enabled_checkbox').get('checked')) && $('ipfilter_enabled_checkbox').get('checked'))
@@ -491,6 +503,8 @@
   dict.set('mail_notification_enabled', mail_notification_enabled);
   dict.set('mail_notification_email', mail_notification_email);
   dict.set('mail_notification_smtp', mail_notification_smtp);
+  dict.set('autorun_enabled', autorun_enabled);
+  dict.set('autorun_program', autorun_program);
   // IP Filter
   dict.set('ip_filter_enabled', ip_filter_enabled);
   dict.set('ip_filter_path', ip_filter_path);
@@ -613,6 +627,14 @@ updateMailNotification = function() {
   } else {
     $('dest_email_txt').set('disabled', 'true');
     $('smtp_server_txt').set('disabled', 'true');
+  }
+}
+
+updateAutoRun = function() {
+  if($defined($('autorun_checkbox').get('checked')) && $('autorun_checkbox').get('checked')) {
+    $('autorunProg_txt').removeProperty('disabled');
+  } else {
+    $('autorunProg_txt').set('disabled', 'true');
   }
 }
 
@@ -872,6 +894,14 @@ loadPreferences = function() {
                     $('dest_email_txt').set('value', pref.mail_notification_email);
                     $('smtp_server_txt').set('value', pref.mail_notification_smtp);
                     updateMailNotification();
+                    var autorun_enabled = pref.autorun_enabled;
+                    if(autorun_enabled) {
+                      $('autorun_checkbox').set('checked', 'checked');
+                    } else {
+                      $('autorun_checkbox').removeProperty('checked');
+                    }
+                    $('autorunProg_txt').set('value', pref.autorun_program);
+                    updateAutoRun();
                     if(pref.preallocate_all) {
                       $('preallocateall_checkbox').set('checked', 'checked');
                     } else {

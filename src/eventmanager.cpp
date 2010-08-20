@@ -169,6 +169,10 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     Preferences::setMailNotificationEmail(m["mail_notification_email"].toString());
   if(m.contains("mail_notification_smtp"))
     Preferences::setMailNotificationSMTP(m["mail_notification_smtp"].toString());
+  if(m.contains("autorun_enabled"))
+    Preferences::setAutoRunEnabled(m["autorun_enabled"].toBool());
+  if(m.contains("autorun_program"))
+    Preferences::setAutoRunProgram(m["autorun_program"].toString());
   if(m.contains("preallocate_all"))
     Preferences::preAllocateAllFiles(m["preallocate_all"].toBool());
   if(m.contains("queueing_enabled"))
@@ -274,6 +278,8 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["mail_notification_enabled"] = Preferences::isMailNotificationEnabled();
   data["mail_notification_email"] = Preferences::getMailNotificationEmail();
   data["mail_notification_smtp"] = Preferences::getMailNotificationSMTP();
+  data["autorun_enabled"] = Preferences::isAutoRunEnabled();
+  data["autorun_program"] = Preferences::getAutoRunProgram();
   data["preallocate_all"] = Preferences::preAllocateAllFiles();
   data["queueing_enabled"] = Preferences::isQueueingSystemEnabled();
   data["max_active_downloads"] = Preferences::getMaxActiveDownloads();
