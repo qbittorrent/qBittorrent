@@ -2053,8 +2053,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               saveSessionState();
               qDebug("Saving fast resume data");
               saveFastResumeData();
-              qDebug("Deleting the session");
-              delete s;
               qDebug("Sending computer shutdown signal");
               misc::shutdownComputer();
               qDebug("Exiting the application");
