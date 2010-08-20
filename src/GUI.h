@@ -57,6 +57,7 @@ class about;
 class createtorrent;
 class downloadFromURL;
 class HidableTabWidget;
+class LineEdit;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -155,6 +156,7 @@ private:
   bool displaySpeedInTitle;
   bool force_exit;
   bool ui_locked;
+  LineEdit *search_filter;
   // Keyboard shortcuts
   QShortcut *switchSearchShortcut;
   QShortcut *switchSearchShortcut2;

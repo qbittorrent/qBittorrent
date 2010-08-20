@@ -99,12 +99,18 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittor
   labelFilterModel->setFilterKeyColumn(TR_LABEL);
   labelFilterModel->setFilterRole(Qt::DisplayRole);
 
-  proxyModel = new QSortFilterProxyModel();
-  proxyModel->setDynamicSortFilter(true);
-  proxyModel->setSourceModel(labelFilterModel);
-  proxyModel->setFilterKeyColumn(TR_STATUS);
-  proxyModel->setFilterRole(Qt::DisplayRole);
-  setModel(proxyModel);
+  statusFilterModel = new QSortFilterProxyModel();
+  statusFilterModel->setDynamicSortFilter(true);
+  statusFilterModel->setSourceModel(labelFilterModel);
+  statusFilterModel->setFilterKeyColumn(TR_STATUS);
+  statusFilterModel->setFilterRole(Qt::DisplayRole);
+
+  nameFilterModel = new QSortFilterProxyModel();
+  nameFilterModel->setDynamicSortFilter(true);
+  nameFilterModel->setSourceModel(statusFilterModel);
+  nameFilterModel->setFilterKeyColumn(TR_NAME);
+  nameFilterModel->setFilterRole(Qt::DisplayRole);
+  setModel(nameFilterModel);
 
 
   // Visual settings
@@ -155,7 +161,8 @@ TransferListWidget::~TransferListWidget() {
   // Clean up
   delete refreshTimer;
   delete labelFilterModel;
-  delete proxyModel;
+  delete statusFilterModel;
+  delete nameFilterModel;
   delete listModel;
   delete listDelegate;
 }
@@ -210,7 +217,7 @@ void TransferListWidget::addTorrent(QTorrentHandle& h) {
     }
     // Select first torrent to be added
     if(listModel->rowCount() == 1)
-      selectionModel()->setCurrentIndex(proxyModel->index(row, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
+      selectionModel()->setCurrentIndex(nameFilterModel->index(row, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
     // Emit signal
     emit torrentAdded(listModel->index(row, 0));
     // Refresh the list
@@ -573,11 +580,11 @@ inline QString TransferListWidget::getHashFromRow(int row) const {
 }
 
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const {
-  return labelFilterModel->mapToSource(proxyModel->mapToSource(index));
+  return labelFilterModel->mapToSource(statusFilterModel->mapToSource(nameFilterModel->mapToSource(index)));
 }
 
 inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const {
-  return proxyModel->mapFromSource(labelFilterModel->mapFromSource(index));
+  return nameFilterModel->mapFromSource(statusFilterModel->mapFromSource(labelFilterModel->mapFromSource(index)));
 }
 
 
@@ -686,8 +693,8 @@ void TransferListWidget::startAllTorrents() {
 
 void TransferListWidget::startVisibleTorrents() {
   QStringList hashes;
-  for(int i=0; i<proxyModel->rowCount(); ++i) {
-    const int row = mapToSource(proxyModel->index(i, 0)).row();
+  for(int i=0; i<nameFilterModel->rowCount(); ++i) {
+    const int row = mapToSource(nameFilterModel->index(i, 0)).row();
     hashes << getHashFromRow(row);
   }
   foreach(const QString &hash, hashes) {
@@ -726,8 +733,8 @@ void TransferListWidget::pauseAllTorrents() {
 
 void TransferListWidget::pauseVisibleTorrents() {
   QStringList hashes;
-  for(int i=0; i<proxyModel->rowCount(); ++i) {
-    const int row = mapToSource(proxyModel->index(i, 0)).row();
+  for(int i=0; i<nameFilterModel->rowCount(); ++i) {
+    const int row = mapToSource(nameFilterModel->index(i, 0)).row();
     hashes << getHashFromRow(row);
   }
   foreach(const QString &hash, hashes) {
@@ -757,12 +764,12 @@ void TransferListWidget::deleteSelectedTorrents() {
 }
 
 void TransferListWidget::deleteVisibleTorrents() {
-  if(proxyModel->rowCount() <= 0) return;
+  if(nameFilterModel->rowCount() <= 0) return;
   bool delete_local_files = false;
   if(DeletionConfirmationDlg::askForDeletionConfirmation(&delete_local_files)) {
     QStringList hashes;
-    for(int i=0; i<proxyModel->rowCount(); ++i) {
-      const int row = mapToSource(proxyModel->index(i, 0)).row();
+    for(int i=0; i<nameFilterModel->rowCount(); ++i) {
+      const int row = mapToSource(nameFilterModel->index(i, 0)).row();
       hashes << getHashFromRow(row);
     }
     foreach(const QString &hash, hashes) {
@@ -1082,7 +1089,7 @@ void TransferListWidget::renameSelectedTorrent() {
     // Remember the name
     TorrentPersistentData::saveName(hash, name);
     // Visually change the name
-    proxyModel->setData(selectedIndexes.first(), name);
+    nameFilterModel->setData(selectedIndexes.first(), name);
   }
 }
 
@@ -1438,32 +1445,36 @@ void TransferListWidget::applyLabelFilter(QString label) {
   labelFilterModel->setFilterRegExp(QRegExp("^"+label+"$", Qt::CaseSensitive));
 }
 
+void TransferListWidget::applyNameFilter(QString name) {
+  nameFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive));
+}
+
 void TransferListWidget::applyStatusFilter(int f) {
   switch(f) {
   case FILTER_DOWNLOADING:
-    proxyModel->setFilterRegExp(QRegExp(QString::number(STATE_DOWNLOADING)+"|"+QString::number(STATE_STALLED_DL)+"|"+
+    statusFilterModel->setFilterRegExp(QRegExp(QString::number(STATE_DOWNLOADING)+"|"+QString::number(STATE_STALLED_DL)+"|"+
                                         QString::number(STATE_PAUSED_DL)+"|"+QString::number(STATE_CHECKING_DL)+"|"+
                                         QString::number(STATE_QUEUED_DL), Qt::CaseSensitive));
     break;
   case FILTER_COMPLETED:
-    proxyModel->setFilterRegExp(QRegExp(QString::number(STATE_SEEDING)+"|"+QString::number(STATE_STALLED_UP)+"|"+
+    statusFilterModel->setFilterRegExp(QRegExp(QString::number(STATE_SEEDING)+"|"+QString::number(STATE_STALLED_UP)+"|"+
                                         QString::number(STATE_PAUSED_UP)+"|"+QString::number(STATE_CHECKING_UP)+"|"+
                                         QString::number(STATE_QUEUED_UP), Qt::CaseSensitive));
     break;
   case FILTER_ACTIVE:
-    proxyModel->setFilterRegExp(QRegExp(QString::number(STATE_DOWNLOADING)+"|"+QString::number(STATE_SEEDING), Qt::CaseSensitive));
+    statusFilterModel->setFilterRegExp(QRegExp(QString::number(STATE_DOWNLOADING)+"|"+QString::number(STATE_SEEDING), Qt::CaseSensitive));
     break;
   case FILTER_INACTIVE:
-    proxyModel->setFilterRegExp(QRegExp("[^"+QString::number(STATE_DOWNLOADING)+QString::number(STATE_SEEDING)+"]", Qt::CaseSensitive));
+    statusFilterModel->setFilterRegExp(QRegExp("[^"+QString::number(STATE_DOWNLOADING)+QString::number(STATE_SEEDING)+"]", Qt::CaseSensitive));
     break;
   case FILTER_PAUSED:
-    proxyModel->setFilterRegExp(QRegExp(QString::number(STATE_PAUSED_UP)+"|"+QString::number(STATE_PAUSED_DL)));
+    statusFilterModel->setFilterRegExp(QRegExp(QString::number(STATE_PAUSED_UP)+"|"+QString::number(STATE_PAUSED_DL)));
     break;
   default:
-    proxyModel->setFilterRegExp(QRegExp());
+    statusFilterModel->setFilterRegExp(QRegExp());
   }
   // Select first item if nothing is selected
-  if(selectionModel()->selectedRows(0).empty() && proxyModel->rowCount() > 0)
-    selectionModel()->setCurrentIndex(proxyModel->index(0, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
+  if(selectionModel()->selectedRows(0).empty() && statusFilterModel->rowCount() > 0)
+    selectionModel()->setCurrentIndex(statusFilterModel->index(0, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 }
 

@@ -367,6 +367,10 @@ contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
 }
 
 !contains(DEFINES, DISABLE_GUI) {
+  include(lineedit/lineedit.pri)
+}
+
+!contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \
            ui/options.ui \
            ui/about.ui \

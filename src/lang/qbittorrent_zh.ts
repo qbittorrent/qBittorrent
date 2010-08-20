@@ -3334,6 +3334,13 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>LineEdit</name>
+    <message>
+        <source>Clear the text</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Log:</source>

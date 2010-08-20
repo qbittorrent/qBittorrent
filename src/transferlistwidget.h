@@ -82,6 +82,7 @@ public slots:
   void previewSelectedTorrents();
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);
+  void applyNameFilter(QString name);
   void applyStatusFilter(int f);
   void applyLabelFilter(QString label);
   void previewFile(QString filePath);
@@ -130,7 +131,8 @@ signals:
 private:
   TransferListDelegate *listDelegate;
   QStandardItemModel *listModel;
-  QSortFilterProxyModel *proxyModel;
+  QSortFilterProxyModel *nameFilterModel;
+  QSortFilterProxyModel *statusFilterModel;
   QSortFilterProxyModel *labelFilterModel;
   Bittorrent* BTSession;
   QTimer *refreshTimer;

@@ -69,6 +69,7 @@
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
+#include "lineedit.h"
 
 using namespace libtorrent;
 
@@ -153,6 +154,12 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
   connect(transferList, SIGNAL(torrentStatusUpdate(uint,uint,uint,uint,uint)), this, SLOT(updateNbTorrents(uint,uint,uint,uint,uint)));
   vboxLayout->addWidget(tabs);
+
+  // Name filter
+  search_filter = new LineEdit();
+  toolBar->addWidget(search_filter);
+  search_filter->setFixedWidth(200);
+  connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
 
   // Transfer list slots
   connect(actionStart, SIGNAL(triggered()), transferList, SLOT(startSelectedTorrents()));
@@ -250,6 +257,7 @@ GUI::~GUI() {
   disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   // Delete other GUI objects
   delete status_bar;
+  delete search_filter;
   delete transferList;
   delete guiUpdater;
   if(createTorrentDlg)

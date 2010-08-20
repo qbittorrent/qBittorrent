@@ -2202,6 +2202,13 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
 </context>
 <context>
+    <name>LineEdit</name>
+    <message>
+        <source>Clear the text</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>&amp;Edit</source>
