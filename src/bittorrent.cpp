@@ -203,7 +203,7 @@ bool Bittorrent::isPexEnabled() const {
 }
 
 void Bittorrent::processBigRatios() {
-  if(ratio_limit <= 0) return;
+  if(ratio_limit < 0) return;
   qDebug("Process big ratios...");
   std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
@@ -1838,7 +1838,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
   // Torrents will a ratio superior to the given value will
   // be automatically deleted
   void Bittorrent::setMaxRatio(float ratio) {
-    if(ratio <= 0) ratio = -1.;
+    if(ratio < 0) ratio = -1.;
     if(ratio_limit == -1 && ratio != -1) {
       Q_ASSERT(!BigRatioTimer);
       BigRatioTimer = new QTimer(this);
