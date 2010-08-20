@@ -2056,7 +2056,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               qDebug("Sending computer shutdown signal");
               misc::shutdownComputer();
               qDebug("Exiting the application");
-              exit(0);
+              qApp->exit();
+              return;
             }
           }
         }
