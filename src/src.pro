@@ -12,9 +12,9 @@ CONFIG += qt \
 
 # Update this VERSION for each release
 os2 {
-    DEFINES += VERSION=\'\"v2.4.0rc1\"\'
+    DEFINES += VERSION=\'\"v2.4.0rc2\"\'
 } else {
-    DEFINES += VERSION=\\\"v2.4.0rc1\\\"
+    DEFINES += VERSION=\\\"v2.4.0rc2\\\"
 }
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=4
