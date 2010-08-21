@@ -387,6 +387,14 @@ QStringList QTorrentHandle::files_path() const {
   return res;
 }
 
+bool QTorrentHandle::has_missing_files() const {
+  const QStringList paths = files_path();
+  foreach(const QString &path, paths) {
+    if(!QFile::exists(path)) return true;
+  }
+  return false;
+}
+
 int QTorrentHandle::queue_position() const {
   Q_ASSERT(h.is_valid());
   if(h.queue_position() < 0)

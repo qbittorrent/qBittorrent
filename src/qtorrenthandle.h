@@ -110,6 +110,7 @@ class QTorrentHandle {
     size_type all_time_download() const;
     size_type total_done() const;
     QStringList files_path() const;
+    bool has_missing_files() const;
     int num_uploads() const;
     bool is_seed() const;
     bool is_checking() const;

@@ -2357,13 +2357,13 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
       else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
-        if(h.is_valid() && TorrentPersistentData::isSeed(h.hash())){
+        if(h.is_valid()) {
           qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(h.name()), p->message().c_str());
 #if LIBTORRENT_VERSION_MINOR < 15
           QString msg = QString::fromLocal8Bit(p->message().c_str());
-          if(msg.contains("filesize", Qt::CaseInsensitive) && msg.contains("mismatch", Qt::CaseInsensitive)) {
+          if(msg.contains("filesize", Qt::CaseInsensitive) && msg.contains("mismatch", Qt::CaseInsensitive) && TorrentPersistentData::isSeed(h.hash()) && h.has_missing_files()) {
 #else
-            if(p->error.value() == 134) {
+            if(p->error.value() == 134 && TorrentPersistentData::isSeed(h.hash()) && h.has_missing_files()) {
 #endif
               const QString hash = h.hash();
               // Mismatching file size (files were probably moved
