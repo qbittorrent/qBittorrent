@@ -1530,7 +1530,7 @@ void Bittorrent::saveTempFastResumeData() {
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     try {
-      if(!h.is_valid() || !h.has_metadata() || h.is_seed() || h.is_paused()) continue;
+      if(!h.is_valid() || !h.has_metadata() /*|| h.is_seed() || h.is_paused()*/) continue;
       if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
       qDebug("Saving fastresume data for %s", qPrintable(h.name()));
       h.save_resume_data();
@@ -2357,7 +2357,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       }
       else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
-        if(h.is_valid()){
+        if(h.is_valid() && TorrentPersistentData::isSeed(h.hash())){
           qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(h.name()), p->message().c_str());
 #if LIBTORRENT_VERSION_MINOR < 15
           QString msg = QString::fromLocal8Bit(p->message().c_str());
@@ -2606,9 +2606,9 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       filters << "*.torrent";
       const QStringList torrents_on_hd = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
       foreach(QString hash, torrents_on_hd) {
-        qDebug("found torrent with hash: %s on hard disk", qPrintable(hash));
         hash.chop(8); // remove trailing .torrent
         if(!known_torrents.contains(hash)) {
+          qDebug("found torrent with hash: %s on hard disk", qPrintable(hash));
           std::cerr << "ERROR Detected!!! Adding back torrent " << qPrintable(hash) << " which got lost for some reason." << std::endl;
           addTorrent(torrentBackup.path()+QDir::separator()+hash+".torrent", false, QString(), true);
         }
