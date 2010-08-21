@@ -259,6 +259,7 @@ void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
   const QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(row));
   listModel->setData(listModel->index(row, TR_DLSPEED), QVariant((double)0.0));
   listModel->setData(listModel->index(row, TR_UPSPEED), QVariant((double)0.0));
+  listModel->setData(listModel->index(row, TR_PROGRESS), h.progress());
   if(h.is_seed()) {
     listModel->setData(listModel->index(row, TR_STATUS), STATE_PAUSED_UP);
     if(h.has_error() || TorrentPersistentData::hasError(h.hash())) {
