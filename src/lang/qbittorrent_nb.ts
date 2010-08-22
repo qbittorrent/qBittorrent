@@ -1611,7 +1611,7 @@ Vennligst avslutt denne først.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="88"/>
-        <location filename="../GUI.cpp" line="1147"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1679,7 +1679,7 @@ Vennligst avslutt denne først.</translation>
         <translation type="obsolete">qBittorrent %1 er startet.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="979"/>
+        <location filename="../GUI.cpp" line="981"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1689,15 +1689,15 @@ Vennligst avslutt denne først.</translation>
         <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="982"/>
-        <location filename="../GUI.cpp" line="989"/>
+        <location filename="../GUI.cpp" line="984"/>
+        <location filename="../GUI.cpp" line="991"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Nedlastingshastighet: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="985"/>
-        <location filename="../GUI.cpp" line="991"/>
+        <location filename="../GUI.cpp" line="987"/>
+        <location filename="../GUI.cpp" line="993"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Opplastingshastighet: %1 KiB/s</translation>
@@ -2011,7 +2011,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="997"/>
+        <location filename="../GUI.cpp" line="999"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished"></translation>

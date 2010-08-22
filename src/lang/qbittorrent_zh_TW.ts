@@ -111,7 +111,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;一個使用 C++ 編寫, 基於 QT4 的 Bittorrent 客戶端 &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;以及 libtorrent-rasterbar。 &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;首頁:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;論壇:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -188,7 +194,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示程式通知氣球</translation>
     </message>
 </context>
 <context>
@@ -410,28 +416,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent 名稱: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent 大小: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存路徑: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>Torrent 已於 %1 下載完成。</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>感謝您使用 qBittorrent。</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>[qBittorrent] 已下載完成 %1</translation>
     </message>
 </context>
 <context>
@@ -1847,31 +1853,31 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished"></translation>
+        <translation>設定密碼...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished"></translation>
+        <translation>更新密碼</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished"></translation>
+        <translation>UI 鎖定密碼已經更新了</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation type="unfinished"></translation>
+        <translation>UI 鎖定密碼</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished"></translation>
+        <translation>請輸入 UI 鎖定密碼:</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的密碼</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼是無效的</translation>
     </message>
 </context>
 <context>
@@ -2300,7 +2306,7 @@ No further notices will be issued.</source>
     <name>LineEdit</name>
     <message>
         <source>Clear the text</source>
-        <translation type="unfinished"></translation>
+        <translation>清除文字</translation>
     </message>
 </context>
 <context>
@@ -2559,23 +2565,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Lock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>鎖定 qBittorrent</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>當下載結束後將電腦關機</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>繼續 (&amp;R)</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
-        <translation type="unfinished"></translation>
+        <translation>全部繼續 (&amp;E)</translation>
     </message>
 </context>
 <context>
@@ -2707,7 +2713,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Copy IP</source>
-        <translation type="unfinished"></translation>
+        <translation>複製 IP</translation>
     </message>
 </context>
 <context>
@@ -3399,23 +3405,23 @@ QGroupBox {
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished"></translation>
+        <translation>下載完成時使用 Email 通知</translation>
     </message>
     <message>
         <source>Destination email:</source>
-        <translation type="unfinished"></translation>
+        <translation>目的地 email:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>SMTP 伺服器:</translation>
     </message>
     <message>
         <source>Run an external program on torrent completion</source>
-        <translation type="unfinished"></translation>
+        <translation>當 torrent 下載完成時執行外部程式</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 %f 在參數中傳遞 torrent 路徑</translation>
     </message>
 </context>
 <context>
@@ -4517,15 +4523,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>繼續 torrent</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>暫停 torrent</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除 torrent</translation>
     </message>
 </context>
 <context>
@@ -4799,41 +4805,41 @@ Do you want to install it now?</source>
     <message>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>向上移</translation>
     </message>
     <message>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>向下移</translation>
     </message>
     <message>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>移到最上面</translation>
     </message>
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>移到最下面</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">優先度</translation>
+        <translation>優先度</translation>
     </message>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>繼續</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished">暫停</translation>
+        <translation>暫停</translation>
     </message>
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished">刪除</translation>
+        <translation>刪除</translation>
     </message>
 </context>
 <context>
@@ -5849,7 +5855,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>因為所有下載已經完成, qBittorrent 現在會將電腦關機。</translation>
     </message>
 </context>
 <context>

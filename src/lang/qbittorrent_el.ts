@@ -2210,7 +2210,7 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="979"/>
+        <location filename="../GUI.cpp" line="981"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -2507,7 +2507,7 @@ Please close the other one first.</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="88"/>
-        <location filename="../GUI.cpp" line="1147"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -2575,15 +2575,15 @@ Please close the other one first.</source>
         <translation type="obsolete">Εκκινήθηκε το qBittorrent %1.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="982"/>
-        <location filename="../GUI.cpp" line="989"/>
+        <location filename="../GUI.cpp" line="984"/>
+        <location filename="../GUI.cpp" line="991"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Λήψης: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="985"/>
-        <location filename="../GUI.cpp" line="991"/>
+        <location filename="../GUI.cpp" line="987"/>
+        <location filename="../GUI.cpp" line="993"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Αποστολής: %1 KiB/s</translation>
@@ -2843,7 +2843,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="997"/>
+        <location filename="../GUI.cpp" line="999"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Κάτ.: %2/s, Αν.: %3/s)</translation>

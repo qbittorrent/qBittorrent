@@ -1750,7 +1750,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
         <translation type="obsolete">&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="997"/>
+        <location filename="../GUI.cpp" line="999"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Stahování: %2/s, Nahrávání: %3/s)</translation>
@@ -1782,7 +1782,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     </message>
     <message>
         <location filename="../GUI.cpp" line="88"/>
-        <location filename="../GUI.cpp" line="1147"/>
+        <location filename="../GUI.cpp" line="1149"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1800,7 +1800,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
         <translation type="obsolete">Nebyly nalezeny žádné peery...</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="979"/>
+        <location filename="../GUI.cpp" line="981"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -1810,15 +1810,15 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
         <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="982"/>
-        <location filename="../GUI.cpp" line="989"/>
+        <location filename="../GUI.cpp" line="984"/>
+        <location filename="../GUI.cpp" line="991"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rychlost stahování: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="985"/>
-        <location filename="../GUI.cpp" line="991"/>
+        <location filename="../GUI.cpp" line="987"/>
+        <location filename="../GUI.cpp" line="993"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rychlost nahrávání: %1 KiB/s</translation>
