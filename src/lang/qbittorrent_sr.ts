@@ -102,7 +102,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Бит-торен клијент програмиран у C++, базиран на Qt4 програмском алату &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;и libtorrent-rasterbar-у. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -181,7 +187,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи балоне са програмским коментарима</translation>
     </message>
 </context>
 <context>
@@ -395,28 +401,28 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Име Торента: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Величина Торента: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Путања чувања: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>Торент ће бити преузет за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Хвала што користите qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>[qBittorrent] %1 је завршио преузимање</translation>
     </message>
 </context>
 <context>
@@ -1343,31 +1349,34 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подешавање лозинке...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished"></translation>
+        <translation>Обнављање лозинке</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>КИ-кориснички интерфејс</translatorcomment>
+        <translation>Закључавање КИ-а лозинком је успешно обновљено</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>КИ-кориснички интерфејс</translatorcomment>
+        <translation>Закључавање КИ-а лозинком</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>КИ-кориснички интерфејс</translatorcomment>
+        <translation>Молим упишите лозинку закључавања КИ-а:</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished"></translation>
+        <translation>Погрешна лозинка</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Лозинка је погрешна</translation>
     </message>
 </context>
 <context>
@@ -1800,7 +1809,7 @@ No further notices will be issued.</source>
     <name>LineEdit</name>
     <message>
         <source>Clear the text</source>
-        <translation type="unfinished"></translation>
+        <translation>Обриши текст</translation>
     </message>
 </context>
 <context>
@@ -2047,23 +2056,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Lock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Закључај qBittorrent</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Искључи рачунар по комплетном преузимању</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Настави</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
-        <translation type="unfinished"></translation>
+        <translation>Н&amp;астави Све</translation>
     </message>
 </context>
 <context>
@@ -2903,23 +2912,23 @@ QGroupBox {
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Обавештење Е-поштом након комплетног преузимања</translation>
     </message>
     <message>
         <source>Destination email:</source>
-        <translation type="unfinished"></translation>
+        <translation>Адреса за Е-пошту:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>SMTP сервер:</translation>
     </message>
     <message>
         <source>Run an external program on torrent completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Покрени екстерни програм по завршетку торента</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи %f за пролаз торент путање у параметрима</translation>
     </message>
 </context>
 <context>
@@ -3909,15 +3918,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Настави торенте</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Паузирај торенте</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Обриши торенте</translation>
     </message>
 </context>
 <context>
@@ -3925,12 +3934,12 @@ Do you want to install it now?</source>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Брзина Преузимања</translation>
+        <translation>Брзина Преуз</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>СЛ Брзина (слања)</translation>
+        <translation>Брзина Слања</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -4143,41 +4152,41 @@ Do you want to install it now?</source>
     <message>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Премести навише</translation>
     </message>
     <message>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Премести надоле</translation>
     </message>
     <message>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Премести на врх</translation>
     </message>
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Премести на дно</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Настави</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished">Пауза</translation>
+        <translation>Пауза</translation>
     </message>
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished">Обриши</translation>
+        <translation>Обриши</translation>
     </message>
 </context>
 <context>
@@ -4904,7 +4913,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ће искључити рачунар сада, јер су сва преузимања завршена.</translation>
     </message>
 </context>
 <context>
@@ -5092,7 +5101,7 @@ However, those plugins were disabled.</source>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(%1 остало након преузетог Торента)</translation>
+        <translation>(%1 остаје након преузетог Торента)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>

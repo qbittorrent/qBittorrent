@@ -5378,7 +5378,7 @@ Nainstalujte jej prosím ručně.</translation>
         <translation type="obsolete">&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1005"/>
+        <location filename="../transferlistwidget.cpp" line="1008"/>
         <source>Column visibility</source>
         <translation>Zobrazení sloupců</translation>
     </message>
@@ -5454,7 +5454,7 @@ Nainstalujte jej prosím ručně.</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="86"/>
-        <location filename="../transferlistwidget.cpp" line="1250"/>
+        <location filename="../transferlistwidget.cpp" line="1253"/>
         <source>Label</source>
         <translation>Štítek</translation>
     </message>
@@ -5483,96 +5483,96 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Limit nahrávání</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="645"/>
-        <location filename="../transferlistwidget.cpp" line="647"/>
+        <location filename="../transferlistwidget.cpp" line="648"/>
+        <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Choose save path</source>
         <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="654"/>
+        <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Save path creation error</source>
         <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="654"/>
+        <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Could not create the save path</source>
         <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="911"/>
+        <location filename="../transferlistwidget.cpp" line="914"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limit rychlosti stahování torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="944"/>
+        <location filename="../transferlistwidget.cpp" line="947"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limit rychlosti nahrávání torrentu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1067"/>
+        <location filename="../transferlistwidget.cpp" line="1070"/>
         <source>New Label</source>
         <translation>Nový štítek</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1067"/>
+        <location filename="../transferlistwidget.cpp" line="1070"/>
         <source>Label:</source>
         <translation>Štítek:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1072"/>
+        <location filename="../transferlistwidget.cpp" line="1075"/>
         <source>Invalid label name</source>
         <translation>Neplatný název štítku</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1072"/>
+        <location filename="../transferlistwidget.cpp" line="1075"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Nepoužívejte prosím v názvu štítku žádné speciální znaky.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1088"/>
+        <location filename="../transferlistwidget.cpp" line="1091"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1088"/>
+        <location filename="../transferlistwidget.cpp" line="1091"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1128"/>
+        <location filename="../transferlistwidget.cpp" line="1131"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Obnovit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1130"/>
+        <location filename="../transferlistwidget.cpp" line="1133"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Pozastavit</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1132"/>
+        <location filename="../transferlistwidget.cpp" line="1135"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1134"/>
+        <location filename="../transferlistwidget.cpp" line="1137"/>
         <source>Preview file...</source>
         <translation>Náhled souboru...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1136"/>
+        <location filename="../transferlistwidget.cpp" line="1139"/>
         <source>Limit upload rate...</source>
         <translation>Omezit rychlost nahrávání...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1138"/>
+        <location filename="../transferlistwidget.cpp" line="1141"/>
         <source>Limit download rate...</source>
         <translation>Omezit rychlost stahování...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1294"/>
+        <location filename="../transferlistwidget.cpp" line="1297"/>
         <source>Priority</source>
         <translation>Priorita</translation>
     </message>
@@ -5585,36 +5585,36 @@ Nainstalujte jej prosím ručně.</translation>
         <translation type="obsolete">Omezit rychlost stahování</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1140"/>
+        <location filename="../transferlistwidget.cpp" line="1143"/>
         <source>Open destination folder</source>
         <translation>Otevřít cílový adresář</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1144"/>
+        <location filename="../transferlistwidget.cpp" line="1147"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Přesunout nahoru</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1146"/>
+        <location filename="../transferlistwidget.cpp" line="1149"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Přesunout dolů</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1148"/>
+        <location filename="../transferlistwidget.cpp" line="1151"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Přesunout navrch</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1150"/>
+        <location filename="../transferlistwidget.cpp" line="1153"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Přesunout dospodu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1152"/>
+        <location filename="../transferlistwidget.cpp" line="1155"/>
         <source>Set location...</source>
         <translation>Nastavit umístění...</translation>
     </message>
@@ -5631,43 +5631,43 @@ Nainstalujte jej prosím ručně.</translation>
         <translation type="obsolete">Snížit prioritu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1154"/>
+        <location filename="../transferlistwidget.cpp" line="1157"/>
         <source>Force recheck</source>
         <translation>Překontrolovat platnost</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1156"/>
+        <location filename="../transferlistwidget.cpp" line="1159"/>
         <source>Copy magnet link</source>
         <translation>Kopírovat odkaz Magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1159"/>
+        <location filename="../transferlistwidget.cpp" line="1162"/>
         <source>Super seeding mode</source>
         <translation>Super seeding mód</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1163"/>
+        <location filename="../transferlistwidget.cpp" line="1166"/>
         <source>Rename...</source>
         <translation>Přejmenovat...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1165"/>
+        <location filename="../transferlistwidget.cpp" line="1168"/>
         <source>Download in sequential order</source>
         <translation>Stahovat v souvislém pořadí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1168"/>
+        <location filename="../transferlistwidget.cpp" line="1171"/>
         <source>Download first and last piece first</source>
         <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1251"/>
+        <location filename="../transferlistwidget.cpp" line="1254"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nový...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1252"/>
+        <location filename="../transferlistwidget.cpp" line="1255"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Reset</translation>
