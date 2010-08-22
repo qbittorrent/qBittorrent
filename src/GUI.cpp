@@ -916,6 +916,8 @@ void GUI::loadPreferences(bool configure_session) {
     toolBar->setVisible(true);
     toolBar->layout()->setSpacing(7);
   } else {
+    // Clear search filter before hiding the top toolbar
+    search_filter->clear();
     toolBar->setVisible(false);
   }
   const uint new_refreshInterval = Preferences::getRefreshInterval();
