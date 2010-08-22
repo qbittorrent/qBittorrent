@@ -150,8 +150,6 @@ contains(DEFINES, DISABLE_GUI) {
   TARGET = qbittorrent
 }
 
-QMAKE_CXXFLAGS_RELEASE += -flto
-QMAKE_CXXFLAGS_DEBUG += -flto
 unix:QMAKE_LFLAGS_SHAPP += -rdynamic
 
 unix {

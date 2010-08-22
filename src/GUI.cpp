@@ -328,6 +328,7 @@ void GUI::on_actionLock_qBittorrent_triggered() {
   // Lock the interface
   ui_locked = true;
   Preferences::setUILocked(true);
+  myTrayIconMenu->setEnabled(false);
   hide();
 }
 
@@ -583,6 +584,7 @@ bool GUI::unlockUI() {
   if(real_pass_md5 == password_md5) {
     ui_locked = false;
     Preferences::setUILocked(false);
+    myTrayIconMenu->setEnabled(true);
     return true;
   }
   QMessageBox::warning(this, tr("Invalid password"), tr("The password is invalid"));
@@ -1100,6 +1102,8 @@ QMenu* GUI::getTrayIconMenu() {
   myTrayIconMenu->addAction(actionPause_All);
   myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionExit);
+  if(ui_locked)
+    myTrayIconMenu->setEnabled(false);
   return myTrayIconMenu;
 }
 
