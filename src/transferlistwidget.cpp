@@ -312,6 +312,7 @@ void TransferListWidget::resumeTorrent(int row, bool refresh_list) {
 }
 
 void TransferListWidget::updateMetadata(QTorrentHandle &h) {
+  if(!h.is_valid()) return;
   const QString hash = h.hash();
   const int row = getRowFromHash(hash);
   if(row != -1) {
@@ -401,6 +402,8 @@ int TransferListWidget::updateTorrent(int row) {
     }
 
     if(h.is_paused()) {
+      // XXX: Force progress update because of bug #621381
+      listModel->setData(listModel->index(row, TR_PROGRESS), QVariant((double)h.progress()));
       if(h.is_seed())
         return STATE_PAUSED_UP;
       return STATE_PAUSED_DL;
