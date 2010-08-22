@@ -833,7 +833,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     qDebug("Resuming magnet URI: %s", qPrintable(hash));
     // Load metadata
     if(QFile::exists(torrentBackup.path()+QDir::separator()+hash+QString(".torrent")))
-      return addTorrent(torrentBackup.path()+QDir::separator()+hash+QString(".torrent"), false, false, true);
+      return addTorrent(torrentBackup.path()+QDir::separator()+hash+QString(".torrent"), false, QString(), true);
   } else {
     qDebug("Adding new magnet URI");
   }
