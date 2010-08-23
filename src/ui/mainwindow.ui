@@ -84,6 +84,8 @@
     <addaction name="separator"/>
     <addaction name="actionSearch_engine"/>
     <addaction name="actionRSS_Reader"/>
+    <addaction name="separator"/>
+    <addaction name="actionLock_qBittorrent"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>

@@ -157,7 +157,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
 
   // Name filter
   search_filter = new LineEdit();
-  toolBar->addWidget(search_filter);
+  QAction *separatorBFSearch = toolBar->insertSeparator(actionLock_qBittorrent);
+  toolBar->insertWidget(separatorBFSearch, search_filter);
   search_filter->setFixedWidth(200);
   connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
 
