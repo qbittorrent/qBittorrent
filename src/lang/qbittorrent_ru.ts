@@ -150,7 +150,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent клиент написанный на C++, с использованием библиотеки Qt4 &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;и libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Домашняя страница:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Форум:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -441,44 +447,44 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished">Удаление торрента %1...</translation>
+        <translation>Удаление торрента %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished">Приостановка торрента %1...</translation>
+        <translation>Приостановка торрента %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished">Ошибка: Торрент %1 не содержит никаких файлов.</translation>
+        <translation>Ошибка: Торрент %1 не содержит никаких файлов.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished">Несовпадение размеров файлов для торрента %1, приостанавливаю его.</translation>
+        <translation>Несовпадение размеров файлов для торрента %1, приостанавливаю его.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя торрента: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер торрента: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь для сохранения: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>Торрент был скачен за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Спасибо за использование qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>[qBittorrent] скачивание %1 завершено</translation>
     </message>
 </context>
 <context>
@@ -504,21 +510,21 @@ p, li { white-space: pre-wrap; }
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
-        <translation type="unfinished">Управление Cookies</translation>
+        <translation>Управление Cookies</translation>
     </message>
     <message>
         <source>Key</source>
-        <translation type="unfinished">Ключ</translation>
+        <translation>Ключ</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished">Значение</translation>
+        <translation>Значение</translation>
     </message>
     <message>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translatorcomment>&apos;из настроек&apos; - в firefox 3.6.4</translatorcomment>
-        <translation type="unfinished">Частые ключи для cookies это : &apos;%1&apos;, &apos;%2&apos;.
+        <translation>Частые ключи для cookies это : &apos;%1&apos;, &apos;%2&apos;.
 Вам следует взять эту информацию из настроек вашего веб-браузера.</translation>
     </message>
 </context>
@@ -2739,8 +2745,8 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translatorcomment>Коряво как-то получилось &gt;_&lt;</translatorcomment>
-        <translation type="unfinished">Торрент %1 содержит торрент-файлы, хотите ли вы приступить к их загрузке?</translation>
+        <translatorcomment>Коряво как-то получилось &gt;_&lt; // нормально.</translatorcomment>
+        <translation>Торрент %1 содержит торрент-файлы, хотите ли вы приступить к их загрузке?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
@@ -2755,8 +2761,8 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translatorcomment>Может лучше наоборот, ссылки с файлами к qBittorrent привязывать?</translatorcomment>
-        <translation type="unfinished">qBittorrent сейчас не является приложением по умолчанию для открытия торрент-файлов или Magnet-ссылок.
-Хотите ли вы привязать qBittorrent к торрент-файлам и Magnet-ссылкам?</translation>
+        <translation>qBittorrent сейчас не является приложением по умолчанию для открытия торрент-файлов или Magnet-ссылок.
+Хотите ли вы открывать торрент-файлы и Magnet-ссылкам с помощью qBittorrent?</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2777,35 +2783,35 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <source>Exiting qBittorrent</source>
         <translatorcomment>Или Завершаю работу будет правильнее?</translatorcomment>
-        <translation type="unfinished">Завершение работы qBittorrent</translation>
+        <translation>Завершение работы qBittorrent</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить пароль...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить пароль</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль блокировки интерфейса был успешно обновлен</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль блокировки интерфейса</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите пароль блокировки интерфейса:</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished"></translation>
+        <translation>Не верный пароль</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Этот пароль не верен</translation>
     </message>
 </context>
 <context>
@@ -3246,7 +3252,7 @@ No further notices will be issued.</source>
     <name>LineEdit</name>
     <message>
         <source>Clear the text</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить текст</translation>
     </message>
 </context>
 <context>
@@ -3522,7 +3528,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished">Инс&amp;трументы</translation>
+        <translation>Инс&amp;трументы</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -3547,7 +3553,7 @@ No further notices will be issued.</source>
     <message>
         <source>Torrent &amp;creator</source>
         <translatorcomment>Создатель такой создатель... Но ничего лучше придумать не могу, в голову приходят только &apos;создавалка&apos; и &apos;создавайка&apos; (создавайка мне торрент! ^_^)</translatorcomment>
-        <translation type="unfinished">&amp;Создатель Torrent-а</translation>
+        <translation>Мастер &amp;создания Torrent-а</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
@@ -3573,7 +3579,7 @@ No further notices will be issued.</source>
     <message>
         <source>Top &amp;tool bar</source>
         <translatorcomment>Ну не понятно лично мне что это за панель... А тулбар - с детства знакомо.</translatorcomment>
-        <translation type="unfinished">Верхний &amp;тулбар</translation>
+        <translation>Панель &amp;инструментов</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
@@ -3595,7 +3601,7 @@ No further notices will be issued.</source>
     <message>
         <source>&amp;About</source>
         <translatorcomment>Посмотрел в Firefox - там не обезличенное &apos;О программе&apos; а более тёплое &apos;О Mozilla Firefox&apos;. Или может лучше как в Kate - &apos;О программе Kate&apos;?</translatorcomment>
-        <translation type="unfinished">&amp;О qBittorrent</translation>
+        <translation>&amp;О qBittorrent</translation>
     </message>
     <message>
         <source>&amp;Start</source>
@@ -3633,8 +3639,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;RSS reader</source>
-        <translatorcomment>Корявенько... Но имхо &apos;просмотрщик&apos; - это viewer</translatorcomment>
-        <translation type="unfinished">&amp;RSS читалка</translation>
+        <translatorcomment>Корявенько... Но имхо &apos;просмотрщик&apos; - это viewer // читалка как-то криво тоже. но лучше не придумал пока</translatorcomment>
+        <translation>&amp;RSS читалка</translation>
     </message>
     <message>
         <source>Search &amp;engine</source>
@@ -3647,23 +3653,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Lock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокировать qBittorrent</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Выключить компьютер когда закачки будут завершены</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Возобновить</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
-        <translation type="unfinished"></translation>
+        <translation>Воз&amp;обновить все</translation>
     </message>
 </context>
 <context>
@@ -3814,7 +3820,7 @@ No further notices will be issued.</source>
     <message>
         <source>Downloads</source>
         <translatorcomment>Имхо &apos;закачка&apos; - это upload</translatorcomment>
-        <translation type="unfinished">Загрузки</translation>
+        <translation>Загрузки</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -4215,7 +4221,7 @@ No further notices will be issued.</source>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
         <translatorcomment>Ну не звучит тут &apos;Связи&apos;. Никак не звучит.</translatorcomment>
-        <translation type="unfinished">HTTP соединения (трекеры, раздающие Web, поисковые движки)</translation>
+        <translation>HTTP соединения (трекеры, раздающие Web, поисковые движки)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -4294,7 +4300,7 @@ No further notices will be issued.</source>
     <message>
         <source>Advanced</source>
         <translatorcomment>Никак не звучит тут &apos;расширенные&apos;...</translatorcomment>
-        <translation type="unfinished">Продвинутые</translation>
+        <translation>Продвинутые</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -4319,11 +4325,11 @@ No further notices will be issued.</source>
     <message>
         <source>Options</source>
         <translatorcomment>Как в Firefox</translatorcomment>
-        <translation type="unfinished">Настройки</translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation type="unfinished">Визуальное Поведение</translation>
+        <translation>Визуальное Поведение</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -4331,8 +4337,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translatorcomment>Или они &apos;Загружающиеся&apos;? Или (как в предыдущем) &apos;Скачиваемые&apos;?</translatorcomment>
-        <translation type="unfinished">Загружаемые торренты:</translation>
+        <translatorcomment>Или они &apos;Загружающиеся&apos;? Или (как в предыдущем) &apos;Скачиваемые&apos;? // думаю стоит привести download upload к загрузки раздачи а скачивание к самим торентфайликам</translatorcomment>
+        <translation>Загружаемые торренты:</translation>
     </message>
     <message>
         <source>Start / Stop</source>
@@ -4340,7 +4346,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Open destination folder</source>
-        <translation type="unfinished">Открыть папку назначения</translation>
+        <translation>Открыть папку назначения</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
@@ -4348,8 +4354,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Desktop</source>
-        <translatorcomment>Где? o_O</translatorcomment>
-        <translation type="unfinished">Рабочий стол</translation>
+        <translatorcomment>Где? o_O  // у тех кто с венды пришел и без него жить не могут :D</translatorcomment>
+        <translation>Рабочий стол</translation>
     </message>
     <message>
         <source>Show splash screen on start up</source>
@@ -4366,14 +4372,14 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translatorcomment>А может лучше &apos;в трей&apos;?</translatorcomment>
-        <translation type="unfinished">Свроачивать qBittorrent в область уведомлений</translation>
+        <translatorcomment>А может лучше &apos;в трей&apos;? // не думаю, в том же KDE это именно уведомлений. А трей суть калька</translatorcomment>
+        <translation>Сворачивать qBittorrent в область уведомлений</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translatorcomment>Коряво, коряво...</translatorcomment>
-        <translation type="unfinished">Закрывать qBittorrent в облать уведомлений</translation>
+        <translation>Закрывать qBittorrent в облать уведомлений</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -4383,7 +4389,7 @@ No further notices will be issued.</source>
     <message>
         <source>Save files to location:</source>
         <translatorcomment>А надо ли &apos;расположение&apos;? И имхо &apos;по умолчанию&apos; здесь будет очень к месту.</translatorcomment>
-        <translation type="unfinished">Сохранять файлы по умолчанию в:</translation>
+        <translation>Сохранять файлы по умолчанию в:</translation>
     </message>
     <message>
         <source>Append the label of the torrent to the save path</source>
@@ -4392,7 +4398,7 @@ No further notices will be issued.</source>
     <message>
         <source>Pre-allocate disk space for all files</source>
         <translatorcomment>Или &apos;Предварительно резервировать&apos; будет правильнее?</translatorcomment>
-        <translation type="unfinished">Резервировать место для всех файлов</translation>
+        <translation>Предварительно зарезервировать место для всех файлов</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
@@ -4417,7 +4423,7 @@ No further notices will be issued.</source>
     <message>
         <source>Schedule the use of alternative speed limits</source>
         <translatorcomment>Или &apos;для использования&apos;?</translatorcomment>
-        <translation type="unfinished">Расписание использования альтернативных лимитов скорости</translation>
+        <translation>Расписание использования альтернативных лимитов скорости</translation>
     </message>
     <message>
         <source>from</source>
@@ -4435,7 +4441,7 @@ No further notices will be issued.</source>
     <message>
         <source>Protocol encryption:</source>
         <translatorcomment>Или &apos;Протокол шифрования&apos;?</translatorcomment>
-        <translation type="unfinished">Шифрование протокола:</translation>
+        <translation>Шифрование протокола:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
@@ -4443,17 +4449,17 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Share ratio limiting</source>
-        <translation type="unfinished">Ограничение коэффициента раздачи</translation>
+        <translation>Ограничение коэффициента раздачи</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
         <translatorcomment>Или тут лучше &apos;соотношение&apos;? Или &apos;рейтинг&apos;?</translatorcomment>
-        <translation type="unfinished">Раздавать торренты пока их коэффициент не достигнет</translation>
+        <translation>Раздавать торренты пока их соотношение загрузка/раздача не достигнет</translation>
     </message>
     <message>
         <source>then</source>
         <translatorcomment>Имхо так красивее звучит...</translatorcomment>
-        <translation type="unfinished">а затем</translation>
+        <translation>а затем</translation>
     </message>
     <message>
         <source>Pause them</source>
@@ -4469,23 +4475,23 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Сообщать об окончании загрузки по Email</translation>
     </message>
     <message>
         <source>Destination email:</source>
-        <translation type="unfinished"></translation>
+        <translation>Email для сообщения:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>SMTP сервер:</translation>
     </message>
     <message>
         <source>Run an external program on torrent completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Запустить внешнюю программу по окончании загрузки торрента</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать %f для передачи пути к торренту в параметрах</translation>
     </message>
 </context>
 <context>
@@ -4941,7 +4947,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Переименовать...</translation>
+        <translation>Переименовать...</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -5089,19 +5095,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>RSS Reader Settings</source>
         <translatorcomment>И опять читалка...</translatorcomment>
-        <translation type="unfinished">Настройки читалки RSS</translation>
+        <translation>Настройки читалки RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">Интервал обновления RSS каналов:</translation>
+        <translation>Интервал обновления RSS каналов:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">минут</translation>
+        <translation>минут</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Максимальное число статей на канал:</translation>
+        <translation>Максимальное число статей на канал:</translation>
     </message>
 </context>
 <context>
@@ -5321,13 +5327,13 @@ Changelog:
     </message>
     <message>
         <source>Download error</source>
-        <translation type="unfinished">Ошибка при скачивании</translation>
+        <translation>Ошибка при скачивании</translation>
     </message>
     <message>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translatorcomment>А вот нефиг ставить вручную! Ставить надо из репозитория. Думаю тут лучше будет &apos;самостоятельно&apos;...</translatorcomment>
-        <translation type="unfinished">Установщик Python не может быть загружен по причине: %1.
+        <translation>Установщик Python не может быть загружен по причине: %1.
 Пожалуйста, установите его вручную.</translation>
     </message>
     <message>
@@ -5347,7 +5353,7 @@ Do you want to install it now?</source>
     <message>
         <source>Are you sure you want to clear the history?</source>
         <translatorcomment>Или &apos;журнал&apos;?</translatorcomment>
-        <translation type="unfinished">Вы уверены, что хотитеочистить историю?</translation>
+        <translation>Вы уверены, что хотите очистить историю?</translation>
     </message>
 </context>
 <context>
@@ -5549,7 +5555,7 @@ Do you want to install it now?</source>
     <message>
         <source>Force reannounce</source>
         <translatorcomment>Коряво &gt;_&lt;</translatorcomment>
-        <translation type="unfinished">Переанонсировать принудительно</translation>
+        <translation>Переанонсировать принудительно</translation>
     </message>
 </context>
 <context>
@@ -5692,7 +5698,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Пауза</translation>
+        <translation>Пауза</translation>
     </message>
     <message>
         <source>Add label...</source>
@@ -5700,15 +5706,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Возобновить торренты</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Приостановить торренты</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить торренты</translation>
     </message>
 </context>
 <context>
@@ -5935,20 +5941,20 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Выберите путь сохранения</translation>
+        <translation>Выберите путь сохранения</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Ошибка создания пути сохранения</translation>
+        <translation>Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Невозможно создать путь сохранения</translation>
+        <translation>Невозможно создать путь сохранения</translation>
     </message>
     <message>
         <source>Set location...</source>
         <translatorcomment>Блин, до чего же коряво! Может лучше &apos;Переместить файлы&apos;?</translatorcomment>
-        <translation type="unfinished">Установить размещение...</translation>
+        <translation>Установить размещение...</translation>
     </message>
     <message>
         <source>Preview file...</source>
@@ -5965,41 +5971,41 @@ Do you want to install it now?</source>
     <message>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Вверх</translation>
     </message>
     <message>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Вниз</translation>
     </message>
     <message>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>На самый верх</translation>
     </message>
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>На самый низ</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Возобновить</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished">Приостановить</translation>
+        <translation>Приостановить</translation>
     </message>
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
 </context>
 <context>
@@ -7249,7 +7255,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorent сейчас выключит компьютер, потому что все загрузки завершены.</translation>
     </message>
 </context>
 <context>
