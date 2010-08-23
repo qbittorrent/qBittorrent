@@ -5537,7 +5537,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>需要重启qBittorrent</translation>
     </message>
 </context>
 <context>
