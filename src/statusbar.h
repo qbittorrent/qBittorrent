@@ -161,6 +161,15 @@ public:
   }
 
 public slots:
+  void showRestartRequired() {
+    // Restart required notification
+    QLabel *restartLbl = new QLabel(tr("qBittorrent needs to be restarted"));
+    restartLbl->setPixmap(QPixmap(":/Icons/oxygen/dialog-warning.png").scaled(QSize(24,24)));
+    restartLbl->setToolTip(tr("qBittorrent needs to be restarted"));
+    bar->insertWidget(0,restartLbl);
+    bar->insertWidget(1, new QLabel(tr("qBittorrent needs to be restarted")));
+  }
+
   void refreshStatusBar() {
     // Update connection status
     session_status sessionStatus = BTSession->getSessionStatus();

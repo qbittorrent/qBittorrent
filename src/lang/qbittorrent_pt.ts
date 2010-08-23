@@ -5406,6 +5406,10 @@ Gostaria de instalar agora?</translation>
         <source>Click to enable alternative speed limits</source>
         <translation>Clique para habilitar limite alternativo</translation>
     </message>
+    <message>
+        <source>qBittorrent needs to be restarted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>

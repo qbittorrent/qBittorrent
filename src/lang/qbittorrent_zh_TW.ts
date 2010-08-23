@@ -4284,6 +4284,10 @@ Do you want to install it now?</source>
         <source>Click to enable alternative speed limits</source>
         <translation>點選來啟用額外的速度限制</translation>
     </message>
+    <message>
+        <source>qBittorrent needs to be restarted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>

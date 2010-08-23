@@ -58,6 +58,7 @@ class createtorrent;
 class downloadFromURL;
 class HidableTabWidget;
 class LineEdit;
+class QFileSystemWatcher;
 
 class GUI : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -102,6 +103,7 @@ protected slots:
   void on_actionLock_qBittorrent_triggered();
   void defineUILockPassword();
   bool unlockUI();
+  void notifyOfUpdate(QString);
   // Keyboard shortcuts
   void createKeyboardShortcuts();
   void displayTransferTab() const;
@@ -135,6 +137,7 @@ protected:
   void displaySearchTab(bool enable);
 
 private:
+  QFileSystemWatcher *executable_watcher;
   // Bittorrent
   Bittorrent *BTSession;
   QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?

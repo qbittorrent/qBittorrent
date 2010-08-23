@@ -34,6 +34,7 @@
 #endif
 
 #include <QFileDialog>
+#include <QFileSystemWatcher>
 #include <QMessageBox>
 #include <QTimer>
 #include <QDesktopServices>
@@ -220,6 +221,11 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
       showMinimized();
   }
 
+  // Start watching the executable for updates
+  executable_watcher = new QFileSystemWatcher();
+  connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
+  executable_watcher->addPath(qApp->applicationFilePath());
+
   // Resume unfinished torrents
   BTSession->startUpTorrents();
   // Add torrent given on command line
@@ -257,6 +263,8 @@ GUI::~GUI() {
   properties->saveSettings();
   disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   // Delete other GUI objects
+  if(executable_watcher)
+    delete executable_watcher;
   delete status_bar;
   delete search_filter;
   delete transferList;
@@ -590,6 +598,14 @@ bool GUI::unlockUI() {
   }
   QMessageBox::warning(this, tr("Invalid password"), tr("The password is invalid"));
   return false;
+}
+
+void GUI::notifyOfUpdate(QString) {
+  // Show restart message
+  status_bar->showRestartRequired();
+  // Delete the executable watcher
+  delete executable_watcher;
+  executable_watcher = 0;
 }
 
 // Toggle Main window visibility

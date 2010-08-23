@@ -5275,6 +5275,10 @@ Do you want to install it now?</source>
         <source>Click to enable alternative speed limits</source>
         <translation>Akıllı hız sınırlarını etkinleştirmek için tıklayın</translation>
     </message>
+    <message>
+        <source>qBittorrent needs to be restarted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>

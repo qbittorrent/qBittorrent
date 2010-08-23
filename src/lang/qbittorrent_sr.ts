@@ -3681,6 +3681,10 @@ Do you want to install it now?</source>
         <source>Global Upload Speed Limit</source>
         <translation>Општи лимит брзине слања</translation>
     </message>
+    <message>
+        <source>qBittorrent needs to be restarted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>

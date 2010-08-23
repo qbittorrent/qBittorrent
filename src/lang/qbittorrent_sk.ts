@@ -5350,6 +5350,10 @@ Chcete ho nainštalovať teraz?</translation>
         <source>Click to enable alternative speed limits</source>
         <translation>Kliknutím zapnete alternatívne globálne rýchlostné obmedzenia</translation>
     </message>
+    <message>
+        <source>qBittorrent needs to be restarted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentFilesModel</name>

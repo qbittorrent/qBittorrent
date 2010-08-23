@@ -6,6 +6,7 @@
     - FEATURE: Added label-level Pause/Resume/Delete actions
     - FEATURE: Torrents can now be filtered by name
     - FEATURE: Run external program on torrent completion
+    - FEATURE: Detect executable updates in order to advise the user to restart
 
 * Tue Jul 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
     - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)
