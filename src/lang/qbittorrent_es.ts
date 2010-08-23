@@ -3710,7 +3710,7 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
         <location filename="../ui/mainwindow.ui" line="332"/>
         <location filename="../ui/mainwindow.ui" line="335"/>
         <source>Shutdown computer when downloads complete</source>
-        <translation>Apagar el Pc cuando descargas esten completadas</translation>
+        <translation>Apagar el equipo al finalizar las descargas</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="340"/>
@@ -7992,7 +7992,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../misc.cpp" line="258"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent apagará el Pc ahora, porque todas las descargas se han completado.</translation>
+        <translation>qBittorrent apagará el equipo ahora, porque todas las descargas se han completado.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="491"/>

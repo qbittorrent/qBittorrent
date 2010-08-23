@@ -3710,7 +3710,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <location filename="../ui/mainwindow.ui" line="332"/>
         <location filename="../ui/mainwindow.ui" line="335"/>
         <source>Shutdown computer when downloads complete</source>
-        <translation>Tancar el PC quan descàrregues estiguin completades</translation>
+        <translation>Tancar l&apos;equip en finalitzar les descàrregues</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="340"/>
@@ -4474,7 +4474,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     <message>
         <location filename="../ui/options.ui" line="927"/>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation>Ús %f per a passar el torrent la ruta dels paràmetres</translation>
+        <translation>Utilitzeu %f per a passar el torrent la ruta dels paràmetres</translation>
     </message>
     <message utf8="true">
         <location filename="../ui/options.ui" line="1735"/>
@@ -7983,7 +7983,7 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
     <message>
         <location filename="../misc.cpp" line="258"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent tancarà el PC ara, perquè totes les baixades s&apos;han completat.</translation>
+        <translation>qBittorrent tancarà l&apos;equip ara, perquè totes les baixades s&apos;han completat.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="491"/>
