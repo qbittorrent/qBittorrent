@@ -85,7 +85,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="233"/>
@@ -179,28 +185,28 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../advancedsettings.h" line="160"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished">أكبر كمية من الاتصالات النصف مفتوحة [٠ : معطلة]</translation>
+        <translation>أكبر كمية من الاتصالات النصف مفتوحة [٠ : معطلة]</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="168"/>
         <source>Strict super seeding</source>
-        <translation type="unfinished">الرفع القوي المخصص</translation>
+        <translation>الرفع القوي المخصص</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="178"/>
         <source>Network Interface (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Network Interface (requires restart)</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="180"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation type="unfinished"></translation>
+        <translation>Any interface</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="193"/>
         <source>Display program notification baloons</source>
-        <translation type="unfinished"></translation>
+        <translation>اظهار بالونات المعلومات</translation>
     </message>
     <message>
         <location filename="../advancedsettings.h" line="121"/>
@@ -224,12 +230,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="220"/>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Removing torrent %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="226"/>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausing torrent %1...</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="320"/>
@@ -394,7 +400,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="1084"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error: The torrent %1 does not contain any file.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="1633"/>
@@ -423,33 +429,33 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="2000"/>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent name: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2001"/>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent size: %1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2002"/>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>مكان الحفظ:%1</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2003"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>The torrent was downloaded in %1.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2004"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>شكرا لاستخدامك qBittorrent.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2006"/>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>[qBittorrent] %1 has finished downloading</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2253"/>
@@ -469,7 +475,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../bittorrent.cpp" line="2370"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished"></translation>
+        <translation>File sizes mismatch for torrent %1, pausing it.</translation>
     </message>
     <message>
         <location filename="../bittorrent.cpp" line="2374"/>
@@ -503,7 +509,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/console.ui" line="14"/>
         <source>qBittorrent log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>عارض سجل qBittorrent</translation>
     </message>
     <message>
         <location filename="../ui/console.ui" line="32"/>
@@ -521,23 +527,24 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookies management</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="36"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>المفتاح</translation>
     </message>
     <message>
         <location filename="../ui/cookiesdlg.ui" line="41"/>
         <source>Value</source>
-        <translation type="unfinished">قيمة</translation>
+        <translation>القيمة</translation>
     </message>
     <message>
         <location filename="../cookiesdlg.cpp" line="43"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+You should get this information from your Web browser preferences.</translation>
     </message>
 </context>
 <context>
@@ -940,7 +947,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="114"/>
         <source>Set the password...</source>
-        <translation type="unfinished"></translation>
+        <translation>ادخل كلمة المرور...</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="155"/>
@@ -955,17 +962,17 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="324"/>
         <source>Password update</source>
-        <translation type="unfinished"></translation>
+        <translation>تحديث كلمة المرور</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="324"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished"></translation>
+        <translation>The UI lock password has been successfully updated</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="383"/>
         <source>Transfers (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>النقل (%1)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="429"/>
@@ -1004,18 +1011,18 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../GUI.cpp" line="511"/>
         <location filename="../GUI.cpp" line="673"/>
         <source>Yes</source>
-        <translation type="unfinished">نعم</translation>
+        <translation>نعم</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="512"/>
         <location filename="../GUI.cpp" line="672"/>
         <source>No</source>
-        <translation type="unfinished">لا</translation>
+        <translation>لا</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="513"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>ابدا</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="533"/>
@@ -1032,29 +1039,29 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../GUI.cpp" line="333"/>
         <location filename="../GUI.cpp" line="587"/>
         <source>UI lock password</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة مرور قفل الواجهة</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="319"/>
         <location filename="../GUI.cpp" line="333"/>
         <location filename="../GUI.cpp" line="587"/>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished"></translation>
+        <translation>أدخل كلمة مرور قفل الواجهة:</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="599"/>
         <source>Invalid password</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة مرور خاطئة</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="599"/>
         <source>The password is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>كلمة المرور خاطئة</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="669"/>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Exiting qBittorrent</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="670"/>
@@ -1066,7 +1073,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../GUI.cpp" line="674"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>دائما</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1018"/>
@@ -1093,305 +1100,305 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../geoip.h" line="115"/>
         <source>Australia</source>
-        <translation type="unfinished">استراليا</translation>
+        <translation>استراليا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="116"/>
         <source>Argentina</source>
-        <translation type="unfinished">ارجنتينا</translation>
+        <translation>ارجنتينا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="117"/>
         <source>Austria</source>
-        <translation type="unfinished">النمسا</translation>
+        <translation>النمسا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="118"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished">الامارات العربية المتحدة</translation>
+        <translation>الامارات العربية المتحدة</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="121"/>
         <source>Brazil</source>
-        <translation type="unfinished">البرازيل</translation>
+        <translation>البرازيل</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="122"/>
         <source>Bulgaria</source>
-        <translation type="unfinished">بلغاريا</translation>
+        <translation>بلغاريا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="123"/>
         <source>Belarus</source>
-        <translation type="unfinished">بيلاروس</translation>
+        <translation>بيلاروس</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="124"/>
         <source>Belgium</source>
-        <translation type="unfinished">بلجيكا</translation>
+        <translation>بلجيكا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="125"/>
         <source>Bosnia</source>
-        <translation type="unfinished">البوسنة</translation>
+        <translation>البوسنة</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="128"/>
         <source>Canada</source>
-        <translation type="unfinished">كندا</translation>
+        <translation>كندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="129"/>
         <source>Czech Republic</source>
-        <translation type="unfinished">التشيك</translation>
+        <translation>التشيك</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="130"/>
         <location filename="../geoip.h" line="154"/>
         <source>China</source>
-        <translation type="unfinished">الصين</translation>
+        <translation>الصين</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="131"/>
         <source>Costa Rica</source>
-        <translation type="unfinished">كوستاريكا</translation>
+        <translation>كوستاريكا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="132"/>
         <source>Switzerland</source>
-        <translation type="unfinished">سويسرا</translation>
+        <translation>سويسرا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="135"/>
         <source>Germany</source>
-        <translation type="unfinished">المانيا</translation>
+        <translation>المانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="136"/>
         <source>Denmark</source>
-        <translation type="unfinished">الدنمارك</translation>
+        <translation>الدنمارك</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="137"/>
         <source>Algeria</source>
-        <translation type="unfinished">الجزائر</translation>
+        <translation>الجزائر</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="140"/>
         <source>Spain</source>
-        <translation type="unfinished">اسبانيا</translation>
+        <translation>اسبانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="141"/>
         <source>Egypt</source>
-        <translation type="unfinished">مصر</translation>
+        <translation>مصر</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="144"/>
         <source>Finland</source>
-        <translation type="unfinished">فنلندا</translation>
+        <translation>فنلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="145"/>
         <source>France</source>
-        <translation type="unfinished">فرنسا</translation>
+        <translation>فرنسا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="148"/>
         <source>United Kingdom</source>
-        <translation type="unfinished">بريطانيا</translation>
+        <translation>بريطانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="149"/>
         <source>Greece</source>
-        <translation type="unfinished">اليونان</translation>
+        <translation>اليونان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="150"/>
         <source>Georgia</source>
-        <translation type="unfinished">جورجيا</translation>
+        <translation>جورجيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="153"/>
         <source>Hungary</source>
-        <translation type="unfinished">هنغاريا</translation>
+        <translation>هنغاريا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="155"/>
         <source>Croatia</source>
-        <translation type="unfinished">كرواتيا</translation>
+        <translation>كرواتيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="158"/>
         <source>Italy</source>
-        <translation type="unfinished">ايطاليا</translation>
+        <translation>ايطاليا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="159"/>
         <source>India</source>
-        <translation type="unfinished">الهند</translation>
+        <translation>الهند</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="160"/>
         <source>Israel</source>
-        <translation type="unfinished">اسرائيل</translation>
+        <translation>اسرائيل</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="161"/>
         <source>Ireland</source>
-        <translation type="unfinished">ايرلندا</translation>
+        <translation>ايرلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="162"/>
         <source>Iceland</source>
-        <translation type="unfinished">ايسلندا</translation>
+        <translation>ايسلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="163"/>
         <source>Indonesia</source>
-        <translation type="unfinished">اندونيسيا</translation>
+        <translation>اندونيسيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="166"/>
         <source>Japan</source>
-        <translation type="unfinished">اليابان</translation>
+        <translation>اليابان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="169"/>
         <source>South Korea</source>
-        <translation type="unfinished">كوريا الجنوبية</translation>
+        <translation>كوريا الجنوبية</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="172"/>
         <source>Luxembourg</source>
-        <translation type="unfinished">لكسمبورغ</translation>
+        <translation>لكسمبورغ</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="175"/>
         <source>Malaysia</source>
-        <translation type="unfinished">مالبزيا</translation>
+        <translation>مالبزيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="176"/>
         <source>Mexico</source>
-        <translation type="unfinished">المكسيك</translation>
+        <translation>المكسيك</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="177"/>
         <location filename="../geoip.h" line="195"/>
         <source>Serbia</source>
-        <translation type="unfinished">الصرب</translation>
+        <translation>الصرب</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="178"/>
         <source>Morocco</source>
-        <translation type="unfinished">المغرب</translation>
+        <translation>المغرب</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="181"/>
         <source>Netherlands</source>
-        <translation type="unfinished">هولندا</translation>
+        <translation>هولندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="182"/>
         <source>Norway</source>
-        <translation type="unfinished">النرويج</translation>
+        <translation>النرويج</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="183"/>
         <source>New Zealand</source>
-        <translation type="unfinished">نيوزبلندا</translation>
+        <translation>نيوزبلندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="186"/>
         <source>Portugal</source>
-        <translation type="unfinished">البرتغال</translation>
+        <translation>البرتغال</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="187"/>
         <source>Poland</source>
-        <translation type="unfinished">بولندا</translation>
+        <translation>بولندا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="188"/>
         <source>Pakistan</source>
-        <translation type="unfinished">باكستان</translation>
+        <translation>باكستان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="189"/>
         <source>Philippines</source>
-        <translation type="unfinished">الفلبين</translation>
+        <translation>الفلبين</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="192"/>
         <source>Russia</source>
-        <translation type="unfinished">روسيا</translation>
+        <translation>روسيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="193"/>
         <source>Romania</source>
-        <translation type="unfinished">رومانيا</translation>
+        <translation>رومانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="194"/>
         <source>France (Reunion Island)</source>
-        <translation type="unfinished">فرنسا جزيرة الالتقاء</translation>
+        <translation>فرنسا جزيرة الالتقاء</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="198"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>السعودية</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="199"/>
         <source>Sweden</source>
-        <translation type="unfinished">السويد</translation>
+        <translation>السويد</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="200"/>
         <source>Slovakia</source>
-        <translation type="unfinished">سلوفاكيا</translation>
+        <translation>سلوفاكيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="201"/>
         <source>Singapore</source>
-        <translation type="unfinished">سنغافورة</translation>
+        <translation>سنغافورة</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="202"/>
         <source>Slovenia</source>
-        <translation type="unfinished">سلوفانيا</translation>
+        <translation>سلوفانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="205"/>
         <source>Taiwan</source>
-        <translation type="unfinished">تايوان</translation>
+        <translation>تايوان</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="206"/>
         <source>Turkey</source>
-        <translation type="unfinished">تركيا</translation>
+        <translation>تركيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="207"/>
         <source>Thailand</source>
-        <translation type="unfinished">تايلند</translation>
+        <translation>تايلند</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="210"/>
         <location filename="../geoip.h" line="211"/>
         <source>USA</source>
-        <translation type="unfinished">امريكا</translation>
+        <translation>امريكا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="212"/>
         <source>Ukraine</source>
-        <translation type="unfinished">اوكرانيا</translation>
+        <translation>اوكرانيا</translation>
     </message>
     <message>
         <location filename="../geoip.h" line="215"/>
         <source>South Africa</source>
-        <translation type="unfinished">افريقيا الجنوبية</translation>
+        <translation>افريقيا الجنوبية</translation>
     </message>
 </context>
 <context>
@@ -1602,7 +1609,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
-        <translation type="unfinished"></translation>
+        <translation>مسح النص</translation>
     </message>
 </context>
 <context>
@@ -1615,7 +1622,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="61"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;أدوات</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="72"/>
@@ -1638,22 +1645,22 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="80"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;عرض</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="146"/>
         <source>&amp;Add File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;أضف ملف...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="151"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;خروج</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="156"/>
         <source>&amp;Options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;خيارات...</translation>
     </message>
     <message>
         <source>About</source>
@@ -1686,43 +1693,43 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="196"/>
         <source>Add &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>أضف &amp;URL...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="201"/>
         <source>Torrent &amp;creator</source>
-        <translation type="unfinished"></translation>
+        <translation>انشاء &amp;تورنت</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="277"/>
         <source>Log viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>عرض السجل</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="285"/>
         <location filename="../ui/mainwindow.ui" line="288"/>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>السرعات البديلة</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="296"/>
         <source>Top &amp;tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>الشريط &amp;العلوي</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="299"/>
         <source>Display top tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>عرض الشريط العلوي</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="307"/>
         <source>&amp;Speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;السرعة في شريط المهام</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="310"/>
         <source>Show transfer speed in title bar</source>
-        <translation type="unfinished"></translation>
+        <translation>عرض السرعة في  شريط المهام</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -1739,37 +1746,37 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="161"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;معلومات</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="171"/>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ايقاف مؤقت</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="176"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;حذف</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="181"/>
         <source>P&amp;ause All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ايقاف الكل</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="166"/>
         <source>&amp;Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;الاكمال</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="186"/>
         <source>R&amp;esume All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;اكمال الكل</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="191"/>
         <source>Visit &amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>زيارة &amp;الموقع</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="206"/>
@@ -1784,54 +1791,54 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="216"/>
         <source>Report a &amp;bug</source>
-        <translation type="unfinished"></translation>
+        <translation>ابلاغ عن &amp;خلل</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="221"/>
         <source>Set upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>ضع حد الرفع...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="226"/>
         <source>Set download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>ضع حد التحميل...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="231"/>
         <source>&amp;Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;التعليمات</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="236"/>
         <source>Set global download limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>ضع حد التحميل العام...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="241"/>
         <source>Set global upload limit...</source>
-        <translation type="unfinished"></translation>
+        <translation>ضع حد الرفع العام...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="274"/>
         <source>&amp;Log viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;عرض السجل...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="334"/>
         <location filename="../ui/mainwindow.ui" line="337"/>
         <source>Shutdown computer when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>ايقاف الكمبيوتر بعد انهاء التحميل</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="342"/>
         <location filename="../ui/mainwindow.ui" line="345"/>
         <source>Lock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>قفل البرنامج</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="348"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -1840,12 +1847,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="318"/>
         <source>&amp;RSS reader</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;قارئ RSS</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="326"/>
         <source>Search &amp;engine</source>
-        <translation type="unfinished"></translation>
+        <translation>محرك &amp;البحث</translation>
     </message>
     <message>
         <source>Use alternative speed limits</source>
@@ -1978,22 +1985,22 @@ No further notices will be issued.</source>
     <message>
         <location filename="../peerlistwidget.cpp" line="132"/>
         <source>Add a new peer...</source>
-        <translation type="unfinished"></translation>
+        <translation>اضافة قرين جديد...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="141"/>
         <source>Copy IP</source>
-        <translation type="unfinished"></translation>
+        <translation>نسخ الايبي</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="143"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>وضع حد التحميل...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="144"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>وضع حد الرفع...</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="146"/>
@@ -2173,7 +2180,7 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="381"/>
         <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>بلا تأثير</translation>
     </message>
     <message>
         <source>Completed:</source>
@@ -2436,7 +2443,7 @@ QGroupBox {
     <message utf8="true">
         <location filename="../ui/options.ui" line="1735"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1738"/>
@@ -2517,167 +2524,167 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="20"/>
         <source>Options</source>
-        <translation type="unfinished">خيارات</translation>
+        <translation>خيارات</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="222"/>
         <source>Visual Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>المظهر</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="342"/>
         <source>Action on double-click</source>
-        <translation type="unfinished"></translation>
+        <translation>ردة الفعل للنقر المزدوج</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="354"/>
         <source>Downloading torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>تحميل تورنت:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="371"/>
         <location filename="../ui/options.ui" line="397"/>
         <source>Start / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>تشغيل/ايقاف</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="376"/>
         <location filename="../ui/options.ui" line="402"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">فتح المجلد المستهدف</translation>
+        <translation>فتح المجلد المستهدف</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="389"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>الملفات المنتهية:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="434"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>سطح المكتب</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="443"/>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>اظهار شاشة السبلاش عند بدء التشغيل</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="453"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>بدء البرنامج مصغرا</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="460"/>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>اظهار الايقونة في شريط المهام</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="470"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>تصغير البرنامج الى شريط المهام</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="480"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished"></translation>
+        <translation>اغلاق البرنامج الى شريط المهام</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="551"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation>عدم بدء التحميل تلقائيا</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="586"/>
         <source>Save files to location:</source>
-        <translation type="unfinished"></translation>
+        <translation>حفظ الملفات الى:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="635"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Append the label of the torrent to the save path</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="645"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pre-allocate disk space for all files</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="662"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>حفظ الملفات الغير منتهية في:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="709"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="unfinished"></translation>
+        <translation>Append .!qB extension to incomplete files&apos; names</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="726"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>التحميل تلقائيا من:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="779"/>
         <source>Add folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>اضافة مجلد جديد...</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="883"/>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Email notification upon download completion</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="892"/>
         <source>Destination email:</source>
-        <translation type="unfinished"></translation>
+        <translation>Destination email:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="902"/>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>SMTP server:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="915"/>
         <source>Run an external program on torrent completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Run an external program on torrent completion</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="927"/>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Use %f to pass the torrent path in parameters</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1169"/>
         <source>IP Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>IP Filtering</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1468"/>
         <source>Schedule the use of alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Schedule the use of alternative speed limits</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1485"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>من</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1553"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>متى:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1748"/>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>ايجاد القرناء المحليين</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1763"/>
         <source>Protocol encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Protocol encryption:</translation>
     </message>
     <message>
         <source>Client whitelisting workaround</source>
@@ -2711,27 +2718,27 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="1898"/>
         <source>Share ratio limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Share ratio limiting</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1909"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>رفع التورنت الى ratio</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1941"/>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>ثم</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1952"/>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation>ايقاف مؤقت</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1957"/>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف التورنت</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2035"/>
@@ -2776,7 +2783,7 @@ QGroupBox {
     <message>
         <location filename="../ui/options.ui" line="2437"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable Web User Interface (Remote control)</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2045"/>
@@ -2922,7 +2929,7 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="313"/>
         <source>Reannounce in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Reannounce in:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="339"/>
@@ -2950,12 +2957,12 @@ QGroupBox {
     <message>
         <location filename="../ui/propertieswidget.ui" line="763"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>اختيار الكل</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="770"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>اختيار لا شئ</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="817"/>
@@ -3001,7 +3008,7 @@ QGroupBox {
         <location filename="../ui/propertieswidget.ui" line="938"/>
         <location filename="../ui/propertieswidget.ui" line="941"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>لا تحمل</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -3161,7 +3168,7 @@ QGroupBox {
     <message>
         <location filename="../ui/rss.ui" line="95"/>
         <source>Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>الخيارات...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="117"/>
@@ -3195,7 +3202,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="200"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>اعادة تسمية...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="203"/>
@@ -3211,7 +3218,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="224"/>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>اشتراك جديد...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="233"/>
@@ -3237,17 +3244,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rss.ui" line="284"/>
         <source>RSS feed downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS feed downloader...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="293"/>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>مجلد جديد...</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="302"/>
         <source>Manage cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Manage cookies...</translation>
     </message>
     <message>
         <source>RSS feed downloader</source>
@@ -3388,22 +3395,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/rsssettings.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS Reader Settings</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS feeds refresh interval:</translation>
+        <translation>RSS feeds refresh interval:</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="70"/>
         <source>minutes</source>
-        <translation type="unfinished">دقائق</translation>
+        <translation>دقائق</translation>
     </message>
     <message>
         <location filename="../ui/rsssettings.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">اكبر كمية من المقالات الممكنة:</translation>
+        <translation>اكبر كمية من المقالات الممكنة:</translation>
     </message>
 </context>
 <context>
@@ -3505,12 +3512,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>التأكيد</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="225"/>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished"></translation>
+        <translation>هل انت متأكد من رغبتك في حذف النصوص السابقة؟</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="277"/>
@@ -3681,7 +3688,7 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="168"/>
         <location filename="../statusbar.h" line="170"/>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>البرنامج يحتاج الى اعدة تشغيل</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="178"/>
@@ -3833,17 +3840,17 @@ Please install it manually.</source>
     <message>
         <location filename="../trackerlist.cpp" line="349"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>إضافة تراكر جديد...</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="352"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>إزالة التراكر</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="355"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Force reannounce</translation>
     </message>
     <message>
         <source>Add a new tracker</source>
@@ -3971,7 +3978,7 @@ Please install it manually.</source>
         <location filename="../transferlistfilterswidget.h" line="204"/>
         <location filename="../transferlistfilterswidget.h" line="286"/>
         <source>Paused</source>
-        <translation type="unfinished">إقاف مؤقت</translation>
+        <translation>إيقاف مؤقت</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="207"/>
@@ -4005,22 +4012,22 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistfilterswidget.h" line="316"/>
         <source>Add label...</source>
-        <translation type="unfinished"></translation>
+        <translation>إضافة ملصق...</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="318"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>استكمال التورنت</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="319"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>ايقاف التورنت</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="320"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف التورنت</translation>
     </message>
     <message>
         <source>Add label</source>
@@ -4164,17 +4171,17 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="648"/>
         <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>اختر مكان الحفظ</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ في اختيار مكان الحفظ</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ في انشاء مكان الحفظ</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="914"/>
@@ -4220,39 +4227,39 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="1131"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>الاكمال</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1133"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>ايقاف مؤقت</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1135"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished">حذف</translation>
+        <translation>حذف</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1137"/>
         <source>Preview file...</source>
-        <translation type="unfinished"></translation>
+        <translation>استعراض الملف...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1139"/>
         <source>Limit upload rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>وضع حد الرفع...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1141"/>
         <source>Limit download rate...</source>
-        <translation type="unfinished"></translation>
+        <translation>وضع حد التحميل...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1297"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>الأفضلية</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -4271,30 +4278,30 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="1147"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>رفع الاهمية</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1149"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>خفض الأهمية</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1151"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>الرفع للاعلى</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1153"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>الخفض لاسفل</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1155"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>تغيير المكان</translation>
     </message>
     <message>
         <source>Buy it</source>
@@ -4466,12 +4473,12 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="217"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>اختيار الكل</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="224"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>عدم اختيار شئ</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="246"/>
@@ -4517,7 +4524,7 @@ Please install it manually.</source>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
         <location filename="../ui/torrentadditiondlg.ui" line="335"/>
         <source>Do not download</source>
-        <translation type="unfinished"></translation>
+        <translation>لا تحمل</translation>
     </message>
     <message>
         <source>Not downloaded</source>
@@ -4586,12 +4593,12 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="70"/>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>حفظ الاختيار</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="101"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف الملفات في القرص الصلب ايضا</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>
@@ -5185,13 +5192,13 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="665"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="670"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1d %2h</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="490"/>
@@ -5203,7 +5210,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.cpp" line="258"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>سيتم اطفاء التشغيل الآن</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="613"/>
