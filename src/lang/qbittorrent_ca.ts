@@ -26,8 +26,8 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;És un client Bittorrent programat en C++, Segons Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;i libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Página Oficial:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Un client Bittorrent programat en C++, segons Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Pàgina Oficial:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -1710,7 +1710,7 @@ Podeu obtenir aquesta informació de les preferències del seu navegador web.</t
         <location filename="../ui/feeddownloader.ui" line="496"/>
         <location filename="../ui/feeddownloader.ui" line="499"/>
         <source>Remove filter</source>
-        <translation>Eliminar filtre</translation>
+        <translation>Esborrar filtre</translation>
     </message>
     <message>
         <location filename="../ui/feeddownloader.ui" line="508"/>
@@ -2641,7 +2641,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../GUI.cpp" line="324"/>
         <source>Password update</source>
-        <translation>Contrasenya actualització</translation>
+        <translation>Actualització de contrasenya</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="324"/>
@@ -3318,7 +3318,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../httpserver.cpp" line="108"/>
         <source>Delete from HD</source>
-        <translation>Eliminar del disc</translation>
+        <translation>Esborrar del disc</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="109"/>
@@ -3353,7 +3353,7 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../httpserver.cpp" line="115"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Està segur que vol eliminar els torrents seleccionats de la llista de transferència i del disc?</translation>
+        <translation>Està segur que vols esborrar els torrents seleccionats de la llista de transferència i del disc?</translation>
     </message>
     <message>
         <location filename="../httpserver.cpp" line="116"/>
@@ -3721,7 +3721,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     <message>
         <location filename="../ui/mainwindow.ui" line="348"/>
         <source>Ctrl+L</source>
-        <translation></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -4464,7 +4464,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     <message>
         <location filename="../ui/options.ui" line="902"/>
         <source>SMTP server:</source>
-        <translation>Servei SMTP:</translation>
+        <translation>Servidor SMTP:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="915"/>
@@ -4504,7 +4504,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     <message>
         <location filename="../ui/options.ui" line="1957"/>
         <source>Remove them</source>
-        <translation>Eliminar</translation>
+        <translation>Esborrar</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2437"/>
@@ -4743,7 +4743,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     <message>
         <location filename="../ui/options.ui" line="789"/>
         <source>Remove folder</source>
-        <translation>Eliminar carpeta</translation>
+        <translation>Esborrar carpeta</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1169"/>
@@ -5548,12 +5548,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss_imp.cpp" line="225"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>Segur que vols eliminar aquests elements de la llista?</translation>
+        <translation>Segur que vols esborrar aquests elements de la llista?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="229"/>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation>Segur que vols eliminar aquest element de la llista?</translation>
+        <translation>Segur que vols esborrar aquest element de la llista?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="337"/>
@@ -5811,7 +5811,7 @@ Log:
     <message>
         <location filename="../searchengine.cpp" line="205"/>
         <source>Clear field</source>
-        <translation>Eliminar de la llista</translation>
+        <translation>Esborrar de la llista</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="206"/>
@@ -6141,7 +6141,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../trackerlist.cpp" line="352"/>
         <source>Remove tracker</source>
-        <translation>Eliminar traker</translation>
+        <translation>Esborrar traker</translation>
     </message>
     <message>
         <location filename="../trackerlist.cpp" line="355"/>
@@ -6307,7 +6307,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../transferlistfilterswidget.h" line="315"/>
         <source>Remove label</source>
-        <translation>Eliminar etiqueta</translation>
+        <translation>Esborrar etiqueta</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="316"/>
@@ -6327,7 +6327,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../transferlistfilterswidget.h" line="320"/>
         <source>Delete torrents</source>
-        <translation>Eliminar Torrents</translation>
+        <translation>Esborrar torrents</translation>
     </message>
     <message>
         <source>Add label</source>
@@ -6588,7 +6588,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <location filename="../transferlistwidget.cpp" line="1135"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Eliminar</translation>
+        <translation>Esborrar</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1137"/>
@@ -6639,13 +6639,13 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <location filename="../transferlistwidget.cpp" line="1151"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>Mou al principi</translation>
+        <translation>Moure al principi</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1153"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Mou al final</translation>
+        <translation>Moure al final</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1155"/>
@@ -7183,7 +7183,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="50"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Segur que vol eliminar els torrents seleccionats de la llista de transferències?</translation>
+        <translation>Segur que vols esborrar els torrents seleccionats de la llista de transferències?</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="70"/>
@@ -7193,7 +7193,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="101"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Eliminar també l&apos;arxiu del disc físic</translation>
+        <translation>Esborrar també l&apos;arxiu del disc físic</translation>
     </message>
     <message>
         <source>Delete the files on the hard disk as well</source>

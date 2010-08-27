@@ -3669,7 +3669,7 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
     <message>
         <location filename="../ui/mainwindow.ui" line="186"/>
         <source>R&amp;esume All</source>
-        <translation>R&amp;eanudar Todos</translation>
+        <translation>R&amp;eanudar Todas</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="191"/>
@@ -3721,7 +3721,7 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
     <message>
         <location filename="../ui/mainwindow.ui" line="348"/>
         <source>Ctrl+L</source>
-        <translation></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -4466,17 +4466,17 @@ Probablemente esto es algo que ya sabía, así que no le dirá otra vez.</transl
     <message>
         <location filename="../ui/options.ui" line="902"/>
         <source>SMTP server:</source>
-        <translation>Servicio SMTP:</translation>
+        <translation>Servidor SMTP:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="915"/>
         <source>Run an external program on torrent completion</source>
-        <translation>Ejecutar un programa externo al terminar el torrent</translation>
+        <translation>Ejecutar un programa externo al completarse el torrent</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="927"/>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation>Uso % f para pasar el torrente la ruta de los parámetros</translation>
+        <translation>Use % f para pasar al torrente la ruta de los parámetros</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1169"/>
@@ -6596,7 +6596,7 @@ Por favor, instálelo de forma manual.</translation>
         <location filename="../transferlistwidget.cpp" line="1135"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Eliminar</translation>
+        <translation>Borrar</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1137"/>
@@ -7999,7 +7999,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
     <message>
         <location filename="../misc.cpp" line="258"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent apagará el equipo ahora, porque todas las descargas se han completado.</translation>
+        <translation>Todas las descargas se han completado, qBittorrent apagará el equipo ahora.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="491"/>
