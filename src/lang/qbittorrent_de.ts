@@ -3490,7 +3490,7 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
 
 You probably knew this, so we won&apos;t tell you again.</source>
         <translatorcomment>The english source is a bit bumpy and has typos</translatorcomment>
-        <translation type="obsolete">qBittorrent ist ein Filesharing Programm. Sobald ein Torrent bei Ihnen läuft, stellen Sie den Inhalt auch anderen zurVerfügung. Selbstverständlich geschieht das Teilen jeglicher Inhalte auf Ihre eigene Verantwortung.
+        <translation type="obsolete">qBittorrent ist ein Filesharing Programm. Sobald ein Torrent bei Ihnen läuft, stellen Sie den Inhalt auch anderen zur Verfügung. Selbstverständlich geschieht das Teilen jeglicher Inhalte auf Ihre eigene Verantwortung.
 
 Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch nicht wieder darauf hinweisen.</translation>
     </message>
@@ -3500,7 +3500,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>qBittorrent ist ein Filesharing Programm. Sobald ein Torrent bei Ihnen läuft, stellen Sie den Inhalt auch anderen zurVerfügung. Selbstverständlich geschieht das Teilen jeglicher Inhalte auf Ihre eigene Verantwortung.
+        <translation>qBittorrent ist ein Filesharing Programm. Sobald ein Torrent bei Ihnen läuft, stellen Sie den Inhalt auch anderen zur Verfügung. Selbstverständlich geschieht das Teilen jeglicher Inhalte auf Ihre eigene Verantwortung.
 
 Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch nicht wieder darauf hinweisen.</translation>
     </message>
@@ -3631,7 +3631,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../ui/mainwindow.ui" line="146"/>
         <source>&amp;Add File...</source>
-        <translation>&amp;Datei Hinzufügen...</translation>
+        <translation>&amp;Datei hinzufügen...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="151"/>
@@ -3674,22 +3674,22 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../ui/mainwindow.ui" line="196"/>
         <source>Add &amp;URL...</source>
-        <translation>&amp;URL Hinzufügen...</translation>
+        <translation>&amp;URL hinzufügen...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="201"/>
         <source>Torrent &amp;creator</source>
-        <translation>Torrent Urheber</translation>
+        <translation>Torrent erstellen...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="221"/>
         <source>Set upload limit...</source>
-        <translation>Upload Limit Setzen...</translation>
+        <translation>Upload Limit setzen...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="226"/>
         <source>Set download limit...</source>
-        <translation>Download Limit Setzen...</translation>
+        <translation>Download Limit setzen...</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -3731,17 +3731,17 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../ui/mainwindow.ui" line="186"/>
         <source>R&amp;esume All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle forts&amp;etzen</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="191"/>
         <source>Visit &amp;Website</source>
-        <translation>&amp;Website Aufrufen</translation>
+        <translation>&amp;Website aufrufen</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="216"/>
         <source>Report a &amp;bug</source>
-        <translation>&amp;Bug Melde</translation>
+        <translation>&amp;Bug melden</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="231"/>
@@ -3751,12 +3751,12 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../ui/mainwindow.ui" line="236"/>
         <source>Set global download limit...</source>
-        <translation>Globales Downlaod Limit Setzen...</translation>
+        <translation>Globales Downlaod Limit setzen...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="241"/>
         <source>Set global upload limit...</source>
-        <translation>Globals Upload Limit Setzen...</translation>
+        <translation>Globals Upload Limit setzen...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="274"/>
@@ -3826,7 +3826,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../ui/mainwindow.ui" line="307"/>
         <source>&amp;Speed in title bar</source>
-        <translation>&amp;Geschwindigkei in der Titelleiste</translation>
+        <translation>&amp;Geschwindigkeit in der Titelleiste</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="310"/>
@@ -4569,7 +4569,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     </message>
     <message>
         <source>Reset to latest software version</source>
-        <translation type="obsolete">Auf die letzte Softwareversion zurück setzen</translation>
+        <translation type="obsolete">Auf die letzte Softwareversion zurücksetzen</translation>
     </message>
     <message>
         <source>Share ratio settings</source>
@@ -5217,13 +5217,13 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../propertieswidget.cpp" line="619"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Der Dateiname enthält ungültige Zeichen, bitte einen Anderen wählen.</translation>
+        <translation>Der Dateiname enthält ungültige Zeichen, bitte einen anderen wählen.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="651"/>
         <location filename="../propertieswidget.cpp" line="689"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet. Bitte Anderen wählen.</translation>
+        <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet. Bitte anderen wählen.</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="688"/>
@@ -5435,7 +5435,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add a new RSS stream</source>
-        <translation type="obsolete">neuen RSS Stream hinzufügen</translation>
+        <translation type="obsolete">Neuen RSS Stream hinzufügen</translation>
     </message>
     <message>
         <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
@@ -6012,7 +6012,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="178"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation>Offline. In den meisten Fällen bedeutet dass, dasqBittorrent nicht auf dem angegebenen Port für eingehende Verbindungen lauschen kann.</translation>
+        <translation>Offline. In den meisten Fällen bedeutet das, dass qBittorrent nicht auf dem angegebenen Port für eingehende Verbindungen lauschen kann.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="183"/>
@@ -6167,7 +6167,7 @@ Please install it manually.</source>
     </message>
     <message>
         <source>Add a new tracker</source>
-        <translation type="obsolete">Neues Tracker hinzufügen</translation>
+        <translation type="obsolete">Neuen Tracker hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -6175,7 +6175,7 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation>Dialog zum hinzufügen eines Trackers</translation>
+        <translation>Dialog zum Hinzufügen eines Trackers</translation>
     </message>
     <message>
         <location filename="../ui/trackersadditiondlg.ui" line="20"/>
@@ -6657,7 +6657,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="1157"/>
         <source>Force recheck</source>
-        <translation>Erzwinge erneutes Überprüfen</translation>
+        <translation>Erzwinge erneute Überprüfung</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1159"/>
@@ -6694,7 +6694,7 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="1255"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Zurück setzen</translation>
+        <translation>Zurücksetzen</translation>
     </message>
 </context>
 <context>
@@ -6705,7 +6705,7 @@ Please install it manually.</source>
     </message>
     <message>
         <source>I would like to thank sourceforge.net for hosting qBittorrent project.</source>
-        <translation type="obsolete">Ich möchte sourceforge.net für dasHosting des qBittorrent Projektes danken.</translation>
+        <translation type="obsolete">Ich möchte sourceforge.net für das Hosting des qBittorrent Projektes danken.</translation>
     </message>
     <message>
         <source>I would like to thank the following people who volonteered to translate qBittorrent:</source>
@@ -6894,7 +6894,7 @@ Please install it manually.</source>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="253"/>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Überspringe das Überprüfen der Datei und direkt mit dem seeden beginnen</translation>
+        <translation>Überspringe das Überprüfen der Datei und direkt mit dem Seeden beginnen</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="332"/>
@@ -8219,7 +8219,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../options_imp.cpp" line="1173"/>
         <source>Add directory to scan</source>
-        <translation>Verzeichnis zum scannen hinzufügen</translation>
+        <translation>Verzeichnis zum Scannen hinzufügen</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1179"/>
@@ -9021,13 +9021,13 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="321"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Der Dateiname enthält ungültige Zeichen, bitte einen Anderen wählen.</translation>
+        <translation>Der Dateiname enthält ungültige Zeichen, bitte einen anderen wählen.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="351"/>
         <location filename="../torrentadditiondlg.cpp" line="385"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet. Bitte Anderen wählen.</translation>
+        <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet. Bitte anderen wählen.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="384"/>
@@ -9038,7 +9038,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <location filename="../torrentadditiondlg.cpp" line="432"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(%1 ürig nachdem der Torrent geladen wurde)</translation>
+        <translation>(%1 übrig nachdem der Torrent geladen wurde)</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="435"/>
