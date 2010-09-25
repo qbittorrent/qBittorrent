@@ -37,6 +37,7 @@
 #include <QString>
 #include <QTemporaryFile>
 #include "qinisettings.h"
+#include "misc.h"
 
 namespace {
   const int PathColumn = 0;
@@ -190,13 +191,13 @@ int ScanFoldersModel::findPathData(const QString &path) const {
 
 void ScanFoldersModel::makePersistent(QIniSettings &settings) {
   QStringList paths;
-  QList<QVariant> downloadInFolderInfo;
+  QList<bool> downloadInFolderInfo;
   foreach (const PathData* pathData, m_pathList) {
     paths << pathData->path;
     downloadInFolderInfo << pathData->downloadAtPath;
   }
   settings.setValue(QString::fromUtf8("ScanDirs"), paths);
-  settings.setValue(QString::fromUtf8("DownloadInScanDirs"), downloadInFolderInfo);
+  settings.setValue(QString::fromUtf8("DownloadInScanDirs"), misc::toStringList(downloadInFolderInfo));
 }
 
 ScanFoldersModel *ScanFoldersModel::m_instance = 0;

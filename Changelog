@@ -4,6 +4,7 @@
     - BUGFIX: Save path can now be edited in torrent addition dialog
     - BUGFIX: OGV can now be previewed
     - BUGFIX: Maximum download limit is now 10MB/s
+    - BUGFIX: Fix 'download in scan dir' persistence
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
     - FEATURE: Added actions to "Move to top/bottom" of priority queue
