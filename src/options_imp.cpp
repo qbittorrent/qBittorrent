@@ -37,6 +37,7 @@
 #include <QCloseEvent>
 #include <QDesktopWidget>
 #include <QStyleFactory>
+#include <QTranslator>
 
 #include <libtorrent/version.hpp>
 #include <time.h>
@@ -353,10 +354,22 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     QIniSettings settings("qBittorrent", "qBittorrent");
     // Apply style
     useStyle();
+    // Load the translation
+    QString locale = getLocale();
+    if(Preferences::getLocale() != locale) {
+      QTranslator *translator = new QTranslator;
+      if(translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
+        qDebug("%s locale recognized, using translation.", qPrintable(locale));
+      }else{
+        qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
+      }
+      qApp->installTranslator(translator);
+    }
+
     settings.beginGroup("Preferences");
     // General preferences
     settings.beginGroup("General");
-    settings.setValue(QString::fromUtf8("Locale"), getLocale());
+    settings.setValue(QString::fromUtf8("Locale"), locale);
     settings.setValue(QString::fromUtf8("Style"), getStyle());
     settings.setValue(QString::fromUtf8("AlternatingRowColors"), checkAltRowColors->isChecked());
     settings.setValue(QString::fromUtf8("SystrayEnabled"), systrayIntegration());
