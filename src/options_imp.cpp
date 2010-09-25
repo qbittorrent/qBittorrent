@@ -187,6 +187,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
     connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     // Downloads tab
     connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(checkAppendLabel, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
