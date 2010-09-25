@@ -88,6 +88,9 @@ public slots:
   void updateSavePathCurrentText(QString path);
   void resetComboLabelIndex(QString text);
 
+protected slots:
+  void restoreCursorPosition();
+
 signals:
   void torrentPaused(QTorrentHandle &h);
 
@@ -108,6 +111,7 @@ private:
   bool is_magnet;
   int hidden_height;
   QStringList path_history;
+  int cursor_pos;
 };
 
 #endif

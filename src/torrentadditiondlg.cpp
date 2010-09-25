@@ -313,8 +313,8 @@ void torrentAdditionDialog::renameSelectedFile() {
   // Ask for new name
   bool ok;
   const QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
-                                                       tr("New name:"), QLineEdit::Normal,
-                                                       index.data().toString(), &ok);
+                                                      tr("New name:"), QLineEdit::Normal,
+                                                      index.data().toString(), &ok);
   if (ok && !new_name_last.isEmpty()) {
     if(!misc::isValidFileSystemName(new_name_last)) {
       QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -614,8 +614,15 @@ void torrentAdditionDialog::renameSelectedFile() {
         }
       }
 
+      void torrentAdditionDialog::restoreCursorPosition() {
+        savePathTxt->lineEdit()->setCursorPosition(cursor_pos);
+      }
+
       void torrentAdditionDialog::updateSavePathCurrentText(QString path) {
+        Q_UNUSED(path);
+        cursor_pos = savePathTxt->lineEdit()->cursorPosition();
         savePathTxt->setItemText(savePathTxt->currentIndex(), path);
+        QTimer::singleShot(0, this, SLOT(restoreCursorPosition()));
         path_history.replace(savePathTxt->currentIndex(), getCurrentTruncatedSavePath());
         QString root_folder_or_file_name = "";
         getCurrentTruncatedSavePath(&root_folder_or_file_name);
