@@ -138,7 +138,8 @@ void torrentAdditionDialog::limitDialogWidth() {
 
   QRect desk(QApplication::desktop()->availableGeometry(scrn));
   int max_width = desk.width();
-  setMaximumWidth(max_width);
+  if(max_width > 0)
+    setMaximumWidth(max_width);
 }
 
 void torrentAdditionDialog::hideTorrentContent() {
