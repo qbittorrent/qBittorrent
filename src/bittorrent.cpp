@@ -867,13 +867,13 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-    p.save_path = torrent_tmp_path.toLocal8Bit().constData();
+    p.save_path = torrent_tmp_path.toUtf8().constData();
     // Check if save path exists, creating it otherwise
     if(!QDir(torrent_tmp_path).exists())
       QDir().mkpath(torrent_tmp_path);
     qDebug("addMagnetURI: using save_path: %s", qPrintable(torrent_tmp_path));
   } else {
-    p.save_path = savePath.toLocal8Bit().constData();
+    p.save_path = savePath.toUtf8().constData();
     // Check if save path exists, creating it otherwise
     if(!QDir(savePath).exists())
       QDir().mkpath(savePath);
@@ -1121,13 +1121,13 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
       if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
       torrent_tmp_path += root_folder;
     }
-    p.save_path = torrent_tmp_path.toLocal8Bit().constData();
+    p.save_path = torrent_tmp_path.toUtf8().constData();
     // Check if save path exists, creating it otherwise
     if(!QDir(torrent_tmp_path).exists())
       QDir().mkpath(torrent_tmp_path);
     qDebug("addTorrent: using save_path: %s", qPrintable(torrent_tmp_path));
   } else {
-    p.save_path = savePath.toLocal8Bit().constData();
+    p.save_path = savePath.toUtf8().constData();
     // Check if save path exists, creating it otherwise
     if(!QDir(savePath).exists())
       QDir().mkpath(savePath);

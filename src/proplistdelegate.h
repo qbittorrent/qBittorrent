@@ -43,6 +43,10 @@
 #include "misc.h"
 #include "propertieswidget.h"
 
+#ifdef Q_WS_WIN
+#include <QPlastiqueStyle>
+#endif
+
 // Defines for properties list columns
 enum PropColumn {NAME, PCSIZE, PROGRESS, PRIORITY};
 
@@ -79,7 +83,13 @@ public:
         newopt.minimum = 0;
         newopt.state |= QStyle::State_Enabled;
         newopt.textVisible = true;
+#ifndef Q_WS_WIN
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+#else
+        // XXX: To avoid having the progress text on the right of the bar
+        QPlastiqueStyle st;
+        st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+#endif
         break;
       }
     case PRIORITY: {
