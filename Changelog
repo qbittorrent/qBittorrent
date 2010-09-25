@@ -3,6 +3,7 @@
     - I18N: Fixes to German translation
     - BUGFIX: Save path can now be edited in torrent addition dialog
     - BUGFIX: Fix save path encoding on non-utf8 systems
+    - BUGFIX: Fix saving to drive root on Windows
     - BUGFIX: OGV can now be previewed
     - BUGFIX: Maximum download limit is now 10MB/s
     - BUGFIX: Fix 'download in scan dir' persistence
