@@ -5642,12 +5642,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="102"/>
+        <location filename="../scannedfoldersmodel.cpp" line="103"/>
         <source>Watched Folder</source>
         <translation>Cerca fitxers .torrents</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="103"/>
+        <location filename="../scannedfoldersmodel.cpp" line="104"/>
         <source>Download here</source>
         <translation>Descarregar Torrent aquí</translation>
     </message>
@@ -7420,14 +7420,14 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation type="obsolete">Por favor escribe una ruta de entrada correcta primero</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
-        <location filename="../createtorrent_imp.cpp" line="227"/>
-        <location filename="../createtorrent_imp.cpp" line="238"/>
+        <location filename="../createtorrent_imp.cpp" line="214"/>
+        <location filename="../createtorrent_imp.cpp" line="228"/>
+        <location filename="../createtorrent_imp.cpp" line="239"/>
         <source>Torrent creation</source>
         <translation>Crear Torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="238"/>
+        <location filename="../createtorrent_imp.cpp" line="239"/>
         <source>Torrent was created successfully:</source>
         <translation>El Torrent es va crear amb èxit:</translation>
     </message>
@@ -7450,7 +7450,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Si us plau escriu una URL d&apos;anunci</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="214"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>La creació del torrent no ha estat reeixida, raó: %1</translation>
     </message>
@@ -7484,7 +7484,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation type="obsolete">Por favor establece al menos un tracker</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="227"/>
+        <location filename="../createtorrent_imp.cpp" line="228"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>La creació de l&apos;arxiu torrent no és vàlida. No s&apos;afegirà a la llista de descàrregues.</translation>
     </message>
@@ -8023,13 +8023,13 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="665"/>
+        <location filename="../misc.cpp" line="666"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="670"/>
+        <location filename="../misc.cpp" line="671"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation></translation>
@@ -8050,10 +8050,10 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation type="obsolete"> d</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="613"/>
-        <location filename="../misc.cpp" line="618"/>
-        <location filename="../misc.cpp" line="622"/>
-        <location filename="../misc.cpp" line="625"/>
+        <location filename="../misc.cpp" line="614"/>
+        <location filename="../misc.cpp" line="619"/>
+        <location filename="../misc.cpp" line="623"/>
+        <location filename="../misc.cpp" line="626"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -8074,13 +8074,13 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation>Desconegut</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="656"/>
+        <location filename="../misc.cpp" line="657"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt;1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="660"/>
+        <location filename="../misc.cpp" line="661"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
@@ -8200,10 +8200,10 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation type="obsolete">Selecciona un archivo ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1251"/>
-        <location filename="../options_imp.cpp" line="1253"/>
-        <location filename="../options_imp.cpp" line="1268"/>
-        <location filename="../options_imp.cpp" line="1270"/>
+        <location filename="../options_imp.cpp" line="1252"/>
+        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1269"/>
+        <location filename="../options_imp.cpp" line="1271"/>
         <source>Choose a save directory</source>
         <translation>Selecciona un directori per guardar</translation>
     </message>
@@ -8217,50 +8217,50 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation type="obsolete">No se pudo abrir %1 en modo lectura.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1173"/>
+        <location filename="../options_imp.cpp" line="1174"/>
         <source>Add directory to scan</source>
         <translation>Afegir directori per escanejar</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1179"/>
+        <location filename="../options_imp.cpp" line="1180"/>
         <source>Folder is already being watched.</source>
         <translation>Aquesta carpeta ja està seleccionada per escanejar.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1182"/>
+        <location filename="../options_imp.cpp" line="1183"/>
         <source>Folder does not exist.</source>
         <translation>La carpeta no existeix.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1185"/>
+        <location filename="../options_imp.cpp" line="1186"/>
         <source>Folder is not readable.</source>
         <translation>La carpeta no és llegible.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1193"/>
+        <location filename="../options_imp.cpp" line="1194"/>
         <source>Failure</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1193"/>
+        <location filename="../options_imp.cpp" line="1194"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>No es pot escanejar aquesta carpetes &apos;%1&apos;:%2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1216"/>
-        <location filename="../options_imp.cpp" line="1218"/>
+        <location filename="../options_imp.cpp" line="1217"/>
+        <location filename="../options_imp.cpp" line="1219"/>
         <source>Choose export directory</source>
         <translation>Selecciona directori d&apos;exportació</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1233"/>
-        <location filename="../options_imp.cpp" line="1235"/>
+        <location filename="../options_imp.cpp" line="1234"/>
+        <location filename="../options_imp.cpp" line="1236"/>
         <source>Choose an ip filter file</source>
         <translation>Selecciona un arxiu de filtre d&apos;ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1233"/>
-        <location filename="../options_imp.cpp" line="1235"/>
+        <location filename="../options_imp.cpp" line="1234"/>
+        <location filename="../options_imp.cpp" line="1236"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
