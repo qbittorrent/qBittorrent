@@ -45,10 +45,6 @@ p, li { white-space: pre-wrap; }
         <translation>電子メール:</translation>
     </message>
     <message>
-        <source>Home page:</source>
-        <translation type="obsolete">ホーム ページ:</translation>
-    </message>
-    <message>
         <location filename="../ui/about.ui" line="170"/>
         <source>Christophe Dumez</source>
         <translation>Christophe Dumez</translation>
@@ -57,10 +53,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../ui/about.ui" line="208"/>
         <source>France</source>
         <translation>フランス</translation>
-    </message>
-    <message>
-        <source>Thanks To</source>
-        <translation type="obsolete">謝辞</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="270"/>
@@ -77,40 +69,10 @@ p, li { white-space: pre-wrap; }
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
-    <message utf8="true">
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
-&lt;br&gt;
-Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="obsolete">bittorrent クライアントは Qt4 および libtorrent を使用し、C++ でプログラムされています。&lt;br&gt;
-&lt;br&gt;
-Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;ホーム ページ:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
-    </message>
     <message>
         <location filename="../ui/about.ui" line="233"/>
         <source>chris@qbittorrent.org</source>
         <translation>chris@qbittorrent.org</translation>
-    </message>
-    <message>
-        <source>http://www.dchris.eu</source>
-        <translation type="obsolete">http://www.dchris.eu</translation>
-    </message>
-    <message>
-        <source>Birthday:</source>
-        <translation type="obsolete">誕生日:</translation>
-    </message>
-    <message>
-        <source>Occupation:</source>
-        <translation type="obsolete">職業:</translation>
-    </message>
-    <message>
-        <source>03/05/1985</source>
-        <translation type="obsolete">03/05/1985</translation>
-    </message>
-    <message>
-        <source>Student in computer science</source>
-        <translation type="obsolete">コンピュータ科学の学生</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="257"/>
@@ -211,26 +173,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../advancedsettings.h" line="127"/>
         <source>Include TCP/IP overhead in transfer limits</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BandwidthAllocationDialog</name>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="obsolete">アップロード制限:</translation>
-    </message>
-    <message>
-        <source>Download limit:</source>
-        <translation type="obsolete">ダウンロード制限:</translation>
-    </message>
-    <message>
-        <source>Unlimited</source>
-        <comment>Unlimited (bandwidth)</comment>
-        <translation type="obsolete">無制限</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
     </message>
 </context>
 <context>
@@ -441,10 +383,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">所定のポートで記入できませんでした。</translation>
-    </message>
-    <message>
         <location filename="../bittorrent.cpp" line="2342"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
@@ -561,750 +499,6 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
-    <name>DLListDelegate</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-</context>
-<context>
-    <name>Dialog</name>
-    <message>
-        <source>Options -- qBittorrent</source>
-        <translation type="obsolete">オプション -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">オプション</translation>
-    </message>
-    <message>
-        <source>Main</source>
-        <translation type="obsolete">メイン</translation>
-    </message>
-    <message>
-        <source>Save Path:</source>
-        <translation type="obsolete">保存パス:</translation>
-    </message>
-    <message>
-        <source>Download Limit:</source>
-        <translation type="obsolete">ダウンロード制限:</translation>
-    </message>
-    <message>
-        <source>Upload Limit:</source>
-        <translation type="obsolete">アップロード制限:</translation>
-    </message>
-    <message>
-        <source>Max Connects:</source>
-        <translation type="obsolete">最大接続数:</translation>
-    </message>
-    <message>
-        <source>Port range:</source>
-        <translation type="obsolete">ポートの範囲:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">無効にする</translation>
-    </message>
-    <message>
-        <source>connections</source>
-        <translation type="obsolete">個の接続</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">プロキシ</translation>
-    </message>
-    <message>
-        <source>Proxy Settings</source>
-        <translation type="obsolete">プロキシの設定</translation>
-    </message>
-    <message>
-        <source>Server IP:</source>
-        <translation type="obsolete">サーバー IP:</translation>
-    </message>
-    <message>
-        <source>0.0.0.0</source>
-        <translation type="obsolete">0.0.0.0</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="obsolete">ポート:</translation>
-    </message>
-    <message>
-        <source>Proxy server requires authentication</source>
-        <translation type="obsolete">プロキシ サーバーは認証を必要とします</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation type="obsolete">認証</translation>
-    </message>
-    <message>
-        <source>User Name:</source>
-        <translation type="obsolete">ユーザー名:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="obsolete">パスワード:</translation>
-    </message>
-    <message>
-        <source>Enable connection through a proxy server</source>
-        <translation type="obsolete">プロキシ サーバーを通じての接続を有効にする</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">キャンセル</translation>
-    </message>
-    <message>
-        <source>Scanned Dir:</source>
-        <translation type="obsolete">スキャン済みディレクトリ:</translation>
-    </message>
-    <message>
-        <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation type="obsolete">ディレクトリ スキャンを有効にする (torrent ファイル内部の自動追加)</translation>
-    </message>
-    <message>
-        <source>Share ratio:</source>
-        <translation type="obsolete">共有率:</translation>
-    </message>
-    <message>
-        <source>Activate IP Filtering</source>
-        <translation type="obsolete">IP フィルタをアクティブにする</translation>
-    </message>
-    <message>
-        <source>Filter Settings</source>
-        <translation type="obsolete">フィルタの設定</translation>
-    </message>
-    <message>
-        <source>Start IP</source>
-        <translation type="obsolete">開始 IP</translation>
-    </message>
-    <message>
-        <source>End IP</source>
-        <translation type="obsolete">最終 IP</translation>
-    </message>
-    <message>
-        <source>Origin</source>
-        <translation type="obsolete">オリジン</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation type="obsolete">コメント</translation>
-    </message>
-    <message>
-        <source>Apply</source>
-        <translation type="obsolete">適用</translation>
-    </message>
-    <message>
-        <source>IP Filter</source>
-        <translation type="obsolete">IP フィルタ</translation>
-    </message>
-    <message>
-        <source> Add Range</source>
-        <translation type="obsolete">(sp)範囲の追加</translation>
-    </message>
-    <message>
-        <source> Remove Range</source>
-        <translation type="obsolete">(sp)範囲の削除</translation>
-    </message>
-    <message>
-        <source>ipfilter.dat Path:</source>
-        <translation type="obsolete">ipfilter.dat のパス:</translation>
-    </message>
-    <message>
-        <source>Go to systray when minimizing window</source>
-        <translation type="obsolete">ウィンドウの最小化時にシステムトレイへ移動する</translation>
-    </message>
-    <message>
-        <source>Misc</source>
-        <translation type="obsolete">他</translation>
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="obsolete">地方化</translation>
-    </message>
-    <message>
-        <source>Language:</source>
-        <translation type="obsolete">言語:</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation type="obsolete">動作</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-    <message>
-        <source>1 KiB DL = </source>
-        <translation type="obsolete">1 KiB DL =(sp)</translation>
-    </message>
-    <message>
-        <source>KiB UP max.</source>
-        <translation type="obsolete">KiB UP 最大。</translation>
-    </message>
-    <message>
-        <source>Preview program</source>
-        <translation type="obsolete">プログラムのプレビュー</translation>
-    </message>
-    <message>
-        <source>Audio/Video player:</source>
-        <translation type="obsolete">オーディオ/ビデオ プレーヤー:</translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="obsolete">常にシステムトレイ メッセージを表示する</translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="obsolete">ウィンドウが隠れたときのみシステムトレイ メッセージを表示する</translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="obsolete">システムトレイ メッセージを表示しない</translation>
-    </message>
-    <message>
-        <source>DHT configuration</source>
-        <translation type="obsolete">DHT 構成</translation>
-    </message>
-    <message>
-        <source>DHT port:</source>
-        <translation type="obsolete">DHT ポート:</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">言語</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="obsolete">&lt;b&gt;注意:&lt;/b&gt; 変更は qBittorrent が再起動された後に適用されます。</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="obsolete">&lt;b&gt;翻訳の注意:&lt;/b&gt; qBittorrent がお使いの言語で利用できない場合、&lt;br/&gt;そして母国語に翻訳したい場合は、&lt;br/&gt;ご連絡ください (chris@qbittorrent.org)。</translation>
-    </message>
-    <message>
-        <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="obsolete">Torrent を追加するごとに torrent の追加ダイアログを表示する</translation>
-    </message>
-    <message>
-        <source>Default save path</source>
-        <translation type="obsolete">既定の保存パス</translation>
-    </message>
-    <message>
-        <source>Disable DHT (Trackerless)</source>
-        <translation type="obsolete">DHT (トラッカレス) を無効にする</translation>
-    </message>
-    <message>
-        <source>Disable Peer eXchange (PeX)</source>
-        <translation type="obsolete">eer eXchange (PeX) を無効にする</translation>
-    </message>
-    <message>
-        <source>Go to systray when closing main window</source>
-        <translation type="obsolete">メイン ウィンドウが閉じられるときにシステムトレイへ移動する</translation>
-    </message>
-    <message>
-        <source>Connection</source>
-        <translation type="obsolete">接続</translation>
-    </message>
-    <message>
-        <source>Peer eXchange (PeX)</source>
-        <translation type="obsolete">Peer eXchange (PeX)</translation>
-    </message>
-    <message>
-        <source>DHT (trackerless)</source>
-        <translation type="obsolete">DHT (トラッカレス)</translation>
-    </message>
-    <message>
-        <source>UPnP port forwarding</source>
-        <translation type="obsolete">UPnP ポート転送</translation>
-    </message>
-    <message>
-        <source>Disable UPnP port forwarding</source>
-        <translation type="obsolete">UPnP ポート転送を無効にする</translation>
-    </message>
-    <message>
-        <source>UPnP configuration</source>
-        <translation type="obsolete">UPnP 構成</translation>
-    </message>
-    <message>
-        <source>UPnP port:</source>
-        <translation type="obsolete">UPnP ポート:</translation>
-    </message>
-    <message>
-        <source>Torrent addition</source>
-        <translation type="obsolete">Torrent の追加</translation>
-    </message>
-    <message>
-        <source>Main window</source>
-        <translation type="obsolete">メイン ウィンドウ</translation>
-    </message>
-    <message>
-        <source>Systray messages</source>
-        <translation type="obsolete">システムトレイ メッセージ</translation>
-    </message>
-    <message>
-        <source>Directory scan</source>
-        <translation type="obsolete">ディレクトリ スキャン</translation>
-    </message>
-    <message>
-        <source>Style (Look &apos;n Feel)</source>
-        <translation type="obsolete">スタイル (外観)</translation>
-    </message>
-    <message>
-        <source>Plastique style (KDE like)</source>
-        <translation type="obsolete">プラスチック スタイル (KDE 風)</translation>
-    </message>
-    <message>
-        <source>Cleanlooks style (GNOME like)</source>
-        <translation type="obsolete">クリアルック スタイル (GNOME 風)</translation>
-    </message>
-    <message>
-        <source>Motif style (default Qt style on Unix systems)</source>
-        <translation type="obsolete">Motif スタイル (既定の Unix システムでの Qt スタイル)</translation>
-    </message>
-    <message>
-        <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="obsolete">CDE スタイル (Common Desktop Environment 風)</translation>
-    </message>
-    <message>
-        <source>MacOS style (MacOSX only)</source>
-        <translation type="obsolete">MacOS スタイル (MacOSX のみ)</translation>
-    </message>
-    <message>
-        <source>Exit confirmation when the download list is not empty</source>
-        <translation type="obsolete">ダウンロードの一覧が空ではないときに終了を確認する</translation>
-    </message>
-    <message>
-        <source>Disable systray integration</source>
-        <translation type="obsolete">システムトレイ統合を無効にする</translation>
-    </message>
-    <message>
-        <source>WindowsXP style (Windows XP only)</source>
-        <translation type="obsolete">WindowsXP スタイル (Windows XP のみ)</translation>
-    </message>
-    <message>
-        <source>Server IP or url:</source>
-        <translation type="obsolete">サーバーの IP または url:</translation>
-    </message>
-    <message>
-        <source>Proxy type:</source>
-        <translation type="obsolete">プロキシの種類:</translation>
-    </message>
-    <message>
-        <source>HTTP</source>
-        <translation type="obsolete">HTTP</translation>
-    </message>
-    <message>
-        <source>SOCKS5</source>
-        <translation type="obsolete">SOCKS5</translation>
-    </message>
-    <message>
-        <source>Affected connections</source>
-        <translation type="obsolete">影響された接続</translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to trackers</source>
-        <translation type="obsolete">トラッカへの接続にプロキシを使用する</translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to regular peers</source>
-        <translation type="obsolete">通常のピアへの接続にプロキシを使用する</translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to web seeds</source>
-        <translation type="obsolete">Web シードへの接続にプロキシを使用する</translation>
-    </message>
-    <message>
-        <source>Use proxy for DHT messages</source>
-        <translation type="obsolete">DHT メッセージへの接続にプロキシを使用する</translation>
-    </message>
-    <message>
-        <source>Encryption</source>
-        <translation type="obsolete">暗号化</translation>
-    </message>
-    <message>
-        <source>Encryption state:</source>
-        <translation type="obsolete">暗号化の状況:</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">有効</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">強制済み</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">無効</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="obsolete">環境設定</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">一般</translation>
-    </message>
-    <message>
-        <source>User interface settings</source>
-        <translation type="obsolete">ユーザー インターフェイスの設定</translation>
-    </message>
-    <message>
-        <source>Visual style:</source>
-        <translation type="obsolete">視覚スタイル:</translation>
-    </message>
-    <message>
-        <source>Cleanlooks style (Gnome like)</source>
-        <translation type="obsolete">クリーンルック スタイル (Gnome 風)</translation>
-    </message>
-    <message>
-        <source>Motif style (Unix like)</source>
-        <translation type="obsolete">モチーフ スタイル (Unix 風)</translation>
-    </message>
-    <message>
-        <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="obsolete">ダウンロードの一覧が空ではないときの終了時の確認を質問する</translation>
-    </message>
-    <message>
-        <source>Display current speed in title bar</source>
-        <translation type="obsolete">タイトル バーに現在の速度を表示する</translation>
-    </message>
-    <message>
-        <source>System tray icon</source>
-        <translation type="obsolete">システム トレイ アイコン</translation>
-    </message>
-    <message>
-        <source>Disable system tray icon</source>
-        <translation type="obsolete">システム トレイ アイコンを無効にする</translation>
-    </message>
-    <message>
-        <source>Close to tray</source>
-        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="obsolete">トレイへ閉じる</translation>
-    </message>
-    <message>
-        <source>Minimize to tray</source>
-        <translation type="obsolete">トレイへ最小化する</translation>
-    </message>
-    <message>
-        <source>Show notification balloons in tray</source>
-        <translation type="obsolete">トレイに通知バルーンを表示する</translation>
-    </message>
-    <message>
-        <source>Media player:</source>
-        <translation type="obsolete">メディア プレーヤー:</translation>
-    </message>
-    <message>
-        <source>Downloads</source>
-        <translation type="obsolete">ダウンロード</translation>
-    </message>
-    <message>
-        <source>Put downloads in this folder:</source>
-        <translation type="obsolete">このフォルダにダウンロードを置く:</translation>
-    </message>
-    <message>
-        <source>Pre-allocate all files</source>
-        <translation type="obsolete">すべてのファイルを前割り当てする</translation>
-    </message>
-    <message>
-        <source>When adding a torrent</source>
-        <translation type="obsolete">Torrent の追加時</translation>
-    </message>
-    <message>
-        <source>Display torrent content and some options</source>
-        <translation type="obsolete">Torrent の内容といくつかのオプションを表示する</translation>
-    </message>
-    <message>
-        <source>Do not start download automatically</source>
-        <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="obsolete">自動的にダウンロードを開始しない</translation>
-    </message>
-    <message>
-        <source>Folder watching</source>
-        <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="obsolete">フォルダの監視</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents present in this folder:</source>
-        <translation type="obsolete">このフォルダに torrent プリセットを自動的にダウンロードする:</translation>
-    </message>
-    <message>
-        <source>Listening port</source>
-        <translation type="obsolete">傾聴するポート</translation>
-    </message>
-    <message>
-        <source>to</source>
-        <comment>i.e: 1200 to 1300</comment>
-        <translation type="obsolete">から</translation>
-    </message>
-    <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">UPnP ポート マップを有効にする</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">NAT-PMP ポート マップを有効にする</translation>
-    </message>
-    <message>
-        <source>Global bandwidth limiting</source>
-        <translation type="obsolete">グローバル大域幅制限</translation>
-    </message>
-    <message>
-        <source>Upload:</source>
-        <translation type="obsolete">アップロード:</translation>
-    </message>
-    <message>
-        <source>Download:</source>
-        <translation type="obsolete">ダウンロード:</translation>
-    </message>
-    <message>
-        <source>Type:</source>
-        <translation type="obsolete">種類:</translation>
-    </message>
-    <message>
-        <source>(None)</source>
-        <translation type="obsolete">(なし)</translation>
-    </message>
-    <message>
-        <source>Proxy:</source>
-        <translation type="obsolete">プロキシ:</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="obsolete">ユーザー名:</translation>
-    </message>
-    <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">Bittorrent</translation>
-    </message>
-    <message>
-        <source>Connections limit</source>
-        <translation type="obsolete">接続制限</translation>
-    </message>
-    <message>
-        <source>Global maximum number of connections:</source>
-        <translation type="obsolete">グローバル最大接続数:</translation>
-    </message>
-    <message>
-        <source>Maximum number of connections per torrent:</source>
-        <translation type="obsolete">Torrent あたりの最大接続数:</translation>
-    </message>
-    <message>
-        <source>Maximum number of upload slots per torrent:</source>
-        <translation type="obsolete">Torrent あたりの最大アップロード スロット数:</translation>
-    </message>
-    <message>
-        <source>Additional Bittorrent features</source>
-        <translation type="obsolete">Bittorrent の追加機能</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">DHT ネットワーク (分散) を有効にする</translation>
-    </message>
-    <message>
-        <source>Enable Peer eXchange (PeX)</source>
-        <translation type="obsolete">Peer eXchange (PeX) を有効にする</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">ローカル ピア ディスカバリを有効にする</translation>
-    </message>
-    <message>
-        <source>Encryption:</source>
-        <translation type="obsolete">暗号化:</translation>
-    </message>
-    <message>
-        <source>Share ratio settings</source>
-        <translation type="obsolete">共有率の設定</translation>
-    </message>
-    <message>
-        <source>Desired ratio:</source>
-        <translation type="obsolete">希望率:</translation>
-    </message>
-    <message>
-        <source>Filter file path:</source>
-        <translation type="obsolete">フィルタのファイル パス:</translation>
-    </message>
-    <message>
-        <source>transfer lists refresh interval:</source>
-        <translation type="obsolete">転送の一覧の更新の間隔:</translation>
-    </message>
-    <message>
-        <source>ms</source>
-        <translation type="obsolete">ms</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation type="obsolete">RSS</translation>
-    </message>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS フィードの更新の間隔:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">分</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">フィードあたりの最大記事数:</translation>
-    </message>
-    <message>
-        <source>File system</source>
-        <translation type="obsolete">ファイル システム</translation>
-    </message>
-    <message>
-        <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="obsolete">率の達成時に完了済み torrent を削除する:</translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="obsolete">システム既定</translation>
-    </message>
-    <message>
-        <source>Start minimized</source>
-        <translation type="obsolete">最小化して起動する</translation>
-    </message>
-    <message>
-        <source>Action on double click in transfer lists</source>
-        <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="obsolete">転送リストのダブル クリックの動作</translation>
-    </message>
-    <message>
-        <source>In download list:</source>
-        <translation type="obsolete">ダウンロードの一覧:</translation>
-    </message>
-    <message>
-        <source>Pause/Start torrent</source>
-        <translation type="obsolete">Torrent の一時停止/開始</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="obsolete">作成先のフォルダを開く</translation>
-    </message>
-    <message>
-        <source>Display torrent properties</source>
-        <translation type="obsolete">Torrent のプロパティを表示する</translation>
-    </message>
-    <message>
-        <source>In seeding list:</source>
-        <translation type="obsolete">シードの一覧:</translation>
-    </message>
-</context>
-<context>
-    <name>DownloadingTorrents</name>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL 速度</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP 速度</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">速度/リーチ</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <translation type="obsolete">率</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">ETA</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 started.</source>
-        <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="obsolete">qBittorrent %1 が開始されました。</translation>
-    </message>
-    <message>
-        <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation type="obsolete">ご用心ください、許可なしの著作権のある材料の共有は法律に違反しています。</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;はブロックされました&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; がダウンロードの一覧に追加されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; が再開されました。 (高速再開)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; はすでにダウンロードの一覧にあります。</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">所定のポートで記入できませんでした。</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
-    </message>
-    <message>
-        <source>Hide or Show Column</source>
-        <translation type="obsolete">列の非表示または表示</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">優先度</translation>
-    </message>
-</context>
-<context>
     <name>EventManager</name>
     <message>
         <location filename="../eventmanager.cpp" line="66"/>
@@ -1328,25 +522,6 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../eventmanager.cpp" line="85"/>
         <source>Not contacted yet</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">無視済み</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <comment>Normal (priority)</comment>
-        <translation type="obsolete">通常</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <comment>High (priority)</comment>
-        <translation type="obsolete">高</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <comment>Maximum (priority)</comment>
-        <translation type="obsolete">最大</translation>
     </message>
     <message>
         <location filename="../eventmanager.cpp" line="343"/>
@@ -1612,98 +787,6 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
-    <name>FilterParserThread</name>
-    <message>
-        <source>I/O Error</source>
-        <comment>Input/Output Error</comment>
-        <translation type="obsolete">I/O エラー</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="obsolete">読み込みモードで %1 を開くことができませんでした。</translation>
-    </message>
-</context>
-<context>
-    <name>FinishedListDelegate</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-</context>
-<context>
-    <name>FinishedTorrents</name>
-    <message>
-        <source>Finished</source>
-        <translation type="obsolete">完了しました</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL 速度</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP 速度</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">速度/リーチ</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">状態</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">ETA</translation>
-    </message>
-    <message>
-        <source>Finished</source>
-        <comment>i.e: Torrent has finished downloading</comment>
-        <translation type="obsolete">完了済み</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <comment>i.e: No error message</comment>
-        <translation type="obsolete">なし</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <translation type="obsolete">率</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">リーチャ</translation>
-    </message>
-    <message>
-        <source>Hide or Show Column</source>
-        <translation type="obsolete">列の非表示または表示</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">優先度</translation>
-    </message>
-</context>
-<context>
     <name>GUI</name>
     <message>
         <location filename="../GUI.cpp" line="826"/>
@@ -1711,67 +794,9 @@ You should get this information from your Web browser preferences.</source>
         <translation>Torrent ファイルを開く</translation>
     </message>
     <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">はい(&amp;Y)</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="obsolete">いいえ(&amp;N)</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation type="obsolete">ダウンロードの一覧にある選択されたアイテムを削除してもよろしいですか?</translation>
-    </message>
-    <message>
-        <source>Connecting...</source>
-        <translation type="obsolete">接続しています...</translation>
-    </message>
-    <message>
-        <source>Downloading...</source>
-        <translation type="obsolete">ダウンロードしています....</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="827"/>
         <source>Torrent Files</source>
         <translation>Torrent ファイル</translation>
-    </message>
-    <message>
-        <source>Are you sure? -- qBittorrent</source>
-        <translation type="obsolete">よろしいですか? -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">所定のポートで記入できませんでした。</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">状態</translation>
-    </message>
-    <message>
-        <source>Paused</source>
-        <translation type="obsolete">一時停止済み</translation>
-    </message>
-    <message>
-        <source>Preview process already running</source>
-        <translation type="obsolete">プレビュー処理はすでに起動中です</translation>
-    </message>
-    <message>
-        <source>There is already another preview process running.
-Please close the other one first.</source>
-        <translation type="obsolete">すでに別のプレビュー処理が起動中です。
-まず他の 1 つを閉じてください。</translation>
-    </message>
-    <message>
-        <source>Download finished</source>
-        <translation type="obsolete">ダウンロードが完了しました</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="obsolete">ダウンロードの一覧およびハード ドライブにある選択されたアイテムを削除してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="89"/>
@@ -1791,58 +816,6 @@ Please close the other one first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connection status:</source>
-        <translation type="obsolete">接続状態:</translation>
-    </message>
-    <message>
-        <source>Offline</source>
-        <translation type="obsolete">オフライン</translation>
-    </message>
-    <message>
-        <source>No peers found...</source>
-        <translation type="obsolete">ピアが見つかりません...</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL 速度</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP 速度</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">速度/リーチ</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">ETA</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 started.</source>
-        <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="obsolete">qBittorrent %1 が開始されました。</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="1000"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
@@ -1852,11 +825,6 @@ Please close the other one first.</source>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent vx.x</comment>
-        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1003"/>
@@ -1871,73 +839,6 @@ Are you sure you want to quit qBittorrent?</source>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP 速度: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>Checking...</source>
-        <comment>i.e: Checking already downloaded parts...</comment>
-        <translation type="obsolete">チェックしています...</translation>
-    </message>
-    <message>
-        <source>Stalled</source>
-        <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
-        <translation type="obsolete">失速しました</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit?</source>
-        <translation type="obsolete">終了してもよろしいですか?</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed.</source>
-        <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="obsolete">&apos;%1&apos; は削除されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; がダウンロードの一覧に追加されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; が再開されました。 (高速再開)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; はすでにダウンロードの一覧にあります。</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <comment>i.e: No error message</comment>
-        <translation type="obsolete">なし</translation>
-    </message>
-    <message>
-        <source>All downloads were paused.</source>
-        <translation type="obsolete">すべてのダウンロードが一時停止されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; paused.</source>
-        <comment>xxx.avi paused.</comment>
-        <translation type="obsolete">&apos;%1&apos; が停止されました。</translation>
-    </message>
-    <message>
-        <source>Connecting...</source>
-        <comment>i.e: Connecting to the tracker...</comment>
-        <translation type="obsolete">接続しています...</translation>
-    </message>
-    <message>
-        <source>All downloads were resumed.</source>
-        <translation type="obsolete">すべてのダウンロードが再開されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed.</source>
-        <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="obsolete">&apos;%1&apos; が再開されました。</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="429"/>
@@ -1957,38 +858,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
-        <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
-        <translation type="obsolete">%1 の読み込みまたは書き込みを試行にエラーが発生しました。ディスクはおそらくいっぱいです、ダウンロードは一時停止されました</translation>
-    </message>
-    <message>
-        <source>Connection Status:</source>
-        <translation type="obsolete">接続状態:</translation>
-    </message>
-    <message>
-        <source>Online</source>
-        <translation type="obsolete">オンライン</translation>
-    </message>
-    <message>
-        <source>Firewalled?</source>
-        <comment>i.e: Behind a firewall/router?</comment>
-        <translation type="obsolete">ファイアウォールされましたか?</translation>
-    </message>
-    <message>
-        <source>No incoming connections...</source>
-        <translation type="obsolete">次期接続がありません...</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
-    </message>
-    <message>
-        <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
-        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation type="obsolete">エラーが発生しました (ディスクいっぱい?)、&apos;%1&apos; が停止されました。</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="367"/>
         <source>Search</source>
         <translation>検索</translation>
@@ -2004,113 +873,10 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <source>UPnP: no WAN service detected...</source>
-        <translation type="obsolete">UPnP: WAN サービスが検出されません...</translation>
-    </message>
-    <message>
-        <source>UPnP: WAN service detected!</source>
-        <translation type="obsolete">UPnP: WAN が検出されました!</translation>
-    </message>
-    <message>
-        <source>qBittorrent is bind to port: %1</source>
-        <comment>e.g: qBittorrent is bind to port: 1666</comment>
-        <translation type="obsolete">qBittorrent は次のポートに拘束されています: %1</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: %1</source>
-        <translation type="obsolete">DHT サポート [オン]、ポート: %1</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>UPnP support [ON], port: %1</source>
-        <translation type="obsolete">UPnP サポート [オン]、ポート: %1</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX サポート [オン]</translation>
-    </message>
-    <message>
-        <source>PeX support [OFF]</source>
-        <translation type="obsolete">PeX サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>The download list is not empty.
-Are you sure you want to quit qBittorrent?</source>
-        <translation type="obsolete">ダウンロードの一覧は空ではありません。
-qBittorrent を終了してもよろしいですか?</translation>
-    </message>
-    <message>
-        <source>Downloads</source>
-        <translation type="obsolete">ダウンロード</translation>
-    </message>
-    <message>
-        <source>Finished</source>
-        <translation type="obsolete">完了しました</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in finished list and in hard drive?</source>
-        <translation type="obsolete">完了済みの一覧およびハード ドライブにある選択されたアイテムを削除してもよろしいですか?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in finished list?</source>
-        <translation type="obsolete">ダウンロードの一覧にある選択されたアイテムを削除してもよろしいですか?</translation>
-    </message>
-    <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP サポート [オン]</translation>
-    </message>
-    <message>
-        <source>Be careful, sharing copyrighted material without permission is against the law.</source>
-        <translation type="obsolete">ご用心ください、許可なしの著作権のある材料の共有は法律に違反しています。</translation>
-    </message>
-    <message>
-        <source>Encryption support [ON]</source>
-        <translation type="obsolete">暗号化サポート [オン]</translation>
-    </message>
-    <message>
-        <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">暗号化サポート [強制済み]</translation>
-    </message>
-    <message>
-        <source>Encryption support [OFF]</source>
-        <translation type="obsolete">暗号化サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;はブロックされました&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <translation type="obsolete">率</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="442"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to second tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Alt+3, Ctrl+F</source>
-        <comment>shortcut to switch to third tab (search)</comment>
-        <translation type="obsolete">Alt+3、Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Alt+4</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+4</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="527"/>
@@ -2123,62 +889,10 @@ qBittorrent を終了してもよろしいですか?</translation>
         <translation>次の url にあるファイルをダウンロードできませんでした: %1、理由: %2。</translation>
     </message>
     <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) from download list and from hard drive?</source>
-        <translation type="obsolete">ダウンロードの一覧とハード ドライブから選択されたアイテムを削除してもよろしいですか?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) from finished list and from hard drive?</source>
-        <translation type="obsolete">完了済みの一覧とハード ドライブから選択されたアイテムを削除してもよろしいですか?</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed permanently.</source>
-        <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="obsolete">&apos;%1&apos; は永久に削除されました。</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+3</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="446"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed because its ratio reached the maximum value you set.</source>
-        <comment>%1 is a file name</comment>
-        <translation type="obsolete">&apos;%1&apos; はその率が設定した最大値を達成したので削除されました。</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP サポート [オン]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">ローカル ピア ディスカバリ [オン]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translation type="obsolete">ローカル ピア ディスカバリ [オフ]</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (DL: %2KiB/s, UP: %3KiB/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (DL: %2KiB/s、UP: %3KiB/s)</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="238"/>
@@ -2824,22 +1538,6 @@ No further notices will be issued.</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>Log:</source>
-        <translation type="obsolete">ログ:</translation>
-    </message>
-    <message>
-        <source>Total DL Speed:</source>
-        <translation type="obsolete">全体の DL 速度:</translation>
-    </message>
-    <message>
-        <source>Total UP Speed:</source>
-        <translation type="obsolete">全体の UP 速度:</translation>
-    </message>
-    <message>
-        <source>&amp;Options</source>
-        <translation type="obsolete">オプション(&amp;O)</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="37"/>
         <source>&amp;Edit</source>
         <translation>編集(&amp;E)</translation>
@@ -2860,18 +1558,6 @@ No further notices will be issued.</source>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <source>Open</source>
-        <translation type="obsolete">開く</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="obsolete">終了</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="obsolete">環境設定</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="80"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
@@ -2890,30 +1576,6 @@ No further notices will be issued.</source>
         <location filename="../ui/mainwindow.ui" line="156"/>
         <source>&amp;Options...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="obsolete">バージョン情報</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">開始</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">一時停止</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">削除</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="obsolete">すべて一時停止</translation>
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="obsolete">すべて開始</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="161"/>
@@ -3034,10 +1696,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="obsolete">検索エンジン</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="296"/>
         <source>Top &amp;tool bar</source>
         <translation type="unfinished"></translation>
@@ -3058,26 +1716,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Torrent Properties</source>
-        <translation type="obsolete">Torrent のプロパティ</translation>
-    </message>
-    <message>
-        <source>Download from URL</source>
-        <translation type="obsolete">URL からダウンロード</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-    <message>
-        <source>Create torrent</source>
-        <translation type="obsolete">Torrent の作成</translation>
-    </message>
-    <message>
-        <source>Session ratio: </source>
-        <translation type="obsolete">セッション率:</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="206"/>
         <source>Preview file</source>
         <translation>ファイルのプレビュー</translation>
@@ -3086,54 +1724,6 @@ No further notices will be issued.</source>
         <location filename="../ui/mainwindow.ui" line="211"/>
         <source>Clear log</source>
         <translation>ログのクリア</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">永久に削除</translation>
-    </message>
-    <message>
-        <source>Visit website</source>
-        <translation type="obsolete">ウェブサイトの訪問</translation>
-    </message>
-    <message>
-        <source>Report a bug</source>
-        <translation type="obsolete">バグの報告</translation>
-    </message>
-    <message>
-        <source>Downloads</source>
-        <translation type="obsolete">ダウンロード</translation>
-    </message>
-    <message>
-        <source>Set upload limit</source>
-        <translation type="obsolete">アップロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Set download limit</source>
-        <translation type="obsolete">ダウンロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Documentation</source>
-        <translation type="obsolete">資料</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="obsolete">ログ</translation>
-    </message>
-    <message>
-        <source>IP filter</source>
-        <translation type="obsolete">IP フィルタ</translation>
-    </message>
-    <message>
-        <source>Set global download limit</source>
-        <translation type="obsolete">グローバル ダウンロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Set global upload limit</source>
-        <translation type="obsolete">グローバル アップロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">オプション</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="250"/>
@@ -3161,10 +1751,6 @@ No further notices will be issued.</source>
 </context>
 <context>
     <name>PeerListDelegate</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
     <message>
         <location filename="../peerlistdelegate.h" line="62"/>
         <source>/s</source>
@@ -3295,10 +1881,6 @@ No further notices will be issued.</source>
 <context>
     <name>Preferences</name>
     <message>
-        <source>Preferences</source>
-        <translation type="obsolete">環境設定</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="91"/>
         <source>UI</source>
         <translation type="unfinished"></translation>
@@ -3329,17 +1911,9 @@ No further notices will be issued.</source>
         <translation type="unfinished">プロキシ</translation>
     </message>
     <message>
-        <source>IP Filter</source>
-        <translation type="obsolete">IP フィルタ</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="169"/>
         <source>Web UI</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="184"/>
@@ -3362,14 +1936,6 @@ No further notices will be issued.</source>
         <translation type="unfinished">視覚スタイル:</translation>
     </message>
     <message>
-        <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="obsolete">ダウンロードの一覧が空ではないときの終了時の確認を質問する</translation>
-    </message>
-    <message>
-        <source>Display current speed in title bar</source>
-        <translation type="obsolete">タイトル バーに現在の速度を表示する</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="317"/>
         <source>Transfer list</source>
         <translation type="unfinished"></translation>
@@ -3387,31 +1953,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>System tray icon</source>
-        <translation type="obsolete">システム トレイ アイコン</translation>
-    </message>
-    <message>
-        <source>Disable system tray icon</source>
-        <translation type="obsolete">システム トレイ アイコンを無効にする</translation>
-    </message>
-    <message>
-        <source>Close to tray</source>
-        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="obsolete">トレイへ閉じる</translation>
-    </message>
-    <message>
-        <source>Minimize to tray</source>
-        <translation type="obsolete">トレイへ最小化する</translation>
-    </message>
-    <message>
-        <source>Start minimized</source>
-        <translation type="obsolete">最小化して起動する</translation>
-    </message>
-    <message>
-        <source>Show notification balloons in tray</source>
-        <translation type="obsolete">トレイに通知バルーンを表示する</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="567"/>
         <source>File system</source>
         <translation type="unfinished">ファイル システム</translation>
@@ -3420,10 +1961,6 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="826"/>
         <source>Copy .torrent files to:</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pre-allocate all files</source>
-        <translation type="obsolete">すべてのファイルを前割り当てする</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1807"/>
@@ -3454,11 +1991,6 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="541"/>
         <source>Display torrent content and some options</source>
         <translation type="unfinished">Torrent の内容といくつかのオプションを表示する</translation>
-    </message>
-    <message>
-        <source>Do not start download automatically</source>
-        <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="obsolete">自動的にダウンロードを開始しない</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="962"/>
@@ -3597,10 +2129,6 @@ No further notices will be issued.</source>
         <translation type="unfinished">ローカル ピア ディスカバリを有効にする</translation>
     </message>
     <message>
-        <source>Encryption:</source>
-        <translation type="obsolete">暗号化:</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1771"/>
         <source>Enabled</source>
         <translation type="unfinished">有効</translation>
@@ -3614,18 +2142,6 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="1781"/>
         <source>Disabled</source>
         <translation type="unfinished">無効</translation>
-    </message>
-    <message>
-        <source>Share ratio settings</source>
-        <translation type="obsolete">共有率の設定</translation>
-    </message>
-    <message>
-        <source>Desired ratio:</source>
-        <translation type="obsolete">希望率:</translation>
-    </message>
-    <message>
-        <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="obsolete">率の達成時に完了済み torrent を削除する:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2019"/>
@@ -3820,10 +2336,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1898"/>
         <source>Share ratio limiting</source>
         <translation type="unfinished"></translation>
@@ -3900,14 +2412,6 @@ No further notices will be issued.</source>
         <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
-        <source>Filter Settings</source>
-        <translation type="obsolete">フィルタの設定</translation>
-    </message>
-    <message>
-        <source>Activate IP Filtering</source>
-        <translation type="obsolete">IP フィルタをアクティブにする</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1181"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation type="unfinished"></translation>
@@ -3917,33 +2421,9 @@ No further notices will be issued.</source>
         <source>HTTP Server</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS フィードの更新の間隔:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">分</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">フィードあたりの最大記事数:</translation>
-    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
-    <message>
-        <source>False</source>
-        <translation type="obsolete">False</translation>
-    </message>
-    <message>
-        <source>True</source>
-        <translation type="obsolete">True</translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">無視済み</translation>
-    </message>
     <message>
         <location filename="../proplistdelegate.h" line="90"/>
         <source>Not downloaded</source>
@@ -3979,10 +2459,6 @@ No further notices will be issued.</source>
         <translation type="unfinished">保存パス:</translation>
     </message>
     <message>
-        <source>Creator:</source>
-        <translation type="obsolete">作成者:</translation>
-    </message>
-    <message>
         <location filename="../ui/propertieswidget.ui" line="459"/>
         <source>Torrent hash:</source>
         <translation type="unfinished">Torrent ハッシュ:</translation>
@@ -3993,29 +2469,9 @@ No further notices will be issued.</source>
         <translation type="unfinished">コメント:</translation>
     </message>
     <message>
-        <source>Current session</source>
-        <translation type="obsolete">現在のセッション</translation>
-    </message>
-    <message>
-        <source>Total uploaded:</source>
-        <translation type="obsolete">全体のアップロード済み:</translation>
-    </message>
-    <message>
-        <source>Total downloaded:</source>
-        <translation type="obsolete">現在のダウンロード済み:</translation>
-    </message>
-    <message>
         <location filename="../ui/propertieswidget.ui" line="211"/>
         <source>Share ratio:</source>
         <translation type="unfinished">共有率:</translation>
-    </message>
-    <message>
-        <source>Total failed:</source>
-        <translation type="obsolete">現在の失敗済み:</translation>
-    </message>
-    <message>
-        <source>Downloaded pieces</source>
-        <translation type="obsolete">ダウンロードされた部分</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="82"/>
@@ -4095,14 +2551,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="obsolete">正しい順にダウンロードする (より遅いがプレビューにはふさわしい)</translation>
-    </message>
-    <message>
-        <source>Current tracker:</source>
-        <translation type="obsolete">現在のトラッカ:</translation>
-    </message>
-    <message>
         <location filename="../ui/propertieswidget.ui" line="817"/>
         <source>General</source>
         <translation type="unfinished">一般</translation>
@@ -4128,29 +2576,9 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>File name</source>
-        <translation type="obsolete">ファイル名</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
         <location filename="../propertieswidget.cpp" line="572"/>
         <source>Priority</source>
         <translation type="unfinished">優先度</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">不明</translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">無視済み</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="923"/>
@@ -4246,10 +2674,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>None - Unreachable?</source>
-        <translation type="obsolete">なし - アンリーチ可能ですか?</translation>
-    </message>
-    <message>
         <location filename="../propertieswidget.cpp" line="726"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
@@ -4269,10 +2693,6 @@ No further notices will be issued.</source>
         <location filename="../propertieswidget.cpp" line="733"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished">この url シードはすでに一覧にあります。</translation>
-    </message>
-    <message>
-        <source>Trackers list can&apos;t be empty.</source>
-        <translation type="obsolete">トラッカの一覧を空にできません。</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="777"/>
@@ -4368,18 +2788,10 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RSS streams:</source>
-        <translation type="obsolete">RSS ストリーム:</translation>
-    </message>
-    <message>
         <location filename="../ui/rss.ui" line="233"/>
         <location filename="../ui/rss.ui" line="236"/>
         <source>Update all feeds</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>News:</source>
-        <translation type="obsolete">ニュース:</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="188"/>
@@ -4391,10 +2803,6 @@ No further notices will be issued.</source>
         <location filename="../ui/rss.ui" line="203"/>
         <source>Rename</source>
         <translation type="unfinished">名前の変更</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="obsolete">更新</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="257"/>
@@ -4412,41 +2820,9 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Create</source>
-        <translation type="obsolete">作成</translation>
-    </message>
-    <message>
-        <source>RSS streams :</source>
-        <translation type="obsolete">RSS ストリーム :</translation>
-    </message>
-    <message>
-        <source>Delete selected streams</source>
-        <translation type="obsolete">選択されたストリームを削除します</translation>
-    </message>
-    <message>
         <location filename="../ui/rss.ui" line="59"/>
         <source>Refresh RSS streams</source>
         <translation>RSS ストリームの更新</translation>
-    </message>
-    <message>
-        <source>Add a new RSS stream</source>
-        <translation type="obsolete">新しい RSS ストリームを追加します</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;News:&lt;/b&gt; &lt;i&gt;(double-click to open the link in your web browser)&lt;/i&gt;</source>
-        <translation type="obsolete">&lt;b&gt;ニュース:&lt;/b&gt; &lt;i&gt;(お使いの web ブラウザでリンクを開くにはダブルクリックします)&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Add RSS stream</source>
-        <translation type="obsolete">RSS ストリームの追加</translation>
-    </message>
-    <message>
-        <source>Refresh all streams</source>
-        <translation type="obsolete">すべてのストリームの更新</translation>
-    </message>
-    <message>
-        <source>2</source>
-        <translation type="obsolete">2</translation>
     </message>
     <message>
         <location filename="../ui/rss.ui" line="117"/>
@@ -4456,10 +2832,6 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mark all as read</source>
-        <translation type="obsolete">すべてを既読にする</translation>
     </message>
 </context>
 <context>
@@ -4475,26 +2847,10 @@ p, li { white-space: pre-wrap; }
         <translation>ストリームの URL:</translation>
     </message>
     <message>
-        <source>Please choose a new name for this stream</source>
-        <translation type="obsolete">このストリームの新しい名前を選択してください</translation>
-    </message>
-    <message>
-        <source>New stream name:</source>
-        <translation type="obsolete">新しいストリーム名:</translation>
-    </message>
-    <message>
-        <source>no description avalaible</source>
-        <translation type="obsolete">利用可能な説明がありません</translation>
-    </message>
-    <message>
         <location filename="../rss_imp.cpp" line="225"/>
         <location filename="../rss_imp.cpp" line="229"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>よろしいですか? -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this stream from the list ?</source>
-        <translation type="obsolete">一覧からこのストリームを削除してもよろしいですか ?</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="226"/>
@@ -4507,26 +2863,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss_imp.cpp" line="230"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
-    </message>
-    <message>
-        <source>no refresh</source>
-        <translation type="obsolete">更新なし</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this stream from the list?</source>
-        <translation type="obsolete">一覧からこのストリームを削除してもよろしいですか ?</translation>
-    </message>
-    <message>
-        <source>Description:</source>
-        <translation type="obsolete">説明:</translation>
-    </message>
-    <message>
-        <source>url:</source>
-        <translation type="obsolete">url:</translation>
-    </message>
-    <message>
-        <source>Last refresh:</source>
-        <translation type="obsolete">最後の更新:</translation>
     </message>
     <message>
         <location filename="../rss_imp.cpp" line="137"/>
@@ -4644,18 +2980,9 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssStream</name>
     <message>
-        <source>%1 ago</source>
-        <comment>10min ago</comment>
-        <translation type="obsolete">%1 前</translation>
-    </message>
-    <message>
         <location filename="../rss.cpp" line="648"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="obsolete">しない</translation>
     </message>
 </context>
 <context>
@@ -4722,30 +3049,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Seeders</source>
-        <comment>i.e: Number of full sources</comment>
-        <translation type="obsolete">シーダ</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <comment>i.e: Number of partial sources</comment>
-        <translation type="obsolete">リーチャ</translation>
-    </message>
-    <message>
-        <source>Search engine</source>
-        <translation type="obsolete">検索エンジン</translation>
-    </message>
-    <message>
         <location filename="../searchengine.cpp" line="319"/>
         <source>Empty search pattern</source>
         <translation>検索パターンを空にする</translation>
@@ -4754,14 +3057,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine.cpp" line="319"/>
         <source>Please type a search pattern first</source>
         <translation>まず検索パターンを入力してください</translation>
-    </message>
-    <message>
-        <source>No search engine selected</source>
-        <translation type="obsolete">検索エンジンが選択されていません</translation>
-    </message>
-    <message>
-        <source>You must select at least one search engine.</source>
-        <translation type="obsolete">少なくとも 1 つの検索エンジンを選択する必要があります。</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="355"/>
@@ -4773,44 +3068,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine.cpp" line="430"/>
         <source>Searching...</source>
         <translation>検索しています...</translation>
-    </message>
-    <message>
-        <source>Search plugin update -- qBittorrent</source>
-        <translation type="obsolete">検索プラグイン更新 -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Search plugin can be updated, do you want to update it?
-
-Changelog:
-</source>
-        <translation type="obsolete">検索プラグインは更新できます、更新しますか?
-
-変更ログ:
-</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">はい(&amp;Y)</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="obsolete">いいえ(&amp;N)</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="obsolete">検索プラグイン更新</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="obsolete">すみません、更新サーバーが一時的に利用不可能です。</translation>
-    </message>
-    <message>
-        <source>Your search plugin is already up to date.</source>
-        <translation type="obsolete">お使いの検索プラグインはすでに最新です。</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="202"/>
@@ -4908,14 +3165,6 @@ Please install it manually.</source>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>結果</translation>
-    </message>
-    <message>
-        <source>Search plugin download error</source>
-        <translation type="obsolete">検索プラグインのダウンロード エラー</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download search plugin update at url: %1, reason: %2.</source>
-        <translation type="obsolete">次の url にある検索プラグインの更新をダウンロードできませんでした: %1、理由: %2。</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="613"/>
@@ -5262,10 +3511,6 @@ Please install it manually.</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation type="unfinished">KiB/s</translation>
     </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -5366,31 +3611,6 @@ Please install it manually.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL 速度</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP 速度</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="79"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
@@ -5403,55 +3623,15 @@ Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ratio</source>
-        <translation type="obsolete">率</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="85"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="unfinished">ETA</translation>
     </message>
     <message>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">はい(&amp;Y)</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="obsolete">いいえ(&amp;N)</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="1008"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">開始</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">一時停止</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">削除</translation>
-    </message>
-    <message>
-        <source>Preview file</source>
-        <translation type="obsolete">ファイルのプレビュー</translation>
-    </message>
-    <message>
-        <source>Set upload limit</source>
-        <translation type="obsolete">アップロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Set download limit</source>
-        <translation type="obsolete">ダウンロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">永久に削除</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="67"/>
@@ -5654,10 +3834,6 @@ Please install it manually.</source>
         <translation type="unfinished">優先度</translation>
     </message>
     <message>
-        <source>Buy it</source>
-        <translation type="obsolete">購入</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="1157"/>
         <source>Force recheck</source>
         <translation type="unfinished"></translation>
@@ -5698,49 +3874,6 @@ Please install it manually.</source>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Ui</name>
-    <message>
-        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation type="obsolete">qBittorrent の翻訳にボランティアしてくださった以下の方々に感謝したいと思います:</translation>
-    </message>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">プレビューが不可能です</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">すみません、このファイルをプレビューできません</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
-        <source>No URL entered</source>
-        <translation type="obsolete">URL が入力されていません</translation>
-    </message>
-    <message>
-        <source>Please type at least one URL.</source>
-        <translation type="obsolete">少なくとも 1 つの URL を入力してください。</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation type="obsolete">qBittorrent を自分の言語に翻訳したいとお思いならご連絡ください。</translation>
     </message>
 </context>
 <context>
@@ -5882,22 +4015,6 @@ Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>File name</source>
-        <translation type="obsolete">ファイル名</translation>
-    </message>
-    <message>
-        <source>File size</source>
-        <translation type="obsolete">ファイル サイズ</translation>
-    </message>
-    <message>
-        <source>Selected</source>
-        <translation type="obsolete">選択済み</translation>
-    </message>
-    <message>
-        <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="obsolete">正しい順にダウンロードする (より遅いがプレビューにはふさわしい)</translation>
-    </message>
-    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="260"/>
         <source>Add to download list in paused state</source>
         <translation>一時停止済み状態でダウンロードの一覧に追加する</translation>
@@ -5911,18 +4028,6 @@ Please install it manually.</source>
         <location filename="../ui/torrentadditiondlg.ui" line="295"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
-    </message>
-    <message>
-        <source>Unselect</source>
-        <translation type="obsolete">選択しない</translation>
-    </message>
-    <message>
-        <source>Select</source>
-        <translation type="obsolete">選択</translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">無視済み</translation>
     </message>
     <message>
         <location filename="../ui/torrentadditiondlg.ui" line="317"/>
@@ -5980,125 +4085,6 @@ Please install it manually.</source>
     </message>
 </context>
 <context>
-    <name>bandwidth_dlg</name>
-    <message>
-        <source>Bandwidth allocation</source>
-        <translation type="obsolete">大域幅の割り当て</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-</context>
-<context>
-    <name>bittorrent</name>
-    <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP サポート [オン]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP サポート [オン]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX サポート [オン]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">ローカル ピア ディスカバリ [オン]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translation type="obsolete">ローカル ピア ディスカバリ [オフ]</translation>
-    </message>
-    <message>
-        <source>Encryption support [ON]</source>
-        <translation type="obsolete">暗号化サポート [オン]</translation>
-    </message>
-    <message>
-        <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">暗号化サポート [強制済み]</translation>
-    </message>
-    <message>
-        <source>Encryption support [OFF]</source>
-        <translation type="obsolete">暗号化サポート [オフ]</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed permanently.</source>
-        <comment>&apos;xxx.avi&apos; was removed permanently.</comment>
-        <translation type="obsolete">&apos;%1&apos; は永久に削除されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed.</source>
-        <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="obsolete">&apos;%1&apos; は削除されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; paused.</source>
-        <comment>e.g: xxx.avi paused.</comment>
-        <translation type="obsolete">&apos;%1&apos; が停止されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed.</source>
-        <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="obsolete">&apos;%1&apos; が再開されました。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; はすでにダウンロードの一覧にあります。</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; が再開されました。 (高速再開)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; がダウンロードの一覧に追加されました。</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">所定のポートで記入できませんでした。</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">高速再開データは torrent %1 を拒絶しました、再びチェックしています...</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
-    </message>
-</context>
-<context>
     <name>confirmDeletionDlg</name>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="20"/>
@@ -6124,25 +4110,9 @@ Please install it manually.</source>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <source>Create Torrent file</source>
-        <translation type="obsolete">Torrent ファイルの作成</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation type="obsolete">作成</translation>
-    </message>
-    <message>
         <location filename="../ui/createtorrent.ui" line="520"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
-    </message>
-    <message>
-        <source>Directory</source>
-        <translation type="obsolete">ディレクトリ</translation>
     </message>
     <message>
         <location filename="../ui/createtorrent.ui" line="14"/>
@@ -6150,29 +4120,9 @@ Please install it manually.</source>
         <translation>Torrent 作成ツール</translation>
     </message>
     <message>
-        <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;作成先の torrent ファイル:&lt;/center&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;入力ファイルまたはディレクトリ:&lt;/center&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;公表 url :&lt;br&gt;(行あたり 1 つ)&lt;/center&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;コメント:&lt;/center&gt;</translation>
-    </message>
-    <message>
         <location filename="../ui/createtorrent.ui" line="43"/>
         <source>Torrent file creation</source>
         <translation>Torrent ファイルの作成</translation>
-    </message>
-    <message>
-        <source>Input files or directories:</source>
-        <translation type="obsolete">ファイルまたはディレクトリの入力:</translation>
     </message>
     <message>
         <location filename="../ui/createtorrent.ui" line="105"/>
@@ -6180,21 +4130,9 @@ Please install it manually.</source>
         <translation>アナウンス url (トラッカ):</translation>
     </message>
     <message>
-        <source>URL seeds (optional):</source>
-        <translation type="obsolete">URL シード (オプション):</translation>
-    </message>
-    <message>
         <location filename="../ui/createtorrent.ui" line="140"/>
         <source>Comment (optional):</source>
         <translation>コメント (オプション):</translation>
-    </message>
-    <message>
-        <source>Private (won&apos;t be distributed on trackerless network / DHT if enabled)</source>
-        <translation type="obsolete">非公開 (トラッカレス ネットワーク上に配布されません / 有効なら DHT)</translation>
-    </message>
-    <message>
-        <source>Destination torrent file:</source>
-        <translation type="obsolete">Torrent ファイルの作成先:</translation>
     </message>
     <message>
         <location filename="../ui/createtorrent.ui" line="121"/>
@@ -6205,14 +4143,6 @@ Please install it manually.</source>
         <location filename="../ui/createtorrent.ui" line="53"/>
         <source>File or folder to add to the torrent:</source>
         <translation>Torrent に追加するファイルまたはフォルダ:</translation>
-    </message>
-    <message>
-        <source>Add a file</source>
-        <translation type="obsolete">ファイルの追加</translation>
-    </message>
-    <message>
-        <source>Add a folder</source>
-        <translation type="obsolete">フォルダの追加</translation>
     </message>
     <message>
         <location filename="../ui/createtorrent.ui" line="65"/>
@@ -6303,18 +4233,6 @@ Please install it manually.</source>
         <translation>Torrent ファイル</translation>
     </message>
     <message>
-        <source>Select input directory or file</source>
-        <translation type="obsolete">入力ファイルまたはディレクトリのを選択します</translation>
-    </message>
-    <message>
-        <source>No destination path set</source>
-        <translation type="obsolete">作成先のパスが設定されていません</translation>
-    </message>
-    <message>
-        <source>Please type a destination path first</source>
-        <translation type="obsolete">まず保存先のパスを入力してくださいい</translation>
-    </message>
-    <message>
         <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>No input path set</source>
         <translation>入力パスが設定されていません</translation>
@@ -6323,10 +4241,6 @@ Please install it manually.</source>
         <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>Please type an input path first</source>
         <translation>まず入力パスを入力してください</translation>
-    </message>
-    <message>
-        <source>Input path does not exist</source>
-        <translation type="obsolete">入力パスが存在しません</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="214"/>
@@ -6341,38 +4255,14 @@ Please install it manually.</source>
         <translation>Torrent の作成に成功しました:</translation>
     </message>
     <message>
-        <source>Please type a valid input path first</source>
-        <translation type="obsolete">まず有効な入力パスを入力してください</translation>
-    </message>
-    <message>
-        <source>Torrent creation was successfully, reason: %1</source>
-        <translation type="obsolete">Torrent の作成に成功しました、理由: %1</translation>
-    </message>
-    <message>
         <location filename="../createtorrent_imp.cpp" line="86"/>
         <source>Select a folder to add to the torrent</source>
         <translation>Torrent に追加するフォルダを選択します</translation>
     </message>
     <message>
-        <source>Select files to add to the torrent</source>
-        <translation type="obsolete">Torrent に追加するファイルを選択します</translation>
-    </message>
-    <message>
         <location filename="../createtorrent_imp.cpp" line="140"/>
         <source>Please type an announce URL</source>
         <translation>アナウンス URL を入力してください</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <translation type="obsolete">アナウンス URL:</translation>
-    </message>
-    <message>
-        <source>Please type an URL Seed</source>
-        <translation type="obsolete">URL シードを入力してください</translation>
-    </message>
-    <message>
-        <source>URL Seed:</source>
-        <translation type="obsolete">URL シード:</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="214"/>
@@ -6399,14 +4289,6 @@ Please install it manually.</source>
         <location filename="../createtorrent_imp.cpp" line="99"/>
         <source>Select a file to add to the torrent</source>
         <translation>Torrent に追加するファイルを選択します</translation>
-    </message>
-    <message>
-        <source>No tracker path set</source>
-        <translation type="obsolete">トラッカ パスが設定されてません</translation>
-    </message>
-    <message>
-        <source>Please set at least one tracker</source>
-        <translation type="obsolete">少なくとも 1 つのトラッカを設定してください</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="228"/>
@@ -6572,117 +4454,6 @@ Please install it manually.</source>
     </message>
 </context>
 <context>
-    <name>downloading</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">検索</translation>
-    </message>
-    <message>
-        <source>Total DL Speed:</source>
-        <translation type="obsolete">全体の DL 速度:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-    <message>
-        <source>Session ratio: </source>
-        <translation type="obsolete">セッション率:</translation>
-    </message>
-    <message>
-        <source>Total UP Speed:</source>
-        <translation type="obsolete">全体の UP 速度:</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="obsolete">ログ</translation>
-    </message>
-    <message>
-        <source>IP filter</source>
-        <translation type="obsolete">IP フィルタ</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">開始</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">一時停止</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">削除</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">クリア</translation>
-    </message>
-    <message>
-        <source>Preview file</source>
-        <translation type="obsolete">ファイルのプレビュー</translation>
-    </message>
-    <message>
-        <source>Set upload limit</source>
-        <translation type="obsolete">アップロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Set download limit</source>
-        <translation type="obsolete">ダウンロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">永久に削除</translation>
-    </message>
-    <message>
-        <source>Torrent Properties</source>
-        <translation type="obsolete">Torrent のプロパティ</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="obsolete">作成先のフォルダを開く</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
-        <source>DLSpeed</source>
-        <translation type="obsolete">DL 速度</translation>
-    </message>
-    <message>
-        <source>UpSpeed</source>
-        <translation type="obsolete">Up 速度</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <translation type="obsolete">速度/リーチ</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <translation type="obsolete">率</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <translation type="obsolete">ETA</translation>
-    </message>
-    <message>
-        <source>Buy it</source>
-        <translation type="obsolete">購入</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">優先度</translation>
-    </message>
-</context>
-<context>
     <name>engineSelect</name>
     <message>
         <location filename="../ui/engineselect.ui" line="17"/>
@@ -6708,10 +4479,6 @@ Please install it manually.</source>
         <location filename="../ui/engineselect.ui" line="60"/>
         <source>Enabled</source>
         <translation>有効</translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="obsolete">ここで新しい検索エンジン プラグインを取得できます: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../ui/engineselect.ui" line="78"/>
@@ -6752,14 +4519,6 @@ Please install it manually.</source>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <source>True</source>
-        <translation type="obsolete">True</translation>
-    </message>
-    <message>
-        <source>False</source>
-        <translation type="obsolete">False</translation>
-    </message>
-    <message>
         <location filename="../engineselectdlg.cpp" line="192"/>
         <source>Uninstall warning</source>
         <translation>アンインストールの警告</translation>
@@ -6777,10 +4536,6 @@ However, those plugins were disabled.</source>
         <location filename="../engineselectdlg.cpp" line="194"/>
         <source>Uninstall success</source>
         <translation>アンインストール成功</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfuly</source>
-        <translation type="obsolete">すべての選択されたプラグインのアンインストールに成功しました</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="365"/>
@@ -6821,16 +4576,6 @@ However, those plugins were disabled.</source>
         <translation>%1 検索エンジン プラグインのより最近のバージョンはすでにインストールされています。</translation>
     </message>
     <message>
-        <source>%1 search engine plugin was successfuly updated.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">%1 検索エンジン プラグインの更新に成功しました。</translation>
-    </message>
-    <message>
-        <source>%1 search engine plugin was successfuly installed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">%1 検索エンジン プラグインのインストールに成功しました。</translation>
-    </message>
-    <message>
         <location filename="../engineselectdlg.cpp" line="418"/>
         <location filename="../engineselectdlg.cpp" line="451"/>
         <location filename="../engineselectdlg.cpp" line="472"/>
@@ -6843,16 +4588,6 @@ However, those plugins were disabled.</source>
         <location filename="../engineselectdlg.cpp" line="472"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>すみません、更新サーバーが一時的に利用不可です。</translation>
-    </message>
-    <message>
-        <source>%1 search plugin was successfuly updated.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">%1 検索プラグインの更新に成功しました。</translation>
-    </message>
-    <message>
-        <source>Sorry, %1 search plugin update failed.</source>
-        <comment>%1 is the name of the search engine</comment>
-        <translation type="obsolete">すみません、%1 検索プラグインの更新に失敗しました。</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="418"/>
@@ -6878,10 +4613,6 @@ However, those plugins were disabled.</source>
         <location filename="../engineselectdlg.cpp" line="327"/>
         <source>No</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search engine plugin archive could not be read.</source>
-        <translation type="obsolete">検索エンジン プラグイン アーカイブは読み込めませんでした。</translation>
     </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="292"/>
@@ -6999,72 +4730,9 @@ However, those plugins were disabled.</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 分</translation>
     </message>
-    <message>
-        <source>%1h%2m</source>
-        <comment>e.g: 3hours 5minutes</comment>
-        <translation type="obsolete">%1 時間 %2 分</translation>
-    </message>
-    <message>
-        <source>%1d%2h%3m</source>
-        <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation type="obsolete">%1 日 %2 時間 %3 分</translation>
-    </message>
 </context>
 <context>
     <name>options_imp</name>
-    <message>
-        <source>Range Start IP</source>
-        <translation type="obsolete">範囲の開始 IP</translation>
-    </message>
-    <message>
-        <source>Start IP:</source>
-        <translation type="obsolete">開始 IP:</translation>
-    </message>
-    <message>
-        <source>Range End IP</source>
-        <translation type="obsolete">範囲の最終 IP</translation>
-    </message>
-    <message>
-        <source>End IP:</source>
-        <translation type="obsolete">最終 IP:</translation>
-    </message>
-    <message>
-        <source>IP Range Comment</source>
-        <translation type="obsolete">IP 範囲のコメント</translation>
-    </message>
-    <message>
-        <source>Comment:</source>
-        <translation type="obsolete">コメント:</translation>
-    </message>
-    <message>
-        <source>to</source>
-        <comment>&lt;min port&gt; to &lt;max port&gt;</comment>
-        <translation type="obsolete">から</translation>
-    </message>
-    <message>
-        <source>Choose your favourite preview program</source>
-        <translation type="obsolete">お気に入りのプレビュー プログラムを選択します</translation>
-    </message>
-    <message>
-        <source>Invalid IP</source>
-        <translation type="obsolete">不正な IP</translation>
-    </message>
-    <message>
-        <source>This IP is invalid.</source>
-        <translation type="obsolete">この IP は不正です。</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">オプションの保存に成功しました。</translation>
-    </message>
-    <message>
-        <source>Choose scan directory</source>
-        <translation type="obsolete">スキャンするディレクトリを選択します</translation>
-    </message>
-    <message>
-        <source>Choose an ipfilter.dat file</source>
-        <translation type="obsolete">ipfilter.dat ファイルを選択します</translation>
-    </message>
     <message>
         <location filename="../options_imp.cpp" line="1252"/>
         <location filename="../options_imp.cpp" line="1254"/>
@@ -7072,15 +4740,6 @@ However, those plugins were disabled.</source>
         <location filename="../options_imp.cpp" line="1271"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリを選択します</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>Input/Output Error</comment>
-        <translation type="obsolete">I/O エラー</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="obsolete">読み込みモードで %1 を開くことができませんでした。</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1174"/>
@@ -7215,269 +4874,12 @@ However, those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>properties</name>
-    <message>
-        <source>Torrent Properties</source>
-        <translation type="obsolete">Torrent のプロパティ</translation>
-    </message>
-    <message>
-        <source>File Name</source>
-        <translation type="obsolete">ファイル名</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">不明</translation>
-    </message>
-    <message>
-        <source>Files contained in current torrent:</source>
-        <translation type="obsolete">現在の torrent に含まれているファイル:</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Selected</source>
-        <translation type="obsolete">選択済み</translation>
-    </message>
-    <message>
-        <source> Unselect</source>
-        <translation type="obsolete">選択しない</translation>
-    </message>
-    <message>
-        <source> Select</source>
-        <translation type="obsolete">選択</translation>
-    </message>
-    <message>
-        <source>You can select here precisely which files you want to download in current torrent.</source>
-        <translation type="obsolete">どのファイルを現在の torrent にダウンロードしたいかを正確にここで選択できます。</translation>
-    </message>
-    <message>
-        <source>Tracker</source>
-        <translation type="obsolete">トラッカ</translation>
-    </message>
-    <message>
-        <source>Trackers:</source>
-        <translation type="obsolete">トラッカ:</translation>
-    </message>
-    <message>
-        <source>None - Unreachable?</source>
-        <translation type="obsolete">なし - アンリーチ可能ですか?</translation>
-    </message>
-    <message>
-        <source>Errors:</source>
-        <translation type="obsolete">エラー:</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">進行状況</translation>
-    </message>
-    <message>
-        <source>Main infos</source>
-        <translation type="obsolete">メイン情報</translation>
-    </message>
-    <message>
-        <source>Current tracker:</source>
-        <translation type="obsolete">現在のトラッカ:</translation>
-    </message>
-    <message>
-        <source>Total uploaded:</source>
-        <translation type="obsolete">全体のアップロード済み:</translation>
-    </message>
-    <message>
-        <source>Total downloaded:</source>
-        <translation type="obsolete">現在のダウンロード済み:</translation>
-    </message>
-    <message>
-        <source>Total failed:</source>
-        <translation type="obsolete">現在の失敗済み:</translation>
-    </message>
-    <message>
-        <source>Torrent content</source>
-        <translation type="obsolete">Torrent の内容</translation>
-    </message>
-    <message>
-        <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="obsolete">正しい順にダウンロードする (より遅いがプレビューにはふさわしい)</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">保存パス:</translation>
-    </message>
-    <message>
-        <source>Torrent infos</source>
-        <translation type="obsolete">Torrent 情報</translation>
-    </message>
-    <message>
-        <source>Creator:</source>
-        <translation type="obsolete">作成者:</translation>
-    </message>
-    <message>
-        <source>Torrent hash:</source>
-        <translation type="obsolete">Torrent ハッシュ:</translation>
-    </message>
-    <message>
-        <source>Comment:</source>
-        <translation type="obsolete">コメント:</translation>
-    </message>
-    <message>
-        <source>Current session</source>
-        <translation type="obsolete">現在のセッション</translation>
-    </message>
-    <message>
-        <source>Share ratio:</source>
-        <translation type="obsolete">共有率:</translation>
-    </message>
-    <message>
-        <source>Trackers</source>
-        <translation type="obsolete">トラッカ</translation>
-    </message>
-    <message>
-        <source>New tracker</source>
-        <translation type="obsolete">新しいトラッカ</translation>
-    </message>
-    <message>
-        <source>New tracker url:</source>
-        <translation type="obsolete">新しいトラッカの url:</translation>
-    </message>
-    <message>
-        <source>Priorities:</source>
-        <translation type="obsolete">優先度:</translation>
-    </message>
-    <message>
-        <source>Ignored: File is not downloaded at all</source>
-        <translation type="obsolete">無視済み: ファイルはとにかくダウンロードされません</translation>
-    </message>
-    <message>
-        <source>Normal: normal priority. Download order is dependent on availability</source>
-        <translation type="obsolete">通常: 通常の優先度です。ダウンロードの順序は利用性に依存します</translation>
-    </message>
-    <message>
-        <source>High: higher than normal priority. Pieces are preferred over pieces with the same availability, but not over pieces with lower availability</source>
-        <translation type="obsolete">高: 通常より高い優先度です。部分は同じ利用性での部分を超えて優先されますが、より低い利用性での部分は超えません</translation>
-    </message>
-    <message>
-        <source>Maximum: maximum priority, availability is disregarded, the piece is preferred over any other piece with lower priority</source>
-        <translation type="obsolete">最大: 最大の優先度です、利用性は無視され、部分はすべてのより低い優先度でのその他の部分を超えて優先されます</translation>
-    </message>
-    <message>
-        <source>File name</source>
-        <translation type="obsolete">ファイル名</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">優先度</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Trackers list can&apos;t be empty.</source>
-        <translation type="obsolete">トラッカの一覧を空にできません。</translation>
-    </message>
-    <message>
-        <source>Ignored: file is not downloaded at all</source>
-        <translation type="obsolete">無視済み: ファイルは全くダウンロードされませんでした</translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">無視済み</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">通常</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <translation type="obsolete">最大</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <translation type="obsolete">高</translation>
-    </message>
-    <message>
-        <source>Url seeds</source>
-        <translation type="obsolete">Url シード</translation>
-    </message>
-    <message>
-        <source>New url seed:</source>
-        <translation type="obsolete">新しい url シード:</translation>
-    </message>
-    <message>
-        <source>This url seed is already in the list.</source>
-        <translation type="obsolete">この url シードはすでに一覧にあります。</translation>
-    </message>
-    <message>
-        <source>Hard-coded url seeds cannot be deleted.</source>
-        <translation type="obsolete">ハードコードされた url シードが削除できません。</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <comment>i.e: No error message</comment>
-        <translation type="obsolete">なし</translation>
-    </message>
-    <message>
-        <source>New url seed</source>
-        <comment>New HTTP source</comment>
-        <translation type="obsolete">新しい url シード</translation>
-    </message>
-    <message>
-        <source>The following url seeds are available for this torrent:</source>
-        <translation type="obsolete">以下の url シードはこの torrent に利用可能です:</translation>
-    </message>
-    <message>
-        <source>Priorities error</source>
-        <translation type="obsolete">優先度エラー</translation>
-    </message>
-    <message>
-        <source>Error, you can&apos;t filter all the files in a torrent.</source>
-        <translation type="obsolete">エラーです、torrent のすべてのファイルをフィルタできません。</translation>
-    </message>
-    <message>
-        <source>Downloaded pieces</source>
-        <translation type="obsolete">ダウンロードされた部分</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">保存パスの選択</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">保存パスの作成エラー</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">保存パスを作成できませんでした</translation>
-    </message>
-</context>
-<context>
     <name>search_engine</name>
     <message>
         <location filename="../ui/search.ui" line="14"/>
         <location filename="../ui/search.ui" line="44"/>
         <source>Search</source>
         <translation>検索</translation>
-    </message>
-    <message>
-        <source>Search Engines</source>
-        <translation type="obsolete">検索エンジン</translation>
-    </message>
-    <message>
-        <source>Search Pattern:</source>
-        <translation type="obsolete">検索パターン:</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="obsolete">停止</translation>
     </message>
     <message>
         <location filename="../ui/search.ui" line="67"/>
@@ -7490,21 +4892,9 @@ However, those plugins were disabled.</source>
         <translation>停止されました</translation>
     </message>
     <message>
-        <source>Results:</source>
-        <translation type="obsolete">結果:</translation>
-    </message>
-    <message>
         <location filename="../ui/search.ui" line="135"/>
         <source>Download</source>
         <translation>ダウンロード</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">クリア</translation>
-    </message>
-    <message>
-        <source>Update search plugin</source>
-        <translation type="obsolete">検索プラグインの更新</translation>
     </message>
     <message>
         <location filename="../ui/search.ui" line="155"/>
@@ -7513,141 +4903,7 @@ However, those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>seeding</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">検索</translation>
-    </message>
-    <message>
-        <source>The following torrents are finished and shared:</source>
-        <translation type="obsolete">以下の torrent は完了および共有しました:</translation>
-    </message>
-    <message>
-        <source>&lt;u&gt;Note:&lt;/u&gt; It is important that you keep sharing your torrents after they are finished for the well being of the network.</source>
-        <translation type="obsolete">&lt;u&gt;注意:&lt;/u&gt; ネットワークを良好に維持するには完了した後に torrent の共有を維持することが重要です。</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">開始</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">一時停止</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">削除</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">永久に削除</translation>
-    </message>
-    <message>
-        <source>Torrent Properties</source>
-        <translation type="obsolete">Torrent のプロパティ</translation>
-    </message>
-    <message>
-        <source>Preview file</source>
-        <translation type="obsolete">ファイルのプレビュー</translation>
-    </message>
-    <message>
-        <source>Set upload limit</source>
-        <translation type="obsolete">アップロード制限の設定</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="obsolete">作成先のフォルダを開く</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Upload Speed</source>
-        <translation type="obsolete">アップロード速度</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <translation type="obsolete">リーチャ</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <translation type="obsolete">率</translation>
-    </message>
-    <message>
-        <source>Buy it</source>
-        <translation type="obsolete">購入</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">優先度</translation>
-    </message>
-</context>
-<context>
-    <name>subDownloadThread</name>
-    <message>
-        <source>Host is unreachable</source>
-        <translation type="obsolete">ホストは達成できません</translation>
-    </message>
-    <message>
-        <source>File was not found (404)</source>
-        <translation type="obsolete">ファイルは見つかりませんでした (404)</translation>
-    </message>
-    <message>
-        <source>Connection was denied</source>
-        <translation type="obsolete">接続は拒否されました</translation>
-    </message>
-    <message>
-        <source>Url is invalid</source>
-        <translation type="obsolete">Url は不正です</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <translation type="obsolete">I/O エラー</translation>
-    </message>
-    <message>
-        <source>Connection forbidden (403)</source>
-        <translation type="obsolete">接続が禁止されました (403)</translation>
-    </message>
-    <message>
-        <source>Connection was not authorized (401)</source>
-        <translation type="obsolete">接続は権限を許可されませんでした (401)</translation>
-    </message>
-    <message>
-        <source>Content has moved (301)</source>
-        <translation type="obsolete">内容は移動しました (301)</translation>
-    </message>
-    <message>
-        <source>Connection failure</source>
-        <translation type="obsolete">接続失敗</translation>
-    </message>
-    <message>
-        <source>Connection was timed out</source>
-        <translation type="obsolete">接続はタイムアウトしました</translation>
-    </message>
-    <message>
-        <source>Incorrect network interface</source>
-        <translation type="obsolete">不正確なネットワーク インターフェイスです</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="obsolete">不明なエラーです</translation>
-    </message>
-    <message>
-        <source>Could not resolve proxy</source>
-        <translation type="obsolete">プロキシを解決できませんでした</translation>
-    </message>
-</context>
-<context>
     <name>torrentAdditionDialog</name>
-    <message>
-        <source>True</source>
-        <translation type="obsolete">True</translation>
-    </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="189"/>
         <location filename="../torrentadditiondlg.cpp" line="192"/>
@@ -7655,23 +4911,11 @@ However, those plugins were disabled.</source>
         <translation>Torrent ファイルをデコードすることができません:</translation>
     </message>
     <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">このファイルは壊れているかこれは torrent ではないかのどちらかです。</translation>
-    </message>
-    <message>
         <location filename="../torrentadditiondlg.cpp" line="448"/>
         <location filename="../torrentadditiondlg.cpp" line="453"/>
         <location filename="../torrentadditiondlg.cpp" line="455"/>
         <source>Choose save path</source>
         <translation>保存パスの選択</translation>
-    </message>
-    <message>
-        <source>False</source>
-        <translation type="obsolete">False</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">不明</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="156"/>
@@ -7781,18 +5025,6 @@ However, those plugins were disabled.</source>
         <location filename="../torrentadditiondlg.cpp" line="570"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Torrent では少なくとも 1 つのファイルを選択する必要があります</translation>
-    </message>
-    <message>
-        <source>File name</source>
-        <translation type="obsolete">ファイル名</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">進行状況</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="275"/>

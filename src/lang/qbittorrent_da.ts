@@ -45,10 +45,6 @@ p, li { white-space: pre-wrap; }
         <translation>E-mail:</translation>
     </message>
     <message>
-        <source>Home page:</source>
-        <translation type="obsolete">Hjemmeside:</translation>
-    </message>
-    <message>
         <location filename="../ui/about.ui" line="170"/>
         <source>Christophe Dumez</source>
         <translation>Christophe Dumez</translation>
@@ -57,10 +53,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../ui/about.ui" line="208"/>
         <source>France</source>
         <translation>Frankrig</translation>
-    </message>
-    <message>
-        <source>Thanks To</source>
-        <translation type="obsolete">Tak Til</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="270"/>
@@ -77,37 +69,10 @@ p, li { white-space: pre-wrap; }
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
-    <message utf8="true">
-        <source>A bittorrent client using Qt4 and libtorrent, programmed in C++.&lt;br&gt;
-&lt;br&gt;
-Copyright © 2006 by Christophe Dumez&lt;br&gt;
-&lt;br&gt; &lt;u&gt;Home Page:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</source>
-        <translation type="obsolete">En C++ programmeret bittorrent klient der gør brug af Qt4 og libtorrent.&lt;br&gt;&lt;br&gt;Copyright © 2006 af Christophe Dumez&lt;br&gt;&lt;br&gt; &lt;u&gt;Webside:&lt;/u&gt; &lt;i&gt;http://www.qbittorrent.org&lt;/i&gt;&lt;br&gt;</translation>
-    </message>
     <message>
         <location filename="../ui/about.ui" line="233"/>
         <source>chris@qbittorrent.org</source>
         <translation>chris@qbittorrent.org</translation>
-    </message>
-    <message>
-        <source>http://www.dchris.eu</source>
-        <translation type="obsolete">http://www.dchris.eu</translation>
-    </message>
-    <message>
-        <source>Birthday:</source>
-        <translation type="obsolete">Født:</translation>
-    </message>
-    <message>
-        <source>Occupation:</source>
-        <translation type="obsolete">Beskæftigelse:</translation>
-    </message>
-    <message>
-        <source>03/05/1985</source>
-        <translation type="obsolete">03/05/1985</translation>
-    </message>
-    <message>
-        <source>Student in computer science</source>
-        <translation type="obsolete">Studerer &quot;computer science&quot;</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="257"/>
@@ -208,13 +173,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <location filename="../advancedsettings.h" line="127"/>
         <source>Include TCP/IP overhead in transfer limits</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BandwidthAllocationDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
     </message>
 </context>
 <context>
@@ -425,10 +383,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <translation>Kan ikke dekode %1 torrent fil.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">Kunne ikke lytte på de opgivne porte.</translation>
-    </message>
-    <message>
         <location filename="../bittorrent.cpp" line="2342"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port mapping fejlede, besked: %1</translation>
@@ -505,10 +459,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
 <context>
     <name>ConsoleDlg</name>
     <message>
-        <source>qBittorrent console</source>
-        <translation type="obsolete">qBittorrent konsol</translation>
-    </message>
-    <message>
         <location filename="../ui/console.ui" line="14"/>
         <source>qBittorrent log viewer</source>
         <translation type="unfinished"></translation>
@@ -546,685 +496,6 @@ Copyright © 2006 by Christophe Dumez&lt;br&gt;
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DLListDelegate</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
-    </message>
-</context>
-<context>
-    <name>Dialog</name>
-    <message>
-        <source>Options -- qBittorrent</source>
-        <translation type="obsolete">Indstillinger -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">Indstillinger</translation>
-    </message>
-    <message>
-        <source>Main</source>
-        <translation type="obsolete">Generelle</translation>
-    </message>
-    <message>
-        <source>Save Path:</source>
-        <translation type="obsolete">Destination:</translation>
-    </message>
-    <message>
-        <source>Download Limit:</source>
-        <translation type="obsolete">Begræns download til:</translation>
-    </message>
-    <message>
-        <source>Upload Limit:</source>
-        <translation type="obsolete">Begræns upload til:</translation>
-    </message>
-    <message>
-        <source>Max Connects:</source>
-        <translation type="obsolete">Max forbindelser:</translation>
-    </message>
-    <message>
-        <source>Port range:</source>
-        <translation type="obsolete">Porte:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">Slå fra</translation>
-    </message>
-    <message>
-        <source>connections</source>
-        <translation type="obsolete">forbindelser</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">Proxy</translation>
-    </message>
-    <message>
-        <source>Proxy Settings</source>
-        <translation type="obsolete">Proxy indstillinger</translation>
-    </message>
-    <message>
-        <source>Server IP:</source>
-        <translation type="obsolete">Server IP:</translation>
-    </message>
-    <message>
-        <source>0.0.0.0</source>
-        <translation type="obsolete">0.0.0.0</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="obsolete">Port:</translation>
-    </message>
-    <message>
-        <source>Proxy server requires authentication</source>
-        <translation type="obsolete">Proxy serveren kræver godkendelse</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation type="obsolete">Godkendelse</translation>
-    </message>
-    <message>
-        <source>User Name:</source>
-        <translation type="obsolete">Brugernavn:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="obsolete">Kodeord:</translation>
-    </message>
-    <message>
-        <source>Enable connection through a proxy server</source>
-        <translation type="obsolete">Opret forbindelse gennem en proxy server</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Annuller</translation>
-    </message>
-    <message>
-        <source>Scanned Dir:</source>
-        <translation type="obsolete">Scannet mappe:</translation>
-    </message>
-    <message>
-        <source>Enable directory scan (auto add torrent files inside)</source>
-        <translation type="obsolete">Tilkobl scanning af mappe (auto starter fundne torrent filer)</translation>
-    </message>
-    <message>
-        <source>Connection Settings</source>
-        <translation type="obsolete">Forbindelses Indstillinger</translation>
-    </message>
-    <message>
-        <source>Share ratio:</source>
-        <translation type="obsolete">Delingsforhold:</translation>
-    </message>
-    <message>
-        <source>Activate IP Filtering</source>
-        <translation type="obsolete">Aktiver IP Filtrering</translation>
-    </message>
-    <message>
-        <source>Filter Settings</source>
-        <translation type="obsolete">Filter Indstillinger</translation>
-    </message>
-    <message>
-        <source>Start IP</source>
-        <translation type="obsolete">Fra IP</translation>
-    </message>
-    <message>
-        <source>End IP</source>
-        <translation type="obsolete">Til IP</translation>
-    </message>
-    <message>
-        <source>Origin</source>
-        <translation type="obsolete">Oprindelse</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation type="obsolete">Kommentar</translation>
-    </message>
-    <message>
-        <source>Apply</source>
-        <translation type="obsolete">Anvend</translation>
-    </message>
-    <message>
-        <source>IP Filter</source>
-        <translation type="obsolete">IP Filter</translation>
-    </message>
-    <message>
-        <source> Add Range</source>
-        <translation type="obsolete"> Tilføj Adresser</translation>
-    </message>
-    <message>
-        <source> Remove Range</source>
-        <translation type="obsolete"> Fjern Adresser</translation>
-    </message>
-    <message>
-        <source>ipfilter.dat Path:</source>
-        <translation type="obsolete">Sti til ipfilter.dat:</translation>
-    </message>
-    <message>
-        <source>Ask for confirmation on exit</source>
-        <translation type="obsolete">Spørg før lukning</translation>
-    </message>
-    <message>
-        <source>Go to systray when minimizing window</source>
-        <translation type="obsolete">Minimer til systray</translation>
-    </message>
-    <message>
-        <source>Misc</source>
-        <translation type="obsolete">Diverse</translation>
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="obsolete">Lokal-indstillinger</translation>
-    </message>
-    <message>
-        <source>Language:</source>
-        <translation type="obsolete">Sprog:</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation type="obsolete">Opførsel</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
-    </message>
-    <message>
-        <source>1 KiB DL = </source>
-        <translation type="obsolete">1 KB DL = </translation>
-    </message>
-    <message>
-        <source>KiB UP max.</source>
-        <translation type="obsolete">KB UP maks.</translation>
-    </message>
-    <message>
-        <source>Automatically clear finished downloads</source>
-        <translation type="obsolete">Fjern automatisk færdige downloads</translation>
-    </message>
-    <message>
-        <source>Preview program</source>
-        <translation type="obsolete">Smugkig program</translation>
-    </message>
-    <message>
-        <source>Audio/Video player:</source>
-        <translation type="obsolete">Medieafspiller:</translation>
-    </message>
-    <message>
-        <source>Systray Messages</source>
-        <translation type="obsolete">Systray Meddelelser</translation>
-    </message>
-    <message>
-        <source>Always display systray messages</source>
-        <translation type="obsolete">Vis altid systray meddelelser</translation>
-    </message>
-    <message>
-        <source>Display systray messages only when window is hidden</source>
-        <translation type="obsolete">Vis kun systray meddelelser når vinduet er skjult</translation>
-    </message>
-    <message>
-        <source>Never display systray messages</source>
-        <translation type="obsolete">Vis aldrig systray meddelelser</translation>
-    </message>
-    <message>
-        <source>DHT configuration</source>
-        <translation type="obsolete">DHT konfiguration</translation>
-    </message>
-    <message>
-        <source>DHT port:</source>
-        <translation type="obsolete">DHT port:</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Sprog</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Note:&lt;/b&gt; Changes will be applied after qBittorrent is restarted.</source>
-        <translation type="obsolete">&lt;b&gt;Bemærk:&lt;/b&gt; Ændringer træder først i kraft efter genstart af qBittorrent.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Translators note:&lt;/b&gt; If qBittorrent is not available in your language, &lt;br/&gt;and if you would like to translate it in your mother tongue, &lt;br/&gt;please contact me (chris@qbittorrent.org).</source>
-        <translation type="obsolete">&lt;b&gt;Note til oversættere:&lt;/b&gt; Hvis qBittorrent ikke er tilgængeligt på dit sprog, &lt;br/&gt;og du skulle have lyst til at oversætte det til dit modersmål, &lt;br/&gt;kontakt mig da venligst, gerne på engelsk (chris@qbittorrent.org).</translation>
-    </message>
-    <message>
-        <source>Display a torrent addition dialog everytime I add a torrent</source>
-        <translation type="obsolete">Vis dialogboksen for ny torrent når jeg tilføjer en</translation>
-    </message>
-    <message>
-        <source>Default save path</source>
-        <translation type="obsolete">Standart mappe</translation>
-    </message>
-    <message>
-        <source>Disable DHT (Trackerless)</source>
-        <translation type="obsolete">Afbryd DHT (Trackerless)</translation>
-    </message>
-    <message>
-        <source>Disable Peer eXchange (PeX)</source>
-        <translation type="obsolete">Afbryd Peer eXchange (PeX)</translation>
-    </message>
-    <message>
-        <source>Go to systray when closing main window</source>
-        <translation type="obsolete">Luk ikke, men minimer til systray</translation>
-    </message>
-    <message>
-        <source>Plastique style (KDE like)</source>
-        <translation type="obsolete">Plastique style (Ligner KDE)</translation>
-    </message>
-    <message>
-        <source>CDE style (Common Desktop Environment like)</source>
-        <translation type="obsolete">CDE style (Ligner Common Desktop Environment)</translation>
-    </message>
-    <message>
-        <source>Disable splash screen</source>
-        <translation type="obsolete">Vis ikke splash screen</translation>
-    </message>
-    <message>
-        <source>Start/Stop</source>
-        <translation type="obsolete">Start/Stop</translation>
-    </message>
-    <message>
-        <source>Open folder</source>
-        <translation type="obsolete">Åben mappe</translation>
-    </message>
-    <message>
-        <source>Port used for incoming connections:</source>
-        <translation type="obsolete">Port til indkommende forbindelser:</translation>
-    </message>
-    <message>
-        <source>Random</source>
-        <translation type="obsolete">Tilfældig</translation>
-    </message>
-    <message>
-        <source>HTTP</source>
-        <translation type="obsolete">HTTP</translation>
-    </message>
-    <message>
-        <source>SOCKS5</source>
-        <translation type="obsolete">SOCKS5</translation>
-    </message>
-    <message>
-        <source>Affected connections</source>
-        <translation type="obsolete">Berørte forbindelser</translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to trackers</source>
-        <translation type="obsolete">Brug proxy for at forbinde til trackere</translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to regular peers</source>
-        <translation type="obsolete">Brug proxy for at forbinde til peers</translation>
-    </message>
-    <message>
-        <source>Use proxy for connections to web seeds</source>
-        <translation type="obsolete">Brug proxy for at forbinde til web seeds</translation>
-    </message>
-    <message>
-        <source>Use proxy for DHT messages</source>
-        <translation type="obsolete">Brug proxy til DHT beskeder</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Slået til</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">Tvungen</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">Slået fra</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="obsolete">Indstillinger</translation>
-    </message>
-    <message>
-        <source>User interface settings</source>
-        <translation type="obsolete">Bruger interface indstillinger</translation>
-    </message>
-    <message>
-        <source>Visual style:</source>
-        <translation type="obsolete">Udseende:</translation>
-    </message>
-    <message>
-        <source>Cleanlooks style (Gnome like)</source>
-        <translation type="obsolete">Cleanlooks style (Ligner Gnome)</translation>
-    </message>
-    <message>
-        <source>Motif style (Unix like)</source>
-        <translation type="obsolete">Motif style (Ligner Unix)</translation>
-    </message>
-    <message>
-        <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="obsolete">Bed om bekræftelse for at lukke når downloadlisten ikke er tom</translation>
-    </message>
-    <message>
-        <source>Display current speed in title bar</source>
-        <translation type="obsolete">Vis hastighed i titlebar</translation>
-    </message>
-    <message>
-        <source>Transfer list refresh interval:</source>
-        <translation type="obsolete">Interval for opdatering af listen:</translation>
-    </message>
-    <message>
-        <source>Disable system tray icon</source>
-        <translation type="obsolete">Slå system tray icon fra</translation>
-    </message>
-    <message>
-        <source>Close to tray</source>
-        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="obsolete">Luk til tray</translation>
-    </message>
-    <message>
-        <source>Minimize to tray</source>
-        <translation type="obsolete">Minimer til tray</translation>
-    </message>
-    <message>
-        <source>Show notification balloons in tray</source>
-        <translation type="obsolete">Vis notification balloons i tray</translation>
-    </message>
-    <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Downloads</translation>
-    </message>
-    <message>
-        <source>Pre-allocate all files</source>
-        <translation type="obsolete">Pre-allokér alle filer</translation>
-    </message>
-    <message>
-        <source>When adding a torrent</source>
-        <translation type="obsolete">Når en torrent tilføjes</translation>
-    </message>
-    <message>
-        <source>Display torrent content and some options</source>
-        <translation type="obsolete">Vis indhold af torrent og nogle indstillinger</translation>
-    </message>
-    <message>
-        <source>Do not start download automatically</source>
-        <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="obsolete">Start ikke download automatisk</translation>
-    </message>
-    <message>
-        <source>Folder watching</source>
-        <comment>qBittorrent will watch a directory and automatically download torrents present in it</comment>
-        <translation type="obsolete">Mappe overvågning</translation>
-    </message>
-    <message>
-        <source>Connection</source>
-        <translation type="obsolete">Forbindelse</translation>
-    </message>
-    <message>
-        <source>Download folder:</source>
-        <translation type="obsolete">Download mappe:</translation>
-    </message>
-    <message>
-        <source>Temp folder:</source>
-        <translation type="obsolete">Temp mappe:</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents present in this folder:</source>
-        <translation type="obsolete">Hent automatisk torrents der befinder sig i denne mappe:</translation>
-    </message>
-    <message>
-        <source>Listening port</source>
-        <translation type="obsolete">Port</translation>
-    </message>
-    <message>
-        <source>to</source>
-        <comment>i.e: 1200 to 1300</comment>
-        <translation type="obsolete">til</translation>
-    </message>
-    <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">Tænd for UPnP port mapping</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">Tænd for NAT-PMP port mapping</translation>
-    </message>
-    <message>
-        <source>Global bandwidth limiting</source>
-        <translation type="obsolete">Global båndbredde begrænsning</translation>
-    </message>
-    <message>
-        <source>Upload:</source>
-        <translation type="obsolete">Upload:</translation>
-    </message>
-    <message>
-        <source>Download:</source>
-        <translation type="obsolete">Download:</translation>
-    </message>
-    <message utf8="true">
-        <source>Spoof µtorrent to avoid ban (requires restart)</source>
-        <translation type="obsolete">Foregiv at være µtorrent for at undgå ban (kræver genstart)</translation>
-    </message>
-    <message>
-        <source>(None)</source>
-        <translation type="obsolete">(Ingen)</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="obsolete">Brugernavn:</translation>
-    </message>
-    <message>
-        <source>Action on double click</source>
-        <comment>Action executed when doucle-clicking on an item in transfer (download/upload) list</comment>
-        <translation type="obsolete">Handling ved dobbeltklik</translation>
-    </message>
-    <message>
-        <source>Downloading:</source>
-        <translation type="obsolete">Downloader:</translation>
-    </message>
-    <message>
-        <source>Completed:</source>
-        <translation type="obsolete">Færdig:</translation>
-    </message>
-    <message>
-        <source>Connections limit</source>
-        <translation type="obsolete">Grænse for forbindelser</translation>
-    </message>
-    <message>
-        <source>Global maximum number of connections:</source>
-        <translation type="obsolete">Global grænse for det maksimale antal forbindelser:</translation>
-    </message>
-    <message>
-        <source>Maximum number of connections per torrent:</source>
-        <translation type="obsolete">Maksimale antal forbindelser per torrent:</translation>
-    </message>
-    <message>
-        <source>Maximum number of upload slots per torrent:</source>
-        <translation type="obsolete">Maksimale antal upload slots per torrent:</translation>
-    </message>
-    <message>
-        <source>Peer connections</source>
-        <translation type="obsolete">Peer forbindelser</translation>
-    </message>
-    <message>
-        <source>Resolve peer countries</source>
-        <translation type="obsolete">Opdag oprindelseslande for peers</translation>
-    </message>
-    <message>
-        <source>Resolve peer host names</source>
-        <translation type="obsolete">Opdage hostnames for peers</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">Brug DHT netværk (decentraliseret)</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">Brug en anden port til DHT og Bittorrent</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">Brug lokal Peer Discovery</translation>
-    </message>
-    <message>
-        <source>Encryption:</source>
-        <translation type="obsolete">Kryptering:</translation>
-    </message>
-    <message>
-        <source>Share ratio settings</source>
-        <translation type="obsolete">Indstillinger for delings ratio</translation>
-    </message>
-    <message>
-        <source>Desired ratio:</source>
-        <translation type="obsolete">Ønsket ratio:</translation>
-    </message>
-    <message>
-        <source>Filter file path:</source>
-        <translation type="obsolete">Sti til fil med filter:</translation>
-    </message>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS feeds opdaterings interval:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minutter</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Maksimalt antal artikler per feed:</translation>
-    </message>
-    <message>
-        <source>File system</source>
-        <translation type="obsolete">Fil system</translation>
-    </message>
-    <message>
-        <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="obsolete">Fjern færdige torrents når de når deres ratio:</translation>
-    </message>
-    <message>
-        <source>Start minimized</source>
-        <translation type="obsolete">Start minimeret</translation>
-    </message>
-    <message>
-        <source>Enable Web User Interface</source>
-        <translation type="obsolete">Slå Web User Interface til</translation>
-    </message>
-    <message>
-        <source>Enable RSS support</source>
-        <translation type="obsolete">Understøt RSS</translation>
-    </message>
-    <message>
-        <source>RSS settings</source>
-        <translation type="obsolete">RSS indstillinger</translation>
-    </message>
-    <message>
-        <source>Enable queueing system</source>
-        <translation type="obsolete">Brug kø system</translation>
-    </message>
-    <message>
-        <source>Maximum active downloads:</source>
-        <translation type="obsolete">Maksimale antal aktive downloads:</translation>
-    </message>
-    <message>
-        <source>Torrent queueing</source>
-        <translation type="obsolete">Torrent kø</translation>
-    </message>
-    <message>
-        <source>Maximum active torrents:</source>
-        <translation type="obsolete">Maksimale antal aktive torrents:</translation>
-    </message>
-    <message>
-        <source>Display top toolbar</source>
-        <translation type="obsolete">Vis værktøjslinje i toppen</translation>
-    </message>
-    <message>
-        <source>Search engine proxy settings</source>
-        <translation type="obsolete">Søgemaskine proxy indstillinger</translation>
-    </message>
-    <message>
-        <source>Bittorrent proxy settings</source>
-        <translation type="obsolete">Bittorrent proxy indstillinger</translation>
-    </message>
-    <message>
-        <source>Maximum active uploads:</source>
-        <translation type="obsolete">Maksimale antal aktive uploads:</translation>
-    </message>
-</context>
-<context>
-    <name>DownloadingTorrents</name>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL hastighed</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP hastighed</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">Seedere/Leechere</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">Tid Tilbage</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 started.</source>
-        <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="obsolete">qBittorrent %1 startet.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; lagt til download listen.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; fortsat. (hurtig fortsættelse)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; findes allerede i download listen.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Kan ikke dekode torrent filen: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Denne fil er enten korrupt eller ikke en torrent.</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">Kunne ikke lytte på de opgivne porte.</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Downloader &apos;%1&apos;, vent venligst...</translation>
     </message>
 </context>
 <context>
@@ -1487,14 +758,6 @@ You should get this information from your Web browser preferences.</source>
         <translation>Vælg destinationsfil</translation>
     </message>
     <message>
-        <source>Overwriting confirmation</source>
-        <translation type="obsolete">Bekræftelse af overskrivning</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to overwrite existing file?</source>
-        <translation type="obsolete">Er du sikker på at du vil overskrive den eksisterende fil?</translation>
-    </message>
-    <message>
         <location filename="../feeddownloader.h" line="501"/>
         <source>Export successful</source>
         <translation>Eksport lykkedes</translation>
@@ -1524,90 +787,6 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
-    <name>FilterParserThread</name>
-    <message>
-        <source>I/O Error</source>
-        <comment>Input/Output Error</comment>
-        <translation type="obsolete">I/O Fejl</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="obsolete">Kunne ikke åbne %1 til læsning.</translation>
-    </message>
-    <message>
-        <source>%1 is not a valid PeerGuardian P2B file.</source>
-        <translation type="obsolete">%1 er ikke en gyldig PeerGuardian P2B fil.</translation>
-    </message>
-</context>
-<context>
-    <name>FinishedListDelegate</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
-    </message>
-</context>
-<context>
-    <name>FinishedTorrents</name>
-    <message>
-        <source>Finished</source>
-        <translation type="obsolete">Færdig</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL hastighed</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP hastighed</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">Seedere/Leechere</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">Status</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">Tid Tilbage</translation>
-    </message>
-    <message>
-        <source>Finished</source>
-        <comment>i.e: Torrent has finished downloading</comment>
-        <translation type="obsolete">Færdig</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <comment>i.e: No error message</comment>
-        <translation type="obsolete">Intet</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">Leechere</translation>
-    </message>
-</context>
-<context>
     <name>GUI</name>
     <message>
         <location filename="../GUI.cpp" line="826"/>
@@ -1615,138 +794,14 @@ You should get this information from your Web browser preferences.</source>
         <translation>Åbn Torrent Filer</translation>
     </message>
     <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Denne fil er enten korrupt eller ikke en torrent.</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">&amp;Ja</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="obsolete">&amp;Nej</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list?</source>
-        <translation type="obsolete">Er du sikker på at du vil slette det markerede fra download listen?</translation>
-    </message>
-    <message>
-        <source>Connecting...</source>
-        <translation type="obsolete">Forbinder...</translation>
-    </message>
-    <message>
-        <source>Downloading...</source>
-        <translation type="obsolete">Downloader...</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="827"/>
         <source>Torrent Files</source>
         <translation>Torrent Filer</translation>
     </message>
     <message>
-        <source>Are you sure? -- qBittorrent</source>
-        <translation type="obsolete">Er du sikker? -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">Kunne ikke lytte på de opgivne porte.</translation>
-    </message>
-    <message>
-        <source>Empty search pattern</source>
-        <translation type="obsolete">Tomt søge kriterie</translation>
-    </message>
-    <message>
-        <source>Please type a search pattern first</source>
-        <translation type="obsolete">Indtast venligst et søge kriterie først</translation>
-    </message>
-    <message>
-        <source>You must select at least one search engine.</source>
-        <translation type="obsolete">Du skal vælge mindst en søgemaskine.</translation>
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="obsolete">Søger...</translation>
-    </message>
-    <message>
-        <source>An error occured during search...</source>
-        <translation type="obsolete">Der opstod en fejl under søgningen...</translation>
-    </message>
-    <message>
-        <source>Search aborted</source>
-        <translation type="obsolete">Søgning afbrudt</translation>
-    </message>
-    <message>
-        <source>Search returned no results</source>
-        <translation type="obsolete">Søgningen gav intet resultat</translation>
-    </message>
-    <message>
-        <source>Search plugin update -- qBittorrent</source>
-        <translation type="obsolete">Søge plugin opdatering -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Search plugin can be updated, do you want to update it?
-
-Changelog:
-</source>
-        <translation type="obsolete">Søge plugin kan opdateres, ønsker du at opdatere det?
-
-Ændringslog:
-</translation>
-    </message>
-    <message>
-        <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="obsolete">Beklager, opdaterings-serveren er midlertidigt utilgængelig.</translation>
-    </message>
-    <message>
-        <source>Your search plugin is already up to date.</source>
-        <translation type="obsolete">Dit søge plugin er allerede opdateret fuldt ud.</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="obsolete">Resultater</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">Status</translation>
-    </message>
-    <message>
-        <source>Search engine</source>
-        <translation type="obsolete">Søgemaskine</translation>
-    </message>
-    <message>
-        <source>Paused</source>
-        <translation type="obsolete">Pauset</translation>
-    </message>
-    <message>
-        <source>Preview process already running</source>
-        <translation type="obsolete">Smugkig kører allerede</translation>
-    </message>
-    <message>
-        <source>There is already another preview process running.
-Please close the other one first.</source>
-        <translation type="obsolete">En anden Smugkigs proces kører allerede.
-Luk venglist denne først.</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="155"/>
         <source>Transfers</source>
         <translation>Overførsler</translation>
-    </message>
-    <message>
-        <source>Download finished</source>
-        <translation type="obsolete">Download afsluttet</translation>
-    </message>
-    <message>
-        <source>Search Engine</source>
-        <translation type="obsolete">Søgemaskine</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="obsolete">Er du sikker på at du vil afslutte qBittorrent?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected item(s) in download list and in hard drive?</source>
-        <translation type="obsolete">Er du sikker på at du vil slette de markerede elementer i download listen og på harddisken?</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="89"/>
@@ -1756,76 +811,9 @@ Luk venglist denne først.</translation>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <source>Connection status:</source>
-        <translation type="obsolete">Forbindelses status:</translation>
-    </message>
-    <message>
-        <source>Offline</source>
-        <translation type="obsolete">Offline</translation>
-    </message>
-    <message>
-        <source>No peers found...</source>
-        <translation type="obsolete">Ingen kilder fundet...</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL hastighed</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP hastighed</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <comment>i.e: full/partial sources</comment>
-        <translation type="obsolete">Seedere/Leechere</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">Tid Tilbage</translation>
-    </message>
-    <message>
-        <source>Seeders</source>
-        <comment>i.e: Number of full sources</comment>
-        <translation type="obsolete">Seedere</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <comment>i.e: Number of partial sources</comment>
-        <translation type="obsolete">Leechere</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 started.</source>
-        <comment>e.g: qBittorrent v0.x started.</comment>
-        <translation type="obsolete">qBittorrent %1 startet.</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="1000"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent vx.x</comment>
-        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="1003"/>
@@ -1842,83 +830,6 @@ Luk venglist denne først.</translation>
         <translation>UP hastighed: %1 KB/s</translation>
     </message>
     <message>
-        <source>Finished</source>
-        <comment>i.e: Torrent has finished downloading</comment>
-        <translation type="obsolete">Færdig</translation>
-    </message>
-    <message>
-        <source>Checking...</source>
-        <comment>i.e: Checking already downloaded parts...</comment>
-        <translation type="obsolete">Kontrollerer...</translation>
-    </message>
-    <message>
-        <source>Stalled</source>
-        <comment>i.e: State of a torrent whose download speed is 0kb/s</comment>
-        <translation type="obsolete">Gået i stå</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to quit?</source>
-        <translation type="obsolete">Er du sikker på at du vil afslutte?</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed.</source>
-        <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="obsolete">&apos;%1&apos; blev fjernet.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; lagt til download listen.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; fortsat. (hurtig fortsættelse)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; findes allerede i download listen.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Kan ikke dekode torrent filen: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <comment>i.e: No error message</comment>
-        <translation type="obsolete">Intet</translation>
-    </message>
-    <message>
-        <source>Listening on port: %1</source>
-        <comment>e.g: Listening on port: 1666</comment>
-        <translation type="obsolete">Lytter på port: %1</translation>
-    </message>
-    <message>
-        <source>All downloads were paused.</source>
-        <translation type="obsolete">Alle downloads blev sat på pause.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; paused.</source>
-        <comment>xxx.avi paused.</comment>
-        <translation type="obsolete">&apos;%1&apos; blev sat på pause.</translation>
-    </message>
-    <message>
-        <source>Connecting...</source>
-        <comment>i.e: Connecting to the tracker...</comment>
-        <translation type="obsolete">Forbinder...</translation>
-    </message>
-    <message>
-        <source>All downloads were resumed.</source>
-        <translation type="obsolete">Alle downloads fortsættes.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed.</source>
-        <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="obsolete">&apos;%1&apos; fortsat.</translation>
-    </message>
-    <message>
         <location filename="../GUI.cpp" line="429"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
@@ -1929,55 +840,6 @@ Luk venglist denne først.</translation>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Fejl</translation>
-    </message>
-    <message>
-        <source>An error occured when trying to read or write %1. The disk is probably full, download has been paused</source>
-        <comment>e.g: An error occured when trying to read or write xxx.avi. The disk is probably full, download has been paused</comment>
-        <translation type="obsolete">Der opstod en fejl under forsøget på at skrive %1. Disken er måske fuld, downloaden er sat på pause</translation>
-    </message>
-    <message>
-        <source>Connection Status:</source>
-        <translation type="obsolete">Forbindelses Status:</translation>
-    </message>
-    <message>
-        <source>Online</source>
-        <translation type="obsolete">Online</translation>
-    </message>
-    <message>
-        <source>Firewalled?</source>
-        <comment>i.e: Behind a firewall/router?</comment>
-        <translation type="obsolete">Bag en Firewall?</translation>
-    </message>
-    <message>
-        <source>No incoming connections...</source>
-        <translation type="obsolete">Ingen indkommende forbindelser...</translation>
-    </message>
-    <message>
-        <source>No search engine selected</source>
-        <translation type="obsolete">Der er ikke valgt nogen søgemaskine</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="obsolete">Søge plugin opdatering</translation>
-    </message>
-    <message>
-        <source>Search has finished</source>
-        <translation type="obsolete">Søgningen er færdig</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <comment>i.e: Search results</comment>
-        <translation type="obsolete">Resultater</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Downloader &apos;%1&apos;, vent venligst...</translation>
-    </message>
-    <message>
-        <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
-        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
-        <translation type="obsolete">Der opstod en fejl (fuld disk?), &apos;%1&apos; sat på pause.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="367"/>
@@ -1994,10 +856,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../GUI.cpp" line="349"/>
         <source>RSS</source>
         <translation>RSS</translation>
-    </message>
-    <message>
-        <source>Finished</source>
-        <translation type="obsolete">Færdig</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="442"/>
@@ -2682,22 +1540,6 @@ No further notices will be issued.</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>Log:</source>
-        <translation type="obsolete">Log:</translation>
-    </message>
-    <message>
-        <source>Total DL Speed:</source>
-        <translation type="obsolete">Total DL Hastighed:</translation>
-    </message>
-    <message>
-        <source>Total UP Speed:</source>
-        <translation type="obsolete">Total UP Hastighed:</translation>
-    </message>
-    <message>
-        <source>&amp;Options</source>
-        <translation type="obsolete">&amp;Funktioner</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="37"/>
         <source>&amp;Edit</source>
         <translation>&amp;Rediger</translation>
@@ -2718,18 +1560,6 @@ No further notices will be issued.</source>
         <translation>&amp;Hjælp</translation>
     </message>
     <message>
-        <source>Open</source>
-        <translation type="obsolete">Åben</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="obsolete">Afslut</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="obsolete">Indstillinger</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="80"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
@@ -2748,34 +1578,6 @@ No further notices will be issued.</source>
         <location filename="../ui/mainwindow.ui" line="156"/>
         <source>&amp;Options...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="obsolete">Om</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">Start</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">Pause</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">Slet</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="obsolete">Sæt Alle På Pause</translation>
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="obsolete">Start Alle</translation>
-    </message>
-    <message>
-        <source>Visit Website</source>
-        <translation type="obsolete">Besøg Website</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="161"/>
@@ -2880,10 +1682,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Log Window</source>
-        <translation type="obsolete">Log vindue</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="285"/>
         <location filename="../ui/mainwindow.ui" line="288"/>
         <source>Alternative speed limits</source>
@@ -2898,10 +1696,6 @@ No further notices will be issued.</source>
         <location filename="../ui/mainwindow.ui" line="326"/>
         <source>Search &amp;engine</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search engine</source>
-        <translation type="obsolete">Søgemaskine</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="296"/>
@@ -2924,70 +1718,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Torrent Properties</source>
-        <translation type="obsolete">Egenskaber For Torrent</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Søg</translation>
-    </message>
-    <message>
-        <source>Search Pattern:</source>
-        <translation type="obsolete">Søg Efter:</translation>
-    </message>
-    <message>
-        <source>Status:</source>
-        <translation type="obsolete">Status:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation type="obsolete">Stoppet</translation>
-    </message>
-    <message>
-        <source>Search Engines</source>
-        <translation type="obsolete">Søgemaskiner</translation>
-    </message>
-    <message>
-        <source>Results:</source>
-        <translation type="obsolete">Resultater:</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="obsolete">Stop</translation>
-    </message>
-    <message>
-        <source>Download from URL</source>
-        <translation type="obsolete">Download fra URL</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="obsolete">Download</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">Ryd resultater</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
-    </message>
-    <message>
-        <source>Create torrent</source>
-        <translation type="obsolete">Opret torrent</translation>
-    </message>
-    <message>
-        <source>Update search plugin</source>
-        <translation type="obsolete">Opdater søge plugin</translation>
-    </message>
-    <message>
-        <source>Session ratio: </source>
-        <translation type="obsolete">Sessionens ratio: </translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation type="obsolete">Overførsler</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="206"/>
         <source>Preview file</source>
         <translation>Smugkig fil</translation>
@@ -2998,42 +1728,6 @@ No further notices will be issued.</source>
         <translation>Ryd log</translation>
     </message>
     <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">Slet Permanent</translation>
-    </message>
-    <message>
-        <source>Visit website</source>
-        <translation type="obsolete">Besøg Website</translation>
-    </message>
-    <message>
-        <source>Report a bug</source>
-        <translation type="obsolete">Rapporter en fejl</translation>
-    </message>
-    <message>
-        <source>Set upload limit</source>
-        <translation type="obsolete">Sæt upload grænse</translation>
-    </message>
-    <message>
-        <source>Set download limit</source>
-        <translation type="obsolete">Sæt download grænse</translation>
-    </message>
-    <message>
-        <source>Documentation</source>
-        <translation type="obsolete">Dokumentation</translation>
-    </message>
-    <message>
-        <source>Set global download limit</source>
-        <translation type="obsolete">Sæt global grænse for download</translation>
-    </message>
-    <message>
-        <source>Set global upload limit</source>
-        <translation type="obsolete">Sæt global grænse for upload</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">Indstillinger</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="250"/>
         <source>Decrease priority</source>
         <translation>Sæt lavere prioritet</translation>
@@ -3042,10 +1736,6 @@ No further notices will be issued.</source>
         <location filename="../ui/mainwindow.ui" line="262"/>
         <source>Increase priority</source>
         <translation>Sæt højere prioritet</translation>
-    </message>
-    <message>
-        <source>Console</source>
-        <translation type="obsolete">Konsol</translation>
     </message>
 </context>
 <context>
@@ -3063,10 +1753,6 @@ No further notices will be issued.</source>
 </context>
 <context>
     <name>PeerListDelegate</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
-    </message>
     <message>
         <location filename="../peerlistdelegate.h" line="62"/>
         <source>/s</source>
@@ -3116,18 +1802,6 @@ No further notices will be issued.</source>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation></translation>
-    </message>
-    <message>
-        <source>Add a new peer</source>
-        <translation type="obsolete">Tilføj en ny peer</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="obsolete">Begræns upload</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="obsolete">Begræns download</translation>
     </message>
     <message>
         <location filename="../peerlistwidget.cpp" line="132"/>
@@ -3209,10 +1883,6 @@ No further notices will be issued.</source>
 <context>
     <name>Preferences</name>
     <message>
-        <source>Preferences</source>
-        <translation type="obsolete">Indstillinger</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="91"/>
         <source>UI</source>
         <translation type="unfinished"></translation>
@@ -3243,17 +1913,9 @@ No further notices will be issued.</source>
         <translation type="unfinished">Proxy</translation>
     </message>
     <message>
-        <source>IP Filter</source>
-        <translation type="obsolete">IP Filter</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="169"/>
         <source>Web UI</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="184"/>
@@ -3276,22 +1938,6 @@ No further notices will be issued.</source>
         <translation type="unfinished">Udseende:</translation>
     </message>
     <message>
-        <source>Ask for confirmation on exit when download list is not empty</source>
-        <translation type="obsolete">Bed om bekræftelse for at lukke når downloadlisten ikke er tom</translation>
-    </message>
-    <message>
-        <source>Display top toolbar</source>
-        <translation type="obsolete">Vis værktøjslinje i toppen</translation>
-    </message>
-    <message>
-        <source>Disable splash screen</source>
-        <translation type="obsolete">Vis ikke splash screen</translation>
-    </message>
-    <message>
-        <source>Display current speed in title bar</source>
-        <translation type="obsolete">Vis hastighed i titlebar</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="317"/>
         <source>Transfer list</source>
         <translation type="unfinished"></translation>
@@ -3303,47 +1949,10 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Downloading:</source>
-        <translation type="obsolete">Downloader:</translation>
-    </message>
-    <message>
-        <source>Start/Stop</source>
-        <translation type="obsolete">Start/Stop</translation>
-    </message>
-    <message>
-        <source>Open folder</source>
-        <translation type="obsolete">Åben mappe</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="381"/>
         <location filename="../ui/options.ui" line="407"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Completed:</source>
-        <translation type="obsolete">Færdig:</translation>
-    </message>
-    <message>
-        <source>Disable system tray icon</source>
-        <translation type="obsolete">Slå system tray icon fra</translation>
-    </message>
-    <message>
-        <source>Close to tray</source>
-        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="obsolete">Luk til tray</translation>
-    </message>
-    <message>
-        <source>Minimize to tray</source>
-        <translation type="obsolete">Minimer til tray</translation>
-    </message>
-    <message>
-        <source>Start minimized</source>
-        <translation type="obsolete">Start minimeret</translation>
-    </message>
-    <message>
-        <source>Show notification balloons in tray</source>
-        <translation type="obsolete">Vis notification balloons i tray</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="567"/>
@@ -3356,17 +1965,9 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pre-allocate all files</source>
-        <translation type="obsolete">Pre-allokér alle filer</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1807"/>
         <source>Torrent queueing</source>
         <translation type="unfinished">Torrent kø</translation>
-    </message>
-    <message>
-        <source>Enable queueing system</source>
-        <translation type="obsolete">Brug kø system</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="1822"/>
@@ -3392,11 +1993,6 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="541"/>
         <source>Display torrent content and some options</source>
         <translation type="unfinished">Vis indhold af torrent og nogle indstillinger</translation>
-    </message>
-    <message>
-        <source>Do not start download automatically</source>
-        <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="obsolete">Start ikke download automatisk</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="962"/>
@@ -3535,10 +2131,6 @@ No further notices will be issued.</source>
         <translation type="unfinished">Brug lokal Peer Discovery</translation>
     </message>
     <message>
-        <source>Encryption:</source>
-        <translation type="obsolete">Kryptering:</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1771"/>
         <source>Enabled</source>
         <translation type="unfinished">Slået til</translation>
@@ -3552,18 +2144,6 @@ No further notices will be issued.</source>
         <location filename="../ui/options.ui" line="1781"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Share ratio settings</source>
-        <translation type="obsolete">Indstillinger for delings ratio</translation>
-    </message>
-    <message>
-        <source>Desired ratio:</source>
-        <translation type="obsolete">Ønsket ratio:</translation>
-    </message>
-    <message>
-        <source>Remove finished torrents when their ratio reaches:</source>
-        <translation type="obsolete">Fjern færdige torrents når de når deres ratio:</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2019"/>
@@ -3758,10 +2338,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1898"/>
         <source>Share ratio limiting</source>
         <translation type="unfinished"></translation>
@@ -3838,62 +2414,18 @@ No further notices will be issued.</source>
         <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
-        <source>Filter Settings</source>
-        <translation type="obsolete">Filter Indstillinger</translation>
-    </message>
-    <message>
-        <source>Activate IP Filtering</source>
-        <translation type="obsolete">Aktiver IP Filtrering</translation>
-    </message>
-    <message>
         <location filename="../ui/options.ui" line="1181"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable Web User Interface</source>
-        <translation type="obsolete">Slå Web User Interface til</translation>
     </message>
     <message>
         <location filename="../ui/options.ui" line="2449"/>
         <source>HTTP Server</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Enable RSS support</source>
-        <translation type="obsolete">Understøt RSS</translation>
-    </message>
-    <message>
-        <source>RSS settings</source>
-        <translation type="obsolete">RSS indstillinger</translation>
-    </message>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS feeds opdaterings interval:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minutter</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Maksimalt antal artikler per feed:</translation>
-    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
-    <message>
-        <source>False</source>
-        <translation type="obsolete">Falsk</translation>
-    </message>
-    <message>
-        <source>True</source>
-        <translation type="obsolete">Sandt</translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">Ignoreret</translation>
-    </message>
     <message>
         <location filename="../proplistdelegate.h" line="90"/>
         <source>Not downloaded</source>
@@ -3939,21 +2471,9 @@ No further notices will be issued.</source>
         <translation>Kommentar:</translation>
     </message>
     <message>
-        <source>Total uploaded:</source>
-        <translation type="obsolete">Sendt ialt:</translation>
-    </message>
-    <message>
-        <source>Total downloaded:</source>
-        <translation type="obsolete">Hentet ialt:</translation>
-    </message>
-    <message>
         <location filename="../ui/propertieswidget.ui" line="211"/>
         <source>Share ratio:</source>
         <translation>Delingsforhold:</translation>
-    </message>
-    <message>
-        <source>Total failed:</source>
-        <translation type="obsolete">Fejlet ialt:</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="82"/>
@@ -4038,18 +2558,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Current tracker:</source>
-        <translation type="obsolete">Nuværende tracker:</translation>
-    </message>
-    <message>
-        <source>Collapse all</source>
-        <translation type="obsolete">Kollaps alle</translation>
-    </message>
-    <message>
-        <source>Expand all</source>
-        <translation type="obsolete">Udfold alle</translation>
-    </message>
-    <message>
         <location filename="../ui/propertieswidget.ui" line="817"/>
         <source>General</source>
         <translation>Generel</translation>
@@ -4075,29 +2583,9 @@ No further notices will be issued.</source>
         <translation>Filer</translation>
     </message>
     <message>
-        <source>File name</source>
-        <translation type="obsolete">Fil navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
         <location filename="../propertieswidget.cpp" line="572"/>
         <source>Priority</source>
         <translation type="unfinished">Prioritet</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Ukendt</translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">Ignoreret</translation>
     </message>
     <message>
         <location filename="../ui/propertieswidget.ui" line="933"/>
@@ -4120,10 +2608,6 @@ No further notices will be issued.</source>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation></translation>
-    </message>
-    <message>
-        <source>None - Unreachable?</source>
-        <translation type="obsolete">Ingen - Kan ikke nås?</translation>
     </message>
     <message>
         <location filename="../propertieswidget.cpp" line="334"/>
@@ -4347,21 +2831,9 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New folder</source>
-        <translation type="obsolete">Ny mappe</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation type="obsolete">Opret</translation>
-    </message>
-    <message>
         <location filename="../ui/rss.ui" line="59"/>
         <source>Refresh RSS streams</source>
         <translation>Opdater RSS streams</translation>
-    </message>
-    <message>
-        <source>2</source>
-        <translation type="obsolete">2</translation>
     </message>
 </context>
 <context>
@@ -4580,30 +3052,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Seeders</source>
-        <comment>i.e: Number of full sources</comment>
-        <translation type="obsolete">Seedere</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <comment>i.e: Number of partial sources</comment>
-        <translation type="obsolete">Leechere</translation>
-    </message>
-    <message>
-        <source>Search engine</source>
-        <translation type="obsolete">Søgemaskine</translation>
-    </message>
-    <message>
         <location filename="../searchengine.cpp" line="319"/>
         <source>Empty search pattern</source>
         <translation>Tomt søge kriterie</translation>
@@ -4612,14 +3060,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine.cpp" line="319"/>
         <source>Please type a search pattern first</source>
         <translation>Indtast venligst et søge kriterie først</translation>
-    </message>
-    <message>
-        <source>No search engine selected</source>
-        <translation type="obsolete">Der er ikke valgt nogen søgemaskine</translation>
-    </message>
-    <message>
-        <source>You must select at least one search engine.</source>
-        <translation type="obsolete">Du skal vælge mindst en søgemaskine.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="355"/>
@@ -4631,44 +3071,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine.cpp" line="430"/>
         <source>Searching...</source>
         <translation>Søger...</translation>
-    </message>
-    <message>
-        <source>Search plugin update -- qBittorrent</source>
-        <translation type="obsolete">Søge plugin opdatering -- qBittorrent</translation>
-    </message>
-    <message>
-        <source>Search plugin can be updated, do you want to update it?
-
-Changelog:
-</source>
-        <translation type="obsolete">Søge plugin kan opdateres, ønsker du at opdatere det?
-
-Ændringslog:
-</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">&amp;Ja</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="obsolete">&amp;Nej</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="obsolete">Søge plugin opdatering</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Sorry, update server is temporarily unavailable.</source>
-        <translation type="obsolete">Beklager, opdaterings-serveren er midlertidigt utilgængelig.</translation>
-    </message>
-    <message>
-        <source>Your search plugin is already up to date.</source>
-        <translation type="obsolete">Dit søge plugin er allerede opdateret fuldt ud.</translation>
     </message>
     <message>
         <location filename="../searchengine.cpp" line="202"/>
@@ -5015,10 +3417,6 @@ Please install it manually.</source>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Add a new tracker</source>
-        <translation type="obsolete">Tilføj en ny tacker</translation>
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>
@@ -5115,10 +3513,6 @@ Please install it manually.</source>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation type="unfinished">KB/s</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
     </message>
 </context>
 <context>
@@ -5220,31 +3614,6 @@ Please install it manually.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <comment>i.e: % downloaded</comment>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
-        <source>DL Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">DL hastighed</translation>
-    </message>
-    <message>
-        <source>UP Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">UP hastighed</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="79"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
@@ -5263,37 +3632,9 @@ Please install it manually.</source>
         <translation>Tid Tilbage</translation>
     </message>
     <message>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">&amp;Ja</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="obsolete">&amp;Nej</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="1008"/>
         <source>Column visibility</source>
         <translation>Kolonne synlighed</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">Start</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">Pause</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">Slet</translation>
-    </message>
-    <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Smugkig fil</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">Slet Permanent</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="67"/>
@@ -5462,14 +3803,6 @@ Please install it manually.</source>
         <translation type="unfinished">Prioritet</translation>
     </message>
     <message>
-        <source>Limit upload rate</source>
-        <translation type="obsolete">Begræns upload</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="obsolete">Begræns download</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="1143"/>
         <source>Open destination folder</source>
         <translation>Åben destinationsmappe</translation>
@@ -5502,18 +3835,6 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="1155"/>
         <source>Set location...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Buy it</source>
-        <translation type="obsolete">Køb det</translation>
-    </message>
-    <message>
-        <source>Increase priority</source>
-        <translation type="obsolete">Forøg prioritet</translation>
-    </message>
-    <message>
-        <source>Decrease priority</source>
-        <translation type="obsolete">Formindsk prioritet</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="1157"/>
@@ -5556,49 +3877,6 @@ Please install it manually.</source>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Ui</name>
-    <message>
-        <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation type="obsolete">Jeg vil gerne takke disse personer, som meldte sig frivilligt til at oversætte qBittorrent:</translation>
-    </message>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Smugkig ikke muligt</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Beklager, denne fil kan ikke smugkigges</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
-        <source>No URL entered</source>
-        <translation type="obsolete">Der er ikke indtastet nogen URL</translation>
-    </message>
-    <message>
-        <source>Please type at least one URL.</source>
-        <translation type="obsolete">Indtast venligst mindst en URL.</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation type="obsolete">Kontakt mig venligst hvis du kunne tænke dig og oversætte qBittorrent til dit eget sprog.</translation>
     </message>
 </context>
 <context>
@@ -5745,22 +4023,6 @@ Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>File name</source>
-        <translation type="obsolete">Fil navn</translation>
-    </message>
-    <message>
-        <source>File size</source>
-        <translation type="obsolete">Fil størrelse</translation>
-    </message>
-    <message>
-        <source>Selected</source>
-        <translation type="obsolete">Valgt</translation>
-    </message>
-    <message>
-        <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="obsolete">Download i korrekt rækkefølge (langsommere, men godt for smugkig)</translation>
-    </message>
-    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="260"/>
         <source>Add to download list in paused state</source>
         <translation>Tilføj til download listen som sat på pause</translation>
@@ -5776,18 +4038,6 @@ Please install it manually.</source>
         <translation>Annuller</translation>
     </message>
     <message>
-        <source>Unselect</source>
-        <translation type="obsolete">Fravælg</translation>
-    </message>
-    <message>
-        <source>Select</source>
-        <translation type="obsolete">Vælg</translation>
-    </message>
-    <message>
-        <source>Ignored</source>
-        <translation type="obsolete">Ignoreret</translation>
-    </message>
-    <message>
         <location filename="../ui/torrentadditiondlg.ui" line="322"/>
         <source>High</source>
         <translation type="unfinished">Høj</translation>
@@ -5796,14 +4046,6 @@ Please install it manually.</source>
         <location filename="../ui/torrentadditiondlg.ui" line="327"/>
         <source>Maximum</source>
         <translation type="unfinished">Maksimal</translation>
-    </message>
-    <message>
-        <source>Collapse all</source>
-        <translation type="obsolete">Kollaps alle</translation>
-    </message>
-    <message>
-        <source>Expand all</source>
-        <translation type="obsolete">Ufold alle</translation>
     </message>
 </context>
 <context>
@@ -5846,64 +4088,6 @@ Please install it manually.</source>
     </message>
 </context>
 <context>
-    <name>bandwidth_dlg</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
-    </message>
-</context>
-<context>
-    <name>bittorrent</name>
-    <message>
-        <source>&apos;%1&apos; was removed.</source>
-        <comment>&apos;xxx.avi&apos; was removed.</comment>
-        <translation type="obsolete">&apos;%1&apos; blev fjernet.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; paused.</source>
-        <comment>e.g: xxx.avi paused.</comment>
-        <translation type="obsolete">&apos;%1&apos; blev sat på pause.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed.</source>
-        <comment>e.g: xxx.avi resumed.</comment>
-        <translation type="obsolete">&apos;%1&apos; fortsat.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; findes allerede i download listen.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; fortsat. (hurtig fortsættelse)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; lagt til download listen.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Kan ikke dekode torrent filen: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Denne fil er enten korrupt eller ikke en torrent.</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t listen on any of the given ports.</source>
-        <translation type="obsolete">Kunne ikke lytte på de opgivne porte.</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Downloader &apos;%1&apos;, vent venligst...</translation>
-    </message>
-</context>
-<context>
     <name>confirmDeletionDlg</name>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="20"/>
@@ -5925,54 +4109,18 @@ Please install it manually.</source>
         <source>Also delete the files on the hard disk</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Delete the files on the hard disk as well</source>
-        <translation type="obsolete">Slet også filerne på harddisken</translation>
-    </message>
 </context>
 <context>
     <name>createTorrentDialog</name>
-    <message>
-        <source>Create Torrent file</source>
-        <translation type="obsolete">Opret torrent fil</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation type="obsolete">Opret</translation>
-    </message>
     <message>
         <location filename="../ui/createtorrent.ui" line="520"/>
         <source>Cancel</source>
         <translation>Annuller</translation>
     </message>
     <message>
-        <source>Directory</source>
-        <translation type="obsolete">Mappe</translation>
-    </message>
-    <message>
         <location filename="../ui/createtorrent.ui" line="14"/>
         <source>Torrent Creation Tool</source>
         <translation>Værktøj: Opret torrent</translation>
-    </message>
-    <message>
-        <source>&lt;center&gt;Destination torrent file:&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;Destinations torrent fil:&lt;/center&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;center&gt;Input file or directory:&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;Fil eller mappe til torrent:&lt;/center&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;center&gt;Announce url:&lt;br&gt;(One per line)&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;Udbred url:&lt;br&gt;(En per linje)&lt;/center&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;center&gt;Comment:&lt;/center&gt;</source>
-        <translation type="obsolete">&lt;center&gt;Kommentar:&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../ui/createtorrent.ui" line="43"/>
@@ -6088,18 +4236,6 @@ Please install it manually.</source>
         <translation>Torrent FIler</translation>
     </message>
     <message>
-        <source>Select input directory or file</source>
-        <translation type="obsolete">Vælg input mapper eller fil</translation>
-    </message>
-    <message>
-        <source>No destination path set</source>
-        <translation type="obsolete">Ingen destionations sti sat</translation>
-    </message>
-    <message>
-        <source>Please type a destination path first</source>
-        <translation type="obsolete">Indtast venligst en destinations sti først</translation>
-    </message>
-    <message>
         <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>No input path set</source>
         <translation>Der er ikke sat nogen sti til input</translation>
@@ -6108,10 +4244,6 @@ Please install it manually.</source>
         <location filename="../createtorrent_imp.cpp" line="183"/>
         <source>Please type an input path first</source>
         <translation>Indtast venligst en input sti først</translation>
-    </message>
-    <message>
-        <source>Input path does not exist</source>
-        <translation type="obsolete">Stien til input findes ikke</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="214"/>
@@ -6124,10 +4256,6 @@ Please install it manually.</source>
         <location filename="../createtorrent_imp.cpp" line="239"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent blev oprettet succesfuldt:</translation>
-    </message>
-    <message>
-        <source>Please type a valid input path first</source>
-        <translation type="obsolete">Indtast venligst en gyldig sti til input først</translation>
     </message>
     <message>
         <location filename="../createtorrent_imp.cpp" line="86"/>
@@ -6329,73 +4457,6 @@ Please install it manually.</source>
     </message>
 </context>
 <context>
-    <name>downloading</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Søg</translation>
-    </message>
-    <message>
-        <source>Total DL Speed:</source>
-        <translation type="obsolete">Total DL Hastighed:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KB/s</translation>
-    </message>
-    <message>
-        <source>Session ratio: </source>
-        <translation type="obsolete">Sessionens ratio: </translation>
-    </message>
-    <message>
-        <source>Total UP Speed:</source>
-        <translation type="obsolete">Total UP Hastighed:</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">Start</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">Pause</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">Slet</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">Ryd resultater</translation>
-    </message>
-    <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Smugkig fil</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">Slet Permanent</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
-        <source>Seeds/Leechs</source>
-        <translation type="obsolete">Seedere/Leechere</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <translation type="obsolete">Tid Tilbage</translation>
-    </message>
-</context>
-<context>
     <name>engineSelect</name>
     <message>
         <location filename="../ui/engineselect.ui" line="17"/>
@@ -6421,10 +4482,6 @@ Please install it manually.</source>
         <location filename="../ui/engineselect.ui" line="60"/>
         <source>Enabled</source>
         <translation>Slået til</translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="obsolete">Du kan få nye søgemaskiner her: &lt;a href=&quot;http:plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../ui/engineselect.ui" line="78"/>
@@ -6464,14 +4521,6 @@ Please install it manually.</source>
 </context>
 <context>
     <name>engineSelectDlg</name>
-    <message>
-        <source>True</source>
-        <translation type="obsolete">Sandt</translation>
-    </message>
-    <message>
-        <source>False</source>
-        <translation type="obsolete">Falsk</translation>
-    </message>
     <message>
         <location filename="../engineselectdlg.cpp" line="192"/>
         <source>Uninstall warning</source>
@@ -6684,72 +4733,9 @@ Disse plugins blev dog koble fra.</translation>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
-    <message>
-        <source>%1h%2m</source>
-        <comment>e.g: 3hours 5minutes</comment>
-        <translation type="obsolete">%1h%2m</translation>
-    </message>
-    <message>
-        <source>%1d%2h%3m</source>
-        <comment>e.g: 2days 10hours 2minutes</comment>
-        <translation type="obsolete">%1d%2h%3m</translation>
-    </message>
 </context>
 <context>
     <name>options_imp</name>
-    <message>
-        <source>Range Start IP</source>
-        <translation type="obsolete">Første IP i rækken</translation>
-    </message>
-    <message>
-        <source>Start IP:</source>
-        <translation type="obsolete">Første IP:</translation>
-    </message>
-    <message>
-        <source>Range End IP</source>
-        <translation type="obsolete">Sidste IP i rækken</translation>
-    </message>
-    <message>
-        <source>End IP:</source>
-        <translation type="obsolete">Sidste IP:</translation>
-    </message>
-    <message>
-        <source>IP Range Comment</source>
-        <translation type="obsolete">IP Række Kommentar</translation>
-    </message>
-    <message>
-        <source>Comment:</source>
-        <translation type="obsolete">Kommentar:</translation>
-    </message>
-    <message>
-        <source>to</source>
-        <comment>&lt;min port&gt; to &lt;max port&gt;</comment>
-        <translation type="obsolete">til</translation>
-    </message>
-    <message>
-        <source>Choose your favourite preview program</source>
-        <translation type="obsolete">Vælg dit foretrukne smugkig program</translation>
-    </message>
-    <message>
-        <source>Invalid IP</source>
-        <translation type="obsolete">Ugyldig IP</translation>
-    </message>
-    <message>
-        <source>This IP is invalid.</source>
-        <translation type="obsolete">Denne IP er ugyldig.</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">Indstillingerne blev gemt.</translation>
-    </message>
-    <message>
-        <source>Choose scan directory</source>
-        <translation type="obsolete">Vælg mappe til scan</translation>
-    </message>
-    <message>
-        <source>Choose an ipfilter.dat file</source>
-        <translation type="obsolete">Vælg en ipfilter.dat fil</translation>
-    </message>
     <message>
         <location filename="../options_imp.cpp" line="1252"/>
         <location filename="../options_imp.cpp" line="1254"/>
@@ -6757,15 +4743,6 @@ Disse plugins blev dog koble fra.</translation>
         <location filename="../options_imp.cpp" line="1271"/>
         <source>Choose a save directory</source>
         <translation>Vælg en standart mappe</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>Input/Output Error</comment>
-        <translation type="obsolete">I/O Fejl</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t open %1 in read mode.</source>
-        <translation type="obsolete">Kunne ikke åbne %1 til læsning.</translation>
     </message>
     <message>
         <location filename="../options_imp.cpp" line="1174"/>
@@ -6900,164 +4877,12 @@ Disse plugins blev dog koble fra.</translation>
     </message>
 </context>
 <context>
-    <name>properties</name>
-    <message>
-        <source>Torrent Properties</source>
-        <translation type="obsolete">Egenskaber for torrent</translation>
-    </message>
-    <message>
-        <source>File Name</source>
-        <translation type="obsolete">Fil Navn</translation>
-    </message>
-    <message>
-        <source>Current Session</source>
-        <translation type="obsolete">Nuværende Session</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Ukendt</translation>
-    </message>
-    <message>
-        <source>Files contained in current torrent:</source>
-        <translation type="obsolete">Filer i torrent:</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Selected</source>
-        <translation type="obsolete">Valgte</translation>
-    </message>
-    <message>
-        <source> Unselect</source>
-        <translation type="obsolete"> Fravælg</translation>
-    </message>
-    <message>
-        <source> Select</source>
-        <translation type="obsolete"> Vælg</translation>
-    </message>
-    <message>
-        <source>You can select here precisely which files you want to download in current torrent.</source>
-        <translation type="obsolete">Her kan du vælge hvike filer i denne torrent du ønsker og hente.</translation>
-    </message>
-    <message>
-        <source>Tracker</source>
-        <translation type="obsolete">Tracker</translation>
-    </message>
-    <message>
-        <source>Trackers:</source>
-        <translation type="obsolete">Trackere:</translation>
-    </message>
-    <message>
-        <source>None - Unreachable?</source>
-        <translation type="obsolete">Ingen - Kan ikke nås?</translation>
-    </message>
-    <message>
-        <source>Errors:</source>
-        <translation type="obsolete">Fejl:</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Hentet</translation>
-    </message>
-    <message>
-        <source>Main infos</source>
-        <translation type="obsolete">Generel Info</translation>
-    </message>
-    <message>
-        <source>Current tracker:</source>
-        <translation type="obsolete">Nuværende tracker:</translation>
-    </message>
-    <message>
-        <source>Total uploaded:</source>
-        <translation type="obsolete">Sendt ialt:</translation>
-    </message>
-    <message>
-        <source>Total downloaded:</source>
-        <translation type="obsolete">Hentet ialt:</translation>
-    </message>
-    <message>
-        <source>Total failed:</source>
-        <translation type="obsolete">Fejlet ialt:</translation>
-    </message>
-    <message>
-        <source>Torrent content</source>
-        <translation type="obsolete">Indhold af torrent</translation>
-    </message>
-    <message>
-        <source>Download in correct order (slower but good for previewing)</source>
-        <translation type="obsolete">Hent i rækkefølge (langsommere, men godt for smugkig)</translation>
-    </message>
-    <message>
-        <source>Share Ratio:</source>
-        <translation type="obsolete">Delings Ratio:</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">Gem til:</translation>
-    </message>
-    <message>
-        <source>Comment:</source>
-        <translation type="obsolete">Kommentar:</translation>
-    </message>
-    <message>
-        <source>Share ratio:</source>
-        <translation type="obsolete">Delingsforhold:</translation>
-    </message>
-    <message>
-        <source>File name</source>
-        <translation type="obsolete">Fil navn</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <comment>i.e: No error message</comment>
-        <translation type="obsolete">Intet</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Gem til denne mappe</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Fejl ved oprettelse af mappe</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Kunne ikke oprette mappe svarende til den indtastede sti</translation>
-    </message>
-</context>
-<context>
     <name>search_engine</name>
     <message>
         <location filename="../ui/search.ui" line="14"/>
         <location filename="../ui/search.ui" line="44"/>
         <source>Search</source>
         <translation>Søg</translation>
-    </message>
-    <message>
-        <source>Search Engines</source>
-        <translation type="obsolete">Søgemaskiner</translation>
-    </message>
-    <message>
-        <source>Search Pattern:</source>
-        <translation type="obsolete">Søg Efter:</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="obsolete">Stop</translation>
     </message>
     <message>
         <location filename="../ui/search.ui" line="67"/>
@@ -7070,21 +4895,9 @@ Disse plugins blev dog koble fra.</translation>
         <translation>Stoppet</translation>
     </message>
     <message>
-        <source>Results:</source>
-        <translation type="obsolete">Resultater:</translation>
-    </message>
-    <message>
         <location filename="../ui/search.ui" line="135"/>
         <source>Download</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">Ryd resultater</translation>
-    </message>
-    <message>
-        <source>Update search plugin</source>
-        <translation type="obsolete">Opdater søge plugin</translation>
     </message>
     <message>
         <location filename="../ui/search.ui" line="155"/>
@@ -7093,57 +4906,7 @@ Disse plugins blev dog koble fra.</translation>
     </message>
 </context>
 <context>
-    <name>seeding</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Søg</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="obsolete">Start</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="obsolete">Pause</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">Slet</translation>
-    </message>
-    <message>
-        <source>Delete Permanently</source>
-        <translation type="obsolete">Slet Permanent</translation>
-    </message>
-    <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Smugkig fil</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <translation type="obsolete">Leechere</translation>
-    </message>
-</context>
-<context>
-    <name>subDownloadThread</name>
-    <message>
-        <source>I/O Error</source>
-        <translation type="obsolete">I/O Fejl</translation>
-    </message>
-</context>
-<context>
     <name>torrentAdditionDialog</name>
-    <message>
-        <source>True</source>
-        <translation type="obsolete">Sandt</translation>
-    </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="189"/>
         <location filename="../torrentadditiondlg.cpp" line="192"/>
@@ -7151,23 +4914,11 @@ Disse plugins blev dog koble fra.</translation>
         <translation>Kan ikke dekode torrent filen:</translation>
     </message>
     <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Denne fil er enten korrupt eller ikke en torrent.</translation>
-    </message>
-    <message>
         <location filename="../torrentadditiondlg.cpp" line="448"/>
         <location filename="../torrentadditiondlg.cpp" line="453"/>
         <location filename="../torrentadditiondlg.cpp" line="455"/>
         <source>Choose save path</source>
         <translation>Gem til denne mappe</translation>
-    </message>
-    <message>
-        <source>False</source>
-        <translation type="obsolete">Falsk</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Ukendt</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="156"/>
@@ -7277,18 +5028,6 @@ Disse plugins blev dog koble fra.</translation>
         <location filename="../torrentadditiondlg.cpp" line="570"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Du skal vælge mindst en fil per torrent</translation>
-    </message>
-    <message>
-        <source>File name</source>
-        <translation type="obsolete">Fil navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Hentet</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.cpp" line="275"/>
