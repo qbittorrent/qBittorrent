@@ -227,7 +227,7 @@ int QTorrentHandle::num_incomplete() const {
 
 QString QTorrentHandle::save_path() const {
   Q_ASSERT(h.is_valid());
-  return misc::toQString(h.save_path().string()).replace("\\", "/");
+  return misc::toQStringU(h.save_path().string()).replace("\\", "/");
 }
 
 #if LIBTORRENT_VERSION_MINOR > 14
