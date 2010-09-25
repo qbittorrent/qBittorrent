@@ -132,6 +132,7 @@ namespace json {
           tmp += c;
         }
       }
+      if(!tmp.isEmpty()) couples << tmp;
       foreach(QString couple, couples) {
         QStringList parts = couple.split(":");
         if(parts.size() != 2) continue;

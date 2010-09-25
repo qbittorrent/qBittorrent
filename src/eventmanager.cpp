@@ -38,6 +38,7 @@
 //#include "proplistdelegate.h"
 #include "torrentpersistentdata.h"
 #include <QDebug>
+#include <QTranslator>
 
 EventManager::EventManager(QObject *parent, Bittorrent *BTSession)
   : QObject(parent), BTSession(BTSession)
@@ -124,8 +125,20 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
 
 void EventManager::setGlobalPreferences(QVariantMap m) const {
   // UI
-  if(m.contains("locale"))
-    Preferences::setLocale(m["locale"].toString());
+  if(m.contains("locale")) {
+    QString locale = m["locale"].toString();
+    if(Preferences::getLocale() != locale) {
+      QTranslator *translator = new QTranslator;
+      if(translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
+        qDebug("%s locale recognized, using translation.", qPrintable(locale));
+      }else{
+        qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
+      }
+      qApp->installTranslator(translator);
+    }
+
+    Preferences::setLocale(locale);
+  }
   // Downloads
   if(m.contains("save_path"))
     Preferences::setSavePath(m["save_path"].toString());

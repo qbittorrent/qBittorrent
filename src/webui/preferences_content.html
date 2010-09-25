@@ -539,6 +539,7 @@
                             },
 			    onSuccess: function() {
                                 // Close window
+                                window.parent.location.reload();
 				window.parent.closeWindows();
 			    }
 		}).send();
