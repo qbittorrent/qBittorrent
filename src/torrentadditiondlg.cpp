@@ -125,6 +125,22 @@ void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
   PropListModel->setData(PropListModel->index(0, 0), file_path.split("/", QString::SkipEmptyParts).last());
 }
 
+void torrentAdditionDialog::limitDialogWidth() {
+  int scrn = 0;
+  const QWidget *w = this->window();
+
+  if(w)
+    scrn = QApplication::desktop()->screenNumber(w);
+  else if(QApplication::desktop()->isVirtualDesktop())
+    scrn = QApplication::desktop()->screenNumber(QCursor::pos());
+  else
+    scrn = QApplication::desktop()->screenNumber(this);
+
+  QRect desk(QApplication::desktop()->availableGeometry(scrn));
+  int max_width = desk.width();
+  setMaximumWidth(max_width);
+}
+
 void torrentAdditionDialog::hideTorrentContent() {
   // Disable useless widgets
   hidden_height += torrentContentList->height();
@@ -167,6 +183,8 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
 
   // No need to display torrent content
   hideTorrentContent();
+  // Limit dialog width
+  limitDialogWidth();
 }
 
 void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
@@ -260,6 +278,11 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   // Hide useless widgets
   if(t->num_files() <= 1)
     hideTorrentContent();
+
+  // No need to display torrent content
+  hideTorrentContent();
+  // Limit dialog width
+  limitDialogWidth();
 }
 
 void torrentAdditionDialog::displayContentListMenu(const QPoint&) {
