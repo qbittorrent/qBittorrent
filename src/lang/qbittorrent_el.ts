@@ -5832,12 +5832,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="102"/>
+        <location filename="../scannedfoldersmodel.cpp" line="103"/>
         <source>Watched Folder</source>
         <translation>Φάκελος υπό παρακολούθηση</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="103"/>
+        <location filename="../scannedfoldersmodel.cpp" line="104"/>
         <source>Download here</source>
         <translation>Κατέβασμα εδώ</translation>
     </message>
@@ -7630,14 +7630,14 @@ Please install it manually.</source>
         <translation type="obsolete">Παρακαλώ πληκτρολογήστε έναν έγκυρο προορισμό διαδρομής πρώτα</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
-        <location filename="../createtorrent_imp.cpp" line="227"/>
-        <location filename="../createtorrent_imp.cpp" line="238"/>
+        <location filename="../createtorrent_imp.cpp" line="214"/>
+        <location filename="../createtorrent_imp.cpp" line="228"/>
+        <location filename="../createtorrent_imp.cpp" line="239"/>
         <source>Torrent creation</source>
         <translation>Δημιουργία torrent</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="238"/>
+        <location filename="../createtorrent_imp.cpp" line="239"/>
         <source>Torrent was created successfully:</source>
         <translation>Το torrent δημιουργήθηκε επιτυχώς:</translation>
     </message>
@@ -7660,7 +7660,7 @@ Please install it manually.</source>
         <translation>Παρακαλώ πληκτρολογήστε ένα URL ανακοίνωσης</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="213"/>
+        <location filename="../createtorrent_imp.cpp" line="214"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Η δημιουργία torrent ήταν ανεπιτυχής. αιτία: %1</translation>
     </message>
@@ -7694,7 +7694,7 @@ Please install it manually.</source>
         <translation type="obsolete">Παρακαλώ εισάγετε τουλάχιστον ένα ιχνηλάτη</translation>
     </message>
     <message>
-        <location filename="../createtorrent_imp.cpp" line="227"/>
+        <location filename="../createtorrent_imp.cpp" line="228"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>Το αρχείο torrent που δημιουργήσατε δεν είναι έγκυρο. Δε θα προστεθεί στη λίστα ληφθέντων.</translation>
     </message>
@@ -8264,13 +8264,13 @@ However, those plugins were disabled.</source>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="665"/>
+        <location filename="../misc.cpp" line="666"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ώ %2λ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="670"/>
+        <location filename="../misc.cpp" line="671"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1μ %2ώ</translation>
@@ -8291,10 +8291,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete"> μ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="613"/>
-        <location filename="../misc.cpp" line="618"/>
-        <location filename="../misc.cpp" line="622"/>
-        <location filename="../misc.cpp" line="625"/>
+        <location filename="../misc.cpp" line="614"/>
+        <location filename="../misc.cpp" line="619"/>
+        <location filename="../misc.cpp" line="623"/>
+        <location filename="../misc.cpp" line="626"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -8315,13 +8315,13 @@ However, those plugins were disabled.</source>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="656"/>
+        <location filename="../misc.cpp" line="657"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="660"/>
+        <location filename="../misc.cpp" line="661"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1λ</translation>
@@ -8441,10 +8441,10 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Επιλέξτε ένα αρχείο ipfilter.dat</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1251"/>
-        <location filename="../options_imp.cpp" line="1253"/>
-        <location filename="../options_imp.cpp" line="1268"/>
-        <location filename="../options_imp.cpp" line="1270"/>
+        <location filename="../options_imp.cpp" line="1252"/>
+        <location filename="../options_imp.cpp" line="1254"/>
+        <location filename="../options_imp.cpp" line="1269"/>
+        <location filename="../options_imp.cpp" line="1271"/>
         <source>Choose a save directory</source>
         <translation>Επιλέξτε φάκελο αποθήκευσης</translation>
     </message>
@@ -8458,50 +8458,50 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Αδύνατο το άνοιγμα του %1 σε λειτουργία ανάγνωσης.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1173"/>
+        <location filename="../options_imp.cpp" line="1174"/>
         <source>Add directory to scan</source>
         <translation>Προσθήκη κατηγορίας στη σάρωση</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1179"/>
+        <location filename="../options_imp.cpp" line="1180"/>
         <source>Folder is already being watched.</source>
         <translation>Αυτός ο φάκελος ήδη παρακολουθείται.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1182"/>
+        <location filename="../options_imp.cpp" line="1183"/>
         <source>Folder does not exist.</source>
         <translation>Αυτός ο φάκελος δεν υπάρχει.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1185"/>
+        <location filename="../options_imp.cpp" line="1186"/>
         <source>Folder is not readable.</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να διαβαστεί.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1193"/>
+        <location filename="../options_imp.cpp" line="1194"/>
         <source>Failure</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1193"/>
+        <location filename="../options_imp.cpp" line="1194"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Δεν ήταν δυνατό να προστεθεί ο Φάκελος για Σάρωση &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1216"/>
-        <location filename="../options_imp.cpp" line="1218"/>
+        <location filename="../options_imp.cpp" line="1217"/>
+        <location filename="../options_imp.cpp" line="1219"/>
         <source>Choose export directory</source>
         <translation>Επιλέξτε φάκελο εξαγωγής</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1233"/>
-        <location filename="../options_imp.cpp" line="1235"/>
+        <location filename="../options_imp.cpp" line="1234"/>
+        <location filename="../options_imp.cpp" line="1236"/>
         <source>Choose an ip filter file</source>
         <translation>Επιλέξτε ένα αρχείο φίλτρου ip</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1233"/>
-        <location filename="../options_imp.cpp" line="1235"/>
+        <location filename="../options_imp.cpp" line="1234"/>
+        <location filename="../options_imp.cpp" line="1236"/>
         <source>Filters</source>
         <translation>Φίλτρα</translation>
     </message>
