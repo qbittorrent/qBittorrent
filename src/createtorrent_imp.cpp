@@ -191,7 +191,8 @@ void createtorrent::on_createButton_clicked(){
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), last_path, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!destination.isEmpty()) {
     settings.setValue("CreateTorrent/last_save_path", misc::removeLastPathPart(destination));
-    destination += QString::fromUtf8(".torrent");
+    if(!destination.toUpper().endsWith(".TORRENT"))
+      destination += QString::fromUtf8(".torrent");
   } else {
     return;
   }
