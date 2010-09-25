@@ -82,6 +82,7 @@ public slots:
   void on_OkButton_clicked();
   void renameTorrentNameInModel(QString file_path);
   void hideTorrentContent();
+  void limitDialogWidth();
   void saveTruncatedPathHistory();
   void loadSavePathHistory();
   void updateLabelInSavePath(QString label);
