@@ -2490,7 +2490,10 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         qDebug("getSavePath, got save_path from persistent data: %s", qPrintable(savePath));
       }
       // Clean path
+      savePath = savePath.replace("\\", "/");
       savePath = misc::expandPath(savePath);
+      if(!savePath.endsWith("/"))
+        savePath += "/";
       return savePath;
     }
 

@@ -513,6 +513,7 @@ void torrentAdditionDialog::renameSelectedFile() {
       save_path = save_path.replace("\\", "/");
 #endif
       save_path = misc::expandPath(save_path);
+      qDebug("Save path is %s", qPrintable(save_path));
       if(!is_magnet && t->num_files() == 1) {
         // Remove file name
         QStringList parts = save_path.split("/");
@@ -521,6 +522,7 @@ void torrentAdditionDialog::renameSelectedFile() {
         files_path << single_file_name;
         save_path = parts.join("/");
       }
+      qDebug("Save path dir is %s", qPrintable(save_path));
       QDir savePath(save_path);
       const QString current_label = comboLabel->currentText().trimmed();
       if (!current_label.isEmpty() && !misc::isValidFileSystemName(current_label)) {
@@ -528,7 +530,8 @@ void torrentAdditionDialog::renameSelectedFile() {
         return;
       }
       // Save savepath
-      TorrentTempData::setSavePath(hash, savePath.path());
+      qDebug("Saving save path to temp data: %s", qPrintable(savePath.absolutePath()));
+      TorrentTempData::setSavePath(hash, savePath.absolutePath());
       qDebug("Torrent label is: %s", qPrintable(comboLabel->currentText().trimmed()));
       if(!current_label.isEmpty())
         TorrentTempData::setLabel(hash, current_label);
