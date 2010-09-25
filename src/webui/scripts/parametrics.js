@@ -126,7 +126,7 @@ MochaUI.extend({
 					if(hash == "global") {
 						var dl_limit = maximum;
 						if(dl_limit < 0) dl_limit = 0;
-						maximum = 1000;
+						maximum = 10000;
 						var mochaSlide = new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
 							steps: maximum,
 							offset: 0,
