@@ -7191,8 +7191,7 @@ Por favor, instálelo de forma manual.</translation>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="50"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>¿Seguro que quiere eliminar los torrents
-seleccionados de la lista de transferencias?</translation>
+        <translation>¿Seguro que quiere eliminar los torrents seleccionados de la lista de transferencias?</translation>
     </message>
     <message>
         <location filename="../ui/confirmdeletiondlg.ui" line="70"/>
