@@ -105,7 +105,7 @@ public:
 
   QStringList getNotMatchingTokens() const {
     QString notmatching = this->value("not", "").toString();
-    return notmatching.split(" ");
+    return notmatching.split(QRegExp("[\\s|]"));
   }
 
   QString getNotMatchingTokens_str() const {
