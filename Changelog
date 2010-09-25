@@ -7,6 +7,7 @@
     - BUGFIX: Fix 'download in scan dir' persistence
     - BUGFIX: Add .torrent extension only when missing (torrent creator)
     - BUGFIX: Fix possible issue with temporary download path persistence
+    - BUGFIX: Added support for | (OR) operator in RSS feed downloader
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
     - FEATURE: Added actions to "Move to top/bottom" of priority queue
