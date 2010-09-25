@@ -502,6 +502,7 @@ bool misc::isPreviewable(QString extension){
   if(extension == "AVI") return true;
   if(extension == "MP3") return true;
   if(extension == "OGG") return true;
+  if(extension == "OGV") return true;
   if(extension == "OGM") return true;
   if(extension == "WMV") return true;
   if(extension == "WMA") return true;
