@@ -10,6 +10,7 @@
     - BUGFIX: Added support for | (OR) operator in RSS feed downloader
     - BUGFIX: Fix Web UI for spanish users
     - BUGFIX: Fix locale switching from Web UI
+    - BUGFIX: Use AND operator for torrentdownloads.net searches
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
     - FEATURE: Added actions to "Move to top/bottom" of priority queue

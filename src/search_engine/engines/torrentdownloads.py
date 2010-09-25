@@ -1,4 +1,4 @@
-#VERSION: 1.03
+#VERSION: 1.04
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@ class torrentdownloads(object):
 
   def __init__(self):
     self.results = []
-    self.parser = self.SimpleSGMLParser(self.results, self.url)
+    #self.parser = self.SimpleSGMLParser(self.results, self.url)
 
   def download_torrent(self, url):
     """ Download file at url and write it to a file, return the path to the file and the url """
@@ -65,12 +65,13 @@ class torrentdownloads(object):
     print path+" "+url
 
   class SimpleSGMLParser(sgmllib.SGMLParser):
-    def __init__(self, results, url, *args):
+    def __init__(self, results, url, what, *args):
       sgmllib.SGMLParser.__init__(self)
       self.url = url
       self.li_counter = None
       self.current_item = None
       self.results = results
+      self.what = what.upper().split('+')
       
     def start_a(self, attr):
       params = dict(attr)
@@ -110,6 +111,10 @@ class torrentdownloads(object):
                 self.current_item['seeds'] = 0
               if not self.current_item['leech'].isdigit():
                 self.current_item['leech'] = 0
+              # Search should use AND operator as a default
+              tmp = self.current_item['name'].upper();
+              for w in self.what:
+                if tmp.find(w) < 0: return
               prettyPrinter(self.current_item)
               self.results.append('a')
 
@@ -118,7 +123,7 @@ class torrentdownloads(object):
     i = 1
     while i<11:
       results = []
-      parser = self.SimpleSGMLParser(results, self.url)
+      parser = self.SimpleSGMLParser(results, self.url, what)
       dat = retrieve_url(self.url+'/search/?page=%d&search=%s&s_cat=%s&srt=seeds&pp=50&order=desc'%(i, what, self.supported_categories[cat]))
       results_re = re.compile('(?s)<div class="torrentlist">.*')
       for match in results_re.finditer(dat):
