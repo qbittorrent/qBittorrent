@@ -150,7 +150,7 @@ contains(DEFINES, DISABLE_GUI) {
   TARGET = qbittorrent
 }
 
-unix:QMAKE_LFLAGS_SHAPP += -rdynamic
+unix:QMAKE_LFLAGS_APP += -rdynamic
 
 unix {
   CONFIG += link_pkgconfig
