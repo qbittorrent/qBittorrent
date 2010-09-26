@@ -30,7 +30,7 @@
 
 #include "torrentadditiondlg.h"
 
-torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label(""), hidden_height(0) {
+torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label(""), hidden_height(0), cursor_pos(-1) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   connect(this, SIGNAL(torrentPaused(QTorrentHandle&)), parent->getTransferList(), SLOT(pauseTorrent(QTorrentHandle&)));
@@ -641,9 +641,12 @@ void torrentAdditionDialog::renameSelectedFile() {
 
       void torrentAdditionDialog::restoreCursorPosition() {
         savePathTxt->lineEdit()->setCursorPosition(cursor_pos);
+        cursor_pos = -1;
       }
 
       void torrentAdditionDialog::updateSavePathCurrentText(QString path) {
+        if(cursor_pos >= 0)
+          return;
         Q_UNUSED(path);
         cursor_pos = savePathTxt->lineEdit()->cursorPosition();
         savePathTxt->setItemText(savePathTxt->currentIndex(), path);

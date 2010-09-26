@@ -1,5 +1,6 @@
 * Sun Sep 26 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.2
     - BUGFIX: Fix display of torrent content in addition dialog
+    - BUGFIX: Really fix manual editing of save path in torrent addition dialog
 
 * Sun Sep 26 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.1
     - I18N: Updated Arabic translation
