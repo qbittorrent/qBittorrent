@@ -280,8 +280,6 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   if(t->num_files() <= 1)
     hideTorrentContent();
 
-  // No need to display torrent content
-  hideTorrentContent();
   // Limit dialog width
   limitDialogWidth();
 }
