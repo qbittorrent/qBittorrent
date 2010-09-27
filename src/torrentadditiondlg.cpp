@@ -120,9 +120,13 @@ void torrentAdditionDialog::saveSettings() {
 }
 
 void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
+  file_path = file_path.trimmed();
+  if(file_path.isEmpty()) return;
   file_path = file_path.replace("\\", "/");
   // Rename in torrent files model too
-  PropListModel->setData(PropListModel->index(0, 0), file_path.split("/", QString::SkipEmptyParts).last());
+  QStringList parts = file_path.split("/", QString::SkipEmptyParts);
+  if(!parts.empty())
+    PropListModel->setData(PropListModel->index(0, 0), parts.last());
 }
 
 void torrentAdditionDialog::limitDialogWidth() {
