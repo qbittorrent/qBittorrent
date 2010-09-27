@@ -1,4 +1,4 @@
-#VERSION: 1.04
+#VERSION: 1.05
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -72,6 +72,8 @@ class torrentdownloads(object):
       self.current_item = None
       self.results = results
       self.what = what.upper().split('+')
+      if len(self.what) == 0:
+        self.what = None
       
     def start_a(self, attr):
       params = dict(attr)
@@ -113,8 +115,9 @@ class torrentdownloads(object):
                 self.current_item['leech'] = 0
               # Search should use AND operator as a default
               tmp = self.current_item['name'].upper();
-              for w in self.what:
-                if tmp.find(w) < 0: return
+              if self.what is not None:
+                for w in self.what:
+                  if tmp.find(w) < 0: return
               prettyPrinter(self.current_item)
               self.results.append('a')
 
