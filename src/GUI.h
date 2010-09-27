@@ -170,6 +170,7 @@ private:
   QAction *prioSeparator2;
   QSplitter *hSplitter;
   QSplitter *vSplitter;
+  QMenu *lockMenu;
   // Search
   QPointer<SearchEngine> searchEngine;
   // RSS

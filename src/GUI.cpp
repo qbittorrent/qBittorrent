@@ -110,7 +110,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qb_question.png")));
   actionLock_qBittorrent->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/encrypted32.png")));
-  QMenu *lockMenu = new QMenu();
+  lockMenu = new QMenu();
   QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("Set the password..."));
   connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
   actionLock_qBittorrent->setMenu(lockMenu);
@@ -269,6 +269,7 @@ GUI::~GUI() {
   delete search_filter;
   delete transferList;
   delete guiUpdater;
+  delete lockMenu;
   if(createTorrentDlg)
     delete createTorrentDlg;
   if(console)
