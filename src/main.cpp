@@ -178,7 +178,7 @@ int main(int argc, char *argv[]){
     for (int a = 1; a < argc; ++a) {
       QString p = QString::fromLocal8Bit(argv[a]);
       if(p.startsWith("--")) continue;
-      message += QString::fromLocal8Bit(argv[a]);
+      message += p;
       if (a < argc-1)
         message += "|";
     }
