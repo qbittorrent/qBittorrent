@@ -584,10 +584,17 @@ inline QString TransferListWidget::getHashFromRow(int row) const {
 }
 
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const {
-  return labelFilterModel->mapToSource(statusFilterModel->mapToSource(nameFilterModel->mapToSource(index)));
+  Q_ASSERT(index.isValid());
+  if(index.model() == nameFilterModel)
+    return labelFilterModel->mapToSource(statusFilterModel->mapToSource(nameFilterModel->mapToSource(index)));
+  if(index.model() == statusFilterModel)
+    return labelFilterModel->mapToSource(statusFilterModel->mapToSource(index));
+  return labelFilterModel->mapToSource(index);
 }
 
 inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const {
+  Q_ASSERT(index.isValid());
+  Q_ASSERT(index.model() == labelFilterModel);
   return nameFilterModel->mapFromSource(statusFilterModel->mapFromSource(labelFilterModel->mapFromSource(index)));
 }
 
@@ -1426,6 +1433,7 @@ void TransferListWidget::loadLastSortedColumn() {
 }
 
 void TransferListWidget::currentChanged(const QModelIndex& current, const QModelIndex&) {
+  qDebug("CURRENT CHANGED");
   QTorrentHandle h;
   if(current.isValid()) {
     const int row = mapToSource(current).row();
