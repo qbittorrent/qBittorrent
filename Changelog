@@ -1,4 +1,4 @@
-* Mon Sep 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.3
+* Tue Sep 28 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.3
     - BUGFIX: Fix encoding issue in command line parameters processing
     - BUGFIX: Fix possible crash when changing the save path in addition dialog
     - BUGFIX: Fix wrong mapping to source model
