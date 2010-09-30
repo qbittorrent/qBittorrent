@@ -140,7 +140,7 @@ p, li { white-space: pre-wrap; }
         <translation>Dowolny interfejs</translation>
     </message>
     <message>
-        <source>Display program notification baloons</source>
+        <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3069,7 +3069,7 @@ Do you want to install it now?</source>
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usuń</translation>
     </message>
 </context>
 <context>

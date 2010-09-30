@@ -146,7 +146,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation>Показывать всплывающие сообщения в  системном лотке</translation>
+        <translation type="obsolete">Показывать всплывающие сообщения в  системном лотке</translation>
+    </message>
+    <message>
+        <source>Display program notification balloons</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -141,7 +141,7 @@ p, li { white-space: pre-wrap; }
         <translation>Herhangi bir arayüz</translation>
     </message>
     <message>
-        <source>Display program notification baloons</source>
+        <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -161,7 +161,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../advancedsettings.h" line="193"/>
-        <source>Display program notification baloons</source>
+        <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -450,7 +450,7 @@ p, li { white-space: pre-wrap; }
         <translation>Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2501"/>
+        <location filename="../bittorrent.cpp" line="2504"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
@@ -502,56 +502,56 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../eventmanager.cpp" line="66"/>
-        <location filename="../eventmanager.cpp" line="80"/>
+        <location filename="../eventmanager.cpp" line="67"/>
+        <location filename="../eventmanager.cpp" line="81"/>
         <source>Working</source>
         <translation>Работи</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="69"/>
+        <location filename="../eventmanager.cpp" line="70"/>
         <source>Updating...</source>
         <translation>Обновяване...</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="72"/>
-        <location filename="../eventmanager.cpp" line="83"/>
+        <location filename="../eventmanager.cpp" line="73"/>
+        <location filename="../eventmanager.cpp" line="84"/>
         <source>Not working</source>
         <translation>Не работи</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="74"/>
-        <location filename="../eventmanager.cpp" line="85"/>
+        <location filename="../eventmanager.cpp" line="75"/>
+        <location filename="../eventmanager.cpp" line="86"/>
         <source>Not contacted yet</source>
         <translation>Още не е свързан</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="343"/>
-        <location filename="../eventmanager.cpp" line="344"/>
+        <location filename="../eventmanager.cpp" line="356"/>
+        <location filename="../eventmanager.cpp" line="357"/>
         <source>this session</source>
         <translation>тази сесия</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="348"/>
-        <location filename="../eventmanager.cpp" line="352"/>
+        <location filename="../eventmanager.cpp" line="361"/>
+        <location filename="../eventmanager.cpp" line="365"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/с</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="355"/>
+        <location filename="../eventmanager.cpp" line="368"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Даващ на %1</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="358"/>
+        <location filename="../eventmanager.cpp" line="371"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 макс</translation>
     </message>
     <message>
-        <location filename="../eventmanager.cpp" line="437"/>
-        <location filename="../eventmanager.cpp" line="446"/>
+        <location filename="../eventmanager.cpp" line="450"/>
+        <location filename="../eventmanager.cpp" line="459"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/с</translation>
@@ -790,106 +790,106 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="826"/>
+        <location filename="../GUI.cpp" line="827"/>
         <source>Open Torrent Files</source>
         <translation>Отвори Торент Файлове </translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="444"/>
+        <location filename="../GUI.cpp" line="445"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="448"/>
+        <location filename="../GUI.cpp" line="449"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="510"/>
+        <location filename="../GUI.cpp" line="511"/>
         <source>Recursive download confirmation</source>
         <translation>Допълнителна информация за сваляне</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="510"/>
+        <location filename="../GUI.cpp" line="511"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Торента %1 съдържа файлове торент, искате ли да ги свалите?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="511"/>
-        <location filename="../GUI.cpp" line="673"/>
+        <location filename="../GUI.cpp" line="512"/>
+        <location filename="../GUI.cpp" line="674"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="512"/>
-        <location filename="../GUI.cpp" line="672"/>
+        <location filename="../GUI.cpp" line="513"/>
+        <location filename="../GUI.cpp" line="673"/>
         <source>No</source>
         <translation>Не</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="513"/>
+        <location filename="../GUI.cpp" line="514"/>
         <source>Never</source>
         <translation>Никога</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="533"/>
+        <location filename="../GUI.cpp" line="534"/>
         <source>Global Upload Speed Limit</source>
         <translation>Общ лимит Скорост на качване</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="555"/>
+        <location filename="../GUI.cpp" line="556"/>
         <source>Global Download Speed Limit</source>
         <translation>Общ лимит Скорост на сваляне</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="319"/>
-        <location filename="../GUI.cpp" line="333"/>
-        <location filename="../GUI.cpp" line="587"/>
+        <location filename="../GUI.cpp" line="320"/>
+        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="588"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="319"/>
-        <location filename="../GUI.cpp" line="333"/>
-        <location filename="../GUI.cpp" line="587"/>
+        <location filename="../GUI.cpp" line="320"/>
+        <location filename="../GUI.cpp" line="334"/>
+        <location filename="../GUI.cpp" line="588"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="599"/>
+        <location filename="../GUI.cpp" line="600"/>
         <source>Invalid password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="599"/>
+        <location filename="../GUI.cpp" line="600"/>
         <source>The password is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="669"/>
+        <location filename="../GUI.cpp" line="670"/>
         <source>Exiting qBittorrent</source>
         <translation>Напускам qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="674"/>
+        <location filename="../GUI.cpp" line="675"/>
         <source>Always</source>
         <translation>Винаги</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1018"/>
+        <location filename="../GUI.cpp" line="1019"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Сваля: %2/s, Качва: %3/s)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="827"/>
+        <location filename="../GUI.cpp" line="828"/>
         <source>Torrent Files</source>
         <translation>Торент Файлове</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1000"/>
+        <location filename="../GUI.cpp" line="1001"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -900,39 +900,39 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <location filename="../GUI.cpp" line="89"/>
-        <location filename="../GUI.cpp" line="1170"/>
+        <location filename="../GUI.cpp" line="1171"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1003"/>
-        <location filename="../GUI.cpp" line="1010"/>
+        <location filename="../GUI.cpp" line="1004"/>
+        <location filename="../GUI.cpp" line="1011"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL Скорост %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1006"/>
-        <location filename="../GUI.cpp" line="1012"/>
+        <location filename="../GUI.cpp" line="1007"/>
+        <location filename="../GUI.cpp" line="1013"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UL Скорост %1 KB/с</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="429"/>
+        <location filename="../GUI.cpp" line="430"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; завърши свалянето.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="435"/>
+        <location filename="../GUI.cpp" line="436"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>В/И Грешка</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="367"/>
+        <location filename="../GUI.cpp" line="368"/>
         <source>Search</source>
         <translation>Търси</translation>
     </message>
@@ -944,18 +944,18 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Искате ли да свържете qBittorrent към файлове торент и Магнитни връзки?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="349"/>
+        <location filename="../GUI.cpp" line="350"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="442"/>
+        <location filename="../GUI.cpp" line="443"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="429"/>
+        <location filename="../GUI.cpp" line="430"/>
         <source>Download completion</source>
         <translation>Завършва свалянето</translation>
     </message>
@@ -970,22 +970,22 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>Свързване на торент файла</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="324"/>
+        <location filename="../GUI.cpp" line="325"/>
         <source>Password update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="324"/>
+        <location filename="../GUI.cpp" line="325"/>
         <source>The UI lock password has been successfully updated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="383"/>
+        <location filename="../GUI.cpp" line="384"/>
         <source>Transfers (%1)</source>
         <translation>Трансфери (%1)</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="435"/>
+        <location filename="../GUI.cpp" line="436"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -994,29 +994,29 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
  Причина:%2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="527"/>
+        <location filename="../GUI.cpp" line="528"/>
         <source>Url download error</source>
         <translation>Грешка при сваляне от Url</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="527"/>
+        <location filename="../GUI.cpp" line="528"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Невъзможно сваляне на файл от url: %1, причина: %2.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="446"/>
+        <location filename="../GUI.cpp" line="447"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="670"/>
+        <location filename="../GUI.cpp" line="671"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Някои файлове се прехвърлят. Сигурни ли сте че искате да напуснете qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="906"/>
+        <location filename="../GUI.cpp" line="907"/>
         <source>Options were saved successfully.</source>
         <translation>Опциите бяха съхранени успешно.</translation>
     </message>
@@ -2430,27 +2430,27 @@ No further notices will be issued.</source>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../proplistdelegate.h" line="90"/>
+        <location filename="../proplistdelegate.h" line="100"/>
         <source>Not downloaded</source>
         <translation>Не свалени</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="99"/>
-        <location filename="../proplistdelegate.h" line="150"/>
+        <location filename="../proplistdelegate.h" line="109"/>
+        <location filename="../proplistdelegate.h" line="160"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Нормален</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="93"/>
-        <location filename="../proplistdelegate.h" line="151"/>
+        <location filename="../proplistdelegate.h" line="103"/>
+        <location filename="../proplistdelegate.h" line="161"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Висок</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="96"/>
-        <location filename="../proplistdelegate.h" line="152"/>
+        <location filename="../proplistdelegate.h" line="106"/>
+        <location filename="../proplistdelegate.h" line="162"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Максимален</translation>
@@ -3473,47 +3473,47 @@ Please install it manually.</source>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transferlistdelegate.h" line="89"/>
+        <location filename="../transferlistdelegate.h" line="93"/>
         <source>Downloading</source>
         <translation>Сваляне</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="93"/>
+        <location filename="../transferlistdelegate.h" line="97"/>
         <source>Paused</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="97"/>
+        <location filename="../transferlistdelegate.h" line="101"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>Прикачен</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="101"/>
+        <location filename="../transferlistdelegate.h" line="105"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Споделяне</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="104"/>
+        <location filename="../transferlistdelegate.h" line="108"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>Отложен</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="108"/>
+        <location filename="../transferlistdelegate.h" line="112"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Проверка</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="119"/>
+        <location filename="../transferlistdelegate.h" line="123"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation>/с</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="128"/>
+        <location filename="../transferlistdelegate.h" line="132"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>KiB/с</translation>
@@ -3636,7 +3636,7 @@ Please install it manually.</source>
         <translation>ЕТА</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1008"/>
+        <location filename="../transferlistwidget.cpp" line="1015"/>
         <source>Column visibility</source>
         <translation>Видимост на колона</translation>
     </message>
@@ -3684,7 +3684,7 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="86"/>
-        <location filename="../transferlistwidget.cpp" line="1253"/>
+        <location filename="../transferlistwidget.cpp" line="1260"/>
         <source>Label</source>
         <translation>Етикет</translation>
     </message>
@@ -3713,171 +3713,171 @@ Please install it manually.</source>
         <translation>Лимит качване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="648"/>
-        <location filename="../transferlistwidget.cpp" line="650"/>
+        <location filename="../transferlistwidget.cpp" line="655"/>
+        <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Choose save path</source>
         <translation>Избери път за съхранение</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="664"/>
         <source>Save path creation error</source>
         <translation>Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="664"/>
         <source>Could not create the save path</source>
         <translation>Не мога да създам път за съхранение</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="914"/>
+        <location filename="../transferlistwidget.cpp" line="921"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Ограничаване Скорост на сваляне</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="947"/>
+        <location filename="../transferlistwidget.cpp" line="954"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Ограничаване Скорост на качване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1070"/>
+        <location filename="../transferlistwidget.cpp" line="1077"/>
         <source>New Label</source>
         <translation>Нов етикет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1070"/>
+        <location filename="../transferlistwidget.cpp" line="1077"/>
         <source>Label:</source>
         <translation>Етикет:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1075"/>
+        <location filename="../transferlistwidget.cpp" line="1082"/>
         <source>Invalid label name</source>
         <translation>Невалидно име на етикет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1075"/>
+        <location filename="../transferlistwidget.cpp" line="1082"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Моля, не ползвайте специални символи в името на етикета.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1091"/>
+        <location filename="../transferlistwidget.cpp" line="1098"/>
         <source>Rename</source>
         <translation>Преименувай</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1091"/>
+        <location filename="../transferlistwidget.cpp" line="1098"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1131"/>
+        <location filename="../transferlistwidget.cpp" line="1138"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1133"/>
+        <location filename="../transferlistwidget.cpp" line="1140"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation type="unfinished">Пауза</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1135"/>
+        <location filename="../transferlistwidget.cpp" line="1142"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation type="unfinished">Изтрий</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1137"/>
+        <location filename="../transferlistwidget.cpp" line="1144"/>
         <source>Preview file...</source>
         <translation>Огледай файла...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1139"/>
+        <location filename="../transferlistwidget.cpp" line="1146"/>
         <source>Limit upload rate...</source>
         <translation>Ограничи процент качване...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1141"/>
+        <location filename="../transferlistwidget.cpp" line="1148"/>
         <source>Limit download rate...</source>
         <translation>Ограничи процент сваляне...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1297"/>
+        <location filename="../transferlistwidget.cpp" line="1304"/>
         <source>Priority</source>
         <translation type="unfinished">Предимство</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1143"/>
+        <location filename="../transferlistwidget.cpp" line="1150"/>
         <source>Open destination folder</source>
         <translation>Отвори папка получател</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1147"/>
+        <location filename="../transferlistwidget.cpp" line="1154"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1149"/>
+        <location filename="../transferlistwidget.cpp" line="1156"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1151"/>
+        <location filename="../transferlistwidget.cpp" line="1158"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1153"/>
+        <location filename="../transferlistwidget.cpp" line="1160"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1155"/>
+        <location filename="../transferlistwidget.cpp" line="1162"/>
         <source>Set location...</source>
         <translation>Определи място...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1157"/>
+        <location filename="../transferlistwidget.cpp" line="1164"/>
         <source>Force recheck</source>
         <translation>Включени проверки за промени</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1159"/>
+        <location filename="../transferlistwidget.cpp" line="1166"/>
         <source>Copy magnet link</source>
         <translation>Копирай връзка magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1162"/>
+        <location filename="../transferlistwidget.cpp" line="1169"/>
         <source>Super seeding mode</source>
         <translation>Режим на супер-даване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1166"/>
+        <location filename="../transferlistwidget.cpp" line="1173"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1168"/>
+        <location filename="../transferlistwidget.cpp" line="1175"/>
         <source>Download in sequential order</source>
         <translation>Сваляне по азбучен ред</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1171"/>
+        <location filename="../transferlistwidget.cpp" line="1178"/>
         <source>Download first and last piece first</source>
         <translation>Свали първо и последно парче първо</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1254"/>
+        <location filename="../transferlistwidget.cpp" line="1261"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Ново...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="1255"/>
+        <location filename="../transferlistwidget.cpp" line="1262"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Нулирай</translation>
@@ -4741,58 +4741,58 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1252"/>
-        <location filename="../options_imp.cpp" line="1254"/>
-        <location filename="../options_imp.cpp" line="1269"/>
-        <location filename="../options_imp.cpp" line="1271"/>
+        <location filename="../options_imp.cpp" line="1265"/>
+        <location filename="../options_imp.cpp" line="1267"/>
+        <location filename="../options_imp.cpp" line="1282"/>
+        <location filename="../options_imp.cpp" line="1284"/>
         <source>Choose a save directory</source>
         <translation>Изберете директория за съхранение</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1174"/>
+        <location filename="../options_imp.cpp" line="1187"/>
         <source>Add directory to scan</source>
         <translation>Добави директория за сканиране</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1180"/>
+        <location filename="../options_imp.cpp" line="1193"/>
         <source>Folder is already being watched.</source>
         <translation>Папката вече се наблюдава.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1183"/>
+        <location filename="../options_imp.cpp" line="1196"/>
         <source>Folder does not exist.</source>
         <translation>Папката не съществува.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1186"/>
+        <location filename="../options_imp.cpp" line="1199"/>
         <source>Folder is not readable.</source>
         <translation>Папката не се чете.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1194"/>
+        <location filename="../options_imp.cpp" line="1207"/>
         <source>Failure</source>
         <translation>Грешка</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1194"/>
+        <location filename="../options_imp.cpp" line="1207"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Грешка при добавяне Папка за Сканиране &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1217"/>
-        <location filename="../options_imp.cpp" line="1219"/>
+        <location filename="../options_imp.cpp" line="1230"/>
+        <location filename="../options_imp.cpp" line="1232"/>
         <source>Choose export directory</source>
         <translation>Изберете Директория за Експорт</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1234"/>
-        <location filename="../options_imp.cpp" line="1236"/>
+        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1249"/>
         <source>Choose an ip filter file</source>
         <translation>Избери файл за ip филтър</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1234"/>
-        <location filename="../options_imp.cpp" line="1236"/>
+        <location filename="../options_imp.cpp" line="1247"/>
+        <location filename="../options_imp.cpp" line="1249"/>
         <source>Filters</source>
         <translation>Филтри</translation>
     </message>
@@ -4912,129 +4912,129 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="189"/>
-        <location filename="../torrentadditiondlg.cpp" line="192"/>
+        <location filename="../torrentadditiondlg.cpp" line="212"/>
+        <location filename="../torrentadditiondlg.cpp" line="215"/>
         <source>Unable to decode torrent file:</source>
         <translation>Не мога да декодирам торент-файла:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="448"/>
-        <location filename="../torrentadditiondlg.cpp" line="453"/>
-        <location filename="../torrentadditiondlg.cpp" line="455"/>
+        <location filename="../torrentadditiondlg.cpp" line="474"/>
+        <location filename="../torrentadditiondlg.cpp" line="479"/>
+        <location filename="../torrentadditiondlg.cpp" line="481"/>
         <source>Choose save path</source>
         <translation>Избери път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="156"/>
+        <location filename="../torrentadditiondlg.cpp" line="177"/>
         <source>Unable to decode magnet link:</source>
         <translation>Не мога да декодирам връзката Magnet:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="162"/>
+        <location filename="../torrentadditiondlg.cpp" line="183"/>
         <source>Magnet Link</source>
         <translation>Връзка Magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="271"/>
+        <location filename="../torrentadditiondlg.cpp" line="297"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="315"/>
+        <location filename="../torrentadditiondlg.cpp" line="341"/>
         <source>Rename the file</source>
         <translation>Преименувай файла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="316"/>
+        <location filename="../torrentadditiondlg.cpp" line="342"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="320"/>
-        <location filename="../torrentadditiondlg.cpp" line="350"/>
+        <location filename="../torrentadditiondlg.cpp" line="346"/>
+        <location filename="../torrentadditiondlg.cpp" line="376"/>
         <source>The file could not be renamed</source>
         <translation>Файла не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="321"/>
+        <location filename="../torrentadditiondlg.cpp" line="347"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Името на файла съдържа забранени символи, моля изберете различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="351"/>
-        <location filename="../torrentadditiondlg.cpp" line="385"/>
+        <location filename="../torrentadditiondlg.cpp" line="377"/>
+        <location filename="../torrentadditiondlg.cpp" line="411"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Това име вече съществува в тази папка. Моля, ползвайте различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="384"/>
+        <location filename="../torrentadditiondlg.cpp" line="410"/>
         <source>The folder could not be renamed</source>
         <translation>Папката не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="432"/>
+        <location filename="../torrentadditiondlg.cpp" line="458"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 остават след сваляне на торента)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="435"/>
+        <location filename="../torrentadditiondlg.cpp" line="461"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(още %1 са необходими за свалянето)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="508"/>
+        <location filename="../torrentadditiondlg.cpp" line="534"/>
         <source>Empty save path</source>
         <translation>Празен път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="508"/>
+        <location filename="../torrentadditiondlg.cpp" line="534"/>
         <source>Please enter a save path</source>
         <translation>Моля въведете път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="578"/>
+        <location filename="../torrentadditiondlg.cpp" line="607"/>
         <source>Save path creation error</source>
         <translation>Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="578"/>
+        <location filename="../torrentadditiondlg.cpp" line="607"/>
         <source>Could not create the save path</source>
         <translation>Не мога да създам път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="527"/>
+        <location filename="../torrentadditiondlg.cpp" line="555"/>
         <source>Invalid label name</source>
         <translation>Невалидно име на етикет</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="527"/>
+        <location filename="../torrentadditiondlg.cpp" line="555"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Моля, не ползвайте специални символи в името на етикета.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="563"/>
+        <location filename="../torrentadditiondlg.cpp" line="592"/>
         <source>Seeding mode error</source>
         <translation>Грешка в режим даване</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="563"/>
+        <location filename="../torrentadditiondlg.cpp" line="592"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Избрахте прескачане на проверката. Обаче местните файлове изглежда не съществуват в папката получател. Моля изключете тази функция или обновете пътя за съхранение.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="570"/>
+        <location filename="../torrentadditiondlg.cpp" line="599"/>
         <source>Invalid file selection</source>
         <translation>Невалиден избор на файл</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="570"/>
+        <location filename="../torrentadditiondlg.cpp" line="599"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Трябва да изберете поне един файл в торента</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="275"/>
+        <location filename="../torrentadditiondlg.cpp" line="301"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>

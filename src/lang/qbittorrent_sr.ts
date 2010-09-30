@@ -149,7 +149,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation>Прикажи балоне са програмским коментарима</translation>
+        <translation type="obsolete">Прикажи балоне са програмским коментарима</translation>
+    </message>
+    <message>
+        <source>Display program notification balloons</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -190,7 +190,7 @@ protected slots:
     connect(combo_iface, SIGNAL(currentIndexChanged(int)), this, SLOT(emitSettingsChanged()));
     setCellWidget(NETWORK_IFACE, VALUE, combo_iface);
     // Program notifications
-    setItem(PROGRAM_NOTIFICATIONS, PROPERTY, new QTableWidgetItem(tr("Display program notification baloons")));
+    setItem(PROGRAM_NOTIFICATIONS, PROPERTY, new QTableWidgetItem(tr("Display program notification balloons")));
     cb_program_notifications = new QCheckBox();
     connect(cb_program_notifications, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
     cb_program_notifications->setChecked(Preferences::useProgramNotification());
