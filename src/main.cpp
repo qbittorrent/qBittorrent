@@ -38,11 +38,7 @@
 #include <QStyle>
 #include <QSplashScreen>
 #include <QPushButton>
-#ifdef Q_WS_MAC
-#include "qmacapplication.h"
-#else
-#include "qtsingleapplication.h"
-#endif
+#include "sessionapplication.h"
 #include "GUI.h"
 #include "ico.h"
 #else
@@ -160,15 +156,11 @@ void useStyle(QString style){
 int main(int argc, char *argv[]){
   // Create Application
   QString uid = misc::getUserIDString();
-  #ifdef DISABLE_GUI
+#ifdef DISABLE_GUI
   QtSingleCoreApplication app("qBittorrent-"+uid, argc, argv);
-  #else
-  #ifndef Q_WS_MAC
-  QtSingleApplication app("qBittorrent-"+uid, argc, argv);
-  #else
-  QMacApplication app("qBittorrent-"+uid, argc, argv);
-  #endif
-  #endif
+#else
+  SessionApplication app("qBittorrent-"+uid, argc, argv);
+#endif
 
   // Check if qBittorrent is already running for this user
   if(app.isRunning()) {

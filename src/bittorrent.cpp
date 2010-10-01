@@ -165,6 +165,7 @@ Bittorrent::~Bittorrent() {
 #endif
     saveSessionState();
     saveFastResumeData();
+    qDebug("Deleting the session");
     // Delete session
     session_proxy sp = s->abort();
     delete s;
@@ -1541,6 +1542,7 @@ void Bittorrent::saveTempFastResumeData() {
 // Only save fast resume data for unfinished and unpaused torrents (Optimization)
 // Called periodically and on exit
 void Bittorrent::saveFastResumeData() {
+  qDebug("Saving fast resume data...");
   // Stop listening for alerts
   resumeDataTimer.stop();
   timerAlerts->stop();
