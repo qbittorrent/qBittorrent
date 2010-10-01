@@ -1,4 +1,4 @@
-#VERSION: 1.05
+#VERSION: 1.06
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without

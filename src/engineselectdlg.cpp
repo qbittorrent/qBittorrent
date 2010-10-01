@@ -270,6 +270,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
     // Backup in case install fails
     QFile::copy(dest_path, dest_path+".bak");
     misc::safeRemove(dest_path);
+    misc::safeRemove(dest_path+"c");
     update = true;
   }
   // Copy the plugin
