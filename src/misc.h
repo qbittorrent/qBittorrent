@@ -40,6 +40,7 @@
 #include <boost/date_time/posix_time/conversion.hpp>
 #include <QPoint>
 #include <QFile>
+#include <QDir>
 
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
@@ -74,6 +75,8 @@ public:
     o << hash;
     return QString(o.str().c_str());
   }
+
+  static void chmod644(const QDir& folder);
 
   static inline QString removeLastPathPart(QString path) {
     if(path.isEmpty()) return path;
