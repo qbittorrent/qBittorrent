@@ -363,6 +363,20 @@ void misc::copyDir(QString src_path, QString dst_path) {
   }
 }
 
+void misc::chmod644(const QDir& folder) {
+  qDebug("chmod644(%s)", qPrintable(folder.absolutePath()));
+  if(!folder.exists()) return;
+  foreach(const QFileInfo &fi, folder.entryInfoList(QDir::Dirs|QDir::Files|QDir::NoSymLinks)) {
+    if(fi.fileName().startsWith(".")) continue;
+    if(fi.isDir()) {
+      misc::chmod644(QDir(fi.absoluteFilePath()));
+    } else {
+      QFile f(fi.absoluteFilePath());
+      f.setPermissions(f.permissions()|QFile::ReadUser|QFile::WriteUser|QFile::ReadGroup|QFile::ReadOther);
+    }
+  }
+}
+
 QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save_path, const QString old_label, const QString new_label) {
   if(old_label == new_label) return save_path;
   qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(save_path), qPrintable(old_label), qPrintable(new_label));
