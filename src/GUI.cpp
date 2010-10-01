@@ -71,6 +71,7 @@
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "lineedit.h"
+#include "sessionapplication.h"
 
 using namespace libtorrent;
 
@@ -88,6 +89,8 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   ui_locked = Preferences::isUILocked();
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   displaySpeedInTitle = Preferences::speedInTitleBar();
+  // Clean exit on log out
+  connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
   actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
@@ -248,6 +251,16 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
 #endif
 }
 
+void GUI::deleteBTSession() {
+  guiUpdater->stop();
+  status_bar->stopTimer();
+  if(BTSession) {
+    delete BTSession;
+    BTSession = 0;
+  }
+  QTimer::singleShot(0, this, SLOT(close()));
+}
+
 // Destructor
 GUI::~GUI() {
   qDebug("GUI destruction");
@@ -258,7 +271,9 @@ GUI::~GUI() {
 #endif
   // Async deletion of Bittorrent session as early as possible
   // in order to speed up exit
-  session_proxy sp = BTSession->asyncDeletion();
+  session_proxy sp;
+  if(BTSession)
+    sp = BTSession->asyncDeletion();
   // Some saving
   properties->saveSettings();
   disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
@@ -663,7 +678,7 @@ void GUI::closeEvent(QCloseEvent *e) {
     e->accept();
     return;
   }
-  if(settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool() && BTSession->hasActiveTorrents()) {
+  if(settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool() && BTSession && BTSession->hasActiveTorrents()) {
     if(e->spontaneous() || force_exit) {
       if(!isVisible())
         show();

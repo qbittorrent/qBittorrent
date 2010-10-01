@@ -342,7 +342,8 @@ contains(DEFINES, DISABLE_GUI) {
               advancedsettings.h \
               cookiesdlg.h \
               rsssettings.h \
-              hidabletabwidget.h
+              hidabletabwidget.h \
+              sessionapplication.h
 
   macx {
     HEADERS += qmacapplication.h

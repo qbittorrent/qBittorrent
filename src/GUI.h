@@ -80,6 +80,7 @@ public slots:
   void downloadFromURLList(const QStringList& urls);
   void updateAltSpeedsBtn(bool alternative);
   void updateNbTorrents(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive, unsigned int nb_paused);
+  void deleteBTSession();
 
 protected slots:
   // GUI related slots

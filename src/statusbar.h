@@ -170,6 +170,10 @@ public slots:
     bar->insertWidget(1, new QLabel(tr("qBittorrent needs to be restarted")));
   }
 
+  void stopTimer() {
+    refreshTimer->stop();
+  }
+
   void refreshStatusBar() {
     // Update connection status
     session_status sessionStatus = BTSession->getSessionStatus();
