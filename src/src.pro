@@ -423,7 +423,8 @@ SOURCES += main.cpp \
              cookiesdlg.cpp \
              trackerlist.cpp \
              torrentadditiondlg.cpp \
-             rsssettings.cpp
+             rsssettings.cpp \
+             sessionapplication.cpp
 
   macx {
     SOURCES += qmacapplication.cpp
