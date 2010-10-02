@@ -28,32 +28,17 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef SESSIONAPPLICATION_H
-#define SESSIONAPPLICATION_H
+#include "sessionapplication.h"
 
+SessionApplication::SessionApplication(const QString &id, int &argc, char **argv) :
 #ifdef Q_WS_MAC
-#include "qmacapplication.h"
+QMacApplication(id, argc, argv)
 #else
-#include "qtsingleapplication.h"
+QtSingleApplication(id, argc, argv)
 #endif
+{}
 
-#include <QSessionManager>
-
-class SessionApplication :
-#ifdef Q_WS_MAC
-    public QMacApplication
-#else
-    public QtSingleApplication
-#endif
-{
-  Q_OBJECT
-
-public:
-  SessionApplication(const QString &id, int &argc, char **argv);
-  void commitData(QSessionManager & manager);
-
-  signals:
-    void sessionIsShuttingDown();
-};
-
-#endif // SESSIONAPPLICATION_H
+void SessionApplication::commitData(QSessionManager & manager) {
+  Q_UNUSED(manager);
+  emit sessionIsShuttingDown();
+}
