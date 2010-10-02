@@ -2016,7 +2016,6 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
         if(h.is_valid()) {
-          emit finishedTorrent(h);
           const QString hash = h.hash();
 #if LIBTORRENT_VERSION_MINOR > 14
           // Remove .!qB extension if necessary
@@ -2057,18 +2056,14 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             if(current_dir != save_dir) {
               h.move_storage(save_dir.absolutePath());
             }
-          }
-          // Recheck if the user asked to
-          if(Preferences::recheckTorrentsOnCompletion() && !was_already_seeded) {
             // Remember finished state
             TorrentPersistentData::saveSeedStatus(h);
-            h.force_recheck();
-          } else {
-            // Remember finished state
-            TorrentPersistentData::saveSeedStatus(h);
-          }
-          qDebug("Received finished alert for %s", qPrintable(h.name()));
-          if(!was_already_seeded) {
+            // Recheck if the user asked to
+            if(Preferences::recheckTorrentsOnCompletion()) {
+              h.force_recheck();
+            }
+            emit finishedTorrent(h);
+            qDebug("Received finished alert for %s", qPrintable(h.name()));
             bool will_shutdown = Preferences::shutdownWhenDownloadsComplete() && !hasDownloadingTorrents();
             // AutoRun program
             if(Preferences::isAutoRunEnabled())

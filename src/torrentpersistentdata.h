@@ -375,11 +375,16 @@ public:
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
     QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    data["seed"] = h.is_seed();
-    all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
-    // Save completion date
-    saveSeedDate(h);
+    bool was_seed = data.value("seed", false).toBool();
+    if(was_seed != h.is_seed()) {
+      data["seed"] = !was_seed;
+      all_data[h.hash()] = data;
+      settings.setValue("torrents", all_data);
+      if(!was_seed) {
+        // Save completion date
+        saveSeedDate(h);
+      }
+    }
   }
 
   // Getters
