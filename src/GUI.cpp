@@ -42,6 +42,7 @@
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QShortcut>
+#include <QScrollBar>
 
 #include "GUI.h"
 #include "transferlistwidget.h"
