@@ -223,7 +223,8 @@ os2 {
 RESOURCES = icons.qrc \
             lang.qrc \
             search.qrc \
-            webui.qrc
+            webui.qrc \
+            about.qrc
 
 # Add GeoIP resource file if the GeoIP database
 # should be embedded in qBittorrent executable

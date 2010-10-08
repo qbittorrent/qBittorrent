@@ -17,12 +17,6 @@
     <height>320</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>504</width>
-    <height>320</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>About qBittorrent</string>
   </property>
