@@ -2048,14 +2048,14 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                 }
               }
             }
-          }
-          // Move to download directory if necessary
-          if(!defaultTempPath.isEmpty()) {
-            // Check if directory is different
-            const QDir current_dir(h.save_path());
-            const QDir save_dir(getSavePath(hash));
-            if(current_dir != save_dir) {
-              h.move_storage(save_dir.absolutePath());
+            // Move to download directory if necessary
+            if(!defaultTempPath.isEmpty()) {
+              // Check if directory is different
+              const QDir current_dir(h.save_path());
+              const QDir save_dir(getSavePath(hash));
+              if(current_dir != save_dir) {
+                h.move_storage(save_dir.absolutePath());
+              }
             }
             // Remember finished state
             TorrentPersistentData::saveSeedStatus(h);
@@ -2065,7 +2065,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             }
             emit finishedTorrent(h);
             qDebug("Received finished alert for %s", qPrintable(h.name()));
-            bool will_shutdown = Preferences::shutdownWhenDownloadsComplete() && !hasDownloadingTorrents();
+            bool will_shutdown = (Preferences::shutdownWhenDownloadsComplete() || Preferences::shutdownqBTWhenDownloadsComplete())
+                                 && !hasDownloadingTorrents();
             // AutoRun program
             if(Preferences::isAutoRunEnabled())
               autoRunExternalProgram(h, will_shutdown);
@@ -2074,16 +2075,18 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
               sendNotificationEmail(h);
             // Auto-Shutdown
             if(will_shutdown) {
-              qDebug("Preparing for auto-shutdown because all downloads are complete!");
+              if(Preferences::shutdownWhenDownloadsComplete()) {
+                qDebug("Preparing for auto-shutdown because all downloads are complete!");
 #if LIBTORRENT_VERSION_MINOR < 15
-              saveDHTEntry();
+                saveDHTEntry();
 #endif
-              qDebug("Saving session state");
-              saveSessionState();
-              qDebug("Saving fast resume data");
-              saveFastResumeData();
-              qDebug("Sending computer shutdown signal");
-              misc::shutdownComputer();
+                qDebug("Saving session state");
+                saveSessionState();
+                qDebug("Saving fast resume data");
+                saveFastResumeData();
+                qDebug("Sending computer shutdown signal");
+                misc::shutdownComputer();
+              }
               qDebug("Exiting the application");
               qApp->exit();
               return;

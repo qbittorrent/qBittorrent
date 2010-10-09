@@ -935,6 +935,16 @@ public:
     settings.setValue(QString::fromUtf8("Preferences/Downloads/AutoShutDownOnCompletion"), shutdown);
   }
 
+  static bool shutdownqBTWhenDownloadsComplete() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Downloads/AutoShutDownqBTOnCompletion"), false).toBool();
+  }
+
+  static void setShutdownqBTWhenDownloadsComplete(bool shutdown) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Downloads/AutoShutDownqBTOnCompletion"), shutdown);
+  }
+
   static uint diskCacheSize() {
     QIniSettings settings("qBittorrent", "qBittorrent");
     return settings.value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toUInt();

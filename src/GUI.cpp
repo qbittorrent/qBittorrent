@@ -202,6 +202,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   displaySearchTab(actionSearch_engine->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
   actionShutdown_when_downloads_complete->setChecked(Preferences::shutdownWhenDownloadsComplete());
+  actionShutdown_qBittorrent_when_downloads_complete->setChecked(Preferences::shutdownqBTWhenDownloadsComplete());
 
   show();
 
@@ -1176,6 +1177,11 @@ void GUI::on_actionTop_tool_bar_triggered() {
 void GUI::on_actionShutdown_when_downloads_complete_triggered() {
   bool is_checked = static_cast<QAction*>(sender())->isChecked();
   Preferences::setShutdownWhenDownloadsComplete(is_checked);
+}
+
+void GUI::on_actionShutdown_qBittorrent_when_downloads_complete_triggered() {
+  bool is_checked = static_cast<QAction*>(sender())->isChecked();
+  Preferences::setShutdownqBTWhenDownloadsComplete(is_checked);
 }
 
 void GUI::on_actionSpeed_in_title_bar_triggered() {

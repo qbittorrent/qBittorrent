@@ -29,7 +29,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -66,6 +66,7 @@
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
     <addaction name="actionShutdown_when_downloads_complete"/>
+    <addaction name="actionShutdown_qBittorrent_when_downloads_complete"/>
    </widget>
    <widget class="QMenu" name="menu_File">
     <property name="title">
@@ -346,6 +347,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionShutdown_qBittorrent_when_downloads_complete">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Shutdown qBittorrent when downloads complete</string>
    </property>
   </action>
  </widget>
