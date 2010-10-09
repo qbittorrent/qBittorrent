@@ -922,7 +922,6 @@ void GUI::optionsSaved() {
 // Load program preferences
 void GUI::loadPreferences(bool configure_session) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
-#ifndef Q_WS_MAC
   const bool newSystrayIntegration = Preferences::systrayIntegration();
   actionLock_qBittorrent->setEnabled(newSystrayIntegration);
   if(newSystrayIntegration != (systrayIcon!=0)) {
@@ -947,7 +946,6 @@ void GUI::loadPreferences(bool configure_session) {
       delete myTrayIconMenu;
     }
   }
-#endif
   // General
   if(Preferences::isToolbarDisplayed()) {
     toolBar->setVisible(true);
@@ -1011,9 +1009,8 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 // Check connection status and display right icon
 void GUI::updateGUI() {
   // update global informations
-#ifndef Q_WS_MAC
   if(systrayIcon) {
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
     QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
     html += tr("qBittorrent");
     html += "</div>";
@@ -1031,7 +1028,6 @@ void GUI::updateGUI() {
 #endif
     systrayIcon->setToolTip(html); // tray icon
   }
-#endif
   if(displaySpeedInTitle) {
     setWindowTitle(tr("qBittorrent %1 (Down: %2/s, Up: %3/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(misc::friendlyUnit(BTSession->getSessionStatus().payload_download_rate)).arg(misc::friendlyUnit(BTSession->getSessionStatus().payload_upload_rate)));
   }
@@ -1051,10 +1047,8 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
     }
   }
 #endif
-#ifndef Q_WS_MAC
   if(systrayIcon && QSystemTrayIcon::supportsMessages())
     systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
-#endif
 }
 
 /*****************************************************
@@ -1091,7 +1085,6 @@ void GUI::downloadFromURLList(const QStringList& url_list) {
  *****************************************************/
 
 void GUI::createSystrayDelayed() {
-#ifndef Q_WS_MAC
   static int timeout = 20;
   if(QSystemTrayIcon::isSystemTrayAvailable()) {
     // Ok, systray integration is now supported
@@ -1112,7 +1105,6 @@ void GUI::createSystrayDelayed() {
       Preferences::setSystrayIntegration(false);
     }
   }
-#endif
 }
 
 void GUI::updateAltSpeedsBtn(bool alternative) {
