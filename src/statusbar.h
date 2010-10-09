@@ -38,7 +38,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QHBoxLayout>
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "speedlimitdlg.h"
 #include "preferences.h"
 #include "misc.h"

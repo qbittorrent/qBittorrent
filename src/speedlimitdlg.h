@@ -35,7 +35,7 @@
 #include <QList>
 #include "ui_bandwidth_limit.h"
 #include "misc.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 
 using namespace libtorrent;
 

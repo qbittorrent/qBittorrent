@@ -52,7 +52,7 @@
 #include "torrentadditiondlg.h"
 #include "searchengine.h"
 #include "rss_imp.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "about_imp.h"
 #include "trackerlogin.h"
 #include "options_imp.h"

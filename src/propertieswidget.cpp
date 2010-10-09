@@ -44,7 +44,7 @@
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
 #include "torrentpersistentdata.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "proplistdelegate.h"
 #include "torrentfilesmodel.h"
 #include "peerlistwidget.h"

@@ -31,7 +31,7 @@
 
 #include <libtorrent/version.hpp>
 #include "eventmanager.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "scannedfoldersmodel.h"
 #include "misc.h"
 #include "preferences.h"

@@ -31,7 +31,7 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "ui_console.h"
 
 using namespace libtorrent;

@@ -40,7 +40,7 @@
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
 #include "misc.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "qinisettings.h"
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {

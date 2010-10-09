@@ -220,10 +220,9 @@ os2 {
 }
 
 # Resource files
-RESOURCES = icons.qrc \
+RESOURCES += icons.qrc \
             lang.qrc \
             search.qrc \
-            webui.qrc \
             about.qrc
 
 # Add GeoIP resource file if the GeoIP database
@@ -276,14 +275,6 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
 # Source code
 HEADERS += misc.h \
            downloadthread.h \
-           bittorrent.h \
-           qtorrenthandle.h \
-           httpserver.h \
-           httpconnection.h \
-           httprequestparser.h \
-           httpresponsegenerator.h \
-           json.h \
-           eventmanager.h \
            filterparserthread.h \
            stacktrace.h \
            torrentpersistentdata.h \
@@ -367,6 +358,9 @@ contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
   include(lineedit/lineedit.pri)
 }
 
+include(qtlibtorrent/qtlibtorrent.pri)
+include(webui/webui.pri)
+
 !contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \
            ui/options.ui \
@@ -391,15 +385,8 @@ contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
            ui/rsssettings.ui
 }
 
-SOURCES += main.cpp \ 
-           bittorrent.cpp \
-           qtorrenthandle.cpp \
+SOURCES += main.cpp \
            downloadthread.cpp \
-           httpserver.cpp \
-           httpconnection.cpp \
-           httprequestparser.cpp \
-           httpresponsegenerator.cpp \
-           eventmanager.cpp \
            scannedfoldersmodel.cpp \
            misc.cpp \
            smtp.cpp

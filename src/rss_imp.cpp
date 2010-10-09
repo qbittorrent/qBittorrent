@@ -40,7 +40,7 @@
 #include "rss_imp.h"
 #include "feeddownloader.h"
 #include "feedList.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "cookiesdlg.h"
 #include "preferences.h"
 #include "rsssettings.h"

@@ -34,7 +34,7 @@
 #include "eventmanager.h"
 #include "preferences.h"
 #include "json.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "misc.h"
 #include <QTcpSocket>
 #include <QDateTime>
@@ -47,7 +47,7 @@
 #include <QTemporaryFile>
 
 HttpConnection::HttpConnection(QTcpSocket *socket, Bittorrent *BTSession, HttpServer *parent)
-    : QObject(parent), socket(socket), parent(parent), BTSession(BTSession)
+  : QObject(parent), socket(socket), parent(parent), BTSession(BTSession)
 {
   socket->setParent(this);
   connect(socket, SIGNAL(readyRead()), this, SLOT(read()));
@@ -231,10 +231,13 @@ void HttpConnection::respond() {
       return;
     }
   }
-  if (list[0] == "images")
+  if (list[0] == "images") {
     list[0] = "Icons";
-  else
+  } else {
+    if(list.last().endsWith(".html"))
+      list.prepend("html");
     list.prepend("webui");
+  }
   url = ":/" + list.join("/");
   QFile file(url);
   if(!file.open(QIODevice::ReadOnly))

@@ -32,7 +32,7 @@
 #include "httpserver.h"
 #include "httpconnection.h"
 #include "eventmanager.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include <QTimer>
 #include <QCryptographicHash>
 #include <QTime>

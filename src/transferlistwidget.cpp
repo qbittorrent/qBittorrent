@@ -29,7 +29,7 @@
  */
 
 #include "transferlistwidget.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "torrentpersistentdata.h"
 #include "transferlistdelegate.h"
 #include "previewselect.h"

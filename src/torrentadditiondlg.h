@@ -45,7 +45,7 @@
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/bencode.hpp>
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "misc.h"
 #include "proplistdelegate.h"
 #include "ui_torrentadditiondlg.h"

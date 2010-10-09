@@ -34,7 +34,7 @@
 #include <QObject>
 #include <QCoreApplication>
 #include "preferences.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 
 class HeadlessLoader: public QObject {
   Q_OBJECT

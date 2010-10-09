@@ -42,7 +42,7 @@
 #include <QDataStream>
 #include <QFileDialog>
 
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "ui_feeddownloader.h"
 #include "qinisettings.h"
 

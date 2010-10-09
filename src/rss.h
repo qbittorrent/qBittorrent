@@ -45,7 +45,7 @@
 
 #include "misc.h"
 #include "feeddownloader.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "downloadthread.h"
 
 #if QT_VERSION >= 0x040500

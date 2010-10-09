@@ -39,7 +39,7 @@
 
 #include "smtp.h"
 #include "filesystemwatcher.h"
-#include "bittorrent.h"
+#include "qbtsession.h"
 #include "misc.h"
 #include "downloadthread.h"
 #include "filterparserthread.h"
