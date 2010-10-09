@@ -2048,14 +2048,14 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
                 }
               }
             }
-          }
-          // Move to download directory if necessary
-          if(!defaultTempPath.isEmpty()) {
-            // Check if directory is different
-            const QDir current_dir(h.save_path());
-            const QDir save_dir(getSavePath(hash));
-            if(current_dir != save_dir) {
-              h.move_storage(save_dir.absolutePath());
+            // Move to download directory if necessary
+            if(!defaultTempPath.isEmpty()) {
+              // Check if directory is different
+              const QDir current_dir(h.save_path());
+              const QDir save_dir(getSavePath(hash));
+              if(current_dir != save_dir) {
+                h.move_storage(save_dir.absolutePath());
+              }
             }
             // Remember finished state
             TorrentPersistentData::saveSeedStatus(h);
