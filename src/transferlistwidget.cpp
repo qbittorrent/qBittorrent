@@ -63,7 +63,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittor
   setItemDelegate(listDelegate);
 
   // Create transfer list model
-  listModel = new QStandardItemModel(0,17);
+  listModel = new QStandardItemModel(0,18);
   listModel->setHeaderData(TR_NAME, Qt::Horizontal, tr("Name", "i.e: torrent name"));
   listModel->setHeaderData(TR_PRIORITY, Qt::Horizontal, "#");
   listModel->horizontalHeaderItem(TR_PRIORITY)->setTextAlignment(Qt::AlignRight);
@@ -86,6 +86,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittor
   listModel->setHeaderData(TR_LABEL, Qt::Horizontal, tr("Label"));
   listModel->setHeaderData(TR_ADD_DATE, Qt::Horizontal, tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00"));
   listModel->setHeaderData(TR_SEED_DATE, Qt::Horizontal, tr("Completed On", "Torrent was completed on 01/01/2010 08:00"));
+  listModel->setHeaderData(TR_TRACKER, Qt::Horizontal, tr("Tracker"));
   listModel->setHeaderData(TR_DLLIMIT, Qt::Horizontal, tr("Down Limit", "i.e: Download limit"));
   listModel->horizontalHeaderItem(TR_DLLIMIT)->setTextAlignment(Qt::AlignRight);
   listModel->setHeaderData(TR_UPLIMIT, Qt::Horizontal, tr("Up Limit", "i.e: Upload limit"));;
@@ -357,6 +358,9 @@ int TransferListWidget::updateTorrent(int row) {
       else
         peers += 1;
       listModel->setData(listModel->index(row, TR_PEERS), QVariant(peers));
+    }
+    if(!isColumnHidden(TR_TRACKER)) {
+      listModel->setData(listModel->index(row, TR_TRACKER), QVariant(h.current_tracker()));
     }
     // Update torrent size. It changes when files are filtered from torrent properties
     // or Web UI
@@ -1005,6 +1009,7 @@ bool TransferListWidget::loadHiddenColumns() {
     setColumnHidden(TR_SEED_DATE, true);
     setColumnHidden(TR_UPLIMIT, true);
     setColumnHidden(TR_DLLIMIT, true);
+    setColumnHidden(TR_TRACKER, true);
   }
   return loaded;
 }
@@ -1465,13 +1470,13 @@ void TransferListWidget::applyStatusFilter(int f) {
   switch(f) {
   case FILTER_DOWNLOADING:
     statusFilterModel->setFilterRegExp(QRegExp(QString::number(STATE_DOWNLOADING)+"|"+QString::number(STATE_STALLED_DL)+"|"+
-                                        QString::number(STATE_PAUSED_DL)+"|"+QString::number(STATE_CHECKING_DL)+"|"+
-                                        QString::number(STATE_QUEUED_DL), Qt::CaseSensitive));
+                                               QString::number(STATE_PAUSED_DL)+"|"+QString::number(STATE_CHECKING_DL)+"|"+
+                                               QString::number(STATE_QUEUED_DL), Qt::CaseSensitive));
     break;
   case FILTER_COMPLETED:
     statusFilterModel->setFilterRegExp(QRegExp(QString::number(STATE_SEEDING)+"|"+QString::number(STATE_STALLED_UP)+"|"+
-                                        QString::number(STATE_PAUSED_UP)+"|"+QString::number(STATE_CHECKING_UP)+"|"+
-                                        QString::number(STATE_QUEUED_UP), Qt::CaseSensitive));
+                                               QString::number(STATE_PAUSED_UP)+"|"+QString::number(STATE_CHECKING_UP)+"|"+
+                                               QString::number(STATE_QUEUED_UP), Qt::CaseSensitive));
     break;
   case FILTER_ACTIVE:
     statusFilterModel->setFilterRegExp(QRegExp(QString::number(STATE_DOWNLOADING)+"|"+QString::number(STATE_SEEDING), Qt::CaseSensitive));
