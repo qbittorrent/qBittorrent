@@ -542,7 +542,7 @@ void GUI::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
 
 void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
   // Display a message box
-  QMessageBox::critical(0, tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
+  showNotificationBaloon(tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
 }
 
 void GUI::on_actionSet_global_upload_limit_triggered() {

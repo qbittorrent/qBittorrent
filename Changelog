@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.5.0
     - FEATURE: Added feature to shutdown qbittorrent on torrents completion
     - FEATURE: Added a transfer list column to display the current tracker
+    - COSMETIC: Replaced message box by on-screen notification for download errors
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
     - FEATURE: Added actions to "Move to top/bottom" of priority queue
