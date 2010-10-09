@@ -864,7 +864,7 @@ QTorrentHandle Bittorrent::addMagnetUri(QString magnet_uri, bool resumed) {
   }
   QString torrent_name = misc::magnetUriToName(magnet_uri);
   const QString savePath(getSavePath(hash, false, QString::null, torrent_name));
-  if(!defaultTempPath.isEmpty() && resumed && !TorrentPersistentData::isSeed(hash)) {
+  if(!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
@@ -1096,6 +1096,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   }
   // Actually add the torrent
   QString root_folder = misc::truncateRootFolder(t);
+  qDebug("Truncated root folder: %s", qPrintable(root_folder));
   add_torrent_params p;
   //Getting fast resume data if existing
   std::vector<char> buf;
@@ -1115,7 +1116,7 @@ QTorrentHandle Bittorrent::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash, fromScanDir, path, root_folder);
   }
-  if(!defaultTempPath.isEmpty() && resumed && !TorrentPersistentData::isSeed(hash)) {
+  if(!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     if(!root_folder.isEmpty()) {
