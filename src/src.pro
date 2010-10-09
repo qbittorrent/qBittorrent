@@ -280,7 +280,6 @@ HEADERS += misc.h \
            torrentpersistentdata.h \
            filesystemwatcher.h \
            preferences.h \
-           bandwidthscheduler.h \
            scannedfoldersmodel.h \
            qinisettings.h \
            smtp.h

@@ -46,7 +46,9 @@
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+
 #include "qtorrenthandle.h"
+#include "trackerinfos.h"
 
 using namespace libtorrent;
 
@@ -58,35 +60,6 @@ class FilterParserThread;
 class HttpServer;
 class BandwidthScheduler;
 class ScanFoldersModel;
-
-class TrackerInfos {
-public:
-  QString name_or_url;
-  QString last_message;
-  unsigned long num_peers;
-#if LIBTORRENT_VERSION_MINOR < 15
-  bool verified;
-  uint fail_count;
-#endif
-
-  //TrackerInfos() {}
-  TrackerInfos(const TrackerInfos &b) {
-    name_or_url = b.name_or_url;
-    Q_ASSERT(!name_or_url.isEmpty());
-    last_message = b.last_message;
-    num_peers = b.num_peers;
-#if LIBTORRENT_VERSION_MINOR < 15
-    verified = b.verified;
-    fail_count = b.fail_count;
-#endif
-  }
-  TrackerInfos(QString name_or_url): name_or_url(name_or_url), last_message(""), num_peers(0) {
-#if LIBTORRENT_VERSION_MINOR < 15
-    fail_count = 0;
-    verified = false;
-#endif
-  }
-};
 
 class Bittorrent : public QObject {
   Q_OBJECT
