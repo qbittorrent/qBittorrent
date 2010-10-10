@@ -55,17 +55,6 @@ class PropertiesWidget;
 class PeerListWidget : public QTreeView {
   Q_OBJECT
 
-private:
-  QStandardItemModel *listModel;
-  PeerListDelegate *listDelegate;
-  QSortFilterProxyModel * proxyModel;
-  QHash<QString, QStandardItem*> peerItems;
-  QHash<QString, libtorrent::asio::ip::tcp::endpoint> peerEndpoints;
-  QSet<QString> missingFlags;
-  QPointer<ReverseResolution> resolver;
-  PropertiesWidget* properties;
-  bool display_flags;
-
 public:
   PeerListWidget(PropertiesWidget *parent);
   ~PeerListWidget();
@@ -86,6 +75,17 @@ protected slots:
   void limitUpRateSelectedPeers(QStringList peer_ips);
   void limitDlRateSelectedPeers(QStringList peer_ips);
   void banSelectedPeers(QStringList peer_ips);
+
+private:
+  QStandardItemModel *listModel;
+  PeerListDelegate *listDelegate;
+  QSortFilterProxyModel * proxyModel;
+  QHash<QString, QStandardItem*> peerItems;
+  QHash<QString, libtorrent::asio::ip::tcp::endpoint> peerEndpoints;
+  QSet<QString> missingFlags;
+  QPointer<ReverseResolution> resolver;
+  PropertiesWidget* properties;
+  bool display_flags;
 };
 
 #endif // PEERLISTWIDGET_H
