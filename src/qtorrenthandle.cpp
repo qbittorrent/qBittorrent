@@ -241,11 +241,11 @@ QStringList QTorrentHandle::url_seeds() const {
   Q_ASSERT(h.is_valid());
   QStringList res;
   try {
-    std::vector<std::string> existing_seeds = h.get_torrent_info().url_seeds();
-    unsigned int nbSeeds = existing_seeds.size();
-    QString existing_seed;
-    for(unsigned int i=0; i<nbSeeds; ++i) {
-      res << misc::toQString(existing_seeds[i]);
+    const std::set<std::string> existing_seeds = h.url_seeds();
+    std::set<std::string>::const_iterator it;
+    for(it = existing_seeds.begin(); it != existing_seeds.end(); it++) {
+      qDebug("URL Seed: %s", it->c_str());
+      res << misc::toQString(*it);
     }
   } catch(std::exception e) {}
   return res;
