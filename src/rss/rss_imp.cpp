@@ -39,7 +39,7 @@
 
 #include "rss_imp.h"
 #include "feeddownloader.h"
-#include "feedList.h"
+#include "feedlistwidget.h"
 #include "qbtsession.h"
 #include "cookiesdlg.h"
 #include "preferences.h"
@@ -586,7 +586,7 @@ RSSImp::RSSImp(Bittorrent *BTSession) : QWidget(), BTSession(BTSession){
 
   rssmanager = new RssManager(BTSession);
 
-  listStreams = new FeedList(splitter_h, rssmanager);
+  listStreams = new FeedListWidget(splitter_h, rssmanager);
   splitter_h->insertWidget(0, listStreams);
   listNews->hideColumn(NEWS_URL_COL);
   listNews->setColumnWidth(0, 16);

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez, Arnaud Demaiziere
+ * Copyright (C) 2010  Christophe Dumez, Arnaud Demaiziere
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

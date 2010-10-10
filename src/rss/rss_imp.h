@@ -38,7 +38,7 @@
 #include "rss.h"
 
 class Bittorrent;
-class FeedList;
+class FeedListWidget;
 class QTreeWidgetItem;
 
 class RSSImp : public QWidget, public Ui::RSS{
@@ -83,7 +83,7 @@ protected slots:
 private:
   RssManager *rssmanager;
   Bittorrent *BTSession;
-  FeedList *listStreams;
+  FeedListWidget *listStreams;
   QTreeWidgetItem* previous_news;
 
 };
