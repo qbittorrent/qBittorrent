@@ -288,7 +288,6 @@ contains(DEFINES, DISABLE_GUI) {
   HEADERS += headlessloader.h
 } else {
   HEADERS +=  GUI.h \
-              feedList.h \
               supportedengines.h \
               transferlistwidget.h \
               transferlistdelegate.h \
@@ -304,7 +303,6 @@ contains(DEFINES, DISABLE_GUI) {
               peerlistwidget.h \
               peerlistdelegate.h \
               reverseresolution.h \
-              feeddownloader.h \
               trackersadditiondlg.h \
               searchtab.h \
               console_imp.h \
@@ -312,8 +310,6 @@ contains(DEFINES, DISABLE_GUI) {
               engineselectdlg.h \
               pluginsource.h \
               searchEngine.h \
-              rss.h \
-              rss_imp.h \
               speedlimitdlg.h \
               options_imp.h \
               about_imp.h \
@@ -328,7 +324,6 @@ contains(DEFINES, DISABLE_GUI) {
               pieceavailabilitybar.h \
               advancedsettings.h \
               cookiesdlg.h \
-              rsssettings.h \
               hidabletabwidget.h \
               sessionapplication.h
 
@@ -359,6 +354,7 @@ contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
 
 include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
+include(rss/rss.pri)
 
 !contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \
@@ -370,18 +366,15 @@ include(webui/webui.pri)
            ui/downloadfromurldlg.ui \
            ui/torrentadditiondlg.ui \
            ui/search.ui \
-           ui/rss.ui \
            ui/bandwidth_limit.ui \
            ui/engineselect.ui \
            ui/pluginsource.ui \
            ui/trackersadditiondlg.ui \
            ui/console.ui \
-           ui/feeddownloader.ui \
            ui/propertieswidget.ui \
            ui/peer.ui \
            ui/confirmdeletiondlg.ui \
-           ui/cookiesdlg.ui \
-           ui/rsssettings.ui
+           ui/cookiesdlg.ui
 }
 
 SOURCES += main.cpp \
@@ -395,18 +388,15 @@ SOURCES += main.cpp \
              options_imp.cpp \
              createtorrent_imp.cpp \
              searchengine.cpp \
-             rss_imp.cpp \
              engineselectdlg.cpp \
              searchtab.cpp \
              ico.cpp \
-             rss.cpp \
              transferlistwidget.cpp \
              propertieswidget.cpp \
              peerlistwidget.cpp \
              cookiesdlg.cpp \
              trackerlist.cpp \
              torrentadditiondlg.cpp \
-             rsssettings.cpp \
              sessionapplication.cpp
 
   macx {
