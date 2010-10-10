@@ -308,8 +308,14 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
       updatePeer(peer_ip, peer);
       old_peers_set.remove(peer_ip);
       if(force_hostname_resolution) {
-        if(resolver)
-          resolver->resolve(peer.ip);
+        if(resolver) {
+          QString host = resolver->getHostFromCache(peer.ip);
+          if(host.isNull()) {
+            resolver->resolve(peer.ip);
+          } else {
+            peerItems.value(peer_ip)->setData(host);
+          }
+        }
       }
     } else {
       // Add new peer
@@ -332,10 +338,17 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   int row = listModel->rowCount();
   // Adding Peer to peer list
   listModel->insertRow(row);
-  listModel->setData(listModel->index(row, IP), ip);
+  QString host;
+  if(resolver) {
+    host = resolver->getHostFromCache(peer.ip);
+  }
+  if(host.isNull())
+    listModel->setData(listModel->index(row, IP), ip);
+  else
+    listModel->setData(listModel->index(row, IP), host);
   listModel->setData(listModel->index(row, IP_HIDDEN), ip);
   // Resolve peer host name is asked
-  if(resolver)
+  if(resolver && host.isNull())
     resolver->resolve(peer.ip);
   if(display_flags) {
     QString country_name;
@@ -381,6 +394,6 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
 void PeerListWidget::handleResolved(QString ip, QString hostname) {
   QStandardItem *item = peerItems.value(ip, 0);
   if(item) {
-    listModel->setData(listModel->indexFromItem(item), hostname);
+    item->setData(hostname);
   }
 }

@@ -2,6 +2,7 @@
     - BUGFIX: Remember torrent completion date correctly
     - BUGFIX: Fix feature to keep incomplete torrents in a separate folder
     - BUGFIX: Fix display of URL seeds in the UI
+    - BUGFIX: Improved peer hostname resolution with caching
 
 * Fri Oct 1 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.4
     - BUGFIX: Clean program exit on system shutdown/logout

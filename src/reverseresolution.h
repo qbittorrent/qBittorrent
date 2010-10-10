@@ -36,6 +36,7 @@
 #include <QWaitCondition>
 #include <QMutex>
 #include <QList>
+#include <QCache>
 #include "misc.h"
 
 #include <boost/version.hpp>
@@ -47,7 +48,8 @@
 
 using namespace libtorrent;
 
-#define MAX_THREADS 20
+const int MAX_THREADS = 20;
+const int CACHE_SIZE = 500;
 
 class ReverseResolutionST: public QThread {
   Q_OBJECT
@@ -58,7 +60,8 @@ private:
   bool stopped;
 
 public:
-  ReverseResolutionST(libtorrent::asio::io_service &ios, QObject *parent=0): QThread(parent), resolver(ios), stopped(false) {
+  ReverseResolutionST(libtorrent::asio::io_service &ios, QObject *parent=0):
+    QThread(parent), resolver(ios), stopped(false) {
 
   }
 
@@ -93,18 +96,11 @@ protected:
 
 class ReverseResolution: public QThread {
   Q_OBJECT
-
-private:
-  QQueue<libtorrent::asio::ip::tcp::endpoint> ips;
-  QMutex mut;
-  QWaitCondition cond;
-  bool stopped;
-  libtorrent::asio::io_service ios;
-  QList<ReverseResolutionST*> subThreads;
-
+  Q_DISABLE_COPY(ReverseResolution)
 
 public:
-  ReverseResolution(QObject* parent): QThread(parent), stopped(false) {
+  explicit ReverseResolution(QObject* parent): QThread(parent), stopped(false) {
+    cache = new QCache<QString, QString>(CACHE_SIZE);
   }
 
   ~ReverseResolution() {
@@ -113,6 +109,7 @@ public:
       stopped = true;
       cond.wakeOne();
     }
+    delete cache;
     wait();
     qDebug("Host name resolver was deleted");
   }
@@ -124,8 +121,29 @@ public:
     cond.wakeOne();
   }
 
+  QString getHostFromCache(libtorrent::asio::ip::tcp::endpoint ip) {
+    mut.lock();
+    QString ip_str = misc::toQString(ip.address().to_string());
+    QString ret;
+    if(cache->contains(ip_str)) {
+      qDebug("Got host name from cache");
+      ret = *cache->object(ip_str);
+    } else {
+      ret = QString::null;
+    }
+    mut.unlock();
+    return ret;
+  }
+
   void resolve(libtorrent::asio::ip::tcp::endpoint ip) {
     mut.lock();
+    QString ip_str = misc::toQString(ip.address().to_string());
+    if(cache->contains(ip_str)) {
+      qDebug("Resolved host name using cache");
+      emit ip_resolved(ip_str, *cache->object(ip_str));
+      mut.unlock();
+      return;
+    }
     ips.enqueue(ip);
     if(subThreads.size() < MAX_THREADS)
       cond.wakeOne();
@@ -139,6 +157,7 @@ protected slots:
   void forwardSignal(QString ip, QString hostname) {
     emit ip_resolved(ip, hostname);
     mut.lock();
+    cache->insert(ip, new QString(hostname));
     subThreads.removeOne(static_cast<ReverseResolutionST*>(sender()));
     if(!ips.empty())
       cond.wakeOne();
@@ -168,6 +187,16 @@ protected:
     qDeleteAll(subThreads);
     mut.unlock();
   }
+
+private:
+  QQueue<libtorrent::asio::ip::tcp::endpoint> ips;
+  QMutex mut;
+  QWaitCondition cond;
+  bool stopped;
+  libtorrent::asio::io_service ios;
+  QCache<QString, QString> *cache;
+  QList<ReverseResolutionST*> subThreads;
 };
+
 
 #endif // REVERSERESOLUTION_H
