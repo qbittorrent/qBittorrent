@@ -241,13 +241,15 @@ QStringList QTorrentHandle::url_seeds() const {
   Q_ASSERT(h.is_valid());
   QStringList res;
   try {
-    std::vector<std::string> existing_seeds = h.get_torrent_info().url_seeds();
-    unsigned int nbSeeds = existing_seeds.size();
-    QString existing_seed;
-    for(unsigned int i=0; i<nbSeeds; ++i) {
-      res << misc::toQString(existing_seeds[i]);
+    const std::set<std::string> existing_seeds = h.url_seeds();
+    std::set<std::string>::const_iterator it;
+    for(it = existing_seeds.begin(); it != existing_seeds.end(); it++) {
+      qDebug("URL Seed: %s", it->c_str());
+      res << misc::toQString(*it);
     }
-  } catch(std::exception e) {}
+  } catch(std::exception e) {
+    std::cout << "ERROR: Failed to convert the URL seed" << std::endl;
+  }
   return res;
 }
 
@@ -546,7 +548,9 @@ void QTorrentHandle::remove_url_seed(QString seed) {
 
 void QTorrentHandle::add_url_seed(QString seed) {
   Q_ASSERT(h.is_valid());
-  h.add_url_seed(seed.toStdString());
+  const std::string str_seed = seed.toStdString();
+  qDebug("calling h.add_url_seed(%s)", str_seed.c_str());
+  h.add_url_seed(str_seed);
 }
 
 void QTorrentHandle::set_max_uploads(int val) {
