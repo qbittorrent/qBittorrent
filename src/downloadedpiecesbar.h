@@ -63,28 +63,31 @@ public:
       const qulonglong nb_pieces = pieces.size();
       // Reduce the number of pieces before creating the pixmap
       // otherwise it can crash when there are too many pieces
-      if(nb_pieces > (uint)width()) {
-        const int ratio = floor(nb_pieces/(double)width());
-        std::vector<bool> scaled_pieces;
-        std::vector<bool> scaled_downloading;
+      const uint w = width();
+      if(nb_pieces > w) {
+        const uint ratio = floor(nb_pieces/(double)w);
+        bitfield scaled_pieces(ceil(nb_pieces/(double)ratio), false);
+        bitfield scaled_downloading(ceil(nb_pieces/(double)ratio), false);
+        uint scaled_index = 0;
         for(qulonglong i=0; i<nb_pieces; i+= ratio) {
           bool have = true;
           for(qulonglong j=i; j<qMin(i+ratio, nb_pieces); ++j) {
             if(!pieces[i]) { have = false; break; }
           }
-          scaled_pieces.push_back(have);
           if(have) {
-            scaled_downloading.push_back(false);
+            scaled_pieces.set_bit(scaled_index);
           } else {
             bool downloading = false;
             for(qulonglong j=i; j<qMin(i+ratio, nb_pieces); ++j) {
               if(downloading_pieces[i]) { downloading = true; break; }
             }
-            scaled_downloading.push_back(downloading);
+            if(downloading)
+              scaled_downloading.set_bit(scaled_index);
           }
+          ++scaled_index;
         }
         QPixmap pix = QPixmap(scaled_pieces.size(), 1);
-        pix.fill();
+        //pix.fill();
         QPainter painter(&pix);
         for(uint i=0; i<scaled_pieces.size(); ++i) {
           if(scaled_pieces[i]) {
@@ -101,7 +104,7 @@ public:
         pixmap = pix;
       } else {
         QPixmap pix = QPixmap(pieces.size(), 1);
-        pix.fill();
+        //pix.fill();
         QPainter painter(&pix);
         for(uint i=0; i<pieces.size(); ++i) {
           if(pieces[i]) {

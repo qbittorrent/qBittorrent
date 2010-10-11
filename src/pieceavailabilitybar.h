@@ -60,23 +60,25 @@ public:
       pixmap = pix;
     } else {
       // Look for maximum value
-      const int nb_pieces = avail.size();
+      const qulonglong nb_pieces = avail.size();
       average = std::accumulate(avail.begin(), avail.end(), 0)/(double)nb_pieces;
       // Reduce the number of pieces before creating the pixmap
       // otherwise it can crash when there are too many pieces
-      if(nb_pieces > width()) {
-        const int ratio = floor(nb_pieces/(double)width());
+      const uint w = width();
+      if(nb_pieces > w) {
+        const qulonglong ratio = floor(nb_pieces/(double)w);
         std::vector<int> scaled_avail;
-        for(int i=0; i<nb_pieces; i+= ratio) {
-          int j = i;
-          int sum = avail[i];
+        scaled_avail.reserve(ceil(nb_pieces/(double)ratio));
+        for(qulonglong i=0; i<nb_pieces; i+= ratio) {
+          qulonglong j = i;
+          qulonglong sum = avail[i];
           for(j=i+1; j<qMin(i+ratio, nb_pieces); ++j) {
             sum += avail[j];
           }
           scaled_avail.push_back(sum/(qMin(ratio, nb_pieces-i)));
         }
         QPixmap pix = QPixmap(scaled_avail.size(), 1);
-        pix.fill();
+        //pix.fill();
         QPainter painter(&pix);
         for(qulonglong i=0; i < scaled_avail.size(); ++i) {
           painter.setPen(getPieceColor(scaled_avail[i], average));
@@ -85,9 +87,9 @@ public:
         pixmap = pix;
       } else {
         QPixmap pix = QPixmap(nb_pieces, 1);
-        pix.fill();
+        //pix.fill();
         QPainter painter(&pix);
-        for(int i=0; i < nb_pieces; ++i) {
+        for(qulonglong i=0; i < nb_pieces; ++i) {
           painter.setPen(getPieceColor(avail[i], average));
           painter.drawPoint(i,0);
         }
