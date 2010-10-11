@@ -70,12 +70,14 @@ public:
         std::vector<int> scaled_avail;
         scaled_avail.reserve(ceil(nb_pieces/(double)ratio));
         for(qulonglong i=0; i<nb_pieces; i+= ratio) {
-          qulonglong j = i;
+          /*qulonglong j = i;
           qulonglong sum = avail[i];
           for(j=i+1; j<qMin(i+ratio, nb_pieces); ++j) {
             sum += avail[j];
           }
-          scaled_avail.push_back(sum/(qMin(ratio, nb_pieces-i)));
+          scaled_avail.push_back(sum/(qMin(ratio, nb_pieces-i)));*/
+          // XXX: Do not compute the average to save cpu
+          scaled_avail.push_back(avail[i]);
         }
         QPixmap pix = QPixmap(scaled_avail.size(), 1);
         //pix.fill();
@@ -114,13 +116,12 @@ protected:
   QColor getPieceColor(int avail, double average) {
     if(!avail) return Qt::white;
     //qDebug("avail: %d/%d", avail, max_avail);
-    const QColor color = Qt::blue; // average avail
     double fraction = 100.*average/avail;
     if(fraction < 100)
-      fraction *= 0.9;
+      fraction *= 0.8;
     else
-      fraction *= 1.1;
-    return color.lighter(fraction);
+      fraction *= 1.2;
+    return QColor(Qt::blue).lighter(fraction);
   }
 };
 
