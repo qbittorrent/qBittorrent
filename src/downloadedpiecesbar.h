@@ -60,16 +60,16 @@ public:
       pix.fill();
       pixmap = pix;
     } else {
-      const int nb_pieces = pieces.size();
+      const qulonglong nb_pieces = pieces.size();
       // Reduce the number of pieces before creating the pixmap
       // otherwise it can crash when there are too many pieces
-      if(nb_pieces > width()) {
+      if(nb_pieces > (uint)width()) {
         const int ratio = floor(nb_pieces/(double)width());
         std::vector<bool> scaled_pieces;
         std::vector<bool> scaled_downloading;
-        for(int i=0; i<nb_pieces; i+= ratio) {
+        for(qulonglong i=0; i<nb_pieces; i+= ratio) {
           bool have = true;
-          for(int j=i; j<qMin(i+ratio, nb_pieces); ++j) {
+          for(qulonglong j=i; j<qMin(i+ratio, nb_pieces); ++j) {
             if(!pieces[i]) { have = false; break; }
           }
           scaled_pieces.push_back(have);
@@ -77,7 +77,7 @@ public:
             scaled_downloading.push_back(false);
           } else {
             bool downloading = false;
-            for(int j=i; j<qMin(i+ratio, nb_pieces); ++j) {
+            for(qulonglong j=i; j<qMin(i+ratio, nb_pieces); ++j) {
               if(downloading_pieces[i]) { downloading = true; break; }
             }
             scaled_downloading.push_back(downloading);
