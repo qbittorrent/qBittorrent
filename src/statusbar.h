@@ -176,7 +176,7 @@ public slots:
 
   void refreshStatusBar() {
     // Update connection status
-    session_status sessionStatus = BTSession->getSessionStatus();
+    const session_status sessionStatus = BTSession->getSessionStatus();
     if(!BTSession->getSession()->is_listening()) {
       connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
       connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
