@@ -74,7 +74,7 @@ public:
       }
     case TR_SEEDS:
     case TR_PEERS: {
-        qulonglong tot_val = index.data().toULongLong();
+        const qulonglong tot_val = index.data().toULongLong();
         QString display = QString::number((qulonglong)tot_val/1000000);
         if(tot_val%2 == 0) {
           // Scrape was successful, we have total values
@@ -86,8 +86,8 @@ public:
         break;
       }
     case TR_STATUS: {
-        int state = index.data().toInt();
-        QString display = "";
+        const int state = index.data().toInt();
+        QString display;
         switch(state) {
         case STATE_DOWNLOADING:
           display = tr("Downloading");
@@ -110,6 +110,9 @@ public:
         case STATE_CHECKING_DL:
         case STATE_CHECKING_UP:
           display = tr("Checking", "Torrent local data is being checked");
+          break;
+        default:
+           display = "";
         }
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
@@ -118,7 +121,7 @@ public:
     case TR_UPSPEED:
     case TR_DLSPEED:{
         QItemDelegate::drawBackground(painter, opt, index);
-        qulonglong speed = index.data().toULongLong();
+        const qulonglong speed = index.data().toULongLong();
         opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
         break;
@@ -126,7 +129,7 @@ public:
     case TR_UPLIMIT:
     case TR_DLLIMIT:{
       QItemDelegate::drawBackground(painter, opt, index);
-      qlonglong limit = index.data().toLongLong();
+      const qlonglong limit = index.data().toLongLong();
       opt.displayAlignment = Qt::AlignRight;
       if(limit > 0)
         QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(limit/1024., 'f', 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)"));
@@ -142,7 +145,7 @@ public:
     case TR_RATIO:{
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
-        double ratio = index.data().toDouble();
+        const double ratio = index.data().toDouble();
         if(ratio > 100.)
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
         else
@@ -150,7 +153,7 @@ public:
         break;
       }
     case TR_PRIORITY: {
-        int priority = index.data().toInt();
+        const int priority = index.data().toInt();
         if(priority >= 0) {
           opt.displayAlignment = Qt::AlignRight;
           QItemDelegate::paint(painter, opt, index);
@@ -163,7 +166,7 @@ public:
       }
     case TR_PROGRESS:{
         QStyleOptionProgressBarV2 newopt;
-        double progress = index.data().toDouble()*100.;
+        const double progress = index.data().toDouble()*100.;
         newopt.rect = opt.rect;
         newopt.text = QString::number(progress, 'f', 1)+"%";
         newopt.progress = (int)progress;
