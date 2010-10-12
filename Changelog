@@ -1,4 +1,4 @@
-*Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.5
+* Tue Oct 12 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.5
     - BUGFIX: Remember torrent completion date correctly
     - BUGFIX: Fix feature to keep incomplete torrents in a separate folder
     - BUGFIX: Fix display of URL seeds in the UI
