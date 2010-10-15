@@ -84,6 +84,7 @@ Bittorrent::Bittorrent()
   , geoipDBLoaded(false), resolve_countries(false)
 #endif
 {
+  m_tracker = 0;
   // To avoid some exceptions
   fs::path::default_name_check(fs::no_check);
   // For backward compatibility
@@ -171,6 +172,8 @@ Bittorrent::~Bittorrent() {
     delete s;
   }
   // Delete our objects
+  if(m_tracker)
+    delete m_tracker;
   delete timerAlerts;
   if(BigRatioTimer)
     delete BigRatioTimer;
@@ -594,6 +597,21 @@ void Bittorrent::configureSession() {
     http_proxySettings.type = proxy_settings::none;
   }
   setHTTPProxySettings(http_proxySettings);
+  // Tracker
+  if(Preferences::isTrackerEnabled()) {
+    if(!m_tracker) {
+      m_tracker = new QTracker(this);
+    }
+    if(m_tracker->start()) {
+      addConsoleMessage(tr("Embedded Tracker [ON]"), QString::fromUtf8("blue"));
+    } else {
+      addConsoleMessage(tr("Failed to start the embedded tracker!"), QString::fromUtf8("red"));
+    }
+  } else {
+    addConsoleMessage(tr("Embedded Tracker [OFF]"));
+    if(m_tracker)
+      delete m_tracker;
+  }
   qDebug("Session configured");
 }
 

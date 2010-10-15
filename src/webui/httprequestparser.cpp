@@ -68,12 +68,12 @@ QByteArray HttpRequestParser::message() const
 
 QString HttpRequestParser::get(const QString key) const
 {
-	return getMap[key];
+        return getMap.value(key);
 }
 
 QString HttpRequestParser::post(const QString key) const
 {
-	return postMap[key];
+        return postMap.value(key);
 }
 
 QByteArray HttpRequestParser::torrent() const

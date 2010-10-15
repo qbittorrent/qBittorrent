@@ -1192,6 +1192,26 @@ public:
 
 #endif
 
+  static bool isTrackerEnabled() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/trackerEnabled"), false).toBool();
+  }
+
+  static void setTrackerEnabled(bool enabled) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/trackerEnabled"), enabled);
+  }
+
+  static int getTrackerPort() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/Advanced/trackerPort"), 9000).toInt();
+  }
+
+  static void setTrackerPort(int port) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/Advanced/trackerPort"), port);
+  }
+
 };
 
 #endif // PREFERENCES_H

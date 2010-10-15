@@ -355,6 +355,7 @@ contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
 include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
 include(rss/rss.pri)
+include(tracker/tracker.pri)
 
 !contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \

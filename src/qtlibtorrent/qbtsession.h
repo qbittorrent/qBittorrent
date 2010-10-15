@@ -47,6 +47,7 @@
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
 
+#include "qtracker.h"
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
 
@@ -250,6 +251,8 @@ private:
   bool geoipDBLoaded;
   bool resolve_countries;
 #endif
+  // Tracker
+  QPointer<QTracker> m_tracker;
 
 };
 

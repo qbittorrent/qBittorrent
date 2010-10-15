@@ -11,15 +11,15 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, PROGRAM_NOTIFICATIONS };
-#define ROW_COUNT 13
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT };
+#define ROW_COUNT 15
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
-  QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen;
-  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding, *cb_program_notifications;
+  QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen, *spin_tracker_port;
+  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding, *cb_program_notifications, *cb_tracker_status;
   QComboBox *combo_iface;
 
 public:
@@ -53,6 +53,8 @@ public:
     delete cb_super_seeding;
     delete combo_iface;
     delete cb_program_notifications;
+    delete spin_tracker_port;
+    delete cb_tracker_status;
   }
 
 public slots:
@@ -88,6 +90,9 @@ public slots:
     }
     // Program notification
     Preferences::useProgramNotification(cb_program_notifications->isChecked());
+    // Tracker
+    Preferences::setTrackerEnabled(cb_tracker_status->isChecked());
+    Preferences::setTrackerPort(spin_tracker_port->value());
   }
 
 protected slots:
@@ -195,6 +200,20 @@ protected slots:
     connect(cb_program_notifications, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
     cb_program_notifications->setChecked(Preferences::useProgramNotification());
     setCellWidget(PROGRAM_NOTIFICATIONS, VALUE, cb_program_notifications);
+    // Tracker State
+    setItem(TRACKER_STATUS, PROPERTY, new QTableWidgetItem(tr("Enable embedded tracker")));
+    cb_tracker_status = new QCheckBox();
+    connect(cb_tracker_status, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_tracker_status->setChecked(Preferences::isTrackerEnabled());
+    setCellWidget(TRACKER_STATUS, VALUE, cb_tracker_status);
+    // Tracker port
+    setItem(TRACKER_PORT, PROPERTY, new QTableWidgetItem(tr("Embedded tracker port")));
+    spin_tracker_port = new QSpinBox();
+    connect(spin_tracker_port, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
+    spin_tracker_port->setMinimum(1);
+    spin_tracker_port->setMaximum(65535);
+    spin_tracker_port->setValue(Preferences::getTrackerPort());
+    setCellWidget(TRACKER_PORT, VALUE, spin_tracker_port);
   }
 
   void emitSettingsChanged() {
