@@ -130,11 +130,11 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket, const HttpRequestPar
   }
   annonce_req.info_hash = parser.get("info_hash");
   // info_hash cannot be longer than 20 bytes
-  if(annonce_req.info_hash.toAscii().length() > 20) {
+  /*if(annonce_req.info_hash.toAscii().length() > 20) {
     qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toAscii().length());
     respondInvalidRequest(socket, 150, "Invalid infohash");
     return;
-  }
+  }*/
   // 2. Get peer ID
   if(parser.get("peer_id").isNull()) {
     qDebug("QTracker: Missing peer_id");
@@ -143,11 +143,11 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket, const HttpRequestPar
   }
   annonce_req.peer.peer_id = parser.get("peer_id");
   // peer_id cannot be longer than 20 bytes
-  if(annonce_req.peer.peer_id.length() > 20) {
+  /*if(annonce_req.peer.peer_id.length() > 20) {
     qDebug("QTracker: peer_id is not 20 byte long: %s", qPrintable(annonce_req.peer.peer_id));
     respondInvalidRequest(socket, 151, "Invalid peerid");
     return;
-  }
+  }*/
   // 3. Get port
   if(parser.get("port").isNull()) {
     qDebug("QTracker: Missing port");
