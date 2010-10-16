@@ -1,0 +1,26 @@
+/*
+-----BEGIN QCMOD-----
+name: libboost
+arg: with-qtsingleapplication=[system|shipped], Use the shipped qtsingleapplication library or the system one
+-----END QCMOD-----
+*/
+class qc_qtsingleapplication : public ConfObj
+{
+public:
+        qc_qtsingleapplication(Conf *c) : ConfObj(c) {}
+        QString name() const { return "qtsingleapplication library"; }
+        QString shortname() const { return "qtsingleapplication"; }
+
+        bool exec(){
+                QString s;
+                s = conf->getenv("QC_WITH_QTSINGLEAPPLICATION");
+                if(s.compare("system", Qt::CaseInsensitive) == 0) {
+                  // System
+                  conf->addDefine("USE_SYSTEM_QTSINGLEAPPLICATION");
+                  printf(" [system] ");
+                } else {
+                  printf(" [shipped] ");
+                }
+                return true;
+        }
+};
