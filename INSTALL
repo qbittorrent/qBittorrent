@@ -10,7 +10,7 @@ qBittorrent - A BitTorrent client in C++ / Qt4
   will install and execute qBittorrent hopefully without any problems.
 
   Dependencies:
-    - Qt >= 4.4.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
+    - Qt >= 4.5.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
 
     - pkg-config executable
 

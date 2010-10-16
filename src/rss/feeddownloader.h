@@ -41,18 +41,12 @@
 #include <QFile>
 #include <QDataStream>
 #include <QFileDialog>
+#include <QHash>
 
 #include "qbtsession.h"
 #include "ui_feeddownloader.h"
 #include "qinisettings.h"
 
-#if QT_VERSION >= 0x040500
-#include <QHash>
-#else
-#include <QMap>
-#define QHash QMap
-#define toHash toMap
-#endif
 
 class FeedFilter: public QHash<QString, QVariant> {
 private:
@@ -507,8 +501,5 @@ signals:
   void filteringEnabled();
 
 };
-
-#undef QHash
-#undef toHash
 
 #endif // FEEDDOWNLOADER_H

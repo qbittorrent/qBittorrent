@@ -35,11 +35,12 @@
 #include <QPointer>
 
 #include "ui_rss.h"
-#include "rss.h"
 
 class Bittorrent;
 class FeedListWidget;
 class QTreeWidgetItem;
+class RssFolder;
+class RssManager;
 
 class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
@@ -87,10 +88,5 @@ private:
   QTreeWidgetItem* previous_news;
 
 };
-
-#if QT_VERSION < 0x040500
-#undef QHash
-#undef toHash
-#endif
 
 #endif

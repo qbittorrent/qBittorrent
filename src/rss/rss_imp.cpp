@@ -44,6 +44,10 @@
 #include "cookiesdlg.h"
 #include "preferences.h"
 #include "rsssettings.h"
+#include "rssmanager.h"
+#include "rssfolder.h"
+#include "rssarticle.h"
+#include "rssfeed.h"
 
 enum NewsCols { NEWS_ICON, NEWS_TITLE_COL, NEWS_URL_COL, NEWS_ID };
 
@@ -72,7 +76,7 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
       }
     }
     myRSSListMenu.addAction(actionNew_subscription);
-    if(listStreams->getItemType(selectedItems.first()) == RssFile::STREAM) {
+    if(listStreams->getItemType(selectedItems.first()) == RssFile::FEED) {
       myRSSListMenu.addSeparator();
       myRSSListMenu.addAction(actionCopy_feed_URL);
       if(selectedItems.size() == 1) {
@@ -198,7 +202,7 @@ void RSSImp::on_newFeedButton_clicked() {
                              QMessageBox::Ok);
         return;
       }
-      RssStream *stream = rss_parent->addStream(newUrl);
+      RssFeed *stream = rss_parent->addStream(newUrl);
       // Create TreeWidget item
       QTreeWidgetItem* item;
       if(parent_item)
@@ -305,7 +309,7 @@ void RSSImp::on_updateAllButton_clicked() {
 void RSSImp::downloadTorrent() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
-    RssItem* article =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
+    RssArticle* article =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
     if(article->has_attachment()) {
       BTSession->downloadFromUrl(article->getTorrentUrl());
     } else {
@@ -318,7 +322,7 @@ void RSSImp::downloadTorrent() {
 void RSSImp::openNewsUrl() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
-    RssItem* news =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
+    RssArticle* news =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
     QString link = news->getLink();
     if(!link.isEmpty())
       QDesktopServices::openUrl(QUrl(link));
@@ -364,7 +368,7 @@ void RSSImp::refreshSelectedItems() {
       file->refresh();
       break;
     } else {
-      if(file->getType() == RssFile::STREAM) {
+      if(file->getType() == RssFile::FEED) {
         item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       } else {
         // Update feeds in the folder
@@ -383,7 +387,7 @@ void RSSImp::copySelectedFeedsURL() {
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   QTreeWidgetItem* item;
   foreach(item, selectedItems){
-    if(listStreams->getItemType(item) == RssFile::STREAM)
+    if(listStreams->getItemType(item) == RssFile::FEED)
       URLs << listStreams->getItemID(item);
   }
   qApp->clipboard()->setText(URLs.join("\n"));
@@ -392,7 +396,7 @@ void RSSImp::copySelectedFeedsURL() {
 void RSSImp::showFeedDownloader() {
   QTreeWidgetItem* item = listStreams->selectedItems()[0];
   RssFile* rss_item = listStreams->getRSSItem(item);
-  if(rss_item->getType() == RssFile::STREAM) {
+  if(rss_item->getType() == RssFile::FEED) {
     FeedDownloaderDlg* feedDownloader = new FeedDownloaderDlg(this, listStreams->getItemID(item), rss_item->getName(), BTSession);
     connect(feedDownloader, SIGNAL(filteringEnabled()), this, SLOT(on_updateAllButton_clicked()));
   }
@@ -427,7 +431,7 @@ void RSSImp::fillFeedsList(QTreeWidgetItem *parent, RssFolder *rss_parent) {
     // Notify TreeWidget of item addition
     listStreams->itemAdded(item, rss_child);
     // Set Icon
-    if(rss_child->getType() == RssFile::STREAM) {
+    if(rss_child->getType() == RssFile::FEED) {
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/loading.png"))));
     } else {
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/folder.png"))));
@@ -448,7 +452,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   if(!rss_item) return;
 
   qDebug("Getting the list of news");
-  QList<RssItem*> news;
+  QList<RssArticle*> news;
   if(rss_item == rssmanager)
     news = RssManager::sortNewsList(rss_item->getUnreadNewsList());
   else if(rss_item)
@@ -458,7 +462,7 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   previous_news = 0;
   listNews->clear();
   qDebug("Got the list of news");
-  foreach(RssItem* article, news){
+  foreach(RssArticle* article, news){
     QTreeWidgetItem* it = new QTreeWidgetItem(listNews);
     it->setText(NEWS_TITLE_COL, article->getTitle());
     it->setText(NEWS_URL_COL, article->getParent()->getUrl());
@@ -489,8 +493,8 @@ void RSSImp::refreshTextBrowser() {
     }
     previous_news = item;
   }
-  RssStream *stream = listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL));
-  RssItem* article = stream->getItem(item->text(NEWS_ID));
+  RssFeed *stream = listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL));
+  RssArticle* article = stream->getItem(item->text(NEWS_ID));
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
   html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->getTitle() + "</div>";
@@ -557,7 +561,7 @@ void RSSImp::updateFeedIcon(QString url, QString icon_path){
 
 void RSSImp::updateFeedInfos(QString url, QString aliasOrUrl, unsigned int nbUnread){
   QTreeWidgetItem *item = listStreams->getTreeItemFromUrl(url);
-  RssStream *stream = (RssStream*)listStreams->getRSSItem(item);
+  RssFeed *stream = (RssFeed*)listStreams->getRSSItem(item);
   item->setText(0, aliasOrUrl + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ QString(")"));
   if(!stream->isLoading())
     item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->getIconPath())));

@@ -39,14 +39,7 @@
 #include "misc.h"
 #include <vector>
 #include "qinisettings.h"
-
-#if QT_VERSION < 0x040500
-#include <QMap>
-#define QHash QMap
-#define toHash toMap
-#else
 #include <QHash>
-#endif
 
 class TorrentTempData {
 public:
@@ -440,8 +433,5 @@ public:
   }
 
 };
-
-#undef QHash
-#undef toHash
 
 #endif // TORRENTPERSISTENTDATA_H

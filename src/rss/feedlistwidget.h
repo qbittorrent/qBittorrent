@@ -38,7 +38,11 @@
 #include <QStringList>
 #include <QHash>
 #include <QUrl>
-#include "rss.h"
+
+#include "rssfile.h"
+
+class RssManager;
+class RssFeed;
 
 class FeedListWidget: public QTreeWidget {
   Q_OBJECT
@@ -59,7 +63,7 @@ public:
   RssFile::FileType getItemType(QTreeWidgetItem *item) const;
   QString getItemID(QTreeWidgetItem *item) const;
   QTreeWidgetItem* getTreeItemFromUrl(QString url) const;
-  RssStream* getRSSItemFromUrl(QString url) const;
+  RssFeed* getRSSItemFromUrl(QString url) const;
   QTreeWidgetItem* currentItem() const;
   QTreeWidgetItem* currentFeed() const;
 

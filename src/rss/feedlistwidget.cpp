@@ -28,15 +28,17 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
+#
 #include "feedlistwidget.h"
+#include "rssmanager.h"
+#include "rssfeed.h"
 
 FeedListWidget::FeedListWidget(QWidget *parent, RssManager *rssmanager): QTreeWidget(parent), rssmanager(rssmanager) {
   setContextMenuPolicy(Qt::CustomContextMenu);
   setDragDropMode(QAbstractItemView::InternalMove);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   setColumnCount(1);
-  QTreeWidgetItem *___qtreewidgetitem = headerItem();
-  ___qtreewidgetitem->setText(0, QApplication::translate("RSS", "RSS feeds", 0, QApplication::UnicodeUTF8));
+  headerItem()->setText(0, tr("RSS feeds"));
   unread_item = new QTreeWidgetItem(this);
   unread_item->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->getNbUnRead(), 10)+ QString(")"));
   unread_item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/mail-folder-inbox.png")));
@@ -52,18 +54,18 @@ FeedListWidget::~FeedListWidget() {
 
 void FeedListWidget::itemAdded(QTreeWidgetItem *item, RssFile* file) {
   mapping[item] = file;
-  if(file->getType() == RssFile::STREAM) {
+  if(file->getType() == RssFile::FEED) {
     feeds_items[file->getID()] = item;
   }
 }
 
 void FeedListWidget::itemAboutToBeRemoved(QTreeWidgetItem *item) {
   RssFile* file = mapping.take(item);
-  if(file->getType() == RssFile::STREAM) {
+  if(file->getType() == RssFile::FEED) {
     feeds_items.remove(file->getID());
   } else {
-    QList<RssStream*> feeds = ((RssFolder*)file)->getAllFeeds();
-    foreach(RssStream* feed, feeds) {
+    QList<RssFeed*> feeds = ((RssFolder*)file)->getAllFeeds();
+    foreach(RssFeed* feed, feeds) {
       feeds_items.remove(feed->getID());
     }
   }
@@ -121,7 +123,7 @@ QList<QTreeWidgetItem*> FeedListWidget::getAllFeedItems(QTreeWidgetItem* folder)
   int nbChildren = folder->childCount();
   for(int i=0; i<nbChildren; ++i) {
     QTreeWidgetItem *item = folder->child(i);
-    if(getItemType(item) == RssFile::STREAM) {
+    if(getItemType(item) == RssFile::FEED) {
       feeds << item;
     } else {
       feeds << getAllFeedItems(item);
@@ -146,8 +148,8 @@ QTreeWidgetItem* FeedListWidget::getTreeItemFromUrl(QString url) const{
   return feeds_items.value(url, 0);
 }
 
-RssStream* FeedListWidget::getRSSItemFromUrl(QString url) const {
-  return (RssStream*)getRSSItem(getTreeItemFromUrl(url));
+RssFeed* FeedListWidget::getRSSItemFromUrl(QString url) const {
+  return (RssFeed*)getRSSItem(getTreeItemFromUrl(url));
 }
 
 QTreeWidgetItem* FeedListWidget::currentItem() const {
@@ -161,7 +163,7 @@ QTreeWidgetItem* FeedListWidget::currentFeed() const {
 void FeedListWidget::updateCurrentFeed(QTreeWidgetItem* new_item) {
   if(!new_item) return;
   if(!mapping.contains(new_item)) return;
-  if((getItemType(new_item) == RssFile::STREAM) || new_item == unread_item)
+  if((getItemType(new_item) == RssFile::FEED) || new_item == unread_item)
     current_feed = new_item;
 }
 

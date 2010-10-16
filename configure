@@ -325,7 +325,7 @@ cat >$1/modules.cpp <<EOT
 #line 1 "qt4.qcm"
 /*
 -----BEGIN QCMOD-----
-name: Qt >= 4.4
+name: Qt >= 4.5
 arg: disable-gui, Disable qBittorrent Graphical user interface for headless running
 -----END QCMOD-----
 */
@@ -333,14 +333,14 @@ class qc_qt4 : public ConfObj
 {
 public:
 	qc_qt4(Conf *c) : ConfObj(c) {}
-	QString name() const { return "Qt >= 4.4"; }
-	QString shortname() const { return "Qt 4.4"; }
+	QString name() const { return "Qt >= 4.5"; }
+	QString shortname() const { return "Qt 4.5"; }
 	bool exec()
 	{
 		if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
 			conf->addDefine("DISABLE_GUI");
 		}	
-		return(QT_VERSION >= 0x040400);
+		return(QT_VERSION >= 0x040500);
 	}
 };
 #line 1 "pkg-config.qcm"
@@ -616,22 +616,22 @@ arg: with-qtsingleapplication=[system|shipped], Use the shipped qtsingleapplicat
 class qc_qtsingleapplication : public ConfObj
 {
 public:
-	qc_qtsingleapplication(Conf *c) : ConfObj(c) {}
-	QString name() const { return "qtsingleapplication library"; }
-	QString shortname() const { return "qtsingleapplication"; }
+        qc_qtsingleapplication(Conf *c) : ConfObj(c) {}
+        QString name() const { return "qtsingleapplication library"; }
+        QString shortname() const { return "qtsingleapplication"; }
 
-	bool exec(){
-        	QString s;
-		s = conf->getenv("QC_WITH_QTSINGLEAPPLICATION");
+        bool exec(){
+                QString s;
+                s = conf->getenv("QC_WITH_QTSINGLEAPPLICATION");
                 if(s.compare("system", Qt::CaseInsensitive) == 0) {
                   // System
                   conf->addDefine("USE_SYSTEM_QTSINGLEAPPLICATION");
                   printf(" [system] ");
                 } else {
                   printf(" [shipped] ");
-		}
-		return true;
-	}
+                }
+                return true;
+        }
 };
 
 EOT
