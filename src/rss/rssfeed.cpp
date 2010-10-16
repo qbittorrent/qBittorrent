@@ -297,7 +297,7 @@ short RssFeed::readDoc(QIODevice* device) {
     else
       torrent_url = item->getLink();
     // Check if the item should be automatically downloaded
-    FeedFilter * matching_filter = FeedFilters::getFeedFilters(url).matches(item->getTitle());
+    RssFilter * matching_filter = RssFilters::getFeedFilters(url).matches(item->getTitle());
     if(matching_filter != 0) {
       // Download the torrent
       BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez, Arnaud Demaiziere
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,62 +25,56 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef FEEDDOWNLOADER_H
-#define FEEDDOWNLOADER_H
+#ifndef RSSDOWNLOADERFILTERS_H
+#define RSSDOWNLOADERFILTERS_H
 
-#include <QString>
-#include <QListWidget>
-#include <QListWidgetItem>
-#include <QInputDialog>
-#include <QMessageBox>
-#include <QRegExp>
-#include <QMenu>
-#include <QFile>
-#include <QDataStream>
-#include <QFileDialog>
 #include <QHash>
+#include <QStringList>
+#include <QVariant>
 
-#include "qbtsession.h"
-#include "ui_feeddownloader.h"
-#include "qinisettings.h"
-#include "rssfilters.h"
+class RssFilter: public QHash<QString, QVariant> {
+private:
+  bool valid;
+public:
+  RssFilter();
+  RssFilter(bool valid);
+  RssFilter(QHash<QString, QVariant> filter);
+  bool matches(QString s);
+  bool isValid() const;
+  QStringList getMatchingTokens() const;
+  QString getMatchingTokens_str() const;
+  void setMatchingTokens(QString tokens);
+  QStringList getNotMatchingTokens() const;
+  QString getNotMatchingTokens_str() const;
+  void setNotMatchingTokens(QString tokens);
+  QString getSavePath() const;
+  void setSavePath(QString save_path);
+};
 
-class FeedDownloaderDlg : public QDialog, private Ui_FeedDownloader{
-  Q_OBJECT
+class RssFilters : public QHash<QString, QVariant> {
 
 public:
-  FeedDownloaderDlg(QWidget *parent, QString feed_url, QString feed_name, Bittorrent* BTSession);
-  ~FeedDownloaderDlg();
-
-protected slots:
-  void saveCurrentFilterSettings();
-  void on_browse_button_clicked();
-  void fillFiltersList();
-  void displayFiltersListMenu(const QPoint&);
-  void showFilterSettings(QListWidgetItem *item);
-  void deleteFilter();
-  void renameFilter();
-  void enableFilterBox(int state);
-  QString askFilterName(QString name=QString::null);
-  void addFilter();
-  void clearFields();
-  void on_testButton_clicked(bool);
-  void on_importButton_clicked(bool);
-  void on_exportButton_clicked(bool);
-
-signals:
-  void filteringEnabled();
+  RssFilters();
+  RssFilters(QString feed_url, QHash<QString, QVariant> filters);
+  bool hasFilter(QString name) const;
+  RssFilter* matches(QString s);
+  QStringList names() const;
+  RssFilter getFilter(QString name) const;
+  void setFilter(QString name, RssFilter f);
+  bool isDownloadingEnabled() const;
+  void setDownloadingEnabled(bool enabled);
+  static RssFilters getFeedFilters(QString url);
+  void rename(QString old_name, QString new_name);
+  bool serialize(QString path);
+  bool unserialize(QString path);
+  void save();
 
 private:
   QString feed_url;
-  QString feed_name;
-  RssFilters filters;
-  Bittorrent *BTSession;
-  QString selected_filter; // name
 
 };
 
-#endif // FEEDDOWNLOADER_H
+#endif // RSSDOWNLOADERFILTERS_H

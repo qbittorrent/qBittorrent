@@ -10,7 +10,8 @@ INCLUDEPATH += $$PWD
               $$PWD/rssfeed.h \
               $$PWD/rssfolder.h \
               $$PWD/rssfile.h \
-              $$PWD/rssarticle.h
+              $$PWD/rssarticle.h \
+              $$PWD/rssfilters.h
   
   SOURCES += $$PWD/rss_imp.cpp \
              $$PWD/rsssettings.cpp \
@@ -18,7 +19,9 @@ INCLUDEPATH += $$PWD
              $$PWD/rssmanager.cpp \
              $$PWD/rssfeed.cpp \
              $$PWD/rssfolder.cpp \
-             $$PWD/rssarticle.cpp
+             $$PWD/rssarticle.cpp \
+             $$PWD/feeddownloader.cpp \
+             $$PWD/rssfilters.cpp
 
   FORMS +=   $$PWD/ui/rss.ui \
              $$PWD/ui/feeddownloader.ui \
