@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.6
+* Sun Oct 17 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.6
     - BUGFIX: Fix "torrent seeding after creation" feature
     - BUGFIX: The properties panel data would sometimes not match the selected torrent
     - BUGFIX: Fix detection of files at final destination when temp dir is used
