@@ -885,8 +885,8 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
 
   //Getting fast resume data if existing
   bool fastResume = false;
+  std::vector<char> buf; // Needs to stay in the function scope
   if(resumed) {
-    std::vector<char> buf;
     if(loadFastResumeData(hash, buf)) {
       fastResume = true;
       p.resume_data = &buf;
@@ -1039,8 +1039,8 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
   // Get fast resume data if existing
   bool fastResume = false;
+  std::vector<char> buf; // Needs to stay in the function scope
   if(resumed) {
-    std::vector<char> buf;
     if(loadFastResumeData(hash, buf)) {
       fastResume = true;
       p.resume_data = &buf;
