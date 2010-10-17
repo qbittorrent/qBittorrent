@@ -44,7 +44,7 @@ public:
     // Enable Web UI
     Preferences::setWebUiEnabled(true);
     // Instanciate Bittorrent Object
-    BTSession = new Bittorrent();
+    BTSession = new QBtSession();
     connect(BTSession, SIGNAL(newConsoleMessage(QString)), this, SLOT(displayConsoleMessage(QString)));
     // Resume unfinished torrents
     BTSession->startUpTorrents();
@@ -103,7 +103,7 @@ public slots:
   }
 
 private:
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
 
 };
 

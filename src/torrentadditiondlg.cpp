@@ -30,7 +30,7 @@
 
 #include "torrentadditiondlg.h"
 
-torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label(""), hidden_height(0), cursor_pos(-1) {
+torrentAdditionDialog::torrentAdditionDialog(GUI *parent, QBtSession* _BTSession) : QDialog((QWidget*)parent), old_label(""), hidden_height(0), cursor_pos(-1) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   connect(this, SIGNAL(torrentPaused(QTorrentHandle&)), parent->getTransferList(), SLOT(pauseTorrent(QTorrentHandle&)));

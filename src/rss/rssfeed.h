@@ -36,7 +36,7 @@
 #include "rssfile.h"
 
 class RssManager;
-class Bittorrent;
+class QBtSession;
 
 class RssFeed: public RssFile, public QHash<QString, RssArticle*> {
   Q_OBJECT
@@ -44,7 +44,7 @@ class RssFeed: public RssFile, public QHash<QString, RssArticle*> {
 private:
   RssFolder *parent;
   RssManager *rssmanager;
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
   QString title;
   QString link;
   QString description;
@@ -63,7 +63,7 @@ public slots:
   void setDownloadFailed();
 
 public:
-  RssFeed(RssFolder* parent, RssManager *rssmanager, Bittorrent *BTSession, QString _url);
+  RssFeed(RssFolder* parent, RssManager *rssmanager, QBtSession *BTSession, QString _url);
   ~RssFeed();
   RssFolder* getParent() const { return parent; }
   void setParent(RssFolder* _parent) { parent = _parent; }

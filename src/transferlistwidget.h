@@ -37,7 +37,7 @@
 
 class QStandardItemModel;
 class QSortFilterProxyModel;
-class Bittorrent;
+class QBtSession;
 class QTimer;
 class TransferListDelegate;
 class GUI;
@@ -48,7 +48,7 @@ class TransferListWidget: public QTreeView {
   Q_OBJECT
 
 public:
-  TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent* BTSession);
+  TransferListWidget(QWidget *parent, GUI *main_window, QBtSession* BTSession);
   ~TransferListWidget();
   int getNbTorrents() const;
   QStandardItemModel* getSourceModel() const;
@@ -134,7 +134,7 @@ private:
   QSortFilterProxyModel *nameFilterModel;
   QSortFilterProxyModel *statusFilterModel;
   QSortFilterProxyModel *labelFilterModel;
-  Bittorrent* BTSession;
+  QBtSession* BTSession;
   QTimer *refreshTimer;
   GUI *main_window;
 };

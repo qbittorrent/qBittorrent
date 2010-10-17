@@ -59,7 +59,7 @@
 #define SEARCHHISTORY_MAXSIZE 50
 
 /*SEARCH ENGINE START*/
-SearchEngine::SearchEngine(GUI *parent, Bittorrent *BTSession) : QWidget(parent), BTSession(BTSession), parent(parent) {
+SearchEngine::SearchEngine(GUI *parent, QBtSession *BTSession) : QWidget(parent), BTSession(BTSession), parent(parent) {
   setupUi(this);
   // new qCompleter to the search pattern
   startSearchHistory();

@@ -39,7 +39,7 @@ class RssManager: public RssFolder {
   Q_OBJECT
 
 public:
-  RssManager(Bittorrent *BTSession);
+  RssManager(QBtSession *BTSession);
   ~RssManager();
   static void insertSortElem(QList<RssArticle*> &list, RssArticle *item);
   static QList<RssArticle*> sortNewsList(const QList<RssArticle*>& news_list);
@@ -59,7 +59,7 @@ signals:
 private:
   QTimer newsRefresher;
   unsigned int refreshInterval;
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
 
 };
 

@@ -80,7 +80,7 @@ void HttpServer::resetNbFailedAttemptsForIp(QString ip) {
   client_failed_attempts.remove(ip);
 }
 
-HttpServer::HttpServer(Bittorrent *_BTSession, int msec, QObject* parent) : QTcpServer(parent) {
+HttpServer::HttpServer(QBtSession *_BTSession, int msec, QObject* parent) : QTcpServer(parent) {
   username = Preferences::getWebUiUsername().toLocal8Bit();
   password_ha1 = Preferences::getWebUiPassword().toLocal8Bit();
   connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));

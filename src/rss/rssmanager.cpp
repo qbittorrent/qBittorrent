@@ -34,7 +34,7 @@
 #include "rssfeed.h"
 #include "rssarticle.h"
 
-RssManager::RssManager(Bittorrent *BTSession): RssFolder(0, this, BTSession, QString::null) {
+RssManager::RssManager(QBtSession *BTSession): RssFolder(0, this, BTSession, QString::null) {
   loadStreamList();
   connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshAll()));
   refreshInterval = Preferences::getRSSRefreshInterval();

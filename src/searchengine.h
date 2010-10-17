@@ -41,7 +41,7 @@
 #include "searchtab.h"
 #include "supportedengines.h"
 
-class Bittorrent;
+class QBtSession;
 class downloadThread;
 class QTimer;
 class SearchEngine;
@@ -60,7 +60,7 @@ private:
   unsigned long nb_search_results;
   QPointer<QCompleter> searchCompleter;
   QStringListModel searchHistory;
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
   QPointer<SearchTab> currentSearchTab;
@@ -75,7 +75,7 @@ private:
 #endif
 
 public:
-  SearchEngine(GUI *parent, Bittorrent *BTSession);
+  SearchEngine(GUI *parent, QBtSession *BTSession);
   ~SearchEngine();
   QString selectedCategory() const;
 

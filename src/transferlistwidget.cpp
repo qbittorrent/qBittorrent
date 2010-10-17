@@ -55,7 +55,7 @@
 
 #include "qinisettings.h"
 
-TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, Bittorrent *_BTSession):
+TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, QBtSession *_BTSession):
     QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
   QIniSettings settings("qBittorrent", "qBittorrent");
   // Create and apply delegate

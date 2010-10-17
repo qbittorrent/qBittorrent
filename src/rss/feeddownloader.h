@@ -52,7 +52,7 @@ class FeedDownloaderDlg : public QDialog, private Ui_FeedDownloader{
   Q_OBJECT
 
 public:
-  FeedDownloaderDlg(QWidget *parent, QString feed_url, QString feed_name, Bittorrent* BTSession);
+  FeedDownloaderDlg(QWidget *parent, QString feed_url, QString feed_name, QBtSession* BTSession);
   ~FeedDownloaderDlg();
 
 protected slots:
@@ -78,7 +78,7 @@ private:
   QString feed_url;
   QString feed_name;
   RssFilters filters;
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
   QString selected_filter; // name
 
 };

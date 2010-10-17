@@ -35,7 +35,7 @@
 #include "rssmanager.h"
 #include "rssfeed.h"
 
-RssFolder::RssFolder(RssFolder *parent, RssManager *rssmanager, Bittorrent *BTSession, QString name): parent(parent), rssmanager(rssmanager), BTSession(BTSession), name(name) {
+RssFolder::RssFolder(RssFolder *parent, RssManager *rssmanager, QBtSession *BTSession, QString name): parent(parent), rssmanager(rssmanager), BTSession(BTSession), name(name) {
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processFinishedDownload(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));

@@ -62,13 +62,13 @@ class HttpServer;
 class BandwidthScheduler;
 class ScanFoldersModel;
 
-class Bittorrent : public QObject {
+class QBtSession : public QObject {
   Q_OBJECT
 
 public:
   // Constructor / Destructor
-  Bittorrent();
-  ~Bittorrent();
+  QBtSession();
+  ~QBtSession();
   QTorrentHandle getTorrentHandle(QString hash) const;
   std::vector<torrent_handle> getTorrents() const;
   bool isFilePreviewPossible(QString fileHash) const;
@@ -166,6 +166,10 @@ public slots:
 protected:
   QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString::null, QString root_folder=QString::null);
   bool initWebUi(QString username, QString password, int port);
+  bool loadFastResumeData(QString hash, std::vector<char> &buf);
+  void loadTorrentSettings(QTorrentHandle h);
+  void loadTorrentTempData(QTorrentHandle h, QString savePath, bool magnet);
+  add_torrent_params initializeAddTorrentParams(QString hash);
 
 protected slots:
   void addTorrentsFromScanFolder(QStringList&);
@@ -178,6 +182,7 @@ protected slots:
   void autoRunExternalProgram(QTorrentHandle h, bool async=true);
   void cleanUpAutoRunProcess(int);
   void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<torrent_info> t);
+  void exportTorrentFile(QTorrentHandle h);
 
 signals:
   void addedTorrent(QTorrentHandle& h);

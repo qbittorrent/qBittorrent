@@ -62,7 +62,7 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
   Q_OBJECT
 
 public:
-  torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession);
+  torrentAdditionDialog(GUI *parent, QBtSession* _BTSession);
   ~torrentAdditionDialog();
   void readSettings();
   void saveSettings();
@@ -96,7 +96,7 @@ signals:
   void torrentPaused(QTorrentHandle &h);
 
 private:
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
   QString fileName;
   QString hash;
   QString filePath;

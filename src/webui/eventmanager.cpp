@@ -40,7 +40,7 @@
 #include <QDebug>
 #include <QTranslator>
 
-EventManager::EventManager(QObject *parent, Bittorrent *BTSession)
+EventManager::EventManager(QObject *parent, QBtSession *BTSession)
   : QObject(parent), BTSession(BTSession)
 {
 }

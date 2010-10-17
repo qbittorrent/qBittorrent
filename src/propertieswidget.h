@@ -38,7 +38,7 @@
 
 class TransferListWidget;
 class QTimer;
-class Bittorrent;
+class QBtSession;
 class TorrentFilesModel;
 class PropListDelegate;
 class QAction;
@@ -60,7 +60,7 @@ private:
   GUI *main_window;
   QTorrentHandle h;
   QTimer *refreshTimer;
-  Bittorrent* BTSession;
+  QBtSession* BTSession;
   SlideState state;
   TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
@@ -71,10 +71,10 @@ private:
   PieceAvailabilityBar *pieces_availability;
 
 public:
-  PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, Bittorrent* BTSession);
+  PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, QBtSession* BTSession);
   ~PropertiesWidget();
   QTorrentHandle getCurrentTorrent() const;
-  Bittorrent* getBTSession() const;
+  QBtSession* getBTSession() const;
   TrackerList* getTrackerList() const { return trackerList; }
   PeerListWidget* getPeerList() const { return peersList; }
   QTreeView* getFilesList() const { return filesList; }

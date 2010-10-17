@@ -76,6 +76,10 @@ public:
     return QString(o.str().c_str());
   }
 
+  static inline sha1_hash toSha1Hash(QString hash) {
+    return sha1_hash(qPrintable(hash));
+  }
+
   static void chmod644(const QDir& folder);
 
   static inline QString removeLastPathPart(QString path) {

@@ -36,7 +36,7 @@
 
 #include "ui_rss.h"
 
-class Bittorrent;
+class QBtSession;
 class FeedListWidget;
 class QTreeWidgetItem;
 class RssFolder;
@@ -46,7 +46,7 @@ class RSSImp : public QWidget, public Ui::RSS{
   Q_OBJECT
 
 public:
-  RSSImp(Bittorrent *BTSession);
+  RSSImp(QBtSession *BTSession);
   ~RSSImp();
 
 public slots:
@@ -83,7 +83,7 @@ protected slots:
 
 private:
   RssManager *rssmanager;
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
   FeedListWidget *listStreams;
   QTreeWidgetItem* previous_news;
 

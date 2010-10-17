@@ -38,7 +38,7 @@
 #include <QHash>
 #include "preferences.h"
 
-class Bittorrent;
+class QBtSession;
 class QTimer;
 class EventManager;
 
@@ -48,7 +48,7 @@ class HttpServer : public QTcpServer {
   Q_OBJECT
 
 public:
-  HttpServer(Bittorrent *BTSession, int msec, QObject* parent = 0);
+  HttpServer(QBtSession *BTSession, int msec, QObject* parent = 0);
   ~HttpServer();
   void setAuthorization(QString username, QString password_ha1);
   bool isAuthorized(QByteArray auth, QString method) const;
@@ -66,7 +66,7 @@ private slots:
 private:
   QByteArray username;
   QByteArray password_ha1;
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
   EventManager *manager;
   QTimer *timer;
   QHash<QString, int> client_failed_attempts;

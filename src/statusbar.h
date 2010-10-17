@@ -60,10 +60,10 @@ private:
   QTimer *refreshTimer;
   QWidget *container;
   QGridLayout *layout;
-  Bittorrent *BTSession;
+  QBtSession *BTSession;
 
 public:
-  StatusBar(QStatusBar *bar, Bittorrent *BTSession): bar(bar), BTSession(BTSession) {
+  StatusBar(QStatusBar *bar, QBtSession *BTSession): bar(bar), BTSession(BTSession) {
     connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     container = new QWidget();
     layout = new QGridLayout(container);

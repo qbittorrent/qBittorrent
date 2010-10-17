@@ -30,7 +30,7 @@
 
 #include "feeddownloader.h"
 
-FeedDownloaderDlg::FeedDownloaderDlg(QWidget *parent, QString feed_url, QString feed_name, Bittorrent* BTSession):
+FeedDownloaderDlg::FeedDownloaderDlg(QWidget *parent, QString feed_url, QString feed_name, QBtSession* BTSession):
   QDialog(parent), feed_url(feed_url), feed_name(feed_name), BTSession(BTSession), selected_filter(QString::null)
 {
   setupUi(this);

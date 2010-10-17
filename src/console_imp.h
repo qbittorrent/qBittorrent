@@ -40,10 +40,10 @@ class consoleDlg : public QDialog, private Ui_ConsoleDlg{
   Q_OBJECT
   
   private:
-    Bittorrent *BTSession;
+    QBtSession *BTSession;
   
   public:
-    consoleDlg(QWidget *parent, Bittorrent* _BTSession) : QDialog(parent) {
+    consoleDlg(QWidget *parent, QBtSession* _BTSession) : QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       setModal(true);

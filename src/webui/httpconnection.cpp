@@ -46,7 +46,7 @@
 #include <QRegExp>
 #include <QTemporaryFile>
 
-HttpConnection::HttpConnection(QTcpSocket *socket, Bittorrent *BTSession, HttpServer *parent)
+HttpConnection::HttpConnection(QTcpSocket *socket, QBtSession *BTSession, HttpServer *parent)
   : QObject(parent), socket(socket), parent(parent), BTSession(BTSession)
 {
   socket->setParent(this);
