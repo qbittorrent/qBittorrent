@@ -1486,7 +1486,9 @@ void TransferListWidget::applyStatusFilter(int f) {
     statusFilterModel->setFilterRegExp(QRegExp());
   }
   // Select first item if nothing is selected
-  if(selectionModel()->selectedRows(0).empty() && statusFilterModel->rowCount() > 0)
-    selectionModel()->setCurrentIndex(statusFilterModel->index(0, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
+  if(selectionModel()->selectedRows(0).empty() && nameFilterModel->rowCount() > 0) {
+    qDebug("Nothing is selected, selecting first row: %s", qPrintable(nameFilterModel->index(0, TR_NAME).data().toString()));
+    selectionModel()->setCurrentIndex(nameFilterModel->index(0, TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
+  }
 }
 

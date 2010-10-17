@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.6
     - BUGFIX: Fix "torrent seeding after creation" feature
+    - BUGFIX: The properties panel data would sometimes not match the selected torrent
 
 * Tue Oct 12 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.5
     - BUGFIX: Remember torrent completion date correctly
