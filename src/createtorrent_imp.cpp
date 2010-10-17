@@ -220,16 +220,22 @@ void createtorrent::handleCreationSuccess(QString path, QString branch_path) {
   // Remove busy cursor
   setCursor(QCursor(Qt::ArrowCursor));
   if(checkStartSeeding->isChecked()) {
+    QString root_folder;
     // Create save path temp data
     boost::intrusive_ptr<torrent_info> t;
     try {
       t = new torrent_info(path.toUtf8().data());
+      root_folder = misc::truncateRootFolder(t);
     } catch(std::exception&) {
       QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
       return;
     }
     QString hash = misc::toQString(t->info_hash());
-    TorrentTempData::setSavePath(hash, branch_path);
+    QString save_path = branch_path;
+    if(!root_folder.isEmpty()) {
+      save_path = QDir(save_path).absoluteFilePath(root_folder);
+    }
+    TorrentTempData::setSavePath(hash, save_path);
 #if LIBTORRENT_VERSION_MINOR > 14
     // Enable seeding mode (do not recheck the files)
     TorrentTempData::setSeedingMode(hash, true);
@@ -285,8 +291,7 @@ void torrentCreatorThread::run() {
   char const* creator_str = "qBittorrent "VERSION;
   try {
     file_storage fs;
-    file_pool fp;
-    path full_path = complete(path(input_path.toLocal8Bit().data()));
+    path full_path = complete(path(input_path.toUtf8().constData()));
     // Adding files to the torrent
     add_files(fs, full_path, file_filter);
     if(abort) return;
@@ -311,7 +316,7 @@ void torrentCreatorThread::run() {
     t.set_priv(is_private);
     if(abort) return;
     // create the torrent and print it to out
-    ofstream out(complete(path((const char*)save_path.toLocal8Bit())), std::ios_base::binary);
+    ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
     bencode(std::ostream_iterator<char>(out), t.generate());
     emit updateProgress(100);
     emit creationSuccess(save_path, QString::fromUtf8(full_path.branch_path().string().c_str()));
