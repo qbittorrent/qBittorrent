@@ -177,6 +177,7 @@ protected slots:
   void sendNotificationEmail(QTorrentHandle h);
   void autoRunExternalProgram(QTorrentHandle h, bool async=true);
   void cleanUpAutoRunProcess(int);
+  void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<torrent_info> t);
 
 signals:
   void addedTorrent(QTorrentHandle& h);
