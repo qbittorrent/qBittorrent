@@ -633,6 +633,10 @@ void QTorrentHandle::move_storage(QString new_path) const {
   Q_ASSERT(h.is_valid());
   if(QDir(save_path()) == QDir(new_path)) return;
   TorrentPersistentData::setPreviousSavePath(hash(), save_path());
+  // Create destination directory if necessary
+  // or move_storage() will fail...
+  QDir().mkpath(new_path);
+  // Actually move the storage
   h.move_storage(new_path.toLocal8Bit().constData());
 }
 
