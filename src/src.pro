@@ -12,16 +12,16 @@ CONFIG += qt \
 
 # Update this VERSION for each release
 os2 {
-    DEFINES += VERSION=\'\"v2.5.0alpha\"\'
+    DEFINES += VERSION=\'\"v2.5.0beta1\"\'
 } else {
-    DEFINES += VERSION=\\\"v2.5.0alpha\\\"
+    DEFINES += VERSION=\\\"v2.5.0beta1\\\"
 }
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=5
 DEFINES += VERSION_BUGFIX=0
 
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
-DEFINES += VERSION_TYPE=ALPHA
+DEFINES += VERSION_TYPE=BETA
 
 win32 {
   exists(../winconf.pri) {
