@@ -897,11 +897,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   // Get save path
   QString torrent_name = misc::magnetUriToName(magnet_uri);
   const QString savePath(getSavePath(hash, false, QString::null, torrent_name));
-  if(!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)
-    #if LIBTORRENT_VERSION_MINOR > 14
-      && !TorrentTempData::isSeedingMode(hash)
-    #endif
-      ) {
+  if(!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -931,10 +927,10 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   Q_ASSERT(h.hash() == hash);
 
   // If temp path is enabled, move torrent
-  /*if(!defaultTempPath.isEmpty() && !resumed) {
+  if(!defaultTempPath.isEmpty() && !resumed) {
     qDebug("Temp folder is enabled, moving new torrent to temp folder");
     h.move_storage(defaultTempPath);
-  }*/
+  }
 
   loadTorrentSettings(h);
 
@@ -1058,11 +1054,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash, fromScanDir, path, root_folder);
   }
-  if(!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)
-    #if LIBTORRENT_VERSION_MINOR > 14
-      && !TorrentTempData::isSeedingMode(hash)
-    #endif
-      ) {
+  if(!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     if(!root_folder.isEmpty()) {
@@ -1096,7 +1088,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   TorrentPersistentData::setRootFolder(hash, root_folder);
 
   // If temp path is enabled, move torrent
-  /*if(!defaultTempPath.isEmpty() && !resumed) {
+  if(!defaultTempPath.isEmpty() && !resumed) {
     qDebug("Temp folder is enabled, moving new torrent to temp folder");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     if(!root_folder.isEmpty()) {
@@ -1104,7 +1096,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       torrent_tmp_path += root_folder;
     }
     h.move_storage(torrent_tmp_path);
-  }*/
+  }
 
   loadTorrentSettings(h);
 
