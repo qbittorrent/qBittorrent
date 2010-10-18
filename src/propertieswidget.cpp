@@ -776,12 +776,16 @@ void PropertiesWidget::renameSelectedFile() {
       if(h.has_metadata() && h.num_files() == 1) {
         new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"),  h.firstFileSavePath());
       } else {
-        const QDir saveDir(h.save_path());
-        if(saveDir.exists()){
-          new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), h.save_path());
-        }else{
-          new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
-        }
+        const QDir saveDir(TorrentPersistentData::getSavePath(h.hash()));
+        QFileDialog dlg(this, tr("Choose save path"), saveDir.absolutePath());
+        dlg.setConfirmOverwrite(false);
+        dlg.setFileMode(QFileDialog::Directory);
+        dlg.setOption(QFileDialog::ShowDirsOnly, true);
+        dlg.setFilter(QDir::AllDirs);
+        dlg.setAcceptMode(QFileDialog::AcceptSave);
+        dlg.setNameFilterDetailsVisible(false);
+        if(dlg.exec())
+          new_path = dlg.selectedFiles().first();
       }
       if(!new_path.isEmpty()){
         // Check if savePath exists
@@ -793,15 +797,11 @@ void PropertiesWidget::renameSelectedFile() {
           save_path_dir = parts.join("/");
         }
         QDir savePath(misc::expandPath(save_path_dir));
-        if(!savePath.exists()){
-          if(!savePath.mkpath(savePath.absolutePath())){
-            QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
-            return;
-          }
-        }
         // Actually move storage
-        if(!BTSession->useTemporaryFolder() || h.is_seed())
+        if(!BTSession->useTemporaryFolder() || h.is_seed()) {
+          if(!savePath.exists()) savePath.mkpath(savePath.absolutePath());
           h.move_storage(savePath.absolutePath());
+        }
         // Update save_path in dialog
         QString display_path;
         if(h.has_metadata() && h.num_files() == 1) {
