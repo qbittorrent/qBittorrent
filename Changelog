@@ -2,6 +2,7 @@
     - BUGFIX: Display the priority column when the queueing system gets enabled
     - BUGFIX: Fix encoding problem in file renaming
     - BUGFIX: Delete uneeded files on torrent "soft" deletion
+    - BUGFIX: Fix issues when marking a file as 'not downloaded' causes the torrent to complete
 
 * Sun Oct 17 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.6
     - BUGFIX: Fix "torrent seeding after creation" feature
