@@ -611,7 +611,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kies opslag pad</translation>
     </message>
 </context>
 <context>
@@ -1992,15 +1992,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kies opslag pad</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Opslag pad aanmaak fout</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2996,15 +2996,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kies opslag pad</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Opslag pad aanmaak fout</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
         <source>Set location...</source>

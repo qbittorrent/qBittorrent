@@ -3069,7 +3069,7 @@ Do you want to install it now?</source>
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usuń</translation>
     </message>
 </context>
 <context>
