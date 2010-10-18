@@ -654,25 +654,26 @@ void TransferListWidget::setSelectedTorrentsLocation() {
   if(hashes.isEmpty()) return;
   QString dir;
   const QDir saveDir(TorrentPersistentData::getSavePath(hashes.first()));
-  qDebug("Torrent save path is %s", qPrintable(saveDir.absolutePath()));
-  if(saveDir.exists()){
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.path());
-  }else{
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
-  }
-  if(!dir.isNull()){
+  qDebug("Old save path is %s", qPrintable(saveDir.absolutePath()));
+  QFileDialog dlg(this, tr("Choose save path"), saveDir.absolutePath());
+  dlg.setConfirmOverwrite(false);
+  dlg.setFileMode(QFileDialog::Directory);
+  dlg.setOption(QFileDialog::ShowDirsOnly, true);
+  dlg.setFilter(QDir::AllDirs);
+  dlg.setAcceptMode(QFileDialog::AcceptSave);
+  dlg.setNameFilterDetailsVisible(false);
+  if(dlg.exec())
+    dir = dlg.selectedFiles().first();
+  if(!dir.isNull()) {
+    qDebug("New path is %s", qPrintable(dir));
     // Check if savePath exists
     QDir savePath(misc::expandPath(dir));
-    if(!savePath.exists()){
-      if(!savePath.mkpath(savePath.absolutePath())){
-        QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
-        return;
-      }
-    }
+    qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
     foreach(const QString & hash, hashes) {
       // Actually move storage
       QTorrentHandle h = BTSession->getTorrentHandle(hash);
       if(!BTSession->useTemporaryFolder() || h.is_seed()) {
+        if(!savePath.exists()) savePath.mkpath(savePath.absolutePath());
         h.move_storage(savePath.absolutePath());
       } else {
         TorrentPersistentData::saveSavePath(h.hash(), savePath.absolutePath());
