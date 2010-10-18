@@ -865,6 +865,7 @@ void TransferListWidget::copySelectedMagnetURIs() const {
 }
 
 void TransferListWidget::hidePriorityColumn(bool hide) {
+  qDebug("hidePriorityColumn(%d)", hide);
   setColumnHidden(TR_PRIORITY, hide);
 }
 
