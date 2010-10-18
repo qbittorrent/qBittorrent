@@ -756,7 +756,13 @@ void Bittorrent::deleteTorrent(QString hash, bool delete_local_files) {
       savePathsToRemove[hash] = save_dir.absolutePath();
     s->remove_torrent(h.get_torrent_handle(), session::delete_files);
   } else {
+    QStringList uneeded_files = h.uneeded_files_path();
     s->remove_torrent(h.get_torrent_handle());
+    // Remove unneeded files
+    foreach(const QString &uneeded_file, uneeded_files) {
+      qDebug("Removing uneeded file: %s", qPrintable(uneeded_file));
+      misc::safeRemove(uneeded_file);
+    }
   }
   // Remove it from torrent backup directory
   QDir torrentBackup(misc::BTBackupLocation());

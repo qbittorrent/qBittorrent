@@ -1,5 +1,7 @@
 * Unreleased  - Christophe Dumez <chris@qbittorrent.org> - v2.4.7
     - BUGFIX: Display the priority column when the queueing system gets enabled
+    - BUGFIX: Fix encoding problem in file renaming
+    - BUGFIX: Delete uneeded files on torrent "soft" deletion
 
 * Sun Oct 17 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.6
     - BUGFIX: Fix "torrent seeding after creation" feature
