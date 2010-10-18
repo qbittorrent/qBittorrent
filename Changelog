@@ -1,3 +1,6 @@
+* Unreleased  - Christophe Dumez <chris@qbittorrent.org> - v2.4.7
+    - BUGFIX: Display the priority column when the queueing system gets enabled
+
 * Sun Oct 17 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.6
     - BUGFIX: Fix "torrent seeding after creation" feature
     - BUGFIX: The properties panel data would sometimes not match the selected torrent

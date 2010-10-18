@@ -964,7 +964,7 @@ void GUI::loadPreferences(bool configure_session) {
   properties->getPeerList()->setAlternatingRowColors(Preferences::useAlternatingRowColors());
   // Queueing System
   if(Preferences::isQueueingSystemEnabled()) {
-    if(!configure_session || !BTSession->isQueueingEnabled()) {
+    if(!actionDecreasePriority->isVisible()) {
       transferList->hidePriorityColumn(false);
       actionDecreasePriority->setVisible(true);
       actionIncreasePriority->setVisible(true);
@@ -973,7 +973,7 @@ void GUI::loadPreferences(bool configure_session) {
       toolBar->layout()->setSpacing(7);
     }
   } else {
-    if(BTSession->isQueueingEnabled()) {
+    if(actionDecreasePriority->isVisible()) {
       transferList->hidePriorityColumn(true);
       actionDecreasePriority->setVisible(false);
       actionIncreasePriority->setVisible(false);
