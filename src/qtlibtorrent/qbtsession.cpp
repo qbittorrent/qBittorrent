@@ -2004,12 +2004,14 @@ void QBtSession::readAlerts() {
       QTorrentHandle h(p->handle);
       if(h.is_valid()) {
         const QString hash = h.hash();
+        qDebug("Got a torrent finished alert for %s", qPrintable(h.name()));
 #if LIBTORRENT_VERSION_MINOR > 14
         // Remove .!qB extension if necessary
         if(appendqBExtension)
           appendqBextensionToTorrent(h, false);
 #endif
         const bool was_already_seeded = TorrentPersistentData::isSeed(hash);
+        qDebug("Was already seeded: %d", was_already_seeded);
         if(!was_already_seeded) {
           h.save_resume_data();
           qDebug("Checking if the torrent contains torrent files to download");
@@ -2040,15 +2042,18 @@ void QBtSession::readAlerts() {
             const QDir current_dir(h.save_path());
             const QDir save_dir(getSavePath(hash));
             if(current_dir != save_dir) {
+              qDebug("Moving torrent from the temp folder");
               h.move_storage(save_dir.absolutePath());
             }
           }
           // Remember finished state
+          qDebug("Saving seed status");
           TorrentPersistentData::saveSeedStatus(h);
           // Recheck if the user asked to
           if(Preferences::recheckTorrentsOnCompletion()) {
             h.force_recheck();
           }
+          qDebug("Emitting finishedTorrent() signal");
           emit finishedTorrent(h);
           qDebug("Received finished alert for %s", qPrintable(h.name()));
           bool will_shutdown = (Preferences::shutdownWhenDownloadsComplete() || Preferences::shutdownqBTWhenDownloadsComplete())

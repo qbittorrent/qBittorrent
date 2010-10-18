@@ -584,9 +584,12 @@ void QTorrentHandle::prioritize_files(const std::vector<int> &v) {
   Q_ASSERT(h.is_valid());
   if(v.size() != (unsigned int)h.get_torrent_info().num_files())
     return;
+  bool was_seed = is_seed();
   h.prioritize_files(v);
-  // Save seed status
-  TorrentPersistentData::saveSeedStatus(*this);
+  if(was_seed && !is_seed()) {
+    // Reset seed status
+    TorrentPersistentData::saveSeedStatus(*this);
+  }
 }
 
 void QTorrentHandle::set_ratio(float ratio) const {
@@ -622,7 +625,7 @@ void QTorrentHandle::queue_position_top() const {
 
 void QTorrentHandle::queue_position_bottom() const {
   Q_ASSERT(h.is_valid());
-    h.queue_position_bottom();
+  h.queue_position_bottom();
 }
 
 void QTorrentHandle::force_reannounce() {
