@@ -152,224 +152,232 @@ p, li { white-space: pre-wrap; }
         <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable embedded tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded tracker port</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 досяг максимального коефіцієнта, налаштованого вами.</translation>
+        <translation type="obsolete">%1 досяг максимального коефіцієнта, налаштованого вами.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent використовує порт: %1</translation>
+        <translation type="obsolete">qBittorrent використовує порт: %1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Підтримка UNnP [Увімкнено]</translation>
+        <translation type="obsolete">Підтримка UNnP [Увімкнено]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>Підтримка UPnP [Вимкнено]</translation>
+        <translation type="obsolete">Підтримка UPnP [Вимкнено]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Підтримка NAT-PMP [Увімкнено]</translation>
+        <translation type="obsolete">Підтримка NAT-PMP [Увімкнено]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Підтримка NAT-PMP [Вимкнено]</translation>
+        <translation type="obsolete">Підтримка NAT-PMP [Вимкнено]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Підтримка DHT [Увімкнено], порт: UDP/%1</translation>
+        <translation type="obsolete">Підтримка DHT [Увімкнено], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Підтримка DHT [Вимкнено]</translation>
+        <translation type="obsolete">Підтримка DHT [Вимкнено]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Підтримка PeX [Увімкнено]</translation>
+        <translation type="obsolete">Підтримка PeX [Увімкнено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Пошук Локальних Пірів [Увімкнено]</translation>
+        <translation type="obsolete">Пошук Локальних Пірів [Увімкнено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Пошук Локальних Пірів [Вимкнено]</translation>
+        <translation type="obsolete">Пошук Локальних Пірів [Вимкнено]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Підтримка шифрування [Увімкнено]</translation>
+        <translation type="obsolete">Підтримка шифрування [Увімкнено]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Підтримка шифрування [Примусова]</translation>
+        <translation type="obsolete">Підтримка шифрування [Примусова]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Підтримка шифрування [Вимкнено]</translation>
+        <translation type="obsolete">Підтримка шифрування [Вимкнено]</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Помилка Веб-інтерфейсу - Не можу приєднати Веб-інтерфейс до порту %1</translation>
+        <translation type="obsolete">Помилка Веб-інтерфейсу - Не можу приєднати Веб-інтерфейс до порту %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; було видалено із списку завантажень і жорсткого диску.</translation>
+        <translation type="obsolete">&apos;%1&apos; було видалено із списку завантажень і жорсткого диску.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; було видалено із списку завантажень.</translation>
+        <translation type="obsolete">&apos;%1&apos; було видалено із списку завантажень.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; не є правильним магнітним посиланням.</translation>
+        <translation type="obsolete">&apos;%1&apos; не є правильним магнітним посиланням.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos; вже є у списку завантажень.</translation>
+        <translation type="obsolete">&apos;%1&apos; вже є у списку завантажень.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos; відновлено. (швидке відновлення)</translation>
+        <translation type="obsolete">&apos;%1&apos; відновлено. (швидке відновлення)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos; додано до списку завантажень.</translation>
+        <translation type="obsolete">&apos;%1&apos; додано до списку завантажень.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Не вдалося розкодувати торрент-файл: &apos;%1&apos;</translation>
+        <translation type="obsolete">Не вдалося розкодувати торрент-файл: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Цей файл або пошкоджений, або не є торрент-файлом.</translation>
+        <translation type="obsolete">Цей файл або пошкоджений, або не є торрент-файлом.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано згідно з вашим IP-фільтром&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано згідно з вашим IP-фільтром&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано через пошкоджені частини&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано через пошкоджені частини&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Рекурсивне завантаження файлу %1 в торренті %2</translation>
+        <translation type="obsolete">Рекурсивне завантаження файлу %1 в торренті %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>Не можу розкодувати %1 торрент-файл.</translation>
+        <translation type="obsolete">Не можу розкодувати %1 торрент-файл.</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Не можу приєднати порт, повідомлення: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Не можу приєднати порт, повідомлення: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Успішне приєднання порта, повідомлення: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Успішне приєднання порта, повідомлення: %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
+        <translation type="obsolete">Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
+        <translation type="obsolete">Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Завантажую &apos;%1&apos;, зачекайте...</translation>
+        <translation type="obsolete">Завантажую &apos;%1&apos;, зачекайте...</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>Використовую дисковий кеш розміром %1 MiB</translation>
+        <translation type="obsolete">Використовую дисковий кеш розміром %1 MiB</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation>Підтримка PeX [Вимкнено]</translation>
+        <translation type="obsolete">Підтримка PeX [Вимкнено]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Щоб перемкнути підтримку PeX, потрібно перезавантажити програму</translation>
+        <translation type="obsolete">Щоб перемкнути підтримку PeX, потрібно перезавантажити програму</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation>Веб-інтерфейс приєднано до порту %1</translation>
+        <translation type="obsolete">Веб-інтерфейс приєднано до порту %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation>Браузер користувача: %1</translation>
+        <translation type="obsolete">Браузер користувача: %1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation>Причина: %1</translation>
+        <translation type="obsolete">Причина: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation>Нові трекери було додано до існуючого торрента.</translation>
+        <translation type="obsolete">Нові трекери було додано до існуючого торрента.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation>Нові URL-сіди було додано до існуючого торрента.</translation>
+        <translation type="obsolete">Нові URL-сіди було додано до існуючого торрента.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>Сталася помилка вводу/виводу, &apos;%1&apos; зупинено.</translation>
+        <translation type="obsolete">Сталася помилка вводу/виводу, &apos;%1&apos; зупинено.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation>Видаляю торрент %1...</translation>
+        <translation type="obsolete">Видаляю торрент %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation>Зупиняю торрент %1...</translation>
+        <translation type="obsolete">Зупиняю торрент %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Помилка: Торрент %1 не містить жодного файла.</translation>
+        <translation type="obsolete">Помилка: Торрент %1 не містить жодного файла.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>Розміри файлів не збігаються для торрента %1, зупиняю його.</translation>
+        <translation type="obsolete">Розміри файлів не збігаються для торрента %1, зупиняю його.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation>Назва торрента: %1</translation>
+        <translation type="obsolete">Назва торрента: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation>Розмір торрента: %1</translation>
+        <translation type="obsolete">Розмір торрента: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation>Шлях збереження: %1</translation>
+        <translation type="obsolete">Шлях збереження: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Торрент було завантажено за %1.</translation>
+        <translation type="obsolete">Торрент було завантажено за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation>Дякуємо, що ви користуєтесь qBittorrent.</translation>
+        <translation type="obsolete">Дякуємо, що ви користуєтесь qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] Завантаження &quot;%1&quot; завершено</translation>
+        <translation type="obsolete">[qBittorrent] Завантаження &quot;%1&quot; завершено</translation>
     </message>
 </context>
 <context>
@@ -629,7 +637,18 @@ You should get this information from your Web browser preferences.</source>
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation>Непрочитані</translation>
+        <translation type="obsolete">Непрочитані</translation>
+    </message>
+</context>
+<context>
+    <name>FeedListWidget</name>
+    <message>
+        <source>RSS feeds</source>
+        <translation type="unfinished">RSS-подачі</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished">Непрочитані</translation>
     </message>
 </context>
 <context>
@@ -1390,6 +1409,10 @@ No further notices will be issued.</source>
     <message>
         <source>R&amp;esume All</source>
         <translation>П&amp;родовжити всі</translation>
+    </message>
+    <message>
+        <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2154,6 +2177,237 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>QBtSession</name>
+    <message>
+        <source>%1 reached the maximum ratio you set.</source>
+        <translation type="unfinished">%1 досяг максимального коефіцієнта, налаштованого вами.</translation>
+    </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished">Видаляю торрент %1...</translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished">Зупиняю торрент %1...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent використовує порт: %1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">Підтримка UNnP [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">Підтримка UPnP [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">Підтримка NAT-PMP [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">Підтримка NAT-PMP [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>HTTP user agent is %1</source>
+        <translation type="unfinished">Браузер користувача: %1</translation>
+    </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished">Використовую дисковий кеш розміром %1 MiB</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">Підтримка DHT [Увімкнено], порт: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">Підтримка DHT [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">Підтримка PeX [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>PeX support [OFF]</source>
+        <translation type="unfinished">Підтримка PeX [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>Restart is required to toggle PeX support</source>
+        <translation type="unfinished">Щоб перемкнути підтримку PeX, потрібно перезавантажити програму</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Пошук Локальних Пірів [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Пошук Локальних Пірів [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Підтримка шифрування [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Підтримка шифрування [Примусова]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Підтримка шифрування [Вимкнено]</translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start the embedded tracker!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished">Веб-інтерфейс приєднано до порту %1</translation>
+    </message>
+    <message>
+        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
+        <translation type="unfinished">Помилка Веб-інтерфейсу - Не можу приєднати Веб-інтерфейс до порту %1</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos; було видалено із списку завантажень і жорсткого диску.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos; було видалено із списку завантажень.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished">&apos;%1&apos; не є правильним магнітним посиланням.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished">&apos;%1&apos; вже є у списку завантажень.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished">&apos;%1&apos; відновлено. (швидке відновлення)</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished">&apos;%1&apos; додано до списку завантажень.</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished">Не вдалося розкодувати торрент-файл: &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">Цей файл або пошкоджений, або не є торрент-файлом.</translation>
+    </message>
+    <message>
+        <source>Error: The torrent %1 does not contain any file.</source>
+        <translation type="unfinished">Помилка: Торрент %1 не містить жодного файла.</translation>
+    </message>
+    <message>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished">Нові трекери було додано до існуючого торрента.</translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished">Нові URL-сіди було додано до існуючого торрента.</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано згідно з вашим IP-фільтром&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано через пошкоджені частини&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished">Рекурсивне завантаження файлу %1 в торренті %2</translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished">Не можу розкодувати %1 торрент-файл.</translation>
+    </message>
+    <message>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished">Назва торрента: %1</translation>
+    </message>
+    <message>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished">Розмір торрента: %1</translation>
+    </message>
+    <message>
+        <source>Save path: %1</source>
+        <translation type="unfinished">Шлях збереження: %1</translation>
+    </message>
+    <message>
+        <source>The torrent was downloaded in %1.</source>
+        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
+        <translation type="unfinished">Торрент було завантажено за %1.</translation>
+    </message>
+    <message>
+        <source>Thank you for using qBittorrent.</source>
+        <translation type="unfinished">Дякуємо, що ви користуєтесь qBittorrent.</translation>
+    </message>
+    <message>
+        <source>[qBittorrent] %1 has finished downloading</source>
+        <translation type="unfinished">[qBittorrent] Завантаження &quot;%1&quot; завершено</translation>
+    </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished">Сталася помилка вводу/виводу, &apos;%1&apos; зупинено.</translation>
+    </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished">Причина: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Не можу приєднати порт, повідомлення: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Успішне приєднання порта, повідомлення: %1</translation>
+    </message>
+    <message>
+        <source>File sizes mismatch for torrent %1, pausing it.</source>
+        <translation type="unfinished">Розміри файлів не збігаються для торрента %1, зупиняю його.</translation>
+    </message>
+    <message>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation type="unfinished">Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
+    </message>
+    <message>
+        <source>Url seed lookup failed for url: %1, message: %2</source>
+        <translation type="unfinished">Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
+    </message>
+    <message>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <translation type="unfinished">Завантажую &apos;%1&apos;, зачекайте...</translation>
+    </message>
+</context>
+<context>
     <name>RSS</name>
     <message>
         <source>Search</source>
@@ -2213,7 +2467,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation>RSS-подачі</translation>
+        <translation type="obsolete">RSS-подачі</translation>
     </message>
     <message>
         <source>Update</source>
@@ -2341,10 +2595,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>RssArticle</name>
+    <message>
+        <source>No description available</source>
+        <translation type="unfinished">Опис відсутній</translation>
+    </message>
+</context>
+<context>
+    <name>RssFeed</name>
+    <message>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished">Автоматично завантажую торрент %1 з RSS-подачі %2...</translation>
+    </message>
+</context>
+<context>
     <name>RssItem</name>
     <message>
         <source>No description available</source>
-        <translation>Опис відсутній</translation>
+        <translation type="obsolete">Опис відсутній</translation>
     </message>
 </context>
 <context>
@@ -2370,7 +2638,7 @@ p, li { white-space: pre-wrap; }
     <name>RssStream</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Автоматично завантажую торрент %1 з RSS-подачі %2...</translation>
+        <translation type="obsolete">Автоматично завантажую торрент %1 з RSS-подачі %2...</translation>
     </message>
 </context>
 <context>
@@ -3077,6 +3345,10 @@ Do you want to install it now?</source>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Видалити</translation>
+    </message>
+    <message>
+        <source>Tracker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

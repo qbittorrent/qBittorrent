@@ -152,224 +152,232 @@ p, li { white-space: pre-wrap; }
         <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable embedded tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded tracker port</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>&apos;%1&apos;达到您设置的最大比率.</translation>
+        <translation type="obsolete">&apos;%1&apos;达到您设置的最大比率.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent 绑定端口: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent 绑定端口: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP 支持［开］</translation>
+        <translation type="obsolete">UPnP 支持［开］</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP 支持［关］</translation>
+        <translation type="obsolete">UPnP 支持［关］</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP 支持［开］</translation>
+        <translation type="obsolete">NAT-PMP 支持［开］</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP 支持［关］</translation>
+        <translation type="obsolete">NAT-PMP 支持［关］</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT 支持 [开], 端口: UDP/%1</translation>
+        <translation type="obsolete">DHT 支持 [开], 端口: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>DHT 支持［关］</translation>
+        <translation type="obsolete">DHT 支持［关］</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>PeX 支持［ON］</translation>
+        <translation type="obsolete">PeX 支持［ON］</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>本地资源搜索[开]</translation>
+        <translation type="obsolete">本地资源搜索[开]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>本地资源搜索支持[关]</translation>
+        <translation type="obsolete">本地资源搜索支持[关]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>加密支持［开］</translation>
+        <translation type="obsolete">加密支持［开］</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>加密支持［强制］</translation>
+        <translation type="obsolete">加密支持［强制］</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>加密支持［关］</translation>
+        <translation type="obsolete">加密支持［关］</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>网络用户界面错误-无法绑定网络用户界面到端口%1</translation>
+        <translation type="obsolete">网络用户界面错误-无法绑定网络用户界面到端口%1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos;从传输列表及硬盘被移除.</translation>
+        <translation type="obsolete">&apos;%1&apos;从传输列表及硬盘被移除.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos;从传输列表被移除.</translation>
+        <translation type="obsolete">&apos;%1&apos;从传输列表被移除.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>%1不是有效的MAGNET链接.</translation>
+        <translation type="obsolete">%1不是有效的MAGNET链接.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos;已存在于下载列表中.</translation>
+        <translation type="obsolete">&apos;%1&apos;已存在于下载列表中.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos;重新开始. (快速)</translation>
+        <translation type="obsolete">&apos;%1&apos;重新开始. (快速)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos;添加到下载列表.</translation>
+        <translation type="obsolete">&apos;%1&apos;添加到下载列表.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>无法解码torrent文件:&apos;%1&apos;</translation>
+        <translation type="obsolete">无法解码torrent文件:&apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>该文件不是torrent文件或已经损坏.</translation>
+        <translation type="obsolete">该文件不是torrent文件或已经损坏.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;被您的IP过滤器阻止&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;被您的IP过滤器阻止&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因损坏碎片被禁止&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因损坏碎片被禁止&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>循环下载包含在torrent%2中的文件%1</translation>
+        <translation type="obsolete">循环下载包含在torrent%2中的文件%1</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>无法解码%1torrent文件.</translation>
+        <translation type="obsolete">无法解码%1torrent文件.</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: 端口映射失败, 消息: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: 端口映射失败, 消息: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: 端口映射成功, 消息: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: 端口映射成功, 消息: %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>快速继续数据torrent %1失败,再次检查...</translation>
+        <translation type="obsolete">快速继续数据torrent %1失败,再次检查...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>找不到网址种子:%1, 消息:%2</translation>
+        <translation type="obsolete">找不到网址种子:%1, 消息:%2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>&apos;%1&apos;下载中,请等待...</translation>
+        <translation type="obsolete">&apos;%1&apos;下载中,请等待...</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>使用%1：MiB磁盘高速缓存</translation>
+        <translation type="obsolete">使用%1：MiB磁盘高速缓存</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation>PeX 支持［关］</translation>
+        <translation type="obsolete">PeX 支持［关］</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation>更改PeX支持状态需要重启</translation>
+        <translation type="obsolete">更改PeX支持状态需要重启</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation>Web用户界面在侦听端口%1</translation>
+        <translation type="obsolete">Web用户界面在侦听端口%1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation>HTTP用户代理是%1</translation>
+        <translation type="obsolete">HTTP用户代理是%1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation>原因:</translation>
+        <translation type="obsolete">原因:</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation>注意:新跟踪器被添加到现有的torrent.</translation>
+        <translation type="obsolete">注意:新跟踪器被添加到现有的torrent.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation>注意:新URL种子被添加到现有的torrent.</translation>
+        <translation type="obsolete">注意:新URL种子被添加到现有的torrent.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>出现输入/输出错误,&apos;%1&apos;暂停.</translation>
+        <translation type="obsolete">出现输入/输出错误,&apos;%1&apos;暂停.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation>正在移除torrent%1...</translation>
+        <translation type="obsolete">正在移除torrent%1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation>正在暂停torrent%1...</translation>
+        <translation type="obsolete">正在暂停torrent%1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>错误：torrent%1不包含任何内容.</translation>
+        <translation type="obsolete">错误：torrent%1不包含任何内容.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>文件大小与torrent%1不匹配,暂停中.</translation>
+        <translation type="obsolete">文件大小与torrent%1不匹配,暂停中.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation>Torrent名称:%1</translation>
+        <translation type="obsolete">Torrent名称:%1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation>Torrent大小:%1</translation>
+        <translation type="obsolete">Torrent大小:%1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation>保存路径:%1</translation>
+        <translation type="obsolete">保存路径:%1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>该torrent下载用时为%1.</translation>
+        <translation type="obsolete">该torrent下载用时为%1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation>感谢您使用qBittorrent.</translation>
+        <translation type="obsolete">感谢您使用qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] %1下载完毕.</translation>
+        <translation type="obsolete">[qBittorrent] %1下载完毕.</translation>
     </message>
 </context>
 <context>
@@ -629,7 +637,18 @@ You should get this information from your Web browser preferences.</source>
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation>未读</translation>
+        <translation type="obsolete">未读</translation>
+    </message>
+</context>
+<context>
+    <name>FeedListWidget</name>
+    <message>
+        <source>RSS feeds</source>
+        <translation type="unfinished">RSS文件</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished">未读</translation>
     </message>
 </context>
 <context>
@@ -1389,6 +1408,10 @@ No further notices will be issued.</source>
     <message>
         <source>R&amp;esume All</source>
         <translation>重新开始所有</translation>
+    </message>
+    <message>
+        <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2153,6 +2176,237 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>QBtSession</name>
+    <message>
+        <source>%1 reached the maximum ratio you set.</source>
+        <translation type="unfinished">&apos;%1&apos;达到您设置的最大比率.</translation>
+    </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished">正在移除torrent%1...</translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished">正在暂停torrent%1...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent 绑定端口: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">UPnP 支持［开］</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">UPnP 支持［关］</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">NAT-PMP 支持［开］</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">NAT-PMP 支持［关］</translation>
+    </message>
+    <message>
+        <source>HTTP user agent is %1</source>
+        <translation type="unfinished">HTTP用户代理是%1</translation>
+    </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished">使用%1：MiB磁盘高速缓存</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">DHT 支持 [开], 端口: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT 支持［关］</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">PeX 支持［ON］</translation>
+    </message>
+    <message>
+        <source>PeX support [OFF]</source>
+        <translation type="unfinished">PeX 支持［关］</translation>
+    </message>
+    <message>
+        <source>Restart is required to toggle PeX support</source>
+        <translation type="unfinished">更改PeX支持状态需要重启</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">本地资源搜索[开]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">本地资源搜索支持[关]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">加密支持［开］</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">加密支持［强制］</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">加密支持［关］</translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start the embedded tracker!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished">Web用户界面在侦听端口%1</translation>
+    </message>
+    <message>
+        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
+        <translation type="unfinished">网络用户界面错误-无法绑定网络用户界面到端口%1</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos;从传输列表及硬盘被移除.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos;从传输列表被移除.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished">%1不是有效的MAGNET链接.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished">&apos;%1&apos;已存在于下载列表中.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished">&apos;%1&apos;重新开始. (快速)</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished">&apos;%1&apos;添加到下载列表.</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished">无法解码torrent文件:&apos;%1&apos;</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">该文件不是torrent文件或已经损坏.</translation>
+    </message>
+    <message>
+        <source>Error: The torrent %1 does not contain any file.</source>
+        <translation type="unfinished">错误：torrent%1不包含任何内容.</translation>
+    </message>
+    <message>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished">注意:新跟踪器被添加到现有的torrent.</translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished">注意:新URL种子被添加到现有的torrent.</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;被您的IP过滤器阻止&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因损坏碎片被禁止&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished">循环下载包含在torrent%2中的文件%1</translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished">无法解码%1torrent文件.</translation>
+    </message>
+    <message>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished">Torrent名称:%1</translation>
+    </message>
+    <message>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished">Torrent大小:%1</translation>
+    </message>
+    <message>
+        <source>Save path: %1</source>
+        <translation type="unfinished">保存路径:%1</translation>
+    </message>
+    <message>
+        <source>The torrent was downloaded in %1.</source>
+        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
+        <translation type="unfinished">该torrent下载用时为%1.</translation>
+    </message>
+    <message>
+        <source>Thank you for using qBittorrent.</source>
+        <translation type="unfinished">感谢您使用qBittorrent.</translation>
+    </message>
+    <message>
+        <source>[qBittorrent] %1 has finished downloading</source>
+        <translation type="unfinished">[qBittorrent] %1下载完毕.</translation>
+    </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished">出现输入/输出错误,&apos;%1&apos;暂停.</translation>
+    </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished">原因:</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: 端口映射失败, 消息: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: 端口映射成功, 消息: %1</translation>
+    </message>
+    <message>
+        <source>File sizes mismatch for torrent %1, pausing it.</source>
+        <translation type="unfinished">文件大小与torrent%1不匹配,暂停中.</translation>
+    </message>
+    <message>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation type="unfinished">快速继续数据torrent %1失败,再次检查...</translation>
+    </message>
+    <message>
+        <source>Url seed lookup failed for url: %1, message: %2</source>
+        <translation type="unfinished">找不到网址种子:%1, 消息:%2</translation>
+    </message>
+    <message>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <translation type="unfinished">&apos;%1&apos;下载中,请等待...</translation>
+    </message>
+</context>
+<context>
     <name>RSS</name>
     <message>
         <source>Search</source>
@@ -2208,7 +2462,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation>RSS文件</translation>
+        <translation type="obsolete">RSS文件</translation>
     </message>
     <message>
         <source>Update</source>
@@ -2336,10 +2590,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>RssArticle</name>
+    <message>
+        <source>No description available</source>
+        <translation type="unfinished">无可用描述</translation>
+    </message>
+</context>
+<context>
+    <name>RssFeed</name>
+    <message>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished">自动下载%2RSS文件中的%1torrent...</translation>
+    </message>
+</context>
+<context>
     <name>RssItem</name>
     <message>
         <source>No description available</source>
-        <translation>无可用描述</translation>
+        <translation type="obsolete">无可用描述</translation>
     </message>
 </context>
 <context>
@@ -2365,7 +2633,7 @@ p, li { white-space: pre-wrap; }
     <name>RssStream</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>自动下载%2RSS文件中的%1torrent...</translation>
+        <translation type="obsolete">自动下载%2RSS文件中的%1torrent...</translation>
     </message>
 </context>
 <context>
@@ -3072,6 +3340,10 @@ Do you want to install it now?</source>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>删除</translation>
+    </message>
+    <message>
+        <source>Tracker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

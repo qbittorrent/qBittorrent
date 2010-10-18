@@ -142,224 +142,207 @@ p, li { white-space: pre-wrap; }
         <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable embedded tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded tracker port</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 har nått maximalt angivet förhållande.</translation>
+        <translation type="obsolete">%1 har nått maximalt angivet förhållande.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent är bunden till port: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent är bunden till port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP-stöd [PÅ]</translation>
+        <translation type="obsolete">UPnP-stöd [PÅ]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP-stöd [AV]</translation>
+        <translation type="obsolete">UPnP-stöd [AV]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP-stöd [PÅ]</translation>
+        <translation type="obsolete">NAT-PMP-stöd [PÅ]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP-stöd [AV]</translation>
+        <translation type="obsolete">NAT-PMP-stöd [AV]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT-stöd [PÅ], port: UDP/%1</translation>
+        <translation type="obsolete">DHT-stöd [PÅ], port: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>DHT-stöd [AV]</translation>
+        <translation type="obsolete">DHT-stöd [AV]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>PeX-stöd [PÅ]</translation>
+        <translation type="obsolete">PeX-stöd [PÅ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Identifiering av lokala klienter [PÅ]</translation>
+        <translation type="obsolete">Identifiering av lokala klienter [PÅ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Stöd för identifiering av lokala klienter [AV]</translation>
+        <translation type="obsolete">Stöd för identifiering av lokala klienter [AV]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Krypteringsstöd [PÅ]</translation>
+        <translation type="obsolete">Krypteringsstöd [PÅ]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Krypteringsstöd [TVINGAD]</translation>
+        <translation type="obsolete">Krypteringsstöd [TVINGAD]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Krypteringsstöd [AV]</translation>
+        <translation type="obsolete">Krypteringsstöd [AV]</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Fel i webbgränssnitt - Kunde inte binda webbgränssnittet till port %1</translation>
+        <translation type="obsolete">Fel i webbgränssnitt - Kunde inte binda webbgränssnittet till port %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&quot;%1&quot; togs bort från överföringslistan och hårddisken.</translation>
+        <translation type="obsolete">&quot;%1&quot; togs bort från överföringslistan och hårddisken.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&quot;%1&quot; togs bort från överföringslistan.</translation>
+        <translation type="obsolete">&quot;%1&quot; togs bort från överföringslistan.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&quot;%1&quot; är inte en giltig magnet-URI.</translation>
+        <translation type="obsolete">&quot;%1&quot; är inte en giltig magnet-URI.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&quot;%1&quot; finns redan i hämtningslistan.</translation>
+        <translation type="obsolete">&quot;%1&quot; finns redan i hämtningslistan.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&quot;%1&quot; återupptogs. (snabbt läge)</translation>
+        <translation type="obsolete">&quot;%1&quot; återupptogs. (snabbt läge)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&quot;%1&quot; lades till i hämtningslistan.</translation>
+        <translation type="obsolete">&quot;%1&quot; lades till i hämtningslistan.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
+        <translation type="obsolete">Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
+        <translation type="obsolete">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blockerades på grund av ditt IP-filter&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blockerades på grund av ditt IP-filter&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;har bannlysts på grund av skadade delar&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;har bannlysts på grund av skadade delar&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Rekursiv hämtning av filen %1 inbäddad i torrentfilen %2</translation>
+        <translation type="obsolete">Rekursiv hämtning av filen %1 inbäddad i torrentfilen %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>Kunde inte avkoda torrentfilen %1.</translation>
+        <translation type="obsolete">Kunde inte avkoda torrentfilen %1.</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
+        <translation type="obsolete">Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Uppslag av distributions-url misslyckades för: %1, meddelande: %2</translation>
+        <translation type="obsolete">Uppslag av distributions-url misslyckades för: %1, meddelande: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Hämtar &quot;%1&quot;, vänta...</translation>
+        <translation type="obsolete">Hämtar &quot;%1&quot;, vänta...</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>Använder en diskcachestorlek på %1 MiB</translation>
+        <translation type="obsolete">Använder en diskcachestorlek på %1 MiB</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation>PeX-stöd [AV]</translation>
+        <translation type="obsolete">PeX-stöd [AV]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Omstart krävs för att växla PeX-stöd</translation>
+        <translation type="obsolete">Omstart krävs för att växla PeX-stöd</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation>Webbgränssnittet lyssnar på port %1</translation>
+        <translation type="obsolete">Webbgränssnittet lyssnar på port %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation>HTTP-användaragent är %1</translation>
+        <translation type="obsolete">HTTP-användaragent är %1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation>Anledning: %1</translation>
+        <translation type="obsolete">Anledning: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation>Observera: nya bevakare lades till i den befintliga torrentfilen.</translation>
+        <translation type="obsolete">Observera: nya bevakare lades till i den befintliga torrentfilen.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation>Observera: nya URL-distributörer lades till i den befintliga torrentfilen.</translation>
+        <translation type="obsolete">Observera: nya URL-distributörer lades till i den befintliga torrentfilen.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
+        <translation type="obsolete">Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation>Tar bort torrentfilen %1...</translation>
+        <translation type="obsolete">Tar bort torrentfilen %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation>Pausar torrentfilen %1...</translation>
+        <translation type="obsolete">Pausar torrentfilen %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Fel: Torrentfilen %1 innehåller inte någon fil.</translation>
+        <translation type="obsolete">Fel: Torrentfilen %1 innehåller inte någon fil.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>Filstorleken stämmer inte för torrentfilen %1, pausar den.</translation>
-    </message>
-    <message>
-        <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The torrent was downloaded in %1.</source>
-        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Filstorleken stämmer inte för torrentfilen %1, pausar den.</translation>
     </message>
 </context>
 <context>
@@ -619,7 +602,18 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation>Oläst</translation>
+        <translation type="obsolete">Oläst</translation>
+    </message>
+</context>
+<context>
+    <name>FeedListWidget</name>
+    <message>
+        <source>RSS feeds</source>
+        <translation type="unfinished">RSS-kanaler</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished">Oläst</translation>
     </message>
 </context>
 <context>
@@ -1380,6 +1374,10 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown qBittorrent when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2145,6 +2143,237 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
 </context>
 <context>
+    <name>QBtSession</name>
+    <message>
+        <source>%1 reached the maximum ratio you set.</source>
+        <translation type="unfinished">%1 har nått maximalt angivet förhållande.</translation>
+    </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished">Tar bort torrentfilen %1...</translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished">Pausar torrentfilen %1...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent är bunden till port: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">UPnP-stöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">UPnP-stöd [AV]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">NAT-PMP-stöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">NAT-PMP-stöd [AV]</translation>
+    </message>
+    <message>
+        <source>HTTP user agent is %1</source>
+        <translation type="unfinished">HTTP-användaragent är %1</translation>
+    </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished">Använder en diskcachestorlek på %1 MiB</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">DHT-stöd [PÅ], port: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT-stöd [AV]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">PeX-stöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>PeX support [OFF]</source>
+        <translation type="unfinished">PeX-stöd [AV]</translation>
+    </message>
+    <message>
+        <source>Restart is required to toggle PeX support</source>
+        <translation type="unfinished">Omstart krävs för att växla PeX-stöd</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Identifiering av lokala klienter [PÅ]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Stöd för identifiering av lokala klienter [AV]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Krypteringsstöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Krypteringsstöd [TVINGAD]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Krypteringsstöd [AV]</translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start the embedded tracker!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished">Webbgränssnittet lyssnar på port %1</translation>
+    </message>
+    <message>
+        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
+        <translation type="unfinished">Fel i webbgränssnitt - Kunde inte binda webbgränssnittet till port %1</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&quot;%1&quot; togs bort från överföringslistan och hårddisken.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&quot;%1&quot; togs bort från överföringslistan.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished">&quot;%1&quot; är inte en giltig magnet-URI.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished">&quot;%1&quot; finns redan i hämtningslistan.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished">&quot;%1&quot; återupptogs. (snabbt läge)</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished">&quot;%1&quot; lades till i hämtningslistan.</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished">Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
+    </message>
+    <message>
+        <source>Error: The torrent %1 does not contain any file.</source>
+        <translation type="unfinished">Fel: Torrentfilen %1 innehåller inte någon fil.</translation>
+    </message>
+    <message>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished">Observera: nya bevakare lades till i den befintliga torrentfilen.</translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished">Observera: nya URL-distributörer lades till i den befintliga torrentfilen.</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blockerades på grund av ditt IP-filter&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;har bannlysts på grund av skadade delar&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished">Rekursiv hämtning av filen %1 inbäddad i torrentfilen %2</translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished">Kunde inte avkoda torrentfilen %1.</translation>
+    </message>
+    <message>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent was downloaded in %1.</source>
+        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you for using qBittorrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[qBittorrent] %1 has finished downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished">Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
+    </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished">Anledning: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
+    </message>
+    <message>
+        <source>File sizes mismatch for torrent %1, pausing it.</source>
+        <translation type="unfinished">Filstorleken stämmer inte för torrentfilen %1, pausar den.</translation>
+    </message>
+    <message>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation type="unfinished">Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
+    </message>
+    <message>
+        <source>Url seed lookup failed for url: %1, message: %2</source>
+        <translation type="unfinished">Uppslag av distributions-url misslyckades för: %1, meddelande: %2</translation>
+    </message>
+    <message>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <translation type="unfinished">Hämtar &quot;%1&quot;, vänta...</translation>
+    </message>
+</context>
+<context>
     <name>RSS</name>
     <message>
         <source>Search</source>
@@ -2204,7 +2433,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation>RSS-kanaler</translation>
+        <translation type="obsolete">RSS-kanaler</translation>
     </message>
     <message>
         <source>Update</source>
@@ -2332,10 +2561,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>RssArticle</name>
+    <message>
+        <source>No description available</source>
+        <translation type="unfinished">Ingen beskrivning tillgänglig</translation>
+    </message>
+</context>
+<context>
+    <name>RssFeed</name>
+    <message>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished">Hämtar automatiskt torrentfilen %1 från RSS-kanalen %2...</translation>
+    </message>
+</context>
+<context>
     <name>RssItem</name>
     <message>
         <source>No description available</source>
-        <translation>Ingen beskrivning tillgänglig</translation>
+        <translation type="obsolete">Ingen beskrivning tillgänglig</translation>
     </message>
 </context>
 <context>
@@ -2361,7 +2604,7 @@ p, li { white-space: pre-wrap; }
     <name>RssStream</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Hämtar automatiskt torrentfilen %1 från RSS-kanalen %2...</translation>
+        <translation type="obsolete">Hämtar automatiskt torrentfilen %1 från RSS-kanalen %2...</translation>
     </message>
 </context>
 <context>
@@ -3068,6 +3311,10 @@ Vill du installera den nu?</translation>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation type="unfinished">Ta bort</translation>
+    </message>
+    <message>
+        <source>Tracker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

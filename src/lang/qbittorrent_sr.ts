@@ -155,236 +155,244 @@ p, li { white-space: pre-wrap; }
         <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable embedded tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded tracker port</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 достигао је максимални ниво који сте подесили.</translation>
+        <translation type="obsolete">%1 достигао је максимални ниво који сте подесили.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translatorcomment>н.пр.: qBittorrent је повезан на порт: 6881</translatorcomment>
-        <translation>qBittorrent је повезан на порт: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent је повезан на порт: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP подршка [Укључена]</translation>
+        <translation type="obsolete">UPnP подршка [Укључена]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP подршка [Искључена]</translation>
+        <translation type="obsolete">UPnP подршка [Искључена]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP подршка [Укључена]</translation>
+        <translation type="obsolete">NAT-PMP подршка [Укључена]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP подршка [Искључена]</translation>
+        <translation type="obsolete">NAT-PMP подршка [Искључена]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation>HTTP кориснички агент је %1</translation>
+        <translation type="obsolete">HTTP кориснички агент је %1</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>Користи кеш диска величине %1 MiB</translation>
+        <translation type="obsolete">Користи кеш диска величине %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT подршка [Укључена], порт: UDP/%1</translation>
+        <translation type="obsolete">DHT подршка [Укључена], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>DHT подршка [Искључена]</translation>
+        <translation type="obsolete">DHT подршка [Искључена]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>PeX подршка [Укључена]</translation>
+        <translation type="obsolete">PeX подршка [Укључена]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation>PeX подршка [Искључена]</translation>
+        <translation type="obsolete">PeX подршка [Искључена]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Рестарт је потребан за укључивање PeX подршке</translation>
+        <translation type="obsolete">Рестарт је потребан за укључивање PeX подршке</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
         <translatorcomment>Peer-Учесник</translatorcomment>
-        <translation>Претраживање локалних веза [Укључено]</translation>
+        <translation type="obsolete">Претраживање локалних веза [Укључено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
         <translatorcomment>Peer-Учесник</translatorcomment>
-        <translation>Претраживање локалних веза подршка [Искључено]</translation>
+        <translation type="obsolete">Претраживање локалних веза подршка [Искључено]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Шифровање подршка [Укључена]</translation>
+        <translation type="obsolete">Шифровање подршка [Укључена]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Шифровање подршка [Форсирано]</translation>
+        <translation type="obsolete">Шифровање подршка [Форсирано]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Шифровање подршка [Искључена]</translation>
+        <translation type="obsolete">Шифровање подршка [Искључена]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation>Веб КИ надгледа порт %1</translation>
+        <translation type="obsolete">Веб КИ надгледа порт %1</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Веб Кориснички Интерфејс Грешка - Не могу да повежем Веб КИ на порт %1</translation>
+        <translation type="obsolete">Веб Кориснички Интерфејс Грешка - Не могу да повежем Веб КИ на порт %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translatorcomment>&apos;xxx.avi&apos; је уклоњен...</translatorcomment>
-        <translation>&apos;%1&apos; је уклоњен са трансфер листе и хард диска.</translation>
+        <translation type="obsolete">&apos;%1&apos; је уклоњен са трансфер листе и хард диска.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translatorcomment>&apos;xxx.avi&apos; је уклоњен...</translatorcomment>
-        <translation>&apos;%1&apos; је уклоњен са трансфер листе.</translation>
+        <translation type="obsolete">&apos;%1&apos; је уклоњен са трансфер листе.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; није валидан магнет URI.</translation>
+        <translation type="obsolete">&apos;%1&apos; није валидан магнет URI.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translatorcomment>н.пр.: &apos;xxx.avi&apos; је већ на листи преузимања.</translatorcomment>
-        <translation>&apos;%1&apos; већ је додат на листу за преузимање.</translation>
+        <translation type="obsolete">&apos;%1&apos; већ је додат на листу за преузимање.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translatorcomment>&apos;/home/y/xxx.torrent&apos; је наставио. (брзи наставак)</translatorcomment>
-        <translation>&apos;%1&apos; настави. (брзо настави)</translation>
+        <translation type="obsolete">&apos;%1&apos; настави. (брзо настави)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translatorcomment>&apos;/home/y/xxx.torrent&apos; је додат на листу преузимања.</translatorcomment>
-        <translation>&apos;%1&apos; додат на листу за преузимање.</translation>
+        <translation type="obsolete">&apos;%1&apos; додат на листу за преузимање.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translatorcomment>н.пр.: Не може да декодира торент фајл: &apos;/home/y/xxx.torrent&apos;</translatorcomment>
-        <translation>Није у стању да декодира торент фајл: &apos;%1&apos;</translation>
+        <translation type="obsolete">Није у стању да декодира торент фајл: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Овај фајл је оштећен или ово није торент.</translation>
+        <translation type="obsolete">Овај фајл је оштећен или ово није торент.</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation>Напомена: нови пратиоци су додати у постојећи торент.</translation>
+        <translation type="obsolete">Напомена: нови пратиоци су додати у постојећи торент.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation>Напомена: нови URL донори су додати у постојећи торент.</translation>
+        <translation type="obsolete">Напомена: нови URL донори су додати у постојећи торент.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translatorcomment>x.y.z.w је блокиран</translatorcomment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translatorcomment>x.y.z.w је одбачен</translatorcomment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Поновно преузимање фајла %1 омогућено у торенту %2</translation>
+        <translation type="obsolete">Поновно преузимање фајла %1 омогућено у торенту %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>Није у стању да декодира %1 торент фајл.</translation>
+        <translation type="obsolete">Није у стању да декодира %1 торент фајл.</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
+        <translation type="obsolete">Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation>Разлог: %1</translation>
+        <translation type="obsolete">Разлог: %1</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
+        <translation type="obsolete">Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Url преглед донора , грешка url: %1, порука: %2</translation>
+        <translation type="obsolete">Url преглед донора , грешка url: %1, порука: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translatorcomment>н.пр.: Преузимам &apos;xxx.torrent&apos;, молим сачекајте...</translatorcomment>
-        <translation>Преузимање &apos;%1&apos;, молим сачекајте...</translation>
+        <translation type="obsolete">Преузимање &apos;%1&apos;, молим сачекајте...</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation>Уклањање торента %1...</translation>
+        <translation type="obsolete">Уклањање торента %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation>Паузирање торента %1...</translation>
+        <translation type="obsolete">Паузирање торента %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Грешка: Торент %1 не садржи ни један фајл.</translation>
+        <translation type="obsolete">Грешка: Торент %1 не садржи ни један фајл.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>Величина фајла није одговарајућа за торент %1, паузирајте га.</translation>
+        <translation type="obsolete">Величина фајла није одговарајућа за торент %1, паузирајте га.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation>Име Торента: %1</translation>
+        <translation type="obsolete">Име Торента: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation>Величина Торента: %1</translation>
+        <translation type="obsolete">Величина Торента: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation>Путања чувања: %1</translation>
+        <translation type="obsolete">Путања чувања: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Торент ће бити преузет за %1.</translation>
+        <translation type="obsolete">Торент ће бити преузет за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation>Хвала што користите qBittorrent.</translation>
+        <translation type="obsolete">Хвала што користите qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] %1 је завршио преузимање</translation>
+        <translation type="obsolete">[qBittorrent] %1 је завршио преузимање</translation>
     </message>
 </context>
 <context>
@@ -648,7 +656,18 @@ You should get this information from your Web browser preferences.</source>
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation>Непрочитане</translation>
+        <translation type="obsolete">Непрочитане</translation>
+    </message>
+</context>
+<context>
+    <name>FeedListWidget</name>
+    <message>
+        <source>RSS feeds</source>
+        <translation type="unfinished">RSS поруке</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1431,6 +1450,10 @@ No further notices will be issued.</source>
         <source>R&amp;esume All</source>
         <translation>Н&amp;астави Све</translation>
     </message>
+    <message>
+        <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -2211,6 +2234,237 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>QBtSession</name>
+    <message>
+        <source>%1 reached the maximum ratio you set.</source>
+        <translation type="unfinished">%1 достигао је максимални ниво који сте подесили.</translation>
+    </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished">Уклањање торента %1...</translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished">Паузирање торента %1...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent је повезан на порт: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">UPnP подршка [Укључена]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">UPnP подршка [Искључена]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">NAT-PMP подршка [Укључена]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">NAT-PMP подршка [Искључена]</translation>
+    </message>
+    <message>
+        <source>HTTP user agent is %1</source>
+        <translation type="unfinished">HTTP кориснички агент је %1</translation>
+    </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished">Користи кеш диска величине %1 MiB</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">DHT подршка [Укључена], порт: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">DHT подршка [Искључена]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">PeX подршка [Укључена]</translation>
+    </message>
+    <message>
+        <source>PeX support [OFF]</source>
+        <translation type="unfinished">PeX подршка [Искључена]</translation>
+    </message>
+    <message>
+        <source>Restart is required to toggle PeX support</source>
+        <translation type="unfinished">Рестарт је потребан за укључивање PeX подршке</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Претраживање локалних веза [Укључено]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Претраживање локалних веза подршка [Искључено]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Шифровање подршка [Укључена]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Шифровање подршка [Форсирано]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Шифровање подршка [Искључена]</translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start the embedded tracker!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished">Веб КИ надгледа порт %1</translation>
+    </message>
+    <message>
+        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
+        <translation type="unfinished">Веб Кориснички Интерфејс Грешка - Не могу да повежем Веб КИ на порт %1</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos; је уклоњен са трансфер листе и хард диска.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos; је уклоњен са трансфер листе.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished">&apos;%1&apos; није валидан магнет URI.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished">&apos;%1&apos; већ је додат на листу за преузимање.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished">&apos;%1&apos; настави. (брзо настави)</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished">&apos;%1&apos; додат на листу за преузимање.</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished">Није у стању да декодира торент фајл: &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">Овај фајл је оштећен или ово није торент.</translation>
+    </message>
+    <message>
+        <source>Error: The torrent %1 does not contain any file.</source>
+        <translation type="unfinished">Грешка: Торент %1 не садржи ни један фајл.</translation>
+    </message>
+    <message>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished">Напомена: нови пратиоци су додати у постојећи торент.</translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished">Напомена: нови URL донори су додати у постојећи торент.</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished">Поновно преузимање фајла %1 омогућено у торенту %2</translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished">Није у стању да декодира %1 торент фајл.</translation>
+    </message>
+    <message>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished">Име Торента: %1</translation>
+    </message>
+    <message>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished">Величина Торента: %1</translation>
+    </message>
+    <message>
+        <source>Save path: %1</source>
+        <translation type="unfinished">Путања чувања: %1</translation>
+    </message>
+    <message>
+        <source>The torrent was downloaded in %1.</source>
+        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
+        <translation type="unfinished">Торент ће бити преузет за %1.</translation>
+    </message>
+    <message>
+        <source>Thank you for using qBittorrent.</source>
+        <translation type="unfinished">Хвала што користите qBittorrent.</translation>
+    </message>
+    <message>
+        <source>[qBittorrent] %1 has finished downloading</source>
+        <translation type="unfinished">[qBittorrent] %1 је завршио преузимање</translation>
+    </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished">Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
+    </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished">Разлог: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
+    </message>
+    <message>
+        <source>File sizes mismatch for torrent %1, pausing it.</source>
+        <translation type="unfinished">Величина фајла није одговарајућа за торент %1, паузирајте га.</translation>
+    </message>
+    <message>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation type="unfinished">Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
+    </message>
+    <message>
+        <source>Url seed lookup failed for url: %1, message: %2</source>
+        <translation type="unfinished">Url преглед донора , грешка url: %1, порука: %2</translation>
+    </message>
+    <message>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <translation type="unfinished">Преузимање &apos;%1&apos;, молим сачекајте...</translation>
+    </message>
+</context>
+<context>
     <name>RSS</name>
     <message>
         <source>Search</source>
@@ -2231,7 +2485,7 @@ No further notices will be issued.</source>
     <message>
         <source>RSS feeds</source>
         <translatorcomment>feed-допис,порука</translatorcomment>
-        <translation>RSS поруке</translation>
+        <translation type="obsolete">RSS поруке</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2406,10 +2660,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>RssArticle</name>
+    <message>
+        <source>No description available</source>
+        <translation type="unfinished">Нема доступних описа</translation>
+    </message>
+</context>
+<context>
+    <name>RssFeed</name>
+    <message>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished">Аутоматски преузми %1 торент са %2 RSS feed...</translation>
+    </message>
+</context>
+<context>
     <name>RssItem</name>
     <message>
         <source>No description available</source>
-        <translation>Нема доступних описа</translation>
+        <translation type="obsolete">Нема доступних описа</translation>
     </message>
 </context>
 <context>
@@ -2436,7 +2704,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translatorcomment>feed-допис,порука</translatorcomment>
-        <translation>Аутоматски преузми %1 торент са %2 RSS feed...</translation>
+        <translation type="obsolete">Аутоматски преузми %1 торент са %2 RSS feed...</translation>
     </message>
 </context>
 <context>
@@ -3157,6 +3425,10 @@ Do you want to install it now?</source>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Обриши</translation>
+    </message>
+    <message>
+        <source>Tracker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

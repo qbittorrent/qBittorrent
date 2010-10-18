@@ -143,224 +143,207 @@ p, li { white-space: pre-wrap; }
         <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable embedded tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded tracker port</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 osiagnął ustawiony przez ciebie współczynnik udziału.</translation>
+        <translation type="obsolete">%1 osiagnął ustawiony przez ciebie współczynnik udziału.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent jest połączony przez port: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent jest połączony przez port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Wsparcie UPnP [WŁ]</translation>
+        <translation type="obsolete">Wsparcie UPnP [WŁ]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>Wsparcie UPnP [WYŁ]</translation>
+        <translation type="obsolete">Wsparcie UPnP [WYŁ]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Wsparcie NAT-PMP [WŁ]</translation>
+        <translation type="obsolete">Wsparcie NAT-PMP [WŁ]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Wsparcie NAT-PMP [WYŁ]</translation>
+        <translation type="obsolete">Wsparcie NAT-PMP [WYŁ]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Wsparcie DHT [WŁ], port: UDP/%1</translation>
+        <translation type="obsolete">Wsparcie DHT [WŁ], port: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Wsparcie DHT [WYŁ]</translation>
+        <translation type="obsolete">Wsparcie DHT [WYŁ]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Wsparcie PeX [WŁ]</translation>
+        <translation type="obsolete">Wsparcie PeX [WŁ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Wyszukiwanie partnerów lokalnych [WŁ]</translation>
+        <translation type="obsolete">Wyszukiwanie partnerów lokalnych [WŁ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Wyszukiwanie partnerów lokalnych [WYŁ]</translation>
+        <translation type="obsolete">Wyszukiwanie partnerów lokalnych [WYŁ]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Wsparcie szyfrowania [WŁ]</translation>
+        <translation type="obsolete">Wsparcie szyfrowania [WŁ]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Wsparcie szyfrowania [WYMUSZONE]</translation>
+        <translation type="obsolete">Wsparcie szyfrowania [WYMUSZONE]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Wsparcie szyfrowania [WYŁ]</translation>
+        <translation type="obsolete">Wsparcie szyfrowania [WYŁ]</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Błąd interfejsu www - Nie można uruchomić interefejsu www na porcie %1</translation>
+        <translation type="obsolete">Błąd interfejsu www - Nie można uruchomić interefejsu www na porcie %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; usunięto z listy transferów i twardego dysku.</translation>
+        <translation type="obsolete">&apos;%1&apos; usunięto z listy transferów i twardego dysku.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; usunięto z listy transferów.</translation>
+        <translation type="obsolete">&apos;%1&apos; usunięto z listy transferów.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; jest niepoprawnym adresem magnet.</translation>
+        <translation type="obsolete">&apos;%1&apos; jest niepoprawnym adresem magnet.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos; jest już na liście pobierania.</translation>
+        <translation type="obsolete">&apos;%1&apos; jest już na liście pobierania.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos; wznowiony. (szybkie wznawianie)</translation>
+        <translation type="obsolete">&apos;%1&apos; wznowiony. (szybkie wznawianie)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos; dodano do listy pobierania.</translation>
+        <translation type="obsolete">&apos;%1&apos; dodano do listy pobierania.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Nie można odczytać pliku torrent: &apos;%1&apos;</translation>
+        <translation type="obsolete">Nie można odczytać pliku torrent: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
+        <translation type="obsolete">Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany przez filtr IP&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany przez filtr IP&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany z powodu uszkodzonych części&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany z powodu uszkodzonych części&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Rekursywne pobieranie pliku %1 osadzonego w pliku torrent %2</translation>
+        <translation type="obsolete">Rekursywne pobieranie pliku %1 osadzonego w pliku torrent %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>Nie można odczytać pliku torrent: &apos;%1&apos;.</translation>
+        <translation type="obsolete">Nie można odczytać pliku torrent: &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Błąd mapowania portu, wiadomość %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Błąd mapowania portu, wiadomość %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Udane mapowanie portu, wiadomość %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Udane mapowanie portu, wiadomość %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Szybkie wznowienie danych zostało odrzucone przez torrent %1, ponowne sprawdzanie...</translation>
+        <translation type="obsolete">Szybkie wznowienie danych zostało odrzucone przez torrent %1, ponowne sprawdzanie...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Błąd wyszukiwania url partnera dla adresu:%1, wiadomość: %2</translation>
+        <translation type="obsolete">Błąd wyszukiwania url partnera dla adresu:%1, wiadomość: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Pobieranie &apos;%1&apos;, proszę czekać...</translation>
+        <translation type="obsolete">Pobieranie &apos;%1&apos;, proszę czekać...</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>Rozmiar pamięci podręcznej na dysku wynosi %1 MiB</translation>
+        <translation type="obsolete">Rozmiar pamięci podręcznej na dysku wynosi %1 MiB</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation>Wsparcie PeX [WYŁ]</translation>
+        <translation type="obsolete">Wsparcie PeX [WYŁ]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Zmiana statusu PeX wymaga ponownego uruchomienia</translation>
+        <translation type="obsolete">Zmiana statusu PeX wymaga ponownego uruchomienia</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation>Interfejs www nasłuchuje na porcie: %1</translation>
+        <translation type="obsolete">Interfejs www nasłuchuje na porcie: %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">HTTP user agent: %1</translation>
+        <translation type="obsolete">HTTP user agent: %1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation>Powód: %1</translation>
+        <translation type="obsolete">Powód: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">Uwaga: nowe trackery zostały dodane do istniejącego torrenta.</translation>
+        <translation type="obsolete">Uwaga: nowe trackery zostały dodane do istniejącego torrenta.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">Uwaga: nowe URL seedów zostały dodane do istniejącego torrenta.</translation>
+        <translation type="obsolete">Uwaga: nowe URL seedów zostały dodane do istniejącego torrenta.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
+        <translation type="obsolete">Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation>Usuwanie torrenta %1...</translation>
+        <translation type="obsolete">Usuwanie torrenta %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation>Wstrzymywanie torrenta %1...</translation>
+        <translation type="obsolete">Wstrzymywanie torrenta %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Błąd: Torrent %1 nie zawiera żadnego pliku.</translation>
+        <translation type="obsolete">Błąd: Torrent %1 nie zawiera żadnego pliku.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished">Błędny razmiar pliku z torrenta %1, wstrzymuję pobieranie.</translation>
-    </message>
-    <message>
-        <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The torrent was downloaded in %1.</source>
-        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Błędny razmiar pliku z torrenta %1, wstrzymuję pobieranie.</translation>
     </message>
 </context>
 <context>
@@ -620,7 +603,18 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation>Nieprzeczytane</translation>
+        <translation type="obsolete">Nieprzeczytane</translation>
+    </message>
+</context>
+<context>
+    <name>FeedListWidget</name>
+    <message>
+        <source>RSS feeds</source>
+        <translation type="unfinished">Kanały RSS</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished">Nieprzeczytane</translation>
     </message>
 </context>
 <context>
@@ -1382,6 +1376,10 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown qBittorrent when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2147,6 +2145,237 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
 </context>
 <context>
+    <name>QBtSession</name>
+    <message>
+        <source>%1 reached the maximum ratio you set.</source>
+        <translation type="unfinished">%1 osiagnął ustawiony przez ciebie współczynnik udziału.</translation>
+    </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished">Usuwanie torrenta %1...</translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished">Wstrzymywanie torrenta %1...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent jest połączony przez port: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">Wsparcie UPnP [WŁ]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">Wsparcie UPnP [WYŁ]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">Wsparcie NAT-PMP [WŁ]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">Wsparcie NAT-PMP [WYŁ]</translation>
+    </message>
+    <message>
+        <source>HTTP user agent is %1</source>
+        <translation type="unfinished">HTTP user agent: %1</translation>
+    </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished">Rozmiar pamięci podręcznej na dysku wynosi %1 MiB</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">Wsparcie DHT [WŁ], port: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">Wsparcie DHT [WYŁ]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">Wsparcie PeX [WŁ]</translation>
+    </message>
+    <message>
+        <source>PeX support [OFF]</source>
+        <translation type="unfinished">Wsparcie PeX [WYŁ]</translation>
+    </message>
+    <message>
+        <source>Restart is required to toggle PeX support</source>
+        <translation type="unfinished">Zmiana statusu PeX wymaga ponownego uruchomienia</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Wyszukiwanie partnerów lokalnych [WŁ]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Wyszukiwanie partnerów lokalnych [WYŁ]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Wsparcie szyfrowania [WŁ]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Wsparcie szyfrowania [WYMUSZONE]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Wsparcie szyfrowania [WYŁ]</translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start the embedded tracker!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished">Interfejs www nasłuchuje na porcie: %1</translation>
+    </message>
+    <message>
+        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
+        <translation type="unfinished">Błąd interfejsu www - Nie można uruchomić interefejsu www na porcie %1</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos; usunięto z listy transferów i twardego dysku.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">&apos;%1&apos; usunięto z listy transferów.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished">&apos;%1&apos; jest niepoprawnym adresem magnet.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished">&apos;%1&apos; jest już na liście pobierania.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished">&apos;%1&apos; wznowiony. (szybkie wznawianie)</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished">&apos;%1&apos; dodano do listy pobierania.</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished">Nie można odczytać pliku torrent: &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">Plik jest uszkodzony lub nie jest plikiem torrent.</translation>
+    </message>
+    <message>
+        <source>Error: The torrent %1 does not contain any file.</source>
+        <translation type="unfinished">Błąd: Torrent %1 nie zawiera żadnego pliku.</translation>
+    </message>
+    <message>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished">Uwaga: nowe trackery zostały dodane do istniejącego torrenta.</translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished">Uwaga: nowe URL seedów zostały dodane do istniejącego torrenta.</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany przez filtr IP&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany z powodu uszkodzonych części&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished">Rekursywne pobieranie pliku %1 osadzonego w pliku torrent %2</translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished">Nie można odczytać pliku torrent: &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent was downloaded in %1.</source>
+        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you for using qBittorrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[qBittorrent] %1 has finished downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished">Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
+    </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished">Powód: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Błąd mapowania portu, wiadomość %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Udane mapowanie portu, wiadomość %1</translation>
+    </message>
+    <message>
+        <source>File sizes mismatch for torrent %1, pausing it.</source>
+        <translation type="unfinished">Błędny razmiar pliku z torrenta %1, wstrzymuję pobieranie.</translation>
+    </message>
+    <message>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation type="unfinished">Szybkie wznowienie danych zostało odrzucone przez torrent %1, ponowne sprawdzanie...</translation>
+    </message>
+    <message>
+        <source>Url seed lookup failed for url: %1, message: %2</source>
+        <translation type="unfinished">Błąd wyszukiwania url partnera dla adresu:%1, wiadomość: %2</translation>
+    </message>
+    <message>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <translation type="unfinished">Pobieranie &apos;%1&apos;, proszę czekać...</translation>
+    </message>
+</context>
+<context>
     <name>RSS</name>
     <message>
         <source>Search</source>
@@ -2174,7 +2403,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation>Kanały RSS</translation>
+        <translation type="obsolete">Kanały RSS</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2334,10 +2563,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>RssArticle</name>
+    <message>
+        <source>No description available</source>
+        <translation type="unfinished">Opis niedostępny</translation>
+    </message>
+</context>
+<context>
+    <name>RssFeed</name>
+    <message>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished">Automatyczne pobieranie torrenta %1z kanału RSS %2 ...</translation>
+    </message>
+</context>
+<context>
     <name>RssItem</name>
     <message>
         <source>No description available</source>
-        <translation>Opis niedostępny</translation>
+        <translation type="obsolete">Opis niedostępny</translation>
     </message>
 </context>
 <context>
@@ -2363,7 +2606,7 @@ p, li { white-space: pre-wrap; }
     <name>RssStream</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Automatyczne pobieranie torrenta %1z kanału RSS %2 ...</translation>
+        <translation type="obsolete">Automatyczne pobieranie torrenta %1z kanału RSS %2 ...</translation>
     </message>
 </context>
 <context>
@@ -3070,6 +3313,10 @@ Do you want to install it now?</source>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation type="unfinished">Usuń</translation>
+    </message>
+    <message>
+        <source>Tracker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -152,224 +152,228 @@ p, li { white-space: pre-wrap; }
         <source>Display program notification balloons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable embedded tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded tracker port</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 dosiahol maximálny požadovaný pomer.</translation>
+        <translation type="obsolete">%1 dosiahol maximálny požadovaný pomer.</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent sa viaže na port: TCP/%1</translation>
+        <translation type="obsolete">qBittorrent sa viaže na port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Podpora UPnP [zapnutá]</translation>
+        <translation type="obsolete">Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>Podpora UPnP [vypnutá]</translation>
+        <translation type="obsolete">Podpora UPnP [vypnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Podpora NAT-PMP [zapnutá]</translation>
+        <translation type="obsolete">Podpora NAT-PMP [zapnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Podpora NAT-PMP [vypnutá]</translation>
+        <translation type="obsolete">Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Podpora DHT [ZAP], port: UDP/%1</translation>
+        <translation type="obsolete">Podpora DHT [ZAP], port: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Podpora DHT [vypnutá]</translation>
+        <translation type="obsolete">Podpora DHT [vypnutá]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Podpora PeX [zapnutá]</translation>
+        <translation type="obsolete">Podpora PeX [zapnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Local Peer Discovery [zapnutá]</translation>
+        <translation type="obsolete">Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
+        <translation type="obsolete">Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Podpora šifrovania [zapnuté]</translation>
+        <translation type="obsolete">Podpora šifrovania [zapnuté]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation>Podpora šifrovania [vynútené]</translation>
+        <translation type="obsolete">Podpora šifrovania [vynútené]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Podpora šifrovania [vypnuté]</translation>
+        <translation type="obsolete">Podpora šifrovania [vypnuté]</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Chyba webového rozhrania - nepodaril sa bind webového rozhrania na port %1</translation>
+        <translation type="obsolete">Chyba webového rozhrania - nepodaril sa bind webového rozhrania na port %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>„%1“ bol odstránený zo zoznamu sťahovaných a z pevného disku.</translation>
+        <translation type="obsolete">„%1“ bol odstránený zo zoznamu sťahovaných a z pevného disku.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>„%1“ bol odstránený zo zoznamu sťahovaných.</translation>
+        <translation type="obsolete">„%1“ bol odstránený zo zoznamu sťahovaných.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>„%1“ nie je platný magnet URI.</translation>
+        <translation type="obsolete">„%1“ nie je platný magnet URI.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>„%1“ sa už nachádza v zozname sťahovaných.</translation>
+        <translation type="obsolete">„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>„%1“ bol obnovený. (rýchle obnovenie)</translation>
+        <translation type="obsolete">„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
+        <translation type="obsolete">„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation>Nepodarilo sa dekódovať torrent súbor: „%1“</translation>
+        <translation type="obsolete">Nepodarilo sa dekódovať torrent súbor: „%1“</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
+        <translation type="obsolete">Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
+        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
+        <translation type="obsolete">Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation>Nepodarilo sa dekódovať torrent súbor %1.</translation>
+        <translation type="obsolete">Nepodarilo sa dekódovať torrent súbor %1.</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
+        <translation type="obsolete">UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Rýchle obnovenie torrentu %1 bolo odmietnuté, prebieha opätovná kontrola...</translation>
+        <translation type="obsolete">Rýchle obnovenie torrentu %1 bolo odmietnuté, prebieha opätovná kontrola...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation>Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
+        <translation type="obsolete">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Prebieha sťahovanie „%1“, čakajte prosím...</translation>
+        <translation type="obsolete">Prebieha sťahovanie „%1“, čakajte prosím...</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>Používa sa veľkosť vyrovnávacej diskovej pamäte %1 MiB</translation>
+        <translation type="obsolete">Používa sa veľkosť vyrovnávacej diskovej pamäte %1 MiB</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation>Podpora PeX [VYP]</translation>
+        <translation type="obsolete">Podpora PeX [VYP]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Na prepnutie podpory PeX je potrebný reštart</translation>
+        <translation type="obsolete">Na prepnutie podpory PeX je potrebný reštart</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation>Webové rozhranie počúva na porte %1</translation>
+        <translation type="obsolete">Webové rozhranie počúva na porte %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation>HTTP user agent je %1</translation>
+        <translation type="obsolete">HTTP user agent je %1</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation>Dôvod: %1</translation>
+        <translation type="obsolete">Dôvod: %1</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation>Pozn.: Do existujúceho torrentu boli pridané nové trackery.</translation>
+        <translation type="obsolete">Pozn.: Do existujúceho torrentu boli pridané nové trackery.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation>Pozn.: Do existujúceho torrentu boli pridané nové URL seedy.</translation>
+        <translation type="obsolete">Pozn.: Do existujúceho torrentu boli pridané nové URL seedy.</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
+        <translation type="obsolete">Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation>Odstraňuje sa torrent %1...</translation>
+        <translation type="obsolete">Odstraňuje sa torrent %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation>Pozastavuje sa torrent %1...</translation>
+        <translation type="obsolete">Pozastavuje sa torrent %1...</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Chyba: Torrent %1 neobsahuje žiaden súbor.</translation>
+        <translation type="obsolete">Chyba: Torrent %1 neobsahuje žiaden súbor.</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation>Veľkosti súborov sa líšia pri torrente %1, pozastavuje sa.</translation>
+        <translation type="obsolete">Veľkosti súborov sa líšia pri torrente %1, pozastavuje sa.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation>Názov torrentu: %1</translation>
+        <translation type="obsolete">Názov torrentu: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation>Veľkosť torrentu: %1</translation>
-    </message>
-    <message>
-        <source>Save path: %1</source>
-        <translation></translation>
+        <translation type="obsolete">Veľkosť torrentu: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Torrent bol stiahnutý za %1.</translation>
+        <translation type="obsolete">Torrent bol stiahnutý za %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation>Ďakujeme, že používate qBittorrent.</translation>
+        <translation type="obsolete">Ďakujeme, že používate qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation>[qBittorrent] sťahovanie %1 bolo dokončené</translation>
+        <translation type="obsolete">[qBittorrent] sťahovanie %1 bolo dokončené</translation>
     </message>
 </context>
 <context>
@@ -629,7 +633,19 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     <name>FeedList</name>
     <message>
         <source>Unread</source>
-        <translation>Neprečítané</translation>
+        <translation type="obsolete">Neprečítané</translation>
+    </message>
+</context>
+<context>
+    <name>FeedListWidget</name>
+    <message>
+        <source>RSS feeds</source>
+        <translation type="unfinished">RSS kanály
+</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished">Neprečítané</translation>
     </message>
 </context>
 <context>
@@ -1391,6 +1407,10 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <message>
         <source>R&amp;esume All</source>
         <translation>Pokračovať vš&amp;etky</translation>
+    </message>
+    <message>
+        <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2155,6 +2175,237 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
 </context>
 <context>
+    <name>QBtSession</name>
+    <message>
+        <source>%1 reached the maximum ratio you set.</source>
+        <translation type="unfinished">%1 dosiahol maximálny požadovaný pomer.</translation>
+    </message>
+    <message>
+        <source>Removing torrent %1...</source>
+        <translation type="unfinished">Odstraňuje sa torrent %1...</translation>
+    </message>
+    <message>
+        <source>Pausing torrent %1...</source>
+        <translation type="unfinished">Pozastavuje sa torrent %1...</translation>
+    </message>
+    <message>
+        <source>qBittorrent is bound to port: TCP/%1</source>
+        <comment>e.g: qBittorrent is bound to port: 6881</comment>
+        <translation type="unfinished">qBittorrent sa viaže na port: TCP/%1</translation>
+    </message>
+    <message>
+        <source>UPnP support [ON]</source>
+        <translation type="unfinished">Podpora UPnP [zapnutá]</translation>
+    </message>
+    <message>
+        <source>UPnP support [OFF]</source>
+        <translation type="unfinished">Podpora UPnP [vypnutá]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [ON]</source>
+        <translation type="unfinished">Podpora NAT-PMP [zapnutá]</translation>
+    </message>
+    <message>
+        <source>NAT-PMP support [OFF]</source>
+        <translation type="unfinished">Podpora NAT-PMP [vypnutá]</translation>
+    </message>
+    <message>
+        <source>HTTP user agent is %1</source>
+        <translation type="unfinished">HTTP user agent je %1</translation>
+    </message>
+    <message>
+        <source>Using a disk cache size of %1 MiB</source>
+        <translation type="unfinished">Používa sa veľkosť vyrovnávacej diskovej pamäte %1 MiB</translation>
+    </message>
+    <message>
+        <source>DHT support [ON], port: UDP/%1</source>
+        <translation type="unfinished">Podpora DHT [ZAP], port: UDP/%1</translation>
+    </message>
+    <message>
+        <source>DHT support [OFF]</source>
+        <translation type="unfinished">Podpora DHT [vypnutá]</translation>
+    </message>
+    <message>
+        <source>PeX support [ON]</source>
+        <translation type="unfinished">Podpora PeX [zapnutá]</translation>
+    </message>
+    <message>
+        <source>PeX support [OFF]</source>
+        <translation type="unfinished">Podpora PeX [VYP]</translation>
+    </message>
+    <message>
+        <source>Restart is required to toggle PeX support</source>
+        <translation type="unfinished">Na prepnutie podpory PeX je potrebný reštart</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery [ON]</source>
+        <translation type="unfinished">Local Peer Discovery [zapnutá]</translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [OFF]</source>
+        <translation type="unfinished">Podpora Local Peer Discovery support [vypnutá]</translation>
+    </message>
+    <message>
+        <source>Encryption support [ON]</source>
+        <translation type="unfinished">Podpora šifrovania [zapnuté]</translation>
+    </message>
+    <message>
+        <source>Encryption support [FORCED]</source>
+        <translation type="unfinished">Podpora šifrovania [vynútené]</translation>
+    </message>
+    <message>
+        <source>Encryption support [OFF]</source>
+        <translation type="unfinished">Podpora šifrovania [vypnuté]</translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start the embedded tracker!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Tracker [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Web UI is listening on port %1</source>
+        <translation type="unfinished">Webové rozhranie počúva na porte %1</translation>
+    </message>
+    <message>
+        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
+        <translation type="unfinished">Chyba webového rozhrania - nepodaril sa bind webového rozhrania na port %1</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">„%1“ bol odstránený zo zoznamu sťahovaných a z pevného disku.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; was removed from transfer list.</source>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <translation type="unfinished">„%1“ bol odstránený zo zoznamu sťahovaných.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is not a valid magnet URI.</source>
+        <translation type="unfinished">„%1“ nie je platný magnet URI.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; is already in download list.</source>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <translation type="unfinished">„%1“ sa už nachádza v zozname sťahovaných.</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; resumed. (fast resume)</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <translation type="unfinished">„%1“ bol obnovený. (rýchle obnovenie)</translation>
+    </message>
+    <message>
+        <source>&apos;%1&apos; added to download list.</source>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <translation type="unfinished">„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
+    </message>
+    <message>
+        <source>Unable to decode torrent file: &apos;%1&apos;</source>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <translation type="unfinished">Nepodarilo sa dekódovať torrent súbor: „%1“</translation>
+    </message>
+    <message>
+        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
+        <translation type="unfinished">Tento súbor je buď poškodený alebo to nie je torrent.</translation>
+    </message>
+    <message>
+        <source>Error: The torrent %1 does not contain any file.</source>
+        <translation type="unfinished">Chyba: Torrent %1 neobsahuje žiaden súbor.</translation>
+    </message>
+    <message>
+        <source>Note: new trackers were added to the existing torrent.</source>
+        <translation type="unfinished">Pozn.: Do existujúceho torrentu boli pridané nové trackery.</translation>
+    </message>
+    <message>
+        <source>Note: new URL seeds were added to the existing torrent.</source>
+        <translation type="unfinished">Pozn.: Do existujúceho torrentu boli pridané nové URL seedy.</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
+        <comment>x.y.z.w was blocked</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <source>Recursive download of file %1 embedded in torrent %2</source>
+        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
+        <translation type="unfinished">Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
+    </message>
+    <message>
+        <source>Unable to decode %1 torrent file.</source>
+        <translation type="unfinished">Nepodarilo sa dekódovať torrent súbor %1.</translation>
+    </message>
+    <message>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished">Názov torrentu: %1</translation>
+    </message>
+    <message>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished">Veľkosť torrentu: %1</translation>
+    </message>
+    <message>
+        <source>Save path: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent was downloaded in %1.</source>
+        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
+        <translation type="unfinished">Torrent bol stiahnutý za %1.</translation>
+    </message>
+    <message>
+        <source>Thank you for using qBittorrent.</source>
+        <translation type="unfinished">Ďakujeme, že používate qBittorrent.</translation>
+    </message>
+    <message>
+        <source>[qBittorrent] %1 has finished downloading</source>
+        <translation type="unfinished">[qBittorrent] sťahovanie %1 bolo dokončené</translation>
+    </message>
+    <message>
+        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <translation type="unfinished">Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
+    </message>
+    <message>
+        <source>Reason: %1</source>
+        <translation type="unfinished">Dôvod: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
+    </message>
+    <message>
+        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
+        <translation type="unfinished">UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
+    </message>
+    <message>
+        <source>File sizes mismatch for torrent %1, pausing it.</source>
+        <translation type="unfinished">Veľkosti súborov sa líšia pri torrente %1, pozastavuje sa.</translation>
+    </message>
+    <message>
+        <source>Fast resume data was rejected for torrent %1, checking again...</source>
+        <translation type="unfinished">Rýchle obnovenie torrentu %1 bolo odmietnuté, prebieha opätovná kontrola...</translation>
+    </message>
+    <message>
+        <source>Url seed lookup failed for url: %1, message: %2</source>
+        <translation type="unfinished">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
+    </message>
+    <message>
+        <source>Downloading &apos;%1&apos;, please wait...</source>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <translation type="unfinished">Prebieha sťahovanie „%1“, čakajte prosím...</translation>
+    </message>
+</context>
+<context>
     <name>RSS</name>
     <message>
         <source>Search</source>
@@ -2214,7 +2465,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feeds</source>
-        <translation>RSS kanály
+        <translation type="obsolete">RSS kanály
 </translation>
     </message>
     <message>
@@ -2343,10 +2594,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>RssArticle</name>
+    <message>
+        <source>No description available</source>
+        <translation type="unfinished">Popis nie je dostupný</translation>
+    </message>
+</context>
+<context>
+    <name>RssFeed</name>
+    <message>
+        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
+        <translation type="unfinished">Automaticky sa sťahuje torrent %1 z RSS kanála %2...</translation>
+    </message>
+</context>
+<context>
     <name>RssItem</name>
     <message>
         <source>No description available</source>
-        <translation>Popis nie je dostupný</translation>
+        <translation type="obsolete">Popis nie je dostupný</translation>
     </message>
 </context>
 <context>
@@ -2372,7 +2637,7 @@ p, li { white-space: pre-wrap; }
     <name>RssStream</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Automaticky sa sťahuje torrent %1 z RSS kanála %2...</translation>
+        <translation type="obsolete">Automaticky sa sťahuje torrent %1 z RSS kanála %2...</translation>
     </message>
 </context>
 <context>
@@ -3079,6 +3344,10 @@ Chcete ho nainštalovať teraz?</translation>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Zmazať</translation>
+    </message>
+    <message>
+        <source>Tracker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
