@@ -1546,7 +1546,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../ui/mainwindow.ui" line="162"/>
         <source>&amp;About</source>
-        <translation>]Über</translation>
+        <translation>&amp;Über</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="172"/>
