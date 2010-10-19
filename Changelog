@@ -4,6 +4,7 @@
     - BUGFIX: Delete uneeded files on torrent "soft" deletion
     - BUGFIX: Fix issues when marking a file as 'not downloaded' causes the torrent to complete
     - BUGFIX: Improved "Set Location" and "Change save path" dialogs
+    - BUGFIX: Fix display of queued seeding torrents
 
 * Sun Oct 17 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.6
     - BUGFIX: Fix "torrent seeding after creation" feature
