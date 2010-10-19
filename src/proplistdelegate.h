@@ -149,7 +149,7 @@ public:
     if(index.column() != PRIORITY) return 0;
     if(properties) {
       QTorrentHandle h = properties->getCurrentTorrent();
-      if(!h.is_valid() || h.get_torrent_handle().is_seed() || !h.has_metadata()) return 0;
+      if(!h.is_valid() || static_cast<torrent_handle>(h).is_seed() || !h.has_metadata()) return 0;
     }
     if(index.data().toInt() == 0) {
       // IGNORED

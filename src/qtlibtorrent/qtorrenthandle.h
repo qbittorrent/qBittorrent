@@ -42,10 +42,7 @@ class QStringList;
 
 // A wrapper for torrent_handle in libtorrent
 // to interact well with Qt types
-class QTorrentHandle {
-
-  private:
-    torrent_handle h;
+class QTorrentHandle : public torrent_handle {
 
   public:
 
@@ -59,17 +56,11 @@ class QTorrentHandle {
     //
     // Getters
     //
-
-    const torrent_handle& get_torrent_handle() const;
-    const torrent_info& get_torrent_info() const;
     QString hash() const;
     QString name() const;
     float progress() const;
     bitfield pieces() const;
-    void piece_availability(std::vector<int>& avail) const;
-    void get_download_queue(std::vector<partial_piece_info>& queue) const;
     QString current_tracker() const;
-    bool is_valid() const;
     bool is_paused() const;
     bool has_filtered_pieces() const;
     size_type total_size() const;
@@ -84,26 +75,19 @@ class QTorrentHandle {
     int num_seeds() const;
     int num_complete() const;
     int num_incomplete() const;
-    void scrape_tracker() const;
     QString save_path() const;
     QStringList url_seeds() const;
     size_type actual_size() const;
-    int download_limit() const;
-    int upload_limit() const;
     int num_files() const;
-    bool has_metadata() const;
-    void save_resume_data() const;
     int queue_position() const;
     bool is_queued() const;
     QString file_at(unsigned int index) const;
     size_type filesize_at(unsigned int index) const;
-    const std::vector<announce_entry> trackers() const;
     torrent_status::state_t state() const;
     QString creator() const;
     QString comment() const;
     size_type total_failed_bytes() const;
     size_type total_redundant_bytes() const;
-    void file_progress(std::vector<size_type>& fp) const;
     size_type total_payload_download() const;
     size_type total_payload_upload() const;
     size_type all_time_upload() const;
@@ -118,18 +102,9 @@ class QTorrentHandle {
     bool is_auto_managed() const;
     qlonglong active_time() const;
     qlonglong seeding_time() const;
-    std::vector<int> file_priorities() const;
-    bool is_sequential_download() const;
-#if LIBTORRENT_VERSION_MINOR > 14
-    bool super_seeding() const;
-#endif
     QString creation_date() const;
     QString next_announce() const;
     qlonglong next_announce_s() const;
-    void get_peer_info(std::vector<peer_info>&) const;
-#ifndef DISABLE_GUI
-    bool resolve_countries() const;
-#endif
     bool priv() const;
     bool first_last_piece_first() const;
     QString root_path() const;
@@ -141,39 +116,14 @@ class QTorrentHandle {
     //
     // Setters
     //
-
-    void set_download_limit(int limit);
-    void set_upload_limit(int limit);
     void pause();
     void resume();
     void remove_url_seed(QString seed);
     void add_url_seed(QString seed);
-    void set_max_uploads(int val);
-    void set_max_connections(int val);
     void prioritize_files(const std::vector<int> &v);
     void file_priority(int index, int priority) const;
-    void set_ratio(float ratio) const;
-    void replace_trackers(const std::vector<announce_entry>& trackers) const;
-    void force_reannounce();
-    void set_sequential_download(bool);
     void set_tracker_login(QString username, QString password);
-    void queue_position_down() const;
-    void queue_position_up() const;
-    void queue_position_top() const;
-    void queue_position_bottom() const;
-    void auto_managed(bool) const;
-    void force_recheck() const;
     void move_storage(QString path) const;
-#if LIBTORRENT_VERSION_MINOR > 14
-    void super_seeding(bool on) const;
-    void flush_cache() const;
-#endif
-#ifndef DISABLE_GUI
-    void resolve_countries(bool r);
-#endif
-    void connect_peer(libtorrent::asio::ip::tcp::endpoint const& adr, int source = 0) const;
-    void set_peer_upload_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
-    void set_peer_download_limit(libtorrent::asio::ip::tcp::endpoint ip, int limit) const;
     void add_tracker(const announce_entry& url);
     void prioritize_first_last_piece(bool b);
     void rename_file(int index, QString name);
@@ -182,7 +132,6 @@ class QTorrentHandle {
     //
     // Operators
     //
-    QTorrentHandle& operator =(const torrent_handle& new_h);
     bool operator ==(const QTorrentHandle& new_h) const;
 };
 

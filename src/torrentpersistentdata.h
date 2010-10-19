@@ -291,7 +291,7 @@ public:
     QHash<QString, QVariant> data;
     data["is_magnet"] = is_magnet;
     if(is_magnet) {
-      data["magnet_uri"] = misc::toQString(make_magnet_uri(h.get_torrent_handle()));
+      data["magnet_uri"] = misc::toQString(make_magnet_uri(h));
     }
     data["seed"] = h.is_seed();
     data["priority"] = h.queue_position();

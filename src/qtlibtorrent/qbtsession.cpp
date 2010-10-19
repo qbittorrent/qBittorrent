@@ -772,10 +772,10 @@ void QBtSession::deleteTorrent(QString hash, bool delete_local_files) {
     QDir save_dir(h.save_path());
     if(save_dir != QDir(defaultSavePath) && (defaultTempPath.isEmpty() || save_dir != QDir(defaultTempPath)))
       savePathsToRemove[hash] = save_dir.absolutePath();
-    s->remove_torrent(h.get_torrent_handle(), session::delete_files);
+    s->remove_torrent(h, session::delete_files);
   } else {
     QStringList uneeded_files = h.uneeded_files_path();
-    s->remove_torrent(h.get_torrent_handle());
+    s->remove_torrent(h);
     // Remove unneeded files
     foreach(const QString &uneeded_file, uneeded_files) {
       qDebug("Removing uneeded file: %s", qPrintable(uneeded_file));

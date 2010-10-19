@@ -365,7 +365,7 @@ void PropertiesWidget::loadDynamicData() {
           std::vector<int> avail;
           h.piece_availability(avail);
           pieces_availability->setAvailability(avail);
-          avail_average_lbl->setText(QString::number(h.get_torrent_handle().status().distributed_copies, 'f', 1));
+          avail_average_lbl->setText(QString::number(h.status().distributed_copies, 'f', 1));
         } else {
           showPiecesAvailability(false);
         }
