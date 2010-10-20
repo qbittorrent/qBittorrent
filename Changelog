@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.8
     - BUGFIX: Fix possible crash on manual peer ban
+    - BUGFIX: Improved hostname resolution code
 
 * Tue Oct 19 2010  - Christophe Dumez <chris@qbittorrent.org> - v2.4.7
     - BUGFIX: Display the priority column when the queueing system gets enabled
