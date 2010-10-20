@@ -1,4 +1,4 @@
-#VERSION: 2.21
+#VERSION: 2.23
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -93,6 +93,9 @@ class btjunkie(object):
               self.results.append('a')
 
   def search(self, what, cat='all'):
+    # Remove {} since btjunkie does not seem
+    # to handle those very well
+    what = what.replace('{', '').replace('}', '')
     ret = []
     i = 1
     while True and i<11:
