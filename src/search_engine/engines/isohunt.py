@@ -1,4 +1,4 @@
-#VERSION: 1.30
+#VERSION: 1.31
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -38,6 +38,9 @@ class isohunt(object):
 		print download_file(info)
 
 	def search(self, what, cat='all'):
+		 # Remove {} since isohunt does not seem
+		 # to handle those very well
+		 what = what.replace('{', '').replace('}', '')
 		i = 1
 		while True and i<11:
 			res = 0
