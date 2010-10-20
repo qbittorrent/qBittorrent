@@ -1,4 +1,4 @@
-#VERSION: 1.0
+#VERSION: 1.1
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -50,6 +50,8 @@ class vertor(object):
       self.td_counter = None
       self.current_item = None
       self.results = results
+      self.in_name = False
+      self.outside_td = True;
       
     def start_a(self, attr):
       params = dict(attr)
@@ -58,29 +60,40 @@ class vertor(object):
         self.current_item = {}
         self.td_counter = 0
         self.current_item['link']=params['href'].strip()
+      elif self.td_counter == 0 and params.has_key('href') and params['href'].startswith("/torrents/") \
+      and not self.current_item.has_key('name'):
+	self.in_name = True
+        
+    def end_a(self):
+      if self.in_name:
+	self.in_name = False
     
     def handle_data(self, data):
-      if self.td_counter == 0:
+      if self.in_name:
         if not self.current_item.has_key('name'):
           self.current_item['name'] = ''
         self.current_item['name']+= data.strip()
-      elif self.td_counter == 3:
+      elif self.td_counter == 2 and not self.outside_td:
         if not self.current_item.has_key('size'):
           self.current_item['size'] = ''
         self.current_item['size']+= data.strip()
-      elif self.td_counter == 4:
+      elif self.td_counter == 4 and not self.outside_td:
         if not self.current_item.has_key('seeds'):
           self.current_item['seeds'] = ''
         self.current_item['seeds']+= data.strip()
-      elif self.td_counter == 5:
+      elif self.td_counter == 5 and not self.outside_td:
         if not self.current_item.has_key('leech'):
           self.current_item['leech'] = ''
         self.current_item['leech']+= data.strip()
+        
+    def end_td(self):
+      self.outside_td = True
       
     def start_td(self,attr):
         if isinstance(self.td_counter,int):
+	  self.outside_td = False
           self.td_counter += 1
-          if self.td_counter > 6:
+          if self.td_counter > 5:
             self.td_counter = None
             # Display item
             if self.current_item:
@@ -99,7 +112,7 @@ class vertor(object):
       results = []
       parser = self.SimpleSGMLParser(results, self.url)
       dat = retrieve_url(self.url+'/index.php?mod=search&words=%s&cid=%s&orderby=a.seeds&asc=0&search=&exclude=&p=%d'%(what, self.supported_categories[cat], i))
-      results_re = re.compile('(?s)Vertor search results.*')
+      results_re = re.compile('(?s)<table class="listing">.*')
       for match in results_re.finditer(dat):
         res_tab = match.group(0)
         parser.feed(res_tab)
