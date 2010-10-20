@@ -400,7 +400,7 @@ void Bittorrent::configureSession() {
   std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
   addConsoleMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
 
-  sessionSettings.upnp_ignore_nonrouters = true;
+  sessionSettings.upnp_ignore_nonrouters = false;
   sessionSettings.use_dht_as_fallback = false;
   // To prevent ISPs from blocking seeding
   sessionSettings.lazy_bitfields = true;

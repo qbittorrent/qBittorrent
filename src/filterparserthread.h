@@ -407,9 +407,12 @@ class FilterParserThread : public QThread  {
       // First, import current filter
       ip_filter filter = s->get_ip_filter();
       foreach(const QString &ip, IPs) {
-        qDebug("Manual ban of peer %s", ip.toLocal8Bit().data());
-        address_v4 addr = address_v4::from_string(ip.toLocal8Bit().data());
-        filter.add_rule(addr, addr, ip_filter::blocked);
+        qDebug("Manual ban of peer %s", ip.toLocal8Bit().constData());
+        boost::system::error_code ec;
+        address_v4 addr = address_v4::from_string(ip.toLocal8Bit().constData(), ec);
+        Q_ASSERT(!ec);
+        if(!ec)
+          filter.add_rule(addr, addr, ip_filter::blocked);
       }
       s->set_ip_filter(filter);
     }
