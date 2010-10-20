@@ -83,10 +83,16 @@ signals:
 protected:
   void run() {
     try {
-      libtorrent::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip);
-      if(stopped) return;
-      libtorrent::asio::ip::tcp::endpoint endpoint = *it;
-      emit ip_resolved(misc::toQString(endpoint.address().to_string()), misc::toQString((*it).host_name()));
+      boost::system::error_code ec;
+      libtorrent::asio::ip::tcp::resolver::iterator it = resolver.resolve(ip, ec);
+      if(ec || stopped) return;
+      const std::string ip_str = ip.address().to_string(ec);
+      if(ec) return;
+      const QString host_name = misc::toQString(it->host_name());
+      const QString ip_qstr = misc::toQString(ip_str);
+      if(host_name != ip_qstr) {
+        emit ip_resolved(ip_qstr, host_name);
+      }
     } catch(std::exception/* &e*/) {
       /*std::cerr << "Hostname resolution failed, reason: " << e.what() << std::endl;*/
       std::cerr << "Hostname resolution error." << std::endl;

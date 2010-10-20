@@ -187,8 +187,8 @@ void PeerListWidget::showPeerListMenu(QPoint) {
 void PeerListWidget::banSelectedPeers(QStringList peer_ips) {
   // Confirm first
   int ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to ban permanently the selected peers?"),
-                              tr("&Yes"), tr("&No"),
-                              QString(), 0, 1);
+                                  tr("&Yes"), tr("&No"),
+                                  QString(), 0, 1);
   if(ret) return;
   foreach(const QString &ip, peer_ips) {
     qDebug("Banning peer %s...", ip.toLocal8Bit().data());
@@ -313,7 +313,8 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
           if(host.isNull()) {
             resolver->resolve(peer.ip);
           } else {
-            peerItems.value(peer_ip)->setData(host);
+            qDebug("Got peer IP from cache");
+            handleResolved(peer_ip, host);
           }
         }
       }
@@ -394,6 +395,8 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
 void PeerListWidget::handleResolved(QString ip, QString hostname) {
   QStandardItem *item = peerItems.value(ip, 0);
   if(item) {
+    qDebug("Resolved %s -> %s", qPrintable(ip), qPrintable(hostname));
     item->setData(hostname);
+    //listModel->setData(listModel->index(item->row(), IP), hostname);
   }
 }
