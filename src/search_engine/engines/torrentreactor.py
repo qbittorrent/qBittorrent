@@ -1,4 +1,4 @@
-#VERSION: 1.20
+#VERSION: 1.21
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -49,7 +49,7 @@ class torrentreactor(object):
 
 		def start_a(self, attr):
 			params = dict(attr)
-			if params['href'].startswith('http://dl.torrentreactor.net/download.php'):
+			if 'torrentreactor.net/download.php' in params['href']:
 				self.current_item = {}
 				self.td_counter = 0
 				self.current_item['link'] = params['href'].strip()
