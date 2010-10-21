@@ -2081,6 +2081,8 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
             // Auto-Shutdown
             if(will_shutdown) {
               qDebug("Preparing for auto-shutdown because all downloads are complete!");
+              // Disabling it for next time
+              Preferences::setShutdownWhenDownloadsComplete(false);
 #if LIBTORRENT_VERSION_MINOR < 15
               saveDHTEntry();
 #endif
