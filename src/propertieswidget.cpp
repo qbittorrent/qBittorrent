@@ -286,10 +286,11 @@ void PropertiesWidget::readSettings() {
   }
   if(!settings.value("TorrentProperties/Visible", false).toBool()) {
     reduce();
-  } else {
-    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
-    //setEnabled(false);
   }
+  const int current_tab = settings.value("TorrentProperties/CurrentTab", MAIN_TAB).toInt();
+  stackedProperties->setCurrentIndex(current_tab);
+  if(state != REDUCED)
+    getButtonFromIndex(current_tab)->setStyleSheet(SELECTED_BUTTON_CSS);
 }
 
 void PropertiesWidget::saveSettings() {
@@ -311,6 +312,8 @@ void PropertiesWidget::saveSettings() {
   if(sizes.size() == 2) {
     settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
   }
+  // Remember current tab
+  settings.setValue("TorrentProperties/CurrentTab", stackedProperties->currentIndex());
 }
 
 void PropertiesWidget::reloadPreferences() {
@@ -457,6 +460,7 @@ QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
 void PropertiesWidget::on_main_infos_button_clicked() {
   if(state == VISIBLE && stackedProperties->currentIndex() == MAIN_TAB) {
     reduce();
+    main_infos_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   } else {
     slide();
     getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
@@ -469,6 +473,7 @@ void PropertiesWidget::on_trackers_button_clicked() {
   if(state == VISIBLE && stackedProperties->currentIndex() == TRACKERS_TAB) {
     reduce();
   } else {
+    trackers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
     slide();
     getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
     stackedProperties->setCurrentIndex(TRACKERS_TAB);
@@ -479,6 +484,7 @@ void PropertiesWidget::on_trackers_button_clicked() {
 void PropertiesWidget::on_peers_button_clicked() {
   if(state == VISIBLE && stackedProperties->currentIndex() == PEERS_TAB) {
     reduce();
+    peers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   } else {
     slide();
     getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
@@ -490,6 +496,7 @@ void PropertiesWidget::on_peers_button_clicked() {
 void PropertiesWidget::on_url_seeds_button_clicked() {
   if(state == VISIBLE && stackedProperties->currentIndex() == URLSEEDS_TAB) {
     reduce();
+    url_seeds_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   } else {
     slide();
     getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
@@ -501,6 +508,7 @@ void PropertiesWidget::on_url_seeds_button_clicked() {
 void PropertiesWidget::on_files_button_clicked() {
   if(state == VISIBLE && stackedProperties->currentIndex() == FILES_TAB) {
     reduce();
+    files_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   } else {
     slide();
     getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
