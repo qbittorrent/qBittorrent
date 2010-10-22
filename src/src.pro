@@ -292,18 +292,11 @@ contains(DEFINES, DISABLE_GUI) {
               transferlistwidget.h \
               transferlistdelegate.h \
               transferlistfilterswidget.h \
-              propertieswidget.h \
               torrentfilesmodel.h \
               geoip.h \
-              peeraddition.h \
               deletionconfirmationdlg.h \
               statusbar.h \
-              trackerlist.h \
-              downloadedpiecesbar.h \
-              peerlistwidget.h \
-              peerlistdelegate.h \
               reverseresolution.h \
-              trackersadditiondlg.h \
               searchtab.h \
               console_imp.h \
               ico.h \
@@ -315,13 +308,11 @@ contains(DEFINES, DISABLE_GUI) {
               about_imp.h \
               createtorrent_imp.h \
               searchlistdelegate.h \
-              proplistdelegate.h \
               previewselect.h \
               previewlistdelegate.h \
               downloadfromurldlg.h \
               torrentadditiondlg.h \
               trackerlogin.h \
-              pieceavailabilitybar.h \
               advancedsettings.h \
               cookiesdlg.h \
               hidabletabwidget.h \
@@ -356,6 +347,7 @@ include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
 include(rss/rss.pri)
 include(tracker/tracker.pri)
+include(properties/properties.pri)
 
 !contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \
@@ -372,7 +364,6 @@ include(tracker/tracker.pri)
            ui/pluginsource.ui \
            ui/trackersadditiondlg.ui \
            ui/console.ui \
-           ui/propertieswidget.ui \
            ui/peer.ui \
            ui/confirmdeletiondlg.ui \
            ui/cookiesdlg.ui
@@ -393,10 +384,7 @@ SOURCES += main.cpp \
              searchtab.cpp \
              ico.cpp \
              transferlistwidget.cpp \
-             propertieswidget.cpp \
-             peerlistwidget.cpp \
              cookiesdlg.cpp \
-             trackerlist.cpp \
              torrentadditiondlg.cpp \
              sessionapplication.cpp
 
