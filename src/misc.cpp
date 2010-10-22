@@ -415,7 +415,7 @@ void misc::moveToXDGFolders() {
       copyDir(old_BTBackupPath, BTBackupLocation());
     }
     // Copy search engine folder
-    const QString old_searchPath = old_qBtPath.absoluteFilePath("search_engine");
+    const QString old_searchPath = old_qBtPath.absoluteFilePath("nova");
     if(QDir(old_searchPath).exists()) {
       copyDir(old_searchPath, searchEngineLocation());
     }
@@ -471,7 +471,7 @@ QPoint misc::screenCenter(QWidget *win) {
 
 QString misc::searchEngineLocation() {
   const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                           + QDir::separator() + "search_engine");
+                                           + QDir::separator() + "nova");
   QDir locationDir(location);
   if(!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());

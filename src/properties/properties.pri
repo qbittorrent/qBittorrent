@@ -1,9 +1,8 @@
 INCLUDEPATH += $$PWD
 
-!contains(DEFINES, DISABLE_GUI) {
-  FORMS += $$PWD/propertieswidget.ui
+FORMS += $$PWD/propertieswidget.ui
 
-  HEADERS += $$PWD/propertieswidget.h \
+HEADERS += $$PWD/propertieswidget.h \
              $$PWD/peerlistwidget.h \
              $$PWD/proplistdelegate.h \
              $$PWD/trackerlist.h \
@@ -11,16 +10,11 @@ INCLUDEPATH += $$PWD
              $$PWD/peerlistdelegate.h \
              $$PWD/peeraddition.h \
              $$PWD/trackersadditiondlg.h \
-             $$PWD/pieceavailabilitybar.h
+             $$PWD/pieceavailabilitybar.h \
+             $$PWD/proptabbar.h
 
-  SOURCES += $$PWD/propertieswidget.cpp \
+SOURCES += $$PWD/propertieswidget.cpp \
              $$PWD/peerlistwidget.cpp \
-             $$PWD/trackerlist.cpp
+             $$PWD/trackerlist.cpp \
+             $$PWD/proptabbar.cpp
 
-}
-
-HEADERS += \
-    properties/proptabbar.h
-
-SOURCES += \
-    properties/proptabbar.cpp

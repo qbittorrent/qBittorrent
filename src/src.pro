@@ -222,7 +222,6 @@ os2 {
 # Resource files
 RESOURCES += icons.qrc \
             lang.qrc \
-            search.qrc \
             about.qrc
 
 # Add GeoIP resource file if the GeoIP database
@@ -282,13 +281,13 @@ HEADERS += misc.h \
            preferences.h \
            scannedfoldersmodel.h \
            qinisettings.h \
-           smtp.h
+           smtp.h \
+    torrentcreatordlg.h
 
 contains(DEFINES, DISABLE_GUI) {
   HEADERS += headlessloader.h
 } else {
   HEADERS +=  GUI.h \
-              supportedengines.h \
               transferlistwidget.h \
               transferlistdelegate.h \
               transferlistfilterswidget.h \
@@ -297,17 +296,11 @@ contains(DEFINES, DISABLE_GUI) {
               deletionconfirmationdlg.h \
               statusbar.h \
               reverseresolution.h \
-              searchtab.h \
               console_imp.h \
               ico.h \
-              engineselectdlg.h \
-              pluginsource.h \
-              searchEngine.h \
               speedlimitdlg.h \
               options_imp.h \
               about_imp.h \
-              createtorrent_imp.h \
-              searchlistdelegate.h \
               previewselect.h \
               previewlistdelegate.h \
               downloadfromurldlg.h \
@@ -345,9 +338,12 @@ contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
 
 include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
-include(rss/rss.pri)
 include(tracker/tracker.pri)
-include(properties/properties.pri)
+!contains(DEFINES, DISABLE_GUI) {
+  include(properties/properties.pri)
+  include(searchengine/searchengine.pri)
+  include(rss/rss.pri)
+}
 
 !contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \
@@ -358,9 +354,7 @@ include(properties/properties.pri)
            ui/login.ui \
            ui/downloadfromurldlg.ui \
            ui/torrentadditiondlg.ui \
-           ui/search.ui \
            ui/bandwidth_limit.ui \
-           ui/engineselect.ui \
            ui/pluginsource.ui \
            ui/trackersadditiondlg.ui \
            ui/console.ui \
@@ -373,15 +367,12 @@ SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
            misc.cpp \
-           smtp.cpp
+           smtp.cpp \
+    torrentcreatordlg.cpp
 
 !contains(DEFINES, DISABLE_GUI) {
   SOURCES += GUI.cpp \
              options_imp.cpp \
-             createtorrent_imp.cpp \
-             searchengine.cpp \
-             engineselectdlg.cpp \
-             searchtab.cpp \
              ico.cpp \
              transferlistwidget.cpp \
              cookiesdlg.cpp \

@@ -54,7 +54,7 @@ class PropertiesWidget;
 class StatusBar;
 class consoleDlg;
 class about;
-class createtorrent;
+class TorrentCreatorDlg;
 class downloadFromURL;
 class HidableTabWidget;
 class LineEdit;
@@ -149,7 +149,7 @@ private:
   QPointer<options_imp> options;
   QPointer<consoleDlg> console;
   QPointer<about> aboutDlg;
-  QPointer<createtorrent> createTorrentDlg;
+  QPointer<TorrentCreatorDlg> createTorrentDlg;
   QPointer<downloadFromURL> downloadFromURLDialog;
   QPointer<QSystemTrayIcon> systrayIcon;
   QPointer<QTimer> systrayCreator;

@@ -71,15 +71,15 @@ class torrentCreatorThread : public QThread {
     void updateProgress(int progress);
 };
 
-class createtorrent : public QDialog, private Ui::createTorrentDialog{
+class TorrentCreatorDlg : public QDialog, private Ui::createTorrentDialog{
   Q_OBJECT
 
   private:
     torrentCreatorThread *creatorThread;
     
   public:
-    createtorrent(QWidget *parent = 0);
-    ~createtorrent();
+    TorrentCreatorDlg(QWidget *parent = 0);
+    ~TorrentCreatorDlg();
     QStringList allItems(QListWidget *list);
     int getPieceSize() const;
 

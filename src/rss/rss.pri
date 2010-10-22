@@ -1,8 +1,6 @@
 INCLUDEPATH += $$PWD
 
-!contains(DEFINES, DISABLE_GUI) {
-
-  HEADERS +=  $$PWD/rss_imp.h \
+HEADERS +=  $$PWD/rss_imp.h \
               $$PWD/rsssettings.h \
               $$PWD/feeddownloader.h \
               $$PWD/feedlistwidget.h \
@@ -12,8 +10,8 @@ INCLUDEPATH += $$PWD
               $$PWD/rssfile.h \
               $$PWD/rssarticle.h \
               $$PWD/rssfilters.h
-  
-  SOURCES += $$PWD/rss_imp.cpp \
+
+SOURCES += $$PWD/rss_imp.cpp \
              $$PWD/rsssettings.cpp \
              $$PWD/feedlistwidget.cpp \
              $$PWD/rssmanager.cpp \
@@ -23,7 +21,7 @@ INCLUDEPATH += $$PWD
              $$PWD/feeddownloader.cpp \
              $$PWD/rssfilters.cpp
 
-  FORMS +=   $$PWD/ui/rss.ui \
+FORMS +=   $$PWD/ui/rss.ui \
              $$PWD/ui/feeddownloader.ui \
              $$PWD/ui/rsssettings.ui
-}
+

@@ -48,7 +48,7 @@
 #include <libtorrent/create_torrent.hpp>
 
 #include "torrentpersistentdata.h"
-#include "createtorrent_imp.h"
+#include "torrentcreatordlg.h"
 #include "misc.h"
 #include "qinisettings.h"
 
@@ -64,7 +64,7 @@ bool file_filter(boost::filesystem::path const& filename)
   return true;
 }
 
-createtorrent::createtorrent(QWidget *parent): QDialog(parent){
+TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent){
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
@@ -76,11 +76,11 @@ createtorrent::createtorrent(QWidget *parent): QDialog(parent){
   show();
 }
 
-createtorrent::~createtorrent() {
+TorrentCreatorDlg::~TorrentCreatorDlg() {
   delete creatorThread;
 }
 
-void createtorrent::on_addFolder_button_clicked(){
+void TorrentCreatorDlg::on_addFolder_button_clicked(){
   QIniSettings settings("qBittorrent", "qBittorrent");
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), last_path, QFileDialog::ShowDirsOnly);
@@ -93,7 +93,7 @@ void createtorrent::on_addFolder_button_clicked(){
   }
 }
 
-void createtorrent::on_addFile_button_clicked(){
+void TorrentCreatorDlg::on_addFile_button_clicked(){
   QIniSettings settings("qBittorrent", "qBittorrent");
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
@@ -106,7 +106,7 @@ void createtorrent::on_addFile_button_clicked(){
   }
 }
 
-void createtorrent::on_removeTracker_button_clicked() {
+void TorrentCreatorDlg::on_removeTracker_button_clicked() {
   QModelIndexList selectedIndexes = trackers_list->selectionModel()->selectedIndexes();
   for(int i=selectedIndexes.size()-1; i>=0; --i){
     QListWidgetItem *item = trackers_list->takeItem(selectedIndexes.at(i).row());
@@ -114,7 +114,7 @@ void createtorrent::on_removeTracker_button_clicked() {
   }
 }
 
-int createtorrent::getPieceSize() const {
+int TorrentCreatorDlg::getPieceSize() const {
   switch(comboPieceSize->currentIndex()) {
   case 0:
     return 32*1024;
@@ -135,7 +135,7 @@ int createtorrent::getPieceSize() const {
   }
 }
 
-void createtorrent::on_addTracker_button_clicked() {
+void TorrentCreatorDlg::on_addTracker_button_clicked() {
   bool ok;
   QString URL = QInputDialog::getText(this, tr("Please type an announce URL"),
                                       tr("Announce URL:", "Tracker URL"), QLineEdit::Normal,
@@ -146,7 +146,7 @@ void createtorrent::on_addTracker_button_clicked() {
   }
 }
 
-void createtorrent::on_removeURLSeed_button_clicked(){
+void TorrentCreatorDlg::on_removeURLSeed_button_clicked(){
   QModelIndexList selectedIndexes = URLSeeds_list->selectionModel()->selectedIndexes();
   for(int i=selectedIndexes.size()-1; i>=0; --i){
     QListWidgetItem *item = URLSeeds_list->takeItem(selectedIndexes.at(i).row());
@@ -154,7 +154,7 @@ void createtorrent::on_removeURLSeed_button_clicked(){
   }
 }
 
-void createtorrent::on_addURLSeed_button_clicked(){
+void TorrentCreatorDlg::on_addURLSeed_button_clicked(){
   bool ok;
   QString URL = QInputDialog::getText(this, tr("Please type a web seed url"),
                                       tr("Web seed URL:"), QLineEdit::Normal,
@@ -165,7 +165,7 @@ void createtorrent::on_addURLSeed_button_clicked(){
   }
 }
 
-QStringList createtorrent::allItems(QListWidget *list){
+QStringList TorrentCreatorDlg::allItems(QListWidget *list){
   QStringList res;
   unsigned int nbItems = list->count();
   for(unsigned int i=0; i< nbItems; ++i){
@@ -175,7 +175,7 @@ QStringList createtorrent::allItems(QListWidget *list){
 }
 
 // Main function that create a .torrent file
-void createtorrent::on_createButton_clicked(){
+void TorrentCreatorDlg::on_createButton_clicked(){
   QString input = textInputPath->text().trimmed();
   if (input.endsWith(QDir::separator()))
     input.chop(1);
@@ -206,7 +206,7 @@ void createtorrent::on_createButton_clicked(){
   creatorThread->create(input, destination, trackers, url_seeds, comment, check_private->isChecked(), getPieceSize());
 }
 
-void createtorrent::handleCreationFailure(QString msg) {
+void TorrentCreatorDlg::handleCreationFailure(QString msg) {
   // Enable dialog
   setEnabled(true);
   // Remove busy cursor
@@ -214,7 +214,7 @@ void createtorrent::handleCreationFailure(QString msg) {
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent creation was unsuccessful, reason: %1").arg(msg));
 }
 
-void createtorrent::handleCreationSuccess(QString path, QString branch_path) {
+void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path) {
   // Enable Dialog
   setEnabled(true);
   // Remove busy cursor
@@ -246,7 +246,7 @@ void createtorrent::handleCreationSuccess(QString path, QString branch_path) {
   close();
 }
 
-void createtorrent::on_cancelButton_clicked() {
+void TorrentCreatorDlg::on_cancelButton_clicked() {
   // End torrent creation thread
   if(creatorThread->isRunning()) {
     creatorThread->abortCreation();
@@ -258,7 +258,7 @@ void createtorrent::on_cancelButton_clicked() {
   reject();
 }
 
-void createtorrent::updateProgressBar(int progress) {
+void TorrentCreatorDlg::updateProgressBar(int progress) {
   progressBar->setValue(progress);
 }
 

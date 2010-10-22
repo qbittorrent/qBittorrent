@@ -47,7 +47,7 @@
 #include "GUI.h"
 #include "transferlistwidget.h"
 #include "misc.h"
-#include "createtorrent_imp.h"
+#include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
 #include "torrentadditiondlg.h"
 #include "searchengine.h"
@@ -721,7 +721,7 @@ void GUI::on_actionCreate_torrent_triggered() {
   if(createTorrentDlg) {
     createTorrentDlg->setFocus();
   } else {
-    createTorrentDlg = new createtorrent(this);
+    createTorrentDlg = new TorrentCreatorDlg(this);
     connect(createTorrentDlg, SIGNAL(torrent_to_seed(QString)), this, SLOT(addTorrent(QString)));
   }
 }

@@ -44,7 +44,7 @@
 #include <QTemporaryFile>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
-#define UPDATE_URL "http://qbittorrent.svn.sourceforge.net/viewvc/qbittorrent/trunk/src/search_engine/engines/"
+#define UPDATE_URL "http://qbittorrent.svn.sourceforge.net/viewvc/qbittorrent/trunk/src/nova/engines/"
 
 engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines) : QDialog(parent), supported_engines(supported_engines) {
   setupUi(this);
@@ -164,7 +164,7 @@ void engineSelectDlg::on_actionUninstall_triggered() {
     int index = pluginsTree->indexOfTopLevelItem(item);
     Q_ASSERT(index != -1);
     QString id = item->text(ENGINE_ID);
-    if(QFile::exists(":/search_engine/engines/"+id+".py")) {
+    if(QFile::exists(":/nova/engines/"+id+".py")) {
       error = true;
       // Disable it instead
       supported_engines->value(id)->setEnabled(false);
