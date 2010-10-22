@@ -281,8 +281,7 @@ HEADERS += misc.h \
            preferences.h \
            scannedfoldersmodel.h \
            qinisettings.h \
-           smtp.h \
-    torrentcreatordlg.h
+           smtp.h
 
 contains(DEFINES, DISABLE_GUI) {
   HEADERS += headlessloader.h
@@ -309,7 +308,8 @@ contains(DEFINES, DISABLE_GUI) {
               advancedsettings.h \
               cookiesdlg.h \
               hidabletabwidget.h \
-              sessionapplication.h
+              sessionapplication.h \
+              torrentcreatordlg.h
 
   macx {
     HEADERS += qmacapplication.h
@@ -367,8 +367,7 @@ SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
            misc.cpp \
-           smtp.cpp \
-    torrentcreatordlg.cpp
+           smtp.cpp
 
 !contains(DEFINES, DISABLE_GUI) {
   SOURCES += GUI.cpp \
@@ -377,7 +376,8 @@ SOURCES += main.cpp \
              transferlistwidget.cpp \
              cookiesdlg.cpp \
              torrentadditiondlg.cpp \
-             sessionapplication.cpp
+             sessionapplication.cpp \
+             torrentcreatordlg.cpp
 
   macx {
     SOURCES += qmacapplication.cpp
