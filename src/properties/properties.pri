@@ -18,3 +18,9 @@ INCLUDEPATH += $$PWD
              $$PWD/trackerlist.cpp
 
 }
+
+HEADERS += \
+    properties/proptabbar.h
+
+SOURCES += \
+    properties/proptabbar.cpp

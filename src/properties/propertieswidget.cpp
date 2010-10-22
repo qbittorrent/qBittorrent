@@ -53,27 +53,13 @@
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
 #include "qinisettings.h"
-
-#ifdef Q_WS_MAC
-#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 8px; margin-right: 8px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105); margin-left: 8px; margin-right: 8px;}"
-#else
-#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 3px; margin-right: 3px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105); margin-left: 3px; margin-right: 3px;}"
-#endif
+#include "proptabbar.h"
 
 PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, QBtSession* BTSession):
     QWidget(parent), transferList(transferList), main_window(main_window), BTSession(BTSession) {
   setupUi(this);
   state = VISIBLE;
   setEnabled(false);
-  // Buttons stylesheet
-  trackers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  peers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  url_seeds_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  files_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  main_infos_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  main_infos_button->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
 
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
@@ -115,6 +101,11 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   // Peers list
   peersList = new PeerListWidget(this);
   peerpage_layout->addWidget(peersList);
+  // Tab bar
+  m_tabBar = new PropTabBar();
+  verticalLayout->addLayout(m_tabBar);
+  connect(m_tabBar, SIGNAL(tabChanged(int)), stackedProperties, SLOT(setCurrentIndex(int)));
+  connect(m_tabBar, SIGNAL(visibilityToggled(bool)), SLOT(setVisibility(bool)));
   // Dynamic data refresher
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
@@ -129,6 +120,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete pieces_availability;
   delete PropListModel;
   delete PropDelegate;
+  delete m_tabBar;
 }
 
 void PropertiesWidget::showPiecesAvailability(bool show) {
@@ -147,8 +139,8 @@ void PropertiesWidget::showPiecesDownloaded(bool show) {
     line_2->setVisible(show);
 }
 
-void PropertiesWidget::reduce() {
-  if(state == VISIBLE) {
+void PropertiesWidget::setVisibility(bool visible) {
+  if(!visible && state == VISIBLE) {
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     slideSizes = hSplitter->sizes();
     stackedProperties->setVisible(false);
@@ -159,10 +151,8 @@ void PropertiesWidget::reduce() {
     hSplitter->handle(1)->setDisabled(true);
     state = REDUCED;
   }
-}
 
-void PropertiesWidget::slide() {
-  if(state == REDUCED) {
+  if(visible && state == REDUCED) {
     stackedProperties->setVisible(true);
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->handle(1)->setDisabled(false);
@@ -285,12 +275,10 @@ void PropertiesWidget::readSettings() {
     hSplitter->setSizes(slideSizes);
   }
   if(!settings.value("TorrentProperties/Visible", false).toBool()) {
-    reduce();
+    setVisibility(false);
   }
-  const int current_tab = settings.value("TorrentProperties/CurrentTab", MAIN_TAB).toInt();
-  stackedProperties->setCurrentIndex(current_tab);
-  if(state != REDUCED)
-    getButtonFromIndex(current_tab)->setStyleSheet(SELECTED_BUTTON_CSS);
+  const int current_tab = settings.value("TorrentProperties/CurrentTab", PropTabBar::MAIN_TAB).toInt();
+  m_tabBar->setCurrentIndex(current_tab);
 }
 
 void PropertiesWidget::saveSettings() {
@@ -313,7 +301,7 @@ void PropertiesWidget::saveSettings() {
     settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
   }
   // Remember current tab
-  settings.setValue("TorrentProperties/CurrentTab", stackedProperties->currentIndex());
+  settings.setValue("TorrentProperties/CurrentTab", m_tabBar->currentIndex());
 }
 
 void PropertiesWidget::reloadPreferences() {
@@ -327,7 +315,7 @@ void PropertiesWidget::loadDynamicData() {
   if(!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
   try {
     // Transfer infos
-    if(stackedProperties->currentIndex() == MAIN_TAB) {
+    if(stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
       wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
       upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
@@ -380,17 +368,17 @@ void PropertiesWidget::loadDynamicData() {
       }
       return;
     }
-    if(stackedProperties->currentIndex() == TRACKERS_TAB) {
+    if(stackedProperties->currentIndex() == PropTabBar::TRACKERS_TAB) {
       // Trackers
       trackerList->loadTrackers();
       return;
     }
-    if(stackedProperties->currentIndex() == PEERS_TAB) {
+    if(stackedProperties->currentIndex() == PropTabBar::PEERS_TAB) {
       // Load peers
       peersList->loadPeers(h);
       return;
     }
-    if(stackedProperties->currentIndex() == FILES_TAB) {
+    if(stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
       // Files progress
       if(h.is_valid() && h.has_metadata()) {
         if(PropListModel->rowCount() == 0) {
@@ -438,82 +426,6 @@ void PropertiesWidget::loadUrlSeeds(){
   foreach(const QString &hc_seed, hc_seeds){
     qDebug("Loading URL seed: %s", qPrintable(hc_seed));
     new QListWidgetItem(hc_seed, listWebSeeds);
-  }
-}
-
-/* Tab buttons */
-QPushButton* PropertiesWidget::getButtonFromIndex(int index) {
-  switch(index) {
-  case TRACKERS_TAB:
-    return trackers_button;
-  case PEERS_TAB:
-    return peers_button;
-  case URLSEEDS_TAB:
-    return url_seeds_button;
-  case FILES_TAB:
-    return files_button;
-  default:
-    return main_infos_button;
-  }
-}
-
-void PropertiesWidget::on_main_infos_button_clicked() {
-  if(state == VISIBLE && stackedProperties->currentIndex() == MAIN_TAB) {
-    reduce();
-    main_infos_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  } else {
-    slide();
-    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-    stackedProperties->setCurrentIndex(MAIN_TAB);
-    main_infos_button->setStyleSheet(SELECTED_BUTTON_CSS);
-  }
-}
-
-void PropertiesWidget::on_trackers_button_clicked() {
-  if(state == VISIBLE && stackedProperties->currentIndex() == TRACKERS_TAB) {
-    reduce();
-  } else {
-    trackers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-    slide();
-    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-    stackedProperties->setCurrentIndex(TRACKERS_TAB);
-    trackers_button->setStyleSheet(SELECTED_BUTTON_CSS);
-  }
-}
-
-void PropertiesWidget::on_peers_button_clicked() {
-  if(state == VISIBLE && stackedProperties->currentIndex() == PEERS_TAB) {
-    reduce();
-    peers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  } else {
-    slide();
-    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-    stackedProperties->setCurrentIndex(PEERS_TAB);
-    peers_button->setStyleSheet(SELECTED_BUTTON_CSS);
-  }
-}
-
-void PropertiesWidget::on_url_seeds_button_clicked() {
-  if(state == VISIBLE && stackedProperties->currentIndex() == URLSEEDS_TAB) {
-    reduce();
-    url_seeds_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  } else {
-    slide();
-    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-    stackedProperties->setCurrentIndex(URLSEEDS_TAB);
-    url_seeds_button->setStyleSheet(SELECTED_BUTTON_CSS);
-  }
-}
-
-void PropertiesWidget::on_files_button_clicked() {
-  if(state == VISIBLE && stackedProperties->currentIndex() == FILES_TAB) {
-    reduce();
-    files_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  } else {
-    slide();
-    getButtonFromIndex(stackedProperties->currentIndex())->setStyleSheet(DEFAULT_BUTTON_CSS);
-    stackedProperties->setCurrentIndex(FILES_TAB);
-    files_button->setStyleSheet(SELECTED_BUTTON_CSS);
   }
 }
 

@@ -48,27 +48,12 @@ class TrackerList;
 class GUI;
 class DownloadedPiecesBar;
 class PieceAvailabilityBar;
-
-enum Tab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
-enum SlideState {REDUCED, VISIBLE};
+class PropTabBar;
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
   Q_OBJECT
-
-private:
-  TransferListWidget *transferList;
-  GUI *main_window;
-  QTorrentHandle h;
-  QTimer *refreshTimer;
-  QBtSession* BTSession;
-  SlideState state;
-  TorrentFilesModel *PropListModel;
-  PropListDelegate *PropDelegate;
-  PeerListWidget *peersList;
-  TrackerList *trackerList;
-  QList<int> slideSizes;
-  DownloadedPiecesBar *downloaded_pieces;
-  PieceAvailabilityBar *pieces_availability;
+public:
+  enum SlideState {REDUCED, VISIBLE};
 
 public:
   PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, QBtSession* BTSession);
@@ -87,11 +72,6 @@ protected slots:
   void loadTorrentInfos(QTorrentHandle &h);
   void updateTorrentInfos(QTorrentHandle &h);
   void loadUrlSeeds();
-  void on_main_infos_button_clicked();
-  void on_trackers_button_clicked();
-  void on_peers_button_clicked();
-  void on_url_seeds_button_clicked();
-  void on_files_button_clicked();
   void askWebSeed();
   void deleteSelectedUrlSeeds();
   void displayFilesListMenu(const QPoint& pos);
@@ -104,9 +84,8 @@ protected slots:
   void selectNoneFiles();
 
 public slots:
+  void setVisibility(bool visible);
   void loadDynamicData();
-  void reduce();
-  void slide();
   void clear();
   void readSettings();
   void saveSettings();
@@ -114,6 +93,21 @@ public slots:
   void openDoubleClickedFile(QModelIndex);
   void updateSavePath(QTorrentHandle& h);
 
+private:
+  TransferListWidget *transferList;
+  GUI *main_window;
+  QTorrentHandle h;
+  QTimer *refreshTimer;
+  QBtSession* BTSession;
+  SlideState state;
+  TorrentFilesModel *PropListModel;
+  PropListDelegate *PropDelegate;
+  PeerListWidget *peersList;
+  TrackerList *trackerList;
+  QList<int> slideSizes;
+  DownloadedPiecesBar *downloaded_pieces;
+  PieceAvailabilityBar *pieces_availability;
+  PropTabBar *m_tabBar;
 };
 
 #endif // PROPERTIESWIDGET_H
