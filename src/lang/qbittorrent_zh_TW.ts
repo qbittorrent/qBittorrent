@@ -1298,7 +1298,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>離開 (&amp;X)</translation>
+        <translation type="obsolete">離開 (&amp;X)</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -1414,6 +1414,14 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1976,6 +1984,29 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">一般</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackers</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished">下載者</translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished">檔案</translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -1995,19 +2026,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="obsolete">一般</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackers</translation>
+        <translation type="obsolete">Trackers</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation>URL 種子</translation>
+        <translation type="obsolete">URL 種子</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>檔案</translation>
+        <translation type="obsolete">檔案</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2036,11 +2067,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>建立儲存路徑錯誤</translation>
+        <translation type="obsolete">建立儲存路徑錯誤</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>無法建立儲存路徑</translation>
+        <translation type="obsolete">無法建立儲存路徑</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2084,7 +2115,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation>下載者</translation>
+        <translation type="obsolete">下載者</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2895,6 +2926,66 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">選擇要增加到 torrent 的資料夾</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">選擇要增加到 torrent 的檔案</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">請先輸入發佈的 URL</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">發佈的 URL:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">請先輸入網頁種子 URL</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">網頁種子 URL:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">沒有設定輸入路徑</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">請先輸入輸入的路徑</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">選擇 torrent 檔案目的地</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">torrent 檔案</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">產生 torrent</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">建立 torrent 不成功, 原因: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">建立的 torrent 檔案是無效的。它不會被加入到下載清單。</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">已經成功建立 torrent:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2911,6 +3002,59 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation>優先度</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3287,11 +3431,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>儲存路徑建立錯誤</translation>
+        <translation type="obsolete">儲存路徑建立錯誤</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>無法建立儲存路徑</translation>
+        <translation type="obsolete">無法建立儲存路徑</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3634,60 +3778,60 @@ Do you want to install it now?</source>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>選擇 torrent 檔案目的地</translation>
+        <translation type="obsolete">選擇 torrent 檔案目的地</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>torrent 檔案</translation>
+        <translation type="obsolete">torrent 檔案</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>沒有設定輸入路徑</translation>
+        <translation type="obsolete">沒有設定輸入路徑</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>請先輸入輸入的路徑</translation>
+        <translation type="obsolete">請先輸入輸入的路徑</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>產生 torrent</translation>
+        <translation type="obsolete">產生 torrent</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>已經成功建立 torrent:</translation>
+        <translation type="obsolete">已經成功建立 torrent:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>選擇要增加到 torrent 的資料夾</translation>
+        <translation type="obsolete">選擇要增加到 torrent 的資料夾</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>請先輸入發佈的 URL</translation>
+        <translation type="obsolete">請先輸入發佈的 URL</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>建立 torrent 不成功, 原因: %1</translation>
+        <translation type="obsolete">建立 torrent 不成功, 原因: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>發佈的 URL:</translation>
+        <translation type="obsolete">發佈的 URL:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>請先輸入網頁種子 URL</translation>
+        <translation type="obsolete">請先輸入網頁種子 URL</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>網頁種子 URL:</translation>
+        <translation type="obsolete">網頁種子 URL:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>選擇要增加到 torrent 的檔案</translation>
+        <translation type="obsolete">選擇要增加到 torrent 的檔案</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>建立的 torrent 檔案是無效的。它不會被加入到下載清單。</translation>
+        <translation type="obsolete">建立的 torrent 檔案是無效的。它不會被加入到下載清單。</translation>
     </message>
 </context>
 <context>

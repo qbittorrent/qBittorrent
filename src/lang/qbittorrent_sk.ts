@@ -1294,7 +1294,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>&amp;Ukončiť</translation>
+        <translation type="obsolete">&amp;Ukončiť</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -1410,6 +1410,14 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1972,6 +1980,29 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Všeobecné</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackery</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished">Súbory</translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -1987,19 +2018,19 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Všeobecné</translation>
+        <translation type="obsolete">Všeobecné</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackery</translation>
+        <translation type="obsolete">Trackery</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation>URL seedy</translation>
+        <translation type="obsolete">URL seedy</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Súbory</translation>
+        <translation type="obsolete">Súbory</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2028,11 +2059,11 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Chyba pri vytváraní cieľového adresára</translation>
+        <translation type="obsolete">Chyba pri vytváraní cieľového adresára</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nepodarilo sa vytvoriť cieľový adresár</translation>
+        <translation type="obsolete">Nepodarilo sa vytvoriť cieľový adresár</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2076,7 +2107,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Rovesníkov</translation>
+        <translation type="obsolete">Rovesníkov</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2892,6 +2923,66 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">Vyberte adresár, ktorý sa má pridať do torrentu</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">Vyberte súbor, ktorý sa má pridať do torrentu</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">Prosím, napíšte announce URL</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">Announce URL:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">Prosím, napíšte web seed URL</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Web seed URL:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">Nebola zadaná vstupná cesta</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">Napíšte prosím najprv vstupnú cestu</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">Vybrať cieľový torrent súbor</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Torrent súbory</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">Vytvorenie torrentu</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">Torrent nebol vytvorený, dôvod: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">Vytvorený torrent je neplatný. Nebude pridaný do zoznamu sťahovaných.</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">Torrent bol úspešne vytvorený:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2908,6 +2999,59 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Priority</source>
         <translation>Priorita</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3284,11 +3428,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Chyba pri vytváraní cieľového adresára</translation>
+        <translation type="obsolete">Chyba pri vytváraní cieľového adresára</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nepodarilo sa vytvoriť cieľový adresár</translation>
+        <translation type="obsolete">Nepodarilo sa vytvoriť cieľový adresár</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3631,60 +3775,60 @@ Chcete ho nainštalovať teraz?</translation>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Vybrať cieľový torrent súbor</translation>
+        <translation type="obsolete">Vybrať cieľový torrent súbor</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent súbory</translation>
+        <translation type="obsolete">Torrent súbory</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Nebola zadaná vstupná cesta</translation>
+        <translation type="obsolete">Nebola zadaná vstupná cesta</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Napíšte prosím najprv vstupnú cestu</translation>
+        <translation type="obsolete">Napíšte prosím najprv vstupnú cestu</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Vytvorenie torrentu</translation>
+        <translation type="obsolete">Vytvorenie torrentu</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent bol úspešne vytvorený:</translation>
+        <translation type="obsolete">Torrent bol úspešne vytvorený:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Vyberte adresár, ktorý sa má pridať do torrentu</translation>
+        <translation type="obsolete">Vyberte adresár, ktorý sa má pridať do torrentu</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Prosím, napíšte announce URL</translation>
+        <translation type="obsolete">Prosím, napíšte announce URL</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Torrent nebol vytvorený, dôvod: %1</translation>
+        <translation type="obsolete">Torrent nebol vytvorený, dôvod: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>Announce URL:</translation>
+        <translation type="obsolete">Announce URL:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>Prosím, napíšte web seed URL</translation>
+        <translation type="obsolete">Prosím, napíšte web seed URL</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>Web seed URL:</translation>
+        <translation type="obsolete">Web seed URL:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Vyberte súbor, ktorý sa má pridať do torrentu</translation>
+        <translation type="obsolete">Vyberte súbor, ktorý sa má pridať do torrentu</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Vytvorený torrent je neplatný. Nebude pridaný do zoznamu sťahovaných.</translation>
+        <translation type="obsolete">Vytvorený torrent je neplatný. Nebude pridaný do zoznamu sťahovaných.</translation>
     </message>
 </context>
 <context>

@@ -1225,10 +1225,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Options...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1342,6 +1338,14 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1904,6 +1908,29 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">General</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackeri</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished">Peer-i</translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished">Fișiere</translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -1923,19 +1950,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>General</source>
-        <translation>General</translation>
+        <translation type="obsolete">General</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackeri</translation>
+        <translation type="obsolete">Trackeri</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation>URL-uri de sedare</translation>
+        <translation type="obsolete">URL-uri de sedare</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Fișiere</translation>
+        <translation type="obsolete">Fișiere</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -1964,11 +1991,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Salvează calea care crează erori</translation>
+        <translation type="obsolete">Salvează calea care crează erori</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nu pot crea calea de salvare</translation>
+        <translation type="obsolete">Nu pot crea calea de salvare</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2012,7 +2039,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Peer-i</translation>
+        <translation type="obsolete">Peer-i</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2821,6 +2848,66 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">Seletaţi directoriul pentru a fi adăugat în torrent fişier</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">Selectaţi un fişier pentru al adăuga la torrent</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">Introduceţi URL-ul de anunţare</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">URL-ul de anunţare:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">Introduceţi URL-ul de web seed</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Web seed URL:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">Nu sunt selectate fişiere de intrare</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">Vă rugăm să arătaţi calea de intrare</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">Selectează fişierul de destinare</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Fişiere Torrent</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">Crearea torentului</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">Crearea torrent-ului a eşuat, motivul: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">Fişierul torrent creat este deteriorat. El nu va fi adăugat în lista de download-uri.</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">Torrentul a fost creat cu success:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2837,6 +2924,59 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioritate</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3213,11 +3353,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Salvează calea care crează erori</translation>
+        <translation type="obsolete">Salvează calea care crează erori</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nu pot crea calea de salvare</translation>
+        <translation type="obsolete">Nu pot crea calea de salvare</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3560,60 +3700,60 @@ Do you want to install it now?</source>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Selectează fişierul de destinare</translation>
+        <translation type="obsolete">Selectează fişierul de destinare</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Fişiere Torrent</translation>
+        <translation type="obsolete">Fişiere Torrent</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Nu sunt selectate fişiere de intrare</translation>
+        <translation type="obsolete">Nu sunt selectate fişiere de intrare</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Vă rugăm să arătaţi calea de intrare</translation>
+        <translation type="obsolete">Vă rugăm să arătaţi calea de intrare</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Crearea torentului</translation>
+        <translation type="obsolete">Crearea torentului</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrentul a fost creat cu success:</translation>
+        <translation type="obsolete">Torrentul a fost creat cu success:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Seletaţi directoriul pentru a fi adăugat în torrent fişier</translation>
+        <translation type="obsolete">Seletaţi directoriul pentru a fi adăugat în torrent fişier</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Introduceţi URL-ul de anunţare</translation>
+        <translation type="obsolete">Introduceţi URL-ul de anunţare</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Crearea torrent-ului a eşuat, motivul: %1</translation>
+        <translation type="obsolete">Crearea torrent-ului a eşuat, motivul: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>URL-ul de anunţare:</translation>
+        <translation type="obsolete">URL-ul de anunţare:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>Introduceţi URL-ul de web seed</translation>
+        <translation type="obsolete">Introduceţi URL-ul de web seed</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>Web seed URL:</translation>
+        <translation type="obsolete">Web seed URL:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Selectaţi un fişier pentru al adăuga la torrent</translation>
+        <translation type="obsolete">Selectaţi un fişier pentru al adăuga la torrent</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Fişierul torrent creat este deteriorat. El nu va fi adăugat în lista de download-uri.</translation>
+        <translation type="obsolete">Fişierul torrent creat este deteriorat. El nu va fi adăugat în lista de download-uri.</translation>
     </message>
 </context>
 <context>

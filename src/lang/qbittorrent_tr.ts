@@ -1268,7 +1268,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>Çı&amp;kış</translation>
+        <translation type="obsolete">Çı&amp;kış</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -1384,6 +1384,14 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1954,6 +1962,29 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Genel</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">İzleyiciler</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished">Dosyalar</translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -1973,19 +2004,19 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Genel</translation>
+        <translation type="obsolete">Genel</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>İzleyiciler</translation>
+        <translation type="obsolete">İzleyiciler</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation>URL eşler</translation>
+        <translation type="obsolete">URL eşler</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Dosyalar</translation>
+        <translation type="obsolete">Dosyalar</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2014,11 +2045,11 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Kayıt yolu oluşturulmada hata</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kayıt yolu oluşturulamadı</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulamadı</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2062,7 +2093,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Eşler</translation>
+        <translation type="obsolete">Eşler</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2873,6 +2904,66 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">Torrente eklemek için bir klasör seçin</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">Torrente eklemek için bir dosya seçin</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">Lütfen bir duyuru adresi yazın</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">Duyuru adresi:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">Lütfen bir ağ göndereni adresi yazın</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Ağ göndereni adresi:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">Ayarlanmış girdi yolu yok</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">Lütfen önce bir girdi yolu yazın</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">Hedef Torrent dosyasını seç</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Torrent Dosyaları</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">Torrent oluşturma</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">Torrent oluşturma başarısızlıkla sonuçlandı, neden: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">Oluşturulmuş torrent dosyası geçersiz. İndirme listesine eklenmeyecek.</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">Torrent başarıyla oluşturuldu:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2889,6 +2980,59 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation>Öncelik</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3270,11 +3414,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Kayıt yolu oluşturulmada hata</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kayıt yolu oluşturulamadı</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulamadı</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3617,60 +3761,60 @@ Do you want to install it now?</source>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Hedef Torrent dosyasını seç</translation>
+        <translation type="obsolete">Hedef Torrent dosyasını seç</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent Dosyaları</translation>
+        <translation type="obsolete">Torrent Dosyaları</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Ayarlanmış girdi yolu yok</translation>
+        <translation type="obsolete">Ayarlanmış girdi yolu yok</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Lütfen önce bir girdi yolu yazın</translation>
+        <translation type="obsolete">Lütfen önce bir girdi yolu yazın</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Torrent oluşturma</translation>
+        <translation type="obsolete">Torrent oluşturma</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent başarıyla oluşturuldu:</translation>
+        <translation type="obsolete">Torrent başarıyla oluşturuldu:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Torrente eklemek için bir klasör seçin</translation>
+        <translation type="obsolete">Torrente eklemek için bir klasör seçin</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Lütfen bir duyuru adresi yazın</translation>
+        <translation type="obsolete">Lütfen bir duyuru adresi yazın</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Torrent oluşturma başarısızlıkla sonuçlandı, neden: %1</translation>
+        <translation type="obsolete">Torrent oluşturma başarısızlıkla sonuçlandı, neden: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>Duyuru adresi:</translation>
+        <translation type="obsolete">Duyuru adresi:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>Lütfen bir ağ göndereni adresi yazın</translation>
+        <translation type="obsolete">Lütfen bir ağ göndereni adresi yazın</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>Ağ göndereni adresi:</translation>
+        <translation type="obsolete">Ağ göndereni adresi:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Torrente eklemek için bir dosya seçin</translation>
+        <translation type="obsolete">Torrente eklemek için bir dosya seçin</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Oluşturulmuş torrent dosyası geçersiz. İndirme listesine eklenmeyecek.</translation>
+        <translation type="obsolete">Oluşturulmuş torrent dosyası geçersiz. İndirme listesine eklenmeyecek.</translation>
     </message>
 </context>
 <context>

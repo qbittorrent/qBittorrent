@@ -1291,7 +1291,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>S&amp;air</translation>
+        <translation type="obsolete">S&amp;air</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -1407,6 +1407,14 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1969,6 +1977,29 @@ Nenhum outro aviso será dado.</translation>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Gerais</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Rastreadores</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished">Arquivos</translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -1988,19 +2019,19 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Gerais</translation>
+        <translation type="obsolete">Gerais</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Rastreadores</translation>
+        <translation type="obsolete">Rastreadores</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation>URL fonte</translation>
+        <translation type="obsolete">URL fonte</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Arquivos</translation>
+        <translation type="obsolete">Arquivos</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2029,11 +2060,11 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Erro ao criar caminho de salvamento</translation>
+        <translation type="obsolete">Erro ao criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Não foi possível criar caminho de salvamento</translation>
+        <translation type="obsolete">Não foi possível criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2077,7 +2108,7 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Fontes</translation>
+        <translation type="obsolete">Fontes</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2888,6 +2919,66 @@ Gostaria de instalar agora?</translation>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">Selecione uma pasta para adicionar ao torrent</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">Selecione um arquivo para adicionar ao torrent</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">Digite uma url anunciada</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">Url anunciada:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">Digite uma url de compartilhador web</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Url de compartilhador web:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">Nenhum caminho de entrada selecionado</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">Digite primeiro um caminho de entrada</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">Selecione o arquivo torrent de destino</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Arquivos Torrent</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">Criação de torrent</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">A criação do torrent não foi possível, motivo: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">Torrent criado é inválido. Não será adicionado a lista de download.</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">Torrent foi criado com sucesso:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2904,6 +2995,59 @@ Gostaria de instalar agora?</translation>
     <message>
         <source>Priority</source>
         <translation>Prioridade</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3280,11 +3424,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Erro ao criar caminho de salvamento</translation>
+        <translation type="obsolete">Erro ao criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Não foi possível criar caminho de salvamento</translation>
+        <translation type="obsolete">Não foi possível criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3627,60 +3771,60 @@ Gostaria de instalar agora?</translation>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Selecione o arquivo torrent de destino</translation>
+        <translation type="obsolete">Selecione o arquivo torrent de destino</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Arquivos Torrent</translation>
+        <translation type="obsolete">Arquivos Torrent</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Nenhum caminho de entrada selecionado</translation>
+        <translation type="obsolete">Nenhum caminho de entrada selecionado</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Digite primeiro um caminho de entrada</translation>
+        <translation type="obsolete">Digite primeiro um caminho de entrada</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Criação de torrent</translation>
+        <translation type="obsolete">Criação de torrent</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent foi criado com sucesso:</translation>
+        <translation type="obsolete">Torrent foi criado com sucesso:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Selecione uma pasta para adicionar ao torrent</translation>
+        <translation type="obsolete">Selecione uma pasta para adicionar ao torrent</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Digite uma url anunciada</translation>
+        <translation type="obsolete">Digite uma url anunciada</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>A criação do torrent não foi possível, motivo: %1</translation>
+        <translation type="obsolete">A criação do torrent não foi possível, motivo: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>Url anunciada:</translation>
+        <translation type="obsolete">Url anunciada:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>Digite uma url de compartilhador web</translation>
+        <translation type="obsolete">Digite uma url de compartilhador web</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>Url de compartilhador web:</translation>
+        <translation type="obsolete">Url de compartilhador web:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Selecione um arquivo para adicionar ao torrent</translation>
+        <translation type="obsolete">Selecione um arquivo para adicionar ao torrent</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Torrent criado é inválido. Não será adicionado a lista de download.</translation>
+        <translation type="obsolete">Torrent criado é inválido. Não será adicionado a lista de download.</translation>
     </message>
 </context>
 <context>

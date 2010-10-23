@@ -1310,7 +1310,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>В&amp;ыход</translation>
+        <translation type="obsolete">В&amp;ыход</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -1433,6 +1433,14 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2013,6 +2021,29 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Общие</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Трэкеры</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished">Пиры</translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished">Файлы</translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -2032,19 +2063,19 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>General</source>
-        <translation>Общие</translation>
+        <translation type="obsolete">Общие</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Трэкеры</translation>
+        <translation type="obsolete">Трэкеры</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation>URL раздающих</translation>
+        <translation type="obsolete">URL раздающих</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Файлы</translation>
+        <translation type="obsolete">Файлы</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2073,11 +2104,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Ошибка создания пути сохранения</translation>
+        <translation type="obsolete">Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Невозможно создать путь сохранения</translation>
+        <translation type="obsolete">Невозможно создать путь сохранения</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2121,7 +2152,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Пиры</translation>
+        <translation type="obsolete">Пиры</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2936,6 +2967,66 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">Выберите папку для добавления torrent-а</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">Выберите файл для добавления в torrent</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">Введите ссылку анонсирования</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">Анонсирующий URL:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">Введите URL веб раздачи</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">URL веб раздачи:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">Не установлен входной путь</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">Пожалуйста, сначала введите путь назначения</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">Выберите torrent файл назначения</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Файлы Torrent</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">Создание Torrent-а</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">Создание torrent-а не завершено, причина: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">Созданный torrent файл испорчен. Он не будет добавлен в список закачек.</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">Torrent успешно создан:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2952,6 +3043,59 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation>Приоритет</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3329,11 +3473,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Ошибка создания пути сохранения</translation>
+        <translation type="obsolete">Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Невозможно создать путь сохранения</translation>
+        <translation type="obsolete">Невозможно создать путь сохранения</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3677,60 +3821,60 @@ Do you want to install it now?</source>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Выберите torrent файл назначения</translation>
+        <translation type="obsolete">Выберите torrent файл назначения</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Файлы Torrent</translation>
+        <translation type="obsolete">Файлы Torrent</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Не установлен входной путь</translation>
+        <translation type="obsolete">Не установлен входной путь</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Пожалуйста, сначала введите путь назначения</translation>
+        <translation type="obsolete">Пожалуйста, сначала введите путь назначения</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Создание Torrent-а</translation>
+        <translation type="obsolete">Создание Torrent-а</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent успешно создан:</translation>
+        <translation type="obsolete">Torrent успешно создан:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Выберите папку для добавления torrent-а</translation>
+        <translation type="obsolete">Выберите папку для добавления torrent-а</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Введите ссылку анонсирования</translation>
+        <translation type="obsolete">Введите ссылку анонсирования</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Создание torrent-а не завершено, причина: %1</translation>
+        <translation type="obsolete">Создание torrent-а не завершено, причина: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>Анонсирующий URL:</translation>
+        <translation type="obsolete">Анонсирующий URL:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>Введите URL веб раздачи</translation>
+        <translation type="obsolete">Введите URL веб раздачи</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>URL веб раздачи:</translation>
+        <translation type="obsolete">URL веб раздачи:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Выберите файл для добавления в torrent</translation>
+        <translation type="obsolete">Выберите файл для добавления в torrent</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Созданный torrent файл испорчен. Он не будет добавлен в список закачек.</translation>
+        <translation type="obsolete">Созданный torrent файл испорчен. Он не будет добавлен в список закачек.</translation>
     </message>
 </context>
 <context>

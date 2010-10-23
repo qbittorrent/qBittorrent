@@ -1185,10 +1185,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Options...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1302,6 +1298,14 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1864,6 +1868,29 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Algemeen</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Trackers</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -1883,19 +1910,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished">Algemeen</translation>
+        <translation type="obsolete">Algemeen</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished">Trackers</translation>
-    </message>
-    <message>
-        <source>URL seeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Trackers</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -1924,11 +1943,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Opslag pad aanmaak fout</translation>
+        <translation type="obsolete">Opslag pad aanmaak fout</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Kon het opslag pad niet aanmaken</translation>
+        <translation type="obsolete">Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -1968,10 +1987,6 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Created on:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2774,6 +2789,66 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">Selecteer een map om toe te voegen aan de torrent</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">Selecteer een bestand om toe te voegen aan de torrent</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">Type een announce URL</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">Announce URL:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">Type een web seed url</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Web seed URL:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">Geen bron pad gekozen</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">Geef alstublieft eerst een doel pad</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">Kies torrent doelbestand</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Torrent bestanden</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">Torrent maken</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">Fout tijdens het maken van torrent, reden: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">Gecreëerd torrent bestand is onjuist. Het wordt niet toegevoegd aan de downloadlijst.</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">Torrent was succesvol gemaakt:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2790,6 +2865,59 @@ Do you want to install it now?</source>
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioriteit</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3166,11 +3294,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Opslag pad aanmaak fout</translation>
+        <translation type="obsolete">Opslag pad aanmaak fout</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Kon het opslag pad niet aanmaken</translation>
+        <translation type="obsolete">Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3513,60 +3641,60 @@ Do you want to install it now?</source>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Kies torrent doelbestand</translation>
+        <translation type="obsolete">Kies torrent doelbestand</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent bestanden</translation>
+        <translation type="obsolete">Torrent bestanden</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Geen bron pad gekozen</translation>
+        <translation type="obsolete">Geen bron pad gekozen</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Geef alstublieft eerst een doel pad</translation>
+        <translation type="obsolete">Geef alstublieft eerst een doel pad</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Torrent maken</translation>
+        <translation type="obsolete">Torrent maken</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent was succesvol gemaakt:</translation>
+        <translation type="obsolete">Torrent was succesvol gemaakt:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Selecteer een map om toe te voegen aan de torrent</translation>
+        <translation type="obsolete">Selecteer een map om toe te voegen aan de torrent</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Type een announce URL</translation>
+        <translation type="obsolete">Type een announce URL</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Fout tijdens het maken van torrent, reden: %1</translation>
+        <translation type="obsolete">Fout tijdens het maken van torrent, reden: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>Announce URL:</translation>
+        <translation type="obsolete">Announce URL:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>Type een web seed url</translation>
+        <translation type="obsolete">Type een web seed url</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>Web seed URL:</translation>
+        <translation type="obsolete">Web seed URL:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Selecteer een bestand om toe te voegen aan de torrent</translation>
+        <translation type="obsolete">Selecteer een bestand om toe te voegen aan de torrent</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Gecreëerd torrent bestand is onjuist. Het wordt niet toegevoegd aan de downloadlijst.</translation>
+        <translation type="obsolete">Gecreëerd torrent bestand is onjuist. Het wordt niet toegevoegd aan de downloadlijst.</translation>
     </message>
 </context>
 <context>

@@ -1262,7 +1262,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>A&amp;vsluta</translation>
+        <translation type="obsolete">A&amp;vsluta</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -1378,6 +1378,14 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1940,6 +1948,29 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
 </context>
 <context>
+    <name>PropTabBar</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Allmänt</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation type="unfinished">Bevakare</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <translation type="unfinished">Klienter</translation>
+    </message>
+    <message>
+        <source>URL Seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished">Filer</translation>
+    </message>
+</context>
+<context>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
@@ -1959,19 +1990,19 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation type="obsolete">Allmänt</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Bevakare</translation>
+        <translation type="obsolete">Bevakare</translation>
     </message>
     <message>
         <source>URL seeds</source>
-        <translation>URL-distributörer</translation>
+        <translation type="obsolete">URL-distributörer</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Filer</translation>
+        <translation type="obsolete">Filer</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2000,11 +2031,11 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Fel vid skapandet av sökväg</translation>
+        <translation type="obsolete">Fel vid skapandet av sökväg</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kunde inte skapa sökväg att spara i</translation>
+        <translation type="obsolete">Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2048,7 +2079,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Klienter</translation>
+        <translation type="obsolete">Klienter</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2859,6 +2890,66 @@ Vill du installera den nu?</translation>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorDlg</name>
+    <message>
+        <source>Select a folder to add to the torrent</source>
+        <translation type="unfinished">Välj en mapp att lägga till i torrent-filen</translation>
+    </message>
+    <message>
+        <source>Select a file to add to the torrent</source>
+        <translation type="unfinished">Välj en fil att lägga till i torrent</translation>
+    </message>
+    <message>
+        <source>Please type an announce URL</source>
+        <translation type="unfinished">Ange en annonserings-url</translation>
+    </message>
+    <message>
+        <source>Announce URL:</source>
+        <comment>Tracker URL</comment>
+        <translation type="unfinished">Annonserings-url:</translation>
+    </message>
+    <message>
+        <source>Please type a web seed url</source>
+        <translation type="unfinished">Ange en url för webbdistribution</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Url för webbdistribution:</translation>
+    </message>
+    <message>
+        <source>No input path set</source>
+        <translation type="unfinished">Ingen sökväg inställd för indata</translation>
+    </message>
+    <message>
+        <source>Please type an input path first</source>
+        <translation type="unfinished">Ange en sökväg för indata först</translation>
+    </message>
+    <message>
+        <source>Select destination torrent file</source>
+        <translation type="unfinished">Välj mål för torrent-fil</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Torrent-filer</translation>
+    </message>
+    <message>
+        <source>Torrent creation</source>
+        <translation type="unfinished">Skapa torrent</translation>
+    </message>
+    <message>
+        <source>Torrent creation was unsuccessful, reason: %1</source>
+        <translation type="unfinished">Skapandet av torrent-fil misslyckades, anledning: %1</translation>
+    </message>
+    <message>
+        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
+        <translation type="unfinished">Skapad torrentfil är ogiltig. Den kommer inte att läggas till i hämtningslistan.</translation>
+    </message>
+    <message>
+        <source>Torrent was created successfully:</source>
+        <translation type="unfinished">Torrentfilen skapades:</translation>
+    </message>
+</context>
+<context>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
@@ -2875,6 +2966,59 @@ Vill du installera den nu?</translation>
     <message>
         <source>Priority</source>
         <translation>Prioritet</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentImportDlg</name>
+    <message>
+        <source>Torrent Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Content location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip the data checking stage and start seeding immediately</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent file to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Files</source>
+        <comment>%1 is a file extension (e.g. PDF)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the location of %1</source>
+        <comment>%1 is a file name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3251,11 +3395,11 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Fel vid skapandet av sökväg</translation>
+        <translation type="obsolete">Fel vid skapandet av sökväg</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kunde inte skapa sökväg att spara i</translation>
+        <translation type="obsolete">Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -3598,60 +3742,60 @@ Vill du installera den nu?</translation>
     <name>createtorrent</name>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Välj mål för torrent-fil</translation>
+        <translation type="obsolete">Välj mål för torrent-fil</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent-filer</translation>
+        <translation type="obsolete">Torrent-filer</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Ingen sökväg inställd för indata</translation>
+        <translation type="obsolete">Ingen sökväg inställd för indata</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Ange en sökväg för indata först</translation>
+        <translation type="obsolete">Ange en sökväg för indata först</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Skapa torrent</translation>
+        <translation type="obsolete">Skapa torrent</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrentfilen skapades:</translation>
+        <translation type="obsolete">Torrentfilen skapades:</translation>
     </message>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Välj en mapp att lägga till i torrent-filen</translation>
+        <translation type="obsolete">Välj en mapp att lägga till i torrent-filen</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation>Ange en annonserings-url</translation>
+        <translation type="obsolete">Ange en annonserings-url</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Skapandet av torrent-fil misslyckades, anledning: %1</translation>
+        <translation type="obsolete">Skapandet av torrent-fil misslyckades, anledning: %1</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation>Annonserings-url:</translation>
+        <translation type="obsolete">Annonserings-url:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation>Ange en url för webbdistribution</translation>
+        <translation type="obsolete">Ange en url för webbdistribution</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>Url för webbdistribution:</translation>
+        <translation type="obsolete">Url för webbdistribution:</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Välj en fil att lägga till i torrent</translation>
+        <translation type="obsolete">Välj en fil att lägga till i torrent</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Skapad torrentfil är ogiltig. Den kommer inte att läggas till i hämtningslistan.</translation>
+        <translation type="obsolete">Skapad torrentfil är ogiltig. Den kommer inte att läggas till i hämtningslistan.</translation>
     </message>
 </context>
 <context>
