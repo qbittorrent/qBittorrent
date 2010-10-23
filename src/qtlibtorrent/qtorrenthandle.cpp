@@ -232,7 +232,7 @@ int QTorrentHandle::num_files() const {
   return torrent_handle::get_torrent_info().num_files();
 }
 
-QString QTorrentHandle::file_at(unsigned int index) const {
+QString QTorrentHandle::filename_at(unsigned int index) const {
   Q_ASSERT(torrent_handle::is_valid());
   Q_ASSERT(index < (unsigned int)torrent_handle::get_torrent_info().num_files());
   return misc::toQStringU(torrent_handle::get_torrent_info().file_at(index).path.leaf());

@@ -98,6 +98,14 @@ public:
     return x;
   }
 
+  static inline QString file_extension(const QString &filename) {
+    QString extension;
+    if(filename.contains(".")) {
+      extension = filename.mid(filename.lastIndexOf(".")+1);
+    }
+    return extension;
+  }
+
   static void shutdownComputer();
 
   static bool safeRemove(QString file_path) {

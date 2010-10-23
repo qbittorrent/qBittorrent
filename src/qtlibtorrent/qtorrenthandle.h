@@ -81,7 +81,7 @@ class QTorrentHandle : public torrent_handle {
     int num_files() const;
     int queue_position() const;
     bool is_queued() const;
-    QString file_at(unsigned int index) const;
+    QString filename_at(unsigned int index) const;
     size_type filesize_at(unsigned int index) const;
     torrent_status::state_t state() const;
     QString creator() const;

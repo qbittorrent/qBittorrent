@@ -512,6 +512,7 @@ QString misc::friendlyUnit(double val) {
 }
 
 bool misc::isPreviewable(QString extension){
+  if(extension.isEmpty()) return false;
   extension = extension.toUpper();
   if(extension == "AVI") return true;
   if(extension == "MP3") return true;

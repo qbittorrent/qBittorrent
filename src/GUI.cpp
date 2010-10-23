@@ -67,6 +67,7 @@
 #include "statusbar.h"
 #include "hidabletabwidget.h"
 #include "qinisettings.h"
+#include "torrentimportdlg.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -1193,6 +1194,11 @@ void GUI::on_actionRSS_Reader_triggered() {
 void GUI::on_actionSearch_engine_triggered() {
   Preferences::setSearchEnabled(actionSearch_engine->isChecked());
   displaySearchTab(actionSearch_engine->isChecked());
+}
+
+void GUI::on_action_Import_Torrent_triggered()
+{
+  TorrentImportDlg::importTorrent(BTSession);
 }
 
 /*****************************************************

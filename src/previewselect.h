@@ -109,7 +109,7 @@ public:
     h.file_progress(fp);
     unsigned int nbFiles = h.num_files();
     for(unsigned int i=0; i<nbFiles; ++i){
-      QString fileName = h.file_at(i);
+      QString fileName = h.filename_at(i);
       QString extension = fileName.split(QString::fromUtf8(".")).last().toUpper();
       if(misc::isPreviewable(extension)) {
         int row = previewListModel->rowCount();

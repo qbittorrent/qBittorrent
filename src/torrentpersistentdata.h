@@ -295,10 +295,13 @@ public:
     }
     data["seed"] = h.is_seed();
     data["priority"] = h.queue_position();
-    if(save_path.isEmpty())
+    if(save_path.isEmpty()) {
+      qDebug("TorrentPersistantData: save path is %s", qPrintable(h.save_path()));
       data["save_path"] = h.save_path();
-    else
+    } else {
+      qDebug("TorrentPersistantData: overriding save path is %s", qPrintable(save_path));
       data["save_path"] = save_path; // Override torrent save path (e.g. because it is a temp dir)
+    }
     // Label
     data["label"] = TorrentTempData::getLabel(h.hash());
     // Save data
@@ -322,7 +325,7 @@ public:
     data["save_path"] = save_path;
     all_data[hash] = data;
     settings.setValue("torrents", all_data);
-    qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", save_path.toLocal8Bit().data(), hash.toLocal8Bit().data());
+    qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", qPrintable(save_path), qPrintable(hash));
   }
 
   static void saveLabel(QString hash, QString label) {

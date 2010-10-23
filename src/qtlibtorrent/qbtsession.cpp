@@ -1107,6 +1107,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   loadTorrentSettings(h);
 
   if(!resumed) {
+    qDebug("This is a NEW torrent (first time)...");
     loadTorrentTempData(h, savePath, false);
 
 #if LIBTORRENT_VERSION_MINOR > 14
@@ -1191,45 +1192,48 @@ add_torrent_params QBtSession::initializeAddTorrentParams(QString hash) {
 }
 
 void QBtSession::loadTorrentTempData(QTorrentHandle h, QString savePath, bool magnet) {
+  qDebug("loadTorrentTempdata() - ENTER");
   const QString hash = h.hash();
   // Sequential download
-  if(!TorrentTempData::hasTempData(hash)) return;
-  // sequential download
-  h.set_sequential_download(TorrentTempData::isSequential(hash));
+  if(TorrentTempData::hasTempData(hash)) {
+    // sequential download
+    h.set_sequential_download(TorrentTempData::isSequential(hash));
 
-  // The following is useless for newly added magnet
-  if(!magnet) {
-    // Files priorities
-    vector<int> fp;
-    TorrentTempData::getFilesPriority(hash, fp);
-    h.prioritize_files(fp);
+    // The following is useless for newly added magnet
+    if(!magnet) {
+      // Files priorities
+      vector<int> fp;
+      TorrentTempData::getFilesPriority(hash, fp);
+      h.prioritize_files(fp);
 
-    // Update file names
-    const QStringList files_path = TorrentTempData::getFilesPath(hash);
-    bool force_recheck = false;
-    if(files_path.size() == h.num_files()) {
-      for(int i=0; i<h.num_files(); ++i) {
-        QString old_path = h.files_path().at(i);
-        old_path = old_path.replace("\\", "/");
-        if(!QFile::exists(old_path)) {
-          // Remove old parent folder manually since we will
-          // not get a file_renamed alert
-          QStringList parts = old_path.split("/", QString::SkipEmptyParts);
-          parts.removeLast();
-          if(!parts.empty())
-            QDir().rmpath(parts.join("/"));
+      // Update file names
+      const QStringList files_path = TorrentTempData::getFilesPath(hash);
+      bool force_recheck = false;
+      if(files_path.size() == h.num_files()) {
+        for(int i=0; i<h.num_files(); ++i) {
+          QString old_path = h.files_path().at(i);
+          old_path = old_path.replace("\\", "/");
+          if(!QFile::exists(old_path)) {
+            // Remove old parent folder manually since we will
+            // not get a file_renamed alert
+            QStringList parts = old_path.split("/", QString::SkipEmptyParts);
+            parts.removeLast();
+            if(!parts.empty())
+              QDir().rmpath(parts.join("/"));
+          }
+          const QString &path = files_path.at(i);
+          if(!force_recheck && QDir(h.save_path()).exists(path))
+            force_recheck = true;
+          qDebug("Renaming file to %s", qPrintable(path));
+          h.rename_file(i, path);
         }
-        const QString &path = files_path.at(i);
-        if(!force_recheck && QDir(h.save_path()).exists(path))
-          force_recheck = true;
-        qDebug("Renaming file to %s", qPrintable(path));
-        h.rename_file(i, path);
+        // Force recheck
+        if(force_recheck) h.force_recheck();
       }
-      // Force recheck
-      if(force_recheck) h.force_recheck();
     }
   }
   // Save persistent data for new torrent
+  qDebug("Saving torrent persistant data");
   if(defaultTempPath.isEmpty())
     TorrentPersistentData::saveTorrentPersistentData(h, QString::null, magnet);
   else
@@ -1632,7 +1636,7 @@ bool QBtSession::isFilePreviewPossible(QString hash) const{
   }
   const unsigned int nbFiles = h.num_files();
   for(unsigned int i=0; i<nbFiles; ++i) {
-    QString extension = h.file_at(i).split('.').last();
+    const QString extension = misc::file_extension(h.filename_at(i));
     if(misc::isPreviewable(extension))
       return true;
   }
@@ -2165,7 +2169,7 @@ void QBtSession::readAlerts() {
       if(h.is_valid()) {
         // Attempt to remove old folder if empty
         const QString& old_save_path = TorrentPersistentData::getPreviousPath(h.hash());
-        const QString new_save_path = QString::fromLocal8Bit(p->path.c_str());
+        const QString new_save_path = misc::toQStringU(p->path.c_str());
         qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
         QDir old_save_dir(old_save_path);
         if(old_save_dir != QDir(defaultSavePath) && old_save_dir != QDir(defaultTempPath)) {
@@ -2173,6 +2177,7 @@ void QBtSession::readAlerts() {
           misc::removeEmptyTree(old_save_path);
         }
         if(defaultTempPath.isEmpty() || !new_save_path.startsWith(defaultTempPath)) {
+          qDebug("Storage has been moved, updating save path to %s", qPrintable(new_save_path));
           TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
         }
         emit savePathChanged(h);

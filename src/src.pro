@@ -309,7 +309,8 @@ contains(DEFINES, DISABLE_GUI) {
               cookiesdlg.h \
               hidabletabwidget.h \
               sessionapplication.h \
-              torrentcreatordlg.h
+              torrentcreatordlg.h \
+              torrentimportdlg.h
 
   macx {
     HEADERS += qmacapplication.h
@@ -360,7 +361,8 @@ include(tracker/tracker.pri)
            ui/console.ui \
            ui/peer.ui \
            ui/confirmdeletiondlg.ui \
-           ui/cookiesdlg.ui
+           ui/cookiesdlg.ui \
+           ui/torrentimportdlg.ui
 }
 
 SOURCES += main.cpp \
@@ -377,7 +379,8 @@ SOURCES += main.cpp \
              cookiesdlg.cpp \
              torrentadditiondlg.cpp \
              sessionapplication.cpp \
-             torrentcreatordlg.cpp
+             torrentcreatordlg.cpp \
+             torrentimportdlg.cpp
 
   macx {
     SOURCES += qmacapplication.cpp

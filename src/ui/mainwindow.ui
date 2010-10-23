@@ -74,6 +74,7 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionDownload_from_URL"/>
+    <addaction name="action_Import_Torrent"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -149,7 +150,10 @@
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>E&amp;xit</string>
+    <string>Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit</string>
    </property>
   </action>
   <action name="actionOptions">
@@ -355,6 +359,18 @@
    </property>
    <property name="text">
     <string>Shutdown qBittorrent when downloads complete</string>
+   </property>
+  </action>
+  <action name="action_Import_Torrent">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import torrent...</string>
+   </property>
+   <property name="toolTip">
+    <string>Import torrent...</string>
    </property>
   </action>
  </widget>

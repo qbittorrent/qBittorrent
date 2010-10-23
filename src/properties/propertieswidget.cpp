@@ -730,7 +730,7 @@ void PropertiesWidget::renameSelectedFile() {
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
           if(h.file_at(0).compare(new_file_name, Qt::CaseInsensitive) != 0) {
 #else
-            if(h.file_at(0).compare(new_file_name, Qt::CaseSensitive) != 0) {
+            if(h.filename_at(0).compare(new_file_name, Qt::CaseSensitive) != 0) {
 #endif
               qDebug("Renaming single file to %s", qPrintable(new_file_name));
               h.rename_file(0, new_file_name);
