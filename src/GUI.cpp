@@ -210,13 +210,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   properties->readSettings();
 
   // Limit status filters list height
-  int cur_height = 80;
-  do {
-    transferListFilters->getStatusFilters()->setFixedHeight(cur_height);
-    cur_height += 10;
-    transferListFilters->getStatusFilters()->scrollToBottom();
-  }while(transferListFilters->getStatusFilters()->verticalScrollBar()->sliderPosition() > 0);
-  transferListFilters->getStatusFilters()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+  transferListFilters->getStatusFilters()->updateHeight();
 
   if(ui_locked) {
     hide();
