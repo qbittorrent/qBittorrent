@@ -166,7 +166,11 @@ public:
       }
     case TR_PROGRESS:{
         QStyleOptionProgressBarV2 newopt;
-        const double progress = index.data().toDouble()*100.;
+        qreal progress = index.data().toDouble()*100.;
+        // We don't want to display 100% unless
+        // the torrent is really complete
+        if(progress > 99.94 && progress < 100.)
+          progress = 99.9;
         newopt.rect = opt.rect;
         newopt.text = QString::number(progress, 'f', 1)+"%";
         newopt.progress = (int)progress;
