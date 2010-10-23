@@ -5,6 +5,7 @@
     - BUGFIX: Auto-disable the shutdown feature
     - BUGFIX: Remember the current property tab on startup
     - BUGFIX: Fix status list widget height issue on style change
+    - BUGFIX: Fix rounding issue in torrent progress display
 
 * Tue Oct 19 2010  - Christophe Dumez <chris@qbittorrent.org> - v2.4.7
     - BUGFIX: Display the priority column when the queueing system gets enabled
