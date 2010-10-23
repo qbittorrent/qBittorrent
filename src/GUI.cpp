@@ -74,6 +74,9 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "lineedit.h"
 #include "sessionapplication.h"
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#include "programupdater.h"
+#endif
 
 using namespace libtorrent;
 
@@ -245,6 +248,12 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
 #endif
 #ifdef Q_WS_MAC
   qt_mac_set_dock_menu(getTrayIconMenu());
+#endif
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+  // Check for update
+  ProgramUpdater *updater = new ProgramUpdater(this);
+  connect(updater, SIGNAL(updateCheckFinished(bool, QString)), SLOT(handleUpdateCheckFinished(bool, QString)));
+  updater->checkForUpdates();
 #endif
 }
 
@@ -523,17 +532,17 @@ void GUI::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
   QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()));
   QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
   /*QPushButton *no = */confirmBox.addButton(tr("No"), QMessageBox::NoRole);
-                        QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
-                        confirmBox.exec();
-                        if(confirmBox.clickedButton() == 0) return;
-                        if(confirmBox.clickedButton() == yes) {
-                          BTSession->recursiveTorrentDownload(h);
-                          return;
-                        }
-                        if(confirmBox.clickedButton() == never) {
-                          Preferences::disableRecursiveDownload();
-                        }
-                      }
+  QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
+  confirmBox.exec();
+  if(confirmBox.clickedButton() == 0) return;
+  if(confirmBox.clickedButton() == yes) {
+    BTSession->recursiveTorrentDownload(h);
+    return;
+  }
+  if(confirmBox.clickedButton() == never) {
+    Preferences::disableRecursiveDownload();
+  }
+}
 
 void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
   // Display a message box
@@ -724,42 +733,42 @@ void GUI::on_actionCreate_torrent_triggered() {
 bool GUI::event(QEvent * e) {
   switch(e->type()) {
   case QEvent::WindowStateChange: {
-      qDebug("Window change event");
-      //Now check to see if the window is minimised
-      if(isMinimized()) {
-        qDebug("minimisation");
-        QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-        if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
-          qDebug("Has active window: %d", (int)(qApp->activeWindow() != 0));
-          // Check if there is a modal window
-          bool has_modal_window = false;
-          foreach (QWidget *widget, QApplication::allWidgets()) {
-            if(widget->isModal()) {
-              has_modal_window = true;
-              break;
-            }
-          }
-          // Iconify if there is no modal window
-          if(!has_modal_window) {
-            qDebug("Minimize to Tray enabled, hiding!");
-            e->accept();
-            QTimer::singleShot(0, this, SLOT(hide()));
-            return true;
+    qDebug("Window change event");
+    //Now check to see if the window is minimised
+    if(isMinimized()) {
+      qDebug("minimisation");
+      QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+      if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
+        qDebug("Has active window: %d", (int)(qApp->activeWindow() != 0));
+        // Check if there is a modal window
+        bool has_modal_window = false;
+        foreach (QWidget *widget, QApplication::allWidgets()) {
+          if(widget->isModal()) {
+            has_modal_window = true;
+            break;
           }
         }
+        // Iconify if there is no modal window
+        if(!has_modal_window) {
+          qDebug("Minimize to Tray enabled, hiding!");
+          e->accept();
+          QTimer::singleShot(0, this, SLOT(hide()));
+          return true;
+        }
       }
-      break;
     }
+    break;
+  }
 #ifdef Q_WS_MAC
   case QEvent::ToolBarChange: {
-      qDebug("MAC: Received a toolbar change event!");
-      bool ret = QMainWindow::event(e);
+    qDebug("MAC: Received a toolbar change event!");
+    bool ret = QMainWindow::event(e);
 
-      qDebug("MAC: new toolbar visibility is %d", !actionTop_tool_bar->isChecked());
-      actionTop_tool_bar->toggle();
-      Preferences::setToolbarDisplayed(actionTop_tool_bar->isChecked());
-      return ret;
-    }
+    qDebug("MAC: new toolbar visibility is %d", !actionTop_tool_bar->isChecked());
+    actionTop_tool_bar->toggle();
+    Preferences::setToolbarDisplayed(actionTop_tool_bar->isChecked());
+    return ret;
+  }
 #endif
   default:
     break;
@@ -1210,3 +1219,29 @@ void GUI::on_actionDownload_from_URL_triggered() {
   }
 }
 
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+
+void GUI::handleUpdateCheckFinished(bool update_available, QString new_version)
+{
+  if(update_available) {
+    if(QMessageBox::question(this, tr("A newer version is available"),
+                             tr("A newer version of qBittorrent is available on Sourceforge.\nWould you like to update qBittorrent to version %1?").arg(new_version),
+                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+      // The user want to update, let's download the update
+      ProgramUpdater* updater = dynamic_cast<ProgramUpdater*>(sender());
+      connect(updater, SIGNAL(updateInstallFinished(QString)), SLOT(handleUpdateInstalled(QString)));
+      updater->updateProgram();
+      return;
+    }
+  }
+  sender()->deleteLater();
+}
+
+void GUI::handleUpdateInstalled(QString error_msg)
+{
+  if(!error_msg.isEmpty()) {
+    QMessageBox::critical(this, tr("Impossible to update qBittorrent"), tr("qBittorrent failed to update, reason: %1").arg(error_msg));
+  }
+}
+
+#endif

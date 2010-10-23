@@ -70,7 +70,6 @@
 
 const int MAX_TRACKER_ERRORS = 2;
 const float MAX_RATIO = 100.;
-enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
@@ -543,21 +542,21 @@ void QBtSession::configureSession() {
     }
   }
   switch(Preferences::getPeerProxyType()) {
-  case HTTP:
+  case Proxy::HTTP:
     qDebug("type: http");
     proxySettings.type = proxy_settings::http;
     break;
-  case HTTP_PW:
+  case Proxy::HTTP_PW:
     qDebug("type: http_pw");
     proxySettings.type = proxy_settings::http_pw;
     break;
-  case SOCKS4:
+  case Proxy::SOCKS4:
     proxySettings.type = proxy_settings::socks4;
-  case SOCKS5:
+  case Proxy::SOCKS5:
     qDebug("type: socks5");
     proxySettings.type = proxy_settings::socks5;
     break;
-  case SOCKS5_PW:
+  case Proxy::SOCKS5_PW:
     qDebug("type: socks5_pw");
     proxySettings.type = proxy_settings::socks5_pw;
     break;
@@ -569,24 +568,24 @@ void QBtSession::configureSession() {
   proxy_settings http_proxySettings;
   qDebug("HTTP Communications proxy type: %d", Preferences::getHTTPProxyType());
   switch(Preferences::getHTTPProxyType()) {
-  case HTTP_PW:
+  case Proxy::HTTP_PW:
     http_proxySettings.type = proxy_settings::http_pw;
     http_proxySettings.username = Preferences::getHTTPProxyUsername().toStdString();
     http_proxySettings.password = Preferences::getHTTPProxyPassword().toStdString();
     http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
     http_proxySettings.port = Preferences::getHTTPProxyPort();
     break;
-  case HTTP:
+  case Proxy::HTTP:
     http_proxySettings.type = proxy_settings::http;
     http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
     http_proxySettings.port = Preferences::getHTTPProxyPort();
     break;
-  case SOCKS5:
+  case Proxy::SOCKS5:
     http_proxySettings.type = proxy_settings::socks5;
     http_proxySettings.hostname = Preferences::getHTTPProxyIp().toStdString();
     http_proxySettings.port = Preferences::getHTTPProxyPort();
     break;
-  case SOCKS5_PW:
+  case Proxy::SOCKS5_PW:
     http_proxySettings.type = proxy_settings::socks5_pw;
     http_proxySettings.username = Preferences::getHTTPProxyUsername().toStdString();
     http_proxySettings.password = Preferences::getHTTPProxyPassword().toStdString();

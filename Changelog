@@ -2,6 +2,7 @@
     - FEATURE: qBittorrent can now act as a tracker
     - FEATURE: Added feature to shutdown qbittorrent on torrents completion
     - FEATURE: Added a torrent import assistant to seed or keep downloading outside torrents
+    - FEATURE: qBittorrent can update itself from Sourceforge (Windows/Mac OS X only)
     - FEATURE: Added a transfer list column to display the current tracker
     - COSMETIC: Replaced message box by on-screen notification for download errors
 

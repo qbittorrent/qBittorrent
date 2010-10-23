@@ -12,9 +12,9 @@ CONFIG += qt \
 
 # Update this VERSION for each release
 os2 {
-    DEFINES += VERSION=\'\"v2.5.0beta1\"\'
+    DEFINES += VERSION=\'\"v2.5.0beta2\"\'
 } else {
-    DEFINES += VERSION=\\\"v2.5.0beta1\\\"
+    DEFINES += VERSION=\\\"v2.5.0beta2\\\"
 }
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=5
@@ -312,8 +312,13 @@ contains(DEFINES, DISABLE_GUI) {
               torrentcreatordlg.h \
               torrentimportdlg.h
 
+  win32 {
+    HEADERS += programupdater.h
+  }
+
   macx {
-    HEADERS += qmacapplication.h
+    HEADERS += qmacapplication.h \
+               programupdater.h
   }
 }
 
@@ -382,8 +387,13 @@ SOURCES += main.cpp \
              torrentcreatordlg.cpp \
              torrentimportdlg.cpp
 
+  win32 {
+    SOURCES += programupdater.cpp
+  }
+
   macx {
-    SOURCES += qmacapplication.cpp
+    SOURCES += qmacapplication.cpp \
+               programupdater.cpp
   }
 }
 

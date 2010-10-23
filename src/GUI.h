@@ -129,6 +129,10 @@ protected slots:
   void optionsSaved();
   // HTTP slots
   void on_actionDownload_from_URL_triggered();
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+  void handleUpdateCheckFinished(bool update_available, QString new_version);
+  void handleUpdateInstalled(QString error_msg);
+#endif
 
 protected:
   void closeEvent(QCloseEvent *);

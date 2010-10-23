@@ -54,6 +54,9 @@
 #define QBT_REALM "Web UI Access"
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
 enum maxRatioAction {PAUSE_ACTION, REMOVE_ACTION};
+namespace Proxy {
+  enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
+}
 
 class Preferences {
 public:

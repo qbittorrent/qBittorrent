@@ -39,8 +39,6 @@
 #include "preferences.h"
 #include "qinisettings.h"
 
-enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
-
 /** Download Thread **/
 
 downloadThread::downloadThread(QObject* parent) : QObject(parent) {
@@ -180,7 +178,7 @@ void downloadThread::applyProxySettings() {
     qDebug("Using proxy: %s", qPrintable(IP));
     proxy.setPort(port.toUShort());
     // Default proxy type is HTTP, we must change if it is SOCKS5
-    if(intValue == SOCKS5 || intValue == SOCKS5_PW) {
+    if(intValue == Proxy::SOCKS5 || intValue == Proxy::SOCKS5_PW) {
       qDebug("Proxy is SOCKS5, not HTTP");
       proxy.setType(QNetworkProxy::Socks5Proxy);
     } else {

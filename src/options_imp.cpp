@@ -56,7 +56,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
 
-  QString savePath;
   setupUi(this);
   hsplitter->setCollapsible(0, false);
   hsplitter->setCollapsible(1, false);
@@ -516,18 +515,18 @@ bool options_imp::isFilteringEnabled() const{
 int options_imp::getPeerProxyType() const{
   switch(comboProxyType->currentIndex()) {
   case 1:
-    return SOCKS4;
+    return Proxy::SOCKS4;
     break;
   case 2:
     if(isPeerProxyAuthEnabled()){
-      return SOCKS5_PW;
+      return Proxy::SOCKS5_PW;
     }
-    return SOCKS5;
+    return Proxy::SOCKS5;
   case 3:
     if(isPeerProxyAuthEnabled()){
-      return HTTP_PW;
+      return Proxy::HTTP_PW;
     }
-    return HTTP;
+    return Proxy::HTTP;
   default:
     return -1;
   }
@@ -537,15 +536,15 @@ int options_imp::getHTTPProxyType() const {
   switch(comboProxyType_http->currentIndex()) {
   case 1: {
       if(isHTTPProxyAuthEnabled()){
-        return HTTP_PW;
+        return Proxy::HTTP_PW;
       }
-      return HTTP;
+      return Proxy::HTTP;
     }
   case 2: {
       if(isHTTPProxyAuthEnabled()) {
-        return SOCKS5_PW;
+        return Proxy::SOCKS5_PW;
       }
-      return SOCKS5;
+      return Proxy::SOCKS5;
     }
   default:
     return -1; // Disabled
@@ -672,15 +671,15 @@ void options_imp::loadOptions(){
 
   intValue = Preferences::getPeerProxyType();
   switch(intValue) {
-  case SOCKS4:
+  case Proxy::SOCKS4:
     comboProxyType->setCurrentIndex(1);
     break;
-  case SOCKS5:
-  case SOCKS5_PW:
+  case Proxy::SOCKS5:
+  case Proxy::SOCKS5_PW:
     comboProxyType->setCurrentIndex(2);
     break;
-  case HTTP:
-  case HTTP_PW:
+  case Proxy::HTTP:
+  case Proxy::HTTP_PW:
     comboProxyType->setCurrentIndex(3);
     break;
   default:
@@ -698,12 +697,12 @@ void options_imp::loadOptions(){
   //}
   intValue = Preferences::getHTTPProxyType();
   switch(intValue) {
-  case HTTP:
-  case HTTP_PW:
+  case Proxy::HTTP:
+  case Proxy::HTTP_PW:
     comboProxyType_http->setCurrentIndex(1);
     break;
-  case SOCKS5:
-  case SOCKS5_PW:
+  case Proxy::SOCKS5:
+  case Proxy::SOCKS5_PW:
     comboProxyType_http->setCurrentIndex(2);
     break;
   default:
