@@ -41,6 +41,7 @@
 #include <QDragMoveEvent>
 #include <QStandardItemModel>
 #include <QMessageBox>
+#include <QScrollBar>
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
@@ -57,6 +58,7 @@ public:
     itemHover = 0;
     // Accept drop
     setAcceptDrops(true);
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
   }
 
   // Redefine addItem() to make sure the list stays sorted
@@ -145,22 +147,43 @@ protected:
 };
 
 class StatusFiltersWidget : public QListWidget {
+  Q_OBJECT
+
 public:
-  StatusFiltersWidget(QWidget *parent) : QListWidget(parent) { 
-    setFixedHeight(120);
+  StatusFiltersWidget(QWidget *parent) : QListWidget(parent), m_shown(false) {
+    //setFixedHeight(120);
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
   }
+
+public slots:
+  void updateHeight() {
+    qDebug("Adjusting statuslist widget height...");
+    m_shown = true;
+    setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    int cur_height = 50;
+    do {
+      setFixedHeight(cur_height);
+      cur_height += 10;
+    }while(verticalScrollBar()->isVisible());
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+  }
+
 protected:
   void changeEvent(QEvent *e) {
     QListWidget::changeEvent(e);
     switch (e->type()) {
     case QEvent::StyleChange:
-      setSpacing(0);
-      setFixedHeight(120);
+      qDebug("Style has changed, adapting the statusfilters widget height");
+      if(m_shown)
+        updateHeight();
       break;
     default:
       break;
     }
   }
+
+private:
+  bool m_shown;
   
 };
 
@@ -245,7 +268,7 @@ public:
     delete vLayout;
   }
 
-  QListWidget* getStatusFilters() const {
+  StatusFiltersWidget* getStatusFilters() const {
     return statusFilters;
   }
 
