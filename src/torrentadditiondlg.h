@@ -86,11 +86,8 @@ public slots:
   void saveTruncatedPathHistory();
   void loadSavePathHistory();
   void updateLabelInSavePath(QString label);
-  void updateSavePathCurrentText(QString path);
+  void updateSavePathCurrentText();
   void resetComboLabelIndex(QString text);
-
-protected slots:
-  void restoreCursorPosition();
 
 signals:
   void torrentPaused(QTorrentHandle &h);
@@ -112,7 +109,6 @@ private:
   bool is_magnet;
   int hidden_height;
   QStringList path_history;
-  int cursor_pos;
 };
 
 #endif
