@@ -45,7 +45,7 @@
 #include <vector>
 #include "qinisettings.h"
 
-PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), display_flags(false) {
+PeerListWidget::PeerListWidget(PropertiesWidget *parent): QTreeView(parent), properties(parent), display_flags(false) {
   // Visual settings
   setRootIsDecorated(false);
   setItemsExpandable(false);
@@ -78,6 +78,9 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent): properties(parent), di
   loadSettings();
   // IP to Hostname resolver
   updatePeerHostNameResolutionState();
+  // SIGNAL/SLOT
+  connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
+  handleSortColumnChanged(header()->sortIndicatorSection());
 }
 
 PeerListWidget::~PeerListWidget() {
@@ -398,5 +401,15 @@ void PeerListWidget::handleResolved(QString ip, QString hostname) {
     qDebug("Resolved %s -> %s", qPrintable(ip), qPrintable(hostname));
     item->setData(hostname);
     //listModel->setData(listModel->index(item->row(), IP), hostname);
+  }
+}
+
+void PeerListWidget::handleSortColumnChanged(int col)
+{
+  if(col == 0) {
+    qDebug("Sorting by decoration");
+    proxyModel->setSortRole(Qt::ToolTipRole);
+  } else {
+    proxyModel->setSortRole(Qt::DisplayRole);
   }
 }
