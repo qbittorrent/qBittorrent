@@ -30,7 +30,7 @@
 
 #include "torrentadditiondlg.h"
 
-torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label(""), hidden_height(0), cursor_pos(-1) {
+torrentAdditionDialog::torrentAdditionDialog(GUI *parent, Bittorrent* _BTSession) : QDialog((QWidget*)parent), old_label(""), hidden_height(0) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   connect(this, SIGNAL(torrentPaused(QTorrentHandle&)), parent->getTransferList(), SLOT(pauseTorrent(QTorrentHandle&)));
@@ -250,8 +250,8 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   loadSavePathHistory();
 
   // Connect slots
-  connect(savePathTxt, SIGNAL(editTextChanged(QString)), this, SLOT(updateDiskSpaceLabels()));
-  connect(savePathTxt, SIGNAL(editTextChanged(QString)), this, SLOT(updateSavePathCurrentText(QString)));
+  connect(savePathTxt->lineEdit(), SIGNAL(editingFinished()), this, SLOT(updateDiskSpaceLabels()));
+  connect(savePathTxt->lineEdit(), SIGNAL(editingFinished()), this, SLOT(updateSavePathCurrentText()));
   if(nbFiles == 1) {
     // Update properties model whenever the file path is edited
     connect(savePathTxt, SIGNAL(editTextChanged(QString)), this, SLOT(renameTorrentNameInModel(QString)));
@@ -643,18 +643,9 @@ void torrentAdditionDialog::renameSelectedFile() {
         }
       }
 
-      void torrentAdditionDialog::restoreCursorPosition() {
-        savePathTxt->lineEdit()->setCursorPosition(cursor_pos);
-        cursor_pos = -1;
-      }
-
-      void torrentAdditionDialog::updateSavePathCurrentText(QString path) {
-        if(cursor_pos >= 0)
-          return;
-        Q_UNUSED(path);
-        cursor_pos = savePathTxt->lineEdit()->cursorPosition();
-        savePathTxt->setItemText(savePathTxt->currentIndex(), path);
-        QTimer::singleShot(0, this, SLOT(restoreCursorPosition()));
+      void torrentAdditionDialog::updateSavePathCurrentText() {
+        qDebug("updateSavePathCurrentText() - ENTER");
+        savePathTxt->setItemText(savePathTxt->currentIndex(), savePathTxt->currentText());
         path_history.replace(savePathTxt->currentIndex(), getCurrentTruncatedSavePath());
         QString root_folder_or_file_name = "";
         getCurrentTruncatedSavePath(&root_folder_or_file_name);
