@@ -8,6 +8,7 @@
     - BUGFIX: Fix rounding issue in torrent progress display
     - BUGFIX: Fix issue when altering files priorities of a seeding torrent
     - BUGFIX: Better fix for save path editing issues in torrent addition dialog
+    - BUGFIX: Peers can now be sorted by country
 
 * Tue Oct 19 2010  - Christophe Dumez <chris@qbittorrent.org> - v2.4.7
     - BUGFIX: Display the priority column when the queueing system gets enabled

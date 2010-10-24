@@ -75,6 +75,7 @@ protected slots:
   void limitUpRateSelectedPeers(QStringList peer_ips);
   void limitDlRateSelectedPeers(QStringList peer_ips);
   void banSelectedPeers(QStringList peer_ips);
+  void handleSortColumnChanged(int col);
 
 private:
   QStandardItemModel *listModel;
