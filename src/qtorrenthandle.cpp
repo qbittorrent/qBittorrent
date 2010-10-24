@@ -585,6 +585,14 @@ void QTorrentHandle::prioritize_files(const std::vector<int> &v) {
   if(was_seed && !is_seed()) {
     // Reset seed status
     TorrentPersistentData::saveSeedStatus(*this);
+    // Move to temp folder if necessary
+    if(Preferences::isTempPathEnabled()) {
+      QString tmp_path = Preferences::getTempPath();
+      QString root_folder = TorrentPersistentData::getRootFolder(hash());
+      if(!root_folder.isEmpty())
+        tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
+      move_storage(tmp_path);
+    }
   }
 }
 
@@ -656,10 +664,21 @@ void QTorrentHandle::move_storage(QString new_path) const {
 }
 
 void QTorrentHandle::file_priority(int index, int priority) const {
-  Q_ASSERT(h.is_valid());
+  Q_ASSERT(torrent_handle::is_valid());
+  bool was_seed = is_seed();
   h.file_priority(index, priority);
-  // Save seed status
-  TorrentPersistentData::saveSeedStatus(*this);
+  if(was_seed && !is_seed()) {
+    // Save seed status
+    TorrentPersistentData::saveSeedStatus(*this);
+    // Move to temp folder if necessary
+    if(Preferences::isTempPathEnabled()) {
+      QString tmp_path = Preferences::getTempPath();
+      QString root_folder = TorrentPersistentData::getRootFolder(hash());
+      if(!root_folder.isEmpty())
+        tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
+      move_storage(tmp_path);
+    }
+  }
 }
 
 #if LIBTORRENT_VERSION_MINOR > 14
