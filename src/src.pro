@@ -309,7 +309,6 @@ contains(DEFINES, DISABLE_GUI) {
               cookiesdlg.h \
               hidabletabwidget.h \
               sessionapplication.h \
-              torrentcreatordlg.h \
               torrentimportdlg.h
 
   win32 {
@@ -349,13 +348,13 @@ include(tracker/tracker.pri)
   include(properties/properties.pri)
   include(searchengine/searchengine.pri)
   include(rss/rss.pri)
+  include(torrentcreator/torrentcreator.pri)
 }
 
 !contains(DEFINES, DISABLE_GUI) {
   FORMS += ui/mainwindow.ui \
            ui/options.ui \
            ui/about.ui \
-           ui/createtorrent.ui \
            ui/preview.ui \
            ui/login.ui \
            ui/downloadfromurldlg.ui \
@@ -384,7 +383,6 @@ SOURCES += main.cpp \
              cookiesdlg.cpp \
              torrentadditiondlg.cpp \
              sessionapplication.cpp \
-             torrentcreatordlg.cpp \
              torrentimportdlg.cpp
 
   win32 {

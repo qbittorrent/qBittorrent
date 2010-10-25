@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,56 +31,16 @@
 #ifndef CREATE_TORRENT_IMP_H
 #define CREATE_TORRENT_IMP_H
 
-#include <QThread>
-
 #include "ui_createtorrent.h"
 
-class torrentCreatorThread : public QThread {
-  Q_OBJECT
-  
-  QString input_path;
-  QString save_path;
-  QStringList trackers;
-  QStringList url_seeds;
-  QString comment;
-  bool is_private;
-  int piece_size;
-  bool abort;
-  QDialog *parent;
-  
-  public:
-    torrentCreatorThread(QDialog *_parent) {
-        parent = _parent;
-    }
-    ~torrentCreatorThread() {
-      abort = true;
-      wait();
-    }
-    void create(QString _input_path, QString _save_path, QStringList _trackers, QStringList _url_seeds, QString _comment, bool _is_private, int _piece_size);
-    void sendProgressSignal(int progress);
-    void abortCreation() { abort = true; }
-  
-  protected:
-    void run();
-    
-  signals:
-    void creationFailure(QString msg);
-    void creationSuccess(QString path, QString branch_path);
-
-  signals:
-    void updateProgress(int progress);
-};
+class TorrentCreatorThread;
 
 class TorrentCreatorDlg : public QDialog, private Ui::createTorrentDialog{
   Q_OBJECT
-
-  private:
-    torrentCreatorThread *creatorThread;
     
   public:
     TorrentCreatorDlg(QWidget *parent = 0);
     ~TorrentCreatorDlg();
-    QStringList allItems(QListWidget *list);
     int getPieceSize() const;
 
   signals:
@@ -94,12 +54,18 @@ class TorrentCreatorDlg : public QDialog, private Ui::createTorrentDialog{
     void on_createButton_clicked();
     void on_addFile_button_clicked();
     void on_addFolder_button_clicked();
-    void on_addTracker_button_clicked();
-    void on_removeTracker_button_clicked();
-    void on_addURLSeed_button_clicked();
-    void on_removeURLSeed_button_clicked();
     void handleCreationFailure(QString msg);
     void handleCreationSuccess(QString path, QString branch_path);
+    void setInteractionEnabled(bool enabled);
+    void showProgressBar(bool show);
+    void on_checkAutoPieceSize_clicked(bool checked);
+    void updateOptimalPieceSize();
+    void saveTrackerList();
+    void loadTrackerList();
+
+private:
+  TorrentCreatorThread *creatorThread;
+  QList<int> m_piece_sizes;
 };
 
 #endif

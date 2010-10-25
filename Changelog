@@ -4,7 +4,10 @@
     - FEATURE: Added a torrent import assistant to seed or keep downloading outside torrents
     - FEATURE: qBittorrent can update itself from Sourceforge (Windows/Mac OS X only)
     - FEATURE: Added a transfer list column to display the current tracker
+    - FEATURE: Remember the last trackers used in the torrent creation tool
+    - FEATURE: The optimal piece size is now automatically computed in the torrent creation tool
     - COSMETIC: Replaced message box by on-screen notification for download errors
+    - COSMETIC: Improved the torrent creation tool appearance
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
     - FEATURE: Added actions to "Move to top/bottom" of priority queue

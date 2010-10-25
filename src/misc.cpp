@@ -80,9 +80,9 @@ QString misc::QDesktopServicesDataLocation() {
 #if defined Q_WS_WINCE
   if (SHGetSpecialFolderPath(0, path, CSIDL_APPDATA, FALSE))
 #else
-    if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
+  if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
 #endif
-      result = QString::fromWCharArray(path);
+    result = QString::fromWCharArray(path);
   if (!QCoreApplication::applicationName().isEmpty())
     result = result + QLatin1String("\\") + qApp->applicationName();
   if(!result.endsWith("\\"))
@@ -106,7 +106,7 @@ QString misc::QDesktopServicesDataLocation() {
   if (xdgDataHome.isEmpty())
     xdgDataHome = QDir::homePath() + QLatin1String("/.local/share");
   xdgDataHome += QLatin1String("/data/")
-                 + qApp->applicationName();
+      + qApp->applicationName();
   return xdgDataHome;
 #endif
 #endif
@@ -158,7 +158,7 @@ long long misc::freeDiskSpaceOnPath(QString path) {
   const int ret = statfs (qPrintable(statfs_path), &stats) ;
   if(ret == 0) {
     available = ((unsigned long long)stats.f_bavail) *
-                ((unsigned long long)stats.f_bsize) ;
+        ((unsigned long long)stats.f_bsize) ;
     return available;
   } else {
     return -1;
@@ -170,10 +170,10 @@ long long misc::freeDiskSpaceOnPath(QString path) {
                                               PULARGE_INTEGER);
   GetDiskFreeSpaceEx_t
       pGetDiskFreeSpaceEx = (GetDiskFreeSpaceEx_t)::GetProcAddress
-                            (
-                                ::GetModuleHandle(TEXT("kernel32.dll")),
-                                "GetDiskFreeSpaceExW"
-                                );
+      (
+        ::GetModuleHandle(TEXT("kernel32.dll")),
+        "GetDiskFreeSpaceExW"
+        );
   if ( pGetDiskFreeSpaceEx )
   {
     ULARGE_INTEGER bytesFree, bytesTotal;
@@ -220,7 +220,7 @@ void misc::shutdownComputer() {
   AEDisposeDesc(&targetDesc);
   if (error != noErr)
   {
-      return;
+    return;
   }
 
   error = AESend(&appleEventToSend, &eventReply, kAENoReply,
@@ -729,4 +729,22 @@ QList<bool> misc::boolListfromStringList(const QStringList &l) {
       ret << false;
   }
   return ret;
+}
+
+quint64 misc::computePathSize(QString path)
+{
+  // Check if it is a file
+  QFileInfo fi(path);
+  if(!fi.exists()) return 0;
+  if(fi.isFile()) return fi.size();
+  // Compute folder size
+  quint64 size = 0;
+  foreach(const QFileInfo &subfi, QDir(path).entryInfoList(QDir::Dirs|QDir::Files)) {
+    if(subfi.fileName().startsWith(".")) continue;
+    if(subfi.isDir())
+      size += misc::computePathSize(subfi.absoluteFilePath());
+    else
+      size += subfi.size();
+  }
+  return size;
 }

@@ -117,6 +117,8 @@ public:
     return MyFile.remove();
   }
 
+  static quint64 computePathSize(QString path);
+
   static QString truncateRootFolder(boost::intrusive_ptr<torrent_info> t);
   static QString truncateRootFolder(torrent_handle h);
 
