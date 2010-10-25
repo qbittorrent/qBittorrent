@@ -800,6 +800,23 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <source>The password is invalid</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -1927,6 +1944,18 @@ Neće biti daljnjih napomena.</translation>
     </message>
 </context>
 <context>
+    <name>ProgramUpdater</name>
+    <message>
+        <source>Could not create the file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to download the update at %1</source>
+        <comment>%1 is an URL</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Not downloaded</source>
@@ -2902,20 +2931,20 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation type="unfinished">Upišite postojeći URL</translation>
+        <translation type="obsolete">Upišite postojeći URL</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished">Postojeći URL:</translation>
+        <translation type="obsolete">Postojeći URL:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation type="unfinished">Upišite URL web seeda</translation>
+        <translation type="obsolete">Upišite URL web seeda</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished">URL web seeda:</translation>
+        <translation type="obsolete">URL web seeda:</translation>
     </message>
     <message>
         <source>No input path set</source>
@@ -3672,15 +3701,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation>Objavi URL-ove (trackeri):</translation>
+        <translation type="obsolete">Objavi URL-ove (trackeri):</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
-        <translation>Komentar (neobavezno):</translation>
+        <translation type="obsolete">Komentar (neobavezno):</translation>
     </message>
     <message>
         <source>Web seeds urls (optional):</source>
-        <translation>URL-ovi web seedova (neobavezno):</translation>
+        <translation type="obsolete">URL-ovi web seedova (neobavezno):</translation>
     </message>
     <message>
         <source>File or folder to add to the torrent:</source>
@@ -3737,6 +3766,22 @@ Do you want to install it now?</source>
     <message>
         <source>Progress:</source>
         <translation>Napredak:</translation>
+    </message>
+    <message>
+        <source>Tracker URLs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seeds urls:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Komentar:</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

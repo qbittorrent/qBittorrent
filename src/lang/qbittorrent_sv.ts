@@ -800,6 +800,23 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <source>The password is invalid</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -1926,6 +1943,18 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
 </context>
 <context>
+    <name>ProgramUpdater</name>
+    <message>
+        <source>Could not create the file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to download the update at %1</source>
+        <comment>%1 is an URL</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -2901,20 +2930,20 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation type="unfinished">Ange en annonserings-url</translation>
+        <translation type="obsolete">Ange en annonserings-url</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished">Annonserings-url:</translation>
+        <translation type="obsolete">Annonserings-url:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation type="unfinished">Ange en url för webbdistribution</translation>
+        <translation type="obsolete">Ange en url för webbdistribution</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished">Url för webbdistribution:</translation>
+        <translation type="obsolete">Url för webbdistribution:</translation>
     </message>
     <message>
         <source>No input path set</source>
@@ -3663,15 +3692,15 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation>Annonserings-url:er (bevakare):</translation>
+        <translation type="obsolete">Annonserings-url:er (bevakare):</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
-        <translation>Kommentar (valfritt):</translation>
+        <translation type="obsolete">Kommentar (valfritt):</translation>
     </message>
     <message>
         <source>Web seeds urls (optional):</source>
-        <translation>Url:er för webbdistribution (valfritt):</translation>
+        <translation type="obsolete">Url:er för webbdistribution (valfritt):</translation>
     </message>
     <message>
         <source>File or folder to add to the torrent:</source>
@@ -3736,6 +3765,22 @@ Vill du installera den nu?</translation>
     <message>
         <source>Add folder</source>
         <translation>Lägg till mapp</translation>
+    </message>
+    <message>
+        <source>Tracker URLs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seeds urls:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Kommentar:</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

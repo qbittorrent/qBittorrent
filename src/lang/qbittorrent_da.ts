@@ -672,92 +672,92 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>GUI</name>
     <message>
-        <location filename="../GUI.cpp" line="845"/>
+        <location filename="../GUI.cpp" line="848"/>
         <source>Open Torrent Files</source>
         <translation>Åbn Torrent Filer</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="846"/>
+        <location filename="../GUI.cpp" line="849"/>
         <source>Torrent Files</source>
         <translation>Torrent Filer</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="160"/>
+        <location filename="../GUI.cpp" line="163"/>
         <source>Transfers</source>
         <translation>Overførsler</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="92"/>
-        <location filename="../GUI.cpp" line="1186"/>
+        <location filename="../GUI.cpp" line="95"/>
+        <location filename="../GUI.cpp" line="1189"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1016"/>
+        <location filename="../GUI.cpp" line="1019"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1019"/>
-        <location filename="../GUI.cpp" line="1026"/>
+        <location filename="../GUI.cpp" line="1022"/>
+        <location filename="../GUI.cpp" line="1029"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL hastighed: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1022"/>
-        <location filename="../GUI.cpp" line="1028"/>
+        <location filename="../GUI.cpp" line="1025"/>
+        <location filename="../GUI.cpp" line="1031"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP hastighed: %1 KB/s</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="448"/>
+        <location filename="../GUI.cpp" line="451"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 er hentet færdig.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="454"/>
+        <location filename="../GUI.cpp" line="457"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O Fejl</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="386"/>
+        <location filename="../GUI.cpp" line="389"/>
         <source>Search</source>
         <translation>Søg</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="244"/>
+        <location filename="../GUI.cpp" line="241"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="368"/>
+        <location filename="../GUI.cpp" line="371"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="461"/>
+        <location filename="../GUI.cpp" line="464"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="546"/>
+        <location filename="../GUI.cpp" line="549"/>
         <source>Url download error</source>
         <translation>Url download fejl</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="546"/>
+        <location filename="../GUI.cpp" line="549"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Kunne ikke downloade filen via url: %1, begrundelse: %2.</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="454"/>
+        <location filename="../GUI.cpp" line="457"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -766,139 +766,160 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Begrundelse: %2</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="119"/>
+        <location filename="../GUI.cpp" line="122"/>
         <source>Set the password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="243"/>
+        <location filename="../GUI.cpp" line="240"/>
         <source>Torrent file association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="343"/>
+        <location filename="../GUI.cpp" line="346"/>
         <source>Password update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="343"/>
+        <location filename="../GUI.cpp" line="346"/>
         <source>The UI lock password has been successfully updated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="402"/>
+        <location filename="../GUI.cpp" line="405"/>
         <source>Transfers (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="448"/>
+        <location filename="../GUI.cpp" line="451"/>
         <source>Download completion</source>
         <translation>Download færdig</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="463"/>
+        <location filename="../GUI.cpp" line="466"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="465"/>
+        <location filename="../GUI.cpp" line="468"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="467"/>
+        <location filename="../GUI.cpp" line="470"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="529"/>
+        <location filename="../GUI.cpp" line="532"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="529"/>
+        <location filename="../GUI.cpp" line="532"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="530"/>
-        <location filename="../GUI.cpp" line="692"/>
+        <location filename="../GUI.cpp" line="533"/>
+        <location filename="../GUI.cpp" line="695"/>
         <source>Yes</source>
         <translation type="unfinished">Ja</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="531"/>
-        <location filename="../GUI.cpp" line="691"/>
+        <location filename="../GUI.cpp" line="534"/>
+        <location filename="../GUI.cpp" line="694"/>
         <source>No</source>
         <translation type="unfinished">Nej</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="532"/>
+        <location filename="../GUI.cpp" line="535"/>
         <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="552"/>
+        <location filename="../GUI.cpp" line="555"/>
         <source>Global Upload Speed Limit</source>
         <translation>Global Upload Hastighedsbegrænsning</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="574"/>
+        <location filename="../GUI.cpp" line="577"/>
         <source>Global Download Speed Limit</source>
         <translation>Global Download Hastighedsbegrænsning</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="338"/>
-        <location filename="../GUI.cpp" line="352"/>
-        <location filename="../GUI.cpp" line="606"/>
+        <location filename="../GUI.cpp" line="1227"/>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1228"/>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1243"/>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="1243"/>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="355"/>
+        <location filename="../GUI.cpp" line="609"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="338"/>
-        <location filename="../GUI.cpp" line="352"/>
-        <location filename="../GUI.cpp" line="606"/>
+        <location filename="../GUI.cpp" line="341"/>
+        <location filename="../GUI.cpp" line="355"/>
+        <location filename="../GUI.cpp" line="609"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="618"/>
+        <location filename="../GUI.cpp" line="621"/>
         <source>Invalid password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="618"/>
+        <location filename="../GUI.cpp" line="621"/>
         <source>The password is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="688"/>
+        <location filename="../GUI.cpp" line="691"/>
         <source>Exiting qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="689"/>
+        <location filename="../GUI.cpp" line="692"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Nogen filer er stadig ved at bliver overført.
 Er du sikker på at du vil afslutte qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="693"/>
+        <location filename="../GUI.cpp" line="696"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="1033"/>
+        <location filename="../GUI.cpp" line="1036"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GUI.cpp" line="925"/>
+        <location filename="../GUI.cpp" line="928"/>
         <source>Options were saved successfully.</source>
         <translation>Indstillingerne blev gemt.</translation>
     </message>
@@ -1699,78 +1720,78 @@ No further notices will be issued.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="132"/>
+        <location filename="../properties/peerlistwidget.cpp" line="135"/>
         <source>Add a new peer...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="141"/>
+        <location filename="../properties/peerlistwidget.cpp" line="144"/>
         <source>Copy IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="143"/>
+        <location filename="../properties/peerlistwidget.cpp" line="146"/>
         <source>Limit download rate...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="144"/>
+        <location filename="../properties/peerlistwidget.cpp" line="147"/>
         <source>Limit upload rate...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="146"/>
+        <location filename="../properties/peerlistwidget.cpp" line="149"/>
         <source>Ban peer permanently</source>
         <translation>Bandlys peer permanent</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="157"/>
-        <location filename="../properties/peerlistwidget.cpp" line="159"/>
+        <location filename="../properties/peerlistwidget.cpp" line="160"/>
+        <location filename="../properties/peerlistwidget.cpp" line="162"/>
         <source>Peer addition</source>
         <translation>Tilføjelse af peer</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="157"/>
+        <location filename="../properties/peerlistwidget.cpp" line="160"/>
         <source>The peer was added to this torrent.</source>
         <translation>Peer tilfæjet til denne torrent.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="159"/>
+        <location filename="../properties/peerlistwidget.cpp" line="162"/>
         <source>The peer could not be added to this torrent.</source>
         <translation>Peer kunne ikke tilføjes til denne torrent.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="189"/>
+        <location filename="../properties/peerlistwidget.cpp" line="192"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Er du sikker? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="189"/>
+        <location filename="../properties/peerlistwidget.cpp" line="192"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Er du sikker på at du vil bandlyse de valgte peers permanent?</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="190"/>
+        <location filename="../properties/peerlistwidget.cpp" line="193"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="190"/>
+        <location filename="../properties/peerlistwidget.cpp" line="193"/>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="195"/>
+        <location filename="../properties/peerlistwidget.cpp" line="198"/>
         <source>Manually banning peer %1...</source>
         <translation>Banlyser peer %1 manuelt...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="206"/>
+        <location filename="../properties/peerlistwidget.cpp" line="209"/>
         <source>Upload rate limiting</source>
         <translation>Upload begrænsning</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="227"/>
+        <location filename="../properties/peerlistwidget.cpp" line="230"/>
         <source>Download rate limiting</source>
         <translation>Download begræsning</translation>
     </message>
@@ -2320,6 +2341,20 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>ProgramUpdater</name>
+    <message>
+        <location filename="../programupdater.cpp" line="173"/>
+        <source>Could not create the file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../programupdater.cpp" line="176"/>
+        <source>Failed to download the update at %1</source>
+        <comment>%1 is an URL</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <location filename="../properties/proplistdelegate.h" line="100"/>
@@ -2624,294 +2659,294 @@ No further notices will be issued.</source>
 <context>
     <name>QBtSession</name>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="223"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="229"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="222"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="228"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation type="unfinished">%1 nåede den maksimale ratio du har valgt.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="224"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="223"/>
         <source>Removing torrent %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="230"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="229"/>
         <source>Pausing torrent %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="324"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="323"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation type="unfinished">qBittorrent bruger port: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="387"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="386"/>
         <source>UPnP support [ON]</source>
         <translation type="unfinished">UPnP understøttelse [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="390"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="389"/>
         <source>UPnP support [OFF]</source>
         <translation type="unfinished">UPnP understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="395"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="394"/>
         <source>NAT-PMP support [ON]</source>
         <translation type="unfinished">NAT-PMP understøttelse [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="398"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="397"/>
         <source>NAT-PMP support [OFF]</source>
         <translation type="unfinished">NAT-PMP understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="404"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="403"/>
         <source>HTTP user agent is %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="422"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="421"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="463"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="462"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished">DHT understøttelse [ON], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="465"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="469"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="464"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="468"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished">DHT understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="473"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="472"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished">PEX understøttelse [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="475"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="474"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="478"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="477"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="483"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="482"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished">Lokal Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="486"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="485"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished">Lokal Peer Discovery understøttelse [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="498"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished">Understøttelse af kryptering [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="502"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished">Understøttelse af kryptering [FORCED]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="508"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Understøttelse af kryptering [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="606"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="605"/>
         <source>Embedded Tracker [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="608"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="607"/>
         <source>Failed to start the embedded tracker!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="611"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="610"/>
         <source>Embedded Tracker [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="631"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="630"/>
         <source>The Web UI is listening on port %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="633"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="632"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished">Web User Interface fejl - Ikke i stand til at binde Web UI til port %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="797"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="796"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished">&apos;%1&apos; blev fjernet fra listen og harddisken.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="799"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="798"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished">&apos;%1&apos; blev fjernet fra listen.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="870"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="869"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished">&apos;%1&apos; er ikke en gyldig magnet URI.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="886"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1018"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1020"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="885"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1017"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1019"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos; findes allerede i download listen.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="953"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1138"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1143"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="952"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1137"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1142"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; fortsat. (hurtig fortsættelse)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="955"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1140"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1145"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="954"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1139"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1144"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; lagt til download listen.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="993"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="997"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="992"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="996"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">Kan ikke dekode torrent filen: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1000"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="999"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">Denne fil er enten fejlbehæftet eller ikke en torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1032"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1266"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1265"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1279"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1278"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1626"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1625"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blev blokeret af dit IP filter&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1628"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1627"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blev bandlyst pga. fejlbehæftede stykker&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1950"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1949"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">Rekursiv download af filen %1 indlejret i torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1960"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2039"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1959"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2038"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">Kan ikke dekode %1 torrent fil.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1992"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1994"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1993"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1995"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1994"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1996"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1995"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1997"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1996"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1999"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1998"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2234"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2357"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2356"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2324"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2323"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port mapping fejlede, besked: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2329"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2328"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port mapping lykkedes, besked: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2352"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2351"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2356"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2355"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Der blev fundet fejl i data for hurtig genstart af torrent %1, tjekker igen...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2362"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2361"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Url seed lookup fejlede for url: %1, besked: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2486"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2485"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Downloader &apos;%1&apos;, vent venligst...</translation>
@@ -3519,75 +3554,62 @@ Please install it manually.</source>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="86"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="63"/>
         <source>Select a folder to add to the torrent</source>
         <translation type="unfinished">Vælg en mappe der skal tilføjes til denne torrent</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="99"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="79"/>
         <source>Select a file to add to the torrent</source>
         <translation type="unfinished">Vælg en fil der skal tilføjes til denne torrent</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="140"/>
         <source>Please type an announce URL</source>
-        <translation type="unfinished">Indtast venligst en announce URL</translation>
+        <translation type="obsolete">Indtast venligst en announce URL</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="141"/>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../torrentcreatordlg.cpp" line="159"/>
         <source>Please type a web seed url</source>
-        <translation type="unfinished">Indtast venligst en web seed url</translation>
+        <translation type="obsolete">Indtast venligst en web seed url</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="160"/>
-        <source>Web seed URL:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../torrentcreatordlg.cpp" line="183"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="102"/>
         <source>No input path set</source>
         <translation type="unfinished">Der er ikke sat nogen sti til input</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="183"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="102"/>
         <source>Please type an input path first</source>
         <translation type="unfinished">Indtast venligst en input sti først</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="191"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
         <source>Select destination torrent file</source>
         <translation type="unfinished">Vælg destinations torrent fil</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="191"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
         <source>Torrent Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="214"/>
-        <location filename="../torrentcreatordlg.cpp" line="230"/>
-        <location filename="../torrentcreatordlg.cpp" line="245"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="139"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="155"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="170"/>
         <source>Torrent creation</source>
         <translation type="unfinished">Torrent oprettelse</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="214"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="139"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation type="unfinished">Oprettelse af torrent lykkedes ikke, begrundelse: %1</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="230"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="155"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation type="unfinished">Den oprettede torrent fil er ugyldig. Den vil ikke blive tilføjet til download listen.</translation>
     </message>
     <message>
-        <location filename="../torrentcreatordlg.cpp" line="245"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="170"/>
         <source>Torrent was created successfully:</source>
         <translation type="unfinished">Torrent blev oprettet succesfuldt:</translation>
     </message>
@@ -3872,95 +3894,95 @@ Please install it manually.</source>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="195"/>
-        <location filename="../transferlistfilterswidget.h" line="283"/>
+        <location filename="../transferlistfilterswidget.h" line="218"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>All</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="198"/>
-        <location filename="../transferlistfilterswidget.h" line="284"/>
+        <location filename="../transferlistfilterswidget.h" line="221"/>
+        <location filename="../transferlistfilterswidget.h" line="307"/>
         <source>Downloading</source>
         <translation>Downloader</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="201"/>
-        <location filename="../transferlistfilterswidget.h" line="285"/>
+        <location filename="../transferlistfilterswidget.h" line="224"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>Completed</source>
         <translation>Færdig</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="204"/>
-        <location filename="../transferlistfilterswidget.h" line="286"/>
+        <location filename="../transferlistfilterswidget.h" line="227"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Paused</source>
         <translation type="unfinished">Pauset</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="207"/>
-        <location filename="../transferlistfilterswidget.h" line="287"/>
+        <location filename="../transferlistfilterswidget.h" line="230"/>
+        <location filename="../transferlistfilterswidget.h" line="310"/>
         <source>Active</source>
         <translation>Aktiv</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="210"/>
-        <location filename="../transferlistfilterswidget.h" line="288"/>
+        <location filename="../transferlistfilterswidget.h" line="233"/>
+        <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Inactive</source>
         <translation>Inaktiv</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="224"/>
-        <location filename="../transferlistfilterswidget.h" line="467"/>
+        <location filename="../transferlistfilterswidget.h" line="247"/>
+        <location filename="../transferlistfilterswidget.h" line="490"/>
         <source>All labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="227"/>
-        <location filename="../transferlistfilterswidget.h" line="468"/>
+        <location filename="../transferlistfilterswidget.h" line="250"/>
+        <location filename="../transferlistfilterswidget.h" line="491"/>
         <source>Unlabeled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="315"/>
+        <location filename="../transferlistfilterswidget.h" line="338"/>
         <source>Remove label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="316"/>
+        <location filename="../transferlistfilterswidget.h" line="339"/>
         <source>Add label...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="318"/>
+        <location filename="../transferlistfilterswidget.h" line="341"/>
         <source>Resume torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="319"/>
+        <location filename="../transferlistfilterswidget.h" line="342"/>
         <source>Pause torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="320"/>
+        <location filename="../transferlistfilterswidget.h" line="343"/>
         <source>Delete torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="346"/>
+        <location filename="../transferlistfilterswidget.h" line="369"/>
         <source>New Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="346"/>
+        <location filename="../transferlistfilterswidget.h" line="369"/>
         <source>Label:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="351"/>
+        <location filename="../transferlistfilterswidget.h" line="374"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="351"/>
+        <location filename="../transferlistfilterswidget.h" line="374"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4469,112 +4491,125 @@ Please install it manually.</source>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../ui/createtorrent.ui" line="520"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="305"/>
         <source>Cancel</source>
         <translation>Annuller</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="14"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="14"/>
         <source>Torrent Creation Tool</source>
         <translation>Værktøj: Opret torrent</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="43"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="43"/>
         <source>Torrent file creation</source>
         <translation>Torrent fil oprettelse</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="65"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="65"/>
         <source>Add file</source>
         <translation>Tilføj fil</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="76"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="76"/>
         <source>Add folder</source>
         <translation>Tilføj mappe</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="105"/>
-        <source>Announce urls (trackers):</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/createtorrent.ui" line="140"/>
         <source>Comment (optional):</source>
-        <translation>Kommentar (ikke påkrævet):</translation>
+        <translation type="obsolete">Kommentar (ikke påkrævet):</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="121"/>
         <source>Web seeds urls (optional):</source>
-        <translation>Web seeds url&apos;er(Ikke påkrævet):</translation>
+        <translation type="obsolete">Web seeds url&apos;er(Ikke påkrævet):</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="53"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="53"/>
         <source>File or folder to add to the torrent:</source>
         <translation>Fil eller mappe der skal tilføjes til denne torrent:</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="395"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="91"/>
+        <source>Tracker URLs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="104"/>
+        <source>Web seeds urls:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="114"/>
+        <source>Comment:</source>
+        <translation type="unfinished">Kommentar:</translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="164"/>
         <source>Piece size:</source>
         <translation>Piece størrelse:</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="406"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="181"/>
         <source>32 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="411"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="186"/>
         <source>64 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="416"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="191"/>
         <source>128 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="421"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="196"/>
         <source>256 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="426"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="201"/>
         <source>512 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="431"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="206"/>
         <source>1 MiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="436"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="211"/>
         <source>2 MiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="441"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="216"/>
         <source>4 MiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="464"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="224"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="249"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Privat (vil ikke blive distribueret på DHT netværket hvis dette er slået til)</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="471"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="256"/>
         <source>Start seeding after creation</source>
         <translation>Start seed efter oprettelse</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="513"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="298"/>
         <source>Create and save...</source>
         <translation>Opret og gem...</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="478"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="263"/>
         <source>Progress:</source>
         <translation>Fremgang:</translation>
     </message>
@@ -4671,118 +4706,118 @@ Please install it manually.</source>
 <context>
     <name>downloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="92"/>
-        <location filename="../downloadthread.cpp" line="96"/>
+        <location filename="../downloadthread.cpp" line="90"/>
+        <location filename="../downloadthread.cpp" line="94"/>
         <source>I/O Error</source>
         <translation>I/O Fejl</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Remote hostname blev ikke funder (ugyldigt hostname)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The operation was canceled</source>
         <translation>Handlingen blev annulleret</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Servern lukkede forbindelsen for tidligt, før hele svaret var modtaget og behandlet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>The connection to the remote server timed out</source>
         <translation>Forbindelsen til serveren fik time-out</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS handshake mislykkedes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The remote server refused the connection</source>
         <translation>Serveren nægtede at oprette forbindelse</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Der blev nægtet at oprette forbindelse til proxy-serveren</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Proxy--serveren lukkede forbindelsen for tidligt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The proxy host name was not found</source>
         <translation>Proxy hostname ikke fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Forbindelsen til proxy fik timeout eller også nåede proxy ikke at svare i tide</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Denne proxy kræve autenticering for at acceptere anmodningen, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Adgang til indholdet blev nægtet (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Handlingen der bliver efterspurgt på det fjerne indhold er ikke tilladt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Indholdet blev ikke fundet på serveren (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Denne server kræve autenticering for at vise indholdet, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Network Access API kan ikke udføre forespørgslen fordi protokollen ikke kan genkendes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Den anmodede handling er ugyldig for denne protokol</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown network-related error was detected</source>
         <translation>En ukendt netværksrelateret fejl blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>En ukendt proxyrelateret fejl blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>En ukendt fejl relateret til indholdet blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="247"/>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Et nedbrud i protokollen blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="249"/>
+        <location filename="../downloadthread.cpp" line="247"/>
         <source>Unknown error</source>
         <translation>Ukendt fejl</translation>
     </message>
@@ -5068,58 +5103,58 @@ Disse plugins blev dog koble fra.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1258"/>
-        <location filename="../options_imp.cpp" line="1260"/>
-        <location filename="../options_imp.cpp" line="1275"/>
-        <location filename="../options_imp.cpp" line="1277"/>
+        <location filename="../options_imp.cpp" line="1257"/>
+        <location filename="../options_imp.cpp" line="1259"/>
+        <location filename="../options_imp.cpp" line="1274"/>
+        <location filename="../options_imp.cpp" line="1276"/>
         <source>Choose a save directory</source>
         <translation>Vælg en standart mappe</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1180"/>
+        <location filename="../options_imp.cpp" line="1179"/>
         <source>Add directory to scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1186"/>
+        <location filename="../options_imp.cpp" line="1185"/>
         <source>Folder is already being watched.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1189"/>
+        <location filename="../options_imp.cpp" line="1188"/>
         <source>Folder does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1192"/>
+        <location filename="../options_imp.cpp" line="1191"/>
         <source>Folder is not readable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1200"/>
+        <location filename="../options_imp.cpp" line="1199"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1200"/>
+        <location filename="../options_imp.cpp" line="1199"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1223"/>
-        <location filename="../options_imp.cpp" line="1225"/>
+        <location filename="../options_imp.cpp" line="1222"/>
+        <location filename="../options_imp.cpp" line="1224"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1240"/>
-        <location filename="../options_imp.cpp" line="1242"/>
+        <location filename="../options_imp.cpp" line="1239"/>
+        <location filename="../options_imp.cpp" line="1241"/>
         <source>Choose an ip filter file</source>
         <translation>Vælg en ip filter fil</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1240"/>
-        <location filename="../options_imp.cpp" line="1242"/>
+        <location filename="../options_imp.cpp" line="1239"/>
+        <location filename="../options_imp.cpp" line="1241"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>
@@ -5239,129 +5274,129 @@ Disse plugins blev dog koble fra.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="212"/>
-        <location filename="../torrentadditiondlg.cpp" line="215"/>
+        <location filename="../torrentadditiondlg.cpp" line="213"/>
+        <location filename="../torrentadditiondlg.cpp" line="216"/>
         <source>Unable to decode torrent file:</source>
         <translation>Kan ikke dekode torrent filen:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="474"/>
-        <location filename="../torrentadditiondlg.cpp" line="479"/>
-        <location filename="../torrentadditiondlg.cpp" line="481"/>
+        <location filename="../torrentadditiondlg.cpp" line="475"/>
+        <location filename="../torrentadditiondlg.cpp" line="480"/>
+        <location filename="../torrentadditiondlg.cpp" line="482"/>
         <source>Choose save path</source>
         <translation>Gem til denne mappe</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="177"/>
+        <location filename="../torrentadditiondlg.cpp" line="178"/>
         <source>Unable to decode magnet link:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="183"/>
+        <location filename="../torrentadditiondlg.cpp" line="184"/>
         <source>Magnet Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="297"/>
+        <location filename="../torrentadditiondlg.cpp" line="298"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="341"/>
+        <location filename="../torrentadditiondlg.cpp" line="342"/>
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="342"/>
+        <location filename="../torrentadditiondlg.cpp" line="343"/>
         <source>New name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
-        <location filename="../torrentadditiondlg.cpp" line="376"/>
+        <location filename="../torrentadditiondlg.cpp" line="347"/>
+        <location filename="../torrentadditiondlg.cpp" line="377"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="347"/>
+        <location filename="../torrentadditiondlg.cpp" line="348"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="377"/>
-        <location filename="../torrentadditiondlg.cpp" line="411"/>
+        <location filename="../torrentadditiondlg.cpp" line="378"/>
+        <location filename="../torrentadditiondlg.cpp" line="412"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="410"/>
+        <location filename="../torrentadditiondlg.cpp" line="411"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="458"/>
+        <location filename="../torrentadditiondlg.cpp" line="459"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 tilbage efter torrent dowload)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="461"/>
+        <location filename="../torrentadditiondlg.cpp" line="462"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 mere er krævet for at foretage download)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="535"/>
         <source>Empty save path</source>
         <translation>Ingen mappe</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="535"/>
         <source>Please enter a save path</source>
         <translation>Vælg venligst en mappe som der skal hentes til</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="608"/>
         <source>Save path creation error</source>
         <translation>Fejl ved oprettelse af mappe</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="608"/>
         <source>Could not create the save path</source>
         <translation>Kunne ikke oprette mappe svarende til den indtastede sti</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="556"/>
         <source>Invalid label name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="556"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="593"/>
         <source>Seeding mode error</source>
         <translation>Seeding mode fejl</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="593"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Du har valgt at springer over filtjek. Dog synes lokale filer ikke at findes i den nuværende destinationsmappe. Slå venligst denne feature fra eller opdater stien der gemmes til.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="600"/>
         <source>Invalid file selection</source>
         <translation>Valg af filer ugyldigt</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="600"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Du skal vælge mindst en fil per torrent</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="301"/>
+        <location filename="../torrentadditiondlg.cpp" line="302"/>
         <source>Priority</source>
         <translation type="unfinished">Prioritet</translation>
     </message>

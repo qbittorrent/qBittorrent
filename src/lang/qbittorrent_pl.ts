@@ -802,6 +802,23 @@ Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
         <source>The password is invalid</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -1928,6 +1945,18 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
 </context>
 <context>
+    <name>ProgramUpdater</name>
+    <message>
+        <source>Could not create the file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to download the update at %1</source>
+        <comment>%1 is an URL</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -2903,20 +2932,20 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation type="unfinished">Wprowadź adres trackera</translation>
+        <translation type="obsolete">Wprowadź adres trackera</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished">Adres trackera:</translation>
+        <translation type="obsolete">Adres trackera:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation type="unfinished">Wprowadź adres seeda www</translation>
+        <translation type="obsolete">Wprowadź adres seeda www</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished">Adres seeda www:</translation>
+        <translation type="obsolete">Adres seeda www:</translation>
     </message>
     <message>
         <source>No input path set</source>
@@ -3665,15 +3694,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation>Adres trackera:</translation>
+        <translation type="obsolete">Adres trackera:</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
-        <translation>Komentarz (opcja):</translation>
+        <translation type="obsolete">Komentarz (opcja):</translation>
     </message>
     <message>
         <source>Web seeds urls (optional):</source>
-        <translation>Adres seedów www (opcja):</translation>
+        <translation type="obsolete">Adres seedów www (opcja):</translation>
     </message>
     <message>
         <source>File or folder to add to the torrent:</source>
@@ -3738,6 +3767,22 @@ Do you want to install it now?</source>
     <message>
         <source>Progress:</source>
         <translation>Postęp:</translation>
+    </message>
+    <message>
+        <source>Tracker URLs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seeds urls:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Komentarz:</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -835,6 +835,23 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <source>The password is invalid</source>
         <translation>Этот пароль не верен</translation>
     </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -1999,6 +2016,18 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>ProgramUpdater</name>
+    <message>
+        <source>Could not create the file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to download the update at %1</source>
+        <comment>%1 is an URL</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -2978,20 +3007,20 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation type="unfinished">Введите ссылку анонсирования</translation>
+        <translation type="obsolete">Введите ссылку анонсирования</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished">Анонсирующий URL:</translation>
+        <translation type="obsolete">Анонсирующий URL:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation type="unfinished">Введите URL веб раздачи</translation>
+        <translation type="obsolete">Введите URL веб раздачи</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished">URL веб раздачи:</translation>
+        <translation type="obsolete">URL веб раздачи:</translation>
     </message>
     <message>
         <source>No input path set</source>
@@ -3742,15 +3771,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation>Аоносирующие ссылки (трэкеров):</translation>
+        <translation type="obsolete">Аоносирующие ссылки (трэкеров):</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
-        <translation>Комментарий (необязателен):</translation>
+        <translation type="obsolete">Комментарий (необязателен):</translation>
     </message>
     <message>
         <source>Web seeds urls (optional):</source>
-        <translation>Ссылки на веб раздачи (необязательно):</translation>
+        <translation type="obsolete">Ссылки на веб раздачи (необязательно):</translation>
     </message>
     <message>
         <source>File or folder to add to the torrent:</source>
@@ -3815,6 +3844,22 @@ Do you want to install it now?</source>
     <message>
         <source>Add folder</source>
         <translation>Добавить папку</translation>
+    </message>
+    <message>
+        <source>Tracker URLs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seeds urls:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Комментарий:</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

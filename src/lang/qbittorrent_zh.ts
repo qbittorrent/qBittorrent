@@ -835,6 +835,23 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <source>The password is invalid</source>
         <translation>该密码无效</translation>
     </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -1959,6 +1976,18 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>ProgramUpdater</name>
+    <message>
+        <source>Could not create the file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to download the update at %1</source>
+        <comment>%1 is an URL</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -2930,20 +2959,20 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please type an announce URL</source>
-        <translation type="unfinished">请输入一个announce网址</translation>
+        <translation type="obsolete">请输入一个announce网址</translation>
     </message>
     <message>
         <source>Announce URL:</source>
         <comment>Tracker URL</comment>
-        <translation type="unfinished">Announce网址:</translation>
+        <translation type="obsolete">Announce网址:</translation>
     </message>
     <message>
         <source>Please type a web seed url</source>
-        <translation type="unfinished">请输入一个网络种子网址</translation>
+        <translation type="obsolete">请输入一个网络种子网址</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished">网络种子网址:</translation>
+        <translation type="obsolete">网络种子网址:</translation>
     </message>
     <message>
         <source>No input path set</source>
@@ -3692,15 +3721,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation>Announce网址(trackers):</translation>
+        <translation type="obsolete">Announce网址(trackers):</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
-        <translation>注释（可选）:</translation>
+        <translation type="obsolete">注释（可选）:</translation>
     </message>
     <message>
         <source>Web seeds urls (optional):</source>
-        <translation>网络种子网址（可选）:</translation>
+        <translation type="obsolete">网络种子网址（可选）:</translation>
     </message>
     <message>
         <source>File or folder to add to the torrent:</source>
@@ -3765,6 +3794,22 @@ Do you want to install it now?</source>
     <message>
         <source>Add folder</source>
         <translation>添加文件夹</translation>
+    </message>
+    <message>
+        <source>Tracker URLs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seeds urls:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">注释:</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
