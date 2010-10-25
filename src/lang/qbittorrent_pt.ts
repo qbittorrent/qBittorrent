@@ -2002,11 +2002,11 @@ Nenhum outro aviso será dado.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Erro ao criar caminho de salvamento</translation>
+        <translation type="obsolete">Erro ao criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Não foi possível criar caminho de salvamento</translation>
+        <translation type="obsolete">Não foi possível criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3008,11 +3008,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Erro ao criar caminho de salvamento</translation>
+        <translation type="obsolete">Erro ao criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Não foi possível criar caminho de salvamento</translation>
+        <translation type="obsolete">Não foi possível criar caminho de salvamento</translation>
     </message>
     <message>
         <source>Set location...</source>

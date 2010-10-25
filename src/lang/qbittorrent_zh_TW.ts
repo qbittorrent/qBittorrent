@@ -2009,11 +2009,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>建立儲存路徑錯誤</translation>
+        <translation type="obsolete">建立儲存路徑錯誤</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>無法建立儲存路徑</translation>
+        <translation type="obsolete">無法建立儲存路徑</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3015,11 +3015,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>儲存路徑建立錯誤</translation>
+        <translation type="obsolete">儲存路徑建立錯誤</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>無法建立儲存路徑</translation>
+        <translation type="obsolete">無法建立儲存路徑</translation>
     </message>
     <message>
         <source>Set location...</source>

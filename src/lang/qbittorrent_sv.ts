@@ -2002,11 +2002,11 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Fel vid skapandet av sökväg</translation>
+        <translation type="obsolete">Fel vid skapandet av sökväg</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kunde inte skapa sökväg att spara i</translation>
+        <translation type="obsolete">Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3008,11 +3008,11 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Fel vid skapandet av sökväg</translation>
+        <translation type="obsolete">Fel vid skapandet av sökväg</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kunde inte skapa sökväg att spara i</translation>
+        <translation type="obsolete">Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Set location...</source>

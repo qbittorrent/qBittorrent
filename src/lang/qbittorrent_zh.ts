@@ -2006,11 +2006,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>创建保存路径时出现错误</translation>
+        <translation type="obsolete">创建保存路径时出现错误</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>无法创建保存路径</translation>
+        <translation type="obsolete">无法创建保存路径</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3008,11 +3008,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>创建保存路径时出现错误</translation>
+        <translation type="obsolete">创建保存路径时出现错误</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>无法创建保存路径</translation>
+        <translation type="obsolete">无法创建保存路径</translation>
     </message>
     <message>
         <source>Set location...</source>

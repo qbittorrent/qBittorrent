@@ -1998,11 +1998,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Salvează calea care crează erori</translation>
+        <translation type="obsolete">Salvează calea care crează erori</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nu pot crea calea de salvare</translation>
+        <translation type="obsolete">Nu pot crea calea de salvare</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3002,11 +3002,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="unfinished">Salvează calea care crează erori</translation>
+        <translation type="obsolete">Salvează calea care crează erori</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="unfinished">Nu pot crea calea de salvare</translation>
+        <translation type="obsolete">Nu pot crea calea de salvare</translation>
     </message>
     <message>
         <source>Set location...</source>

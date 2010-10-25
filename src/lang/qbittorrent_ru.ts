@@ -2051,11 +2051,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Ошибка создания пути сохранения</translation>
+        <translation type="obsolete">Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Невозможно создать путь сохранения</translation>
+        <translation type="obsolete">Невозможно создать путь сохранения</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3062,11 +3062,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Ошибка создания пути сохранения</translation>
+        <translation type="obsolete">Ошибка создания пути сохранения</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Невозможно создать путь сохранения</translation>
+        <translation type="obsolete">Невозможно создать путь сохранения</translation>
     </message>
     <message>
         <source>Set location...</source>

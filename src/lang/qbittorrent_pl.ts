@@ -2004,11 +2004,11 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Błąd tworzenia katalogu docelowego</translation>
+        <translation type="obsolete">Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nie można założyć katalogu docelowego</translation>
+        <translation type="obsolete">Nie można założyć katalogu docelowego</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3010,11 +3010,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Błąd tworzenia katalogu docelowego</translation>
+        <translation type="obsolete">Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nie można utworzyć katalogu docelowego</translation>
+        <translation type="obsolete">Nie można utworzyć katalogu docelowego</translation>
     </message>
     <message>
         <source>Set location...</source>

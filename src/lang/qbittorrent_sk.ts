@@ -2004,11 +2004,11 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Chyba pri vytváraní cieľového adresára</translation>
+        <translation type="obsolete">Chyba pri vytváraní cieľového adresára</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nepodarilo sa vytvoriť cieľový adresár</translation>
+        <translation type="obsolete">Nepodarilo sa vytvoriť cieľový adresár</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3015,11 +3015,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Chyba pri vytváraní cieľového adresára</translation>
+        <translation type="obsolete">Chyba pri vytváraní cieľového adresára</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nepodarilo sa vytvoriť cieľový adresár</translation>
+        <translation type="obsolete">Nepodarilo sa vytvoriť cieľový adresár</translation>
     </message>
     <message>
         <source>Set location...</source>

@@ -2007,11 +2007,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Помилка при створенні шляху збереження</translation>
+        <translation type="obsolete">Помилка при створенні шляху збереження</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Не вдалося створити шлях збереження</translation>
+        <translation type="obsolete">Не вдалося створити шлях збереження</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3013,11 +3013,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Помилка при створенні шляху збереження</translation>
+        <translation type="obsolete">Помилка при створенні шляху збереження</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Не вдалося створити шлях збереження</translation>
+        <translation type="obsolete">Не вдалося створити шлях збереження</translation>
     </message>
     <message>
         <source>Set location...</source>

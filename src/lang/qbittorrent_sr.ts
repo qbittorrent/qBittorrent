@@ -2183,11 +2183,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Грешка у путањи за чување</translation>
+        <translation type="obsolete">Грешка у путањи за чување</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Не могу да креирам путању за чување фајла</translation>
+        <translation type="obsolete">Не могу да креирам путању за чување фајла</translation>
     </message>
     <message>
         <source>Reannounce in:</source>
@@ -3093,11 +3093,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Грешка при креирању путање чувања</translation>
+        <translation type="obsolete">Грешка при креирању путање чувања</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Не могу да креирам путању за чување фајла</translation>
+        <translation type="obsolete">Не могу да креирам путању за чување фајла</translation>
     </message>
     <message>
         <source>Set location...</source>

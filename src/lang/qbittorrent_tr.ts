@@ -2016,11 +2016,11 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Kayıt yolu oluşturulmada hata</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kayıt yolu oluşturulamadı</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulamadı</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -3027,11 +3027,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Kayıt yolu oluşturulmada hata</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kayıt yolu oluşturulamadı</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulamadı</translation>
     </message>
     <message>
         <source>Set location...</source>

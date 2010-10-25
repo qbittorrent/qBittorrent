@@ -2122,11 +2122,11 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Greška prilikom izrade  putanje za spremanje</translation>
+        <translation type="obsolete">Greška prilikom izrade  putanje za spremanje</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nije moguće izraditi putanju za spremanje</translation>
+        <translation type="obsolete">Nije moguće izraditi putanju za spremanje</translation>
     </message>
     <message>
         <source>Reannounce in:</source>
@@ -3009,11 +3009,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Greška prilikom stvaranja putanje spremanja</translation>
+        <translation type="obsolete">Greška prilikom stvaranja putanje spremanja</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nije moguće stvoriti putanju spremanja</translation>
+        <translation type="obsolete">Nije moguće stvoriti putanju spremanja</translation>
     </message>
     <message>
         <source>Set location...</source>
