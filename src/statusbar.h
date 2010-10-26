@@ -174,6 +174,7 @@ public slots:
     bar->insertWidget(1, restartLbl);
     QFontMetrics fm(restartLbl->font());
     restartLbl->setText(fm.elidedText(restart_text, Qt::ElideRight, restartLbl->width()));
+    BTSession->addConsoleMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), "red");
   }
 
   void stopTimer() {
