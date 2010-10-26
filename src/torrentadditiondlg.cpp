@@ -49,6 +49,8 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, QBtSession* _BTSession
   connect(comboLabel, SIGNAL(editTextChanged(QString)), this, SLOT(resetComboLabelIndex(QString)));
   connect(comboLabel, SIGNAL(editTextChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
   connect(comboLabel, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
+  // Important: as a default, it inserts at the bottom which is not desirable
+  savePathTxt->setInsertPolicy(QComboBox::InsertAtCurrent);
   // Remember columns width
   readSettings();
   //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
@@ -531,6 +533,7 @@ void torrentAdditionDialog::renameSelectedFile() {
     }
 
     void torrentAdditionDialog::on_OkButton_clicked(){
+      qDebug() << "void torrentAdditionDialog::on_OkButton_clicked() - ENTER";
       if(savePathTxt->currentText().trimmed().isEmpty()){
         QMessageBox::critical(0, tr("Empty save path"), tr("Please enter a save path"));
         return;
@@ -623,7 +626,9 @@ void torrentAdditionDialog::renameSelectedFile() {
           emit torrentPaused(h);
         }
         // Close the dialog
+        qDebug("Closing torrent addition dialog...");
         close();
+        qDebug("Closed");
       }
 
       void torrentAdditionDialog::resetComboLabelIndex(QString text) {
@@ -647,6 +652,8 @@ void torrentAdditionDialog::renameSelectedFile() {
       void torrentAdditionDialog::updateSavePathCurrentText() {
         qDebug("updateSavePathCurrentText() - ENTER");
         savePathTxt->setItemText(savePathTxt->currentIndex(), savePathTxt->currentText());
+        qDebug("path_history.size() == %d", path_history.size());
+        qDebug("savePathTxt->currentIndex() == %d", savePathTxt->currentIndex());
         path_history.replace(savePathTxt->currentIndex(), getCurrentTruncatedSavePath());
         QString root_folder_or_file_name = "";
         getCurrentTruncatedSavePath(&root_folder_or_file_name);
