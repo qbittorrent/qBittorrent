@@ -38,6 +38,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QFontMetrics>
 #include "qbtsession.h"
 #include "speedlimitdlg.h"
 #include "preferences.h"
@@ -163,11 +164,16 @@ public:
 public slots:
   void showRestartRequired() {
     // Restart required notification
-    QLabel *restartLbl = new QLabel(tr("qBittorrent needs to be restarted"));
-    restartLbl->setPixmap(QPixmap(":/Icons/oxygen/dialog-warning.png").scaled(QSize(24,24)));
-    restartLbl->setToolTip(tr("qBittorrent needs to be restarted"));
-    bar->insertWidget(0,restartLbl);
-    bar->insertWidget(1, new QLabel(tr("qBittorrent needs to be restarted")));
+    const QString restart_text = tr("qBittorrent needs to be restarted");
+    QLabel *restartIconLbl = new QLabel();
+    restartIconLbl->setPixmap(QPixmap(":/Icons/oxygen/dialog-warning.png").scaled(QSize(24,24)));
+    restartIconLbl->setToolTip(restart_text);
+    bar->insertWidget(0,restartIconLbl);
+    QLabel *restartLbl = new QLabel();
+    restartLbl->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+    bar->insertWidget(1, restartLbl);
+    QFontMetrics fm(restartLbl->font());
+    restartLbl->setText(fm.elidedText(restart_text, Qt::ElideRight, restartLbl->width()));
   }
 
   void stopTimer() {
