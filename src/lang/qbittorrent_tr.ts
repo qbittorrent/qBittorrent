@@ -2931,6 +2931,10 @@ Do you want to install it now?</source>
         <source>qBittorrent needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TorrentCreatorDlg</name>
