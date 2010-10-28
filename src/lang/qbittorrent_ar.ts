@@ -3532,87 +3532,85 @@ Please install it manually.</source>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="190"/>
+        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>Connection status:</source>
         <translation>حالة الإتصال:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="190"/>
+        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>لا يوجد اتصالاتو قد يعود السبب الى اعدادات الشبكة.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="80"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="93"/>
+        <location filename="../statusbar.h" line="94"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="98"/>
-        <location filename="../statusbar.h" line="197"/>
+        <location filename="../statusbar.h" line="99"/>
+        <location filename="../statusbar.h" line="203"/>
         <source>DHT: %1 nodes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="166"/>
-        <location filename="../statusbar.h" line="168"/>
-        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="167"/>
         <source>qBittorrent needs to be restarted</source>
         <translation>البرنامج يحتاج الى اعدة تشغيل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="182"/>
-        <location filename="../statusbar.h" line="187"/>
+        <location filename="../statusbar.h" line="188"/>
+        <location filename="../statusbar.h" line="193"/>
         <source>Connection Status:</source>
         <translation>حالة الإتصال:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="182"/>
+        <location filename="../statusbar.h" line="188"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>غير متصل. قد تعود المشكل الى عدم قدرة البرنامج في التسجيل في المنفذ للإتصلات القادمة.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="187"/>
+        <location filename="../statusbar.h" line="193"/>
         <source>Online</source>
         <translation>متصل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="203"/>
+        <location filename="../statusbar.h" line="209"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="204"/>
+        <location filename="../statusbar.h" line="210"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="210"/>
+        <location filename="../statusbar.h" line="216"/>
         <source>Click to disable alternative speed limits</source>
         <translation>اضغط هنا لتعطيل حد السرعة البديل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="214"/>
+        <location filename="../statusbar.h" line="220"/>
         <source>Click to enable alternative speed limits</source>
         <translation>اضغط هنا لتشغيل حد السرعة البديل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="224"/>
+        <location filename="../statusbar.h" line="230"/>
         <source>Global Download Speed Limit</source>
         <translation>حد سرعة التحميل العامة</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="243"/>
+        <location filename="../statusbar.h" line="249"/>
         <source>Global Upload Speed Limit</source>
         <translation>حد سرعة الرفع العامة</translation>
     </message>
@@ -5340,129 +5338,129 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="177"/>
+        <location filename="../torrentadditiondlg.cpp" line="181"/>
         <source>Unable to decode magnet link:</source>
         <translation>غير ممكن فك التشفير للرابط الممغنط:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="183"/>
+        <location filename="../torrentadditiondlg.cpp" line="187"/>
         <source>Magnet Link</source>
         <translation>الرابط الممغنط</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="212"/>
-        <location filename="../torrentadditiondlg.cpp" line="215"/>
+        <location filename="../torrentadditiondlg.cpp" line="216"/>
+        <location filename="../torrentadditiondlg.cpp" line="219"/>
         <source>Unable to decode torrent file:</source>
         <translation>غير ممكن فك التشفير لملف التورنت:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="297"/>
+        <location filename="../torrentadditiondlg.cpp" line="301"/>
         <source>Rename...</source>
         <translation>إعادة تسمية...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="301"/>
+        <location filename="../torrentadditiondlg.cpp" line="305"/>
         <source>Priority</source>
         <translation>الاهمية</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="341"/>
+        <location filename="../torrentadditiondlg.cpp" line="345"/>
         <source>Rename the file</source>
         <translation>تغير اسم الملف</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="342"/>
+        <location filename="../torrentadditiondlg.cpp" line="346"/>
         <source>New name:</source>
         <translation>اسم جديد:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
-        <location filename="../torrentadditiondlg.cpp" line="376"/>
+        <location filename="../torrentadditiondlg.cpp" line="350"/>
+        <location filename="../torrentadditiondlg.cpp" line="380"/>
         <source>The file could not be renamed</source>
         <translation>الا يمكن اعادة تسمية الملف</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="347"/>
+        <location filename="../torrentadditiondlg.cpp" line="351"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>اسم الملف يحتوي على رموز ممنوعة, الرجاء إختيار اسم آخر للملف.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="377"/>
-        <location filename="../torrentadditiondlg.cpp" line="411"/>
+        <location filename="../torrentadditiondlg.cpp" line="381"/>
+        <location filename="../torrentadditiondlg.cpp" line="415"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>هذا الاسم يستعمل في ملف آخر , الرجاء إختيار اسم جديد.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="410"/>
+        <location filename="../torrentadditiondlg.cpp" line="414"/>
         <source>The folder could not be renamed</source>
         <translation>لا يمكن اعادة تسمية الملف</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="458"/>
+        <location filename="../torrentadditiondlg.cpp" line="462"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1متبقي على تنزيل ملف التورنت)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="461"/>
+        <location filename="../torrentadditiondlg.cpp" line="465"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 أيضاً متبقية على (التنزيل</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="474"/>
-        <location filename="../torrentadditiondlg.cpp" line="479"/>
-        <location filename="../torrentadditiondlg.cpp" line="481"/>
+        <location filename="../torrentadditiondlg.cpp" line="478"/>
+        <location filename="../torrentadditiondlg.cpp" line="483"/>
+        <location filename="../torrentadditiondlg.cpp" line="485"/>
         <source>Choose save path</source>
         <translation>اختار مكان الحفظ</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="538"/>
         <source>Empty save path</source>
         <translation>مكان الحفظ فارغ</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="538"/>
         <source>Please enter a save path</source>
         <translation>فضلا ادخل مكان الحفظ</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="611"/>
         <source>Save path creation error</source>
         <translation>خطأ في مكان الحفظ</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="611"/>
         <source>Could not create the save path</source>
         <translation>غير ممكن انشاء مكان الحفظ</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="559"/>
         <source>Invalid label name</source>
         <translation>اسم غير شرعي للملصق</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="559"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>الرجاء عدم إستخدام رموز خاصة على اسم الملصق.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Seeding mode error</source>
         <translation>خطأ في وضع</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>انت اختررت ان تتفادى فحص الملف, لكن الملفات غير موجودة في مكان الحفظ, الرجاء تعطيل هذه الميزة  او تعديل مكان حفظ الملف.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="603"/>
         <source>Invalid file selection</source>
         <translation>إختيار ملف خطأ</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="603"/>
         <source>You must select at least one file in the torrent</source>
         <translation>يجب عليك اختيار ملف تورنت واحد على الاقل</translation>
     </message>

@@ -1,5 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.9
     - BUGFIX: Fix crash when pressing enter in save path field in torrent addition dialog
+    - BUGFIX: Fix crash when deleting a torrent with no metadata (closes #667528)
+    - BUGFIX: Correctly display the hash of torrents with no metadata
     - BUGFIX: Elide status bar text if it is too wide
 
 * Sun Oct 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.8

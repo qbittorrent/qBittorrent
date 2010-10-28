@@ -3231,87 +3231,85 @@ Nainstalujte jej prosím ručně.</translation>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="190"/>
+        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>Connection status:</source>
         <translation>Stav připojení:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="190"/>
+        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Žádná přímá spojení. To může značit problémy s nastavením sítě.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="80"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
         <translation>S: %1 B/s - P: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="93"/>
+        <location filename="../statusbar.h" line="94"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>N: %1 B/s - P: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="98"/>
-        <location filename="../statusbar.h" line="197"/>
+        <location filename="../statusbar.h" line="99"/>
+        <location filename="../statusbar.h" line="203"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 uzlů</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="166"/>
-        <location filename="../statusbar.h" line="168"/>
-        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="167"/>
         <source>qBittorrent needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="182"/>
-        <location filename="../statusbar.h" line="187"/>
+        <location filename="../statusbar.h" line="188"/>
+        <location filename="../statusbar.h" line="193"/>
         <source>Connection Status:</source>
         <translation>Stav připojení:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="182"/>
+        <location filename="../statusbar.h" line="188"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Offline. To obvykle znamená, že qBittorrent nedokázal naslouchat na portu nastaveném pro příchozí spojení.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="187"/>
+        <location filename="../statusbar.h" line="193"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="203"/>
+        <location filename="../statusbar.h" line="209"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>S: %1/s - P: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="204"/>
+        <location filename="../statusbar.h" line="210"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>N: %1/s - P: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="210"/>
+        <location filename="../statusbar.h" line="216"/>
         <source>Click to disable alternative speed limits</source>
         <translation>Kliknutí vypne alternativní limity rychlosti</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="214"/>
+        <location filename="../statusbar.h" line="220"/>
         <source>Click to enable alternative speed limits</source>
         <translation>Kliknutí zapne alternativní limity rychlosti</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="224"/>
+        <location filename="../statusbar.h" line="230"/>
         <source>Global Download Speed Limit</source>
         <translation>Celkový limit rychlosti stahování</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="243"/>
+        <location filename="../statusbar.h" line="249"/>
         <source>Global Upload Speed Limit</source>
         <translation>Celkový limit rychlosti nahrávání</translation>
     </message>
@@ -4917,129 +4915,129 @@ Nicméně, tyto moduly byly vypnuty.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="212"/>
-        <location filename="../torrentadditiondlg.cpp" line="215"/>
+        <location filename="../torrentadditiondlg.cpp" line="216"/>
+        <location filename="../torrentadditiondlg.cpp" line="219"/>
         <source>Unable to decode torrent file:</source>
         <translation>Nelze dekódovat soubor torrentu:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="177"/>
+        <location filename="../torrentadditiondlg.cpp" line="181"/>
         <source>Unable to decode magnet link:</source>
         <translation>Nelze dekódovat odkaz Magnet:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="183"/>
+        <location filename="../torrentadditiondlg.cpp" line="187"/>
         <source>Magnet Link</source>
         <translation>Odkaz Magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="297"/>
+        <location filename="../torrentadditiondlg.cpp" line="301"/>
         <source>Rename...</source>
         <translation>Přejmenovat...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="341"/>
+        <location filename="../torrentadditiondlg.cpp" line="345"/>
         <source>Rename the file</source>
         <translation>Přejmenovat soubor</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="342"/>
+        <location filename="../torrentadditiondlg.cpp" line="346"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
-        <location filename="../torrentadditiondlg.cpp" line="376"/>
+        <location filename="../torrentadditiondlg.cpp" line="350"/>
+        <location filename="../torrentadditiondlg.cpp" line="380"/>
         <source>The file could not be renamed</source>
         <translation>Soubor nelze přejmenovat</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="347"/>
+        <location filename="../torrentadditiondlg.cpp" line="351"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Název souboru obsahuje nepovolené znaky, zvolte prosím jiný.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="377"/>
-        <location filename="../torrentadditiondlg.cpp" line="411"/>
+        <location filename="../torrentadditiondlg.cpp" line="381"/>
+        <location filename="../torrentadditiondlg.cpp" line="415"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Tento název je již v tomto adresáři použit. Vyberte prosím jiný. název.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="410"/>
+        <location filename="../torrentadditiondlg.cpp" line="414"/>
         <source>The folder could not be renamed</source>
         <translation>Adresář nelze přejmenovat</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="458"/>
+        <location filename="../torrentadditiondlg.cpp" line="462"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 zbývá po stažení torrentu)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="461"/>
+        <location filename="../torrentadditiondlg.cpp" line="465"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 nebo více je potřeba pro stažení)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="474"/>
-        <location filename="../torrentadditiondlg.cpp" line="479"/>
-        <location filename="../torrentadditiondlg.cpp" line="481"/>
+        <location filename="../torrentadditiondlg.cpp" line="478"/>
+        <location filename="../torrentadditiondlg.cpp" line="483"/>
+        <location filename="../torrentadditiondlg.cpp" line="485"/>
         <source>Choose save path</source>
         <translation>Vyberte cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="538"/>
         <source>Empty save path</source>
         <translation>Prázdná cesta pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="538"/>
         <source>Please enter a save path</source>
         <translation>Vložte prosím cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="611"/>
         <source>Save path creation error</source>
         <translation>Chyba při vytváření cesty pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="611"/>
         <source>Could not create the save path</source>
         <translation>Nemohu vytvořit cestu pro uložení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="559"/>
         <source>Invalid label name</source>
         <translation>Neplatný název štítku</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="559"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Nepoužívejte prosím v názvu štítku žádné speciální znaky.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Seeding mode error</source>
         <translation>Chyba sdílení</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Rozhodl jste se přeskočit kontrolu souborů. Nicméně místní soubory v zadaném cílovém adresáři neexistují. Vypněte prosím tuto funkci nebo zaktualizujte cestu pro uložení.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="603"/>
         <source>Invalid file selection</source>
         <translation>Neplatný výběr souboru</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="603"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Musíte v torrentu vybrat alespoň jeden soubor</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="301"/>
+        <location filename="../torrentadditiondlg.cpp" line="305"/>
         <source>Priority</source>
         <translation>Priorita</translation>
     </message>

@@ -3231,87 +3231,85 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="190"/>
+        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>Connection status:</source>
         <translation>Estat de la connexió:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="78"/>
-        <location filename="../statusbar.h" line="190"/>
+        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>No hi ha connexions directes. Això pot indicar problemes en la configuració de la xarxa.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="79"/>
+        <location filename="../statusbar.h" line="80"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
         <translation>Baixada: %1 B/s - Total: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="93"/>
+        <location filename="../statusbar.h" line="94"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>Pujada: %1 B/s - Total: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="98"/>
-        <location filename="../statusbar.h" line="197"/>
+        <location filename="../statusbar.h" line="99"/>
+        <location filename="../statusbar.h" line="203"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 nodes</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="166"/>
-        <location filename="../statusbar.h" line="168"/>
-        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="167"/>
         <source>qBittorrent needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="182"/>
-        <location filename="../statusbar.h" line="187"/>
+        <location filename="../statusbar.h" line="188"/>
+        <location filename="../statusbar.h" line="193"/>
         <source>Connection Status:</source>
         <translation>Estat de la connexió:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="182"/>
+        <location filename="../statusbar.h" line="188"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Fora de línia. Això normalment significa que qBittorrent no pot escoltar el port seleccionat per a les connexions entrants.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="187"/>
+        <location filename="../statusbar.h" line="193"/>
         <source>Online</source>
         <translation>En línea</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="203"/>
+        <location filename="../statusbar.h" line="209"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Baixada: %1/s - Total: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="204"/>
+        <location filename="../statusbar.h" line="210"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Pujada: %1/s - Total: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="210"/>
+        <location filename="../statusbar.h" line="216"/>
         <source>Click to disable alternative speed limits</source>
         <translation>Click per desactivar els límits de velocitat alternativa</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="214"/>
+        <location filename="../statusbar.h" line="220"/>
         <source>Click to enable alternative speed limits</source>
         <translation>Click per activar els límits de velocitat alternativa</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="224"/>
+        <location filename="../statusbar.h" line="230"/>
         <source>Global Download Speed Limit</source>
         <translation>Velocitat límit global de descàrrega</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="243"/>
+        <location filename="../statusbar.h" line="249"/>
         <source>Global Upload Speed Limit</source>
         <translation>Velocitat límit global de pujada</translation>
     </message>
@@ -4917,129 +4915,129 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="212"/>
-        <location filename="../torrentadditiondlg.cpp" line="215"/>
+        <location filename="../torrentadditiondlg.cpp" line="216"/>
+        <location filename="../torrentadditiondlg.cpp" line="219"/>
         <source>Unable to decode torrent file:</source>
         <translation>Impossible descodificar l&apos;arxiu torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="474"/>
-        <location filename="../torrentadditiondlg.cpp" line="479"/>
-        <location filename="../torrentadditiondlg.cpp" line="481"/>
+        <location filename="../torrentadditiondlg.cpp" line="478"/>
+        <location filename="../torrentadditiondlg.cpp" line="483"/>
+        <location filename="../torrentadditiondlg.cpp" line="485"/>
         <source>Choose save path</source>
         <translation>Escollir directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="177"/>
+        <location filename="../torrentadditiondlg.cpp" line="181"/>
         <source>Unable to decode magnet link:</source>
         <translation>No es pot descodificar l&apos;enllaç magnet:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="183"/>
+        <location filename="../torrentadditiondlg.cpp" line="187"/>
         <source>Magnet Link</source>
         <translation>Enllaç magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="297"/>
+        <location filename="../torrentadditiondlg.cpp" line="301"/>
         <source>Rename...</source>
         <translation>Rebatejar...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="341"/>
+        <location filename="../torrentadditiondlg.cpp" line="345"/>
         <source>Rename the file</source>
         <translation>Rebatejar arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="342"/>
+        <location filename="../torrentadditiondlg.cpp" line="346"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
-        <location filename="../torrentadditiondlg.cpp" line="376"/>
+        <location filename="../torrentadditiondlg.cpp" line="350"/>
+        <location filename="../torrentadditiondlg.cpp" line="380"/>
         <source>The file could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="347"/>
+        <location filename="../torrentadditiondlg.cpp" line="351"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>El nom introduït conté caràcters prohibits, si us plau n&apos;elegeixi un altre.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="377"/>
-        <location filename="../torrentadditiondlg.cpp" line="411"/>
+        <location filename="../torrentadditiondlg.cpp" line="381"/>
+        <location filename="../torrentadditiondlg.cpp" line="415"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Aquest nom ja està en ús. Si us plau, usi un nom diferent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="410"/>
+        <location filename="../torrentadditiondlg.cpp" line="414"/>
         <source>The folder could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="458"/>
+        <location filename="../torrentadditiondlg.cpp" line="462"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 disponible després de descarregar el torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="461"/>
+        <location filename="../torrentadditiondlg.cpp" line="465"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(Es necessiten més %1)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="538"/>
         <source>Empty save path</source>
         <translation>Ruta de destí buida</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="534"/>
+        <location filename="../torrentadditiondlg.cpp" line="538"/>
         <source>Please enter a save path</source>
         <translation>Si us plau introdueixi un directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="611"/>
         <source>Save path creation error</source>
         <translation>Error en la creació del directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="611"/>
         <source>Could not create the save path</source>
         <translation>Impossible crear el directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="559"/>
         <source>Invalid label name</source>
         <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="559"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Seeding mode error</source>
         <translation>Error en la Sembra</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Vostè ha decidit ignorar la verificació d&apos;arxius. Tanmateix, els arxius locals no semblen existir a la carpeta de destí actual. Si us plau, desactivi aquesta funció o actualitzi la ruta de destinació.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="603"/>
         <source>Invalid file selection</source>
         <translation>Selecció d&apos;arxiu invàlida</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="599"/>
+        <location filename="../torrentadditiondlg.cpp" line="603"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Ha de seleccionar almenys un arxiu torrent</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="301"/>
+        <location filename="../torrentadditiondlg.cpp" line="305"/>
         <source>Priority</source>
         <translation>Prioritat</translation>
     </message>
