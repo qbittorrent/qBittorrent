@@ -765,15 +765,24 @@ void QBtSession::deleteTorrent(QString hash, bool delete_local_files) {
     qDebug("/!\\ Error: Invalid handle");
     return;
   }
-  const QString fileName(h.name());
+  qDebug("h is valid, getting name or hash...");
+  QString fileName;
+  if(h.has_metadata())
+    fileName = h.name();
+  else
+    fileName = h.hash();
   // Remove it from session
   if(delete_local_files) {
-    QDir save_dir(h.save_path());
-    if(save_dir != QDir(defaultSavePath) && (defaultTempPath.isEmpty() || save_dir != QDir(defaultTempPath)))
-      savePathsToRemove[hash] = save_dir.absolutePath();
+    if(h.has_metadata()) {
+      QDir save_dir(h.save_path());
+      if(save_dir != QDir(defaultSavePath) && (defaultTempPath.isEmpty() || save_dir != QDir(defaultTempPath)))
+        savePathsToRemove[hash] = save_dir.absolutePath();
+    }
     s->remove_torrent(h, session::delete_files);
   } else {
-    QStringList uneeded_files = h.uneeded_files_path();
+    QStringList uneeded_files;
+    if(h.has_metadata())
+      uneeded_files = h.uneeded_files_path();
     s->remove_torrent(h);
     // Remove unneeded files
     foreach(const QString &uneeded_file, uneeded_files) {
@@ -796,7 +805,9 @@ void QBtSession::deleteTorrent(QString hash, bool delete_local_files) {
     addConsoleMessage(tr("'%1' was removed from transfer list and hard disk.", "'xxx.avi' was removed...").arg(fileName));
   else
     addConsoleMessage(tr("'%1' was removed from transfer list.", "'xxx.avi' was removed...").arg(fileName));
+  qDebug("Torrent deleted.");
   emit deletedTorrent(hash);
+  qDebug("Deleted signal emitted.");
 }
 
 void QBtSession::pauseAllTorrents() {
