@@ -236,19 +236,21 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
     // Save path
     updateSavePath(h);
     changeSavePathButton->setEnabled(h.has_metadata());
-    // Creation date
-    lbl_creationDate->setText(h.creation_date());
     // Hash
     hash_lbl->setText(h.hash());
-    // Comment
-    comment_text->setHtml(h.comment());
-    // URL seeds
-    loadUrlSeeds();
-    // List files in torrent
     PropListModel->clear();
-    PropListModel->setupModelData(h.get_torrent_info());
-    // Expand first item if possible
-    filesList->expand(PropListModel->index(0, 0));
+    if(h.has_metadata()) {
+      // Creation date
+      lbl_creationDate->setText(h.creation_date());
+      // Comment
+      comment_text->setHtml(h.comment());
+      // URL seeds
+      loadUrlSeeds();
+      // List files in torrent
+      PropListModel->setupModelData(h.get_torrent_info());
+      // Expand first item if possible
+      filesList->expand(PropListModel->index(0, 0));
+    }
   } catch(invalid_handle e) {
 
   }
