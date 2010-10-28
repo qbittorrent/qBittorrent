@@ -489,7 +489,7 @@ void RSSImp::refreshTextBrowser() {
   // Stop displaying previous news if necessary
   if(listStreams->currentFeed() == listStreams->getUnreadItem()) {
     if(previous_news) {
-      delete listNews->takeTopLevelItem(listNews->indexOfTopLevelItem(previous_news));
+      delete previous_news;
     }
     previous_news = item;
   }
