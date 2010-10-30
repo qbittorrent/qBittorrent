@@ -141,6 +141,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, QBtSes
   connect(BTSession, SIGNAL(pausedTorrent(QTorrentHandle&)), this, SLOT(pauseTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(resumedTorrent(QTorrentHandle&)), this, SLOT(resumeTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(torrentFinishedChecking(QTorrentHandle&)), this, SLOT(updateMetadata(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(deletedTorrent(QString)), SLOT(deleteTorrent(QString)));
 
   // Listen for list events
   connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
@@ -254,6 +255,13 @@ void TransferListWidget::deleteTorrent(int row, bool refresh_list) {
 // Wrapper slot for bittorrent signal
 void TransferListWidget::pauseTorrent(QTorrentHandle &h) {
   pauseTorrent(getRowFromHash(h.hash()));
+}
+
+void TransferListWidget::deleteTorrent(QString hash) {
+  const int row = getRowFromHash(hash);
+  if(row >= 0) {
+    deleteTorrent(row, true);
+  }
 }
 
 void TransferListWidget::pauseTorrent(int row, bool refresh_list) {
