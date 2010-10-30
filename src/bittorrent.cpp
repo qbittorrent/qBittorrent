@@ -1824,15 +1824,27 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
     }
     QNetworkInterface network_iface = QNetworkInterface::interfaceFromName(iface_name);
     if(!network_iface.isValid()) {
+      qDebug("Invalid network interface: %s", qPrintable(iface_name));
+      addConsoleMessage(tr("The network interface defined is invalid: %1").arg(iface_name), "red");
+      addConsoleMessage(tr("Trying any other network interface available instead."));
       s->listen_on(ports);
       return;
     }
-    QString ip = "127.0.0.1";
-    if(!network_iface.addressEntries().isEmpty()) {
-      ip = network_iface.addressEntries().first().ip().toString();
+    QString ip;
+    qDebug("This network interface has %d IP addresses", network_iface.addressEntries().size());
+    foreach(const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
+      qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
+      if(s->listen_on(ports, qPrintable(entry.ip().toString()))) {
+        ip = entry.ip().toString();
+        break;
+      }
     }
-    qDebug("Listening on interface %s with ip %s", qPrintable(iface_name), qPrintable(ip));
-    s->listen_on(ports, ip.toLocal8Bit().constData());
+    if(s->is_listening()) {
+      addConsoleMessage(tr("Listening on IP address %1 on network interface %2...").arg(ip).arg(iface_name));
+    } else {
+      qDebug("Failed to listen on any of the IP addresses");
+      addConsoleMessage(tr("Failed to listen on network interface %1").arg(iface_name), "red");
+    }
   }
 
   // Set download rate limit
