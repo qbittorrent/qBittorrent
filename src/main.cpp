@@ -254,7 +254,7 @@ int main(int argc, char *argv[]){
     splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")), Qt::WindowStaysOnTopHint);
     splash->show();
     app.processEvents();
-    QTimer::singleShot(3000, splash, SLOT(deleteLater()));
+    QTimer::singleShot(2000, splash, SLOT(deleteLater()));
   }
 #endif
   // Set environment variable
