@@ -65,6 +65,10 @@ class ScanFoldersModel;
 class QBtSession : public QObject {
   Q_OBJECT
 
+private:
+  QBtSession(const QBtSession& other); // Present copy
+  QBtSession& operator=(const QBtSession& other);
+
 public:
   // Constructor / Destructor
   QBtSession();
@@ -72,31 +76,28 @@ public:
   QTorrentHandle getTorrentHandle(QString hash) const;
   std::vector<torrent_handle> getTorrents() const;
   bool isFilePreviewPossible(QString fileHash) const;
-  bool isDHTEnabled() const;
-  bool isLSDEnabled() const;
   float getPayloadDownloadRate() const;
   float getPayloadUploadRate() const;
   session_status getSessionStatus() const;
   int getListenPort() const;
   float getRealRatio(QString hash) const;
-  session* getSession() const;
   QHash<QString, TrackerInfos> getTrackersInfo(QString hash) const;
   bool hasActiveTorrents() const;
   bool hasDownloadingTorrents() const;
-  bool isQueueingEnabled() const;
-  int getMaximumActiveDownloads() const;
-  int getMaximumActiveTorrents() const;
+  //int getMaximumActiveDownloads() const;
+  //int getMaximumActiveTorrents() const;
   int loadTorrentPriority(QString hash);
-  QStringList getConsoleMessages() const;
-  QStringList getPeerBanMessages() const;
   qlonglong getETA(QString hash);
-  bool useTemporaryFolder() const;
-  QString getDefaultSavePath() const;
-  ScanFoldersModel* getScanFoldersModel() const;
-  bool isPexEnabled() const;
-#if LIBTORRENT_VERSION_MINOR < 15
-  void saveDHTEntry();
-#endif
+  inline QStringList getConsoleMessages() const { return consoleMessages; }
+  inline QStringList getPeerBanMessages() const { return peerBanMessages; }
+  inline session* getSession() const { return s; }
+  inline bool useTemporaryFolder() const { return !defaultTempPath.isEmpty(); }
+  inline QString getDefaultSavePath() const { return defaultSavePath; }
+  inline ScanFoldersModel* getScanFoldersModel() const {  return m_scanFolders; }
+  inline bool isDHTEnabled() const { return DHTEnabled; }
+  inline bool isLSDEnabled() const { return LSDEnabled; }
+  inline bool isPexEnabled() const { return DHTEnabled; }
+  inline bool isQueueingEnabled() const { return queueingEnabled; }
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -183,6 +184,9 @@ protected slots:
   void cleanUpAutoRunProcess(int);
   void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<torrent_info> t);
   void exportTorrentFile(QTorrentHandle h);
+#if LIBTORRENT_VERSION_MINOR < 15
+  void saveDHTEntry();
+#endif
 
 signals:
   void addedTorrent(QTorrentHandle& h);
