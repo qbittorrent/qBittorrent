@@ -38,6 +38,7 @@
 #include <QStyle>
 #include <QSplashScreen>
 #include <QPushButton>
+#include <QTimer>
 #include "sessionapplication.h"
 #include "GUI.h"
 #include "ico.h"
@@ -248,6 +249,13 @@ int main(int argc, char *argv[]){
   if(settings.value(QString::fromUtf8("Preferences/General/NoSplashScreen"), false).toBool()) {
     no_splash = true;
   }
+  QSplashScreen *splash = 0;
+  if(!no_splash) {
+    splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")), Qt::WindowStaysOnTopHint);
+    splash->show();
+    app.processEvents();
+    QTimer::singleShot(3000, splash, SLOT(deleteLater()));
+  }
 #endif
   // Set environment variable
   if(putenv((char*)"QBITTORRENT="VERSION)) {
@@ -257,17 +265,9 @@ int main(int argc, char *argv[]){
 #ifndef DISABLE_GUI
   useStyle(settings.value("Preferences/General/Style", "").toString());
   app.setStyleSheet("QStatusBar::item { border-width: 0; }");
-  QSplashScreen *splash = 0;
-  if(!no_splash) {
-    splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")));
-    splash->show();
-  }
 #endif
 
   if(!LegalNotice::userAgreesWithNotice()) {
-#ifndef DISABLE_GUI
-    delete splash;
-#endif
     return 0;
   }
 #ifndef DISABLE_GUI
@@ -285,10 +285,6 @@ int main(int argc, char *argv[]){
   torrentCmdLine.removeFirst();
 #ifndef DISABLE_GUI
   GUI window(0, torrentCmdLine);
-  if(!no_splash) {
-    splash->finish(&window);
-    delete splash;
-  }
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);

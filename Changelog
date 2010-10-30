@@ -5,6 +5,7 @@
     - BUGFIX: Correctly update total number of torrents when a torrent is automatically removed (closes #668726)
     - BUGFIX: Correctly display the hash of torrents with no metadata
     - BUGFIX: Elide status bar text if it is too wide
+    - BUGFIX: Make sure the splash screen is displayed for 3 seconds
 
 * Sun Oct 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.8
     - BUGFIX: Fix possible crash on manual peer ban
