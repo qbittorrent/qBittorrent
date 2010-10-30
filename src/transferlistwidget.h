@@ -103,6 +103,7 @@ protected:
 
 protected slots:
   int updateTorrent(int row);
+  void deleteTorrent(QString hash);
   void deleteTorrent(int row, bool refresh_list=true);
   void pauseTorrent(int row, bool refresh_list=true);
   void resumeTorrent(int row, bool refresh_list=true);

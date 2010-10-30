@@ -32,6 +32,7 @@
 #include <QStringList>
 #include <QFile>
 #include <QDir>
+#include <QDebug>
 #include <QByteArray>
 #include <math.h>
 #include "misc.h"
@@ -755,6 +756,7 @@ void QTorrentHandle::add_tracker(const announce_entry& url) {
 }
 
 void QTorrentHandle::prioritize_first_last_piece(bool b) {
+  qDebug() << Q_FUNC_INFO << b;
   Q_ASSERT(h.is_valid());
   // Detect main file
   int rank=0;
