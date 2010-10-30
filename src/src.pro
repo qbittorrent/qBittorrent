@@ -3,7 +3,7 @@ LANG_PATH = lang
 ICONS_PATH = Icons
 
 # Set the following variable to 1 to enable debug
-DEBUG_MODE = 1
+DEBUG_MODE = 0
 
 # Global
 TEMPLATE = app
@@ -12,13 +12,13 @@ CONFIG += qt \
 
 # Update this VERSION for each release
 os2 {
-    DEFINES += VERSION=\'\"v2.4.8\"\'
+    DEFINES += VERSION=\'\"v2.4.9\"\'
 } else {
-    DEFINES += VERSION=\\\"v2.4.8\\\"
+    DEFINES += VERSION=\\\"v2.4.9\\\"
 }
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=4
-DEFINES += VERSION_BUGFIX=8
+DEFINES += VERSION_BUGFIX=9
 
 # NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL
 DEFINES += VERSION_TYPE=NORMAL
