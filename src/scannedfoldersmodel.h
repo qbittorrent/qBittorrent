@@ -45,7 +45,7 @@ class ScanFoldersModel : public QAbstractTableModel {
 public:
   enum PathStatus { Ok, DoesNotExist, CannotRead, CannotWrite, AlreadyInList };
   static ScanFoldersModel *instance(QObject *parent = 0);
-  ~ScanFoldersModel();
+  virtual ~ScanFoldersModel();
 
   virtual int rowCount(const QModelIndex & parent = QModelIndex()) const;
   virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
