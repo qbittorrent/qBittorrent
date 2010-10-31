@@ -1571,13 +1571,15 @@ void Bittorrent::saveFastResumeData() {
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     if(!h.is_valid() || !h.has_metadata()) continue;
-    if(isQueueingEnabled())
-      TorrentPersistentData::savePriority(h);
-    // Actually with should save fast resume data for paused files too
-    //if(h.is_paused()) continue;
-    if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
-    h.save_resume_data();
-    ++num_resume_data;
+    try {
+      if(isQueueingEnabled())
+        TorrentPersistentData::savePriority(h);
+      // Actually with should save fast resume data for paused files too
+      //if(h.is_paused()) continue;
+      if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
+      h.save_resume_data();
+      ++num_resume_data;
+    } catch(invalid_handle&) {}
   }
   while (num_resume_data > 0) {
     alert const* a = s->wait_for_alert(seconds(30));
@@ -1593,8 +1595,9 @@ void Bittorrent::saveFastResumeData() {
       s->pop_alert();
       try {
         // Remove torrent from session
-        s->remove_torrent(rda->handle);
-      }catch(libtorrent::libtorrent_exception){}
+        if(rda->handle.is_valid())
+          s->remove_torrent(rda->handle);
+      }catch(libtorrent::libtorrent_exception&){}
       continue;
     }
     save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
@@ -1608,16 +1611,18 @@ void Bittorrent::saveFastResumeData() {
     QDir torrentBackup(misc::BTBackupLocation());
     const QTorrentHandle h(rd->handle);
     if(!h.is_valid()) continue;
-    // Remove old fastresume file if it exists
-    const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
-    if(QFile::exists(file))
-      misc::safeRemove(file);
-    boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
-    out.unsetf(std::ios_base::skipws);
-    bencode(std::ostream_iterator<char>(out), *rd->resume_data);
-    // Remove torrent from session
-    s->remove_torrent(rd->handle);
-    s->pop_alert();
+    try {
+      // Remove old fastresume file if it exists
+      const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
+      if(QFile::exists(file))
+        misc::safeRemove(file);
+      boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
+      out.unsetf(std::ios_base::skipws);
+      bencode(std::ostream_iterator<char>(out), *rd->resume_data);
+      // Remove torrent from session
+      s->remove_torrent(rd->handle);
+      s->pop_alert();
+    }catch(libtorrent::libtorrent_exception&){}
   }
 }
 
