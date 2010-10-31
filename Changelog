@@ -7,7 +7,7 @@
     - BUGFIX: Elide status bar text if it is too wide
     - BUGFIX: Make sure the splash screen is displayed for 2 seconds
     - BUGFIX: Make listening on a particular interface more reliable
-    - I18N: Updated Italian and Croatian translations
+    - I18N: Updated Arabic, Italian and Croatian translations
 
 * Sun Oct 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.8
     - BUGFIX: Fix possible crash on manual peer ban
