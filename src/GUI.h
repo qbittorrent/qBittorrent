@@ -189,6 +189,7 @@ private slots:
     void on_actionShutdown_when_downloads_complete_triggered();
     void on_actionShutdown_qBittorrent_when_downloads_complete_triggered();
     void on_action_Import_Torrent_triggered();
+    void on_actionDonate_money_triggered();
 };
 
 #endif

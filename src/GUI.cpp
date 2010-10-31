@@ -68,6 +68,7 @@
 #include "hidabletabwidget.h"
 #include "qinisettings.h"
 #include "torrentimportdlg.h"
+#include "rsssettings.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -201,7 +202,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   // View settings
   actionTop_tool_bar->setChecked(Preferences::isToolbarDisplayed());
   actionSpeed_in_title_bar->setChecked(Preferences::speedInTitleBar());
-  actionRSS_Reader->setChecked(Preferences::isRSSEnabled());
+  actionRSS_Reader->setChecked(RssSettings::isRSSEnabled());
   actionSearch_engine->setChecked(Preferences::isSearchEnabled());
   displaySearchTab(actionSearch_engine->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
@@ -1190,7 +1191,7 @@ void GUI::on_actionSpeed_in_title_bar_triggered() {
 }
 
 void GUI::on_actionRSS_Reader_triggered() {
-  Preferences::setRSSEnabled(actionRSS_Reader->isChecked());
+  RssSettings::setRSSEnabled(actionRSS_Reader->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
 }
 
@@ -1245,3 +1246,8 @@ void GUI::handleUpdateInstalled(QString error_msg)
 }
 
 #endif
+
+void GUI::on_actionDonate_money_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://sourceforge.net/donate/index.php?group_id=163414"));
+}
