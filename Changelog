@@ -8,7 +8,7 @@
     - BUGFIX: Make sure the splash screen is displayed for 2 seconds
     - BUGFIX: Make listening on a particular interface more reliable
     - BUGFIX: Fix torrent size update in torrent addition dialog
-    - BUGFIX: Fix possible crash on torrent deletion
+    - BUGFIX: Fix possible crash on qBittorrent shutdown
     - I18N: Updated Arabic, Italian and Croatian translations
 
 * Sun Oct 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.8
