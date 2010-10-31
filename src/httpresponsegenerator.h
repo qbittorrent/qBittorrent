@@ -44,7 +44,7 @@ class HttpResponseGenerator : public QHttpResponseHeader
 		void setMessage(const QString message);
 		void stripMessage();
 		void setContentTypeByExt(const QString ext);
-		virtual QByteArray toByteArray() const;
+		QByteArray toByteArray() const;
 };
 
 #endif
