@@ -54,7 +54,7 @@ class HttpConnection : public QObject
 
 	protected slots:
 		void write();
-		virtual void respond();
+		void respond();
 		void respondJson();
                 void respondGenPropertiesJson(QString hash);
                 void respondTrackersPropertiesJson(QString hash);
