@@ -38,6 +38,7 @@ torrentAdditionDialog::torrentAdditionDialog(GUI *parent, QBtSession* _BTSession
   BTSession = _BTSession;
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
+  connect(PropListModel, SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabels()));
   torrentContentList->setModel(PropListModel);
   torrentContentList->hideColumn(PROGRESS);
   PropDelegate = new PropListDelegate();
@@ -279,6 +280,9 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
     save_path += single_file_relpath;
   }
   savePathTxt->setEditText(save_path);
+
+  // Update size labels
+  updateDiskSpaceLabels();
 
   // Show the dialog
   show();
