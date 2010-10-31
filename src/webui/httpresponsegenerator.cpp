@@ -48,11 +48,6 @@ void HttpResponseGenerator::stripMessage()
 	message.clear();
 }
 
-QByteArray HttpResponseGenerator::toByteArray() const
-{
-  return QHttpResponseHeader::toString().toLocal8Bit() + message;
-}
-
 void HttpResponseGenerator::setContentTypeByExt(const QString ext)
 {
 	if(ext == "css")

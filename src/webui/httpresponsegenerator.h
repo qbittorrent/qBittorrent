@@ -36,15 +36,17 @@
 
 class HttpResponseGenerator : public QHttpResponseHeader
 {
-	private:
-		QByteArray message;
 
 	public:
 		void setMessage(const QByteArray message);
 		void setMessage(const QString message);
 		void stripMessage();
 		void setContentTypeByExt(const QString ext);
-		virtual QByteArray toByteArray() const;
+                inline QByteArray toByteArray() const { return QHttpResponseHeader::toString().toLocal8Bit() + message; }
+
+private:
+        QByteArray message;
+
 };
 
 #endif
