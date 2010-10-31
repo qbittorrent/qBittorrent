@@ -54,6 +54,7 @@
     <addaction name="actionBugReport"/>
     <addaction name="actionWebsite"/>
     <addaction name="actionDocumentation"/>
+    <addaction name="actionDonate_money"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menu_Options">
@@ -346,6 +347,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionDonate_money">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/Icons/oxygen/emblem-favorite.png</normaloff>:/Icons/oxygen/emblem-favorite.png</iconset>
+   </property>
+   <property name="text">
+    <string>Donate money</string>
+   </property>
+   <property name="toolTip">
+    <string>If you like qBittorrent, please donate!</string>
    </property>
   </action>
  </widget>

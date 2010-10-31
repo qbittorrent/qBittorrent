@@ -1404,6 +1404,14 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <source>R&amp;esume All</source>
         <translation>Pokračovať vš&amp;etky</translation>
     </message>
+    <message>
+        <source>Donate money</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you like qBittorrent, please donate!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>

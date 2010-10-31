@@ -183,6 +183,7 @@ private slots:
     void on_actionSpeed_in_title_bar_triggered();
     void on_actionTop_tool_bar_triggered();
     void on_actionShutdown_when_downloads_complete_triggered();
+    void on_actionDonate_money_triggered();
 };
 
 #endif

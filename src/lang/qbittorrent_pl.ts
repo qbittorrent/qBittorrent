@@ -1400,6 +1400,14 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <source>R&amp;esume All</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Donate money</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you like qBittorrent, please donate!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>

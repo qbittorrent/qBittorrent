@@ -1206,3 +1206,8 @@ void GUI::on_actionDownload_from_URL_triggered() {
   }
 }
 
+void GUI::on_actionDonate_money_triggered()
+{
+    QDesktopServices::openUrl(QUrl("http://sourceforge.net/donate/index.php?group_id=163414"));
+}
+
