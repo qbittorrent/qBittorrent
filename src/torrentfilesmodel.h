@@ -47,6 +47,9 @@ enum TreeItemType {TFILE, FOLDER, ROOT};
 
 class TreeItem {
 private:
+  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO};
+
+private:
   QList<TreeItem*> childItems;
   QList<QVariant> itemData;
   TreeItem *parentItem;
