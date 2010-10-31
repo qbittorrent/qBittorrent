@@ -42,11 +42,12 @@
 #include "misc.h"
 using namespace libtorrent;
 
-enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7};
+enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
 enum TreeItemType {TFILE, FOLDER, ROOT};
 
 class TreeItem {
-private:
+
+public:
   enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO};
 
 private:
@@ -127,27 +128,27 @@ public:
     Q_ASSERT(childItems.empty());
   }
 
-  const QList<TreeItem*>& children() const {
+  QList<TreeItem*> children() const {
     return childItems;
   }
 
   QString getName() const {
     //Q_ASSERT(type != ROOT);
-    return itemData.first().toString();
+    return itemData.at(COL_NAME).toString();
   }
 
   void setName(QString name) {
     Q_ASSERT(type != ROOT);
-    itemData.replace(0, name);
+    itemData.replace(COL_NAME, name);
   }
 
   qulonglong getSize() const {
-    return itemData.value(1).toULongLong();
+    return itemData.value(COL_SIZE).toULongLong();
   }
 
   void setSize(qulonglong size) {
     if(getSize() == size) return;
-    itemData.replace(1, (qulonglong)size);
+    itemData.replace(COL_SIZE, (qulonglong)size);
     if(parentItem)
       parentItem->updateSize();
   }
@@ -157,7 +158,7 @@ public:
     Q_ASSERT(type == FOLDER);
     qulonglong size = 0;
     foreach(TreeItem* child, childItems) {
-      if(child->getPriority() > 0)
+      if(child->getPriority() != IGNORED)
         size += child->getSize();
     }
     setSize(size);
@@ -173,7 +174,7 @@ public:
     else
       progress = 1.;
     Q_ASSERT(progress >= 0. && progress <= 1.);
-    itemData.replace(2, progress);
+    itemData.replace(COL_PROGRESS, progress);
     if(parentItem)
       parentItem->updateProgress();
   }
@@ -203,50 +204,58 @@ public:
   }
 
   int getPriority() const {
-    return itemData.value(3).toInt();
+    return itemData.value(COL_PRIO).toInt();
   }
 
-  void setPriority(int new_prio, bool update_children=true, bool update_parent=true) {
-    int old_prio = getPriority();
-    if(old_prio != new_prio) {
-      qDebug("setPriority(%s, %d)", qPrintable(getName()), new_prio);
-      itemData.replace(3, new_prio);
-      // Update parent
-      if(update_parent && parentItem) {
-        parentItem->updateSize();
-        parentItem->updateProgress();
-        parentItem->updatePriority();
-      }
+  void setPriority(int new_prio, bool update_parent=true) {
+    Q_ASSERT(new_prio != PARTIAL || type == FOLDER); // PARTIAL only applies to folders
+    const int old_prio = getPriority();
+    if(old_prio == new_prio) return;
+    qDebug("setPriority(%s, %d)", qPrintable(getName()), new_prio);
+    itemData.replace(COL_PRIO, new_prio);
+
+    // Update parent
+    if(update_parent && parentItem) {
+      qDebug("Updating parent item");
+      parentItem->updateSize();
+      parentItem->updateProgress();
+      parentItem->updatePriority();
     }
+
     // Update children
-    if(update_children) {
+    if(new_prio != PARTIAL && !childItems.empty()) {
+      qDebug("Updating children items");
       foreach(TreeItem* child, childItems) {
-        child->setPriority(new_prio, true, false);
+        // Do not update the parent since
+        // the parent is causing the update
+        child->setPriority(new_prio, false);
       }
     }
-    if(type==FOLDER) {
+    if(type == FOLDER) {
       updateSize();
       updateProgress();
     }
   }
 
+  // Only non-root folders use this function
   void updatePriority() {
     if(type == ROOT) return;
     Q_ASSERT(type == FOLDER);
-    int priority = getPriority();
-    bool first = true;
-    foreach(TreeItem* child, childItems) {
-      if(first) {
-        priority = child->getPriority();
-        first = false;
-      } else {
-        if(child->getPriority() != priority) {
-          setPriority(NORMAL, false);
-          return;
-        }
+    if(childItems.isEmpty()) return;
+    // If all children have the same priority
+    // then the folder should have the same
+    // priority
+    const int prio = childItems.first()->getPriority();
+    for(int i=1; i<childItems.size(); ++i) {
+      if(childItems.at(i)->getPriority() != prio) {
+        setPriority(PARTIAL);
+        return;
       }
     }
-    setPriority(priority);
+    // All child items have the same priorrity
+    // Update mine if necessary
+    if(prio != getPriority())
+      setPriority(prio);
   }
 
   TreeItem* childWithName(QString name) const {
@@ -366,13 +375,16 @@ public:
 
   bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole) {
     if(!index.isValid()) return false;
-    if (role == Qt::CheckStateRole) {
+    if (index.column() == 0 && role == Qt::CheckStateRole) {
       TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+      qDebug("setData(%s, %d", qPrintable(item->getName()), value.toInt());
       if(item->getPriority() != value.toInt()) {
-        if(value.toInt() == Qt::Checked)
-          item->setPriority(NORMAL);
-        else
+        if(value.toInt() == Qt::PartiallyChecked)
+          item->setPriority(PARTIAL);
+        else if (value.toInt() == Qt::Unchecked)
           item->setPriority(IGNORED);
+        else
+          item->setPriority(NORMAL);
         emit filteredFilesChanged();
         emit dataChanged(this->index(0,0), this->index(rowCount(), 0));
       }
@@ -402,8 +414,8 @@ public:
     return false;
   }
 
-  TreeItemType getType(const QModelIndex &index) {
-    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+  TreeItemType getType(const QModelIndex &index) const {
+    const TreeItem *item = static_cast<const TreeItem*>(index.internalPointer());
     return item->getType();
   }
 
@@ -422,9 +434,11 @@ public:
       else
         return QIcon(":/Icons/oxygen/file.png");
     }
-    if(role == Qt::CheckStateRole) {
-      if(item->data(3).toInt() == IGNORED)
+    if(index.column() == 0 && role == Qt::CheckStateRole) {
+      if(item->data(TreeItem::COL_PRIO).toInt() == IGNORED)
         return Qt::Unchecked;
+      if(item->data(TreeItem::COL_PRIO).toInt() == PARTIAL)
+        return Qt::PartiallyChecked;
       return Qt::Checked;
     }
     if (role != Qt::DisplayRole)
@@ -436,7 +450,8 @@ public:
   Qt::ItemFlags flags(const QModelIndex &index) const {
     if (!index.isValid())
       return 0;
-
+    if(getType(index) == FOLDER)
+      return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;
     return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable;
   }
 
@@ -508,6 +523,7 @@ public:
     qDebug("setup model data called");
     if(t.num_files() == 0) return;
     // Initialize files_index array
+    qDebug("Torrent contains %d files", t.num_files());
     files_index = new TreeItem*[t.num_files()];
 
     TreeItem *parent = this->rootItem;
