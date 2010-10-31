@@ -96,6 +96,9 @@ public:
         QItemDelegate::drawBackground(painter, opt, index);
         QString text = "";
         switch(index.data().toInt()) {
+        case -1:
+          text = tr("Mixed", "Mixed (priorities");
+          break;
         case 0:
           text = tr("Not downloaded");
           break;
@@ -151,8 +154,8 @@ public:
       QTorrentHandle h = properties->getCurrentTorrent();
       if(!h.is_valid() || h.get_torrent_handle().is_seed() || !h.has_metadata()) return 0;
     }
-    if(index.data().toInt() == 0) {
-      // IGNORED
+    if(index.data().toInt() <= 0) {
+      // IGNORED or MIXED
       return 0;
     }
     QComboBox* editor = new QComboBox(parent);

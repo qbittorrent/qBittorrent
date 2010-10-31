@@ -766,7 +766,7 @@ void PropertiesWidget::deleteSelectedUrlSeeds(){
 }
 
 bool PropertiesWidget::applyPriorities() {
-  qDebug("Saving pieces priorities");
+  qDebug("Saving files priorities");
   const std::vector<int> priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
   bool first_last_piece_first = false;
   // Save first/last piece first option state

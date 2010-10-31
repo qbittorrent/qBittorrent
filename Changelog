@@ -9,6 +9,7 @@
     - BUGFIX: Make listening on a particular interface more reliable
     - BUGFIX: Fix torrent size update in torrent addition dialog
     - BUGFIX: Fix possible crash on qBittorrent shutdown
+    - BUGFIX: Fix and improve file priorities editing (closes #669084)
     - I18N: Updated Arabic, Italian and Croatian translations
 
 * Sun Oct 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.8
