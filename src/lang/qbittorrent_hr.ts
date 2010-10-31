@@ -200,6 +200,53 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AutomatedRssDownloader</name>
+    <message>
+        <source>Automated RSS Downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable the automated RSS downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must not contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save torrent to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Assign label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rule to feeds:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
@@ -2900,6 +2947,22 @@ QGroupBox {
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Preuzimanje &apos;%1&apos;, pričekajte ...</translation>
     </message>
+    <message>
+        <source>The network interface defined is invalid: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying any other network interface available instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Listening on IP address %1 on network interface %2...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to listen on network interface %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -3121,19 +3184,38 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation>Postavke RSS čitača</translation>
+        <translation type="obsolete">Postavke RSS čitača</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>Interval osvježavanja RSS kanala:</translation>
+        <translation type="obsolete">Interval osvježavanja RSS kanala:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minute</translation>
+        <translation type="obsolete">minute</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Najveći broj članaka po kanalu:</translation>
+        <translation type="obsolete">Najveći broj članaka po kanalu:</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettingsDlg</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished">Postavke RSS čitača</translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">Interval osvježavanja RSS kanala:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">minute</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Najveći broj članaka po kanalu:</translation>
     </message>
 </context>
 <context>

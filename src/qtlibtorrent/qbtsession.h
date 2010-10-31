@@ -64,10 +64,7 @@ class ScanFoldersModel;
 
 class QBtSession : public QObject {
   Q_OBJECT
-
-private:
-  QBtSession(const QBtSession& other); // Present copy
-  QBtSession& operator=(const QBtSession& other);
+  Q_DISABLE_COPY(QBtSession)
 
 public:
   // Constructor / Destructor

@@ -42,51 +42,53 @@ class QBtSession;
 
 class HttpConnection : public QObject
 {
-	Q_OBJECT
-	private:
-		QTcpSocket *socket;
-		HttpServer *parent;
-                QBtSession *BTSession;
+  Q_OBJECT
+  Q_DISABLE_COPY(HttpConnection)
 
-	protected:
-		HttpRequestParser parser;
-		HttpResponseGenerator generator;
+private:
+  QTcpSocket *socket;
+  HttpServer *parent;
+  QBtSession *BTSession;
 
-	protected slots:
-		void write();
-		void respond();
-		void respondJson();
-                void respondGenPropertiesJson(QString hash);
-                void respondTrackersPropertiesJson(QString hash);
-                void respondFilesPropertiesJson(QString hash);
-                void respondPreferencesJson();
-                void respondGlobalTransferInfoJson();
-		void respondCommand(QString command);
-		void respondNotFound();
-		void processDownloadedFile(QString, QString);
-		void handleDownloadFailure(QString, QString);
-                void recheckTorrent(QString hash);
-                void recheckAllTorrents();
+protected:
+  HttpRequestParser parser;
+  HttpResponseGenerator generator;
 
-	public:
-                HttpConnection(QTcpSocket *socket, QBtSession* BTSession, HttpServer *parent);
-		~HttpConnection();
-                QString translateDocument(QString data);
+protected slots:
+  void write();
+  void respond();
+  void respondJson();
+  void respondGenPropertiesJson(QString hash);
+  void respondTrackersPropertiesJson(QString hash);
+  void respondFilesPropertiesJson(QString hash);
+  void respondPreferencesJson();
+  void respondGlobalTransferInfoJson();
+  void respondCommand(QString command);
+  void respondNotFound();
+  void processDownloadedFile(QString, QString);
+  void handleDownloadFailure(QString, QString);
+  void recheckTorrent(QString hash);
+  void recheckAllTorrents();
 
-	private slots:
-		void read();
+public:
+  HttpConnection(QTcpSocket *socket, QBtSession* BTSession, HttpServer *parent);
+  ~HttpConnection();
+  QString translateDocument(QString data);
 
-	signals:
-                void UrlReadyToBeDownloaded(QString url);
-                void MagnetReadyToBeDownloaded(QString uri);
-		void torrentReadyToBeDownloaded(QString, bool, QString, bool);
-                void deleteTorrent(QString hash, bool permanently);
-		void resumeTorrent(QString hash);
-		void pauseTorrent(QString hash);
-                void increasePrioTorrent(QString hash);
-                void decreasePrioTorrent(QString hash);
-		void resumeAllTorrents();
-		void pauseAllTorrents();
+private slots:
+  void read();
+
+signals:
+  void UrlReadyToBeDownloaded(QString url);
+  void MagnetReadyToBeDownloaded(QString uri);
+  void torrentReadyToBeDownloaded(QString, bool, QString, bool);
+  void deleteTorrent(QString hash, bool permanently);
+  void resumeTorrent(QString hash);
+  void pauseTorrent(QString hash);
+  void increasePrioTorrent(QString hash);
+  void decreasePrioTorrent(QString hash);
+  void resumeAllTorrents();
+  void pauseAllTorrents();
 };
 
 #endif

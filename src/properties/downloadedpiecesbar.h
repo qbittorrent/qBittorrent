@@ -43,6 +43,7 @@ using namespace libtorrent;
 
 class DownloadedPiecesBar: public QWidget {
   Q_OBJECT
+  Q_DISABLE_COPY(DownloadedPiecesBar)
 
 private:
   QPixmap pixmap;

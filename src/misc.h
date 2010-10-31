@@ -53,6 +53,9 @@ using namespace libtorrent;
 class misc : public QObject{
   Q_OBJECT
 
+private:
+  misc(); // Forbidden
+
 public:
   static inline QString toQString(std::string str) {
     return QString::fromLocal8Bit(str.c_str());

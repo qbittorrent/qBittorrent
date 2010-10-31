@@ -59,6 +59,9 @@ namespace Proxy {
 }
 
 class Preferences {
+private:
+  Preferences(); // Present instanciation
+
 public:
   // General options
   static QString getLocale() {
@@ -740,38 +743,6 @@ public:
     QIniSettings settings("qBittorrent", "qBittorrent");
     settings.setValue(QString::fromUtf8("Preferences/Search/SearchEnabled"), enabled);
   }
-
-  // RSS
-  static bool isRSSEnabled() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/RSS/RSSEnabled"), false).toBool();
-  }
-
-  static void setRSSEnabled(bool enabled) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSEnabled"), enabled);
-  }
-
-  static unsigned int getRSSRefreshInterval() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toUInt();
-  }
-
-  static void setRSSRefreshInterval(uint interval) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSRefresh"), interval);
-  }
-
-  static int getRSSMaxArticlesPerFeed() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
-  }
-
-  static void setRSSMaxArticlesPerFeed(int nb) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), nb);
-  }
-
 
   // Queueing system
   static bool isQueueingSystemEnabled() {

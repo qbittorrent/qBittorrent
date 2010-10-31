@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,52 +28,37 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TRACKERLIST_H
-#define TRACKERLIST_H
+#ifndef RSSDOWNLOADRULELIST_H
+#define RSSDOWNLOADRULELIST_H
 
-#include <QTreeWidget>
 #include <QList>
+#include <QHash>
 
-#include <libtorrent/version.hpp>
-#include "qtorrenthandle.h"
-#include "propertieswidget.h"
+#include "rssdownloadrule.h"
 
-enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
-#define NB_STICKY_ITEM 3
-
-class TrackerList: public QTreeWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(TrackerList)
+// This class is not thread-safe (not required)
+class RssDownloadRuleList : public QList<RssDownloadRule>
+{
+  Q_DISABLE_COPY(RssDownloadRuleList)
 
 private:
-  PropertiesWidget *properties;
-  QHash<QString, QTreeWidgetItem*> tracker_items;
-  QTreeWidgetItem* dht_item;
-  QTreeWidgetItem* pex_item;
-  QTreeWidgetItem* lsd_item;
+  explicit RssDownloadRuleList();
+  static RssDownloadRuleList* m_instance;
 
 public:
-  TrackerList(PropertiesWidget *properties);
-  ~TrackerList();
+  static RssDownloadRuleList* instance();
+  static void drop();
+  const RssDownloadRule* findMatchingRule(const QString &feed_url, const QString &article_title) const;
+  inline QList<RssDownloadRule*> feedRules(const QString &feed_url) const { return m_feedRules.value(feed_url); }
+  void append(const RssDownloadRule& rule);
 
-protected:
-  QList<QTreeWidgetItem*> getSelectedTrackerItems() const;
+private:
+  void loadRulesFromStorage();
+  void importRulesInOldFormat(const QHash<QString, QVariant> &rules); // Before v2.5.0
 
-public slots:
-  void setRowColor(int row, QColor color);
-
-  void moveSelectionUp();
-  void moveSelectionDown();
-
-  void clear();
-  void loadStickyItems(const QTorrentHandle &h);
-  void loadTrackers();
-  void askForTrackers();
-  void deleteSelectedTrackers();
-  void showTrackerListMenu(QPoint);
-  void loadSettings();
-  void saveSettings() const;
+private:
+  QHash<QString, QList<RssDownloadRule*> > m_feedRules;
 
 };
 
-#endif // TRACKERLIST_H
+#endif // RSSDOWNLOADFILTERLIST_H

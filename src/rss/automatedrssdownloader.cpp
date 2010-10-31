@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,52 +28,32 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TRACKERLIST_H
-#define TRACKERLIST_H
+#include "automatedrssdownloader.h"
+#include "ui_automatedrssdownloader.h"
+#include "rssfilters.h"
+#include "rsssettings.h"
 
-#include <QTreeWidget>
-#include <QList>
+AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AutomatedRssDownloader)
+{
+    ui->setupUi(this);
+    loadSettings();
+    //filters = RssFilters::getFeedFilters(feed_url);
+}
 
-#include <libtorrent/version.hpp>
-#include "qtorrenthandle.h"
-#include "propertieswidget.h"
+AutomatedRssDownloader::~AutomatedRssDownloader()
+{
+  saveSettings();
+  delete ui;
+}
 
-enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
-#define NB_STICKY_ITEM 3
+void AutomatedRssDownloader::loadSettings()
+{
+  ui->checkEnableDownloader->setChecked(RssSettings::isRssDownloadingEnabled());
+}
 
-class TrackerList: public QTreeWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(TrackerList)
-
-private:
-  PropertiesWidget *properties;
-  QHash<QString, QTreeWidgetItem*> tracker_items;
-  QTreeWidgetItem* dht_item;
-  QTreeWidgetItem* pex_item;
-  QTreeWidgetItem* lsd_item;
-
-public:
-  TrackerList(PropertiesWidget *properties);
-  ~TrackerList();
-
-protected:
-  QList<QTreeWidgetItem*> getSelectedTrackerItems() const;
-
-public slots:
-  void setRowColor(int row, QColor color);
-
-  void moveSelectionUp();
-  void moveSelectionDown();
-
-  void clear();
-  void loadStickyItems(const QTorrentHandle &h);
-  void loadTrackers();
-  void askForTrackers();
-  void deleteSelectedTrackers();
-  void showTrackerListMenu(QPoint);
-  void loadSettings();
-  void saveSettings() const;
-
-};
-
-#endif // TRACKERLIST_H
+void AutomatedRssDownloader::saveSettings()
+{
+  RssSettings::setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
+}

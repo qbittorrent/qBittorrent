@@ -47,22 +47,6 @@
 class StatusBar: public QObject {
   Q_OBJECT
 
-private:
-  QStatusBar *bar;
-  QPushButton *dlSpeedLbl;
-  QPushButton *upSpeedLbl;
-  QLabel *DHTLbl;
-  QFrame *statusSep1;
-  QFrame *statusSep2;
-  QFrame *statusSep3;
-  QFrame *statusSep4;
-  QLabel *connecStatusLblIcon;
-  QPushButton *altSpeedsBtn;
-  QTimer *refreshTimer;
-  QWidget *container;
-  QGridLayout *layout;
-  QBtSession *BTSession;
-
 public:
   StatusBar(QStatusBar *bar, QBtSession *BTSession): bar(bar), BTSession(BTSession) {
     connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
@@ -260,6 +244,22 @@ public slots:
       }
     }
   }
+
+private:
+  QStatusBar *bar;
+  QPushButton *dlSpeedLbl;
+  QPushButton *upSpeedLbl;
+  QLabel *DHTLbl;
+  QFrame *statusSep1;
+  QFrame *statusSep2;
+  QFrame *statusSep3;
+  QFrame *statusSep4;
+  QLabel *connecStatusLblIcon;
+  QPushButton *altSpeedsBtn;
+  QTimer *refreshTimer;
+  QWidget *container;
+  QGridLayout *layout;
+  QBtSession *BTSession;
 
 };
 

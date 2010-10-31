@@ -52,6 +52,8 @@ class PropTabBar;
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
   Q_OBJECT
+  Q_DISABLE_COPY(PropertiesWidget)
+
 public:
   enum SlideState {REDUCED, VISIBLE};
 

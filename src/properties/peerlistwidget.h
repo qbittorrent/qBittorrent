@@ -54,6 +54,7 @@ class PropertiesWidget;
 
 class PeerListWidget : public QTreeView {
   Q_OBJECT
+  Q_DISABLE_COPY(PeerListWidget)
 
 public:
   PeerListWidget(PropertiesWidget *parent);

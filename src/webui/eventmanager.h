@@ -40,27 +40,29 @@ class QBtSession;
 
 class EventManager : public QObject
 {
-	Q_OBJECT
-	private:
-		QHash<QString, QVariantMap> event_list;
-                QBtSession* BTSession;
+  Q_OBJECT
+  Q_DISABLE_COPY(EventManager)
 
-	protected:
-		void update(QVariantMap event);
+private:
+  QHash<QString, QVariantMap> event_list;
+  QBtSession* BTSession;
 
-	public:
-                EventManager(QObject *parent, QBtSession* BTSession);
-                QList<QVariantMap> getEventList() const;
-                QVariantMap getPropGeneralInfo(QString hash) const;
-                QList<QVariantMap> getPropTrackersInfo(QString hash) const;
-                QList<QVariantMap> getPropFilesInfo(QString hash) const;
-                QVariantMap getGlobalPreferences() const;
-                void setGlobalPreferences(QVariantMap m) const;
+protected:
+  void update(QVariantMap event);
 
-	public slots:
-		void addedTorrent(QTorrentHandle& h);
-		void deletedTorrent(QString hash);
-		void modifiedTorrent(QTorrentHandle h);
+public:
+  EventManager(QObject *parent, QBtSession* BTSession);
+  QList<QVariantMap> getEventList() const;
+  QVariantMap getPropGeneralInfo(QString hash) const;
+  QList<QVariantMap> getPropTrackersInfo(QString hash) const;
+  QList<QVariantMap> getPropFilesInfo(QString hash) const;
+  QVariantMap getGlobalPreferences() const;
+  void setGlobalPreferences(QVariantMap m) const;
+
+public slots:
+  void addedTorrent(QTorrentHandle& h);
+  void deletedTorrent(QString hash);
+  void modifiedTorrent(QTorrentHandle h);
 };
 
 #endif

@@ -153,6 +153,53 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AutomatedRssDownloader</name>
+    <message>
+        <source>Automated RSS Downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable the automated RSS downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must not contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save torrent to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Assign label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rule to feeds:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
@@ -2434,6 +2481,22 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Pobieranie &apos;%1&apos;, proszę czekać...</translation>
     </message>
+    <message>
+        <source>The network interface defined is invalid: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying any other network interface available instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Listening on IP address %1 on network interface %2...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to listen on network interface %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -2647,11 +2710,30 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation>Ustawienia czytnika RSS</translation>
+        <translation type="obsolete">Ustawienia czytnika RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>Częstotliwość odświeżania kanałów RSS:</translation>
+        <translation type="obsolete">Częstotliwość odświeżania kanałów RSS:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="obsolete">minut</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="obsolete">Maksymalna ilość wiadomości na kanał RSS:</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettingsDlg</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished">Ustawienia czytnika RSS</translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">Częstotliwość odświeżania kanałów RSS:</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -2659,7 +2741,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maksymalna ilość wiadomości na kanał RSS:</translation>
+        <translation type="unfinished">Maksymalna ilość wiadomości na kanał RSS:</translation>
     </message>
 </context>
 <context>

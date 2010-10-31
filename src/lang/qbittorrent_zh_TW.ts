@@ -162,6 +162,53 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AutomatedRssDownloader</name>
+    <message>
+        <source>Automated RSS Downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable the automated RSS downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must not contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save torrent to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Assign label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rule to feeds:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
@@ -2468,6 +2515,22 @@ No further notices will be issued.</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">下載 &apos;%1&apos; 中, 請稍候...</translation>
     </message>
+    <message>
+        <source>The network interface defined is invalid: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying any other network interface available instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Listening on IP address %1 on network interface %2...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to listen on network interface %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -2681,19 +2744,38 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation>RSS 閱讀器設定</translation>
+        <translation type="obsolete">RSS 閱讀器設定</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS feed 更新間隔:</translation>
+        <translation type="obsolete">RSS feed 更新間隔:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>分鐘</translation>
+        <translation type="obsolete">分鐘</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>每個 feed 的最大文章數:</translation>
+        <translation type="obsolete">每個 feed 的最大文章數:</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettingsDlg</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished">RSS 閱讀器設定</translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">RSS feed 更新間隔:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">分鐘</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">每個 feed 的最大文章數:</translation>
     </message>
 </context>
 <context>

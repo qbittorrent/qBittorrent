@@ -31,25 +31,50 @@
 #ifndef RSSSETTINGS_H
 #define RSSSETTINGS_H
 
-#include <QDialog>
+#include "qinisettings.h"
 
-namespace Ui {
-    class RssSettings;
-}
-
-class RssSettings : public QDialog
-{
-    Q_OBJECT
-
+class RssSettings {
 public:
-    explicit RssSettings(QWidget *parent = 0);
-    ~RssSettings();
 
-protected slots:
-    void on_buttonBox_accepted();
+  static bool isRSSEnabled() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/RSS/RSSEnabled"), false).toBool();
+  }
 
-private:
-    Ui::RssSettings *ui;
+  static void setRSSEnabled(bool enabled) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSEnabled"), enabled);
+  }
+
+  static unsigned int getRSSRefreshInterval() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toUInt();
+  }
+
+  static void setRSSRefreshInterval(uint interval) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSRefresh"), interval);
+  }
+
+  static int getRSSMaxArticlesPerFeed() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
+  }
+
+  static void setRSSMaxArticlesPerFeed(int nb) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), nb);
+  }
+
+  static bool isRssDownloadingEnabled() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("Preferences/RSS/RssDownloading", false).toBool();
+  }
+
+  static void setRssDownloadingEnabled(bool b) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue("Preferences/RSS/RssDownloading", b);
+  }
 
 };
 

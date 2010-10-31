@@ -28,27 +28,29 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "rsssettings.h"
-#include "ui_rsssettings.h"
-#include "preferences.h"
+#ifndef RSSSETTINGSDLG_H
+#define RSSSETTINGSDLG_H
 
-RssSettings::RssSettings(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::RssSettings)
+#include <QDialog>
+
+namespace Ui {
+    class RssSettingsDlg;
+}
+
+class RssSettingsDlg : public QDialog
 {
-    ui->setupUi(this);
-    // Load settings
-    ui->spinRSSRefresh->setValue(Preferences::getRSSRefreshInterval());
-    ui->spinRSSMaxArticlesPerFeed->setValue(Preferences::getRSSMaxArticlesPerFeed());
-}
+    Q_OBJECT
 
-RssSettings::~RssSettings()
-{
-    delete ui;
-}
+public:
+    explicit RssSettingsDlg(QWidget *parent = 0);
+    ~RssSettingsDlg();
 
-void RssSettings::on_buttonBox_accepted() {
-  // Save settings
-  Preferences::setRSSRefreshInterval(ui->spinRSSRefresh->value());
-  Preferences::setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
-}
+protected slots:
+    void on_buttonBox_accepted();
+
+private:
+    Ui::RssSettingsDlg *ui;
+
+};
+
+#endif // RSSSETTINGS_H

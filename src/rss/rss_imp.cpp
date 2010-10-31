@@ -43,7 +43,7 @@
 #include "qbtsession.h"
 #include "cookiesdlg.h"
 #include "preferences.h"
-#include "rsssettings.h"
+#include "rsssettingsdlg.h"
 #include "rssmanager.h"
 #include "rssfolder.h"
 #include "rssarticle.h"
@@ -647,7 +647,7 @@ RSSImp::~RSSImp(){
 
 
 void RSSImp::on_settingsButton_clicked() {
-  RssSettings rssSettingsDlg(this);
-  if(rssSettingsDlg.exec())
+  RssSettingsDlg dlg(this);
+  if(dlg.exec())
     updateRefreshInterval(Preferences::getRefreshInterval());
 }

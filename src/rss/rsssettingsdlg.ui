@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RssSettings</class>
- <widget class="QDialog" name="RssSettings">
+ <class>RssSettingsDlg</class>
+ <widget class="QDialog" name="RssSettingsDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>468</width>
+    <width>502</width>
     <height>137</height>
    </rect>
   </property>
@@ -125,7 +125,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>RssSettings</receiver>
+   <receiver>RssSettingsDlg</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -141,7 +141,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>RssSettings</receiver>
+   <receiver>RssSettingsDlg</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

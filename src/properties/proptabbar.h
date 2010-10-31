@@ -37,22 +37,23 @@ class QButtonGroup;
 
 class PropTabBar : public QHBoxLayout
 {
-    Q_OBJECT
+  Q_OBJECT
+  Q_DISABLE_COPY(PropTabBar)
 
 public:
   enum PropertyTab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB};
 
 public:
-    explicit PropTabBar(QWidget *parent = 0);
-    ~PropTabBar();
-    int currentIndex() const;
+  explicit PropTabBar(QWidget *parent = 0);
+  ~PropTabBar();
+  int currentIndex() const;
 
 signals:
   void tabChanged(int index);
   void visibilityToggled(bool visible);
 
 public slots:
-    void setCurrentIndex(int index);
+  void setCurrentIndex(int index);
 
 private:
   QButtonGroup *m_btnGroup;

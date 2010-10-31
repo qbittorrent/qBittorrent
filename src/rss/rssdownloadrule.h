@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,52 +28,42 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TRACKERLIST_H
-#define TRACKERLIST_H
+#ifndef RSSDOWNLOADRULE_H
+#define RSSDOWNLOADRULE_H
 
-#include <QTreeWidget>
-#include <QList>
+#include <QStringList>
+#include <QHash>
 
-#include <libtorrent/version.hpp>
-#include "qtorrenthandle.h"
-#include "propertieswidget.h"
-
-enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
-#define NB_STICKY_ITEM 3
-
-class TrackerList: public QTreeWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(TrackerList)
-
-private:
-  PropertiesWidget *properties;
-  QHash<QString, QTreeWidgetItem*> tracker_items;
-  QTreeWidgetItem* dht_item;
-  QTreeWidgetItem* pex_item;
-  QTreeWidgetItem* lsd_item;
+class RssDownloadRule
+{
 
 public:
-  TrackerList(PropertiesWidget *properties);
-  ~TrackerList();
+  explicit RssDownloadRule();
+  static RssDownloadRule fromOldFormat(const QHash<QString, QVariant>& rule_hash, const QString &feed_url, const QString &rule_name); // Before v2.5.0
+  bool matches(const QString &article_title) const;
+  void setMustContain(const QString &tokens);
+  void setMustNotContain(const QString &tokens);
+  inline QStringList rssFeeds() const { return m_rssFeeds; }
+  inline void setRssFeeds(const QStringList& rss_feeds) { m_rssFeeds = rss_feeds; }
+  inline QString name() const { return m_name; }
+  inline void setName(const QString &name) { m_name = name; }
+  inline QString savePath() const { return m_savePath; }
+  inline void setSavePath(const QString &save_path) { m_savePath = save_path; }
+  inline QString label() const { return m_label; }
+  inline void setLabel(const QString &_label) { m_label = _label; }
+  inline bool isEnabled() const { return m_enabled; }
+  inline void setEnabled(bool enable) { m_enabled = enable; }
+  // Operators
+  bool operator==(const RssDownloadRule &other);
 
-protected:
-  QList<QTreeWidgetItem*> getSelectedTrackerItems() const;
-
-public slots:
-  void setRowColor(int row, QColor color);
-
-  void moveSelectionUp();
-  void moveSelectionDown();
-
-  void clear();
-  void loadStickyItems(const QTorrentHandle &h);
-  void loadTrackers();
-  void askForTrackers();
-  void deleteSelectedTrackers();
-  void showTrackerListMenu(QPoint);
-  void loadSettings();
-  void saveSettings() const;
-
+private:
+  QString m_name;
+  QStringList m_mustContain;
+  QStringList m_mustNotContain;
+  QString m_savePath;
+  QString m_label;
+  bool m_enabled;
+  QStringList m_rssFeeds;
 };
 
-#endif // TRACKERLIST_H
+#endif // RSSDOWNLOADRULE_H

@@ -46,6 +46,7 @@ const int MAX_AUTH_FAILED_ATTEMPTS = 5;
 
 class HttpServer : public QTcpServer {
   Q_OBJECT
+  Q_DISABLE_COPY(HttpServer)
 
 public:
   HttpServer(QBtSession *BTSession, int msec, QObject* parent = 0);

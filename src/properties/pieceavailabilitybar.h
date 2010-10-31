@@ -42,6 +42,7 @@
 
 class PieceAvailabilityBar: public QWidget {
   Q_OBJECT
+  Q_DISABLE_COPY(PieceAvailabilityBar)
 
 private:
   QPixmap pixmap;

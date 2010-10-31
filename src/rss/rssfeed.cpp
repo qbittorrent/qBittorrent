@@ -32,9 +32,11 @@
 #include "rssmanager.h"
 #include "qbtsession.h"
 #include "rssfolder.h"
-#include "preferences.h"
+#include "rsssettings.h"
 #include "rssarticle.h"
 #include "feeddownloader.h"
+#include "misc.h"
+#include "rssdownloadrulelist.h"
 
 RssFeed::RssFeed(RssFolder* parent, RssManager *rssmanager, QBtSession *BTSession, QString _url): parent(parent), rssmanager(rssmanager), BTSession(BTSession), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
   qDebug("RSSStream constructed");
@@ -321,7 +323,7 @@ short RssFeed::readDoc(QIODevice* device) {
 }
 
 void RssFeed::resizeList() {
-  unsigned int max_articles = Preferences::getRSSMaxArticlesPerFeed();
+  unsigned int max_articles = RssSettings::getRSSMaxArticlesPerFeed();
   unsigned int nb_articles = this->size();
   if(nb_articles > max_articles) {
     QList<RssArticle*> listItem = RssManager::sortNewsList(this->values());

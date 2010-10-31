@@ -52,6 +52,8 @@ typedef QHash<QString, PeerList> TorrentList;
 class QTracker : public QTcpServer
 {
   Q_OBJECT
+  Q_DISABLE_COPY(QTracker)
+
 public:
   explicit QTracker(QObject *parent = 0);
   ~QTracker();

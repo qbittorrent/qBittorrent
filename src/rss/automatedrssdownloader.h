@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,52 +28,29 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TRACKERLIST_H
-#define TRACKERLIST_H
+#ifndef AUTOMATEDRSSDOWNLOADER_H
+#define AUTOMATEDRSSDOWNLOADER_H
 
-#include <QTreeWidget>
-#include <QList>
+#include <QDialog>
 
-#include <libtorrent/version.hpp>
-#include "qtorrenthandle.h"
-#include "propertieswidget.h"
+namespace Ui {
+class AutomatedRssDownloader;
+}
 
-enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
-#define NB_STICKY_ITEM 3
-
-class TrackerList: public QTreeWidget {
+class AutomatedRssDownloader : public QDialog
+{
   Q_OBJECT
-  Q_DISABLE_COPY(TrackerList)
-
-private:
-  PropertiesWidget *properties;
-  QHash<QString, QTreeWidgetItem*> tracker_items;
-  QTreeWidgetItem* dht_item;
-  QTreeWidgetItem* pex_item;
-  QTreeWidgetItem* lsd_item;
 
 public:
-  TrackerList(PropertiesWidget *properties);
-  ~TrackerList();
+  explicit AutomatedRssDownloader(QWidget *parent = 0);
+  ~AutomatedRssDownloader();
 
-protected:
-  QList<QTreeWidgetItem*> getSelectedTrackerItems() const;
-
-public slots:
-  void setRowColor(int row, QColor color);
-
-  void moveSelectionUp();
-  void moveSelectionDown();
-
-  void clear();
-  void loadStickyItems(const QTorrentHandle &h);
-  void loadTrackers();
-  void askForTrackers();
-  void deleteSelectedTrackers();
-  void showTrackerListMenu(QPoint);
+protected slots:
   void loadSettings();
-  void saveSettings() const;
+  void saveSettings();
 
+private:
+  Ui::AutomatedRssDownloader *ui;
 };
 
-#endif // TRACKERLIST_H
+#endif // AUTOMATEDRSSDOWNLOADER_H

@@ -29,7 +29,7 @@
  */
 
 #include "rssmanager.h"
-#include "preferences.h"
+#include "rsssettings.h"
 #include "qbtsession.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
@@ -37,7 +37,7 @@
 RssManager::RssManager(QBtSession *BTSession): RssFolder(0, this, BTSession, QString::null) {
   loadStreamList();
   connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshAll()));
-  refreshInterval = Preferences::getRSSRefreshInterval();
+  refreshInterval = RssSettings::getRSSRefreshInterval();
   newsRefresher.start(refreshInterval*60000);
 }
 

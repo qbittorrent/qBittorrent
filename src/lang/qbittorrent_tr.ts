@@ -154,6 +154,53 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AutomatedRssDownloader</name>
+    <message>
+        <source>Automated RSS Downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable the automated RSS downloader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must not contain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save torrent to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Assign label:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rule to feeds:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Bittorrent</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
@@ -2446,6 +2493,22 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos;, indiriliyor, lütfen bekleyin...</translation>
     </message>
+    <message>
+        <source>The network interface defined is invalid: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying any other network interface available instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Listening on IP address %1 on network interface %2...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to listen on network interface %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -2659,19 +2722,38 @@ p, li { white-space: pre-wrap; }
     <name>RssSettings</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation>RSS Okuyucu Ayarları</translation>
+        <translation type="obsolete">RSS Okuyucu Ayarları</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation>RSS beslemeleri yenileme süresi:</translation>
+        <translation type="obsolete">RSS beslemeleri yenileme süresi:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>dakika</translation>
+        <translation type="obsolete">dakika</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Besleme başına azami makale sayısı:</translation>
+        <translation type="obsolete">Besleme başına azami makale sayısı:</translation>
+    </message>
+</context>
+<context>
+    <name>RssSettingsDlg</name>
+    <message>
+        <source>RSS Reader Settings</source>
+        <translation type="unfinished">RSS Okuyucu Ayarları</translation>
+    </message>
+    <message>
+        <source>RSS feeds refresh interval:</source>
+        <translation type="unfinished">RSS beslemeleri yenileme süresi:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished">dakika</translation>
+    </message>
+    <message>
+        <source>Maximum number of articles per feed:</source>
+        <translation type="unfinished">Besleme başına azami makale sayısı:</translation>
     </message>
 </context>
 <context>

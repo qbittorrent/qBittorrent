@@ -1249,5 +1249,5 @@ void GUI::handleUpdateInstalled(QString error_msg)
 
 void GUI::on_actionDonate_money_triggered()
 {
-    QDesktopServices::openUrl(QUrl("https://sourceforge.net/donate/index.php?group_id=163414"));
+    QDesktopServices::openUrl(QUrl("http://sourceforge.net/donate/index.php?group_id=163414"));
 }
