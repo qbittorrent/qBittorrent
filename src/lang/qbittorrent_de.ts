@@ -359,118 +359,118 @@ p, li { white-space: pre-wrap; }
         <translation>Fehler: Der Torret %1 enthält keineDateien.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1652"/>
+        <location filename="../bittorrent.cpp" line="1657"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;wurde aufgrund Ihrer IP Filter geblockt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1654"/>
+        <location filename="../bittorrent.cpp" line="1659"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;wurde aufgrund von beschädigten Teilen gebannt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1828"/>
+        <location filename="../bittorrent.cpp" line="1833"/>
         <source>The network interface defined is invalid: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1829"/>
+        <location filename="../bittorrent.cpp" line="1834"/>
         <source>Trying any other network interface available instead.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1843"/>
+        <location filename="../bittorrent.cpp" line="1848"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1846"/>
+        <location filename="../bittorrent.cpp" line="1851"/>
         <source>Failed to listen on network interface %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1988"/>
+        <location filename="../bittorrent.cpp" line="1993"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiver Download von Datei %1, eingebettet in Torrent %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="1998"/>
-        <location filename="../bittorrent.cpp" line="2075"/>
+        <location filename="../bittorrent.cpp" line="2003"/>
+        <location filename="../bittorrent.cpp" line="2080"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Konnte Torrent-Datei %1 nicht dekodieren.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2370"/>
+        <location filename="../bittorrent.cpp" line="2375"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port Mapping Fehler, Fehlermeldung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2375"/>
+        <location filename="../bittorrent.cpp" line="2380"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port Mapping Fehler, Meldung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2402"/>
+        <location filename="../bittorrent.cpp" line="2407"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Fast-Resume Daten für den Torrent %1 wurden zurückgewiesen, prüfe erneut...</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2282"/>
-        <location filename="../bittorrent.cpp" line="2403"/>
+        <location filename="../bittorrent.cpp" line="2287"/>
+        <location filename="../bittorrent.cpp" line="2408"/>
         <source>Reason: %1</source>
         <translation>Begründung: %1</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2031"/>
+        <location filename="../bittorrent.cpp" line="2036"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2032"/>
+        <location filename="../bittorrent.cpp" line="2037"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2033"/>
+        <location filename="../bittorrent.cpp" line="2038"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2034"/>
+        <location filename="../bittorrent.cpp" line="2039"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2035"/>
+        <location filename="../bittorrent.cpp" line="2040"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2037"/>
+        <location filename="../bittorrent.cpp" line="2042"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2281"/>
+        <location filename="../bittorrent.cpp" line="2286"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ein I/O Fehler ist aufgetreten, &apos;%1&apos; angehalten.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2398"/>
+        <location filename="../bittorrent.cpp" line="2403"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Diskrepanz bei der Dateigröße des Torrent %1, Torrent wird angehalten.</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2408"/>
+        <location filename="../bittorrent.cpp" line="2413"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>URL Seed Lookup für die URL &apos;%1&apos; ist fehlgeschlagen, Begründung: %2</translation>
     </message>
     <message>
-        <location filename="../bittorrent.cpp" line="2532"/>
+        <location filename="../bittorrent.cpp" line="2537"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Lade &apos;%1&apos;, bitte warten...</translation>
@@ -2461,27 +2461,33 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../proplistdelegate.h" line="109"/>
-        <location filename="../proplistdelegate.h" line="160"/>
+        <location filename="../proplistdelegate.h" line="112"/>
+        <location filename="../proplistdelegate.h" line="163"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="103"/>
-        <location filename="../proplistdelegate.h" line="161"/>
+        <location filename="../proplistdelegate.h" line="106"/>
+        <location filename="../proplistdelegate.h" line="164"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../proplistdelegate.h" line="100"/>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../proplistdelegate.h" line="103"/>
         <source>Not downloaded</source>
         <translation>Nicht heruntergeladen</translation>
     </message>
     <message>
-        <location filename="../proplistdelegate.h" line="106"/>
-        <location filename="../proplistdelegate.h" line="162"/>
+        <location filename="../proplistdelegate.h" line="109"/>
+        <location filename="../proplistdelegate.h" line="165"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximum</translation>
@@ -3339,22 +3345,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="315"/>
+        <location filename="../torrentfilesmodel.h" line="326"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="315"/>
+        <location filename="../torrentfilesmodel.h" line="326"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="315"/>
+        <location filename="../torrentfilesmodel.h" line="326"/>
         <source>Progress</source>
         <translation>Fortschritt</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="315"/>
+        <location filename="../torrentfilesmodel.h" line="326"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>
@@ -4937,129 +4943,129 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="216"/>
-        <location filename="../torrentadditiondlg.cpp" line="219"/>
+        <location filename="../torrentadditiondlg.cpp" line="217"/>
+        <location filename="../torrentadditiondlg.cpp" line="220"/>
         <source>Unable to decode torrent file:</source>
         <translation>Torrent Datei kann nicht dekodiert werden:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="478"/>
-        <location filename="../torrentadditiondlg.cpp" line="483"/>
-        <location filename="../torrentadditiondlg.cpp" line="485"/>
+        <location filename="../torrentadditiondlg.cpp" line="482"/>
+        <location filename="../torrentadditiondlg.cpp" line="487"/>
+        <location filename="../torrentadditiondlg.cpp" line="489"/>
         <source>Choose save path</source>
         <translation>Wählen Sie den Speicher-Pfad</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="181"/>
+        <location filename="../torrentadditiondlg.cpp" line="182"/>
         <source>Unable to decode magnet link:</source>
         <translation>Magnet-Link konnte nicht dekodiert werden:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="187"/>
+        <location filename="../torrentadditiondlg.cpp" line="188"/>
         <source>Magnet Link</source>
         <translation>Magnet-Link</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="301"/>
+        <location filename="../torrentadditiondlg.cpp" line="305"/>
         <source>Rename...</source>
         <translation>Umbenennen...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="345"/>
+        <location filename="../torrentadditiondlg.cpp" line="349"/>
         <source>Rename the file</source>
         <translation>Datei umbenennen</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
+        <location filename="../torrentadditiondlg.cpp" line="350"/>
         <source>New name:</source>
         <translation>Neuer Name:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="350"/>
-        <location filename="../torrentadditiondlg.cpp" line="380"/>
+        <location filename="../torrentadditiondlg.cpp" line="354"/>
+        <location filename="../torrentadditiondlg.cpp" line="384"/>
         <source>The file could not be renamed</source>
         <translation>Die Datei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="351"/>
+        <location filename="../torrentadditiondlg.cpp" line="355"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Der Dateiname enthält ungültige Zeichen, bitte einen anderen wählen.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="381"/>
-        <location filename="../torrentadditiondlg.cpp" line="415"/>
+        <location filename="../torrentadditiondlg.cpp" line="385"/>
+        <location filename="../torrentadditiondlg.cpp" line="419"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet. Bitte anderen wählen.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="414"/>
+        <location filename="../torrentadditiondlg.cpp" line="418"/>
         <source>The folder could not be renamed</source>
         <translation>Das Verzeichnis konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="462"/>
+        <location filename="../torrentadditiondlg.cpp" line="466"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 übrig nachdem der Torrent geladen wurde)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="465"/>
+        <location filename="../torrentadditiondlg.cpp" line="469"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 mehr benötigt u die Datei downloaden zu können)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
+        <location filename="../torrentadditiondlg.cpp" line="542"/>
         <source>Empty save path</source>
         <translation>Leerer Speicher-Pfad</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
+        <location filename="../torrentadditiondlg.cpp" line="542"/>
         <source>Please enter a save path</source>
         <translation>Bitte geben Sie einen Speicher-Pfad ein</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="611"/>
+        <location filename="../torrentadditiondlg.cpp" line="615"/>
         <source>Save path creation error</source>
         <translation>Fehler beim erstellen des Speicher-Pfades</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="611"/>
+        <location filename="../torrentadditiondlg.cpp" line="615"/>
         <source>Could not create the save path</source>
         <translation>Speicher-Pfad konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="559"/>
+        <location filename="../torrentadditiondlg.cpp" line="563"/>
         <source>Invalid label name</source>
         <translation>Ungültiger Labelname</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="559"/>
+        <location filename="../torrentadditiondlg.cpp" line="563"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Bitte keine Sonderzeichen im Labelname verwenden.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="596"/>
+        <location filename="../torrentadditiondlg.cpp" line="600"/>
         <source>Seeding mode error</source>
         <translation>Seeding-Modus-Fehler</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="596"/>
+        <location filename="../torrentadditiondlg.cpp" line="600"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Sie haben sich entschlossen das Überprüfen der Dateien zu überspringen. Lokale Dateien scheinen jedoch im aktuellen Zielverzeichnis nicht zu existieren. Bitte deaktivieren Sie diese Eigenschaft oder aktualisieren Sie den Speicherpfad.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="603"/>
+        <location filename="../torrentadditiondlg.cpp" line="607"/>
         <source>Invalid file selection</source>
         <translation>Ungültige Datei Auswahl</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="603"/>
+        <location filename="../torrentadditiondlg.cpp" line="607"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Sie müssen mindestens eine Datei aus dem Torrent selektieren </translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="305"/>
+        <location filename="../torrentadditiondlg.cpp" line="309"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>

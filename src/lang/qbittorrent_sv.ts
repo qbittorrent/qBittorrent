@@ -1964,6 +1964,11 @@ Detta meddelande kommer inte att visas igen.</translation>
         <source>Not downloaded</source>
         <translation>Inte hämtad</translation>
     </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>

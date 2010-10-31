@@ -1964,6 +1964,11 @@ Nenhum outro aviso será dado.</translation>
         <source>Not downloaded</source>
         <translation>Não baixado</translation>
     </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>

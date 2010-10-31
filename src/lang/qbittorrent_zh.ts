@@ -1968,6 +1968,11 @@ No further notices will be issued.</source>
         <source>Not downloaded</source>
         <translation>未下载</translation>
     </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>

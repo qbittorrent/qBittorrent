@@ -2021,6 +2021,11 @@ No further notices will be issued.</source>
         <comment>Maximum (priority)</comment>
         <translation>Максималан</translation>
     </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>

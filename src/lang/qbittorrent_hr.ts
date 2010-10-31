@@ -2391,6 +2391,11 @@ QGroupBox {
         <comment>Maximum (priority)</comment>
         <translation>Najviši</translation>
     </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>

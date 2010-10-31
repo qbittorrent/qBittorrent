@@ -1970,6 +1970,11 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <source>Not downloaded</source>
         <translation>Nestiahnuté</translation>
     </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>
