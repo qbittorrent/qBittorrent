@@ -224,7 +224,7 @@ void QTracker::ReplyWithPeerList(QTcpSocket *socket, const TrackerAnnounceReques
   // bencode
   std::vector<char> buf;
   bencode(std::back_inserter(buf), reply_entry);
-  QByteArray reply(buf.data(), buf.size());
+  QByteArray reply(&buf[0], buf.size());
   qDebug("QTracker: reply with the following bencoded data:\n %s", reply.constData());
   // HTTP reply
   QHttpResponseHeader response;

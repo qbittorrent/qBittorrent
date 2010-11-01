@@ -730,7 +730,7 @@ void PropertiesWidget::renameSelectedFile() {
           // Rename the file
           Q_ASSERT(!new_file_name.isEmpty());
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-          if(h.file_at(0).compare(new_file_name, Qt::CaseInsensitive) != 0) {
+          if(h.filename_at(0).compare(new_file_name, Qt::CaseInsensitive) != 0) {
 #else
             if(h.filename_at(0).compare(new_file_name, Qt::CaseSensitive) != 0) {
 #endif
