@@ -474,7 +474,6 @@ void QTorrentHandle::add_url_seed(QString seed) {
 void QTorrentHandle::prioritize_files(const std::vector<int> &v) {
   // Does not do anything for seeding torrents
   Q_ASSERT(torrent_handle::is_valid());
-  Q_ASSERT(v.size() == (unsigned int)torrent_handle::get_torrent_info().num_files());
   if(v.size() != (unsigned int)torrent_handle::get_torrent_info().num_files())
     return;
   bool was_seed = is_seed();
