@@ -481,11 +481,16 @@ void RSSImp::refreshTextBrowser() {
   if(selection.empty()) return;
   Q_ASSERT(selection.size() == 1);
   QTreeWidgetItem *item = selection.first();
+  Q_ASSERT(item);
   if(item == previous_news) return;
   // Stop displaying previous news if necessary
   if(listStreams->currentFeed() == listStreams->getUnreadItem()) {
     if(previous_news) {
+      disconnect(listNews, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
+      listNews->removeItemWidget(previous_news, 0);
+      Q_ASSERT(previous_news);
       delete previous_news;
+      connect(listNews, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
     }
     previous_news = item;
   }
@@ -590,6 +595,8 @@ RSSImp::RSSImp(Bittorrent *BTSession) : QWidget(), BTSession(BTSession){
   splitter_h->insertWidget(0, listStreams);
   listNews->hideColumn(NEWS_URL_COL);
   listNews->setColumnWidth(0, 16);
+  listNews->setSelectionBehavior(QAbstractItemView::SelectItems);
+  listNews->setSelectionMode(QAbstractItemView::SingleSelection);
 
   fillFeedsList();
   refreshNewsList(listStreams->currentItem());
