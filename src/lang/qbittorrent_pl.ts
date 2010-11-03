@@ -1454,6 +1454,14 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Donate money</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you like qBittorrent, please donate!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -2023,6 +2031,11 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <message>
         <source>Not downloaded</source>
         <translation>Nie pobierany</translation>
+    </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3135,6 +3148,14 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is not a valid torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

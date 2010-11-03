@@ -399,7 +399,7 @@ int TransferListWidget::updateTorrent(int row) {
           if(h.is_seed()) {
             s = STATE_QUEUED_UP;
           } else {
-            s =STATE_QUEUED_DL;
+            s = STATE_QUEUED_DL;
           }
           listModel->setData(listModel->index(row, TR_NAME), QVariant(QIcon(QString::fromUtf8(":/Icons/skin/queued.png"))), Qt::DecorationRole);
           listModel->setData(listModel->index(row, TR_STATUS), s);

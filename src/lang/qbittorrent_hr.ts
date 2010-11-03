@@ -1656,6 +1656,14 @@ Neće biti daljnjih napomena.</translation>
         <source>Import torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Donate money</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you like qBittorrent, please donate!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -2473,6 +2481,11 @@ QGroupBox {
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Najviši</translation>
+    </message>
+    <message>
+        <source>Mixed</source>
+        <comment>Mixed (priorities</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3592,6 +3605,14 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is not a valid torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
