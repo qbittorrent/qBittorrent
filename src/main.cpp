@@ -37,6 +37,9 @@
 #include <QStyleFactory>
 #include <QStyle>
 #include <QSplashScreen>
+#include <QPainter>
+#include <QPen>
+#include <QFont>
 #include <QPushButton>
 #include <QTimer>
 #include "sessionapplication.h"
@@ -253,7 +256,13 @@ int main(int argc, char *argv[]){
   }
   QSplashScreen *splash = 0;
   if(!no_splash) {
-    splash = new QSplashScreen(QPixmap(QString::fromUtf8(":/Icons/skin/splash.png")), Qt::WindowStaysOnTopHint);
+    QPixmap splash_img(":/Icons/skin/splash.png");
+    QPainter painter(&splash_img);
+    QString version = VERSION;
+    painter.setPen(QPen(Qt::white));
+    painter.setFont(QFont("Arial", 22, QFont::Black));
+    painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
+    splash = new QSplashScreen(splash_img, Qt::WindowStaysOnTopHint);
     splash->show();
     app.processEvents();
     QTimer::singleShot(2000, splash, SLOT(deleteLater()));
