@@ -141,46 +141,46 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wyświetlaj powiadomienia w dymkach</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Włącz wbudowany tracker</translation>
     </message>
     <message>
         <source>Embedded tracker port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port wbudowanego trackera</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Automated RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Automatyczne pobieranie z RSS</translation>
     </message>
     <message>
         <source>Enable the automated RSS downloader</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Włącz automatyczne pobieranie z RSS</translation>
     </message>
     <message>
         <source>Download rules</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reguły pobierania</translation>
     </message>
     <message>
         <source>Rule definition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Definicja reguły</translation>
     </message>
     <message>
         <source>Must contain:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Musi zawierać:</translation>
     </message>
     <message>
         <source>Must not contain:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie może zawierać:</translation>
     </message>
     <message>
         <source>Save torrent to:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zapisz torrent do:</translation>
     </message>
     <message>
         <source>...</source>
@@ -188,7 +188,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Assign label:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przypisz etykietę:</translation>
     </message>
     <message>
         <source>Apply rule to feeds:</source>
@@ -196,7 +196,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Matching RSS articles</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pasujące wpisy RSS</translation>
     </message>
 </context>
 <context>
@@ -823,11 +823,11 @@ Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ustaw hasło...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktualizacja hasła</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
@@ -843,28 +843,29 @@ Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nieprawidłowe hasło</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Podane hasło jest nieprawidłowe</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dostępna jest nowa wersja</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nowa wersja qBittorrenta jest dostępna na Sourceforge.
+Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie można zaktualizować qBittorrenta</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktualizacja qBittorrenta nie powiodła się, powód: %1</translation>
     </message>
 </context>
 <context>
@@ -1281,7 +1282,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <name>LineEdit</name>
     <message>
         <source>Clear the text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usuń tekst</translation>
     </message>
 </context>
 <context>
@@ -1424,39 +1425,39 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zablokuj qBittorrenta</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+L</translation>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wyłącz komputer po ukończeniu pobierania</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">W&amp;znów</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wznów wszystki&amp;e</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wyłącz qBittorrenta po ukończeniu pobierania</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zakończ</translation>
     </message>
     <message>
         <source>Import torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Importuj torrent...</translation>
     </message>
     <message>
         <source>Donate money</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dary pieniężne</translation>
     </message>
     <message>
         <source>If you like qBittorrent, please donate!</source>
@@ -1576,7 +1577,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Copy IP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiuj IP</translation>
     </message>
 </context>
 <context>
@@ -1636,15 +1637,15 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Maksymalna ilość aktywnych pobierań:</translation>
+        <translation>Maksymalna liczba aktywnych pobierań:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>Maksymalna ilość aktywnych wysyłań:</translation>
+        <translation>Maksymalna liczba aktywnych wysyłań:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Maksymalna ilość aktywnych torrentów:</translation>
+        <translation>Maksymalna liczba aktywnych torrentów:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -1680,15 +1681,15 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Maksymalna ilość połączeń:</translation>
+        <translation>Maksymalna liczba połączeń:</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Maksymalna ilość połączeń na torrent:</translation>
+        <translation>Maksymalna liczba połączeń na torrent:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maksymalna ilość slotów wysyłania na torrent:</translation>
+        <translation>Maksymalna liczba slotów wysyłania na torrent:</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -1980,35 +1981,35 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wyślij wiadomość e-mail po ukończeniu pobierania</translation>
     </message>
     <message>
         <source>Destination email:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adres e-mail:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Serwer SNMP:</translation>
     </message>
     <message>
         <source>Run an external program on torrent completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uruchom zewnętrzny program po ukończeniu pobierania</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Użyj %f w celu przekazania ścieżki do torrenta w parametrach</translation>
     </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie można utworzyć pliku %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie można pobrać aktualizacji z %1</translation>
     </message>
 </context>
 <context>
@@ -2050,7 +2051,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Partnerzy</translation>
     </message>
     <message>
         <source>URL Seeds</source>
@@ -2349,15 +2350,15 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Embedded Tracker [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wbudowany tracker [WŁ]</translation>
     </message>
     <message>
         <source>Failed to start the embedded tracker!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie udało się uruchomić wbudowanego trackera!</translation>
     </message>
     <message>
         <source>Embedded Tracker [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wbudowany tracker [WYŁ]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
@@ -2438,20 +2439,20 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nazwa torrenta: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rozmiar torrenta: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Katalog zapisu: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Torrent został pobrany w %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
@@ -2459,7 +2460,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[qBittorrent] %1 został pobrany</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
@@ -2496,7 +2497,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>The network interface defined is invalid: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zdefiniowany interfejs sieciowy jest nieprawidłowy: %1</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
@@ -2735,7 +2736,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Maksymalna ilość wiadomości na kanał RSS:</translation>
+        <translation type="obsolete">Maksymalna liczba wiadomości na kanał RSS:</translation>
     </message>
 </context>
 <context>
@@ -2754,7 +2755,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Maksymalna ilość wiadomości na kanał RSS:</translation>
+        <translation type="unfinished">Maksymalna liczba wiadomości na kanał RSS:</translation>
     </message>
 </context>
 <context>
@@ -3012,11 +3013,12 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent powinien zostać zrestartowany</translation>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>This message should be much shorter, but I don&apos;t have any other ideas.</translatorcomment>
+        <translation type="unfinished">qBittorrent został własnie zaktualizowany i musi zostać uruchomiony ponownie, aby wprowadzone zmiany odniosły skutek.</translation>
     </message>
 </context>
 <context>
@@ -3102,7 +3104,7 @@ Do you want to install it now?</source>
     <name>TorrentImportDlg</name>
     <message>
         <source>Torrent Import</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Importowanie torrenta</translation>
     </message>
     <message>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
@@ -3110,7 +3112,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrent file to import:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Plik torrenta do zaimportowania:</translation>
     </message>
     <message>
         <source>...</source>
@@ -3126,7 +3128,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Importuj</translation>
     </message>
     <message>
         <source>Torrent file to import</source>
@@ -3139,7 +3141,7 @@ Do you want to install it now?</source>
     <message>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pliki %1</translation>
     </message>
     <message>
         <source>Please provide the location of %1</source>
@@ -3152,11 +3154,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nieprawidłowy plik torrenta</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">To nie jest prawidłowy plik torrenta.</translation>
     </message>
 </context>
 <context>
@@ -3366,15 +3368,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wznów torrenty</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wstrzymaj torrenty</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usuń torrenty</translation>
     </message>
 </context>
 <context>
@@ -3558,22 +3560,22 @@ Do you want to install it now?</source>
     <message>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przenieś w górę</translation>
     </message>
     <message>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przenieś w dół</translation>
     </message>
     <message>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przenieś na początek</translation>
     </message>
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Przenieś na koniec</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -3582,7 +3584,7 @@ Do you want to install it now?</source>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wznów</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -3596,7 +3598,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tracker</translation>
     </message>
 </context>
 <context>
@@ -3877,7 +3879,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adresy trackerów:</translation>
     </message>
     <message>
         <source>Web seeds urls:</source>
@@ -4284,7 +4286,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent wyłączy teraz komputer, ponieważ pobieranie zostało ukończone.</translation>
     </message>
 </context>
 <context>
