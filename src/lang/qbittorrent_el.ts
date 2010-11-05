@@ -1513,14 +1513,14 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Legal Notice</source>
         <translatorcomment>Gonna look it up a bit... maybe just &quot;ειδοποίηση&quot;</translatorcomment>
         <translation>Νομική Ειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="103"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -1529,22 +1529,22 @@ No further notices will be issued.</source>
 Δεν θα υπάρξουν άλλες υπενθυμίσεις.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="93"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Πατήστε το %1 για αποδοχή και συνέχεις...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="101"/>
+        <location filename="../main.cpp" line="104"/>
         <source>Legal notice</source>
         <translation>Νομική Ειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="105"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="103"/>
+        <location filename="../main.cpp" line="106"/>
         <source>I Agree</source>
         <translation>Συμφωνώ</translation>
     </message>
@@ -4476,32 +4476,32 @@ Please install it manually.</source>
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="68"/>
+        <location filename="../main.cpp" line="71"/>
         <source>Usage:</source>
         <translation>Χρήση:</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="69"/>
+        <location filename="../main.cpp" line="72"/>
         <source>displays program version</source>
         <translation>προβάλλει την έκδοση του προγράμματος</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="74"/>
         <source>disable splash screen</source>
         <translation>απενεργοποίηση του splash screen</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="73"/>
+        <location filename="../main.cpp" line="76"/>
         <source>displays this help message</source>
         <translation>εμφάνιση μηνύματος βοήθειας</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="74"/>
+        <location filename="../main.cpp" line="77"/>
         <source>changes the webui port (current: %1)</source>
         <translation>αλλάζει την θύρα του webui (τρέχουσα: %1)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="75"/>
+        <location filename="../main.cpp" line="78"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[αρχεία ή url]: κατεβάζει τα περασμένα από το χρήστη τόρεντ (προαιρετικό)</translation>
     </message>

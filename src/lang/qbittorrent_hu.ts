@@ -1512,13 +1512,13 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Legal Notice</source>
         <translation>Jogi figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="103"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -1527,22 +1527,22 @@ No further notices will be issued.</source>
 Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="93"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Nyomd meg a %1 billentyűt az elfogadás és folytatáshoz...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="101"/>
+        <location filename="../main.cpp" line="104"/>
         <source>Legal notice</source>
         <translation>Jogi figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="105"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="103"/>
+        <location filename="../main.cpp" line="106"/>
         <source>I Agree</source>
         <translation>Elfogadom</translation>
     </message>
@@ -4472,32 +4472,32 @@ Kérlek telepítsd manuálisan.</translation>
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="68"/>
+        <location filename="../main.cpp" line="71"/>
         <source>Usage:</source>
         <translation>Használat:</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="69"/>
+        <location filename="../main.cpp" line="72"/>
         <source>displays program version</source>
         <translation>program verzió megjelenítése</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="74"/>
         <source>disable splash screen</source>
         <translation>induló képernyő letiltása</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="73"/>
+        <location filename="../main.cpp" line="76"/>
         <source>displays this help message</source>
         <translation>ezen súgó oldal megjelenítése</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="74"/>
+        <location filename="../main.cpp" line="77"/>
         <source>changes the webui port (current: %1)</source>
         <translation>webui port megváltozatása (aktuális: %1)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="75"/>
+        <location filename="../main.cpp" line="78"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[fájl vagy url]: torrent letöltése felhasználói engedély esetén (opcionális)</translation>
     </message>

@@ -1548,13 +1548,13 @@ Està segur que vol sortir?</translation>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Legal Notice</source>
         <translation>Avís Legal</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="103"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -1563,22 +1563,22 @@ No further notices will be issued.</source>
 Probablement això és una cosa que ja sabia, així que no li dirà cap altra vegada. </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="93"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Premi qualsevol tecla per acceptar i continuar...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="101"/>
+        <location filename="../main.cpp" line="104"/>
         <source>Legal notice</source>
         <translation>Avís Legal</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="105"/>
         <source>Cancel</source>
         <translation>Cancel-lar</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="103"/>
+        <location filename="../main.cpp" line="106"/>
         <source>I Agree</source>
         <translation>Estic d&apos;acord</translation>
     </message>
@@ -4508,32 +4508,32 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="68"/>
+        <location filename="../main.cpp" line="71"/>
         <source>Usage:</source>
         <translation>Us:</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="69"/>
+        <location filename="../main.cpp" line="72"/>
         <source>displays program version</source>
         <translation>Mostra la versió del programa</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="74"/>
         <source>disable splash screen</source>
         <translation>Desactivar pantalla d&apos;inici</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="73"/>
+        <location filename="../main.cpp" line="76"/>
         <source>displays this help message</source>
         <translation>Mostra missatge d&apos;ajuda</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="74"/>
+        <location filename="../main.cpp" line="77"/>
         <source>changes the webui port (current: %1)</source>
         <translation>Canviar el port d&apos;IU Web (actual:%1)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="75"/>
+        <location filename="../main.cpp" line="78"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[arxius o URLs] : la descàrrega de torrents necessita aprovació per l&apos;usuari (opcional)</translation>
     </message>
