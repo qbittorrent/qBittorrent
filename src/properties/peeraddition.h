@@ -60,7 +60,12 @@ public:
   ~PeerAdditionDlg(){}
 
   QString getIP() const {
-    return lineIP->text();
+    QHostAddress ip(lineIP->text());
+    if(!ip.isNull()) {
+      // QHostAddress::toString() cleans up the IP for libtorrent
+      return ip.toString();
+    }
+    return QString();
   }
 
   unsigned short getPort() const {
@@ -87,8 +92,7 @@ public:
 
 protected slots:
   void validateInput() {
-    QHostAddress ip(getIP());
-    if(ip.isNull()) {
+    if(getIP().isEmpty()) {
       QMessageBox::warning(this, tr("Invalid IP"),
                            tr("The IP you provided is invalid."),
                            QMessageBox::Ok);

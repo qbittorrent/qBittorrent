@@ -35,6 +35,7 @@
 #include <QFile>
 #include <QDataStream>
 #include <QStringList>
+#include <QHostAddress>
 
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
@@ -61,6 +62,14 @@ private:
   QString filePath;
 
 protected:
+  QString cleanupIPAddress(QString _ip) {
+    QHostAddress ip(_ip.trimmed());
+    if(ip.isNull()) {
+      return QString();
+    }
+    return ip.toString();
+  }
+
   void run(){
     qDebug("Processing filter file");
     if(filePath.endsWith(".dat", Qt::CaseInsensitive)) {
@@ -125,14 +134,24 @@ public:
         }
 
         boost::system::error_code ec;
-        const QString strStartIP = IPs.at(0).trimmed();
+        const QString strStartIP = cleanupIPAddress(IPs.at(0));
+        if(strStartIP.isEmpty()) {
+          qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+          qDebug("Start IP of the range is malformated: %s", qPrintable(strStartIP));
+          continue;
+        }
         libtorrent::address startAddr = libtorrent::address::from_string(qPrintable(strStartIP), ec);
         if(ec) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
           qDebug("Start IP of the range is malformated: %s", qPrintable(strStartIP));
           continue;
         }
-        const QString strEndIP = IPs.at(1).trimmed();
+        const QString strEndIP = cleanupIPAddress(IPs.at(1));
+        if(strEndIP.isEmpty()) {
+          qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
+          qDebug("End IP of the range is malformated: %s", qPrintable(strEndIP));
+          continue;
+        }
         libtorrent::address endAddr = libtorrent::address::from_string(qPrintable(strEndIP), ec);
         if(ec) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
@@ -197,14 +216,24 @@ public:
           continue;
         }
         boost::system::error_code ec;
-        QString strStartIP = IPs.at(0).trimmed();
+        QString strStartIP = cleanupIPAddress(IPs.at(0));
+        if(strStartIP.isEmpty()) {
+          qDebug("p2p file: line %d is malformed.", nbLine);
+          qDebug("Start IP is invalid: %s", qPrintable(strStartIP));
+          continue;
+        }
         libtorrent::address startAddr = libtorrent::address::from_string(qPrintable(strStartIP), ec);
         if(ec) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("Start IP is invalid: %s", qPrintable(strStartIP));
           continue;
         }
-        QString strEndIP = IPs.at(1).trimmed();
+        QString strEndIP = cleanupIPAddress(IPs.at(1));
+        if(strEndIP.isEmpty()) {
+          qDebug("p2p file: line %d is malformed.", nbLine);
+          qDebug("End IP is invalid: %s", qPrintable(strStartIP));
+          continue;
+        }
         libtorrent::address endAddr = libtorrent::address::from_string(qPrintable(strEndIP), ec);
         if(ec) {
           qDebug("p2p file: line %d is malformed.", nbLine);
