@@ -40,6 +40,8 @@ class RssDownloadRule
 public:
   explicit RssDownloadRule();
   static RssDownloadRule fromOldFormat(const QHash<QString, QVariant>& rule_hash, const QString &feed_url, const QString &rule_name); // Before v2.5.0
+  static RssDownloadRule fromNewFormat(const QHash<QString, QVariant> &rule_hash);
+  QHash<QString, QVariant> toHash() const;
   bool matches(const QString &article_title) const;
   void setMustContain(const QString &tokens);
   void setMustNotContain(const QString &tokens);

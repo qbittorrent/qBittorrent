@@ -33,6 +33,7 @@
 
 #include <QList>
 #include <QHash>
+#include <QVariantList>
 
 #include "rssdownloadrule.h"
 
@@ -50,11 +51,14 @@ public:
   static void drop();
   const RssDownloadRule* findMatchingRule(const QString &feed_url, const QString &article_title) const;
   inline QList<RssDownloadRule*> feedRules(const QString &feed_url) const { return m_feedRules.value(feed_url); }
+  QVariantList toVariantList() const;
   void append(const RssDownloadRule& rule);
+  void saveRulesToStorage();
 
 private:
   void loadRulesFromStorage();
   void importRulesInOldFormat(const QHash<QString, QVariant> &rules); // Before v2.5.0
+  void loadRulesFromVariantList(const QVariantList& l);
 
 private:
   QHash<QString, QList<RssDownloadRule*> > m_feedRules;

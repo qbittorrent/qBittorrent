@@ -59,12 +59,25 @@ const RssDownloadRule * RssDownloadRuleList::findMatchingRule(const QString &fee
   return 0;
 }
 
+void RssDownloadRuleList::saveRulesToStorage()
+{
+  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+  qBTRSS.setValue("download_rules", toVariantList());
+}
+
 void RssDownloadRuleList::loadRulesFromStorage()
 {
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   if(qBTRSS.contains("feed_filters")) {
     importRulesInOldFormat(qBTRSS.value("feed_filters").toHash());
+    // Remove outdated rules
+    qBTRSS.remove("feed_filters");
+    // Save to new format
+    saveRulesToStorage();
+    return;
   }
+  // Load from new format
+  loadRulesFromVariantList(qBTRSS.value("download_rules").toList());
 }
 
 void RssDownloadRuleList::importRulesInOldFormat(const QHash<QString, QVariant> &rules)
@@ -72,7 +85,12 @@ void RssDownloadRuleList::importRulesInOldFormat(const QHash<QString, QVariant> 
   foreach(const QString &feed_url, rules.keys()) {
     const QHash<QString, QVariant> feed_rules = rules.value(feed_url).toHash();
     foreach(const QString &rule_name, feed_rules.keys()) {
-      const RssDownloadRule rule = RssDownloadRule::fromOldFormat(feed_rules.value(rule_name).toHash(), feed_url, rule_name);
+      RssDownloadRule rule = RssDownloadRule::fromOldFormat(feed_rules.value(rule_name).toHash(), feed_url, rule_name);
+      // Check for rule name clash
+      while(contains(rule)) {
+        rule.setName(rule.name()+"_");
+      }
+      // Add the rule to the list
       append(rule);
     }
   }
@@ -82,7 +100,28 @@ void RssDownloadRuleList::append(const RssDownloadRule &rule)
 {
   Q_ASSERT(!contains(rule));
   QList<RssDownloadRule>::append(rule);
+  // Update feedRules hashtable
   foreach(const QString &feed_url, rule.rssFeeds()) {
     m_feedRules[feed_url].append(&last());
+  }
+}
+
+QVariantList RssDownloadRuleList::toVariantList() const
+{
+  QVariantList l;
+  QList<RssDownloadRule>::const_iterator it;
+  for(it = begin(); it != end(); it++) {
+    l << it->toHash();
+  }
+  return l;
+}
+
+void RssDownloadRuleList::loadRulesFromVariantList(const QVariantList &l)
+{
+  QVariantList::const_iterator it;
+  for(it=l.begin(); it !=l.end(); it++) {
+    RssDownloadRule rule = RssDownloadRule::fromNewFormat(it->toHash());
+    if(!rule.name().isEmpty())
+      append(rule);
   }
 }

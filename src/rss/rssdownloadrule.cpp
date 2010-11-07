@@ -82,6 +82,30 @@ RssDownloadRule RssDownloadRule::fromOldFormat(const QHash<QString, QVariant> &r
   return rule;
 }
 
+RssDownloadRule RssDownloadRule::fromNewFormat(const QHash<QString, QVariant> &rule_hash)
+{
+  RssDownloadRule rule;
+  rule.setName(rule_hash.value("name").toString());
+  rule.setMustContain(rule_hash.value("must_contain").toString());
+  rule.setMustNotContain(rule_hash.value("must_not_contain").toString());
+  rule.setRssFeeds(rule_hash.value("affected_feeds").toStringList());
+  rule.setEnabled(rule_hash.value("enabled", false).toBool());
+  rule.setLabel(rule_hash.value("label_assigned").toString());
+  return rule;
+}
+
+QHash<QString, QVariant> RssDownloadRule::toHash() const
+{
+  QHash<QString, QVariant> hash;
+  hash["name"] = m_name;
+  hash["must_contain"] = m_mustContain.join(" ");
+  hash["must_not_contain"] = m_mustNotContain.join(" ");
+  hash["affected_feeds"] = m_rssFeeds;
+  hash["enabled"] = m_enabled;
+  hash["label_assigned"] = m_label;
+  return hash;
+}
+
 bool RssDownloadRule::operator==(const RssDownloadRule &other) {
   return m_name == other.name();
 }
