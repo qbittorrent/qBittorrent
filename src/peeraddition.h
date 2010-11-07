@@ -34,6 +34,7 @@
 #include <QDialog>
 #include <QRegExp>
 #include <QMessageBox>
+#include <QHostAddress>
 #include "ui_peer.h"
 #include <libtorrent/session.hpp>
 
@@ -70,16 +71,15 @@ public:
     libtorrent::asio::ip::tcp::endpoint ep;
     PeerAdditionDlg dlg;
     if(dlg.exec() == QDialog::Accepted) {
-      const QRegExp is_ipv6(QString::fromUtf8("[0-9a-f]{4}(:[0-9a-f]{4}){7}"), Qt::CaseInsensitive, QRegExp::RegExp);
-      const QRegExp is_ipv4(QString::fromUtf8("(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}"), Qt::CaseInsensitive, QRegExp::RegExp);
-      QString IP = dlg.getIP();
-      if(is_ipv4.exactMatch(IP)) {
-        // IPv4
-        ep = libtorrent::asio::ip::tcp::endpoint(libtorrent::asio::ip::address_v4::from_string(IP.toLocal8Bit().data()), dlg.getPort());
-      } else {
-        // IPv6
-        ep = libtorrent::asio::ip::tcp::endpoint(libtorrent::asio::ip::address_v6::from_string(IP.toLocal8Bit().data()), dlg.getPort());
+      QString ip = dlg.getIP();
+      boost::system::error_code ec;
+      libtorrent::address addr = libtorrent::address::from_string(qPrintable(ip), ec);
+      if(ec) {
+        qDebug("Unable to parse the provided IP: %s", qPrintable(ip));
+        return ep;
       }
+      qDebug("Provided IP is correct");
+      ep = libtorrent::asio::ip::tcp::endpoint(addr, dlg.getPort());
     }
     return ep;
   }
@@ -87,21 +87,13 @@ public:
 
 protected slots:
   void validateInput() {
-    const QRegExp is_ipv6(QString::fromUtf8("[0-9a-f]{4}(:[0-9a-f]{4}){7}"), Qt::CaseInsensitive, QRegExp::RegExp);
-    const QRegExp is_ipv4(QString::fromUtf8("(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))(\\.(([0-1]?[0-9]?[0-9])|(2[0-4][0-9])|(25[0-5]))){3}"), Qt::CaseInsensitive, QRegExp::RegExp);
-    QString IP = getIP();
-    if(is_ipv4.exactMatch(IP)) {
-      qDebug("Detected IPv4 address: %s", IP.toLocal8Bit().data());
-      accept();
+    QHostAddress ip(getIP());
+    if(ip.isNull()) {
+      QMessageBox::warning(this, tr("Invalid IP"),
+                           tr("The IP you provided is invalid."),
+                           QMessageBox::Ok);
     } else {
-      if(is_ipv6.exactMatch(IP)) {
-        qDebug("Detected IPv6 address: %s", IP.toLocal8Bit().data());
-        accept();
-      } else {
-        QMessageBox::warning(this, tr("Invalid IP"),
-                             tr("The IP you provided is invalid."),
-                             QMessageBox::Ok);
-      }
+      accept();
     }
   }
 };
