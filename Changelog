@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.4.10
     - BUGFIX: Fix possible crash when selecting a RSS item (really closes #575624)
     - BUGFIX: Improved IPv6 support (IP filter and Peer list)
+    - BUGFIX: Make IP filter more tolerant towards strangely formatted IPs
     - BUGFIX: Fix compilation with libnotify v0.7.0 (closes #671769)
 
 * Sun Oct 31 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.9
