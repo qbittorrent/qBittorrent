@@ -105,6 +105,7 @@ protected slots:
   void defineUILockPassword();
   bool unlockUI();
   void notifyOfUpdate(QString);
+  void showConnectionSettings();
   // Keyboard shortcuts
   void createKeyboardShortcuts();
   void displayTransferTab() const;

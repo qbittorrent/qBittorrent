@@ -1309,3 +1309,8 @@ QString options_imp::webUiPassword() const
 {
   return textWebUiPassword->text();
 }
+
+void options_imp::showConnectionTab()
+{
+  tabSelection->setCurrentRow(2);
+}

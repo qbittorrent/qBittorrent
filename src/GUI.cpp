@@ -193,6 +193,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   createKeyboardShortcuts();
   // Create status bar
   status_bar = new StatusBar(QMainWindow::statusBar(), BTSession);
+  connect(status_bar->connectionStatusButton(), SIGNAL(clicked()), SLOT(showConnectionSettings()));
   connect(actionUse_alternative_speed_limits, SIGNAL(triggered()), status_bar, SLOT(toggleAlternativeSpeeds()));
 
 #ifdef Q_WS_MAC
@@ -1254,5 +1255,11 @@ void GUI::handleUpdateInstalled(QString error_msg)
 
 void GUI::on_actionDonate_money_triggered()
 {
-    QDesktopServices::openUrl(QUrl("http://sourceforge.net/donate/index.php?group_id=163414"));
+  QDesktopServices::openUrl(QUrl("http://sourceforge.net/donate/index.php?group_id=163414"));
+}
+
+void GUI::showConnectionSettings()
+{
+  on_actionOptions_triggered();
+  options->showConnectionTab();
 }

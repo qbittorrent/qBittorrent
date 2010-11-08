@@ -158,6 +158,7 @@ protected slots:
 public slots:
   void setLocale(QString locale);
   void useStyle();
+  void showConnectionTab();
 
 signals:
   void status_changed() const;

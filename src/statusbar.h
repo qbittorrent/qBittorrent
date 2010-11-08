@@ -56,10 +56,10 @@ public:
     layout->setContentsMargins(0,0,0,0);
 
     container->setLayout(layout);
-    connecStatusLblIcon = new QLabel();
+    connecStatusLblIcon = new QPushButton();
+    connecStatusLblIcon->setFlat(true);
     connecStatusLblIcon->setFixedWidth(22);
-    connecStatusLblIcon->setFrameShape(QFrame::NoFrame);
-    connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
+    connecStatusLblIcon->setIcon(QIcon(":/Icons/skin/firewalled.png"));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
     dlSpeedLbl = new QPushButton(tr("D: %1 B/s - T: %2", "Download speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
     //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
@@ -145,6 +145,10 @@ public:
     delete container;
   }
 
+  QPushButton* connectionStatusButton() const {
+    return connecStatusLblIcon;
+  }
+
 public slots:
   void showRestartRequired() {
     // Restart required notification
@@ -169,15 +173,15 @@ public slots:
     // Update connection status
     const session_status sessionStatus = BTSession->getSessionStatus();
     if(!BTSession->getSession()->is_listening()) {
-      connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/disconnected.png")));
+      connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/disconnected.png")));
       connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     } else {
       if(sessionStatus.has_incoming_connections) {
         // Connection OK
-        connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/connected.png")));
+        connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/connected.png")));
         connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Online"));
       }else{
-        connecStatusLblIcon->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/firewalled.png")));
+        connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/firewalled.png")));
         connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
       }
     }
@@ -254,7 +258,7 @@ private:
   QFrame *statusSep2;
   QFrame *statusSep3;
   QFrame *statusSep4;
-  QLabel *connecStatusLblIcon;
+  QPushButton *connecStatusLblIcon;
   QPushButton *altSpeedsBtn;
   QTimer *refreshTimer;
   QWidget *container;
