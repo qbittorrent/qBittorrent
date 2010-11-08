@@ -82,10 +82,12 @@ public:
     connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     dlSpeedLbl->setFlat(true);
     dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
+    dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
     altSpeedsBtn = new QPushButton();
     altSpeedsBtn->setFixedWidth(22);
     altSpeedsBtn->setFlat(true);
+    altSpeedsBtn->setCursor(Qt::PointingHandCursor);
     altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
     updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
 
@@ -95,6 +97,7 @@ public:
     //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
     upSpeedLbl->setFlat(true);
+    upSpeedLbl->setCursor(Qt::PointingHandCursor);
     upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
     DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
