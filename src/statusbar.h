@@ -58,7 +58,9 @@ public:
     container->setLayout(layout);
     connecStatusLblIcon = new QPushButton();
     connecStatusLblIcon->setFlat(true);
+    connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
     connecStatusLblIcon->setFixedWidth(22);
+    connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
     connecStatusLblIcon->setIcon(QIcon(":/Icons/skin/firewalled.png"));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
     dlSpeedLbl = new QPushButton(tr("D: %1 B/s - T: %2", "Download speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
@@ -66,11 +68,13 @@ public:
     connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     dlSpeedLbl->setFlat(true);
     dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
+    dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
     altSpeedsBtn = new QPushButton();
     altSpeedsBtn->setFixedWidth(22);
     altSpeedsBtn->setFlat(true);
     altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
+    altSpeedsBtn->setCursor(Qt::PointingHandCursor);
     updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
 
     connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
@@ -80,6 +84,7 @@ public:
     connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
     upSpeedLbl->setFlat(true);
     upSpeedLbl->setFocusPolicy(Qt::NoFocus);
+    upSpeedLbl->setCursor(Qt::PointingHandCursor);
     DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
     DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     statusSep1 = new QFrame();

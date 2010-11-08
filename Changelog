@@ -6,6 +6,7 @@
     - FEATURE: Added a transfer list column to display the current tracker
     - FEATURE: Remember the last trackers used in the torrent creation tool
     - FEATURE: The optimal piece size is now automatically computed in the torrent creation tool
+    - FEATURE: Bring up the connection settings when clicking on the connection status icon
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
 
