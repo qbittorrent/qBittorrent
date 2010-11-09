@@ -19,6 +19,8 @@
 #endif
 #endif
 
+#include "misc.h"
+
 #ifndef CIFS_MAGIC_NUMBER
 #define CIFS_MAGIC_NUMBER 0xFF534D42
 #endif
@@ -26,6 +28,9 @@
 #ifndef NFS_SUPER_MAGIC
 #define NFS_SUPER_MAGIC 0x6969
 #endif
+
+const int WATCH_INTERVAL = 10000; // 10 sec
+const int MAX_PARTIAL_RETRIES = 5;
 
 /*
  * Subclassing QFileSystemWatcher in order to support Network File
@@ -39,11 +44,14 @@ private:
   QList<QDir> watched_folders;
   QPointer<QTimer> watch_timer;
 #endif
-  QStringList filters;
+  QStringList m_filters;
+  // Partial torrents
+  QHash<QString, int> m_partialTorrents;
+  QPointer<QTimer> m_partialTorrentTimer;
 
 #ifndef Q_WS_WIN
-protected:
-  bool isNetworkFileSystem(QString path) {
+private:
+  static bool isNetworkFileSystem(QString path) {
     QString file = path;
     if(!file.endsWith(QDir::separator()))
       file += QDir::separator();
@@ -99,7 +107,7 @@ protected:
 
 public:
   FileSystemWatcher(QObject *parent): QFileSystemWatcher(parent) {
-    filters << "*.torrent";
+    m_filters << "*.torrent";
     connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanLocalFolder(QString)));
   }
 
@@ -108,6 +116,8 @@ public:
     if(watch_timer)
       delete watch_timer;
 #endif
+    if(m_partialTorrentTimer)
+      delete m_partialTorrentTimer;
   }
 
   QStringList directories() const {
@@ -137,7 +147,7 @@ public:
       if (!watch_timer) {
         watch_timer = new QTimer(this);
         connect(watch_timer, SIGNAL(timeout()), this, SLOT(scanNetworkFolders()));
-        watch_timer->start(5000); // 5 sec
+        watch_timer->start(WATCH_INTERVAL); // 5 sec
       }
     } else {
 #endif
@@ -196,19 +206,72 @@ protected slots:
 #endif
   }
 
+  void processPartialTorrents() {
+    QStringList no_longer_partial;
+
+    // Check which torrents are still partial
+    foreach(const QString& torrent_path, m_partialTorrents.keys()) {
+      if(!QFile::exists(torrent_path)) {
+        m_partialTorrents.remove(torrent_path);
+        continue;
+      }
+      if(misc::isValidTorrentFile(torrent_path)) {
+        no_longer_partial << torrent_path;
+         m_partialTorrents.remove(torrent_path);
+      } else {
+        if(m_partialTorrents[torrent_path] >= MAX_PARTIAL_RETRIES) {
+          m_partialTorrents.remove(torrent_path);
+          QFile::rename(torrent_path, torrent_path+".invalid");
+        } else {
+          m_partialTorrents[torrent_path]++;
+        }
+      }
+    }
+
+    // Stop the partial timer if necessary
+    if(m_partialTorrents.empty()) {
+      m_partialTorrentTimer->stop();
+      m_partialTorrentTimer->deleteLater();
+      qDebug("No longer any partial torrent.");
+    } else {
+      qDebug("Still %d partial torrents after delayed processing.", m_partialTorrents.count());
+      m_partialTorrentTimer->start(WATCH_INTERVAL);
+    }
+    // Notify of new torrents
+    if(!no_longer_partial.isEmpty())
+      emit torrentsAdded(no_longer_partial);
+  }
+
 signals:
   void torrentsAdded(QStringList &pathList);
 
 private:
-  void addTorrentsFromDir(const QDir &dir, QStringList &torrents) {
-    const QStringList files = dir.entryList(filters, QDir::Files, QDir::Unsorted);
-    foreach(const QString &file, files) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-      torrents << dir.absoluteFilePath(file).replace("/", "\\");
-#else
-      torrents << dir.absoluteFilePath(file);
-#endif
+  void startPartialTorrentTimer() {
+    Q_ASSERT(!m_partialTorrents.isEmpty());
+    if(!m_partialTorrentTimer) {
+      m_partialTorrentTimer = new QTimer();
+      connect(m_partialTorrentTimer, SIGNAL(timeout()), SLOT(processPartialTorrents()));
+      m_partialTorrentTimer->setSingleShot(true);
+      m_partialTorrentTimer->start(WATCH_INTERVAL);
     }
+  }
+
+  void addTorrentsFromDir(const QDir &dir, QStringList &torrents) {
+    const QStringList files = dir.entryList(m_filters, QDir::Files, QDir::Unsorted);
+    foreach(const QString &file, files) {
+      const QString file_abspath = dir.absoluteFilePath(file);
+      if(misc::isValidTorrentFile(file_abspath)) {
+        torrents << file_abspath;
+      } else {
+        if(!m_partialTorrents.contains(file_abspath)) {
+          qDebug("Partial torrent detected at: %s", qPrintable(file_abspath));
+          qDebug("Delay the file's processing...");
+          m_partialTorrents.insert(file_abspath, 0);
+        }
+      }
+    }
+    if(!m_partialTorrents.empty())
+      startPartialTorrentTimer();
   }
 
 };
