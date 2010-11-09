@@ -748,3 +748,14 @@ quint64 misc::computePathSize(QString path)
   }
   return size;
 }
+
+bool misc::isValidTorrentFile(const QString &torrent_path) {
+  try {
+    boost::intrusive_ptr<libtorrent::torrent_info> t = new torrent_info(torrent_path.toUtf8().constData());
+    if(!t->is_valid() || t->num_files() == 0)
+      throw std::exception();
+  } catch(std::exception&) {
+    return false;
+  }
+  return true;
+}
