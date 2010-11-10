@@ -2203,7 +2203,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
         QTorrentHandle h(p->handle);
         if(h.is_valid()) {
           // Attempt to remove old folder if empty
-          const QString& old_save_path = TorrentPersistentData::getPreviousPath(h.hash());
+          const QString old_save_path = TorrentPersistentData::getPreviousPath(h.hash());
           const QString new_save_path = misc::toQStringU(p->path);
           qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
           QDir old_save_dir(old_save_path);

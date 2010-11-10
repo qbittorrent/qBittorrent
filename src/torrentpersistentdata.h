@@ -313,7 +313,7 @@ public:
     // Save persistent data
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents", QHash<QString, QVariant>()).toHash();
-    QHash<QString, QVariant> data;
+    QHash<QString, QVariant> data = all_data.value(h.hash()).toHash();
     data["is_magnet"] = is_magnet;
     if(is_magnet) {
       data["magnet_uri"] = misc::toQString(make_magnet_uri(h.get_torrent_handle()));
