@@ -31,6 +31,8 @@
 #ifndef SESSIONAPPLICATION_H
 #define SESSIONAPPLICATION_H
 
+#include <QtCore/QtGlobal>
+
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 #else
