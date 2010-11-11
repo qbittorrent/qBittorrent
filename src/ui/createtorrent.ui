@@ -104,9 +104,6 @@
          <property name="text">
           <string>Announce urls (trackers):</string>
          </property>
-         <property name="buddy">
-          <cstring></cstring>
-         </property>
         </widget>
        </item>
        <item>
@@ -138,9 +135,6 @@
          </property>
          <property name="text">
           <string>Comment (optional):</string>
-         </property>
-         <property name="buddy">
-          <cstring>txt_comment</cstring>
          </property>
         </widget>
        </item>
