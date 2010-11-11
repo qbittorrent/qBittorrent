@@ -3,11 +3,12 @@
 
 #include <QFileSystemWatcher>
 #include <QDir>
-
-#ifndef Q_WS_WIN
-#include <QTimer>
 #include <QPointer>
 #include <QStringList>
+#include <QTimer>
+#include <QHash>
+
+#ifndef Q_WS_WIN
 #include <QSet>
 #include <iostream>
 #include <errno.h>
