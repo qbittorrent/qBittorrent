@@ -259,6 +259,8 @@ window.addEvent('load', function(){
 		row[2] = event.priority
                 row[3] = event.size;
                 row[4] = (event.progress*100).round(1);
+                if(row[4] == 100.0 && event.progress != 1.0)
+                  row[4] = 99.9;
 		row[5] = event.num_seeds;
 		row[6] = event.num_leechs;
                 row[7] = event.dlspeed;
