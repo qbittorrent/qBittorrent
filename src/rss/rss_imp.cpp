@@ -580,7 +580,7 @@ void RSSImp::updateRefreshInterval(unsigned int val) {
 RSSImp::RSSImp(QBtSession *BTSession) : QWidget(), BTSession(BTSession){
   setupUi(this);
 
-  rssmanager = new RssManager(BTSession);
+  rssmanager = RssManager::instance();
 
   listStreams = new FeedListWidget(splitter_h, rssmanager);
   splitter_h->insertWidget(0, listStreams);
@@ -634,7 +634,7 @@ RSSImp::~RSSImp(){
   qDebug("Deleting RSSImp...");
   saveFoldersOpenState();
   delete listStreams;
-  delete rssmanager;
+  RssManager::drop();
   qDebug("RSSImp deleted");
 }
 

@@ -266,10 +266,15 @@
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="listMatchingArticles">
-         <property name="enabled">
+        <widget class="QTreeWidget" name="treeMatchingArticles">
+         <attribute name="headerVisible">
           <bool>false</bool>
-         </property>
+         </attribute>
+         <column>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>

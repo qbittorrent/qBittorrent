@@ -34,6 +34,8 @@
 #include "rssdownloadrule.h"
 #include "preferences.h"
 #include "qinisettings.h"
+#include "rssfeed.h"
+#include "rssarticle.h"
 
 RssDownloadRule::RssDownloadRule()
 {
@@ -122,4 +124,14 @@ void RssDownloadRule::setSavePath(const QString &save_path)
     m_savePath = save_path;
   else
     m_savePath = QString();
+}
+
+QStringList RssDownloadRule::findMatchingArticles(const RssFeed *feed) const
+{
+  QStringList ret;
+  foreach(const RssArticle *art, feed->values()) {
+    if(matches(art->getTitle()))
+      ret << art->getTitle();
+  }
+  return ret;
 }

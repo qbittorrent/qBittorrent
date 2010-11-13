@@ -41,6 +41,8 @@
 #include "rssdownloadrulelist.h"
 #include "preferences.h"
 #include "qinisettings.h"
+#include "rssmanager.h"
+#include "rssfeed.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   QDialog(parent),
@@ -49,6 +51,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   ui->setupUi(this);
   ui->listRules->setSortingEnabled(true);
   ui->listRules->setSelectionMode(QAbstractItemView::ExtendedSelection);
+  ui->treeMatchingArticles->setSortingEnabled(true);
+
   connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
   m_ruleList = RssDownloadRuleList::instance();
   initLabelCombobox();
@@ -58,6 +62,9 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
   connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateFeedList()));
   connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(handleFeedCheckStateChange(QListWidgetItem*)));
+  // Update matching articles when necessary
+  connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
+  connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
   updateRuleDefinitionBox();
   updateFeedList();
 }
@@ -149,6 +156,7 @@ void AutomatedRssDownloader::updateFeedList()
   }
   ui->listFeeds->setEnabled(!ui->listRules->selectedItems().isEmpty());
   connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(handleFeedCheckStateChange(QListWidgetItem*)));
+  updateMatchingArticles();
 }
 
 bool AutomatedRssDownloader::isRssDownloaderEnabled() const
@@ -224,7 +232,11 @@ void AutomatedRssDownloader::saveCurrentRule(QListWidgetItem * item)
 {
   qDebug() << Q_FUNC_INFO << item;
   if(!item) return;
-  if(!ui->listRules->findItems(item->text(), Qt::MatchExactly).isEmpty()) return;
+  if(ui->listRules->findItems(item->text(), Qt::MatchExactly).isEmpty()) {
+    qDebug() << "Could not find rule" << item->text() << "in the UI list";
+    qDebug() << "Probably removed the item, no need to save it";
+    return;
+  }
   RssDownloadRule rule = m_ruleList->getRule(item->text());
   if(!rule.isValid()) {
     rule.setName(item->text());
@@ -263,6 +275,7 @@ void AutomatedRssDownloader::on_addRuleBtn_clicked()
   QListWidgetItem * item = new QListWidgetItem(rule, ui->listRules);
   item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
   item->setCheckState(Qt::Checked); // Enable as a default
+  ui->listRules->clearSelection();
   ui->listRules->setCurrentItem(item);
 }
 
@@ -402,6 +415,54 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
       m_ruleList->saveRule(rule);
     }
   }
+  // Update Matching articles
+  updateMatchingArticles();
+}
+
+void AutomatedRssDownloader::updateMatchingArticles()
+{
+  ui->treeMatchingArticles->clear();
+  if(ui->ruleDefBox->isEnabled()) {
+    saveCurrentRule(ui->listRules->currentItem());
+  }
+  const QHash<QString, RssFeed*> all_feeds = RssManager::instance()->getAllFeedsAsHash();
+
+  foreach(const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
+    RssDownloadRule rule = m_ruleList->getRule(rule_item->text());
+    if(!rule.isValid()) continue;
+    foreach(const QString &feed_url, rule.rssFeeds()) {
+      Q_ASSERT(all_feeds.contains(feed_url));
+      const RssFeed *feed = all_feeds.value(feed_url);
+      const QStringList matching_articles = rule.findMatchingArticles(feed);
+      if(!matching_articles.isEmpty())
+        addFeedArticlesToTree(feed, matching_articles);
+    }
+  }
+}
+
+void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QStringList &articles)
+{
+  // Check if this feed is already in the tree
+  QTreeWidgetItem *treeFeedItem = 0;
+  for(int i=0; i<ui->treeMatchingArticles->topLevelItemCount(); ++i) {
+    QTreeWidgetItem *item = ui->treeMatchingArticles->topLevelItem(i);
+    if(item->data(0, Qt::UserRole).toString() == feed->getUrl()) {
+      treeFeedItem = item;
+      break;
+    }
+  }
+  // If there is none, create it
+  if(!treeFeedItem) {
+    treeFeedItem = new QTreeWidgetItem(QStringList() << feed->getName());
+    treeFeedItem->setData(0, Qt::UserRole, feed->getUrl());
+    ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
+  }
+  // Insert the articles
+  foreach(const QString &art, articles) {
+    QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << art);
+    treeFeedItem->addChild(item);
+  }
+  ui->treeMatchingArticles->expandItem(treeFeedItem);
 }
 
 

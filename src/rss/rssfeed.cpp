@@ -290,21 +290,23 @@ short RssFeed::readDoc(QIODevice* device) {
   resizeList();
 
   // RSS Feed Downloader
-  foreach(RssArticle* item, values()) {
-    if(item->isRead()) continue;
-    QString torrent_url;
-    if(item->has_attachment())
-      torrent_url = item->getTorrentUrl();
-    else
-      torrent_url = item->getLink();
-    // Check if the item should be automatically downloaded
-    const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item->getTitle());
-    if(matching_rule.isValid()) {
-      // Download the torrent
-      BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
-      BTSession->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
-      // Item was downloaded, consider it as Read
-      item->setRead();
+  if(RssSettings::isRssDownloadingEnabled()) {
+    foreach(RssArticle* item, values()) {
+      if(item->isRead()) continue;
+      QString torrent_url;
+      if(item->has_attachment())
+        torrent_url = item->getTorrentUrl();
+      else
+        torrent_url = item->getLink();
+      // Check if the item should be automatically downloaded
+      const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item->getTitle());
+      if(matching_rule.isValid()) {
+        // Download the torrent
+        BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
+        BTSession->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
+        // Item was downloaded, consider it as Read
+        item->setRead();
+      }
     }
   }
   return 0;

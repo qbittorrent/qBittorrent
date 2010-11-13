@@ -34,6 +34,8 @@
 #include <QStringList>
 #include <QVariantHash>
 
+class RssFeed;
+
 class RssDownloadRule
 {
 
@@ -58,6 +60,7 @@ public:
   inline bool isValid() const { return !m_name.isEmpty(); }
   inline QString mustContain() const { return m_mustContain.join(" "); }
   inline QString mustNotContain() const { return m_mustNotContain.join(" "); }
+  QStringList findMatchingArticles(const RssFeed* feed) const;
   // Operators
   bool operator==(const RssDownloadRule &other);
 

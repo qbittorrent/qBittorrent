@@ -66,9 +66,13 @@ class QBtSession : public QObject {
   Q_OBJECT
   Q_DISABLE_COPY(QBtSession)
 
+private:
+  explicit QBtSession();
+  static QBtSession* m_instance;
+
 public:
-  // Constructor / Destructor
-  QBtSession();
+  static QBtSession* instance();
+  static void drop();
   ~QBtSession();
   QTorrentHandle getTorrentHandle(QString hash) const;
   std::vector<torrent_handle> getTorrents() const;

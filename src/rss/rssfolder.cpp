@@ -256,14 +256,25 @@ QList<RssFeed*> RssFolder::getAllFeeds() const {
   QList<RssFeed*> streams;
   foreach(RssFile *item, this->values()) {
     if(item->getType() == RssFile::FEED) {
-      streams << ((RssFeed*)item);
+      streams << static_cast<RssFeed*>(item);
     } else {
-      foreach(RssFeed* stream, ((RssFolder*)item)->getAllFeeds()) {
-        streams << stream;
-      }
+      streams << static_cast<RssFolder*>(item)->getAllFeeds();
     }
   }
   return streams;
+}
+
+QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
+  QHash<QString, RssFeed*> ret;
+  foreach(RssFile *item, this->values()) {
+    if(item->getType() == RssFile::FEED) {
+      RssFeed* feed = static_cast<RssFeed*>(item);
+      ret[feed->getUrl()] = feed;
+    } else {
+      ret.unite(static_cast<RssFolder*>(item)->getAllFeedsAsHash());
+    }
+  }
+  return ret;
 }
 
 void RssFolder::addFile(RssFile * item) {

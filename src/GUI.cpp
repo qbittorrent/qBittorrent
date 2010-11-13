@@ -131,7 +131,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(7);
   // Creating Bittorrent session
-  BTSession = new QBtSession();
+  BTSession = QBtSession::instance();
   connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&, QString)), this, SLOT(fullDiskError(QTorrentHandle&, QString)));
   connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
   connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle&)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle&)));
@@ -277,11 +277,6 @@ GUI::~GUI() {
   // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
   setUnifiedTitleAndToolBarOnMac(false);
 #endif
-  // Async deletion of Bittorrent session as early as possible
-  // in order to speed up exit
-  session_proxy sp;
-  if(BTSession)
-    sp = BTSession->asyncDeletion();
   // Some saving
   properties->saveSettings();
   disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
@@ -328,7 +323,7 @@ GUI::~GUI() {
   delete switchRSSShortcut;
   // Delete BTSession objects
   qDebug("Deleting BTSession");
-  delete BTSession;
+  QBtSession::drop();
   // May freeze for a few seconds after the next line
   // because the Bittorrent session proxy will
   // actually be deleted now and destruction

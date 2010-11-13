@@ -68,6 +68,8 @@
 #include <boost/filesystem/exception.hpp>
 #include <queue>
 
+QBtSession* QBtSession::m_instance = 0;
+
 const int MAX_TRACKER_ERRORS = 2;
 const float MAX_RATIO = 100.;
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
@@ -2627,4 +2629,18 @@ void QBtSession::startUpTorrents() {
   QIniSettings settings("qBittorrent", "qBittorrent");
   settings.setValue("ported_to_new_savepath_system", true);
   qDebug("Unfinished torrents resumed");
+}
+
+QBtSession * QBtSession::instance()
+{
+  if(!m_instance) {
+    m_instance = new QBtSession;
+  }
+  return m_instance;
+}
+
+void QBtSession::drop()
+{
+  if(m_instance)
+    delete m_instance;
 }

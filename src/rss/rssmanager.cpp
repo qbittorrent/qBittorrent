@@ -35,7 +35,9 @@
 #include "rssarticle.h"
 #include "rssdownloadrulelist.h"
 
-RssManager::RssManager(QBtSession *BTSession): RssFolder(0, this, BTSession, QString::null) {
+RssManager* RssManager::m_instance = 0;
+
+RssManager::RssManager(): RssFolder(0, this, QBtSession::instance(), QString::null) {
   loadStreamList();
   connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshAll()));
   refreshInterval = RssSettings::getRSSRefreshInterval();
@@ -136,4 +138,17 @@ QList<RssArticle*> RssManager::sortNewsList(const QList<RssArticle*>& news_list)
     insertSortElem(new_list, item);
   }
   return new_list;
+}
+
+RssManager * RssManager::instance()
+{
+  if(!m_instance)
+    m_instance = new RssManager;
+  return m_instance;
+}
+
+void RssManager::drop()
+{
+  if(m_instance)
+    delete m_instance;
 }

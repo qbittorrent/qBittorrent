@@ -252,10 +252,6 @@ bool RssArticle::has_attachment() const {
   return !torrent_url.isEmpty();
 }
 
-QString RssArticle::getId() const {
-  return id;
-}
-
 QHash<QString, QVariant> RssArticle::toHash() const {
   QHash<QString, QVariant> item;
   item["title"] = title;
@@ -280,10 +276,6 @@ RssFeed* RssArticle::getParent() const {
 
 bool RssArticle::isValid() const {
   return is_valid;
-}
-
-QString RssArticle::getTitle() const{
-  return title;
 }
 
 QString RssArticle::getAuthor() const {

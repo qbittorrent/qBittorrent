@@ -70,10 +70,12 @@ private slots:
   void on_exportBtn_clicked();
   void on_importBtn_clicked();
   void renameSelectedRule();
+  void updateMatchingArticles();
 
 private:
   RssDownloadRule getCurrentRule() const;
   void initLabelCombobox();
+  void addFeedArticlesToTree(const RssFeed *feed, const QStringList& articles);
 
 private:
   Ui::AutomatedRssDownloader *ui;

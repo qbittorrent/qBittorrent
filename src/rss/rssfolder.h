@@ -57,6 +57,7 @@ public:
   unsigned int getNbFeeds() const;
   QList<RssFile*> getContent() const;
   QList<RssFeed*> getAllFeeds() const;
+  QHash<QString, RssFeed*> getAllFeedsAsHash() const;
   QString getName() const;
   QString getID() const;
   bool hasChild(QString ID);

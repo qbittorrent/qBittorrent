@@ -33,6 +33,7 @@
 #include <QDebug>
 
 #include "rssdownloadrulelist.h"
+#include "rsssettings.h"
 #include "qinisettings.h"
 
 RssDownloadRuleList* RssDownloadRuleList::m_instance = 0;
@@ -56,6 +57,7 @@ void RssDownloadRuleList::drop()
 
 RssDownloadRule RssDownloadRuleList::findMatchingRule(const QString &feed_url, const QString &article_title) const
 {
+  Q_ASSERT(RssSettings::isRssDownloadingEnabled());
   QStringList rule_names = feedRules(feed_url);
   foreach(const QString &rule_name, rule_names) {
     RssDownloadRule rule = m_rules[rule_name];
@@ -127,6 +129,7 @@ void RssDownloadRuleList::loadRulesFromVariantHash(const QVariantHash &h)
 
 void RssDownloadRuleList::saveRule(const RssDownloadRule &rule)
 {
+  qDebug() << Q_FUNC_INFO << rule.name();
   Q_ASSERT(rule.isValid());
   if(m_rules.contains(rule.name())) {
     removeRule(rule.name());

@@ -37,9 +37,13 @@
 
 class RssManager: public RssFolder {
   Q_OBJECT
+private:
+  explicit RssManager();
+  static RssManager* m_instance;
 
 public:
-  RssManager(QBtSession *BTSession);
+  static RssManager* instance();
+  static void drop();
   ~RssManager();
   static void insertSortElem(QList<RssArticle*> &list, RssArticle *item);
   static QList<RssArticle*> sortNewsList(const QList<RssArticle*>& news_list);

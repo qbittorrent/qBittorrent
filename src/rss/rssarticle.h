@@ -48,12 +48,12 @@ public:
              QDateTime _date, QString _author, bool _read);
   ~RssArticle();
   bool has_attachment() const;
-  QString getId() const;
+  inline QString getId() const { return id; }
   QHash<QString, QVariant> toHash() const;
   static RssArticle* fromHash(RssFeed* parent, const QHash<QString, QVariant> &h);
   RssFeed* getParent() const;
   bool isValid() const;
-  QString getTitle() const;
+  inline QString getTitle() const { return title; }
   QString getAuthor() const;
   QString getTorrentUrl() const;
   QString getLink() const;
