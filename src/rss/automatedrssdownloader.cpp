@@ -53,10 +53,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   loadSettings();
   connect(ui->listRules, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), SLOT(updateRuleDefinitionBox(QListWidgetItem*,QListWidgetItem*)));
   connect(ui->listRules, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), SLOT(updateFeedList(QListWidgetItem*,QListWidgetItem*)));
-  if(ui->listRules->count() > 0)
-    ui->listRules->setCurrentRow(0);
-  else
-    updateRuleDefinitionBox();
+  updateRuleDefinitionBox();
 }
 
 AutomatedRssDownloader::~AutomatedRssDownloader()
@@ -112,6 +109,8 @@ void AutomatedRssDownloader::loadFeedList()
     item->setData(Qt::UserRole, feed_urls.at(i));
     item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
   }
+  if(ui->listRules->count() > 0 && !ui->listRules->currentItem())
+    ui->listRules->setCurrentRow(0);
 }
 
 QStringList AutomatedRssDownloader::getSelectedFeeds() const
