@@ -60,13 +60,13 @@ protected slots:
   void updateFeedList(QListWidgetItem* current, QListWidgetItem* previous);
 
 private slots:
+  void displayRulesListMenu(const QPoint& pos);
   void on_addRuleBtn_clicked();
   void on_removeRuleBtn_clicked();
   void on_browseSP_clicked();
-
   void on_exportBtn_clicked();
-
   void on_importBtn_clicked();
+  void renameSelectedRule();
 
 private:
   RssDownloadRule getCurrentRule() const;

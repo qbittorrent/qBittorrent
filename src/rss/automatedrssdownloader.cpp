@@ -32,6 +32,8 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDebug>
+#include <QMenu>
+#include <QCursor>
 
 #include "automatedrssdownloader.h"
 #include "ui_automatedrssdownloader.h"
@@ -46,6 +48,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
 {
   ui->setupUi(this);
   ui->listRules->setSortingEnabled(true);
+  connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
   m_ruleList = RssDownloadRuleList::instance();
   initLabelCombobox();
   loadFeedList();
@@ -295,4 +298,51 @@ void AutomatedRssDownloader::on_importBtn_clicked()
   }
   // Reload the rule list
   loadRulesList();
+}
+
+void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
+{
+  Q_UNUSED(pos);
+  QMenu menu;
+  QAction *addAct = menu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add new rule..."));
+  QAction *delAct = 0;
+  QAction *renameAct = 0;
+  if(!ui->listRules->selectedItems().isEmpty()) {
+    delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Delete rule"));
+    menu.addSeparator();
+    renameAct = menu.addAction(QIcon(":/Icons/oxygen/edit_clear.png"), tr("Rename rule..."));
+  }
+  QAction *act = menu.exec(QCursor::pos());
+  if(!act) return;
+  if(act == addAct) {
+    on_addRuleBtn_clicked();
+    return;
+  }
+  if(act == delAct) {
+    on_removeRuleBtn_clicked();
+    return;
+  }
+  if(act == renameAct) {
+    renameSelectedRule();
+    return;
+  }
+}
+
+void AutomatedRssDownloader::renameSelectedRule()
+{
+  QListWidgetItem *item = ui->listRules->currentItem();
+  if(!item) return;
+  forever {
+    QString new_name = QInputDialog::getText(this, tr("Rule renaming"), tr("Please type the new rule name"), QLineEdit::Normal, item->text());
+    new_name = new_name.trimmed();
+    if(new_name.isEmpty()) return;
+    if(m_ruleList->ruleNames().contains(new_name, Qt::CaseInsensitive)) {
+      QMessageBox::warning(this, tr("Rule name conflict"), tr("A rule with this name already exists, please choose another name."));
+    } else {
+      // Rename the rule
+      m_ruleList->renameRule(item->text(), new_name);
+      item->setText(new_name);
+      return;
+    }
+  }
 }

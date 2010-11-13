@@ -112,7 +112,11 @@
         </layout>
        </item>
        <item>
-        <widget class="QListWidget" name="listRules"/>
+        <widget class="QListWidget" name="listRules">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
