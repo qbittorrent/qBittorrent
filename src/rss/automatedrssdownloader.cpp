@@ -48,6 +48,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
 {
   ui->setupUi(this);
   ui->listRules->setSortingEnabled(true);
+  ui->listRules->setSelectionMode(QAbstractItemView::MultiSelection);
   connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
   m_ruleList = RssDownloadRuleList::instance();
   initLabelCombobox();
@@ -249,17 +250,24 @@ void AutomatedRssDownloader::on_addRuleBtn_clicked()
 
 void AutomatedRssDownloader::on_removeRuleBtn_clicked()
 {
-  QListWidgetItem * item = ui->listRules->currentItem();
-  if(!item) return;
+  const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
+  if(selection.isEmpty()) return;
   // Ask for confirmation
-  if(QMessageBox::question(this, tr("Rule deletion confirmation"), tr("Are you sure you want to remove the download rule named %1?").arg(item->text()), QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)
+  QString confirm_text;
+  if(selection.count() == 1)
+    confirm_text = tr("Are you sure you want to remove the download rule named %1?").arg(selection.first()->text());
+  else
+    confirm_text = tr("Are you sure you want to remove the selected download rules?");
+  if(QMessageBox::question(this, tr("Rule deletion confirmation"), confirm_text, QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)
     return;
-  // Actually remove the item
-  ui->listRules->removeItemWidget(item);
-  // Remove it from the m_ruleList
-  m_ruleList->removeRule(item->text());
-  // Clean up memory
-  delete item;
+  foreach(QListWidgetItem *item, selection) {
+    // Actually remove the item
+    ui->listRules->removeItemWidget(item);
+    // Remove it from the m_ruleList
+    m_ruleList->removeRule(item->text());
+    // Clean up memory
+    delete item;
+  }
 }
 
 void AutomatedRssDownloader::on_browseSP_clicked()
@@ -308,9 +316,13 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
   QAction *delAct = 0;
   QAction *renameAct = 0;
   if(!ui->listRules->selectedItems().isEmpty()) {
-    delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Delete rule"));
-    menu.addSeparator();
-    renameAct = menu.addAction(QIcon(":/Icons/oxygen/edit_clear.png"), tr("Rename rule..."));
+    if(ui->listRules->selectedItems().count() == 1) {
+      delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Delete rule"));
+      menu.addSeparator();
+      renameAct = menu.addAction(QIcon(":/Icons/oxygen/edit_clear.png"), tr("Rename rule..."));
+    } else {
+      delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Delete selected rules"));
+    }
   }
   QAction *act = menu.exec(QCursor::pos());
   if(!act) return;
