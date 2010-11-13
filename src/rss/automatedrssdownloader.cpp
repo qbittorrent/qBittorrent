@@ -46,7 +46,8 @@
 
 AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   QDialog(parent),
-  ui(new Ui::AutomatedRssDownloader)
+  ui(new Ui::AutomatedRssDownloader),
+  m_editedRule(0)
 {
   ui->setupUi(this);
   ui->listRules->setSortingEnabled(true);
@@ -58,7 +59,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   initLabelCombobox();
   loadFeedList();
   loadSettings();
-  connect(ui->listRules, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), SLOT(handleCurrentItemChange(QListWidgetItem*,QListWidgetItem*)));
   connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
   connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateFeedList()));
   connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(handleFeedCheckStateChange(QListWidgetItem*)));
@@ -73,7 +73,7 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 {
   qDebug() << Q_FUNC_INFO;
   // Save current item on exit
-  saveCurrentRule(ui->listRules->currentItem());
+  saveEditedRule();
   saveSettings();
   delete ui;
 }
@@ -99,8 +99,8 @@ void AutomatedRssDownloader::saveSettings()
 void AutomatedRssDownloader::loadRulesList()
 {
   // Make sure we save the current item before clearing
-  if(ui->listRules->currentItem()) {
-    saveCurrentRule(ui->listRules->currentItem());
+  if(m_editedRule) {
+    saveEditedRule();
   }
   ui->listRules->clear();
   foreach (const QString &rule_name, m_ruleList->ruleNames()) {
@@ -167,9 +167,12 @@ bool AutomatedRssDownloader::isRssDownloaderEnabled() const
 void AutomatedRssDownloader::updateRuleDefinitionBox()
 {
   qDebug() << Q_FUNC_INFO;
+  // Save previous rule first
+  saveEditedRule();
   // Update rule definition box
   const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
   if(selection.count() == 1) {
+    m_editedRule = selection.first();
     RssDownloadRule rule = getCurrentRule();
     if(rule.isValid()) {
       ui->lineContains->setText(rule.mustContain());
@@ -190,6 +193,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
     // Enable
     ui->ruleDefBox->setEnabled(true);
   } else {
+    m_editedRule = 0;
     // Clear
     clearRuleDefinitionBox();
     ui->ruleDefBox->setEnabled(false);
@@ -222,26 +226,20 @@ void AutomatedRssDownloader::initLabelCombobox()
   }
 }
 
-void AutomatedRssDownloader::handleCurrentItemChange(QListWidgetItem *current, QListWidgetItem *previous)
+void AutomatedRssDownloader::saveEditedRule()
 {
-  Q_UNUSED(current);
-  saveCurrentRule(previous);
-}
-
-void AutomatedRssDownloader::saveCurrentRule(QListWidgetItem * item)
-{
-  qDebug() << Q_FUNC_INFO << item;
-  if(!item) return;
-  if(ui->listRules->findItems(item->text(), Qt::MatchExactly).isEmpty()) {
-    qDebug() << "Could not find rule" << item->text() << "in the UI list";
+  if(!m_editedRule) return;
+  qDebug() << Q_FUNC_INFO << m_editedRule;
+  if(ui->listRules->findItems(m_editedRule->text(), Qt::MatchExactly).isEmpty()) {
+    qDebug() << "Could not find rule" << m_editedRule->text() << "in the UI list";
     qDebug() << "Probably removed the item, no need to save it";
     return;
   }
-  RssDownloadRule rule = m_ruleList->getRule(item->text());
+  RssDownloadRule rule = m_ruleList->getRule(m_editedRule->text());
   if(!rule.isValid()) {
-    rule.setName(item->text());
+    rule.setName(m_editedRule->text());
   }
-  if(item->checkState() == Qt::Unchecked)
+  if(m_editedRule->checkState() == Qt::Unchecked)
     rule.setEnabled(false);
   else
     rule.setEnabled(true);
@@ -294,10 +292,12 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
   foreach(QListWidgetItem *item, selection) {
     // Actually remove the item
     ui->listRules->removeItemWidget(item);
-    // Remove it from the m_ruleList
-    m_ruleList->removeRule(item->text());
+    const QString rule_name = item->text();
     // Clean up memory
     delete item;
+    qDebug("Removed item for the UI list");
+    // Remove it from the m_ruleList
+    m_ruleList->removeRule(rule_name);
   }
 }
 
@@ -395,7 +395,7 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
 {
   if(ui->ruleDefBox->isEnabled()) {
     // Make sure the current rule is saved
-    saveCurrentRule(ui->listRules->currentItem());
+    saveEditedRule();
   }
   const QString feed_url = feed_item->data(Qt::UserRole).toString();
   foreach (QListWidgetItem* rule_item, ui->listRules->selectedItems()) {
@@ -423,7 +423,7 @@ void AutomatedRssDownloader::updateMatchingArticles()
 {
   ui->treeMatchingArticles->clear();
   if(ui->ruleDefBox->isEnabled()) {
-    saveCurrentRule(ui->listRules->currentItem());
+    saveEditedRule();
   }
   const QHash<QString, RssFeed*> all_feeds = RssManager::instance()->getAllFeedsAsHash();
 

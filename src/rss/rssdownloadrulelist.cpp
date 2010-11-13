@@ -132,6 +132,7 @@ void RssDownloadRuleList::saveRule(const RssDownloadRule &rule)
   qDebug() << Q_FUNC_INFO << rule.name();
   Q_ASSERT(rule.isValid());
   if(m_rules.contains(rule.name())) {
+    qDebug("This is an update, removing old rule first");
     removeRule(rule.name());
   }
   m_rules.insert(rule.name(), rule);
@@ -141,6 +142,7 @@ void RssDownloadRuleList::saveRule(const RssDownloadRule &rule)
   }
   // Save rules
   saveRulesToStorage();
+  qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
 void RssDownloadRuleList::removeRule(const QString &name)

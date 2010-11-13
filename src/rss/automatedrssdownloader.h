@@ -54,11 +54,10 @@ protected slots:
   void loadSettings();
   void saveSettings();
   void loadRulesList();
-  void handleCurrentItemChange(QListWidgetItem* current, QListWidgetItem* previous);
   void handleFeedCheckStateChange(QListWidgetItem* feed_item);
   void updateRuleDefinitionBox();
   void clearRuleDefinitionBox();
-  void saveCurrentRule(QListWidgetItem * item);
+  void saveEditedRule();
   void loadFeedList();
   void updateFeedList();
 
@@ -79,6 +78,7 @@ private:
 
 private:
   Ui::AutomatedRssDownloader *ui;
+  QListWidgetItem* m_editedRule;
   RssDownloadRuleList *m_ruleList;
 };
 
