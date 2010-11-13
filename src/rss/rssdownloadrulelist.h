@@ -53,7 +53,6 @@ public:
   // Operators
   void saveRule(const RssDownloadRule &rule);
   void removeRule(const QString &name);
-  void updateRule(const RssDownloadRule &rule);
   void renameRule(const QString &old_name, const QString &new_name);
   RssDownloadRule getRule(const QString &name) const;
   inline QStringList ruleNames() const { return m_rules.keys(); }

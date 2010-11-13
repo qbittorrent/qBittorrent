@@ -128,6 +128,9 @@ void RssDownloadRuleList::loadRulesFromVariantHash(const QVariantHash &h)
 void RssDownloadRuleList::saveRule(const RssDownloadRule &rule)
 {
   Q_ASSERT(rule.isValid());
+  if(m_rules.contains(rule.name())) {
+    removeRule(rule.name());
+  }
   m_rules.insert(rule.name(), rule);
   // Update feedRules hashtable
   foreach(const QString &feed_url, rule.rssFeeds()) {
@@ -146,15 +149,6 @@ void RssDownloadRuleList::removeRule(const QString &name)
   foreach(const QString &feed_url, rule.rssFeeds()) {
     m_feedRules[feed_url].removeOne(rule.name());
   }
-  // Save rules
-  saveRulesToStorage();
-}
-
-void RssDownloadRuleList::updateRule(const RssDownloadRule &rule)
-{
-  if(!m_rules.contains(rule.name())) return;
-  removeRule(rule.name());
-  saveRule(rule);
   // Save rules
   saveRulesToStorage();
 }

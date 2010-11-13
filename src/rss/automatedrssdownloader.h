@@ -74,7 +74,6 @@ private slots:
 private:
   RssDownloadRule getCurrentRule() const;
   void initLabelCombobox();
-  QStringList getSelectedFeeds() const;
 
 private:
   Ui::AutomatedRssDownloader *ui;

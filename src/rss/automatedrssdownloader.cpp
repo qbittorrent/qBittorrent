@@ -119,32 +119,28 @@ void AutomatedRssDownloader::loadFeedList()
   }
 }
 
-QStringList AutomatedRssDownloader::getSelectedFeeds() const
-{
-  QStringList feeds;
-  for(int i=0; i<ui->listFeeds->count(); ++i) {
-    QListWidgetItem *item = ui->listFeeds->item(i);
-    if(item->checkState() != Qt::Unchecked)
-      feeds << item->data(Qt::UserRole).toString();
-  }
-  return feeds;
-}
-
 void AutomatedRssDownloader::updateFeedList()
 {
+  disconnect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(handleFeedCheckStateChange(QListWidgetItem*)));
   for(int i=0; i<ui->listFeeds->count(); ++i) {
     QListWidgetItem *item = ui->listFeeds->item(i);
     const QString feed_url = item->data(Qt::UserRole).toString();
     bool all_enabled = false;
-    foreach(QListWidgetItem *ruleItem, ui->listRules->selectedItems()) {
-       RssDownloadRule rule = m_ruleList->getRule(ruleItem->text());
-       if(!rule.isValid()) continue;
-       if(rule.rssFeeds().contains(feed_url)) {
-         all_enabled = true;
-       } else {
-         all_enabled = false;
-         break;
-       }
+    foreach(const QListWidgetItem *ruleItem, ui->listRules->selectedItems()) {
+      RssDownloadRule rule = m_ruleList->getRule(ruleItem->text());
+      if(!rule.isValid()) continue;
+      qDebug() << "Rule" << rule.name() << "affects" << rule.rssFeeds().size() << "feeds.";
+      foreach(QString test, rule.rssFeeds()) {
+        qDebug() << "Feed is " << test;
+      }
+      if(rule.rssFeeds().contains(feed_url)) {
+        qDebug() << "Rule " << rule.name() << " affects feed " << feed_url;
+        all_enabled = true;
+      } else {
+        qDebug() << "Rule " << rule.name() << " does NOT affect feed " << feed_url;
+        all_enabled = false;
+        break;
+      }
     }
     if(all_enabled)
       item->setCheckState(Qt::Checked);
@@ -152,6 +148,7 @@ void AutomatedRssDownloader::updateFeedList()
       item->setCheckState(Qt::Unchecked);
   }
   ui->listFeeds->setEnabled(!ui->listRules->selectedItems().isEmpty());
+  connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(handleFeedCheckStateChange(QListWidgetItem*)));
 }
 
 bool AutomatedRssDownloader::isRssDownloaderEnabled() const
@@ -246,7 +243,7 @@ void AutomatedRssDownloader::saveCurrentRule(QListWidgetItem * item)
   // Save new label
   if(!rule.label().isEmpty())
     Preferences::addTorrentLabel(rule.label());
-  rule.setRssFeeds(getSelectedFeeds());
+  //rule.setRssFeeds(getSelectedFeeds());
   // Save it
   m_ruleList->saveRule(rule);
 }
@@ -387,9 +384,23 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
     // Make sure the current rule is saved
     saveCurrentRule(ui->listRules->currentItem());
   }
+  const QString feed_url = feed_item->data(Qt::UserRole).toString();
   foreach (QListWidgetItem* rule_item, ui->listRules->selectedItems()) {
     RssDownloadRule rule = m_ruleList->getRule(rule_item->text());
-    // TODO
+    Q_ASSERT(rule.isValid());
+    QStringList affected_feeds = rule.rssFeeds();
+    if(feed_item->checkState() == Qt::Checked) {
+      if(!affected_feeds.contains(feed_url))
+        affected_feeds << feed_url;
+    } else {
+      if(affected_feeds.contains(feed_url))
+        affected_feeds.removeOne(feed_url);
+    }
+    // Save the updated rule
+    if(affected_feeds.size() != rule.rssFeeds().size()) {
+      rule.setRssFeeds(affected_feeds);
+      m_ruleList->saveRule(rule);
+    }
   }
 }
 
