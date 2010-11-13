@@ -36,8 +36,6 @@
 #include <QHash>
 #include <QVariant>
 
-class QBtSession;
-
 class EventManager : public QObject
 {
   Q_OBJECT
@@ -45,13 +43,12 @@ class EventManager : public QObject
 
 private:
   QHash<QString, QVariantMap> event_list;
-  QBtSession* BTSession;
 
 protected:
   void update(QVariantMap event);
 
 public:
-  EventManager(QObject *parent, QBtSession* BTSession);
+  EventManager(QObject *parent);
   QList<QVariantMap> getEventList() const;
   QVariantMap getPropGeneralInfo(QString hash) const;
   QList<QVariantMap> getPropTrackersInfo(QString hash) const;

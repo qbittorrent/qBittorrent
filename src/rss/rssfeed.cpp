@@ -37,7 +37,7 @@
 #include "misc.h"
 #include "rssdownloadrulelist.h"
 
-RssFeed::RssFeed(RssFolder* parent, RssManager *rssmanager, QBtSession *BTSession, QString _url): parent(parent), rssmanager(rssmanager), BTSession(BTSession), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
+RssFeed::RssFeed(RssFolder* parent, QString _url): parent(parent), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
   qDebug("RSSStream constructed");
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   url = QUrl(_url).toString();
@@ -186,7 +186,7 @@ void RssFeed::markAllAsRead() {
   foreach(RssArticle *item, this->values()){
     item->setRead();
   }
-  rssmanager->forwardFeedInfosChanged(url, getName(), 0);
+  RssManager::instance()->forwardFeedInfosChanged(url, getName(), 0);
 }
 
 unsigned int RssFeed::getNbUnRead() const{
@@ -302,8 +302,8 @@ short RssFeed::readDoc(QIODevice* device) {
       const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item->getTitle());
       if(matching_rule.isValid()) {
         // Download the torrent
-        BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
-        BTSession->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
+        QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
+        QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
         // Item was downloaded, consider it as Read
         item->setRead();
       }

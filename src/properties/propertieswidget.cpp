@@ -49,14 +49,15 @@
 #include "torrentfilesmodel.h"
 #include "peerlistwidget.h"
 #include "trackerlist.h"
-#include "GUI.h"
+#include "mainwindow.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
 #include "qinisettings.h"
 #include "proptabbar.h"
 
-PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, QBtSession* BTSession):
-    QWidget(parent), transferList(transferList), main_window(main_window), BTSession(BTSession) {
+PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList):
+    QWidget(parent), transferList(transferList), main_window(main_window) {
+
   setupUi(this);
   state = VISIBLE;
   setEnabled(false);
@@ -79,8 +80,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, GUI* main_window, TransferLi
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
-  connect(BTSession, SIGNAL(savePathChanged(QTorrentHandle&)), this, SLOT(updateSavePath(QTorrentHandle&)));
-  connect(BTSession, SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateTorrentInfos(QTorrentHandle&)));
+  connect(QBtSession::instance(), SIGNAL(savePathChanged(QTorrentHandle&)), this, SLOT(updateSavePath(QTorrentHandle&)));
+  connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateTorrentInfos(QTorrentHandle&)));
 
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
@@ -194,10 +195,6 @@ void PropertiesWidget::clear() {
 
 QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
   return h;
-}
-
-QBtSession* PropertiesWidget::getBTSession() const {
-  return BTSession;
 }
 
 void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
@@ -341,7 +338,7 @@ void PropertiesWidget::loadDynamicData() {
       // Update next announce time
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
-      const double ratio = BTSession->getRealRatio(h.hash());
+      const double ratio = QBtSession::instance()->getRealRatio(h.hash());
       if(ratio > 100.)
         shareRatio->setText(QString::fromUtf8("∞"));
       else
@@ -720,7 +717,7 @@ void PropertiesWidget::renameSelectedFile() {
         }
         QDir savePath(misc::expandPath(save_path_dir));
         // Actually move storage
-        if(!BTSession->useTemporaryFolder() || h.is_seed()) {
+        if(!QBtSession::instance()->useTemporaryFolder() || h.is_seed()) {
           if(!savePath.exists()) savePath.mkpath(savePath.absolutePath());
           h.move_storage(savePath.absolutePath());
         }

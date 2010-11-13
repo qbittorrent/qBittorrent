@@ -31,38 +31,22 @@
 #ifndef TORRENTADDITION_H
 #define TORRENTADDITION_H
 
-#include <QDir>
-#include <QFileDialog>
-#include <QFile>
-#include <fstream>
-#include <QMessageBox>
-#include <QMenu>
-#include <QHeaderView>
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QInputDialog>
+#include <QStringList>
 
-#include <libtorrent/version.hpp>
-#include <libtorrent/session.hpp>
-#include <libtorrent/bencode.hpp>
-#include "qbtsession.h"
-#include "misc.h"
-#include "proplistdelegate.h"
 #include "ui_torrentadditiondlg.h"
-#include "torrentpersistentdata.h"
-#include "torrentfilesmodel.h"
-#include "preferences.h"
-#include "GUI.h"
-#include "transferlistwidget.h"
-#include "qinisettings.h"
+
+#include <libtorrent/torrent_info.hpp>
 
 using namespace libtorrent;
+
+class TorrentFilesModel;
+class PropListDelegate;
 
 class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
   Q_OBJECT
 
 public:
-  torrentAdditionDialog(GUI *parent, QBtSession* _BTSession);
+  torrentAdditionDialog(QWidget *parent);
   ~torrentAdditionDialog();
   void readSettings();
   void saveSettings();
@@ -89,11 +73,7 @@ public slots:
   void updateSavePathCurrentText();
   void resetComboLabelIndex(QString text);
 
-signals:
-  void torrentPaused(QTorrentHandle &h);
-
 private:
-  QBtSession *BTSession;
   QString fileName;
   QString hash;
   QString filePath;

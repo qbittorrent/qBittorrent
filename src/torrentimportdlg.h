@@ -49,7 +49,7 @@ class TorrentImportDlg : public QDialog
 public:
   explicit TorrentImportDlg(QWidget *parent = 0);
   ~TorrentImportDlg();
-  static void importTorrent(QBtSession *BTSession);
+  static void importTorrent();
   QString getTorrentPath() const;
   QString getContentPath() const;
   bool fileRenamed() const;

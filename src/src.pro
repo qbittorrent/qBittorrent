@@ -286,7 +286,7 @@ HEADERS += misc.h \
 contains(DEFINES, DISABLE_GUI) {
   HEADERS += headlessloader.h
 } else {
-  HEADERS +=  GUI.h \
+  HEADERS +=  mainwindow.h\
               transferlistwidget.h \
               transferlistdelegate.h \
               transferlistfilterswidget.h \
@@ -376,7 +376,7 @@ SOURCES += main.cpp \
            smtp.cpp
 
 !contains(DEFINES, DISABLE_GUI) {
-  SOURCES += GUI.cpp \
+  SOURCES += mainwindow.cpp \
              options_imp.cpp \
              ico.cpp \
              transferlistwidget.cpp \

@@ -36,16 +36,14 @@
 #include "rssfile.h"
 
 class RssArticle;
-class QBtSession;
 class downloadThread;
-class RssManager;
 class RssFeed;
 
 class RssFolder: public RssFile, public QHash<QString, RssFile*> {
   Q_OBJECT
 
 public:
-  RssFolder(RssFolder *parent, RssManager *rssmanager, QBtSession *BTSession, QString name);
+  RssFolder(RssFolder *parent = 0, QString name = QString());
   ~RssFolder();
   RssFolder* getParent() const { return parent; }
   void setParent(RssFolder* _parent) { parent = _parent; }
@@ -79,9 +77,7 @@ public slots:
 
 private:
   RssFolder *parent;
-  RssManager *rssmanager;
   downloadThread *downloader;
-  QBtSession *BTSession;
   QString name;
 };
 

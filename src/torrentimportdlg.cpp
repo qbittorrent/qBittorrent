@@ -179,7 +179,7 @@ QString TorrentImportDlg::getContentPath() const
   return m_contentPath;
 }
 
-void TorrentImportDlg::importTorrent(QBtSession *BTSession)
+void TorrentImportDlg::importTorrent()
 {
   TorrentImportDlg dlg;
   if(dlg.exec()) {
@@ -195,7 +195,7 @@ void TorrentImportDlg::importTorrent(QBtSession *BTSession)
     TorrentTempData::setSeedingMode(hash, dlg.skipFileChecking());
 #endif
     qDebug("Adding the torrent to the session...");
-    BTSession->addTorrent(torrent_path);
+    QBtSession::instance()->addTorrent(torrent_path);
     // Remember the last opened folder
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     settings.setValue(QString::fromUtf8("MainWindowLastDir"), torrent_path);

@@ -35,7 +35,7 @@
 #include "previewselect.h"
 #include "speedlimitdlg.h"
 #include "options_imp.h"
-#include "GUI.h"
+#include "mainwindow.h"
 #include "preferences.h"
 #include "deletionconfirmationdlg.h"
 #include "propertieswidget.h"
@@ -55,7 +55,7 @@
 
 #include "qinisettings.h"
 
-TransferListWidget::TransferListWidget(QWidget *parent, GUI *main_window, QBtSession *_BTSession):
+TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession *_BTSession):
   QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
   QIniSettings settings("qBittorrent", "qBittorrent");
   // Create and apply delegate

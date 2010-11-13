@@ -35,7 +35,7 @@
 #include "rssmanager.h"
 #include "rssfeed.h"
 
-RssFolder::RssFolder(RssFolder *parent, RssManager *rssmanager, QBtSession *BTSession, QString name): parent(parent), rssmanager(rssmanager), BTSession(BTSession), name(name) {
+RssFolder::RssFolder(RssFolder *parent, QString name): parent(parent), name(name) {
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processFinishedDownload(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
@@ -95,7 +95,7 @@ void RssFolder::removeFile(QString ID) {
 RssFolder* RssFolder::addFolder(QString name) {
   RssFolder *subfolder;
   if(!this->contains(name)) {
-    subfolder = new RssFolder(this, rssmanager, BTSession, name);
+    subfolder = new RssFolder(this, name);
     (*this)[name] = subfolder;
   } else {
     subfolder = (RssFolder*)this->value(name);
@@ -104,7 +104,7 @@ RssFolder* RssFolder::addFolder(QString name) {
 }
 
 RssFeed* RssFolder::addStream(QString url) {
-  RssFeed* stream = new RssFeed(this, rssmanager, BTSession, url);
+  RssFeed* stream = new RssFeed(this, url);
   Q_ASSERT(!this->contains(stream->getUrl()));
   (*this)[stream->getUrl()] = stream;
   refreshStream(stream->getUrl());
@@ -181,7 +181,7 @@ void RssFolder::processFinishedDownload(QString url, QString path) {
       foreach(stream, res){
         stream->setIconPath(path);
         if(!stream->isLoading())
-          rssmanager->forwardFeedIconChanged(stream->getUrl(), stream->getIconPath());
+          RssManager::instance()->forwardFeedIconChanged(stream->getUrl(), stream->getIconPath());
       }
     }else{
       qDebug("Unsupported icon format at %s", (const char*)url.toLocal8Bit());
@@ -202,7 +202,7 @@ void RssFolder::processFinishedDownload(QString url, QString path) {
     if(!stream->getTitle().isEmpty())
       stream->rename(stream->getTitle());
   }
-  rssmanager->forwardFeedInfosChanged(url, stream->getName(), stream->getNbUnRead());
+  RssManager::instance()->forwardFeedInfosChanged(url, stream->getName(), stream->getNbUnRead());
 }
 
 void RssFolder::handleDownloadFailure(QString url, QString reason) {
@@ -219,7 +219,7 @@ void RssFolder::handleDownloadFailure(QString url, QString reason) {
   stream->setLoading(false);
   qDebug("Could not download Rss at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
   stream->setDownloadFailed();
-  rssmanager->forwardFeedInfosChanged(url, stream->getName(), stream->getNbUnRead());
+  RssManager::instance()->forwardFeedInfosChanged(url, stream->getName(), stream->getNbUnRead());
 }
 
 QList<RssFeed*> RssFolder::findFeedsWithIcon(QString icon_url) const {

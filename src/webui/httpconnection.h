@@ -38,7 +38,6 @@
 
 class QTcpSocket;
 class HttpServer;
-class QBtSession;
 
 class HttpConnection : public QObject
 {
@@ -47,8 +46,7 @@ class HttpConnection : public QObject
 
 private:
   QTcpSocket *socket;
-  HttpServer *parent;
-  QBtSession *BTSession;
+  HttpServer *httpserver;
 
 protected:
   HttpRequestParser parser;
@@ -71,7 +69,7 @@ protected slots:
   void recheckAllTorrents();
 
 public:
-  HttpConnection(QTcpSocket *socket, QBtSession* BTSession, HttpServer *parent);
+  HttpConnection(QTcpSocket *socket, HttpServer *httpserver);
   ~HttpConnection();
   QString translateDocument(QString data);
 

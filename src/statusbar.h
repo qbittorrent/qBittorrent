@@ -48,8 +48,8 @@ class StatusBar: public QObject {
   Q_OBJECT
 
 public:
-  StatusBar(QStatusBar *bar, QBtSession *BTSession): bar(bar), BTSession(BTSession) {
-    connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
+  StatusBar(QStatusBar *bar): bar(bar) {
+    connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     container = new QWidget();
     layout = new QGridLayout(container);
     layout->setVerticalSpacing(0);
@@ -167,7 +167,7 @@ public slots:
     bar->insertWidget(1, restartLbl);
     QFontMetrics fm(restartLbl->font());
     restartLbl->setText(fm.elidedText(restart_text, Qt::ElideRight, restartLbl->width()));
-    BTSession->addConsoleMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), "red");
+    QBtSession::instance()->addConsoleMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), "red");
   }
 
   void stopTimer() {
@@ -176,8 +176,8 @@ public slots:
 
   void refreshStatusBar() {
     // Update connection status
-    const session_status sessionStatus = BTSession->getSessionStatus();
-    if(!BTSession->getSession()->is_listening()) {
+    const session_status sessionStatus = QBtSession::instance()->getSessionStatus();
+    if(!QBtSession::instance()->getSession()->is_listening()) {
       connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/disconnected.png")));
       connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     } else {
@@ -191,7 +191,7 @@ public slots:
       }
     }
     // Update Number of DHT nodes
-    if(BTSession->isDHTEnabled()) {
+    if(QBtSession::instance()->isDHTEnabled()) {
       DHTLbl->setVisible(true);
       //statusSep1->setVisible(true);
       DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dht_nodes)));
@@ -216,23 +216,23 @@ public slots:
   }
 
   void toggleAlternativeSpeeds() {
-    BTSession->useAlternativeSpeedsLimit(!Preferences::isAltBandwidthEnabled());
+    QBtSession::instance()->useAlternativeSpeedsLimit(!Preferences::isAltBandwidthEnabled());
   }
 
   void capDownloadSpeed() {
     bool ok = false;
-    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), BTSession->getSession()->download_rate_limit());
+    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), QBtSession::instance()->getSession()->download_rate_limit());
     if(ok) {
       bool alt = Preferences::isAltBandwidthEnabled();
       if(new_limit <= 0) {
         qDebug("Setting global download rate limit to Unlimited");
         if(!alt)
-          BTSession->getSession()->set_download_rate_limit(-1);
+          QBtSession::instance()->getSession()->set_download_rate_limit(-1);
         Preferences::setGlobalDownloadLimit(-1);
       } else {
         qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
         if(!alt)
-          BTSession->getSession()->set_download_rate_limit(new_limit);
+          QBtSession::instance()->getSession()->set_download_rate_limit(new_limit);
         Preferences::setGlobalDownloadLimit(new_limit/1024.);
       }
     }
@@ -240,16 +240,16 @@ public slots:
 
   void capUploadSpeed() {
     bool ok = false;
-    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), BTSession->getSession()->upload_rate_limit());
+    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), QBtSession::instance()->getSession()->upload_rate_limit());
     if(ok) {
       if(new_limit <= 0) {
         qDebug("Setting global upload rate limit to Unlimited");
-        BTSession->getSession()->set_upload_rate_limit(-1);
+        QBtSession::instance()->getSession()->set_upload_rate_limit(-1);
         Preferences::setGlobalUploadLimit(-1);
       } else {
         qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
         Preferences::setGlobalUploadLimit(new_limit/1024.);
-        BTSession->getSession()->set_upload_rate_limit(new_limit);
+        QBtSession::instance()->getSession()->set_upload_rate_limit(new_limit);
       }
     }
   }
@@ -268,7 +268,6 @@ private:
   QTimer *refreshTimer;
   QWidget *container;
   QGridLayout *layout;
-  QBtSession *BTSession;
 
 };
 

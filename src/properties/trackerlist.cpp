@@ -200,7 +200,7 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
       ++nb_pex;
   }
   // load DHT information
-  if(properties->getBTSession()->isDHTEnabled() && h.has_metadata() && !h.priv()) {
+  if(QBtSession::instance()->isDHTEnabled() && h.has_metadata() && !h.priv()) {
     dht_item->setText(COL_STATUS, tr("Working"));
   } else {
     dht_item->setText(COL_STATUS, tr("Disabled"));
@@ -210,13 +210,13 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
     dht_item->setText(COL_MSG, tr("This torrent is private"));
   }
   // Load PeX Information
-  if(properties->getBTSession()->isPexEnabled())
+  if(QBtSession::instance()->isPexEnabled())
     pex_item->setText(COL_STATUS, tr("Working"));
   else
     pex_item->setText(COL_STATUS, tr("Disabled"));
   pex_item->setText(COL_PEERS, QString::number(nb_pex));
   // Load LSD Information
-  if(properties->getBTSession()->isLSDEnabled())
+  if(QBtSession::instance()->isLSDEnabled())
     lsd_item->setText(COL_STATUS, tr("Working"));
   else
     lsd_item->setText(COL_STATUS, tr("Disabled"));
@@ -229,7 +229,7 @@ void TrackerList::loadTrackers() {
   if(!h.is_valid()) return;
   loadStickyItems(h);
   // Load actual trackers information
-  QHash<QString, TrackerInfos> trackers_data = properties->getBTSession()->getTrackersInfo(h.hash());
+  QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(h.hash());
   QStringList old_trackers_urls = tracker_items.keys();
   const std::vector<announce_entry> trackers = h.trackers();
   for(std::vector<announce_entry>::const_iterator it = trackers.begin(); it != trackers.end(); it++) {
@@ -300,8 +300,6 @@ void TrackerList::askForTrackers(){
     h.force_reannounce();
     // Reload tracker list
     loadTrackers();
-    // XXX: I don't think this is necessary now
-    //BTSession->saveTrackerFile(h.hash());
   }
 }
 
@@ -336,8 +334,6 @@ void TrackerList::deleteSelectedTrackers(){
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();
-  //XXX: I don't think this is necessary
-  //BTSession->saveTrackerFile(h.hash());
 }
 
 void TrackerList::showTrackerListMenu(QPoint) {

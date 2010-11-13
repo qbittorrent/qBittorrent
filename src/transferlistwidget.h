@@ -40,7 +40,7 @@ class QSortFilterProxyModel;
 class QBtSession;
 class QTimer;
 class TransferListDelegate;
-class GUI;
+class MainWindow;
 
 enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_PAUSED, FILTER_ACTIVE, FILTER_INACTIVE};
 
@@ -48,7 +48,7 @@ class TransferListWidget: public QTreeView {
   Q_OBJECT
 
 public:
-  TransferListWidget(QWidget *parent, GUI *main_window, QBtSession* BTSession);
+  TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession* BTSession);
   ~TransferListWidget();
   int getNbTorrents() const;
   QStandardItemModel* getSourceModel() const;
@@ -137,7 +137,7 @@ private:
   QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   QTimer *refreshTimer;
-  GUI *main_window;
+  MainWindow *main_window;
 };
 
 #endif // TRANSFERLISTWIDGET_H

@@ -41,41 +41,17 @@
 #include "searchtab.h"
 #include "supportedengines.h"
 
-class QBtSession;
 class downloadThread;
 class QTimer;
 class SearchEngine;
-class GUI;
+class MainWindow;
 
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
-
-private:
-  // Search related
-  QProcess *searchProcess;
-  QList<QProcess*> downloaders;
-  bool search_stopped;
-  bool no_search_results;
-  QByteArray search_result_line_truncated;
-  unsigned long nb_search_results;
-  QPointer<QCompleter> searchCompleter;
-  QStringListModel searchHistory;
-  QBtSession *BTSession;
-  SupportedEngines *supported_engines;
-  QTimer *searchTimeout;
-  QPointer<SearchTab> currentSearchTab;
-#if QT_VERSION < 0x040500
-  QPushButton *closeTab_button;
-#endif
-  QList<QPointer<SearchTab> > all_tab; // To store all tabs
-  const SearchCategories full_cat_names;
-  GUI *parent;
-#ifdef Q_WS_WIN
-  bool has_python;
-#endif
+  Q_DISABLE_COPY(SearchEngine)
 
 public:
-  SearchEngine(GUI *parent, QBtSession *BTSession);
+  SearchEngine(MainWindow *mp_mainWindow);
   ~SearchEngine();
   QString selectedCategory() const;
 
@@ -135,6 +111,29 @@ protected slots:
   void installPython();
   void pythonDownloadSuccess(QString url, QString file_path);
   void pythonDownloadFailure(QString url, QString error);
+#endif
+
+private:
+  // Search related
+  QProcess *searchProcess;
+  QList<QProcess*> downloaders;
+  bool search_stopped;
+  bool no_search_results;
+  QByteArray search_result_line_truncated;
+  unsigned long nb_search_results;
+  QPointer<QCompleter> searchCompleter;
+  QStringListModel searchHistory;
+  SupportedEngines *supported_engines;
+  QTimer *searchTimeout;
+  QPointer<SearchTab> currentSearchTab;
+#if QT_VERSION < 0x040500
+  QPushButton *closeTab_button;
+#endif
+  QList<QPointer<SearchTab> > all_tab; // To store all tabs
+  const SearchCategories full_cat_names;
+  MainWindow *mp_mainWindow;
+#ifdef Q_WS_WIN
+  bool has_python;
 #endif
 };
 

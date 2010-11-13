@@ -80,23 +80,22 @@ void HttpServer::resetNbFailedAttemptsForIp(QString ip) {
   client_failed_attempts.remove(ip);
 }
 
-HttpServer::HttpServer(QBtSession *_BTSession, int msec, QObject* parent) : QTcpServer(parent) {
+HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   username = Preferences::getWebUiUsername().toLocal8Bit();
   password_ha1 = Preferences::getWebUiPassword().toLocal8Bit();
   connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
-  BTSession = _BTSession;
-  manager = new EventManager(this, BTSession);
+  manager = new EventManager(this);
   //add torrents
-  std::vector<torrent_handle> torrents = BTSession->getTorrents();
+  std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     if(h.is_valid())
       manager->addedTorrent(h);
   }
-  //connect BTSession to manager
-  connect(BTSession, SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
-  connect(BTSession, SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
+  //connect QBtSession::instance() to manager
+  connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
+  connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
   //set timer
   timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(onTimer()));
@@ -138,21 +137,21 @@ void HttpServer::newHttpConnection()
   QTcpSocket *socket;
   while((socket = nextPendingConnection()))
   {
-    HttpConnection *connection = new HttpConnection(socket, BTSession, this);
-    //connect connection to BTSession
-    connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), BTSession, SLOT(downloadUrlAndSkipDialog(QString)));
-    connect(connection, SIGNAL(MagnetReadyToBeDownloaded(QString)), BTSession, SLOT(addMagnetSkipAddDlg(QString)));
-    connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), BTSession, SLOT(addTorrent(QString, bool, QString, bool)));
-    connect(connection, SIGNAL(deleteTorrent(QString, bool)), BTSession, SLOT(deleteTorrent(QString, bool)));
-    connect(connection, SIGNAL(pauseTorrent(QString)), BTSession, SLOT(pauseTorrent(QString)));
-    connect(connection, SIGNAL(resumeTorrent(QString)), BTSession, SLOT(resumeTorrent(QString)));
-    connect(connection, SIGNAL(pauseAllTorrents()), BTSession, SLOT(pauseAllTorrents()));
-    connect(connection, SIGNAL(resumeAllTorrents()), BTSession, SLOT(resumeAllTorrents()));
+    HttpConnection *connection = new HttpConnection(socket, this);
+    //connect connection to QBtSession::instance()
+    connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), QBtSession::instance(), SLOT(downloadUrlAndSkipDialog(QString)));
+    connect(connection, SIGNAL(MagnetReadyToBeDownloaded(QString)), QBtSession::instance(), SLOT(addMagnetSkipAddDlg(QString)));
+    connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), QBtSession::instance(), SLOT(addTorrent(QString, bool, QString, bool)));
+    connect(connection, SIGNAL(deleteTorrent(QString, bool)), QBtSession::instance(), SLOT(deleteTorrent(QString, bool)));
+    connect(connection, SIGNAL(pauseTorrent(QString)), QBtSession::instance(), SLOT(pauseTorrent(QString)));
+    connect(connection, SIGNAL(resumeTorrent(QString)), QBtSession::instance(), SLOT(resumeTorrent(QString)));
+    connect(connection, SIGNAL(pauseAllTorrents()), QBtSession::instance(), SLOT(pauseAllTorrents()));
+    connect(connection, SIGNAL(resumeAllTorrents()), QBtSession::instance(), SLOT(resumeAllTorrents()));
   }
 }
 
 void HttpServer::onTimer() {
-  std::vector<torrent_handle> torrents = BTSession->getTorrents();
+  std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);

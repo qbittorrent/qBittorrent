@@ -44,7 +44,7 @@
 #include <QShortcut>
 #include <QScrollBar>
 
-#include "GUI.h"
+#include "mainwindow.h"
 #include "transferlistwidget.h"
 #include "misc.h"
 #include "torrentcreatordlg.h"
@@ -90,7 +90,7 @@ using namespace libtorrent;
  *****************************************************/
 
 // Constructor
-GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), force_exit(false) {
+MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), force_exit(false) {
   setupUi(this);
   ui_locked = Preferences::isUILocked();
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
@@ -153,7 +153,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
 
   // Transfer List tab
   transferList = new TransferListWidget(hSplitter, this, BTSession);
-  properties = new PropertiesWidget(hSplitter, this, transferList, BTSession);
+  properties = new PropertiesWidget(hSplitter, this, transferList);
   transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
   hSplitter->addWidget(transferList);
   hSplitter->addWidget(properties);
@@ -192,7 +192,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
   setAcceptDrops(true);
   createKeyboardShortcuts();
   // Create status bar
-  status_bar = new StatusBar(QMainWindow::statusBar(), BTSession);
+  status_bar = new StatusBar(QMainWindow::statusBar());
   connect(status_bar->connectionStatusButton(), SIGNAL(clicked()), SLOT(showConnectionSettings()));
   connect(actionUse_alternative_speed_limits, SIGNAL(triggered()), status_bar, SLOT(toggleAlternativeSpeeds()));
 
@@ -259,7 +259,7 @@ GUI::GUI(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), for
 #endif
 }
 
-void GUI::deleteBTSession() {
+void MainWindow::deleteBTSession() {
   guiUpdater->stop();
   status_bar->stopTimer();
   if(BTSession) {
@@ -270,7 +270,7 @@ void GUI::deleteBTSession() {
 }
 
 // Destructor
-GUI::~GUI() {
+MainWindow::~MainWindow() {
   qDebug("GUI destruction");
   hide();
 #ifdef Q_WS_MAC
@@ -331,7 +331,7 @@ GUI::~GUI() {
   qDebug("Exiting GUI destructor...");
 }
 
-void GUI::defineUILockPassword() {
+void MainWindow::defineUILockPassword() {
   QString old_pass_md5 = Preferences::getUILockPasswordMD5();
   if(old_pass_md5.isNull()) old_pass_md5 = "";
   bool ok = false;
@@ -344,7 +344,7 @@ void GUI::defineUILockPassword() {
   }
 }
 
-void GUI::on_actionLock_qBittorrent_triggered() {
+void MainWindow::on_actionLock_qBittorrent_triggered() {
   // Check if there is a password
   if(Preferences::getUILockPasswordMD5().isEmpty()) {
     // Ask for a password
@@ -360,7 +360,7 @@ void GUI::on_actionLock_qBittorrent_triggered() {
   hide();
 }
 
-void GUI::displayRSSTab(bool enable) {
+void MainWindow::displayRSSTab(bool enable) {
   if(enable) {
     // RSS tab
     if(!rssWidget) {
@@ -378,11 +378,11 @@ void GUI::displayRSSTab(bool enable) {
   }
 }
 
-void GUI::displaySearchTab(bool enable) {
+void MainWindow::displaySearchTab(bool enable) {
   if(enable) {
     // RSS tab
     if(!searchEngine) {
-      searchEngine = new SearchEngine(this, BTSession);
+      searchEngine = new SearchEngine(this);
       tabs->insertTab(1, searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
     }
     tabs->showTabBar(true);
@@ -395,26 +395,26 @@ void GUI::displaySearchTab(bool enable) {
   }
 }
 
-void GUI::updateNbTorrents(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive, unsigned int nb_paused) {
+void MainWindow::updateNbTorrents(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive, unsigned int nb_paused) {
   Q_UNUSED(nb_downloading);
   Q_UNUSED(nb_seeding);
   Q_UNUSED(nb_paused);
   tabs->setTabText(0, tr("Transfers (%1)").arg(QString::number(nb_inactive+nb_active)));
 }
 
-void GUI::on_actionWebsite_triggered() const {
+void MainWindow::on_actionWebsite_triggered() const {
   QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://www.qbittorrent.org")));
 }
 
-void GUI::on_actionDocumentation_triggered() const {
+void MainWindow::on_actionDocumentation_triggered() const {
   QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://doc.qbittorrent.org")));
 }
 
-void GUI::on_actionBugReport_triggered() const {
+void MainWindow::on_actionBugReport_triggered() const {
   QDesktopServices::openUrl(QUrl(QString::fromUtf8("http://bugs.qbittorrent.org")));
 }
 
-void GUI::tab_changed(int new_tab) {
+void MainWindow::tab_changed(int new_tab) {
   Q_UNUSED(new_tab);
   // We cannot rely on the index new_tab
   // because the tab order is undetermined now
@@ -430,7 +430,7 @@ void GUI::tab_changed(int new_tab) {
   }
 }
 
-void GUI::writeSettings() {
+void MainWindow::writeSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   settings.setValue("geometry", saveGeometry());
@@ -443,18 +443,18 @@ void GUI::writeSettings() {
 }
 
 // called when a torrent has finished
-void GUI::finishedTorrent(QTorrentHandle& h) const {
+void MainWindow::finishedTorrent(QTorrentHandle& h) const {
   if(!TorrentPersistentData::isSeed(h.hash()))
     showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
 }
 
 // Notification when disk is full
-void GUI::fullDiskError(QTorrentHandle& h, QString msg) const {
+void MainWindow::fullDiskError(QTorrentHandle& h, QString msg) const {
   if(!h.is_valid()) return;
   showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occured for torrent %1.\n Reason: %2", "e.g: An error occured for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
 }
 
-void GUI::createKeyboardShortcuts() {
+void MainWindow::createKeyboardShortcuts() {
   actionCreate_torrent->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+N")));
   actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
   actionExit->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Q")));
@@ -478,23 +478,23 @@ void GUI::createKeyboardShortcuts() {
 }
 
 // Keyboard shortcuts slots
-void GUI::displayTransferTab() const {
+void MainWindow::displayTransferTab() const {
   tabs->setCurrentWidget(transferList);
 }
 
-void GUI::displaySearchTab() const {
+void MainWindow::displaySearchTab() const {
   if(searchEngine)
     tabs->setCurrentWidget(searchEngine);
 }
 
-void GUI::displayRSSTab() const {
+void MainWindow::displayRSSTab() const {
   if(rssWidget)
     tabs->setCurrentWidget(rssWidget);
 }
 
 // End of keyboard shortcuts slots
 
-void GUI::readSettings() {
+void MainWindow::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   restoreGeometry(settings.value("geometry").toByteArray());
@@ -513,7 +513,7 @@ void GUI::readSettings() {
   settings.endGroup();
 }
 
-void GUI::balloonClicked() {
+void MainWindow::balloonClicked() {
   if(isHidden()) {
     show();
     if(isMinimized()) {
@@ -524,7 +524,7 @@ void GUI::balloonClicked() {
   }
 }
 
-void GUI::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
+void MainWindow::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
   if(Preferences::recursiveDownloadDisabled()) return;
   QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()));
   QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
@@ -541,12 +541,12 @@ void GUI::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
   }
 }
 
-void GUI::handleDownloadFromUrlFailure(QString url, QString reason) const{
+void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const{
   // Display a message box
   showNotificationBaloon(tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
 }
 
-void GUI::on_actionSet_global_upload_limit_triggered() {
+void MainWindow::on_actionSet_global_upload_limit_triggered() {
   qDebug("actionSet_global_upload_limit_triggered");
   bool ok;
   const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), BTSession->getSession()->upload_rate_limit());
@@ -560,15 +560,15 @@ void GUI::on_actionSet_global_upload_limit_triggered() {
   }
 }
 
-void GUI::on_actionShow_console_triggered() {
+void MainWindow::on_actionShow_console_triggered() {
   if(!console) {
-    console = new consoleDlg(this, BTSession);
+    console = new consoleDlg(this);
   } else {
     console->setFocus();
   }
 }
 
-void GUI::on_actionSet_global_download_limit_triggered() {
+void MainWindow::on_actionSet_global_download_limit_triggered() {
   qDebug("actionSet_global_download_limit_triggered");
   bool ok;
   const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), BTSession->getSession()->download_rate_limit());
@@ -584,12 +584,12 @@ void GUI::on_actionSet_global_download_limit_triggered() {
 
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
-void GUI::on_actionExit_triggered() {
+void MainWindow::on_actionExit_triggered() {
   force_exit = true;
   close();
 }
 
-QWidget* GUI::getCurrentTabWidget() const {
+QWidget* MainWindow::getCurrentTabWidget() const {
   if(isMinimized() || !isVisible())
     return 0;
   if(tabs->currentIndex() == 0)
@@ -597,11 +597,11 @@ QWidget* GUI::getCurrentTabWidget() const {
   return tabs->currentWidget();
 }
 
-void GUI::setTabText(int index, QString text) const {
+void MainWindow::setTabText(int index, QString text) const {
   tabs->setTabText(index, text);
 }
 
-bool GUI::unlockUI() {
+bool MainWindow::unlockUI() {
   bool ok = false;
   QString clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
   if(!ok) return false;
@@ -619,7 +619,7 @@ bool GUI::unlockUI() {
   return false;
 }
 
-void GUI::notifyOfUpdate(QString) {
+void MainWindow::notifyOfUpdate(QString) {
   // Show restart message
   status_bar->showRestartRequired();
   // Delete the executable watcher
@@ -628,7 +628,7 @@ void GUI::notifyOfUpdate(QString) {
 }
 
 // Toggle Main window visibility
-void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
+void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
   if(e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick) {
     if(isHidden()) {
       if(ui_locked) {
@@ -653,7 +653,7 @@ void GUI::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
 }
 
 // Display About Dialog
-void GUI::on_actionAbout_triggered() {
+void MainWindow::on_actionAbout_triggered() {
   //About dialog
   if(aboutDlg) {
     aboutDlg->setFocus();
@@ -662,7 +662,7 @@ void GUI::on_actionAbout_triggered() {
   }
 }
 
-void GUI::showEvent(QShowEvent *e) {
+void MainWindow::showEvent(QShowEvent *e) {
   qDebug("** Show Event **");
   if(getCurrentTabWidget() == transferList) {
     qDebug("-> Refreshing transfer list");
@@ -673,7 +673,7 @@ void GUI::showEvent(QShowEvent *e) {
 }
 
 // Called when we close the program
-void GUI::closeEvent(QCloseEvent *e) {
+void MainWindow::closeEvent(QCloseEvent *e) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
   if(!force_exit && systrayIcon && goToSystrayOnExit && !this->isHidden()) {
@@ -718,7 +718,7 @@ void GUI::closeEvent(QCloseEvent *e) {
 }
 
 // Display window to create a torrent
-void GUI::on_actionCreate_torrent_triggered() {
+void MainWindow::on_actionCreate_torrent_triggered() {
   if(createTorrentDlg) {
     createTorrentDlg->setFocus();
   } else {
@@ -727,7 +727,7 @@ void GUI::on_actionCreate_torrent_triggered() {
   }
 }
 
-bool GUI::event(QEvent * e) {
+bool MainWindow::event(QEvent * e) {
   switch(e->type()) {
   case QEvent::WindowStateChange: {
     qDebug("Window change event");
@@ -774,7 +774,7 @@ bool GUI::event(QEvent * e) {
 }
 
 // Action executed when a file is dropped
-void GUI::dropEvent(QDropEvent *event) {
+void MainWindow::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
   QStringList files;
   if(event->mimeData()->hasUrls()) {
@@ -811,7 +811,7 @@ void GUI::dropEvent(QDropEvent *event) {
       continue;
     }
     if(useTorrentAdditionDialog) {
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+      torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       dialog->showLoad(file);
     }else{
       BTSession->addTorrent(file);
@@ -820,7 +820,7 @@ void GUI::dropEvent(QDropEvent *event) {
 }
 
 // Decode if we accept drag 'n drop or not
-void GUI::dragEnterEvent(QDragEnterEvent *event) {
+void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
   foreach(const QString &mime, event->mimeData()->formats()){
     qDebug("mimeData: %s", mime.toLocal8Bit().data());
   }
@@ -837,7 +837,7 @@ void GUI::dragEnterEvent(QDragEnterEvent *event) {
 
 // Display a dialog to allow user to add
 // torrents to download list
-void GUI::on_actionOpen_triggered() {
+void MainWindow::on_actionOpen_triggered() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Open File Open Dialog
   // Note: it is possible to select more than one file
@@ -849,7 +849,7 @@ void GUI::on_actionOpen_triggered() {
     const uint listSize = pathsList.size();
     for(uint i=0; i<listSize; ++i) {
       if(useTorrentAdditionDialog) {
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         dialog->showLoad(pathsList.at(i));
       }else{
         BTSession->addTorrent(pathsList.at(i));
@@ -866,11 +866,11 @@ void GUI::on_actionOpen_triggered() {
 // This function parse the parameters and call
 // the right addTorrent function, considering
 // the parameter type.
-void GUI::processParams(const QString& params_str) {
+void MainWindow::processParams(const QString& params_str) {
   processParams(params_str.split("|", QString::SkipEmptyParts));
 }
 
-void GUI::processParams(const QStringList& params) {
+void MainWindow::processParams(const QStringList& params) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString param, params) {
@@ -884,14 +884,14 @@ void GUI::processParams(const QStringList& params) {
       }
       if(param.startsWith("magnet:", Qt::CaseInsensitive)) {
         if(useTorrentAdditionDialog) {
-          torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+          torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
           dialog->showLoadMagnetURI(param);
         } else {
           BTSession->addMagnetUri(param);
         }
       } else {
         if(useTorrentAdditionDialog) {
-          torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+          torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
           dialog->showLoad(param);
         }else{
           BTSession->addTorrent(param);
@@ -901,27 +901,27 @@ void GUI::processParams(const QStringList& params) {
   }
 }
 
-void GUI::addTorrent(QString path) {
+void MainWindow::addTorrent(QString path) {
   BTSession->addTorrent(path);
 }
 
-void GUI::processDownloadedFiles(QString path, QString url) {
+void MainWindow::processDownloadedFiles(QString path, QString url) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   if(useTorrentAdditionDialog) {
-    torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+    torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
     dialog->showLoad(path, url);
   }else{
     BTSession->addTorrent(path, false, url);
   }
 }
 
-void GUI::optionsSaved() {
+void MainWindow::optionsSaved() {
   loadPreferences();
 }
 
 // Load program preferences
-void GUI::loadPreferences(bool configure_session) {
+void MainWindow::loadPreferences(bool configure_session) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
   const bool newSystrayIntegration = Preferences::systrayIntegration();
   actionLock_qBittorrent->setEnabled(newSystrayIntegration);
@@ -992,7 +992,7 @@ void GUI::loadPreferences(bool configure_session) {
   qDebug("GUI settings loaded");
 }
 
-void GUI::addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker) {
+void MainWindow::addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker) {
   // Trackers whose authentication was cancelled
   if(unauthenticated_trackers.indexOf(tracker) < 0) {
     unauthenticated_trackers << tracker;
@@ -1000,7 +1000,7 @@ void GUI::addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker
 }
 
 // Called when a tracker requires authentication
-void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
+void MainWindow::trackerAuthenticationRequired(QTorrentHandle& h) {
   if(unauthenticated_trackers.indexOf(QPair<QTorrentHandle,QString>(h, h.current_tracker())) < 0) {
     // Tracker login
     new trackerLogin(this, h);
@@ -1008,7 +1008,7 @@ void GUI::trackerAuthenticationRequired(QTorrentHandle& h) {
 }
 
 // Check connection status and display right icon
-void GUI::updateGUI() {
+void MainWindow::updateGUI() {
   // update global informations
   if(systrayIcon) {
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
@@ -1034,7 +1034,7 @@ void GUI::updateGUI() {
   }
 }
 
-void GUI::showNotificationBaloon(QString title, QString msg) const {
+void MainWindow::showNotificationBaloon(QString title, QString msg) const {
   if(!Preferences::useProgramNotification()) return;
 #ifdef WITH_LIBNOTIFY
   if (notify_init ("summary-body")) {
@@ -1063,7 +1063,7 @@ void GUI::showNotificationBaloon(QString title, QString msg) const {
  *                                                   *
  *****************************************************/
 
-void GUI::downloadFromURLList(const QStringList& url_list) {
+void MainWindow::downloadFromURLList(const QStringList& url_list) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString url, url_list) {
@@ -1073,7 +1073,7 @@ void GUI::downloadFromURLList(const QStringList& url_list) {
     }
     if(url.startsWith("magnet:", Qt::CaseInsensitive)) {
       if(useTorrentAdditionDialog) {
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this, BTSession);
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
         dialog->showLoadMagnetURI(url);
       } else {
         BTSession->addMagnetUri(url);
@@ -1090,7 +1090,7 @@ void GUI::downloadFromURLList(const QStringList& url_list) {
  *                                                   *
  *****************************************************/
 
-void GUI::createSystrayDelayed() {
+void MainWindow::createSystrayDelayed() {
   static int timeout = 20;
   if(QSystemTrayIcon::isSystemTrayAvailable()) {
     // Ok, systray integration is now supported
@@ -1113,11 +1113,11 @@ void GUI::createSystrayDelayed() {
   }
 }
 
-void GUI::updateAltSpeedsBtn(bool alternative) {
+void MainWindow::updateAltSpeedsBtn(bool alternative) {
   actionUse_alternative_speed_limits->setChecked(alternative);
 }
 
-QMenu* GUI::getTrayIconMenu() {
+QMenu* MainWindow::getTrayIconMenu() {
   if(myTrayIconMenu)
     return myTrayIconMenu;
   // Tray icon Menu
@@ -1140,7 +1140,7 @@ QMenu* GUI::getTrayIconMenu() {
   return myTrayIconMenu;
 }
 
-void GUI::createTrayIcon() {
+void MainWindow::createTrayIcon() {
   // Tray icon
 #ifdef Q_WS_WIN
   systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent16.png")), this);
@@ -1156,7 +1156,7 @@ void GUI::createTrayIcon() {
 }
 
 // Display Program Options
-void GUI::on_actionOptions_triggered() {
+void MainWindow::on_actionOptions_triggered() {
   if(options) {
     // Get focus
     options->setFocus();
@@ -1166,23 +1166,23 @@ void GUI::on_actionOptions_triggered() {
   }
 }
 
-void GUI::on_actionTop_tool_bar_triggered() {
+void MainWindow::on_actionTop_tool_bar_triggered() {
   bool is_visible = static_cast<QAction*>(sender())->isChecked();
   toolBar->setVisible(is_visible);
   Preferences::setToolbarDisplayed(is_visible);
 }
 
-void GUI::on_actionShutdown_when_downloads_complete_triggered() {
+void MainWindow::on_actionShutdown_when_downloads_complete_triggered() {
   bool is_checked = static_cast<QAction*>(sender())->isChecked();
   Preferences::setShutdownWhenDownloadsComplete(is_checked);
 }
 
-void GUI::on_actionShutdown_qBittorrent_when_downloads_complete_triggered() {
+void MainWindow::on_actionShutdown_qBittorrent_when_downloads_complete_triggered() {
   bool is_checked = static_cast<QAction*>(sender())->isChecked();
   Preferences::setShutdownqBTWhenDownloadsComplete(is_checked);
 }
 
-void GUI::on_actionSpeed_in_title_bar_triggered() {
+void MainWindow::on_actionSpeed_in_title_bar_triggered() {
   displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
   Preferences::showSpeedInTitleBar(displaySpeedInTitle);
   if(displaySpeedInTitle)
@@ -1191,19 +1191,19 @@ void GUI::on_actionSpeed_in_title_bar_triggered() {
     setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
 }
 
-void GUI::on_actionRSS_Reader_triggered() {
+void MainWindow::on_actionRSS_Reader_triggered() {
   RssSettings::setRSSEnabled(actionRSS_Reader->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
 }
 
-void GUI::on_actionSearch_engine_triggered() {
+void MainWindow::on_actionSearch_engine_triggered() {
   Preferences::setSearchEnabled(actionSearch_engine->isChecked());
   displaySearchTab(actionSearch_engine->isChecked());
 }
 
-void GUI::on_action_Import_Torrent_triggered()
+void MainWindow::on_action_Import_Torrent_triggered()
 {
-  TorrentImportDlg::importTorrent(BTSession);
+  TorrentImportDlg::importTorrent();
 }
 
 /*****************************************************
@@ -1214,7 +1214,7 @@ void GUI::on_action_Import_Torrent_triggered()
 
 // Display an input dialog to prompt user for
 // an url
-void GUI::on_actionDownload_from_URL_triggered() {
+void MainWindow::on_actionDownload_from_URL_triggered() {
   if(!downloadFromURLDialog) {
     downloadFromURLDialog = new downloadFromURL(this);
     connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
@@ -1248,12 +1248,12 @@ void GUI::handleUpdateInstalled(QString error_msg)
 
 #endif
 
-void GUI::on_actionDonate_money_triggered()
+void MainWindow::on_actionDonate_money_triggered()
 {
   QDesktopServices::openUrl(QUrl("http://sourceforge.net/donate/index.php?group_id=163414"));
 }
 
-void GUI::showConnectionSettings()
+void MainWindow::showConnectionSettings()
 {
   on_actionOptions_triggered();
   options->showConnectionTab();

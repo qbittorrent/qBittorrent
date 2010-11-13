@@ -38,7 +38,6 @@
 #include <QHash>
 #include "preferences.h"
 
-class QBtSession;
 class QTimer;
 class EventManager;
 
@@ -49,7 +48,7 @@ class HttpServer : public QTcpServer {
   Q_DISABLE_COPY(HttpServer)
 
 public:
-  HttpServer(QBtSession *BTSession, int msec, QObject* parent = 0);
+  HttpServer(int msec, QObject* parent = 0);
   ~HttpServer();
   void setAuthorization(QString username, QString password_ha1);
   bool isAuthorized(QByteArray auth, QString method) const;
@@ -67,7 +66,6 @@ private slots:
 private:
   QByteArray username;
   QByteArray password_ha1;
-  QBtSession *BTSession;
   EventManager *manager;
   QTimer *timer;
   QHash<QString, int> client_failed_attempts;

@@ -607,7 +607,7 @@ bool QBtSession::initWebUi(QString username, QString password, int port) {
       httpServer->close();
     }
   } else {
-    httpServer = new HttpServer(this, 3000, this);
+    httpServer = new HttpServer(3000, this);
   }
   httpServer->setAuthorization(username, password);
   bool success = true;
@@ -2253,6 +2253,7 @@ void QBtSession::readAlerts() {
         QTorrentHandle h(p->handle);
         if(!h.has_error())
           h.save_resume_data();
+        emit pausedTorrent(h);
       }
     }
     else if (tracker_error_alert* p = dynamic_cast<tracker_error_alert*>(a.get())) {

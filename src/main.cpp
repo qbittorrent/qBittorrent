@@ -43,7 +43,7 @@
 #include <QPushButton>
 #include <QTimer>
 #include "sessionapplication.h"
-#include "GUI.h"
+#include "mainwindow.h"
 #include "ico.h"
 #else
 #include "qtsinglecoreapplication.h"
@@ -295,7 +295,7 @@ int main(int argc, char *argv[]){
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
 #ifndef DISABLE_GUI
-  GUI window(0, torrentCmdLine);
+  MainWindow window(0, torrentCmdLine);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);

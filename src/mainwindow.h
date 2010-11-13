@@ -60,13 +60,13 @@ class HidableTabWidget;
 class LineEdit;
 class QFileSystemWatcher;
 
-class GUI : public QMainWindow, private Ui::MainWindow{
+class MainWindow : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
 
 public:
   // Construct / Destruct
-  GUI(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
-  ~GUI();
+  MainWindow(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
+  ~MainWindow();
   // Methods
   QWidget* getCurrentTabWidget() const;
   TransferListWidget* getTransferList() const { return transferList; }

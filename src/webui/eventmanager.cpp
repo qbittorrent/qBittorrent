@@ -40,8 +40,8 @@
 #include <QDebug>
 #include <QTranslator>
 
-EventManager::EventManager(QObject *parent, QBtSession *BTSession)
-  : QObject(parent), BTSession(BTSession)
+EventManager::EventManager(QObject *parent)
+  : QObject(parent)
 {
 }
 
@@ -51,9 +51,9 @@ QList<QVariantMap> EventManager::getEventList() const {
 
 QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
   QList<QVariantMap> trackersInfo;
-  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
   if(h.is_valid()) {
-    QHash<QString, TrackerInfos> trackers_data = BTSession->getTrackersInfo(hash);
+    QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(hash);
     std::vector<announce_entry> vect_trackers = h.trackers();
     std::vector<announce_entry>::iterator it;
     for(it = vect_trackers.begin(); it != vect_trackers.end(); it++) {
@@ -96,7 +96,7 @@ QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
 
 QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   QList<QVariantMap> files;
-  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
   if(!h.is_valid() || !h.has_metadata()) return files;
   std::vector<int> priorities = h.file_priorities();
   std::vector<size_type> fp;
@@ -160,7 +160,7 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
       foreach(const QString &old_folder, old_folders) {
         // Update deleted folders
         if(!new_folders.contains(old_folder)) {
-          BTSession->getScanFoldersModel()->removePath(old_folder);
+          QBtSession::instance()->getScanFoldersModel()->removePath(old_folder);
         }
       }
       int i = 0;
@@ -168,7 +168,7 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
         qDebug("New watched folder: %s", qPrintable(new_folder));
         // Update new folders
         if(!old_folders.contains(new_folder)) {
-          BTSession->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
+          QBtSession::instance()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
         }
         ++i;
       }
@@ -269,7 +269,7 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
   if(m.contains("web_ui_password"))
     Preferences::setWebUiPassword(m["web_ui_password"].toString());
   // Reload preferences
-  BTSession->configureSession();
+  QBtSession::instance()->configureSession();
 }
 
 QVariantMap EventManager::getGlobalPreferences() const {
@@ -342,7 +342,7 @@ QVariantMap EventManager::getGlobalPreferences() const {
 
 QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
   QVariantMap data;
-  QTorrentHandle h = BTSession->getTorrentHandle(hash);
+  QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
   if(h.is_valid() && h.has_metadata()) {
     // Save path
     QString p = TorrentPersistentData::getSavePath(hash);
@@ -370,7 +370,7 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
     data["time_elapsed"] = elapsed_txt;
     data["nb_connections"] = QVariant(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
     // Update ratio info
-    double ratio = BTSession->getRealRatio(h.hash());
+    double ratio = QBtSession::instance()->getRealRatio(h.hash());
     if(ratio > 100.)
       data["share_ratio"] = QString::fromUtf8("∞");
     else
@@ -404,7 +404,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
         event["state"] = QVariant("pausedDL");
     }
   } else {
-    if(BTSession->isQueueingEnabled() && h.is_queued()) {
+    if(QBtSession::instance()->isQueueingEnabled() && h.is_queued()) {
       if(h.is_seed())
         event["state"] = QVariant("queuedUP");
       else
@@ -436,7 +436,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
           event["state"] = QVariant("downloading");
         else
           event["state"] = QVariant("stalledDL");
-        event["eta"] = misc::userFriendlyDuration(BTSession->getETA(hash));
+        event["eta"] = misc::userFriendlyDuration(QBtSession::instance()->getETA(hash));
         break;
                         default:
         qDebug("No status, should not happen!!! status is %d", h.state());
@@ -448,7 +448,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
   event["size"] = QVariant(misc::friendlyUnit(h.actual_size()));
   event["progress"] = QVariant((double)h.progress());
   event["dlspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.download_payload_rate())));
-  if(BTSession->isQueueingEnabled()) {
+  if(QBtSession::instance()->isQueueingEnabled()) {
     if(h.queue_position() >= 0)
       event["priority"] = QVariant(QString::number(h.queue_position()));
     else
@@ -466,7 +466,7 @@ void EventManager::modifiedTorrent(QTorrentHandle h)
     leechs += " ("+QString::number(h.num_incomplete())+")";
   event["num_leechs"] = QVariant(leechs);
   event["seed"] = QVariant(h.is_seed());
-  double ratio = BTSession->getRealRatio(hash);
+  double ratio = QBtSession::instance()->getRealRatio(hash);
   if(ratio > 100.)
     event["ratio"] = QString::fromUtf8("∞");
   else

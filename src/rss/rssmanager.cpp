@@ -37,7 +37,7 @@
 
 RssManager* RssManager::m_instance = 0;
 
-RssManager::RssManager(): RssFolder(0, this, QBtSession::instance(), QString::null) {
+RssManager::RssManager(): RssFolder() {
   loadStreamList();
   connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshAll()));
   refreshInterval = RssSettings::getRSSRefreshInterval();

@@ -54,12 +54,12 @@
 #include "preferences.h"
 #include "searchlistdelegate.h"
 #include "qinisettings.h"
-#include "GUI.h"
+#include "mainwindow.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
 
 /*SEARCH ENGINE START*/
-SearchEngine::SearchEngine(GUI *parent, QBtSession *BTSession) : QWidget(parent), BTSession(BTSession), parent(parent) {
+SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(parent) {
   setupUi(this);
   // new qCompleter to the search pattern
   startSearchHistory();
@@ -410,7 +410,7 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
   if(torrent_url.startsWith("magnet:")) {
     QStringList urls;
     urls << torrent_url;
-    parent->downloadFromURLList(urls);
+    mp_mainWindow->downloadFromURLList(urls);
   } else {
     QProcess *downloadProcess = new QProcess(this);
     downloadProcess->setEnvironment(QProcess::systemEnvironment());
@@ -459,7 +459,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
     if(parts.size() == 2) {
       QString path = parts[0];
       QString url = parts[1];
-      BTSession->processDownloadedFile(url, path);
+      QBtSession::instance()->processDownloadedFile(url, path);
     }
   }
   qDebug("Deleting downloadProcess");
@@ -564,8 +564,8 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   }
   QIniSettings settings("qBittorrent", "qBittorrent");
   bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
-  if(useNotificationBalloons && parent->getCurrentTabWidget() != this) {
-    parent->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+  if(useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this) {
+    mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
   }
   if(exitcode){
 #ifdef Q_WS_WIN

@@ -63,7 +63,6 @@ signals:
 private:
   QTimer newsRefresher;
   unsigned int refreshInterval;
-  QBtSession *BTSession;
 
 };
 

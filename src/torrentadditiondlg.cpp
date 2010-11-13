@@ -28,14 +28,36 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDir>
+#include <QFileDialog>
+#include <QFile>
+#include <fstream>
+#include <QMessageBox>
+#include <QMenu>
+#include <QHeaderView>
+#include <QApplication>
+#include <QDesktopWidget>
+#include <QInputDialog>
+
+#include <libtorrent/version.hpp>
+#include <libtorrent/session.hpp>
+#include <libtorrent/bencode.hpp>
+
+#include "qbtsession.h"
+#include "torrentfilesmodel.h"
+#include "preferences.h"
+#include "transferlistwidget.h"
+#include "qinisettings.h"
+#include "misc.h"
+#include "proplistdelegate.h"
+#include "torrentpersistentdata.h"
+
 #include "torrentadditiondlg.h"
 
-torrentAdditionDialog::torrentAdditionDialog(GUI *parent, QBtSession* _BTSession) :
-  QDialog((QWidget*)parent), old_label(""), hidden_height(0) {
+torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
+  QDialog(parent), old_label(""), hidden_height(0) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  connect(this, SIGNAL(torrentPaused(QTorrentHandle&)), parent->getTransferList(), SLOT(pauseTorrent(QTorrentHandle&)));
-  BTSession = _BTSession;
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
   connect(PropListModel, SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabels()));
@@ -178,7 +200,7 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
   // Get torrent hash
   hash = misc::magnetUriToHash(magnet_uri);
   if(hash.isEmpty()) {
-    BTSession->addConsoleMessage(tr("Unable to decode magnet link:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
+    QBtSession::instance()->addConsoleMessage(tr("Unable to decode magnet link:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
     return;
   }
   // Set torrent name
@@ -213,10 +235,10 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   } catch(std::exception&) {
     qDebug("Caught error loading torrent");
     if(!from_url.isNull()){
-      BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
+      QBtSession::instance()->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
       misc::safeRemove(filePath);
     }else{
-      BTSession->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
+      QBtSession::instance()->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
     }
     close();
     return;
@@ -622,12 +644,11 @@ void torrentAdditionDialog::renameSelectedFile() {
         // Add to download list
         QTorrentHandle h;
         if(is_magnet)
-          h = BTSession->addMagnetUri(from_url, false);
+          h = QBtSession::instance()->addMagnetUri(from_url, false);
         else
-          h = BTSession->addTorrent(filePath, false, from_url);
+          h = QBtSession::instance()->addTorrent(filePath, false, from_url);
         if(addInPause->isChecked() && h.is_valid()) {
           h.pause();
-          emit torrentPaused(h);
         }
         // Close the dialog
         qDebug("Closing torrent addition dialog...");

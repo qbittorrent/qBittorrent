@@ -38,14 +38,13 @@
 
 class TransferListWidget;
 class QTimer;
-class QBtSession;
 class TorrentFilesModel;
 class PropListDelegate;
 class QAction;
 class torrent_file;
 class PeerListWidget;
 class TrackerList;
-class GUI;
+class MainWindow;
 class DownloadedPiecesBar;
 class PieceAvailabilityBar;
 class PropTabBar;
@@ -58,10 +57,9 @@ public:
   enum SlideState {REDUCED, VISIBLE};
 
 public:
-  PropertiesWidget(QWidget *parent, GUI* main_window, TransferListWidget *transferList, QBtSession* BTSession);
+  PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList);
   ~PropertiesWidget();
   QTorrentHandle getCurrentTorrent() const;
-  QBtSession* getBTSession() const;
   TrackerList* getTrackerList() const { return trackerList; }
   PeerListWidget* getPeerList() const { return peersList; }
   QTreeView* getFilesList() const { return filesList; }
@@ -97,10 +95,9 @@ public slots:
 
 private:
   TransferListWidget *transferList;
-  GUI *main_window;
+  MainWindow *main_window;
   QTorrentHandle h;
   QTimer *refreshTimer;
-  QBtSession* BTSession;
   SlideState state;
   TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
