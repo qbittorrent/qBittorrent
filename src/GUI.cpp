@@ -364,7 +364,7 @@ void GUI::displayRSSTab(bool enable) {
   if(enable) {
     // RSS tab
     if(!rssWidget) {
-      rssWidget = new RSSImp(BTSession);
+      rssWidget = new RSSImp(tabs);
       int index_tab = tabs->addTab(rssWidget, tr("RSS"));
       tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
     }

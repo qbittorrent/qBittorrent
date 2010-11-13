@@ -307,9 +307,9 @@ void RSSImp::downloadTorrent() {
   foreach(const QTreeWidgetItem* item, selected_items) {
     RssArticle* article =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
     if(article->has_attachment()) {
-      BTSession->downloadFromUrl(article->getTorrentUrl());
+      QBtSession::instance()->downloadFromUrl(article->getTorrentUrl());
     } else {
-      BTSession->downloadFromUrl(article->getLink());
+      QBtSession::instance()->downloadFromUrl(article->getLink());
     }
   }
 }
@@ -577,7 +577,7 @@ void RSSImp::updateRefreshInterval(unsigned int val) {
   rssmanager->updateRefreshInterval(val);
 }
 
-RSSImp::RSSImp(QBtSession *BTSession) : QWidget(), BTSession(BTSession){
+RSSImp::RSSImp(QWidget *parent) : QWidget(parent) {
   setupUi(this);
 
   rssmanager = RssManager::instance();

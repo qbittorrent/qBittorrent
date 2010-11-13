@@ -149,6 +149,8 @@ RssManager * RssManager::instance()
 
 void RssManager::drop()
 {
-  if(m_instance)
+  if(m_instance) {
     delete m_instance;
+    m_instance = 0;
+  }
 }
