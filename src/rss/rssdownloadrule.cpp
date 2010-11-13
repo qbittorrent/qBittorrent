@@ -29,6 +29,7 @@
  */
 
 #include <QRegExp>
+#include <QDebug>
 
 #include "rssdownloadrule.h"
 #include "preferences.h"
@@ -69,16 +70,18 @@ void RssDownloadRule::setMustNotContain(const QString &tokens)
 
 RssDownloadRule RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash, const QString &feed_url, const QString &rule_name)
 {
+  qDebug() << Q_FUNC_INFO << feed_url << rule_name;
   RssDownloadRule rule;
   rule.setName(rule_name);
   rule.setMustContain(rule_hash.value("matches", "").toString());
   rule.setMustNotContain(rule_hash.value("not", "").toString());
-  rule.setRssFeeds(QStringList() << feed_url);
+  if(!feed_url.isEmpty())
+    rule.setRssFeeds(QStringList() << feed_url);
   rule.setSavePath(rule_hash.value("save_path", "").toString());
   // Is enabled?
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  const QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on", true).toHash();
-  rule.setEnabled(feeds_w_downloader.value(feed_url, false).toBool());
+  const QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on").toHash();
+  rule.setEnabled(feeds_w_downloader.value(feed_url, true).toBool());
   // label was unsupported < 2.5.0
   return rule;
 }

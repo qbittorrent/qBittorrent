@@ -29,6 +29,7 @@
  */
 
 #include <QFile>
+#include <QDataStream>
 #include <QDebug>
 
 #include "rssdownloadrulelist.h"
@@ -73,7 +74,7 @@ void RssDownloadRuleList::loadRulesFromStorage()
 {
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   if(qBTRSS.contains("feed_filters")) {
-    importRulesInOldFormat(qBTRSS.value("feed_filters").toHash());
+    importFeedsInOldFormat(qBTRSS.value("feed_filters").toHash());
     // Remove outdated rules
     qBTRSS.remove("feed_filters");
     // Save to new format
@@ -84,20 +85,24 @@ void RssDownloadRuleList::loadRulesFromStorage()
   loadRulesFromVariantHash(qBTRSS.value("download_rules").toHash());
 }
 
-void RssDownloadRuleList::importRulesInOldFormat(const QHash<QString, QVariant> &rules)
+void RssDownloadRuleList::importFeedsInOldFormat(const QHash<QString, QVariant> &rules)
 {
   foreach(const QString &feed_url, rules.keys()) {
-    const QHash<QString, QVariant> feed_rules = rules.value(feed_url).toHash();
-    foreach(const QString &rule_name, feed_rules.keys()) {
-      RssDownloadRule rule = RssDownloadRule::fromOldFormat(feed_rules.value(rule_name).toHash(), feed_url, rule_name);
-      if(!rule.isValid()) continue;
-      // Check for rule name clash
-      while(m_rules.contains(rule.name())) {
-        rule.setName(rule.name()+"_");
-      }
-      // Add the rule to the list
-      saveRule(rule);
+    importFeedRulesInOldFormat(feed_url, rules.value(feed_url).toHash());
+  }
+}
+
+void RssDownloadRuleList::importFeedRulesInOldFormat(const QString &feed_url, const QHash<QString, QVariant> &rules)
+{
+  foreach(const QString &rule_name, rules.keys()) {
+    RssDownloadRule rule = RssDownloadRule::fromOldFormat(rules.value(rule_name).toHash(), feed_url, rule_name);
+    if(!rule.isValid()) continue;
+    // Check for rule name clash
+    while(m_rules.contains(rule.name())) {
+      rule.setName(rule.name()+"_");
     }
+    // Add the rule to the list
+    saveRule(rule);
   }
 }
 
@@ -192,23 +197,30 @@ bool RssDownloadRuleList::unserialize(const QString &path)
   QFile f(path);
   if(f.open(QIODevice::ReadOnly)) {
     QDataStream in(&f);
-    if(path.endsWith(".filters")) {
+    if(path.endsWith(".filters", Qt::CaseInsensitive)) {
       // Old format (< 2.5.0)
+      qDebug("Old serialization format detected, processing...");
       in.setVersion(QDataStream::Qt_4_3);
       QVariantHash tmp;
       in >> tmp;
       f.close();
       if(tmp.isEmpty()) return false;
-      importRulesInOldFormat(tmp);
+      qDebug("Processing was successful!");
+      // Unfortunately the feed_url is lost
+      importFeedRulesInOldFormat("", tmp);
     } else {
+      qDebug("New serialization format detected, processing...");
       in.setVersion(QDataStream::Qt_4_5);
       QVariantHash tmp;
       in >> tmp;
       f.close();
       if(tmp.isEmpty()) return false;
+      qDebug("Processing was successful!");
       loadRulesFromVariantHash(tmp);
     }
     return true;
   }
+  qDebug("Error: could not open file at %s", qPrintable(path));
   return false;
 }
+

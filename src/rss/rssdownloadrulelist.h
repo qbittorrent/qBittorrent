@@ -63,7 +63,8 @@ public:
 
 private:
   void loadRulesFromStorage();
-  void importRulesInOldFormat(const QHash<QString, QVariant> &rules); // Before v2.5.0
+  void importFeedsInOldFormat(const QHash<QString, QVariant> &feedrules); // Before v2.5.0
+  void importFeedRulesInOldFormat(const QString &feed_url, const QHash<QString, QVariant> &rules); // Before v2.5.0
   void loadRulesFromVariantHash(const QVariantHash& l);
   QVariantHash toVariantHash() const;
   void saveRulesToStorage();

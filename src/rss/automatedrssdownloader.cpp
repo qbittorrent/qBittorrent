@@ -88,6 +88,11 @@ void AutomatedRssDownloader::saveSettings()
 
 void AutomatedRssDownloader::loadRulesList()
 {
+  // Make sure we save the current item before clearing
+  if(ui->listRules->currentItem()) {
+    saveCurrentRule(ui->listRules->currentItem());
+  }
+  ui->listRules->clear();
   foreach (const QString &rule_name, m_ruleList->ruleNames()) {
     QListWidgetItem *item = new QListWidgetItem(rule_name, ui->listRules);
     item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
@@ -286,8 +291,10 @@ void AutomatedRssDownloader::on_importBtn_clicked()
   QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list (*.rssrules *.filters)"));
   if(load_path.isEmpty() || !QFile::exists(load_path)) return;
   // Load it
-  if(m_ruleList->unserialize(load_path)) {
+  if(!m_ruleList->unserialize(load_path)) {
     QMessageBox::warning(this, tr("Import Error"), tr("Failed to import the selected rules file"));
     return;
   }
+  // Reload the rule list
+  loadRulesList();
 }
