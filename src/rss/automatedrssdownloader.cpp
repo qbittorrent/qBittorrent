@@ -70,7 +70,9 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 
 void AutomatedRssDownloader::loadSettings()
 {
-  // TODO: load dialog size and pos
+  // load dialog geometry
+  QIniSettings settings("qBittorrent", "qBittorrent");
+  restoreGeometry(settings.value("RssFeedDownloader/geometry").toByteArray());
   ui->checkEnableDownloader->setChecked(RssSettings::isRssDownloadingEnabled());
   // Display download rules
   loadRulesList();
@@ -79,7 +81,9 @@ void AutomatedRssDownloader::loadSettings()
 void AutomatedRssDownloader::saveSettings()
 {
   RssSettings::setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
-  // TODO: Save dialog size and pos
+  // Save dialog geometry
+  QIniSettings settings("qBittorrent", "qBittorrent");
+  settings.setValue("RssFeedDownloader/geometry", saveGeometry());
 }
 
 void AutomatedRssDownloader::loadRulesList()
