@@ -59,6 +59,7 @@ public:
   inline QStringList ruleNames() const { return m_rules.keys(); }
   inline bool isEmpty() const { return m_rules.isEmpty(); }
   bool serialize(const QString& path);
+  bool unserialize(const QString& path);
 
 private:
   void loadRulesFromStorage();

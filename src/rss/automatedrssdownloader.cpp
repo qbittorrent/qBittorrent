@@ -199,6 +199,7 @@ void AutomatedRssDownloader::saveCurrentRule(QListWidgetItem * item)
 {
   qDebug() << Q_FUNC_INFO << item;
   if(!item) return;
+  if(!ui->listRules->findItems(item->text(), Qt::MatchExactly).isEmpty()) return;
   RssDownloadRule rule = m_ruleList->getRule(item->text());
   if(!rule.isValid()) {
     rule.setName(item->text());
@@ -245,10 +246,12 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
   QListWidgetItem * item = ui->listRules->currentItem();
   if(!item) return;
   // Ask for confirmation
-  if(QMessageBox::question(this, tr("Rule deletion confirmation"), tr("Are you sure you want to remove the download rule named %1?").arg(item->text())) != QMessageBox::Yes)
+  if(QMessageBox::question(this, tr("Rule deletion confirmation"), tr("Are you sure you want to remove the download rule named %1?").arg(item->text()), QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)
     return;
   // Actually remove the item
   ui->listRules->removeItemWidget(item);
+  // Remove it from the m_ruleList
+  m_ruleList->removeRule(item->text());
   // Clean up memory
   delete item;
 }
@@ -267,7 +270,7 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
     return;
   }
   // Ask for a save path
-  QString save_path = QFileDialog::getSaveFileName(this, tr("Where would you like to save the list?"), QDir::homePath(), tr("Rule list (*.rssrules *.filters)"));
+  QString save_path = QFileDialog::getSaveFileName(this, tr("Where would you like to save the list?"), QDir::homePath(), tr("Rules list (*.rssrules)"));
   if(save_path.isEmpty()) return;
   if(!save_path.endsWith(".rssrules", Qt::CaseInsensitive))
     save_path += ".rssrules";
@@ -279,5 +282,12 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
 
 void AutomatedRssDownloader::on_importBtn_clicked()
 {
-  // TODO
+  // Ask for filter path
+  QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list (*.rssrules *.filters)"));
+  if(load_path.isEmpty() || !QFile::exists(load_path)) return;
+  // Load it
+  if(m_ruleList->unserialize(load_path)) {
+    QMessageBox::warning(this, tr("Import Error"), tr("Failed to import the selected rules file"));
+    return;
+  }
 }

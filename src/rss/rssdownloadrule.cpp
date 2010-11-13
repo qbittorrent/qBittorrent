@@ -77,7 +77,7 @@ RssDownloadRule RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash, co
   rule.setSavePath(rule_hash.value("save_path", "").toString());
   // Is enabled?
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  const QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on").toHash();
+  const QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on", true).toHash();
   rule.setEnabled(feeds_w_downloader.value(feed_url, false).toBool());
   // label was unsupported < 2.5.0
   return rule;

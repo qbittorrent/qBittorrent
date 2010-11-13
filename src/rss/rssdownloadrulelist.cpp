@@ -29,6 +29,7 @@
  */
 
 #include <QFile>
+#include <QDebug>
 
 #include "rssdownloadrulelist.h"
 #include "qinisettings.h"
@@ -133,6 +134,7 @@ void RssDownloadRuleList::saveRule(const RssDownloadRule &rule)
 
 void RssDownloadRuleList::removeRule(const QString &name)
 {
+  qDebug() << Q_FUNC_INFO << name;
   if(!m_rules.contains(name)) return;
   const RssDownloadRule rule = m_rules.take(name);
   // Update feedRules hashtable
@@ -183,4 +185,30 @@ bool RssDownloadRuleList::serialize(const QString& path)
   } else {
     return false;
   }
+}
+
+bool RssDownloadRuleList::unserialize(const QString &path)
+{
+  QFile f(path);
+  if(f.open(QIODevice::ReadOnly)) {
+    QDataStream in(&f);
+    if(path.endsWith(".filters")) {
+      // Old format (< 2.5.0)
+      in.setVersion(QDataStream::Qt_4_3);
+      QVariantHash tmp;
+      in >> tmp;
+      f.close();
+      if(tmp.isEmpty()) return false;
+      importRulesInOldFormat(tmp);
+    } else {
+      in.setVersion(QDataStream::Qt_4_5);
+      QVariantHash tmp;
+      in >> tmp;
+      f.close();
+      if(tmp.isEmpty()) return false;
+      loadRulesFromVariantHash(tmp);
+    }
+    return true;
+  }
+  return false;
 }
