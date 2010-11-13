@@ -48,7 +48,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
 {
   ui->setupUi(this);
   ui->listRules->setSortingEnabled(true);
-  ui->listRules->setSelectionMode(QAbstractItemView::MultiSelection);
+  ui->listRules->setSelectionMode(QAbstractItemView::ExtendedSelection);
   connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
   m_ruleList = RssDownloadRuleList::instance();
   initLabelCombobox();
@@ -154,8 +154,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox(QListWidgetItem* current, Q
   // Save previous item
   saveCurrentRule(previous);
   // Update rule definition box
+  const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
   RssDownloadRule rule = getCurrentRule();
-  if(rule.isValid()) {
+  if(selection.count() == 1 && rule.isValid()) {
     ui->lineContains->setText(rule.mustContain());
     ui->lineNotContains->setText(rule.mustNotContain());
     ui->saveDiffDir_check->setChecked(!rule.savePath().isEmpty());
@@ -174,7 +175,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox(QListWidgetItem* current, Q
     ui->saveDiffDir_check->setChecked(false);
     ui->lineSavePath->clear();
     ui->comboLabel->clearEditText();
-    if(current) {
+    if(current && selection.count() == 1) {
       // Use the rule name as a default for the "contains" field
       ui->lineContains->setText(current->text());
       ui->ruleDefBox->setEnabled(true);
@@ -315,8 +316,9 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
   QAction *addAct = menu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add new rule..."));
   QAction *delAct = 0;
   QAction *renameAct = 0;
-  if(!ui->listRules->selectedItems().isEmpty()) {
-    if(ui->listRules->selectedItems().count() == 1) {
+  const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
+  if(!selection.isEmpty()) {
+    if(selection.count() == 1) {
       delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Delete rule"));
       menu.addSeparator();
       renameAct = menu.addAction(QIcon(":/Icons/oxygen/edit_clear.png"), tr("Rename rule..."));
