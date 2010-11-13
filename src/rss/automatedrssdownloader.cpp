@@ -216,7 +216,7 @@ void AutomatedRssDownloader::saveCurrentRule(QListWidgetItem * item)
   rule.setLabel(ui->comboLabel->currentText());
   // Save new label
   if(!rule.label().isEmpty())
-      Preferences::addTorrentLabel(rule.label());
+    Preferences::addTorrentLabel(rule.label());
   rule.setRssFeeds(getSelectedFeeds());
   // Save it
   m_ruleList->saveRule(rule);
@@ -258,4 +258,26 @@ void AutomatedRssDownloader::on_browseSP_clicked()
   QString save_path = QFileDialog::getExistingDirectory(this, tr("Destination directory"), QDir::homePath());
   if(!save_path.isEmpty())
     ui->lineSavePath->setText(save_path);
+}
+
+void AutomatedRssDownloader::on_exportBtn_clicked()
+{
+  if(m_ruleList->isEmpty()) {
+    QMessageBox::warning(this, tr("Invalid action"), tr("The list is empty, there is nothing to export."));
+    return;
+  }
+  // Ask for a save path
+  QString save_path = QFileDialog::getSaveFileName(this, tr("Where would you like to save the list?"), QDir::homePath(), tr("Rule list (*.rssrules *.filters)"));
+  if(save_path.isEmpty()) return;
+  if(!save_path.endsWith(".rssrules", Qt::CaseInsensitive))
+    save_path += ".rssrules";
+  if(!m_ruleList->serialize(save_path)) {
+    QMessageBox::warning(this, tr("I/O Error"), tr("Failed to create the destination file"));
+    return;
+  }
+}
+
+void AutomatedRssDownloader::on_importBtn_clicked()
+{
+  // TODO
 }

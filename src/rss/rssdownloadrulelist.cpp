@@ -28,6 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QFile>
+
 #include "rssdownloadrulelist.h"
 #include "qinisettings.h"
 
@@ -135,7 +137,7 @@ void RssDownloadRuleList::removeRule(const QString &name)
   const RssDownloadRule rule = m_rules.take(name);
   // Update feedRules hashtable
   foreach(const QString &feed_url, rule.rssFeeds()) {
-     m_feedRules[feed_url].removeOne(rule.name());
+    m_feedRules[feed_url].removeOne(rule.name());
   }
   // Save rules
   saveRulesToStorage();
@@ -158,7 +160,7 @@ void RssDownloadRuleList::renameRule(const QString &old_name, const QString &new
   m_rules.insert(new_name, rule);
   // Update feedRules hashtable
   foreach(const QString &feed_url, rule.rssFeeds()) {
-     m_feedRules[feed_url].replace(m_feedRules[feed_url].indexOf(old_name), new_name);
+    m_feedRules[feed_url].replace(m_feedRules[feed_url].indexOf(old_name), new_name);
   }
   // Save rules
   saveRulesToStorage();
@@ -167,4 +169,18 @@ void RssDownloadRuleList::renameRule(const QString &old_name, const QString &new
 RssDownloadRule RssDownloadRuleList::getRule(const QString &name) const
 {
   return m_rules.value(name);
+}
+
+bool RssDownloadRuleList::serialize(const QString& path)
+{
+  QFile f(path);
+  if(f.open(QIODevice::WriteOnly)) {
+    QDataStream out(&f);
+    out.setVersion(QDataStream::Qt_4_5);
+    out << toVariantHash();
+    f.close();
+    return true;
+  } else {
+    return false;
+  }
 }

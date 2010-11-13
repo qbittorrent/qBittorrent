@@ -10,6 +10,7 @@
     - FEATURE: Bring up the connection settings when clicking on the connection status icon
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
+    - OTHERS: Dropped support for Qt <= 4.4
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
     - FEATURE: Added actions to "Move to top/bottom" of priority queue

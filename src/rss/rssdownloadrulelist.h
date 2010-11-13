@@ -57,6 +57,8 @@ public:
   void renameRule(const QString &old_name, const QString &new_name);
   RssDownloadRule getRule(const QString &name) const;
   inline QStringList ruleNames() const { return m_rules.keys(); }
+  inline bool isEmpty() const { return m_rules.isEmpty(); }
+  bool serialize(const QString& path);
 
 private:
   void loadRulesFromStorage();
