@@ -35,7 +35,6 @@
 
 #include "automatedrssdownloader.h"
 #include "ui_automatedrssdownloader.h"
-#include "rssfilters.h"
 #include "rsssettings.h"
 #include "rssdownloadrulelist.h"
 #include "preferences.h"

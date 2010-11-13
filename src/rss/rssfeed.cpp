@@ -34,7 +34,6 @@
 #include "rssfolder.h"
 #include "rsssettings.h"
 #include "rssarticle.h"
-#include "feeddownloader.h"
 #include "misc.h"
 #include "rssdownloadrulelist.h"
 
