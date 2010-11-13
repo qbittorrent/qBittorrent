@@ -54,10 +54,13 @@ protected slots:
   void loadSettings();
   void saveSettings();
   void loadRulesList();
-  void updateRuleDefinitionBox(QListWidgetItem* current = 0, QListWidgetItem* previous = 0);
+  void handleCurrentItemChange(QListWidgetItem* current, QListWidgetItem* previous);
+  void handleFeedCheckStateChange(QListWidgetItem* feed_item);
+  void updateRuleDefinitionBox();
+  void clearRuleDefinitionBox();
   void saveCurrentRule(QListWidgetItem * item);
   void loadFeedList();
-  void updateFeedList(QListWidgetItem* current, QListWidgetItem* previous);
+  void updateFeedList();
 
 private slots:
   void displayRulesListMenu(const QPoint& pos);
