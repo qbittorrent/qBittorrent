@@ -32,16 +32,16 @@
 #define RSSDOWNLOADRULE_H
 
 #include <QStringList>
-#include <QHash>
+#include <QVariantHash>
 
 class RssDownloadRule
 {
 
 public:
   explicit RssDownloadRule();
-  static RssDownloadRule fromOldFormat(const QHash<QString, QVariant>& rule_hash, const QString &feed_url, const QString &rule_name); // Before v2.5.0
-  static RssDownloadRule fromNewFormat(const QHash<QString, QVariant> &rule_hash);
-  QHash<QString, QVariant> toHash() const;
+  static RssDownloadRule fromOldFormat(const QVariantHash& rule_hash, const QString &feed_url, const QString &rule_name); // Before v2.5.0
+  static RssDownloadRule fromNewFormat(const QVariantHash &rule_hash);
+  QVariantHash toVariantHash() const;
   bool matches(const QString &article_title) const;
   void setMustContain(const QString &tokens);
   void setMustNotContain(const QString &tokens);
@@ -50,11 +50,14 @@ public:
   inline QString name() const { return m_name; }
   inline void setName(const QString &name) { m_name = name; }
   inline QString savePath() const { return m_savePath; }
-  inline void setSavePath(const QString &save_path) { m_savePath = save_path; }
+  void setSavePath(const QString &save_path);
   inline QString label() const { return m_label; }
   inline void setLabel(const QString &_label) { m_label = _label; }
   inline bool isEnabled() const { return m_enabled; }
   inline void setEnabled(bool enable) { m_enabled = enable; }
+  inline bool isValid() const { return !m_name.isEmpty(); }
+  inline QString mustContain() const { return m_mustContain.join(" "); }
+  inline QString mustNotContain() const { return m_mustNotContain.join(" "); }
   // Operators
   bool operator==(const RssDownloadRule &other);
 

@@ -38,7 +38,6 @@
 #include <QDragMoveEvent>
 
 #include "rss_imp.h"
-#include "feeddownloader.h"
 #include "feedlistwidget.h"
 #include "qbtsession.h"
 #include "cookiesdlg.h"
@@ -48,6 +47,7 @@
 #include "rssfolder.h"
 #include "rssarticle.h"
 #include "rssfeed.h"
+#include "automatedrssdownloader.h"
 
 enum NewsCols { NEWS_ICON, NEWS_TITLE_COL, NEWS_URL_COL, NEWS_ID };
 
@@ -79,10 +79,6 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
     if(listStreams->getItemType(selectedItems.first()) == RssFile::FEED) {
       myRSSListMenu.addSeparator();
       myRSSListMenu.addAction(actionCopy_feed_URL);
-      if(selectedItems.size() == 1) {
-        myRSSListMenu.addSeparator();
-        myRSSListMenu.addAction(actionRSS_feed_downloader);
-      }
     }
   }else{
     myRSSListMenu.addAction(actionNew_subscription);
@@ -393,15 +389,6 @@ void RSSImp::copySelectedFeedsURL() {
   qApp->clipboard()->setText(URLs.join("\n"));
 }
 
-void RSSImp::showFeedDownloader() {
-  QTreeWidgetItem* item = listStreams->selectedItems()[0];
-  RssFile* rss_item = listStreams->getRSSItem(item);
-  if(rss_item->getType() == RssFile::FEED) {
-    FeedDownloaderDlg* feedDownloader = new FeedDownloaderDlg(this, listStreams->getItemID(item), rss_item->getName(), BTSession);
-    connect(feedDownloader, SIGNAL(filteringEnabled()), this, SLOT(on_updateAllButton_clicked()));
-  }
-}
-
 void RSSImp::on_markReadButton_clicked() {
   QList<QTreeWidgetItem*> selectedItems = listStreams->selectedItems();
   QTreeWidgetItem* item;
@@ -620,7 +607,6 @@ RSSImp::RSSImp(QBtSession *BTSession) : QWidget(), BTSession(BTSession){
   connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
   connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(on_updateAllButton_clicked()));
   connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));
-  connect(actionRSS_feed_downloader, SIGNAL(triggered()), this, SLOT(showFeedDownloader()));
   connect(actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
   // News list actions
   connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openNewsUrl()));
@@ -657,4 +643,12 @@ void RSSImp::on_settingsButton_clicked() {
   RssSettingsDlg dlg(this);
   if(dlg.exec())
     updateRefreshInterval(Preferences::getRefreshInterval());
+}
+
+void RSSImp::on_rssDownloaderBtn_clicked()
+{
+  AutomatedRssDownloader dlg(this);
+  dlg.exec();
+  if(dlg.isRssDownloaderEnabled())
+    on_updateAllButton_clicked();
 }

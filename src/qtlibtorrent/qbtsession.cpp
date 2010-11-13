@@ -247,11 +247,8 @@ void QBtSession::handleDownloadFailure(QString url, QString reason) {
   emit downloadFromUrlFailure(url, reason);
   // Clean up
   const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
-  const int index = url_skippingDlg.indexOf(qurl);
-  if(index >= 0)
-    url_skippingDlg.removeAt(index);
-  if(savepath_fromurl.contains(qurl))
-    savepath_fromurl.remove(qurl);
+  url_skippingDlg.removeOne(qurl);
+  savepathLabel_fromurl.remove(qurl);
 }
 
 void QBtSession::startTorrentsInPause(bool b) {
@@ -1052,9 +1049,15 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     }
   }
   QString savePath;
-  if(!from_url.isEmpty() && savepath_fromurl.contains(QUrl::fromEncoded(from_url.toLocal8Bit()))) {
+  if(!from_url.isEmpty() && savepathLabel_fromurl.contains(QUrl::fromEncoded(from_url.toLocal8Bit()))) {
     // Enforcing the save path defined before URL download (from RSS for example)
-    savePath = savepath_fromurl.take(QUrl::fromEncoded(from_url.toLocal8Bit()));
+    QPair<QString, QString> savePath_label = savepathLabel_fromurl.take(QUrl::fromEncoded(from_url.toLocal8Bit()));
+    if(savePath_label.first.isEmpty())
+      savePath = getSavePath(hash, fromScanDir, path, root_folder);
+    else
+      savePath = savePath_label.first;
+    // Remember label
+    TorrentTempData::setLabel(hash, savePath_label.second);
   } else {
     savePath = getSavePath(hash, fromScanDir, path, root_folder);
   }
@@ -2154,7 +2157,7 @@ void QBtSession::readAlerts() {
       QTorrentHandle h(p->handle);
       if(h.is_valid()) {
         // Attempt to remove old folder if empty
-        const QString& old_save_path = TorrentPersistentData::getPreviousPath(h.hash());
+        const QString old_save_path = TorrentPersistentData::getPreviousPath(h.hash());
         const QString new_save_path = misc::toQStringU(p->path.c_str());
         qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
         QDir old_save_dir(old_save_path);
@@ -2489,11 +2492,11 @@ void QBtSession::addMagnetSkipAddDlg(QString uri) {
   addMagnetUri(uri, false);
 }
 
-void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path) {
+void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label) {
   //emit aboutToDownloadFromUrl(url);
   const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
   if(!save_path.isEmpty())
-    savepath_fromurl[qurl] = save_path;
+    savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
   url_skippingDlg << qurl;
   // Launch downloader thread
   downloader->downloadUrl(url);

@@ -31,6 +31,7 @@
 #include <QRegExp>
 
 #include "rssdownloadrule.h"
+#include "preferences.h"
 #include "qinisettings.h"
 
 RssDownloadRule::RssDownloadRule()
@@ -66,7 +67,7 @@ void RssDownloadRule::setMustNotContain(const QString &tokens)
   m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
 }
 
-RssDownloadRule RssDownloadRule::fromOldFormat(const QHash<QString, QVariant> &rule_hash, const QString &feed_url, const QString &rule_name)
+RssDownloadRule RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash, const QString &feed_url, const QString &rule_name)
 {
   RssDownloadRule rule;
   rule.setName(rule_name);
@@ -82,7 +83,7 @@ RssDownloadRule RssDownloadRule::fromOldFormat(const QHash<QString, QVariant> &r
   return rule;
 }
 
-RssDownloadRule RssDownloadRule::fromNewFormat(const QHash<QString, QVariant> &rule_hash)
+RssDownloadRule RssDownloadRule::fromNewFormat(const QVariantHash &rule_hash)
 {
   RssDownloadRule rule;
   rule.setName(rule_hash.value("name").toString());
@@ -90,16 +91,18 @@ RssDownloadRule RssDownloadRule::fromNewFormat(const QHash<QString, QVariant> &r
   rule.setMustNotContain(rule_hash.value("must_not_contain").toString());
   rule.setRssFeeds(rule_hash.value("affected_feeds").toStringList());
   rule.setEnabled(rule_hash.value("enabled", false).toBool());
+  rule.setSavePath(rule_hash.value("save_path").toString());
   rule.setLabel(rule_hash.value("label_assigned").toString());
   return rule;
 }
 
-QHash<QString, QVariant> RssDownloadRule::toHash() const
+QVariantHash RssDownloadRule::toVariantHash() const
 {
-  QHash<QString, QVariant> hash;
+  QVariantHash hash;
   hash["name"] = m_name;
   hash["must_contain"] = m_mustContain.join(" ");
   hash["must_not_contain"] = m_mustNotContain.join(" ");
+  hash["save_path"] = m_savePath;
   hash["affected_feeds"] = m_rssFeeds;
   hash["enabled"] = m_enabled;
   hash["label_assigned"] = m_label;
@@ -108,4 +111,12 @@ QHash<QString, QVariant> RssDownloadRule::toHash() const
 
 bool RssDownloadRule::operator==(const RssDownloadRule &other) {
   return m_name == other.name();
+}
+
+void RssDownloadRule::setSavePath(const QString &save_path)
+{
+  if(!save_path.isEmpty() && QDir(save_path) != QDir(Preferences::getSavePath()))
+    m_savePath = save_path;
+  else
+    m_savePath = QString();
 }

@@ -68,7 +68,7 @@ public:
 
   static bool isRssDownloadingEnabled() {
     QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value("Preferences/RSS/RssDownloading", false).toBool();
+    return settings.value("Preferences/RSS/RssDownloading", true).toBool();
   }
 
   static void setRssDownloadingEnabled(bool b) {
@@ -76,6 +76,25 @@ public:
     settings.setValue("Preferences/RSS/RssDownloading", b);
   }
 
+  static QStringList getRssFeedsUrls() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("Rss/streamList").toStringList();
+  }
+
+  static void setRssFeedsUrls(const QStringList &rssFeeds) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue("Rss/streamList", rssFeeds);
+  }
+
+  static QStringList getRssFeedsAliases() {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    return settings.value("Rss/streamAlias").toStringList();
+  }
+
+  static void setRssFeedsAliases(const QStringList &rssAliases) {
+    QIniSettings settings("qBittorrent", "qBittorrent");
+    settings.setValue("Rss/streamAlias", rssAliases);
+  }
 };
 
 #endif // RSSSETTINGS_H

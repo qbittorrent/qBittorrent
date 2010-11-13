@@ -33,12 +33,12 @@
 
 #include <QList>
 #include <QHash>
-#include <QVariantList>
+#include <QVariantHash>
 
 #include "rssdownloadrule.h"
 
 // This class is not thread-safe (not required)
-class RssDownloadRuleList : public QList<RssDownloadRule>
+class RssDownloadRuleList
 {
   Q_DISABLE_COPY(RssDownloadRuleList)
 
@@ -49,19 +49,26 @@ private:
 public:
   static RssDownloadRuleList* instance();
   static void drop();
-  const RssDownloadRule* findMatchingRule(const QString &feed_url, const QString &article_title) const;
-  inline QList<RssDownloadRule*> feedRules(const QString &feed_url) const { return m_feedRules.value(feed_url); }
-  QVariantList toVariantList() const;
-  void append(const RssDownloadRule& rule);
-  void saveRulesToStorage();
+  RssDownloadRule findMatchingRule(const QString &feed_url, const QString &article_title) const;
+  // Operators
+  void saveRule(const RssDownloadRule &rule);
+  void removeRule(const QString &name);
+  void updateRule(const RssDownloadRule &rule);
+  void renameRule(const QString &old_name, const QString &new_name);
+  RssDownloadRule getRule(const QString &name) const;
+  inline QStringList ruleNames() const { return m_rules.keys(); }
 
 private:
   void loadRulesFromStorage();
   void importRulesInOldFormat(const QHash<QString, QVariant> &rules); // Before v2.5.0
-  void loadRulesFromVariantList(const QVariantList& l);
+  void loadRulesFromVariantHash(const QVariantHash& l);
+  QVariantHash toVariantHash() const;
+  void saveRulesToStorage();
+  inline QStringList feedRules(const QString &feed_url) const { return m_feedRules[feed_url]; }
 
 private:
-  QHash<QString, QList<RssDownloadRule*> > m_feedRules;
+  QHash<QString, RssDownloadRule> m_rules;
+  QHash<QString, QStringList> m_feedRules;
 
 };
 

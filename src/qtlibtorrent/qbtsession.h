@@ -119,7 +119,7 @@ public slots:
   void disableIPFilter();
   void setQueueingEnabled(bool enable);
   void handleDownloadFailure(QString url, QString reason);
-  void downloadUrlAndSkipDialog(QString url, QString save_path=QString::null);
+  void downloadUrlAndSkipDialog(QString url, QString save_path, QString label);
   // Session configuration - Setters
   void setListeningPort(int port);
   void setMaxConnections(int maxConnec);
@@ -209,7 +209,7 @@ private:
   session *s;
   QPointer<QTimer> timerAlerts;
   QPointer<BandwidthScheduler> bd_scheduler;
-  QMap<QUrl, QString> savepath_fromurl;
+  QMap<QUrl, QPair<QString, QString> > savepathLabel_fromurl;
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
   QHash<QString, QString> savePathsToRemove;
   QStringList torrentsToPausedAfterChecking;

@@ -299,24 +299,13 @@ short RssFeed::readDoc(QIODevice* device) {
     else
       torrent_url = item->getLink();
     // Check if the item should be automatically downloaded
-    RssFilter * matching_filter = RssFilters::getFeedFilters(url).matches(item->getTitle());
-    if(matching_filter != 0) {
+    const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item->getTitle());
+    if(matching_rule.isValid()) {
       // Download the torrent
       BTSession->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
-      if(matching_filter->isValid()) {
-        QString save_path = matching_filter->getSavePath();
-        if(save_path.isEmpty())
-          BTSession->downloadUrlAndSkipDialog(torrent_url);
-        else
-          BTSession->downloadUrlAndSkipDialog(torrent_url, save_path);
-      } else {
-        // All torrents are downloaded from this feed
-        BTSession->downloadUrlAndSkipDialog(torrent_url);
-      }
+      BTSession->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
       // Item was downloaded, consider it as Read
       item->setRead();
-      // Clean up
-      delete matching_filter;
     }
   }
   return 0;

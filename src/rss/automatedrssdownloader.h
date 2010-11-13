@@ -32,10 +32,14 @@
 #define AUTOMATEDRSSDOWNLOADER_H
 
 #include <QDialog>
+#include "rssdownloadrule.h"
 
 namespace Ui {
 class AutomatedRssDownloader;
 }
+
+class RssDownloadRuleList;
+class QListWidgetItem;
 
 class AutomatedRssDownloader : public QDialog
 {
@@ -44,13 +48,30 @@ class AutomatedRssDownloader : public QDialog
 public:
   explicit AutomatedRssDownloader(QWidget *parent = 0);
   ~AutomatedRssDownloader();
+  bool isRssDownloaderEnabled() const;
 
 protected slots:
   void loadSettings();
   void saveSettings();
+  void loadRulesList();
+  void updateRuleDefinitionBox(QListWidgetItem* current = 0, QListWidgetItem* previous = 0);
+  void saveCurrentRule(QListWidgetItem * item);
+  void loadFeedList();
+  void updateFeedList(QListWidgetItem* current, QListWidgetItem* previous);
+
+private slots:
+  void on_addRuleBtn_clicked();
+  void on_removeRuleBtn_clicked();
+  void on_browseSP_clicked();
+
+private:
+  RssDownloadRule getCurrentRule() const;
+  void initLabelCombobox();
+  QStringList getSelectedFeeds() const;
 
 private:
   Ui::AutomatedRssDownloader *ui;
+  RssDownloadRuleList *m_ruleList;
 };
 
 #endif // AUTOMATEDRSSDOWNLOADER_H

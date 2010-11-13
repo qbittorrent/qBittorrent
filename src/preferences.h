@@ -55,7 +55,7 @@
 enum scheduler_days { EVERY_DAY, WEEK_DAYS, WEEK_ENDS, MON, TUE, WED, THU, FRI, SAT, SUN };
 enum maxRatioAction {PAUSE_ACTION, REMOVE_ACTION};
 namespace Proxy {
-  enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
+enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 }
 
 class Preferences {
@@ -1051,6 +1051,27 @@ public:
     if(!hosts_table.contains(host_name)) return ret;
     QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
     return raw_cookies.split(':');
+  }
+
+  static QStringList getTorrentLabels() {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    return settings.value("TransferListFilters/customLabels").toStringList();
+  }
+
+  static void addTorrentLabel(const QString& label) {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QStringList labels = settings.value("TransferListFilters/customLabels").toStringList();
+    if(!labels.contains(label))
+      labels << label;
+    settings.setValue("TransferListFilters/customLabels", labels);
+  }
+
+  static void removeTorrentLabel(const QString& label) {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QStringList labels = settings.value("TransferListFilters/customLabels").toStringList();
+    if(labels.contains(label))
+      labels.removeOne(label);
+    settings.setValue("TransferListFilters/customLabels", labels);
   }
 
   static void setHostNameCookies(QString host_name, const QList<QByteArray> &cookies) {

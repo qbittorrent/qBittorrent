@@ -33,6 +33,7 @@
 #include "qbtsession.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
+#include "rssdownloadrulelist.h"
 
 RssManager::RssManager(QBtSession *BTSession): RssFolder(0, this, BTSession, QString::null) {
   loadStreamList();
@@ -43,6 +44,7 @@ RssManager::RssManager(QBtSession *BTSession): RssFolder(0, this, BTSession, QSt
 
 RssManager::~RssManager(){
   qDebug("Deleting RSSManager");
+  RssDownloadRuleList::drop();
   saveStreamList();
   qDebug("RSSManager deleted");
 }
@@ -55,10 +57,9 @@ void RssManager::updateRefreshInterval(unsigned int val){
   }
 }
 
-void RssManager::loadStreamList(){
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  QStringList streamsUrl = settings.value("Rss/streamList").toStringList();
-  QStringList aliases =  settings.value("Rss/streamAlias").toStringList();
+void RssManager::loadStreamList() {
+  const QStringList streamsUrl = RssSettings::getRssFeedsUrls();
+  const QStringList aliases =  RssSettings::getRssFeedsAliases();
   if(streamsUrl.size() != aliases.size()){
     std::cerr << "Corrupted Rss list, not loading it\n";
     return;
@@ -117,12 +118,8 @@ void RssManager::saveStreamList(){
     streamsUrl << stream_path;
     aliases << stream->getName();
   }
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  settings.beginGroup("Rss");
-  // FIXME: Empty folder are not saved
-  settings.setValue("streamList", streamsUrl);
-  settings.setValue("streamAlias", aliases);
-  settings.endGroup();
+  RssSettings::setRssFeedsUrls(streamsUrl);
+  RssSettings::setRssFeedsAliases(aliases);
 }
 
 void RssManager::insertSortElem(QList<RssArticle*> &list, RssArticle *item) {

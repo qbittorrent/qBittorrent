@@ -90,6 +90,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="rssDownloaderBtn">
+       <property name="text">
+        <string>RSS Downloader...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="settingsButton">
        <property name="text">
         <string>Settings...</string>
@@ -273,15 +280,6 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Copy feed URL</string>
-   </property>
-  </action>
-  <action name="actionRSS_feed_downloader">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
-   </property>
-   <property name="text">
-    <string>RSS feed downloader...</string>
    </property>
   </action>
   <action name="actionNew_folder">

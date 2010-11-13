@@ -45,6 +45,7 @@
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
+#include "preferences.h"
 #include "qinisettings.h"
 
 class LabelFiltersList: public QListWidget {
@@ -280,17 +281,10 @@ public:
     settings.setValue("customLabels", QVariant(customLabels.keys()));
   }
 
-  void saveCustomLabels() const {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    settings.beginGroup(QString::fromUtf8("TransferListFilters"));
-    settings.setValue("customLabels", QVariant(customLabels.keys()));
-  }
-
   void loadSettings() {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    settings.beginGroup(QString::fromUtf8("TransferListFilters"));
-    statusFilters->setCurrentRow(settings.value("selectedFilterIndex", 0).toInt());
-    QStringList label_list = settings.value("customLabels", QStringList()).toStringList();
+    statusFilters->setCurrentRow(settings.value("TransferListFilters/selectedFilterIndex", 0).toInt());
+    const QStringList label_list = Preferences::getTorrentLabels();
     foreach(const QString &label, label_list) {
       customLabels.insert(label, 0);
       qDebug("Creating label QListWidgetItem: %s", qPrintable(label));
@@ -328,7 +322,7 @@ protected slots:
     newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     labelFilters->addItem(newLabel);
     customLabels.insert(label, 0);
-    saveCustomLabels();
+    Preferences::addTorrentLabel(label);
   }
 
   void showLabelMenu(QPoint) {
@@ -395,7 +389,7 @@ protected slots:
     // Un display filter
     delete labelFilters->takeItem(row);
     // Save custom labels to remember it was deleted
-    saveCustomLabels();
+    Preferences::removeTorrentLabel(label);
   }
 
   void applyLabelFilter(int row) {

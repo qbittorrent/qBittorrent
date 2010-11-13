@@ -73,13 +73,15 @@ protected slots:
   void fillFeedsList(QTreeWidgetItem *parent=0, RssFolder *rss_parent=0);
   void saveSlidersPosition();
   void restoreSlidersPosition();
-  void showFeedDownloader();
   void askNewFolder();
   void saveFoldersOpenState();
   void loadFoldersOpenState();
   void displayOverwriteError(QString filename);
   void on_actionManage_cookies_triggered();
   void on_settingsButton_clicked();
+
+private slots:
+  void on_rssDownloaderBtn_clicked();
 
 private:
   RssManager *rssmanager;
