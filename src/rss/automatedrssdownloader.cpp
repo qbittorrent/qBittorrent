@@ -454,6 +454,10 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QS
   // If there is none, create it
   if(!treeFeedItem) {
     treeFeedItem = new QTreeWidgetItem(QStringList() << feed->getName());
+    QFont f = treeFeedItem->font(0);
+    f.setBold(true);
+    treeFeedItem->setFont(0, f);
+    treeFeedItem->setData(0, Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     treeFeedItem->setData(0, Qt::UserRole, feed->getUrl());
     ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
   }
