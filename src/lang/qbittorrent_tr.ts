@@ -180,10 +180,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save torrent to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -197,6 +193,118 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to a different directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import...</source>
+        <translation type="unfinished">İçe aktar...</translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished">Dışa aktar...</translation>
+    </message>
+    <message>
+        <source>New rule name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule name conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A rule with this name already exists, please choose another name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the download rule named %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected download rules?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The list is empty, there is nothing to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where would you like to save the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create the destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the RSS download rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules *.filters)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to import the selected rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete selected rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule renaming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the new rule name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -477,174 +585,174 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation>RSS Besleme indirici</translation>
+        <translation type="obsolete">RSS Besleme indirici</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation>RSS beslemesi:</translation>
+        <translation type="obsolete">RSS beslemesi:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation>Besleme adı</translation>
+        <translation type="obsolete">Besleme adı</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation>Bu beslemeden torentleri kendiliğinden indir</translation>
+        <translation type="obsolete">Bu beslemeden torentleri kendiliğinden indir</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation>İndirme süzgeçleri</translation>
+        <translation type="obsolete">İndirme süzgeçleri</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation>Süzgeçler:</translation>
+        <translation type="obsolete">Süzgeçler:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation>Süzgeç ayarları</translation>
+        <translation type="obsolete">Süzgeç ayarları</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation>Eşleşmeler:</translation>
+        <translation type="obsolete">Eşleşmeler:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation>Eşleşmeyen:</translation>
+        <translation type="obsolete">Eşleşmeyen:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation>Hedef klasör:</translation>
+        <translation type="obsolete">Hedef klasör:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation>Süzgeç sınama</translation>
+        <translation type="obsolete">Süzgeç sınama</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation>Torent başlığı:</translation>
+        <translation type="obsolete">Torent başlığı:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation>Sonuç:</translation>
+        <translation type="obsolete">Sonuç:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Sına</translation>
+        <translation type="obsolete">Sına</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation>İçe aktar...</translation>
+        <translation type="obsolete">İçe aktar...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation>Dışa aktar...</translation>
+        <translation type="obsolete">Dışa aktar...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation>Süzgeci yeniden adlandır</translation>
+        <translation type="obsolete">Süzgeci yeniden adlandır</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation>Süzgeci kaldır</translation>
+        <translation type="obsolete">Süzgeci kaldır</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation>Süzgeç ekle</translation>
+        <translation type="obsolete">Süzgeç ekle</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation>Yeni süzgeç</translation>
+        <translation type="obsolete">Yeni süzgeç</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation>Lütfen bu süzgeç için yeni bir ad seçin</translation>
+        <translation type="obsolete">Lütfen bu süzgeç için yeni bir ad seçin</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation>Süzgeç adı:</translation>
+        <translation type="obsolete">Süzgeç adı:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation>Geçersiz süzgeç adı</translation>
+        <translation type="obsolete">Geçersiz süzgeç adı</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation>Süzgeç adı boş bırakılamaz.</translation>
+        <translation type="obsolete">Süzgeç adı boş bırakılamaz.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation>Bu süzgeç adı kullanımda.</translation>
+        <translation type="obsolete">Bu süzgeç adı kullanımda.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation>Süzgeç sınama hatası</translation>
+        <translation type="obsolete">Süzgeç sınama hatası</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation>Lütfen bir sınama torenti adı belirtin.</translation>
+        <translation type="obsolete">Lütfen bir sınama torenti adı belirtin.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation>eşleşmeler</translation>
+        <translation type="obsolete">eşleşmeler</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation>eşleşme yok</translation>
+        <translation type="obsolete">eşleşme yok</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation>İçe aktarmak için dosya seçin</translation>
+        <translation type="obsolete">İçe aktarmak için dosya seçin</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation>Süzgeç Dosyaları</translation>
+        <translation type="obsolete">Süzgeç Dosyaları</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation>İçe aktarma başarılı</translation>
+        <translation type="obsolete">İçe aktarma başarılı</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation>Süzgeçler başarıyla içe aktarıldı.</translation>
+        <translation type="obsolete">Süzgeçler başarıyla içe aktarıldı.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation>İçe aktarma başarısız</translation>
+        <translation type="obsolete">İçe aktarma başarısız</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>Süzgeçler bir Girdi/Çıktı hatası sebebiyle içe aktarılamadı.</translation>
+        <translation type="obsolete">Süzgeçler bir Girdi/Çıktı hatası sebebiyle içe aktarılamadı.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation>Hedef dosyayı seçin</translation>
+        <translation type="obsolete">Hedef dosyayı seçin</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation>Dışa aktarım başarılı</translation>
+        <translation type="obsolete">Dışa aktarım başarılı</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation>Süzgeçler dışa başarıyla aktarıldı.</translation>
+        <translation type="obsolete">Süzgeçler dışa başarıyla aktarıldı.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation>Dışa aktarım başarısız</translation>
+        <translation type="obsolete">Dışa aktarım başarısız</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>Süzgeçler bir Girdi/Çıktı hatası sebebiyle dışa aktarılamadı.</translation>
+        <translation type="obsolete">Süzgeçler bir Girdi/Çıktı hatası sebebiyle dışa aktarılamadı.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Kayıt yolunu seç</translation>
+        <translation type="obsolete">Kayıt yolunu seç</translation>
     </message>
 </context>
 <context>
@@ -669,52 +777,52 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
     <name>GUI</name>
     <message>
         <source>Open Torrent Files</source>
-        <translation>Torrent Dosyasını Aç</translation>
+        <translation type="obsolete">Torrent Dosyasını Aç</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent Dosyaları</translation>
+        <translation type="obsolete">Torrent Dosyaları</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Aktarımlar</translation>
+        <translation type="obsolete">Aktarımlar</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>İND hızı: %1 KB/s</translation>
+        <translation type="obsolete">İND hızı: %1 KB/s</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>GÖN hızı: %1 KB/s</translation>
+        <translation type="obsolete">GÖN hızı: %1 KB/s</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>%1 indirildi.</translation>
+        <translation type="obsolete">%1 indirildi.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>I/O Hatası</translation>
+        <translation type="obsolete">I/O Hatası</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Arama</translation>
+        <translation type="obsolete">Arama</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
@@ -722,133 +830,105 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translatorcomment>G/Ç: Girdi/Çıktı</translatorcomment>
-        <translation>%1 torrenti için bir G/Ç hatası meydana geldi.
+        <translation type="obsolete">%1 torrenti için bir G/Ç hatası meydana geldi.
  Sebep: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation>Alt+1</translation>
+        <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation>Adres indirme hatası</translation>
+        <translation type="obsolete">Adres indirme hatası</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Adresteki dosya indirilemedi: %1, neden: %2.</translation>
+        <translation type="obsolete">Adresteki dosya indirilemedi: %1, neden: %2.</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation>Ctrl+F</translation>
+        <translation type="obsolete">Ctrl+F</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation>Seçenekler başarıyla kaydedildi.</translation>
+        <translation type="obsolete">Seçenekler başarıyla kaydedildi.</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation>İndirme durumu</translation>
+        <translation type="obsolete">İndirme durumu</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Bazı dosyalar hala aktarılıyor.
+        <translation type="obsolete">Bazı dosyalar hala aktarılıyor.
 qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Genel Gönderme Hızı Sınırı</translation>
+        <translation type="obsolete">Genel Gönderme Hızı Sınırı</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Genel İndirme Hızı Sınırı</translation>
+        <translation type="obsolete">Genel İndirme Hızı Sınırı</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation>Özyineli indirilen doğrulama</translation>
+        <translation type="obsolete">Özyineli indirilen doğrulama</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>%1 , torent dosyaları içeriyor, bunların indirilmesini birlikte yürütmek istiyor musunuz?</translation>
+        <translation type="obsolete">%1 , torent dosyaları içeriyor, bunların indirilmesini birlikte yürütmek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation>Aktarımlar: (%1)</translation>
+        <translation type="obsolete">Aktarımlar: (%1)</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation>Torent dosyası ilişkisi</translation>
+        <translation type="obsolete">Torent dosyası ilişkisi</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent torent dosyaranı ve benzer bağlantıları açmak için varsayılan uygulama değil.
+        <translation type="obsolete">qBittorrent torent dosyaranı ve benzer bağlantıları açmak için varsayılan uygulama değil.
 qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation>Evet</translation>
+        <translation type="obsolete">Evet</translation>
     </message>
     <message>
         <source>No</source>
-        <translation>Hayır</translation>
+        <translation type="obsolete">Hayır</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Asla</translation>
+        <translation type="obsolete">Asla</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation>Her zaman</translation>
+        <translation type="obsolete">Her zaman</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation>qBittorrent&apos;ten çıkılıyor</translation>
-    </message>
-    <message>
-        <source>Set the password...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>UI lock password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please type the UI lock password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The password is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">qBittorrent&apos;ten çıkılıyor</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -1465,6 +1545,188 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     <message>
         <source>If you like qBittorrent, please donate!</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent v0.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
+    </message>
+    <message>
+        <source>Set the password...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Aktarımlar</translation>
+    </message>
+    <message>
+        <source>Torrent file association</source>
+        <translation type="unfinished">Torent dosyası ilişkisi</translation>
+    </message>
+    <message>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished">qBittorrent torent dosyaranı ve benzer bağlantıları açmak için varsayılan uygulama değil.
+qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
+    </message>
+    <message>
+        <source>UI lock password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the UI lock password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The UI lock password has been successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSS</source>
+        <translation type="unfinished">RSS</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished">Aktarımlar: (%1)</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished">İndirme durumu</translation>
+    </message>
+    <message>
+        <source>%1 has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation type="unfinished">%1 indirildi.</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <comment>i.e: Input/Output Error</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An I/O error occured for torrent %1.
+ Reason: %2</source>
+        <comment>e.g: An error occured for torrent xxx.avi.
+ Reason: disk is full.</comment>
+        <translation type="unfinished">%1 torrenti için bir G/Ç hatası meydana geldi.
+ Sebep: %2</translation>
+    </message>
+    <message>
+        <source>Alt+1</source>
+        <comment>shortcut to switch to first tab</comment>
+        <translation type="unfinished">Alt+1</translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <comment>shortcut to switch to search tab</comment>
+        <translation type="unfinished">Ctrl+F</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished">Özyineli indirilen doğrulama</translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished">%1 , torent dosyaları içeriyor, bunların indirilmesini birlikte yürütmek istiyor musunuz?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Evet</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Hayır</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Asla</translation>
+    </message>
+    <message>
+        <source>Url download error</source>
+        <translation type="unfinished">Adres indirme hatası</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
+        <translation type="unfinished">Adresteki dosya indirilemedi: %1, neden: %2.</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished">Genel Gönderme Hızı Sınırı</translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished">Genel İndirme Hızı Sınırı</translation>
+    </message>
+    <message>
+        <source>Invalid password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The password is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
+        <translation type="unfinished">qBittorrent&apos;ten çıkılıyor</translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished">Bazı dosyalar hala aktarılıyor.
+qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation type="unfinished">Her zaman</translation>
+    </message>
+    <message>
+        <source>Open Torrent Files</source>
+        <translation type="unfinished">Torrent Dosyasını Aç</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Torrent Dosyaları</translation>
+    </message>
+    <message>
+        <source>Options were saved successfully.</source>
+        <translation type="unfinished">Seçenekler başarıyla kaydedildi.</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>DL speed: %1 KiB/s</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation type="unfinished">İND hızı: %1 KB/s</translation>
+    </message>
+    <message>
+        <source>UP speed: %1 KiB/s</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation type="unfinished">GÖN hızı: %1 KB/s</translation>
+    </message>
+    <message>
+        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation type="unfinished">qBittorrent %1 (İND: %2KB/s, GÖN: %3KB/s)</translation>
     </message>
 </context>
 <context>
@@ -2607,7 +2869,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation>RSS Beslemesi indirici...</translation>
+        <translation type="obsolete">RSS Beslemesi indirici...</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -2620,6 +2882,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Settings...</source>
         <translation>Ayarlar...</translation>
+    </message>
+    <message>
+        <source>RSS Downloader...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -226,10 +226,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save torrent to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -243,6 +239,118 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to a different directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import...</source>
+        <translation type="unfinished">Uvezi ...</translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished">Izvezi ...</translation>
+    </message>
+    <message>
+        <source>New rule name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule name conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A rule with this name already exists, please choose another name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the download rule named %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected download rules?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The list is empty, there is nothing to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where would you like to save the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O greška</translation>
+    </message>
+    <message>
+        <source>Failed to create the destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the RSS download rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules *.filters)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to import the selected rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete selected rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule renaming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the new rule name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -552,174 +660,174 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation>Preuzimatelj RSS kanala</translation>
+        <translation type="obsolete">Preuzimatelj RSS kanala</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation>RSS kanal:</translation>
+        <translation type="obsolete">RSS kanal:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation>Ime kanala</translation>
+        <translation type="obsolete">Ime kanala</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation>Automatski preuzmi torrente s tog kanala</translation>
+        <translation type="obsolete">Automatski preuzmi torrente s tog kanala</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation>Filteri preuzimanja</translation>
+        <translation type="obsolete">Filteri preuzimanja</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation>Filteri:</translation>
+        <translation type="obsolete">Filteri:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation>Postavke filtera</translation>
+        <translation type="obsolete">Postavke filtera</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation>Podudarnosti:</translation>
+        <translation type="obsolete">Podudarnosti:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation>Ne podudaraju se:</translation>
+        <translation type="obsolete">Ne podudaraju se:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation>Odredišna mapa:</translation>
+        <translation type="obsolete">Odredišna mapa:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation>Provjeravanje filtera</translation>
+        <translation type="obsolete">Provjeravanje filtera</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation>Naslov torrenta:</translation>
+        <translation type="obsolete">Naslov torrenta:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation>Rezultat:</translation>
+        <translation type="obsolete">Rezultat:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Provjeri</translation>
+        <translation type="obsolete">Provjeri</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation>Uvezi ...</translation>
+        <translation type="obsolete">Uvezi ...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation>Izvezi ...</translation>
+        <translation type="obsolete">Izvezi ...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation>Preimenuj filter</translation>
+        <translation type="obsolete">Preimenuj filter</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation>Ukloni filter</translation>
+        <translation type="obsolete">Ukloni filter</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation>Dodaj filter</translation>
+        <translation type="obsolete">Dodaj filter</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation>Novi filter</translation>
+        <translation type="obsolete">Novi filter</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation>Izaberite ime za taj filter</translation>
+        <translation type="obsolete">Izaberite ime za taj filter</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation>Ime filtera:</translation>
+        <translation type="obsolete">Ime filtera:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation>Neispravno ime filtera</translation>
+        <translation type="obsolete">Neispravno ime filtera</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation>Ime filtera mora biti zadano.</translation>
+        <translation type="obsolete">Ime filtera mora biti zadano.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation>To se ime filtera već koristi.</translation>
+        <translation type="obsolete">To se ime filtera već koristi.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Izaberite putanju spremanja</translation>
+        <translation type="obsolete">Izaberite putanju spremanja</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation>Greška prilikom provjere filtera</translation>
+        <translation type="obsolete">Greška prilikom provjere filtera</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation>Odredite ime testnog torrenta.</translation>
+        <translation type="obsolete">Odredite ime testnog torrenta.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation>podudarnosti</translation>
+        <translation type="obsolete">podudarnosti</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation>ne podudaraju se</translation>
+        <translation type="obsolete">ne podudaraju se</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation>Odaberite datoteku za uvoz</translation>
+        <translation type="obsolete">Odaberite datoteku za uvoz</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation>Datoteke filtera</translation>
+        <translation type="obsolete">Datoteke filtera</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation>Uvoz je uspio</translation>
+        <translation type="obsolete">Uvoz je uspio</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation>Uvoz filtera je uspio.</translation>
+        <translation type="obsolete">Uvoz filtera je uspio.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation>Uvoz nije uspio</translation>
+        <translation type="obsolete">Uvoz nije uspio</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>Filteri ne mogu biti uvezeni zbog I/O greške.</translation>
+        <translation type="obsolete">Filteri ne mogu biti uvezeni zbog I/O greške.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation>Odaberite odredišnu datoteku</translation>
+        <translation type="obsolete">Odaberite odredišnu datoteku</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation>Izvoz je uspio</translation>
+        <translation type="obsolete">Izvoz je uspio</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation>Izvoz filtera je uspio.</translation>
+        <translation type="obsolete">Izvoz filtera je uspio.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation>Izvoz nije uspio</translation>
+        <translation type="obsolete">Izvoz nije uspio</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>Filteri ne mogu biti izvezeni zbog I/O greške.</translation>
+        <translation type="obsolete">Filteri ne mogu biti izvezeni zbog I/O greške.</translation>
     </message>
 </context>
 <context>
@@ -744,7 +852,7 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <name>GUI</name>
     <message>
         <source>Open Torrent Files</source>
-        <translation>Otvori torrent datoteke</translation>
+        <translation type="obsolete">Otvori torrent datoteke</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -756,16 +864,16 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent datoteke</translation>
+        <translation type="obsolete">Torrent datoteke</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
@@ -775,12 +883,12 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Brzina preuzimanja: %1 KiB/s</translation>
+        <translation type="obsolete">Brzina preuzimanja: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Brzina slanja: %1 KiB/s</translation>
+        <translation type="obsolete">Brzina slanja: %1 KiB/s</translation>
     </message>
     <message>
         <source>Are you sure you want to quit?</source>
@@ -789,12 +897,12 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>Datoteka %1 je preuzeta.</translation>
+        <translation type="obsolete">Datoteka %1 je preuzeta.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>I/O greška</translation>
+        <translation type="obsolete">I/O greška</translation>
     </message>
     <message>
         <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
@@ -803,74 +911,74 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     </message>
     <message>
         <source>Search</source>
-        <translation>Traži</translation>
+        <translation type="obsolete">Traži</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation>Alt+1</translation>
+        <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation>Greška prilikom preuzimanja</translation>
+        <translation type="obsolete">Greška prilikom preuzimanja</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Nije moguće preuzeti datoteku sa: %1, razlog: %2.</translation>
+        <translation type="obsolete">Nije moguće preuzeti datoteku sa: %1, razlog: %2.</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>Dogodila se I/O greška za torrent %1
+        <translation type="obsolete">Dogodila se I/O greška za torrent %1
 Razlog: %2</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Transferi</translation>
+        <translation type="obsolete">Transferi</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation>Preuzimanje završeno</translation>
+        <translation type="obsolete">Preuzimanje završeno</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation>Ctrl+F</translation>
+        <translation type="obsolete">Ctrl+F</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Globalni limit brzine slanja</translation>
+        <translation type="obsolete">Globalni limit brzine slanja</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Globalni limit brzine preuzimanja</translation>
+        <translation type="obsolete">Globalni limit brzine preuzimanja</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Neke datoteke još se prenose.
+        <translation type="obsolete">Neke datoteke još se prenose.
 Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (Preuzimanje: %2/s, Slanje: %3/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (Preuzimanje: %2/s, Slanje: %3/s)</translation>
     </message>
     <message>
         <source>Use normal speed limits</source>
@@ -882,77 +990,77 @@ Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation>Opcije su uspješno spremljene.</translation>
+        <translation type="obsolete">Opcije su uspješno spremljene.</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation>Potvrda rekurzivnog preuzimanja</translation>
+        <translation type="obsolete">Potvrda rekurzivnog preuzimanja</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>Torrent %1 sadrži torrent datoteke. Želite li nastaviti s preuzimanjem?</translation>
+        <translation type="obsolete">Torrent %1 sadrži torrent datoteke. Želite li nastaviti s preuzimanjem?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation>Pridruživanje torrent datoteka</translation>
+        <translation type="obsolete">Pridruživanje torrent datoteka</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent nije zadana aplikacija za otvaranje torrent datoteka ili Magnet linkova.
+        <translation type="obsolete">qBittorrent nije zadana aplikacija za otvaranje torrent datoteka ili Magnet linkova.
 Želite li pridružiti qBittorrent torrent datotekama i Magnet linkovima?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation>Transferi (%1)</translation>
+        <translation type="obsolete">Transferi (%1)</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation>Da</translation>
+        <translation type="obsolete">Da</translation>
     </message>
     <message>
         <source>No</source>
-        <translation>Ne</translation>
+        <translation type="obsolete">Ne</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Nikad</translation>
+        <translation type="obsolete">Nikad</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation>Uvijek</translation>
+        <translation type="obsolete">Uvijek</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation>Izlaz iz qBittorrenta</translation>
+        <translation type="obsolete">Izlaz iz qBittorrenta</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation>Postavi lozinku ...</translation>
+        <translation type="obsolete">Postavi lozinku ...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation>Ažuriranje lozinke</translation>
+        <translation type="obsolete">Ažuriranje lozinke</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation>Lozinka zaključavanja sučelja je uspješno ažurirana</translation>
+        <translation type="obsolete">Lozinka zaključavanja sučelja je uspješno ažurirana</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation>Lozinka zaključavanja sučelja</translation>
+        <translation type="obsolete">Lozinka zaključavanja sučelja</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation>Upišite  lozinku zaključavanja sučelja:</translation>
+        <translation type="obsolete">Upišite  lozinku zaključavanja sučelja:</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation>Neispravna lozinka</translation>
+        <translation type="obsolete">Neispravna lozinka</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation>Lozinka nije ispravna</translation>
+        <translation type="obsolete">Lozinka nije ispravna</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -1663,6 +1771,188 @@ Neće biti daljnjih napomena.</translation>
     <message>
         <source>If you like qBittorrent, please donate!</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent v0.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
+    </message>
+    <message>
+        <source>Set the password...</source>
+        <translation type="unfinished">Postavi lozinku ...</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Transferi</translation>
+    </message>
+    <message>
+        <source>Torrent file association</source>
+        <translation type="unfinished">Pridruživanje torrent datoteka</translation>
+    </message>
+    <message>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished">qBittorrent nije zadana aplikacija za otvaranje torrent datoteka ili Magnet linkova.
+Želite li pridružiti qBittorrent torrent datotekama i Magnet linkovima?</translation>
+    </message>
+    <message>
+        <source>UI lock password</source>
+        <translation type="unfinished">Lozinka zaključavanja sučelja</translation>
+    </message>
+    <message>
+        <source>Please type the UI lock password:</source>
+        <translation type="unfinished">Upišite  lozinku zaključavanja sučelja:</translation>
+    </message>
+    <message>
+        <source>Password update</source>
+        <translation type="unfinished">Ažuriranje lozinke</translation>
+    </message>
+    <message>
+        <source>The UI lock password has been successfully updated</source>
+        <translation type="unfinished">Lozinka zaključavanja sučelja je uspješno ažurirana</translation>
+    </message>
+    <message>
+        <source>RSS</source>
+        <translation type="unfinished">RSS</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Traži</translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished">Transferi (%1)</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished">Preuzimanje završeno</translation>
+    </message>
+    <message>
+        <source>%1 has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation type="unfinished">Datoteka %1 je preuzeta.</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <comment>i.e: Input/Output Error</comment>
+        <translation type="unfinished">I/O greška</translation>
+    </message>
+    <message>
+        <source>An I/O error occured for torrent %1.
+ Reason: %2</source>
+        <comment>e.g: An error occured for torrent xxx.avi.
+ Reason: disk is full.</comment>
+        <translation type="unfinished">Dogodila se I/O greška za torrent %1
+Razlog: %2</translation>
+    </message>
+    <message>
+        <source>Alt+1</source>
+        <comment>shortcut to switch to first tab</comment>
+        <translation type="unfinished">Alt+1</translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <comment>shortcut to switch to search tab</comment>
+        <translation type="unfinished">Ctrl+F</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished">Potvrda rekurzivnog preuzimanja</translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished">Torrent %1 sadrži torrent datoteke. Želite li nastaviti s preuzimanjem?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Da</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Ne</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Nikad</translation>
+    </message>
+    <message>
+        <source>Url download error</source>
+        <translation type="unfinished">Greška prilikom preuzimanja</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
+        <translation type="unfinished">Nije moguće preuzeti datoteku sa: %1, razlog: %2.</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished">Globalni limit brzine slanja</translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished">Globalni limit brzine preuzimanja</translation>
+    </message>
+    <message>
+        <source>Invalid password</source>
+        <translation type="unfinished">Neispravna lozinka</translation>
+    </message>
+    <message>
+        <source>The password is invalid</source>
+        <translation type="unfinished">Lozinka nije ispravna</translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
+        <translation type="unfinished">Izlaz iz qBittorrenta</translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished">Neke datoteke još se prenose.
+Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation type="unfinished">Uvijek</translation>
+    </message>
+    <message>
+        <source>Open Torrent Files</source>
+        <translation type="unfinished">Otvori torrent datoteke</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Torrent datoteke</translation>
+    </message>
+    <message>
+        <source>Options were saved successfully.</source>
+        <translation type="unfinished">Opcije su uspješno spremljene.</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>DL speed: %1 KiB/s</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation type="unfinished">Brzina preuzimanja: %1 KiB/s</translation>
+    </message>
+    <message>
+        <source>UP speed: %1 KiB/s</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation type="unfinished">Brzina slanja: %1 KiB/s</translation>
+    </message>
+    <message>
+        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation type="unfinished">qBittorrent %1 (Preuzimanje: %2/s, Slanje: %3/s)</translation>
     </message>
 </context>
 <context>
@@ -3069,7 +3359,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation>Preuzimatelj RSS kanala ...</translation>
+        <translation type="obsolete">Preuzimatelj RSS kanala ...</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -3082,6 +3372,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Settings...</source>
         <translation>Postavke ...</translation>
+    </message>
+    <message>
+        <source>RSS Downloader...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

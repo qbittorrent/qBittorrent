@@ -188,10 +188,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save torrent to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -205,6 +201,118 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to a different directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import...</source>
+        <translation type="unfinished">Import...</translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished">Export...</translation>
+    </message>
+    <message>
+        <source>New rule name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule name conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A rule with this name already exists, please choose another name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the download rule named %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected download rules?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The list is empty, there is nothing to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where would you like to save the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create the destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the RSS download rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules *.filters)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to import the selected rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete selected rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule renaming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the new rule name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -506,174 +614,174 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation>Sťahovanie RSS kanála</translation>
+        <translation type="obsolete">Sťahovanie RSS kanála</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation>RSS kanál:</translation>
+        <translation type="obsolete">RSS kanál:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation>Názov kanála</translation>
+        <translation type="obsolete">Názov kanála</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation>Automaticky sťahovať torrenty z tohto kanála</translation>
+        <translation type="obsolete">Automaticky sťahovať torrenty z tohto kanála</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation>Filtre sťahovania</translation>
+        <translation type="obsolete">Filtre sťahovania</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation>Filtre:</translation>
+        <translation type="obsolete">Filtre:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation>Nastavenia filtrov</translation>
+        <translation type="obsolete">Nastavenia filtrov</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation>Zodpovedá:</translation>
+        <translation type="obsolete">Zodpovedá:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation>Nezodpovedá:</translation>
+        <translation type="obsolete">Nezodpovedá:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation>Cieľový priečinok:</translation>
+        <translation type="obsolete">Cieľový priečinok:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation>Testovanie filtra</translation>
+        <translation type="obsolete">Testovanie filtra</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation>Názov torrentu:</translation>
+        <translation type="obsolete">Názov torrentu:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation>Výsledok:</translation>
+        <translation type="obsolete">Výsledok:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Test</translation>
+        <translation type="obsolete">Test</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation>Import...</translation>
+        <translation type="obsolete">Import...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation>Export...</translation>
+        <translation type="obsolete">Export...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation>Premenovať filter</translation>
+        <translation type="obsolete">Premenovať filter</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation>Odstrániť filter</translation>
+        <translation type="obsolete">Odstrániť filter</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation>Pridať filter</translation>
+        <translation type="obsolete">Pridať filter</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation>Nový filter</translation>
+        <translation type="obsolete">Nový filter</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation>Prosím, vyberte názov pre tento filter</translation>
+        <translation type="obsolete">Prosím, vyberte názov pre tento filter</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation>Názov filtra:</translation>
+        <translation type="obsolete">Názov filtra:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation>Neplatný názov filtra</translation>
+        <translation type="obsolete">Neplatný názov filtra</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation>Názov filtra nemôže byť prázdny.</translation>
+        <translation type="obsolete">Názov filtra nemôže byť prázdny.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation>Tento názov filtra už existuje.</translation>
+        <translation type="obsolete">Tento názov filtra už existuje.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation>Chyba pri testovaní filtra</translation>
+        <translation type="obsolete">Chyba pri testovaní filtra</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation>Prosím, uveďte názov testovacieho torrentu.</translation>
+        <translation type="obsolete">Prosím, uveďte názov testovacieho torrentu.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation>zodpovedá</translation>
+        <translation type="obsolete">zodpovedá</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation>nezodpovedá</translation>
+        <translation type="obsolete">nezodpovedá</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation>Vyberte súbor na import</translation>
+        <translation type="obsolete">Vyberte súbor na import</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation>Filtre Súbory</translation>
+        <translation type="obsolete">Filtre Súbory</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation>Import prebehol úspešne</translation>
+        <translation type="obsolete">Import prebehol úspešne</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation>Import filtrov prebehol úspešne.</translation>
+        <translation type="obsolete">Import filtrov prebehol úspešne.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation>Chyba importu</translation>
+        <translation type="obsolete">Chyba importu</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>Nebolo možné importovať filtre z dôvodu V/V chyby.</translation>
+        <translation type="obsolete">Nebolo možné importovať filtre z dôvodu V/V chyby.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation>Vyberte cieľový súbor</translation>
+        <translation type="obsolete">Vyberte cieľový súbor</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation>Export prebehol úspešne</translation>
+        <translation type="obsolete">Export prebehol úspešne</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation>Export filtrov prebehol úspešne.</translation>
+        <translation type="obsolete">Export filtrov prebehol úspešne.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation>Chyba exportu</translation>
+        <translation type="obsolete">Chyba exportu</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>Nebolo možné exportovať filtre z dôvodu V/V chyby.</translation>
+        <translation type="obsolete">Nebolo možné exportovať filtre z dôvodu V/V chyby.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Ukladať kam</translation>
+        <translation type="obsolete">Ukladať kam</translation>
     </message>
 </context>
 <context>
@@ -699,185 +807,181 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     <name>GUI</name>
     <message>
         <source>Open Torrent Files</source>
-        <translation>Otvoriť torrent súbory</translation>
+        <translation type="obsolete">Otvoriť torrent súbory</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent súbory</translation>
+        <translation type="obsolete">Torrent súbory</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Prenosy</translation>
+        <translation type="obsolete">Prenosy</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
+        <translation type="obsolete">Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
+        <translation type="obsolete">Rýchlosť nahrávania: %1 KiB/s</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>%1 je stiahnutý.</translation>
+        <translation type="obsolete">%1 je stiahnutý.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>V/V Chyba</translation>
+        <translation type="obsolete">V/V Chyba</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Vyhľadávanie</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation></translation>
+        <translation type="obsolete">Vyhľadávanie</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>Vyskytla sa V/V chyba pri torrente %1.
+        <translation type="obsolete">Vyskytla sa V/V chyba pri torrente %1.
  Dôvod: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation>Alt+1</translation>
+        <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation>Chyba sťahovania url</translation>
+        <translation type="obsolete">Chyba sťahovania url</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Nebolo možné stiahnuť súbor z url: %1, dôvod: %2.</translation>
+        <translation type="obsolete">Nebolo možné stiahnuť súbor z url: %1, dôvod: %2.</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation>Ctrl+F</translation>
+        <translation type="obsolete">Ctrl+F</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation>Nastavenia boli úspešne uložené.</translation>
+        <translation type="obsolete">Nastavenia boli úspešne uložené.</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation>Dokončenie sťahovnia</translation>
+        <translation type="obsolete">Dokončenie sťahovnia</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Niektoré súbory sa práve prenášajú.
+        <translation type="obsolete">Niektoré súbory sa práve prenášajú.
 Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Globálne rýchlostné obmedzenie nahrávania</translation>
+        <translation type="obsolete">Globálne rýchlostné obmedzenie nahrávania</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Globálne rýchlostné obmedzenie sťahovania</translation>
+        <translation type="obsolete">Globálne rýchlostné obmedzenie sťahovania</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation>Potvrdenie rekurzívneho sťahovania</translation>
+        <translation type="obsolete">Potvrdenie rekurzívneho sťahovania</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>Torrent %1 obsahuje ďalšie súbory torrent. Chcete začať sťahovať aj tie?</translation>
+        <translation type="obsolete">Torrent %1 obsahuje ďalšie súbory torrent. Chcete začať sťahovať aj tie?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation>Asociácia typu súboru .torrent</translation>
+        <translation type="obsolete">Asociácia typu súboru .torrent</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent nie je predvolená aplikácia na otváranie súborov torrent a odkazov Magnet.
+        <translation type="obsolete">qBittorrent nie je predvolená aplikácia na otváranie súborov torrent a odkazov Magnet.
 Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation>Prenosy (%1)</translation>
+        <translation type="obsolete">Prenosy (%1)</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation>Áno</translation>
+        <translation type="obsolete">Áno</translation>
     </message>
     <message>
         <source>No</source>
-        <translation>Nie</translation>
+        <translation type="obsolete">Nie</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Nikdy</translation>
+        <translation type="obsolete">Nikdy</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation>Vždy</translation>
+        <translation type="obsolete">Vždy</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation>Ukončuje sa qBittorrent</translation>
+        <translation type="obsolete">Ukončuje sa qBittorrent</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation>Nastaviť heslo...</translation>
+        <translation type="obsolete">Nastaviť heslo...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation>Aktualizovať heslo</translation>
+        <translation type="obsolete">Aktualizovať heslo</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation>Heslo na zamknutie používateľského rozhrania bolo úspešne aktualizované</translation>
+        <translation type="obsolete">Heslo na zamknutie používateľského rozhrania bolo úspešne aktualizované</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation>Heslo na zamknutie používateľského rozhrania</translation>
+        <translation type="obsolete">Heslo na zamknutie používateľského rozhrania</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation>Prosím, napíšte heslo na zamknutie používateľského rozhrania:</translation>
+        <translation type="obsolete">Prosím, napíšte heslo na zamknutie používateľského rozhrania:</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation>Neplatné heslo</translation>
+        <translation type="obsolete">Neplatné heslo</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation>Heslo nie je platné</translation>
+        <translation type="obsolete">Heslo nie je platné</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -1491,6 +1595,188 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <message>
         <source>If you like qBittorrent, please donate!</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent v0.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
+    </message>
+    <message>
+        <source>Set the password...</source>
+        <translation type="unfinished">Nastaviť heslo...</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Prenosy</translation>
+    </message>
+    <message>
+        <source>Torrent file association</source>
+        <translation type="unfinished">Asociácia typu súboru .torrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished">qBittorrent nie je predvolená aplikácia na otváranie súborov torrent a odkazov Magnet.
+Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation>
+    </message>
+    <message>
+        <source>UI lock password</source>
+        <translation type="unfinished">Heslo na zamknutie používateľského rozhrania</translation>
+    </message>
+    <message>
+        <source>Please type the UI lock password:</source>
+        <translation type="unfinished">Prosím, napíšte heslo na zamknutie používateľského rozhrania:</translation>
+    </message>
+    <message>
+        <source>Password update</source>
+        <translation type="unfinished">Aktualizovať heslo</translation>
+    </message>
+    <message>
+        <source>The UI lock password has been successfully updated</source>
+        <translation type="unfinished">Heslo na zamknutie používateľského rozhrania bolo úspešne aktualizované</translation>
+    </message>
+    <message>
+        <source>RSS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Vyhľadávanie</translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished">Prenosy (%1)</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished">Dokončenie sťahovnia</translation>
+    </message>
+    <message>
+        <source>%1 has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation type="unfinished">%1 je stiahnutý.</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <comment>i.e: Input/Output Error</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An I/O error occured for torrent %1.
+ Reason: %2</source>
+        <comment>e.g: An error occured for torrent xxx.avi.
+ Reason: disk is full.</comment>
+        <translation type="unfinished">Vyskytla sa V/V chyba pri torrente %1.
+ Dôvod: %2</translation>
+    </message>
+    <message>
+        <source>Alt+1</source>
+        <comment>shortcut to switch to first tab</comment>
+        <translation type="unfinished">Alt+1</translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <comment>shortcut to switch to search tab</comment>
+        <translation type="unfinished">Ctrl+F</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished">Potvrdenie rekurzívneho sťahovania</translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished">Torrent %1 obsahuje ďalšie súbory torrent. Chcete začať sťahovať aj tie?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Áno</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Nie</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Nikdy</translation>
+    </message>
+    <message>
+        <source>Url download error</source>
+        <translation type="unfinished">Chyba sťahovania url</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
+        <translation type="unfinished">Nebolo možné stiahnuť súbor z url: %1, dôvod: %2.</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished">Globálne rýchlostné obmedzenie nahrávania</translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished">Globálne rýchlostné obmedzenie sťahovania</translation>
+    </message>
+    <message>
+        <source>Invalid password</source>
+        <translation type="unfinished">Neplatné heslo</translation>
+    </message>
+    <message>
+        <source>The password is invalid</source>
+        <translation type="unfinished">Heslo nie je platné</translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
+        <translation type="unfinished">Ukončuje sa qBittorrent</translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished">Niektoré súbory sa práve prenášajú.
+Ste si istý, že chcete ukončiť Bittorrent?</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation type="unfinished">Vždy</translation>
+    </message>
+    <message>
+        <source>Open Torrent Files</source>
+        <translation type="unfinished">Otvoriť torrent súbory</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Torrent súbory</translation>
+    </message>
+    <message>
+        <source>Options were saved successfully.</source>
+        <translation type="unfinished">Nastavenia boli úspešne uložené.</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>DL speed: %1 KiB/s</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation type="unfinished">Rýchlosť sťahovania: %1 KiB/s</translation>
+    </message>
+    <message>
+        <source>UP speed: %1 KiB/s</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation type="unfinished">Rýchlosť nahrávania: %1 KiB/s</translation>
+    </message>
+    <message>
+        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation type="unfinished">qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
     </message>
 </context>
 <context>
@@ -2626,7 +2912,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation>Sťahovanie RSS kanálov...</translation>
+        <translation type="obsolete">Sťahovanie RSS kanálov...</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -2639,6 +2925,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Settings...</source>
         <translation>Nastavenia...</translation>
+    </message>
+    <message>
+        <source>RSS Downloader...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

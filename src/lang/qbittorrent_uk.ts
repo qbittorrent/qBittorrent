@@ -188,10 +188,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save torrent to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -205,6 +201,118 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to a different directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import...</source>
+        <translation type="unfinished">Імпорт...</translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished">Експорт...</translation>
+    </message>
+    <message>
+        <source>New rule name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule name conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A rule with this name already exists, please choose another name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the download rule named %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected download rules?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The list is empty, there is nothing to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where would you like to save the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">Помилка вводу/виводу</translation>
+    </message>
+    <message>
+        <source>Failed to create the destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the RSS download rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules *.filters)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to import the selected rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete selected rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule renaming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the new rule name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -510,174 +618,174 @@ You should get this information from your Web browser preferences.</source>
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation>Завантажувач подач RSS</translation>
+        <translation type="obsolete">Завантажувач подач RSS</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation>RSS-подача:</translation>
+        <translation type="obsolete">RSS-подача:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation>Назва подачі</translation>
+        <translation type="obsolete">Назва подачі</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation>Автоматично завантажувати торренти з цієї подачі</translation>
+        <translation type="obsolete">Автоматично завантажувати торренти з цієї подачі</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation>Фільтри завантажень</translation>
+        <translation type="obsolete">Фільтри завантажень</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation>Фільтри:</translation>
+        <translation type="obsolete">Фільтри:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation>Налаштування фільтрів</translation>
+        <translation type="obsolete">Налаштування фільтрів</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation>Результати:</translation>
+        <translation type="obsolete">Результати:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation>Не підходить:</translation>
+        <translation type="obsolete">Не підходить:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation>Папка призначення:</translation>
+        <translation type="obsolete">Папка призначення:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation>Тестування фільтру</translation>
+        <translation type="obsolete">Тестування фільтру</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation>Заголовок торренту:</translation>
+        <translation type="obsolete">Заголовок торренту:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation>Результат:</translation>
+        <translation type="obsolete">Результат:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Тест</translation>
+        <translation type="obsolete">Тест</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation>Імпорт...</translation>
+        <translation type="obsolete">Імпорт...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation>Експорт...</translation>
+        <translation type="obsolete">Експорт...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation>Перейменувати фільтр</translation>
+        <translation type="obsolete">Перейменувати фільтр</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation>Видалити фільтр</translation>
+        <translation type="obsolete">Видалити фільтр</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation>Додати фільтр</translation>
+        <translation type="obsolete">Додати фільтр</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation>Новий фільтр</translation>
+        <translation type="obsolete">Новий фільтр</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation>Будь ласка, виберіть назву для цього фільтру</translation>
+        <translation type="obsolete">Будь ласка, виберіть назву для цього фільтру</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation>Назва фільтру:</translation>
+        <translation type="obsolete">Назва фільтру:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation>Неправильна назва фільтру</translation>
+        <translation type="obsolete">Неправильна назва фільтру</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation>Назва фільтру не може бути порожньою.</translation>
+        <translation type="obsolete">Назва фільтру не може бути порожньою.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation>Ця назва вже використана.</translation>
+        <translation type="obsolete">Ця назва вже використана.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation>Помилка тестування фільтру</translation>
+        <translation type="obsolete">Помилка тестування фільтру</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation>Будь ласка, вкажіть ім&apos;я торренту.</translation>
+        <translation type="obsolete">Будь ласка, вкажіть ім&apos;я торренту.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation>результати</translation>
+        <translation type="obsolete">результати</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation>не підходить</translation>
+        <translation type="obsolete">не підходить</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation>Виберіть файл для імпорту</translation>
+        <translation type="obsolete">Виберіть файл для імпорту</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation>Файли фільтрів</translation>
+        <translation type="obsolete">Файли фільтрів</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation>Успішно імпортовано</translation>
+        <translation type="obsolete">Успішно імпортовано</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation>Імпорт фільтрів успішний.</translation>
+        <translation type="obsolete">Імпорт фільтрів успішний.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation>Невдалий імпорт</translation>
+        <translation type="obsolete">Невдалий імпорт</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>Фільтри не були імпортовані через помилку вводу/виводу.</translation>
+        <translation type="obsolete">Фільтри не були імпортовані через помилку вводу/виводу.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation>Виберіть цільовий файл</translation>
+        <translation type="obsolete">Виберіть цільовий файл</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation>Успішно експортовано</translation>
+        <translation type="obsolete">Успішно експортовано</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation>Експорт фільтрів успішний.</translation>
+        <translation type="obsolete">Експорт фільтрів успішний.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation>Невдалий експорт</translation>
+        <translation type="obsolete">Невдалий експорт</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>Фільтри не були експортовані через помилку вводу/виводу.</translation>
+        <translation type="obsolete">Фільтри не були експортовані через помилку вводу/виводу.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Виберіть шлях збереження</translation>
+        <translation type="obsolete">Виберіть шлях збереження</translation>
     </message>
 </context>
 <context>
@@ -702,184 +810,179 @@ You should get this information from your Web browser preferences.</source>
     <name>GUI</name>
     <message>
         <source>Open Torrent Files</source>
-        <translation>Відкрити Torrent-файли</translation>
+        <translation type="obsolete">Відкрити Torrent-файли</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Torrent-файли</translation>
+        <translation type="obsolete">Torrent-файли</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Завантаження</translation>
+        <translation type="obsolete">Завантаження</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Швидкість прийому: %1 КіБ/с</translation>
+        <translation type="obsolete">Швидкість прийому: %1 КіБ/с</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Швидкість віддачі: %1 КіБ/с</translation>
+        <translation type="obsolete">Швидкість віддачі: %1 КіБ/с</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>Завантаження &apos;%1&apos; закінчилось.</translation>
+        <translation type="obsolete">Завантаження &apos;%1&apos; закінчилось.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>Помилка вводу/виводу</translation>
+        <translation type="obsolete">Помилка вводу/виводу</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Пошук</translation>
+        <translation type="obsolete">Пошук</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>Сталася помилка вводу/виводу для торрента %1. Причина: %2</translation>
+        <translation type="obsolete">Сталася помилка вводу/виводу для торрента %1. Причина: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation>Alt+1</translation>
+        <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation>Помилка завантаження url</translation>
+        <translation type="obsolete">Помилка завантаження url</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Не вдалося завантажити файл з URL: %1, причина: %2.</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation></translation>
+        <translation type="obsolete">Не вдалося завантажити файл з URL: %1, причина: %2.</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation>Налаштування були успішно збережені.</translation>
+        <translation type="obsolete">Налаштування були успішно збережені.</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation>Завантажено</translation>
+        <translation type="obsolete">Завантажено</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Не всі завантаження завершені. Ви впевнені, що хочете вийти?</translation>
+        <translation type="obsolete">Не всі завантаження завершені. Ви впевнені, що хочете вийти?</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Глобальний ліміт вивантаження</translation>
+        <translation type="obsolete">Глобальний ліміт вивантаження</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Глобальний ліміт завантаження</translation>
+        <translation type="obsolete">Глобальний ліміт завантаження</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (Зав.: %2/с, Вив.: %3/с)</translation>
+        <translation type="obsolete">qBittorrent %1 (Зав.: %2/с, Вив.: %3/с)</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation>Підтвердження рекурсивного завантаження</translation>
+        <translation type="obsolete">Підтвердження рекурсивного завантаження</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>Торрент %1 містить інші торренти. Завантажувати і їх?</translation>
+        <translation type="obsolete">Торрент %1 містить інші торренти. Завантажувати і їх?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation>Відкривання torrent-файлів</translation>
+        <translation type="obsolete">Відкривання torrent-файлів</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent не є програмою за замовчуванням для відкривання торрентів та Магнітних посилань.
+        <translation type="obsolete">qBittorrent не є програмою за замовчуванням для відкривання торрентів та Магнітних посилань.
 Встановити qBittorrent як програму для відкривання torrent-файлів та Магнітних посилань?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation>Завантаження (%1)</translation>
+        <translation type="obsolete">Завантаження (%1)</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation>Так</translation>
+        <translation type="obsolete">Так</translation>
     </message>
     <message>
         <source>No</source>
-        <translation>Ні</translation>
+        <translation type="obsolete">Ні</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Ніколи</translation>
+        <translation type="obsolete">Ніколи</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation>Завжди</translation>
+        <translation type="obsolete">Завжди</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation>Вихід із qBittorrent</translation>
+        <translation type="obsolete">Вихід із qBittorrent</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation>Встановити пароль...</translation>
+        <translation type="obsolete">Встановити пароль...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation>Оновити пароль</translation>
+        <translation type="obsolete">Оновити пароль</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation>Пароль блокування інтерфейсу був успішно оновлений</translation>
+        <translation type="obsolete">Пароль блокування інтерфейсу був успішно оновлений</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation>
+        <translation type="obsolete">
 </translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation>Будь ласка, введіть пароль блокування інтерфейсу:</translation>
+        <translation type="obsolete">Будь ласка, введіть пароль блокування інтерфейсу:</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation>Неправильний пароль</translation>
+        <translation type="obsolete">Неправильний пароль</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation>Пароль неправильний</translation>
+        <translation type="obsolete">Пароль неправильний</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -1493,6 +1596,187 @@ No further notices will be issued.</source>
     <message>
         <source>If you like qBittorrent, please donate!</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent v0.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
+    </message>
+    <message>
+        <source>Set the password...</source>
+        <translation type="unfinished">Встановити пароль...</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Завантаження</translation>
+    </message>
+    <message>
+        <source>Torrent file association</source>
+        <translation type="unfinished">Відкривання torrent-файлів</translation>
+    </message>
+    <message>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished">qBittorrent не є програмою за замовчуванням для відкривання торрентів та Магнітних посилань.
+Встановити qBittorrent як програму для відкривання torrent-файлів та Магнітних посилань?</translation>
+    </message>
+    <message>
+        <source>UI lock password</source>
+        <translation type="unfinished">
+</translation>
+    </message>
+    <message>
+        <source>Please type the UI lock password:</source>
+        <translation type="unfinished">Будь ласка, введіть пароль блокування інтерфейсу:</translation>
+    </message>
+    <message>
+        <source>Password update</source>
+        <translation type="unfinished">Оновити пароль</translation>
+    </message>
+    <message>
+        <source>The UI lock password has been successfully updated</source>
+        <translation type="unfinished">Пароль блокування інтерфейсу був успішно оновлений</translation>
+    </message>
+    <message>
+        <source>RSS</source>
+        <translation type="unfinished">RSS</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Пошук</translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished">Завантаження (%1)</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished">Завантажено</translation>
+    </message>
+    <message>
+        <source>%1 has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation type="unfinished">Завантаження &apos;%1&apos; закінчилось.</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <comment>i.e: Input/Output Error</comment>
+        <translation type="unfinished">Помилка вводу/виводу</translation>
+    </message>
+    <message>
+        <source>An I/O error occured for torrent %1.
+ Reason: %2</source>
+        <comment>e.g: An error occured for torrent xxx.avi.
+ Reason: disk is full.</comment>
+        <translation type="unfinished">Сталася помилка вводу/виводу для торрента %1. Причина: %2</translation>
+    </message>
+    <message>
+        <source>Alt+1</source>
+        <comment>shortcut to switch to first tab</comment>
+        <translation type="unfinished">Alt+1</translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <comment>shortcut to switch to search tab</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished">Підтвердження рекурсивного завантаження</translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished">Торрент %1 містить інші торренти. Завантажувати і їх?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Так</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Ні</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Ніколи</translation>
+    </message>
+    <message>
+        <source>Url download error</source>
+        <translation type="unfinished">Помилка завантаження url</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
+        <translation type="unfinished">Не вдалося завантажити файл з URL: %1, причина: %2.</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished">Глобальний ліміт вивантаження</translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished">Глобальний ліміт завантаження</translation>
+    </message>
+    <message>
+        <source>Invalid password</source>
+        <translation type="unfinished">Неправильний пароль</translation>
+    </message>
+    <message>
+        <source>The password is invalid</source>
+        <translation type="unfinished">Пароль неправильний</translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
+        <translation type="unfinished">Вихід із qBittorrent</translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished">Не всі завантаження завершені. Ви впевнені, що хочете вийти?</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation type="unfinished">Завжди</translation>
+    </message>
+    <message>
+        <source>Open Torrent Files</source>
+        <translation type="unfinished">Відкрити Torrent-файли</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options were saved successfully.</source>
+        <translation type="unfinished">Налаштування були успішно збережені.</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>DL speed: %1 KiB/s</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation type="unfinished">Швидкість прийому: %1 КіБ/с</translation>
+    </message>
+    <message>
+        <source>UP speed: %1 KiB/s</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation type="unfinished">Швидкість віддачі: %1 КіБ/с</translation>
+    </message>
+    <message>
+        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation type="unfinished">qBittorrent %1 (Зав.: %2/с, Вив.: %3/с)</translation>
     </message>
 </context>
 <context>
@@ -2627,7 +2911,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation>Завантажувач RSS-подач...</translation>
+        <translation type="obsolete">Завантажувач RSS-подач...</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -2640,6 +2924,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Settings...</source>
         <translation>Налаштування...</translation>
+    </message>
+    <message>
+        <source>RSS Downloader...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

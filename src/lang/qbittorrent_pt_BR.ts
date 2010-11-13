@@ -182,10 +182,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save torrent to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -199,6 +195,118 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Matching RSS articles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to a different directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import...</source>
+        <translation type="unfinished">Importar...</translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished">Exportar...</translation>
+    </message>
+    <message>
+        <source>New rule name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule name conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A rule with this name already exists, please choose another name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the download rule named %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected download rules?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule deletion confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The list is empty, there is nothing to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where would you like to save the list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create the destination file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please point to the RSS download rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rules list (*.rssrules *.filters)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to import the selected rules file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete selected rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule renaming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the new rule name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -504,174 +612,174 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
     <name>FeedDownloader</name>
     <message>
         <source>RSS Feed downloader</source>
-        <translation>Baixador de conteúdo RSS</translation>
+        <translation type="obsolete">Baixador de conteúdo RSS</translation>
     </message>
     <message>
         <source>RSS feed:</source>
-        <translation>RSS feed:</translation>
+        <translation type="obsolete">RSS feed:</translation>
     </message>
     <message>
         <source>Feed name</source>
-        <translation>Nome do Feed</translation>
+        <translation type="obsolete">Nome do Feed</translation>
     </message>
     <message>
         <source>Automatically download torrents from this feed</source>
-        <translation>Baixar automaticamente torrents deste feed</translation>
+        <translation type="obsolete">Baixar automaticamente torrents deste feed</translation>
     </message>
     <message>
         <source>Download filters</source>
-        <translation>Baixar filtros</translation>
+        <translation type="obsolete">Baixar filtros</translation>
     </message>
     <message>
         <source>Filters:</source>
-        <translation>Filtros:</translation>
+        <translation type="obsolete">Filtros:</translation>
     </message>
     <message>
         <source>Filter settings</source>
-        <translation>Configurações de filtro</translation>
+        <translation type="obsolete">Configurações de filtro</translation>
     </message>
     <message>
         <source>Matches:</source>
-        <translation>Correspondem:</translation>
+        <translation type="obsolete">Correspondem:</translation>
     </message>
     <message>
         <source>Does not match:</source>
-        <translation>Não correspondem:</translation>
+        <translation type="obsolete">Não correspondem:</translation>
     </message>
     <message>
         <source>Destination folder:</source>
-        <translation>Pasta de destino:</translation>
+        <translation type="obsolete">Pasta de destino:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Filter testing</source>
-        <translation>Teste de filtro</translation>
+        <translation type="obsolete">Teste de filtro</translation>
     </message>
     <message>
         <source>Torrent title:</source>
-        <translation>Título do torrent:</translation>
+        <translation type="obsolete">Título do torrent:</translation>
     </message>
     <message>
         <source>Result:</source>
-        <translation>Resultado:</translation>
+        <translation type="obsolete">Resultado:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Teste</translation>
+        <translation type="obsolete">Teste</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation>Importar...</translation>
+        <translation type="obsolete">Importar...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation>Exportar...</translation>
+        <translation type="obsolete">Exportar...</translation>
     </message>
     <message>
         <source>Rename filter</source>
-        <translation>Renomear filtro</translation>
+        <translation type="obsolete">Renomear filtro</translation>
     </message>
     <message>
         <source>Remove filter</source>
-        <translation>Remover filtro</translation>
+        <translation type="obsolete">Remover filtro</translation>
     </message>
     <message>
         <source>Add filter</source>
-        <translation>Adicionar filtro</translation>
+        <translation type="obsolete">Adicionar filtro</translation>
     </message>
 </context>
 <context>
     <name>FeedDownloaderDlg</name>
     <message>
         <source>New filter</source>
-        <translation>Novo filtro</translation>
+        <translation type="obsolete">Novo filtro</translation>
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation>Por favor escolha um nome para este filtro</translation>
+        <translation type="obsolete">Por favor escolha um nome para este filtro</translation>
     </message>
     <message>
         <source>Filter name:</source>
-        <translation>Nome do filtro:</translation>
+        <translation type="obsolete">Nome do filtro:</translation>
     </message>
     <message>
         <source>Invalid filter name</source>
-        <translation>Nome inválido para o filtro</translation>
+        <translation type="obsolete">Nome inválido para o filtro</translation>
     </message>
     <message>
         <source>The filter name cannot be left empty.</source>
-        <translation>O nome do filtro não pode ser vazio.</translation>
+        <translation type="obsolete">O nome do filtro não pode ser vazio.</translation>
     </message>
     <message>
         <source>This filter name is already in use.</source>
-        <translation>Este nome de filtro já está sendo usado.</translation>
+        <translation type="obsolete">Este nome de filtro já está sendo usado.</translation>
     </message>
     <message>
         <source>Filter testing error</source>
-        <translation>Erro ao testar o filtro</translation>
+        <translation type="obsolete">Erro ao testar o filtro</translation>
     </message>
     <message>
         <source>Please specify a test torrent name.</source>
-        <translation>Por favor especifique um nome para o torrent.</translation>
+        <translation type="obsolete">Por favor especifique um nome para o torrent.</translation>
     </message>
     <message>
         <source>matches</source>
-        <translation>assemelha</translation>
+        <translation type="obsolete">assemelha</translation>
     </message>
     <message>
         <source>does not match</source>
-        <translation>não assemelha</translation>
+        <translation type="obsolete">não assemelha</translation>
     </message>
     <message>
         <source>Select file to import</source>
-        <translation>Selecione arquivo a importar</translation>
+        <translation type="obsolete">Selecione arquivo a importar</translation>
     </message>
     <message>
         <source>Filters Files</source>
-        <translation>Arquivos de filtro</translation>
+        <translation type="obsolete">Arquivos de filtro</translation>
     </message>
     <message>
         <source>Import successful</source>
-        <translation>Importado com sucesso</translation>
+        <translation type="obsolete">Importado com sucesso</translation>
     </message>
     <message>
         <source>Filters import was successful.</source>
-        <translation>Filtros importados com sucesso.</translation>
+        <translation type="obsolete">Filtros importados com sucesso.</translation>
     </message>
     <message>
         <source>Import failure</source>
-        <translation>Falha ao importar</translation>
+        <translation type="obsolete">Falha ao importar</translation>
     </message>
     <message>
         <source>Filters could not be imported due to an I/O error.</source>
-        <translation>Filtros não podem ser importados por um erro de entrada e saída.</translation>
+        <translation type="obsolete">Filtros não podem ser importados por um erro de entrada e saída.</translation>
     </message>
     <message>
         <source>Select destination file</source>
-        <translation>Seleciona arquivo de destino</translation>
+        <translation type="obsolete">Seleciona arquivo de destino</translation>
     </message>
     <message>
         <source>Export successful</source>
-        <translation>Exportado com sucesso</translation>
+        <translation type="obsolete">Exportado com sucesso</translation>
     </message>
     <message>
         <source>Filters export was successful.</source>
-        <translation>A exportação foi executada com sucesso.</translation>
+        <translation type="obsolete">A exportação foi executada com sucesso.</translation>
     </message>
     <message>
         <source>Export failure</source>
-        <translation>Falha na exportação</translation>
+        <translation type="obsolete">Falha na exportação</translation>
     </message>
     <message>
         <source>Filters could not be exported due to an I/O error.</source>
-        <translation>Os filtros não puderam ser exportados por um erro de entrada e saída.</translation>
+        <translation type="obsolete">Os filtros não puderam ser exportados por um erro de entrada e saída.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Escolha o caminho de salvamento</translation>
+        <translation type="obsolete">Escolha o caminho de salvamento</translation>
     </message>
 </context>
 <context>
@@ -696,185 +804,185 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
     <name>GUI</name>
     <message>
         <source>Open Torrent Files</source>
-        <translation>Abrir Arquivos Torrent</translation>
+        <translation type="obsolete">Abrir Arquivos Torrent</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation>Arquivos Torrent</translation>
+        <translation type="obsolete">Arquivos Torrent</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Transferências</translation>
+        <translation type="obsolete">Transferências</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation>qBittorrent %1</translation>
+        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Velocidade de download: %1 KiB/s</translation>
+        <translation type="obsolete">Velocidade de download: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Velocidade de Upload: %1 KiB/s</translation>
+        <translation type="obsolete">Velocidade de Upload: %1 KiB/s</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>%1 download finalizado.</translation>
+        <translation type="obsolete">%1 download finalizado.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>Erro de Entrada/Saída</translation>
+        <translation type="obsolete">Erro de Entrada/Saída</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Busca</translation>
+        <translation type="obsolete">Busca</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="obsolete">RSS</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>Erro de I/O no torrent %1.
+        <translation type="obsolete">Erro de I/O no torrent %1.
 Motivo: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation>Alt+1</translation>
+        <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation>Erro no download da URL</translation>
+        <translation type="obsolete">Erro no download da URL</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation>Não pude baixar arquivo em: %1, motivo: %2.</translation>
+        <translation type="obsolete">Não pude baixar arquivo em: %1, motivo: %2.</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation>Ctrl+F</translation>
+        <translation type="obsolete">Ctrl+F</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation>Opções salvas com sucesso.</translation>
+        <translation type="obsolete">Opções salvas com sucesso.</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation>Completação de download</translation>
+        <translation type="obsolete">Completação de download</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Muitos arquivos estão atualmente sendo transferidos.(new line)
+        <translation type="obsolete">Muitos arquivos estão atualmente sendo transferidos.(new line)
 Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Limite global de upload</translation>
+        <translation type="obsolete">Limite global de upload</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Limite global de download</translation>
+        <translation type="obsolete">Limite global de download</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
+        <translation type="obsolete">qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation>Confirmação de download recursivo</translation>
+        <translation type="obsolete">Confirmação de download recursivo</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>O torrent %1 contém arquivos torrent, continua com este download?</translation>
+        <translation type="obsolete">O torrent %1 contém arquivos torrent, continua com este download?</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation>Associação de arquivo torrent</translation>
+        <translation type="obsolete">Associação de arquivo torrent</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent não é sua aplicação padrão para arquivos torrent e links magnéticos.
+        <translation type="obsolete">qBittorrent não é sua aplicação padrão para arquivos torrent e links magnéticos.
 Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation>Transferências (%1)</translation>
+        <translation type="obsolete">Transferências (%1)</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation>Sim</translation>
+        <translation type="obsolete">Sim</translation>
     </message>
     <message>
         <source>No</source>
-        <translation>Não</translation>
+        <translation type="obsolete">Não</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Nunca</translation>
+        <translation type="obsolete">Nunca</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation>Sempre</translation>
+        <translation type="obsolete">Sempre</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation>Saindo do qBittorrent</translation>
+        <translation type="obsolete">Saindo do qBittorrent</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation>Configurar a senha...</translation>
+        <translation type="obsolete">Configurar a senha...</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation>Atualiza senha</translation>
+        <translation type="obsolete">Atualiza senha</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation>A senha de travamento da UI foi atualizada com sucesso</translation>
+        <translation type="obsolete">A senha de travamento da UI foi atualizada com sucesso</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation>Senha de travamento da UI</translation>
+        <translation type="obsolete">Senha de travamento da UI</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation>Por favor digite sua senha UI:</translation>
+        <translation type="obsolete">Por favor digite sua senha UI:</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation>Senha inválida</translation>
+        <translation type="obsolete">Senha inválida</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation>A senha está inválida</translation>
+        <translation type="obsolete">A senha está inválida</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -1488,6 +1596,188 @@ Nenhum outro aviso será dado.</translation>
     <message>
         <source>If you like qBittorrent, please donate!</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent %1</source>
+        <comment>e.g: qBittorrent v0.x</comment>
+        <translation type="unfinished">qBittorrent %1</translation>
+    </message>
+    <message>
+        <source>Set the password...</source>
+        <translation type="unfinished">Configurar a senha...</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="unfinished">Transferências</translation>
+    </message>
+    <message>
+        <source>Torrent file association</source>
+        <translation type="unfinished">Associação de arquivo torrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is not the default application to open torrent files or Magnet links.
+Do you want to associate qBittorrent to torrent files and Magnet links?</source>
+        <translation type="unfinished">qBittorrent não é sua aplicação padrão para arquivos torrent e links magnéticos.
+Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</translation>
+    </message>
+    <message>
+        <source>UI lock password</source>
+        <translation type="unfinished">Senha de travamento da UI</translation>
+    </message>
+    <message>
+        <source>Please type the UI lock password:</source>
+        <translation type="unfinished">Por favor digite sua senha UI:</translation>
+    </message>
+    <message>
+        <source>Password update</source>
+        <translation type="unfinished">Atualiza senha</translation>
+    </message>
+    <message>
+        <source>The UI lock password has been successfully updated</source>
+        <translation type="unfinished">A senha de travamento da UI foi atualizada com sucesso</translation>
+    </message>
+    <message>
+        <source>RSS</source>
+        <translation type="unfinished">RSS</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Busca</translation>
+    </message>
+    <message>
+        <source>Transfers (%1)</source>
+        <translation type="unfinished">Transferências (%1)</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="unfinished">Completação de download</translation>
+    </message>
+    <message>
+        <source>%1 has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation type="unfinished">%1 download finalizado.</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <comment>i.e: Input/Output Error</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An I/O error occured for torrent %1.
+ Reason: %2</source>
+        <comment>e.g: An error occured for torrent xxx.avi.
+ Reason: disk is full.</comment>
+        <translation type="unfinished">Erro de I/O no torrent %1.
+Motivo: %2</translation>
+    </message>
+    <message>
+        <source>Alt+1</source>
+        <comment>shortcut to switch to first tab</comment>
+        <translation type="unfinished">Alt+1</translation>
+    </message>
+    <message>
+        <source>Alt+2</source>
+        <comment>shortcut to switch to third tab</comment>
+        <translation type="unfinished">Alt+2</translation>
+    </message>
+    <message>
+        <source>Ctrl+F</source>
+        <comment>shortcut to switch to search tab</comment>
+        <translation type="unfinished">Ctrl+F</translation>
+    </message>
+    <message>
+        <source>Alt+3</source>
+        <comment>shortcut to switch to fourth tab</comment>
+        <translation type="unfinished">Alt+3</translation>
+    </message>
+    <message>
+        <source>Recursive download confirmation</source>
+        <translation type="unfinished">Confirmação de download recursivo</translation>
+    </message>
+    <message>
+        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
+        <translation type="unfinished">O torrent %1 contém arquivos torrent, continua com este download?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Sim</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">Não</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished">Nunca</translation>
+    </message>
+    <message>
+        <source>Url download error</source>
+        <translation type="unfinished">Erro no download da URL</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
+        <translation type="unfinished">Não pude baixar arquivo em: %1, motivo: %2.</translation>
+    </message>
+    <message>
+        <source>Global Upload Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Download Speed Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid password</source>
+        <translation type="unfinished">Senha inválida</translation>
+    </message>
+    <message>
+        <source>The password is invalid</source>
+        <translation type="unfinished">A senha está inválida</translation>
+    </message>
+    <message>
+        <source>Exiting qBittorrent</source>
+        <translation type="unfinished">Saindo do qBittorrent</translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qBittorrent?</source>
+        <translation type="unfinished">Muitos arquivos estão atualmente sendo transferidos.(new line)
+Está certo que quer sair do qBittorrent?</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation type="unfinished">Sempre</translation>
+    </message>
+    <message>
+        <source>Open Torrent Files</source>
+        <translation type="unfinished">Abrir Arquivos Torrent</translation>
+    </message>
+    <message>
+        <source>Torrent Files</source>
+        <translation type="unfinished">Arquivos Torrent</translation>
+    </message>
+    <message>
+        <source>Options were saved successfully.</source>
+        <translation type="unfinished">Opções salvas com sucesso.</translation>
+    </message>
+    <message>
+        <source>qBittorrent</source>
+        <translation type="unfinished">qBittorrent</translation>
+    </message>
+    <message>
+        <source>DL speed: %1 KiB/s</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation type="unfinished">Velocidade de download: %1 KiB/s</translation>
+    </message>
+    <message>
+        <source>UP speed: %1 KiB/s</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation type="unfinished">Velocidade de Upload: %1 KiB/s</translation>
+    </message>
+    <message>
+        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
+        <comment>%1 is qBittorrent version</comment>
+        <translation type="unfinished">qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
     </message>
 </context>
 <context>
@@ -2622,7 +2912,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS feed downloader...</source>
-        <translation>Baixador de feed RSS...</translation>
+        <translation type="obsolete">Baixador de feed RSS...</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -2635,6 +2925,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Settings...</source>
         <translation>Configurações...</translation>
+    </message>
+    <message>
+        <source>RSS Downloader...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
