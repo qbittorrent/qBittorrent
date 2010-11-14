@@ -291,7 +291,7 @@ void TorrentModel::removeTorrent(const QString &hash)
 {
   const int row = torrentRow(hash);
   qDebug() << Q_FUNC_INFO << hash << row;
-  if(row > 0) {
+  if(row >= 0) {
     beginRemoveTorrent(row);
     m_torrents.removeAt(row);
     endRemoveTorrent();
