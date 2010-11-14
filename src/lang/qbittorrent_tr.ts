@@ -3438,6 +3438,87 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentModel</name>
+    <message>
+        <source>Name</source>
+        <comment>i.e: torrent name</comment>
+        <translation type="unfinished">Ad</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>i.e: torrent size</comment>
+        <translation type="unfinished">Boyut</translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <comment>% Done</comment>
+        <translation type="unfinished">Bitti</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
+        <translation type="unfinished">Durum</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <comment>i.e. full sources (often untranslated)</comment>
+        <translation type="unfinished">Gönderenler</translation>
+    </message>
+    <message>
+        <source>Peers</source>
+        <comment>i.e. partial sources (often untranslated)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation type="unfinished">İndirme Hızı</translation>
+    </message>
+    <message>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation type="unfinished">Gönderme Hızı</translation>
+    </message>
+    <message>
+        <source>Ratio</source>
+        <comment>Share ratio</comment>
+        <translation type="unfinished">Oran</translation>
+    </message>
+    <message>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation type="unfinished">Kalan Zaman</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished">Etiket</translation>
+    </message>
+    <message>
+        <source>Added On</source>
+        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
+        <translation type="unfinished">Eklendi</translation>
+    </message>
+    <message>
+        <source>Completed On</source>
+        <comment>Torrent was completed on 01/01/2010 08:00</comment>
+        <translation type="unfinished">Tamamlandı</translation>
+    </message>
+    <message>
+        <source>Tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down Limit</source>
+        <comment>i.e: Download limit</comment>
+        <translation type="unfinished">İnd. Sınırı</translation>
+    </message>
+    <message>
+        <source>Up Limit</source>
+        <comment>i.e: Upload limit</comment>
+        <translation type="unfinished">Gön. Sınırı</translation>
+    </message>
+</context>
+<context>
     <name>TrackerList</name>
     <message>
         <source>URL</source>
@@ -3661,7 +3742,7 @@ Do you want to install it now?</source>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Kalan Zaman</translation>
+        <translation type="obsolete">Kalan Zaman</translation>
     </message>
     <message>
         <source>Column visibility</source>
@@ -3682,47 +3763,47 @@ Do you want to install it now?</source>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>İndirme Hızı</translation>
+        <translation type="obsolete">İndirme Hızı</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Gönderme Hızı</translation>
+        <translation type="obsolete">Gönderme Hızı</translation>
     </message>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation>Ad</translation>
+        <translation type="obsolete">Ad</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation>Boyut</translation>
+        <translation type="obsolete">Boyut</translation>
     </message>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Bitti</translation>
+        <translation type="obsolete">Bitti</translation>
     </message>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation>Durum</translation>
+        <translation type="obsolete">Durum</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Gönderenler</translation>
+        <translation type="obsolete">Gönderenler</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Eşler</translation>
+        <translation type="obsolete">Eşler</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Oran</translation>
+        <translation type="obsolete">Oran</translation>
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
@@ -3792,23 +3873,23 @@ Do you want to install it now?</source>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
         <translatorcomment>Torent, 01/01/2010 08:00 tarihinde aktarım listesine eklendi</translatorcomment>
-        <translation>Eklendi</translation>
+        <translation type="obsolete">Eklendi</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translatorcomment>Torent, 01/01/2010 08:00 tarihinde tamamlandı</translatorcomment>
-        <translation>Tamamlandı</translation>
+        <translation type="obsolete">Tamamlandı</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>İnd. Sınırı</translation>
+        <translation type="obsolete">İnd. Sınırı</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Gön. Sınırı</translation>
+        <translation type="obsolete">Gön. Sınırı</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -3876,10 +3957,6 @@ Do you want to install it now?</source>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation type="unfinished">Sil</translation>
-    </message>
-    <message>
-        <source>Tracker</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
