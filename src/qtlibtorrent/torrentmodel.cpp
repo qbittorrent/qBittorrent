@@ -116,7 +116,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_PRIORITY:
     return m_torrent.queue_position();
   case TR_SIZE:
-    return static_cast<qlonglong>(m_torrent.actual_size());
+    return m_torrent.has_metadata() ? static_cast<qlonglong>(m_torrent.actual_size()) : -1;
   case TR_PROGRESS:
     return m_torrent.progress();
   case TR_STATUS:
