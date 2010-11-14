@@ -76,6 +76,7 @@ private slots:
   void notifyTorrentChanged(int row);
   void forceModelRefresh();
   void handleTorrentLabelChange(QString previous, QString current);
+  void handleTorrentAboutToBeRemoved(const QTorrentHandle & h);
 
 private:
   void beginInsertTorrent(int row);

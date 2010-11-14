@@ -192,6 +192,7 @@ protected slots:
 signals:
   void addedTorrent(const QTorrentHandle& h);
   void deletedTorrent(QString hash);
+  void torrentAboutToBeRemoved(const QTorrentHandle &h);
   void pausedTorrent(QTorrentHandle& h);
   void resumedTorrent(QTorrentHandle& h);
   void finishedTorrent(QTorrentHandle& h);

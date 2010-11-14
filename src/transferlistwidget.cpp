@@ -649,7 +649,7 @@ void TransferListWidget::setSelectionLabel(QString label) {
     Q_ASSERT(!hash.isEmpty());
     const int row = getRowFromHash(hash);
     const QString old_label = listModel->data(listModel->index(row, TorrentModelItem::TR_LABEL)).toString();
-    listModel->setData(listModel->index(row, TorrentModelItem::TR_LABEL), QVariant(label));
+    listModel->setData(listModel->index(row, TorrentModelItem::TR_LABEL), QVariant(label), Qt::DisplayRole);
     // Update save path if necessary
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     BTSession->changeLabelInTorrentSavePath(h, old_label, label);

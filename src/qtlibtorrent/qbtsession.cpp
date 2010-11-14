@@ -752,6 +752,7 @@ void QBtSession::deleteTorrent(QString hash, bool delete_local_files) {
     qDebug("/!\\ Error: Invalid handle");
     return;
   }
+  emit torrentAboutToBeRemoved(h);
   qDebug("h is valid, getting name or hash...");
   QString fileName;
   if(h.has_metadata())

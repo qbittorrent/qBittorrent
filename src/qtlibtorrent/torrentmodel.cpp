@@ -76,6 +76,7 @@ TorrentModelItem::State TorrentModelItem::state() const
 
 bool TorrentModelItem::setData(int column, const QVariant &value, int role)
 {
+  qDebug() << Q_FUNC_INFO << column << value;
   if(role != Qt::DisplayRole) return false;
   // Label and Name columns can be edited
   switch(column) {
@@ -183,6 +184,7 @@ void TorrentModel::populate() {
   m_refreshTimer.start(m_refreshInterval);
   // Listen for torrent changes
   connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), SLOT(addTorrent(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(handleTorrentAboutToBeRemoved(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), SLOT(removeTorrent(QString)));
   connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle&)), SLOT(handleTorrentUpdate(QTorrentHandle&)));
   connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle&)), SLOT(handleTorrentUpdate(QTorrentHandle&)));
@@ -258,7 +260,9 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
 
 bool TorrentModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
+  qDebug() << Q_FUNC_INFO << value;
   if(!index.isValid() || role != Qt::DisplayRole) return false;
+  qDebug("Index is valid and role is DisplayRole");
   try {
     if(index.row() >= 0 && index.row() < rowCount() && index.column() >= 0 && index.column() < columnCount()) {
       bool change = m_torrents[index.row()]->setData(index.column(), value, role);
@@ -298,8 +302,8 @@ void TorrentModel::addTorrent(const QTorrentHandle &h)
 void TorrentModel::removeTorrent(const QString &hash)
 {
   const int row = torrentRow(hash);
+  qDebug() << Q_FUNC_INFO << hash << row;
   if(row > 0) {
-    emit torrentAboutToBeRemoved(m_torrents.at(row));
     beginRemoveTorrent(row);
     m_torrents.removeAt(row);
     endRemoveTorrent();
@@ -410,4 +414,12 @@ QString TorrentModel::torrentHash(int row) const
   if(row >= 0 && row < rowCount())
     return m_torrents.at(row)->hash();
   return QString();
+}
+
+void TorrentModel::handleTorrentAboutToBeRemoved(const QTorrentHandle &h)
+{
+  const int row = torrentRow(h.hash());
+  if(row >= 0) {
+    emit torrentAboutToBeRemoved(m_torrents.at(row));
+  }
 }
