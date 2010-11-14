@@ -109,7 +109,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   if(role == Qt::ForegroundRole) {
     return m_fgColor;
   }
-  if(role != Qt::DisplayRole) return QVariant();
+  if(role != Qt::DisplayRole && role != Qt::UserRole) return QVariant();
   switch(column) {
   case TR_NAME:
     return m_name;
@@ -122,21 +122,10 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_STATUS:
     return state();
   case TR_SEEDS: {
-    // XXX: Probably a better way to do this
-    qulonglong seeds = m_torrent.num_seeds()*1000000;
-    if(m_torrent.num_complete() >= m_torrent.num_seeds())
-      seeds += m_torrent.num_complete()*10;
-    else
-      seeds += 1;
-    return seeds;
+    return (role == Qt::DisplayRole) ? m_torrent.num_seeds() : m_torrent.num_complete();
   }
   case TR_PEERS: {
-    qulonglong peers = (m_torrent.num_peers()-m_torrent.num_seeds())*1000000;
-    if(m_torrent.num_incomplete() >= (m_torrent.num_peers()-m_torrent.num_seeds()))
-      peers += m_torrent.num_incomplete()*10;
-    else
-      peers += 1;
-    return peers;
+    return (role == Qt::DisplayRole) ? (m_torrent.num_peers()-m_torrent.num_seeds()) : m_torrent.num_incomplete();
   }
   case TR_DLSPEED:
     return m_torrent.download_payload_rate();

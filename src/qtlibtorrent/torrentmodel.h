@@ -42,7 +42,7 @@ private:
   QString m_name;
   mutable QIcon m_icon;
   mutable QColor m_fgColor;
-  QString m_hash;
+  QString m_hash; // Cached for safety reasons
 };
 
 class TorrentModel : public QAbstractListModel
@@ -56,7 +56,7 @@ public:
   inline int rowCount(const QModelIndex& index = QModelIndex()) const { Q_UNUSED(index); return m_torrents.size(); }
   int columnCount(const QModelIndex &parent=QModelIndex()) const { Q_UNUSED(parent); return TorrentModelItem::NB_COLUMNS; }
   QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-  bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+  bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole);
   QVariant headerData(int section, Qt::Orientation orientation, int role) const;
   int torrentRow(const QString &hash) const;
   QString torrentHash(int row) const;

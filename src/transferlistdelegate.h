@@ -73,11 +73,10 @@ public:
       }
     case TorrentModelItem::TR_SEEDS:
     case TorrentModelItem::TR_PEERS: {
-        const qulonglong tot_val = index.data().toULongLong();
-        QString display = QString::number((qulonglong)tot_val/1000000);
-        if(tot_val%2 == 0) {
+        QString display = QString::number(index.data().toLongLong());
+        if(index.data(Qt::UserRole).toLongLong() > 0) {
           // Scrape was successful, we have total values
-          display += " ("+QString::number((qulonglong)(tot_val%1000000)/10)+")";
+          display += " ("+QString::number(index.data(Qt::UserRole).toLongLong())+")";
         }
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
