@@ -40,14 +40,13 @@
 #include <QPainter>
 #include <QDateTime>
 #include "misc.h"
+#include "torrentmodel.h"
 
 #ifdef Q_WS_WIN
   #include <QPlastiqueStyle>
 #endif
 
 // Defines for download list list columns
-enum TorrentState {STATE_DOWNLOADING, STATE_STALLED_DL, STATE_STALLED_UP, STATE_SEEDING, STATE_PAUSED_DL, STATE_PAUSED_UP, STATE_QUEUED_DL, STATE_QUEUED_UP, STATE_CHECKING_UP, STATE_CHECKING_DL, STATE_INVALID};
-enum Column {TR_NAME, TR_PRIORITY, TR_SIZE, TR_PROGRESS, TR_STATUS, TR_SEEDS, TR_PEERS, TR_DLSPEED, TR_UPSPEED, TR_ETA, TR_RATIO, TR_LABEL, TR_ADD_DATE, TR_SEED_DATE, TR_TRACKER, TR_DLLIMIT, TR_UPLIMIT, TR_HASH};
 
 class TransferListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -61,19 +60,19 @@ public:
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     painter->save();
     switch(index.column()){
-    case TR_SIZE:{
+    case TorrentModelItem::TR_SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
         break;
       }
-    case TR_ETA:{
+    case TorrentModelItem::TR_ETA:{
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
         break;
       }
-    case TR_SEEDS:
-    case TR_PEERS: {
+    case TorrentModelItem::TR_SEEDS:
+    case TorrentModelItem::TR_PEERS: {
         const qulonglong tot_val = index.data().toULongLong();
         QString display = QString::number((qulonglong)tot_val/1000000);
         if(tot_val%2 == 0) {
@@ -85,30 +84,30 @@ public:
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
       }
-    case TR_STATUS: {
+    case TorrentModelItem::TR_STATUS: {
         const int state = index.data().toInt();
         QString display;
         switch(state) {
-        case STATE_DOWNLOADING:
+        case TorrentModelItem::STATE_DOWNLOADING:
           display = tr("Downloading");
           break;
-        case STATE_PAUSED_DL:
-        case STATE_PAUSED_UP:
+        case TorrentModelItem::STATE_PAUSED_DL:
+        case TorrentModelItem::STATE_PAUSED_UP:
           display = tr("Paused");
           break;
-        case STATE_QUEUED_DL:
-        case STATE_QUEUED_UP:
+        case TorrentModelItem::STATE_QUEUED_DL:
+        case TorrentModelItem::STATE_QUEUED_UP:
           display = tr("Queued", "i.e. torrent is queued");
           break;
-        case STATE_SEEDING:
-        case STATE_STALLED_UP:
+        case TorrentModelItem::STATE_SEEDING:
+        case TorrentModelItem::STATE_STALLED_UP:
           display = tr("Seeding", "Torrent is complete and in upload-only mode");
           break;
-        case STATE_STALLED_DL:
+        case TorrentModelItem::STATE_STALLED_DL:
           display = tr("Stalled", "Torrent is waiting for download to begin");
           break;
-        case STATE_CHECKING_DL:
-        case STATE_CHECKING_UP:
+        case TorrentModelItem::STATE_CHECKING_DL:
+        case TorrentModelItem::STATE_CHECKING_UP:
           display = tr("Checking", "Torrent local data is being checked");
           break;
         default:
@@ -118,16 +117,16 @@ public:
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
       }
-    case TR_UPSPEED:
-    case TR_DLSPEED:{
+    case TorrentModelItem::TR_UPSPEED:
+    case TorrentModelItem::TR_DLSPEED:{
         QItemDelegate::drawBackground(painter, opt, index);
         const qulonglong speed = index.data().toULongLong();
         opt.displayAlignment = Qt::AlignRight;
         QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
         break;
       }
-    case TR_UPLIMIT:
-    case TR_DLLIMIT:{
+    case TorrentModelItem::TR_UPLIMIT:
+    case TorrentModelItem::TR_DLLIMIT:{
       QItemDelegate::drawBackground(painter, opt, index);
       const qlonglong limit = index.data().toLongLong();
       opt.displayAlignment = Qt::AlignRight;
@@ -137,12 +136,12 @@ public:
         QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
       break;
     }
-    case TR_ADD_DATE:
-    case TR_SEED_DATE:
+    case TorrentModelItem::TR_ADD_DATE:
+    case TorrentModelItem::TR_SEED_DATE:
       QItemDelegate::drawBackground(painter, opt, index);
       QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
       break;
-    case TR_RATIO:{
+    case TorrentModelItem::TR_RATIO:{
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
         const double ratio = index.data().toDouble();
@@ -152,7 +151,7 @@ public:
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 2));
         break;
       }
-    case TR_PRIORITY: {
+    case TorrentModelItem::TR_PRIORITY: {
         const int priority = index.data().toInt();
         if(priority >= 0) {
           opt.displayAlignment = Qt::AlignRight;
@@ -164,7 +163,7 @@ public:
         }
         break;
       }
-    case TR_PROGRESS:{
+    case TorrentModelItem::TR_PROGRESS:{
         QStyleOptionProgressBarV2 newopt;
         qreal progress = index.data().toDouble()*100.;
         // We don't want to display 100% unless

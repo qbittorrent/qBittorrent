@@ -69,6 +69,7 @@
 #include "qinisettings.h"
 #include "torrentimportdlg.h"
 #include "rsssettings.h"
+#include "torrentmodel.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -162,7 +163,9 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   vSplitter->setCollapsible(0, true);
   vSplitter->setCollapsible(1, false);
   tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
-  connect(transferList, SIGNAL(torrentStatusUpdate(uint,uint,uint,uint,uint)), this, SLOT(updateNbTorrents(uint,uint,uint,uint,uint)));
+  connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
+  connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
+
   vboxLayout->addWidget(tabs);
 
   // Name filter
@@ -235,6 +238,9 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   BTSession->startUpTorrents();
   // Add torrent given on command line
   processParams(torrentCmdLine);
+
+  // Populate the transfer list
+  transferList->getSourceModel()->populate();
 
   qDebug("GUI Built");
 #ifdef Q_WS_WIN
@@ -395,11 +401,8 @@ void MainWindow::displaySearchTab(bool enable) {
   }
 }
 
-void MainWindow::updateNbTorrents(unsigned int nb_downloading, unsigned int nb_seeding, unsigned int nb_active, unsigned int nb_inactive, unsigned int nb_paused) {
-  Q_UNUSED(nb_downloading);
-  Q_UNUSED(nb_seeding);
-  Q_UNUSED(nb_paused);
-  tabs->setTabText(0, tr("Transfers (%1)").arg(QString::number(nb_inactive+nb_active)));
+void MainWindow::updateNbTorrents() {
+  tabs->setTabText(0, tr("Transfers (%1)").arg(transferList->getSourceModel()->rowCount()));
 }
 
 void MainWindow::on_actionWebsite_triggered() const {
@@ -420,7 +423,6 @@ void MainWindow::tab_changed(int new_tab) {
   // because the tab order is undetermined now
   if(tabs->currentWidget() == vSplitter) {
     qDebug("Changed tab to transfer list, refreshing the list");
-    transferList->refreshList();
     properties->loadDynamicData();
     return;
   }
@@ -665,8 +667,6 @@ void MainWindow::on_actionAbout_triggered() {
 void MainWindow::showEvent(QShowEvent *e) {
   qDebug("** Show Event **");
   if(getCurrentTabWidget() == transferList) {
-    qDebug("-> Refreshing transfer list");
-    transferList->refreshList();
     properties->loadDynamicData();
   }
   e->accept();

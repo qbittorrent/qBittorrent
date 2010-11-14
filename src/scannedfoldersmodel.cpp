@@ -53,7 +53,7 @@ public:
 };
 
 ScanFoldersModel *ScanFoldersModel::instance(QObject *parent) {
-  Q_ASSERT(!parent != !m_instance);
+  //Q_ASSERT(!parent != !m_instance);
   if (!m_instance)
     m_instance = new ScanFoldersModel(parent);
   return m_instance;

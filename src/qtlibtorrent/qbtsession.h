@@ -190,7 +190,7 @@ protected slots:
 #endif
 
 signals:
-  void addedTorrent(QTorrentHandle& h);
+  void addedTorrent(const QTorrentHandle& h);
   void deletedTorrent(QString hash);
   void pausedTorrent(QTorrentHandle& h);
   void resumedTorrent(QTorrentHandle& h);
