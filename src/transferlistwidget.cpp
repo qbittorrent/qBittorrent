@@ -249,10 +249,7 @@ void TransferListWidget::setSelectedTorrentsLocation() {
 void TransferListWidget::startSelectedTorrents() {
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && h.is_paused()) {
-      h.resume();
-    }
+    BTSession->resumeTorrent(hash);
   }
 }
 
@@ -263,20 +260,14 @@ void TransferListWidget::startVisibleTorrents() {
     hashes << getHashFromRow(row);
   }
   foreach(const QString &hash, hashes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && h.is_paused()) {
-      h.resume();
-    }
+    BTSession->resumeTorrent(hash);
   }
 }
 
 void TransferListWidget::pauseSelectedTorrents() {
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_paused()) {
-      h.pause();
-    }
+    BTSession->pauseTorrent(hash);
   }
 }
 
@@ -287,10 +278,7 @@ void TransferListWidget::pauseVisibleTorrents() {
     hashes << getHashFromRow(row);
   }
   foreach(const QString &hash, hashes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_paused()) {
-      h.pause();
-    }
+    BTSession->pauseTorrent(hash);
   }
 }
 
