@@ -9,6 +9,7 @@ using namespace libtorrent;
 TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
 {
   m_torrent = h;
+  m_hash = h.hash();
   m_name = TorrentPersistentData::getName(h.hash());
   if(m_name.isEmpty()) m_name = h.name();
   m_addedTime = TorrentPersistentData::getAddedDate(h.hash());
@@ -277,11 +278,9 @@ bool TorrentModel::setData(const QModelIndex &index, const QVariant &value, int 
 int TorrentModel::torrentRow(const QString &hash) const
 {
   QList<TorrentModelItem*>::const_iterator it;
-  int row;
+  int row = 0;
   for(it = m_torrents.constBegin(); it != m_torrents.constEnd(); it++) {
-    try {
       if((*it)->hash() == hash) return row;
-    }catch(invalid_handle&) {}
     ++row;
   }
   return -1;
