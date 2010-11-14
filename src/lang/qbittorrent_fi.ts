@@ -826,7 +826,7 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
     </message>
     <message>
         <location filename="../GUI.cpp" line="91"/>
-        <location filename="../GUI.cpp" line="1181"/>
+        <location filename="../GUI.cpp" line="1186"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation> qBittorrent %1</translation>
@@ -1518,13 +1518,13 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Legal Notice</source>
         <translation>Oikeudellinen huomautus</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="103"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -1533,22 +1533,22 @@ No further notices will be issued.</source>
 Muita varoituksia ei anneta.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="93"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Paina %1-näppäintä hyväksyäksesi ja jatkaaksesi...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="101"/>
+        <location filename="../main.cpp" line="104"/>
         <source>Legal notice</source>
         <translation>Oikeudellinen huomautus</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="105"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="103"/>
+        <location filename="../main.cpp" line="106"/>
         <source>I Agree</source>
         <translation>Hyväksyn</translation>
     </message>
@@ -1775,12 +1775,12 @@ Muita varoituksia ei anneta.</translation>
 <context>
     <name>PeerAdditionDlg</name>
     <message>
-        <location filename="../peeraddition.h" line="101"/>
+        <location filename="../peeraddition.h" line="96"/>
         <source>Invalid IP</source>
         <translation>Virheellinen IP</translation>
     </message>
     <message>
-        <location filename="../peeraddition.h" line="102"/>
+        <location filename="../peeraddition.h" line="97"/>
         <source>The IP you provided is invalid.</source>
         <translation>Antamasi IP-osoite ei kelpaa.</translation>
     </message>
@@ -2974,17 +2974,17 @@ p, li { white-space: pre-wrap; }
         <translation>Tämä nimi on jo käytössä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="498"/>
+        <location filename="../rss_imp.cpp" line="503"/>
         <source>Date: </source>
         <translation>Päivä: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="501"/>
+        <location filename="../rss_imp.cpp" line="506"/>
         <source>Author: </source>
         <translation>Tekijä: </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="544"/>
+        <location filename="../rss_imp.cpp" line="549"/>
         <source>Unread</source>
         <translation>Lukematon</translation>
     </message>
@@ -3262,13 +3262,13 @@ Asenna se itse.</translation>
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="79"/>
-        <location filename="../statusbar.h" line="196"/>
+        <location filename="../statusbar.h" line="199"/>
         <source>Connection status:</source>
         <translation>Yhteyden tila:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="79"/>
-        <location filename="../statusbar.h" line="196"/>
+        <location filename="../statusbar.h" line="199"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Ei suoria yhteyksiä. Tämä voi olla merkki verkko-ongelmista.</translation>
     </message>
@@ -3279,67 +3279,67 @@ Asenna se itse.</translation>
         <translation>LaN: %1 KiB/s - S: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="94"/>
+        <location filename="../statusbar.h" line="96"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>LäN: %1 B/s - S: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="99"/>
-        <location filename="../statusbar.h" line="203"/>
+        <location filename="../statusbar.h" line="102"/>
+        <location filename="../statusbar.h" line="206"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 solmua</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="167"/>
+        <location filename="../statusbar.h" line="170"/>
         <source>qBittorrent needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="188"/>
-        <location filename="../statusbar.h" line="193"/>
+        <location filename="../statusbar.h" line="191"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>Connection Status:</source>
         <translation>Yhteyden tila:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="188"/>
+        <location filename="../statusbar.h" line="191"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Ei yhteyttä. Yleensä tämä tarkoittaa, että qBittorrent ei pystynyt kuuntelemaan sisääntulevien yhteyksien porttia.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="193"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>Online</source>
         <translation>Verkkoyhteydessä</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="209"/>
+        <location filename="../statusbar.h" line="212"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>LaN: %1/s - S: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="210"/>
+        <location filename="../statusbar.h" line="213"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>LäN: %1/s - S: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="216"/>
+        <location filename="../statusbar.h" line="219"/>
         <source>Click to disable alternative speed limits</source>
         <translation>Napsauta poistaaksesi vaihtoehtoinen nopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="220"/>
+        <location filename="../statusbar.h" line="223"/>
         <source>Click to enable alternative speed limits</source>
         <translation>Napsauta ottaaksesi vaihtoehtoinen nopeusrajoitus käyttöön</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="230"/>
+        <location filename="../statusbar.h" line="233"/>
         <source>Global Download Speed Limit</source>
         <translation>Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="249"/>
+        <location filename="../statusbar.h" line="252"/>
         <source>Global Upload Speed Limit</source>
         <translation>Yleinen lähetysnopeusrajoitus</translation>
     </message>
@@ -3919,32 +3919,32 @@ Asenna se itse.</translation>
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="68"/>
+        <location filename="../main.cpp" line="71"/>
         <source>Usage:</source>
         <translation>Käyttö:</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="69"/>
+        <location filename="../main.cpp" line="72"/>
         <source>displays program version</source>
         <translation>näyttää ohjelman version</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="74"/>
         <source>disable splash screen</source>
         <translation>poista aloituskuva käytöstä</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="73"/>
+        <location filename="../main.cpp" line="76"/>
         <source>displays this help message</source>
         <translation>näyttää tämän avusteen</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="74"/>
+        <location filename="../main.cpp" line="77"/>
         <source>changes the webui port (current: %1)</source>
         <translation>vaihtaa web-äyttöliittymän portin (nykyinen: %1)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="75"/>
+        <location filename="../main.cpp" line="78"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[tiedostot tai URL:it]: lataa käyttäjän antamat torrentit (valinnainen)</translation>
     </message>
@@ -4150,7 +4150,7 @@ Asenna se itse.</translation>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../ui/createtorrent.ui" line="520"/>
+        <location filename="../ui/createtorrent.ui" line="514"/>
         <source>Cancel</source>
         <translation>Peru</translation>
     </message>
@@ -4180,12 +4180,12 @@ Asenna se itse.</translation>
         <translation>Julkaisuosoitteet (seurantapalvelimet):</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="140"/>
+        <location filename="../ui/createtorrent.ui" line="137"/>
         <source>Comment (optional):</source>
         <translation>Kommentti (valinnainen):</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="121"/>
+        <location filename="../ui/createtorrent.ui" line="118"/>
         <source>Web seeds urls (optional):</source>
         <translation>Verkkojako-osoitteet (valinnainen):</translation>
     </message>
@@ -4195,67 +4195,67 @@ Asenna se itse.</translation>
         <translation>Torrentiin lisättävä tiedosto tai kansio:</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="395"/>
+        <location filename="../ui/createtorrent.ui" line="389"/>
         <source>Piece size:</source>
         <translation>Osakoko:</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="406"/>
+        <location filename="../ui/createtorrent.ui" line="400"/>
         <source>32 KiB</source>
         <translation>32 KiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="411"/>
+        <location filename="../ui/createtorrent.ui" line="405"/>
         <source>64 KiB</source>
         <translation>64 KiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="416"/>
+        <location filename="../ui/createtorrent.ui" line="410"/>
         <source>128 KiB</source>
         <translation>128 KiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="421"/>
+        <location filename="../ui/createtorrent.ui" line="415"/>
         <source>256 KiB</source>
         <translation>256 KiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="426"/>
+        <location filename="../ui/createtorrent.ui" line="420"/>
         <source>512 KiB</source>
         <translation>512 KiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="431"/>
+        <location filename="../ui/createtorrent.ui" line="425"/>
         <source>1 MiB</source>
         <translation>1 MiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="436"/>
+        <location filename="../ui/createtorrent.ui" line="430"/>
         <source>2 MiB</source>
         <translation>2 MiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="441"/>
+        <location filename="../ui/createtorrent.ui" line="435"/>
         <source>4 MiB</source>
         <translation>4 MiB</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="464"/>
+        <location filename="../ui/createtorrent.ui" line="458"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Yksityinen (ei jaeta DHT-verkossa)</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="471"/>
+        <location filename="../ui/createtorrent.ui" line="465"/>
         <source>Start seeding after creation</source>
         <translation>Aloita jakaminen luomisen jälkeen</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="513"/>
+        <location filename="../ui/createtorrent.ui" line="507"/>
         <source>Create and save...</source>
         <translation>Luo ja tallenna...</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="478"/>
+        <location filename="../ui/createtorrent.ui" line="472"/>
         <source>Progress:</source>
         <translation>Edistyminen:</translation>
     </message>

@@ -832,7 +832,7 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
     </message>
     <message>
         <location filename="../GUI.cpp" line="91"/>
-        <location filename="../GUI.cpp" line="1181"/>
+        <location filename="../GUI.cpp" line="1186"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1524,13 +1524,13 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>LegalNotice</name>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Legal Notice</source>
         <translation>Information légale</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="103"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -1539,22 +1539,22 @@ No further notices will be issued.</source>
 Ce message d&apos;avertissement ne sera plus affiché.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="93"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Appuyez sur la touche %1 pour accepter et continuer...</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="101"/>
+        <location filename="../main.cpp" line="104"/>
         <source>Legal notice</source>
         <translation>Information légale</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="105"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="103"/>
+        <location filename="../main.cpp" line="106"/>
         <source>I Agree</source>
         <translation>J&apos;accepte</translation>
     </message>
@@ -1781,12 +1781,12 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
 <context>
     <name>PeerAdditionDlg</name>
     <message>
-        <location filename="../peeraddition.h" line="101"/>
+        <location filename="../peeraddition.h" line="96"/>
         <source>Invalid IP</source>
         <translation>IP Incorrecte</translation>
     </message>
     <message>
-        <location filename="../peeraddition.h" line="102"/>
+        <location filename="../peeraddition.h" line="97"/>
         <source>The IP you provided is invalid.</source>
         <translation>L&apos;IP entrée est incorrecte.</translation>
     </message>
@@ -2980,17 +2980,17 @@ p, li { white-space: pre-wrap; }
         <translation>Ce nom est déjà utilisé par un autre élément, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="498"/>
+        <location filename="../rss_imp.cpp" line="503"/>
         <source>Date: </source>
         <translation>Date : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="501"/>
+        <location filename="../rss_imp.cpp" line="506"/>
         <source>Author: </source>
         <translation>Auteur : </translation>
     </message>
     <message>
-        <location filename="../rss_imp.cpp" line="544"/>
+        <location filename="../rss_imp.cpp" line="549"/>
         <source>Unread</source>
         <translation>Non lu</translation>
     </message>
@@ -3268,13 +3268,13 @@ Veuillez l&apos;installer manuellement.</translation>
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="79"/>
-        <location filename="../statusbar.h" line="196"/>
+        <location filename="../statusbar.h" line="199"/>
         <source>Connection status:</source>
         <translation>Statut de la connexion :</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="79"/>
-        <location filename="../statusbar.h" line="196"/>
+        <location filename="../statusbar.h" line="199"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Aucune connexion directe. Ceci peut être signe d&apos;une mauvaise configuration réseau.</translation>
     </message>
@@ -3285,67 +3285,67 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>R : %1 o/s - T : %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="94"/>
+        <location filename="../statusbar.h" line="96"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
         <translation>E : %1 o/s - T : %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="99"/>
-        <location filename="../statusbar.h" line="203"/>
+        <location filename="../statusbar.h" line="102"/>
+        <location filename="../statusbar.h" line="206"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT : %1 noeuds</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="167"/>
+        <location filename="../statusbar.h" line="170"/>
         <source>qBittorrent needs to be restarted</source>
         <translation>qBittorrent doit être redémarré</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="188"/>
-        <location filename="../statusbar.h" line="193"/>
+        <location filename="../statusbar.h" line="191"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>Connection Status:</source>
         <translation>Etat de la connexion :</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="188"/>
+        <location filename="../statusbar.h" line="191"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Hors ligne. Ceci signifie généralement que qBittorrent s&apos;a pas pu se mettre en écoute sur le port défini pour les connexions entrantes.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="193"/>
+        <location filename="../statusbar.h" line="196"/>
         <source>Online</source>
         <translation>Connecté</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="209"/>
+        <location filename="../statusbar.h" line="212"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>R : %1/s - T : %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="210"/>
+        <location filename="../statusbar.h" line="213"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>E : %1/s - T : %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="216"/>
+        <location filename="../statusbar.h" line="219"/>
         <source>Click to disable alternative speed limits</source>
         <translation>Cliquer pour désactiver les limites de vitesse alternatives</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="220"/>
+        <location filename="../statusbar.h" line="223"/>
         <source>Click to enable alternative speed limits</source>
         <translation>Cliquer pour activer les limites de vitesse alternatives</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="230"/>
+        <location filename="../statusbar.h" line="233"/>
         <source>Global Download Speed Limit</source>
         <translation>Limite globale de la vitesse de réception</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="249"/>
+        <location filename="../statusbar.h" line="252"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limite globale de la vitesse d&apos;envoi</translation>
     </message>
@@ -3925,32 +3925,32 @@ Veuillez l&apos;installer manuellement.</translation>
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="68"/>
+        <location filename="../main.cpp" line="71"/>
         <source>Usage:</source>
         <translation>Utilisation :</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="69"/>
+        <location filename="../main.cpp" line="72"/>
         <source>displays program version</source>
         <translation>affichage la version du programme</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="74"/>
         <source>disable splash screen</source>
         <translation>désactive l&apos;écran de démarrage</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="73"/>
+        <location filename="../main.cpp" line="76"/>
         <source>displays this help message</source>
         <translation>affiche ce message d&apos;aide</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="74"/>
+        <location filename="../main.cpp" line="77"/>
         <source>changes the webui port (current: %1)</source>
         <translation>change le port de l&apos;interface Web (actuel : %1)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="75"/>
+        <location filename="../main.cpp" line="78"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation> [Fichiers ou URLs] : télécharge les torrents passés en paramètre (optionnel)</translation>
     </message>
@@ -4156,7 +4156,7 @@ Veuillez l&apos;installer manuellement.</translation>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../ui/createtorrent.ui" line="520"/>
+        <location filename="../ui/createtorrent.ui" line="514"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -4176,12 +4176,12 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Urls des trackers :</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="140"/>
+        <location filename="../ui/createtorrent.ui" line="137"/>
         <source>Comment (optional):</source>
         <translation>Commentaire (facultatif) :</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="121"/>
+        <location filename="../ui/createtorrent.ui" line="118"/>
         <source>Web seeds urls (optional):</source>
         <translation>Urls sources web (facultatif) :</translation>
     </message>
@@ -4201,67 +4201,67 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Ajout dossier</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="395"/>
+        <location filename="../ui/createtorrent.ui" line="389"/>
         <source>Piece size:</source>
         <translation>taille des morceaux :</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="406"/>
+        <location filename="../ui/createtorrent.ui" line="400"/>
         <source>32 KiB</source>
         <translation>32 Ko</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="411"/>
+        <location filename="../ui/createtorrent.ui" line="405"/>
         <source>64 KiB</source>
         <translation>64 Ko</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="416"/>
+        <location filename="../ui/createtorrent.ui" line="410"/>
         <source>128 KiB</source>
         <translation>128 Ko</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="421"/>
+        <location filename="../ui/createtorrent.ui" line="415"/>
         <source>256 KiB</source>
         <translation>256 Ko</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="426"/>
+        <location filename="../ui/createtorrent.ui" line="420"/>
         <source>512 KiB</source>
         <translation>512 Ko</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="431"/>
+        <location filename="../ui/createtorrent.ui" line="425"/>
         <source>1 MiB</source>
         <translation>1 Mo</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="436"/>
+        <location filename="../ui/createtorrent.ui" line="430"/>
         <source>2 MiB</source>
         <translation>2 Mo</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="441"/>
+        <location filename="../ui/createtorrent.ui" line="435"/>
         <source>4 MiB</source>
         <translation>4 Mo</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="464"/>
+        <location filename="../ui/createtorrent.ui" line="458"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Privé (ne sera pas distribué sur le réseau DHT si activé)</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="471"/>
+        <location filename="../ui/createtorrent.ui" line="465"/>
         <source>Start seeding after creation</source>
         <translation>Commencer le partage directement</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="513"/>
+        <location filename="../ui/createtorrent.ui" line="507"/>
         <source>Create and save...</source>
         <translation>Créer et sauvegarder...</translation>
     </message>
     <message>
-        <location filename="../ui/createtorrent.ui" line="478"/>
+        <location filename="../ui/createtorrent.ui" line="472"/>
         <source>Progress:</source>
         <translation>Progression :</translation>
     </message>
