@@ -802,12 +802,13 @@ void QBtSession::pauseAllTorrents() {
   std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(!h.is_valid()) continue;
-    if(!h.is_paused()) {
-      h.pause();
-      emit pausedTorrent(h);
-    }
+    try {
+      QTorrentHandle h = QTorrentHandle(*torrentIT);
+      if(!h.is_paused()) {
+        h.pause();
+        emit pausedTorrent(h);
+      }
+    } catch(invalid_handle&) {}
   }
 }
 
@@ -819,12 +820,13 @@ void QBtSession::resumeAllTorrents() {
   std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(!h.is_valid()) continue;
-    if(h.is_paused()) {
-      h.resume();
-      emit resumedTorrent(h);
-    }
+    try {
+      QTorrentHandle h = QTorrentHandle(*torrentIT);
+      if(h.is_paused()) {
+        h.resume();
+        emit resumedTorrent(h);
+      }
+    } catch(invalid_handle&) {}
   }
 }
 

@@ -50,7 +50,6 @@ class TransferListWidget: public QTreeView {
 public:
   TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession* BTSession);
   ~TransferListWidget();
-  int getNbTorrents() const;
   TorrentModel* getSourceModel() const;
 
 public slots:
@@ -58,10 +57,8 @@ public slots:
   void setRefreshInterval(int t);
   void setSelectedTorrentsLocation();
   void startSelectedTorrents();
-  void startAllTorrents();
   void startVisibleTorrents();
   void pauseSelectedTorrents();
-  void pauseAllTorrents();
   void pauseVisibleTorrents();
   void deleteSelectedTorrents();
   void deleteVisibleTorrents();

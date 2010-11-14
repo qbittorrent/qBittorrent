@@ -131,10 +131,6 @@ TorrentModel* TransferListWidget::getSourceModel() const {
   return listModel;
 }
 
-int TransferListWidget::getNbTorrents() const {
-  return listModel->rowCount();
-}
-
 void TransferListWidget::previewFile(QString filePath) {
 #ifdef Q_WS_WIN
   QDesktopServices::openUrl(QUrl(QString("file:///")+filePath));
@@ -260,15 +256,6 @@ void TransferListWidget::startSelectedTorrents() {
   }
 }
 
-void TransferListWidget::startAllTorrents() {
-  for(int i=0; i<listModel->rowCount(); ++i) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(i));
-    if(h.is_valid() && h.is_paused()) {
-      h.resume();
-    }
-  }
-}
-
 void TransferListWidget::startVisibleTorrents() {
   QStringList hashes;
   for(int i=0; i<nameFilterModel->rowCount(); ++i) {
@@ -287,15 +274,6 @@ void TransferListWidget::pauseSelectedTorrents() {
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_paused()) {
-      h.pause();
-    }
-  }
-}
-
-void TransferListWidget::pauseAllTorrents() {
-  for(int i=0; i<listModel->rowCount(); ++i) {
-    QTorrentHandle h = BTSession->getTorrentHandle(getHashFromRow(i));
     if(h.is_valid() && !h.is_paused()) {
       h.pause();
     }
