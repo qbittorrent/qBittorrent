@@ -2281,7 +2281,7 @@ void Bittorrent::addConsoleMessage(QString msg, QString) {
       else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
         if(h.is_valid()) {
-          h.auto_managed(false);
+          h.pause();
           std::cerr << "File Error: " << p->message().c_str() << std::endl;
           addConsoleMessage(tr("An I/O error occured, '%1' paused.").arg(h.name()));
           addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
