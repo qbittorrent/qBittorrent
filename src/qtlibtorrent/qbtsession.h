@@ -185,9 +185,6 @@ protected slots:
   void cleanUpAutoRunProcess(int);
   void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<torrent_info> t);
   void exportTorrentFile(QTorrentHandle h);
-#if LIBTORRENT_VERSION_MINOR < 15
-  void saveDHTEntry();
-#endif
 
 signals:
   void addedTorrent(const QTorrentHandle& h);
@@ -208,6 +205,11 @@ signals:
   void newConsoleMessage(QString msg);
   void alternativeSpeedsModeChanged(bool alternative);
   void recursiveTorrentDownloadPossible(QTorrentHandle &h);
+
+private:
+#if LIBTORRENT_VERSION_MINOR < 15
+  void saveDHTEntry();
+#endif
 
 private:
   // Bittorrent
