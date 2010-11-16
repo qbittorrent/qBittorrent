@@ -652,5 +652,5 @@ RSSImp::~RSSImp(){
 void RSSImp::on_settingsButton_clicked() {
   RssSettings rssSettingsDlg(this);
   if(rssSettingsDlg.exec())
-    updateRefreshInterval(Preferences::getRefreshInterval());
+    updateRefreshInterval(Preferences::getRSSRefreshInterval());
 }
