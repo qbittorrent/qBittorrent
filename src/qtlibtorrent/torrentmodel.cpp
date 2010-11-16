@@ -180,6 +180,10 @@ QVariant TorrentModelItem::data(int column, int role) const
     return m_torrent.download_limit();
   case TR_UPLIMIT:
     return m_torrent.upload_limit();
+  case TR_AMOUNT_DOWNLOADED:
+    return static_cast<qlonglong>(m_torrent.total_wanted_done());
+  case TR_AMOUNT_LEFT:
+    return static_cast<qlonglong>(m_torrent.total_wanted() - m_torrent.total_wanted_done());
   default:
     return QVariant();
   }
@@ -241,6 +245,8 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_TRACKER: return tr("Tracker");
       case TorrentModelItem::TR_DLLIMIT: return tr("Down Limit", "i.e: Download limit");
       case TorrentModelItem::TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
+      case TorrentModelItem::TR_AMOUNT_DOWNLOADED: return tr("Amount downloaded", "Amount of data downloaded (e.g. in MB)");
+      case TorrentModelItem::TR_AMOUNT_LEFT: return tr("Amount left", "Amount of data left to download (e.g. in MB)");
       default:
         return QVariant();
       }
@@ -256,6 +262,8 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_RATIO:
       case TorrentModelItem::TR_DLLIMIT:
       case TorrentModelItem::TR_UPLIMIT:
+      case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
+      case TorrentModelItem::TR_AMOUNT_LEFT:
         return Qt::AlignRight;
       case TorrentModelItem::TR_PROGRESS:
         return Qt::AlignHCenter;
@@ -299,7 +307,7 @@ int TorrentModel::torrentRow(const QString &hash) const
   QList<TorrentModelItem*>::const_iterator it;
   int row = 0;
   for(it = m_torrents.constBegin(); it != m_torrents.constEnd(); it++) {
-      if((*it)->hash() == hash) return row;
+    if((*it)->hash() == hash) return row;
     ++row;
   }
   return -1;

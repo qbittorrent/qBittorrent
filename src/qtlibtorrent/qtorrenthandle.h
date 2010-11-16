@@ -67,6 +67,7 @@ class QTorrentHandle : public torrent_handle {
     size_type piece_length() const;
     int num_pieces() const;
     size_type total_wanted_done() const;
+    size_type total_wanted() const;
     float download_payload_rate() const;
     float upload_payload_rate() const;
     int num_connections() const;

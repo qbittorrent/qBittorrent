@@ -146,6 +146,10 @@ size_type QTorrentHandle::total_wanted_done() const {
   return torrent_handle::status().total_wanted_done;
 }
 
+size_type QTorrentHandle::total_wanted() const {
+  return torrent_handle::status().total_wanted;
+}
+
 float QTorrentHandle::download_payload_rate() const {
   return torrent_handle::status().download_payload_rate;
 }

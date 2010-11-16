@@ -60,6 +60,8 @@ public:
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     painter->save();
     switch(index.column()){
+    case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
+    case TorrentModelItem::TR_AMOUNT_LEFT:
     case TorrentModelItem::TR_SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;

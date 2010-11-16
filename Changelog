@@ -9,6 +9,7 @@
     - FEATURE: The optimal piece size is now automatically computed in the torrent creation tool
     - FEATURE: Bring up the connection settings when clicking on the connection status icon
     - FEATURE: Major code refactoring and optimization
+    - FEATURE: Added "Amount downloaded/left" columns to transfer list
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
     - OTHERS: Dropped support for Qt <= 4.4

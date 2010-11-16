@@ -512,6 +512,8 @@ bool TransferListWidget::loadHiddenColumns() {
     setColumnHidden(TorrentModelItem::TR_UPLIMIT, true);
     setColumnHidden(TorrentModelItem::TR_DLLIMIT, true);
     setColumnHidden(TorrentModelItem::TR_TRACKER, true);
+    setColumnHidden(TorrentModelItem::TR_AMOUNT_DOWNLOADED, true);
+    setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
   }
   return loaded;
 }
@@ -521,7 +523,7 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   QMenu hideshowColumn(this);
   hideshowColumn.setTitle(tr("Column visibility"));
   QList<QAction*> actions;
-  for(int i=0; i < listModel->rowCount(); ++i) {
+  for(int i=0; i < listModel->columnCount(); ++i) {
     if(!BTSession->isQueueingEnabled() && i == TorrentModelItem::TR_PRIORITY) {
       actions.append(0);
       continue;
