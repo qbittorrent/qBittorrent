@@ -285,7 +285,7 @@ public:
   void loadSettings() {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     statusFilters->setCurrentRow(settings.value("TransferListFilters/selectedFilterIndex", 0).toInt());
-    const QStringList label_list = Preferences::getTorrentLabels();
+    const QStringList label_list = Preferences().getTorrentLabels();
     foreach(const QString &label, label_list) {
       customLabels.insert(label, 0);
       qDebug("Creating label QListWidgetItem: %s", qPrintable(label));
@@ -324,7 +324,7 @@ protected slots:
     newLabel->setData(Qt::DecorationRole, QIcon(":/Icons/oxygen/folder.png"));
     labelFilters->addItem(newLabel);
     customLabels.insert(label, 0);
-    Preferences::addTorrentLabel(label);
+    Preferences().addTorrentLabel(label);
   }
 
   void showLabelMenu(QPoint) {
@@ -391,7 +391,7 @@ protected slots:
     // Un display filter
     delete labelFilters->takeItem(row);
     // Save custom labels to remember it was deleted
-    Preferences::removeTorrentLabel(label);
+    Preferences().removeTorrentLabel(label);
   }
 
   void applyLabelFilter(int row) {

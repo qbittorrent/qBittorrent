@@ -58,51 +58,53 @@ public:
 
 public slots:
   void saveAdvancedSettings() {
+    Preferences pref;
     // Disk write cache
-    Preferences::setDiskCacheSize(spin_cache->value());
+    pref.setDiskCacheSize(spin_cache->value());
     // Outgoing ports
-    Preferences::setOutgoingPortsMin(outgoing_ports_min->value());
-    Preferences::setOutgoingPortsMax(outgoing_ports_max->value());
+    pref.setOutgoingPortsMin(outgoing_ports_min->value());
+    pref.setOutgoingPortsMax(outgoing_ports_max->value());
     // Ignore limits on LAN
-    Preferences::ignoreLimitsOnLAN(cb_ignore_limits_lan->isChecked());
+    pref.ignoreLimitsOnLAN(cb_ignore_limits_lan->isChecked());
     // Include protocol overhead in transfer limits
-    Preferences::includeOverheadInLimits(cb_count_overhead->isChecked());
+    pref.includeOverheadInLimits(cb_count_overhead->isChecked());
     // Recheck torrents on completion
-    Preferences::recheckTorrentsOnCompletion(cb_recheck_completed->isChecked());
+    pref.recheckTorrentsOnCompletion(cb_recheck_completed->isChecked());
     // Transfer list refresh interval
-    Preferences::setRefreshInterval(spin_list_refresh->value());
+    pref.setRefreshInterval(spin_list_refresh->value());
     // Peer resolution
-    Preferences::resolvePeerCountries(cb_resolve_countries->isChecked());
-    Preferences::resolvePeerHostNames(cb_resolve_hosts->isChecked());
+    pref.resolvePeerCountries(cb_resolve_countries->isChecked());
+    pref.resolvePeerHostNames(cb_resolve_hosts->isChecked());
     // Max Half-Open connections
-    Preferences::setMaxHalfOpenConnections(spin_maxhalfopen->value());
+    pref.setMaxHalfOpenConnections(spin_maxhalfopen->value());
 #if LIBTORRENT_VERSION_MINOR > 14
     // Super seeding
-    Preferences::enableSuperSeeding(cb_super_seeding->isChecked());
+    pref.enableSuperSeeding(cb_super_seeding->isChecked());
 #endif
     // Network interface
     if(combo_iface->currentIndex() == 0) {
       // All interfaces (default)
-      Preferences::setNetworkInterface(QString::null);
+      pref.setNetworkInterface(QString::null);
     } else {
-      Preferences::setNetworkInterface(combo_iface->currentText());
+      pref.setNetworkInterface(combo_iface->currentText());
     }
     // Program notification
-    Preferences::useProgramNotification(cb_program_notifications->isChecked());
+    pref.useProgramNotification(cb_program_notifications->isChecked());
     // Tracker
-    Preferences::setTrackerEnabled(cb_tracker_status->isChecked());
-    Preferences::setTrackerPort(spin_tracker_port->value());
+    pref.setTrackerEnabled(cb_tracker_status->isChecked());
+    pref.setTrackerPort(spin_tracker_port->value());
   }
 
 protected slots:
   void loadAdvancedSettings() {
+    const Preferences pref;
     // Disk write cache
     setItem(DISK_CACHE, PROPERTY, new QTableWidgetItem(tr("Disk write cache size")));
     spin_cache = new QSpinBox();
     connect(spin_cache, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     spin_cache->setMinimum(1);
     spin_cache->setMaximum(200);
-    spin_cache->setValue(Preferences::diskCacheSize());
+    spin_cache->setValue(pref.diskCacheSize());
     spin_cache->setSuffix(tr(" MiB"));
     setCellWidget(DISK_CACHE, VALUE, spin_cache);
     // Outgoing port Min
@@ -111,7 +113,7 @@ protected slots:
     connect(outgoing_ports_min, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     outgoing_ports_min->setMinimum(0);
     outgoing_ports_min->setMaximum(65535);
-    outgoing_ports_min->setValue(Preferences::outgoingPortsMin());
+    outgoing_ports_min->setValue(pref.outgoingPortsMin());
     setCellWidget(OUTGOING_PORT_MIN, VALUE, outgoing_ports_min);
     // Outgoing port Min
     setItem(OUTGOING_PORT_MAX, PROPERTY, new QTableWidgetItem(tr("Outgoing ports (Max) [0: Disabled]")));
@@ -119,25 +121,25 @@ protected slots:
     connect(outgoing_ports_max, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     outgoing_ports_max->setMinimum(0);
     outgoing_ports_max->setMaximum(65535);
-    outgoing_ports_max->setValue(Preferences::outgoingPortsMax());
+    outgoing_ports_max->setValue(pref.outgoingPortsMax());
     setCellWidget(OUTGOING_PORT_MAX, VALUE, outgoing_ports_max);
     // Ignore transfer limits on local network
     setItem(IGNORE_LIMIT_LAN, PROPERTY, new QTableWidgetItem(tr("Ignore transfer limits on local network")));
     cb_ignore_limits_lan = new QCheckBox();
     connect(cb_ignore_limits_lan, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
-    cb_ignore_limits_lan->setChecked(Preferences::ignoreLimitsOnLAN());
+    cb_ignore_limits_lan->setChecked(pref.ignoreLimitsOnLAN());
     setCellWidget(IGNORE_LIMIT_LAN, VALUE, cb_ignore_limits_lan);
     // Consider protocol overhead in transfer limits
     setItem(COUNT_OVERHEAD, PROPERTY, new QTableWidgetItem(tr("Include TCP/IP overhead in transfer limits")));
     cb_count_overhead = new QCheckBox();
     connect(cb_count_overhead, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
-    cb_count_overhead->setChecked(Preferences::includeOverheadInLimits());
+    cb_count_overhead->setChecked(pref.includeOverheadInLimits());
     setCellWidget(COUNT_OVERHEAD, VALUE, cb_count_overhead);
     // Recheck completed torrents
     setItem(RECHECK_COMPLETED, PROPERTY, new QTableWidgetItem(tr("Recheck torrents on completion")));
     cb_recheck_completed = new QCheckBox();
     connect(cb_recheck_completed, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
-    cb_recheck_completed->setChecked(Preferences::recheckTorrentsOnCompletion());
+    cb_recheck_completed->setChecked(pref.recheckTorrentsOnCompletion());
     setCellWidget(RECHECK_COMPLETED, VALUE, cb_recheck_completed);
     // Transfer list refresh interval
     setItem(LIST_REFRESH, PROPERTY, new QTableWidgetItem(tr("Transfer list refresh interval")));
@@ -145,20 +147,20 @@ protected slots:
     connect(spin_list_refresh, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     spin_list_refresh->setMinimum(30);
     spin_list_refresh->setMaximum(99999);
-    spin_list_refresh->setValue(Preferences::getRefreshInterval());
+    spin_list_refresh->setValue(pref.getRefreshInterval());
     spin_list_refresh->setSuffix(tr(" ms", " milliseconds"));
     setCellWidget(LIST_REFRESH, VALUE, spin_list_refresh);
     // Resolve Peer countries
     setItem(RESOLVE_COUNTRIES, PROPERTY, new QTableWidgetItem(tr("Resolve peer countries (GeoIP)")));
     cb_resolve_countries = new QCheckBox();
     connect(cb_resolve_countries, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
-    cb_resolve_countries->setChecked(Preferences::resolvePeerCountries());
+    cb_resolve_countries->setChecked(pref.resolvePeerCountries());
     setCellWidget(RESOLVE_COUNTRIES, VALUE, cb_resolve_countries);
     // Resolve peer hosts
     setItem(RESOLVE_HOSTS, PROPERTY, new QTableWidgetItem(tr("Resolve peer host names")));
     cb_resolve_hosts = new QCheckBox();
     connect(cb_resolve_hosts, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
-    cb_resolve_hosts->setChecked(Preferences::resolvePeerHostNames());
+    cb_resolve_hosts->setChecked(pref.resolvePeerHostNames());
     setCellWidget(RESOLVE_HOSTS, VALUE, cb_resolve_hosts);
     // Max Half Open connections
     setItem(MAX_HALF_OPEN, PROPERTY, new QTableWidgetItem(tr("Maximum number of half-open connections [0: Disabled]")));
@@ -166,14 +168,14 @@ protected slots:
     connect(spin_maxhalfopen, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     spin_maxhalfopen->setMinimum(0);
     spin_maxhalfopen->setMaximum(99999);
-    spin_maxhalfopen->setValue(Preferences::getMaxHalfOpenConnections());
+    spin_maxhalfopen->setValue(pref.getMaxHalfOpenConnections());
     setCellWidget(MAX_HALF_OPEN, VALUE, spin_maxhalfopen);
     // Super seeding
     setItem(SUPER_SEEDING, PROPERTY, new QTableWidgetItem(tr("Strict super seeding")));
     cb_super_seeding = new QCheckBox();
     connect(cb_super_seeding, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
 #if LIBTORRENT_VERSION_MINOR > 14
-    cb_super_seeding->setChecked(Preferences::isSuperSeedingEnabled());
+    cb_super_seeding->setChecked(pref.isSuperSeedingEnabled());
 #else
     cb_super_seeding->setEnabled(false);
 #endif
@@ -182,7 +184,7 @@ protected slots:
     setItem(NETWORK_IFACE, PROPERTY, new QTableWidgetItem(tr("Network Interface (requires restart)")));
     combo_iface = new QComboBox;
     combo_iface->addItem(tr("Any interface", "i.e. Any network interface"));
-    const QString current_iface = Preferences::getNetworkInterface();
+    const QString current_iface = pref.getNetworkInterface();
     int i = 1;
     foreach(const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
       if(iface.name() == "lo") continue;
@@ -197,13 +199,13 @@ protected slots:
     setItem(PROGRAM_NOTIFICATIONS, PROPERTY, new QTableWidgetItem(tr("Display program notification balloons")));
     cb_program_notifications = new QCheckBox();
     connect(cb_program_notifications, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
-    cb_program_notifications->setChecked(Preferences::useProgramNotification());
+    cb_program_notifications->setChecked(pref.useProgramNotification());
     setCellWidget(PROGRAM_NOTIFICATIONS, VALUE, cb_program_notifications);
     // Tracker State
     setItem(TRACKER_STATUS, PROPERTY, new QTableWidgetItem(tr("Enable embedded tracker")));
     cb_tracker_status = new QCheckBox();
     connect(cb_tracker_status, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
-    cb_tracker_status->setChecked(Preferences::isTrackerEnabled());
+    cb_tracker_status->setChecked(pref.isTrackerEnabled());
     setCellWidget(TRACKER_STATUS, VALUE, cb_tracker_status);
     // Tracker port
     setItem(TRACKER_PORT, PROPERTY, new QTableWidgetItem(tr("Embedded tracker port")));
@@ -211,7 +213,7 @@ protected slots:
     connect(spin_tracker_port, SIGNAL(valueChanged(int)), this, SLOT(emitSettingsChanged()));
     spin_tracker_port->setMinimum(1);
     spin_tracker_port->setMaximum(65535);
-    spin_tracker_port->setValue(Preferences::getTrackerPort());
+    spin_tracker_port->setValue(pref.getTrackerPort());
     setCellWidget(TRACKER_PORT, VALUE, spin_tracker_port);
   }
 

@@ -47,6 +47,7 @@
 #include "rssfolder.h"
 #include "rssarticle.h"
 #include "rssfeed.h"
+#include "rsssettings.h"
 #include "automatedrssdownloader.h"
 
 enum NewsCols { NEWS_ICON, NEWS_TITLE_COL, NEWS_URL_COL, NEWS_ID };
@@ -117,9 +118,9 @@ void RSSImp::on_actionManage_cookies_triggered() {
   qDebug("RSS Feed hostname is: %s", qPrintable(feed_hostname));
   Q_ASSERT(!feed_hostname.isEmpty());
   bool ok = false;
-  QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, Preferences::getHostNameCookies(feed_hostname), &ok);
+  QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, RssSettings::getHostNameCookies(feed_hostname), &ok);
   if(ok) {
-    Preferences::setHostNameCookies(feed_hostname, raw_cookies);
+    RssSettings::setHostNameCookies(feed_hostname, raw_cookies);
   }
 }
 
@@ -642,7 +643,7 @@ RSSImp::~RSSImp(){
 void RSSImp::on_settingsButton_clicked() {
   RssSettingsDlg dlg(this);
   if(dlg.exec())
-    updateRefreshInterval(Preferences::getRefreshInterval());
+    updateRefreshInterval(RssSettings::getRSSRefreshInterval());
 }
 
 void RSSImp::on_rssDownloaderBtn_clicked()

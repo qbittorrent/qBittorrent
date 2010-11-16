@@ -120,7 +120,7 @@ bool RssDownloadRule::operator==(const RssDownloadRule &other) {
 
 void RssDownloadRule::setSavePath(const QString &save_path)
 {
-  if(!save_path.isEmpty() && QDir(save_path) != QDir(Preferences::getSavePath()))
+  if(!save_path.isEmpty() && QDir(save_path) != QDir(Preferences().getSavePath()))
     m_savePath = save_path;
   else
     m_savePath = QString();

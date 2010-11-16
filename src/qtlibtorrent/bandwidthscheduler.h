@@ -15,7 +15,7 @@ private:
 
 public:
   BandwidthScheduler(QObject *parent): QTimer(parent), in_alternative_mode(false) {
-    Q_ASSERT(Preferences::isSchedulerEnabled());
+    Q_ASSERT(Preferences().isSchedulerEnabled());
     // Signal shot, we call start() again manually
     setSingleShot(true);
     // Connect Signals/Slots
@@ -24,10 +24,11 @@ public:
 
 public slots:
   void start() {
-    Q_ASSERT(Preferences::isSchedulerEnabled());
+    const Preferences pref;
+    Q_ASSERT(pref.isSchedulerEnabled());
 
-    QTime startAltSpeeds = Preferences::getSchedulerStartTime();
-    QTime endAltSpeeds = Preferences::getSchedulerEndTime();
+    QTime startAltSpeeds = pref.getSchedulerStartTime();
+    QTime endAltSpeeds = pref.getSchedulerEndTime();
     if(startAltSpeeds == endAltSpeeds) {
       std::cerr << "Error: bandwidth scheduler have the same start time and end time." << std::endl;
       std::cerr << "The bandwidth scheduler will be disabled" << std::endl;
@@ -56,19 +57,20 @@ public slots:
   }
 
   void switchMode() {
+    const Preferences pref;
     // Get the day this mode was started (either today or yesterday)
     QDate current_date = QDateTime::currentDateTime().toLocalTime().date();
     int day = current_date.dayOfWeek();
     if(in_alternative_mode) {
       // It is possible that starttime was yesterday
-      if(QTime::currentTime().secsTo(Preferences::getSchedulerStartTime()) > 0) {
+      if(QTime::currentTime().secsTo(pref.getSchedulerStartTime()) > 0) {
         current_date.addDays(-1); // Go to yesterday
         day = current_date.day();
       }
     }
     // Check if the day is in scheduler days
     // Notify BTSession only if necessary
-    switch(Preferences::getSchedulerDays()) {
+    switch(pref.getSchedulerDays()) {
     case EVERY_DAY:
       emit switchToAlternativeMode(!in_alternative_mode);
       break;
@@ -82,7 +84,7 @@ public slots:
       break;
     default:
       // Convert our enum index to Qt enum index
-      int scheduler_day = ((int)Preferences::getSchedulerDays()) - 2;
+      int scheduler_day = ((int)pref.getSchedulerDays()) - 2;
       if(day == scheduler_day)
         emit switchToAlternativeMode(!in_alternative_mode);
       break;

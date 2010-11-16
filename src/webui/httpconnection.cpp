@@ -473,13 +473,13 @@ void HttpConnection::respondCommand(QString command)
     qlonglong limit = parser.post("limit").toLongLong();
     if(limit == 0) limit = -1;
     QBtSession::instance()->getSession()->set_upload_rate_limit(limit);
-    Preferences::setGlobalUploadLimit(limit/1024.);
+    Preferences().setGlobalUploadLimit(limit/1024.);
   }
   if(command == "setGlobalDlLimit") {
     qlonglong limit = parser.post("limit").toLongLong();
     if(limit == 0) limit = -1;
     QBtSession::instance()->getSession()->set_download_rate_limit(limit);
-    Preferences::setGlobalDownloadLimit(limit/1024.);
+    Preferences().setGlobalDownloadLimit(limit/1024.);
   }
   if(command == "pause") {
     emit pauseTorrent(parser.post("hash"));

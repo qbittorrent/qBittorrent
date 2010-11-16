@@ -125,9 +125,10 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
 
 void EventManager::setGlobalPreferences(QVariantMap m) const {
   // UI
+  Preferences pref;
   if(m.contains("locale")) {
     QString locale = m["locale"].toString();
-    if(Preferences::getLocale() != locale) {
+    if(pref.getLocale() != locale) {
       QTranslator *translator = new QTranslator;
       if(translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
         qDebug("%s locale recognized, using translation.", qPrintable(locale));
@@ -137,26 +138,26 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
       qApp->installTranslator(translator);
     }
 
-    Preferences::setLocale(locale);
+    pref.setLocale(locale);
   }
   // Downloads
   if(m.contains("save_path"))
-    Preferences::setSavePath(m["save_path"].toString());
+    pref.setSavePath(m["save_path"].toString());
   if(m.contains("temp_path_enabled"))
-    Preferences::setTempPathEnabled(m["temp_path_enabled"].toBool());
+    pref.setTempPathEnabled(m["temp_path_enabled"].toBool());
   if(m.contains("temp_path"))
-    Preferences::setTempPath(m["temp_path"].toString());
+    pref.setTempPath(m["temp_path"].toString());
   if(m.contains("scan_dirs") && m.contains("download_in_scan_dirs")) {
     QVariantList download_at_path_tmp = m["download_in_scan_dirs"].toList();
     QList<bool> download_at_path;
     foreach(QVariant var, download_at_path_tmp) {
       download_at_path << var.toBool();
     }
-    QStringList old_folders = Preferences::getScanDirs();
+    QStringList old_folders = pref.getScanDirs();
     QStringList new_folders = m["scan_dirs"].toStringList();
     if(download_at_path.size() == new_folders.size()) {
-      Preferences::setScanDirs(new_folders);
-      Preferences::setDownloadInScanDirs(download_at_path);
+      pref.setScanDirs(new_folders);
+      pref.setDownloadInScanDirs(download_at_path);
       foreach(const QString &old_folder, old_folders) {
         // Update deleted folders
         if(!new_folders.contains(old_folder)) {
@@ -175,168 +176,169 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     }
   }
   if(m.contains("export_dir"))
-    Preferences::setExportDir(m["export_dir"].toString());
+    pref.setExportDir(m["export_dir"].toString());
   if(m.contains("mail_notification_enabled"))
-    Preferences::setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
+    pref.setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
   if(m.contains("mail_notification_email"))
-    Preferences::setMailNotificationEmail(m["mail_notification_email"].toString());
+    pref.setMailNotificationEmail(m["mail_notification_email"].toString());
   if(m.contains("mail_notification_smtp"))
-    Preferences::setMailNotificationSMTP(m["mail_notification_smtp"].toString());
+    pref.setMailNotificationSMTP(m["mail_notification_smtp"].toString());
   if(m.contains("autorun_enabled"))
-    Preferences::setAutoRunEnabled(m["autorun_enabled"].toBool());
+    pref.setAutoRunEnabled(m["autorun_enabled"].toBool());
   if(m.contains("autorun_program"))
-    Preferences::setAutoRunProgram(m["autorun_program"].toString());
+    pref.setAutoRunProgram(m["autorun_program"].toString());
   if(m.contains("preallocate_all"))
-    Preferences::preAllocateAllFiles(m["preallocate_all"].toBool());
+    pref.preAllocateAllFiles(m["preallocate_all"].toBool());
   if(m.contains("queueing_enabled"))
-    Preferences::setQueueingSystemEnabled(m["queueing_enabled"].toBool());
+    pref.setQueueingSystemEnabled(m["queueing_enabled"].toBool());
   if(m.contains("max_active_downloads"))
-    Preferences::setMaxActiveDownloads(m["max_active_downloads"].toInt());
+    pref.setMaxActiveDownloads(m["max_active_downloads"].toInt());
   if(m.contains("max_active_torrents"))
-    Preferences::setMaxActiveTorrents(m["max_active_torrents"].toInt());
+    pref.setMaxActiveTorrents(m["max_active_torrents"].toInt());
   if(m.contains("max_active_uploads"))
-    Preferences::setMaxActiveUploads(m["max_active_uploads"].toInt());
+    pref.setMaxActiveUploads(m["max_active_uploads"].toInt());
 #if LIBTORRENT_VERSION_MINOR > 14
   if(m.contains("incomplete_files_ext"))
-    Preferences::useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
+    pref.useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
 #endif
   // Connection
   if(m.contains("listen_port"))
-    Preferences::setSessionPort(m["listen_port"].toInt());
+    pref.setSessionPort(m["listen_port"].toInt());
   if(m.contains("upnp"))
-    Preferences::setUPnPEnabled(m["upnp"].toBool());
+    pref.setUPnPEnabled(m["upnp"].toBool());
   if(m.contains("natpmp"))
-    Preferences::setNATPMPEnabled(m["natpmp"].toBool());
+    pref.setNATPMPEnabled(m["natpmp"].toBool());
   if(m.contains("dl_limit"))
-    Preferences::setGlobalDownloadLimit(m["dl_limit"].toInt());
+    pref.setGlobalDownloadLimit(m["dl_limit"].toInt());
   if(m.contains("up_limit"))
-    Preferences::setGlobalUploadLimit(m["up_limit"].toInt());
+    pref.setGlobalUploadLimit(m["up_limit"].toInt());
   if(m.contains("max_connec"))
-    Preferences::setMaxConnecs(m["max_connec"].toInt());
+    pref.setMaxConnecs(m["max_connec"].toInt());
   if(m.contains("max_connec_per_torrent"))
-    Preferences::setMaxConnecsPerTorrent(m["max_connec_per_torrent"].toInt());
+    pref.setMaxConnecsPerTorrent(m["max_connec_per_torrent"].toInt());
   if(m.contains("max_uploads_per_torrent"))
-    Preferences::setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
+    pref.setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
   // Bittorrent
   if(m.contains("dht"))
-    Preferences::setDHTEnabled(m["dht"].toBool());
+    pref.setDHTEnabled(m["dht"].toBool());
   if(m.contains("dhtSameAsBT"))
-    Preferences::setDHTPortSameAsBT(m["dhtSameAsBT"].toBool());
+    pref.setDHTPortSameAsBT(m["dhtSameAsBT"].toBool());
   if(m.contains("dht_port"))
-    Preferences::setDHTPort(m["dht_port"].toInt());
+    pref.setDHTPort(m["dht_port"].toInt());
   if(m.contains("pex"))
-    Preferences::setPeXEnabled(m["pex"].toBool());
+    pref.setPeXEnabled(m["pex"].toBool());
   qDebug("Pex support: %d", (int)m["pex"].toBool());
   if(m.contains("lsd"))
-    Preferences::setLSDEnabled(m["lsd"].toBool());
+    pref.setLSDEnabled(m["lsd"].toBool());
   if(m.contains("encryption"))
-    Preferences::setEncryptionSetting(m["encryption"].toInt());
+    pref.setEncryptionSetting(m["encryption"].toInt());
   // Proxy
   if(m.contains("proxy_type"))
-    Preferences::setPeerProxyType(m["proxy_type"].toInt());
+    pref.setPeerProxyType(m["proxy_type"].toInt());
   if(m.contains("proxy_ip"))
-    Preferences::setPeerProxyIp(m["proxy_ip"].toString());
+    pref.setPeerProxyIp(m["proxy_ip"].toString());
   if(m.contains("proxy_port"))
-    Preferences::setPeerProxyPort(m["proxy_port"].toUInt());
+    pref.setPeerProxyPort(m["proxy_port"].toUInt());
   if(m.contains("proxy_auth_enabled"))
-    Preferences::setPeerProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
+    pref.setPeerProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
   if(m.contains("proxy_username"))
-    Preferences::setPeerProxyUsername(m["proxy_username"].toString());
+    pref.setPeerProxyUsername(m["proxy_username"].toString());
   if(m.contains("proxy_password"))
-    Preferences::setPeerProxyPassword(m["proxy_password"].toString());
+    pref.setPeerProxyPassword(m["proxy_password"].toString());
   if(m.contains("http_proxy_type"))
-    Preferences::setHTTPProxyType(m["http_proxy_type"].toInt());
+    pref.setHTTPProxyType(m["http_proxy_type"].toInt());
   if(m.contains("http_proxy_ip"))
-    Preferences::setHTTPProxyIp(m["http_proxy_ip"].toString());
+    pref.setHTTPProxyIp(m["http_proxy_ip"].toString());
   if(m.contains("http_proxy_port"))
-    Preferences::setHTTPProxyPort(m["http_proxy_port"].toUInt());
+    pref.setHTTPProxyPort(m["http_proxy_port"].toUInt());
   if(m.contains("http_proxy_auth_enabled"))
-    Preferences::setHTTPProxyAuthEnabled(m["http_proxy_auth_enabled"].toBool());
+    pref.setHTTPProxyAuthEnabled(m["http_proxy_auth_enabled"].toBool());
   if(m.contains("http_proxy_username"))
-    Preferences::setHTTPProxyUsername(m["http_proxy_username"].toString());
+    pref.setHTTPProxyUsername(m["http_proxy_username"].toString());
   if(m.contains("http_proxy_password"))
-    Preferences::setHTTPProxyPassword(m["http_proxy_password"].toString());
+    pref.setHTTPProxyPassword(m["http_proxy_password"].toString());
   // IP Filter
   if(m.contains("ip_filter_enabled"))
-    Preferences::setFilteringEnabled(m["ip_filter_enabled"].toBool());
+    pref.setFilteringEnabled(m["ip_filter_enabled"].toBool());
   if(m.contains("ip_filter_path"))
-    Preferences::setFilter(m["ip_filter_path"].toString());
+    pref.setFilter(m["ip_filter_path"].toString());
   // Web UI
   if(m.contains("web_ui_port"))
-    Preferences::setWebUiPort(m["web_ui_port"].toUInt());
+    pref.setWebUiPort(m["web_ui_port"].toUInt());
   if(m.contains("web_ui_username"))
-    Preferences::setWebUiUsername(m["web_ui_username"].toString());
+    pref.setWebUiUsername(m["web_ui_username"].toString());
   if(m.contains("web_ui_password"))
-    Preferences::setWebUiPassword(m["web_ui_password"].toString());
+    pref.setWebUiPassword(m["web_ui_password"].toString());
   // Reload preferences
   QBtSession::instance()->configureSession();
 }
 
 QVariantMap EventManager::getGlobalPreferences() const {
+  const Preferences pref;
   QVariantMap data;
   // UI
-  data["locale"] = Preferences::getLocale();
+  data["locale"] = pref.getLocale();
   // Downloads
-  data["save_path"] = Preferences::getSavePath();
-  data["temp_path_enabled"] = Preferences::isTempPathEnabled();
-  data["temp_path"] = Preferences::getTempPath();
-  data["scan_dirs"] = Preferences::getScanDirs();
+  data["save_path"] = pref.getSavePath();
+  data["temp_path_enabled"] = pref.isTempPathEnabled();
+  data["temp_path"] = pref.getTempPath();
+  data["scan_dirs"] = pref.getScanDirs();
   QVariantList var_list;
-  foreach(bool b, Preferences::getDownloadInScanDirs()) {
+  foreach(bool b, pref.getDownloadInScanDirs()) {
     var_list << b;
   }
   data["download_in_scan_dirs"] = var_list;
-  data["export_dir_enabled"] = Preferences::isTorrentExportEnabled();
-  data["export_dir"] = Preferences::getExportDir();
-  data["mail_notification_enabled"] = Preferences::isMailNotificationEnabled();
-  data["mail_notification_email"] = Preferences::getMailNotificationEmail();
-  data["mail_notification_smtp"] = Preferences::getMailNotificationSMTP();
-  data["autorun_enabled"] = Preferences::isAutoRunEnabled();
-  data["autorun_program"] = Preferences::getAutoRunProgram();
-  data["preallocate_all"] = Preferences::preAllocateAllFiles();
-  data["queueing_enabled"] = Preferences::isQueueingSystemEnabled();
-  data["max_active_downloads"] = Preferences::getMaxActiveDownloads();
-  data["max_active_torrents"] = Preferences::getMaxActiveTorrents();
-  data["max_active_uploads"] = Preferences::getMaxActiveUploads();
+  data["export_dir_enabled"] = pref.isTorrentExportEnabled();
+  data["export_dir"] = pref.getExportDir();
+  data["mail_notification_enabled"] = pref.isMailNotificationEnabled();
+  data["mail_notification_email"] = pref.getMailNotificationEmail();
+  data["mail_notification_smtp"] = pref.getMailNotificationSMTP();
+  data["autorun_enabled"] = pref.isAutoRunEnabled();
+  data["autorun_program"] = pref.getAutoRunProgram();
+  data["preallocate_all"] = pref.preAllocateAllFiles();
+  data["queueing_enabled"] = pref.isQueueingSystemEnabled();
+  data["max_active_downloads"] = pref.getMaxActiveDownloads();
+  data["max_active_torrents"] = pref.getMaxActiveTorrents();
+  data["max_active_uploads"] = pref.getMaxActiveUploads();
 #if LIBTORRENT_VERSION_MINOR > 14
-  data["incomplete_files_ext"] = Preferences::useIncompleteFilesExtension();
+  data["incomplete_files_ext"] = pref.useIncompleteFilesExtension();
 #endif
   // Connection
-  data["listen_port"] = Preferences::getSessionPort();
-  data["upnp"] = Preferences::isUPnPEnabled();
-  data["natpmp"] = Preferences::isNATPMPEnabled();
-  data["dl_limit"] = Preferences::getGlobalDownloadLimit();
-  data["up_limit"] = Preferences::getGlobalUploadLimit();
-  data["max_connec"] = Preferences::getMaxConnecs();
-  data["max_connec_per_torrent"] = Preferences::getMaxConnecsPerTorrent();
-  data["max_uploads_per_torrent"] = Preferences::getMaxUploadsPerTorrent();
+  data["listen_port"] = pref.getSessionPort();
+  data["upnp"] = pref.isUPnPEnabled();
+  data["natpmp"] = pref.isNATPMPEnabled();
+  data["dl_limit"] = pref.getGlobalDownloadLimit();
+  data["up_limit"] = pref.getGlobalUploadLimit();
+  data["max_connec"] = pref.getMaxConnecs();
+  data["max_connec_per_torrent"] = pref.getMaxConnecsPerTorrent();
+  data["max_uploads_per_torrent"] = pref.getMaxUploadsPerTorrent();
   // Bittorrent
-  data["dht"] = Preferences::isDHTEnabled();
-  data["dhtSameAsBT"] = Preferences::isDHTPortSameAsBT();
-  data["dht_port"] = Preferences::getDHTPort();
-  data["pex"] = Preferences::isPeXEnabled();
-  data["lsd"] = Preferences::isLSDEnabled();
-  data["encryption"] = Preferences::getEncryptionSetting();
+  data["dht"] = pref.isDHTEnabled();
+  data["dhtSameAsBT"] = pref.isDHTPortSameAsBT();
+  data["dht_port"] = pref.getDHTPort();
+  data["pex"] = pref.isPeXEnabled();
+  data["lsd"] = pref.isLSDEnabled();
+  data["encryption"] = pref.getEncryptionSetting();
   // Proxy
-  data["proxy_type"] = Preferences::getPeerProxyType();
-  data["proxy_ip"] = Preferences::getPeerProxyIp();
-  data["proxy_port"] = Preferences::getPeerProxyPort();
-  data["proxy_auth_enabled"] = Preferences::isPeerProxyAuthEnabled();
-  data["proxy_username"] = Preferences::getPeerProxyUsername();
-  data["proxy_password"] = Preferences::getPeerProxyPassword();
-  data["http_proxy_type"] = Preferences::getHTTPProxyType();
-  data["http_proxy_ip"] = Preferences::getHTTPProxyIp();
-  data["http_proxy_port"] = Preferences::getHTTPProxyPort();
-  data["http_proxy_auth_enabled"] = Preferences::isHTTPProxyAuthEnabled();
-  data["http_proxy_username"] = Preferences::getHTTPProxyUsername();
-  data["http_proxy_password"] = Preferences::getHTTPProxyPassword();
+  data["proxy_type"] = pref.getPeerProxyType();
+  data["proxy_ip"] = pref.getPeerProxyIp();
+  data["proxy_port"] = pref.getPeerProxyPort();
+  data["proxy_auth_enabled"] = pref.isPeerProxyAuthEnabled();
+  data["proxy_username"] = pref.getPeerProxyUsername();
+  data["proxy_password"] = pref.getPeerProxyPassword();
+  data["http_proxy_type"] = pref.getHTTPProxyType();
+  data["http_proxy_ip"] = pref.getHTTPProxyIp();
+  data["http_proxy_port"] = pref.getHTTPProxyPort();
+  data["http_proxy_auth_enabled"] = pref.isHTTPProxyAuthEnabled();
+  data["http_proxy_username"] = pref.getHTTPProxyUsername();
+  data["http_proxy_password"] = pref.getHTTPProxyPassword();
   // IP Filter
-  data["ip_filter_enabled"] = Preferences::isFilteringEnabled();
-  data["ip_filter_path"] = Preferences::getFilter();
+  data["ip_filter_enabled"] = pref.isFilteringEnabled();
+  data["ip_filter_path"] = pref.getFilter();
   // Web UI
-  data["web_ui_port"] = Preferences::getWebUiPort();
-  data["web_ui_username"] = Preferences::getWebUiUsername();
-  data["web_ui_password"] = Preferences::getWebUiPassword();
+  data["web_ui_port"] = pref.getWebUiPort();
+  data["web_ui_username"] = pref.getWebUiUsername();
+  data["web_ui_password"] = pref.getWebUiPassword();
   return data;
 }
 

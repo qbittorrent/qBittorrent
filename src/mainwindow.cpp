@@ -93,9 +93,10 @@ using namespace libtorrent;
 // Constructor
 MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), force_exit(false) {
   setupUi(this);
-  ui_locked = Preferences::isUILocked();
+  Preferences pref;
+  ui_locked = pref.isUILocked();
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
-  displaySpeedInTitle = Preferences::speedInTitleBar();
+  displaySpeedInTitle = pref.speedInTitleBar();
   // Clean exit on log out
   connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()));
   // Setting icons
@@ -204,14 +205,14 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
 #endif
 
   // View settings
-  actionTop_tool_bar->setChecked(Preferences::isToolbarDisplayed());
-  actionSpeed_in_title_bar->setChecked(Preferences::speedInTitleBar());
+  actionTop_tool_bar->setChecked(pref.isToolbarDisplayed());
+  actionSpeed_in_title_bar->setChecked(pref.speedInTitleBar());
   actionRSS_Reader->setChecked(RssSettings::isRSSEnabled());
-  actionSearch_engine->setChecked(Preferences::isSearchEnabled());
+  actionSearch_engine->setChecked(pref.isSearchEnabled());
   displaySearchTab(actionSearch_engine->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
-  actionShutdown_when_downloads_complete->setChecked(Preferences::shutdownWhenDownloadsComplete());
-  actionShutdown_qBittorrent_when_downloads_complete->setChecked(Preferences::shutdownqBTWhenDownloadsComplete());
+  actionShutdown_when_downloads_complete->setChecked(pref.shutdownWhenDownloadsComplete());
+  actionShutdown_qBittorrent_when_downloads_complete->setChecked(pref.shutdownqBTWhenDownloadsComplete());
 
   show();
 
@@ -225,7 +226,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   if(ui_locked) {
     hide();
   } else {
-    if(Preferences::startMinimized())
+    if(pref.startMinimized())
       showMinimized();
   }
 
@@ -244,13 +245,13 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
 
   qDebug("GUI Built");
 #ifdef Q_WS_WIN
-  if(!Preferences::neverCheckFileAssoc() && !Preferences::isFileAssocOk()) {
+  if(!pref.neverCheckFileAssoc() && !Preferences::isFileAssocOk()) {
     if(QMessageBox::question(0, tr("Torrent file association"),
                              tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
                              QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
       Preferences::setFileAssoc();
     } else {
-      Preferences::setNeverCheckFileAssoc();
+      pref.setNeverCheckFileAssoc();
     }
   }
 #endif
@@ -338,30 +339,31 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::defineUILockPassword() {
-  QString old_pass_md5 = Preferences::getUILockPasswordMD5();
+  QString old_pass_md5 = Preferences().getUILockPasswordMD5();
   if(old_pass_md5.isNull()) old_pass_md5 = "";
   bool ok = false;
   QString new_clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, old_pass_md5, &ok);
   if(ok) {
     if(new_clear_password != old_pass_md5) {
-      Preferences::setUILockPassword(new_clear_password);
+      Preferences().setUILockPassword(new_clear_password);
     }
     QMessageBox::information(this, tr("Password update"), tr("The UI lock password has been successfully updated"));
   }
 }
 
 void MainWindow::on_actionLock_qBittorrent_triggered() {
+  Preferences pref;
   // Check if there is a password
-  if(Preferences::getUILockPasswordMD5().isEmpty()) {
+  if(pref.getUILockPasswordMD5().isEmpty()) {
     // Ask for a password
     bool ok = false;
     QString clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
     if(!ok) return;
-    Preferences::setUILockPassword(clear_password);
+    pref.setUILockPassword(clear_password);
   }
   // Lock the interface
   ui_locked = true;
-  Preferences::setUILocked(true);
+  pref.setUILocked(true);
   myTrayIconMenu->setEnabled(false);
   hide();
 }
@@ -527,7 +529,8 @@ void MainWindow::balloonClicked() {
 }
 
 void MainWindow::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
-  if(Preferences::recursiveDownloadDisabled()) return;
+  Preferences pref;
+  if(pref.recursiveDownloadDisabled()) return;
   QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()));
   QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
   /*QPushButton *no = */confirmBox.addButton(tr("No"), QMessageBox::NoRole);
@@ -539,7 +542,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
     return;
   }
   if(confirmBox.clickedButton() == never) {
-    Preferences::disableRecursiveDownload();
+    pref.disableRecursiveDownload();
   }
 }
 
@@ -556,9 +559,9 @@ void MainWindow::on_actionSet_global_upload_limit_triggered() {
     qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
     BTSession->getSession()->set_upload_rate_limit(new_limit);
     if(new_limit <= 0)
-      Preferences::setGlobalUploadLimit(-1);
+      Preferences().setGlobalUploadLimit(-1);
     else
-      Preferences::setGlobalUploadLimit(new_limit/1024.);
+      Preferences().setGlobalUploadLimit(new_limit/1024.);
   }
 }
 
@@ -578,9 +581,9 @@ void MainWindow::on_actionSet_global_download_limit_triggered() {
     qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
     BTSession->getSession()->set_download_rate_limit(new_limit);
     if(new_limit <= 0)
-      Preferences::setGlobalDownloadLimit(-1);
+      Preferences().setGlobalDownloadLimit(-1);
     else
-      Preferences::setGlobalDownloadLimit(new_limit/1024.);
+      Preferences().setGlobalDownloadLimit(new_limit/1024.);
   }
 }
 
@@ -607,13 +610,14 @@ bool MainWindow::unlockUI() {
   bool ok = false;
   QString clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
   if(!ok) return false;
-  QString real_pass_md5 = Preferences::getUILockPasswordMD5();
+  Preferences pref;
+  QString real_pass_md5 = pref.getUILockPasswordMD5();
   QCryptographicHash md5(QCryptographicHash::Md5);
   md5.addData(clear_password.toLocal8Bit());
   QString password_md5 = md5.result().toHex();
   if(real_pass_md5 == password_md5) {
     ui_locked = false;
-    Preferences::setUILocked(false);
+    pref.setUILocked(false);
     myTrayIconMenu->setEnabled(true);
     return true;
   }
@@ -701,7 +705,7 @@ void MainWindow::closeEvent(QCloseEvent *e) {
       }
       if(confirmBox.clickedButton() == alwaysBtn) {
         // Remember choice
-        Preferences::setConfirmOnExit(false);
+        Preferences().setConfirmOnExit(false);
       }
     }
   }
@@ -734,8 +738,7 @@ bool MainWindow::event(QEvent * e) {
     //Now check to see if the window is minimised
     if(isMinimized()) {
       qDebug("minimisation");
-      QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-      if(systrayIcon && settings.value(QString::fromUtf8("Preferences/General/MinimizeToTray"), false).toBool()) {
+      if(systrayIcon && Preferences().minimizeToTray()) {
         qDebug("Has active window: %d", (int)(qApp->activeWindow() != 0));
         // Check if there is a modal window
         bool has_modal_window = false;
@@ -763,7 +766,7 @@ bool MainWindow::event(QEvent * e) {
 
     qDebug("MAC: new toolbar visibility is %d", !actionTop_tool_bar->isChecked());
     actionTop_tool_bar->toggle();
-    Preferences::setToolbarDisplayed(actionTop_tool_bar->isChecked());
+    Preferences().setToolbarDisplayed(actionTop_tool_bar->isChecked());
     return ret;
   }
 #endif
@@ -923,7 +926,8 @@ void MainWindow::optionsSaved() {
 // Load program preferences
 void MainWindow::loadPreferences(bool configure_session) {
   BTSession->addConsoleMessage(tr("Options were saved successfully."));
-  const bool newSystrayIntegration = Preferences::systrayIntegration();
+  const Preferences pref;
+  const bool newSystrayIntegration = pref.systrayIntegration();
   actionLock_qBittorrent->setEnabled(newSystrayIntegration);
   if(newSystrayIntegration != (systrayIcon!=0)) {
     if(newSystrayIntegration) {
@@ -948,7 +952,7 @@ void MainWindow::loadPreferences(bool configure_session) {
     }
   }
   // General
-  if(Preferences::isToolbarDisplayed()) {
+  if(pref.isToolbarDisplayed()) {
     toolBar->setVisible(true);
     toolBar->layout()->setSpacing(7);
   } else {
@@ -956,14 +960,14 @@ void MainWindow::loadPreferences(bool configure_session) {
     search_filter->clear();
     toolBar->setVisible(false);
   }
-  const uint new_refreshInterval = Preferences::getRefreshInterval();
+  const uint new_refreshInterval = pref.getRefreshInterval();
   transferList->setRefreshInterval(new_refreshInterval);
-  transferList->setAlternatingRowColors(Preferences::useAlternatingRowColors());
-  properties->getFilesList()->setAlternatingRowColors(Preferences::useAlternatingRowColors());
-  properties->getTrackerList()->setAlternatingRowColors(Preferences::useAlternatingRowColors());
-  properties->getPeerList()->setAlternatingRowColors(Preferences::useAlternatingRowColors());
+  transferList->setAlternatingRowColors(pref.useAlternatingRowColors());
+  properties->getFilesList()->setAlternatingRowColors(pref.useAlternatingRowColors());
+  properties->getTrackerList()->setAlternatingRowColors(pref.useAlternatingRowColors());
+  properties->getPeerList()->setAlternatingRowColors(pref.useAlternatingRowColors());
   // Queueing System
-  if(Preferences::isQueueingSystemEnabled()) {
+  if(pref.isQueueingSystemEnabled()) {
     if(!actionDecreasePriority->isVisible()) {
       transferList->hidePriorityColumn(false);
       actionDecreasePriority->setVisible(true);
@@ -1035,7 +1039,7 @@ void MainWindow::updateGUI() {
 }
 
 void MainWindow::showNotificationBaloon(QString title, QString msg) const {
-  if(!Preferences::useProgramNotification()) return;
+  if(!Preferences().useProgramNotification()) return;
 #ifdef WITH_LIBNOTIFY
   if (notify_init ("summary-body")) {
     NotifyNotification* notification;
@@ -1108,7 +1112,7 @@ void MainWindow::createSystrayDelayed() {
       delete systrayCreator;
       // Disable it in program preferences to
       // avoid trying at earch startup
-      Preferences::setSystrayIntegration(false);
+      Preferences().setSystrayIntegration(false);
     }
   }
 }
@@ -1125,8 +1129,9 @@ QMenu* MainWindow::getTrayIconMenu() {
   myTrayIconMenu->addAction(actionOpen);
   myTrayIconMenu->addAction(actionDownload_from_URL);
   myTrayIconMenu->addSeparator();
-  updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
-  actionUse_alternative_speed_limits->setChecked(Preferences::isAltBandwidthEnabled());
+  const bool isAltBWEnabled = Preferences().isAltBandwidthEnabled();
+  updateAltSpeedsBtn(isAltBWEnabled);
+  actionUse_alternative_speed_limits->setChecked(isAltBWEnabled);
   myTrayIconMenu->addAction(actionUse_alternative_speed_limits);
   myTrayIconMenu->addAction(actionSet_global_download_limit);
   myTrayIconMenu->addAction(actionSet_global_upload_limit);
@@ -1169,22 +1174,22 @@ void MainWindow::on_actionOptions_triggered() {
 void MainWindow::on_actionTop_tool_bar_triggered() {
   bool is_visible = static_cast<QAction*>(sender())->isChecked();
   toolBar->setVisible(is_visible);
-  Preferences::setToolbarDisplayed(is_visible);
+  Preferences().setToolbarDisplayed(is_visible);
 }
 
 void MainWindow::on_actionShutdown_when_downloads_complete_triggered() {
   bool is_checked = static_cast<QAction*>(sender())->isChecked();
-  Preferences::setShutdownWhenDownloadsComplete(is_checked);
+  Preferences().setShutdownWhenDownloadsComplete(is_checked);
 }
 
 void MainWindow::on_actionShutdown_qBittorrent_when_downloads_complete_triggered() {
   bool is_checked = static_cast<QAction*>(sender())->isChecked();
-  Preferences::setShutdownqBTWhenDownloadsComplete(is_checked);
+  Preferences().setShutdownqBTWhenDownloadsComplete(is_checked);
 }
 
 void MainWindow::on_actionSpeed_in_title_bar_triggered() {
   displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
-  Preferences::showSpeedInTitleBar(displaySpeedInTitle);
+  Preferences().showSpeedInTitleBar(displaySpeedInTitle);
   if(displaySpeedInTitle)
     updateGUI();
   else
@@ -1197,7 +1202,7 @@ void MainWindow::on_actionRSS_Reader_triggered() {
 }
 
 void MainWindow::on_actionSearch_engine_triggered() {
-  Preferences::setSearchEnabled(actionSearch_engine->isChecked());
+  Preferences().setSearchEnabled(actionSearch_engine->isChecked());
   displaySearchTab(actionSearch_engine->isChecked());
 }
 

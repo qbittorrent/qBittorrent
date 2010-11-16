@@ -74,7 +74,7 @@ public:
     std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(tr("disable splash screen")) << std::endl;
 #endif
     std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
-    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(tr("changes the webui port (current: %1)").arg(QString::number(Preferences::getWebUiPort()))) << std::endl;
+    std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(tr("changes the webui port (current: %1)").arg(QString::number(Preferences().getWebUiPort()))) << std::endl;
     std::cout << '\t' << prg_name << " " << qPrintable(tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
   }
 };
@@ -154,7 +154,7 @@ void useStyle(QString style){
   if(!style.isEmpty()) {
     QApplication::setStyle(QStyleFactory::create(style));
   }
-  Preferences::setStyle(QApplication::style()->objectName());
+  Preferences().setStyle(QApplication::style()->objectName());
 }
 #endif
 
@@ -240,7 +240,7 @@ int main(int argc, char *argv[]){
             bool ok = false;
             int new_port = parts.last().toInt(&ok);
             if(ok && new_port > 0 && new_port <= 65535) {
-              Preferences::setWebUiPort(new_port);
+              Preferences().setWebUiPort(new_port);
             }
           }
         }

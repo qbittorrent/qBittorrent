@@ -42,7 +42,7 @@ using namespace libtorrent;
 QTracker::QTracker(QObject *parent) :
   QTcpServer(parent)
 {
-  Q_ASSERT(Preferences::isTrackerEnabled());
+  Q_ASSERT(Preferences().isTrackerEnabled());
   connect(this, SIGNAL(newConnection()), this, SLOT(handlePeerConnection()));
 }
 
@@ -66,7 +66,7 @@ void QTracker::handlePeerConnection()
 
 bool QTracker::start()
 {
-  const int listen_port = Preferences::getTrackerPort();
+  const int listen_port = Preferences().getTrackerPort();
   //
   if(isListening()) {
     if(serverPort() == listen_port) {

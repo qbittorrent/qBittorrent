@@ -56,6 +56,7 @@
 
 torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   QDialog(parent), old_label(""), hidden_height(0) {
+  const Preferences pref;
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   // Set Properties list model
@@ -77,8 +78,8 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   // Remember columns width
   readSettings();
   //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
-  defaultSavePath = Preferences::getSavePath();
-  appendLabelToSavePath = Preferences::appendTorrentLabel();
+  defaultSavePath = pref.getSavePath();
+  appendLabelToSavePath = pref.appendTorrentLabel();
   QString display_path = defaultSavePath.replace("\\", "/");
   if(!display_path.endsWith("/"))
     display_path += "/";
@@ -88,7 +89,7 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
 #endif
   savePathTxt->addItem(display_path);
 
-  if(Preferences::addTorrentsInPause()) {
+  if(pref.addTorrentsInPause()) {
     addInPause->setChecked(true);
     //addInPause->setEnabled(false);
   }

@@ -41,8 +41,9 @@ class HeadlessLoader: public QObject {
 
 public:
   HeadlessLoader(QStringList torrentCmdLine) {
+    Preferences pref;
     // Enable Web UI
-    Preferences::setWebUiEnabled(true);
+    pref.setWebUiEnabled(true);
     // Instanciate Bittorrent Object
     BTSession = QBtSession::instance();
     connect(BTSession, SIGNAL(newConsoleMessage(QString)), this, SLOT(displayConsoleMessage(QString)));
@@ -52,9 +53,9 @@ public:
     processParams(torrentCmdLine);
     // Display some information to the user
     std::cout << std::endl << "******** " << qPrintable(tr("Information")) << " ********" << std::endl;
-    std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(Preferences::getWebUiPort()))) << std::endl;
-    std::cout << qPrintable(tr("The Web UI administrator user name is: %1").arg(Preferences::getWebUiUsername())) << std::endl;
-    if(Preferences::getWebUiPassword() == "f6fdffe48c908deb0f4c3bd36c032e72") {
+    std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(pref.getWebUiPort()))) << std::endl;
+    std::cout << qPrintable(tr("The Web UI administrator user name is: %1").arg(pref.getWebUiUsername())) << std::endl;
+    if(pref.getWebUiPassword() == "f6fdffe48c908deb0f4c3bd36c032e72") {
       std::cout << qPrintable(tr("The Web UI administrator password is still the default one: %1").arg("adminadmin")) << std::endl;
       std::cout << qPrintable(tr("This is a security risk, please consider changing your password from program preferences.")) << std::endl;
     }

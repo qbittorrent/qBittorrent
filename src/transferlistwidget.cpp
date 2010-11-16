@@ -180,9 +180,9 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
   if(!h.is_valid()) return;
   int action;
   if(h.is_seed()) {
-    action = Preferences::getActionOnDblClOnTorrentFn();
+    action = Preferences().getActionOnDblClOnTorrentFn();
   } else {
-    action = Preferences::getActionOnDblClOnTorrentDl();
+    action = Preferences().getActionOnDblClOnTorrentDl();
   }
 
   switch(action) {
@@ -424,7 +424,7 @@ void TransferListWidget::setDlLimitSelectedTorrents() {
   int default_limit = -1;
   if(all_same_limit)
     default_limit = selected_torrents.first().download_limit();
-  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences::getGlobalDownloadLimit()*1024.);
+  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences().getGlobalDownloadLimit()*1024.);
   if(ok) {
     foreach(const QTorrentHandle &h, selected_torrents) {
       qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));
@@ -457,7 +457,7 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   int default_limit = -1;
   if(all_same_limit)
     default_limit = selected_torrents.first().upload_limit();
-  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences::getGlobalUploadLimit()*1024.);
+  const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences().getGlobalUploadLimit()*1024.);
   if(ok) {
     foreach(const QTorrentHandle &h, selected_torrents) {
       qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit/1024.), qPrintable(h.hash()));

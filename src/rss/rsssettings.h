@@ -95,6 +95,27 @@ public:
     QIniSettings settings("qBittorrent", "qBittorrent");
     settings.setValue("Rss/streamAlias", rssAliases);
   }
+
+  static QList<QByteArray> getHostNameCookies(const QString &host_name) {
+    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+    QMap<QString, QVariant> hosts_table = qBTRSS.value("hosts_cookies", QMap<QString, QVariant>()).toMap();
+    if(!hosts_table.contains(host_name)) return QList<QByteArray>();
+    QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
+    return raw_cookies.split(':');
+  }
+
+  static void setHostNameCookies(QString host_name, const QList<QByteArray> &cookies) {
+    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+    QMap<QString, QVariant> hosts_table = qBTRSS.value("hosts_cookies", QMap<QString, QVariant>()).toMap();
+    QByteArray raw_cookies = "";
+    foreach(const QByteArray& cookie, cookies) {
+      raw_cookies += cookie + ":";
+    }
+    if(raw_cookies.endsWith(":"))
+      raw_cookies.chop(1);
+    hosts_table.insert(host_name, raw_cookies);
+    qBTRSS.setValue("hosts_cookies", hosts_table);
+  }
 };
 
 #endif // RSSSETTINGS_H

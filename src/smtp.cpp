@@ -28,7 +28,7 @@ Smtp::Smtp(const QString &from, const QString &to, const QString &subject, const
   this->from = from;
   rcpt = to;
   state = Init;
-  socket->connectToHost(Preferences::getMailNotificationSMTP(), 25);
+  socket->connectToHost(Preferences().getMailNotificationSMTP(), 25);
   if(socket->waitForConnected ( 30000 )) {
     qDebug("connected");
   } else {

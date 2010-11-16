@@ -93,7 +93,7 @@ PeerListWidget::~PeerListWidget() {
 }
 
 void PeerListWidget::updatePeerHostNameResolutionState() {
-  if(Preferences::resolvePeerHostNames()) {
+  if(Preferences().resolvePeerHostNames()) {
     if(!resolver) {
       resolver = new ReverseResolution(this);
       connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
@@ -107,7 +107,7 @@ void PeerListWidget::updatePeerHostNameResolutionState() {
 }
 
 void PeerListWidget::updatePeerCountryResolutionState() {
-  if(Preferences::resolvePeerCountries() != display_flags) {
+  if(Preferences().resolvePeerCountries() != display_flags) {
     display_flags = !display_flags;
     if(display_flags) {
       const QTorrentHandle h = properties->getCurrentTorrent();
@@ -206,7 +206,7 @@ void PeerListWidget::limitUpRateSelectedPeers(QStringList peer_ips) {
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) return;
   bool ok=false;
-  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Upload rate limiting"), -1, Preferences::getGlobalUploadLimit()*1024.);
+  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Upload rate limiting"), -1, Preferences().getGlobalUploadLimit()*1024.);
   if(!ok) return;
   foreach(const QString &ip, peer_ips) {
     libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());
@@ -227,7 +227,7 @@ void PeerListWidget::limitDlRateSelectedPeers(QStringList peer_ips) {
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) return;
   bool ok=false;
-  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), -1, Preferences::getGlobalDownloadLimit()*1024.);
+  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), -1, Preferences().getGlobalDownloadLimit()*1024.);
   if(!ok) return;
   foreach(const QString &ip, peer_ips) {
     libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());

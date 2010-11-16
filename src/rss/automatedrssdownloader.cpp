@@ -220,7 +220,7 @@ RssDownloadRule AutomatedRssDownloader::getCurrentRule() const
 void AutomatedRssDownloader::initLabelCombobox()
 {
   // Load custom labels
-  const QStringList customLabels = Preferences::getTorrentLabels();
+  const QStringList customLabels = Preferences().getTorrentLabels();
   foreach(const QString& label, customLabels) {
     ui->comboLabel->addItem(label);
   }
@@ -252,7 +252,7 @@ void AutomatedRssDownloader::saveEditedRule()
   rule.setLabel(ui->comboLabel->currentText());
   // Save new label
   if(!rule.label().isEmpty())
-    Preferences::addTorrentLabel(rule.label());
+    Preferences().addTorrentLabel(rule.label());
   //rule.setRssFeeds(getSelectedFeeds());
   // Save it
   m_ruleList->saveRule(rule);

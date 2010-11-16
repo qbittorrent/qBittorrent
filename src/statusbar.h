@@ -49,6 +49,7 @@ class StatusBar: public QObject {
 
 public:
   StatusBar(QStatusBar *bar): bar(bar) {
+    Preferences pref;
     connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     container = new QWidget();
     layout = new QGridLayout(container);
@@ -75,7 +76,7 @@ public:
     altSpeedsBtn->setFlat(true);
     altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
     altSpeedsBtn->setCursor(Qt::PointingHandCursor);
-    updateAltSpeedsBtn(Preferences::isAltBandwidthEnabled());
+    updateAltSpeedsBtn(pref.isAltBandwidthEnabled());
 
     connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
 
@@ -129,7 +130,7 @@ public:
     bar->setContentsMargins(12, 0, 12, 0);
     bar->setFixedHeight(dlSpeedLbl->fontMetrics().height()+9);
     // Is DHT enabled
-    DHTLbl->setVisible(Preferences::isDHTEnabled());
+    DHTLbl->setVisible(pref.isDHTEnabled());
     refreshTimer = new QTimer(bar);
     connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
     refreshTimer->start(1500);
@@ -216,24 +217,25 @@ public slots:
   }
 
   void toggleAlternativeSpeeds() {
-    QBtSession::instance()->useAlternativeSpeedsLimit(!Preferences::isAltBandwidthEnabled());
+    QBtSession::instance()->useAlternativeSpeedsLimit(!Preferences().isAltBandwidthEnabled());
   }
 
   void capDownloadSpeed() {
     bool ok = false;
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), QBtSession::instance()->getSession()->download_rate_limit());
     if(ok) {
-      bool alt = Preferences::isAltBandwidthEnabled();
+      Preferences pref;
+      bool alt = pref.isAltBandwidthEnabled();
       if(new_limit <= 0) {
         qDebug("Setting global download rate limit to Unlimited");
         if(!alt)
           QBtSession::instance()->getSession()->set_download_rate_limit(-1);
-        Preferences::setGlobalDownloadLimit(-1);
+        pref.setGlobalDownloadLimit(-1);
       } else {
         qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
         if(!alt)
           QBtSession::instance()->getSession()->set_download_rate_limit(new_limit);
-        Preferences::setGlobalDownloadLimit(new_limit/1024.);
+        pref.setGlobalDownloadLimit(new_limit/1024.);
       }
     }
   }
@@ -245,10 +247,10 @@ public slots:
       if(new_limit <= 0) {
         qDebug("Setting global upload rate limit to Unlimited");
         QBtSession::instance()->getSession()->set_upload_rate_limit(-1);
-        Preferences::setGlobalUploadLimit(-1);
+        Preferences().setGlobalUploadLimit(-1);
       } else {
         qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
-        Preferences::setGlobalUploadLimit(new_limit/1024.);
+        Preferences().setGlobalUploadLimit(new_limit/1024.);
         QBtSession::instance()->getSession()->set_upload_rate_limit(new_limit);
       }
     }

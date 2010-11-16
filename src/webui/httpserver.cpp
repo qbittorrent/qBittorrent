@@ -81,8 +81,9 @@ void HttpServer::resetNbFailedAttemptsForIp(QString ip) {
 }
 
 HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
-  username = Preferences::getWebUiUsername().toLocal8Bit();
-  password_ha1 = Preferences::getWebUiPassword().toLocal8Bit();
+  const Preferences pref;
+  username = pref.getWebUiUsername().toLocal8Bit();
+  password_ha1 = pref.getWebUiPassword().toLocal8Bit();
   connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
   manager = new EventManager(this);
   //add torrents
