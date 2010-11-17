@@ -57,7 +57,7 @@ void RssDownloadRuleList::drop()
 
 RssDownloadRule RssDownloadRuleList::findMatchingRule(const QString &feed_url, const QString &article_title) const
 {
-  Q_ASSERT(RssSettings::isRssDownloadingEnabled());
+  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
   QStringList rule_names = feedRules(feed_url);
   foreach(const QString &rule_name, rule_names) {
     RssDownloadRule rule = m_rules[rule_name];

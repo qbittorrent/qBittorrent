@@ -40,7 +40,7 @@ RssManager* RssManager::m_instance = 0;
 RssManager::RssManager(): RssFolder() {
   loadStreamList();
   connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refreshAll()));
-  refreshInterval = RssSettings::getRSSRefreshInterval();
+  refreshInterval = RssSettings().getRSSRefreshInterval();
   newsRefresher.start(refreshInterval*60000);
 }
 
@@ -60,8 +60,9 @@ void RssManager::updateRefreshInterval(unsigned int val){
 }
 
 void RssManager::loadStreamList() {
-  const QStringList streamsUrl = RssSettings::getRssFeedsUrls();
-  const QStringList aliases =  RssSettings::getRssFeedsAliases();
+  RssSettings settings;
+  const QStringList streamsUrl = settings.getRssFeedsUrls();
+  const QStringList aliases =  settings.getRssFeedsAliases();
   if(streamsUrl.size() != aliases.size()){
     std::cerr << "Corrupted Rss list, not loading it\n";
     return;
@@ -120,8 +121,9 @@ void RssManager::saveStreamList(){
     streamsUrl << stream_path;
     aliases << stream->getName();
   }
-  RssSettings::setRssFeedsUrls(streamsUrl);
-  RssSettings::setRssFeedsAliases(aliases);
+  RssSettings settings;
+  settings.setRssFeedsUrls(streamsUrl);
+  settings.setRssFeedsAliases(aliases);
 }
 
 void RssManager::insertSortElem(QList<RssArticle*> &list, RssArticle *item) {

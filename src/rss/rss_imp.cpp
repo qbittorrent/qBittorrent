@@ -118,9 +118,10 @@ void RSSImp::on_actionManage_cookies_triggered() {
   qDebug("RSS Feed hostname is: %s", qPrintable(feed_hostname));
   Q_ASSERT(!feed_hostname.isEmpty());
   bool ok = false;
-  QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, RssSettings::getHostNameCookies(feed_hostname), &ok);
+  RssSettings settings;
+  QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, settings.getHostNameCookies(feed_hostname), &ok);
   if(ok) {
-    RssSettings::setHostNameCookies(feed_hostname, raw_cookies);
+    settings.setHostNameCookies(feed_hostname, raw_cookies);
   }
 }
 
@@ -643,7 +644,7 @@ RSSImp::~RSSImp(){
 void RSSImp::on_settingsButton_clicked() {
   RssSettingsDlg dlg(this);
   if(dlg.exec())
-    updateRefreshInterval(RssSettings::getRSSRefreshInterval());
+    updateRefreshInterval(RssSettings().getRSSRefreshInterval());
 }
 
 void RSSImp::on_rssDownloaderBtn_clicked()

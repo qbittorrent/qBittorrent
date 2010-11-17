@@ -38,8 +38,9 @@ RssSettingsDlg::RssSettingsDlg(QWidget *parent) :
 {
   ui->setupUi(this);
   // Load settings
-  ui->spinRSSRefresh->setValue(RssSettings::getRSSRefreshInterval());
-  ui->spinRSSMaxArticlesPerFeed->setValue(RssSettings::getRSSMaxArticlesPerFeed());
+  const RssSettings settings;
+  ui->spinRSSRefresh->setValue(settings.getRSSRefreshInterval());
+  ui->spinRSSMaxArticlesPerFeed->setValue(settings.getRSSMaxArticlesPerFeed());
 }
 
 RssSettingsDlg::~RssSettingsDlg()
@@ -50,6 +51,7 @@ RssSettingsDlg::~RssSettingsDlg()
 
 void RssSettingsDlg::on_buttonBox_accepted() {
   // Save settings
-  RssSettings::setRSSRefreshInterval(ui->spinRSSRefresh->value());
-  RssSettings::setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
+  RssSettings settings;
+  settings.setRSSRefreshInterval(ui->spinRSSRefresh->value());
+  settings.setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
 }

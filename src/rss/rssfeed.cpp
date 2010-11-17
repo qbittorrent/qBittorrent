@@ -290,7 +290,7 @@ short RssFeed::readDoc(QIODevice* device) {
   resizeList();
 
   // RSS Feed Downloader
-  if(RssSettings::isRssDownloadingEnabled()) {
+  if(RssSettings().isRssDownloadingEnabled()) {
     foreach(RssArticle* item, values()) {
       if(item->isRead()) continue;
       QString torrent_url;
@@ -313,7 +313,7 @@ short RssFeed::readDoc(QIODevice* device) {
 }
 
 void RssFeed::resizeList() {
-  unsigned int max_articles = RssSettings::getRSSMaxArticlesPerFeed();
+  unsigned int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
   unsigned int nb_articles = this->size();
   if(nb_articles > max_articles) {
     QList<RssArticle*> listItem = RssManager::sortNewsList(this->values());

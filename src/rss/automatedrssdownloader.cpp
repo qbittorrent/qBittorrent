@@ -83,14 +83,14 @@ void AutomatedRssDownloader::loadSettings()
   // load dialog geometry
   QIniSettings settings("qBittorrent", "qBittorrent");
   restoreGeometry(settings.value("RssFeedDownloader/geometry").toByteArray());
-  ui->checkEnableDownloader->setChecked(RssSettings::isRssDownloadingEnabled());
+  ui->checkEnableDownloader->setChecked(RssSettings().isRssDownloadingEnabled());
   // Display download rules
   loadRulesList();
 }
 
 void AutomatedRssDownloader::saveSettings()
 {
-  RssSettings::setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
+  RssSettings().setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
   // Save dialog geometry
   QIniSettings settings("qBittorrent", "qBittorrent");
   settings.setValue("RssFeedDownloader/geometry", saveGeometry());
@@ -117,8 +117,9 @@ void AutomatedRssDownloader::loadRulesList()
 
 void AutomatedRssDownloader::loadFeedList()
 {
-  const QStringList feed_aliases = RssSettings::getRssFeedsAliases();
-  const QStringList feed_urls = RssSettings::getRssFeedsUrls();
+  const RssSettings settings;
+  const QStringList feed_aliases = settings.getRssFeedsAliases();
+  const QStringList feed_urls = settings.getRssFeedsUrls();
   for(int i=0; i<feed_aliases.size(); ++i) {
     QListWidgetItem *item = new QListWidgetItem(feed_aliases.at(i), ui->listFeeds);
     item->setData(Qt::UserRole, feed_urls.at(i));

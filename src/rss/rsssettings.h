@@ -33,80 +33,68 @@
 
 #include "qinisettings.h"
 
-class RssSettings {
+class RssSettings: public QIniSettings{
+
 public:
+  RssSettings() : QIniSettings("qBittorrent", "qBittorrent") {}
 
-  static bool isRSSEnabled() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/RSS/RSSEnabled"), false).toBool();
+  bool isRSSEnabled() const {
+    return value(QString::fromUtf8("Preferences/RSS/RSSEnabled"), false).toBool();
   }
 
-  static void setRSSEnabled(bool enabled) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSEnabled"), enabled);
+  void setRSSEnabled(bool enabled) {
+    setValue(QString::fromUtf8("Preferences/RSS/RSSEnabled"), enabled);
   }
 
-  static unsigned int getRSSRefreshInterval() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toUInt();
+  unsigned int getRSSRefreshInterval() const {
+    return value(QString::fromUtf8("Preferences/RSS/RSSRefresh"), 5).toUInt();
   }
 
-  static void setRSSRefreshInterval(uint interval) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSRefresh"), interval);
+  void setRSSRefreshInterval(uint interval) {
+    setValue(QString::fromUtf8("Preferences/RSS/RSSRefresh"), interval);
   }
 
-  static int getRSSMaxArticlesPerFeed() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
+  int getRSSMaxArticlesPerFeed() const {
+    return value(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), 50).toInt();
   }
 
-  static void setRSSMaxArticlesPerFeed(int nb) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), nb);
+  void setRSSMaxArticlesPerFeed(int nb) {
+    setValue(QString::fromUtf8("Preferences/RSS/RSSMaxArticlesPerFeed"), nb);
   }
 
-  static bool isRssDownloadingEnabled() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value("Preferences/RSS/RssDownloading", true).toBool();
+  bool isRssDownloadingEnabled() const {
+    return value("Preferences/RSS/RssDownloading", true).toBool();
   }
 
-  static void setRssDownloadingEnabled(bool b) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue("Preferences/RSS/RssDownloading", b);
+  void setRssDownloadingEnabled(bool b) {
+    setValue("Preferences/RSS/RssDownloading", b);
   }
 
-  static QStringList getRssFeedsUrls() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value("Rss/streamList").toStringList();
+  QStringList getRssFeedsUrls() const {
+    return value("Rss/streamList").toStringList();
   }
 
-  static void setRssFeedsUrls(const QStringList &rssFeeds) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue("Rss/streamList", rssFeeds);
+  void setRssFeedsUrls(const QStringList &rssFeeds) {
+    setValue("Rss/streamList", rssFeeds);
   }
 
-  static QStringList getRssFeedsAliases() {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    return settings.value("Rss/streamAlias").toStringList();
+  QStringList getRssFeedsAliases() const {
+    return value("Rss/streamAlias").toStringList();
   }
 
-  static void setRssFeedsAliases(const QStringList &rssAliases) {
-    QIniSettings settings("qBittorrent", "qBittorrent");
-    settings.setValue("Rss/streamAlias", rssAliases);
+  void setRssFeedsAliases(const QStringList &rssAliases) {
+    setValue("Rss/streamAlias", rssAliases);
   }
 
-  static QList<QByteArray> getHostNameCookies(const QString &host_name) {
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    QMap<QString, QVariant> hosts_table = qBTRSS.value("hosts_cookies", QMap<QString, QVariant>()).toMap();
+  QList<QByteArray> getHostNameCookies(const QString &host_name) const {
+    QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
     if(!hosts_table.contains(host_name)) return QList<QByteArray>();
     QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
     return raw_cookies.split(':');
   }
 
-  static void setHostNameCookies(QString host_name, const QList<QByteArray> &cookies) {
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    QMap<QString, QVariant> hosts_table = qBTRSS.value("hosts_cookies", QMap<QString, QVariant>()).toMap();
+  void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies) {
+    QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
     QByteArray raw_cookies = "";
     foreach(const QByteArray& cookie, cookies) {
       raw_cookies += cookie + ":";
@@ -114,7 +102,7 @@ public:
     if(raw_cookies.endsWith(":"))
       raw_cookies.chop(1);
     hosts_table.insert(host_name, raw_cookies);
-    qBTRSS.setValue("hosts_cookies", hosts_table);
+    setValue("Rss/hosts_cookies", hosts_table);
   }
 };
 
