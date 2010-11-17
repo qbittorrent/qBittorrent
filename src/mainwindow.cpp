@@ -178,9 +178,9 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
 
   // Transfer list slots
   connect(actionStart, SIGNAL(triggered()), transferList, SLOT(startSelectedTorrents()));
-  connect(actionStart_All, SIGNAL(triggered()), transferList, SLOT(startAllTorrents()));
+  connect(actionStart_All, SIGNAL(triggered()), BTSession, SLOT(resumeAllTorrents()));
   connect(actionPause, SIGNAL(triggered()), transferList, SLOT(pauseSelectedTorrents()));
-  connect(actionPause_All, SIGNAL(triggered()), transferList, SLOT(pauseAllTorrents()));
+  connect(actionPause_All, SIGNAL(triggered()), BTSession, SLOT(pauseAllTorrents()));
   connect(actionDelete, SIGNAL(triggered()), transferList, SLOT(deleteSelectedTorrents()));
   connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
