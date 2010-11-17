@@ -11,7 +11,8 @@ HEADERS +=    $$PWD/rss_imp.h \
               $$PWD/automatedrssdownloader.h \
               $$PWD/rsssettings.h \
               $$PWD/rssdownloadrule.h \
-              $$PWD/rssdownloadrulelist.h
+              $$PWD/rssdownloadrulelist.h \
+              $$PWD/cookiesdlg.h \
 
 SOURCES +=   $$PWD/rss_imp.cpp \
              $$PWD/rsssettingsdlg.cpp \
@@ -22,8 +23,10 @@ SOURCES +=   $$PWD/rss_imp.cpp \
              $$PWD/rssarticle.cpp \
              $$PWD/automatedrssdownloader.cpp \
              $$PWD/rssdownloadrule.cpp \
-             $$PWD/rssdownloadrulelist.cpp
+             $$PWD/rssdownloadrulelist.cpp \
+             $$PWD/cookiesdlg.cpp \
 
 FORMS +=   $$PWD/rss.ui \
            $$PWD/rsssettingsdlg.ui \
-           $$PWD/automatedrssdownloader.ui
+           $$PWD/automatedrssdownloader.ui \
+           $$PWD/cookiesdlg.ui

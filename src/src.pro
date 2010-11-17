@@ -306,7 +306,6 @@ contains(DEFINES, DISABLE_GUI) {
               torrentadditiondlg.h \
               trackerlogin.h \
               advancedsettings.h \
-              cookiesdlg.h \
               hidabletabwidget.h \
               sessionapplication.h \
               torrentimportdlg.h
@@ -365,7 +364,6 @@ include(tracker/tracker.pri)
            ui/console.ui \
            ui/peer.ui \
            ui/confirmdeletiondlg.ui \
-           ui/cookiesdlg.ui \
            ui/torrentimportdlg.ui
 }
 
@@ -380,7 +378,6 @@ SOURCES += main.cpp \
              options_imp.cpp \
              ico.cpp \
              transferlistwidget.cpp \
-             cookiesdlg.cpp \
              torrentadditiondlg.cpp \
              sessionapplication.cpp \
              torrentimportdlg.cpp
