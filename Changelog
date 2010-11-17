@@ -3,6 +3,7 @@
     torrent is really complete (closes #674349)
     - BUGFIX: Fix possible incorrect behavior with queueing
     - BUGFIX: Fix RSS refresh interval saving
+    - BUGFIX: Fix possible crash when setting RSS proxy (closes #676288)
 
 * Wed Nov 10 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.10
     - BUGFIX: Fix possible crash when selecting a RSS item (really closes #575624)
