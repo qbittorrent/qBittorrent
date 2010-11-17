@@ -73,8 +73,12 @@ void CookiesDlg::on_del_btn_clicked() {
 QList<QByteArray> CookiesDlg::getCookies() const {
   QList<QByteArray> ret;
   for(int i=0; i<ui->cookiesTable->rowCount(); ++i) {
-    QString key = ui->cookiesTable->item(i, COOKIE_KEY)->text().trimmed();
-    QString value = ui->cookiesTable->item(i, COOKIE_VALUE)->text().trimmed();
+    QString key;
+    if(ui->cookiesTable->item(i, COOKIE_KEY))
+      key = ui->cookiesTable->item(i, COOKIE_KEY)->text().trimmed();
+    QString value;
+    if(ui->cookiesTable->item(i, COOKIE_VALUE))
+      value = ui->cookiesTable->item(i, COOKIE_VALUE)->text().trimmed();
     if(!key.isEmpty() && !value.isEmpty()) {
       const QString raw_cookie = key+"="+value;
       qDebug("Cookie: %s", qPrintable(raw_cookie));
