@@ -3560,6 +3560,16 @@ Gostaria de instalar agora?</translation>
         <comment>i.e: Upload limit</comment>
         <translation type="unfinished">Limite de upload</translation>
     </message>
+    <message>
+        <source>Amount downloaded</source>
+        <comment>Amount of data downloaded (e.g. in MB)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Amount left</source>
+        <comment>Amount of data left to download (e.g. in MB)</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackerList</name>
