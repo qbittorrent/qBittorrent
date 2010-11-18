@@ -1915,7 +1915,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Проксі</translation>
+        <translation type="obsolete">Проксі</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2096,7 +2096,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP-спілкування (трекери, веб-сіди, пошуковики)</translation>
+        <translation type="obsolete">HTTP-спілкування (трекери, веб-сіди, пошуковики)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2104,7 +2104,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Спілкування пірів</translation>
+        <translation type="obsolete">Спілкування пірів</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2313,6 +2313,10 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Використовуйте %f, щоб передати шлях торрента як параметр</translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

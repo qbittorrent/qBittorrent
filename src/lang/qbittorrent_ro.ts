@@ -1789,7 +1789,7 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -1970,7 +1970,7 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP Communications (trackers, Web seeds, search engine)</translation>
+        <translation type="obsolete">HTTP Communications (trackers, Web seeds, search engine)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -1978,7 +1978,7 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Peer Communications</translation>
+        <translation type="obsolete">Peer Communications</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2186,6 +2186,10 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

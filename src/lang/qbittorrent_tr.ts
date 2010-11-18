@@ -1866,7 +1866,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Vekil</translation>
+        <translation type="obsolete">Vekil</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2048,7 +2048,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP İletişimi (izleyiciler, Web eşleri, arama motoru)</translation>
+        <translation type="obsolete">HTTP İletişimi (izleyiciler, Web eşleri, arama motoru)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2056,7 +2056,7 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Eş İletişimi</translation>
+        <translation type="obsolete">Eş İletişimi</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2267,6 +2267,10 @@ qBittorrent&apos;ten çıkmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

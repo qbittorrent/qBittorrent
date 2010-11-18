@@ -1920,7 +1920,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>代理服务器</translation>
+        <translation type="obsolete">代理服务器</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2101,7 +2101,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP通讯(跟踪器,网络种子,搜索引擎)</translation>
+        <translation type="obsolete">HTTP通讯(跟踪器,网络种子,搜索引擎)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2109,7 +2109,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>用户通讯</translation>
+        <translation type="obsolete">用户通讯</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2318,6 +2318,10 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>使用%f在参数中传输torrent路径</translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

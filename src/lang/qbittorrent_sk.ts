@@ -1915,7 +1915,7 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2096,7 +2096,7 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP komunikácia (trackery, web seedy, vyhľadávač)</translation>
+        <translation type="obsolete">HTTP komunikácia (trackery, web seedy, vyhľadávač)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2104,7 +2104,7 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Komunikácia s rovesníkmi</translation>
+        <translation type="obsolete">Komunikácia s rovesníkmi</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2313,6 +2313,10 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Pomocou %f môžete odovzdať v parametroch cestu k torrentu</translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

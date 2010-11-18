@@ -1725,7 +1725,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished">Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -1905,15 +1905,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Peer Communications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2122,6 +2114,10 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

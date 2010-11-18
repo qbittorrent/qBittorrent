@@ -1882,7 +1882,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2063,7 +2063,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>Połączenia HTTP (trackery, seedy www, wtyczki wyszukiwania)</translation>
+        <translation type="obsolete">Połączenia HTTP (trackery, seedy www, wtyczki wyszukiwania)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2071,7 +2071,7 @@ Czy napewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Połączenia z partnerami</translation>
+        <translation type="obsolete">Połączenia z partnerami</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2280,6 +2280,10 @@ Czy napewno zamknąć qBittorrent?</translation>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation type="unfinished">Użyj %f w celu przekazania ścieżki do torrenta w parametrach</translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

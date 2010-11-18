@@ -1916,7 +1916,7 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2097,7 +2097,7 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>Comunicações HTTP (trackers, Web seeds, mecanismo de busca)</translation>
+        <translation type="obsolete">Comunicações HTTP (trackers, Web seeds, mecanismo de busca)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2105,7 +2105,7 @@ Está certo que quer sair do qBittorrent?</translation>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Comunicações de Peer</translation>
+        <translation type="obsolete">Comunicações de Peer</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2314,6 +2314,10 @@ Está certo que quer sair do qBittorrent?</translation>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Use %f para passar o caminho do torrent em parâmetros</translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -2111,7 +2111,7 @@ Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
         <source>IP Filter</source>
@@ -2448,7 +2448,7 @@ QGroupBox {
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP komunikacije (trackeri, web seedovi, tražilice)</translation>
+        <translation type="obsolete">HTTP komunikacije (trackeri, web seedovi, tražilice)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2456,7 +2456,7 @@ QGroupBox {
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Peer komunikacije</translation>
+        <translation type="obsolete">Peer komunikacije</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2737,6 +2737,10 @@ QGroupBox {
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Koristi %f kako bi se prošlo putanjom torrenta u parametrima</translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

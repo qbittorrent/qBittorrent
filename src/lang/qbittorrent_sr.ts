@@ -1970,7 +1970,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Proxy</source>
-        <translation>Прокси</translation>
+        <translation type="obsolete">Прокси</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -2147,7 +2147,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation>HTTP Комуникације (пратиоци, Веб донори, претраживачки модул)</translation>
+        <translation type="obsolete">HTTP Комуникације (пратиоци, Веб донори, претраживачки модул)</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2155,7 +2155,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Peer Communications</source>
-        <translation>Peer (учесничке) Комуникације</translation>
+        <translation type="obsolete">Peer (учесничке) Комуникације</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2371,6 +2371,10 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Користи %f за пролаз торент путање у параметрима</translation>
+    </message>
+    <message>
+        <source>Proxy server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
