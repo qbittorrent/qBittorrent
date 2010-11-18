@@ -100,7 +100,7 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
 }
 
 void downloadThread::loadCookies(const QString &host_name, QString url) {
-  const QList<QByteArray> raw_cookies = RssSettings::getHostNameCookies(host_name);
+  const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(host_name);
   QNetworkCookieJar *cookie_jar = networkManager.cookieJar();
   QList<QNetworkCookie> cookies;
   qDebug("Loading cookies for host name: %s", qPrintable(host_name));

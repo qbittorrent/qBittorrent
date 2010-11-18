@@ -207,7 +207,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   // View settings
   actionTop_tool_bar->setChecked(pref.isToolbarDisplayed());
   actionSpeed_in_title_bar->setChecked(pref.speedInTitleBar());
-  actionRSS_Reader->setChecked(RssSettings::isRSSEnabled());
+  actionRSS_Reader->setChecked(RssSettings().isRSSEnabled());
   actionSearch_engine->setChecked(pref.isSearchEnabled());
   displaySearchTab(actionSearch_engine->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
@@ -1197,7 +1197,7 @@ void MainWindow::on_actionSpeed_in_title_bar_triggered() {
 }
 
 void MainWindow::on_actionRSS_Reader_triggered() {
-  RssSettings::setRSSEnabled(actionRSS_Reader->isChecked());
+  RssSettings().setRSSEnabled(actionRSS_Reader->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
 }
 
