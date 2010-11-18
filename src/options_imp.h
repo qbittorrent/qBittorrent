@@ -96,20 +96,13 @@ protected:
   int getEncryptionSetting() const;
   float getMaxRatio() const;
   // Proxy options
-  QString getHTTPProxyIp() const;
-  unsigned short getHTTPProxyPort() const;
-  QString getHTTPProxyUsername() const;
-  QString getHTTPProxyPassword() const;
-  int getHTTPProxyType() const;
-  bool isPeerProxyEnabled() const;
-  bool isHTTPProxyEnabled() const;
-  bool isPeerProxyAuthEnabled() const;
-  bool isHTTPProxyAuthEnabled() const;
-  QString getPeerProxyIp() const;
-  unsigned short getPeerProxyPort() const;
-  QString getPeerProxyUsername() const;
-  QString getPeerProxyPassword() const;
-  int getPeerProxyType() const;
+  bool isProxyEnabled() const;
+  bool isProxyAuthEnabled() const;
+  QString getProxyIp() const;
+  unsigned short getProxyPort() const;
+  QString getProxyUsername() const;
+  QString getProxyPassword() const;
+  int getProxyType() const;
   // IP Filter
   bool isFilteringEnabled() const;
   QString getFilter() const;
@@ -126,10 +119,8 @@ protected:
 protected slots:
   void enableUploadLimit(bool checked);
   void enableDownloadLimit(bool checked);
-  void enablePeerProxy(int comboIndex);
-  void enablePeerProxyAuth(bool checked);
-  void enableHTTPProxy(int comboIndex);
-  void enableHTTPProxyAuth(bool checked);
+  void enableProxy(int comboIndex);
+  void enableProxyAuth(bool checked);
   void enableMaxConnecsLimit(bool checked);
   void enableMaxConnecsLimitPerTorrent(bool checked);
   void enableMaxUploadsLimitPerTorrent(bool checked);

@@ -517,20 +517,20 @@ void QBtSession::configureSession() {
   }
   // * Proxy settings
   proxy_settings proxySettings;
-  if(pref.isPeerProxyEnabled()) {
+  if(pref.isProxyEnabled()) {
     qDebug("Enabling P2P proxy");
-    proxySettings.hostname = pref.getPeerProxyIp().toStdString();
+    proxySettings.hostname = pref.getProxyIp().toStdString();
     qDebug("hostname is %s", proxySettings.hostname.c_str());
-    proxySettings.port = pref.getPeerProxyPort();
+    proxySettings.port = pref.getProxyPort();
     qDebug("port is %d", proxySettings.port);
-    if(pref.isPeerProxyAuthEnabled()) {
-      proxySettings.username = pref.getPeerProxyUsername().toStdString();
-      proxySettings.password = pref.getPeerProxyPassword().toStdString();
+    if(pref.isProxyAuthEnabled()) {
+      proxySettings.username = pref.getProxyUsername().toStdString();
+      proxySettings.password = pref.getProxyPassword().toStdString();
       qDebug("username is %s", proxySettings.username.c_str());
       qDebug("password is %s", proxySettings.password.c_str());
     }
   }
-  switch(pref.getPeerProxyType()) {
+  switch(pref.getProxyType()) {
   case Proxy::HTTP:
     qDebug("type: http");
     proxySettings.type = proxy_settings::http;
@@ -552,39 +552,7 @@ void QBtSession::configureSession() {
   default:
     proxySettings.type = proxy_settings::none;
   }
-  setPeerProxySettings(proxySettings);
-  // HTTP Proxy
-  proxy_settings http_proxySettings;
-  qDebug("HTTP Communications proxy type: %d", pref.getHTTPProxyType());
-  switch(pref.getHTTPProxyType()) {
-  case Proxy::HTTP_PW:
-    http_proxySettings.type = proxy_settings::http_pw;
-    http_proxySettings.username = pref.getHTTPProxyUsername().toStdString();
-    http_proxySettings.password = pref.getHTTPProxyPassword().toStdString();
-    http_proxySettings.hostname = pref.getHTTPProxyIp().toStdString();
-    http_proxySettings.port = pref.getHTTPProxyPort();
-    break;
-  case Proxy::HTTP:
-    http_proxySettings.type = proxy_settings::http;
-    http_proxySettings.hostname = pref.getHTTPProxyIp().toStdString();
-    http_proxySettings.port = pref.getHTTPProxyPort();
-    break;
-  case Proxy::SOCKS5:
-    http_proxySettings.type = proxy_settings::socks5;
-    http_proxySettings.hostname = pref.getHTTPProxyIp().toStdString();
-    http_proxySettings.port = pref.getHTTPProxyPort();
-    break;
-  case Proxy::SOCKS5_PW:
-    http_proxySettings.type = proxy_settings::socks5_pw;
-    http_proxySettings.username = pref.getHTTPProxyUsername().toStdString();
-    http_proxySettings.password = pref.getHTTPProxyPassword().toStdString();
-    http_proxySettings.hostname = pref.getHTTPProxyIp().toStdString();
-    http_proxySettings.port = pref.getHTTPProxyPort();
-    break;
-  default:
-    http_proxySettings.type = proxy_settings::none;
-  }
-  setHTTPProxySettings(http_proxySettings);
+  setProxySettings(proxySettings);
   // Tracker
   if(pref.isTrackerEnabled()) {
     if(!m_tracker) {
@@ -1890,15 +1858,10 @@ void QBtSession::setSessionSettings(const session_settings &sessionSettings) {
 }
 
 // Set Proxy
-void QBtSession::setPeerProxySettings(const proxy_settings &proxySettings) {
-  qDebug("Set Peer Proxy settings");
-  s->set_peer_proxy(proxySettings);
-  s->set_dht_proxy(proxySettings);
-}
-
-void QBtSession::setHTTPProxySettings(const proxy_settings &proxySettings) {
-  s->set_tracker_proxy(proxySettings);
-  s->set_web_seed_proxy(proxySettings);
+void QBtSession::setProxySettings(const proxy_settings &proxySettings) {
+  qDebug() << Q_FUNC_INFO;
+  s->set_proxy(proxySettings);
+  // Define environment variable
   QString proxy_str;
   switch(proxySettings.type) {
   case proxy_settings::http_pw:

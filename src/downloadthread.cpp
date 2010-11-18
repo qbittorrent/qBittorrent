@@ -177,31 +177,26 @@ void downloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) 
 
 void downloadThread::applyProxySettings() {
   QNetworkProxy proxy;
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  int intValue = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt();
-  if(intValue > 0) {
+  const Preferences pref;
+  if(pref.isProxyEnabled()) {
     // Proxy enabled
-    QString IP = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
-    proxy.setHostName(IP);
-    QString port = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toString();
-    qDebug("Using proxy: %s", qPrintable(IP));
-    proxy.setPort(port.toUShort());
+    proxy.setHostName(pref.getProxyIp());
+    proxy.setPort(pref.getProxyPort());
     // Default proxy type is HTTP, we must change if it is SOCKS5
-    if(intValue == Proxy::SOCKS5 || intValue == Proxy::SOCKS5_PW) {
-      qDebug("Proxy is SOCKS5, not HTTP");
+    const int proxy_type = pref.getProxyType();
+    if(proxy_type == Proxy::SOCKS5 || proxy_type == Proxy::SOCKS5_PW) {
+      qDebug() << Q_FUNC_INFO << "using SOCKS proxy";
       proxy.setType(QNetworkProxy::Socks5Proxy);
     } else {
+      qDebug() << Q_FUNC_INFO << "using HTTP proxy";
       proxy.setType(QNetworkProxy::HttpProxy);
     }
     // Authentication?
-    if(intValue > 2) {
+    if(pref.isProxyAuthEnabled()) {
       qDebug("Proxy requires authentication, authenticating");
-      QString username = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), QString()).toString();
-      proxy.setUser(username);
-      QString password = settings.value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), QString()).toString();
-      proxy.setPassword(password);
+      proxy.setUser(pref.getProxyUsername());
+      proxy.setPassword(pref.getProxyPassword());
     }
-
   } else {
     proxy.setType(QNetworkProxy::NoProxy);
   }

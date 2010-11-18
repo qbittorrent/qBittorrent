@@ -234,29 +234,17 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     pref.setEncryptionSetting(m["encryption"].toInt());
   // Proxy
   if(m.contains("proxy_type"))
-    pref.setPeerProxyType(m["proxy_type"].toInt());
+    pref.setProxyType(m["proxy_type"].toInt());
   if(m.contains("proxy_ip"))
-    pref.setPeerProxyIp(m["proxy_ip"].toString());
+    pref.setProxyIp(m["proxy_ip"].toString());
   if(m.contains("proxy_port"))
-    pref.setPeerProxyPort(m["proxy_port"].toUInt());
+    pref.setProxyPort(m["proxy_port"].toUInt());
   if(m.contains("proxy_auth_enabled"))
-    pref.setPeerProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
+    pref.setProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
   if(m.contains("proxy_username"))
-    pref.setPeerProxyUsername(m["proxy_username"].toString());
+    pref.setProxyUsername(m["proxy_username"].toString());
   if(m.contains("proxy_password"))
-    pref.setPeerProxyPassword(m["proxy_password"].toString());
-  if(m.contains("http_proxy_type"))
-    pref.setHTTPProxyType(m["http_proxy_type"].toInt());
-  if(m.contains("http_proxy_ip"))
-    pref.setHTTPProxyIp(m["http_proxy_ip"].toString());
-  if(m.contains("http_proxy_port"))
-    pref.setHTTPProxyPort(m["http_proxy_port"].toUInt());
-  if(m.contains("http_proxy_auth_enabled"))
-    pref.setHTTPProxyAuthEnabled(m["http_proxy_auth_enabled"].toBool());
-  if(m.contains("http_proxy_username"))
-    pref.setHTTPProxyUsername(m["http_proxy_username"].toString());
-  if(m.contains("http_proxy_password"))
-    pref.setHTTPProxyPassword(m["http_proxy_password"].toString());
+    pref.setProxyPassword(m["proxy_password"].toString());
   // IP Filter
   if(m.contains("ip_filter_enabled"))
     pref.setFilteringEnabled(m["ip_filter_enabled"].toBool());
@@ -320,18 +308,12 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["lsd"] = pref.isLSDEnabled();
   data["encryption"] = pref.getEncryptionSetting();
   // Proxy
-  data["proxy_type"] = pref.getPeerProxyType();
-  data["proxy_ip"] = pref.getPeerProxyIp();
-  data["proxy_port"] = pref.getPeerProxyPort();
-  data["proxy_auth_enabled"] = pref.isPeerProxyAuthEnabled();
-  data["proxy_username"] = pref.getPeerProxyUsername();
-  data["proxy_password"] = pref.getPeerProxyPassword();
-  data["http_proxy_type"] = pref.getHTTPProxyType();
-  data["http_proxy_ip"] = pref.getHTTPProxyIp();
-  data["http_proxy_port"] = pref.getHTTPProxyPort();
-  data["http_proxy_auth_enabled"] = pref.isHTTPProxyAuthEnabled();
-  data["http_proxy_username"] = pref.getHTTPProxyUsername();
-  data["http_proxy_password"] = pref.getHTTPProxyPassword();
+  data["proxy_type"] = pref.getProxyType();
+  data["proxy_ip"] = pref.getProxyIp();
+  data["proxy_port"] = pref.getProxyPort();
+  data["proxy_auth_enabled"] = pref.isProxyAuthEnabled();
+  data["proxy_username"] = pref.getProxyUsername();
+  data["proxy_password"] = pref.getProxyPassword();
   // IP Filter
   data["ip_filter_enabled"] = pref.isFilteringEnabled();
   data["ip_filter_path"] = pref.getFilter();

@@ -133,8 +133,7 @@ public slots:
   void setUploadRateLimit(long rate);
   void setMaxRatio(float ratio);
   void setDHTPort(int dht_port);
-  void setPeerProxySettings(const proxy_settings &proxySettings);
-  void setHTTPProxySettings(const proxy_settings &proxySettings);
+  void setProxySettings(const proxy_settings &proxySettings);
   void setSessionSettings(const session_settings &sessionSettings);
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);

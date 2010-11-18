@@ -423,107 +423,55 @@ public:
   }
 
   // Proxy options
-  bool isHTTPProxyEnabled() const {
-    return value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt() > 0;
-  }
-
-  bool isHTTPProxyAuthEnabled() const {
-    return value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Authentication"), false).toBool();
-  }
-
-  void setHTTPProxyAuthEnabled(bool enabled) {
-    setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Authentication"), enabled);
-  }
-
-  QString getHTTPProxyIp() const {
-    return value(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), "0.0.0.0").toString();
-  }
-
-  void setHTTPProxyIp(const QString &ip) {
-    setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/IP"), ip);
-  }
-
-  unsigned short getHTTPProxyPort() const {
-    return value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), 8080).toInt();
-  }
-
-  void setHTTPProxyPort(unsigned short port) {
-    setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Port"), port);
-  }
-
-  QString getHTTPProxyUsername() const {
-    return value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), QString()).toString();
-  }
-
-  void setHTTPProxyUsername(const QString &username) {
-    setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Username"), username);
-  }
-
-  QString getHTTPProxyPassword() const {
-    return value(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), QString()).toString();
-  }
-
-  void setHTTPProxyPassword(const QString &password) {
-    setValue(QString::fromUtf8("Preferences/Connection/HTTPProxy/Password"), password);
-  }
-
-  int getHTTPProxyType() const {
-    return value(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), 0).toInt();
-  }
-
-  void setHTTPProxyType(int type) {
-    setValue(QString::fromUtf8("Preferences/Connection/HTTPProxyType"), type);
-  }
-
-  bool isPeerProxyEnabled() const {
+  bool isProxyEnabled() const {
     return value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt() > 0;
   }
 
-  bool isPeerProxyAuthEnabled() const {
+  bool isProxyAuthEnabled() const {
     return value(QString::fromUtf8("Preferences/Connection/Proxy/Authentication"), false).toBool();
   }
 
-  void setPeerProxyAuthEnabled(bool enabled) {
+  void setProxyAuthEnabled(bool enabled) {
     setValue(QString::fromUtf8("Preferences/Connection/Proxy/Authentication"), enabled);
   }
 
-  QString getPeerProxyIp() const {
+  QString getProxyIp() const {
     return value(QString::fromUtf8("Preferences/Connection/Proxy/IP"), "0.0.0.0").toString();
   }
 
-  void setPeerProxyIp(const QString &ip) {
+  void setProxyIp(const QString &ip) {
     setValue(QString::fromUtf8("Preferences/Connection/Proxy/IP"), ip);
   }
 
-  unsigned short getPeerProxyPort() const {
+  unsigned short getProxyPort() const {
     return value(QString::fromUtf8("Preferences/Connection/Proxy/Port"), 8080).toInt();
   }
 
-  void setPeerProxyPort(unsigned short port) {
+  void setProxyPort(unsigned short port) {
     setValue(QString::fromUtf8("Preferences/Connection/Proxy/Port"), port);
   }
 
-  QString getPeerProxyUsername() const {
+  QString getProxyUsername() const {
     return value(QString::fromUtf8("Preferences/Connection/Proxy/Username"), QString()).toString();
   }
 
-  void setPeerProxyUsername(const QString &username) {
+  void setProxyUsername(const QString &username) {
     setValue(QString::fromUtf8("Preferences/Connection/Proxy/Username"), username);
   }
 
-  QString getPeerProxyPassword() const {
+  QString getProxyPassword() const {
     return value(QString::fromUtf8("Preferences/Connection/Proxy/Password"), QString()).toString();
   }
 
-  void setPeerProxyPassword(const QString &password) {
+  void setProxyPassword(const QString &password) {
     setValue(QString::fromUtf8("Preferences/Connection/Proxy/Password"), password);
   }
 
-  int getPeerProxyType() const {
+  int getProxyType() const {
     return value(QString::fromUtf8("Preferences/Connection/ProxyType"), 0).toInt();
   }
 
-  void setPeerProxyType(int type) {
+  void setProxyType(int type) {
     setValue(QString::fromUtf8("Preferences/Connection/ProxyType"), type);
   }
 
