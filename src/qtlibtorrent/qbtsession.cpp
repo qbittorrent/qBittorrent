@@ -1185,6 +1185,8 @@ add_torrent_params QBtSession::initializeAddTorrentParams(QString hash) {
     p.seed_mode=true;
   else
     p.seed_mode=false;
+#else
+  Q_UNUSED(hash);
 #endif
 
   // Preallocation mode

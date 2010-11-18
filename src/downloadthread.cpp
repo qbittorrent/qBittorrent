@@ -37,7 +37,9 @@
 
 #include "downloadthread.h"
 #include "preferences.h"
-#include "rsssettings.h"
+#ifndef DISABLE_GUI
+  #include "rsssettings.h"
+#endif
 #include "qinisettings.h"
 
 /** Download Thread **/
@@ -99,6 +101,7 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
   reply->deleteLater();
 }
 
+#ifndef DISABLE_GUI
 void downloadThread::loadCookies(const QString &host_name, QString url) {
   const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(host_name);
   QNetworkCookieJar *cookie_jar = networkManager.cookieJar();
@@ -114,12 +117,15 @@ void downloadThread::loadCookies(const QString &host_name, QString url) {
   cookie_jar->setCookiesFromUrl(cookies, url);
   networkManager.setCookieJar(cookie_jar);
 }
+#endif
 
-void downloadThread::downloadTorrentUrl(QString url){
+void downloadThread::downloadTorrentUrl(QString url) {
+#ifndef DISABLE_GUI
   // Load cookies
   QString host_name = QUrl::fromEncoded(url.toLocal8Bit()).host();
   if(!host_name.isEmpty())
     loadCookies(host_name, url);
+#endif
   // Process request
   QNetworkReply *reply = downloadUrl(url);
   connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
@@ -128,10 +134,12 @@ void downloadThread::downloadTorrentUrl(QString url){
 QNetworkReply* downloadThread::downloadUrl(QString url){
   // Update proxy settings
   applyProxySettings();
+#ifndef DISABLE_GUI
   // Load cookies
   QString host_name = QUrl::fromEncoded(url.toLocal8Bit()).host();
   if(!host_name.isEmpty())
     loadCookies(host_name, url);
+#endif
   // Process download request
   qDebug("url is %s", qPrintable(url));
   const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
