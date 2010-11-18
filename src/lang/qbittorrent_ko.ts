@@ -258,124 +258,124 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="265"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="266"/>
         <source>New rule name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="265"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="266"/>
         <source>Please type the name of the new download rule.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="269"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="384"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="270"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
         <source>Rule name conflict</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="269"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="384"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="270"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="287"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="288"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="289"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="290"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="290"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="291"/>
         <source>Rule deletion confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="306"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="307"/>
         <source>Destination directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="314"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="315"/>
         <source>Invalid action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="314"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="315"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="318"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="319"/>
         <source>Where would you like to save the list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="318"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="319"/>
         <source>Rules list (*.rssrules)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="323"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="324"/>
         <source>I/O Error</source>
         <translation type="unfinished">I/O 에러</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="323"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="324"/>
         <source>Failed to create the destination file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="331"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
         <source>Please point to the RSS download rules file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="331"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
         <source>Rules list (*.rssrules *.filters)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="335"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
         <source>Import Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="335"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
         <source>Failed to import the selected rules file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="346"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="347"/>
         <source>Add new rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="352"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>Delete rule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="354"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="355"/>
         <source>Rename rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="356"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Delete selected rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="380"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="381"/>
         <source>Rule renaming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="380"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="381"/>
         <source>Please type the new rule name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -579,22 +579,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CookiesDlg</name>
     <message>
-        <location filename="../ui/cookiesdlg.ui" line="14"/>
+        <location filename="../rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/cookiesdlg.ui" line="36"/>
+        <location filename="../rss/cookiesdlg.ui" line="36"/>
         <source>Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/cookiesdlg.ui" line="41"/>
+        <location filename="../rss/cookiesdlg.ui" line="41"/>
         <source>Value</source>
         <translation type="unfinished">값</translation>
     </message>
     <message>
-        <location filename="../cookiesdlg.cpp" line="43"/>
+        <location filename="../rss/cookiesdlg.cpp" line="43"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translation type="unfinished"></translation>
@@ -3407,111 +3407,111 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="192"/>
+        <location filename="../rss/rss_imp.cpp" line="193"/>
         <source>Please type a rss stream url</source>
         <translation>RSS 스트림 주소(url)를 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="192"/>
+        <location filename="../rss/rss_imp.cpp" line="193"/>
         <source>Stream URL:</source>
         <translation>스트림 URL:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="226"/>
-        <location filename="../rss/rss_imp.cpp" line="230"/>
+        <location filename="../rss/rss_imp.cpp" line="227"/>
+        <location filename="../rss/rss_imp.cpp" line="231"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>재확인 해주십시요? -- 큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="227"/>
-        <location filename="../rss/rss_imp.cpp" line="231"/>
+        <location filename="../rss/rss_imp.cpp" line="228"/>
+        <location filename="../rss/rss_imp.cpp" line="232"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="227"/>
-        <location filename="../rss/rss_imp.cpp" line="231"/>
+        <location filename="../rss/rss_imp.cpp" line="228"/>
+        <location filename="../rss/rss_imp.cpp" line="232"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="138"/>
+        <location filename="../rss/rss_imp.cpp" line="139"/>
         <source>Please choose a folder name</source>
         <translation>폴더 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="138"/>
+        <location filename="../rss/rss_imp.cpp" line="139"/>
         <source>Folder name:</source>
         <translation>폴도 이름:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="138"/>
+        <location filename="../rss/rss_imp.cpp" line="139"/>
         <source>New folder</source>
         <translation>새 폴더</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="159"/>
+        <location filename="../rss/rss_imp.cpp" line="160"/>
         <source>Overwrite attempt</source>
         <translation>덮어쓰기 시도</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="160"/>
+        <location filename="../rss/rss_imp.cpp" line="161"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>%1 아이템은 덮어쓸수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="197"/>
+        <location filename="../rss/rss_imp.cpp" line="198"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="198"/>
+        <location filename="../rss/rss_imp.cpp" line="199"/>
         <source>This rss feed is already in the list.</source>
         <translation>이 RSS 피드는 이미 리스트에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="226"/>
+        <location filename="../rss/rss_imp.cpp" line="227"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>이 목록에서 이 자료들을 지우싶으십니까?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="230"/>
+        <location filename="../rss/rss_imp.cpp" line="231"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>이 목록에서 이 자료를 지우싶으십니까?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="338"/>
+        <location filename="../rss/rss_imp.cpp" line="339"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>RSS 피드에 쓸 새 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="338"/>
+        <location filename="../rss/rss_imp.cpp" line="339"/>
         <source>New feed name:</source>
         <translation>새 피드 이름:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="342"/>
+        <location filename="../rss/rss_imp.cpp" line="343"/>
         <source>Name already in use</source>
         <translation>이 이름은 이미 사용중에 있음</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="342"/>
+        <location filename="../rss/rss_imp.cpp" line="343"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>이 이름은 이미 다른 아이템이 사용하고 있습니다. 다른 이름을 사용하십시오.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="495"/>
+        <location filename="../rss/rss_imp.cpp" line="496"/>
         <source>Date: </source>
         <translation>날짜: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="498"/>
+        <location filename="../rss/rss_imp.cpp" line="499"/>
         <source>Author: </source>
         <translation>작성자: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="541"/>
+        <location filename="../rss/rss_imp.cpp" line="542"/>
         <source>Unread</source>
         <translation>안 읽음</translation>
     </message>
