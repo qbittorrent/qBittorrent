@@ -150,170 +150,170 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazovať bublinové upozornenia programu</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť zabudovaný tracker</translation>
     </message>
     <message>
         <source>Embedded tracker port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port zabudovaného trackera</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Automated RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatické sťahovanie RSS</translation>
     </message>
     <message>
         <source>Enable the automated RSS downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť automatické sťahovanie RSS</translation>
     </message>
     <message>
         <source>Download rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravidlá sťahovania</translation>
     </message>
     <message>
         <source>Rule definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Definícia pravidla</translation>
     </message>
     <message>
         <source>Must contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Musí obsahovať:</translation>
     </message>
     <message>
         <source>Must not contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesmie obsahovať:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Assign label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Priradiť označenie</translation>
     </message>
     <message>
         <source>Apply rule to feeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť pravidlo na kanáy:</translation>
     </message>
     <message>
         <source>Matching RSS articles</source>
-        <translation type="unfinished"></translation>
+        <translation>Zodpovedajúce RSS články</translation>
     </message>
     <message>
         <source>Save to a different directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť do iného adresára</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť do:</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation type="unfinished">Import...</translation>
+        <translation>Importovať...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished">Export...</translation>
+        <translation>Exportovať...</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový názov pravidla</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Konflikt v názvoch pravidel</translation>
     </message>
     <message>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravidlo s týmto názvom už existuje. Prosím, zvoľte iný názov.</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete odstrániť pravidlo sťahovania s názvom %1?</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete odstrániť vybrané pravidlá sťahovania?</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie zmazania pravidla</translation>
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieľový adresár</translation>
     </message>
     <message>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatná operácia</translation>
     </message>
     <message>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoznam je prázdny, niet čo exportovať.</translation>
     </message>
     <message>
         <source>Where would you like to save the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kam chcete uložiť tento súbor?</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoznam pravidiel (*.rssrules)</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>V/V Chyba</translation>
     </message>
     <message>
         <source>Failed to create the destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa vytvoriť cieľový súbor</translation>
     </message>
     <message>
         <source>Please point to the RSS download rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte súbor s pravidlami sťahovania RSS</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules *.filters)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoznam pravidiel (*.rssrules *.filters)</translation>
     </message>
     <message>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba importu</translation>
     </message>
     <message>
         <source>Failed to import the selected rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa importovať vybraný súbor pravidiel</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nové pravidlo...</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať pravidlo</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Premenovať pravidlo...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať vybrané pravidlá</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished"></translation>
+        <translation>Premenovanie pravidiel</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napíšte názov nového pravidla</translation>
     </message>
 </context>
 <context>
@@ -795,12 +795,12 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished">RSS kanály
+        <translation>RSS kanály
 </translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished">Neprečítané</translation>
+        <translation>Neprečítané</translation>
     </message>
 </context>
 <context>
@@ -985,20 +985,21 @@ Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dostupná novšia verzia</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent má novú verziu dostupnú zo Sourceforge.
+Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie je možné aktualizovať qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
     </message>
 </context>
 <context>
@@ -1578,205 +1579,205 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť qBittorrent po dokončení sťahovaní</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukončiť</translation>
     </message>
     <message>
         <source>Import torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať torrent...</translation>
     </message>
     <message>
         <source>Donate money</source>
-        <translation type="unfinished"></translation>
+        <translation>Venovať peniaze</translation>
     </message>
     <message>
         <source>If you like qBittorrent, please donate!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak sa vám qBittorrent páči, prosím, prispejte!</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished">Nastaviť heslo...</translation>
+        <translation>Nastaviť heslo...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Prenosy</translation>
+        <translation>Prenosy</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished">Asociácia typu súboru .torrent</translation>
+        <translation>Asociácia typu súboru .torrent</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished">qBittorrent nie je predvolená aplikácia na otváranie súborov torrent a odkazov Magnet.
-Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation>
+        <translation>qBittorrent nie je predvolená aplikácia na otváranie súborov torrent a odkazov Magnet.
+Chcete asociovať qBittorrent so súbormi torrent a odkazmi Magnet?</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation type="unfinished">Heslo na zamknutie používateľského rozhrania</translation>
+        <translation>Heslo na zamknutie používateľského rozhrania</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished">Prosím, napíšte heslo na zamknutie používateľského rozhrania:</translation>
+        <translation>Prosím, napíšte heslo na zamknutie používateľského rozhrania:</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished">Aktualizovať heslo</translation>
+        <translation>Aktualizovať heslo</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished">Heslo na zamknutie používateľského rozhrania bolo úspešne aktualizované</translation>
+        <translation>Heslo na zamknutie používateľského rozhrania bolo úspešne aktualizované</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Vyhľadávanie</translation>
+        <translation>Vyhľadávanie</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished">Prenosy (%1)</translation>
+        <translation>Prenosy (%1)</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished">Dokončenie sťahovnia</translation>
+        <translation>Dokončenie sťahovnia</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished">%1 je stiahnutý.</translation>
+        <translation>%1 je stiahnutý.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished"></translation>
+        <translation>V/V Chyba</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished">Vyskytla sa V/V chyba pri torrente %1.
+        <translation>Vyskytla sa V/V chyba pri torrente %1.
  Dôvod: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished">Alt+1</translation>
+        <translation>Alt+1</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished">Ctrl+F</translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished">Potvrdenie rekurzívneho sťahovania</translation>
+        <translation>Potvrdenie rekurzívneho sťahovania</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished">Torrent %1 obsahuje ďalšie súbory torrent. Chcete začať sťahovať aj tie?</translation>
+        <translation>Torrent %1 obsahuje ďalšie súbory torrent. Chcete začať sťahovať aj tie?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Áno</translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Nikdy</translation>
+        <translation>Nikdy</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation type="unfinished">Chyba sťahovania url</translation>
+        <translation>Chyba sťahovania url</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished">Nebolo možné stiahnuť súbor z url: %1, dôvod: %2.</translation>
+        <translation>Nebolo možné stiahnuť súbor z url: %1, dôvod: %2.</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished">Globálne rýchlostné obmedzenie nahrávania</translation>
+        <translation>Globálne rýchlostné obmedzenie nahrávania</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished">Globálne rýchlostné obmedzenie sťahovania</translation>
+        <translation>Globálne rýchlostné obmedzenie sťahovania</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished">Neplatné heslo</translation>
+        <translation>Neplatné heslo</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished">Heslo nie je platné</translation>
+        <translation>Heslo nie je platné</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished">Ukončuje sa qBittorrent</translation>
+        <translation>Ukončuje sa qBittorrent</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished">Niektoré súbory sa práve prenášajú.
+        <translation>Niektoré súbory sa práve prenášajú.
 Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished">Vždy</translation>
+        <translation>Vždy</translation>
     </message>
     <message>
         <source>Open Torrent Files</source>
-        <translation type="unfinished">Otvoriť torrent súbory</translation>
+        <translation>Otvoriť torrent súbory</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished">Torrent súbory</translation>
+        <translation>Torrent súbory</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Nastavenia boli úspešne uložené.</translation>
+        <translation>Nastavenia boli úspešne uložené.</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished">Rýchlosť sťahovania: %1 KiB/s</translation>
+        <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished">Rýchlosť nahrávania: %1 KiB/s</translation>
+        <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
+        <translation>qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
     </message>
 </context>
 <context>
@@ -2316,19 +2317,19 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy server</translation>
     </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa vytvoriť súbor %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa stiahnuť aktualizáciu z %1</translation>
     </message>
 </context>
 <context>
@@ -2355,30 +2356,30 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     <message>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ziešané</translation>
     </message>
 </context>
 <context>
     <name>PropTabBar</name>
     <message>
         <source>General</source>
-        <translation type="unfinished">Všeobecné</translation>
+        <translation>Všeobecné</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished">Trackery</translation>
+        <translation>Trackery</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Rovesníci</translation>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>URL seedy</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished">Súbory</translation>
+        <translation>Súbory</translation>
     </message>
 </context>
 <context>
@@ -2588,247 +2589,247 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     <name>QBtSession</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">%1 dosiahol maximálny požadovaný pomer.</translation>
+        <translation>%1 dosiahol maximálny požadovaný pomer.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished">Odstraňuje sa torrent %1...</translation>
+        <translation>Odstraňuje sa torrent %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished">Pozastavuje sa torrent %1...</translation>
+        <translation>Pozastavuje sa torrent %1...</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent sa viaže na port: TCP/%1</translation>
+        <translation>qBittorrent sa viaže na port: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">Podpora UPnP [zapnutá]</translation>
+        <translation>Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">Podpora UPnP [vypnutá]</translation>
+        <translation>Podpora UPnP [vypnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">Podpora NAT-PMP [zapnutá]</translation>
+        <translation>Podpora NAT-PMP [zapnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">Podpora NAT-PMP [vypnutá]</translation>
+        <translation>Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">HTTP user agent je %1</translation>
+        <translation>HTTP user agent je %1</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished">Používa sa veľkosť vyrovnávacej diskovej pamäte %1 MiB</translation>
+        <translation>Používa sa veľkosť diskovej vyrovnávacej pamäte %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">Podpora DHT [ZAP], port: UDP/%1</translation>
+        <translation>Podpora DHT [ZAP], port: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">Podpora DHT [vypnutá]</translation>
+        <translation>Podpora DHT [vypnutá]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">Podpora PeX [zapnutá]</translation>
+        <translation>Podpora PeX [zapnutá]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished">Podpora PeX [VYP]</translation>
+        <translation>Podpora PeX [VYP]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished">Na prepnutie podpory PeX je potrebný reštart</translation>
+        <translation>Na prepnutie podpory PeX je potrebný reštart</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">Local Peer Discovery [zapnutá]</translation>
+        <translation>Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">Podpora Local Peer Discovery support [vypnutá]</translation>
+        <translation>Podpora Local Peer Discovery support [vypnutá]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">Podpora šifrovania [zapnuté]</translation>
+        <translation>Podpora šifrovania [zapnuté]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">Podpora šifrovania [vynútené]</translation>
+        <translation>Podpora šifrovania [vynútené]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">Podpora šifrovania [vypnuté]</translation>
+        <translation>Podpora šifrovania [vypnuté]</translation>
     </message>
     <message>
         <source>Embedded Tracker [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Zabudovaný tracker [zapnuté]</translation>
     </message>
     <message>
         <source>Failed to start the embedded tracker!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa spustiť zabudovaný tracker!</translation>
     </message>
     <message>
         <source>Embedded Tracker [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Zabudovaný tracker [vypnuté]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished">Webové rozhranie počúva na porte %1</translation>
+        <translation>Webové rozhranie počúva na porte %1</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished">Chyba webového rozhrania - nepodaril sa bind webového rozhrania na port %1</translation>
+        <translation>Chyba webového rozhrania - nepodaril sa bind webového rozhrania na port %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">„%1“ bol odstránený zo zoznamu sťahovaných a z pevného disku.</translation>
+        <translation>„%1“ bol odstránený zo zoznamu sťahovaných a z pevného disku.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">„%1“ bol odstránený zo zoznamu sťahovaných.</translation>
+        <translation>„%1“ bol odstránený zo zoznamu sťahovaných.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">„%1“ nie je platný magnet URI.</translation>
+        <translation>„%1“ nie je platný magnet URI.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">„%1“ sa už nachádza v zozname sťahovaných.</translation>
+        <translation>„%1“ sa už nachádza v zozname sťahovaných.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">„%1“ bol obnovený. (rýchle obnovenie)</translation>
+        <translation>„%1“ bol obnovený. (rýchle obnovenie)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
+        <translation>„%1“ bol pridaný do zoznamu na sťahovanie.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Nepodarilo sa dekódovať torrent súbor: „%1“</translation>
+        <translation>Nepodarilo sa dekódovať torrent súbor: „%1“</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Tento súbor je buď poškodený alebo to nie je torrent.</translation>
+        <translation>Tento súbor je buď poškodený alebo to nie je torrent.</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished">Chyba: Torrent %1 neobsahuje žiaden súbor.</translation>
+        <translation>Chyba: Torrent %1 neobsahuje žiaden súbor.</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">Pozn.: Do existujúceho torrentu boli pridané nové trackery.</translation>
+        <translation>Pozn.: Do existujúceho torrentu boli pridané nové trackery.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">Pozn.: Do existujúceho torrentu boli pridané nové URL seedy.</translation>
+        <translation>Pozn.: Do existujúceho torrentu boli pridané nové URL seedy.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokoval váš filter IP adries&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokovaný kvôli posielaniu poškodených častí&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
+        <translation>Rekurzívne sťahovanie súboru %1 vnoreného v torrente %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Nepodarilo sa dekódovať torrent súbor %1.</translation>
+        <translation>Nepodarilo sa dekódovať torrent súbor %1.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished">Názov torrentu: %1</translation>
+        <translation>Názov torrentu: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished">Veľkosť torrentu: %1</translation>
+        <translation>Veľkosť torrentu: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť do: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">Torrent bol stiahnutý za %1.</translation>
+        <translation>Torrent bol stiahnutý za %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">Ďakujeme, že používate qBittorrent.</translation>
+        <translation>Ďakujeme, že používate qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] sťahovanie %1 bolo dokončené</translation>
+        <translation>[qBittorrent] sťahovanie %1 bolo dokončené</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished">Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
+        <translation>Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished">Dôvod: %1</translation>
+        <translation>Dôvod: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
+        <translation>UPnP/NAT-PMP: Zlyhanie mapovania portov, správa: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
+        <translation>UPnP/NAT-PMP: Mapovanie portov úspešné, správa: %1</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished">Veľkosti súborov sa líšia pri torrente %1, pozastavuje sa.</translation>
+        <translation>Veľkosti súborov sa líšia pri torrente %1, pozastavuje sa.</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Rýchle obnovenie torrentu %1 bolo odmietnuté, prebieha opätovná kontrola...</translation>
+        <translation>Rýchle obnovenie torrentu %1 bolo odmietnuté, prebieha opätovná kontrola...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
+        <translation>Vyhľadanie url seedu zlyhalo pre url: %1, správa: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Prebieha sťahovanie „%1“, čakajte prosím...</translation>
+        <translation>Prebieha sťahovanie „%1“, čakajte prosím...</translation>
     </message>
     <message>
         <source>The network interface defined is invalid: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Definované sieťové rozhranie je neplatné: %1</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Namiesto toho sa skúša ľubovoľné iné sieťové rozhranie.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation type="unfinished"></translation>
+        <translation>Počúva sa na IP adrese %1 na sieťovom rozhraní %2...</translation>
     </message>
     <message>
         <source>Failed to listen on network interface %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa spustiť počúvanie na sieťovom rozhraní %1</translation>
     </message>
 </context>
 <context>
@@ -2932,7 +2933,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahovanie RSS kanálov...</translation>
     </message>
 </context>
 <context>
@@ -3027,14 +3028,14 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation type="unfinished">Popis nie je dostupný</translation>
+        <translation>Popis nie je dostupný</translation>
     </message>
 </context>
 <context>
     <name>RssFeed</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished">Automaticky sa sťahuje torrent %1 z RSS kanála %2...</translation>
+        <translation>Automaticky sa sťahuje torrent %1 z RSS kanála %2...</translation>
     </message>
 </context>
 <context>
@@ -3067,19 +3068,19 @@ p, li { white-space: pre-wrap; }
     <name>RssSettingsDlg</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished">Nastavenia čítačky RSS</translation>
+        <translation>Nastavenia čítačky RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">Interval obnovovania RSS kanálov:</translation>
+        <translation>Interval obnovovania RSS kanálov:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">minút</translation>
+        <translation>minút</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Maximálny počet článkov na kanál:</translation>
+        <translation>Maximálny počet článkov na kanál:</translation>
     </message>
 </context>
 <context>
@@ -3337,22 +3338,22 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>Je potrebné reštartovať qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent bol práve aktualizovaný a je potrebné ho reštartovať, aby sa zmeny prejavili.</translation>
     </message>
 </context>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished">Vyberte adresár, ktorý sa má pridať do torrentu</translation>
+        <translation>Vyberte adresár, ktorý sa má pridať do torrentu</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished">Vyberte súbor, ktorý sa má pridať do torrentu</translation>
+        <translation>Vyberte súbor, ktorý sa má pridať do torrentu</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -3373,35 +3374,35 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>No input path set</source>
-        <translation type="unfinished">Nebola zadaná vstupná cesta</translation>
+        <translation>Nebola zadaná vstupná cesta</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation type="unfinished">Napíšte prosím najprv vstupnú cestu</translation>
+        <translation>Napíšte prosím najprv vstupnú cestu</translation>
     </message>
     <message>
         <source>Select destination torrent file</source>
-        <translation type="unfinished">Vybrať cieľový torrent súbor</translation>
+        <translation>Vybrať cieľový torrent súbor</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished">Torrent súbory</translation>
+        <translation>Torrent súbory</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation type="unfinished">Vytvorenie torrentu</translation>
+        <translation>Vytvorenie torrentu</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished">Torrent nebol vytvorený, dôvod: %1</translation>
+        <translation>Torrent nebol vytvorený, dôvod: %1</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished">Vytvorený torrent je neplatný. Nebude pridaný do zoznamu sťahovaných.</translation>
+        <translation>Vytvorený torrent je neplatný. Nebude pridaný do zoznamu sťahovaných.</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished">Torrent bol úspešne vytvorený:</translation>
+        <translation>Torrent bol úspešne vytvorený:</translation>
     </message>
 </context>
 <context>
@@ -3427,61 +3428,61 @@ Chcete ho nainštalovať teraz?</translation>
     <name>TorrentImportDlg</name>
     <message>
         <source>Torrent Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať torrent</translation>
     </message>
     <message>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Asistent vám teraz pomôže zdieľať pomocou qBittorrentu torrent, ktorý ste už stiahli.</translation>
     </message>
     <message>
         <source>Torrent file to import:</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať torrent:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Content location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Umiestnenie obsahu:</translation>
     </message>
     <message>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Preskočiť kontrolu súborov a začať seedovať okamžite</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať</translation>
     </message>
     <message>
         <source>Torrent file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať torrent</translation>
     </message>
     <message>
         <source>Torrent files (*.torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent súbory (*.torrent)</translation>
     </message>
     <message>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Súbory %1</translation>
     </message>
     <message>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napíšte umiestnenie %1</translation>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napíšte umiestnenie torrentu %1</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný torrent</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto nie je platný torrent.</translation>
     </message>
 </context>
 <context>
@@ -3489,90 +3490,90 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">Veľkosť</translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished">Hotovo</translation>
+        <translation>Hotovo</translation>
     </message>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">Stav</translation>
+        <translation>Stav</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Seedy</translation>
+        <translation>Seedov</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rovesníkov</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Rýchlosť sťahovania</translation>
+        <translation>Rýchlosť sťahovania</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Rýchlosť nahrávania</translation>
+        <translation>Rýchlosť nahrávania</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Pomer</translation>
+        <translation>Pomer</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">Odhad. čas</translation>
+        <translation>Odhad. čas</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished">Označenie</translation>
+        <translation>Označenie</translation>
     </message>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Pridané</translation>
+        <translation>Pridané</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Dokončené</translation>
+        <translation>Dokončené</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished">Limit sťah.</translation>
+        <translation>Limit sťah.</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished">Limit nahr.</translation>
+        <translation>Limit nahr.</translation>
     </message>
     <message>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stiahnuté</translation>
     </message>
     <message>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zostáva</translation>
     </message>
 </context>
 <context>
@@ -4289,19 +4290,19 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL trackera:</translation>
     </message>
     <message>
         <source>Web seeds urls:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL web seedov:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Komentár:</translation>
+        <translation>Komentár:</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
 </context>
 <context>
