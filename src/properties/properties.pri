@@ -1,6 +1,8 @@
 INCLUDEPATH += $$PWD
 
-FORMS += $$PWD/propertieswidget.ui
+FORMS += $$PWD/propertieswidget.ui \
+         $$PWD/trackersadditiondlg.ui \
+         $$PWD/peer.ui
 
 HEADERS += $$PWD/propertieswidget.h \
              $$PWD/peerlistwidget.h \

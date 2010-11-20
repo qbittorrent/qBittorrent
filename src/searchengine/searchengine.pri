@@ -1,7 +1,8 @@
 INCLUDEPATH += $$PWD
 
 FORMS += $$PWD/search.ui \
-         $$PWD/engineselect.ui
+         $$PWD/engineselect.ui \
+         $$PWD/pluginsource.ui
 
 HEADERS += $$PWD/searchengine.h \
            $$PWD/searchtab.h \
