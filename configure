@@ -534,7 +534,7 @@ public:
 		QString version, libs, other;
 		VersionMode mode = VersionMin;
 		if(conf->findPkgConfig("libnotify", mode, req_ver, &version, &incs, &libs, &other)) {
-			conf->addDefine("WITH_LIBNOTIFY");
+			conf->addExtra("CONFIG += libnotify");
 			for(int n = 0; n < incs.count(); ++n)
 				conf->addIncludePath(incs[n]);
 			if(!libs.isEmpty())

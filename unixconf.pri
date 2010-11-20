@@ -4,6 +4,10 @@ QMAKE_LFLAGS_APP += -rdynamic
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent-rasterbar
 
+libnotify {
+  DEFINES += WITH_LIBNOTIFY
+}
+
 # Man page
 nox {
     man.files = ../doc/qbittorrent-nox.1
