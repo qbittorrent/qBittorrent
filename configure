@@ -625,7 +625,7 @@ public:
                 s = conf->getenv("QC_WITH_QTSINGLEAPPLICATION");
                 if(s.compare("system", Qt::CaseInsensitive) == 0) {
                   // System
-                  conf->addDefine("USE_SYSTEM_QTSINGLEAPPLICATION");
+                  conf->addExtra("CONFIG += usesystemqtsingleapplication");
                   printf(" [system] ");
                 } else {
                   printf(" [shipped] ");

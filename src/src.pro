@@ -65,7 +65,7 @@ RESOURCES += icons.qrc \
             about.qrc
 
 # Source code
-contains(DEFINES, USE_SYSTEM_QTSINGLEAPPLICATION) {
+usesystemqtsingleapplication {
   nox {
     CONFIG += qtsinglecoreapplication
   } else {
