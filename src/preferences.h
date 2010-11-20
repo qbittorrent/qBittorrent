@@ -36,6 +36,7 @@
 #include <QDir>
 #include <QTime>
 #include <QList>
+#include <QDebug>
 #include <libtorrent/version.hpp>
 
 #ifndef DISABLE_GUI
@@ -62,7 +63,9 @@ class Preferences : public QIniSettings {
   Q_DISABLE_COPY(Preferences);
 
 public:
-  Preferences() : QIniSettings("qBittorrent", "qBittorrent") {}
+  Preferences() : QIniSettings("qBittorrent", "qBittorrent") {
+    qDebug() << "Preferences constructor";
+  }
 
 public:
   // General options
@@ -174,7 +177,7 @@ public:
   QString getSavePath() const {
 #ifdef Q_WS_WIN
     return value(QString::fromUtf8("Preferences/Downloads/SavePath"),
-                          QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath("Downloads")).toString();
+                 QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath("Downloads")).toString();
 #else
     return value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("qBT_dir")).toString();
 #endif

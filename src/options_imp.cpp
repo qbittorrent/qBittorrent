@@ -76,67 +76,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
   comboStyle->addItems(QStyleFactory::keys());
   // Languages supported
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/united_kingdom.png"))), QString::fromUtf8("English"));
-  locales << "en_GB";
-  comboI18n->setCurrentIndex(0);
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/france.png"))), QString::fromUtf8("Français"));
-  locales << "fr_FR";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/germany.png"))), QString::fromUtf8("Deutsch"));
-  locales << "de_DE";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/hungary.png"))), QString::fromUtf8("Magyar"));
-  locales << "hu_HU";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/italy.png"))), QString::fromUtf8("Italiano"));
-  locales << "it_IT";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/netherlands.png"))), QString::fromUtf8("Nederlands"));
-  locales << "nl_NL";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain.png"))), QString::fromUtf8("Español"));
-  locales << "es_ES";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/spain_catalunya.png"))), QString::fromUtf8("Català"));
-  locales << "ca_ES";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/portugal.png"))), QString::fromUtf8("Português"));
-  locales << "pt_PT";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/brazil.png"))), QString::fromUtf8("Português brasileiro"));
-  locales << "pt_BR";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/poland.png"))), QString::fromUtf8("Polski"));
-  locales << "pl_PL";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/czech.png"))), QString::fromUtf8("Čeština"));
-  locales << "cs_CZ";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/slovakia.png"))), QString::fromUtf8("Slovenčina"));
-  locales << "sk_SK";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/croatia.png"))), QString::fromUtf8("Hrvatski"));
-  locales << "hr_HR";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/serbia.png"))), QString::fromUtf8("Српски"));
-  locales << "sr_CS";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/romania.png"))), QString::fromUtf8("Română"));
-  locales << "ro_RO";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/turkey.png"))), QString::fromUtf8("Türkçe"));
-  locales << "tr_TR";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/saoudi_arabia.png"))), QString::fromUtf8("عربي"));
-  locales << "ar_SA";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/greece.png"))), QString::fromUtf8("Ελληνικά"));
-  locales << "el_GR";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/sweden.png"))), QString::fromUtf8("Svenska"));
-  locales << "sv_SE";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/finland.png"))), QString::fromUtf8("Suomi"));
-  locales << "fi_FI";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/norway.png"))), QString::fromUtf8("Norsk"));
-  locales << "nb_NO";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/denmark.png"))), QString::fromUtf8("Dansk"));
-  locales << "da_DK";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/bulgaria.png"))), QString::fromUtf8("Български"));
-  locales << "bg_BG";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/ukraine.png"))), QString::fromUtf8("Українська"));
-  locales << "uk_UA";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/russia.png"))), QString::fromUtf8("Русский"));
-  locales << "ru_RU";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/japan.png"))), QString::fromUtf8("日本語"));
-  locales << "ja_JP";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/china.png"))), QString::fromUtf8("中文 (简体)"));
-  locales << "zh_CN";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/taiwan.png"))), QString::fromUtf8("中文 (繁體)"));
-  locales << "zh_TW";
-  comboI18n->addItem((QIcon(QString::fromUtf8(":/Icons/flags/south_korea.png"))), QString::fromUtf8("한글"));
-  locales << "ko_KR";
+  initializeLanguageCombo();
 
   // Load week days (scheduler)
   for(uint i=1; i<=7; ++i) {
@@ -265,6 +205,22 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Adapt size
   show();
   loadWindowState();
+}
+
+void options_imp::initializeLanguageCombo()
+{
+  // List language files
+  const QDir lang_dir(":/lang");
+  const QStringList lang_files = lang_dir.entryList(QStringList() << "qbittorrent_*.qm", QDir::Files);
+  foreach(QString lang_file, lang_files) {
+    QString localeStr = lang_file.mid(12); // remove "qbittorrent_"
+    localeStr.chop(3); // Remove ".qm"
+    QLocale locale(localeStr);
+    const QString country = locale.name().split("_").last().toLower();
+    QString language_name = QLocale::languageToString(locale.language());
+    comboI18n->addItem(QIcon(":/Icons/flags/"+country+".png"), language_name, locale.name());
+    qDebug() << "Supported locale:" << locale.name();
+  }
 }
 
 // Main destructor
@@ -1009,14 +965,19 @@ QString options_imp::getProxyPassword() const{
 
 // Locale Settings
 QString options_imp::getLocale() const{
-  return locales.at(comboI18n->currentIndex());
+  return comboI18n->itemData(comboI18n->currentIndex(), Qt::UserRole).toString();
 }
 
-void options_imp::setLocale(QString locale){
-  int indexLocales=locales.indexOf(QRegExp(locale));
-  if(indexLocales != -1){
-    comboI18n->setCurrentIndex(indexLocales);
+void options_imp::setLocale(QString localeStr) {
+  QLocale locale(localeStr);
+  // Attempt to find exact match
+  int index = comboI18n->findData(locale.name(), Qt::UserRole);
+  if(index < 0) {
+    // Unreconized, use US English
+    index = comboI18n->findData(QLocale("en").name(), Qt::UserRole);
+    Q_ASSERT(index >= 0);
   }
+  comboI18n->setCurrentIndex(index);
 }
 
 QString options_imp::getExportDir() const {
@@ -1180,3 +1141,4 @@ void options_imp::showConnectionTab()
 {
   tabSelection->setCurrentRow(2);
 }
+

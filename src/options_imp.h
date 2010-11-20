@@ -45,23 +45,56 @@ class AdvancedSettings;
 class options_imp : public QDialog, private Ui_Preferences {
   Q_OBJECT
 
-private:
-  QButtonGroup choiceLanguage;
-  QStringList locales;
-  QAbstractButton *applyButton;
-  AdvancedSettings *advancedSettings;
-  QList<QString> addedScanDirs;
-
 public:
   // Contructor / Destructor
   options_imp(QWidget *parent=0);
   ~options_imp();
   QSize sizeFittingScreen();
 
-protected:
+protected slots:
+  void enableUploadLimit(bool checked);
+  void enableDownloadLimit(bool checked);
+  void enableProxy(int comboIndex);
+  void enableProxyAuth(bool checked);
+  void enableMaxConnecsLimit(bool checked);
+  void enableMaxConnecsLimitPerTorrent(bool checked);
+  void enableMaxUploadsLimitPerTorrent(bool checked);
+  void enableMaxRatio(bool checked);
+  void setStyle(QString style);
+  void on_buttonBox_accepted();
+  void closeEvent(QCloseEvent *e);
+  void on_buttonBox_rejected();
+  void applySettings(QAbstractButton* button);
+  void on_browseExportDirButton_clicked();
+  void on_browseFilterButton_clicked();
+  void on_browseSaveDirButton_clicked();
+  void on_browseTempDirButton_clicked();
+  void enableApplyButton();
+  void enableSystrayOptions();
+  void disableSystrayOptions();
+  void setSystrayOptionsState(bool checked);
+  void changePage(QListWidgetItem*, QListWidgetItem*);
+  void loadWindowState();
+  void saveWindowState() const;
+  void on_randomButton_clicked();
+  void on_addScanFolderButton_clicked();
+  void on_removeScanFolderButton_clicked();
+  void handleScanFolderViewSelectionChanged();
+
+public slots:
+  void setLocale(QString locale);
+  void useStyle();
+  void showConnectionTab();
+
+signals:
+  void status_changed() const;
+  void exitWithCancel();
+
+private:
   // Methods
   void saveOptions();
   void loadOptions();
+  void initializeLanguageCombo();
   // General options
   QString getLocale() const;
   QString getStyle() const;
@@ -116,44 +149,12 @@ protected:
   QString webUiUsername() const;
   QString webUiPassword() const;
 
-protected slots:
-  void enableUploadLimit(bool checked);
-  void enableDownloadLimit(bool checked);
-  void enableProxy(int comboIndex);
-  void enableProxyAuth(bool checked);
-  void enableMaxConnecsLimit(bool checked);
-  void enableMaxConnecsLimitPerTorrent(bool checked);
-  void enableMaxUploadsLimitPerTorrent(bool checked);
-  void enableMaxRatio(bool checked);
-  void setStyle(QString style);
-  void on_buttonBox_accepted();
-  void closeEvent(QCloseEvent *e);
-  void on_buttonBox_rejected();
-  void applySettings(QAbstractButton* button);
-  void on_browseExportDirButton_clicked();
-  void on_browseFilterButton_clicked();
-  void on_browseSaveDirButton_clicked();
-  void on_browseTempDirButton_clicked();
-  void enableApplyButton();
-  void enableSystrayOptions();
-  void disableSystrayOptions();
-  void setSystrayOptionsState(bool checked);
-  void changePage(QListWidgetItem*, QListWidgetItem*);
-  void loadWindowState();
-  void saveWindowState() const;
-  void on_randomButton_clicked();
-  void on_addScanFolderButton_clicked();
-  void on_removeScanFolderButton_clicked();
-  void handleScanFolderViewSelectionChanged();
+private:
+  QButtonGroup choiceLanguage;
+  QAbstractButton *applyButton;
+  AdvancedSettings *advancedSettings;
+  QList<QString> addedScanDirs;
 
-public slots:
-  void setLocale(QString locale);
-  void useStyle();
-  void showConnectionTab();
-
-signals:
-  void status_changed() const;
-  void exitWithCancel();
 };
 
 #endif

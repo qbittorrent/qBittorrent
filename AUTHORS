@@ -36,9 +36,9 @@ Images Authors:
   url: http://www.oxygen-icons.org
 
 * files: src/Icons/flags/*.png
-  copyright: Open Clip Art Library
-  license: Creative Commons Public Domain Dedication
-  url: http://www.openclipart.org
+  copyright: Mark James <mjames@gmail.com>
+  license: Public Domain
+  url: http://www.famfamfam.com
 
 * files: src/Icons/skin/*.png
   files: src/menuicons/YYxYY/*.png

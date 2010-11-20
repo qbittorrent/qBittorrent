@@ -11,8 +11,10 @@
     - FEATURE: Major code refactoring and optimization
     - FEATURE: Added "Amount downloaded/left" columns to transfer list
     - FEATURE: Simplified proxy settings
+    - FEATURE: Optimized and improved the peer country resolution code
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
+    - COSMETIC: Use country flags by Mark James (Thanks to Dmytro Pukha)
     - OTHERS: Dropped support for Qt <= 4.4
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0

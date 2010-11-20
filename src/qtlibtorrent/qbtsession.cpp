@@ -46,7 +46,7 @@
 #include "preferences.h"
 #include "scannedfoldersmodel.h"
 #ifndef DISABLE_GUI
-#include "geoip.h"
+#include "geoipmanager.h"
 #endif
 #include "torrentpersistentdata.h"
 #include "httpserver.h"
@@ -356,7 +356,7 @@ void QBtSession::configureSession() {
     resolve_countries = new_resolv_countries;
     if(resolve_countries && !geoipDBLoaded) {
       qDebug("Loading geoip database");
-      GeoIP::loadDatabase(s);
+      GeoIPManager::loadDatabase(s);
       geoipDBLoaded = true;
     }
     // Update torrent handles

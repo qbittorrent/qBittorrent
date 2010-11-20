@@ -291,7 +291,6 @@ contains(DEFINES, DISABLE_GUI) {
               transferlistdelegate.h \
               transferlistfilterswidget.h \
               torrentfilesmodel.h \
-              geoip.h \
               deletionconfirmationdlg.h \
               statusbar.h \
               reverseresolution.h \
@@ -308,7 +307,8 @@ contains(DEFINES, DISABLE_GUI) {
               advancedsettings.h \
               hidabletabwidget.h \
               sessionapplication.h \
-              torrentimportdlg.h
+              torrentimportdlg.h \
+              geoipmanager.h
 
   win32 {
     HEADERS += programupdater.h
@@ -380,7 +380,8 @@ SOURCES += main.cpp \
              transferlistwidget.cpp \
              torrentadditiondlg.cpp \
              sessionapplication.cpp \
-             torrentimportdlg.cpp
+             torrentimportdlg.cpp \
+             geoipmanager.cpp
 
   win32 {
     SOURCES += programupdater.cpp
