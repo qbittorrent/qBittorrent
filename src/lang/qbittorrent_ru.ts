@@ -1013,255 +1013,255 @@ Would you like to update qBittorrent to version %1?</source>
     <name>GeoIP</name>
     <message>
         <source>Australia</source>
-        <translation>Австралия</translation>
+        <translation type="obsolete">Австралия</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation>Аргентине</translation>
+        <translation type="obsolete">Аргентине</translation>
     </message>
     <message>
         <source>Austria</source>
-        <translation>Австрия</translation>
+        <translation type="obsolete">Австрия</translation>
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation>Объединенные Арабские Эмираты</translation>
+        <translation type="obsolete">Объединенные Арабские Эмираты</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation>Бразилия</translation>
+        <translation type="obsolete">Бразилия</translation>
     </message>
     <message>
         <source>Bulgaria</source>
-        <translation>Болгария</translation>
+        <translation type="obsolete">Болгария</translation>
     </message>
     <message>
         <source>Belarus</source>
-        <translation>Беларусь</translation>
+        <translation type="obsolete">Беларусь</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation>Бельгия</translation>
+        <translation type="obsolete">Бельгия</translation>
     </message>
     <message>
         <source>Bosnia</source>
-        <translation>Босния</translation>
+        <translation type="obsolete">Босния</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation>Канада</translation>
+        <translation type="obsolete">Канада</translation>
     </message>
     <message>
         <source>Czech Republic</source>
         <translatorcomment>http://translate.google.com/#en|ru|Czech%20Republic</translatorcomment>
-        <translation>Чешская Республика</translation>
+        <translation type="obsolete">Чешская Республика</translation>
     </message>
     <message>
         <source>China</source>
-        <translation>Китай</translation>
+        <translation type="obsolete">Китай</translation>
     </message>
     <message>
         <source>Costa Rica</source>
-        <translation>Коста Рика</translation>
+        <translation type="obsolete">Коста Рика</translation>
     </message>
     <message>
         <source>Switzerland</source>
-        <translation>Швейцария</translation>
+        <translation type="obsolete">Швейцария</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation>Германия</translation>
+        <translation type="obsolete">Германия</translation>
     </message>
     <message>
         <source>Denmark</source>
         <translatorcomment>http://translate.google.com/#en|ru|Denmark</translatorcomment>
-        <translation>Дания</translation>
+        <translation type="obsolete">Дания</translation>
     </message>
     <message>
         <source>Algeria</source>
         <translatorcomment>http://translate.google.com/#en|ru|Algeria</translatorcomment>
-        <translation>Алжир</translation>
+        <translation type="obsolete">Алжир</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation>Испания</translation>
+        <translation type="obsolete">Испания</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation>Египет</translation>
+        <translation type="obsolete">Египет</translation>
     </message>
     <message>
         <source>Finland</source>
-        <translation>Финляндия</translation>
+        <translation type="obsolete">Финляндия</translation>
     </message>
     <message>
         <source>France</source>
-        <translation>Франция</translation>
+        <translation type="obsolete">Франция</translation>
     </message>
     <message>
         <source>United Kingdom</source>
         <translatorcomment>http://translate.google.com/#en|ru|United%20Kingdom</translatorcomment>
-        <translation>Великобритания</translation>
+        <translation type="obsolete">Великобритания</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation>Греция</translation>
+        <translation type="obsolete">Греция</translation>
     </message>
     <message>
         <source>Georgia</source>
-        <translation>Грузия</translation>
+        <translation type="obsolete">Грузия</translation>
     </message>
     <message>
         <source>Hungary</source>
-        <translation>Венгрия</translation>
+        <translation type="obsolete">Венгрия</translation>
     </message>
     <message>
         <source>Croatia</source>
         <translatorcomment>http://translate.google.com/#en|ru|Croatia</translatorcomment>
-        <translation>Хорватия</translation>
+        <translation type="obsolete">Хорватия</translation>
     </message>
     <message>
         <source>Italy</source>
-        <translation>Италия</translation>
+        <translation type="obsolete">Италия</translation>
     </message>
     <message>
         <source>India</source>
-        <translation>Индия</translation>
+        <translation type="obsolete">Индия</translation>
     </message>
     <message>
         <source>Israel</source>
-        <translation>Израиль</translation>
+        <translation type="obsolete">Израиль</translation>
     </message>
     <message>
         <source>Ireland</source>
-        <translation>Ирландия</translation>
+        <translation type="obsolete">Ирландия</translation>
     </message>
     <message>
         <source>Iceland</source>
-        <translation>Исландия</translation>
+        <translation type="obsolete">Исландия</translation>
     </message>
     <message>
         <source>Indonesia</source>
-        <translation>Индонезия</translation>
+        <translation type="obsolete">Индонезия</translation>
     </message>
     <message>
         <source>Japan</source>
         <translatorcomment>^_^</translatorcomment>
-        <translation>Япония</translation>
+        <translation type="obsolete">Япония</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation>Южная Корея</translation>
+        <translation type="obsolete">Южная Корея</translation>
     </message>
     <message>
         <source>Luxembourg</source>
         <translatorcomment>http://translate.google.com/#en|ru|Luxembourg</translatorcomment>
-        <translation>Люксембург</translation>
+        <translation type="obsolete">Люксембург</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation>Малазия</translation>
+        <translation type="obsolete">Малазия</translation>
     </message>
     <message>
         <source>Mexico</source>
         <translatorcomment>http://translate.google.com/#en|ru|Mexico</translatorcomment>
-        <translation>Мексика</translation>
+        <translation type="obsolete">Мексика</translation>
     </message>
     <message>
         <source>Serbia</source>
-        <translation>Сербия</translation>
+        <translation type="obsolete">Сербия</translation>
     </message>
     <message>
         <source>Morocco</source>
         <translatorcomment>http://translate.google.com/#en|ru|Morocco</translatorcomment>
-        <translation>Марокко</translation>
+        <translation type="obsolete">Марокко</translation>
     </message>
     <message>
         <source>Netherlands</source>
-        <translation>Нидерланды</translation>
+        <translation type="obsolete">Нидерланды</translation>
     </message>
     <message>
         <source>Norway</source>
-        <translation>Норвегия</translation>
+        <translation type="obsolete">Норвегия</translation>
     </message>
     <message>
         <source>New Zealand</source>
-        <translation>Новая Зеландия</translation>
+        <translation type="obsolete">Новая Зеландия</translation>
     </message>
     <message>
         <source>Portugal</source>
-        <translation>Португалия</translation>
+        <translation type="obsolete">Португалия</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation>Польша</translation>
+        <translation type="obsolete">Польша</translation>
     </message>
     <message>
         <source>Pakistan</source>
-        <translation>Пакистан</translation>
+        <translation type="obsolete">Пакистан</translation>
     </message>
     <message>
         <source>Philippines</source>
-        <translation>Филиппины</translation>
+        <translation type="obsolete">Филиппины</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation>Россия</translation>
+        <translation type="obsolete">Россия</translation>
     </message>
     <message>
         <source>Romania</source>
         <translatorcomment>http://translate.google.com/#en|ru|Romania</translatorcomment>
-        <translation>Румыния</translation>
+        <translation type="obsolete">Румыния</translation>
     </message>
     <message>
         <source>France (Reunion Island)</source>
         <translatorcomment>http://translate.google.com/#en|ru|France%20%28Reunion%20Island%29</translatorcomment>
-        <translation>Франция (остров Реюньон)</translation>
+        <translation type="obsolete">Франция (остров Реюньон)</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation>Швеция</translation>
+        <translation type="obsolete">Швеция</translation>
     </message>
     <message>
         <source>Slovakia</source>
-        <translation>Словакия</translation>
+        <translation type="obsolete">Словакия</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation>Сингапур</translation>
+        <translation type="obsolete">Сингапур</translation>
     </message>
     <message>
         <source>Slovenia</source>
-        <translation>Словения</translation>
+        <translation type="obsolete">Словения</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation>Тайвань</translation>
+        <translation type="obsolete">Тайвань</translation>
     </message>
     <message>
         <source>Turkey</source>
-        <translation>Турция</translation>
+        <translation type="obsolete">Турция</translation>
     </message>
     <message>
         <source>Thailand</source>
-        <translation>Таиланд</translation>
+        <translation type="obsolete">Таиланд</translation>
     </message>
     <message>
         <source>USA</source>
         <translatorcomment>http://translate.google.com/#en|ru|USA</translatorcomment>
-        <translation>США</translation>
+        <translation type="obsolete">США</translation>
     </message>
     <message>
         <source>Ukraine</source>
-        <translation>Украниа</translation>
+        <translation type="obsolete">Украниа</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation>Южная Африка</translation>
+        <translation type="obsolete">Южная Африка</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation>Саудовская Аравия</translation>
+        <translation type="obsolete">Саудовская Аравия</translation>
     </message>
 </context>
 <context>

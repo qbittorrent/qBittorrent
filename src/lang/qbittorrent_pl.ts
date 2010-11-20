@@ -972,243 +972,243 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <name>GeoIP</name>
     <message>
         <source>Australia</source>
-        <translation>Australia</translation>
+        <translation type="obsolete">Australia</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation>Argentyna</translation>
+        <translation type="obsolete">Argentyna</translation>
     </message>
     <message>
         <source>Austria</source>
-        <translation>Austria</translation>
+        <translation type="obsolete">Austria</translation>
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation>Zjednoczone Emiraty Arabskie</translation>
+        <translation type="obsolete">Zjednoczone Emiraty Arabskie</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation>Brazylia</translation>
+        <translation type="obsolete">Brazylia</translation>
     </message>
     <message>
         <source>Bulgaria</source>
-        <translation>Bułgaria</translation>
+        <translation type="obsolete">Bułgaria</translation>
     </message>
     <message>
         <source>Belarus</source>
-        <translation>Białoruś</translation>
+        <translation type="obsolete">Białoruś</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation>Belgia</translation>
+        <translation type="obsolete">Belgia</translation>
     </message>
     <message>
         <source>Bosnia</source>
-        <translation>Bośnia</translation>
+        <translation type="obsolete">Bośnia</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation>Kanada</translation>
+        <translation type="obsolete">Kanada</translation>
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation>Czechy</translation>
+        <translation type="obsolete">Czechy</translation>
     </message>
     <message>
         <source>China</source>
-        <translation>Chiny</translation>
+        <translation type="obsolete">Chiny</translation>
     </message>
     <message>
         <source>Costa Rica</source>
-        <translation>Kostaryka</translation>
+        <translation type="obsolete">Kostaryka</translation>
     </message>
     <message>
         <source>Switzerland</source>
-        <translation>Szwajcaria</translation>
+        <translation type="obsolete">Szwajcaria</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation>Niemcy</translation>
+        <translation type="obsolete">Niemcy</translation>
     </message>
     <message>
         <source>Denmark</source>
-        <translation>Dania</translation>
+        <translation type="obsolete">Dania</translation>
     </message>
     <message>
         <source>Algeria</source>
-        <translation>Algeria</translation>
+        <translation type="obsolete">Algeria</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation>Hiszpania</translation>
+        <translation type="obsolete">Hiszpania</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation>Egipt</translation>
+        <translation type="obsolete">Egipt</translation>
     </message>
     <message>
         <source>Finland</source>
-        <translation>Finlandia</translation>
+        <translation type="obsolete">Finlandia</translation>
     </message>
     <message>
         <source>France</source>
-        <translation>Francja</translation>
+        <translation type="obsolete">Francja</translation>
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation>Wielka Brytania</translation>
+        <translation type="obsolete">Wielka Brytania</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation>Grecja</translation>
+        <translation type="obsolete">Grecja</translation>
     </message>
     <message>
         <source>Georgia</source>
-        <translation>Gruzja</translation>
+        <translation type="obsolete">Gruzja</translation>
     </message>
     <message>
         <source>Hungary</source>
-        <translation>Węgry</translation>
+        <translation type="obsolete">Węgry</translation>
     </message>
     <message>
         <source>Croatia</source>
-        <translation>Chorwacja</translation>
+        <translation type="obsolete">Chorwacja</translation>
     </message>
     <message>
         <source>Italy</source>
-        <translation>Włochy</translation>
+        <translation type="obsolete">Włochy</translation>
     </message>
     <message>
         <source>India</source>
-        <translation>Indie</translation>
+        <translation type="obsolete">Indie</translation>
     </message>
     <message>
         <source>Israel</source>
-        <translation>Izrael</translation>
+        <translation type="obsolete">Izrael</translation>
     </message>
     <message>
         <source>Ireland</source>
-        <translation>Irlandia</translation>
+        <translation type="obsolete">Irlandia</translation>
     </message>
     <message>
         <source>Iceland</source>
-        <translation>Islandia</translation>
+        <translation type="obsolete">Islandia</translation>
     </message>
     <message>
         <source>Indonesia</source>
-        <translation>Indonezja</translation>
+        <translation type="obsolete">Indonezja</translation>
     </message>
     <message>
         <source>Japan</source>
-        <translation>Japonia</translation>
+        <translation type="obsolete">Japonia</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation>Korea Południowa</translation>
+        <translation type="obsolete">Korea Południowa</translation>
     </message>
     <message>
         <source>Luxembourg</source>
-        <translation>Luksemburg</translation>
+        <translation type="obsolete">Luksemburg</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation>Malezja</translation>
+        <translation type="obsolete">Malezja</translation>
     </message>
     <message>
         <source>Mexico</source>
-        <translation>Meksyk</translation>
+        <translation type="obsolete">Meksyk</translation>
     </message>
     <message>
         <source>Serbia</source>
-        <translation>Serbia</translation>
+        <translation type="obsolete">Serbia</translation>
     </message>
     <message>
         <source>Morocco</source>
-        <translation>Maroko</translation>
+        <translation type="obsolete">Maroko</translation>
     </message>
     <message>
         <source>Netherlands</source>
-        <translation>Holandia</translation>
+        <translation type="obsolete">Holandia</translation>
     </message>
     <message>
         <source>Norway</source>
-        <translation>Norwegia</translation>
+        <translation type="obsolete">Norwegia</translation>
     </message>
     <message>
         <source>New Zealand</source>
-        <translation>Nowa Zelandia</translation>
+        <translation type="obsolete">Nowa Zelandia</translation>
     </message>
     <message>
         <source>Portugal</source>
-        <translation>Portugalia</translation>
+        <translation type="obsolete">Portugalia</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation>Polska</translation>
+        <translation type="obsolete">Polska</translation>
     </message>
     <message>
         <source>Pakistan</source>
-        <translation>Pakistan</translation>
+        <translation type="obsolete">Pakistan</translation>
     </message>
     <message>
         <source>Philippines</source>
-        <translation>Filipiny</translation>
+        <translation type="obsolete">Filipiny</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation>Rosja</translation>
+        <translation type="obsolete">Rosja</translation>
     </message>
     <message>
         <source>Romania</source>
-        <translation>Rumunia</translation>
+        <translation type="obsolete">Rumunia</translation>
     </message>
     <message>
         <source>France (Reunion Island)</source>
-        <translation>Francja</translation>
+        <translation type="obsolete">Francja</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation>Szwecja</translation>
+        <translation type="obsolete">Szwecja</translation>
     </message>
     <message>
         <source>Slovakia</source>
-        <translation>Słowacja</translation>
+        <translation type="obsolete">Słowacja</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation>Singapur</translation>
+        <translation type="obsolete">Singapur</translation>
     </message>
     <message>
         <source>Slovenia</source>
-        <translation>Słowenia</translation>
+        <translation type="obsolete">Słowenia</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation>Tajwan</translation>
+        <translation type="obsolete">Tajwan</translation>
     </message>
     <message>
         <source>Turkey</source>
-        <translation>Turcja</translation>
+        <translation type="obsolete">Turcja</translation>
     </message>
     <message>
         <source>Thailand</source>
-        <translation>Tajlandia</translation>
+        <translation type="obsolete">Tajlandia</translation>
     </message>
     <message>
         <source>USA</source>
-        <translation>Stany Zjednoczone</translation>
+        <translation type="obsolete">Stany Zjednoczone</translation>
     </message>
     <message>
         <source>Ukraine</source>
-        <translation>Ukraina</translation>
+        <translation type="obsolete">Ukraina</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation>Republika Południowej Afryki</translation>
+        <translation type="obsolete">Republika Południowej Afryki</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation>Arabia Saudyjska</translation>
+        <translation type="obsolete">Arabia Saudyjska</translation>
     </message>
 </context>
 <context>

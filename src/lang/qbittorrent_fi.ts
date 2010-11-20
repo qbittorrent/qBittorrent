@@ -1050,307 +1050,244 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
 <context>
     <name>GeoIP</name>
     <message>
-        <location filename="../geoip.h" line="115"/>
         <source>Australia</source>
-        <translation>Austraalia</translation>
+        <translation type="obsolete">Austraalia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="116"/>
         <source>Argentina</source>
-        <translation>Argentiina</translation>
+        <translation type="obsolete">Argentiina</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="117"/>
         <source>Austria</source>
-        <translation>Itävalta</translation>
+        <translation type="obsolete">Itävalta</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="118"/>
         <source>United Arab Emirates</source>
-        <translation>Yhdistyneet Arabiemiraatit</translation>
+        <translation type="obsolete">Yhdistyneet Arabiemiraatit</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="121"/>
         <source>Brazil</source>
-        <translation>Brasilia</translation>
+        <translation type="obsolete">Brasilia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="122"/>
         <source>Bulgaria</source>
-        <translation>Bulgaaria</translation>
+        <translation type="obsolete">Bulgaaria</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="123"/>
         <source>Belarus</source>
-        <translation>Valko-Venäjä</translation>
+        <translation type="obsolete">Valko-Venäjä</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="124"/>
         <source>Belgium</source>
-        <translation>Belgia</translation>
+        <translation type="obsolete">Belgia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="125"/>
         <source>Bosnia</source>
-        <translation>Bosnia</translation>
+        <translation type="obsolete">Bosnia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="128"/>
         <source>Canada</source>
-        <translation>Kanada</translation>
+        <translation type="obsolete">Kanada</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="129"/>
         <source>Czech Republic</source>
-        <translation>Tšekki</translation>
+        <translation type="obsolete">Tšekki</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="130"/>
-        <location filename="../geoip.h" line="154"/>
         <source>China</source>
-        <translation>Kiina</translation>
+        <translation type="obsolete">Kiina</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="131"/>
         <source>Costa Rica</source>
-        <translation>Costa Rica</translation>
+        <translation type="obsolete">Costa Rica</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="132"/>
         <source>Switzerland</source>
-        <translation>Sveitsi</translation>
+        <translation type="obsolete">Sveitsi</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="135"/>
         <source>Germany</source>
-        <translation>Saksa</translation>
+        <translation type="obsolete">Saksa</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="136"/>
         <source>Denmark</source>
-        <translation>Tanska</translation>
+        <translation type="obsolete">Tanska</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="137"/>
         <source>Algeria</source>
-        <translation>Algeria</translation>
+        <translation type="obsolete">Algeria</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="140"/>
         <source>Spain</source>
-        <translation>Espanja</translation>
+        <translation type="obsolete">Espanja</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="141"/>
         <source>Egypt</source>
-        <translation>Egypti</translation>
+        <translation type="obsolete">Egypti</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="144"/>
         <source>Finland</source>
-        <translation>Suomi</translation>
+        <translation type="obsolete">Suomi</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="145"/>
         <source>France</source>
-        <translation>Ranska</translation>
+        <translation type="obsolete">Ranska</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="148"/>
         <source>United Kingdom</source>
-        <translation>Yhdistynyt kuningaskunta</translation>
+        <translation type="obsolete">Yhdistynyt kuningaskunta</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="149"/>
         <source>Greece</source>
-        <translation>Kreikka</translation>
+        <translation type="obsolete">Kreikka</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="150"/>
         <source>Georgia</source>
-        <translation>Georgia</translation>
+        <translation type="obsolete">Georgia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="153"/>
         <source>Hungary</source>
-        <translation>Unkari</translation>
+        <translation type="obsolete">Unkari</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="155"/>
         <source>Croatia</source>
-        <translation>Kroatia</translation>
+        <translation type="obsolete">Kroatia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="158"/>
         <source>Italy</source>
-        <translation>Italia</translation>
+        <translation type="obsolete">Italia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="159"/>
         <source>India</source>
-        <translation>Intia</translation>
+        <translation type="obsolete">Intia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="160"/>
         <source>Israel</source>
-        <translation>Israel</translation>
+        <translation type="obsolete">Israel</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="161"/>
         <source>Ireland</source>
-        <translation>Irlanti</translation>
+        <translation type="obsolete">Irlanti</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="162"/>
         <source>Iceland</source>
-        <translation>Islanti</translation>
+        <translation type="obsolete">Islanti</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="163"/>
         <source>Indonesia</source>
-        <translation>Indonesia</translation>
+        <translation type="obsolete">Indonesia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="166"/>
         <source>Japan</source>
-        <translation>Japani</translation>
+        <translation type="obsolete">Japani</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="169"/>
         <source>South Korea</source>
-        <translation>Etelä-Korea</translation>
+        <translation type="obsolete">Etelä-Korea</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="172"/>
         <source>Luxembourg</source>
-        <translation>Luxemburg</translation>
+        <translation type="obsolete">Luxemburg</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="175"/>
         <source>Malaysia</source>
-        <translation>Malesia</translation>
+        <translation type="obsolete">Malesia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="176"/>
         <source>Mexico</source>
-        <translation>Meksiko</translation>
+        <translation type="obsolete">Meksiko</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="177"/>
-        <location filename="../geoip.h" line="195"/>
         <source>Serbia</source>
-        <translation>Serbia</translation>
+        <translation type="obsolete">Serbia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="178"/>
         <source>Morocco</source>
-        <translation>Marokko</translation>
+        <translation type="obsolete">Marokko</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="181"/>
         <source>Netherlands</source>
-        <translation>Alankomaat</translation>
+        <translation type="obsolete">Alankomaat</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="182"/>
         <source>Norway</source>
-        <translation>Norja</translation>
+        <translation type="obsolete">Norja</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="183"/>
         <source>New Zealand</source>
-        <translation>Uusi-Seelanti</translation>
+        <translation type="obsolete">Uusi-Seelanti</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="186"/>
         <source>Portugal</source>
-        <translation>Portugali</translation>
+        <translation type="obsolete">Portugali</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="187"/>
         <source>Poland</source>
-        <translation>Puola</translation>
+        <translation type="obsolete">Puola</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="188"/>
         <source>Pakistan</source>
-        <translation>Pakistani</translation>
+        <translation type="obsolete">Pakistani</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="189"/>
         <source>Philippines</source>
-        <translation>Filippiinit</translation>
+        <translation type="obsolete">Filippiinit</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="192"/>
         <source>Russia</source>
-        <translation>Venäjä</translation>
+        <translation type="obsolete">Venäjä</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="193"/>
         <source>Romania</source>
-        <translation>Romania</translation>
+        <translation type="obsolete">Romania</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="194"/>
         <source>France (Reunion Island)</source>
-        <translation>Ranska (Reunion-saari)</translation>
+        <translation type="obsolete">Ranska (Reunion-saari)</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="198"/>
         <source>Saudi Arabia</source>
-        <translation>Saudi-Arabia</translation>
+        <translation type="obsolete">Saudi-Arabia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="199"/>
         <source>Sweden</source>
-        <translation>Ruotsi</translation>
+        <translation type="obsolete">Ruotsi</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="200"/>
         <source>Slovakia</source>
-        <translation>Slovakia</translation>
+        <translation type="obsolete">Slovakia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="201"/>
         <source>Singapore</source>
-        <translation>Singapore</translation>
+        <translation type="obsolete">Singapore</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="202"/>
         <source>Slovenia</source>
-        <translation>Slovenia</translation>
+        <translation type="obsolete">Slovenia</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="205"/>
         <source>Taiwan</source>
-        <translation>Taiwan</translation>
+        <translation type="obsolete">Taiwan</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="206"/>
         <source>Turkey</source>
-        <translation>Turkki</translation>
+        <translation type="obsolete">Turkki</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="207"/>
         <source>Thailand</source>
-        <translation>Thaimaa</translation>
+        <translation type="obsolete">Thaimaa</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="210"/>
-        <location filename="../geoip.h" line="211"/>
         <source>USA</source>
-        <translation>USA</translation>
+        <translation type="obsolete">USA</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="212"/>
         <source>Ukraine</source>
-        <translation>Ukraina</translation>
+        <translation type="obsolete">Ukraina</translation>
     </message>
     <message>
-        <location filename="../geoip.h" line="215"/>
         <source>South Africa</source>
-        <translation>Etelä-Afrikka</translation>
+        <translation type="obsolete">Etelä-Afrikka</translation>
     </message>
 </context>
 <context>
@@ -5657,58 +5594,58 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../options_imp.cpp" line="1123"/>
-        <location filename="../options_imp.cpp" line="1125"/>
-        <location filename="../options_imp.cpp" line="1140"/>
-        <location filename="../options_imp.cpp" line="1142"/>
+        <location filename="../options_imp.cpp" line="1084"/>
+        <location filename="../options_imp.cpp" line="1086"/>
+        <location filename="../options_imp.cpp" line="1101"/>
+        <location filename="../options_imp.cpp" line="1103"/>
         <source>Choose a save directory</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1045"/>
+        <location filename="../options_imp.cpp" line="1006"/>
         <source>Add directory to scan</source>
         <translation>Lisää seurattava hakemisto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1051"/>
+        <location filename="../options_imp.cpp" line="1012"/>
         <source>Folder is already being watched.</source>
         <translation>Kansio on jo seurannassa.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1054"/>
+        <location filename="../options_imp.cpp" line="1015"/>
         <source>Folder does not exist.</source>
         <translation>Kansiota ei ole.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1057"/>
+        <location filename="../options_imp.cpp" line="1018"/>
         <source>Folder is not readable.</source>
         <translation>Kansiota ei voida lukea.</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1065"/>
+        <location filename="../options_imp.cpp" line="1026"/>
         <source>Failure</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1065"/>
+        <location filename="../options_imp.cpp" line="1026"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Kansiota &quot;%1&quot; ei voitu lisätä seurattavien joukkoon: %2</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1088"/>
-        <location filename="../options_imp.cpp" line="1090"/>
+        <location filename="../options_imp.cpp" line="1049"/>
+        <location filename="../options_imp.cpp" line="1051"/>
         <source>Choose export directory</source>
         <translation>Valitse vientihakemisto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1105"/>
-        <location filename="../options_imp.cpp" line="1107"/>
+        <location filename="../options_imp.cpp" line="1066"/>
+        <location filename="../options_imp.cpp" line="1068"/>
         <source>Choose an ip filter file</source>
         <translation>Valitse IP-suodatintiedosto</translation>
     </message>
     <message>
-        <location filename="../options_imp.cpp" line="1105"/>
-        <location filename="../options_imp.cpp" line="1107"/>
+        <location filename="../options_imp.cpp" line="1066"/>
+        <location filename="../options_imp.cpp" line="1068"/>
         <source>Filters</source>
         <translation>Suotimet</translation>
     </message>
