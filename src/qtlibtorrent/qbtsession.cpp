@@ -65,6 +65,7 @@
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/version.hpp>
 #include <boost/filesystem/exception.hpp>
 #include <queue>
 
@@ -1860,7 +1861,15 @@ void QBtSession::setSessionSettings(const session_settings &sessionSettings) {
 // Set Proxy
 void QBtSession::setProxySettings(const proxy_settings &proxySettings) {
   qDebug() << Q_FUNC_INFO;
+
+#if (LIBTORRENT_VERSION_MINOR > 15) || (LIBTORRENT_VERSION_MINOR == 15 && LIBTORRENT_VERSION_TINY > 4)
   s->set_proxy(proxySettings);
+#else
+  s->set_peer_proxy(proxySettings);
+  s->set_web_seed_proxy(proxySettings);
+  s->set_tracker_proxy(proxySettings);
+  s->set_dht_proxy(proxySettings);
+#endif
   // Define environment variable
   QString proxy_str;
   switch(proxySettings.type) {
