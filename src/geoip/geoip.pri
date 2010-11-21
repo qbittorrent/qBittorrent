@@ -7,7 +7,7 @@ SOURCES += $$PWD/geoipmanager.cpp
 # Add GeoIP resource file if the GeoIP database
 # should be embedded in qBittorrent executable
 contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-  exists("geoip/GeoIP.dat") {
+  exists("GeoIP.dat") {
     message("GeoIP.dat was found in src/geoip/.")
     RESOURCES += $$PWD/geoip.qrc
   } else {
