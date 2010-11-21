@@ -52,7 +52,7 @@ downloadThread::downloadThread(QObject* parent) : QObject(parent) {
 }
 
 void downloadThread::processDlFinished(QNetworkReply* reply) {
-  QString url = reply->url().toEncoded().data();
+  QString url = reply->url().toString();
   qDebug("Download finished: %s", qPrintable(url));
   if(reply->error() != QNetworkReply::NoError) {
     // Failure
