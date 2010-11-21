@@ -150,170 +150,170 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="unfinished"></translation>
+        <translation>Відображати сповіщення програми</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути вбудований трекер</translation>
     </message>
     <message>
         <source>Embedded tracker port</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт вбудованого трекера</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Automated RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматичний завантажувач RSS</translation>
     </message>
     <message>
         <source>Enable the automated RSS downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути автоматичний завантажувач RSS</translation>
     </message>
     <message>
         <source>Download rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Правила завантаження</translation>
     </message>
     <message>
         <source>Rule definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Означення правила</translation>
     </message>
     <message>
         <source>Must contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Повинно містити:</translation>
     </message>
     <message>
         <source>Must not contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Не може містити:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Assign label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Призначити мітку:</translation>
     </message>
     <message>
         <source>Apply rule to feeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Застосувати правило до подач:</translation>
     </message>
     <message>
         <source>Matching RSS articles</source>
-        <translation type="unfinished"></translation>
+        <translation>Підходящі RSS-статті</translation>
     </message>
     <message>
         <source>Save to a different directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти в іншу папку</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти у:</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation type="unfinished">Імпорт...</translation>
+        <translation>Імпорт...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished">Експорт...</translation>
+        <translation>Експорт...</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Нова назва правила</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
+        <translation>Будь ласка, введіть назву нового правила завантаження.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Конфлікт назв правил</translation>
     </message>
     <message>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Правило з цією назвою вже існує, будь ласка, оберіть іншу назву.</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви випевнені, що хочете видалити правило &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви дійсно хочете видалити вибрані правила завантаження?</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтвердження видалення правила</translation>
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка призначення</translation>
     </message>
     <message>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильна дія</translation>
     </message>
     <message>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Список пустий, нічого експортувати.</translation>
     </message>
     <message>
         <source>Where would you like to save the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Де б ви хотіли зберегти список?</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules)</source>
-        <translation type="unfinished"></translation>
+        <translation>Список правил (*.rssrules)</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">Помилка вводу/виводу</translation>
+        <translation>Помилка вводу/виводу</translation>
     </message>
     <message>
         <source>Failed to create the destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося створити папку призначення</translation>
     </message>
     <message>
         <source>Please point to the RSS download rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Будь ласка, вкажіть файл правил завантаження RSS</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules *.filters)</source>
-        <translation type="unfinished"></translation>
+        <translation>Список правил (*.rssrules *.filters)</translation>
     </message>
     <message>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка імпорту</translation>
     </message>
     <message>
         <source>Failed to import the selected rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалось імпортувати вибраний файл правил</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати нове правило...</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Видалити правило</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейменувати правило...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Видалити позначені правила</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейменування правила</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Будь ласка, введіть нову назву правила</translation>
     </message>
 </context>
 <context>
@@ -799,11 +799,11 @@ You should get this information from your Web browser preferences.</source>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished">RSS-подачі</translation>
+        <translation>RSS-подачі</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished">Непрочитані</translation>
+        <translation>Непрочитані</translation>
     </message>
 </context>
 <context>
@@ -986,20 +986,21 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступна новіше версія</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Нова версія qBittorrent доступна на SourceForge.
+Чи хочете ви оновити qBittorrent до версії %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможливо оновити qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent не вдалося оновити. Причина: %1</translation>
     </message>
 </context>
 <context>
@@ -1575,204 +1576,205 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнути qBittorrent після завершення завантажень</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Вийти</translation>
     </message>
     <message>
         <source>Import torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Імпортувати торрент...</translation>
     </message>
     <message>
         <source>Donate money</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожертвувати гроші</translation>
     </message>
     <message>
         <source>If you like qBittorrent, please donate!</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо вам подобається qBittorrent, будь ласка, пожертвуйте кошти!</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished">Встановити пароль...</translation>
+        <translation>Встановити пароль...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Завантаження</translation>
+        <translation>Завантаження</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished">Відкривання torrent-файлів</translation>
+        <translation>Асоціації torrent-файлів</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished">qBittorrent не є програмою за замовчуванням для відкривання торрентів та Магнітних посилань.
+        <translation>qBittorrent не є програмою за замовчуванням для відкривання торрентів.
 Встановити qBittorrent як програму для відкривання torrent-файлів та Магнітних посилань?</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation type="unfinished">
-</translation>
+        <translation>Пароль блокування інтерфейсу</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished">Будь ласка, введіть пароль блокування інтерфейсу:</translation>
+        <translation>Будь ласка, введіть пароль блокування інтерфейсу:</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished">Оновити пароль</translation>
+        <translation>Оновити пароль</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished">Пароль блокування інтерфейсу був успішно оновлений</translation>
+        <translation>Пароль блокування інтерфейсу був успішно оновлений</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished">RSS</translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation>Пошук</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished">Завантаження (%1)</translation>
+        <translation>Завантаження (%1)</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished">Завантажено</translation>
+        <translation>Завантажено</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished">Завантаження &apos;%1&apos; закінчилось.</translation>
+        <translation>Завантаження &apos;%1&apos; закінчилось.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished">Помилка вводу/виводу</translation>
+        <translation>Помилка вводу/виводу</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished">Сталася помилка вводу/виводу для торрента %1. Причина: %2</translation>
+        <translation>Сталася помилка вводу/виводу для торрента %1.
+Причина: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished">Alt+1</translation>
+        <translation>Alt+1</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished">Підтвердження рекурсивного завантаження</translation>
+        <translation>Підтвердження рекурсивного завантаження</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished">Торрент %1 містить інші торренти. Завантажувати і їх?</translation>
+        <translation>Торрент %1 містить інші торренти. Завантажувати і їх?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Так</translation>
+        <translation>Так</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">Ні</translation>
+        <translation>Ні</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Ніколи</translation>
+        <translation>Ніколи</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation type="unfinished">Помилка завантаження url</translation>
+        <translation>Помилка завантаження URL</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished">Не вдалося завантажити файл з URL: %1, причина: %2.</translation>
+        <translation>Не вдалося завантажити файл з URL: %1, причина: %2.</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished">Глобальний ліміт вивантаження</translation>
+        <translation>Глобальний ліміт вивантаження</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished">Глобальний ліміт завантаження</translation>
+        <translation>Глобальний ліміт завантаження</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished">Неправильний пароль</translation>
+        <translation>Неправильний пароль</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished">Пароль неправильний</translation>
+        <translation>Пароль неправильний</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished">Вихід із qBittorrent</translation>
+        <translation>Вихід із qBittorrent</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished">Не всі завантаження завершені. Ви впевнені, що хочете вийти?</translation>
+        <translation>Не всі завантаження завершені.
+Ви впевнені, що хочете вийти з програми?</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished">Завжди</translation>
+        <translation>Завжди</translation>
     </message>
     <message>
         <source>Open Torrent Files</source>
-        <translation type="unfinished">Відкрити Torrent-файли</translation>
+        <translation>Відкрити torrent-файли</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-файли</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Налаштування були успішно збережені.</translation>
+        <translation>Налаштування були успішно збережені.</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished">Швидкість прийому: %1 КіБ/с</translation>
+        <translation>Швидкість прийому: %1 КіБ/с</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished">Швидкість віддачі: %1 КіБ/с</translation>
+        <translation>Швидкість віддачі: %1 КіБ/с</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (Зав.: %2/с, Вив.: %3/с)</translation>
+        <translation>qBittorrent %1 (Зав.: %2/с, Вив.: %3/с)</translation>
     </message>
 </context>
 <context>
@@ -2312,19 +2314,19 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Проксі сервер</translation>
     </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося створити файл %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося завантажити оновлення із %1</translation>
     </message>
 </context>
 <context>
@@ -2351,30 +2353,30 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation type="unfinished"></translation>
+        <translation>Змішані</translation>
     </message>
 </context>
 <context>
     <name>PropTabBar</name>
     <message>
         <source>General</source>
-        <translation type="unfinished">Загальні</translation>
+        <translation>Загальні</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished">Трекери</translation>
+        <translation>Трекери</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished">Піри</translation>
+        <translation>Піри</translation>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>URL-сіди</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished">Файли</translation>
+        <translation>Файли</translation>
     </message>
 </context>
 <context>
@@ -2584,247 +2586,247 @@ Are you sure you want to quit qBittorrent?</source>
     <name>QBtSession</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">%1 досяг максимального коефіцієнта, налаштованого вами.</translation>
+        <translation>%1 досяг максимального коефіцієнта, налаштованого вами.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished">Видаляю торрент %1...</translation>
+        <translation>Видаляю торрент %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished">Зупиняю торрент %1...</translation>
+        <translation>Зупиняю торрент %1...</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent використовує порт: %1</translation>
+        <translation>qBittorrent використовує порт: %1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">Підтримка UNnP [Увімкнено]</translation>
+        <translation>Підтримка UNnP [Увімкнено]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">Підтримка UPnP [Вимкнено]</translation>
+        <translation>Підтримка UPnP [Вимкнено]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">Підтримка NAT-PMP [Увімкнено]</translation>
+        <translation>Підтримка NAT-PMP [Увімкнено]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">Підтримка NAT-PMP [Вимкнено]</translation>
+        <translation>Підтримка NAT-PMP [Вимкнено]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">Браузер користувача: %1</translation>
+        <translation>Браузер користувача: %1</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished">Використовую дисковий кеш розміром %1 MiB</translation>
+        <translation>Використовую дисковий кеш розміром %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">Підтримка DHT [Увімкнено], порт: UDP/%1</translation>
+        <translation>Підтримка DHT [Увімкнено], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">Підтримка DHT [Вимкнено]</translation>
+        <translation>Підтримка DHT [Вимкнено]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">Підтримка PeX [Увімкнено]</translation>
+        <translation>Підтримка PeX [Увімкнено]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished">Підтримка PeX [Вимкнено]</translation>
+        <translation>Підтримка PeX [Вимкнено]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished">Щоб перемкнути підтримку PeX, потрібно перезавантажити програму</translation>
+        <translation>Щоб перемкнути підтримку PeX, потрібно перезавантажити програму</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">Пошук Локальних Пірів [Увімкнено]</translation>
+        <translation>Пошук Локальних Пірів [Увімкнено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">Пошук Локальних Пірів [Вимкнено]</translation>
+        <translation>Пошук Локальних Пірів [Вимкнено]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">Підтримка шифрування [Увімкнено]</translation>
+        <translation>Підтримка шифрування [Увімкнено]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">Підтримка шифрування [Примусова]</translation>
+        <translation>Підтримка шифрування [Примусова]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">Підтримка шифрування [Вимкнено]</translation>
+        <translation>Підтримка шифрування [Вимкнено]</translation>
     </message>
     <message>
         <source>Embedded Tracker [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Вбудований трекер [увімкнено]</translation>
     </message>
     <message>
         <source>Failed to start the embedded tracker!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося запустити вбудований трекер!</translation>
     </message>
     <message>
         <source>Embedded Tracker [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Вбудований трекер [вимкнено]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished">Веб-інтерфейс приєднано до порту %1</translation>
+        <translation>Веб-інтерфейс приєднано до порту %1</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished">Помилка Веб-інтерфейсу - Не можу приєднати Веб-інтерфейс до порту %1</translation>
+        <translation>Помилка Веб-інтерфейсу - Не можу приєднати Веб-інтерфейс до порту %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; було видалено із списку завантажень і жорсткого диску.</translation>
+        <translation>&apos;%1&apos; було видалено із списку завантажень і жорсткого диску.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; було видалено із списку завантажень.</translation>
+        <translation>&apos;%1&apos; було видалено із списку завантажень.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">&apos;%1&apos; не є правильним магнітним посиланням.</translation>
+        <translation>&apos;%1&apos; не є правильним магнітним посиланням.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; вже є у списку завантажень.</translation>
+        <translation>&apos;%1&apos; вже є у списку завантажень.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; відновлено. (швидке відновлення)</translation>
+        <translation>&apos;%1&apos; продовжено. (швидке відновлення)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; додано до списку завантажень.</translation>
+        <translation>&apos;%1&apos; додано до списку завантажень.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Не вдалося розкодувати торрент-файл: &apos;%1&apos;</translation>
+        <translation>Не вдалося розкодувати торрент-файл: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Цей файл або пошкоджений, або не є торрент-файлом.</translation>
+        <translation>Цей файл або пошкоджений, або не є торрент-файлом.</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished">Помилка: Торрент %1 не містить жодного файла.</translation>
+        <translation>Помилка: Торрент %1 не містить жодного файла.</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">Нові трекери було додано до існуючого торрента.</translation>
+        <translation>Нові трекери було додано до існуючого торрента.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">Нові URL-сіди було додано до існуючого торрента.</translation>
+        <translation>Нові URL-сіди було додано до існуючого торрента.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано згідно з вашим IP-фільтром&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано згідно з вашим IP-фільтром&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано через пошкоджені частини&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;було заблоковано через пошкоджені частини&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">Рекурсивне завантаження файлу %1 в торренті %2</translation>
+        <translation>Рекурсивне завантаження файлу %1 в торренті %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Не можу розкодувати %1 торрент-файл.</translation>
+        <translation>Не можу розкодувати %1 торрент-файл.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished">Назва торрента: %1</translation>
+        <translation>Назва торрента: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished">Розмір торрента: %1</translation>
+        <translation>Розмір торрента: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished">Шлях збереження: %1</translation>
+        <translation>Шлях збереження: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">Торрент було завантажено за %1.</translation>
+        <translation>Торрент було завантажено за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">Дякуємо, що ви користуєтесь qBittorrent.</translation>
+        <translation>Дякуємо, що ви користуєтесь qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] Завантаження &quot;%1&quot; завершено</translation>
+        <translation>[qBittorrent] Завантаження &quot;%1&quot; завершено</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished">Сталася помилка вводу/виводу, &apos;%1&apos; зупинено.</translation>
+        <translation>Сталася помилка вводу/виводу, &apos;%1&apos; зупинено.</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished">Причина: %1</translation>
+        <translation>Причина: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Не можу приєднати порт, повідомлення: %1</translation>
+        <translation>UPnP/NAT-PMP: Не можу приєднати порт, повідомлення: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Успішне приєднання порта, повідомлення: %1</translation>
+        <translation>UPnP/NAT-PMP: Успішне приєднання порта, повідомлення: %1</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished">Розміри файлів не збігаються для торрента %1, зупиняю його.</translation>
+        <translation>Розміри файлів не збігаються для торрента %1, зупиняю його.</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
+        <translation>Було відмовлено у швидкому відновленні данних для torrent&apos;у %1, перевіряю знову...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
+        <translation>Пошук url роздачі невдалий для url: %1, повідомлення: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Завантажую &apos;%1&apos;, зачекайте...</translation>
+        <translation>Завантажую &apos;%1&apos;, зачекайте...</translation>
     </message>
     <message>
         <source>The network interface defined is invalid: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Зазначений мережевий інтерфейс неправильний: %1</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пробую на інших доступних мережевих інтерфейсах.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation type="unfinished"></translation>
+        <translation>Чекаю підключень на IP %1 та мережевому інтерфейсі %2...</translation>
     </message>
     <message>
         <source>Failed to listen on network interface %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося запуститись не мережевому інтерфейсі %1</translation>
     </message>
 </context>
 <context>
@@ -2927,7 +2929,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантажувач RSS...</translation>
     </message>
 </context>
 <context>
@@ -3022,14 +3024,14 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation type="unfinished">Опис відсутній</translation>
+        <translation>Опис відсутній</translation>
     </message>
 </context>
 <context>
     <name>RssFeed</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished">Автоматично завантажую торрент %1 з RSS-подачі %2...</translation>
+        <translation>Автоматично завантажую торрент %1 з RSS-подачі %2...</translation>
     </message>
 </context>
 <context>
@@ -3062,19 +3064,19 @@ p, li { white-space: pre-wrap; }
     <name>RssSettingsDlg</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished">Налаштування Читача RSS</translation>
+        <translation>Налаштування Читача RSS</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">Інтервал оновлення RSS-подач:</translation>
+        <translation>Інтервал оновлення RSS-подач:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">хвилин</translation>
+        <translation>хвилин</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Максимальна кількість новин в подачі:</translation>
+        <translation>Максимальна кількість новин в подачі:</translation>
     </message>
 </context>
 <context>
@@ -3332,22 +3334,22 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>Потрібно перезапустити qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent було щойно оновлено, і тепер потрібно його перезапустити, щоб застосувати зміни.</translation>
     </message>
 </context>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished">Виберіть папку для додавання в torrent</translation>
+        <translation>Виберіть папку для додавання в torrent</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished">Виберіть файл для додавання в торрент</translation>
+        <translation>Виберіть файл для додавання в торрент</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -3368,35 +3370,35 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>No input path set</source>
-        <translation type="unfinished">Не задано вхідний шлях</translation>
+        <translation>Не задано вхідний шлях</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation type="unfinished">Будь ласка, спочатку введіть вхідний шлях</translation>
+        <translation>Будь ласка, спочатку введіть вхідний шлях</translation>
     </message>
     <message>
         <source>Select destination torrent file</source>
-        <translation type="unfinished">Виберіть цільовий torrent-файл</translation>
+        <translation>Виберіть цільовий torrent-файл</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Торрент-файли</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation type="unfinished">Створення торренту</translation>
+        <translation>Створення торренту</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished">Створення torrent&apos;у було невдалим, причина: %1</translation>
+        <translation>Створення torrent&apos;у було невдалим, причина: %1</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished">Створений торрент-файл неправильний. Він не буде доданий до списку завантажень.</translation>
+        <translation>Створений торрент-файл неправильний. Його не буде додано до списку завантажень.</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished">Торрент було успішно створено:</translation>
+        <translation>Торрент було успішно створено:</translation>
     </message>
 </context>
 <context>
@@ -3422,61 +3424,61 @@ Do you want to install it now?</source>
     <name>TorrentImportDlg</name>
     <message>
         <source>Torrent Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Імпорт торрента</translation>
     </message>
     <message>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Цей майстер допоможе вам поділитись з qBittorrent торрентом, який ви вже завантажили.</translation>
     </message>
     <message>
         <source>Torrent file to import:</source>
-        <translation type="unfinished"></translation>
+        <translation>Торрент-файл, що імпортується:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Content location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Розташування вмісту:</translation>
     </message>
     <message>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Пропустити перевірку даних та почати сідування негайно</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Імпорт</translation>
     </message>
     <message>
         <source>Torrent file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Торрент-файл, що імпортується</translation>
     </message>
     <message>
         <source>Torrent files (*.torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-файли (*.torrent)</translation>
     </message>
     <message>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Файли %1</translation>
     </message>
     <message>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Будь ласка, вкажіть розташування %1</translation>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Будь ласка, вкажіть на розташування торрента: %1</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильний torrent-файл</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Цей файл не є правильним torrent-файлом.</translation>
     </message>
 </context>
 <context>
@@ -3484,90 +3486,90 @@ Do you want to install it now?</source>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished">Зроблено</translation>
+        <translation>Зроблено</translation>
     </message>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">Статус</translation>
+        <translation>Статус</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Сіди</translation>
+        <translation>Сіди</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished">Піри</translation>
+        <translation>Піри</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Шв. завант.</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Шв. вивант.</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Коефіцієнт</translation>
+        <translation>Коефіцієнт</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">Залишилось</translation>
+        <translation>Залишилось</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished">Мітка</translation>
+        <translation>Мітка</translation>
     </message>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Додано</translation>
+        <translation>Додано</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Завершено</translation>
+        <translation>Завершено</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Трекер</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished">Ліміт завантаження</translation>
+        <translation>Ліміт завант.</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished">Ліміт вивантаження</translation>
+        <translation>Ліміт вивант.</translation>
     </message>
     <message>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Завантажено</translation>
     </message>
     <message>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Залишилось</translation>
     </message>
 </context>
 <context>
@@ -4284,19 +4286,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL трекерів:</translation>
     </message>
     <message>
         <source>Web seeds urls:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL веб-сідів:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Коментар:</translation>
+        <translation>Коментар:</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично</translation>
     </message>
 </context>
 <context>
