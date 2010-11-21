@@ -139,7 +139,7 @@ QBtSession::QBtSession()
 #endif
   connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
   // Apply user settings to Bittorrent session
-  configureSession();
+  QTimer::singleShot(0, this, SLOT(configureSession()));
   qDebug("* BTSession constructed");
 }
 
