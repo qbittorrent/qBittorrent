@@ -992,21 +992,21 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation>Новая версия доступна</translation>
+        <translation type="obsolete">Новая версия доступна</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation>Новая версия qBittorrent доступна на Sourceforge.
+        <translation type="obsolete">Новая версия qBittorrent доступна на Sourceforge.
 Хотите обновить qBittorrent до версии %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation>Невозможно обновить qBittorrent</translation>
+        <translation type="obsolete">Невозможно обновить qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation>qBitttorrent не может быть обновлен. Причина: %1</translation>
+        <translation type="obsolete">qBitttorrent не может быть обновлен. Причина: %1</translation>
     </message>
 </context>
 <context>
@@ -1805,6 +1805,24 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished">qBittorrent %1 (Скач: %2/с, Отд: %3/с)</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished">Новая версия доступна</translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished">Новая версия qBittorrent доступна на Sourceforge.
+Хотите обновить qBittorrent до версии %1?</translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished">Невозможно обновить qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished">qBitttorrent не может быть обновлен. Причина: %1</translation>
     </message>
 </context>
 <context>

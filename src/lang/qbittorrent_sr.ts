@@ -153,170 +153,171 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи балоне са програмским коментарима</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући уграђени пратилац</translation>
     </message>
     <message>
         <source>Embedded tracker port</source>
-        <translation type="unfinished"></translation>
+        <translation>Уграђени пратилац порта</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Automated RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Аутоматизовани RSS преузимач</translation>
     </message>
     <message>
         <source>Enable the automated RSS downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући аутоматско преузимање RSS порука</translation>
     </message>
     <message>
         <source>Download rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Правила преузимања</translation>
     </message>
     <message>
         <source>Rule definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Дефинисање правила</translation>
     </message>
     <message>
         <source>Must contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Мора да садржи:</translation>
     </message>
     <message>
         <source>Must not contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Не треба да садржи:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Assign label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Додели ознаку:</translation>
     </message>
     <message>
         <source>Apply rule to feeds:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>feeds-поруке;фидови;канали</translatorcomment>
+        <translation>Примени правило на поруке:</translation>
     </message>
     <message>
         <source>Matching RSS articles</source>
-        <translation type="unfinished"></translation>
+        <translation>Усклађивање RSS чланака</translation>
     </message>
     <message>
         <source>Save to a different directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај у другом директоријуму</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај у:</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation type="unfinished">Увези...</translation>
+        <translation>Увези...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished">Извези...</translation>
+        <translation>Извези...</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Назив новог правила</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
+        <translation>Молим упишите назив новог правила преузимања.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Конфликт у називу правила</translation>
     </message>
     <message>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Правило са овим називом већ постоји, молим изаберите неки други назив.</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Да ли сте сигурни да желите да уклоните правило преузимања назива %1?</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished"></translation>
+        <translation>Да ли сте сигурни да желите да уклоните изабрана правила преузимања?</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Потврда брисања - правила</translation>
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Одредишни директоријум</translation>
     </message>
     <message>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Неважећа акција</translation>
     </message>
     <message>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Листа је празна, не постоји ништа за извоз.</translation>
     </message>
     <message>
         <source>Where would you like to save the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Где желите да сачувате листу?</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules)</source>
-        <translation type="unfinished"></translation>
+        <translation>Листа правила (*.rssrules)</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">И/О Грешка</translation>
+        <translation>И/О Грешка</translation>
     </message>
     <message>
         <source>Failed to create the destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при креирању циљне датотеке</translation>
     </message>
     <message>
         <source>Please point to the RSS download rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Молим укажите на RSS датотеку са правилима преузимања</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules *.filters)</source>
-        <translation type="unfinished"></translation>
+        <translation>Листа правила (*.rssrules *.filters)</translation>
     </message>
     <message>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при увозу</translation>
     </message>
     <message>
         <source>Failed to import the selected rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при увозу изабране датотеке са правилима</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај ново правило...</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Обриши правило</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Преименуј правило...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Обриши изабрана правила</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished"></translation>
+        <translation>Преименовање правила</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Молим упишите назив за ново правило</translation>
     </message>
 </context>
 <context>
@@ -818,11 +819,11 @@ You should get this information from your Web browser preferences.</source>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished">RSS поруке</translation>
+        <translation>RSS поруке</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Непрочитане</translation>
     </message>
 </context>
 <context>
@@ -1024,20 +1025,21 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Нова верзија је доступна</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Нова верзија qBittorrent-а је доступна на Sourceforge-u.
+Да ли желите да ажурирате qBittorrent на верзију %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Није могуће ажурирање qBittorrent-а</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">qBittorrent грешка при ажурирању, разлог: %1</translation>
     </message>
 </context>
 <context>
@@ -1624,205 +1626,223 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Искључи qBittorrent по комплетном преузимању</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Излаз</translation>
     </message>
     <message>
         <source>Import torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Увези торент...</translation>
     </message>
     <message>
         <source>Donate money</source>
-        <translation type="unfinished"></translation>
+        <translation>Донирање новца</translation>
     </message>
     <message>
         <source>If you like qBittorrent, please donate!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ако волите qBittorrent, молимо Вас донирајте!</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished">Подешавање лозинке...</translation>
+        <translation>Подешавање лозинке...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">Трансфери</translation>
+        <translation>Трансфери</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished">Асоцириње Торент фајла</translation>
+        <translation>Асоцириње Торент фајла</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished">qBittorrent није подразумевана апликација за отварање Торент фајлова или Magnet линкова.
+        <translation>qBittorrent није подразумевана апликација за отварање Торент фајлова или Magnet линкова.
 Да ли желите да асоцирате qBittorrent за Торент фајлове и Magnet линкове?</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation type="unfinished">Закључавање КИ-а лозинком</translation>
+        <translation>Закључавање КИ-а лозинком</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished">Молим упишите лозинку закључавања КИ-а:</translation>
+        <translation>Молим упишите лозинку закључавања КИ-а:</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished">Обнављање лозинке</translation>
+        <translation>Обнављање лозинке</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished">Закључавање КИ-а лозинком је успешно обновљено</translation>
+        <translation>Закључавање КИ-а лозинком је успешно обновљено</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished">RSS</translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Претраживање</translation>
+        <translation>Претраживање</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished">Трансфери (%1)</translation>
+        <translation>Трансфери (%1)</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished">Комплетно преузет</translation>
+        <translation>Комплетно преузет</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished">%1 је завршио преузимање.</translation>
+        <translation>%1 је завршио преузимање.</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished">И/О Грешка</translation>
+        <translation>И/О Грешка</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished">Нека И/О грешка се догодила са торентом %1.
+        <translation>Нека И/О грешка се догодила са торентом %1.
  Разлог: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished">Alt+1</translation>
+        <translation>Alt+1</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished">Ctrl+F</translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished">Потврда поновног преузимања</translation>
+        <translation>Потврда поновног преузимања</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished">Торент %1 садржи торент фајлове, да ли желите да наставите њихово преузимање?</translation>
+        <translation>Торент %1 садржи торент фајлове, да ли желите да наставите њихово преузимање?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">Не</translation>
+        <translation>Не</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Никада</translation>
+        <translation>Никада</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation type="unfinished">Url грешка преузимања</translation>
+        <translation>Url грешка преузимања</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished">Немогуће преузети фајл са url: %1, разлог: %2.</translation>
+        <translation>Немогуће преузети фајл са url: %1, разлог: %2.</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished">Општи лимит брзине слања</translation>
+        <translation>Општи лимит брзине слања</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished">Општи лимит брзине преузимања</translation>
+        <translation>Општи лимит брзине преузимања</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished">Погрешна лозинка</translation>
+        <translation>Погрешна лозинка</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished">Лозинка је погрешна</translation>
+        <translation>Лозинка је погрешна</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished">Излазак из qBittorrent-а</translation>
+        <translation>Излазак из qBittorrent-а</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished">Неки фајлови се тренутно преносе.
+        <translation>Неки фајлови се тренутно преносе.
 Да ли сте сигурни да желите да прекинете qBittorrent?</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished">Увек</translation>
+        <translation>Увек</translation>
     </message>
     <message>
         <source>Open Torrent Files</source>
-        <translation type="unfinished">Отвори Торент фајлове</translation>
+        <translation>Отвори Торент фајлове</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished">Торент Фајлови</translation>
+        <translation>Торент Фајлови</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Опције када је сачуван успешно.</translation>
+        <translation>Опције када је сачуван успешно.</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished">ПР брзина: %1 KiB/s</translation>
+        <translation>ПР брзина: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished">СЛ брзина: %1 KiB/s</translation>
+        <translation>СЛ брзина: %1 KiB/s</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (Преуз: %2/s, Сл: %3/s)</translation>
+        <translation>qBittorrent %1 (Преуз: %2/s, Сл: %3/s)</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished">Нова верзија је доступна</translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished">Нова верзија qBittorrent-а је доступна на Sourceforge-u.
+Да ли желите да ажурирате qBittorrent на верзију %1?</translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished">Није могуће ажурирање qBittorrent-а</translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished">qBittorrent грешка при ажурирању, разлог: %1</translation>
     </message>
 </context>
 <context>
@@ -2258,12 +2278,12 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Минимизуј qBittorrent икону на системску палету</translation>
+        <translation>Минимизуј qBittorrent на системску палету</translation>
     </message>
     <message>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Затвори qBittorrent икону на системску палету</translation>
+        <translation>Затвори qBittorrent на системску палету</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -2374,19 +2394,19 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокси сервер</translation>
     </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Није могуће креирати датотеку %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешно преузимање ажурирања са %1</translation>
     </message>
 </context>
 <context>
@@ -2413,30 +2433,30 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation type="unfinished"></translation>
+        <translation>Комбинован</translation>
     </message>
 </context>
 <context>
     <name>PropTabBar</name>
     <message>
         <source>General</source>
-        <translation type="unfinished">Опште</translation>
+        <translation>Опште</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished">Пратиоци</translation>
+        <translation>Пратиоци</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished">Peers (учесници)</translation>
+        <translation>Peers (учесници)</translation>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>URL донори</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished">Фајлови</translation>
+        <translation>Фајлови</translation>
     </message>
 </context>
 <context>
@@ -2651,247 +2671,247 @@ Are you sure you want to quit qBittorrent?</source>
     <name>QBtSession</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">%1 достигао је максимални ниво који сте подесили.</translation>
+        <translation>%1 достигао је максимални ниво који сте подесили.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished">Уклањање торента %1...</translation>
+        <translation>Уклањање торента %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished">Паузирање торента %1...</translation>
+        <translation>Паузирање торента %1...</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent је повезан на порт: TCP/%1</translation>
+        <translation>qBittorrent је повезан на порт: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">UPnP подршка [Укључена]</translation>
+        <translation>UPnP подршка [Укључена]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">UPnP подршка [Искључена]</translation>
+        <translation>UPnP подршка [Искључена]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">NAT-PMP подршка [Укључена]</translation>
+        <translation>NAT-PMP подршка [Укључена]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">NAT-PMP подршка [Искључена]</translation>
+        <translation>NAT-PMP подршка [Искључена]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">HTTP кориснички агент је %1</translation>
+        <translation>HTTP кориснички агент је %1</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished">Користи кеш диска величине %1 MiB</translation>
+        <translation>Користи кеш диска величине %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">DHT подршка [Укључена], порт: UDP/%1</translation>
+        <translation>DHT подршка [Укључена], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">DHT подршка [Искључена]</translation>
+        <translation>DHT подршка [Искључена]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">PeX подршка [Укључена]</translation>
+        <translation>PeX подршка [Укључена]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished">PeX подршка [Искључена]</translation>
+        <translation>PeX подршка [Искључена]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished">Рестарт је потребан за укључивање PeX подршке</translation>
+        <translation>Потребан је рестарт за активирање PeX подршке</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">Претраживање локалних веза [Укључено]</translation>
+        <translation>Претраживање локалних веза [Укључено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">Претраживање локалних веза подршка [Искључено]</translation>
+        <translation>Претраживање локалних веза подршка [Искључено]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">Шифровање подршка [Укључена]</translation>
+        <translation>Шифровање подршка [Укључена]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">Шифровање подршка [Форсирано]</translation>
+        <translation>Шифровање подршка [Форсирано]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">Шифровање подршка [Искључена]</translation>
+        <translation>Шифровање подршка [Искључена]</translation>
     </message>
     <message>
         <source>Embedded Tracker [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Уграђени пратилац [Укључен]</translation>
     </message>
     <message>
         <source>Failed to start the embedded tracker!</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешно покретање уграђеног пратиоца!</translation>
     </message>
     <message>
         <source>Embedded Tracker [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Уграђени пратилац [Искључен]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished">Веб КИ надгледа порт %1</translation>
+        <translation>Веб КИ надгледа порт %1</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished">Веб Кориснички Интерфејс Грешка - Не могу да повежем Веб КИ на порт %1</translation>
+        <translation>Веб Кориснички Интерфејс Грешка - Не могу да повежем Веб КИ на порт %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; је уклоњен са трансфер листе и хард диска.</translation>
+        <translation>&apos;%1&apos; је уклоњен са трансфер листе и хард диска.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; је уклоњен са трансфер листе.</translation>
+        <translation>&apos;%1&apos; је уклоњен са трансфер листе.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">&apos;%1&apos; није валидан магнет URI.</translation>
+        <translation>&apos;%1&apos; није валидан магнет URI.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; већ је додат на листу за преузимање.</translation>
+        <translation>&apos;%1&apos; већ је додат на листу за преузимање.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; настави. (брзо настави)</translation>
+        <translation>&apos;%1&apos; настави. (брзо настави)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; додат на листу за преузимање.</translation>
+        <translation>&apos;%1&apos; додат на листу за преузимање.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Није у стању да декодира торент фајл: &apos;%1&apos;</translation>
+        <translation>Није у стању да декодира торент фајл: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Овај фајл је оштећен или ово није торент.</translation>
+        <translation>Овај фајл је оштећен или ово није торент.</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished">Грешка: Торент %1 не садржи ни један фајл.</translation>
+        <translation>Грешка: Торент %1 не садржи ни један фајл.</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">Напомена: нови пратиоци су додати у постојећи торент.</translation>
+        <translation>Напомена: нови пратиоци су додати у постојећи торент.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">Напомена: нови URL донори су додати у постојећи торент.</translation>
+        <translation>Напомена: нови URL донори су додати у постојећи торент.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">Поновно преузимање фајла %1 омогућено у торенту %2</translation>
+        <translation>Поновно преузимање фајла %1 омогућено у торенту %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Није у стању да декодира %1 торент фајл.</translation>
+        <translation>Није у стању да декодира %1 торент фајл.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished">Име Торента: %1</translation>
+        <translation>Име Торента: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished">Величина Торента: %1</translation>
+        <translation>Величина Торента: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished">Путања чувања: %1</translation>
+        <translation>Путања чувања: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">Торент ће бити преузет за %1.</translation>
+        <translation>Торент ће бити преузет за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">Хвала што користите qBittorrent.</translation>
+        <translation>Хвала што користите qBittorrent.</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] %1 је завршио преузимање</translation>
+        <translation>[qBittorrent] %1 је завршио преузимање</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished">Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
+        <translation>Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished">Разлог: %1</translation>
+        <translation>Разлог: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
+        <translation>UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
+        <translation>UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished">Величина фајла није одговарајућа за торент %1, паузирајте га.</translation>
+        <translation>Величина фајла није одговарајућа за торент %1, паузирајте га.</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
+        <translation>Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Url преглед донора , грешка url: %1, порука: %2</translation>
+        <translation>Url преглед донора , грешка url: %1, порука: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Преузимање &apos;%1&apos;, молим сачекајте...</translation>
+        <translation>Преузимање &apos;%1&apos;, молим сачекајте...</translation>
     </message>
     <message>
         <source>The network interface defined is invalid: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Мрежни интерфејс који је задат је погрешан: %1</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пробајте неки други доступни мрежни интрфејс уместо тога.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation type="unfinished"></translation>
+        <translation>Надгледај IP адресе %1 на мрежном интерфејсу %2...</translation>
     </message>
     <message>
         <source>Failed to listen on network interface %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка при надгледању мрежног интрфејса %1</translation>
     </message>
 </context>
 <context>
@@ -2996,7 +3016,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS преузимач порука...</translation>
     </message>
 </context>
 <context>
@@ -3097,14 +3117,14 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation type="unfinished">Нема доступних описа</translation>
+        <translation>Нема доступних описа</translation>
     </message>
 </context>
 <context>
     <name>RssFeed</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished">Аутоматски преузми %1 торент са %2 RSS feed...</translation>
+        <translation>Аутоматски преузми %1 торент са %2 RSS feed-а...</translation>
     </message>
 </context>
 <context>
@@ -3137,19 +3157,19 @@ p, li { white-space: pre-wrap; }
     <name>RssSettingsDlg</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished">RSS читач Подешавања</translation>
+        <translation>RSS читач Подешавања</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS поруке интервал освежавања:</translation>
+        <translation>RSS поруке интервал освежавања:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">минута</translation>
+        <translation>минута</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Максимални број чланака по допису:</translation>
+        <translation>Максимални број чланака по допису:</translation>
     </message>
 </context>
 <context>
@@ -3414,22 +3434,22 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent треба бити рестартован</translation>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent је управо ажуриран и треба бити рестартован, да би&apos; промене имале ефекта.</translation>
     </message>
 </context>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished">Селектујте фасциклу коју додајете у торент</translation>
+        <translation>Селектујте фасциклу коју додајете у торент</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished">Селектујте фајл који додајете у торент</translation>
+        <translation>Селектујте фајл који додајете у торент</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -3450,35 +3470,35 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>No input path set</source>
-        <translation type="unfinished">Није унета путања</translation>
+        <translation>Није унета путања</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation type="unfinished">Молим прво упишите улазну путању</translation>
+        <translation>Молим прво упишите улазну путању</translation>
     </message>
     <message>
         <source>Select destination torrent file</source>
-        <translation type="unfinished">Изаберите дестинацију торент фајла</translation>
+        <translation>Изаберите дестинацију торент фајла</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished">Торент Фајлови</translation>
+        <translation>Торент Фајлови</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation type="unfinished">Креирање Торента</translation>
+        <translation>Креирање Торента</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished">Креирање Торента је неуспешно, разлог: %1</translation>
+        <translation>Креирање Торента је неуспешно, разлог: %1</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished">Креирана Торент датотека је неважећа. Неће бити додата у листу за преузимање.</translation>
+        <translation>Креирана Торент датотека је неважећа. Неће бити додата у листу за преузимање.</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished">Торент је креиран успешно:</translation>
+        <translation>Торент је креиран успешно:</translation>
     </message>
 </context>
 <context>
@@ -3504,61 +3524,61 @@ Do you want to install it now?</source>
     <name>TorrentImportDlg</name>
     <message>
         <source>Torrent Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Увоз торента</translation>
     </message>
     <message>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Овај асистен ће вам помоћи да делите са qBittorrent-ом торенте које сте већ преузели.</translation>
     </message>
     <message>
         <source>Torrent file to import:</source>
-        <translation type="unfinished"></translation>
+        <translation>Торент фајл за увоз:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Content location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Садржај локације:</translation>
     </message>
     <message>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Прескочи проверу података и одмах стартуј донирање</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Увоз</translation>
     </message>
     <message>
         <source>Torrent file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Торент фајл за увоз</translation>
     </message>
     <message>
         <source>Torrent files (*.torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Торент фајлови (*.torrent)</translation>
     </message>
     <message>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 Фајлови</translation>
     </message>
     <message>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Наведите локацију %1</translation>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Молим Вас укажите на локацију торента: %1</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Неисправна торент датотека</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ово није валидан торент фајл.</translation>
     </message>
 </context>
 <context>
@@ -3566,90 +3586,91 @@ Do you want to install it now?</source>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">Име</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">Величина</translation>
+        <translation>Величина</translation>
     </message>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished">Урађено</translation>
+        <translation>Урађено</translation>
     </message>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">Статус</translation>
+        <translation>Статус</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Донори</translation>
+        <translation>Донори</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished">Peers (учесници)</translation>
+        <translation>Peers (учесници)</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Брзина Преуз</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Брзина Слања</translation>
+        <translation>Брзина Слања</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Однос</translation>
+        <translation>Однос</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">ETA</translation>
+        <translatorcomment>очекивано време за преузимање</translatorcomment>
+        <translation>ETA</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished">Ознака</translation>
+        <translation>Ознака</translation>
     </message>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Додато на</translation>
+        <translation>Додато на</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Завршено дана</translation>
+        <translation>Завршено дана</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Пратилац</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished">Преуз. Лимит</translation>
+        <translation>Преуз. Лимит</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished">Слањ. Лимит</translation>
+        <translation>Слањ. Лимит</translation>
     </message>
     <message>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Износ преузетог</translation>
     </message>
     <message>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Преостали износ</translation>
     </message>
 </context>
 <context>
@@ -4378,19 +4399,21 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>URLs-Веб адресе</translatorcomment>
+        <translation>Пратилац URLs:</translation>
     </message>
     <message>
         <source>Web seeds urls:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>URL-Веб адреса</translatorcomment>
+        <translation>Веб донори URLs:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Коментар:</translation>
+        <translation>Коментар:</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Аутоматски</translation>
     </message>
 </context>
 <context>

@@ -985,21 +985,21 @@ Chcete asociovať qbittorrent so súbormi torrent a odkazmi Magnet?</translation
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation>Je dostupná novšia verzia</translation>
+        <translation type="obsolete">Je dostupná novšia verzia</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation>qBittorrent má novú verziu dostupnú zo Sourceforge.
+        <translation type="obsolete">qBittorrent má novú verziu dostupnú zo Sourceforge.
 Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation>Nie je možné aktualizovať qBittorrent</translation>
+        <translation type="obsolete">Nie je možné aktualizovať qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation>qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
+        <translation type="obsolete">qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
     </message>
 </context>
 <context>
@@ -1774,6 +1774,24 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (sťah: %2/s, nahr: %3/s)</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished">Je dostupná novšia verzia</translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished">qBittorrent má novú verziu dostupnú zo Sourceforge.
+Chcete aktualizovať qBittorrent na verziu %1?</translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished">Nie je možné aktualizovať qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished">qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
     </message>
 </context>
 <context>
