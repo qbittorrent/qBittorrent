@@ -81,7 +81,7 @@ QBtSession::QBtSession()
     preAllocateAll(false), addInPause(false), ratio_limit(-1),
     UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false),
     DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
-    torrentExport(false), exiting(false)
+    torrentExport(false)
   #ifndef DISABLE_GUI
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
@@ -143,37 +143,15 @@ QBtSession::QBtSession()
   qDebug("* BTSession constructed");
 }
 
-session_proxy QBtSession::asyncDeletion() {
-  qDebug("Bittorrent session async deletion IN");
-  exiting = true;
+// Main destructor
+QBtSession::~QBtSession() {
+  qDebug("BTSession destructor IN");
   // Do some BT related saving
 #if LIBTORRENT_VERSION_MINOR < 15
   saveDHTEntry();
 #endif
   saveSessionState();
   saveFastResumeData();
-  // Delete session
-  session_proxy sp = s->abort();
-  delete s;
-  qDebug("Bittorrent session async deletion OUT");
-  return sp;
-}
-
-// Main destructor
-QBtSession::~QBtSession() {
-  qDebug("BTSession destructor IN");
-  if(!exiting) {
-    // Do some BT related saving
-#if LIBTORRENT_VERSION_MINOR < 15
-    saveDHTEntry();
-#endif
-    saveSessionState();
-    saveFastResumeData();
-    qDebug("Deleting the session");
-    // Delete session
-    session_proxy sp = s->abort();
-    delete s;
-  }
   // Delete our objects
   if(m_tracker)
     delete m_tracker;
@@ -190,6 +168,9 @@ QBtSession::~QBtSession() {
     delete httpServer;
   if(timerETA)
     delete timerETA;
+  // Delete session
+  qDebug("Deleting the session");
+  delete s;
   qDebug("BTSession destructor OUT");
 }
 

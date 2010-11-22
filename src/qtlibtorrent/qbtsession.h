@@ -108,7 +108,6 @@ public slots:
   void downloadFromUrl(QString url);
   void deleteTorrent(QString hash, bool delete_local_files = false);
   void startUpTorrents();
-  session_proxy asyncDeletion();
   void recheckTorrent(QString hash);
   void useAlternativeSpeedsLimit(bool alternative);
   /* Needed by Web UI */
@@ -257,8 +256,6 @@ private:
   // Web UI
   QPointer<HttpServer> httpServer;
   QList<QUrl> url_skippingDlg;
-  // Fast exit (async)
-  bool exiting;
   // GeoIP
 #ifndef DISABLE_GUI
   bool geoipDBLoaded;
