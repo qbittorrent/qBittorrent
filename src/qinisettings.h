@@ -58,21 +58,9 @@ public:
   }
 
 #ifdef Q_WS_WIN
-  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) {
+  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
     QString key_tmp(key);
     QVariant ret = QSettings::value(key_tmp);
-    if(ret.isNull()) {
-      if(format() != QSettings::NativeFormat) {
-        // Keep compatibility with qBittorrent < 2.3.0
-        // Import the setting from the registry
-        QSettings old_settings(organizationName(), applicationName());
-        ret = old_settings.value(key_tmp);
-        if(!ret.isNull()) {
-          setValue(key_tmp, ret);
-          old_settings.remove(key_tmp);
-        }
-      }
-    }
     if(ret.isNull())
       return defaultValue;
     return ret;
