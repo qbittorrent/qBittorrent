@@ -1,7 +1,8 @@
 """SocksiPy - Python SOCKS module.
-Version 1.00
+Version 1.01
 
 Copyright 2006 Dan-Haim. All rights reserved.
+Various fixes by Christophe DUMEZ <chris@qbittorrent.org> - 2010
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -138,7 +139,10 @@ class socksocket(socket.socket):
 		"""
 		data = ""
 		while len(data) < bytes:
-			data = data + self.recv(bytes-len(data))
+			d = self.recv(bytes-len(data))
+			if not d:
+				raise GeneralProxyError("connection closed unexpectedly")
+			data = data + d
 		return data
 	
 	def setproxy(self,proxytype=None,addr=None,port=None,rdns=True,username=None,password=None):
@@ -233,15 +237,15 @@ class socksocket(socket.socket):
 			# Connection failed
 			self.close()
 			if ord(resp[1])<=8:
-				raise Socks5Error(ord(resp[1]),_generalerrors[ord(resp[1])])
+				raise Socks5Error((ord(resp[1]),_generalerrors[ord(resp[1])]))
 			else:
-				raise Socks5Error(9,_generalerrors[9])
+				raise Socks5Error((9,_generalerrors[9]))
 		# Get the bound address/port
 		elif resp[3] == "\x01":
 			boundaddr = self.__recvall(4)
 		elif resp[3] == "\x03":
 			resp = resp + self.recv(1)
-			boundaddr = self.__recvall(resp[4])
+			boundaddr = self.__recvall(ord(resp[4]))
 		else:
 			self.close()
 			raise GeneralProxyError((1,_generalerrors[1]))
