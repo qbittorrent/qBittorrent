@@ -1229,7 +1229,7 @@ void MainWindow::on_actionDownload_from_URL_triggered() {
 
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
 
-void GUI::handleUpdateCheckFinished(bool update_available, QString new_version)
+void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_version)
 {
   if(update_available) {
     if(QMessageBox::question(this, tr("A newer version is available"),
@@ -1245,7 +1245,7 @@ void GUI::handleUpdateCheckFinished(bool update_available, QString new_version)
   sender()->deleteLater();
 }
 
-void GUI::handleUpdateInstalled(QString error_msg)
+void MainWindow::handleUpdateInstalled(QString error_msg)
 {
   if(!error_msg.isEmpty()) {
     QMessageBox::critical(this, tr("Impossible to update qBittorrent"), tr("qBittorrent failed to update, reason: %1").arg(error_msg));

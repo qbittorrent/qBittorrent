@@ -53,7 +53,7 @@ ProgramUpdater::ProgramUpdater(QObject *parent) :
   mp_manager = new QNetworkAccessManager(this);
   Preferences pref;
   // Proxy support
-  if(pref.isHTTPProxyEnabled()) {
+  if(pref.isProxyEnabled()) {
     QNetworkProxy proxy;
     switch(pref.getHTTPProxyType()) {
     case Proxy::SOCKS4:
@@ -67,9 +67,9 @@ ProgramUpdater::ProgramUpdater(QObject *parent) :
     proxy.setHostName(pref.getHTTPProxyIp());
     proxy.setPort(pref.getHTTPProxyPort());
     // Proxy authentication
-    if(pref.isHTTPProxyAuthEnabled()) {
-      proxy.setUser(pref.getHTTPProxyUsername());
-      proxy.setPassword(pref.getHTTPProxyPassword());
+    if(pref.isProxyAuthEnabled()) {
+      proxy.setUser(pref.getProxyUsername());
+      proxy.setPassword(pref.getProxyPassword());
     }
     mp_manager->setProxy(proxy);
   }
