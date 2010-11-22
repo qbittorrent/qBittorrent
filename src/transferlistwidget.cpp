@@ -562,7 +562,10 @@ void TransferListWidget::toggleSelectedTorrentsSequentialDownload() const {
   foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && h.has_metadata()) {
-      h.set_sequential_download(!h.is_sequential_download());
+      bool was_sequential = h.is_sequential_download();
+      h.set_sequential_download(!was_sequential);
+      if(!was_sequential)
+        h.prioritize_first_last_piece(true);
     }
   }
 }

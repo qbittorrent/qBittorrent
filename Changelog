@@ -12,6 +12,8 @@
     - FEATURE: Added "Amount downloaded/left" columns to transfer list
     - FEATURE: Simplified proxy settings
     - FEATURE: Optimized and improved the peer country resolution code
+    - FEATURE: Download first/last pieces first when sequential download is
+    enabled (Thanks Ahmad)
     - BUGFIX: Fix SOCKS5 proxy authentication in search engine(closes #680072)
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
