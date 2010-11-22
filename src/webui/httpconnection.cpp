@@ -46,6 +46,8 @@
 #include <QRegExp>
 #include <QTemporaryFile>
 
+using namespace libtorrent;
+
 HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
   : QObject(parent), socket(socket), httpserver(parent)
 {

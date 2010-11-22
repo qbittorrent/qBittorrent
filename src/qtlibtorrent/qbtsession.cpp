@@ -69,6 +69,8 @@
 #include <boost/filesystem/exception.hpp>
 #include <queue>
 
+using namespace libtorrent;
+
 QBtSession* QBtSession::m_instance = 0;
 
 const int MAX_TRACKER_ERRORS = 2;

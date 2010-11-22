@@ -73,6 +73,8 @@ const int UNLEN = 256;
 #include <QDBusMessage>
 #endif
 
+using namespace libtorrent;
+
 QString misc::QDesktopServicesDataLocation() {
 #ifdef Q_WS_WIN
   LPWSTR path=new WCHAR[256];

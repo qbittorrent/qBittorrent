@@ -54,6 +54,8 @@
 
 #include "torrentadditiondlg.h"
 
+using namespace libtorrent;
+
 torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   QDialog(parent), old_label(""), hidden_height(0) {
   const Preferences pref;

@@ -34,8 +34,6 @@
 #include "qbtsession.h"
 #include "ui_console.h"
 
-using namespace libtorrent;
-
 class consoleDlg : public QDialog, private Ui_ConsoleDlg{
   Q_OBJECT
   

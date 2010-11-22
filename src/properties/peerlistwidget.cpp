@@ -45,6 +45,8 @@
 #include <vector>
 #include "qinisettings.h"
 
+using namespace libtorrent;
+
 PeerListWidget::PeerListWidget(PropertiesWidget *parent): QTreeView(parent), properties(parent), display_flags(false) {
   // Visual settings
   setRootIsDecorated(false);

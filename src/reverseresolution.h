@@ -46,8 +46,6 @@
 #include <boost/asio/ip/tcp.hpp>
 #endif
 
-using namespace libtorrent;
-
 const int MAX_THREADS = 20;
 const int CACHE_SIZE = 500;
 

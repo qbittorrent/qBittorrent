@@ -37,8 +37,6 @@
 // actions on double-click on torrents
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};
 
-using namespace libtorrent;
-
 class QCloseEvent;
 class AdvancedSettings;
 

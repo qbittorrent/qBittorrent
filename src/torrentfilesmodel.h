@@ -40,7 +40,6 @@
 #include <libtorrent/torrent_info.hpp>
 #include "proplistdelegate.h"
 #include "misc.h"
-using namespace libtorrent;
 
 enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
 enum TreeItemType {TFILE, FOLDER, ROOT};
@@ -60,7 +59,7 @@ private:
 
 public:
   // File Construction
-  TreeItem(file_entry f, TreeItem *parent, int _file_index) {
+  TreeItem(libtorrent::file_entry f, TreeItem *parent, int _file_index) {
     Q_ASSERT(parent);
     parentItem = parent;
     type = TFILE;
@@ -333,7 +332,7 @@ public:
     delete rootItem;
   }
 
-  void updateFilesProgress(std::vector<size_type> fp) {
+  void updateFilesProgress(std::vector<libtorrent::size_type> fp) {
     for(unsigned int i=0; i<fp.size(); ++i) {
       Q_ASSERT(fp[i] >= 0);
       files_index[i]->setProgress(fp[i]);
@@ -519,7 +518,7 @@ public:
     emit layoutChanged();
   }
 
-  void setupModelData(torrent_info const& t) {
+  void setupModelData(libtorrent::torrent_info const& t) {
     qDebug("setup model data called");
     if(t.num_files() == 0) return;
     // Initialize files_index array
@@ -551,7 +550,7 @@ public:
 
     // Iterate over files
     int i = 0;
-    torrent_info::file_iterator fi = t.begin_files();
+    libtorrent::torrent_info::file_iterator fi = t.begin_files();
     while(fi != t.end_files()) {
       current_parent = root_folder;
       QString path = QDir::cleanPath(misc::toQStringU(fi->path.string())).replace("\\", "/");

@@ -37,8 +37,6 @@
 #include "ui_login.h"
 #include "qtorrenthandle.h"
 
-using namespace libtorrent;
-
 class trackerLogin : public QDialog, private Ui::authentication{
   Q_OBJECT
 

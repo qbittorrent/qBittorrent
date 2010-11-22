@@ -47,6 +47,8 @@ const QString RSS_URL = "http://sourceforge.net/api/file/index/project-id/163414
 const QString FILE_EXT = "EXE";
 #endif
 
+using namespace libtorrent;
+
 ProgramUpdater::ProgramUpdater(QObject *parent) :
   QObject(parent)
 {
@@ -55,7 +57,7 @@ ProgramUpdater::ProgramUpdater(QObject *parent) :
   // Proxy support
   if(pref.isProxyEnabled()) {
     QNetworkProxy proxy;
-    switch(pref.getHTTPProxyType()) {
+    switch(pref.getProxyType()) {
     case Proxy::SOCKS4:
     case Proxy::SOCKS5:
     case Proxy::SOCKS5_PW:
@@ -64,8 +66,8 @@ ProgramUpdater::ProgramUpdater(QObject *parent) :
       proxy.setType(QNetworkProxy::HttpProxy);
       break;
     }
-    proxy.setHostName(pref.getHTTPProxyIp());
-    proxy.setPort(pref.getHTTPProxyPort());
+    proxy.setHostName(pref.getProxyIp());
+    proxy.setPort(pref.getProxyPort());
     // Proxy authentication
     if(pref.isProxyAuthEnabled()) {
       proxy.setUser(pref.getProxyUsername());

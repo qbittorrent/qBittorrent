@@ -41,6 +41,8 @@
 const uint NB_PIECES_MIN = 1200;
 const uint NB_PIECES_MAX = 2200;
 
+using namespace libtorrent;
+
 TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent), creatorThread(0) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);

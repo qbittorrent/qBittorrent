@@ -35,14 +35,12 @@
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_info.hpp>
 
-using namespace libtorrent;
-
 #include <QString>
 class QStringList;
 
 // A wrapper for torrent_handle in libtorrent
 // to interact well with Qt types
-class QTorrentHandle : public torrent_handle {
+class QTorrentHandle : public libtorrent::torrent_handle {
 
   public:
 
@@ -51,7 +49,7 @@ class QTorrentHandle : public torrent_handle {
     //
 
     QTorrentHandle() {}
-    explicit QTorrentHandle(torrent_handle h);
+    explicit QTorrentHandle(libtorrent::torrent_handle h);
 
     //
     // Getters
@@ -59,15 +57,15 @@ class QTorrentHandle : public torrent_handle {
     QString hash() const;
     QString name() const;
     float progress() const;
-    bitfield pieces() const;
+    libtorrent::bitfield pieces() const;
     QString current_tracker() const;
     bool is_paused() const;
     bool has_filtered_pieces() const;
-    size_type total_size() const;
-    size_type piece_length() const;
+    libtorrent::size_type total_size() const;
+    libtorrent::size_type piece_length() const;
     int num_pieces() const;
-    size_type total_wanted_done() const;
-    size_type total_wanted() const;
+    libtorrent::size_type total_wanted_done() const;
+    libtorrent::size_type total_wanted() const;
     float download_payload_rate() const;
     float upload_payload_rate() const;
     int num_connections() const;
@@ -78,22 +76,22 @@ class QTorrentHandle : public torrent_handle {
     int num_incomplete() const;
     QString save_path() const;
     QStringList url_seeds() const;
-    size_type actual_size() const;
+    libtorrent::size_type actual_size() const;
     int num_files() const;
     int queue_position() const;
     bool is_queued() const;
     QString filename_at(unsigned int index) const;
-    size_type filesize_at(unsigned int index) const;
-    torrent_status::state_t state() const;
+    libtorrent::size_type filesize_at(unsigned int index) const;
+    libtorrent::torrent_status::state_t state() const;
     QString creator() const;
     QString comment() const;
-    size_type total_failed_bytes() const;
-    size_type total_redundant_bytes() const;
-    size_type total_payload_download() const;
-    size_type total_payload_upload() const;
-    size_type all_time_upload() const;
-    size_type all_time_download() const;
-    size_type total_done() const;
+    libtorrent::size_type total_failed_bytes() const;
+    libtorrent::size_type total_redundant_bytes() const;
+    libtorrent::size_type total_payload_download() const;
+    libtorrent::size_type total_payload_upload() const;
+    libtorrent::size_type all_time_upload() const;
+    libtorrent::size_type all_time_download() const;
+    libtorrent::size_type total_done() const;
     QStringList files_path() const;
     QStringList uneeded_files_path() const;
     bool has_missing_files() const;
@@ -112,7 +110,7 @@ class QTorrentHandle : public torrent_handle {
     QString firstFileSavePath() const;
     bool has_error() const;
     QString error() const;
-    void downloading_pieces(bitfield &bf) const;
+    void downloading_pieces(libtorrent::bitfield &bf) const;
 
     //
     // Setters
@@ -125,7 +123,7 @@ class QTorrentHandle : public torrent_handle {
     void file_priority(int index, int priority) const;
     void set_tracker_login(QString username, QString password);
     void move_storage(QString path) const;
-    void add_tracker(const announce_entry& url);
+    void add_tracker(const libtorrent::announce_entry& url);
     void prioritize_first_last_piece(bool b);
     void rename_file(int index, QString name);
     bool save_torrent_file(QString path);

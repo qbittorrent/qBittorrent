@@ -37,8 +37,6 @@
 
 #include <libtorrent/torrent_info.hpp>
 
-using namespace libtorrent;
-
 class TorrentFilesModel;
 class PropListDelegate;
 
@@ -84,7 +82,7 @@ private:
   TorrentFilesModel *PropListModel;
   PropListDelegate *PropDelegate;
   unsigned int nbFiles;
-  boost::intrusive_ptr<torrent_info> t;
+  boost::intrusive_ptr<libtorrent::torrent_info> t;
   QStringList files_path;
   bool is_magnet;
   int hidden_height;

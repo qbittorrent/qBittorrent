@@ -25,6 +25,7 @@ ICONS_PATH = Icons
 
 # use "CONFIG -= debug" to disable debug
 CONFIG += debug
+#CONFIG += release
 
 # Disable debug output in release mode
 !debug {

@@ -40,6 +40,8 @@
 #include <QDebug>
 #include <QTranslator>
 
+using namespace libtorrent;
+
 EventManager::EventManager(QObject *parent)
   : QObject(parent)
 {

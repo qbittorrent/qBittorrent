@@ -50,6 +50,8 @@
 #include "scannedfoldersmodel.h"
 #include "qinisettings.h"
 
+using namespace libtorrent;
+
 // Constructor
 options_imp::options_imp(QWidget *parent):QDialog(parent){
   qDebug("-> Constructing Options");

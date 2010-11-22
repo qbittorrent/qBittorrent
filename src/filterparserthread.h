@@ -40,7 +40,6 @@
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
 
-using namespace libtorrent;
 using namespace std;
 
 // P2B Stuff
@@ -56,8 +55,8 @@ class FilterParserThread : public QThread  {
   Q_OBJECT
 
 private:
-  session *s;
-  ip_filter filter;
+  libtorrent::session *s;
+  libtorrent::ip_filter filter;
   bool abort;
   QString filePath;
 
@@ -94,7 +93,7 @@ protected:
   }
 
 public:
-  FilterParserThread(QObject* parent, session *s) : QThread(parent), s(s), abort(false) {
+  FilterParserThread(QObject* parent, libtorrent::session *s) : QThread(parent), s(s), abort(false) {
 
   }
 
@@ -177,7 +176,7 @@ public:
         }
         // Now Add to the filter
         try {
-          filter.add_rule(startAddr, endAddr, ip_filter::blocked);
+          filter.add_rule(startAddr, endAddr, libtorrent::ip_filter::blocked);
         }catch(exception){
           qDebug("Bad line in filter file, avoided crash...");
         }
@@ -246,7 +245,7 @@ public:
           continue;
         }
         try {
-          filter.add_rule(startAddr, endAddr, ip_filter::blocked);
+          filter.add_rule(startAddr, endAddr, libtorrent::ip_filter::blocked);
         } catch(std::exception&) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("Line was: %s", line.constData());
@@ -313,10 +312,10 @@ public:
           // Network byte order to Host byte order
           // asio address_v4 contructor expects it
           // that way
-          address_v4 first(ntohl(start));
-          address_v4 last(ntohl(end));
+          libtorrent::address_v4 first(ntohl(start));
+          libtorrent::address_v4 last(ntohl(end));
           // Apply to bittorrent session
-          filter.add_rule(first, last, ip_filter::blocked);
+          filter.add_rule(first, last, libtorrent::ip_filter::blocked);
         }
       }
       else if(version==3) {
@@ -358,10 +357,10 @@ public:
           // Network byte order to Host byte order
           // asio address_v4 contructor expects it
           // that way
-          address_v4 first(ntohl(start));
-          address_v4 last(ntohl(end));
+          libtorrent::address_v4 first(ntohl(start));
+          libtorrent::address_v4 last(ntohl(end));
           // Apply to bittorrent session
-          filter.add_rule(first, last, ip_filter::blocked);
+          filter.add_rule(first, last, libtorrent::ip_filter::blocked);
           if(abort) return;
         }
       } else {
@@ -391,16 +390,16 @@ public:
     start();
   }
 
-  static void processFilterList(session *s, QStringList IPs) {
+  static void processFilterList(libtorrent::session *s, QStringList IPs) {
     // First, import current filter
-    ip_filter filter = s->get_ip_filter();
+    libtorrent::ip_filter filter = s->get_ip_filter();
     foreach(const QString &ip, IPs) {
       qDebug("Manual ban of peer %s", ip.toLocal8Bit().constData());
       boost::system::error_code ec;
-      address_v4 addr = address_v4::from_string(ip.toLocal8Bit().constData(), ec);
+      libtorrent::address_v4 addr = libtorrent::address_v4::from_string(ip.toLocal8Bit().constData(), ec);
       Q_ASSERT(!ec);
       if(!ec)
-        filter.add_rule(addr, addr, ip_filter::blocked);
+        filter.add_rule(addr, addr, libtorrent::ip_filter::blocked);
     }
     s->set_ip_filter(filter);
   }

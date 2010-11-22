@@ -43,6 +43,8 @@
 #include "qbtsession.h"
 #include "qinisettings.h"
 
+using namespace libtorrent;
+
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
   // Graphical settings
   setRootIsDecorated(false);

@@ -55,6 +55,8 @@
 #include "qinisettings.h"
 #include "proptabbar.h"
 
+using namespace libtorrent;
+
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList):
     QWidget(parent), transferList(transferList), main_window(main_window) {
 
@@ -248,7 +250,7 @@ void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
       // Expand first item if possible
       filesList->expand(PropListModel->index(0, 0));
     }
-  } catch(invalid_handle e) {
+  } catch(invalid_handle& e) {
 
   }
   // Load dynamic data

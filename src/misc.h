@@ -47,8 +47,6 @@
 
 const qlonglong MAX_ETA = 8640000;
 
-using namespace libtorrent;
-
 /*  Miscellaneaous functions that can be useful */
 class misc : public QObject{
   Q_OBJECT
@@ -73,14 +71,14 @@ public:
     return QString::fromUtf8(str);
   }
 
-  static inline QString toQString(sha1_hash hash) {
+  static inline QString toQString(libtorrent::sha1_hash hash) {
     std::ostringstream o;
     o << hash;
     return QString(o.str().c_str());
   }
 
-  static inline sha1_hash toSha1Hash(QString hash) {
-    return sha1_hash(qPrintable(hash));
+  static inline libtorrent::sha1_hash toSha1Hash(QString hash) {
+    return libtorrent::sha1_hash(qPrintable(hash));
   }
 
   static void chmod644(const QDir& folder);
@@ -93,10 +91,10 @@ public:
     return tmp.join("/");
   }
 
-  static inline sha1_hash QStringToSha1(const QString& s) {
+  static inline libtorrent::sha1_hash QStringToSha1(const QString& s) {
     std::string str(s.toLocal8Bit().data());
     std::istringstream i(str);
-    sha1_hash x;
+    libtorrent::sha1_hash x;
     i>>x;
     return x;
   }
@@ -122,8 +120,8 @@ public:
 
   static quint64 computePathSize(QString path);
 
-  static QString truncateRootFolder(boost::intrusive_ptr<torrent_info> t);
-  static QString truncateRootFolder(torrent_handle h);
+  static QString truncateRootFolder(boost::intrusive_ptr<libtorrent::torrent_info> t);
+  static QString truncateRootFolder(libtorrent::torrent_handle h);
 
   static QString updateLabelInSavePath(const QString& defaultSavePath, QString save_path, const QString old_label, const QString new_label);
 

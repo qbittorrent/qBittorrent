@@ -38,7 +38,6 @@
 #include <libtorrent/bitfield.hpp>
 #include <math.h>
 
-using namespace libtorrent;
 #define BAR_HEIGHT 18
 
 class DownloadedPiecesBar: public QWidget {
@@ -54,7 +53,7 @@ public:
     setFixedHeight(BAR_HEIGHT);
   }
 
-  void setProgress(const bitfield &pieces, const bitfield &downloading_pieces) {
+  void setProgress(const libtorrent::bitfield &pieces, const libtorrent::bitfield &downloading_pieces) {
     if(pieces.empty()) {
       // Empty bar
       QPixmap pix = QPixmap(1, 1);
@@ -67,8 +66,8 @@ public:
       const uint w = width();
       if(nb_pieces > w) {
         const uint ratio = floor(nb_pieces/(double)w);
-        bitfield scaled_pieces(ceil(nb_pieces/(double)ratio), false);
-        bitfield scaled_downloading(ceil(nb_pieces/(double)ratio), false);
+        libtorrent::bitfield scaled_pieces(ceil(nb_pieces/(double)ratio), false);
+        libtorrent::bitfield scaled_downloading(ceil(nb_pieces/(double)ratio), false);
         uint scaled_index = 0;
         for(qulonglong i=0; i<nb_pieces; i+= ratio) {
           bool have = true;

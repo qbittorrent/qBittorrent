@@ -45,8 +45,6 @@
 #include <boost/asio/ip/tcp.hpp>
 #endif
 
-using namespace libtorrent;
-
 class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog {
   Q_OBJECT
 

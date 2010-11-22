@@ -45,6 +45,8 @@
 #include <libtorrent/entry.hpp>
 #include <boost/filesystem/fstream.hpp>
 
+using namespace libtorrent;
+
 QTorrentHandle::QTorrentHandle(torrent_handle h): torrent_handle(h) {}
 
 //

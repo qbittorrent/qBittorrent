@@ -51,8 +51,6 @@
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
 
-using namespace libtorrent;
-
 #define MAX_SAMPLES 20
 
 class downloadThread;
@@ -75,11 +73,11 @@ public:
   static void drop();
   ~QBtSession();
   QTorrentHandle getTorrentHandle(QString hash) const;
-  std::vector<torrent_handle> getTorrents() const;
+  std::vector<libtorrent::torrent_handle> getTorrents() const;
   bool isFilePreviewPossible(QString fileHash) const;
   float getPayloadDownloadRate() const;
   float getPayloadUploadRate() const;
-  session_status getSessionStatus() const;
+  libtorrent::session_status getSessionStatus() const;
   int getListenPort() const;
   float getRealRatio(QString hash) const;
   QHash<QString, TrackerInfos> getTrackersInfo(QString hash) const;
@@ -91,7 +89,7 @@ public:
   qlonglong getETA(QString hash);
   inline QStringList getConsoleMessages() const { return consoleMessages; }
   inline QStringList getPeerBanMessages() const { return peerBanMessages; }
-  inline session* getSession() const { return s; }
+  inline libtorrent::session* getSession() const { return s; }
   inline bool useTemporaryFolder() const { return !defaultTempPath.isEmpty(); }
   inline QString getDefaultSavePath() const { return defaultSavePath; }
   inline ScanFoldersModel* getScanFoldersModel() const {  return m_scanFolders; }
@@ -132,8 +130,8 @@ public slots:
   void setUploadRateLimit(long rate);
   void setMaxRatio(float ratio);
   void setDHTPort(int dht_port);
-  void setProxySettings(const proxy_settings &proxySettings);
-  void setSessionSettings(const session_settings &sessionSettings);
+  void setProxySettings(const libtorrent::proxy_settings &proxySettings);
+  void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);
   void setAppendLabelToSavePath(bool append);
@@ -143,7 +141,7 @@ public slots:
   void appendqBextensionToTorrent(QTorrentHandle &h, bool append);
   void setAppendqBExtension(bool append);
 #endif
-  void applyEncryptionSettings(pe_settings se);
+  void applyEncryptionSettings(libtorrent::pe_settings se);
   void setDownloadLimit(QString hash, long val);
   void setUploadLimit(QString hash, long val);
   void enableUPnP(bool b);
@@ -169,7 +167,7 @@ protected:
   bool loadFastResumeData(QString hash, std::vector<char> &buf);
   void loadTorrentSettings(QTorrentHandle h);
   void loadTorrentTempData(QTorrentHandle h, QString savePath, bool magnet);
-  add_torrent_params initializeAddTorrentParams(QString hash);
+  libtorrent::add_torrent_params initializeAddTorrentParams(QString hash);
 
 protected slots:
   void addTorrentsFromScanFolder(QStringList&);
@@ -181,7 +179,7 @@ protected slots:
   void sendNotificationEmail(QTorrentHandle h);
   void autoRunExternalProgram(QTorrentHandle h, bool async=true);
   void cleanUpAutoRunProcess(int);
-  void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<torrent_info> t);
+  void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
   void exportTorrentFile(QTorrentHandle h);
 
 signals:
@@ -211,7 +209,7 @@ private:
 
 private:
   // Bittorrent
-  session *s;
+  libtorrent::session *s;
   QPointer<QTimer> timerAlerts;
   QPointer<BandwidthScheduler> bd_scheduler;
   QMap<QUrl, QPair<QString, QString> > savepathLabel_fromurl;
