@@ -1,11 +1,11 @@
 # Adapt these paths on Windows
-INCLUDEPATH += $$quote($$PWD/boost_1_42_0)
-INCLUDEPATH += $$quote($$PWD/libtorrent-rasterbar-0.14.10/include)
-INCLUDEPATH += $$quote($$PWD/libtorrent-rasterbar-0.14.10/zlib)
+INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_44_0)
+INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_15/include)
+INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_15/zlib)
 INCLUDEPATH += $$quote(C:/OpenSSL/include)
 
 LIBS += $$quote(-LC:/OpenSSL/lib/VC)
-LIBS += $$quote(-L$$PWD/libs)
+LIBS += $$quote(-L$C:/qBittorrent/libs)
 
 # LIBTORRENT DEFINES
 DEFINES += BOOST_ALL_NO_LIB BOOST_ASIO_HASH_MAP_BUCKETS=1021 BOOST_EXCEPTION_DISABLE
@@ -14,6 +14,7 @@ DEFINES += BOOST_SYSTEM_STATIC_LINK=1 BOOST_THREAD_USE_LIB BOOST_THREAD_USE_LIB=
 DEFINES += TORRENT_USE_OPENSSL UNICODE WIN32 WIN32_LEAN_AND_MEAN
 DEFINES += _CRT_SECURE_NO_DEPRECATE _FILE_OFFSET_BITS=64 _SCL_SECURE_NO_DEPRECATE
 DEFINES += _UNICODE _WIN32 _WIN32_WINNT=0x0500 __USE_W32_SOCKETS
+DEFINES += WITH_SHIPPED_GEOIP_H
 
 debug {
   DEFINES += TORRENT_DEBUG
