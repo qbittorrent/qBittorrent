@@ -39,6 +39,8 @@
 #include <QRegExp>
 #include <QTimer>
 
+using namespace libtorrent;
+
 const int BAN_TIME = 3600000; // 1 hour
 
 class UnbanTimer: public QTimer {
