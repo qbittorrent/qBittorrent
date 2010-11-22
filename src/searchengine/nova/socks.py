@@ -187,7 +187,7 @@ class socksocket(socket.socket):
 		elif chosenauth[1] == "\x02":
 			# Okay, we need to perform a basic username/password
 			# authentication.
-			self.sendall("\x01" + chr(len(self.__proxy[4])) + self.__proxy[4] + chr(len(self.proxy[5])) + self.__proxy[5])
+			self.sendall("\x01" + chr(len(self.__proxy[4])) + self.__proxy[4] + chr(len(self.__proxy[5])) + self.__proxy[5])
 			authstat = self.__recvall(2)
 			if authstat[0] != "\x01":
 				# Bad response

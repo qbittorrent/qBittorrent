@@ -519,9 +519,11 @@ void SearchEngine::updateNova() {
   }
 
   filePath = search_dir.absoluteFilePath("socks.py");
-  if(!QFile::exists(filePath)) {
-    QFile::copy(":/nova/socks.py", filePath);
+  if(QFile::exists(filePath)){
+    misc::safeRemove(filePath);
+    misc::safeRemove(filePath+"c");
   }
+  QFile::copy(":/nova/socks.py", filePath);
   QDir destDir(QDir(misc::searchEngineLocation()).absoluteFilePath("engines"));
   QDir shipped_subDir(":/nova/engines/");
   QStringList files = shipped_subDir.entryList();
