@@ -927,23 +927,23 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
         <translation type="obsolete">Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="1235"/>
         <source>A newer version is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1235"/>
+        <location filename="../mainwindow.cpp" line="1236"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1250"/>
+        <location filename="../mainwindow.cpp" line="1251"/>
         <source>Impossible to update qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1250"/>
+        <location filename="../mainwindow.cpp" line="1251"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1731,7 +1731,7 @@ Muita varoituksia ei anneta.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="98"/>
-        <location filename="../mainwindow.cpp" line="1196"/>
+        <location filename="../mainwindow.cpp" line="1197"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation type="unfinished"> qBittorrent %1</translation>
@@ -1759,63 +1759,63 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Haluatko, että qBittorrent käsittelee nämä oletusarvoisesti?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="345"/>
-        <location filename="../mainwindow.cpp" line="360"/>
-        <location filename="../mainwindow.cpp" line="611"/>
+        <location filename="../mainwindow.cpp" line="346"/>
+        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="612"/>
         <source>UI lock password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="345"/>
-        <location filename="../mainwindow.cpp" line="360"/>
-        <location filename="../mainwindow.cpp" line="611"/>
+        <location filename="../mainwindow.cpp" line="346"/>
+        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="612"/>
         <source>Please type the UI lock password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="350"/>
+        <location filename="../mainwindow.cpp" line="351"/>
         <source>Password update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="350"/>
+        <location filename="../mainwindow.cpp" line="351"/>
         <source>The UI lock password has been successfully updated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="376"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source>RSS</source>
         <translation type="unfinished">RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="394"/>
+        <location filename="../mainwindow.cpp" line="395"/>
         <source>Search</source>
         <translation type="unfinished">Etsi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="408"/>
         <source>Transfers (%1)</source>
         <translation type="unfinished">Siirrot (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="452"/>
+        <location filename="../mainwindow.cpp" line="453"/>
         <source>Download completion</source>
         <translation type="unfinished">Latauksen valmistuminen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="452"/>
+        <location filename="../mainwindow.cpp" line="453"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation type="unfinished">Lataus ”%1” tuli valmiiksi.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="458"/>
+        <location filename="../mainwindow.cpp" line="459"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation type="unfinished">I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="458"/>
+        <location filename="../mainwindow.cpp" line="459"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1824,139 +1824,139 @@ Haluatko, että qBittorrent käsittelee nämä oletusarvoisesti?</translation>
  Syy: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="465"/>
+        <location filename="../mainwindow.cpp" line="466"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation type="unfinished">Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="467"/>
+        <location filename="../mainwindow.cpp" line="468"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation type="unfinished">Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="469"/>
+        <location filename="../mainwindow.cpp" line="470"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation type="unfinished">Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="471"/>
+        <location filename="../mainwindow.cpp" line="472"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation type="unfinished">Alt+3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="535"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished">Vahvistus rekursiiviseen lataukseen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="535"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished">Torentti %1 sisältää torrent-tiedostoja, jatketaanko latausta?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="535"/>
-        <location filename="../mainwindow.cpp" line="696"/>
+        <location filename="../mainwindow.cpp" line="536"/>
+        <location filename="../mainwindow.cpp" line="697"/>
         <source>Yes</source>
         <translation type="unfinished">Kyllä</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="536"/>
-        <location filename="../mainwindow.cpp" line="695"/>
+        <location filename="../mainwindow.cpp" line="537"/>
+        <location filename="../mainwindow.cpp" line="696"/>
         <source>No</source>
         <translation type="unfinished">Ei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="537"/>
+        <location filename="../mainwindow.cpp" line="538"/>
         <source>Never</source>
         <translation type="unfinished">Ei koskaan</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="551"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source>Url download error</source>
         <translation type="unfinished">Latausvirhe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="551"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation type="unfinished">Tiedoston lataaminen osoitteesta %1 epäonnistui: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="557"/>
+        <location filename="../mainwindow.cpp" line="558"/>
         <source>Global Upload Speed Limit</source>
         <translation type="unfinished">Yleinen lähetysnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="579"/>
+        <location filename="../mainwindow.cpp" line="580"/>
         <source>Global Download Speed Limit</source>
         <translation type="unfinished">Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="624"/>
+        <location filename="../mainwindow.cpp" line="625"/>
         <source>Invalid password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="624"/>
+        <location filename="../mainwindow.cpp" line="625"/>
         <source>The password is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="692"/>
+        <location filename="../mainwindow.cpp" line="693"/>
         <source>Exiting qBittorrent</source>
         <translation type="unfinished">Lopetetaan qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="693"/>
+        <location filename="../mainwindow.cpp" line="694"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished">Tiedostoja on siirrotta.
 Haluatko varmasti lopettaa qBittorrentin?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="697"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>Always</source>
         <translation type="unfinished">Aina</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="848"/>
+        <location filename="../mainwindow.cpp" line="849"/>
         <source>Open Torrent Files</source>
         <translation type="unfinished">Avaa torrent-tiedostoja</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="849"/>
+        <location filename="../mainwindow.cpp" line="850"/>
         <source>Torrent Files</source>
         <translation type="unfinished">Torrent-tiedostot</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="928"/>
+        <location filename="../mainwindow.cpp" line="929"/>
         <source>Options were saved successfully.</source>
         <translation type="unfinished">Valinnat tallennettiin.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1020"/>
+        <location filename="../mainwindow.cpp" line="1021"/>
         <source>qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1023"/>
-        <location filename="../mainwindow.cpp" line="1030"/>
+        <location filename="../mainwindow.cpp" line="1024"/>
+        <location filename="../mainwindow.cpp" line="1031"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished">Latausnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1026"/>
-        <location filename="../mainwindow.cpp" line="1032"/>
+        <location filename="../mainwindow.cpp" line="1027"/>
+        <location filename="../mainwindow.cpp" line="1033"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished">Lähetysnopeus: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1037"/>
+        <location filename="../mainwindow.cpp" line="1038"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished">qBittorrent %1 (Lataus: %2/s, lähetys: %3/s)</translation>
@@ -3739,24 +3739,24 @@ Do you want to install it now?</source>
 Haluatko asentaa sen nyt?</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="568"/>
+        <location filename="../searchengine/searchengine.cpp" line="570"/>
         <source>Search Engine</source>
         <translation>Hakupalvelu</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="568"/>
-        <location filename="../searchengine/searchengine.cpp" line="583"/>
+        <location filename="../searchengine/searchengine.cpp" line="570"/>
+        <location filename="../searchengine/searchengine.cpp" line="585"/>
         <source>Search has finished</source>
         <translation>Haku on päättynyt</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="574"/>
+        <location filename="../searchengine/searchengine.cpp" line="576"/>
         <source>An error occured during search...</source>
         <translation>Haun aikana tapahtui virhe...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="572"/>
-        <location filename="../searchengine/searchengine.cpp" line="578"/>
+        <location filename="../searchengine/searchengine.cpp" line="574"/>
+        <location filename="../searchengine/searchengine.cpp" line="580"/>
         <source>Search aborted</source>
         <translation>Haku keskeytetty</translation>
     </message>
@@ -3773,19 +3773,19 @@ Please install it manually.</source>
 Asenna se itse.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="581"/>
+        <location filename="../searchengine/searchengine.cpp" line="583"/>
         <source>Search returned no results</source>
         <translation>Haku ei palauttanut tuloksia</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="588"/>
+        <location filename="../searchengine/searchengine.cpp" line="590"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Tulokset</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="623"/>
-        <location filename="../searchengine/searchengine.cpp" line="629"/>
+        <location filename="../searchengine/searchengine.cpp" line="625"/>
+        <location filename="../searchengine/searchengine.cpp" line="631"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
