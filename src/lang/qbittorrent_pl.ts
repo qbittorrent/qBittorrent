@@ -951,21 +951,21 @@ Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished">Dostępna jest nowa wersja</translation>
+        <translation type="obsolete">Dostępna jest nowa wersja</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Nowa wersja qBittorrenta jest dostępna na Sourceforge.
+        <translation type="obsolete">Nowa wersja qBittorrenta jest dostępna na Sourceforge.
 Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Nie można zaktualizować qBittorrenta</translation>
+        <translation type="obsolete">Nie można zaktualizować qBittorrenta</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">Aktualizacja qBittorrenta nie powiodła się, powód: %1</translation>
+        <translation type="obsolete">Aktualizacja qBittorrenta nie powiodła się, powód: %1</translation>
     </message>
 </context>
 <context>
@@ -1744,6 +1744,24 @@ Czy napewno zamknąć qBittorrent?</translation>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished">qBittorrent %1 (Pobieranie: %2/s, Wysyłanie: %3/s)</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished">Dostępna jest nowa wersja</translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished">Nowa wersja qBittorrenta jest dostępna na Sourceforge.
+Czy chcesz zaktualizować program do wersji %1?</translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished">Nie można zaktualizować qBittorrenta</translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished">Aktualizacja qBittorrenta nie powiodła się, powód: %1</translation>
     </message>
 </context>
 <context>

@@ -1062,23 +1062,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <source>The password is invalid</source>
         <translation type="obsolete">Lozinka nije ispravna</translation>
     </message>
-    <message>
-        <source>A newer version is available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A newer version of qBittorrent is available on Sourceforge.
-Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -1953,6 +1936,23 @@ Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished">qBittorrent %1 (Preuzimanje: %2/s, Slanje: %3/s)</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

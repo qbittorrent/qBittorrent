@@ -992,23 +992,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <source>The password is invalid</source>
         <translation type="obsolete">密碼是無效的</translation>
     </message>
-    <message>
-        <source>A newer version is available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A newer version of qBittorrent is available on Sourceforge.
-Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>GeoIP</name>
@@ -1786,6 +1769,23 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation type="unfinished">qBittorrent %1 (下載速度: %2/s, 上傳速度: %3/s)</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

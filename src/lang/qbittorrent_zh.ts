@@ -992,21 +992,21 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation>新版本可用</translation>
+        <translation type="obsolete">新版本可用</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation>Sourceforge上有更新版本的qBittorrent.
+        <translation type="obsolete">Sourceforge上有更新版本的qBittorrent.
 您想将qBittorrent更新到版本%1吗?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation>无法更新qBittorrent</translation>
+        <translation type="obsolete">无法更新qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation>qBittorrent更新失败, 原因:%1</translation>
+        <translation type="obsolete">qBittorrent更新失败, 原因:%1</translation>
     </message>
 </context>
 <context>
@@ -1783,6 +1783,24 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (下载: %2/s, 上传: %3/s)</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="unfinished">新版本可用</translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="unfinished">Sourceforge上有更新版本的qBittorrent.
+您想将qBittorrent更新到版本%1吗?</translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="unfinished">无法更新qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="unfinished">qBittorrent更新失败, 原因:%1</translation>
     </message>
 </context>
 <context>
